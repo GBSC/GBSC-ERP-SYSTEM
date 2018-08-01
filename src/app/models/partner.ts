@@ -6,8 +6,8 @@ export class Partner {
     LastName: string;
     FullName: string;
     DOB: Date;
-    PlaceOfBirth:string;
-    Occupation:string;
-    NIC:string;
-    PhoneNumber:string;
+    PlaceOfBirth: string;
+    Occupation: string;
+    NIC: string;
+    PhoneNumber: string;
 }

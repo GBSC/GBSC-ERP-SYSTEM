@@ -3,20 +3,20 @@ import { Helpers } from '../../../helpers';
 
 declare let mLayout: any;
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
-  
-  ngAfterViewInit() {
+    ngOnInit() {
+    }
 
-    mLayout.initHeader();
+    ngAfterViewInit() {
 
-}
+        mLayout.initHeader();
+
+    }
 
 }

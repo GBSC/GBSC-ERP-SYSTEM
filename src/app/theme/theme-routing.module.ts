@@ -52,10 +52,10 @@ const routes: Routes = [
         PharmacyModule,
 
 
-        
-       ],
+
+    ],
     exports: [
         RouterModule,
-        ]
+    ]
 })
 export class ThemeRoutingModule { }

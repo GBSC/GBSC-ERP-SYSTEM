@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-visitnote',
-  templateUrl: './visitnote.component.html',
-  styleUrls: ['./visitnote.component.css']
+    selector: 'app-visitnote',
+    templateUrl: './visitnote.component.html',
+    styleUrls: ['./visitnote.component.css']
 })
 export class VisitnoteComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

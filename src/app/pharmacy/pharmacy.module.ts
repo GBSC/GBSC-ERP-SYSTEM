@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
- 
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { routing }  from './pharmacy.routing';
+import { routing } from './pharmacy.routing';
 import { RootComponent } from './root/root.component';
 
 import { HomeComponent } from './home/home.component';
@@ -18,24 +18,24 @@ import { SalesReturnComponent } from './sales-return/sales-return.component';
 import { IssuanceComponent } from './issuance/issuance.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
 
-  ],
-  declarations: [
-    
-    RootComponent,
-    HomeComponent,
-    SupplierComponent,
-    PurchseInvoiceComponent,
-    PurchaseOrderComponent,
-    SalesReturnComponent,
-    IssuanceComponent
- ],
+    ],
+    declarations: [
 
-  providers:    [  ]
+        RootComponent,
+        HomeComponent,
+        SupplierComponent,
+        PurchseInvoiceComponent,
+        PurchaseOrderComponent,
+        SalesReturnComponent,
+        IssuanceComponent
+    ],
+
+    providers: []
 })
 export class PharmacyModule { }

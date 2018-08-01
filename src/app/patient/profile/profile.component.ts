@@ -5,30 +5,30 @@ import { PatientService } from '../../patient/services/patient.services';
 import { FindPatientComponent } from '../../patient/find-patient/find-patient.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
-  public patientObj;
-  public currentPatient: any;
+    public patientObj;
+    public currentPatient: any;
 
 
-  constructor(private PatientServiceobj: PatientService) { }
+    constructor(private PatientServiceobj: PatientService) { }
 
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    // this.patientObj = this.PatientServiceobj.patient;
-    // console.log(this.patientObj);
+        // this.patientObj = this.PatientServiceobj.patient;
+        // console.log(this.patientObj);
 
-    this.currentPatient = this.PatientServiceobj.currentPatient;
+        this.currentPatient = this.PatientServiceobj.currentPatient;
 
-    console.log(this.currentPatient);
+        console.log(this.currentPatient);
 
-    
 
-  }
+
+    }
 
 }

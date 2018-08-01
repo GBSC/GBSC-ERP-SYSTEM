@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {DevExtremeModule} from 'devextreme-angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -32,43 +33,44 @@ import { FooterComponent } from './shared/footer/footer.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    //SharedModule,
-    HttpClientModule
-  ],
-  declarations: [
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        //SharedModule,
+        HttpClientModule,
+        DevExtremeModule
+    ],
+    declarations: [
 
-    RootComponent,
-    RegistrationComponent,
-    ProfileComponent,
-    DiagnosesComponent,
-    RecentvisitsComponent,
-    FamilyComponent,
-    HealthTrendSummaryComponent,
-    AllergiesComponent,
-    WeightGraphComponent,
-    VitalsComponent,
-    AppointmentsComponent,
-    LatestobservationComponent,
-    PatientvitalsComponent,
-    AdmitinpatientComponent,
-    GeneralactionsComponent,
-    VisitnoteComponent,
-    VisitsComponent,
-    AppointmentsblockComponent,
-    HomeComponent,
-    FindPatientComponent,
-    AppointmentSchedulingComponent,
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent,
-  ],
-  providers: [
-    PatientService
-  ]
+        RootComponent,
+        RegistrationComponent,
+        ProfileComponent,
+        DiagnosesComponent,
+        RecentvisitsComponent,
+        FamilyComponent,
+        HealthTrendSummaryComponent,
+        AllergiesComponent,
+        WeightGraphComponent,
+        VitalsComponent,
+        AppointmentsComponent,
+        LatestobservationComponent,
+        PatientvitalsComponent,
+        AdmitinpatientComponent,
+        GeneralactionsComponent,
+        VisitnoteComponent,
+        VisitsComponent,
+        AppointmentsblockComponent,
+        HomeComponent,
+        FindPatientComponent,
+        AppointmentSchedulingComponent,
+        HeaderComponent,
+        MenuComponent,
+        FooterComponent,
+    ],
+    providers: [
+        PatientService
+    ]
 })
 export class PatientModule { }

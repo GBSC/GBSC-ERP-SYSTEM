@@ -6,7 +6,6 @@ import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
 
-import { ScriptLoaderService } from "../../_services/script-loader.service";
 
 
 @Component({
@@ -23,7 +22,7 @@ export class FindPatientComponent implements OnInit {
   public xyz: any;
   public myid: any;
   // public patients;
-  constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private _script: ScriptLoaderService) {
+  constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
     this.editPatientForm = formBuilder.group({
       'FisrtName': ['', Validators.required],
       'MiddleName': ['', Validators.required],
@@ -42,9 +41,6 @@ export class FindPatientComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    this._script.loadScripts('app-find-patient',      ['assets/demo/default/custom/components/datatables/base/html-table.js']);
-}
   async ngOnInit() {
     await this.PatientServiceobj.getPatient();
     let par = this.PatientServiceobj.patients;
@@ -57,7 +53,20 @@ export class FindPatientComponent implements OnInit {
     // });
 
   }
-
+  // contentReady(e) {
+  //   if (!e.component.getSelectedRowKeys().length)
+  //     e.component.selectRowsByIndexes(0);
+  //     console.log('content ready has been called');
+  //     console.log(e);
+  //     console.log('content ready has been called');
+  // }
+  selectionChanged(e) {
+    e.component.collapseAll(-1);
+    e.component.expandRow(e.currentSelectedRowKeys[0]);
+    console.log(e);
+    this.setCurrentPatient(e.selectedRowsData[0]);
+    
+  }
   // async onSubmit({key}) {
   //   // key is accquired through desctructuring 
   //   // key is = data.key
@@ -68,8 +77,8 @@ export class FindPatientComponent implements OnInit {
 
 
   setCurrentPatient(patient) {
-    this.PatientServiceobj.setCurrentPatient(patient);
     this.router.navigate(['/patient/profile']);
+    this.PatientServiceobj.setCurrentPatient(patient);
   }
 
 

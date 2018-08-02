@@ -1,195 +1,318 @@
 
-
 <div class="m-content">
-		<div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
-			<div class="m-alert__icon">
-				<i class="flaticon-exclamation m--font-brand"></i>
-			</div>
-			<div class="m-alert__text">
-				The Metronic Datatable component supports local or remote data binding. For the local data binding you can pass javascript array as data source. In this example the grid fetches its data from a javascript array data source. It also defines the schema model of the data source. In addition to the visualization, the Datatable provides built-in support for operations over data such as sorting, filtering and paging performed in user browser(frontend).
-			</div>
-		</div>
-		<div class="m-portlet m-portlet--mobile">
-			<div class="m-portlet__head">
-				<div class="m-portlet__head-caption">
-					<div class="m-portlet__head-title">
-						<h3 class="m-portlet__head-text">
-							Local Datatable
-							<small>
-								initialized from javascript array
-							</small>
-						</h3>
-					</div>
-				</div>
-				<div class="m-portlet__head-tools">
-					<ul class="m-portlet__nav">
-						<li class="m-portlet__nav-item">
-							<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover" aria-expanded="true">
-								<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-									<i class="la la-ellipsis-h m--font-brand"></i>
-								</a>
-								<div class="m-dropdown__wrapper">
-									<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-									<div class="m-dropdown__inner">
-										<div class="m-dropdown__body">
-											<div class="m-dropdown__content">
-												<ul class="m-nav">
-													<li class="m-nav__section m-nav__section--first">
-														<span class="m-nav__section-text">
-															Quick Actions
-														</span>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-share"></i>
-															<span class="m-nav__link-text">
-																Create Post
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-chat-1"></i>
-															<span class="m-nav__link-text">
-																Send Messages
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-multimedia-2"></i>
-															<span class="m-nav__link-text">
-																Upload File
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__section">
-														<span class="m-nav__section-text">
-															Useful Links
-														</span>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-info"></i>
-															<span class="m-nav__link-text">
-																FAQ
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a href="" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-															<span class="m-nav__link-text">
-																Support
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
-													<li class="m-nav__item m--hide">
-														<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-															Submit
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="m-portlet__body">
-				<!--begin: Search Form -->
-				<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
-					<div class="row align-items-center">
-						<div class="col-xl-8 order-2 order-xl-1">
-							<div class="form-group m-form__group row align-items-center">
-								<div class="col-md-4">
-									<div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label>
-												Status:
-											</label>
-										</div>
-										<div class="m-form__control">
-											<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_status">
-												<option value="">
-													All
-												</option>
-												<option value="1">
-													Pending
-												</option>
-												<option value="2">
-													Delivered
-												</option>
-												<option value="3">
-													Canceled
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div>
-								</div>
-								<div class="col-md-4">
-									<div class="m-form__group m-form__group--inline">
-										<div class="m-form__label">
-											<label class="m-label m-label--single">
-												Type:
-											</label>
-										</div>
-										<div class="m-form__control">
-											<select class="form-control m-bootstrap-select m-bootstrap-select--solid" id="m_form_type">
-												<option value="">
-													All
-												</option>
-												<option value="1">
-													Online
-												</option>
-												<option value="2">
-													Retail
-												</option>
-												<option value="3">
-													Direct
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="d-md-none m--margin-bottom-10"></div>
-								</div>
-								<div class="col-md-4">
-									<div class="m-input-icon m-input-icon--left">
-										<input type="text" class="form-control m-input m-input--solid" placeholder="Search..." id="generalSearch">
-										<span class="m-input-icon__icon m-input-icon__icon--left">
-											<span>
-												<i class="la la-search"></i>
-											</span>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 order-1 order-xl-2 m--align-right">
-							<a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill">
-								<span>
-									<i class="la la-cart-plus"></i>
-									<span>
-										New Order
-									</span>
-								</span>
-							</a>
-							<div class="m-separator m-separator--dashed d-xl-none"></div>
-						</div>
-					</div>
-				</div>
-				<!--end: Search Form -->  		<!--begin: Datatable -->
-				<div class="m_datatable" id="local_data"></div>
-				<!--end: Datatable -->
-			</div>
-		</div>
-	</div>
-	
+
+  <!-- <div class="m-portlet m-portlet--mobile">
+          <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                          <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">
+                                  Khawaja Mujtaba
+                                  <small class="pad_15">
+                                      <a href="#" class="m-link">
+                                          Edit
+                                      </a>
+                                        
+                                    <a href="#" class="m-link pad_8">
+                                            Contact Info
+                                              </a>
+                                    </small>
+                                  <br>
+                                  <small>
+                                      Male 16 Year(s)  (02-Sep-2001)
+                                  </small>   
+                              </h3> 
+                            
+                          </div>
+                          
+                      </div>
+ 
+                  <div class="m-portlet__head-tools">
+                      <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                          
+                          <li class="nav-item m-tabs__item">
+                              <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
+                                  Patient Id
+                              </a>
+                          </li>
+                          <li class="nav-item m-tabs__item">
+                                  <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
+                                  548HTU
+                                  </a>
+                              </li>
+                      </ul> 
+                  </div> 
+          </div> 
+  </div> -->
+
+  <!-- <div class="row">
+    <div class="col-lg-12">
+  
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+                <h3 class="m-portlet__head-text">
+                   Find Patient Data 
+                </h3>
+            </div>
+          </div>
+        </div>
+ 
+        
+          <form class="m-form">
+              <div class="m-portlet__body">
+                
+                  <div class="form-group row">
+                        
+                      <div class="form-group col-lg-4">
+                          <label for="exampleInputEmail1">
+                            Patient Name
+                          </label>
+                        <input type="text"  #filter placeholder="Filter issues" class="form-control m-input m-input--solid">
+                      </div>
+                      <div class="form-group col-lg-4">
+                          <label for="exampleInputEmail1">
+                            Patient Date
+                            </label>
+                          <div class="input-group date">
+                              <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                              <div class="input-group-append">
+                                  <span class="input-group-text">
+                                      <i class="la la-calendar"></i>
+                                  </span>
+                              </div>
+                           </div>
+                      </div>
+                      <div class="form-group  col-lg-4 blankinput">
+                      </div>
+
+
+                  </div>
+                  
+ 
+              </div>
+
+          </form>
+  
+      </div>
+      
+    </div>
+  </div> -->
+  
+
+  <!-- <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Patient Record</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <div class="m-section">
+              <div class="m-section__content" >
+                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand tblheader">
+                  <thead>
+                    <tr>
+                      <th scope="row">Patient Name</th>
+                      <th>Partner Name</th>
+                      <th>Occupation</th>
+                      <th>Date Of Birth</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Relation Type</th>
+                      <th>Person Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <tr *ngFor="let patient of PatientServiceobj.patients">
+                      <th scope="row">
+                        {{patient.fullName}}
+                      </th>
+                      <td>
+                        {{patient.partner.middleName}}
+                      </td>
+                      <td>
+                        {{patient.lastName}}
+                        
+                      </td>
+                      <td>
+                        {{patient?.dob}}
+                      </td>
+                      <td>{{patient?.phoneNumber}}</td>
+                      <td>{{patient.address}}</td>
+                      <td>{{patient.patientRelation}}</td>
+                      <td>
+                          {{patient.personName}}   
+                      </td>
+
+                      <td>
+                          <button (click)="setCurrentPatient(patient)" type="button" class="btn btn-success m-btn m-btn--icon btn-sm m-btn--icon-only">
+                              <i class="la la-edit"></i>
+                            </button>
+                        <button type="button" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" data-toggle="modal">
+                          <i class="la la-archive"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+          </div>
+
+       
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="modal fade" id="m_modal_1_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Edit Patient Record</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                              </div>
+                                <div class="modal-body">
+                                    <form class="m-form m-form--fit m-form--label-align-right"  [formGroup]="editPatientForm">
+                                        <div class="m-portlet__body">
+                                            <div class="form-group m-form__group row">
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> FisrtName </label>
+                                                    <input aria-describedby="emailHelp" name="FisrtName" class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" formControlName="FisrtName" [value]="currentPatient?.fisrtName" type="text">
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> MiddleName </label>
+                                                    <input aria-describedby="emailHelp" class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="MiddleName"  [value]="currentPatient?.middleName" formControlName="MiddleName" type="text">
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> FisrtName </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="LastName" [value]="currentPatient?.lastName"  formControlName="LastName" type="text">                 
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> Date Of Birth </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="DOB" [value]="currentPatient?.dob"   formControlName="DOB" type="date">                 
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> Gender </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="Gender"  [value]="currentPatient?.gender"   formControlName="Gender"  type="text">                 
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> PhoneNumber </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure"  name="PhoneNumber" [value]="currentPatient?.phoneNumber"  formControlName="PhoneNumber" type="text">                 
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group m-form__group row">
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> Address </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="Address" [value]="currentPatient?.address" formControlName="Address" type="text">                 
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> Country </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="Country" [value]="currentPatient?.country"  formControlName="Country"  type="text">                 
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> City </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="City" [value]="currentPatient?.city" formControlName="City" type="text">                 
+                                                </div>
+                                            </div>
+                        
+                                            <div class="form-group m-form__group row">
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> State </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="State" [value]="currentPatient?.state"  formControlName="State"  type="text">                       
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> PostalCode </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="PostalCode" [value]="currentPatient?.postalCode" formControlName="PostalCode" type="text">                       
+                                                </div>
+                                                <div  class="form-group col-lg-4">
+                                                    <label  for="exampleInputEmail1"> PatientRelation </label>
+                                                    <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure" name="PatientRelation"  [value]="currentPatient?.patientRelation" formControlName="PatientRelation" type="text">                       
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                    <div  class="form-group col-lg-4">
+                                                        <label  for="exampleInputEmail1"> PersonName </label>
+                                                        <input aria-describedby="emailHelp"  class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Procedure"  name="PersonName" [value]="currentPatient?.personName" formControlName="PersonName"type="text">          
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" (click)="onSubmit()"  class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          </div>
+
+           
+        </div>
+      </div>
+    </div> -->
+
+    <div class="row">
+            <div class="col-xl-12">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Patient Record</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-section">
+                    <div class="m-section__content" >
+                        <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients"  (onSelectionChanged)="selectionChanged($event)"> 
+                        <dxo-selection mode="single"></dxo-selection>
+                            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+                            <dxo-paging [pageSize]="5"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                            <dxi-column dataField="fisrtName" caption="FisrtName"></dxi-column>
+                            <dxi-column dataField="partner.fullName"></dxi-column>
+                            <dxi-column dataField="lastName"></dxi-column>
+                            <dxi-column dataField="dob"></dxi-column>
+                            <dxi-column dataField="gender" caption="Gender"></dxi-column>  
+                            <!-- <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
+                            <div *dxTemplate="let d of 'chartCellTemplate'">
+                                <div class="chart-cell">
+                                    <dx-button  icon="plus"></dx-button>
+                                </div>
+                            </div> -->
+                        </dx-data-grid>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+
+
+
+
+
+    
+  </div>
+
 
 
 

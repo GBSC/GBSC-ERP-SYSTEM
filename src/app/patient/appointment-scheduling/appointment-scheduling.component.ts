@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientService } from '../../patient/services/patient.services';
 
 @Component({
   selector: 'app-appointment-scheduling',
@@ -17,9 +18,13 @@ export class AppointmentSchedulingComponent implements OnInit {
     },
 ];
 
-  constructor() { }
+  constructor(private PatientServiceobj: PatientService,) { }
 
-  ngOnInit() {
+async  ngOnInit() {
+    await this.PatientServiceobj.getPatient();
+    let par = this.PatientServiceobj.patients;
+    console.log(par);
+    return par;
   }
 
 }

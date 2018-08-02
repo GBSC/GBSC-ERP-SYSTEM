@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Patient } from '../../models/patient';
 import { PatientService } from '../../patient/services/patient.services';
-import { ScriptLoaderService } from "../../_services/script-loader.service";
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
+
+
 
 @Component({
   selector: 'app-registration',
@@ -21,15 +22,10 @@ export class RegistrationComponent implements OnInit {
 
   public partnerDetails: any;
 
-  constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private _script: ScriptLoaderService) {
+  constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, ) {
   }
 
-  ngAfterViewInit() {
-    this._script.loadScripts('app-registration',
-        ['assets/demo/default/custom/components/forms/wizard/wizard.js']
-        );
 
-}
   async onSubmit(value) {
     localStorage.setItem('patientdata', JSON.stringify(value));
     //this.patientForm = value;
@@ -93,6 +89,6 @@ export class RegistrationComponent implements OnInit {
       'PrivatePatientCons': ['', Validators.required]
     });
   }
- 
+
 
 }

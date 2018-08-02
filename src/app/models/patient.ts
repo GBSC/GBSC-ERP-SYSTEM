@@ -4,7 +4,7 @@ export class Patient {
     Date: Date;
     RegCity: string;
     VisitNature: string;
-    MRN: string;
+    MRN:string;
     FisrtName: string;
     MiddleName: string;
     LastName: string;
@@ -12,11 +12,11 @@ export class Patient {
     DOB: Date;
     PlaceOfBirth: string;
     Occupation: string;
-    NIC: string;
+    NIC:string;
     Gender: string;
     PhoneNumber: string;
     Remarks: string;
-    ResidenceAddress: string;
+    ResidenceAddress:string;
     OfficeAddress: string;
     OfficeTel: string;
     ForeignAddress: string;
@@ -26,11 +26,11 @@ export class Patient {
     PostalCode: string;
     Initial: string;
     ReferredBy: string;
-    PersonName: string;
+    PersonName:string;
     AuthorizedPerson: string;
-    PrivateHospital: string;
+    PrivateHospital:string;
     RefAddress: string;
-    ReferenceTel: string;
+    ReferenceTel:string;
     PrivatePatientCons: string;
 }
 

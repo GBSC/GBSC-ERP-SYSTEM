@@ -3,9 +3,13 @@ import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from "../auth/_guards/auth.guard";
 import { PatientModule } from '../patient/patient.module';
-import { LabModule } from '../lab/lab.module';
+import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
+import { SetupModule } from '../setup/setup.module';
 import { FinanceModule } from '../finance/finance.module';
-import { PharmacyModule } from '../pharmacy/pharmacy.module';
+import { LabModule } from '../lab/lab.module';
+import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
+
+
 
 const routes: Routes = [
     {
@@ -49,13 +53,12 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        PharmacyModule,
-
-
-
-    ],
+        InventorysystemModule,
+        SetupModule,
+        SystemAdministrationModule,      
+       ],
     exports: [
         RouterModule,
-    ]
+        ]
 })
 export class ThemeRoutingModule { }

@@ -10,7 +10,7 @@ import form from 'devextreme/ui/form';
 })
 export class ModuleComponent implements OnInit {
 
-  constructor(private SetupServiceobj : SetupService) { }
+  constructor(public SetupServiceobj : SetupService) { }
 
   async ngOnInit() {
 

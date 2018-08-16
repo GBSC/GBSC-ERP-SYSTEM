@@ -9,7 +9,7 @@ import  {SetupService}  from '../../setup/service/setupservices';
 export class FeatureComponent implements OnInit {
 
  public mod :any;
-  constructor(private SetupServiceobj : SetupService)
+  constructor(public SetupServiceobj : SetupService)
    { }
 
 async  ngOnInit() {

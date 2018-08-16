@@ -12,7 +12,7 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                 <dx-data-grid id="gridContainer" [dataSource]="inventorysystemServiceobj.units" (onRowInserted)="AddUnit($event)"   (onRowUpdated)="UpdateUnit($event)" (onRowRemoved)="DeleteUnit($event)"> 
+                 <dx-data-grid id="gridContainer" [dataSource]="InventorysystemServiceobj.units" (onRowInserted)="AddUnit($event)"   (onRowUpdated)="UpdateUnit($event)" (onRowRemoved)="DeleteUnit($event)"> 
                      <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
                  </dxo-editing>
                    <dxo-filter-row [visible]="true"></dxo-filter-row>

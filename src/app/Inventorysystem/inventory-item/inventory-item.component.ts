@@ -14,7 +14,7 @@ export class InventoryItemComponent implements OnInit {
   public inventryitem : any;
   
 
-  constructor(private InventorysystemServiceobj : InventorysystemService )
+  constructor(public InventorysystemServiceobj : InventorysystemService )
    
   {
 

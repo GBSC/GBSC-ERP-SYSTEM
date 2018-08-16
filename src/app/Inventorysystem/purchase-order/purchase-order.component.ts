@@ -17,7 +17,7 @@ export class PurchaseOrderComponent implements OnInit {
 
   public supplierdata : any;
 
-  constructor(private formBuilder: FormBuilder, private InventorysystemServiceobj: InventorysystemService)
+  constructor(private formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService)
    {
     this.PurchaseOrderForm = this.formBuilder.group({
       'OrderDate': ['', Validators.required],

@@ -7,7 +7,7 @@ import { SetupService } from '../../setup/service/setupservices';
 })
 export class DepartmentComponent implements OnInit {
   public deprt : any;
-  constructor(private SetupServiceobj : SetupService)
+  constructor(public SetupServiceobj : SetupService)
    { }
 
  async ngOnInit() {

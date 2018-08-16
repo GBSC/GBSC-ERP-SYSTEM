@@ -9,7 +9,7 @@ import { SetupService } from '../../setup/service/setupservices';
 export class RoleComponent implements OnInit {
 public role :any;
 public featuremodule:  any;
-  constructor(private SetupServiceobj : SetupService) 
+  constructor(public SetupServiceobj : SetupService) 
   { }
 
  async  ngOnInit() {

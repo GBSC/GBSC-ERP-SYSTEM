@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   public currentPatient: any;
 
 
-  constructor(private PatientServiceobj: PatientService) { }
+  constructor(public PatientServiceobj: PatientService) { }
 
 
   async ngOnInit() {

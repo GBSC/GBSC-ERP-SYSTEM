@@ -10,7 +10,7 @@ import { PatientService } from '../../patient/services/patient.services';
 export class PaymentreceiptComponent implements OnInit {
 
   private nature: any[] = ['Select Nature', 'Package', 'Lab Tests', 'Medicines', 'Others'];
-  constructor(private PatientServiceobj:PatientService) 
+  constructor(public PatientServiceobj:PatientService) 
   { }
 
   async  ngOnInit() {

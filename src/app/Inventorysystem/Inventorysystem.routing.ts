@@ -14,6 +14,7 @@ import { CategoryComponent  }    from '../Inventorysystem/category/category.comp
 import { InventoryItemComponent  }    from '../Inventorysystem/inventory-item/inventory-item.component';
 import { ReturnmedicineComponent  }    from '../Inventorysystem/returnmedicine/returnmedicine.component';
 import { AddnewsupplierComponent  }    from '../Inventorysystem/addnewsupplier/addnewsupplier.component';
+import { DeliveryOrderComponent } from '../Inventorysystem/delivery-order/delivery-order.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -37,6 +38,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
      { path: 'unit',  component: UnitComponent },
      { path: 'category',  component: CategoryComponent },
      { path: 'inventoryitem',  component: InventoryItemComponent },
+     { path: 'DeliveryOrder',  component:DeliveryOrderComponent },
      { path: 'goodsreceipt',  component: GoodsreceiptComponent }
 
     ]       

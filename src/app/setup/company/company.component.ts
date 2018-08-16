@@ -10,7 +10,7 @@ import { SetupService } from '../../setup/service/setupservices';
 })
 export class CompanyComponent implements OnInit {
 
-  constructor(private serviceobj :SetupService) 
+  constructor(public serviceobj :SetupService) 
   {
 
    }

@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { HrefPreventDefaultDirective } from '../../_directives/href-prevent-default.directive';
 import { UnwrapTagDirective } from '../../_directives/unwrap-tag.directive';
 import { PatientModule } from '../../patient/patient.module';
+import { AsideLeftMinimizeDefaultEnabledComponent } from '../pages/aside-left-minimize-default-enabled/aside-left-minimize-default-enabled.component';
 
 
 
@@ -27,6 +28,7 @@ import { PatientModule } from '../../patient/patient.module';
         TooltipsComponent,
         HrefPreventDefaultDirective,
         UnwrapTagDirective,
+        AsideLeftMinimizeDefaultEnabledComponent
     ],
     exports: [
         DefaultComponent,

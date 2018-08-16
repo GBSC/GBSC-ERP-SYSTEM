@@ -22,7 +22,7 @@ export class FindPatientComponent implements OnInit {
   public xyz: any;
   public myid: any;
   // public patients;
-  constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
+  constructor(formBuilder: FormBuilder, public PatientServiceobj: PatientService, private router: Router) {
     this.editPatientForm = formBuilder.group({
       'FisrtName': ['', Validators.required],
       'MiddleName': ['', Validators.required],

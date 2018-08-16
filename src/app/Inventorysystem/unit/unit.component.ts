@@ -10,31 +10,31 @@ import { InventorysystemService } from '../../Inventorysystem/service/Inventorys
 })
 export class UnitComponent implements OnInit {
 
-  constructor(private inventorysystemServiceobj : InventorysystemService) { }
+  constructor(public InventorysystemServiceobj : InventorysystemService) { }
 
  async ngOnInit() {
-   await this.inventorysystemServiceobj.GetUnits();
-   let x = this.inventorysystemServiceobj.units;
+   await this.InventorysystemServiceobj.GetUnits();
+   let x = this.InventorysystemServiceobj.units;
    console.log(x);
   }
 
   async AddUnit(value)
   {
     console.log(value.key);
-   await this.inventorysystemServiceobj.AddUnits(value.key);
+   await this.InventorysystemServiceobj.AddUnits(value.key);
   }
 
   async UpdateUnit(value)
   {
     console.log(value.key);
-    await this.inventorysystemServiceobj.UpdateUnit(value.key);
+    await this.InventorysystemServiceobj.UpdateUnit(value.key);
   }
 
 
   async DeleteUnit(value)
   {
     console.log(value.key.unitId);
-    await this.inventorysystemServiceobj.DeleteUnit(value.key.unitId);
+    await this.InventorysystemServiceobj.DeleteUnit(value.key.unitId);
     
   }
 }

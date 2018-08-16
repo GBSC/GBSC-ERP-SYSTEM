@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { ScriptLoaderService } from "./_services/script-loader.service";
 import { ThemeRoutingModule } from "./theme/theme-routing.module";
 import { AuthModule } from "./auth/auth.module";
+// import { TitlePipe } from './systemadministration/rolesandprivileges/rolesandprivileges.component';
 
 
 
@@ -18,6 +19,7 @@ import { AuthModule } from "./auth/auth.module";
     declarations: [
         ThemeComponent,
         AppComponent,
+        
     ],
     imports: [
         LayoutModule,

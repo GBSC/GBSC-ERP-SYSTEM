@@ -1,6 +1,6 @@
 
 
-import { NgModule, Component, Pipe, PipeTransform, enableProdMode , OnInit} from '@angular/core';
+import { NgModule, Component, Pipe, PipeTransform, enableProdMode, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -19,41 +19,41 @@ export class TitlePipe implements PipeTransform {
 
 
 @Component({
-  selector: 'app-rolesandprivileges',
-  templateUrl: './rolesandprivileges.component.html',
-  styleUrls: ['./rolesandprivileges.component.css'],
-  providers: [SystemAdministrationService]
+    selector: 'app-rolesandprivileges',
+    templateUrl: './rolesandprivileges.component.html',
+    styleUrls: ['./rolesandprivileges.component.css'],
+    providers: [SystemAdministrationService]
 })
 
 export class RolesandprivilegesComponent implements OnInit {
 
-  products: Product[];
-  checkedItems: Product[] = [];
+    products: Product[];
+    checkedItems: Product[] = [];
 
-  public comp: any;
+    public comp: any;
 
-  constructor(private serviceobj: SystemAdministrationService ) {
-      this.products = serviceobj.getProducts();
-  }
-  processProduct(product) {
-    let itemIndex = -1;
-
-    this.checkedItems.forEach((item, index) => {
-        if (item.id === product.id) {
-            itemIndex = index;
-            return false;
-        }
-    });
-    if (product.selected && itemIndex === -1) {
-        this.checkedItems.push(product);
-    } else if (!product.selected) {
-        this.checkedItems.splice(itemIndex, 1);
+    constructor(private serviceobj: SystemAdministrationService) {
+        this.products = serviceobj.getProducts();
     }
-}
-  ngOnInit() {
- 
+    processProduct(product) {
+        let itemIndex = -1;
+
+        this.checkedItems.forEach((item, index) => {
+            if (item.id === product.id) {
+                itemIndex = index;
+                return false;
+            }
+        });
+        if (product.selected && itemIndex === -1) {
+            this.checkedItems.push(product);
+        } else if (!product.selected) {
+            this.checkedItems.splice(itemIndex, 1);
+        }
+    }
+    ngOnInit() {
 
 
-  }
+
+    }
 
 }

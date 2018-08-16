@@ -42,7 +42,7 @@ import { PatientModule } from '../../patient/patient.module';
     imports: [
         CommonModule,
         RouterModule,
-        
+
     ]
 })
 export class LayoutModule {

@@ -25,6 +25,9 @@ import { AppointmentsblockComponent } from './appointmentsblock/appointmentsbloc
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FindPatientComponent } from './find-patient/find-patient.component';
+import { ShdComponent } from './shd/shd.component';
+import { ConsultantComponent } from './consultant/consultant.component';
+import { HimsSetupTestComponent } from './hims-setup-test/hims-setup-test.component';
 import { AppointmentSchedulingComponent } from './appointment-scheduling/appointment-scheduling.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
@@ -33,46 +36,49 @@ import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-a
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  imports: [
-    DevExtremeModule,
-    DxDataGridModule,
-    DxButtonModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    //SharedModule,
-    HttpClientModule
-  ],
-  declarations: [
+    imports: [
+        DevExtremeModule,
+        DxDataGridModule,
+        DxButtonModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        //SharedModule,
+        HttpClientModule
+    ],
+    declarations: [
 
-    RootComponent,
-    RegistrationComponent,
-    ProfileComponent,
-    DiagnosesComponent,
-    RecentvisitsComponent,
-    FamilyComponent,
-    HealthTrendSummaryComponent,
-    AllergiesComponent,
-    WeightGraphComponent,
-    VitalsComponent,
-    AppointmentsComponent,
-    LatestobservationComponent,
-    PatientvitalsComponent,
-    AdmitinpatientComponent,
-    GeneralactionsComponent,
-    VisitnoteComponent,
-    VisitsComponent,
-    AppointmentsblockComponent,
-    HomeComponent,
-    FindPatientComponent,
-    AppointmentSchedulingComponent,
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent,
-  ],
-  providers: [
-    PatientService
-  ]
+        RootComponent,
+        RegistrationComponent,
+        ProfileComponent,
+        DiagnosesComponent,
+        RecentvisitsComponent,
+        FamilyComponent,
+        HealthTrendSummaryComponent,
+        AllergiesComponent,
+        WeightGraphComponent,
+        ConsultantComponent,
+        VitalsComponent,
+        AppointmentsComponent,
+        LatestobservationComponent,
+        PatientvitalsComponent,
+        AdmitinpatientComponent,
+        GeneralactionsComponent,
+        ShdComponent,
+        VisitnoteComponent,
+        VisitsComponent,
+        AppointmentsblockComponent,
+        HimsSetupTestComponent,
+        HomeComponent,
+        FindPatientComponent,
+        AppointmentSchedulingComponent,
+        HeaderComponent,
+        MenuComponent,
+        FooterComponent,
+    ],
+    providers: [
+        PatientService
+    ]
 })
 export class PatientModule { }

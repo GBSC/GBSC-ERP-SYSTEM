@@ -7,62 +7,58 @@ import { InventorysystemService } from '../../Inventorysystem/service/Inventorys
 
 
 @Component({
-  selector: 'app-purchase-order',
-  templateUrl: './purchase-order.component.html',
-  styleUrls: ['./purchase-order.component.css']
+    selector: 'app-purchase-order',
+    templateUrl: './purchase-order.component.html',
+    styleUrls: ['./purchase-order.component.css']
 })
 export class PurchaseOrderComponent implements OnInit {
 
-  public PurchaseOrderForm : FormGroup;
+    public PurchaseOrderForm: FormGroup;
 
-  public supplierdata : any;
+    public supplierdata: any;
 
-  constructor(private formBuilder: FormBuilder, private InventorysystemServiceobj: InventorysystemService)
-   {
-    this.PurchaseOrderForm = this.formBuilder.group({
-      'OrderDate': ['', Validators.required],
-      'OrderNumber': ['', Validators.required],
-      'OrderRemarks': ['', Validators.required],
-      'OrderType': ['', Validators.required],
-      'SalesTax': ['', Validators.required],
-      'SupplierId':['', Validators.required]
-    });
+    constructor(private formBuilder: FormBuilder, private InventorysystemServiceobj: InventorysystemService) {
+        this.PurchaseOrderForm = this.formBuilder.group({
+            'OrderDate': ['', Validators.required],
+            'OrderNumber': ['', Validators.required],
+            'OrderRemarks': ['', Validators.required],
+            'OrderType': ['', Validators.required],
+            'SalesTax': ['', Validators.required],
+            'SupplierId': ['', Validators.required]
+        });
     }
 
- async ngOnInit() {
+    async ngOnInit() {
 
-  await this.InventorysystemServiceobj.GetSuppliers();
-  this.supplierdata = this.InventorysystemServiceobj.Suppliers;
-  console.log(this.supplierdata);
-
-  
-  await this.InventorysystemServiceobj.getpurchaseorders();
-  let y = this.InventorysystemServiceobj.Purchaseorders;
-  console.log(y);
-  
-  }
+        await this.InventorysystemServiceobj.GetSuppliers();
+        this.supplierdata = this.InventorysystemServiceobj.Suppliers;
+        console.log(this.supplierdata);
 
 
-  
-async onSubmit(value)
-{
-  await this.InventorysystemServiceobj.AddPurchaseOrder(value);
-}
+        await this.InventorysystemServiceobj.getpurchaseorders();
+        let y = this.InventorysystemServiceobj.Purchaseorders;
+        console.log(y);
 
-async UpdatePurchaseOrder(value)
-{
-  console.log(value.key);
-  await this.InventorysystemServiceobj.UpdatePurchaseOrder(value.key);
+    }
 
-}
 
-async DeletePurchaseOrder(value)
-{
-  console.log(value.key.purchaseOrderId);
-  
-  await this.InventorysystemServiceobj.DeletePurchaseOrder(value.key.purchaseOrderId);
 
-}
+    async onSubmit(value) {
+        await this.InventorysystemServiceobj.AddPurchaseOrder(value);
+    }
+
+    async UpdatePurchaseOrder(value) {
+        console.log(value.key);
+        await this.InventorysystemServiceobj.UpdatePurchaseOrder(value.key);
+
+    }
+
+    async DeletePurchaseOrder(value) {
+        console.log(value.key.purchaseOrderId);
+
+        await this.InventorysystemServiceobj.DeletePurchaseOrder(value.key.purchaseOrderId);
+
+    }
 
 }
 

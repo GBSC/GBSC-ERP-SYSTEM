@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogoutComponent } from "./auth/logout/logout.component";
 
-import { PatientModule }  from '../app/patient/patient.module';
-import { InventorysystemModule }  from '../app/Inventorysystem/Inventorysystem.module';
+import { PatientModule } from '../app/patient/patient.module';
+import { InventorysystemModule } from '../app/Inventorysystem/Inventorysystem.module';
 
-import  {AccountModule} from '../app/account/account.module';
-import  {FinanceModule} from '../app/finance/finance.module';
-import  {LabModule} from '../app/lab/lab.module';
-import  {SystemAdministrationModule} from '../app/systemadministration/systemadministration.module';
+import { AccountModule } from '../app/account/account.module';
+import { FinanceModule } from '../app/finance/finance.module';
+import { LabModule } from '../app/lab/lab.module';
+import { SystemAdministrationModule } from '../app/systemadministration/systemadministration.module';
 
 
 
@@ -21,9 +21,9 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(routes),
-        ],
+    ],
     exports: [
         RouterModule,
-      ]
+    ]
 })
 export class AppRoutingModule { }

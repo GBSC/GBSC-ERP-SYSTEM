@@ -1,6 +1,6 @@
-export interface Department{
+export interface Department {
 
-    DepartmentId :number
-    Name :string,
-    BranchId :number,
+    DepartmentId: number
+    Name: string,
+    BranchId: number,
 }

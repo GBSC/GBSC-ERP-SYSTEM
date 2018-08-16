@@ -1,6 +1,5 @@
-export interface Module
-{
-    ModuleId :number;
-    Name :string;
-    Code :string;
+export interface Module {
+    ModuleId: number;
+    Name: string;
+    Code: string;
 }

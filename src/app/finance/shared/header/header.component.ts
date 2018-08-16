@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
 
- 
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -12,5 +12,5 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
     }
- 
+
 }

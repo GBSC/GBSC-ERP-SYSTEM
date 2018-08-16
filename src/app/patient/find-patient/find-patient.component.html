@@ -281,16 +281,21 @@
                   <div class="m-section">
                     <div class="m-section__content" >
                         <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients"  (onSelectionChanged)="selectionChanged($event)"> 
-                        <dxo-selection mode="single"></dxo-selection>
+                       <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                        <dxo-paging [pageSize]="8"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+                            <dxo-selection mode="single"></dxo-selection>
                             <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                             <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-header-filter [visible]="true"></dxo-header-filter>
                             <dxo-paging [pageSize]="5"></dxo-paging>
                             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                            <dxi-column dataField="fisrtName" caption="FisrtName"></dxi-column>
-                            <dxi-column dataField="partner.fullName"></dxi-column>
-                            <dxi-column dataField="lastName"></dxi-column>
-                            <dxi-column dataField="dob"></dxi-column>
+                            <dxi-column dataField="mrn" caption="MRN #"></dxi-column>
+                            <dxi-column dataField="firstName" caption="Patient Name"></dxi-column>
+                            <dxi-column dataField="phoneNumber" caption="Contact Number"></dxi-column>
+                            <dxi-column dataField="date" caption="Registration Date"></dxi-column>
                             <dxi-column dataField="gender" caption="Gender"></dxi-column>  
                             <!-- <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
                             <div *dxTemplate="let d of 'chartCellTemplate'">

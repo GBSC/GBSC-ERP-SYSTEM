@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-returnmedicine',
-  templateUrl: './returnmedicine.component.html',
-  styleUrls: ['./returnmedicine.component.css']
+    selector: 'app-returnmedicine',
+    templateUrl: './returnmedicine.component.html',
+    styleUrls: ['./returnmedicine.component.css']
 })
 export class ReturnmedicineComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

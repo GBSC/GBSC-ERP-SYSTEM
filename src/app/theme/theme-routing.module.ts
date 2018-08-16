@@ -55,10 +55,10 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule,
         SetupModule,
-        SystemAdministrationModule,      
-       ],
+        SystemAdministrationModule,
+    ],
     exports: [
         RouterModule,
-        ]
+    ]
 })
 export class ThemeRoutingModule { }

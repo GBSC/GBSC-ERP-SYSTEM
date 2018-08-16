@@ -1,3 +1,7 @@
+//import { Spouse } from "src/app/models/spouse";
+import {Spouse} from '../../../src/app/models/spouse'
+// import { Reference } from "src/app/models/reference";
+
 export class Patient {
 
     PatientId: number;
@@ -5,7 +9,7 @@ export class Patient {
     RegCity: string;
     VisitNature: string;
     MRN:string;
-    FisrtName: string;
+    FirstName: string;
     MiddleName: string;
     LastName: string;
     FullName: string;
@@ -25,13 +29,13 @@ export class Patient {
     State: string;
     PostalCode: string;
     Initial: string;
-    ReferredBy: string;
-    PersonName:string;
     AuthorizedPerson: string;
     PrivateHospital:string;
-    RefAddress: string;
-    ReferenceTel:string;
     PrivatePatientCons: string;
+    Spouse : Spouse;
+    Document : Document;
+    // Reference : Reference;
+    
 }
 
 

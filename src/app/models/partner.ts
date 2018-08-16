@@ -1,7 +1,7 @@
 
-export class Spouse {
-    PartnerId: number;
-    FirstName: string;
+export class Partner {
+    PatientPartnertId: number;
+    FisrtName: string;
     MiddleName: string;
     LastName: string;
     FullName: string;

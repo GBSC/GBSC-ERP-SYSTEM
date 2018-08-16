@@ -1,5 +1,5 @@
-interface ModuleFeatureViewModel {
-    moduleId: number,
-    roleId: number,
-
+interface ModuleFeatureViewModel{
+    moduleId : number,
+    roleId : number,
+    
 }

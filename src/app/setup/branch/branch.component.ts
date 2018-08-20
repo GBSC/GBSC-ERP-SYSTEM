@@ -10,7 +10,7 @@ export class BranchComponent implements OnInit {
 
   public com : any;
 
-  constructor(private SetupServiceobj : SetupService) { }
+  constructor(public SetupServiceobj : SetupService) { }
 
  async ngOnInit() {
    await this.SetupServiceobj.getCompany();

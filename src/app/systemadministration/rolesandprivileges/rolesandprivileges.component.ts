@@ -9,12 +9,12 @@ import { DxTreeViewModule, DxListModule, DxTemplateModule } from 'devextreme-ang
 import { Product, SystemAdministrationService } from '../service/systemadministration.services';
 
 
-@Pipe({ name: 'title' })
-export class TitlePipe implements PipeTransform {
-    transform(value: any): string {
-        return value.text;
-    }
-}
+// @Pipe({ name: 'title' })
+// export class TitlePipe implements PipeTransform {
+//     transform(value: any): string {
+//         return value.text;
+//     }
+// }
 
 
 
@@ -32,7 +32,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
   public comp: any;
 
-  constructor(private serviceobj: SystemAdministrationService ) {
+  constructor(public serviceobj: SystemAdministrationService ) {
       this.products = serviceobj.getProducts();
   }
   processProduct(product) {

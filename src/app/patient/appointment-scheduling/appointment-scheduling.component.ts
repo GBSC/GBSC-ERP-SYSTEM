@@ -18,7 +18,7 @@ export class AppointmentSchedulingComponent implements OnInit {
     },
 ];
 
-  constructor(private PatientServiceobj: PatientService,) { }
+  constructor(public PatientServiceobj: PatientService,) { }
 
 async  ngOnInit() {
     await this.PatientServiceobj.getPatient();

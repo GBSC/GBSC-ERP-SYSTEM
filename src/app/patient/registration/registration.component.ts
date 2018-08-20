@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
 
   public partnerDetails: any;
 
-  constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, ) {
+  constructor(private formBuilder: FormBuilder, public PatientServiceobj: PatientService, ) {
   }
 
 

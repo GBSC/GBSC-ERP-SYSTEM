@@ -11,7 +11,7 @@ import { InventorysystemService } from '../../Inventorysystem/service/Inventorys
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private InventorysystemServiceobj : InventorysystemService) { }
+  constructor(public InventorysystemServiceobj : InventorysystemService) { }
 
  async ngOnInit() {
     await this.InventorysystemServiceobj.Getcategories();

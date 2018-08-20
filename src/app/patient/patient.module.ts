@@ -30,6 +30,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
+import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -70,6 +71,7 @@ import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-a
     HeaderComponent,
     MenuComponent,
     FooterComponent,
+    PaymentreceiptComponent
   ],
   providers: [
     PatientService

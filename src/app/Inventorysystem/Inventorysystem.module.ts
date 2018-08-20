@@ -31,6 +31,7 @@ import { AddnewsupplierComponent } from './addnewsupplier/addnewsupplier.compone
 import { UnitComponent } from './unit/unit.component';
 import { CategoryComponent } from './category/category.component';
 import { InventoryItemComponent } from './inventory-item/inventory-item.component';
+import { DeliveryOrderComponent } from './delivery-order/delivery-order.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { InventoryItemComponent } from './inventory-item/inventory-item.componen
     AddnewsupplierComponent,
     UnitComponent,
     CategoryComponent,
-    InventoryItemComponent
+    InventoryItemComponent,
+    DeliveryOrderComponent
     
  ],
   providers:    [ 

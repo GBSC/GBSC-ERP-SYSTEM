@@ -14,7 +14,7 @@ export class AddnewsupplierComponent implements OnInit {
 
   public SupplierForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private InventorysystemServiceobj: InventorysystemService)
+  constructor(private formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService)
   { 
     this.SupplierForm = this.formBuilder.group({
       'Code': ['', Validators.required],

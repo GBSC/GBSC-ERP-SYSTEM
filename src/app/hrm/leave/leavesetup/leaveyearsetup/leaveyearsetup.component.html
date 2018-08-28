@@ -1,0 +1,46 @@
+<div class="m-content">
+   
+    <dx-data-grid
+    id="gridContainer"
+    [dataSource]="payrollyear"
+    keyExpr="ID"
+    (onRowInserted)="addNewbank($event)"
+  (onRowUpdated)="UpdateBank($event)"
+  (onRowRemoved)="deletebank($event)"> 
+   
+    <dxo-editing 
+         mode="popup"
+         [allowUpdating]="true"
+         [allowDeleting]="true"
+         [allowAdding]="true"
+         [useIcons]="true">
+  
+         <dxo-popup
+         title="Bank"
+         [showTitle]="true"
+         [width]="700"
+         [height]="345"
+         [position]="{ my: 'center', at: 'center', of: window }">
+       </dxo-popup>
+    </dxo-editing>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter> 
+  
+  <dxo-search-panel 
+    [visible]="true" 
+    [width]="240" 
+    placeholder="Search..."></dxo-search-panel>
+    <dxo-paging [pageSize]="8"></dxo-paging>
+    <dxo-pager 
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="[5, 10, 20]"
+        [showInfo]="true">
+    </dxo-pager>
+  
+    <dxi-column dataField="leaveYear"></dxi-column>
+    <dxi-column dataField="startDate"></dxi-column>
+    <dxi-column dataField="endDate"></dxi-column>
+    <dxi-column dataType="bool" dataField="currentLeaveYear"></dxi-column> 
+  
+  </dx-data-grid>
+</div>

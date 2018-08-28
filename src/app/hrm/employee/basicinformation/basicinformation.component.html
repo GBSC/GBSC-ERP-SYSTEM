@@ -1,0 +1,190 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+    <h4>Basic Information</h4>
+
+</div>
+
+<form class="signup-form" [formGroup]="employee.EmpbasicForm"> 
+<div class="row">
+        <div class="col-md-6">
+        <div class="form-group m-form__group">
+              <label for="">
+                  First Name
+              </label>
+              <input type="text" [value]="basicInfo?.firstName" formControlName="FirstName" class="form-control m-input m-input--solid" id="FirstName" name="FirstName" aria-describedby="emailHelp" placeholder="First Name">
+          </div> 
+        </div>
+        <div class="col-md-6">
+        <div class="form-group m-form__group">
+              <label for="">
+                  Last Name
+              </label>
+              <input type="text" [value]="basicInfo?.lastName" formControlName="LastName" class="form-control m-input m-input--solid" id="LastName" name="LastName" aria-describedby="emailHelp" placeholder="Last Name">
+          </div> 
+        </div>
+</div>
+<div class="m--space-10"></div>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label for="email" class="control-label">Father Name</label>
+          <input type="text" formControlName="FatherName" class="form-control m-input m-input--solid" id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group m-form__group">
+            <label for="employee_id">Date of Birth</label>
+            <input class="form-control m-input m-input--solid" formControlName="DOB" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="text">
+          </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group m-form__group">
+              <label for="employee_id">Place of Birth</label>
+              <input class="form-control m-input m-input--solid" formControlName="POB" id="POB" name="pob" placeholder="eg.Karachi" aria-describedby="PlaceofBirth" type="text">
+            </div>
+          </div> 
+      </div>
+<div class="m--space-10"></div>
+
+<div class="row">
+            
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="username">Cnic</label>
+        <input class="form-control m-input m-input--solid" id="cnic" formControlName="Cnic" name="dateofinterview" placeholder="42401-5486552-6" aria-describedby="cnic" type="number">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="DateofLeaving" class="control-label">Cnic Expiry</label>
+        <input type="text" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23">
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label for="email" class="control-label">Email</label>
+          <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        </div>
+      </div>
+  </div>
+  <div class="m--space-07"></div>
+<div class="row">
+            <div class="col-md-4">
+                    <div class="form-group m-form__group">
+                            <label for="cnlanguageic" class="control-label">Language</label>
+                            <select class="form-control m-input m-input--solid" formControlName="LanguageId" name="language" id="lng">
+                                   <option value="" disabled selected>-- Select Language --</option>
+                                    <option *ngFor ="let lng of SetupServiceobj.language " [value]="lng.languageId" >{{lng.name}}</option>
+                                </select>
+                          </div>
+            </div>
+            <div class="col-md-4">
+                    <div class="form-group m-form__group">
+                            <label for="Religion" class="control-label">Religion</label>
+                            <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" id="Religion">
+                                <option value="" disabled selected>-- Select Religion --</option>
+                                    <option *ngFor ="let relg of SetupServiceobj.religion " [value]="relg.religionId" >{{relg.name}}</option>
+                                </select>
+                          </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group m-form__group">
+                  <label for="City" class="control-label">City</label>
+                  <select class="form-control m-input m-input--solid" formControlName="CityId" name="City" id="city">
+                      <option value="" disabled selected>-- Select City --</option>
+                          <option *ngFor ="let cty of SetupServiceobj.city " [value]="cty.cityId" >{{cty.name}}</option>
+                      </select>
+                </div>
+              </div>
+          </div>
+
+          <div class="m--space-07"></div>
+
+<div class="row">
+            <div class="col-md-4">
+              <div class="form-group m-form__group">
+                <label for="employee_id">Blood Group</label>
+                <select class="form-control m-input m-input--solid" formControlName="BloodGroup" name="BloodGroup" id="BloodGroup">
+                    <option value="" disabled selected>-- Select Blood Group --</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>O</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                  
+                    </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-form__group">
+                <label for="gender">Gender</label>
+                <select class="form-control m-input m-input--solid" formControlName="Gender" name="Gender" id="Gender">
+                    <option value="" disabled selected>-- Select Gender --</option>
+                        <option>Male</option>
+                        <option>  Female </option>
+                        
+                    </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group m-form__group">
+                <label for="Designation" class="control-label">Marital Status</label>
+                <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" name="MaritalStatus" id="MaritalStatus">
+                    <option value="" disabled selected>-- Select Marital Status --</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    
+                    </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="m--space-07"></div>
+ 
+
+          <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group m-form__group">
+                          <label for="Contact-Number">Contact Number</label>
+                          <input class="form-control m-input m-input--solid" formControlName="PhoneNumber" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                            <div class="form-group m-form__group">
+                              <label for="Contact-Number">Home</label>
+                              <input class="form-control m-input m-input--solid" formControlName="HomeNumber" id="ContactNumber" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
+                            </div>
+                          </div>
+          </div>
+          <div class="m--space-07"></div>
+
+          <div class="row">
+              <div class="col-md-12">
+                    <div class="form-group m-form__group">
+                            <label for="exampleTextarea">
+                            Address
+                            </label>
+                            <textarea class="form-control m-input m-input--solid" formControlName="Address" name="Address" id="Address" rows="3" placeholder="Test Address"></textarea>
+                        </div> 
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                  <div class="form-group m-form__group">
+                          <label for="exampleTextarea">
+                         Permanent Address
+                          </label>
+                          <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" name="Address" id="Address2" rows="3" placeholder="Test Address 2"></textarea>
+                      </div> 
+            </div>
+        </div>
+
+      </form>
+     
+

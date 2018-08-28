@@ -1,0 +1,13 @@
+.image-picker{
+    position: relative;
+}
+
+.image-picker input{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;    
+}

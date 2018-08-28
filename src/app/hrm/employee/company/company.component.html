@@ -1,0 +1,256 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+  <h4>Company Information</h4>
+
+</div>
+<form class="signup-form" [formGroup]="employee.EmpCompanyForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Designation</label>
+        <select class="form-control m-input m-input--solid" formControlName="DesignationId" name="Designation" id="Designation">
+          <option value="" disabled selected>-- Select Designation --</option>
+          <option *ngFor="let cdsg of SetupServiceobj.designation" [value]="cdsg.designationId">{{cdsg.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Group" class="control-label">Group</label>
+        <select class="form-control m-input m-input--solid" formControlName="GroupId" name="Group" id="group">
+          <option value="" disabled selected>-- Select Group --</option>
+          <option *ngFor="let grp of SetupServiceobj.group" [value]="grp.groupId">{{grp.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Employee Grade</label>
+        <select class="form-control m-input m-input--solid" formControlName="GradeId" name="grade" id="">
+          <option value="" disabled selected>-- Select Employee Grade --</option>
+          <option *ngFor="let grd of SetupServiceobj.grades" [value]="grd.gradeId">{{grd.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Function</label>
+        <select class="form-control m-input m-input--solid" formControlName="FunctionId" name="Managementlevel" id="mnglevel">
+          <option value="" disabled selected>-- Select Function --</option>
+          <option *ngFor="let fnc of SetupServiceobj.function" [value]="fnc.functionId">{{fnc.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="mlevel" class="control-label">Management Level</label>
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" name="manglevel" id="mlevel">
+          <option value="" disabled selected>-- Select Language --</option>
+          <option *ngFor="let ml of SetupServiceobj.managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Emptype">Employee Type</label>
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" name="EmpType">
+          <option value="" disabled selected>-- Select Employee Type --</option>
+          <option *ngFor="let cemptype of SetupServiceobj.employeetype" [value]="cemptype.employeeTypeId">{{cemptype.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Empstatus">Employee Status</label>
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" name="EmpStatus">
+          <option value="" disabled selected>-- Select Employee Status --</option>
+          <option *ngFor="let cempstatus of SetupServiceobj.employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Office Shift</label>
+        <select class="form-control m-input m-input--solid" formControlName="Shift" name="OfficeShift" id="OfficeShift">
+          <option value="" disabled selected>-- Select Shift --</option>
+          <option *ngFor="let cshft of SetupServiceobj.shift" [value]="cshft.shiftsId">{{cshft.shiftCode}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="m--space-07"></div>
+  <div class="row">
+    <div class="col-md-4">
+      <!-- <div class="form-group m-form__group">
+                  <label for="employee_id">Contract Start</label>
+                  <input class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="text">
+                </div> -->
+
+      <div class="form-group m-form__group">
+        <label>
+          Contract Start
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input #cs type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input formControlName="ContractStart" [disabled]="cs.checked? false : true" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Contract End
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input type="text" formControlName="ContractEnd" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Appointment Date
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input type="text" formControlName="AppointmentDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="employee_id">Next Appraisal Date</label>
+        <input formControlName="NextApprisalDate" class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth"
+          type="text">
+      </div>
+    </div>
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Confirmation Due Date
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input type="text" formControlName="ConfirmDueDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Confirmation Date
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input type="text" formControlName="ConfirmationDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Leaving Date
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" checked="">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <input type="text" formControlName="LeavingDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="username"> Resign Date</label>
+        <input formControlName="ResignDate" class="form-control m-input m-input--solid" id="DOI" name="resigndate" placeholder="2018-03-23" aria-describedby="username"
+          type="text">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="DateofLeaving" class="control-label">Approver</label>
+        <input type="text" formControlName="Approver" class="form-control m-input m-input--solid" id="Approver" name="Approvedby" aria-describedby="DateofLeaving"
+          placeholder="Approved By">
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+</form>

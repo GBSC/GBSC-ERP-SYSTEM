@@ -1,0 +1,198 @@
+<div class="m-content">
+  <div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">
+              Khawaja Mujtaba
+              <small class="pad_15">
+                <a class="m-link" href="#"> Edit </a>
+                <a class="m-link pad_8" href="#"> Contact Info </a>
+              </small>
+              <br>
+              <small> Male 16 Year(s) (02-Sep-2001) </small>
+            </h3>
+          </div>
+        </div>
+        <div class="m-portlet__head-tools">
+          <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+            <li class="nav-item m-tabs__item">
+              <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab"> Patient Id </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+              <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab"> 548HTU </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-separator m-separator--dashed"></div>
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-xl-4">
+        <div class="m-portlet">
+          <div class="m-portlet__body">
+            <div class="m-tabs" data-tabs="true" data-tabs-contents="#m_sections">
+              <ul class="m-nav m-nav--active-bg m-nav--active-bg-padding-lg m-nav--font-lg m-nav--font-bold m--margin-bottom-20 m--margin-top-10 m--margin-right-40"
+                id="m_nav" role="tablist">
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item m-tabs__item--active" data-tab-target="#m_section_1">
+                    <span class="m-nav__link-text">
+                      Height (cm)
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_2">
+                    <span class="m-nav__link-text">
+                      Weight (kg)
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_3">
+                    <span class="m-nav__link-text">
+                      (Calculated) BMI
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_4">
+                    <span class="m-nav__link-text">
+                      Temperature (C)
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_5">
+                    <span class="m-nav__link-text">
+                      Pulse
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_6">
+                    <span class="m-nav__link-text">
+                      Respiratory rate
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_7">
+                    <span class="m-nav__link-text">
+                      Blood Pressure
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link m-tabs__item" data-tab-target="#m_section_8">
+                    <span class="m-nav__link-text">
+                      Blood oxygen saturation
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8">
+        <div class="m-portlet">
+          <div class="m-portlet__body">
+            <form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="PatientVitaLForm">
+              <div class="m-tabs-content" id="m_sections">
+                <!--begin::Section 1-->
+                <div class="m-tabs-content__item m-tabs-content__item--active" id="m_section_1">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Height (cm)</label>
+                    <input type="number" class="form-control m-input" formControlName="Height">
+                  </div>
+                </div>
+                <!--begin::Section 1-->
+                <!--begin::Section 2-->
+                <div class="m-tabs-content__item" id="m_section_2">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Weight (kg)</label>
+                    <input type="number" class="form-control m-input" formControlName="Weight">
+                  </div>
+                </div>
+                <!--begin::Section 2-->
+                <!--begin::Section 3-->
+                <div class="m-tabs-content__item" id="m_section_3">
+                  <div class="col-lg-6 m-form__group-sub">
+                    <label class="form-control-label">(Calculated) BMI</label>
+                      <!-- <p>{{ConvertToInt(Weight) + ConvertToInt(Height)}}</p>   -->
+                    <input type="number" class="form-control m-input" formControlName="CalculatedBMI" >
+                  </div>
+                </div>
+                <!--begin::Section 3-->
+
+                <!--begin::Section 4-->
+                <div class="m-tabs-content__item" id="m_section_4">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Temperature (C)</label>
+                    <input type="number" class="form-control m-input" formControlName="Temperature">
+                  </div>
+                </div>
+                <!--begin::Section 4-->
+
+
+                <!--begin::Section 5-->
+                <div class="m-tabs-content__item" id="m_section_5">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Pulse</label>
+                    <input type="number" class="form-control m-input" formControlName="Pulse">
+                  </div>
+                </div>
+                <!--begin::Section 5-->
+
+
+                <!--begin::Section 6-->
+                <div class="m-tabs-content__item" id="m_section_6">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Respiratory rate</label>
+                    <input type="number" class="form-control m-input" formControlName="RespiratoryRate">
+                  </div>
+                </div>
+                <!--begin::Section 6-->
+
+
+                <!--begin::Section 7-->
+                <div class="m-tabs-content__item" id="m_section_7">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Blood Pressure</label>
+                    <input type="number" class="form-control m-input" formControlName="BloodPressure">
+                  </div>
+                </div>
+                <!--begin::Section 7-->
+
+                <!--begin::Section 8-->
+                <div class="m-tabs-content__item" id="m_section_8">
+                  <div class="col-lg-4 m-form__group-sub">
+                    <label class="form-control-label">Blood oxygen saturation</label>
+                    <input type="number" class="form-control m-input" formControlName="BloodOxygenSaturation">
+                  </div>
+                  <div class="padding"></div>
+ 
+                  <div class="modal-footer">
+                      <button type="reset" class="btn btn-secondary">
+                        Reset
+                      </button>
+                      <button type="button" class="btn btn-primary">
+                        Save
+                      </button>
+                    </div>
+                </div>
+                <!--begin::Section 8-->
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

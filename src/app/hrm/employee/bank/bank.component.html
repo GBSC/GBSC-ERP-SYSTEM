@@ -1,0 +1,35 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+    <h4>Add New Bank Account</h4>
+
+</div>
+
+<form class="signup-form" [formGroup]="employee.EmpbankForm"> 
+ 
+<div class="col-sm-6">
+    <div class="form-group m-form__group">
+      <label for="account_title">Account Title</label>
+      <input class="form-control m-input m-input--solid" formControlName="AccountTitle" placeholder="Account Title" name="account_title" type="text" value="" id="account_name">
+    </div>
+    <div class="form-group m-form__group">
+      <label for="account_number">Account Number</label>
+      <input class="form-control m-input m-input--solid" formControlName="AccountNumber" placeholder="Account Number" name="account_number" type="text" value="" id="account_number">
+    </div>
+  </div>
+  
+  <div class="col-sm-6">
+    <div class="form-group m-form__group">
+        <label for="bank">Bank Name</label>
+        <input class="form-control m-input m-input--solid" formControlName="BankTitle" placeholder="Bank Name" name="bank_code" type="text" value="" id="name">
+       </div>
+    <div class="form-group m-form__group">
+      <label for="bank_code">Bank Code</label>
+      <input class="form-control m-input m-input--solid" formControlName="BankCode" placeholder="Bank Code" name="bank_code" type="text" value="" id="bank_code">
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group m-form__group">
+      <label for="bank_branch">Bank Branch</label>
+      <input class="form-control m-input m-input--solid" formControlName="BankBranch" placeholder="Bank Branch" name="bank_branch" type="text" value="" id="bank_branch">
+    </div>
+  </div>
+  </form>

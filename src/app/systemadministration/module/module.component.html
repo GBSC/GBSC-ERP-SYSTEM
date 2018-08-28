@@ -1,0 +1,38 @@
+<div class="m-content">
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Branch</h3>
+             </div>
+           </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+               <dx-data-grid id="gridContainer" [dataSource]="SystemAdministrationServiceobj.modules"  (onRowInserted)="addModule($event)"   (onRowUpdated)="updateModule($event)" (onRowRemoved)="deleteModule($event)">
+                <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
+                </dxo-editing>
+                 <dxo-filter-row [visible]="true"></dxo-filter-row>
+                 <dxo-header-filter [visible]="true"></dxo-header-filter>
+                 <dxo-paging [pageSize]="5"></dxo-paging>
+                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                 <dxi-column dataField="name" caption="Module Name"></dxi-column>
+                 <dxi-column dataField="code" caption="Module Code"></dxi-column>
+                 
+               </dx-data-grid>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>

@@ -1,0 +1,200 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+  <h4>Add New Contact</h4>
+
+</div>
+
+<div *ngFor="let field of fieldArray; let i = index">
+ <form class="" [formGroup]="employee.DependantForm"> 
+                <div class="row">
+                  <div class="col-md-5">
+                      <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Dependent Name
+                          </label>
+                          <input type="text" class="form-control m-input m-input--solid" formControlName="Name" id="InputFirstName" aria-describedby="emailHelp" placeholder="Dependant Name">
+                        <div class="m--space-07"></div>
+                      </div> 
+                  
+                  </div>
+                  <div class="col-md-7">
+                      <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Email
+                          </label>
+                          <input type="text" class="form-control m-input m-input--solid" formControlName="Email" id="InputFirstName" aria-describedby="emailHelp" placeholder="Email">
+                          <div class="m--space-07"></div>
+                          <!-- <input type="text" class="form-control m-input m-input--solid" id="InputFirstName" aria-describedby="emailHelp" placeholder="Personal"> -->
+                      </div> 
+                  </div>
+                </div>
+                
+                <div class="m--space-10"></div>
+                 
+                <div class="row">
+                     <div class="col-md-6">
+                            <div class="form-group">
+                             <input type="text" class="form-control m-input m-input--solid" formControlName="Country" id="Country" aria-describedby="emailHelp" placeholder="Country">   
+                                <!-- <select class="form-control m-input m-input--solid" name="Country"  id="country">
+                                            <option *ngFor ="let countries of SetupServiceobj.country " [value]="countries.id" >{{countries.name}}</option>
+                                        </select> -->
+                            </div>
+                          </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="City" id="City" aria-describedby="emailHelp" placeholder="City">
+                          <!-- <select class="form-control m-input m-input--solid" name="City"  id="city">
+                                <option *ngFor ="let cities of SetupServiceobj.city " [value]="cities.id" >{{cities.name}}</option>
+                            </select> -->
+                        </div>
+                    </div>
+                
+                  </div>
+                 <div class="row">   
+                        <div class="col-md-6">
+                                <div class="form-group">
+                                    <input class="form-control m-input m-input--solid" formControlName="State" placeholder="State / Province" name="state" type="text">
+                                  </div>
+                        
+                              </div>     
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control m-input m-input--solid" formControlName="Zip" placeholder="Zip Code" name="zipcode" type="text"></div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="form-group"><input class="form-control m-input m-input--solid" placeholder="Home" name="home_phone" type="text"></div>
+                        </div> -->
+                      </div>
+                
+                      <div class="row"> 
+                            <div class="col-md-12">
+                            <div class="form-group m-form__group">
+                                  <label for="exampleInputEmail1">
+                                      Address
+                                  </label>
+                                  <textarea class="form-control m-input m-input--solid" formControlName="Address" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Address"></textarea>
+                                  <div class="m--space-07"></div>
+                                
+                              </div> 
+                            </div>
+                        </div>
+
+                        <div class="row"> 
+                                <div class="col-md-12">
+                                <div class="form-group m-form__group">
+                                      <label for="exampleInputEmail1">
+                                          Permanent Address
+                                      </label>
+                                      <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" id="" aria-describedby="" placeholder="Enter Address"></textarea>
+                                      <div class="m--space-07"></div>
+                                    
+                                  </div> 
+                                </div>
+                            </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group m-form__group">
+                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+
+    <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
+
+</div>
+
+ 
+<form class="" [formGroup]="employee.DependantForm"> 
+<div class="row">
+  <div class="col-md-5">
+      <div class="form-group m-form__group">
+          <label for="exampleInputEmail1">
+              Dependent Name
+          </label>
+          <input type="text" class="form-control m-input m-input--solid" formControlName="Name" id="" aria-describedby="" placeholder="Dependant Name">
+        <div class="m--space-07"></div>
+      </div> 
+  
+  </div>
+  <div class="col-md-7">
+      <div class="form-group m-form__group">
+          <label for="exampleInputEmail1">
+            Email
+          </label>
+          <input type="text" class="form-control m-input m-input--solid" formControlName="Email" id="" aria-describedby="" placeholder="Email">
+          <div class="m--space-07"></div>
+          <!-- <input type="text" class="form-control m-input m-input--solid" id="InputFirstName" aria-describedby="emailHelp" placeholder="Personal"> -->
+      </div> 
+  </div>
+</div>
+
+<div class="m--space-10"></div>
+ 
+<div class="row">
+     <div class="col-md-6">
+            <div class="form-group">
+             <input type="text" class="form-control m-input m-input--solid" formControlName="Country" id="" aria-describedby="" placeholder="Country">   
+                <!-- <select class="form-control m-input m-input--solid" name="Country"  id="country">
+                            <option *ngFor ="let countries of SetupServiceobj.country " [value]="countries.id" >{{countries.name}}</option>
+                        </select> -->
+            </div>
+          </div>
+    <div class="col-md-6">
+      <div class="form-group">
+            <input type="text" class="form-control m-input m-input--solid" formControlName="City" id="" aria-describedby="" placeholder="City">
+          <!-- <select class="form-control m-input m-input--solid" name="City"  id="city">
+                <option *ngFor ="let cities of SetupServiceobj.city " [value]="cities.id" >{{cities.name}}</option>
+            </select> -->
+        </div>
+    </div>
+
+  </div>
+ <div class="row">   
+        <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control m-input m-input--solid" formControlName="State" placeholder="State / Province" name="state" type="text">
+                  </div>
+        
+              </div>     
+        <div class="col-md-6">
+            <div class="form-group"><input class="form-control m-input m-input--solid" formControlName="Zip" placeholder="Zip Code" name="zipcode" type="text"></div>
+        </div>
+        <!-- <div class="col-md-4">
+            <div class="form-group"><input class="form-control m-input m-input--solid" placeholder="Home" name="home_phone" type="text"></div>
+        </div> -->
+      </div>
+
+      <div class="row"> 
+            <div class="col-md-12">
+            <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                      Address
+                  </label>
+                  <textarea class="form-control m-input m-input--solid" formControlName="Address" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Address"></textarea>
+                  <div class="m--space-07"></div>
+                
+              </div> 
+            </div>
+        </div>
+
+      <div class="row">
+      <div class="col-md-12">
+        <div class="form-group m-form__group">
+              <label for="exampleInputEmail1">
+                  Address
+              </label>
+              <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Permanent Address"></textarea>
+              <div class="m--space-07"></div>
+            
+          </div> 
+        </div>
+    </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group m-form__group">
+            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
+        </div>
+      </div>
+    </div>
+</form>

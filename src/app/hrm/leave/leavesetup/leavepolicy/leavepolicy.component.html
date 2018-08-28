@@ -1,0 +1,435 @@
+<div class="m-content">
+    <div class="row">
+        <div class="col-md-12"> 
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+        Add Leave Policy
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+    
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">Group: </label>
+                  <div class="col-lg-8">
+ 
+                  <table class="table table-bordered m-input m-input--solid">
+                    <tr *ngFor="let g of groups">
+                      <td>
+                        <input type="checkbox" [checked]="g.checked">
+                      </td>
+                      <td>
+                        {{g.index}}
+                      </td>
+                      <td>
+                        {{g.name}}
+                      </td>
+                    </tr>
+                  </table>
+
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="m--space-07"></div>
+
+  <div class="row">
+          <div class="col-md-10">
+         
+              <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                   Leave Year:
+                  </label>
+                  <div class="col-lg-8">
+                  <select class="form-control m-input m-input--solid">
+                    <option>2018</option>
+                    <option>2017</option>
+                    <option>2016</option>
+                  </select>
+                 
+                  </div>
+                </div>
+           </div>
+  </div>
+  <div class="m--space-07"></div>
+ 
+  <div class="row">
+      <div class="col-md-10">
+     
+          <div class="form-group m-form__group row">
+              <label class="col-lg-4 col-form-label">
+               Periodic:
+              </label>
+              <div class="col-lg-8">
+                  <label class="m-checkbox">
+                      <input type="checkbox">
+                     From 
+                      <span></span>
+                      <input class="form-control m-input m-input--solid col-md-3" name="leaveperiodfrom" placeholder="12-02-2018" type="text">
+                      To 
+                      <input class="form-control m-input m-input--solid col-md-3" name="leaveperiodto" placeholder="12-02-2018" type="text">
+  
+                    </label> 
+              </div>
+            </div>
+       </div>
+</div>
+  <div class="m--space-07"></div>
+  
+  <div class="row">
+      <div class="col-md-10">
+     
+          <div class="form-group m-form__group row">
+              <label class="col-lg-4 col-form-label">
+              Employee:
+              </label>
+              <div class="col-lg-8">
+              <select class="form-control m-input m-input--solid">
+                <option>ALi</option>
+                <option>Ahmed</option>
+                <option>Khalid</option>
+              </select>
+             
+              </div>
+            </div>
+       </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+             Leave Type:
+            </label>
+            <div class="col-lg-8">
+            <select class="form-control m-input m-input--solid">
+              <option>Type 1</option>
+              <option>Type 2</option>
+              <option>Type 3</option>
+            </select>
+           
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+  
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="6" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="11" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="15" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="5" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+    
+<div class="row">
+      <div class="col-lg-10">
+          <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
+            <div class="col-lg-8">
+          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="m--space-07"></div>
+
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="form-group m-form__group row">
+              <label class="col-lg-4 col-form-label">Day Continuation Restriction:  </label>
+              <div class="col-lg-8">
+           
+                  <select class="form-control m-input m-input--solid">
+                      <option value="disabled">Select Restriction </option>
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="m--space-07"></div>
+
+      <div class="row">
+          <div class="col-md-10">
+         
+              <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                   For Males:
+                  </label>
+                  <div class="col-lg-8">
+                      <label class="m-checkbox">
+                          <input type="checkbox">
+                          <span></span>
+                        </label> 
+                  </div>
+                </div>
+           </div>
+    </div>
+    <div class="m--space-07"></div>
+
+    <div class="row">
+        <div class="col-md-10">
+       
+            <div class="form-group m-form__group row">
+                <label class="col-lg-4 col-form-label">
+                 For Females:
+                </label>
+                <div class="col-lg-8">
+                    <label class="m-checkbox">
+                        <input type="checkbox">
+                        <span></span>
+                      </label> 
+                </div>
+              </div>
+         </div>
+  </div>
+  <div class="m--space-07"></div>
+    
+      
+  <div class="row">
+      <div class="col-md-10">
+     
+          <div class="form-group m-form__group row">
+              <label class="col-lg-4 col-form-label">
+               For Married Only:
+              </label>
+              <div class="col-lg-8">
+                  <label class="m-checkbox">
+                      <input type="checkbox">
+                      <span></span>
+                    </label> 
+              </div>
+            </div>
+       </div>
+</div>
+<div class="m--space-10"></div>
+                        
+<div class="row">
+    <div class="col-lg-10">
+        <div class="form-group m-form__group row">
+          <label class="col-lg-4 col-form-label">Leave Day Type:  </label>
+          <div class="col-lg-8">
+       
+              <select class="form-control m-input m-input--solid">
+                  <option value="disabled">Select Leave Type Day </option>
+                  <option>Working Days</option>
+                  <option>Other Days</option>
+                </select>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div class="m--space-10"></div>
+
+
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+            Short Leave Allowed:
+            </label>
+            <div class="col-lg-8">
+                <label class="m-checkbox">
+                    <input type="checkbox">
+                    <span></span>
+                  </label> 
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+            Allowed Only one in Service:
+            </label>
+            <div class="col-lg-8">
+                <label class="m-checkbox">
+                    <input type="checkbox">
+                    <span></span>
+                  </label> 
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+                                  
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+            Job Period Based:
+            </label>
+            <div class="col-lg-8">
+                <label class="m-checkbox">
+                    <input type="checkbox">
+                    <span></span>
+                  </label> 
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="form-group m-form__group row">
+          <label class="col-lg-4 col-form-label">Eligibility Based on:  </label>
+          <div class="col-lg-8">
+       
+              <select class="form-control m-input m-input--solid">
+                  <option value="disabled">Select Eligibility </option>
+                  <option>Confirmed</option>
+                  <option>Confirmed</option>
+                </select>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div class="m--space-10"></div>
+
+
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+           Is Month Based:
+            </label>
+            <div class="col-lg-8">
+                <label class="m-checkbox">
+                    <input type="checkbox">
+                    <span></span>
+                  </label> 
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="form-group m-form__group row">
+          <label class="col-lg-4 col-form-label">Allow Leave Request on Zero Balance:  </label>
+          <div class="col-lg-8">
+       
+              <select class="form-control m-input m-input--solid">
+                  <option value="disabled">Select Leave Request </option>
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div class="m--space-10"></div>
+
+
+<div class="row">
+    <div class="col-md-10">
+   
+        <div class="form-group m-form__group row">
+            <label class="col-lg-4 col-form-label">
+           Active:
+            </label>
+            <div class="col-lg-8">
+                <label class="m-checkbox">
+                    <input type="checkbox">
+                    <span></span>
+                  </label> 
+            </div>
+          </div>
+     </div>
+</div>
+<div class="m--space-10"></div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="form-group m-form__group row">
+          <label class="col-lg-4 col-form-label">Leave Application Limit: </label>
+          <div class="col-lg-8">
+        <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="m--space-07"></div>
+
+
+                 </div>
+             </div>
+          </div> 
+       </div>
+    </div>

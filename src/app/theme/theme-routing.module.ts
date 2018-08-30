@@ -10,7 +10,12 @@ import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
+<<<<<<< HEAD
 import { PayrollModule } from '../payroll/payroll.module';
+=======
+import { SuperadminModule } from '../superadmin/superadmin.module';
+
+>>>>>>> 1e58d71b1b7d47bb05c2c10d1d8ceb881fcd404c
 
 
 const routes: Routes = [
@@ -57,6 +62,7 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule,
         SetupModule,
+        SuperadminModule,
         SystemAdministrationModule,
         HrmModule,
         EmployeeModule,

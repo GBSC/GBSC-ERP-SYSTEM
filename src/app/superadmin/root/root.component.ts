@@ -27,4 +27,10 @@ export class RootComponent implements OnInit {
 
     }
 
+    ngAfterViewInit() {
+        this._script.loadScripts('body',
+            ['assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js']);
+
+    }
+
 }

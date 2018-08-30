@@ -6,10 +6,14 @@ import { RootComponent } from './root/root.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SuperadminserviceService } from './superadminservice.service';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     routing
   ],
   declarations: [
@@ -18,6 +22,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     HeaderComponent,
     MenuComponent,
     FooterComponent
-  ]
+  ],
+  
+  providers : [SuperadminserviceService]
 })
 export class SuperadminModule { }

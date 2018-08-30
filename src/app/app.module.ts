@@ -22,8 +22,7 @@ import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent,
-
+        AppComponent
     ],
     imports: [
         LayoutModule,

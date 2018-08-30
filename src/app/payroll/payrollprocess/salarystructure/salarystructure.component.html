@@ -1,0 +1,72 @@
+<div color="primary">
+ 
+</div>
+<div class="container mat-elevation-z8">
+ 
+  <dx-data-grid
+  id="gridContainer" 
+  [dataSource]="allowancequantity"
+  keyExpr="Id">
+  <dxo-editing 
+       mode="popup"
+       [allowUpdating]="true"
+       [allowDeleting]="true"
+       [allowAdding]="true">
+  </dxo-editing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+<dxo-search-panel 
+  [visible]="true" 
+  [width]="240" 
+  placeholder="Search..."></dxo-search-panel>
+  <dxo-paging [pageSize]="8"></dxo-paging>
+  <dxo-pager 
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 10, 20]"
+      [showInfo]="true">
+  </dxo-pager>
+
+  <dxi-column dataField="employee" caption="Employee">
+    <dxo-lookup
+    [dataSource]="employee"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="currency" caption="Currency">
+    <dxo-lookup
+    [dataSource]="currency"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="bank" caption="Bank">
+    <dxo-lookup
+    [dataSource]="bnk"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="companybank" caption="Company Bank">
+    <dxo-lookup
+    [dataSource]="cmpnybnk"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="payrolltype" caption="Payroll Type">
+    <dxo-lookup
+    [dataSource]="payrolltype"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+ 
+
+ <dxi-column dataField="accountno" caption="Account No"></dxi-column>
+  <dxi-column dataField="bnktransferid" caption="Bank Transfer ID"></dxi-column>
+  <dxi-column dataField="swiftcode" caption="Swift Code"></dxi-column>
+  <dxi-column dataField="grosssalary" caption="Gross Salary"></dxi-column>
+  <dxi-column dataField="effectivedate" caption="Effective Date" dataType="date" format="shortDate"></dxi-column>
+</dx-data-grid>
+</div>

@@ -16,6 +16,8 @@ import { MenuComponent } from '../lab/shared/menu/menu.component';
 import { FileRecordComponent } from './file-record/file-record.component';
 import { ProceduresortestComponent } from './proceduresortest/proceduresortest.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
+import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
+import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -23,6 +25,9 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
         routing,
 
     ],
@@ -36,6 +41,7 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
         MenuComponent,
         ProceduresortestComponent,
         BiochemistryontreatmentComponent,
+        SemensanalysislistComponent,
     ],
     providers: []
 })

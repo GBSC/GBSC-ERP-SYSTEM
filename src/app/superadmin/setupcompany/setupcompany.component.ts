@@ -10,35 +10,55 @@ import { Company } from '../../setup/model/company';
 })
 export class SetupcompanyComponent implements OnInit {
 
-private companyForm : FormGroup;
+  private companyForm: FormGroup;
 
-private companyId : number;
+  private systemAdminForm: FormGroup;
 
-  constructor(private formBuilder : FormBuilder, private superAdminService : SuperadminserviceService) {
+  private companyId: number;
+
+  constructor(private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
 
     this.companyForm = this.formBuilder.group({
       'name': ['', Validators.required],
       'numberOfEmployees': ['', Validators.required]
+    });
+
+    this.systemAdminForm = this.formBuilder.group({
+      'UserName': ['', Validators.required],
+      'Password': ['', Validators.required],
+      'Email': ['', Validators.required],
+      'CNIC': ['', Validators.required],
+      'FirstName': ['', Validators.required],
+      'LastName': ['', Validators.required],
+      'Phone': ['', Validators.required],
+      'DOB': [new Date()]
     })
 
 
-   }
+  }
 
   ngOnInit() {
   }
 
-  async onAddCompany(value)
-  {
-   let response : any  = await this.superAdminService.addCompany(value);
-   
-   this.companyId = response.companyID;
+  async onAddCompany(value) {
+    let response: any = await this.superAdminService.addCompany(value);
+
+    this.companyId = response.companyID;
   }
 
-  async onAddModule(value)
-  {
-    var module = {Name : value, CompanyId : this.companyId, Code : "000", ModuleId : 0};
+  async onAddModule(value) {
+    var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
-    let response : any = await this.superAdminService.addModule(module);
+    let response: any = await this.superAdminService.addModule(module);
+  }
+
+  async onSubmitRegistration(value : SystemAdminRegistrationViewModel){
+
+    value.CompanyId = this.companyId;
+    value.IsSystemAdmin = true;
+    
+    let response : any = await this.superAdminService.registerAdmin(value);
+    
   }
 
 }

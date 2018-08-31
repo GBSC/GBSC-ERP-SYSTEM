@@ -1,241 +1,217 @@
 <div class="m-content">
-
     <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Khawaja Mujtaba
-                                    <small class="pad_15">
-                                        <a href="#" class="m-link">
-                                            Edit
-                                        </a>
-                                         
-                                     <a href="#" class="m-link pad_8">
-                                             Contact Info
-                                                </a>
-                                     </small>
-                                    <br>
-                                    <small>
-                                        Male 16 Year(s)  (02-Sep-2001)
-                                    </small>   
-                                </h3> 
-                              
-                            </div>
-                            
-                        </div>
-                    <div class="m-portlet__head-tools">
-                        <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-                            
-                            <li class="nav-item m-tabs__item">
-                                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
-                                    Patient Id
-                                </a>
-                            </li>
-                            <li class="nav-item m-tabs__item">
-                                    <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
-                                    548HTU
-                                    </a>
-                                </li>
-                        </ul> 
-                    </div> 
-                 </div> 
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        {{currentPatient?.firstName +' '+ currentPatient?.lastName}}
+                        <small class="pad_15">
+                            <a href="#" class="m-link">
+                                Edit
+                            </a>
+                            <a href="#" class="m-link pad_8">
+                                Contact Info
+                            </a>
+                        </small>
+                        <br>
+                        <small>
+                            Male 16 Year(s) (02-Sep-2001)
+                        </small>
+                    </h3>
+                </div>
             </div>
-
-
-
-<div class="row">
-<div class="col-lg-12">
+            <div class="m-portlet__head-tools">
+                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
+                            Patient Id
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
+                            {{currentPatient?.mrn}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
             <div class="m-portlet">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Visits
-                                </h3>
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Visits
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span>
+                                    <i class="fa fa-cog"></i>
+                                </span> Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <button class="dropdown-item" type="button">
+                                    Action
+                                </button>
+                                <button class="dropdown-item" type="button">
+                                    Another action
+                                </button>
+                                <button class="dropdown-item" type="button">
+                                    Something else here
+                                </button>
                             </div>
                         </div>
-                        <div class="m-portlet__head-tools">
-                                <div class="dropdown">
-                                      
-                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span>
-                                              <i class="fa fa-cog"></i>
-                                                        </span> Actions
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <button class="dropdown-item" type="button">
-                                                Action
-                                            </button>
-                                            <button class="dropdown-item" type="button">
-                                                Another action
-                                            </button>
-                                            <button class="dropdown-item" type="button">
-                                                Something else here
-                                            </button>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active show" data-toggle="tab" href="#m_tabs_1_1">
+                                Visits
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#m_tabs_1_3">
+                                Appointment
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                                        <div class="m-demo__preview">
+                                            <span class="m-portlet__head-icon">
+                                                <i class="fa fa-clock-o"></i>
+                                                04.June.2018 (active since 05:45 AM)
+                                            </span>
+                                            <div class="m-separator m-separator--dashed m--margin-top-5"></div>
+                                            <p class="">
+                                                <span class="m-portlet__head-icon lead">
+                                                    <i class="fa fa-stethoscope"></i>
+                                                    No diagnoses yet.
+                                                </span>
+                                            </p>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="alert m-alert m-alert--default" role="alert">
+                                        <span class="m-portlet__head-icon">
+                                            <span class="m-badge m-badge--success m-badge--dot"></span>
+                                            Active Visit
+                                            <i class="fa fa-clock-o"></i>
+                                            Started At 04.June.2018, 02:55:32
+                                        </span>
+                                        <small class="pad_130">
+                                            <a href="#" class="m-link m-link--info">
+                                                <h6> Edit Visit</h6>
+                                            </a>
+                                            |<a href="#" class="m-link m-link--info">
+                                                <h6> Edit date</h6>
+                                            </a>
+                                            | <a href="#" class="m-link m-link--info">
+                                                <h6> Delete Visit</h6>
+                                            </a>
+                                        </small>
+                                    </div>
+                                    <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                                        <div class="m-demo__preview">
+                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                                <span>
+                                                    <i class="fa fa-power-off"></i>
+                                                    <span>
+                                                        End Visit
+                                                    </span>
+                                                </span>
+                                            </a> |
+                                            <a href="#" class="col-md-3 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                                <span>
+                                                    <i class="fa fa-stethoscope"></i><span>
+                                                        Visit Note
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            |
+                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                                <span>
+                                                    <i class="fa fa-sign-in"></i>
+                                                    <span>
+                                                        Admit to Inpatient
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <div class="m--space-10"></div>
+                                            <a (click)="onSubmit()" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                                <span>
+                                                    <i class="fa fa-heartbeat"></i>
+                                                    <span>
+                                                        Capture Vitals
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-                    </div>
-                    <div class="m-portlet__body">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active show" data-toggle="tab" href="#m_tabs_1_1">
-                                    Visits
-                                </a>
-                            </li>
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#m_tabs_1_3">
-                                    Appointment
-                                </a>
-                            </li>
-                            
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
-
-                                <div class="row">
-                                        <div class="col-md-3">
-                                                <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-                                                        <div class="m-demo__preview">
-
-                                                                <span class="m-portlet__head-icon"> 
-                                                                        <i class="fa fa-clock-o"></i> 
-                                                                         04.June.2018 (active since 05:45 AM)
-                                                                       </span> 
-                                                                       <div class="m-separator m-separator--dashed m--margin-top-5"></div>
-                                                                       <p class="">
-                                                                            <span class="m-portlet__head-icon lead"> 
-                                                                                    <i class="fa fa-stethoscope"></i>  
-                                                                                    No diagnoses yet.
-                                                                                   </span> 
-                                                                  
-                                                                        </p>
-
-                                                         </div>
-                                                     </div>
-                                            </div>
-                                    <div class="col-md-9">
-
-                                            <div class="alert m-alert m-alert--default" role="alert">
-                                                    <span class="m-portlet__head-icon">
-                                                            <span class="m-badge m-badge--success m-badge--dot"></span>
-                                                            Active Visit
-                                                            <i class="fa fa-clock-o"></i> 
-                                                            Started At 04.June.2018, 02:55:32
-                                                           </span> 
-                                                           
-                                                           <small class="pad_130">
-                                                              
-                                                                <a href="#" class="m-link m-link--info">
-                                                                        <h6>   Edit Visit</h6>
-                                                                    </a>
-                                                                    |<a href="#" class="m-link m-link--info">
-                                                                      <h6> Edit date</h6>     
-                                                                </a>
-                                                                 | <a href="#" class="m-link m-link--info">
-                                                                   <h6> Delete Visit</h6>
-                                                                        </a> 
-                      </small>                      
-                    </div>
-
-                                                <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-                                                        <div class="m-demo__preview">
-                                                             
-                                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
-                                                                        <span>
-                                                                            <i class="fa fa-power-off"></i>
-                                                                            <span>
-                                                                                End Visit
-                                                                            </span>
-                                                                        </span>
-                                                            </a> | 
-                                                            <a href="#" class="col-md-3 btn btn-primary m-btn m-btn--custom m-btn--icon">
-                                                                    <span>
-                                                                        
-                                                                        <i class="fa fa-stethoscope"></i><span>
-                                                                            Visit Note
-                                                                        </span>
-                                                                    </span>
-                                                            </a>
-                                                            | 
-                                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
-                                                                    <span>
-                                                                        <i class="fa fa-sign-in"></i>
-                                                                        <span>
-                                                                            Admit to Inpatient
-                                                                        </span>
-                                                                    </span>  
-                                                                </a>
-                                                                        
-                                                                        <div class="m--space-10"></div>
-                                                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
-                                                                                    <span>
-                                                                                        <i class="fa fa-heartbeat"></i>
-                                                                                        <span>
-                                                                                            Capture Vitals
-                                                                                        </span>
-                                                                                    </span>
-                                                                                </a>    
-                            </div> 
-                          </div> 
                         </div>
-                      </div>
-                    </div> 
-                <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
-                   <h3 class="m--font-danger">Patient Appointments</h3>
-                   <div class="m--space-20"></div>
-                   <div class="row">
-                     <div class="col-md-3">
-                        <label for="Timeframe"> Timeframe (Optional) </label>
-                        <div class="input-group date">
-                            <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                            <div class="input-group-append">
-                              <span class="input-group-text">
-                                <i class="la la-calendar"></i>
-                              </span>
+                        <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
+                            <h3 class="m--font-danger">Patient Appointments</h3>
+                            <div class="m--space-20"></div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="Timeframe"> Timeframe (Optional) </label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Clear"> Clear </label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Clear"> Clear </label>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                     </div>
-                     <div class="col-md-3">
-                        <label for="Clear"> Clear </label>
-                        <div class="input-group date">
-                            <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                            <div class="input-group-append">
-                              <span class="input-group-text">
-                                <i class="la la-calendar"></i>
-                              </span>
+                            <div class="m--space-20"></div>
+                            <h3 class="m--font-danger">Appointment Requests</h3>
+                            <div class="m--space-20"></div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h6 class="text-muted">No Appiontment Request</h6>
+                                </div>
                             </div>
-                          </div>
-                     </div>
-                     <div class="col-md-3">
-                        <label for="Clear"> Clear </label>
-                        <div class="input-group date">
-                            <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                            <div class="input-group-append">
-                              <span class="input-group-text">
-                                <i class="la la-calendar"></i>
-                              </span>
-                            </div>
-                          </div>
-                     </div>
-                   </div>
-                   <div class="m--space-20"></div>
-
-                   <h3 class="m--font-danger">Appointment Requests</h3>
-                   <div class="m--space-20"></div>
-                   <div class="row">
-                     <div class="col-md-3">
-                      <h6 class="text-muted">No Appiontment Request</h6> 
-
-                       </div>
-                     </div>
-                </div> 
-              </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>

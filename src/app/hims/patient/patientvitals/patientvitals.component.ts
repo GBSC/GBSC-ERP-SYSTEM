@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../hims/patient/services/patient.services'
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { PatientVital } from '../../../models/patientvitals'
+import { PatientVital } from '../../../models/patientvitals';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-patientvitals',
@@ -14,7 +16,7 @@ export class PatientvitalsComponent implements OnInit {
     public currentPatient: any;
     public visitid : any;   
 
-    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
+    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder,  private router: Router) {
         this.PatientVitaLForm = this.formBuilder.group({
                 Height: ['', Validators.required],
                 Weight: ['', Validators.required],
@@ -52,6 +54,9 @@ export class PatientvitalsComponent implements OnInit {
        console.log(x);
         
         console.log(this.PatientVitaLForm.value);
+        this.router.navigate(['/hims/patient/profile']);
+        return x;
+   
     }
     
 

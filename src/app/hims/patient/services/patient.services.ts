@@ -44,6 +44,8 @@ export class PatientService {
 
     public visits : any;
     public visitid : any;
+    public LastestPatientVital : any;
+    public currentPatientvisits : any;
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
     private readonly API_URL1 = 'http://localhost:58788/api';
@@ -233,6 +235,28 @@ export class PatientService {
         this.PatientVitals = await this.http1.get<PatientVital>(this.API_URL + '/Visits/GetPatientVitals').toPromise();
         console.log(this.PatientVitals);
         return this.PatientVitals
+    }
+
+    async GetLastestPatientVital()
+    {
+ 
+    
+        // this.API_URL+'/patients/GetLastPatientVital/'+this.currentPatient
+       this.LastestPatientVital = await this.http1.get<PatientVital>(`${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`).toPromise();
+        console.log(this.LastestPatientVital);
+        console.log(`${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`);
+        
+        return this.LastestPatientVital
+        
+    }
+
+
+    async GetPatientVisits()
+    {
+        this.currentPatientvisits = await this.http1.get<Visits>(`${this.API_URL}/patients/GetPatientVisits/${this.currentPatient.patientId}`).toPromise();
+        console.log(this.currentPatientvisits);
+        return this.currentPatientvisits;
+        
     }
 
 

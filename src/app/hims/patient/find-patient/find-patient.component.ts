@@ -5,6 +5,7 @@ import { PatientService } from '../../patient/services/patient.services';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 
 
@@ -43,8 +44,10 @@ export class FindPatientComponent implements OnInit {
 
     async ngOnInit() {
         await this.PatientServiceobj.getPatient();
-        let par = this.PatientServiceobj.patients;
-        console.log(par);
+            this.PatientServiceobj.patients;
+
+
+    
         // console.log(this.PatientServiceobj.patients.partner['0'])
         // .subscribe(data => {
         //   this.patients = data;
@@ -60,11 +63,24 @@ export class FindPatientComponent implements OnInit {
     //     console.log(e);
     //     console.log('content ready has been called');
     // }
-    selectionChanged(e) {
+  async  selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);
+        console.log(e);        
         this.setCurrentPatient(e.selectedRowsData[0]);
+        
+        this.mypatient =  this.PatientServiceobj.currentPatient.patientId;
+        console.log(this.mypatient);
+        
+        
+        let x= await this.PatientServiceobj.GetLastestPatientVital();
+        console.log(x)
+                
+
+        let y = await this.PatientServiceobj.GetPatientVisits();
+        console.log(y);
+
+        
 
     }
     // async onSubmit({key}) {
@@ -76,11 +92,13 @@ export class FindPatientComponent implements OnInit {
     // }
 
 
-    setCurrentPatient(patient) {
+ async setCurrentPatient(patient) {
+     
         this.router.navigate(['/hims/patient/profile']);
         this.PatientServiceobj.setCurrentPatient(patient);
-    }
 
+
+    }
 
 
 }

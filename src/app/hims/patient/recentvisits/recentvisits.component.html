@@ -12,6 +12,8 @@
       </div>
     </div>
     <div class="m-portlet__body">
-      None
+       <ul *ngFor="let Patient of currentPatient">
+         <li>{{Patient.startTime | date: 'dd/MM/yyyy'}}</li>
+       </ul>  
      </div>
   </div>

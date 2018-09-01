@@ -9,7 +9,7 @@ export class LeaveService {
     public leaverequest;
 
 
-    private baseUrl: string = "http://localhost:58090/api/HrSetup";
+    private baseUrl: string = "http://localhost:58090/api";
     constructor(private httpClient: HttpClient) { }
 
     /** CRUD METHODS LEAVE OPENING */
@@ -18,14 +18,14 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaveopening = await this.httpClient.get('http://localhost:58090/api/Setup/GetCountries').toPromise();
+        this.leaveopening = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveOpenings`).toPromise();
         //console.log(features);
         console.log(this.leaveopening);
         return this.leaveopening;
     }
 
-    async getdataToUpdate(countryId, countryUrl) {
-        return await this.httpClient.get(`${this.baseUrl}/${countryUrl}/${countryId}`).toPromise();
+    async getdataToUpdate(leaveId, leaveUrl) {
+        return await this.httpClient.get(`${this.baseUrl}/${leaveUrl}/${leaveId}`).toPromise();
     }
 
 
@@ -34,7 +34,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newcountry = await this.httpClient.post('http://localhost:58090/api/Setup/AddCountry', data, headers).toPromise();
+        let newcountry = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data, headers).toPromise();
         console.log(newcountry);
 
     }
@@ -44,22 +44,22 @@ export class LeaveService {
         console.log(data.key);
         console.log(data);
 
-        let country = await this.getdataToUpdate(data.key, 'GetCountry');
-        country = { ...country, ...data.data }
-        console.log(country);
+        let lopen = await this.getdataToUpdate(data.key, 'GetLeaveOpening');
+        lopen = { ...lopen, ...data.data }
+        console.log(lopen);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put('http://localhost:58090/api/Setup/UpdateCountry', country).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, lopen).toPromise();
 
     }
-
+    
 
 
     async DeleteLeaveopening(leaveOpeningId) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete('http://localhost:58090/api/Setup/DeleteCountry/${countryId}').toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveOpening/${leaveOpeningId}`).toPromise();
     }
 
 
@@ -68,7 +68,7 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaveopeningdetail = await this.httpClient.get('http://localhost:58090/api/Setup/GetCountries').toPromise();
+        this.leaveopeningdetail = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveOpeningDetails`).toPromise();
         //console.log(features);
         console.log(this.leaveopeningdetail);
         return this.leaveopeningdetail;
@@ -78,7 +78,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newleaveopndetail = await this.httpClient.post('http://localhost:58090/api/Setup/AddCountry', data, headers).toPromise();
+        let newleaveopndetail = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data, headers).toPromise();
         console.log(newleaveopndetail);
 
     }
@@ -93,15 +93,15 @@ export class LeaveService {
         console.log(levopendetail);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put('http://localhost:58090/api/Setup/UpdateCountry', levopendetail).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
 
     }
-
+    DeleteLeaveOpeningDetail
     async DeleteLeaveopeningdetail(leaveOpeningdetailId) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete('http://localhost:58090/api/Setup/DeleteCountry/${countryId}').toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
     }
 
     /** CRUD METHODS LEAVE REQUEST*/
@@ -110,19 +110,19 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaverequest = await this.httpClient.get('http://localhost:58090/api/Setup/GetCountries').toPromise();
+        this.leaverequest = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveRequests`).toPromise();
         //console.log(features);
         console.log(this.leaveopening);
         return this.leaveopening;
     }
-
+    
 
     // DEMO ONLY, you can find working methods below
     async addleaverequest(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newleaverequest = await this.httpClient.post('http://localhost:58090/api/Setup/AddCountry', data, headers).toPromise();
+        let newleaverequest = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data, headers).toPromise();
         console.log(newleaverequest);
 
     }
@@ -132,12 +132,12 @@ export class LeaveService {
         console.log(data.key);
         console.log(data);
 
-        let leaverqst = await this.getdataToUpdate(data.key, 'GetCountry');
+        let leaverqst = await this.getdataToUpdate(data.key, 'GetLeaveRequest');
         leaverqst = { ...leaverqst, ...data.data }
         console.log(leaverqst);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put('http://localhost:58090/api/Setup/UpdateCountry', leaverqst).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, leaverqst).toPromise();
 
     }
 
@@ -147,7 +147,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete('http://localhost:58090/api/Setup/DeleteCountry/${countryId}').toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`).toPromise();
     }
 
 

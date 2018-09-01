@@ -3,7 +3,6 @@ import { Helpers } from '../../../../helpers';
 
 
 
-
 @Component({
     selector: 'app-menu',
     templateUrl: './menu.component.html',

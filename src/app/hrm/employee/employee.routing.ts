@@ -9,20 +9,7 @@ import { EmployeesComponent } from '../employee/employees/employees.component';
 import { EmployeedetailComponent } from '../employee/employeedetail/employeedetail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-    // {
-
-    //   path: 'abc',
-    //   component: RootComponent,
-
-    //       children: [
-    //         { path: '', component: HomeComponent },
-    //         { path: 'home', component: HomeComponent },
-    //         { path: 'basicinformation', component: BasicinformationComponent },
-    //         { path: 'employees', component: EmployeesComponent },
-    //         { path: 'employeedetail', component: EmployeedetailComponent }
-
-    //    ]
-    // }
+ 
 
     {
         path: 'hrm',

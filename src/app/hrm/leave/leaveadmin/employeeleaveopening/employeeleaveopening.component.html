@@ -1,4 +1,5 @@
 <div class="m-content">
+  
     <div class="row">
         <div class="col-md-12"> 
   <div class="m-portlet">
@@ -12,7 +13,8 @@
       </div>
     </div>
     <div class="m-portlet__body">
-  
+     
+        <form [formGroup]="leaveopeningForm">
         <div class="row">
             <div class="col-md-10">
              <div class="form-group m-form__group row">
@@ -20,11 +22,10 @@
                      Employee:
                     </label>
                     <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid">
-                      <option>Employee no.324</option>
-                      <option>Employee no.674</option>
-                      <option>Employee no.928</option>
-                    </select> 
+                   <select class="form-control m-input m-input--solid" formControlName="Employee" name="employee">
+                      <option value="" disabled selected>-- Select Employee --</option>       
+                    <option *ngFor ="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
+                        </select>
                     </div>
                   </div>
              </div> 
@@ -39,12 +40,10 @@
                  Leave Year:
                 </label>
                 <div class="col-lg-8">
-                <select class="form-control m-input m-input--solid">
-                  <option>2018</option> 
-                  <option>2017</option> 
-                  <option>2016</option> 
-                  <option>2015</option> 
-                </select> 
+                    <select class="form-control m-input m-input--solid" formControlName="LeaveYear" name="leaveyear">
+                        <option value="" disabled selected>-- Select Leave Year --</option>  
+                      <option *ngFor ="let leaveyer of leavesetupservice?.leaveyear" [value]="leaveyer.leavYearId">{{leaveyer.startDate}}</option>
+                    </select> 
                 </div>
               </div>
          </div> 
@@ -58,12 +57,12 @@
               Remarks:
             </label>
             <div class="col-lg-8">
-            <textarea class="form-control m-input m-input--solid" id="exampleTextarea" rows="3"></textarea>
+            <textarea class="form-control m-input m-input--solid" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
             </div>
              </div>
             </div>
           </div>
-  
+        </form>
         </div>
       </div>
      </div>
@@ -84,6 +83,7 @@
   </div>
   <div class="m-portlet__body">
 
+      <form [formGroup]="leaveopendetailForm">
       <div class="row">
           <div class="col-md-10">
            <div class="form-group m-form__group row">
@@ -91,11 +91,11 @@
                    Leave Type:
                   </label>
                   <div class="col-lg-8">
-                  <select class="form-control m-input m-input--solid">
+                  <!-- <select class="form-control m-input m-input--solid">
                     <option>Type 1</option> 
                     <option>Type 2</option> 
                     <option>Type 3</option> 
-                  </select> 
+                  </select>  -->
                   </div>
                 </div> 
            </div>  
@@ -108,13 +108,12 @@
                       Quantity:
                       </label>
                       <div class="col-lg-8">
-                          <input type="text" class="form-control m-input m-input--solid" placeholder="9">
+                          <input type="text" formControlName="Quantity" class="form-control m-input m-input--solid" placeholder="9">
                       </div>
                     </div> 
                </div>  
               </div>
-
-
+ 
               <div class="row">
                   <div class="col-md-10">
                    <div class="form-group m-form__group row">
@@ -122,16 +121,39 @@
                           Expiry:
                           </label>
                           <div class="col-lg-8">
-                              <input type="text" class="form-control m-input m-input--solid" placeholder="12-06-2018">
+                              <input type="text" formControlName="Expiry" class="form-control m-input m-input--solid" placeholder="12-06-2018">
                           </div>
                         </div> 
                    </div>  
                   </div>
 
+                  <div class="row">
+                    <div class="col-md-12"> 
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                      <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-6">
+                          <button type="submit" class="btn btn-success">
+                            Submit
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                  </form>
         </div>
       </div>
     </div>
 </div>
+
+ 
 
 <div class="m--space-10"></div>
   <div class="row">
@@ -167,27 +189,8 @@
         </dx-data-grid>
        </div> 
       </div>
-         <div class="row">
-                                     <div class="col-md-12"> 
-                                 <div class="m-portlet__foot m-portlet__foot--fit">
-                                     <div class="m-form__actions m-form__actions">
-                                       <div class="row">
-                                         <div class="col-lg-3"></div>
-                                         <div class="col-lg-6">
-                                           <button type="submit" class="btn btn-success">
-                                             Submit
-                                           </button>
-                                           <button type="reset" class="btn btn-secondary">
-                                             Cancel
-                                           </button>
-                                         </div>
-                                       </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
 
-
+ 
                          <div class="m--space-10"></div>
                          <div class="row">
                             <div class="col-md-12"> 

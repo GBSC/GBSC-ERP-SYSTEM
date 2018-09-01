@@ -2,11 +2,11 @@
    
     <dx-data-grid
     id="gridContainer"
-    [dataSource]="payrollyear"
-    keyExpr="ID"
-    (onRowInserted)="addNewbank($event)"
-  (onRowUpdated)="UpdateBank($event)"
-  (onRowRemoved)="deletebank($event)"> 
+    [dataSource]="leveyear"
+    keyExpr="leaveYearId"
+    (onRowInserted)="addleaveyear($event)"
+  (onRowUpdated)="updateleaveyear($event)"
+  (onRowRemoved)="deleteleaveyear($event)"> 
    
     <dxo-editing 
          mode="popup"
@@ -37,10 +37,15 @@
         [showInfo]="true">
     </dxo-pager>
   
-    <dxi-column dataField="leaveYear"></dxi-column>
-    <dxi-column dataField="startDate"></dxi-column>
-    <dxi-column dataField="endDate"></dxi-column>
-    <dxi-column dataType="bool" dataField="currentLeaveYear"></dxi-column> 
+  
+    <dxi-column dataField="startDate" dataType="date" format="shortDate"></dxi-column>
+    <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column> 
+    <dxi-column dataType="boolean" dataField="isCurrentYear"></dxi-column> 
+    <!-- <dxi-column dataField="leavePolicies"></dxi-column>
+    <dxi-column dataField="leavePolicyEmployees"></dxi-column>
+    <dxi-column dataField="leaveOpenings"></dxi-column>
+    <dxi-column dataField="leaveClosings"></dxi-column>
+    <dxi-column dataField="leaveRequestDetails"></dxi-column>  -->
   
   </dx-data-grid>
 </div>

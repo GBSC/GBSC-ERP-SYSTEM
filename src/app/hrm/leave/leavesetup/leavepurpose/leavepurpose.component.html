@@ -2,11 +2,11 @@
    
     <dx-data-grid
     id="gridContainer"
-    [dataSource]="leavepurpose"
-    keyExpr="ID"
+    [dataSource]="data?.levepurpose"
+    keyExpr="leavePurposeId"
     (onRowInserted)="addleavepurpose($event)"
-  (onRowUpdated)="Updateleavepurpose($event)"
-  (onRowRemoved)="deletepurpose($event)"> 
+  (onRowUpdated)="updateleavepurpose($event)"
+  (onRowRemoved)="deleteleavepurpose($event)"> 
    
     <dxo-editing 
          mode="popup"
@@ -16,7 +16,7 @@
          [useIcons]="true">
   
          <dxo-popup
-         title="Bank"
+         title="LeavePurpose"
          [showTitle]="true"
          [width]="700"
          [height]="345"
@@ -37,7 +37,7 @@
         [showInfo]="true">
     </dxo-pager>
   
-    <dxi-column dataField="purposeTitle"></dxi-column> 
+    <dxi-column dataField="title"></dxi-column> 
     <dxi-column dataType="bool" dataField="isActive"></dxi-column> 
   
   </dx-data-grid>

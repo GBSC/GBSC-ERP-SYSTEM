@@ -10,6 +10,8 @@ import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
+import { LeaveModule } from '../hrm/leave/leave.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 
 
@@ -59,7 +61,9 @@ const routes: Routes = [
         SetupModule,
         SystemAdministrationModule,
         HrmModule,
-        EmployeeModule
+        EmployeeModule,
+        LeaveModule,
+        DashboardModule
     ],
     exports: [
         RouterModule,

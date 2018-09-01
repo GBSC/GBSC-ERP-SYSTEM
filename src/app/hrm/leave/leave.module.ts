@@ -15,6 +15,14 @@ import { LeaverequestComponent } from '../leave/leaverequest/leaverequest.compon
 import { EmployeeleaveopeningComponent } from '../leave/leaveadmin/employeeleaveopening/employeeleaveopening.component';
 import { UploadleaverequestComponent } from '../leave/leaveadmin/uploadleaverequest/uploadleaverequest.component';
 import { LeaveService } from './leave.service';
+import { FooterComponent } from '../leave/shared/footer/footer.component';
+import { HeaderComponent } from '../leave/shared/header/header.component';
+import { MenuComponent } from '../leave/shared/menu/menu.component';
+import { LeaveSetupService } from './leaveSetup.service';
+import { LeavetypeComponent } from './leavesetup/leavetype/leavetype.component';
+import { LeaveapprovalComponent } from './leavesetup/leaveapproval/leaveapproval.component';
+import { LeavedaytypeComponent } from './leavesetup/leavedaytype/leavedaytype.component';
+import { LeaveeligibilityComponent } from './leavesetup/leaveeligibility/leaveeligibility.component';
 // import { EmployeeService } from './employee/services/employee.service';
 
 @NgModule({
@@ -30,15 +38,22 @@ import { LeaveService } from './leave.service';
         routing
     ],
     declarations: [
+        FooterComponent,
+        HeaderComponent,
+        MenuComponent,
         RootComponent,
         LeavepolicyComponent,
+        LeavetypeComponent,
+        LeavedaytypeComponent,
+        LeaveapprovalComponent,
         LeavepurposeComponent,
+        LeaveeligibilityComponent,
         LeaveyearsetupComponent,
         LeaverequestComponent,
         EmployeeleaveopeningComponent,
         UploadleaverequestComponent
     ],
     exports: [],
-    providers: [LeaveService]
+    providers: [LeaveService, LeaveSetupService]
 })
 export class LeaveModule { }

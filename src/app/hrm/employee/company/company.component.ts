@@ -16,19 +16,6 @@ export class CompanyComponent implements OnInit {
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService) { }
 
     async ngOnInit() {
-
-        // this.EmpCompanyForm = this.fb.group({
-        //   Designaton: ['', Validators.required],
-        //   ManagementLevel: ['', Validators.required],
-        //   Function: ['', Validators.required],
-        //   Group: ['', Validators.required],
-        //   EmpStatus: ['', Validators.required],
-        //   EmpType: ['', Validators.required],
-        //   Shift: ['', Validators.required],
-        //   EmpGrade: ['', Validators.required] 
-        // }); 
-
-
         await this.SetupServiceobj.getAllFunctions();
         let fnc = this.SetupServiceobj.function;
 

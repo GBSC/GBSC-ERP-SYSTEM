@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { InventorysystemService } from '../../Inventorysystem/service/Inventorysystem.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -10,19 +10,20 @@ import { InventorysystemService } from '../../Inventorysystem/service/Inventorys
     styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
+    public catgory : any;
 
-    constructor(public InventorysystemServiceobj: InventorysystemService) { }
+    constructor(public InventorysystemServiceobj: InventorysystemService, public httpClient: HttpClient,) { }
 
     async ngOnInit() {
         await this.InventorysystemServiceobj.Getcategories();
-        let x = this.InventorysystemServiceobj.catogories;
-        console.log(x);
+    this.catgory = this.InventorysystemServiceobj.catogories;
+        console.log(this.catgory );
     }
 
 
-    async AddCategory(value) {
-        console.log(value.key);
-        await this.InventorysystemServiceobj.AddCategory(value.key);
+    async addCategory(catg) {
+        console.log(catg);
+        await this.InventorysystemServiceobj.AddCategory(catg.data);
     }
 
     async UpdateCategory(value) {

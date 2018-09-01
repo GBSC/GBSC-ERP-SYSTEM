@@ -12,9 +12,13 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                 <dx-data-grid id="gridContainer" [dataSource]="InventorysystemServiceobj.catogories" (onRowInserted)="AddCategory($event)"   (onRowUpdated)="UpdateCategory($event)" (onRowRemoved)="DeleteCategory($event)"> 
+                 <dx-data-grid id="gridContainer" [dataSource]="catgory"
+                 keyExpr="inventoryItemCategoryId"
+                  (onRowInserted)="addCategory($event)"  
+                   (onRowUpdated)="UpdateCategory($event)"
+                    (onRowRemoved)="DeleteCategory($event)"> 
                      <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
-                 </dxo-editing>
+                      </dxo-editing>
                    <dxo-filter-row [visible]="true"></dxo-filter-row>
                    <dxo-header-filter [visible]="true"></dxo-header-filter>
                    <dxo-paging [pageSize]="5"></dxo-paging>

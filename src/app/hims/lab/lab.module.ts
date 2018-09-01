@@ -18,6 +18,7 @@ import { ProceduresortestComponent } from './proceduresortest/proceduresortest.c
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-a
         ProceduresortestComponent,
         BiochemistryontreatmentComponent,
         SemensanalysislistComponent,
+        BiochemistryComponent,
     ],
     providers: []
 })

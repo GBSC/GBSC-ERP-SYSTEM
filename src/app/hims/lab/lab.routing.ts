@@ -9,6 +9,7 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BioChemistryTest } from '../../models/biochemistrytest';
 import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
+import { ReferencerangeComponent } from './referencerange/referencerange.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -26,6 +27,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'semensanalysislist', component: SemensanalysislistComponent },
             { path: 'biochemistryontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry', component: BiochemistryComponent },
+            { path: 'referencerange', component: ReferencerangeComponent },
 
         ]
     }

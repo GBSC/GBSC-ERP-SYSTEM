@@ -24,6 +24,7 @@ import { ConsultantService } from '../sharedservices/consultant.service';
 import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
 import { TestunitComponent } from './testunit/testunit.component';
 import { BioChemistryService } from './services/bio-chemistry.service';
+import { ReferencerangeComponent } from './referencerange/referencerange.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { BioChemistryService } from './services/bio-chemistry.service';
         BiochemistryComponent,
         BiochemistrytestComponent,
         TestunitComponent,
+        ReferencerangeComponent,
     ],
     providers: [PatientService, ConsultantService, BioChemistryService]
 })

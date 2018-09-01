@@ -19,6 +19,11 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
+import { PatientService } from '../sharedservices/patient.service';
+import { ConsultantService } from '../sharedservices/consultant.service';
+import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
+import { TestunitComponent } from './testunit/testunit.component';
+import { BioChemistryService } from './services/bio-chemistry.service';
 
 
 @NgModule({
@@ -44,7 +49,9 @@ import { BiochemistryComponent } from './biochemistry/biochemistry.component';
         BiochemistryontreatmentComponent,
         SemensanalysislistComponent,
         BiochemistryComponent,
+        BiochemistrytestComponent,
+        TestunitComponent,
     ],
-    providers: []
+    providers: [PatientService, ConsultantService, BioChemistryService]
 })
 export class LabModule { }

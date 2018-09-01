@@ -7,6 +7,8 @@ import { ProceduresortestComponent } from './proceduresortest/proceduresortest.c
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
+import { BioChemistryTest } from '../../models/biochemistrytest';
+import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -17,7 +19,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
 
         children: [
-
+            { path: 'biochemistrytest', component: BiochemistrytestComponent },
             { path: 'dailyProcedure', component: DailyProcedureComponent },
             { path: 'fileRecord', component: FileRecordComponent },
             { path: 'Proceduresortest', component: ProceduresortestComponent },

@@ -19,6 +19,8 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
+import { BiopsyComponent } from './biopsy/biopsy.component';
+import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { BiochemistryComponent } from './biochemistry/biochemistry.component';
         BiochemistryontreatmentComponent,
         SemensanalysislistComponent,
         BiochemistryComponent,
+        BiopsyComponent,
+        InseminationprepComponent,
     ],
     providers: []
 })

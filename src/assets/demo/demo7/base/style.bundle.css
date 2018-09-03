@@ -12528,7 +12528,7 @@ code {
 
 .btn.btn-default, .btn.btn-secondary {
   background: white;
-  border-color: #ebedf2; }
+  border-color: #a7a7a7; }
   .btn.btn-default i, .btn.btn-secondary i {
     color: #6f727d; }
   .btn.btn-default:hover:not(:disabled), .btn.btn-default.active, .btn.btn-default:active, .btn.btn-default:focus,
@@ -22248,9 +22248,9 @@ body.m-portlet--fullscreen {
 
 .input-group .input-group-append > .input-group-text,
 .input-group .input-group-prepend > .input-group-text {
-  border-color: #ebedf2;
-  background-color: #f4f5f8;
-  color: #575962; }
+  border-color: #a7a7a7;
+  background-color: #fff; */
+  color: #ffffff; }
   .input-group .input-group-append > .input-group-text > i,
   .input-group .input-group-prepend > .input-group-text > i {
     color: #a4a2bb; }
@@ -22800,7 +22800,7 @@ body.m-portlet--fullscreen {
 .m-form .m-form__group {
   margin-bottom: 0;
   padding-top: 15px;
-  padding-bottom: 15px; }
+  padding-bottom: 0px; }
   .m-form .m-form__group .form-control-label,
   .m-form .m-form__group label {
     font-weight: 400;

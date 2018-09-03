@@ -11,6 +11,9 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
 
+import { Package } from '../../../models/packages';
+
+
 @Injectable()
 export class PatientService {
 
@@ -38,6 +41,10 @@ export class PatientService {
 
     //for  ConsultantIdAndTentiveTime
     public ConsultantIdAndTentiveTime: any;
+
+    //for profile 
+
+    public package: any;
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
     private readonly API_URL1 = 'http://localhost:58788/api';
@@ -217,6 +224,9 @@ export class PatientService {
         console.log(x);
         return x;
     }
+
+
+
 
     // setCurrentPatient(currentPatientId) {
     //   console.log(currentPatientId);

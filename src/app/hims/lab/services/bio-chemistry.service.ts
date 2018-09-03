@@ -10,38 +10,39 @@ export class BioChemistryService {
 
   public referencerange : any;
 
-  private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api/BioChemistry';
+  private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api/';
 
   constructor(private http: HttpClient) { }
 
+
   getTests(): Observable<BioChemistryTest> {
-    return this.http.get<BioChemistryTest>(this.API_URL + '/GetBioChemistryTests');
+    return this.http.get<BioChemistryTest>(this.API_URL + 'BioChemistry/GetBioChemistryTests');
   }
 
   getUnits() : Observable<TestUnit>{
-    return this.http.get<TestUnit>(this.API_URL+"/GetTestUnits");
+    return this.http.get<TestUnit>(this.API_URL+"BioChemistry/GetTestUnits");
   }
 
   addTest(test : BioChemistryTest){
 
-    this.http.post(this.API_URL+'/AddBioChemistryTest',test).subscribe(resp=>console.log(resp));
+    this.http.post(this.API_URL+'BioChemistry/AddBioChemistryTest',test).subscribe(resp=>console.log(resp));
   }
 
   addUnit(test : TestUnit){
 
-    this.http.post(this.API_URL+'/AddTestUnit',test).subscribe(resp=>console.log(resp));
+    this.http.post(this.API_URL+'BioChemistry/AddTestUnit',test).subscribe(resp=>console.log(resp));
   }
 
  async getReferenceRanges()
   {
-   this.referencerange =  await this.http.get<referenceRange>(this.API_URL+'/GetReferenceRanges').toPromise()
+   this.referencerange =  await this.http.get<referenceRange>(this.API_URL+'BioChemistry/GetReferenceRanges').toPromise()
    console.log(this.referencerange);
    return this.referencerange;
   }
 
   async addReferenceRange(ReferenceRange :  referenceRange)
   {
-    let x = this.http.post(this.API_URL+'/AddReferenceRange/',ReferenceRange).toPromise();
+    let x = this.http.post(this.API_URL+'BioChemistry/AddReferenceRange/',ReferenceRange).toPromise();
     console.log(x);
     return x;
   }

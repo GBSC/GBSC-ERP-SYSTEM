@@ -19,14 +19,14 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 })
 export class BiochemistryComponent implements OnInit {
 
-  private consultants: Consultant;
-  private patients: Patient;
-  private spouse : Spouse;
-  private patient : Patient;
-  private testDetail : BioChemistryTestDetail[];
-  private tests : BioChemistryTest;
-  private units : TestUnit;
-  private bioChemistryForm : FormGroup;
+    private consultants: Consultant;
+    private patients: Patient;
+    private spouse : Spouse;
+    private patient : Patient;
+    private testDetail : BioChemistryTestDetail[];
+    private tests : BioChemistryTest;
+    private units : TestUnit;
+    private bioChemistryForm : FormGroup;
 
   @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
@@ -44,15 +44,15 @@ export class BiochemistryComponent implements OnInit {
 
   ngOnInit() {
 
-    this.testDetail = [];
+        this.testDetail = [];
 
-    this.patientcb.onValueChanged.subscribe(res=>this.populatePatientDate(res.component.option("value")));
+        this.patientcb.onValueChanged.subscribe(res=>this.populatePatientDate(res.component.option("value")));
 
-    this.consultantService.getConsultants()
-      .subscribe(consultants => this.consultants = consultants)
+        this.consultantService.getConsultants()
+          .subscribe(consultants => this.consultants = consultants)
 
-    this.patientService.getPatient()
-      .subscribe(patients => this.patients = patients);
+        this.patientService.getPatient()
+          .subscribe(patients => this.patients = patients);
 
       this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
 
@@ -76,11 +76,9 @@ export class BiochemistryComponent implements OnInit {
 
   populatePatientDate(patientId)
   {
-      this.patientService.getPatientWithPartner(patientId).subscribe(patient=>{
-        
-        this.patient = patient;
-        this.spouse = patient.partner;
-        
+      this.patientService.getPatientWithPartner(patientId).subscribe(patient=>{   
+      this.patient = patient;
+      this.spouse = patient.partner;
       });
   }
 
@@ -96,9 +94,7 @@ export class BiochemistryComponent implements OnInit {
   updateBioChemistryTestDetail(value)
   {
     let data = value.data;
-
-    // this.testDetail.push(data);
-
+ 
     console.log(this.testDetail);
   }
 

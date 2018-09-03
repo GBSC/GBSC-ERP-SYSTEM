@@ -23,10 +23,12 @@ import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
 import { PatientService } from '../sharedservices/patient.service';
 import { ConsultantService } from '../sharedservices/consultant.service';
-import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
-import { TestunitComponent } from './testunit/testunit.component';
+import {BiochemistrytestComponent} from '../../hims/lab/labsetup/biochemistrytest/biochemistrytest.component';
+import {TestunitComponent} from '../../hims/lab/labsetup/testunit/testunit.component';
 import { BioChemistryService } from './services/bio-chemistry.service';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
+import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { ReferencerangeComponent } from './referencerange/referencerange.compone
         BiochemistrytestComponent,
         TestunitComponent,
         ReferencerangeComponent,
+        EmbryologycodesComponent,
+        EmbryologistsComponent,
     ],
     providers: [PatientService, ConsultantService, BioChemistryService]
 })

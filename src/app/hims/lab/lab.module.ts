@@ -27,6 +27,7 @@ import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.c
 import { TestunitComponent } from './testunit/testunit.component';
 import { BioChemistryService } from './services/bio-chemistry.service';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { EmbryologysectionComponent } from './embryologysection/embryologysection.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ReferencerangeComponent } from './referencerange/referencerange.compone
         BiochemistrytestComponent,
         TestunitComponent,
         ReferencerangeComponent,
+        EmbryologysectionComponent,
     ],
     providers: [PatientService, ConsultantService, BioChemistryService]
 })

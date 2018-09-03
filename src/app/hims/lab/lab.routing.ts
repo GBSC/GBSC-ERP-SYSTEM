@@ -12,6 +12,7 @@ import { InseminationprepComponent } from './inseminationprep/inseminationprep.c
 import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
 import { TestunitComponent } from './testunit/testunit.component';
+import { EmbryologysectionComponent } from './embryologysection/embryologysection.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -33,7 +34,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'biopsy', component: BiopsyComponent },
             { path: 'inseminationprep', component: InseminationprepComponent },
             { path: 'referencerange', component: ReferencerangeComponent },
-
+            { path: 'embryologysection', component: EmbryologysectionComponent },
         ]
     }
 

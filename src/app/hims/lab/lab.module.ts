@@ -27,12 +27,10 @@ import {BiochemistrytestComponent} from '../../hims/lab/labsetup/biochemistrytes
 import {TestunitComponent} from '../../hims/lab/labsetup/testunit/testunit.component';
 import { BioChemistryService } from './services/bio-chemistry.service';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
-<<<<<<< HEAD
 import { InseminationprepService } from './services/inseminationprep.service';
-=======
 import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
 import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
->>>>>>> 4b2c6902a17a01c3e7b3ba2f8a5a40fc08f31ec7
+
 
 
 @NgModule({

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InseminationprepService } from '../services/inseminationprep.service';
+import { InseminationPrep } from '../../../models/inseminationprep';
 
 @Component({
   selector: 'app-inseminationprep',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InseminationprepComponent implements OnInit {
 
-  constructor() { }
+  private inseminationPrep : InseminationPrep;
+
+  constructor(private inseminationPrepService : InseminationprepService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(value)
+  {
+    console.log(value);
   }
 
 }

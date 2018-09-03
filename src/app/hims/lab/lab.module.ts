@@ -27,6 +27,7 @@ import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.c
 import { TestunitComponent } from './testunit/testunit.component';
 import { BioChemistryService } from './services/bio-chemistry.service';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { InseminationprepService } from './services/inseminationprep.service';
 
 
 @NgModule({
@@ -58,6 +59,6 @@ import { ReferencerangeComponent } from './referencerange/referencerange.compone
         TestunitComponent,
         ReferencerangeComponent,
     ],
-    providers: [PatientService, ConsultantService, BioChemistryService]
+    providers: [PatientService, ConsultantService, BioChemistryService, InseminationprepService]
 })
 export class LabModule { }

@@ -29,13 +29,11 @@ export class ReferencerangeComponent implements OnInit {
   }
 
   async updateReferenceRange(value) {
-
-    let refRange = new referenceRange();
-
-    refRange.referenceRangeId = value.key;
-    refRange = { ...refRange, ...value.data };
-
-    let x = await this.bioChemistryServie.updateReferenceRange(refRange);
+    
+      let refRange = new referenceRange();
+      refRange.referenceRangeId = value.key;
+      refRange = { ...refRange, ...value.data };
+      await this.bioChemistryServie.updateReferenceRange(refRange); 
   }
 
 

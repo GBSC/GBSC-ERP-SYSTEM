@@ -4,11 +4,16 @@ import { BioChemistryTest } from '../../../models/biochemistrytest';
 import { referenceRange } from '../../../models/referenceRange';
 import { Observable } from 'rxjs/Observable';
 import { TestUnit } from '../../../models/testunit';
+import {Embryologists} from '../../../models/embryologists'
+import {EmbryologyCode} from '../../../models/embryologycodes'
+
 
 @Injectable()
 export class BioChemistryService {
 
   public referencerange : any;
+  public embryologist : any;
+  public embryologycode : any;
 
   private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api/';
 
@@ -54,6 +59,62 @@ export class BioChemistryService {
     console.log(x);
     return x;
     
+  }
+
+  async getEmbryologists(){
+
+    this.embryologist = await this.http.get<Embryologists>(this.API_URL+'/HimsSetup/GetEmbryologists/').toPromise()
+    console.log(this.embryologist);
+    return this.embryologist;
+  }  
+
+  async addEmbryologist(embryologists : Embryologists){
+
+    let x = await this.http.post(this.API_URL+'/HimsSetup/AddEmbryologist/',embryologists).toPromise();
+    console.log(x);
+    return x;
+  }
+
+  async updateEmbryologist(embryologists : Embryologists){
+
+    let x = await this.http.put(this.API_URL+'/HimsSetup/UpdateEmbryologist/',embryologists).toPromise();
+    console.log(x);
+    return x;
+  }
+
+  async deleteEmbryologist(id){
+
+    let x = await this.http.delete(this.API_URL+'/HimsSetup/'+id).toPromise();
+    console.log(x);
+    return x;
+  }
+
+
+  async getEmbryologyCodes(){
+    
+    this.embryologycode = await this.http.get<EmbryologyCode>(this.API_URL+'/HimsSetup/GetEmbryologyCodes/').toPromise();
+    console.log(this.embryologycode);
+    return this.embryologycode;
+  }
+
+  async addEmbryologyCode(embryologyCode : EmbryologyCode){
+    let x = await this.http.post(this.API_URL+'/HimsSetup/AddEmbryologyCode/',embryologyCode).toPromise();
+    console.log(x);
+    return x;
+  }
+
+  async updateEmbryologyCode(embryologyCode : EmbryologyCode){
+  
+    let x = await this.http.put(this.API_URL+'/HimsSetup/UpdateEmbryologyCode/',embryologyCode).toPromise();
+    console.log(x);
+    return x;
+  
+  }
+
+  async deleteEmbryologyCode(id){
+    let x = await this.http.delete(this.API_URL+''+id).toPromise();
+    console.log(x);
+    return x;
   }
 
 }

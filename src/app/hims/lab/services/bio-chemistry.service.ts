@@ -38,8 +38,8 @@ export class BioChemistryService {
 
   async updateReferenceRange(ReferenceRange :  referenceRange)
   {
-    console.log(ReferenceRange);
-    let x = await this.http.put(this.API_URL+'/BioChemistry/UpdateReferenceRange/',ReferenceRange).toPromise();
+ 
+    let x = await this.http.put(`${this.API_URL}/BioChemistry/UpdateReferenceRange/`,ReferenceRange).toPromise();
     console.log(x);
     return x;
     

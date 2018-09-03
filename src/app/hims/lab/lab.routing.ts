@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Testability } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RootComponent } from './root/root.component';
 import { DailyProcedureComponent } from './daily-procedure/daily-procedure.component';
@@ -7,9 +7,9 @@ import { ProceduresortestComponent } from './proceduresortest/proceduresortest.c
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
-import { BioChemistryTest } from '../../models/biochemistrytest';
 import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { TestunitComponent } from './testunit/testunit.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -20,6 +20,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
 
         children: [
+            { path: 'testunit', component: TestunitComponent },
             { path: 'biochemistrytest', component: BiochemistrytestComponent },
             { path: 'dailyProcedure', component: DailyProcedureComponent },
             { path: 'fileRecord', component: FileRecordComponent },

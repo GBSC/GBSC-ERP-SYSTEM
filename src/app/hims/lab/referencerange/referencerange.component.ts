@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { BioChemistryService } from '../services/bio-chemistry.service';
+import { referenceRange } from '../../../models/referenceRange';
+
+@Component({
+  selector: 'app-referencerange',
+  templateUrl: './referencerange.component.html',
+  styleUrls: ['./referencerange.component.scss']
+})
+export class ReferencerangeComponent implements OnInit {
+
+  public refrang: any;
+
+  constructor(private bioChemistryServie: BioChemistryService) {
+
+  }
+
+  async  ngOnInit() {
+    await this.bioChemistryServie.getReferenceRanges();
+    this.refrang = this.bioChemistryServie.referencerange;
+    console.log(this.refrang);
+  }
+
+  async addReferenceRange(ref) {
+    console.log(ref.data);
+    console.log(ref.key);
+    let x = await this.bioChemistryServie.addReferenceRange(ref.data);
+    console.log(x);
+  }
+
+  async updateReferenceRange(value) {
+
+    let refRange = new referenceRange();
+
+    refRange.referenceRangeId = value.key;
+    refRange = { ...refRange, ...value.data };
+
+    let x = await this.bioChemistryServie.updateReferenceRange(refRange);
+  }
+
+
+}

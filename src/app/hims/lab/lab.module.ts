@@ -21,6 +21,12 @@ import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-a
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
+import { PatientService } from '../sharedservices/patient.service';
+import { ConsultantService } from '../sharedservices/consultant.service';
+import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
+import { TestunitComponent } from './testunit/testunit.component';
+import { BioChemistryService } from './services/bio-chemistry.service';
+import { ReferencerangeComponent } from './referencerange/referencerange.component';
 
 
 @NgModule({
@@ -48,7 +54,10 @@ import { InseminationprepComponent } from './inseminationprep/inseminationprep.c
         BiochemistryComponent,
         BiopsyComponent,
         InseminationprepComponent,
+        BiochemistrytestComponent,
+        TestunitComponent,
+        ReferencerangeComponent,
     ],
-    providers: []
+    providers: [PatientService, ConsultantService, BioChemistryService]
 })
 export class LabModule { }

@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Testability } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RootComponent } from './root/root.component';
 import { DailyProcedureComponent } from './daily-procedure/daily-procedure.component';
@@ -9,6 +9,9 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
+import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
+import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { TestunitComponent } from './testunit/testunit.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -19,7 +22,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
 
         children: [
-
+            { path: 'testunit', component: TestunitComponent },
+            { path: 'biochemistrytest', component: BiochemistrytestComponent },
             { path: 'dailyProcedure', component: DailyProcedureComponent },
             { path: 'fileRecord', component: FileRecordComponent },
             { path: 'Proceduresortest', component: ProceduresortestComponent },
@@ -28,6 +32,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'biochemistry', component: BiochemistryComponent },
             { path: 'biopsy', component: BiopsyComponent },
             { path: 'inseminationprep', component: InseminationprepComponent },
+            { path: 'referencerange', component: ReferencerangeComponent },
 
         ]
     }

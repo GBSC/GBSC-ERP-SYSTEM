@@ -35,6 +35,7 @@ export class ReligionComponent implements OnInit {
     }
 
     updatereligion(relign) {
+        console.log(relign);
         this.dataService.updateReligion(relign);
     }
 

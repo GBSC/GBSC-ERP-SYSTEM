@@ -238,7 +238,8 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: .5rem; }
+  margin-bottom: .5rem; 
+  font-weight: 500;}
 
 button {
   border-radius: 0; }
@@ -22186,7 +22187,7 @@ body.m-portlet--fullscreen {
     width: 150px; }
 
 .form-control[readonly], .form-control {
-  border-color: #ebedf2;
+  border-color: #a7a7a7;
   color: #575962; }
   .form-control[readonly]::-moz-placeholder, .form-control::-moz-placeholder {
     color: #9699a2;

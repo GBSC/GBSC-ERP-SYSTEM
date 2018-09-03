@@ -20,7 +20,7 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm = this.formBuilder.group({
                 Height: ['', Validators.required],
                 Weight: ['', Validators.required],
-                CalculatedBMI: ['', Validators.required],
+               // CalculatedBMI: ['', Validators.required],
                 Temperature: ['', Validators.required],
                 Pulse: ['', Validators.required],
                 RespiratoryRate: ['', Validators.required],

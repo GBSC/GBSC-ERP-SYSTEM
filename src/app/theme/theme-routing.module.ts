@@ -10,8 +10,8 @@ import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
+import { PayrollModule } from '../payroll/payroll.module';
 import { AccountModule } from '../account/account.module';
-
 
 
 const routes: Routes = [
@@ -61,7 +61,8 @@ const routes: Routes = [
         SystemAdministrationModule,
         HrmModule,
         EmployeeModule,
-        AccountModule
+        AccountModule,
+        PayrollModule
     ],
     exports: [
         RouterModule,

@@ -1,0 +1,61 @@
+
+
+<div class="m-content">
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Upload Gratuity</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <dx-data-grid id="gridContainer" [dataSource]="banks" keyExpr="id" (onRowInserted)="addAllowances($event)" (onRowUpdated)="EditAllowances($event)" (onRowRemoved)="deleteAllowances($event)"> 
+              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+                <dxo-popup title="Allowance Type" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+              <div class="widget-container">
+                <dx-file-uploader
+                    #fileUploader
+                    uploadUrl="https://js.devexpress.com/Content/Services/upload.aspx"
+                    [multiple]="false"
+                    accept="*"
+                    [(value)]="value"
+                    uploadMode="instantly"
+                ></dx-file-uploader>
+                <div class="content">
+                    <div *ngIf="value.length > 0">
+                        <h4>Selected Files</h4>
+                    </div>
+                    <div *ngFor="let file of value">
+                        <div class="selected-item">
+                            Name:
+                            <span>{{file.name}}</span><br /> Size:
+                            <span>{{file.size}}</span>bytes<br /> Type:
+                            <span>{{file.type}}</span><br /> Last Modified Date:
+                            <span>{{file.lastModifiedDate}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              </dx-data-grid> 
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+

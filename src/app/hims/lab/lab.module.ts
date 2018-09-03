@@ -19,6 +19,8 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
+import { BiopsyComponent } from './biopsy/biopsy.component';
+import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
 import { PatientService } from '../sharedservices/patient.service';
 import { ConsultantService } from '../sharedservices/consultant.service';
 import { BiochemistrytestComponent } from './biochemistrytest/biochemistrytest.component';
@@ -50,6 +52,8 @@ import { ReferencerangeComponent } from './referencerange/referencerange.compone
         BiochemistryontreatmentComponent,
         SemensanalysislistComponent,
         BiochemistryComponent,
+        BiopsyComponent,
+        InseminationprepComponent,
         BiochemistrytestComponent,
         TestunitComponent,
         ReferencerangeComponent,

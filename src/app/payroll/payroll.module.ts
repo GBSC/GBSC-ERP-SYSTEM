@@ -34,47 +34,47 @@ import { UploadtaxdepositComponent } from './payrollsetup/uploadtaxdeposit/uploa
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
 
-  ],
-  declarations: [
-    RootComponent,
-    FundsetupComponent,
-    AllowanceDeductionComponent,
-    AllowancerateComponent,
-    BanksComponent,
-    FooterComponent,
-    HeaderComponent,
-    MenuComponent,
-    CurrencyComponent,
-    CurrencyrateComponent,
-    GratuitypaymentComponent,
-    GratuityslabComponent,
-    LoanrequestComponent,
-    PayrollyearComponent,
-    PfPaymentComponent,
-    UploadGratuityComponent,
-    CreatesalaryfilesComponent,
-    IncrementtransactionComponent,
-    AllowancequantityComponent,
-    SalarystructureComponent,
-    EmployeecompensiontransactionComponent,
-    FundsetupComponent,
-    TaxsetupComponent,
-    TaxonbenefitsComponent,
-    TaxableincomeadjustmentComponent,
-    TaxadjustmentComponent,
-    UploadtaxdepositComponent
-  ],
-  exports: [],
-  providers: [PayrollService]
+    ],
+    declarations: [
+        RootComponent,
+        FundsetupComponent,
+        AllowanceDeductionComponent,
+        AllowancerateComponent,
+        BanksComponent,
+        FooterComponent,
+        HeaderComponent,
+        MenuComponent,
+        CurrencyComponent,
+        CurrencyrateComponent,
+        GratuitypaymentComponent,
+        GratuityslabComponent,
+        LoanrequestComponent,
+        PayrollyearComponent,
+        PfPaymentComponent,
+        UploadGratuityComponent,
+        CreatesalaryfilesComponent,
+        IncrementtransactionComponent,
+        AllowancequantityComponent,
+        SalarystructureComponent,
+        EmployeecompensiontransactionComponent,
+        FundsetupComponent,
+        TaxsetupComponent,
+        TaxonbenefitsComponent,
+        TaxableincomeadjustmentComponent,
+        TaxadjustmentComponent,
+        UploadtaxdepositComponent
+    ],
+    exports: [],
+    providers: [PayrollService]
 })
- 
+
 export class PayrollModule { }

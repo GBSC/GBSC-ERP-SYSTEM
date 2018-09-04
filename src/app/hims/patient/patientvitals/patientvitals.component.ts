@@ -12,21 +12,21 @@ export class PatientvitalsComponent implements OnInit {
 
     public PatientVitaLForm: FormGroup;
     public currentPatient: any;
-    public visitid : any;   
+    public visitid: any;
 
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
         this.PatientVitaLForm = this.formBuilder.group({
-                Height: ['', Validators.required],
-                Weight: ['', Validators.required],
-                CalculatedBMI: ['', Validators.required],
-                Temperature: ['', Validators.required],
-                Pulse: ['', Validators.required],
-                RespiratoryRate: ['', Validators.required],
-                BloodPressure: ['', Validators.required],
-                BloodOxygenSaturation: ['', Validators.required],
-                VisitId : ['', Validators.required]
-            });
- 
+            Height: ['', Validators.required],
+            Weight: ['', Validators.required],
+            CalculatedBMI: ['', Validators.required],
+            Temperature: ['', Validators.required],
+            Pulse: ['', Validators.required],
+            RespiratoryRate: ['', Validators.required],
+            BloodPressure: ['', Validators.required],
+            BloodOxygenSaturation: ['', Validators.required],
+            VisitId: ['', Validators.required]
+        });
+
     }
 
     ngOnInit() {
@@ -36,23 +36,23 @@ export class PatientvitalsComponent implements OnInit {
         this.visitid = this.PatientServiceobj.visitid;
         console.log(this.visitid);
     }
-    
-   async  onsubmit(value){
-        
+
+    async  onsubmit(value) {
+
         this.visitid = this.PatientServiceobj.visitid;
-       // console.log(this.visitid.value);
+        // console.log(this.visitid.value);
 
-       // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+        // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
 
 
-       this.PatientVitaLForm.value.VisitId = this.visitid.visitID;
-     
-      
-         let x = await this.PatientServiceobj.AddPatientVital(value);
-       console.log(x);
-        
+        this.PatientVitaLForm.value.VisitId = this.visitid.visitID;
+
+
+        let x = await this.PatientServiceobj.AddPatientVital(value);
+        console.log(x);
+
         console.log(this.PatientVitaLForm.value);
     }
-    
+
 
 }

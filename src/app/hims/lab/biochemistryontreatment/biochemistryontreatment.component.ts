@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-biochemistryontreatment',
-  templateUrl: './biochemistryontreatment.component.html',
-  styleUrls: ['./biochemistryontreatment.component.scss']
+    selector: 'app-biochemistryontreatment',
+    templateUrl: './biochemistryontreatment.component.html',
+    styleUrls: ['./biochemistryontreatment.component.scss']
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

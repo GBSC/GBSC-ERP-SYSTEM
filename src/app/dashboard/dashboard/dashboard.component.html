@@ -1,0 +1,73 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-8">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Application Status</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer" [dataSource]="dataSource" (onSelectionChanged)="selectionChanged($event)" [showBorders]="true">
+
+                <dxo-selection mode="single"></dxo-selection>
+
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                <!-- <dxi-column dataField="SNo"caption="S.No"></dxi-column> -->
+                <dxi-column dataField="Description" caption="Description"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="m-portlet">
+        <div class=""></div>
+        <div class="m-portlet__body">
+          <div class="m-widget19">
+            <div class="">
+              <img alt="" class="img img_dp" src="assets/app/media/img//blog/blog1.jpg">
+            </div>
+            <div class="m-widget19__content">
+              <div class="m-widget19__header">
+                <div class="m-widget19__info">
+                  <span class="m-widget19__username"> Mujtaba Ahmed </span>
+                  <br>
+                  <span class="m-widget19__time"> Applied For Registration </span>
+                </div>
+              </div>
+              <hr>
+              <div class="m-widget19__header">
+                <div class="m-widget19__info">
+                  <span class="m-widget19__username"> Electrical </span>
+                  <br>
+                  <span class="m-widget19__time"> Discipline </span>
+                </div>
+                <div class="m-widget19__stats">
+                  <span class="m-widget19__number m--font-brand"> Process </span>
+                  <span class="m-widget19__comment"> PECNO </span>
+                </div>
+              </div>
+              <hr>
+              <div class="m-widget19__body border"> Application No : 1452 </div>
+              <br>
+              <div class="m-widget19__body noborder"> MemberShip </div>
+            </div>
+            <div class="m-widget19__action">
+              <button class="btn m-btn-primary" type="button"> Review Application </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

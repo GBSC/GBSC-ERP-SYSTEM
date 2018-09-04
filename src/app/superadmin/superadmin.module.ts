@@ -10,20 +10,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SuperadminserviceService } from './superadminservice.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing
-  ],
-  declarations: [
-    RootComponent, 
-    SetupcompanyComponent,         
-    HeaderComponent,
-    MenuComponent,
-    FooterComponent
-  ],
-  
-  providers : [SuperadminserviceService]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing
+    ],
+    declarations: [
+        RootComponent,
+        SetupcompanyComponent,
+        HeaderComponent,
+        MenuComponent,
+        FooterComponent
+    ],
+
+    providers: [SuperadminserviceService]
 })
 export class SuperadminModule { }

@@ -28,6 +28,4 @@ const routes: Routes = [
 })
 export class BaseSpinnersModule {
 
-
-
 }

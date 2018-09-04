@@ -232,7 +232,7 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(value);
         console.log(this.appointmentForm.value);
         this.appointmentForm.value.ConsultantId = cid.value;
-       // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+        // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);

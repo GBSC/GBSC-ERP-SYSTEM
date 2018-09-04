@@ -25,6 +25,8 @@ import { HomeComponent } from '../patient/home/home.component';
 import { AppointmentscheduleComponent } from '../patient/appointmentschedule/appointmentschedule.component';
 import { ConsultantComponent } from '../patient/consultant/consultant.component';
 import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
+import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 
 
@@ -33,9 +35,9 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'hims/patient',
-        component: RootComponent,
-
+        path: 'patient',
+        component: RootComponent,   
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'registration', component: RegistrationComponent },

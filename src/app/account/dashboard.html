@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        
+        .container{
+            height: 100vh;
+            width: 100%;
+             border: 1px solid red;
+             display: flex;
+        }
+
+        .grid-container{
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid blue;
+        }
+
+        .card-container{
+            flex: 1.3;
+            border: 1px solid green;
+        }
+
+        .header{
+            height: 40px;
+            width: 100%;
+            border: 1px solid green;
+        }
+
+        .grid{
+            display: flex;
+            height: auto;
+            width: 90%;
+            border: 1px solid gold;
+            flex-direction: column;
+        }
+
+        .grid-row{
+            height: 40px;
+            width: 100%;
+             border-bottom: 1px solid lightgray;
+             display: flex;
+        }
+
+        .id{
+            width: 100px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;   
+            border-right: 1px solid lightgray; 
+        }
+
+        .name{
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 10px;
+        }
+        
+    </style>
+    
+    <div class="container">
+        <div class="grid-container">
+            <div class="header">
+                <p>List of Accessible Modules</p>
+            </div>
+            <div class="grid">
+                <div class="grid-row">
+                    <div class="id">
+                        <p>01</p>
+                    </div>
+                    <div class="name">
+                        <p>Module Nmae</p>
+                    </div>
+                </div>
+                <div class="grid-row">
+                    <div class="id">
+                        <p>01</p>
+                    </div>
+                    <div class="name">
+                        <p>Module Nmae</p>
+                    </div>
+                </div>
+                <div class="grid-row">
+                    <div class="id">
+                        <p>01</p>
+                    </div>
+                    <div class="name">
+                        <p>Module Nmae</p>
+                    </div>
+                </div>
+                <div class="grid-row">
+                    <div class="id">
+                        <p>01</p>
+                    </div>
+                    <div class="name">
+                        <p>Module Nmae</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="profile-card">
+                <div class="card-row">Photo</div>
+                <div class="card-row">Name</div>
+                <div class="card-row">User Type</div>
+                <div class="card-row">View Complete Profile</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

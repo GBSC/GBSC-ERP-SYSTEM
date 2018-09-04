@@ -2,27 +2,31 @@ export class InseminationPrepDetail{
 
     InseminationPrepDetailId : number;
 
-    InseminationDate : Date;
-
-    TotalCount : string;
-
-    TotalCountUnit : string;
-
-    MobileCount : string;
-
-    MobileCountUnit : string;
-
-    RapidLinearProgression : string;
-
-    NonLinearProgression : string;
-
-    TimeCompleted : string;
-
+    InseminationPrepDate:Date;
+    TreatmentNumber :string;
+    PatientId  : number;
+    ConsultantId  : number;
+    CycleNumber:string;
+    TreatmentType:string;
+    PrepFor:string;
+    CollectionNumber:string;
+    CollectionDate:Date;
+    SampleType:string;
+    ProcedureNumber:string;
+    DetailInseminationDate:Date;
+    Method:string;
+    Volume:string;
     FinalVolume : string;
-
-    SpecialComment : string;
-
-    Comments : string;
+    TotalCount:string;
+    MotileCount:string;
+    RapidLinearProgression:string;
+    MobileCount:string;
+    LinearProgression:string;
+    TimeCompleted:string;
+    MobileCountUnit:string;
+    NonLinearProgression:string;
+    Comments:string;
+    SpecialComment:string;
 
     InseminationPrepId : number;
 }

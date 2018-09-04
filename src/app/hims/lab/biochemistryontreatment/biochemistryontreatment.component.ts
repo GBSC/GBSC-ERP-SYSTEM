@@ -89,7 +89,6 @@ export class BiochemistryontreatmentComponent implements OnInit {
   {
       this.patientService.getPatientWithPartner(patientId).subscribe(patient=>{   
       this.patient = patient;
-
       console.log(patient.partner);
       this.spouse = patient.partner;
       });

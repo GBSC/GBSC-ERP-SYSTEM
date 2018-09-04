@@ -1,371 +1,373 @@
-
-
 <div class="m-content">
-    <div class="row">
-        <div class="col-xl-12">
-          <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">Insemination Prep</h3>
             </div>
-            </div>
-          </div>
-          <div class="m-portlet__body">
-            <form [formGroup]="inseminationPrepForm">
-                <div class="m-section">
-                    <div class="m-section__content" >
-                      <div class="row">
-                        <div class="col-sm-2"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            MRN No.
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MRN-00215">
-                        </div></div>
-                        <div class="col-sm-2"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Date
-                          </label>
-                          <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" formControlName="InseminationPrepDate"/>
-                        </div></div>
-                        <div class="col-sm-2"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Treatment#
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="TreatmentNumber">
-                        </div></div>
-                        <div class="col-sm-2"><div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Cycle#
-                            </label>
-                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="CycleNumber">
-                          </div></div>
-                          <div class="col-sm-4"><div class="form-group m-form__group">
-                            <label for="exampleSelect1">
-                              Treatment Type
-                            </label>
-                            <select class="form-control m-input" id="exampleSelect1">
-                              <option>
-                                Option 1
-                              </option>
-                              <option>
-                               Option 2
-                              </option>
-                              <option>
-                                Option 3
-                              </option>
-                            </select>
-                          </div></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Patient Name
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Manika">
-                        </div></div>
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Spouse
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imraan Khan">
-                        </div></div>
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Age
-                          </label>
-                          <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select Age"/>              
-                        </div></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                          <label for="exampleSelect1">
-                            Doctor
-                          </label>
-                          <select class="form-control m-input" id="exampleSelect1">
-                            <option>
-                              Dr. Shakeela
-                            </option>
-                            <option>
-                              Dr. Yasmeen
-                            </option>
-                            <option>
-                              Dr. Shahid
-                            </option>
-                          </select>
-                        </div></div>
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                            <label for="exampleSelect1">
-                              Prep For
-                            </label>
-                            <select class="form-control m-input" id="exampleSelect3">
-                              <option>
-                                Option 1
-                              </option>
-                              <option>
-                                Option 2
-                              </option>
-                              <option>
-                                Option 3
-                              </option>
-                            </select>
-                          </div></div>
-        
-                        <div class="col-sm-4"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Parent#
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="ParentNumber">
-                        </div></div>
-                        
-                      </div>
-                      <div class="row">
-                           
-                          <div class="col-sm-3"><div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Collection No.
-                            </label>
-                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="CollectionNumber">
-                          </div></div>
-                          <div class="col-sm-3">
-                              <div class="form-group m-form__group">
-                                  <label for="exampleTextarea col-sm-3">
-                                      Collection Date
-                                  </label>
-                              <input type="text" class="form-control" id="m_datepicker_1" readonly placeholder="Select date" formControlName="CollectionDate"/>
-                                </div>
-                            </div>
-                            <div class="col-sm-3"><div class="form-group m-form__group">
-                                <label for="exampleSelect5">
-                                  Sample Type
-                                </label>
-                                <select class="form-control m-input" id="exampleSelect5">
-                                  <option>
-                                   Fresh
-                                  </option>
-                                  <option>
-                                    option 2
-                                  </option>
-                                  <option>
-                                    option 3
-                                  </option>
-                                </select>
-                              </div></div>
-                            <div class="col-sm-3"><div class="form-group m-form__group">
-                                <label for="exampleInputEmail1">
-                                    Procedure#
-                                </label>
-                                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="ProcedureNumber">
-                              </div></div>
-                        </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <h4>Insemination Prep Details</h4>
-                          <div class="m-form m-form--fit m-form--label-align-right" style="margin-top: 30px;">
-                          <div class="form-group m-form__group row">
-                              <label for="example-text-input" class="col-3 col-form-label">
-                                  Insemination Date
-                              </label>
-                              <div class="col-6">
-                                  <input type="text" class="form-control" id="m_datepicker_1" formControlName="DetailInseminationDate"/>
-                              </div>
-                              <div class="col-3"></div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                <label for="example-text-input" class="col-3 col-form-label">
-                                    Method
-                                </label>
-                                <div class="col-6">
-                                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test">
-                                  </div>
-                                <div class="col-3"></div>
-                              </div>
-                              <div class="form-group m-form__group row">
-                                  <label for="example-text-input" class="col-3 col-form-label">
-                                      Volume
-                                  </label>
-                                  <div class="col-6">
-                                      <div class="input-group">
-                                          <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2">
-                                          <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                             (mls)
-                                            </span>
-                                          </div>
-                                        </div>
-                                    </div>
-                                  <div class="col-3"></div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label for="example-text-input" class="col-3 col-form-label">
-                                        Total Count
-                                    </label>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                180000
-                                              </button>
-                                              <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                <a class="dropdown-item" href="#">
-                                                  150000
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                  180000
-                                                </a>
-                                                <a class="dropdown-item" href="#">
-                                                 4000000
-                                                </a>
-                                              </div>
-                                            </div>
-                                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                                    (mil./ml)
-                                                </span>
-                                              </div>
-                                          </div>
-                                      </div>
-                                    <div class="col-3"></div>
-                                  </div>
-                                  <div class="form-group m-form__group row">
-                                      <label for="example-text-input" class="col-3 col-form-label">
-                                          Motile Count
-                                      </label>
-                                      <div class="col-6">
-                                          <div class="input-group">
-                                              <div class="input-group-prepend">
-                                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  180000
-                                                </button>
-                                                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                  <a class="dropdown-item" href="#">
-                                                    150000
-                                                  </a>
-                                                  <a class="dropdown-item" href="#">
-                                                    180000
-                                                  </a>
-                                                  <a class="dropdown-item" href="#">
-                                                   4000000
-                                                  </a>
-                                                </div>
-                                              </div>
-                                              <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                                              <div class="input-group-append">
-                                                  <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                                      (mil./ml)
-                                                  </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                      <div class="col-3"></div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-3 col-form-label">
-                                            Rapid Linear Progression
-                                        </label>
-                                        <div class="col-6">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                  <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                                   (%)
-                                                  </span>
-                                                </div>
-                                              </div>
-                                          </div>
-                                        <div class="col-3"></div>
-                                      </div>
-                                      <div class="form-group m-form__group row">
-                                          <label for="example-text-input" class="col-3 col-form-label">
-                                              Show Non-Linear Progression
-                                          </label>
-                                          <div class="col-6">
-                                              <div class="input-group">
-                                                  <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2">
-                                                  <div class="input-group-append">
-                                                    <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                                     (%)
-                                                    </span>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                          <div class="col-3"></div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            <label for="example-text-input" class="col-3 col-form-label">
-                                                Time Completed
-                                            </label>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test">
-                                              </div>
-                                            <div class="col-3"></div>
-                                          </div>
-                                          <div class="form-group m-form__group row">
-                                              <label for="example-text-input" class="col-3 col-form-label">
-                                                  Final Volume
-                                              </label>
-                                              <div class="col-6">
-                                                  <div class="input-group">
-                                                      <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2">
-                                                      <div class="input-group-append">
-                                                        <span class="input-group-text" id="basic-addon2" style="color:#000">
-                                                         (mls)
-                                                        </span>
-                                                      </div>
-                                                    </div>
-                                                </div>
-                                              <div class="col-3"></div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label for="example-text-input" class="col-3 col-form-label">
-                                                    Special Comments
-                                                </label>
-                                                <div class="col-6">
-                                                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test">
-                                                  </div>
-                                                <div class="col-3"></div>
-                                              </div>
-                                              <div class="form-group m-form__group row">
-                                                  <label for="example-text-input" class="col-3 col-form-label">
-                                                      Comments
-                                                  </label>
-                                                  <div class="col-6">
-                                                      <textarea class="form-control m-input" id="exampleTextarea" rows="3"></textarea>
-                                                    </div>
-                                                  <div class="col-3"></div>
-                                                </div>
-                                                <div class="form-group m-form__group row">
-                                                    <label for="example-text-input" class="col-3 col-form-label">
-                                                       
-                                                    </label>
-                                                    <div class="col-6">
-                                                        <button type="reset" class="btn btn-primary">
-                                                            Submit
-                                                          </button>
-                                                      </div>
-                                                    <div class="col-3"></div>
-                                                  </div>
-                           </div>
-                              
-         
-                        </div>
-                      </div>
-        
-                     
-                    </div>
-                    </div>
-            </form>
-
-          </div>
           </div>
         </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="inseminationPrepForm">
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{patient?.mrn}}"  disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" formControlName="InseminationPrepDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Treatment#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="TreatmentNumber">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Cycle#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="CycleNumber">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Treatment Type
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect1" formControlName="TreatmentType">
+                        <option>
+                          Option 1
+                        </option>
+                        <option>
+                          Option 2
+                        </option>
+                        <option>
+                          Option 3
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true" formControlName="PatientId">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Age
+                      </label>
+                      <input type="text" class="form-control" id="m_datepicker_1"  placeholder="{{patient?.age}}"/>  
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Prep For
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect3" formControlName="PrepFor">
+                        <option>
+                          Option 1
+                        </option>
+                        <option>
+                          Option 2
+                        </option>
+                        <option>
+                          Option 3
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Parent#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Collection No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="CollectionNumber">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleTextarea col-sm-3">
+                        Collection Date
+                      </label>
+                      <input type="text" class="form-control" id="m_datepicker_1" readonly placeholder="Select date" formControlName="CollectionDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect5">
+                        Sample Type
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect5" formControlName="SampleType">
+                        <option>
+                          Fresh
+                        </option>
+                        <option>
+                          option 2
+                        </option>
+                        <option>
+                          option 3
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Procedure#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="ProcedureNumber">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Insemination Prep Details</h4>
+                    <div class="m-form m-form--fit m-form--label-align-right" style="margin-top: 30px;">
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Insemination Date
+                        </label>
+                        <div class="col-6">
+                          <input type="date" class="form-control" id="m_datepicker_1" formControlName="DetailInseminationDate" />
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Method
+                        </label>
+                        <div class="col-6">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test" formControlName="Method">
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Volume
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2" formControlName="Volume">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mls)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Total Count
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="btn btn-secondary dropdown-toggle" formControlName="TotalCount" id="exampleSelect1">
+                                <option>
+                                equal
+                                </option>
+                                <option>
+                                less then
+                                </option>
+                              </select>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" formControlName="TotalCountValue">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mil./ml)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Motile Count
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                             <select class="btn btn-secondary dropdown-toggle" formControlName="MotileCount">
+                                <option>
+                                  equal
+                                </option>
+                                 <option>
+                                   less then
+                                 </option>
+                              </select>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button" formControlName="MotileCountValue">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mil./ml)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Rapid Linear Progression
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2" formControlName="RapidLinearProgression">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (%)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Show Non-Linear Progression
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2" formControlName="LinearProgression">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (%)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Time Completed
+                        </label>
+                        <div class="col-6">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test" formControlName="TimeCompleted">
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Final Volume
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2" formControlName="FinalVolume">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mls)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Special Comments
+                        </label>
+                        <div class="col-6">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="test" formControlName="SpecialComment">
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Comments
+                        </label>
+                        <div class="col-6">
+                          <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="Comments"></textarea>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+
+                        </label>
+                        <div class="col-6">
+                          <button (click)="onSubmit(inseminationPrepForm.value)" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
     </div>
   </div>
-  
-  
-  
-  
-  
-  
+</div>

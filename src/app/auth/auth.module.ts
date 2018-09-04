@@ -13,18 +13,22 @@ import { AlertService } from './_services/alert.service';
 import { AuthenticationService } from './_services/authentication.service';
 import { UserService } from './_services/user.service';
 import { fakeBackendProvider } from './_helpers/index';
+import { AccountModule } from '../account/account.module';
+// import { LoginformComponent } from '../account/loginform/loginform.component';
 
 @NgModule({
     declarations: [
         AuthComponent,
         AlertComponent,
         LogoutComponent,
+        // LoginformComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         HttpModule,
         AuthRoutingModule,
+        AccountModule
     ],
     providers: [
         AuthGuard,

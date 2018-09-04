@@ -17,13 +17,15 @@ import { PayrollService } from './payroll/services/payroll.service';
 
 
 
-
 @NgModule({
     declarations: [
         ThemeComponent,
         AppComponent,
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> 55da54d665ede41ce1cba2ed69bf17c145b34931
     ],
     imports: [
         LayoutModule,
@@ -31,7 +33,7 @@ import { PayrollService } from './payroll/services/payroll.service';
         BrowserAnimationsModule,
         AppRoutingModule,
         ThemeRoutingModule,
-        AuthModule,
+        AuthModule
     ],
     providers: [ScriptLoaderService, SetupService, EmployeeService, LeaveService, HrmsService],
     bootstrap: [AppComponent]

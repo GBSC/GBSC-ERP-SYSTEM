@@ -26,47 +26,55 @@ import { PfPaymentComponent } from './payrollsetup/pf-payment/pf-payment.compone
 import { UploadGratuityComponent } from './payrollsetup/upload-gratuity/upload-gratuity.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { TaxsetupComponent } from './payrollsetup/taxsetup/taxsetup.component';
+import { TaxonbenefitsComponent } from './payrollsetup/taxonbenefits/taxonbenefits.component';
+import { TaxableincomeadjustmentComponent } from './payrollsetup/taxableincomeadjustment/taxableincomeadjustment.component';
+import { TaxadjustmentComponent } from './payrollsetup/taxadjustment/taxadjustment.component';
+import { UploadtaxdepositComponent } from './payrollsetup/uploadtaxdeposit/uploadtaxdeposit.component';
 
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
 
-  ],
-  declarations: [
-    RootComponent,
-    FundsetupComponent,
-    AllowanceDeductionComponent,
-    AllowancerateComponent,
-    BanksComponent,
-    FooterComponent,
-    HeaderComponent,
-    MenuComponent,
-    CurrencyComponent,
-    CurrencyrateComponent,
-    GratuitypaymentComponent,
-    GratuityslabComponent,
-    LoanrequestComponent,
-    PayrollyearComponent,
-    PfPaymentComponent,
-    UploadGratuityComponent,
-    CreatesalaryfilesComponent,
-    IncrementtransactionComponent,
-    AllowancequantityComponent,
-    SalarystructureComponent,
-    EmployeecompensiontransactionComponent,
-    FundsetupComponent,
-    TaxsetupComponent
-  ],
-  exports: [],
-  providers: [PayrollService]
+    ],
+    declarations: [
+        RootComponent,
+        FundsetupComponent,
+        AllowanceDeductionComponent,
+        AllowancerateComponent,
+        BanksComponent,
+        FooterComponent,
+        HeaderComponent,
+        MenuComponent,
+        CurrencyComponent,
+        CurrencyrateComponent,
+        GratuitypaymentComponent,
+        GratuityslabComponent,
+        LoanrequestComponent,
+        PayrollyearComponent,
+        PfPaymentComponent,
+        UploadGratuityComponent,
+        CreatesalaryfilesComponent,
+        IncrementtransactionComponent,
+        AllowancequantityComponent,
+        SalarystructureComponent,
+        EmployeecompensiontransactionComponent,
+        FundsetupComponent,
+        TaxsetupComponent,
+        TaxonbenefitsComponent,
+        TaxableincomeadjustmentComponent,
+        TaxadjustmentComponent,
+        UploadtaxdepositComponent
+    ],
+    exports: [],
+    providers: [PayrollService]
 })
- 
+
 export class PayrollModule { }

@@ -13,12 +13,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
 
 @Component({
-  selector: 'app-biochemistryontreatment',
-  templateUrl: './biochemistryontreatment.component.html',
-  styleUrls: ['./biochemistryontreatment.component.scss']
+    selector: 'app-biochemistryontreatment',
+    templateUrl: './biochemistryontreatment.component.html',
+    styleUrls: ['./biochemistryontreatment.component.scss']
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
+<<<<<<< HEAD
   private consultants: Consultant;
   private patients: Patient;
   private spouse : Spouse;
@@ -69,6 +70,12 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
 
   }
+=======
+    constructor() { }
+
+    ngOnInit() {
+    }
+>>>>>>> 55da54d665ede41ce1cba2ed69bf17c145b34931
 
   onsubmit(value)
   {

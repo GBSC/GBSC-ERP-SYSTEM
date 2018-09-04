@@ -16,6 +16,8 @@ import {TestunitComponent} from '../lab/labsetup/testunit/testunit.component';
 
 import {EmbryologistsComponent} from '../lab/labsetup/embryologists/embryologists.component'
 import {EmbryologycodesComponent} from '../lab/labsetup/embryologycodes/embryologycodes.component'
+import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -24,7 +26,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'lab',
         component: RootComponent,
-
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
             { path: 'testunit', component: TestunitComponent },
             { path: 'biochemistrytest', component: BiochemistrytestComponent },

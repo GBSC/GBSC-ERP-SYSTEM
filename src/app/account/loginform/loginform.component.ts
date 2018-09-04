@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators, NgForm, FormBuilder } from '@angula
 import { Loginform } from '../../models/loginform';
 
 import { AccountService } from '../service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-loginform',
@@ -19,38 +19,25 @@ export class LoginformComponent implements OnInit {
     loginForm: FormGroup;
     public myLoginForm = new Loginform();
 
-    constructor(private formBuilder: FormBuilder, private accountservice: AccountService, private router: Router) {
+    constructor(private formBuilder: FormBuilder, private accountservice: AccountService, private router: Router, private route: ActivatedRoute) {
 
         this.loginForm = formBuilder.group({
-            'Username': ['admin', Validators.required],
-            'Password': ['Pass@2018', Validators.required]
+            'Username' : ['rootadmin', Validators.required],
+            'Password' : ['Pass@2018', Validators.required]
         });
     }
 
     ngOnInit() {
 
-
-
     }
 
-    async onSubmit(value) {
-        localStorage.setItem('loginCred', JSON.stringify(value));
-        console.log(value);
-        let res = await this.accountservice.login(this.loginForm.value);
-        let { auth_token, expires_in, id } = res.response;
-        localStorage.setItem('token', auth_token);
-        this.router.navigate(['/patient/home']);
-
-
+    async login() {
+        this.accountservice.login(this.loginForm.value);
     }
-
-    // onSubmit(value) {
-    //   localStorage.setItem('loginCred', JSON.stringify(value));
-    //   console.log(value);
-    // }
 
     revert() {
-        this.loginForm.reset();
+        //    this.route.url.subscribe(d => console.log(d))
+        console.log(this.route.snapshot.url);
     }
 
 

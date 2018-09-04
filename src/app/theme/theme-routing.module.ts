@@ -11,7 +11,9 @@ import { SystemAdministrationModule } from '../systemadministration/systemadmini
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
 import { PayrollModule } from '../payroll/payroll.module';
-
+import { SuperadminModule } from '../superadmin/superadmin.module';
+import { AccountModule } from '../account/account.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
 
 const routes: Routes = [
     {
@@ -57,10 +59,13 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule,
         SetupModule,
+        SuperadminModule,
         SystemAdministrationModule,
         HrmModule,
         EmployeeModule,
-        PayrollModule
+        PayrollModule,
+        DashboardModule
+        // AccountModule
     ],
     exports: [
         RouterModule,

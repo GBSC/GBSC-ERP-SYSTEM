@@ -15,15 +15,17 @@ import { InventoryItemComponent } from '../Inventorysystem/inventory-item/invent
 import { ReturnmedicineComponent } from '../Inventorysystem/returnmedicine/returnmedicine.component';
 import { AddnewsupplierComponent } from '../Inventorysystem/addnewsupplier/addnewsupplier.component';
 import { DeliveryOrderComponent } from '../Inventorysystem/delivery-order/delivery-order.component';
+import { ModuleGuardService } from '../account/auth/module-guard.service';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
 
     {
-        path: 'Inventorysystem',
+        path: 'inventorysystem',
         component: RootComponent,
-
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'home', component: HomeComponent },

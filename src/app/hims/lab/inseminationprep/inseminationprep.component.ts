@@ -39,7 +39,7 @@ export class InseminationprepComponent implements OnInit {
       'PatientId' : ['',Validators.required],
       'ConsultantId' : ['', Validators.required],
       'CycleNumber':['',Validators.required],
-      //'TreatmentType':['',Validators.required],
+      'InseminationPrepType':['',Validators.required],
       'PrepFor':['',Validators.required],
       'CollectionNumber':['',Validators.required],
       'CollectionDate':['',Validators.required],

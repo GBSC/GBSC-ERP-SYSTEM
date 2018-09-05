@@ -19,7 +19,6 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
-<<<<<<< HEAD
   private consultants: Consultant;
   private patients: Patient;
   private spouse : Spouse;
@@ -70,12 +69,6 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
 
   }
-=======
-    constructor() { }
-
-    ngOnInit() {
-    }
->>>>>>> 55da54d665ede41ce1cba2ed69bf17c145b34931
 
   onsubmit(value)
   {

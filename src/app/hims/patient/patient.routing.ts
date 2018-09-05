@@ -25,13 +25,10 @@ import { HomeComponent } from '../patient/home/home.component';
 import { AppointmentscheduleComponent } from '../patient/appointmentschedule/appointmentschedule.component';
 import { ConsultantComponent } from '../patient/consultant/consultant.component';
 import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
-<<<<<<< HEAD
 import { PackageComponent } from '../patient/package/package.component';
-=======
 import { ModuleGuardService } from '../../account/auth/module-guard.service';
 import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
->>>>>>> 55da54d665ede41ce1cba2ed69bf17c145b34931
 
 
 

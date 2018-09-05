@@ -43,16 +43,13 @@ export class PatientService {
     //for  ConsultantIdAndTentiveTime
     public ConsultantIdAndTentiveTime: any;
 
-<<<<<<< HEAD
     //for profile 
 
     public package: any;
-=======
     //for Visits control
 
     public visits: any;
     public visitid: any;
->>>>>>> 55da54d665ede41ce1cba2ed69bf17c145b34931
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
     private readonly API_URL1 = 'http://localhost:58788/api';

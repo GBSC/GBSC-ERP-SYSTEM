@@ -8,7 +8,7 @@ export class SuperadminserviceService {
 
     private SystemAdmin_API_URL = "http://gbsc-erp.azurewebsites.net/systemadmin/api/";
 
-    private Account_API_URL = "http://localhost:61161/api/"
+    private Account_API_URL = "http://gbsc-erp.azurewebsites.net/authentication/api/"
 
     constructor(private http: HttpClient) {
 

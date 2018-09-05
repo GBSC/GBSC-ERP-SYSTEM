@@ -8,6 +8,8 @@ import { himsSetupTest } from '../../../models/himsSetupTest';
 import { AppointmentTest } from '../../../models/appointmentTest';
 import {Visits} from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
+import { VisitNature } from '../../../models/VisitNature';
+
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
@@ -46,6 +48,9 @@ export class PatientService {
     public visitid : any;
     public LastestPatientVital : any;
     public currentPatientvisits : any;
+
+    public visitNatures : any;
+
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
     private readonly API_URL1 = 'http://localhost:58788/api';
@@ -277,6 +282,32 @@ export class PatientService {
         console.log(x);
         return x;
     }
+
+    async GetVisitNatures() {
+        this.visitNatures = await this.http1.get<VisitNature>(this.API_URL + '/HimsSetup/GetVisitNatures/').toPromise();
+        console.log(this.PatientVitals);
+        return this.PatientVitals
+    }
+
+
+    async AddVisitNature(visitNature: VisitNature) {
+        let x = await this.http1.post(this.API_URL + '/HimsSetup/AddVisitNature/', visitNature).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async UpdateVisitNature(visitNature: VisitNature) {
+        let x = await this.http1.put(`${this.API_URL}/HimsSetup/UpdateVisitNature/`, visitNature).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async DeleteVisitNature(id) {
+        let x = await this.http1.delete(this.API_URL + '/HimsSetup/DeleteVisitNature/' + id).toPromise();
+        console.log(x);
+        return x;
+    }
+
 
     // setCurrentPatient(currentPatientId) {
     //   console.log(currentPatientId);

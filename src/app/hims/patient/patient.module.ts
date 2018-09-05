@@ -32,6 +32,7 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
+import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -74,6 +75,7 @@ import { AppointmentscheduleComponent } from './appointmentschedule/appointments
         MenuComponent,
         FooterComponent,
         AppointmentscheduleComponent,
+        VisitnatureComponent,
     ],
     providers: [
         PatientService

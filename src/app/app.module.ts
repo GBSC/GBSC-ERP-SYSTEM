@@ -13,6 +13,7 @@ import { EmployeeService } from './hrm/employee/services/employee.service';
 import { LeaveService } from './hrm/leave/leave.service';
 import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { PayrollService } from './payroll/services/payroll.service';
+ 
 
 
 
@@ -21,7 +22,8 @@ import { PayrollService } from './payroll/services/payroll.service';
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent,    
+        AppComponent, 
+
     ],
     imports: [
         LayoutModule,

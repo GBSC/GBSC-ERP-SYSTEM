@@ -1,3 +1,212 @@
-<p>
-  biochemistryontreatment works!
-</p>
+
+
+<div class="m-content">
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Biochemistry (On Treatment)</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <div class="row">
+              <div class="col-sm-2"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  MRN No.
+                </label>
+                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MRN-00215">
+              </div></div>
+              <div class="col-sm-2"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  Date
+                </label>
+                <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date"/>
+              </div></div>
+              <div class="col-sm-4"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  LMP
+                </label>
+                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="LMP-00215">
+              </div></div>
+              <div class="col-sm-4">
+                <div class="m-form__group form-group">
+                  <div class="m-checkbox-list">
+                    <label>
+                      Select Rendom
+                    </label>
+                    <label class="m-checkbox m-checkbox--solid m-checkbox--state-brand">
+                      <input type="checkbox">
+                      Rendom
+                      <span></span>
+                    </label>
+                   
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  Patient Name
+                </label>
+                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Manika">
+              </div></div>
+              <div class="col-sm-4"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  Spouse
+                </label>
+                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imraan Khan">
+              </div></div>
+              <div class="col-sm-4"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  Age
+                </label>
+                <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select Age"/>              
+              </div></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4"><div class="form-group m-form__group">
+								<label for="exampleSelect1">
+									Doctor
+								</label>
+								<select class="form-control m-input" id="exampleSelect1">
+									<option>
+										Dr. Shakeela
+									</option>
+									<option>
+										Dr. Yasmeen
+                  </option>
+                  <option>
+										Dr. Shahid
+									</option>
+								</select>
+							</div></div>
+              <div class="col-sm-4"><div class="form-group m-form__group">
+                <label for="exampleInputEmail1">
+                  Other
+                </label>
+                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Others">
+              </div></div>
+              <div class="col-sm-4">
+              <div class="form-group m-form__group">
+								<label for="exampleSelect1">
+									Gender
+								</label>
+								<select class="form-control m-input" id="exampleSelect1">
+									<option>
+										Male
+									</option>
+									<option>
+										Female
+									</option>
+								</select>
+							</div></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><div class="form-group m-form__group">
+                  <label for="exampleSelect1">
+                    Treatment#
+                  </label>
+                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="2350005">
+                </div></div>
+                <div class="col-sm-4"><div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Cycle#
+                  </label>
+                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="18">
+                </div></div>
+                <div class="col-sm-4">
+                <div class="form-group m-form__group">
+                  <label for="exampleSelect1">
+                    Treatment Type
+                  </label>
+                  <select class="form-control m-input" id="exampleSelect1">
+                    <option>
+                      Type 1
+                    </option>
+                    <option>
+                        Type 2
+                    </option>
+                  </select>
+                </div></div>
+              </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4>Biochemistry Details</h4>
+                <dx-data-grid 
+    id="gridContainer"
+    [dataSource]=""
+    keyExpr="ID"
+    [allowColumnReordering]="true"
+    [showBorders]="true"
+    (onEditingStart)="logEvent('EditingStart')"
+    (onInitNewRow)="logEvent('InitNewRow')"
+    (onRowInserting)="logEvent('RowInserting')"
+    (onRowInserted)="logEvent('RowInserted')"
+    (onRowUpdating)="logEvent('RowUpdating')"
+    (onRowUpdated)="logEvent('RowUpdated')"
+    (onRowRemoving)="logEvent('RowRemoving')"
+    (onRowRemoved)="logEvent('RowRemoved')">
+    
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-editing 
+         mode="row"
+         [allowUpdating]="true"
+         [allowDeleting]="true"
+         [allowAdding]="true">
+    </dxo-editing>
+    
+    <dxi-column dataField="Prefix" caption="Discription of Test"></dxi-column>
+    <dxi-column dataField="unit" caption="Unit"></dxi-column>
+    <dxi-column
+        dataField="StateID"
+        caption="Logical Operator"
+        [width]="125">         
+        <dxo-lookup
+            [dataSource]="states"
+            displayExpr="Name"
+            valueExpr="ID">
+        </dxo-lookup>
+    </dxi-column>
+    <dxi-column dataField="Result"></dxi-column>
+    <dxi-column dataField="ReChecked" [width]="130"></dxi-column>
+    <dxi-column dataField="Remarks" [width]="220"></dxi-column>
+  
+</dx-data-grid>
+              </div>
+            </div>
+<hr>
+            <div class="row">
+              <div class="col-sm-10">
+                  <div class="form-group m-form__group">
+                      <label for="exampleTextarea col-sm-3">
+                        Referance Range
+                      </label>
+                      <textarea class="form-control m-input col-sm-9" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+              </div>
+              <div class="col-sm-2">
+                  <button type="reset" class="btn btn-primary">
+                      Submit
+                    </button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+

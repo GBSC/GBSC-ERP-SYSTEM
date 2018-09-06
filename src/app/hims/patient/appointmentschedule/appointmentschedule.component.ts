@@ -55,6 +55,8 @@ export class AppointmentscheduleComponent implements OnInit {
     public ConsultantIdTentiveTime: any;
     public id: any;
     public date: any;
+    public visitNatures : any;
+
 
 
     ///////////////////
@@ -85,7 +87,7 @@ export class AppointmentscheduleComponent implements OnInit {
                 'PatientType': [''],
                 'ConsultantId': ['', Validators.required],
                 'VisitStatus': [''],
-                'VisitNature': [''],
+                'visitNatureId': [''],
                 'PatientId': [''],
                 'TimeIn': [''],
                 'TimeOut': [''],
@@ -131,6 +133,10 @@ export class AppointmentscheduleComponent implements OnInit {
         await this.PatientServiceobj.getTests();
         this.test = this.PatientServiceobj.testing;
         console.log(this.test);
+
+        await this.PatientServiceobj.GetVisitNatures();
+       this.visitNatures = this.PatientServiceobj.visitNatures;
+        console.log(this.visitNatures);
         // await this.PatientServiceobj.GetAppointmentTests();
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
@@ -234,6 +240,7 @@ export class AppointmentscheduleComponent implements OnInit {
         this.appointmentForm.value.ConsultantId = cid.value;
        // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
+
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);
         await this.PatientServiceobj.getappointments();

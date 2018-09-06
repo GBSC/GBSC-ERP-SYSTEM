@@ -75,10 +75,19 @@
               <div class="col-2">
                 <input class="form-control m-input" type="text" formControlName="numberOfEmployees">
               </div>
-              <div class="col-2">
+              <div class="col-3">
                 <button type="submit" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
                   Submit
                 </button>
+                <div class="m-demo-icon">
+                  <div class="m-demo-icon__preview">
+                    <i class="la la-check-circle-o"></i>
+                  </div>
+                  <div class="m-demo-icon__class">
+                    Company Created
+                  </div>
+                </div>
+                
               </div>
             </div>
           </form>
@@ -94,8 +103,12 @@
                   Human Resource Managment
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Human Resource Management')" class="btn btn-brand">
-                    Install
+                  <button (click)="onAddModule('Human Resource Management')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                   <span>
+                    <i class="la la-archive"></i>
+                    <span>Install</span>
+                   </span>
+                   
                   </button>
                 </div>
               </div>
@@ -104,9 +117,17 @@
                   Hospital Managment System
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Hospital Management System')" class="btn btn-brand">
-                    Install
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
                   </button>
+                  <!-- <button (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    Install
+                  </button> -->
                 </div>
               </div>
               <div class="m-form__group form-group row">
@@ -114,8 +135,11 @@
                   Inventory Managment System
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Inventory Management System')" class="btn btn-brand">
-                    Install
+                  <button (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                     </span>
                   </button>
                 </div>
               </div>
@@ -124,8 +148,11 @@
                   Payroll Managment System
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Payroll Management System')" class="btn btn-brand">
-                    Install
+                  <button (click)="onAddModule('Payroll Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                     </span>
                   </button>
                 </div>
               </div>
@@ -134,8 +161,11 @@
                   Accounting System
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Accounting System')" class="btn btn-brand">
-                    Install
+                  <button (click)="onAddModule('Accounting System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                     </span>
                   </button>
                 </div>
               </div>
@@ -144,8 +174,11 @@
                   Lab Information System
                 </label>
                 <div class="col-1">
-                  <button (click)="onAddModule('Lab Information System')" class="btn btn-brand">
-                    Install
+                  <button (click)="onAddModule('Lab Information System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                     </span>
                   </button>
                 </div>
               </div>
@@ -232,7 +265,7 @@
               </form>
 
               <div class="col-lg-12 m--align-right">
-                <button (click)="onSubmitRegistration(systemAdminForm.value)" class="btn btn-brand">
+                <button (click)="onSubmitRegistration(systemAdminForm.value)" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                   Submit
                 </button>
               </div>

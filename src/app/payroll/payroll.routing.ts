@@ -19,6 +19,10 @@ import { PfPaymentComponent } from './payrollsetup/pf-payment/pf-payment.compone
 import { UploadGratuityComponent } from './payrollsetup/upload-gratuity/upload-gratuity.component';
 import { FundsetupComponent } from './payrollsetup/fundsetup/fundsetup.component';
 import { TaxsetupComponent } from './payrollsetup/taxsetup/taxsetup.component';
+import { TaxonbenefitsComponent } from './payrollsetup/taxonbenefits/taxonbenefits.component';
+import { TaxableincomeadjustmentComponent } from './payrollsetup/taxableincomeadjustment/taxableincomeadjustment.component';
+import { TaxadjustmentComponent } from './payrollsetup/taxadjustment/taxadjustment.component';
+import { UploadtaxdepositComponent } from './payrollsetup/uploadtaxdeposit/uploadtaxdeposit.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
@@ -40,6 +44,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 {path: 'upload-gratuity', component: UploadGratuityComponent},
                 {path: 'fundsetup', component: FundsetupComponent},
                 {path: 'taxsetup', component: TaxsetupComponent},
+                {path: 'taxonbenefits', component: TaxonbenefitsComponent},
+                {path: 'taxableincomeadjustment', component: TaxableincomeadjustmentComponent},
+                {path: 'taxadjustment', component: TaxadjustmentComponent },
+                {path: 'uploadtaxdeposit', component: UploadtaxdepositComponent },
+
             ]},
           {path: 'payrollprocess', 
         children :[

@@ -18,12 +18,11 @@ import { PayrollService } from './payroll/services/payroll.service';
 
 
 
+
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent,
- 
-
+        AppComponent,    
     ],
     imports: [
         LayoutModule,

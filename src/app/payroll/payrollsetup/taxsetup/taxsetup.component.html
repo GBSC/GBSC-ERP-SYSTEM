@@ -98,16 +98,82 @@
                           <h3 class="m-section__heading">
                             Tax Schedule
                             </h3>
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>
                       </div>
                       <div class="tab-pane" id="tax2">
                           <h3 class="m-section__heading">
                             Tax Relief
-                            </h3>                        
+                            </h3>  
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>                      
                       </div>
                       <div class="tab-pane" id="tax3">
                           <h3 class="m-section__heading">
                             Tax Execmpt Age Setup
                             </h3>
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>
                         
                       </div>
                     </div>

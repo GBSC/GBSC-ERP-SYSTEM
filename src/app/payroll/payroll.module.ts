@@ -26,6 +26,10 @@ import { PfPaymentComponent } from './payrollsetup/pf-payment/pf-payment.compone
 import { UploadGratuityComponent } from './payrollsetup/upload-gratuity/upload-gratuity.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { TaxsetupComponent } from './payrollsetup/taxsetup/taxsetup.component';
+import { TaxonbenefitsComponent } from './payrollsetup/taxonbenefits/taxonbenefits.component';
+import { TaxableincomeadjustmentComponent } from './payrollsetup/taxableincomeadjustment/taxableincomeadjustment.component';
+import { TaxadjustmentComponent } from './payrollsetup/taxadjustment/taxadjustment.component';
+import { UploadtaxdepositComponent } from './payrollsetup/uploadtaxdeposit/uploadtaxdeposit.component';
 
 
 
@@ -63,7 +67,11 @@ import { TaxsetupComponent } from './payrollsetup/taxsetup/taxsetup.component';
     SalarystructureComponent,
     EmployeecompensiontransactionComponent,
     FundsetupComponent,
-    TaxsetupComponent
+    TaxsetupComponent,
+    TaxonbenefitsComponent,
+    TaxableincomeadjustmentComponent,
+    TaxadjustmentComponent,
+    UploadtaxdepositComponent
   ],
   exports: [],
   providers: [PayrollService]

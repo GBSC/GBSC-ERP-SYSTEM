@@ -19,7 +19,6 @@ export class EmployeeService {
     public QualificationForm: FormGroup;
     public allDependentForm: any = [];
     public allExperiencexpForm: any = [];
-
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser
@@ -74,13 +73,14 @@ export class EmployeeService {
         });
 
         this.QualificationForm = this.fb.group({
-            School: [''],
-            EducationLevel: [''],
+            Name: [''],
+            DegreeId: [],
             Timefrom: ['12-01-2016'],
             Timeto: ['12-01-2017'],
+            Grade: [''],
+            Courses: [''],
             Description: ['Well'],
-            GradeId: [''],
-            Course: ['']
+            SkillLevel: []
         });
 
         this.Profilepic = this.fb.group({
@@ -124,7 +124,7 @@ export class EmployeeService {
         this.EmpbankForm = this.fb.group({
             AccountTitle: ['Khalid'],
             AccountNumber: ['125458655-6'],
-            BankId: [''],
+            BankTitle: [''],
             BankCode: ['05412'],
             BankBranch: ['Bahria Town']
         });
@@ -142,8 +142,11 @@ export class EmployeeService {
 
         this.employeereg = await this.httpClient.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
         console.log(this.employeereg);
-
         return this.employeereg;
+    }
+
+    checkIfDisabled(e) {
+        console.log(e);
     }
 
 
@@ -201,7 +204,7 @@ export class EmployeeService {
     async adduserSocial() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let social = await this.httpClient.post(`${this.baseUrl}/Users/AddUser/${localStorage.getItem('id')}`,
+        let social = await this.httpClient.post(`${this.baseUrl}/Users/UpdateUser/${localStorage.getItem('id')}`,
 
 
             this.SocialForm.value, headers).toPromise();
@@ -209,7 +212,7 @@ export class EmployeeService {
         return social;
     }
 
-    async adduserBank() {
+    async addBank() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
         let bank = await this.httpClient.post(`${this.baseUrl}/Users/AddUserBankById/${localStorage.getItem('id')}`, this.EmpbankForm.value, headers).toPromise();
@@ -217,12 +220,43 @@ export class EmployeeService {
         return bank;
     }
 
+    public allQualifications = [];
+    public currentUniversity: any = {};
+    public university = {
+        Name: '',
+        Qualifications: []
+    }
+
     async adduserUniversities() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let universities = await this.httpClient.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.QualificationForm.value, headers).toPromise();
+        let q = { ...this.QualificationForm.value, Degree: { Name: this.QualificationForm.value.DegreeId } };
+
+        delete q.DegreeId;
+        this.university.Qualifications.push(q);
+        this.allQualifications.push(this.university);
+        console.log(this.allQualifications);
+
+        // this.allQualifications.push(this.createuniversity(this.QualificationForm.value.School));
+        let universities = await this.httpClient.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.allQualifications, { responseType: 'text' }).toPromise();
         console.log(universities);
         return universities;
+    }
+
+    createuniversity(name) {
+        let uni = {
+            Name: '',
+            Qualification: [],
+            SkillLevel: []
+        };
+
+        return uni;
+    }
+
+    createDegree(deg) {
+        return {
+            Degree: deg
+        }
     }
 
 

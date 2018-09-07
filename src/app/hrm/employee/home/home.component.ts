@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class EmployeeHomeComponent implements OnInit {
 
 
     tabItem: any;
@@ -120,6 +120,7 @@ export class HomeComponent implements OnInit {
                 break;
 
             case 'Qualification':
+            // alert('ajksdfljkasdklfj');
                 await this.employeeService.adduserUniversities();
                 break;
 
@@ -128,7 +129,7 @@ export class HomeComponent implements OnInit {
                 break;
 
             case 'Bank Account':
-                await this.employeeService.adduserBank();
+                await this.employeeService.addBank();
                 break;
 
             case 'Documents':

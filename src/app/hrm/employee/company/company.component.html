@@ -109,15 +109,14 @@
           <div class="input-group-prepend">
             <span class="input-group-text">
               <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input #cs type="checkbox" checked="">
+                <input #cs type="checkbox">
                 <span></span>
               </label>
             </span>
           </div>
-          <input formControlName="ContractStart" [disabled]="cs.checked? false : true" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input formControlName="ContractStart" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
-      </div>
-
+      </div> 
     </div>
     <div class="col-md-4">
 

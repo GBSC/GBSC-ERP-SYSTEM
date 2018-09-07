@@ -10,7 +10,7 @@ import { EmployeeService } from '../services/employee.service';
     templateUrl: './bank.component.html',
     styleUrls: ['./bank.component.css']
 })
-export class BankComponent implements OnInit {
+export class EmployeeBankComponent implements OnInit {
     @Output('setBankFormValue') setBankFormValue = new EventEmitter();
 
     public EmpbankForm: FormGroup;
@@ -19,18 +19,6 @@ export class BankComponent implements OnInit {
 
     async ngOnInit() {
 
-
-        this.EmpbankForm = this.fb.group({
-            AccountTitle: ['', Validators.required],
-            AccountNumber: ['', Validators.required],
-            BankName: ['', Validators.required],
-            BankCode: ['', Validators.required],
-            BankBranch: ['', Validators.required]
-        });
-
-
-        await this.SetupServiceobj.getAllBanks();
-        let bnk = this.SetupServiceobj.bank;
     }
 
     getBankFormValue() {
@@ -38,7 +26,7 @@ export class BankComponent implements OnInit {
     }
 
     async adduserbank() {
-        let usrbnk = await this.employee.adduserBank();
+        let usrbnk = await this.employee.addBank();
         console.log(usrbnk);
 
     }

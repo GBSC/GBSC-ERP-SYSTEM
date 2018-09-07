@@ -31,7 +31,7 @@ export class LeaveyearsetupComponent implements OnInit {
 
       async deleteleaveyear(lvyear) {
         console.log(lvyear); 
-        this.leavesetupservice.Deleteleavyear(lvyear); 
+        this.leavesetupservice.Deleteleavyear(lvyear.key); 
      
      
       }

@@ -30,7 +30,7 @@ export class LeavepurposeComponent implements OnInit {
 
       deleteleavepurpose(lvpurpose) {
         console.log(lvpurpose); 
-        this.leavesetupservice.Deleteleavpurpose(lvpurpose); 
+        this.leavesetupservice.Deleteleavpurpose(lvpurpose.key); 
         console.log('in updated purpose')
      
       }

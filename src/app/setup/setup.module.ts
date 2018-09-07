@@ -36,9 +36,9 @@ import { ModuleComponent } from './module/module.component';
         FooterComponent,
         HeaderComponent,
         MenuComponent,
-        CompanyComponent,
-        BranchComponent,
-        DepartmentComponent,
+ CompanyComponent,
+        // BranchComponent,
+        // DepartmentComponent,
         RoleComponent,
         FeatureComponent,
         ModuleComponent

@@ -32,7 +32,7 @@ export class LeavetypeComponent implements OnInit {
 
     async deleteleavetype(lvtype) {
       console.log(lvtype); 
-      this.leavesetupservice.Deleteleavetype(lvtype); 
+      this.leavesetupservice.Deleteleavetype(lvtype.key); 
    
    
     }

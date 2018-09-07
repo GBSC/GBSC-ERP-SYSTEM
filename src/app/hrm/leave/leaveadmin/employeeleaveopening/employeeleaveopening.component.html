@@ -134,7 +134,7 @@
                       <div class="row">
                         <div class="col-lg-3"></div>
                         <div class="col-lg-6">
-                          <button type="submit" class="btn btn-success">
+                          <button type="submit" (click)="addleaveopeningordetail" class="btn btn-success">
                             Submit
                           </button>
                           <button type="reset" class="btn btn-secondary">
@@ -231,7 +231,7 @@
                       
                             <dxi-column dataField="quantity" caption="Employee Code"></dxi-column> 
                             <dxi-column dataField="remarks" caption="Employee"></dxi-column>
-                            <dxi-column dataField="remarks" caption="Leave Year"></dxi-column> 
+                            <dxi-column dataField="leaveYear" caption="Leave Year"></dxi-column> 
                             <dxi-column dataField="remarks" caption="Remarks"></dxi-column> 
                               
                             </dx-data-grid>

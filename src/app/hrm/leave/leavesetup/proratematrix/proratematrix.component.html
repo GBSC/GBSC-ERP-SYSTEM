@@ -1,0 +1,46 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Leave approvals</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="proratematrix"
+               keyExpr="proRateMatrixId"
+               (onRowInserted)="addprmatrix($event)" 
+              (onRowUpdated)="updateprmatrix($event)"
+                (onRowRemoved)="deleteprmatrix($event)">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Prorate Matrix" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+                <dxi-column dataField="fromRange"></dxi-column> 
+                <dxi-column dataField="tillRange"></dxi-column> 
+                <dxi-column dataField="percentage"></dxi-column> 
+                <dxi-column dataField="leavePolicyId" caption="Leave Type" [width]="450">
+                  <dxo-lookup [dataSource]="data.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                  </dxo-lookup> 
+                  </dxi-column>
+              </dx-data-grid>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

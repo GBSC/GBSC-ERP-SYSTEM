@@ -32,7 +32,7 @@ export class LeaveeligibilityComponent implements OnInit {
 
     async deleteleaveeligibility(lveligibility) {
       console.log(lveligibility); 
-      this.leavesetupservice.Deleteleaveeligibility(lveligibility); 
+      this.leavesetupservice.Deleteleaveeligibility(lveligibility.key); 
    
    
     }

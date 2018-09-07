@@ -13,11 +13,15 @@ export class LeaveSetupService {
     public leavetype;
     public leaveapproval;
     private baseUrl: string = "http://localhost:58090/api/HrSetup";
+    public proratematrix;
+    public decimalroundingmatrix: Object;
+    leavesubtype: Object;
+    leavetypebalance: Object;
 
     constructor(private httpClient: HttpClient) { }
 
 
-    /** CRUD METHODS */
+    /** Leave Policy CRUD METHODS */
     async getAllleavepolicy() {
 
         let authToken = localStorage.getItem('auth_token');
@@ -67,7 +71,7 @@ export class LeaveSetupService {
     }
 
 
-    /** CRUD METHODS */
+    /** Leave Purpose CRUD METHODS */
     async getleavepurpose() {
 
         let authToken = localStorage.getItem('auth_token');
@@ -230,22 +234,22 @@ export class LeaveSetupService {
                     console.log(data.key);
                     console.log(data);
             
-                    let  leavedaytype = await this.getdataToUpdate(data.key, 'Get leavedaytype');
+                    let  leavedaytype = await this.getdataToUpdate(data.key, 'Getleavedaytype');
                      leavedaytype = { ... leavedaytype, ...data.data }
                     console.log( leavedaytype);
                     // let authToken = localStorage.getItem('auth_token');  
                     // let headers = {headers: {'Content-Type':'application/json'}}
-                    return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveDayType`,  leavedaytype).toPromise();
+                    return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveDayType`,leavedaytype).toPromise();
             
                 }
             
             
             
-                async Deleteleavedaytype( leavedaytypeId) {
+                async Deleteleavedaytype(leavedaytypeId) {
             
                     let authToken = localStorage.getItem('auth_token');
                     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-                    return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveDayType/${ leavedaytypeId}`).toPromise();
+                    return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveDayType/${leavedaytypeId}`).toPromise();
                 }
 
                                    /** CRUD METHODS */
@@ -375,11 +379,175 @@ export class LeaveSetupService {
                             
                             
                             
-                                async Deleteleavetype(leavetypeId) {
+                                async Deleteleavetype(leaveTypeId) {
                             
                                     let authToken = localStorage.getItem('auth_token');
                                     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-                                    return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveType/${leavetypeId}`).toPromise();
+                                    return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveType/${leaveTypeId}`).toPromise();
                                 }
+
+
+
+                                
+                                   /** CRUD METHODS */
+                                   async getAllleavetypebalance() {
+
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                            
+                                    this. leavetypebalance = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypeBalances`).toPromise();
+                                    console.log(this. leavetypebalance);
+                                    return this. leavetypebalance;
+                                }
+                            
+                            
+                                // DEMO ONLY, you can find working methods below
+                                async addleavetypebalance(data) {
+                            
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json' } }
+                                    let newleavetypebalance = await this.httpClient.post(`${this.baseUrl}/AddLeaveTypeBalance`, data, headers).toPromise();
+                                    console.log(newleavetypebalance);
+                            
+                                }
+                            
+                                async updateleavetypebalance(data) {
+                            
+                                    console.log(data.key);
+                                    console.log(data);
+                            
+                                    let  leavetypebalance = await this.getdataToUpdate(data.key, 'GetLeaveTypeBalance');
+                                     leavetypebalance = { ... leavetypebalance, ...data.data }
+                                    console.log(leavetypebalance);
+                                    // let authToken = localStorage.getItem('auth_token');  
+                                    // let headers = {headers: {'Content-Type':'application/json'}}
+                                    return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveTypeBalance`, leavetypebalance).toPromise();
+                            
+                                }
+                            
+                            
+                            
+                                async Deleteleavetypebalance(leavetypebalanceId) {
+                            
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                    return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveTypeBalance/${leavetypebalanceId}`).toPromise();
+                                }
+                                
+ 
+                                 /** CRUD METHODS */
+                                 async getdecimalroundingmatrix() {
+
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                            
+                                    this. decimalroundingmatrix = await this.httpClient.get(`${this.baseUrl}/GetDecimalRoundingMatrixs`).toPromise();
+                                    console.log(this. decimalroundingmatrix);
+                                    return this. decimalroundingmatrix;
+                                }
+                            
+                            
+                                // DEMO ONLY, you can find working methods below
+                                async adddecimalroundingmatrix(data) {
+                            
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json' } }
+                                    let newprmatrix = await this.httpClient.post(`${this.baseUrl}/AddDecimalRoundingMatrix`, data, headers).toPromise();
+                                    console.log(newprmatrix);
+                            
+                                }
+                            
+                                async updatedecimalroundingmatrix(data) { 
+                                    let  promatrix = await this.getdataToUpdate(data.key, 'GetdecimalroundingMatrix');
+                                    promatrix = { ... promatrix, ...data.data }
+                                    console.log(promatrix); 
+                                    return await this.httpClient.put(`${this.baseUrl}/UpdateDecimalRoundingMatrix`, promatrix).toPromise();
+                            
+                                }
+                             
+                                async Deletedecimalroundingmatrix(prrateId) {
+                            
+                                    let authToken = localStorage.getItem('auth_token');
+                                    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                    return await this.httpClient.delete(`${this.baseUrl}/DeleteDecimalRoundingMatrix/${prrateId}`).toPromise();
+                                }
+
+        
+
+                                             /** CRUD METHODS */
+                                             async getproratematrix() {
+
+                                                let authToken = localStorage.getItem('auth_token');
+                                                let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                        
+                                                this. proratematrix = await this.httpClient.get(`${this.baseUrl}/GetProrateMatrixs`).toPromise();
+                                                console.log(this. proratematrix);
+                                                return this. proratematrix;
+                                            }
+                                        
+                                        
+                                            // DEMO ONLY, you can find working methods below
+                                            async addproratematrix(data) {
+                                        
+                                                let authToken = localStorage.getItem('auth_token');
+                                                let headers = { headers: { 'Content-Type': 'application/json' } }
+                                                let newprmatrix = await this.httpClient.post(`${this.baseUrl}/AddProrateMatrix`, data, headers).toPromise();
+                                                console.log(newprmatrix);
+                                        
+                                            }
+                                        
+                                            async updateproratematrix(data) { 
+                                                let  promatrix = await this.getdataToUpdate(data.key, 'GetprorateMatrix');
+                                                promatrix = { ... promatrix, ...data.data }
+                                                console.log(promatrix); 
+                                                return await this.httpClient.put(`${this.baseUrl}/UpdateProrateMatrix`, promatrix).toPromise();
+                                        
+                                            }
+                                         
+                                            async Deleteproratematrix(prrateId) {
+                                        
+                                                let authToken = localStorage.getItem('auth_token');
+                                                let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                                return await this.httpClient.delete(`${this.baseUrl}/DeleteProrateMatrix/${prrateId}`).toPromise();
+                                            }
+
+
+                                                                                         /** CRUD METHODS */
+                                                                                         async getleavesubtype() {
+
+                                                                                            let authToken = localStorage.getItem('auth_token');
+                                                                                            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                                                                    
+                                                                                            this. leavesubtype = await this.httpClient.get(`${this.baseUrl}/GetLeaveSubTypes`).toPromise();
+                                                                                            console.log(this. leavesubtype);
+                                                                                            return this. leavesubtype;
+                                                                                        }
+                                                                                    
+                                                                                    
+                                                                                        // DEMO ONLY, you can find working methods below
+                                                                                        async addleavesubtype(data) {
+                                                                                    
+                                                                                            let authToken = localStorage.getItem('auth_token');
+                                                                                            let headers = { headers: { 'Content-Type': 'application/json' } }
+                                                                                            let newprmatrix = await this.httpClient.post(`${this.baseUrl}/AddLeaveSubType`, data, headers).toPromise();
+                                                                                            console.log(newprmatrix);
+                                                                                    
+                                                                                        }
+                                                                                    
+                                                                                        async updateleavesubtype(data) { 
+                                                                                            let  promatrix = await this.getdataToUpdate(data.key, 'Getleavesubtype');
+                                                                                            promatrix = { ... promatrix, ...data.data }
+                                                                                            console.log(promatrix); 
+                                                                                            return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveSubType`, promatrix).toPromise();
+                                                                                    
+                                                                                        }
+                                                                                     
+                                                                                        async Deleteleavesubtype(id) {
+                                                                                    
+                                                                                            let authToken = localStorage.getItem('auth_token');
+                                                                                            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+                                                                                            return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveSubType/${id}`).toPromise();
+                                                                                        }
+
 }
 

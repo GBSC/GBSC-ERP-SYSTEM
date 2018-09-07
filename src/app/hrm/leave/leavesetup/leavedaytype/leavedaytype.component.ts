@@ -31,7 +31,7 @@ export class LeavedaytypeComponent implements OnInit {
 
     async deleteleavedaytype(lvdaytype) {
       console.log(lvdaytype); 
-      this.leavesetupservice.Deleteleavedaytype(lvdaytype); 
+      this.leavesetupservice.Deleteleavedaytype(lvdaytype.key); 
    
    
     }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {PatientService} from '../../../hims/patient/services/patient.services'
+import {PatientService} from '../../../hims/patient/services/patient.services';
+import { ActivatedRoute } from '@angular/router';
+import { PatientVital } from '../../../models/patientvitals';
+
+
 
 @Component({
     selector: 'app-vitals',
@@ -8,16 +12,28 @@ import {PatientService} from '../../../hims/patient/services/patient.services'
 })
 export class VitalsComponent implements OnInit {
 
-    public leatestPatientVitals = {};
-    public id : any;
+    public leatestPatientVitals ={};
+ 
+    id: number;
 
-    constructor(private PatientServiceobj : PatientService) { }
+    // patientVital :  PatientVital   ;
+public patientVital = {};
+    constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) { }
 
    async ngOnInit() {
-         await this.PatientServiceobj.GetLastestPatientVital();
-         this.leatestPatientVitals = this.PatientServiceobj.LastestPatientVital;
-         console.log(this.leatestPatientVitals);
-        
+
+    //      await this.PatientServiceobj.GetLastestPatientVital();
+    //      this.leatestPatientVitals = this.PatientServiceobj.LastestPatientVital;
+    //      console.log(this.leatestPatientVitals);
+
+    this.route.params.subscribe(params => {
+
+        this.id = +params['id'];
+ 
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital=> this.patientVital = patientVital );
+  console.log(x);
+  
+     });
 
     }
 

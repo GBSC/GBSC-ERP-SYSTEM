@@ -33,6 +33,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
+import { VisitdetailComponent } from './visitdetail/visitdetail.component';
+import { ConditionsComponent } from './conditions/conditions.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -76,6 +78,8 @@ import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.com
         FooterComponent,
         AppointmentscheduleComponent,
         VisitnatureComponent,
+        VisitdetailComponent,
+        ConditionsComponent,
     ],
     providers: [
         PatientService

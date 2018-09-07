@@ -13,6 +13,7 @@ import { VisitNature } from '../../../models/VisitNature';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PatientService {
@@ -46,6 +47,7 @@ export class PatientService {
 
     public visits : any;
     public visitid : any;
+    public getvisitbyid : any;
     public LastestPatientVital : any;
     public currentPatientvisits : any;
 
@@ -212,13 +214,20 @@ export class PatientService {
         return this.visits;
     }
 
+     Getvisit (id) : Observable<Visits>
+    {
+        return this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id);       
+    }
+
+    
+    
     async AddVisits(id)
     {
-     this. visitid = await this.http1.post(this.API_URL+'/Visits/AddVisit/', {patientId: id}).toPromise()
+        this.visitid = await this.http1.post(this.API_URL+'/Visits/AddVisit/', {patientId: id}).toPromise()
         console.log(this. visitid);        
         return this. visitid;        
     }
-
+    
     async UpdateVisits(visits : Visits)
     {
         let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`,visits).toPromise();
@@ -226,7 +235,7 @@ export class PatientService {
         return x;
         
     }
-
+    
     async DeleteVisits(id)
     {
         let x = await this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
@@ -234,35 +243,34 @@ export class PatientService {
         return x;
         
     }
-
-
+    
+    
     async GetPatientVitals() {
         this.PatientVitals = await this.http1.get<PatientVital>(this.API_URL + '/Visits/GetPatientVitals').toPromise();
         console.log(this.PatientVitals);
         return this.PatientVitals
     }
-
-    async GetLastestPatientVital()
-    {
- 
     
-        // this.API_URL+'/patients/GetLastPatientVital/'+this.currentPatient
-       this.LastestPatientVital = await this.http1.get<PatientVital>(`${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`).toPromise();
-        console.log(this.LastestPatientVital);
-        console.log(`${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`);
-        
-        return this.LastestPatientVital
-        
+    GetLastestPatientVital(id) : Observable<PatientVital>{
+        // `${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`
+        return  this.http1.get<PatientVital>(this.API_URL+'/patients/GetLastPatientVital/'+id);
     }
-
-
-    async GetPatientVisits()
+    getpatient (id) : Observable<Patient>
     {
-        this.currentPatientvisits = await this.http1.get<Visits>(`${this.API_URL}/patients/GetPatientVisits/${this.currentPatient.patientId}`).toPromise();
-        console.log(this.currentPatientvisits);
-        return this.currentPatientvisits;
-        
+        return this.http1.get<Patient>(this.API_URL+'/Patients/GetPatient/'+id);       
     }
+
+     GetPatientVisits(id): Observable<Visits> {
+        return this.http1.get<Visits>(this.API_URL+'/Patients/GetPatientVisits/'+id);       
+    }
+    
+    // async GetPatientVisits()
+    // {
+    //     this.currentPatientvisits = await this.http1.get<Visits>(`${this.API_URL}/patients/GetPatientVisits/${this.currentPatient.patientId}`).toPromise();
+    //     console.log(this.currentPatientvisits);
+    //     return this.currentPatientvisits;
+        
+    // }
 
 
     async AddPatientVital(patientVital: PatientVital) {

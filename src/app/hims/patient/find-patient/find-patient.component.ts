@@ -21,7 +21,7 @@ export class FindPatientComponent implements OnInit {
     editPatientForm: FormGroup;
     public mypatient: any;
     public xyz: any;
-    public myid: any;
+    public Patientid: any;
     // public patients;
     constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
         this.editPatientForm = formBuilder.group({
@@ -66,22 +66,22 @@ export class FindPatientComponent implements OnInit {
   async  selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);        
-        this.setCurrentPatient(e.selectedRowsData[0]);
+      this.Patientid =  e.selectedRowsData[0].patientId
+         console.log(this.Patientid);      
+         this.router.navigate(['/hims/patient/profile/'+this.Patientid]);  
+
+       //  this.setCurrentPatient(e.selectedRowsData[0].patientId);
         
-        this.mypatient =  this.PatientServiceobj.currentPatient.patientId;
-        console.log(this.mypatient);
+        // this.mypatient =  this.PatientServiceobj.currentPatient.patientId;
+        // console.log(this.mypatient);
         
         
-        let x= await this.PatientServiceobj.GetLastestPatientVital();
-        console.log(x)
+    //    let x= await this.PatientServiceobj.GetLastestPatientVital(this.Patientid);
+    //       console.log(x)
                 
 
-        let y = await this.PatientServiceobj.GetPatientVisits();
-        console.log(y);
-
-        
-
+    //      let y = await this.PatientServiceobj.GetPatientVisits(this.Patientid);
+    //      console.log(y);
     }
     // async onSubmit({key}) {
     //   // key is accquired through desctructuring 
@@ -92,13 +92,11 @@ export class FindPatientComponent implements OnInit {
     // }
 
 
- async setCurrentPatient(patient) {
-     
-        this.router.navigate(['/hims/patient/profile']);
-        this.PatientServiceobj.setCurrentPatient(patient);
+//  async setCurrentPatient(id) {   
+//      //this.PatientServiceobj.setCurrentPatient(id);
+//      this.router.navigate(['/hims/patient/profile'+id]);
+//     }
 
-
-    }
-
+ 
 
 }

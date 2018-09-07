@@ -26,7 +26,7 @@ import { AppointmentscheduleComponent } from '../patient/appointmentschedule/app
 import { ConsultantComponent } from '../patient/consultant/consultant.component';
 import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
-
+import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 
 
 
@@ -40,7 +40,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         children: [
 
             { path: 'registration', component: RegistrationComponent },
-            { path: 'profile', component: ProfileComponent },
+            { path: 'profile/:id', component: ProfileComponent },
             { path: 'diagnoses', component: DiagnosesComponent },
             { path: 'recentvisits', component: RecentvisitsComponent },
             { path: 'latestobservation', component: LatestobservationComponent },
@@ -50,11 +50,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'weight_graph', component: WeightGraphComponent },
             { path: 'vitals', component: VitalsComponent },
             { path: 'appointments', component: AppointmentsComponent },
-            { path: 'patientvitals', component: PatientvitalsComponent },
+            { path: 'patientvitals/:id', component: PatientvitalsComponent },
             { path: 'admitinpatient', component: AdmitinpatientComponent },
             { path: 'generalactions', component: GeneralactionsComponent },
             { path: 'visitnote', component: VisitnoteComponent },
-            { path: 'visits', component: VisitsComponent },
+            { path: 'visits/:id', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
             { path: 'home', component: HomeComponent },
             { path: 'findpatient', component: FindPatientComponent },
@@ -62,7 +62,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'consultant', component: ConsultantComponent },
             { path: 'visitnature', component: VisitnatureComponent },
             { path: 'himssetuptest', component: HimsSetupTestComponent },
-
+            { path: 'visitdetail/:id', component: VisitdetailComponent },
         ]
     }
 ]);

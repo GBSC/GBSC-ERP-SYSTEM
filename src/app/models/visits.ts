@@ -1,3 +1,4 @@
+import {PatientVital} from  '../models/patientvitals'
 export  interface Visits{
 
     VisitId : number,
@@ -8,5 +9,6 @@ export  interface Visits{
     PatientVitalId : number,
     VisitNoteId : number,
     PatientId : number
+    PatientVital : PatientVital;
 
 }

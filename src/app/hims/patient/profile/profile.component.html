@@ -9,9 +9,9 @@
               <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text">
                   <!-- {{employeeService.LastName}} -->
-                  {{currentPatient?.firstName}}
+                  {{Patient?.firstName}}
                   <small>
-                    {{currentPatient?.gender}}
+                    {{Patient?.gender}}
                   </small>
                   <img [src]="PatientServiceobj?.tryImgSrc" style="height: 100px; width: 100px; " alt="">
                 </h3>
@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item m-tabs__item">
                   <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
-                    {{currentPatient?.mrn}}
+                    {{Patient?.mrn}}
                   </a>
                 </li>
               </ul>
@@ -52,52 +52,72 @@
               </h4>
             </div>
             <div class="form-group m-form__group m-form__group--sm row">
-              <label class="col-xl-4 col-lg-4 col-form-label">
+              <label class="col-xl-3 col-lg-2 col-form-label">
+               RegCity
+              </label>
+              <div class="col-xl-8 col-lg-8">
+                <span class="m-form__control-static">
+                  {{Patient?.regCity}}
+                </span>
+              </div>
+            </div>
+            <div class="form-group m-form__group m-form__group--sm row">
+              <label class="col-xl-3 col-lg-2 col-form-label">
+                  Visit Nature
+                </label>
+              <div class="col-xl-8 col-lg-8">
+                <span class="m-form__control-static">
+                  {{Patient?.visitNature}}
+                </span>
+              </div>
+            </div>
+            <div class="form-group m-form__group m-form__group--sm row">
+              <label class="col-xl-3 col-lg-2 col-form-label">
                 Patient Name:
               </label>
               <div class="col-xl-8 col-lg-8">
                 <span class="m-form__control-static">
-                  {{currentPatient?.firstName}} {{currentPatient?.LastName}}
+                  {{Patient?.firstName}} {{Patient?.LastName}}
                 </span>
               </div>
             </div>
             <div class="form-group m-form__group m-form__group--sm row">
-              <label class="col-xl-4 col-lg-4 col-form-label">
+              <label class="col-xl-3 col-lg-2 col-form-label">
                 Date Of Birth:
               </label>
               <div class="col-xl-8 col-lg-8">
                 <span class="m-form__control-static">
-                    {{currentPatient?.dob}}
+                    {{Patient?.dob}}
                 </span>
               </div>
             </div>
             <div class="form-group m-form__group m-form__group--sm row">
-              <label class="col-xl-4 col-lg-4 col-form-label">
+              <label class="col-xl-3 col-lg-2 col-form-label">
                 Place Of  Birth
               </label>
               <div class="col-xl-8 col-lg-8">
                 <span class="m-form__control-static">
-                    {{currentPatient?.placeOfBirth}}
+                    {{Patient?.placeOfBirth}}
                 </span>
               </div>
             </div>
             <div class="form-group m-form__group m-form__group--sm row">
-              <label class="col-xl-4 col-lg-4 col-form-label">
+              <label class="col-xl-3 col-lg-2 col-form-label">
                 Phone Number
               </label>
               <div class="col-xl-8 col-lg-8">
                 <span class="m-form__control-static">
-                    {{currentPatient?.phoneNumber}}
+                    {{Patient?.phoneNumber}}
                 </span>
               </div>
             </div>
             <div class="form-group m-form__group m-form__group--sm row">
-              <label class="col-xl-4 col-lg-4 col-form-label">
+              <label class="col-xl-3 col-lg-2 col-form-label">
                   Residence Address
                 </label>
               <div class="col-xl-8 col-lg-8">
                 <span class="m-form__control-static">
-                    {{currentPatient?.residenceAddress}}
+                    {{Patient?.residenceAddress}}
                 </span>
               </div>
             </div>
@@ -108,57 +128,118 @@
                 </h4>
               </div>
               <div class="form-group m-form__group m-form__group--sm row">
-                <label class="col-xl-4 col-lg-4 col-form-label">
+                <label class="col-xl-3 col-lg-2 col-form-label">
                     Occupation:
                 </label>
                 <div class="col-xl-8 col-lg-8">
                   <span class="m-form__control-static">
-                    {{currentPatient?.occupation}}
+                    {{Patient?.occupation}}
                   </span>
                 </div>
               </div>
               <div class="form-group m-form__group m-form__group--sm row">
-                <label class="col-xl-4 col-lg-4 col-form-label">
+                <label class="col-xl-3 col-lg-2 col-form-label">
                   NIC
                 </label>
                 <div class="col-xl-8 col-lg-8">
                   <span class="m-form__control-static">
-                      {{currentPatient?.nic}}
+                      {{Patient?.nic}}
                   </span>
                 </div>
               </div>
               <div class="form-group m-form__group m-form__group--sm row">
-                <label class="col-xl-4 col-lg-4 col-form-label">
+                <label class="col-xl-3 col-lg-2 col-form-label">
                     Remarks
                 </label>
                 <div class="col-xl-8 col-lg-8">
                   <span class="m-form__control-static">
-                      {{currentPatient?.remarks}}
+                      {{Patient?.remarks}}
                   </span>
                 </div>
               </div>
               <div class="form-group m-form__group m-form__group--sm row">
-                <label class="col-xl-4 col-lg-4 col-form-label">
+                <label class="col-xl-3 col-lg-2 col-form-label">
                     Office Telephone
                 </label>
                 <div class="col-xl-8 col-lg-8">
                   <span class="m-form__control-static">
-                      {{currentPatient?.officeTel}}
+                      {{Patient?.officeTel}}
                   </span>
                 </div>
               </div>
               <div class="form-group m-form__group m-form__group--sm row">
-                <label class="col-xl-4 col-lg-4 col-form-label">
+                <label class="col-xl-3 col-lg-2 col-form-label">
                     OfficeAddress
                   </label>
                 <div class="col-xl-8 col-lg-8">
                   <span class="m-form__control-static">
-                      {{currentPatient?.officeAddress}}
+                      {{Patient?.officeAddress}}
+                  </span>
+                </div>
+              </div>
+              <div class="form-group m-form__group m-form__group--sm row">
+                <label class="col-xl-3 col-lg-2 col-form-label">
+                    Country
+                  </label>
+                <div class="col-xl-8 col-lg-8">
+                  <span class="m-form__control-static">
+                      {{Patient?.country}}
+                  </span>
+                </div>
+              </div>
+              <div class="form-group m-form__group m-form__group--sm row">
+                <label class="col-xl-3 col-lg-2 col-form-label">
+                    City
+                  </label>
+                <div class="col-xl-8 col-lg-8">
+                  <span class="m-form__control-static">
+                      {{Patient?.city}}
+                  </span>
+                </div>
+              </div>
+              <div class="form-group m-form__group m-form__group--sm row">
+                <label class="col-xl-3 col-lg-2 col-form-label">
+                    State
+                  </label>
+                <div class="col-xl-8 col-lg-8">
+                  <span class="m-form__control-static">
+                      {{Patient?.state}}
                   </span>
                 </div>
               </div>
             </div>
-          <div class="m-separator m-separator--dashed m-separator--lg"></div>
+          <!-- <div class="m-separator m-separator--dashed m-separator--lg"></div> -->
+        </div>
+        <div class="tab-content active  m--padding-30 row">
+            <div class="m-portlet__body">
+                <ul class="nav nav-pills" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
+                        Spouse
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#m_tabs_3_2">
+                      References
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#m_tabs_3_3">
+                      Document
+                    </a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="m_tabs_3_1" role="tabpanel">                         
+                    </div>
+                    <div class="tab-pane " id="m_tabs_3_2" role="tabpanel">
+
+                    </div>
+                    <div class="tab-pane show" id="m_tabs_3_3" role="tabpanel">
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!--end::Section-->
       </div>
@@ -212,19 +293,13 @@
       <app-recentvisits></app-recentvisits>
       <!--recent visits end-->
 
-
-
       <!--FAMILY start-->
       <app-family></app-family>
       <!--FAMILY end-->
 
-
-
-
-      <!--ALLERGIES start-->
-      <app-allergies></app-allergies>
-      <!--ALLERGIES end-->
-
+      <!--CONDITIONS start-->
+      <app-conditions></app-conditions>
+      <!--CONDITIONS end-->
 
     </div>
 

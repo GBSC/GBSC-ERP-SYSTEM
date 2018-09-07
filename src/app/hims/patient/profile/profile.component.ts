@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
 import { Patient } from '../../../models/patient';
 import { PatientService } from '../../patient/services/patient.services';
+import { ActivatedRoute } from '@angular/router';
 import { FindPatientComponent } from '../../patient/find-patient/find-patient.component';
 
 @Component({
@@ -12,23 +13,27 @@ import { FindPatientComponent } from '../../patient/find-patient/find-patient.co
 export class ProfileComponent implements OnInit {
 
     public patientObj;
-    public currentPatient: any;
+    public currentPatient: {};
+            id: number;
+            Patient : Patient;
 
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(private PatientServiceobj: PatientService,  private route : ActivatedRoute) { }
 
 
-    async ngOnInit() {
+      ngOnInit() {
+       // this.currentPatient = this.PatientServiceobj.currentPatient;
+       
+    this.route.params.subscribe(params => {
 
-        // this.patientObj = this.PatientServiceobj.patient;
-        // console.log(this.patientObj);
+        this.id = +params['id'];
+ 
+       let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient=> this.Patient = Patient );
+  console.log(x);
+     });
 
-        this.currentPatient = this.PatientServiceobj.currentPatient;
-
-        console.log(this.currentPatient);
-
-
-
+     
     }
+
 
 }

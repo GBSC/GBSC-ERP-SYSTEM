@@ -21,7 +21,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
-        path: 'Inventorysystem',
+        path: 'inventorysystem',
         component: RootComponent,
 
         children: [

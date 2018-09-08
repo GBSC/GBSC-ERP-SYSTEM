@@ -23,6 +23,8 @@ import { PayrollService } from './payroll/services/payroll.service';
     declarations: [
         ThemeComponent,
         AppComponent,    
+        AppComponent, 
+
     ],
     imports: [
         LayoutModule,

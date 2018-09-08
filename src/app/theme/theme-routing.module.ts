@@ -11,9 +11,12 @@ import { SystemAdministrationModule } from '../systemadministration/systemadmini
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
  
-import { AccountModule } from '../account/account.module';
+ 
  
 
+import { PayrollModule } from '../payroll/payroll.module';
+import { SuperadminModule } from '../superadmin/superadmin.module';
+import { AccountModule } from '../account/account.module';
 
 const routes: Routes = [
     {
@@ -68,7 +71,9 @@ const routes: Routes = [
  
  
  
-    ],
+ 
+        PayrollModule
+        ],
     exports: [
         RouterModule,
     ]

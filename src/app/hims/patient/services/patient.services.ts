@@ -214,12 +214,17 @@ export class PatientService {
         return this.visits;
     }
 
-     Getvisit (id) : Observable<Visits>
-    {
-        return this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id);       
-    }
+       Getvisit (id) : Observable<Visits>
+      {
+          return this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id);       
+     }
 
-    
+
+   async getVisitId(id){
+        this.getvisitbyid = await this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id).toPromise();
+        console.log(this.getvisitbyid);
+        return this.getvisitbyid;
+    }
     
     async AddVisits(id)
     {
@@ -242,6 +247,14 @@ export class PatientService {
         console.log(x);
         return x;
         
+    }
+    
+
+    async endVisit(id, visits : Visits ){
+
+        let x = await this.http1.put(this.API_URL1+'/Visits/EndVisit/'+id, visits).toPromise()
+        console.log(x);
+        return x;
     }
     
     

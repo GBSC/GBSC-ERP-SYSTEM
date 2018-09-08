@@ -10,6 +10,7 @@ export class LeaveService {
     public leavepolicyemployee;
     public leaverequestdetail;
     private baseUrl: string = "http://localhost:58090/api";
+    public leaveapproval;
 
     constructor(private httpClient: HttpClient) { }
 
@@ -236,5 +237,50 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/Leave/Deleteleaverequestdetail/${leaverequestdetailId}`).toPromise();
+    }
+
+       /** CRUD METHODS */
+       async getAllleaveapproval() {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+
+        this.leaveapproval = await this.httpClient.get(`${this.baseUrl}/Getleaveapprovals`).toPromise();
+        console.log(this.leaveapproval);
+        return this.leaveapproval;
+    }
+
+
+    // DEMO ONLY, you can find working methods below
+    async addleaveapproval(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        let newleaveapproval = await this.httpClient.post(`${this.baseUrl}/Addleaveapproval`, data, headers).toPromise();
+        console.log(newleaveapproval);
+
+    }
+
+    async updateleaveapproval(data) {
+
+        console.log(data.key);
+        console.log(data);
+
+        let leaveapproval = await this.getdataToUpdate(data.key, 'Getleaveapproval');
+        leaveapproval = { ...leaveapproval, ...data.data }
+        console.log(leaveapproval);
+        // let authToken = localStorage.getItem('auth_token');  
+        // let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.httpClient.put(`${this.baseUrl}/Updateleaveapproval`, leaveapproval).toPromise();
+
+    }
+
+
+
+    async Deleteleaveapproval(leaveapprovalId) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.httpClient.delete(`${this.baseUrl}/Deleteleaveapproval/${leaveapprovalId}`).toPromise();
     }
 }

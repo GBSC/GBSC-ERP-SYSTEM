@@ -38,6 +38,15 @@ import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { RootComponent } from './root/root.component';
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
+import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
+import { AttendanceflagComponent } from './attendance/attendancesetup/attendanceflag/attendanceflag.component';
+import { AttendancerequestapproverComponent } from './attendance/attendancesetup/attendancerequestapprover/attendancerequestapprover.component';
+import { AttendancerequesttypeComponent } from './attendance/attendancesetup/attendancerequesttype/attendancerequesttype.component';
+import { FlagcategoryComponent } from './attendance/attendancesetup/flagcategory/flagcategory.component';
+import { FlageffecttypeComponent } from './attendance/attendancesetup/flageffecttype/flageffecttype.component';
+import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtype.component';
+import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
+import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
  
@@ -55,6 +64,27 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'employeedetail', component: EmployeedetailComponent }
                 ]
             },
+
+            {
+                path: 'attendance',
+                children: [
+             { path: 'attendancesetup',  component: RootComponent,
+                    children: [
+
+                        { path: 'assignroster', component: AssignrosterComponent },
+                        { path: 'attendanceflag', component: AttendanceflagComponent },
+                        { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
+                        { path: 'attendancerequesttype', component: AttendancerequesttypeComponent }, 
+                        { path: 'flagcategory', component: FlagcategoryComponent },
+                        { path: 'flageffecttype', component: FlageffecttypeComponent },
+                        { path: 'flagtype', component: FlagtypeComponent },
+                        { path: 'flagvalue', component: FlagvalueComponent },
+                        { path: 'roster', component: RosterComponent }
+                    ]
+                },
+                {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
+                {path: 'uploadleaverequest', component: UploadleaverequestComponent}
+            ]},
 
             {
                 path: 'leave',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-attendancerequesttype',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttendancerequesttypeComponent implements OnInit {
 
-  constructor() { }
+  public attendanceRequesttype: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getattendanceRequestTypes(); 
+      this.attendanceRequesttype = this.attendancesetupservice.attendanceRequestType
+      console.log(this.attendanceRequesttype);
+      
   }
+
+  async addattendanceRequesttype(value) { 
+      this.attendancesetupservice.addattendanceRequestType(value.data);
+    }
+    
+    async updateattendanceRequesttype(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateattendanceRequestType(value);   
+    }
+
+    async deleteattendanceRequesttype(value) { 
+      this.attendancesetupservice.DeleteattendanceRequestType(value.key);
+    }
 
 }

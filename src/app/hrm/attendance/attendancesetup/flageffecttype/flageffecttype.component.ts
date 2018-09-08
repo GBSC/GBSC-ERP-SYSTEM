@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-flageffecttype',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlageffecttypeComponent implements OnInit {
 
-  constructor() { }
+   
+  public flageffecttype: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getflagEffecttypes(); 
+      this.flageffecttype = this.attendancesetupservice.flagEffecttype
+      console.log(this.flageffecttype);
+      
   }
+
+  async addflageffecttype(value) { 
+      this.attendancesetupservice.addflagEffecttype(value.data);
+    }
+    
+    async updateflageffecttype(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateflagEffecttype(value);   
+    }
+
+    async deleteflageffecttype(value) { 
+      this.attendancesetupservice.DeleteflagEffecttype(value.key);
+    }
 
 }

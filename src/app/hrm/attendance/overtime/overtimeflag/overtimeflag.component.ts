@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendanceService } from '../../services/attendance.service';
 
 @Component({
   selector: 'app-overtimeflag',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OvertimeflagComponent implements OnInit {
 
-  constructor() { }
+  public overtimeflag: any;
+  constructor(public attendanceservice:AttendanceService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendanceservice.getAllovertimeflag(); 
+      this.overtimeflag = this.attendanceservice.overtimeflag
+      console.log(this.overtimeflag);
+      
   }
+
+  async addovertimeflag(value) { 
+      this.attendanceservice.addovertimeflag(value.data);
+    }
+    
+    async updateovertimeflag(value) {
+      console.log(value); 
+      this.attendanceservice.updateovertimeflag(value);   
+    }
+
+    async deleteovertimeflag(value) { 
+      this.attendanceservice.Deleteovertimeflag(value.key);
+    }
 
 }

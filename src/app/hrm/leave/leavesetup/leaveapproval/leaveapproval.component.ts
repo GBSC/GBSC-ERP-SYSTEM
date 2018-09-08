@@ -12,29 +12,29 @@ export class LeaveapprovalComponent implements OnInit {
   constructor(public leavesetupservice:LeaveSetupService) { }
 
   async ngOnInit() {
-      await this.leavesetupservice.getAllleaveapproval(); 
-      this.leveapproval = this.leavesetupservice.leaveapproval
-      console.log(this.leveapproval);
+      // await this.leavesetupservice.getAllleaveapproval(); 
+      // this.leveapproval = this.leavesetupservice.leaveapproval
+      // console.log(this.leveapproval);
       
   }
 
-  async addleaveapproval(lapproval) {
-      console.log(lapproval.data);
-      this.leavesetupservice.addleaveapproval(lapproval.data);
-    }
+  // async addleaveapproval(lapproval) {
+  //     console.log(lapproval.data);
+  //     this.leavesetupservice.addleaveapproval(lapproval.data);
+  //   }
     
-    async updateleaveapproval(levapproval) {
-      console.log(levapproval); 
-      this.leavesetupservice.updateleaveapproval(levapproval); 
-      console.log('in updated year')
+  //   async updateleaveapproval(levapproval) {
+  //     console.log(levapproval); 
+  //     this.leavesetupservice.updateleaveapproval(levapproval); 
+  //     console.log('in updated year')
    
-    }
+  //   }
 
-    async deleteleaveapproval(lvapproval) {
-      console.log(lvapproval); 
-      this.leavesetupservice.Deleteleaveapproval(lvapproval); 
+  //   async deleteleaveapproval(lvapproval) {
+  //     console.log(lvapproval); 
+  //     this.leavesetupservice.Deleteleaveapproval(lvapproval); 
    
    
-    }
+  //   }
     
 }

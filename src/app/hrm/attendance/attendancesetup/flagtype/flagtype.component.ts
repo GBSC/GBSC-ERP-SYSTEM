@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-flagtype',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlagtypeComponent implements OnInit {
 
-  constructor() { }
+  
+  public flagtype: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getflagtypes(); 
+      this.flagtype = this.attendancesetupservice.flagtype
+      console.log(this.flagtype);
+      
   }
+
+  async addflagtype(value) { 
+      this.attendancesetupservice.addflagtype(value.data);
+    }
+    
+    async updateflagtype(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateflagtype(value);   
+    }
+
+    async deleteflagtype(value) { 
+      this.attendancesetupservice.Deleteflagtype(value.key);
+    }
 
 }

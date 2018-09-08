@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-attendanceflag',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttendanceflagComponent implements OnInit {
 
-  constructor() { }
+  public attendanceflag: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getattendanceflag(); 
+      this.attendanceflag = this.attendancesetupservice.attendanceflag
+      console.log(this.attendanceflag);
+      
   }
+
+  async addattendanceflag(value) { 
+      this.attendancesetupservice.addattendanceflag(value.data);
+    }
+    
+    async updateattendanceflag(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateattendanceflag(value);   
+    }
+
+    async deleteattendanceflag(value) { 
+      this.attendancesetupservice.Deleteattendanceflag(value.key);
+    }
 
 }

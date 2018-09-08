@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-flagcategory',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FlagcategoryComponent implements OnInit {
 
-  constructor() { }
+   
+  public flagcategory: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getflagCategories(); 
+      this.flagcategory = this.attendancesetupservice.flagCategory
+      console.log(this.flagcategory);
+      
   }
+
+  async addflagcategory(value) { 
+      this.attendancesetupservice.addflagCategory(value.data);
+    }
+    
+    async updateflagcategory(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateflagCategory(value);   
+    }
+
+    async deleteflagcategory(value) { 
+      this.attendancesetupservice.DeleteflagCategory(value.key);
+    }
 
 }

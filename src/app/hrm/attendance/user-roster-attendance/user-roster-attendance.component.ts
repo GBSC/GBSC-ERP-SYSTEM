@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendanceService } from '../services/attendance.service';
 
 @Component({
   selector: 'app-user-roster-attendance',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRosterAttendanceComponent implements OnInit {
 
-  constructor() { }
+  public userRosterattendance: any;
+  constructor(public attendanceservice:AttendanceService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendanceservice.getuserRosterattendances(); 
+      this.userRosterattendance = this.attendanceservice.userRosterattendance
+      console.log(this.userRosterattendance);
+      
   }
+
+  async adduserRosterattendance(value) { 
+      this.attendanceservice.adduserRosterattendance(value.data);
+    }
+    
+    async updateuserRosterattendance(value) {
+      console.log(value); 
+      this.attendanceservice.updateuserRosterattendance(value);   
+    }
+
+    async deleteuserRosterattendance(value) { 
+      this.attendanceservice.DeleteuserRosterattendance(value.key);
+    }
 
 }

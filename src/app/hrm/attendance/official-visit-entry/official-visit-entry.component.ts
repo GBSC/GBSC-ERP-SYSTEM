@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendanceService } from '../services/attendance.service';
 
 @Component({
   selector: 'app-official-visit-entry',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfficialVisitEntryComponent implements OnInit {
 
-  constructor() { }
+  public officialVisitentry: any;
+  constructor(public attendanceservice:AttendanceService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendanceservice.getofficialVisitentries(); 
+      this.officialVisitentry = this.attendanceservice.officialVisitentry
+      console.log(this.officialVisitentry);
+      
   }
+
+  async addofficialVisitentry(value) { 
+      this.attendanceservice.addofficialVisitentry(value.data);
+    }
+    
+    async updateofficialVisitentry(value) {
+      console.log(value); 
+      this.attendanceservice.updateofficialVisitentry(value);   
+    }
+
+    async deleteofficialVisitentry(value) { 
+      this.attendanceservice.DeleteofficialVisitentry(value.key);
+    }
 
 }

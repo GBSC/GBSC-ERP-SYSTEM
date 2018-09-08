@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
   selector: 'app-attendancerequestapprover',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttendancerequestapproverComponent implements OnInit {
 
-  constructor() { }
+  public attendanceRequestapprover: any;
+  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+      await this.attendancesetupservice.getattendanceRequestapprover(); 
+      this.attendanceRequestapprover = this.attendancesetupservice.attendancerequestapprover
+      console.log(this.attendanceRequestapprover);
+      
   }
+
+  async addattendanceRequestapprover(value) { 
+      this.attendancesetupservice.addattendanceRequestapprover(value.data);
+    }
+    
+    async updateattendanceRequestapprover(value) {
+      console.log(value); 
+      this.attendancesetupservice.updateattendanceRequestapprover(value);   
+    }
+
+    async deleteattendanceRequestapprover(value) { 
+      this.attendancesetupservice.DeleteattendanceRequestapprover(value.key);
+    }
 
 }

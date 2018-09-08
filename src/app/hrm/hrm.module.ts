@@ -67,6 +67,25 @@ import { CompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
+import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
+import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
+import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
+import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
+import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component';
+import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
+import { UserRosterAttendanceComponent } from './attendance/user-roster-attendance/user-roster-attendance.component';
+import { OvertimeflagComponent } from './attendance/overtime/overtimeflag/overtimeflag.component';
+import { OvertimetypeComponent } from './attendance/overtime/overtimetype/overtimetype.component';
+import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
+import { AttendanceflagComponent } from './attendance/attendancesetup/attendanceflag/attendanceflag.component';
+import { AttendancerequestapproverComponent } from './attendance/attendancesetup/attendancerequestapprover/attendancerequestapprover.component';
+import { AttendancerequesttypeComponent } from './attendance/attendancesetup/attendancerequesttype/attendancerequesttype.component';
+import { FlagcategoryComponent } from './attendance/attendancesetup/flagcategory/flagcategory.component';
+import { FlageffecttypeComponent } from './attendance/attendancesetup/flageffecttype/flageffecttype.component';
+import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtype.component';
+import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
+import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
+import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
 
 
 
@@ -110,9 +129,34 @@ import { GroupComponent } from './hrmsSetup/groups/groups.component';
         CityComponent,
         AccountTypeComponent, 
         UniversityComponent,
-        
-        /* HRM Leave Components */
 
+                
+        /* HRM Attendance Components */
+
+        AttendanceFlagExemptionComponent,
+        AttendanceruleComponent,
+        AttendancerequestComponent,
+        OvertimeEntitlementComponent,
+        OfficialVisitEntryComponent,
+        EmployeeOvertimeEntitlementComponent,
+        UserRosterAttendanceComponent,
+
+        OvertimeflagComponent,
+        OvertimetypeComponent,
+
+        AssignrosterComponent,
+        AttendanceflagComponent,
+        AttendancerequestapproverComponent,
+        AttendancerequesttypeComponent,
+        FlagcategoryComponent,
+        FlageffecttypeComponent,
+        FlagtypeComponent,
+        FlagvalueComponent,
+        RosterComponent,
+        ShiftComponent,
+
+
+        /* HRM Leave Components */
         LeavepolicyComponent,
         LeavetypeComponent,
         LeavedaytypeComponent,

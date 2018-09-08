@@ -71,9 +71,9 @@ export class AccountService {
     getAvailableModules() {
         return [
             { module: 'SystemAdministration', route: 'systemadministration' },
-            { module: 'InventorySystem', route: 'inventorysystem' },
+            { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
-            { module: 'Hospital Management System', route: 'patient' },
+            { module: 'Hospital Management System', route: 'hims' },
             { module: 'Inventory Management System', route: 'inventorysystem' },
             { module: 'Payroll Management System', route: 'payroll' },
             { module: 'Lab Information System', route: 'lab' },

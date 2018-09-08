@@ -49,7 +49,7 @@ import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagv
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
- 
+
 
     {
         path: 'hrm',
@@ -68,45 +68,49 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'attendance',
                 children: [
-             { path: 'attendancesetup',  component: RootComponent,
-                    children: [
+                    {
+                        path: 'attendancesetup', component: RootComponent,
+                        children: [
 
-                        { path: 'assignroster', component: AssignrosterComponent },
-                        { path: 'attendanceflag', component: AttendanceflagComponent },
-                        { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
-                        { path: 'attendancerequesttype', component: AttendancerequesttypeComponent }, 
-                        { path: 'flagcategory', component: FlagcategoryComponent },
-                        { path: 'flageffecttype', component: FlageffecttypeComponent },
-                        { path: 'flagtype', component: FlagtypeComponent },
-                        { path: 'flagvalue', component: FlagvalueComponent },
-                        { path: 'roster', component: RosterComponent }
-                    ]
-                },
-                {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
-                {path: 'uploadleaverequest', component: UploadleaverequestComponent}
-            ]},
+                            { path: 'assignroster', component: AssignrosterComponent },
+                            { path: 'attendanceflag', component: AttendanceflagComponent },
+                            { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
+                            { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
+                            { path: 'flagcategory', component: FlagcategoryComponent },
+                            { path: 'flageffecttype', component: FlageffecttypeComponent },
+                            { path: 'flagtype', component: FlagtypeComponent },
+                            { path: 'flagvalue', component: FlagvalueComponent },
+                            { path: 'roster', component: RosterComponent }
+                        ]
+                    },
+                    { path: 'employeeleaveopening', component: EmployeeleaveopeningComponent },
+                    { path: 'uploadleaverequest', component: UploadleaverequestComponent }
+                ]
+            },
 
             {
                 path: 'leave',
                 children: [
-             { path: 'leavesetup',  component: RootComponent,
-                    children: [
+                    {
+                        path: 'leavesetup', component: RootComponent,
+                        children: [
 
-                        { path: 'leavepurpose', component: LeavepurposeComponent },
-                        { path: 'leaveyearsetup', component: LeaveyearsetupComponent },
-                        { path: 'leavepolicy', component: LeavepolicyComponent },
-                        { path: 'leavetype', component: LeavetypeComponent },
-                        //{ path: 'leaveapproval', component: LeaveapprovalComponent },
-                        { path: 'leavedaytype', component: LeavedaytypeComponent },
-                        { path: 'leaveeligibility', component: LeaveeligibilityComponent },
-                        { path: 'leavesubtype', component: LeavesubtypeComponent },
-                        { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
-                        { path: 'proratematrix', component: ProratematrixComponent }
-                    ]
-                },
-                {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
-                {path: 'uploadleaverequest', component: UploadleaverequestComponent}
-            ]},
+                            { path: 'leavepurpose', component: LeavepurposeComponent },
+                            { path: 'leaveyearsetup', component: LeaveyearsetupComponent },
+                            { path: 'leavepolicy', component: LeavepolicyComponent },
+                            { path: 'leavetype', component: LeavetypeComponent },
+                            //{ path: 'leaveapproval', component: LeaveapprovalComponent },
+                            { path: 'leavedaytype', component: LeavedaytypeComponent },
+                            { path: 'leaveeligibility', component: LeaveeligibilityComponent },
+                            { path: 'leavesubtype', component: LeavesubtypeComponent },
+                            { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
+                            { path: 'proratematrix', component: ProratematrixComponent }
+                        ]
+                    },
+                    { path: 'employeeleaveopening', component: EmployeeleaveopeningComponent },
+                    { path: 'uploadleaverequest', component: UploadleaverequestComponent }
+                ]
+            },
             {
                 path: 'hrmsSetup', component: RootComponent,
                 children: [
@@ -122,7 +126,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     //{ path: 'shift', component: ShiftComponent },
                     { path: 'bank', component: BankComponent },
                     { path: 'degree', component: DegreeComponent },
-                   // { path: 'accounttype', component: AccountTypeComponent },
+                    // { path: 'accounttype', component: AccountTypeComponent },
                     //{ path: 'roster', component: RosterComponent },
                     { path: 'managementlevels', component: ManagementLevelsComponent },
                     { path: 'designations', component: DesignationComponent },

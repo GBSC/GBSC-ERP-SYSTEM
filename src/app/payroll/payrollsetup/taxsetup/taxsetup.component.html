@@ -1,0 +1,193 @@
+<div appunwraptag="" class="m-subheader">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title m-subheader__title--separator">
+      Tax Setup
+      </h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a class="m-nav__link m-nav__link--icon" href="#" ng-reflect-href="#">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+            Home
+          </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+                Tax Setup
+            </span>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+              Income Tax Rules
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+
+    </div>
+  </div>
+</div>
+
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                      Tax Setup
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="m-portlet__body" style="padding:0px !important;">
+                <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+                  <div class="m-demo__preview">
+                    <ul class="m-nav nav nav-tabs">
+                      <li  class="m-nav__item">
+                        <a class="m-nav__link" href="#tax1" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i> 
+                          <span class="m-nav__link-text">
+                              Tax Schedule
+                          </span>
+                        </a>
+                      </li>
+                      <li  class="m-nav__item">
+                          <a class="m-nav__link" href="#tax2" data-toggle="tab">
+                            <i class="m-nav__link-icon flaticon-cogwheel-2"></i> 
+                            <span class="m-nav__link-text">
+                                Tax Relief
+                            </span>
+                          </a>
+                        </li>
+                        <li  class="m-nav__item">
+                            <a class="m-nav__link" href="#tax3" data-toggle="tab">
+                              <i class="m-nav__link-icon flaticon-cogwheel-2"></i> 
+                              <span class="m-nav__link-text">
+                                 Tax Execmpt Age Setup
+                              </span>
+                            </a>
+                          </li>
+                    </ul>
+                  </div>
+                </div>
+      
+              </div>
+            </div></div>
+
+            <div class="col-lg-9">
+                <!-- Tab panes -->
+                <div class="m-portlet">
+                  <div class="m-portlet__body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tax1">
+                          <h3 class="m-section__heading">
+                            Tax Schedule
+                            </h3>
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>
+                      </div>
+                      <div class="tab-pane" id="tax2">
+                          <h3 class="m-section__heading">
+                            Tax Relief
+                            </h3>  
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>                      
+                      </div>
+                      <div class="tab-pane" id="tax3">
+                          <h3 class="m-section__heading">
+                            Tax Execmpt Age Setup
+                            </h3>
+                            <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__foot m-portlet__foot--fit">
+                      <div class="m-form__actions">
+                          <button type="reset" class="btn btn-primary" >
+                              Save
+                            </button> | 
+                    <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+  </div>

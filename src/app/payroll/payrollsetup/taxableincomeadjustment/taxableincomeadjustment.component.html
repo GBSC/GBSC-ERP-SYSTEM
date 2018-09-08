@@ -1,0 +1,52 @@
+
+
+<div class="m-content">
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Taxable Income Adjustment</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <dx-data-grid id="gridContainer" [dataSource]="TaxonBenefits" keyExpr="id" (onRowInserted)="addAllowances($event)" (onRowUpdated)="EditAllowances($event)" (onRowRemoved)="deleteAllowances($event)"> 
+              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+                <dxo-popup title="Taxable Income Adjustment" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="10"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+              <dxi-column dataField="Branch"caption="Branch">
+                <dxo-lookup [dataSource]="Branch" valueExpr="value" displayExpr="display"></dxo-lookup>
+            </dxi-column>
+              <dxi-column dataField="Employee"caption="Employee">
+                  <dxo-lookup [dataSource]="Employee" valueExpr="value" displayExpr="display"></dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="PayrollType"caption="Payroll Type">
+                <dxo-lookup [dataSource]="PayrollType" valueExpr="value" displayExpr="display"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="TaxYear"caption="Tax Year">
+              <dxo-lookup [dataSource]="TaxYear" valueExpr="value" displayExpr="display"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField=""  caption="Add Amount"></dxi-column>
+          <dxi-column dataField=""  caption="Less Amount"></dxi-column>
+              <dxi-column dataField="" caption="Remarks"></dxi-column>
+              </dx-data-grid> 
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+

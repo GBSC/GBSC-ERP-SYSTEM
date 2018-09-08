@@ -14,6 +14,8 @@ import { MenuComponent } from '../lab/shared/menu/menu.component';
 
 
 import { FileRecordComponent } from './file-record/file-record.component';
+import { ProceduresortestComponent } from './proceduresortest/proceduresortest.component';
+import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { FileRecordComponent } from './file-record/file-record.component';
         FooterComponent,
         HeaderComponent,
         MenuComponent,
+        ProceduresortestComponent,
+        BiochemistryontreatmentComponent,
     ],
     providers: []
 })

@@ -9,4 +9,5 @@ export interface PatientVital {
     RespiratoryRate: string;
     BloodPressure: string;
     BloodOxygenSaturation: string;
+    VisitId : number,
 }

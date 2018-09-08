@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LogoutComponent } from "./auth/logout/logout.component";
 import { PatientModule } from '../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../app/Inventorysystem/Inventorysystem.module';
-
+import { PayrollModule } from '../app/payroll/payroll.module';
 import { AccountModule } from '../app/account/account.module';
 import { FinanceModule } from '../app/finance/finance.module';
 import { LabModule } from '../app/hims/lab/lab.module'

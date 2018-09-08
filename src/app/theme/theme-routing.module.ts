@@ -8,16 +8,11 @@ import { SetupModule } from '../setup/setup.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
-<<<<<<< HEAD
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
-=======
-import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
-import { EmployeeModule } from '../hrm/employee/employee.module';
-import { PayrollModule } from '../payroll/payroll.module';
+ 
 import { SuperadminModule } from '../superadmin/superadmin.module';
-import { AccountModule } from '../account/account.module';
->>>>>>> eea5b2c4471326f4f942d59d1818c0caa61edfda
+import { AccountModule } from '../account/account.module'; 
 
 
 
@@ -68,13 +63,7 @@ const routes: Routes = [
         SuperadminModule,
         SystemAdministrationModule,
         HrmModule,
-<<<<<<< HEAD
         DashboardModule
-=======
-        EmployeeModule,
-        PayrollModule,
-        AccountModule
->>>>>>> eea5b2c4471326f4f942d59d1818c0caa61edfda
     ],
     exports: [
         RouterModule,

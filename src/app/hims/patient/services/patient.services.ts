@@ -9,6 +9,8 @@ import { AppointmentTest } from '../../../models/appointmentTest';
 import {Visits} from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
 import { VisitNature } from '../../../models/VisitNature';
+import { VisitNote } from '../../../models/visitnote';
+
 
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -52,6 +54,8 @@ export class PatientService {
     public currentPatientvisits : any;
 
     public visitNatures : any;
+    //for visitnote
+    public vistnote : any;
 
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
@@ -252,7 +256,7 @@ export class PatientService {
 
     async endVisit(id, visits : Visits ){
 
-        let x = await this.http1.put(this.API_URL1+'/Visits/EndVisit/'+id, visits).toPromise()
+        let x = await this.http1.put(this.API_URL+'/Visits/EndVisit/'+id, visits).toPromise()
         console.log(x);
         return x;
     }
@@ -302,6 +306,31 @@ export class PatientService {
         let x = await this.http1.delete(this.API_URL + '/Visits/DeletePatientVital/' + id).toPromise();
         console.log(x);
         return x;
+    }
+
+    async getVisitNote(){
+        this.vistnote = await this.http1.get<VisitNote>(this.API_URL+'/Visits/GetVisitNotes/').toPromise();
+        console.log(this.vistnote);
+        return this.vistnote;
+    }
+
+    async addVisitNote(VisitNote : VisitNote){
+        let x  = this.http1.post(this.API_URL+'/Visits/AddVisitNote/',VisitNote).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async updateVisitNote(VisitNote : VisitNote){
+        let x = this.http1.put(this.API_URL+'/Visits/UpdateVisitNote/',VisitNote).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async deleteVisitNote(id){
+
+    let  x = this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
+    console.log(x);
+    return x;
     }
 
     async GetVisitNatures() {

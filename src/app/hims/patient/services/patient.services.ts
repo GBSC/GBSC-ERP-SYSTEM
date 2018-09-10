@@ -22,6 +22,7 @@ export class PatientService {
 
     public patient;
     public currentPatient: any;
+    public SearchPatientbyname : any;
 
     public consultant: any;
     public patients: any;
@@ -368,5 +369,9 @@ export class PatientService {
 
     // //     console.log(currentPatient);
     // }
-
+   async SearchPatient(patient: Patient){
+        this.SearchPatientbyname = await this.http1.post(this.API_URL+'/patients/SearchPatient/',patient).toPromise();
+        console.log( this.SearchPatientbyname);
+        return this.SearchPatientbyname;
+    }
 }

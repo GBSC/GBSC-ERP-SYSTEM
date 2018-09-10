@@ -28,10 +28,11 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager>
-                <dxi-column dataField="code"></dxi-column>
-                <dxi-column dataField="name"></dxi-column>
-                <dxi-column dataField="description"></dxi-column>
+                </dxo-pager> 
+                <dxi-column dataField="title"></dxi-column>
+                <dxi-column dataField="dayCost"></dxi-column>
+                <dxi-column dataField="dayPrice"></dxi-column>
+                <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
               </dx-data-grid>
             </div>
           </div>

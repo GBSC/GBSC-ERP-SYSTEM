@@ -13,7 +13,7 @@ export class VisitdetailComponent implements OnInit {
 
   id: number;
 
-  visit : Visits;
+  public visit : any = {}; 
 
   constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) {
 

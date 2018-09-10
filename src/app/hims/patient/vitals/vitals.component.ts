@@ -17,20 +17,15 @@ export class VitalsComponent implements OnInit {
     id: number;
 
     // patientVital :  PatientVital   ;
-public patientVital = {};
+    public patientVital : any = {}; 
     constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) { }
 
    async ngOnInit() {
-
-    //      await this.PatientServiceobj.GetLastestPatientVital();
-    //      this.leatestPatientVitals = this.PatientServiceobj.LastestPatientVital;
-    //      console.log(this.leatestPatientVitals);
-
     this.route.params.subscribe(params => {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital=> this.patientVital = patientVital );
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital );
   console.log(x);
   
      });

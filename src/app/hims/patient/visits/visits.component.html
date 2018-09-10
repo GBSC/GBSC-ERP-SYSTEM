@@ -1,5 +1,5 @@
 <div class="m-content">
-    <div class="m-portlet m-portlet--mobile">
+    <!-- <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
@@ -35,7 +35,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-lg-12">
             <div class="m-portlet">
@@ -91,7 +91,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
                             <div class="row">
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                         <div class="m-demo__preview">
                                             <span class="m-portlet__head-icon">
@@ -107,16 +107,16 @@
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-9">
                                     <div class="alert m-alert m-alert--default" role="alert">
                                         <span class="m-portlet__head-icon">
                                             <span class="m-badge m-badge--success m-badge--dot"></span>
                                             Active Visit
                                             <i class="fa fa-clock-o"></i>
-                                            Started At 04.June.2018, 02:55:32
+                                            Started{{vist?.startTime}}
                                         </span>
-                                        <small class="pad_130">
+                                        <!-- <small class="pad_130">
                                             <a href="#" class="m-link m-link--info">
                                                 <h6> Edit Visit</h6>
                                             </a>
@@ -126,7 +126,7 @@
                                             | <a href="#" class="m-link m-link--info">
                                                 <h6> Delete Visit</h6>
                                             </a>
-                                        </small>
+                                        </small> -->
                                     </div>
                                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                         <div class="m-demo__preview">
@@ -138,23 +138,15 @@
                                                     </span>
                                                 </span>
                                             </a> |
-                                            <!-- <a href="#" class="col-md-3 btn btn-primary m-btn m-btn--custom m-btn--icon">
-                                                <span>
-                                                    <i class="fa fa-stethoscope"></i><span>
-                                                        Visit Note
-                                                    </span>
-                                                </span>
-                                            </a>
-                                            | -->
-                                            <a href="#" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                            <a (click)="onSubmit()" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
                                                 <span>
                                                     <i class="fa fa-sign-in"></i>
                                                     <span>
-                                                        Admit to Inpatient
+                                                            Capture Vitals
                                                     </span>
                                                 </span>
                                             </a>
-                                            <div class="m--space-10"></div>
+                                            <!-- <div class="m--space-10"></div>
                                             <a (click)="onSubmit()" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
                                                 <span>
                                                     <i class="fa fa-heartbeat"></i>
@@ -162,7 +154,7 @@
                                                         Capture Vitals
                                                     </span>
                                                 </span>
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -171,49 +163,46 @@
                         <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
                             <h3 class="m--font-danger">Patient Appointments</h3>
                             <div class="m--space-20"></div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="Timeframe"> Timeframe (Optional) </label>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
+                            <form [formGroup]="PatientAppointmentForm">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="Timeframe"> Timeframe (Optional) </label>
+                                        <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
+                                            <option  *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="Clear"> Clear </label>
+                                        <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId">
+                                        </dx-select-box>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="Clear"> Clear </label>
+                                        <input class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime" type="date" required>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6  col-sm-12">
+                                            <div class="m-form__actions">
+                                                <button (click)="addappointment(PatientAppointmentForm.value)" class="btn btn-danger m--pull-left" type="reset">
+                                                Save
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6  col-sm-12">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="Clear"> Clear </label>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="Clear"> Clear </label>
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="la la-calendar"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m--space-20"></div>
+                            </form>
+                            <!-- <div class="m--space-20"></div>
                             <h3 class="m--font-danger">Appointment Requests</h3>
                             <div class="m--space-20"></div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <h6 class="text-muted">No Appiontment Request</h6>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="tab-pane" id="m_tabs_1_2" role="tabpanel">
                              <form [formGroup]="PatientVisitNoteForm">

@@ -18,21 +18,34 @@ import { Visits } from '../../../models/visits';
 export class VisitsComponent implements OnInit {
 
     public PatientVisitNoteForm: FormGroup;
+    public PatientAppointmentForm: FormGroup;
 
     public currentPatient: any;
+    public consultant : any;
+    public visitNatures : any;
+
     public visitid : any;
+    public vist = '';
     id: number;
     vistid: number;
     Patient : Patient;
     Visits : Visits;
-    
-    // private _location: Location ,
+
     constructor( private formBuilder: FormBuilder,private PatientServiceobj : PatientService , private router: Router,  private route : ActivatedRoute) { 
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote' : ['',Validators.required],
             'VisitId' :['',Validators.required],
-        })
+        });
+
+        this.PatientAppointmentForm = this.formBuilder.group({
+            'PatientType':['pervious',Validators.required],
+            'ConsultantId': ['', Validators.required],
+            'visitNatureId': ['', Validators.required],
+            'PatientId': ['', Validators.required],
+            'TentativeTime': ['', Validators.required]
+        });
+
     }
 
    async ngOnInit() {
@@ -49,8 +62,20 @@ export class VisitsComponent implements OnInit {
          });
         
           console.log(this.id);
+
+        this.vist = await this.PatientServiceobj.getVisitId(this.id);
+          console.log(this.vist)
     
         this.vistid = await this.PatientServiceobj.visitid.visitID;
+
+        await this.PatientServiceobj.getConsultant();
+        this.consultant = this.PatientServiceobj.consultant;
+        console.log(this.consultant);
+
+        await this.PatientServiceobj.GetVisitNatures();
+        this.visitNatures = this.PatientServiceobj.visitNatures;
+        console.log(this.visitNatures);
+
      }
 
     onSubmit()  {
@@ -62,36 +87,28 @@ export class VisitsComponent implements OnInit {
 
     }
 
-  async  onEndVisit()
-    {
-// this._location.back();
-//let x = await this.PatientServiceobj.endVisit(this.vistid, value);
-// console.log(x);
-//   this.router.navigate(['/hims/patient/profile/'+this.id]);
-// last
-// "await this.PatientServiceobj.endVisit(this.vistid , value);
-//  this.router.navigate(['/hims/patient/visits/'+this.id]);
-
-      let x = await this.PatientServiceobj.getVisitId(this.id);
-      await this.PatientServiceobj.endVisit(this.vistid , x);
-      console.log(x)
+ async onEndVisit(){
+        let x = await this.PatientServiceobj.getVisitId(this.vistid);
+        await this.PatientServiceobj.endVisit(this.vistid , x);
+        console.log(x)
+        this.router.navigate(['/hims/patient/profile/'+this.id]);
         console.log(this.id);
     }
-
+//add visitnote
     async onsubmit(value){
         let y = await this.PatientServiceobj.visitid.visitID;
- 
-        this.PatientVisitNoteForm.value.VisitId = y
+        this.PatientVisitNoteForm.value.VisitId = y;
+        let x=  await this.PatientServiceobj.addVisitNote(value);
+        console.log(x)
+    }
 
-       let x=  await this.PatientServiceobj.addVisitNote(value);
-       console.log(x)
+    async addappointment(value){
+   this.PatientAppointmentForm.value.PatientId = this.id;
+   let x = await this.PatientServiceobj.addAppointment(value);
+   console.log(value)
+    console.log(x)
     }
 
 
-
-    // backClicked() {
-    //     this._location.back();
-    // }
-    
-
+ 
 }

@@ -6,7 +6,7 @@ import { Patient } from '../../../models/patient';
 
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-//import {Location} from '@angular/common';
+import {Location} from '@angular/common';
 
 
 
@@ -20,23 +20,24 @@ export class PatientvitalsComponent implements OnInit {
 
     public PatientVitaLForm: FormGroup;
     public currentPatient: any;
-    public visitid : any;
+    public visitid: any;
     id: number;
-    Patient : Patient;   
-
-    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder,  private router: Router,  private route : ActivatedRoute) {
+    Patient: Patient;
+    patientId: number;
+    visitId: number;
+    constructor(private Location : Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
-                Height: ['', Validators.required],
-                Weight: ['', Validators.required],
-               // CalculatedBMI: ['', Validators.required],
-                Temperature: ['', Validators.required],
-                Pulse: ['', Validators.required],
-                RespiratoryRate: ['', Validators.required],
-                BloodPressure: ['', Validators.required],
-                BloodOxygenSaturation: ['', Validators.required],
-                VisitId : ['', Validators.required]
-            });
- 
+            Height: ['', Validators.required],
+            Weight: ['', Validators.required],
+            // CalculatedBMI: ['', Validators.required],
+            Temperature: ['', Validators.required],
+            Pulse: ['', Validators.required],
+            RespiratoryRate: ['', Validators.required],
+            BloodPressure: ['', Validators.required],
+            BloodOxygenSaturation: ['', Validators.required],
+            VisitId: ['', Validators.required]
+        });
+
     }
 
     ngOnInit() {
@@ -47,18 +48,19 @@ export class PatientvitalsComponent implements OnInit {
         this.visitid = this.PatientServiceobj.visitid;
         console.log(this.visitid);
 
-            
-    this.route.params.subscribe(params => {
 
-        this.id = +params['id'];
- 
-       let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient=> this.Patient = Patient );
-  console.log(x);
-     });
+        this.route.params.subscribe(params => {
+
+            this.id = +params['id'];
+
+            let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+                this.Patient = Patient;});
+            console.log(x);
+        });
 
     }
-    
-   async  onsubmit(value){
+
+    async  onsubmit(value) {
 
         this.visitid = this.PatientServiceobj.visitid.visitID;
         // console.log(this.visitid.value);
@@ -67,18 +69,18 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm.value.VisitId = this.visitid;
 
         let x = await this.PatientServiceobj.AddPatientVital(value);
-        this.router.navigate(['/hims/patient/visits/'+this.visitid]);
+         this.router.navigate(['/hims/patient/visits/' + this.patientId]);
         console.log(x);
 
         console.log(this.PatientVitaLForm.value);
-        // this.backClicked()
-         return x;
-   
+         this.backClicked()
+        return x;
+
     }
 
-    // backClicked() {
-    //     this._location.back();
-    // }
-    
+    backClicked() {
+        this.Location.back();
+    }
+
 
 }

@@ -125,7 +125,7 @@ export class SystemAdministrationService {
     public data: any;
 
     private readonly API_URL = "http://gbsc-erp.azurewebsites.net/systemadmin/api/setup";
-    private baseUrl: string = "http://localhost:50908/api";
+   // private baseUrl: string = "http://localhost:50908/api";
     public modules: any = [];
 
 

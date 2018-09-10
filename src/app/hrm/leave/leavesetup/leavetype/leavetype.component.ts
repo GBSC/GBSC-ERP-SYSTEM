@@ -18,21 +18,20 @@ export class LeavetypeComponent implements OnInit {
       
   }
 
-  async addleavetype(ltype) {
-      console.log(ltype.data);
-      this.leavesetupservice.addleavetype(ltype.data);
+  async addleavetype(value) {
+      console.log(value.data);
+      this.leavesetupservice.addleavetype(value.data);
     }
     
-    async updateleavetype(levtype) {
-      console.log(levtype); 
-      this.leavesetupservice.updateleavetype(levtype); 
-      console.log('in updated year')
+    async updateleavetype(value) {
+      console.log(value); 
+      this.leavesetupservice.updateleavetype(value);  
    
     }
 
-    async deleteleavetype(lvtype) {
-      console.log(lvtype); 
-      this.leavesetupservice.Deleteleavetype(lvtype.key); 
+    async deleteleavetype(value) {
+      console.log(value); 
+      this.leavesetupservice.Deleteleavetype(value.key); 
    
    
     }

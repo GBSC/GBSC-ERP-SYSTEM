@@ -18,21 +18,19 @@ export class LeaveeligibilityComponent implements OnInit {
       
   }
 
-  async addleaveeligibility(leligibility) {
-      console.log(leligibility.data);
-      this.leavesetupservice.addleaveeligibility(leligibility.data);
+  async addleaveeligibility(value) { 
+      this.leavesetupservice.addleaveeligibility(value.data);
     }
     
-    async updateleaveeligibility(leveligibility) {
-      console.log(leveligibility); 
-      this.leavesetupservice.updateleaveeligibility(leveligibility); 
-      console.log('in updated year')
+    async updateleaveeligibility(value) {
+      console.log(value); 
+      this.leavesetupservice.updateleaveeligibility(value);  
    
     }
 
-    async deleteleaveeligibility(lveligibility) {
-      console.log(lveligibility); 
-      this.leavesetupservice.Deleteleaveeligibility(lveligibility.key); 
+    async deleteleaveeligibility(value) {
+      console.log(value); 
+      this.leavesetupservice.Deleteleaveeligibility(value.key); 
    
    
     }

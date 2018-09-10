@@ -38,9 +38,9 @@ p{
 }
 
 .main-header{
-    height: 60px;
+    height: 64px;
     width: 100%;
-    background: lightblue;
+    background: #003b77cc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,7 +99,7 @@ p{
 }
 
 .module{
-    width: 50%;
+    width: 70%;
     transition: 1s all ease-in-out;
 }
 
@@ -136,6 +136,7 @@ p{
 
 .feature input{
     margin-left: 50px;
+    margin-right: 5px;
 }
 
 .feature div{
@@ -147,9 +148,9 @@ p{
 }
 
 .feature div p{
-    font-size: 10px;
+    font-size: 11px;
     font-style: italic;
-    color: lightgray;
+    color: #0057af;
     cursor: pointer;
 }
 

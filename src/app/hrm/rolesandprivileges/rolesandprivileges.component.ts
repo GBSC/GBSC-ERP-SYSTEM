@@ -6,7 +6,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { DxTreeViewModule, DxListModule, DxTemplateModule } from 'devextreme-angular';
 
-import { Product, SystemAdministrationService } from '../services/systemadministration.services';
+import { SystemAdministrationService } from '../services/systemadministration.services';
 
 
 @Pipe({ name: 'title' })
@@ -28,8 +28,9 @@ export class TitlePipe implements PipeTransform {
 export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
-    public systemAdmin: any;
 
+    constructor(private systemAdmin: SystemAdministrationService) { }
+    
     createNewRole() {
         this.showPopup = true;
         console.log(this.showPopup);

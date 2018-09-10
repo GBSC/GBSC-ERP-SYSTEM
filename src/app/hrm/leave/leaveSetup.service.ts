@@ -259,7 +259,7 @@ export class LeaveSetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaveeligibility = await this.httpClient.get(`${this.baseUrl}/GetLeaveEligiblities`).toPromise();
+        this.leaveeligibility = await this.httpClient.get(`${this.baseUrl}/GetLeaveEligibilities`).toPromise();
         console.log(this.leaveeligibility);
         return this.leaveeligibility;
     }

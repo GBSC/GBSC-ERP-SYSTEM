@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 
 @Component({
-    selector: 'app-qualification',
+    selector: 'app-employeequalification',
     templateUrl: './qualification.component.html',
     styleUrls: ['./qualification.component.css']
 })

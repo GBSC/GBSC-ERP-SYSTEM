@@ -54,13 +54,15 @@ import { DepartmentComponent } from '../hrm/department/department.component';
 import { FeatureComponent } from '../hrm/feature/feature.component';
 import { ModuleComponent } from '../hrm/module/module.component';
 import { RoleComponent } from '../hrm/role/role.component';
-import { BankComponent } from './hrmsSetup/bank/bank.component';
+import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
 import { LeaveapprovalComponent } from './leave/leavesetup/leaveapproval/leaveapproval.component';
 import { LeaverequestComponent } from './leave/leaverequest/leaverequest.component';
 import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
 import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
+import { EmployeeQualificationComponent } from './employee/qualification/qualification.component';
+import { BankComponent } from './hrmsSetup/bank/bank.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -122,7 +124,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         { path: 'proratematrix', component: ProratematrixComponent }
                     ]
                 },
-               {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
+            {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
                {path: 'leaverequest', component: LeaverequestComponent},
  
             ]},
@@ -134,6 +136,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'registration', component: EmployeeHomeComponent },
                     { path: 'basicinformation', component: BasicinformationComponent },
                     { path: 'employees', component: EmployeesComponent },
+                    { path: 'employeequalification', component: EmployeeQualificationComponent },
                     { path: 'employeedetail', component: EmployeedetailComponent }
                 ],
                 
@@ -165,23 +168,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             ]},
             {path: 'attendancerequest', component: AttendancerequestComponent},
         ]},
-                    {
-                        path: 'attendancesetup', component: RootComponent,
-                        children: [
 
-                            { path: 'assignroster', component: AssignrosterComponent },
-                            { path: 'attendanceflag', component: AttendanceflagComponent },
-                            { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
-                            { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
-                            { path: 'flagcategory', component: FlagcategoryComponent },
-                            { path: 'flageffecttype', component: FlageffecttypeComponent },
-                            { path: 'flagtype', component: FlagtypeComponent },
-                            { path: 'flagvalue', component: FlagvalueComponent },
-                            { path: 'roster', component: RosterComponent }
-                        ]
-                    },
-                    { path: 'employeeleaveopening', component: EmployeeleaveopeningComponent },
-                    { path: 'uploadleaverequest', component: UploadleaverequestComponent }
                 ]
             }
         ])

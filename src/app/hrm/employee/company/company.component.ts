@@ -26,17 +26,11 @@ export class EmployeeCompanyComponent implements OnInit {
         await this.SetupServiceobj.getAllManagementlevels();
         let ml = this.SetupServiceobj.managementlevel;
 
-        await this.SetupServiceobj.getAllgrades();
-        let grd = this.SetupServiceobj.grades;
-
         await this.SetupServiceobj.getAllDesignations();
         let cdsg = this.SetupServiceobj.designation;
 
         await this.SetupServiceobj.getAllManagementlevels();
         let mnglevel = this.SetupServiceobj.managementlevel;
-
-        await this.SetupServiceobj.getAllShifts();
-        let cshft = this.SetupServiceobj.shift;
 
         await this.SetupServiceobj.getAllGroups();
         let grp = this.SetupServiceobj.group;

@@ -32,13 +32,13 @@ export class EmployeeService {
             FirstName: [''],
             LastName: [''],
             FatherName: [''],
-            Email: ['Bilal55@yahoo.com'],
-            Cnic: ['4240165259536255'],
-            CnicExpiry: ['11-02-2020'],
-            PhoneNumber: ['0345217865'],
-            HomeNumber: ['021364571665'],
-            DOB: ['11-02-1998'],
-            POB: ['TownShip'],
+            Email: [''],
+            Cnic: [''],
+            CnicExpiry: [''],
+            PhoneNumber: [''],
+            HomeNumber: [''],
+            DOB: [''],
+            POB: [''],
             BloodGroup: [''],
             MaritalStatus: [''],
             Gender: [''],
@@ -79,7 +79,7 @@ export class EmployeeService {
             Timeto: ['12-01-2017'],
             Grade: [''],
             Courses: [''],
-            Description: ['Well'],
+            Description: [''],
             SkillLevel: []
         });
 
@@ -90,43 +90,43 @@ export class EmployeeService {
         this.DependantForm = this.fb.group({
 
             Name: [''],
-            Phone: ['031572655'],
-            Email: ['saad3377@yahoo.com'],
-            Address: ['Gulshan'],
-            Country: ['Pakistan'],
-            City: ['Karachi'],
-            State: ['Sindh'],
-            Zip: ['3323'],
-            HomePhone: ['0254-2105523'],
-            PermanentAddress: ['HNo# 54, Rawalpindi, Pakistan']
+            Phone: [''],
+            Email: [''],
+            Address: [''],
+            Country: [''],
+            City: [''],
+            State: [''],
+            Zip: [''],
+            HomePhone: [''],
+            PermanentAddress: ['']
 
         });
 
         this.SocialForm = this.fb.group({
-            Fb: ['http://ww.facebook.com/sheryar'],
-            Twitter: ['http://ww.twiter.com/sheryar'],
-            Instagram: ['http://ww.insta.com/sheryar'],
-            Linkedin: ['http://ww.linkedin.com/sheryar'],
-            GooglePlus: ['http://ww.gplus.com/sheryar'],
-            Youtube: ['http://ww.youtube.com/sheryar'],
-            Blog: ['http://ww.blog.com/sheryar'],
-            Pinterest: ['http://ww.facebook.com/sheryar']
+            Fb: [''],
+            Twitter: [''],
+            Instagram: [''],
+            Linkedin: [''],
+            GooglePlus: [''],
+            Youtube: [''],
+            Blog: [''],
+            Pinterest: ['']
         });
 
         this.experienceForm = this.fb.group({
-            CompanyName: ['CCD'],
-            Designation: ['Marketing'],
-            Timefrom: ['12-01-2017'],
-            Timeto: ['12-01-2018'],
-            Description: ['Owxm']
+            CompanyName: [''],
+            Designation: [''],
+            Timefrom: [''],
+            Timeto: [''],
+            Description: ['']
         });
 
         this.EmpbankForm = this.fb.group({
-            AccountTitle: ['Khalid'],
-            AccountNumber: ['125458655-6'],
+            AccountTitle: [''],
+            AccountNumber: [''],
             BankTitle: [''],
-            BankCode: ['05412'],
-            BankBranch: ['Bahria Town']
+            BankCode: [''],
+            BankBranch: ['']
         });
 
         this.documentForm = this.fb.group({

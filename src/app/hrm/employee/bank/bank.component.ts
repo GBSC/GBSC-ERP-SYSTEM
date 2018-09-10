@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormGroup,FormBuilder,Validators } from '@angular/forms'; 
 import { EmployeeService } from '../services/employee.service';
 
 @Component({
@@ -15,7 +13,7 @@ export class EmployeeBankComponent implements OnInit {
 
     public EmpbankForm: FormGroup;
     // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, private SetupServiceobj: SetupService) { }
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService) { }
 
     async ngOnInit() {
 

@@ -202,7 +202,7 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         EmergencycontactComponent,
         SocialComponent,
         DocumentComponent,
-        QualificationComponent,
+        EmployeeQualificationComponent,
         CpasswordComponent,
         EmployeeBankComponent,
         ExperienceComponent,

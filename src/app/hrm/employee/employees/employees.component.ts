@@ -33,11 +33,11 @@ export class EmployeesComponent implements OnInit {
     }
 
     onadd() {
-        this.router.navigate(['employee/registration'])
+        this.router.navigate(['hrm/employee/registration'])
     }
 
     onupdate() {
 
-        this.router.navigate(['employee/registration'])
+        this.router.navigate(['hrm/employee/registration'])
     }
 }

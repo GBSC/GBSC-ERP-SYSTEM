@@ -12,8 +12,8 @@ export class LeaveSetupService {
     public leaveemppolicy;
     public leavetype;
     public leaveapprover;
-   // private baseUrl: string = "http://localhost:58090/api/HrSetup";
-    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
+    private baseUrl: string = "http://localhost:58090/api/Leavesetup";
+   // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
     public proratematrix;
     public decimalroundingmatrix;
     public leavesubtype;

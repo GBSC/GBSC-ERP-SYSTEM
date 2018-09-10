@@ -63,7 +63,7 @@ import { AttendanceruleComponent } from './attendance/attendanceadmin/attendance
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
- 
+
 
     {
         path: 'hrm', component: RootComponent,
@@ -165,6 +165,23 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             ]},
             {path: 'attendancerequest', component: AttendancerequestComponent},
         ]},
-        ]
-    }
-])
+                    {
+                        path: 'attendancesetup', component: RootComponent,
+                        children: [
+
+                            { path: 'assignroster', component: AssignrosterComponent },
+                            { path: 'attendanceflag', component: AttendanceflagComponent },
+                            { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
+                            { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
+                            { path: 'flagcategory', component: FlagcategoryComponent },
+                            { path: 'flageffecttype', component: FlageffecttypeComponent },
+                            { path: 'flagtype', component: FlagtypeComponent },
+                            { path: 'flagvalue', component: FlagvalueComponent },
+                            { path: 'roster', component: RosterComponent }
+                        ]
+                    },
+                    { path: 'employeeleaveopening', component: EmployeeleaveopeningComponent },
+                    { path: 'uploadleaverequest', component: UploadleaverequestComponent }
+                ]
+            }
+        ])

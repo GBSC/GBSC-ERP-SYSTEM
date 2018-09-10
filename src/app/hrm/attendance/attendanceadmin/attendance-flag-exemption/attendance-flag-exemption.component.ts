@@ -18,16 +18,16 @@ export class AttendanceFlagExemptionComponent implements OnInit {
       
   }
 
-  async addattendanceflagExemption(value) { 
+  async addflagExemption(value) { 
       this.attendanceservice.addattendanceflagexemption(value.data);
     }
     
-    async updateattendanceflagExemption(value) {
+    async updateflagExemption(value) {
       console.log(value); 
       this.attendanceservice.updateattendanceflagexemption(value);   
     }
 
-    async deleteattendanceflagExemption(value) { 
+    async deleteflagExemption(value) { 
       this.attendanceservice.Deleteattendanceflagexemption(value.key);
     }
 

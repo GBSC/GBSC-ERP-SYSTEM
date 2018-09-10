@@ -15,10 +15,7 @@ import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
 import { HrmsService } from './hrm/hrmsSetup/services/hrms.service'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
-import { HttpClientModule } from '@angular/common/http';  
- import { PayrollService } from './payroll/services/payroll.service';
-
-
+import { HttpClientModule } from '@angular/common/http';   
 
 
 

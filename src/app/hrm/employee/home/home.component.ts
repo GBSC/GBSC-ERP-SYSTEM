@@ -99,7 +99,7 @@ export class EmployeeHomeComponent implements OnInit {
         switch (this.tabItem.name) {
             case 'Basic Information':
                 await this.employeeService.addEmployee();
-                this.router.navigate(['hrm/employees']);
+                this.router.navigate(['employees']);
                 console.log(this.activatedRoute.url);
                 break;
             case 'Profile Picture':

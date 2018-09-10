@@ -18,16 +18,16 @@ export class AttendancerequestapproverComponent implements OnInit {
       
   }
 
-  async addattendanceRequestapprover(value) { 
+  async addRequestapprover(value) { 
       this.attendancesetupservice.addattendanceRequestapprover(value.data);
     }
     
-    async updateattendanceRequestapprover(value) {
+    async updateRequestapprover(value) {
       console.log(value); 
       this.attendancesetupservice.updateattendanceRequestapprover(value);   
     }
 
-    async deleteattendanceRequestapprover(value) { 
+    async deleteRequestapprover(value) { 
       this.attendancesetupservice.DeleteattendanceRequestapprover(value.key);
     }
 

@@ -14,9 +14,7 @@ import { MaritalStatusComponent } from './hrmsSetup/maritalstatus/maritalstatus.
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
-import { BranchComponent } from '../setup/branch/branch.component';
 import { EmployeeTypes } from './hrmsSetup/employeetype/employeetype.component';
-import { DepartmentComponent } from '../setup/department/department.component';
 import { GenderComponent } from './hrmsSetup/genders/genders.component';
 import { RelationComponent } from './hrmsSetup/relations/relations.component';
 import { BloodGroupComponent } from './hrmsSetup/bloodgroups/bloodgroups.component';
@@ -63,10 +61,12 @@ import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { ExperienceComponent } from './employee/experience/experience.component';
 import { EmployeeService } from './employee/services/employee.service';
 import { EmployeesComponent } from './employee/employees/employees.component';
-import { CompanyComponent } from './employee/company/company.component';
+import { EmployeeCompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
+ 
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
+
 import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
 import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
@@ -87,6 +87,18 @@ import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagv
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
 
+import { BranchComponent } from '../hrm/branch/branch.component';
+import { DepartmentComponent } from '../hrm/department/department.component';
+import { CompanyComponent } from '../hrm/company/company.component';
+import { FeatureComponent } from '../hrm/feature/feature.component';
+import { ModuleComponent } from '../hrm/module/module.component';
+import { RoleComponent } from '../hrm/role/role.component';
+import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
+import { SystemAdministrationService } from '../hrm/services/systemadministration.services';
+import { AttendanceService } from './attendance/services/attendance.service';
+import { AttendancesetupService } from './attendance/services/attendancesetup.service';
+import { HrmsService } from './hrmsSetup/services/hrms.service';
+import { SetupService } from './hrmsSetup/services/setup.service';
 
 
 @NgModule({
@@ -103,8 +115,17 @@ import { ShiftComponent } from './attendance/attendancesetup/shift/shift.compone
         HeaderComponent,
         MenuComponent,
         RootComponent,
+
+        BranchComponent,
+       DepartmentComponent,
+        CompanyComponent,
+        FeatureComponent,
+        ModuleComponent,
+        RoleComponent,
+        RolesandprivilegesComponent,
+
         HrmSetupHomeComponent,
-        DesignationComponent,
+        DesignationComponent, 
         ManagementLevelsComponent, 
         GazettedHolidaysComponent,
         CostCenterComponent,
@@ -116,10 +137,8 @@ import { ShiftComponent } from './attendance/attendancesetup/shift/shift.compone
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent,
-        DepartmentComponent,
-        EmployeeTypes,
-        BranchComponent,
+        CityComponent, 
+        EmployeeTypes, 
         FunctionComponent, 
         QualificationComponent,
         EmployeeStatuscomponent,
@@ -185,15 +204,15 @@ import { ShiftComponent } from './attendance/attendancesetup/shift/shift.compone
         DocumentComponent,
         QualificationComponent,
         CpasswordComponent,
-        BankComponent,
+        EmployeeBankComponent,
         ExperienceComponent,
         EmployeesComponent, 
-        CompanyComponent, 
+        EmployeeCompanyComponent, 
         EmployeedetailComponent
 
   ],
   exports: [],
-  providers: [LeaveService, LeaveSetupService,EmployeeService]
+  providers: [LeaveService,SetupService, AttendanceService,AttendancesetupService,HrmsService, LeaveSetupService,EmployeeService,SystemAdministrationService]
   
 })
 export class HrmModule { }

@@ -1,0 +1,120 @@
+<div class="m-content">
+    <div class="row">
+       <div class="col-xl-12">
+         <div class="m-portlet">
+           <div class="m-portlet__head">
+             <div class="m-portlet__head-caption">
+               <div class="m-portlet__head-title">
+                 <h3 class="m-portlet__head-text">Role</h3>
+               </div>
+             </div>
+           </div>
+           <div class="m-portlet__body">
+             <div class="m-section">
+               <div class="m-section__content">
+                 <dx-data-grid id="gridContainer" [dataSource]="SystemAdministrationServiceobj.roles"   (onRowInserted)="addRole($event)"   (onRowUpdated)="updateRole($event)" (onRowRemoved)="deletRole($event)">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
+                  </dxo-editing>
+                   <dxo-filter-row [visible]="true"></dxo-filter-row>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>
+                   <dxo-paging [pageSize]="5"></dxo-paging>
+                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                   <dxi-column dataField="name" caption="Name"></dxi-column>
+                   <dxi-column
+                   dataField="departmentId"
+                   caption="Departments"
+                   [width]="125">         
+                   <dxo-lookup
+                       [dataSource]="role"
+                       displayExpr="name"
+                       valueExpr="departmentId">
+                   </dxo-lookup>
+               </dxi-column>
+                 </dx-data-grid>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   
+   
+   
+   
+   
+   
+   </div>
+
+
+
+   <div class="m-content">
+      <div class="row">
+         <div class="col-xl-12">
+           <div class="m-portlet">
+             <div class="m-portlet__head">
+               <div class="m-portlet__head-caption">
+                 <div class="m-portlet__head-title">
+                   <h3 class="m-portlet__head-text">Role</h3>
+                 </div>
+               </div>
+             </div>
+             <div class="m-portlet__body">
+               <div class="m-section">
+                 <div class="m-section__content">
+                    <div class="form">
+                        <div class="dx-fieldset">
+                          <div class="form-group m-form__group row">
+                            <div class="form-group col-lg-4">
+                                <div class="dx-field">
+                                    <div class="dx-field-label">Role Name</div>
+                                    <div class="dx-field-value">
+                                        <dx-text-box dataField="Name"></dx-text-box>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <dx-tree-view id="selection-treeview"  [items]="featuremodule"  [width]="320"  showCheckBoxesMode="normal" >
+                    
+                                  </dx-tree-view>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                 <table>
+                                   <thead>
+                                     <tr>
+                                       <td>abc</td>
+                                     </tr>
+                                   </thead>
+                                   <tbody>
+                                     <tr *ngFor="let data of SystemAdministrationServiceobj.data">
+                                       <td><label class="m-checkbox">
+                                          <input type="checkbox" value="{{data.name}}">
+                                          {{data.name}}
+                                          <span></span>
+                                        </label></td>
+                                        <td><label class="m-checkbox">
+                                            <input type="checkbox" value="{{data.features.code}}">
+                                            {{data.features.code}}
+                                            <span></span>
+                                          </label></td>
+                                       
+                                      
+                                          <td></td>
+                                       
+                                      </tr>
+                                   </tbody>
+                                 </table>
+                            </div>
+                  
+                        </div>
+                     </div>
+                    </div>
+                  
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+    
+     </div>

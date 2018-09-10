@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SuperadminserviceService } from '../superadminservice.service';
-import { Company } from '../../setup/model/company';
+
 
 @Component({
   selector: 'app-setupcompany',

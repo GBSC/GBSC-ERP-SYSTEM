@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from "../auth/_guards/auth.guard";
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
-import { SetupModule } from '../setup/setup.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
@@ -58,12 +57,11 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule,
-        SetupModule,
+        InventorysystemModule, 
         SuperadminModule,
         SystemAdministrationModule,
+        DashboardModule,
         HrmModule,
-        DashboardModule
     ],
     exports: [
         RouterModule,

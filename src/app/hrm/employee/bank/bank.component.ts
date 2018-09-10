@@ -6,7 +6,7 @@ import { Validators } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 
 @Component({
-    selector: 'app-bank',
+    selector: 'app-employeebank',
     templateUrl: './bank.component.html',
     styleUrls: ['./bank.component.css']
 })

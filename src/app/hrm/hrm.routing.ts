@@ -22,8 +22,8 @@ import { GradesComponent } from './hrmsSetup/grade/grade.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
-import { ShiftComponent } from './hrmsSetup/shift/shift.component';
-import { BankComponent } from './hrmsSetup/bank/bank.component';
+import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
+//import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
 import { ManagementLevelsComponent } from './hrmsSetup/managementlevels/managementlevels.component';
@@ -47,28 +47,103 @@ import { FlageffecttypeComponent } from './attendance/attendancesetup/flageffect
 import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtype.component';
 import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
+import { BranchComponent } from '../hrm/branch/branch.component';
+import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
+import { CompanyComponent } from '../hrm/company/company.component';
+import { DepartmentComponent } from '../hrm/department/department.component';
+import { FeatureComponent } from '../hrm/feature/feature.component';
+import { ModuleComponent } from '../hrm/module/module.component';
+import { RoleComponent } from '../hrm/role/role.component';
+import { BankComponent } from './hrmsSetup/bank/bank.component';
+import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
+import { LeaveapprovalComponent } from './leave/leavesetup/leaveapproval/leaveapproval.component';
+import { LeaverequestComponent } from './leave/leaverequest/leaverequest.component';
+import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
+import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
+import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
  
 
     {
-        path: 'hrm',
+        path: 'hrm', component: RootComponent,
         children: [
+
+            { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
+            { path: 'branch', component: BranchComponent },
+            { path: 'company', component: CompanyComponent },
+            { path: 'department', component: DepartmentComponent },
+            { path: 'feature', component: FeatureComponent },
+            { path: 'module', component: ModuleComponent },
+            { path: 'role', component: RoleComponent },
+            
             {
-                path: 'employee', component: RootComponent,
+                path: 'setup',
+                children: [
+                    
+                    { path: 'home', component: HrmSetupHomeComponent },
+                    { path: 'employeetype', component: EmployeeTypes },
+                    { path: 'country', component: CountryComponent },
+                    { path: 'function', component: FunctionComponent }, 
+                    { path: 'qualification', component: QualificationComponent },
+                    { path: 'employeestatus', component: EmployeeStatuscomponent },
+                    { path: 'religion', component: ReligionComponent }, 
+                    { path: 'bank', component: BankComponent },
+                    { path: 'degree', component: DegreeComponent }, 
+                    { path: 'managementlevel', component: ManagementLevelsComponent },
+                    { path: 'designation', component: DesignationComponent },
+                    { path: 'groups', component: GroupComponent },
+                    { path: 'gazettedholidays', component: GazettedHolidaysComponent },
+                    { path: 'costcenters', component: CostCenterComponent },
+                    { path: 'languages', component: LanguageComponent },
+                    { path: 'skilllevel', component: SkillLevelsComponent }, 
+                    { path: 'relation', component: RelationComponent },
+                    { path: 'cities', component: CityComponent },
+                    { path: 'university', component: UniversityComponent }
+                ]
+            },
+            
+            {
+                path: 'leave',
+                children: [
+             { path: 'leavesetup',
+                    children: [
+ 
+                        { path: 'leavepurpose', component: LeavepurposeComponent },
+                        { path: 'leaveyear', component: LeaveyearsetupComponent },
+                        { path: 'leavepolicy', component: LeavepolicyComponent },
+                        { path: 'leavetype', component: LeavetypeComponent }, 
+                        { path: 'leavedaytype', component: LeavedaytypeComponent },
+                        { path: 'leaveeligibility', component: LeaveeligibilityComponent },
+                        { path: 'leavesubtype', component: LeavesubtypeComponent },
+                        { path: 'leavetypebalance', component: LeavetypebalanceComponent },
+                        { path: 'leaveapproval', component: LeaveapprovalComponent },
+                        { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
+                        { path: 'proratematrix', component: ProratematrixComponent }
+                    ]
+                },
+               {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
+               {path: 'leaverequest', component: LeaverequestComponent},
+ 
+            ]},
+
+            { 
+                path: 'employee',
                 children: [
                     { path: '', component: EmployeesComponent },
                     { path: 'registration', component: EmployeeHomeComponent },
                     { path: 'basicinformation', component: BasicinformationComponent },
                     { path: 'employees', component: EmployeesComponent },
                     { path: 'employeedetail', component: EmployeedetailComponent }
-                ]
+                ],
+                
             },
+
 
             {
                 path: 'attendance',
                 children: [
-             { path: 'attendancesetup',  component: RootComponent,
+             { path: 'attendancesetup',
                     children: [
 
                         { path: 'assignroster', component: AssignrosterComponent },
@@ -79,68 +154,17 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         { path: 'flageffecttype', component: FlageffecttypeComponent },
                         { path: 'flagtype', component: FlagtypeComponent },
                         { path: 'flagvalue', component: FlagvalueComponent },
-                        { path: 'roster', component: RosterComponent }
+                        { path: 'roster', component: RosterComponent },
+                        { path: 'shift', component: ShiftComponent }
                     ]
                 },
-                {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
-                {path: 'uploadleaverequest', component: UploadleaverequestComponent}
-            ]},
-
-            {
-                path: 'leave',
+                { path: 'attendanceadmin',
                 children: [
-             { path: 'leavesetup',  component: RootComponent,
-                    children: [
-
-                        { path: 'leavepurpose', component: LeavepurposeComponent },
-                        { path: 'leaveyearsetup', component: LeaveyearsetupComponent },
-                        { path: 'leavepolicy', component: LeavepolicyComponent },
-                        { path: 'leavetype', component: LeavetypeComponent },
-                        //{ path: 'leaveapproval', component: LeaveapprovalComponent },
-                        { path: 'leavedaytype', component: LeavedaytypeComponent },
-                        { path: 'leaveeligibility', component: LeaveeligibilityComponent },
-                        { path: 'leavesubtype', component: LeavesubtypeComponent },
-                        { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
-                        { path: 'proratematrix', component: ProratematrixComponent }
-                    ]
-                },
-                {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
-                {path: 'uploadleaverequest', component: UploadleaverequestComponent}
+                {path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent},
+                {path: 'attendancerule', component: AttendanceruleComponent},
             ]},
-            {
-                path: 'hrmsSetup', component: RootComponent,
-                children: [
-
-                    { path: 'home', component: HrmSetupHomeComponent },
-                    { path: 'country', component: CountryComponent },
-                    { path: 'employeetype', component: EmployeeTypes },
-                    { path: 'function', component: FunctionComponent },
-                    //{ path: 'grade', component: GradesComponent },
-                    { path: 'qualification', component: QualificationComponent },
-                    { path: 'employeestatus', component: EmployeeStatuscomponent },
-                    { path: 'religion', component: ReligionComponent },
-                    //{ path: 'shift', component: ShiftComponent },
-                    { path: 'bank', component: BankComponent },
-                    { path: 'degree', component: DegreeComponent },
-                   // { path: 'accounttype', component: AccountTypeComponent },
-                    //{ path: 'roster', component: RosterComponent },
-                    { path: 'managementlevels', component: ManagementLevelsComponent },
-                    { path: 'designations', component: DesignationComponent },
-                    { path: 'groups', component: GroupComponent },
-                    { path: 'gazettedholidays', component: GazettedHolidaysComponent },
-                    { path: 'costcenters', component: CostCenterComponent },
-                    { path: 'languages', component: LanguageComponent },
-                    { path: 'skilllevels', component: SkillLevelsComponent },
-                    //{ path: 'leavetypes', component: LeaveTypeComponent },
-                    //{ path: 'grade', component: GradesComponent },
-                    //{ path: 'advancetypes', component: AdvanceTypeComponent },
-                    //{ path: 'allowancestypes', component: AllowancesTypeComponent },
-                    { path: 'relations', component: RelationComponent },
-                    { path: 'cities', component: CityComponent },
-                    { path: 'university', component: UniversityComponent }
-                ]
-            }
-
+            {path: 'attendancerequest', component: AttendancerequestComponent},
+        ]},
         ]
     }
 ])

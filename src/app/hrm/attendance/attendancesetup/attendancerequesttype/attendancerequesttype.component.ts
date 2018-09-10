@@ -18,16 +18,16 @@ export class AttendancerequesttypeComponent implements OnInit {
       
   }
 
-  async addattendanceRequesttype(value) { 
+  async addRequesttype(value) { 
       this.attendancesetupservice.addattendanceRequestType(value.data);
     }
     
-    async updateattendanceRequesttype(value) {
+    async updateRequesttype(value) {
       console.log(value); 
       this.attendancesetupservice.updateattendanceRequestType(value);   
     }
 
-    async deleteattendanceRequesttype(value) { 
+    async deleteRequesttype(value) { 
       this.attendancesetupservice.DeleteattendanceRequestType(value.key);
     }
 

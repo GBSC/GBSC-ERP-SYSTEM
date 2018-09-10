@@ -4,11 +4,11 @@ import { FormBuilder } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 
 @Component({
-    selector: 'app-company',
+    selector: 'app-employeecompany',
     templateUrl: './company.component.html',
     styleUrls: ['./company.component.css']
 })
-export class CompanyComponent implements OnInit {
+export class EmployeeCompanyComponent implements OnInit {
 
     @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
 

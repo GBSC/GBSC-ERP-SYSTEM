@@ -32,7 +32,7 @@ export class Patient {
     AuthorizedPerson: string;
     PrivateHospital: string;
     PrivatePatientCons: string;
-    display:string;
+    display: string;
     Document: Document;
     partner: Spouse;
     // Reference : Reference;

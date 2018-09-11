@@ -3,38 +3,38 @@ import { BioChemistryService } from '../services/bio-chemistry.service';
 import { referenceRange } from '../../../models/referenceRange';
 
 @Component({
-  selector: 'app-referencerange',
-  templateUrl: './referencerange.component.html',
-  styleUrls: ['./referencerange.component.scss']
+    selector: 'app-referencerange',
+    templateUrl: './referencerange.component.html',
+    styleUrls: ['./referencerange.component.scss']
 })
 export class ReferencerangeComponent implements OnInit {
 
-  public refrang: any;
+    public refrang: any;
 
-  constructor(private bioChemistryServie: BioChemistryService) {
+    constructor(private bioChemistryServie: BioChemistryService) {
 
-  }
+    }
 
-  async  ngOnInit() {
-    await this.bioChemistryServie.getReferenceRanges();
-    this.refrang = this.bioChemistryServie.referencerange;
-    console.log(this.refrang);
-  }
+    async  ngOnInit() {
+        await this.bioChemistryServie.getReferenceRanges();
+        this.refrang = this.bioChemistryServie.referencerange;
+        console.log(this.refrang);
+    }
 
-  async addReferenceRange(ref) {
-    console.log(ref.data);
-    console.log(ref.key);
-    let x = await this.bioChemistryServie.addReferenceRange(ref.data);
-    console.log(x);
-  }
+    async addReferenceRange(ref) {
+        console.log(ref.data);
+        console.log(ref.key);
+        let x = await this.bioChemistryServie.addReferenceRange(ref.data);
+        console.log(x);
+    }
 
-  async updateReferenceRange(value) {
-    
-      let refRange = new referenceRange();
-      refRange.referenceRangeId = value.key;
-      refRange = { ...refRange, ...value.data };
-      await this.bioChemistryServie.updateReferenceRange(refRange); 
-  }
+    async updateReferenceRange(value) {
+
+        let refRange = new referenceRange();
+        refRange.referenceRangeId = value.key;
+        refRange = { ...refRange, ...value.data };
+        await this.bioChemistryServie.updateReferenceRange(refRange);
+    }
 
 
 }

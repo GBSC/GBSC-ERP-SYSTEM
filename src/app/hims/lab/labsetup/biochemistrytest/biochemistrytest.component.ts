@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {BioChemistryService} from '../../../lab/services/bio-chemistry.service';
-import {BioChemistryTest} from '../../../../models/biochemistrytest'
+import { BioChemistryService } from '../../../lab/services/bio-chemistry.service';
+import { BioChemistryTest } from '../../../../models/biochemistrytest'
 
 @Component({
-  selector: 'app-biochemistrytest',
-  templateUrl: './biochemistrytest.component.html',
-  styleUrls: ['./biochemistrytest.component.scss']
+    selector: 'app-biochemistrytest',
+    templateUrl: './biochemistrytest.component.html',
+    styleUrls: ['./biochemistrytest.component.scss']
 })
 export class BiochemistrytestComponent implements OnInit {
 
-  private tests : BioChemistryTest;
+    private tests: BioChemistryTest;
 
-  constructor(private bioChemistryServie : BioChemistryService) { 
+    constructor(private bioChemistryServie: BioChemistryService) {
 
-  }
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.bioChemistryServie.getTests().subscribe(tests=> this.tests = tests);
+        this.bioChemistryServie.getTests().subscribe(tests => this.tests = tests);
 
-  }
+    }
 
-  addNewTest(test){
+    addNewTest(test) {
 
-    this.bioChemistryServie.addTest(test.data);
+        this.bioChemistryServie.addTest(test.data);
 
-  }
+    }
 
 }

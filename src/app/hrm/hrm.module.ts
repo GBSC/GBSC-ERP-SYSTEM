@@ -63,7 +63,7 @@ import { EmployeeService } from './employee/services/employee.service';
 import { EmployeesComponent } from './employee/employees/employees.component';
 import { EmployeeCompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
- 
+
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
 
@@ -102,22 +102,22 @@ import { SetupService } from './hrmsSetup/services/setup.service';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DevExtremeModule,
-    HttpClientModule,
-    routing
-  ],
-  declarations: [
-    FooterComponent,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DevExtremeModule,
+        HttpClientModule,
+        routing
+    ],
+    declarations: [
+        FooterComponent,
         HeaderComponent,
         MenuComponent,
         RootComponent,
 
         BranchComponent,
-       DepartmentComponent,
+        DepartmentComponent,
         CompanyComponent,
         FeatureComponent,
         ModuleComponent,
@@ -125,31 +125,31 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         RolesandprivilegesComponent,
 
         HrmSetupHomeComponent,
-        DesignationComponent, 
-        ManagementLevelsComponent, 
+        DesignationComponent,
+        ManagementLevelsComponent,
         GazettedHolidaysComponent,
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent, 
+        BloodGroupComponent,
         CountryComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent, 
-        EmployeeTypes, 
-        FunctionComponent, 
+        CityComponent,
+        EmployeeTypes,
+        FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
         MaritalStatusComponent,
-        ReligionComponent, 
+        ReligionComponent,
         BankComponent,
         CityComponent,
-        AccountTypeComponent, 
+        AccountTypeComponent,
         UniversityComponent,
 
-                
+
         /* HRM Attendance Components */
 
         AttendanceFlagExemptionComponent,
@@ -206,17 +206,17 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         CpasswordComponent,
         EmployeeBankComponent,
         ExperienceComponent,
-        EmployeesComponent, 
-        EmployeeCompanyComponent, 
+        EmployeesComponent,
+        EmployeeCompanyComponent,
         EmployeedetailComponent
 
-  ],
-  exports: [],
-  providers: [LeaveService,SetupService,
-     AttendanceService,
-    AttendancesetupService,HrmsService,
-     LeaveSetupService,EmployeeService,
-     SystemAdministrationService]
-  
+    ],
+    exports: [],
+    providers: [LeaveService, SetupService,
+        AttendanceService,
+        AttendancesetupService, HrmsService,
+        LeaveSetupService, EmployeeService,
+        SystemAdministrationService]
+
 })
 export class HrmModule { }

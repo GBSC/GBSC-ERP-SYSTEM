@@ -1,14 +1,14 @@
-export class BioChemistryTestDetail{
+export class BioChemistryTestDetail {
 
-    bioChemistryTestDetailId : number;
+    bioChemistryTestDetailId: number;
 
-    logicalOperator : string;
+    logicalOperator: string;
 
-    result : string;
+    result: string;
 
-    isRecheck : boolean;
+    isRecheck: boolean;
 
-    remarks : string;
+    remarks: string;
 
-    testUnitId : number;
+    testUnitId: number;
 }

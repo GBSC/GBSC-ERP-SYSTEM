@@ -11,48 +11,32 @@ import { AuthModule } from "./auth/auth.module";
 import { SetupService } from './hrm/hrmsSetup/services/setup.service';
 import { EmployeeService } from './hrm/employee/services/employee.service';
 import { LeaveService } from './hrm/leave/leave.service';
-<<<<<<< HEAD
-import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
-import { PayrollService } from './payroll/services/payroll.service';
- 
-=======
 import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
-import { HrmsService } from './hrm/hrmsSetup/services/hrms.service'; 
+import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
-import { HttpClientModule } from '@angular/common/http';   
->>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
     declarations: [
         ThemeComponent,
-<<<<<<< HEAD
-        AppComponent,
- 
-
-=======
-        AppComponent   
->>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
+        AppComponent
     ],
     imports: [
         LayoutModule,
-        BrowserModule, 
+        BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         ThemeRoutingModule,
-<<<<<<< HEAD
-        AuthModule
-=======
         AuthModule,
         FormsModule,
         ReactiveFormsModule,
         DevExtremeModule,
         HttpClientModule
->>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
     ],
-    providers: [ScriptLoaderService, SetupService, EmployeeService,LeaveSetupService, LeaveService, HrmsService],
+    providers: [ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators,FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LeaveSetupService } from '../../leaveSetup.service';
 import { EmployeeService } from '../../../employee/services/employee.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,11 @@ import { SetupService } from '../../../hrmsSetup/services/setup.service';
     styleUrls: ['./leavepolicy.component.css']
 })
 export class LeavepolicyComponent implements OnInit {
-    public leavePolicyForm:FormGroup;
-    public groups: any = []; 
+    public leavePolicyForm: FormGroup;
+    public groups: any = [];
 
-    constructor(private fb: FormBuilder,public leavesetupservice:LeaveSetupService, 
-        public empservice:EmployeeService, public hrsetupservice:SetupService, public router: Router) { }
+    constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService,
+        public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {
         this.leavePolicyForm = this.fb.group({
@@ -56,22 +56,22 @@ export class LeavepolicyComponent implements OnInit {
             IsActive: ['', Validators],
             ApplicationLimit: ['', Validators],
             PrintOnPaySlip: ['', Validators]
-           
-          }); 
 
- 
-          await this.leavesetupservice.getAllleaveyear();
-          let leaveyear = this.leavesetupservice.leaveyear;
-          
-          await this.leavesetupservice.getAllleavetype();
-          let levetype = this.leavesetupservice.leavetype;
-          
-          await this.leavesetupservice.getAllleavedaytype();
-          let levedaytype = this.leavesetupservice.leavedaytype;
-        
-          await this.hrsetupservice.getAllGroups();
-          let groups = this.hrsetupservice.group;
-  
+        });
+
+
+        await this.leavesetupservice.getAllleaveyear();
+        let leaveyear = this.leavesetupservice.leaveyear;
+
+        await this.leavesetupservice.getAllleavetype();
+        let levetype = this.leavesetupservice.leavetype;
+
+        await this.leavesetupservice.getAllleavedaytype();
+        let levedaytype = this.leavesetupservice.leavedaytype;
+
+        await this.hrsetupservice.getAllGroups();
+        let groups = this.hrsetupservice.group;
+
         // this.groups = [
         //     { checked: false, index: '01', name: 'N/A' },
         //     { checked: true, index: '02', name: 'N/A' },
@@ -81,7 +81,7 @@ export class LeavepolicyComponent implements OnInit {
         // ]
     }
 
-     async addleavepolicy(policy){
+    async addleavepolicy(policy) {
         console.log(policy);
         this.leavesetupservice.addleavepolicy(policy);
     }

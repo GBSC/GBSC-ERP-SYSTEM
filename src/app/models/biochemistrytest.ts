@@ -1,5 +1,5 @@
-export class BioChemistryTest{
-    
-    bioChemistryTestId : number;
-    description : string;
+export class BioChemistryTest {
+
+    bioChemistryTestId: number;
+    description: string;
 }

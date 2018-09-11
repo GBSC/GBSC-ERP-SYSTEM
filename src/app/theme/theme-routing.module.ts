@@ -4,16 +4,24 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from "../auth/_guards/auth.guard";
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
-import { SetupModule } from '../setup/setup.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
+<<<<<<< HEAD
 import { HrmModule } from '../hrm/hrmsSetup/hrm.module';
 import { EmployeeModule } from '../hrm/employee/employee.module';
 import { PayrollModule } from '../payroll/payroll.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
+=======
+import { DashboardModule } from '../dashboard/dashboard.module';
+import { HrmModule } from '../hrm/hrm.module';
+import { SuperadminModule } from '../superadmin/superadmin.module';
+ import { AccountModule } from '../account/account.module'; 
+
+
+>>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
 
 const routes: Routes = [
     {
@@ -57,15 +65,18 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule,
-        SetupModule,
+        InventorysystemModule, 
         SuperadminModule,
         SystemAdministrationModule,
+        DashboardModule,
         HrmModule,
+<<<<<<< HEAD
         EmployeeModule,
         PayrollModule,
         DashboardModule
         // AccountModule
+=======
+>>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
     ],
     exports: [
         RouterModule,

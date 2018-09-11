@@ -4,11 +4,11 @@ import { FormBuilder } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 
 @Component({
-    selector: 'app-company',
+    selector: 'app-employeecompany',
     templateUrl: './company.component.html',
     styleUrls: ['./company.component.css']
 })
-export class CompanyComponent implements OnInit {
+export class EmployeeCompanyComponent implements OnInit {
 
     @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
 
@@ -16,19 +16,6 @@ export class CompanyComponent implements OnInit {
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService) { }
 
     async ngOnInit() {
-
-        // this.EmpCompanyForm = this.fb.group({
-        //   Designaton: ['', Validators.required],
-        //   ManagementLevel: ['', Validators.required],
-        //   Function: ['', Validators.required],
-        //   Group: ['', Validators.required],
-        //   EmpStatus: ['', Validators.required],
-        //   EmpType: ['', Validators.required],
-        //   Shift: ['', Validators.required],
-        //   EmpGrade: ['', Validators.required] 
-        // }); 
-
-
         await this.SetupServiceobj.getAllFunctions();
         let fnc = this.SetupServiceobj.function;
 
@@ -39,17 +26,11 @@ export class CompanyComponent implements OnInit {
         await this.SetupServiceobj.getAllManagementlevels();
         let ml = this.SetupServiceobj.managementlevel;
 
-        await this.SetupServiceobj.getAllgrades();
-        let grd = this.SetupServiceobj.grades;
-
         await this.SetupServiceobj.getAllDesignations();
         let cdsg = this.SetupServiceobj.designation;
 
         await this.SetupServiceobj.getAllManagementlevels();
         let mnglevel = this.SetupServiceobj.managementlevel;
-
-        await this.SetupServiceobj.getAllShifts();
-        let cshft = this.SetupServiceobj.shift;
 
         await this.SetupServiceobj.getAllGroups();
         let grp = this.SetupServiceobj.group;

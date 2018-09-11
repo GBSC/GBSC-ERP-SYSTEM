@@ -1,38 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Country } from '../models/country,interface';
-import { Department } from '../models/department.interface';
-import { EmployeeType } from '../models/employeetype,interface';
-import { Branch } from '../models/branch,interface';
-import { Grade } from '../models/grade,interface';
-import { Function } from '../models/function,interface';
-import { QualificationComponent } from '../qualification/qualification.component';
-import { Qualification } from '../models/qualification,interface';
-import { EmployeeStatus } from '../models/EmployeeStatus,interface';
-import { MaritalStatus } from '../models/maritalstatus,interface';
-import { Religion } from '../models/religion,interface';
-import { Roster } from '../models/roster,interface';
-import { Shift } from '../models/shift,interface';
-import { componentRefresh } from '@angular/core/src/render3/instructions';
 
-import { Bank } from '../models/bank,interface';
-import { Degree } from '../models/degree,interface';
-import { Accounttype } from '../models/accounttype,interface';
-import { Designation } from '../models/designation,interface';
-import { ManagementLevel } from '../models/managementlevel,interface';
-import { Group } from '../models/group,interface';
-import { CostCenter } from '../models/costcenter,interface';
-import { Language } from '../models/language,interface';
-import { GazettedHolidays } from '../models/gazettedholidays,interface';
-import { SkillLevels } from '../models/skilllevel,interface';
-import { BloodGroup } from '../models/bloodgroup,interface';
-import { LeaveType } from '../models/leavetype,interface';
-import { AdvanceType } from '../models/advancetype,interface';
-import { AllowancesType } from '../models/allowancestype,interface';
-import { Relation } from '../models/relation,interface';
-import { City } from '../models/city,interface';
-import { Gender } from '../models/gender,interface';
 
 @Injectable()
 export class SetupService {
@@ -44,8 +13,8 @@ export class SetupService {
 
 
 
-    // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/systemadmin/api/hrsetup";
-    private baseUrl: string = "http://localhost:58090/api/HrSetup";
+     private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/HrSetup";
+   // private baseUrl: string = "http://localhost:58090/api/HrSetup";
     public country: any;
     public department: any;
     public bank: any;
@@ -610,46 +579,46 @@ export class SetupService {
 
     /** CRUD METHODS Shift */
 
-    async getAllShifts() {
+    // async getAllShifts() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.shift = await this.httpClient.get(`${this.baseUrl}/GetShifts`).toPromise();
-        return this.shift;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
-    }
+    //     this.shift = await this.httpClient.get(`${this.baseUrl}/GetShifts`).toPromise();
+    //     return this.shift;
+    //     // (error: HttpErrorResponse) => {
+    //     //   console.log(error.name + ' ' + error.message);
+    //     // });
+    // }
 
-    // DEMO ONLY, you can find working methods below
-    async addShift(data) {
+    // // DEMO ONLY, you can find working methods below
+    // async addShift(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.shift = await this.httpClient.post(`${this.baseUrl}/AddShift`, data, headers).toPromise();
-        return this.shift;
-    }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json' } }
+    //     this.shift = await this.httpClient.post(`${this.baseUrl}/AddShift`, data, headers).toPromise();
+    //     return this.shift;
+    // }
 
-    async updateShift(data) {
+    // async updateShift(data) {
 
-        let shft = await this.getdataToUpdate(data.key, 'GetShift');
-        shft = { ...shft, ...data.data }
-        console.log(shft);
+    //     let shft = await this.getdataToUpdate(data.key, 'GetShift');
+    //     shft = { ...shft, ...data.data }
+    //     console.log(shft);
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.httpClient.put(`${this.baseUrl}/UpdateShift`, shft, headers).toPromise();
-    }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json' } }
+    //     return await this.httpClient.put(`${this.baseUrl}/UpdateShift`, shft, headers).toPromise();
+    // }
 
-    async DeleteShift(id) {
+    // async DeleteShift(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.httpClient.delete(`${this.baseUrl}/DeleteShift/${id}`).toPromise();
+    //     return await this.httpClient.delete(`${this.baseUrl}/DeleteShift/${id}`).toPromise();
 
-    }
+    // }
 
     /** CRUD METHODS Degree */
 

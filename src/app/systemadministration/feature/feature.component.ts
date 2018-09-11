@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../systemadministration/service/systemadministration.services';
+import { SystemAdministrationService } from '../service/systemadministration.services';
 
 @Component({
     selector: 'app-feature',

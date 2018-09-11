@@ -212,7 +212,11 @@ import { SetupService } from './hrmsSetup/services/setup.service';
 
   ],
   exports: [],
-  providers: [LeaveService,SetupService, AttendanceService,AttendancesetupService,HrmsService, LeaveSetupService,EmployeeService,SystemAdministrationService]
+  providers: [LeaveService,SetupService,
+     AttendanceService,
+    AttendancesetupService,HrmsService,
+     LeaveSetupService,EmployeeService,
+     SystemAdministrationService]
   
 })
 export class HrmModule { }

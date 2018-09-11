@@ -16,16 +16,16 @@ export class DecimalroundingmatrixComponent implements OnInit {
       this.decimalrounding = this.leavesetupservice.decimalroundingmatrix
   }
 
-  async adddrmatrix(drmatrix) {
-      this.leavesetupservice.adddecimalroundingmatrix(drmatrix.data);
+  async adddrmatrix(value) {
+      this.leavesetupservice.addroundingmatrix(value.data);
     }
     
-    async updatedrmatrix(drmatrix) {
-       this.leavesetupservice.updatedecimalroundingmatrix(drmatrix); 
+    async updatedrmatrix(value) {
+       this.leavesetupservice.updatedecimalroundingmatrix(value); 
     }
 
-    async deletedrmatrix(drmatrix) {
-      this.leavesetupservice.Deletedecimalroundingmatrix(drmatrix.key); 
+    async deletedrmatrix(value) {
+      this.leavesetupservice.Deletedecimalroundingmatrix(value.key); 
    
    
     }

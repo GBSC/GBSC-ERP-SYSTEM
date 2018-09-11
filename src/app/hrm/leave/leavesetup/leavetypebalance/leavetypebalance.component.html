@@ -16,7 +16,7 @@
                [dataSource]="leavetypebalance"
                keyExpr="leaveTypeBalanceId"
                (onRowInserted)="addleavetypebalance($event)" 
-              (onRowUpdated)="updateleavetypebalance($event)"
+               (onRowUpdated)="updateleavetypebalance($event)"
                 (onRowRemoved)="deleteleavetypebalance($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Leave Type Balance" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
@@ -31,11 +31,11 @@
                 </dxo-pager>
                 <dxi-column dataField="balanceValue" caption="Balance Value"></dxi-column>
                 <dxi-column dataField="leaveTypeId" caption="Leave Type" [width]="450">
-                  <dxo-lookup [dataSource]="data.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                  <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
                   </dxo-lookup> 
                   </dxi-column>
                   <dxi-column dataField="userId" caption="Employee" [width]="450">
-                    <dxo-lookup [dataSource]="data.users" displayExpr="fullName" valueExpr="userId">
+                    <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
                     </dxo-lookup> 
               </dxi-column>
               </dx-data-grid>

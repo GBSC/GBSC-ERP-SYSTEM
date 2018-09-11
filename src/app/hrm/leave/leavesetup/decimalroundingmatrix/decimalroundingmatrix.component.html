@@ -13,7 +13,7 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="drmatrix"
+               [dataSource]="decimalrounding"
                keyExpr="decimalRoundingMatrixId"
                (onRowInserted)="adddrmatrix($event)" 
               (onRowUpdated)="updatedrmatrix($event)"
@@ -32,10 +32,10 @@
                 <dxi-column dataField="fromRange"></dxi-column> 
                 <dxi-column dataField="tillRange"></dxi-column> 
                 <dxi-column dataField="effect"></dxi-column> 
-                <dxi-column dataField="leavePolicyId" caption="Leave Policy" [width]="450">
+                <!-- <dxi-column dataField="leavePolicyId" caption="Leave Policy" [width]="450">
                   <dxo-lookup [dataSource]="data.leavepolicy" displayExpr="title" valueExpr="leavePolicyId">
                   </dxo-lookup> 
-                  </dxi-column>
+                  </dxi-column> -->
               </dx-data-grid>
             </div>
             </div>

@@ -63,6 +63,7 @@ import { AttendanceruleComponent } from './attendance/attendanceadmin/attendance
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
 import { EmployeeQualificationComponent } from './employee/qualification/qualification.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
+import { EmpleavepolicyComponent } from './leave/leaveadmin/employeeleavepolicy/empleavepolicy.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -124,7 +125,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         { path: 'proratematrix', component: ProratematrixComponent }
                     ]
                 },
-            {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
+                { path: 'leaveadmin',
+                children: [
+                    {path: 'leaveopening', component: EmployeeleaveopeningComponent},
+                {path: 'employeeleavepolicy', component: EmpleavepolicyComponent},
+            ]},
+           // {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
                {path: 'leaverequest', component: LeaverequestComponent},
  
             ]},

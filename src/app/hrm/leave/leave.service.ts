@@ -15,11 +15,11 @@ export class LeaveService {
     constructor(private httpClient: HttpClient) { }
 
     /** CRUD METHODS LEAVE OPENING */
-    async getAllemployeeleaveopening() {
+    async getleaveopening() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        this.leaveopening = await this.httpClient.get(`${this.baseUrl}/LeaveAdmin/GetLeaveOpenings`).toPromise();
+        this.leaveopening = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveOpenings`).toPromise();
         console.log(this.leaveopening);
         return this.leaveopening;
     }
@@ -34,7 +34,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newcountry = await this.httpClient.post(`${this.baseUrl}/LeaveAdmin/AddLeaveOpening`, data, headers).toPromise();
+        let newcountry = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data, headers).toPromise();
         console.log(newcountry);
 
     }
@@ -49,7 +49,7 @@ export class LeaveService {
         console.log(leaveopen);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/LeaveAdmin/UpdateLeaveOpening`, leaveopen).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, leaveopen).toPromise();
 
     }
     
@@ -58,7 +58,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/LeaveAdmin/DeleteLeaveOpening/${leaveOpeningId}`).toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveOpening/${leaveOpeningId}`).toPromise();
     }
 
 
@@ -67,7 +67,7 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaveopeningdetail = await this.httpClient.get(`${this.baseUrl}/LeaveAdmin/GetLeaveOpeningDetails`).toPromise();
+        this.leaveopeningdetail = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveOpeningDetails`).toPromise();
         //console.log(features);
         console.log(this.leaveopeningdetail);
         return this.leaveopeningdetail;
@@ -77,7 +77,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newleaveopndetail = await this.httpClient.post(`${this.baseUrl}/LeaveAdmin/AddLeaveOpeningDetail`, data, headers).toPromise();
+        let newleaveopndetail = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data, headers).toPromise();
         console.log(newleaveopndetail);
 
     }
@@ -92,7 +92,7 @@ export class LeaveService {
         console.log(levopendetail);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/LeaveAdmin/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
 
     }
     DeleteLeaveOpeningDetail
@@ -100,7 +100,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/LeaveAdmin/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
     }
 
     /** CRUD METHODS LEAVE REQUEST*/

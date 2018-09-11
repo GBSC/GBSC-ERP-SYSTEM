@@ -12,7 +12,7 @@ export class LeaveSetupService {
     public leaveemppolicy;
     public leavetype;
     public leaveapprover;
-    private baseUrl: string = "http://localhost:58090/api/Leavesetup";
+    private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
    // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
     public proratematrix;
     public decimalroundingmatrix;
@@ -449,12 +449,12 @@ export class LeaveSetupService {
 
 
     // DEMO ONLY, you can find working methods below
-    async adddecimalroundingmatrix(data) {
+    async addroundingmatrix(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newprmatrix = await this.httpClient.post(`${this.baseUrl}/AddDecimalRoundingMatrix`, data, headers).toPromise();
-        console.log(newprmatrix);
+        let newdecimalmatrix = await this.httpClient.post(`${this.baseUrl}/AddDecimalRoundingMatrix`, data, headers).toPromise();
+        console.log(newdecimalmatrix);
 
     }
 

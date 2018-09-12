@@ -20,26 +20,13 @@ export class RecentvisitsComponent implements OnInit {
 
     }
 
-    async   ngOnInit() {
-        
+    async ngOnInit() {
         this.rout.params.subscribe(params => {
-
-            this.id = +params['id'];
-     
-           let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(visits=> this.visits = visits );
-      console.log(x);
-         });
-
-        // await this.PatientServiceobj.GetPatientVisits(this.id);
-        // this.currentPatient = this.PatientServiceobj.currentPatientvisits;
-        // console.log(this.currentPatient);
-
-        // console.log(this.currentPatient.appointments);
-        // console.log(this.currentPatient.visits);
-
-        // console.log(this.currentPatient.visits.value);
-        // console.log(this.currentPatient.value.visits);
-    }
+        this.id = +params['id'];    
+        let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(visits=> this.visits = visits );
+        console.log(x);
+    }); 
+}
 
     async onclick(id) {
         this.router.navigate(['/hims/patient/visitdetail/' + id]);

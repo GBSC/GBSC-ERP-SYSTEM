@@ -12,4 +12,5 @@ export interface Appointment {
     Remarks: string;
     ConsultantId: number;
     PatientId: number;
+    VisitId : number;
 }

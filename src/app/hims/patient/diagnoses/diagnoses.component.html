@@ -16,6 +16,10 @@
       </div>
     </div>
     <div class="m-portlet__body">
-        None						
-            </div>
+        <ul *ngFor="let DIAGNOSES of patientVisitDiagnoses">
+          <li>
+            {{DIAGNOSES.name}} 
+           </li>
+        </ul>  
+    </div>
   </div>

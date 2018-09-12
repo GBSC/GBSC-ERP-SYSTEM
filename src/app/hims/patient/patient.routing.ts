@@ -27,7 +27,7 @@ import { ConsultantComponent } from '../patient/consultant/consultant.component'
 import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
-
+import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
 
 
 
@@ -63,6 +63,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'visitnature', component: VisitnatureComponent },
             { path: 'himssetuptest', component: HimsSetupTestComponent },
             { path: 'visitdetail/:id', component: VisitdetailComponent },
+            { path: 'diagnose', component: DiagnosisComponent },
         ]
     }
 ]);

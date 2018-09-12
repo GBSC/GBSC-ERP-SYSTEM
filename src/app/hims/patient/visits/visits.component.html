@@ -1,41 +1,4 @@
 <div class="m-content">
-    <!-- <div class="m-portlet m-portlet--mobile">
-        <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                        {{currentPatient?.firstName +' '+ currentPatient?.lastName}}
-                        <small class="pad_15">
-                            <a href="#" class="m-link">
-                                Edit
-                            </a>
-                            <a href="#" class="m-link pad_8">
-                                Contact Info
-                            </a>
-                        </small>
-                        <br>
-                        <small>
-                            Male 16 Year(s) (02-Sep-2001)
-                        </small>
-                    </h3>
-                </div>
-            </div>
-            <div class="m-portlet__head-tools">
-                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-                    <li class="nav-item m-tabs__item">
-                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab">
-                            Patient Id
-                        </a>
-                    </li>
-                    <li class="nav-item m-tabs__item">
-                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab">
-                            {{currentPatient?.mrn}}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
     <div class="row">
         <div class="col-lg-12">
             <div class="m-portlet">
@@ -83,10 +46,19 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#m_tabs_1_2">
-                                VisitNote
+                                Visit Note
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#m_tabs_1_4">
+                                Visit Test
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#m_tabs_1_5">
+                                Visit Diagnosis
+                            </a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active show" id="m_tabs_1_1" role="tabpanel">
@@ -116,21 +88,10 @@
                                             <i class="fa fa-clock-o"></i>
                                             Started{{vist?.startTime}}
                                         </span>
-                                        <!-- <small class="pad_130">
-                                            <a href="#" class="m-link m-link--info">
-                                                <h6> Edit Visit</h6>
-                                            </a>
-                                            |<a href="#" class="m-link m-link--info">
-                                                <h6> Edit date</h6>
-                                            </a>
-                                            | <a href="#" class="m-link m-link--info">
-                                                <h6> Delete Visit</h6>
-                                            </a>
-                                        </small> -->
                                     </div>
                                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                                         <div class="m-demo__preview">
-                                            <a (click)="onEndVisit()"class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                            <a (click)="onEndVisit()" class="col-md-4 btn btn-primary m-btn m-btn--custom m-btn--icon">
                                                 <span>
                                                     <i class="fa fa-power-off"></i>
                                                     <span>
@@ -142,7 +103,7 @@
                                                 <span>
                                                     <i class="fa fa-sign-in"></i>
                                                     <span>
-                                                            Capture Vitals
+                                                        Capture Vitals
                                                     </span>
                                                 </span>
                                             </a>
@@ -166,19 +127,20 @@
                             <form [formGroup]="PatientAppointmentForm">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <label for="Timeframe"> Timeframe (Optional) </label>
+                                        <label for="Timeframe"> consultant </label>
                                         <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
-                                            <option  *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
+                                            <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Clear"> Clear </label>
+                                        <label for="Clear"> Visit Nature </label>
                                         <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId">
                                         </dx-select-box>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="Clear"> Clear </label>
-                                        <input class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime" type="date" required>
+                                        <label for="Clear"> Tentative Time </label>
+                                        <input class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime" type="date"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
@@ -186,7 +148,7 @@
                                         <div class="col-lg-6  col-sm-12">
                                             <div class="m-form__actions">
                                                 <button (click)="addappointment(PatientAppointmentForm.value)" class="btn btn-danger m--pull-left" type="reset">
-                                                Save
+                                                    Save
                                                 </button>
                                             </div>
                                         </div>
@@ -195,45 +157,133 @@
                                     </div>
                                 </div>
                             </form>
-                            <!-- <div class="m--space-20"></div>
-                            <h3 class="m--font-danger">Appointment Requests</h3>
-                            <div class="m--space-20"></div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h6 class="text-muted">No Appiontment Request</h6>
-                                </div>
-                            </div> -->
                         </div>
                         <div class="tab-pane" id="m_tabs_1_2" role="tabpanel">
-                             <form [formGroup]="PatientVisitNoteForm">
-                            <h3 class="m--font-danger">Add Visit Note</h3>
+                            <form [formGroup]="PatientVisitNoteForm">
+                                <h3 class="m--font-danger">Add Visit Note</h3>
                                 <div class="m--space-20"></div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                            <div class="form-group m-form__group">
-                                                <label for="exampleTextarea">
-                                                    Clinical Note
-                                                </label>
-                                                <textarea formControlName="ClinicalNote" class="form-control m-input m-input--air" id="exampleTextarea" rows="5"></textarea>
-                                            </div>
+                                        <div class="form-group m-form__group">
+                                            <label for="exampleTextarea">
+                                                Clinical Note
+                                            </label>
+                                            <textarea formControlName="ClinicalNote" class="form-control m-input m-input--air" id="exampleTextarea" rows="5"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="m-portlet__foot m-portlet__foot--fit">
 
-                                        <div class="form-group m-form__group row">
-                                          <div class="col-lg-6  col-sm-12">
-                                              <div class="m-form__actions">
-                                                  <button (click)="onsubmit(PatientVisitNoteForm.value)" class="btn btn-danger m--pull-left" type="reset">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6  col-sm-12">
+                                            <div class="m-form__actions">
+                                                <button (click)="onsubmit(PatientVisitNoteForm.value)" class="btn btn-danger m--pull-left" type="reset">
                                                     Save
-                                                  </button>
-                                                </div>
-                                          </div>
-                                          <div class="col-lg-6  col-sm-12">
-                                          </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6  col-sm-12">
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="m_tabs_1_4" role="tabpanel">
+                            <form [formGroup]="VisitTestForm">
+                                <div class="row">
+                                    <div class="form-group col-lg-3">
+                                        <dx-select-box [items]="PatientServiceobj?.testing" displayExpr="testName" valueExpr="testId" [searchEnabled]="true" formControlName="TestId">
+                                        </dx-select-box>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <button type="button" (click)="addrangeForTest()" class="btn btn-primary">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="m-section">
+                                    <div class="m-section__content">
+                                        <table class="table m-table m-table--head-separator-primary">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Test Name
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor=" let t of VisitTests; let i = index">
+                                                    <td>{{t.TestName}}</td>
+                                                    <td>
+                                                        <button type="button" (click)="removeTest(i)" class="btn btn-primary">
+                                                            <i class="la la-archive"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="reset" class="btn btn-secondary">
+                                        Reset
+                                    </button>
+                                    <button type="button" (click)="onAddvisittest()" data-dismiss="modal" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="m_tabs_1_5" role="tabpanel">
+                            <form [formGroup]="VisitDiagnosesForm">
+                                <div class="row">
+                                    <div class="form-group col-lg-3">
+                                        <dx-select-box [items]="PatientServiceobj?.diagnoses" displayExpr="name" valueExpr="diagnosisId" [searchEnabled]="true" formControlName="DiagnosisId">
+                                        </dx-select-box>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                    </div>
+                                    <div class="form-group col-lg-3">
+                                        <button type="button" (click)="addrangeForDiagnosis()" class="btn btn-primary">
+                                            Add
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="m-section">
+                                    <div class="m-section__content">
+                                        <table class="table m-table m-table--head-separator-primary">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Diagnose Name
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor=" let t of VisitDiagnoses; let i = index">
+                                                    <td>{{t.DiagnosName}}</td>
+                                                    <td>
+                                                        <button type="button" (click)="removediagnosis(i)" class="btn btn-primary">
+                                                            <i class="la la-archive"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="reset" class="btn btn-secondary">
+                                        Reset
+                                    </button>
+                                    <button type="button" (click)="onAddvisitdiagnosis()" data-dismiss="modal" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

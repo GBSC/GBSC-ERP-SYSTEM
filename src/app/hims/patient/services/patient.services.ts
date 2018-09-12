@@ -10,7 +10,9 @@ import {Visits} from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
 import { VisitNature } from '../../../models/VisitNature';
 import { VisitNote } from '../../../models/visitnote';
-
+import {Diagnoses} from  '../../../models/diagnoses'
+import {VisitDiagnosis} from '../../../models/visitdiagnoses';
+import {VisitTest} from  '../../../models/visittest'
 
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -57,6 +59,9 @@ export class PatientService {
     public visitNatures : any;
     //for visitnote
     public vistnote : any;
+
+    //for diagnoses
+    public diagnoses : any;
 
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
@@ -219,10 +224,14 @@ export class PatientService {
         return this.visits;
     }
 
-       Getvisit (id) : Observable<Visits>
-      {
+       Getvisit (id) : Observable<Visits>{
           return this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id);       
-     }
+        }
+
+        GetAppointmentByVisit (id) : Observable<Appointment>
+          {
+              return this.http1.get<Appointment>(this.API_URL+'/appointments/GetAppointmentByVisit/'+id);       
+         }
 
 
    async getVisitId(id){
@@ -261,6 +270,18 @@ export class PatientService {
         console.log(x);
         return x;
     }
+
+    async addvisitDiagnosis(visitDiagnosis : VisitDiagnosis){
+        let x = await this.http1.post(this.API_URL+'/visits/AddVisitDiagnoses/',visitDiagnosis).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async addvisitTest(visitTest : VisitTest){
+        let x = await this.http1.post(this.API_URL+'/visits/AddVisitTests/',visitTest).toPromise();
+        console.log(x);
+        return x;
+    }
     
     
     async GetPatientVitals() {
@@ -273,6 +294,15 @@ export class PatientService {
         // `${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`
         return  this.http1.get<PatientVital>(this.API_URL+'/patients/GetLastPatientVital/'+id);
     }
+
+    GetPatientLastestDiagnosis(id):  Observable<VisitDiagnosis>{
+        return  this.http1.get<VisitDiagnosis>(this.API_URL+'/patients/GetPatientLastestDiagnosis/'+id);
+    }
+
+getpatientLatestTest(id): Observable <VisitTest>{
+    return this.http1.get<VisitTest>(this.API_URL+'/patients/GetPatientLastestTest/'+id);
+}
+
     getpatient (id) : Observable<Patient>
     {
         return this.http1.get<Patient>(this.API_URL+'/Patients/GetPatient/'+id);       
@@ -281,6 +311,7 @@ export class PatientService {
      GetPatientVisits(id): Observable<Visits> {
         return this.http1.get<Visits>(this.API_URL+'/Patients/GetPatientVisits/'+id);       
     }
+ 
     
     // async GetPatientVisits()
     // {
@@ -373,5 +404,29 @@ export class PatientService {
         this.SearchPatientbyname = await this.http1.post(this.API_URL+'/patients/SearchPatient/',patient).toPromise();
         console.log( this.SearchPatientbyname);
         return this.SearchPatientbyname;
+    }
+
+    async getDiagnoses() {
+        this.diagnoses = await this.http1.get<Diagnoses>(this.API_URL+'/HimsSetup/GetDiagnoses/').toPromise();
+        console.log(this.diagnoses);
+        return this.diagnoses;
+    }
+
+    async addDiagnoses(diagnoses : Diagnoses){
+        let x = await this.http1.post(this.API_URL+'/HimsSetup/AddDiagnosis/',diagnoses).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async updateDiagnoses(diagnoses : Diagnoses){
+        let x = await this.http1.put(this.API_URL+'/HimsSetup/UpdateDiagnosis/',diagnoses).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async deleteDiagnoses(id){
+        let x = await this.http1.delete(this.API_URL+'/HimsSetup/DeleteDiagnosis/'+id).toPromise();
+        console.log(x);
+        return x;
     }
 }

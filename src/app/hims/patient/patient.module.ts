@@ -35,6 +35,8 @@ import { AppointmentscheduleComponent } from './appointmentschedule/appointments
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
+import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
+import { TestComponent } from './test/test.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -80,6 +82,8 @@ import { ConditionsComponent } from './conditions/conditions.component';
         VisitnatureComponent,
         VisitdetailComponent,
         ConditionsComponent,
+        DiagnosisComponent,
+        TestComponent,
     ],
     providers: [
         PatientService

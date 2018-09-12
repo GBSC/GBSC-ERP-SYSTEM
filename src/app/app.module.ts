@@ -22,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent
+        AppComponent,
+        
     ],
     imports: [
         LayoutModule,

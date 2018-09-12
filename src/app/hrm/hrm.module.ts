@@ -86,7 +86,6 @@ import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtyp
 import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
-
 import { BranchComponent } from '../hrm/branch/branch.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { CompanyComponent } from '../hrm/company/company.component';
@@ -99,6 +98,8 @@ import { AttendanceService } from './attendance/services/attendance.service';
 import { AttendancesetupService } from './attendance/services/attendancesetup.service';
 import { HrmsService } from './hrmsSetup/services/hrms.service';
 import { SetupService } from './hrmsSetup/services/setup.service';
+import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
+import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
 
 
 @NgModule({
@@ -208,7 +209,9 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         ExperienceComponent,
         EmployeesComponent,
         EmployeeCompanyComponent,
-        EmployeedetailComponent
+        EmployeedetailComponent,
+        RostermappingComponent,
+        RostercopyComponent
 
     ],
     exports: [],

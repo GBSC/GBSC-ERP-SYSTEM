@@ -64,6 +64,8 @@ import { AttendancerequestComponent } from './attendance/attendancerequest/atten
 import { EmployeeQualificationComponent } from './employee/qualification/qualification.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { EmpleavepolicyComponent } from './leave/leaveadmin/employeeleavepolicy/empleavepolicy.component';
+import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
+import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -180,6 +182,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         ]
                     },
                     { path: 'attendancerequest', component: AttendancerequestComponent },
+                    { path: 'rostercopy', component: RostercopyComponent },
+                    { path: 'rostermapping', component: RostermappingComponent },
                 ]
             },
 

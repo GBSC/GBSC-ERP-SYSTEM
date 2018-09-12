@@ -32,14 +32,8 @@ export class ReligionComponent implements OnInit {
         this.dataService.addReligion(religon.data);
     }
 
-<<<<<<< HEAD
-    updatereligion(relign) {
-        console.log(relign);
-        this.dataService.updateReligion(relign);
-=======
     updatereligion(religon) {
         this.dataService.updateReligion(religon);
->>>>>>> 101e24f1c0723e12b4993caf674e3b62e636c45a
     }
 
     deletereligion(religon) {

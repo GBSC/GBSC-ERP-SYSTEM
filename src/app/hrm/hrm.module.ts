@@ -32,7 +32,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LeavepolicyComponent } from './leave/leavesetup/leavepolicy/leavepolicy.component';
 import { LeavetypeComponent } from './leave/leavesetup/leavetype/leavetype.component';
 import { LeavedaytypeComponent } from './leave/leavesetup/leavedaytype/leavedaytype.component';
-import { LeaveapprovalComponent } from './leave/leavesetup/leaveapproval/leaveapproval.component';
 import { LeavepurposeComponent } from './leave/leavesetup/leavepurpose/leavepurpose.component';
 import { LeaveeligibilityComponent } from './leave/leavesetup/leaveeligibility/leaveeligibility.component';
 import { LeaveyearsetupComponent } from './leave/leavesetup/leaveyearsetup/leaveyearsetup.component';
@@ -99,6 +98,9 @@ import { AttendanceService } from './attendance/services/attendance.service';
 import { AttendancesetupService } from './attendance/services/attendancesetup.service';
 import { HrmsService } from './hrmsSetup/services/hrms.service';
 import { SetupService } from './hrmsSetup/services/setup.service';
+import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
+import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
+import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
 
 
 @NgModule({
@@ -177,9 +179,9 @@ import { SetupService } from './hrmsSetup/services/setup.service';
 
         /* HRM Leave Components */
         LeavepolicyComponent,
+        LeaveapproverComponent,
         LeavetypeComponent,
-        LeavedaytypeComponent,
-        LeaveapprovalComponent,
+        LeavedaytypeComponent, 
         LeavepurposeComponent,
         LeaveeligibilityComponent,
         LeaveyearsetupComponent,
@@ -191,6 +193,8 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         LeavetypebalanceComponent,
         DecimalroundingmatrixComponent,
         ProratematrixComponent,
+        LeaveclosingComponent,
+        LeaveapprovalComponent,
 
         /* Employee Registration */
 

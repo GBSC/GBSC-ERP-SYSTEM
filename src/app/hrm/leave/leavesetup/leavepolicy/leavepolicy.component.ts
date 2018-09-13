@@ -83,6 +83,6 @@ export class LeavepolicyComponent implements OnInit {
 
      async addleavepolicy(policy){
         console.log(policy);
-        this.leavesetupservice.addleavepolicy(policy);
+            this.leavesetupservice.addleavepolicy(policy); 
     }
 }

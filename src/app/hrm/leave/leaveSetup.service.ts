@@ -21,7 +21,7 @@ export class LeaveSetupService {
 
     constructor(private httpClient: HttpClient) { }
 
-
+    
     /** Leave Policy CRUD METHODS */
     async getAllleavepolicy() {
 
@@ -151,9 +151,7 @@ export class LeaveSetupService {
         return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
 
     }
-
-
-
+ 
     async Deleteleavyear(leavyearId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -163,7 +161,7 @@ export class LeaveSetupService {
 
 
     /** CRUD METHODS */
-    async getAllleaveapprover() {
+    async getleaveapprover() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
@@ -536,10 +534,10 @@ export class LeaveSetupService {
     }
 
     async updateleavesubtype(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'Getleavesubtype');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveSubType`, promatrix).toPromise();
+        let subtype = await this.getdataToUpdate(data.key, 'GetLeaveSubType');
+        subtype = { ...subtype, ...data.data }
+        console.log(subtype);
+        return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveSubType`, subtype).toPromise();
 
     }
 

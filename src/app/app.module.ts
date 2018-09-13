@@ -15,14 +15,12 @@ import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
 import { HrmsService } from './hrm/hrmsSetup/services/hrms.service'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
-import { HttpClientModule } from '@angular/common/http';   
-
-
-
+import { HttpClientModule } from '@angular/common/http';
+ 
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent   
+        AppComponent    
     ],
     imports: [
         LayoutModule,

@@ -56,7 +56,6 @@ import { ModuleComponent } from '../hrm/module/module.component';
 import { RoleComponent } from '../hrm/role/role.component';
 import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
-import { LeaveapprovalComponent } from './leave/leavesetup/leaveapproval/leaveapproval.component';
 import { LeaverequestComponent } from './leave/leaverequest/leaverequest.component';
 import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
 import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
@@ -64,6 +63,11 @@ import { AttendancerequestComponent } from './attendance/attendancerequest/atten
 import { EmployeeQualificationComponent } from './employee/qualification/qualification.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { EmpleavepolicyComponent } from './leave/leaveadmin/employeeleavepolicy/empleavepolicy.component';
+import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
+import { OvertimeflagComponent } from './attendance/overtime/overtimeflag/overtimeflag.component';
+import { OvertimetypeComponent } from './attendance/overtime/overtimetype/overtimetype.component';
+import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
+import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -113,6 +117,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     children: [
  
                         { path: 'leavepurpose', component: LeavepurposeComponent },
+                        { path: 'leaveapprover', component: LeaveapproverComponent },
                         { path: 'leaveyear', component: LeaveyearsetupComponent },
                         { path: 'leavepolicy', component: LeavepolicyComponent },
                         { path: 'leavetype', component: LeavetypeComponent }, 
@@ -120,7 +125,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         { path: 'leaveeligibility', component: LeaveeligibilityComponent },
                         { path: 'leavesubtype', component: LeavesubtypeComponent },
                         { path: 'leavetypebalance', component: LeavetypebalanceComponent },
-                        { path: 'leaveapproval', component: LeaveapprovalComponent },
                         { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
                         { path: 'proratematrix', component: ProratematrixComponent }
                     ]
@@ -132,6 +136,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             ]},
            // {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
                {path: 'leaverequest', component: LeaverequestComponent},
+               {path: 'leaveclosing', component: LeaveclosingComponent},
+               {path: 'leaveapproval', component: LeaveapprovalComponent}
  
             ]},
 
@@ -171,6 +177,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 children: [
                 {path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent},
                 {path: 'attendancerule', component: AttendanceruleComponent},
+            ]},
+            { path: 'overtime',
+                children: [
+                {path: 'overtimeflag', component: OvertimeflagComponent},
+                {path: 'overtimetype', component: OvertimetypeComponent},
             ]},
             {path: 'attendancerequest', component: AttendancerequestComponent},
         ]},

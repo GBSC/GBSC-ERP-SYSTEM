@@ -15,7 +15,8 @@ export class ProfileComponent implements OnInit {
     public patientObj;
     public currentPatient: {};
             id: number;
-            Patient : Patient;
+    public Patient : any ={};
+    private Patientdoc = [];
 
 
     constructor(private PatientServiceobj: PatientService,  private route : ActivatedRoute) { }
@@ -28,12 +29,11 @@ export class ProfileComponent implements OnInit {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient=> this.Patient = Patient );
-  console.log(x);
-     });
-
-     
-    }
+       let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
+           this.Patient = Patient;
+        });
+    });
+}
 
 
 }

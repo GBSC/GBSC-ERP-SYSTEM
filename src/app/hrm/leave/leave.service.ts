@@ -9,7 +9,8 @@ export class LeaveService {
     public leaverequest;
     public leavepolicyemployee;
     public leaverequestdetail;
-    private baseUrl: string = "http://localhost:58090/api";
+   // private baseUrl: string = "http://localhost:58090/api";
+    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api";
     public leaveapproval;
     public leaveclosing: Object;
     public newleaverequest;
@@ -54,8 +55,8 @@ export class LeaveService {
         return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, leaveopen).toPromise();
 
     }
-    
- 
+
+
     async DeleteLeaveopening(leaveOpeningId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -116,7 +117,7 @@ export class LeaveService {
         console.log(this.leaveopening);
         return this.leaveopening;
     }
-    
+
 
     // DEMO ONLY, you can find working methods below
     async addleavepolicyemployee(data) {
@@ -152,8 +153,8 @@ export class LeaveService {
     }
 
 
-                                //   Leave Admin Methods
-                                
+    //   Leave Admin Methods
+
     /** CRUD METHODS LEAVE REQUEST*/
     async getAllleaverequest() {
 
@@ -165,7 +166,7 @@ export class LeaveService {
         console.log(this.leaverequest);
         return this.leaverequest;
     }
-    
+
 
     // DEMO ONLY, you can find working methods below
     async addleaverequest(data) {
@@ -185,21 +186,21 @@ export class LeaveService {
 
         let leaverqst = await this.getdataToUpdate(data.key, 'GetLeaveRequest');
         leaverqst = { ...leaverqst, ...data.data }
-        console.log(leaverqst); 
+        console.log(leaverqst);
         return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, leaverqst).toPromise();
     }
 
 
 
-    async Deleteleaverequest(leaverequestId) { 
+    async Deleteleaverequest(leaverequestId) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`).toPromise();
     }
-      
-    
-     /** CRUD METHODS LEAVE REQUEST*/
-     async getAllleaverequestdetail() {
+
+
+    /** CRUD METHODS LEAVE REQUEST*/
+    async getAllleaverequestdetail() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
@@ -208,7 +209,7 @@ export class LeaveService {
         console.log(this.leaverequestdetail);
         return this.leaverequestdetail;
     }
-    
+
 
     // DEMO ONLY, you can find working methods below
     async addleaverequestdetail(data) {
@@ -227,14 +228,14 @@ export class LeaveService {
 
         let leaverqst = await this.getdataToUpdate(data.key, 'Getleaverequestdetail');
         leaverqst = { ...leaverqst, ...data.data }
-        console.log(leaverqst); 
+        console.log(leaverqst);
         return await this.httpClient.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, leaverqst).toPromise();
 
     }
 
 
 
-    async Deleteleaverequestdetail(leaverequestdetailId) { 
+    async Deleteleaverequestdetail(leaverequestdetailId) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/Leave/Deleteleaverequestdetail/${leaverequestdetailId}`).toPromise();
@@ -289,7 +290,7 @@ export class LeaveService {
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
     
-            this.leaveclosing = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveClosings`).toPromise();
+            this.leaveclosing = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveClosings`, headers).toPromise();
             console.log(this.leaveclosing);
             return this.leaveclosing;
         }

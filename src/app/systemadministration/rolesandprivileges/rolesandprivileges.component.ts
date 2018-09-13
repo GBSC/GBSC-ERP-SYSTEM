@@ -56,7 +56,7 @@ export class RolesandprivilegesComponent implements OnInit {
             permissions: []
 
         }
- 
+
     }
 
 

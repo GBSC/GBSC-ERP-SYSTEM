@@ -62,7 +62,7 @@ import { EmployeeService } from './employee/services/employee.service';
 import { EmployeesComponent } from './employee/employees/employees.component';
 import { EmployeeCompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
- 
+
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
 
@@ -85,7 +85,6 @@ import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtyp
 import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
-
 import { BranchComponent } from '../hrm/branch/branch.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { CompanyComponent } from '../hrm/company/company.component';
@@ -101,25 +100,27 @@ import { SetupService } from './hrmsSetup/services/setup.service';
 import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
 import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
+import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
+import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DevExtremeModule,
-    HttpClientModule,
-    routing
-  ],
-  declarations: [
-    FooterComponent,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DevExtremeModule,
+        HttpClientModule,
+        routing
+    ],
+    declarations: [
+        FooterComponent,
         HeaderComponent,
         MenuComponent,
         RootComponent,
 
         BranchComponent,
-       DepartmentComponent,
+        DepartmentComponent,
         CompanyComponent,
         FeatureComponent,
         ModuleComponent,
@@ -127,31 +128,31 @@ import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.comp
         RolesandprivilegesComponent,
 
         HrmSetupHomeComponent,
-        DesignationComponent, 
-        ManagementLevelsComponent, 
+        DesignationComponent,
+        ManagementLevelsComponent,
         GazettedHolidaysComponent,
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent, 
+        BloodGroupComponent,
         CountryComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent, 
-        EmployeeTypes, 
-        FunctionComponent, 
+        CityComponent,
+        EmployeeTypes,
+        FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
         MaritalStatusComponent,
-        ReligionComponent, 
+        ReligionComponent,
         BankComponent,
         CityComponent,
-        AccountTypeComponent, 
+        AccountTypeComponent,
         UniversityComponent,
 
-                
+
         /* HRM Attendance Components */
 
         AttendanceFlagExemptionComponent,
@@ -210,17 +211,19 @@ import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.comp
         CpasswordComponent,
         EmployeeBankComponent,
         ExperienceComponent,
-        EmployeesComponent, 
-        EmployeeCompanyComponent, 
-        EmployeedetailComponent
+        EmployeesComponent,
+        EmployeeCompanyComponent,
+        EmployeedetailComponent,
+        RostermappingComponent,
+        RostercopyComponent
 
-  ],
-  exports: [],
-  providers: [LeaveService,SetupService,
-     AttendanceService,
-    AttendancesetupService,HrmsService,
-     LeaveSetupService,EmployeeService,
-     SystemAdministrationService]
-  
+    ],
+    exports: [],
+    providers: [LeaveService, SetupService,
+        AttendanceService,
+        AttendancesetupService, HrmsService,
+        LeaveSetupService, EmployeeService,
+        SystemAdministrationService]
+
 })
 export class HrmModule { }

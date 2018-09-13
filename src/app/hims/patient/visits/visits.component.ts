@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PatientService} from '../../../hims/patient/services/patient.services'
+import { PatientService } from '../../../hims/patient/services/patient.services'
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class VisitsComponent implements OnInit {
 
     public currentPatient: any;
-    public visitid : any;
+    public visitid: any;
 
-    constructor(private PatientServiceobj : PatientService , private router: Router) { }
+    constructor(private PatientServiceobj: PatientService, private router: Router) { }
 
     ngOnInit() {
         this.currentPatient = this.PatientServiceobj.currentPatient;
@@ -20,11 +20,11 @@ export class VisitsComponent implements OnInit {
 
         // this.visitid = this.PatientServiceobj.visitid;
         // console.log(this.visitid);
-        
+
     }
 
-    onSubmit()  {
-        
+    onSubmit() {
+
         console.log(this.PatientServiceobj.currentPatient);
         this.router.navigate(['/hims/patient/patientvitals']);
 

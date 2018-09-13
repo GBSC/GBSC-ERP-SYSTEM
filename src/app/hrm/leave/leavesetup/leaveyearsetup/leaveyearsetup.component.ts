@@ -8,13 +8,13 @@ import { LeaveSetupService } from '../../leaveSetup.service';
 })
 export class LeaveyearsetupComponent implements OnInit {
     public leveyear: any;
-    constructor(public leavesetupservice:LeaveSetupService) { }
+    constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getAllleaveyear(); 
+        await this.leavesetupservice.getAllleaveyear();
         this.leveyear = this.leavesetupservice.leaveyear
         console.log(this.leveyear);
-        
+
     }
 
     async addleaveyear(value) {

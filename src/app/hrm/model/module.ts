@@ -1,6 +1,6 @@
 export interface Module {
     ModuleId: number;
     Name: string;
-    CompanyId : number;
+    CompanyId: number;
     Code: string;
 }

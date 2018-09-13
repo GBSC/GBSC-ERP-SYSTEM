@@ -25,6 +25,9 @@ import { HomeComponent } from '../patient/home/home.component';
 import { AppointmentscheduleComponent } from '../patient/appointmentschedule/appointmentschedule.component';
 import { ConsultantComponent } from '../patient/consultant/consultant.component';
 import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
+import { PackageComponent } from '../patient/package/package.component';
+import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 
 
@@ -33,9 +36,9 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'hims/patient',
+        path: 'patient',
         component: RootComponent,
-
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'registration', component: RegistrationComponent },
@@ -59,6 +62,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
             { path: 'consultant', component: ConsultantComponent },
+            { path: 'package', component: PackageComponent },
             { path: 'himssetuptest', component: HimsSetupTestComponent },
 
         ]

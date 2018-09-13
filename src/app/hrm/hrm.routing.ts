@@ -68,6 +68,8 @@ import { OvertimeflagComponent } from './attendance/overtime/overtimeflag/overti
 import { OvertimetypeComponent } from './attendance/overtime/overtimetype/overtimetype.component';
 import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
+import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
+import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -83,33 +85,33 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
             { path: 'role', component: RoleComponent },
-            
+
             {
                 path: 'setup',
                 children: [
-                    
+
                     { path: 'home', component: HrmSetupHomeComponent },
                     { path: 'employeetype', component: EmployeeTypes },
                     { path: 'country', component: CountryComponent },
-                    { path: 'function', component: FunctionComponent }, 
+                    { path: 'function', component: FunctionComponent },
                     { path: 'qualification', component: QualificationComponent },
                     { path: 'employeestatus', component: EmployeeStatuscomponent },
-                    { path: 'religion', component: ReligionComponent }, 
+                    { path: 'religion', component: ReligionComponent },
                     { path: 'bank', component: BankComponent },
-                    { path: 'degree', component: DegreeComponent }, 
+                    { path: 'degree', component: DegreeComponent },
                     { path: 'managementlevel', component: ManagementLevelsComponent },
                     { path: 'designation', component: DesignationComponent },
                     { path: 'groups', component: GroupComponent },
                     { path: 'gazettedholidays', component: GazettedHolidaysComponent },
                     { path: 'costcenters', component: CostCenterComponent },
                     { path: 'languages', component: LanguageComponent },
-                    { path: 'skilllevel', component: SkillLevelsComponent }, 
+                    { path: 'skilllevel', component: SkillLevelsComponent },
                     { path: 'relation', component: RelationComponent },
                     { path: 'cities', component: CityComponent },
                     { path: 'university', component: UniversityComponent }
                 ]
             },
-            
+
             {
                 path: 'leave',
                 children: [
@@ -133,15 +135,14 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 children: [
                     {path: 'leaveopening', component: EmployeeleaveopeningComponent},
                 {path: 'employeeleavepolicy', component: EmpleavepolicyComponent},
-            ]},
-           // {path: 'employeeleaveopening', component: EmployeeleaveopeningComponent},
+            ]}, 
                {path: 'leaverequest', component: LeaverequestComponent},
                {path: 'leaveclosing', component: LeaveclosingComponent},
                {path: 'leaveapproval', component: LeaveapprovalComponent}
  
             ]},
 
-            { 
+            {
                 path: 'employee',
                 children: [
                     { path: '', component: EmployeesComponent },
@@ -151,7 +152,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'employeequalification', component: EmployeeQualificationComponent },
                     { path: 'employeedetail', component: EmployeedetailComponent }
                 ],
-                
+
             },
 
 
@@ -184,8 +185,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 {path: 'overtimetype', component: OvertimetypeComponent},
             ]},
             {path: 'attendancerequest', component: AttendancerequestComponent},
+            { path: 'rostercopy', component: RostercopyComponent },
+            { path: 'rostermapping', component: RostermappingComponent },
         ]},
+            
 
-                ]
-            }
-        ])
+        ]
+    }
+])

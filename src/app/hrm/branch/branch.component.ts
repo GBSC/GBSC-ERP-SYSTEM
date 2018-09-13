@@ -13,7 +13,7 @@ export class BranchComponent implements OnInit {
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
-        
+
         await this.SystemAdministrationServiceobj.getCompany();
         this.com = this.SystemAdministrationServiceobj.companies;
         console.log(this.com);

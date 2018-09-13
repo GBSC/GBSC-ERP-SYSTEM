@@ -14,7 +14,8 @@ export class RootComponent implements OnInit {
     constructor(private _script: ScriptLoaderService, private _router: Router) { }
 
     ngOnInit() {
-        this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js'], true)
+        this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js', 'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js'], true)
+
             .then(result => {
                 Helpers.setLoading(false);
                 // optional js to be loaded once
@@ -22,4 +23,5 @@ export class RootComponent implements OnInit {
             });
 
     }
+
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { Supplier } from '../../Inventorysystem/models/supplier';
 import { PurchaseOrder } from '../../Inventorysystem/models/purchaseorder';
 
@@ -6,7 +6,7 @@ import { Unit } from '../../Inventorysystem/models/units';
 import { Category } from '../../Inventorysystem/models/categories';
 import { InventoryItem } from '../../Inventorysystem/models/inventoryitems';
 import { HttpClient } from '@angular/common/http';
- 
+
 // import { LOCAL_STORAGE } from 'angular-webstorage-service';
 
 @Injectable()
@@ -115,7 +115,7 @@ export class InventorysystemService {
         console.log(this.catogories);
         return this.catogories;
     }
-    
+
 
     async AddCategory(data) {
         let headers = { headers: { 'Content-Type': 'application/json' } }

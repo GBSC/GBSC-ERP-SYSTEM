@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { FormGroup,FormBuilder,Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from '../services/employee.service';
 
 @Component({

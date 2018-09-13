@@ -16,6 +16,22 @@ import { MenuComponent } from '../lab/shared/menu/menu.component';
 import { FileRecordComponent } from './file-record/file-record.component';
 import { ProceduresortestComponent } from './proceduresortest/proceduresortest.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
+import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
+import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { BiochemistryComponent } from './biochemistry/biochemistry.component';
+import { BiopsyComponent } from './biopsy/biopsy.component';
+import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
+import { PatientService } from '../sharedservices/patient.service';
+import { ConsultantService } from '../sharedservices/consultant.service';
+import { BiochemistrytestComponent } from '../../hims/lab/labsetup/biochemistrytest/biochemistrytest.component';
+import { TestunitComponent } from '../../hims/lab/labsetup/testunit/testunit.component';
+import { BioChemistryService } from './services/bio-chemistry.service';
+import { ReferencerangeComponent } from './referencerange/referencerange.component';
+import { EmbryologysectionComponent } from './embryologysection/embryologysection.component';
+import { InseminationprepService } from './services/inseminationprep.service';
+import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
+import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
+
 
 
 @NgModule({
@@ -23,6 +39,9 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
         routing,
 
     ],
@@ -36,7 +55,17 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
         MenuComponent,
         ProceduresortestComponent,
         BiochemistryontreatmentComponent,
+        SemensanalysislistComponent,
+        BiochemistryComponent,
+        BiopsyComponent,
+        InseminationprepComponent,
+        BiochemistrytestComponent,
+        TestunitComponent,
+        ReferencerangeComponent,
+        EmbryologysectionComponent,
+        EmbryologycodesComponent,
+        EmbryologistsComponent,
     ],
-    providers: []
+    providers: [PatientService, ConsultantService, BioChemistryService, InseminationprepService]
 })
 export class LabModule { }

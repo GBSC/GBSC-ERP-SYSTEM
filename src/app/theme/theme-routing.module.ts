@@ -10,7 +10,7 @@ import { SystemAdministrationModule } from '../systemadministration/systemadmini
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
- import { AccountModule } from '../account/account.module'; 
+import { AccountModule } from '../account/account.module';
 
 
 
@@ -56,7 +56,7 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule, 
+        InventorysystemModule,
         SuperadminModule,
         SystemAdministrationModule,
         DashboardModule,

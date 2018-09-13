@@ -6,11 +6,14 @@ import { Appointment } from '../../../models/appointment';
 import { Consultant } from '../../../models/consultant';
 import { himsSetupTest } from '../../../models/himsSetupTest';
 import { AppointmentTest } from '../../../models/appointmentTest';
-import {Visits} from '../../../models/visits'
+import { Visits } from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
+
+import { Package } from '../../../models/packages';
+
 
 @Injectable()
 export class PatientService {
@@ -40,10 +43,13 @@ export class PatientService {
     //for  ConsultantIdAndTentiveTime
     public ConsultantIdAndTentiveTime: any;
 
+    //for profile 
+
+    public package: any;
     //for Visits control
 
-    public visits : any;
-    public visitid : any;
+    public visits: any;
+    public visitid: any;
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
     private readonly API_URL1 = 'http://localhost:58788/api';
@@ -74,7 +80,7 @@ export class PatientService {
     //     return p;
     //   }
     // }
- 
+
 
     async updatePatient(patient) {
         console.log(patient)
@@ -198,34 +204,30 @@ export class PatientService {
     }
 
 
-    async GetVisits()
-    {
-        this.visits = await this.http1.get<Visits>(this.API_URL+'/Visits/GetVisits/').toPromise();
+    async GetVisits() {
+        this.visits = await this.http1.get<Visits>(this.API_URL + '/Visits/GetVisits/').toPromise();
         console.log(this.visits);
         return this.visits;
     }
 
-    async AddVisits(id)
-    {
-     this. visitid = await this.http1.post(this.API_URL+'/Visits/AddVisit/', {patientId: id}).toPromise()
-        console.log(this. visitid);        
-        return this. visitid;        
+    async AddVisits(id) {
+        this.visitid = await this.http1.post(this.API_URL + '/Visits/AddVisit/', { patientId: id }).toPromise()
+        console.log(this.visitid);
+        return this.visitid;
     }
 
-    async UpdateVisits(visits : Visits)
-    {
-        let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`,visits).toPromise();
+    async UpdateVisits(visits: Visits) {
+        let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`, visits).toPromise();
         console.log(x);
         return x;
-        
+
     }
 
-    async DeleteVisits(id)
-    {
-        let x = await this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
+    async DeleteVisits(id) {
+        let x = await this.http1.delete(this.API_URL + '/Visits/DeleteVisit/' + id).toPromise();
         console.log(x);
         return x;
-        
+
     }
 
 
@@ -253,6 +255,9 @@ export class PatientService {
         console.log(x);
         return x;
     }
+
+
+
 
     // setCurrentPatient(currentPatientId) {
     //   console.log(currentPatientId);

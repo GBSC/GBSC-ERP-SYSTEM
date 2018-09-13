@@ -10,4 +10,6 @@ export class Spouse {
     Occupation: string;
     NIC: string;
     PhoneNumber: string;
+    display: string;
+
 }

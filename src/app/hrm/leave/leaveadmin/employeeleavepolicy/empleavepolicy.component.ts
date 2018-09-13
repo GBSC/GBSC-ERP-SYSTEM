@@ -7,9 +7,9 @@ import { SetupService } from '../../../hrmsSetup/services/setup.service';
 import { LeaveService } from '../../leave.service';
 
 @Component({
-  selector: 'app-empleavepolicy',
-  templateUrl: './empleavepolicy.component.html',
-  styleUrls: ['./empleavepolicy.component.scss']
+    selector: 'app-empleavepolicy',
+    templateUrl: './empleavepolicy.component.html',
+    styleUrls: ['./empleavepolicy.component.scss']
 })
 export class EmpleavepolicyComponent implements OnInit {
 

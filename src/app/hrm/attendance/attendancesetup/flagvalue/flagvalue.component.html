@@ -14,7 +14,7 @@
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
                  [dataSource]="flagvalue"
-                 keyExpr="flagvalueId"
+                 keyExpr="flagValueId"
                  (onRowInserted)="addflagvalue($event)" 
                  (onRowUpdated)="updateflagvalue($event)"
                  (onRowRemoved)="deleteflagvalue($event)">

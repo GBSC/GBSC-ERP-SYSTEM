@@ -32,7 +32,7 @@ export class EmployeeHomeComponent implements OnInit {
 
     ngOnInit() {
         this.tabItem = this.tabs[this.showingCurrently];
-
+        
         let currentUser = this.employeeService.getBasicInfoOfCurrentUser();
     }
 

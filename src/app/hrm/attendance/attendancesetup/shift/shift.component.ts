@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
@@ -7,12 +8,27 @@ import { AttendancesetupService } from '../../services/attendancesetup.service';
     styleUrls: ['./shift.component.scss']
 })
 export class ShiftComponent implements OnInit {
-
-
+ 
+    public ShiftForm: FormGroup;
     public shift: any;
-    constructor(public attendancesetupservice: AttendancesetupService) { }
+ 
+    constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
+
+        this.ShiftForm = this.fb.group({
+            ShiftCode: ['', Validators],
+            ShiftTitle: ['', Validators],
+            StartTime: ['', Validators],
+            EndTime: ['', Validators],
+            GraceTime: ['', Validators],
+            IsMultiple: ['', Validators],
+            OverTimeStartTime: ['', Validators],
+            MinimumOverTime: ['', Validators],
+            InTimeShiftThreshold: ['', Validators],
+            OutTimeShiftThreshold: ['', Validators],
+             
+        });
         await this.attendancesetupservice.getshifts();
         this.shift = this.attendancesetupservice.shift
         console.log(this.shift);

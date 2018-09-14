@@ -34,7 +34,9 @@ export class LeaveclosingComponent implements OnInit {
   }
 
   async addleaveclosing(value) { 
-    this.leaveservice.addleaveclosing(value.data);
+    console.log(value.data);
+   let x =  await this.leaveservice.addleaveclosing(value.data);
+   console.log(x)
   }
   
   async updateleaveclosing(value) { 

@@ -59,7 +59,6 @@ export class LeaveSetupService {
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.httpClient.put(`${this.baseUrl}/UpdateLeavePolicy`, leavpolicy).toPromise();
-
     }
 
 

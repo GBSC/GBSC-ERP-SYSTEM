@@ -9,8 +9,8 @@ export class LeaveService {
     public leaverequest;
     public leavepolicyemployee;
     public leaverequestdetail;
-   // private baseUrl: string = "http://localhost:58090/api";
-    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api";
+    private baseUrl: string = "http://localhost:58090/api";
+   // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api";
     public leaveapproval;
     public leaveclosing: Object;
     public newleaverequest;

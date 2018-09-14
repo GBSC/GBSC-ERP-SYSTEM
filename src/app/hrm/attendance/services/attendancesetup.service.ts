@@ -28,21 +28,21 @@ export class AttendancesetupService {
         console.log(this.asignroster);
         return this.asignroster;
     }
-
-    async getdataToUpdate(attendanceId, attendanceUrl) {
-        return await this.httpClient.get(`${this.baseUrl}/${attendanceId}/${attendanceUrl}`).toPromise();
-    }
-
-
+ 
     // DEMO ONLY, you can find working methods below
     async addasignroster(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newasignroster = await this.httpClient.post(`${this.baseUrl}/Addasignroster`, data, headers).toPromise();
+        let newasignroster = await this.httpClient.post(`${this.baseUrl}/AddAssignRoster`, data, headers).toPromise();
         console.log(newasignroster);
 
     }
+
+    async getdataToUpdate(attendanceId, attendanceUrl) {
+        return await this.httpClient.get(`${this.baseUrl}/${attendanceUrl}/${attendanceId}`).toPromise();
+    }
+
 
     async updateasignroster(data) {
 
@@ -51,7 +51,7 @@ export class AttendancesetupService {
         console.log(rosterassign);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateAsignRoster`, rosterassign).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/UpdateAssignRoster`, rosterassign).toPromise();
 
     }
 
@@ -59,7 +59,7 @@ export class AttendancesetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/Deleteasignroster/${id}`).toPromise();
+        return await this.httpClient.delete(`${this.baseUrl}/DeleteAssignRoster/${id}`).toPromise();
     }
 
     /** Attendance Flag CRUD METHODS */
@@ -106,7 +106,7 @@ export class AttendancesetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.attendancerequestapprover = await this.httpClient.get(`${this.baseUrl}/GetAttendanceRquestApprovers`).toPromise();
+        this.attendancerequestapprover = await this.httpClient.get(`${this.baseUrl}/GetAttendanceRequestApprovers`).toPromise();
         console.log(this.attendancerequestapprover);
         return this.attendancerequestapprover;
     }
@@ -114,7 +114,7 @@ export class AttendancesetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendancerequestapprover = await this.httpClient.post(`${this.baseUrl}/AddattendanceRequestApprover`, data, headers).toPromise();
+        let newattendancerequestapprover = await this.httpClient.post(`${this.baseUrl}/AddAttendanceRequestApprover`, data, headers).toPromise();
         console.log(newattendancerequestapprover);
 
     }
@@ -152,7 +152,7 @@ export class AttendancesetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendanceRequestType = await this.httpClient.post(`${this.baseUrl}/AttendanceRequestType`, data, headers).toPromise();
+        let newattendanceRequestType = await this.httpClient.post(`${this.baseUrl}/AddAttendanceRequestType`, data, headers).toPromise();
         console.log(newattendanceRequestType);
 
     }
@@ -189,7 +189,7 @@ export class AttendancesetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagCategory = await this.httpClient.post(`${this.baseUrl}/FlagCategory`, data, headers).toPromise();
+        let newflagCategory = await this.httpClient.post(`${this.baseUrl}/AddFlagCategory`, data, headers).toPromise();
         console.log(newflagCategory);
 
     }
@@ -226,7 +226,7 @@ export class AttendancesetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagEffecttype = await this.httpClient.post(`${this.baseUrl}/FlagEffectType`, data, headers).toPromise();
+        let newflagEffecttype = await this.httpClient.post(`${this.baseUrl}/AddFlagEffectType`, data, headers).toPromise();
         console.log(newflagEffecttype);
 
     }
@@ -273,9 +273,10 @@ export class AttendancesetupService {
         let flagtype = await this.getdataToUpdate(data.key, 'GetFlagType');
         flagtype = { ...flagtype, ...data.data }
         console.log(flagtype);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateFlagType`, flagtype).toPromise();
+        
+        let authToken = localStorage.getItem('auth_token');  
+        let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.httpClient.put(`${this.baseUrl}/UpdateFlagType`, flagtype, headers).toPromise();
 
     }
 

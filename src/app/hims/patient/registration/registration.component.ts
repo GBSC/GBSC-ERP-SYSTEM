@@ -177,9 +177,10 @@ export class RegistrationComponent implements OnInit {
     }
 
   async  updatePatient(value){
+      console.log(value);
    // this.patientForm.value.patientId = this.id;
-     let x = await  this.PatientServiceobj.updatePatient(value);
-    console.log(x);
+    //  let x = await  this.PatientServiceobj.updatePatient(value);
+    // console.log(x);
     }
 
 
@@ -189,10 +190,16 @@ export class RegistrationComponent implements OnInit {
             this.id = +params['id'];
   
          
-            let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
+            this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
               this.Patient = Patient;
-              console.log(Patient)
+              
+              this.patientForm.patchValue({
+                  FirstName: Patient.firstName,
+                });
+
            });
+
+
           });
 
 

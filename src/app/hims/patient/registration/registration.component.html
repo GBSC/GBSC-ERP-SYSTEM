@@ -255,25 +255,25 @@
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-4">
 																		<label for="exampleSelect1"> Reference By </label>
-																		<select class="form-control m-input ng-pristine ng-invalid ng-touched" [value]="Patient.partner?.referredBy" formControlName="ReferredBy">
+																		<select class="form-control m-input ng-pristine ng-invalid ng-touched" [value]="Patient.patientReference?.referredBy" formControlName="ReferredBy">
 																			<option class="active" [value]="Doctor">Doctor</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Person Name </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.partner?.personName"
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.patientReference?.personName"
 																		 formControlName="PersonName">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Reference Address</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.partner?.refAddress"
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.patientReference?.refAddress"
 																		 formControlName="RefAddress">
 																	</div>
 																</div>
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-8">
 																		<label for="exampleInputEmail1">Reference Phone</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.partner?.referenceTel"
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient.patientReference?.referenceTel"
 																		 formControlName="ReferenceTel">
 																	</div>
 																</div>

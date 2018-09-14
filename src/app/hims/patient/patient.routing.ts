@@ -39,6 +39,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
         children: [
 
+            { path: 'updatepatient/:id', component: RegistrationComponent },
             { path: 'registration', component: RegistrationComponent },
             { path: 'profile/:id', component: ProfileComponent },
             { path: 'diagnoses', component: DiagnosesComponent },

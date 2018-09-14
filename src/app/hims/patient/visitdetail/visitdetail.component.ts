@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Visits } from '../../../models/visits';
 import { Appointment } from '../../../models/appointment';
 import { VisitDiagnosis } from '../../../models/visitdiagnoses';
- 
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-visitdetail',
   templateUrl: './visitdetail.component.html',
@@ -27,7 +28,7 @@ export class VisitdetailComponent implements OnInit {
   private visitdiag  : any = {}; 
   private visitTest : any = {}
  
-  constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) {
+  constructor(private Location : Location,private PatientServiceobj : PatientService, private route : ActivatedRoute) {
 
    }
 
@@ -82,6 +83,11 @@ export class VisitdetailComponent implements OnInit {
   
   
 
+  }
+
+  goback()
+  {
+    this.Location.back();
   }
   
 

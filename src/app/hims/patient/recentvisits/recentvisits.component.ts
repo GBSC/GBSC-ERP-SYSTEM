@@ -26,6 +26,8 @@ export class RecentvisitsComponent implements OnInit {
         let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(visits=> this.visits = visits );
         console.log(x);
     }); 
+
+
 }
 
     async onclick(id) {

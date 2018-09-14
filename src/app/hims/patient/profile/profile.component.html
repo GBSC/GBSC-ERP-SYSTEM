@@ -5,7 +5,7 @@
       <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_1_item_1_head" data-toggle="collapse" href="#m_accordion_1_item_1_body"
         aria-expanded="false">
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-lg-8">
             <span class="m-accordion__item-icon">
               <i class="fa flaticon-user-ok"></i>
             </span>
@@ -13,6 +13,19 @@
               <b>{{Patient?.firstName}} {{Patient?.lastName}}</b>
             </span>
           </div>
+
+          <div class="col-lg-1">
+              <div  class="m-list-search">
+                <div  class="m-list-search__results">
+                    <a class="m-list-search__result-item" (click)="editPatient(Patient)">
+                        <span  class="m-list-search__result-item-icon">
+                          <i  class="fa fa-map-marker	m--font-white"></i>
+                        </span>
+                        <span  class="m-list-search__result-item-text"> Edit </span>
+                      </a>
+                </div>
+              </div>
+          </div> 
           <div class="col-lg-2">
             <span class="m-accordion__item-title">
               <b>Patient ID</b> {{Patient?.mrn}}
@@ -92,7 +105,7 @@
                                 </label>
                                 <div class="col-xl-8 col-lg-8">
                                   <span class="m-form__control-static">
-                                    {{Patient?.dob}}
+                                    {{Patient?.dob  | date: 'dd/MM/yyyy'}}
                                   </span>
                                 </div>
                               </div>
@@ -206,7 +219,7 @@
                                 </label>
                                 <div class="col-xl-8 col-lg-8">
                                   <span class="m-form__control-static">
-                                    {{Patient?.visitNature}}
+                                     {{vistnatr?.nature}}
                                   </span>
                                 </div>
                               </div>
@@ -315,7 +328,7 @@
                                 </label>
                                 <div class="col-xl-8 col-lg-8">
                                   <span class="m-form__control-static">
-                                    {{Patient.partner?.dob}}
+                                    {{Patient.partner?.dob  | date: 'dd/MM/yyyy'}}
                                   </span>
                                 </div>
                               </div>
@@ -516,18 +529,20 @@
       <!--Health Trend Summary end-->
       <!--Appointments strat-->
       <!-- <app-appointments></app-appointments> -->
-      <app-test></app-test>
       <!--Appointments end-->
     </div>
     <div class="col-lg-4">
       <!--recent visits start-->
       <app-recentvisits></app-recentvisits>
+
+      <app-test></app-test>
+
       <!--recent visits end-->
       <!--FAMILY start-->
-      <app-family></app-family>
+      <!-- <app-family></app-family> -->
       <!--FAMILY end-->
       <!--CONDITIONS start-->
-      <app-conditions></app-conditions>
+      <!-- <app-conditions></app-conditions> -->
       <!--CONDITIONS end-->
     </div>
     <!--begin::Portlet-->

@@ -25,6 +25,7 @@ export class PatientService {
     public patient;
     public currentPatient: any;
     public SearchPatientbyname : any;
+    public patientData : any ;
 
     public consultant: any;
     public patients: any;
@@ -84,6 +85,13 @@ export class PatientService {
         return addPatient;
     }
 
+    async getpatientForupdating(value){
+        this.patientData =  await value
+        console.log(this.patientData)
+        return  this.patientData 
+        
+    }
+
     // async getPatientbyid() {
     //   console.log(this.patientId);
     //   if (this.patientId) {
@@ -97,7 +105,7 @@ export class PatientService {
 
     async updatePatient(patient) {
         console.log(patient)
-        return await this.http1.post(`${this.API_URL}/patients/UpdatePatient/`, patient).toPromise();
+      return await this.http1.post(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
     }
 
     async deletePatient(id) {
@@ -299,9 +307,9 @@ export class PatientService {
         return  this.http1.get<VisitDiagnosis>(this.API_URL+'/patients/GetPatientLastestDiagnosis/'+id);
     }
 
-getpatientLatestTest(id): Observable <VisitTest>{
-    return this.http1.get<VisitTest>(this.API_URL+'/patients/GetPatientLastestTest/'+id);
-}
+    getpatientLatestTest(id): Observable <VisitTest>{
+        return this.http1.get<VisitTest>(this.API_URL+'/patients/GetPatientLastestTest/'+id);
+    }
 
     getpatient (id) : Observable<Patient>
     {

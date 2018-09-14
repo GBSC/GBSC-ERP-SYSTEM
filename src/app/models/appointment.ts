@@ -11,6 +11,5 @@ export interface Appointment {
     AppointmentDay: string;
     Remarks: string;
     ConsultantId: number;
-    PatientId: number;
-    VisitId : number;
+     VisitId : number;
 }

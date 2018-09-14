@@ -42,7 +42,7 @@ export class RegistrationComponent implements OnInit {
 
     id: number;
 
-    public Patient : any ={};
+    public Patient : any =' ';
 
 
 
@@ -144,9 +144,9 @@ export class RegistrationComponent implements OnInit {
         value.patientReference = this.addReference;
         value.patientDocuments = this.addDocument;
         console.log(value);
-        // await this.PatientServiceobj.addPatient(value);
-        // this.router.navigate(['/hims/patient/findpatient']);
-        // this.PatientServiceobj.getPatient();
+        await this.PatientServiceobj.addPatient(value);
+        this.router.navigate(['/hims/patient/findpatient']);
+        this.PatientServiceobj.getPatient();
         
         // this.PatientServiceobj.getPatient();
         // console.log(value);

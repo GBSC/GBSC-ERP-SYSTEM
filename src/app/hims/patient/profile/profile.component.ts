@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     public Patient : any ={};
 
     public visitnature :any ;
-    public vistnatr : any = {};
+    public vistnatr = [];
 
 
     constructor(private PatientServiceobj: PatientService, private Router : Router,  private route : ActivatedRoute) { }
@@ -36,8 +36,9 @@ export class ProfileComponent implements OnInit {
        let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
            this.Patient = Patient;
            console.log(this.visitnature)
+
            this.vistnatr = this.visitnature.find(t=>t.visitNatureId === Patient.visitNatureId);
-           console.log(this.vistnatr.nature)
+         
            console.log(Patient)
         });
        

@@ -9,7 +9,7 @@ import { PatientVital } from '../../../models/patientvitals';
 })
 export class TestComponent implements OnInit {
   public id : any
-  public patientVisitTest : any = {}; 
+  public patientVisitTest=[]; 
   constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) { }
 
   async ngOnInit() {
@@ -17,7 +17,7 @@ export class TestComponent implements OnInit {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.getpatientLatestTest(this.id).subscribe((patientVisitTest) => {
+       let x = this.PatientServiceobj.getpatientLatestTest(this.id).subscribe((patientVisitTest : any) => {
         this.patientVisitTest = patientVisitTest;
         console.log(patientVisitTest);
         console.log(this.patientVisitTest)

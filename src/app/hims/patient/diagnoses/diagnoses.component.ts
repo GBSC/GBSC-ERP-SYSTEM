@@ -12,7 +12,7 @@ export class DiagnosesComponent implements OnInit {
 
  
     id: number;
-    public patientVisitDiagnoses : any = {}; 
+    public patientVisitDiagnoses= []; 
 
     constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) {
 
@@ -23,7 +23,7 @@ export class DiagnosesComponent implements OnInit {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses) => {
+       let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses : any) => {
         this.patientVisitDiagnoses = patientVisitDiagnoses;
         console.log(patientVisitDiagnoses);
         console.log(this.patientVisitDiagnoses)

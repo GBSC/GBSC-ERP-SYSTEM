@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaveSetupService } from '../../leaveSetup.service';
 
 @Component({
     selector: 'app-leavepurpose',
@@ -6,10 +7,32 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./leavepurpose.component.css']
 })
 export class LeavepurposeComponent implements OnInit {
+    public levepurpose: any;
 
-    constructor() { }
+    constructor(public leavesetupservice:LeaveSetupService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
+        await this.leavesetupservice.getleavepurpose(); 
+        this.levepurpose =  this.leavesetupservice.leavepurpose
     }
+
+    addleavepurpose(lpurpose) {
+        console.log(lpurpose.data);
+        this.leavesetupservice.addleavepurpose(lpurpose.data);
+      }
+      
+      updateleavepurpose(levpurpose) {
+        console.log(levpurpose); 
+        this.leavesetupservice.updatepurpose(levpurpose); 
+        console.log('in updated purpose')
+     
+      }
+
+      deleteleavepurpose(lvpurpose) {
+        console.log(lvpurpose); 
+        this.leavesetupservice.Deleteleavpurpose(lvpurpose.key); 
+        console.log('in updated purpose')
+     
+      }
 
 }

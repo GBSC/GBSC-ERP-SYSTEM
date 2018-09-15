@@ -11,11 +11,13 @@ import { SystemAdministrationModule } from '../app/systemadministration/systemad
 
 
 
+
 const routes: Routes = [
     { path: 'login', loadChildren: './auth/auth.module#AuthModule' },
     { path: 'logout', component: LogoutComponent },
-    { path: '', redirectTo: 'index', pathMatch: 'full' },
+    { path: '', redirectTo: 'index', pathMatch: 'full' } 
 ];
+ 
 
 @NgModule({
     imports: [

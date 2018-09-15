@@ -14,15 +14,22 @@ export class AppComponent implements OnInit {
     constructor(private _router: Router) {
     }
 
-    ngOnInit() {
-        this._router.events.subscribe((route) => {
-            if (route instanceof NavigationStart) {
+    public ngOnInit() {
+        this._router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
                 Helpers.setLoading(true);
                 Helpers.bodyClass(this.globalBodyClass);
+
+                let url = (<NavigationStart>event).url;
+                if (url !== url.toLowerCase()) {
+                    this._router.navigateByUrl((<NavigationStart>event).url.toLowerCase());
+                }
             }
-            if (route instanceof NavigationEnd) {
+            if (event instanceof NavigationEnd) {
                 Helpers.setLoading(false);
             }
         });
     }
+
+    
 }

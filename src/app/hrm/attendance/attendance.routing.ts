@@ -1,8 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RootComponent } from '../attendance/root/root.component';
 import { DefaultrosterComponent } from '../attendance/defaultroster/defaultroster.component';
 import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { RootComponent } from '../root/root.component';
 
 
 

@@ -1,44 +1,42 @@
 <div class="m-content">
-   
-    <dx-data-grid
-    id="gridContainer"
-    [dataSource]="leavepurpose"
-    keyExpr="ID"
-    (onRowInserted)="addleavepurpose($event)"
-  (onRowUpdated)="Updateleavepurpose($event)"
-  (onRowRemoved)="deletepurpose($event)"> 
-   
-    <dxo-editing 
-         mode="popup"
-         [allowUpdating]="true"
-         [allowDeleting]="true"
-         [allowAdding]="true"
-         [useIcons]="true">
-  
-         <dxo-popup
-         title="Bank"
-         [showTitle]="true"
-         [width]="700"
-         [height]="345"
-         [position]="{ my: 'center', at: 'center', of: window }">
-       </dxo-popup>
-    </dxo-editing>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-header-filter [visible]="true"></dxo-header-filter> 
-  
-  <dxo-search-panel 
-    [visible]="true" 
-    [width]="240" 
-    placeholder="Search..."></dxo-search-panel>
-    <dxo-paging [pageSize]="8"></dxo-paging>
-    <dxo-pager 
-        [showPageSizeSelector]="true"
-        [allowedPageSizes]="[5, 10, 20]"
-        [showInfo]="true">
-    </dxo-pager>
-  
-    <dxi-column dataField="purposeTitle"></dxi-column> 
-    <dxi-column dataType="bool" dataField="isActive"></dxi-column> 
-  
-  </dx-data-grid>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Leave Purpose</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+
+              <dx-data-grid id="gridContainer" [dataSource]="levepurpose" keyExpr="leavePurposeId" (onRowInserted)="addleavepurpose($event)"
+                (onRowUpdated)="updateleavepurpose($event)" (onRowRemoved)="deleteleavepurpose($event)">
+
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+
+                  <dxo-popup title="Leave Purpose" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+
+                <dxi-column dataField="title"></dxi-column>
+                <dxi-column dataType="bool" dataField="isActive"></dxi-column>
+
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

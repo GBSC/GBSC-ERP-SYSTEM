@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-home',
+    selector: 'app-employeehome',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class EmployeeHomeComponent implements OnInit {
 
 
     tabItem: any;
@@ -19,12 +19,12 @@ export class HomeComponent implements OnInit {
     [
         { name: "Basic Information", icon: 'm-nav__link-icon fa fa-info-circle', selected: false },
         { name: "Profile Picture", icon: 'm-nav__link-icon fa fa-user-circle', selected: false },
-        { name: "Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
+        { name: "Employee Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
         { name: "Emergency Contacts", icon: 'm-nav__link-icon fa fa-contao', selected: false },
         { name: "Social Networking", icon: 'm-nav__link-icon fa fa-linkedin', selected: false },
-        { name: "Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
+        { name: "Employee Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
         { name: "Work Experience", icon: 'm-nav__link-icon fa fa-black-tie', selected: false },
-        { name: "Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
+        { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
         { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
     ]
 
@@ -99,14 +99,14 @@ export class HomeComponent implements OnInit {
         switch (this.tabItem.name) {
             case 'Basic Information':
                 await this.employeeService.addEmployee();
-                this.router.navigate(['hrm/employees']);
+                this.router.navigate(['employees']);
                 console.log(this.activatedRoute.url);
                 break;
             case 'Profile Picture':
                 await this.employeeService.adduserProfilepic();
                 break;
 
-            case 'Company Information':
+            case 'Employee Company Information':
                 await this.employeeService.addusercompany();
                 break;
 
@@ -119,7 +119,8 @@ export class HomeComponent implements OnInit {
                 await this.employeeService.adduserSocial();
                 break;
 
-            case 'Qualification':
+            case 'Employee Qualification':
+            // alert('ajksdfljkasdklfj');
                 await this.employeeService.adduserUniversities();
                 break;
 
@@ -127,8 +128,8 @@ export class HomeComponent implements OnInit {
                 await this.employeeService.adduserexperience();
                 break;
 
-            case 'Bank Account':
-                await this.employeeService.adduserBank();
+            case 'Employee Bank Account':
+                await this.employeeService.addBank();
                 break;
 
             case 'Documents':

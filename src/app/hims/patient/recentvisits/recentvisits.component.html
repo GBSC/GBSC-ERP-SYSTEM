@@ -12,6 +12,10 @@
       </div>
     </div>
     <div class="m-portlet__body">
-      None
+       <ul *ngFor="let Patient of visits">
+         <li   (click)="onclick(Patient.visitId)">
+           <a >{{Patient.startTime | date: 'dd/MM/yyyy'}}</a>
+          </li>
+       </ul>
      </div>
   </div>

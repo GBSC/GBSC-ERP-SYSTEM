@@ -8,6 +8,8 @@ import { visitValue } from '@angular/compiler/src/util';
 import { Loginform } from '../../../models/loginform';
 import { InventorysystemService } from '../../../../app/Inventorysystem/service/Inventorysystem.service'
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -23,21 +25,31 @@ export class RegistrationComponent implements OnInit {
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
+
+    public editdocumentForm : FormGroup;
     public documents: any = [];
     public currentDoc: any = {};
     public addpartnet: any;
     public addDocument: any;
+    public updateDocument  = [];
+
     public addReference: any;
 
     public partnerDetails: any;
     public currentUser = new Loginform();
+
+    public visitnature : any;
+
+    id: number;
+
+    public Patient : any =' ';
 
 
 
 
 
     public documentss: any = [];
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router) {
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route : ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             'ReferredBy': ['', Validators.required],
@@ -62,7 +74,7 @@ export class RegistrationComponent implements OnInit {
         });
         this.patientForm = this.formBuilder.group({
             'RegCity': ['', Validators.required],
-            'VisitNature': ['', Validators.required],
+            'visitNatureId': ['', Validators.required],
             'FirstName': ['', Validators.required],
             'MiddleName': ['', Validators.required],
             'LastName': ['', Validators.required],
@@ -86,6 +98,13 @@ export class RegistrationComponent implements OnInit {
             'PrivatePatientCons': ['', Validators.required],
             'PrivateHospital': ['', Validators.required],
             'AuthorizedPerson': ['', Validators.required],
+            //'patientId' :['',Validators.required]
+        });
+
+        this.editdocumentForm = this.formBuilder.group({
+            'DocumentName': ['', Validators.required],
+            'Remarks': ['', Validators.required],
+            'FilePath': ['', Validators.required]
         });
     }
 
@@ -113,6 +132,11 @@ export class RegistrationComponent implements OnInit {
     remove(index) {
         this.documentss.splice(index, 1);
     }
+    removeaddeddata(i)
+    {
+        this.Patient.patientDocuments.splice(i,1 )
+        console.log(i)
+    }
 
     async onSubmit(value) {
         localStorage.setItem('patientdata', JSON.stringify(value));
@@ -123,6 +147,7 @@ export class RegistrationComponent implements OnInit {
         await this.PatientServiceobj.addPatient(value);
         this.router.navigate(['/hims/patient/findpatient']);
         this.PatientServiceobj.getPatient();
+        
         // this.PatientServiceobj.getPatient();
         // console.log(value);
         // return
@@ -130,27 +155,68 @@ export class RegistrationComponent implements OnInit {
 
     onAddPartner(value) {
         console.log(value);
-        this.addpartnet = value
+          this.addpartnet = value
     }
+
+
+    onupdatedocument(value){
+       // this.updateDocument = value
+        // console.log(this.documentss)
+        console.log(value)
+     }
+
     onAddDocument(value) {
+       
         console.log(value);
-        this.addDocument = value;
+     this.addDocument = value;
     }
+
     onAddReference(value) {
         console.log(value);
         this.addReference = value;
     }
 
+  async  updatePatient(value){
+      console.log(value);
+   // this.patientForm.value.patientId = this.id;
+    //  let x = await  this.PatientServiceobj.updatePatient(value);
+    // console.log(x);
+    }
 
 
     async ngOnInit() {
+
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+  
+         
+            this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
+              this.Patient = Patient;
+              
+              this.patientForm.patchValue({
+                  FirstName: Patient.firstName,
+                });
+
+           });
+
+
+          });
+
 
         await this.PatientServiceobj.getPatient()
         let x = this.PatientServiceobj.patients
         console.log(x);
         console.log(this.PatientServiceobj.patients)
 
+        await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
+        let y = this.PatientServiceobj.patientData
+        console.log(y);
 
+        await this.PatientServiceobj.GetVisitNatures();
+        this.visitnature = this.PatientServiceobj.visitNatures;
+        console.log(this.visitnature);
+
+   
 
 
     }

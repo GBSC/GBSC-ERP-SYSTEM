@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {PatientService} from '../../../hims/patient/services/patient.services';
+import { ActivatedRoute } from '@angular/router';
+import { PatientVital } from '../../../models/patientvitals';
+
+
 
 @Component({
     selector: 'app-vitals',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VitalsComponent implements OnInit {
 
-    constructor() { }
+    public leatestPatientVitals ={};
+ 
+    id: number;
 
-    ngOnInit() {
+    // patientVital :  PatientVital   ;
+    public patientVital : any = {}; 
+    constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) { }
+
+   async ngOnInit() {
+    this.route.params.subscribe(params => {
+
+        this.id = +params['id'];
+ 
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital );
+  console.log(x);
+  
+     });
+
     }
 
 }

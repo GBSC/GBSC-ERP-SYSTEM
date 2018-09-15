@@ -32,14 +32,9 @@ export class ReligionComponent implements OnInit {
         this.dataService.addReligion(religon.data);
     }
 
-<<<<<<< HEAD
-    updatereligion(relign) {
-        console.log(relign);
-        this.dataService.updateReligion(relign);
-=======
+
     updatereligion(religon) {
         this.dataService.updateReligion(religon);
->>>>>>> hrms
     }
 
     deletereligion(religon) {

@@ -278,9 +278,30 @@
                   </div>
                 </div>
                 <div class="m-portlet__body">
-                  <div class="m-section">
+
+                        <form [formGroup]="searchPatientForm"> 
+                            <div class="row">
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1"> Patient Name</label>
+                                    <input class="form-control m-input m-input--solid" formControlName="name">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="exampleInputEmail1"> MRN #</label>
+                                    <input class="form-control m-input m-input--solid" formControlName="mrn">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label for="exampleInputEmail1"> Phone Number</label>
+                                    <input class="form-control m-input m-input--solid" formControlName="contact">
+                                </div>
+                                <div class="form-group col-lg-1">
+                                    <label for="exampleInputEmail1"> </label>
+                                    <button type="button" (click)="SearchPatient(searchPatientForm.value)" class="btn btn-primary margin">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="m-section">
                     <div class="m-section__content" >
-                        <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients"  (onSelectionChanged)="selectionChanged($event)"> 
+                        <dx-data-grid id="" [dataSource]="PatientServiceobj?.SearchPatientbyname" (onSelectionChanged)="selectionChanged($event)"> 
                        <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
@@ -293,10 +314,11 @@
                             <dxo-paging [pageSize]="5"></dxo-paging>
                             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                             <dxi-column dataField="mrn" caption="MRN #"></dxi-column>
-                            <dxi-column dataField="firstName" caption="Patient Name"></dxi-column>
+                              <dxi-column dataField="firstName" caption="Patient Name"></dxi-column>  
                             <dxi-column dataField="phoneNumber" caption="Contact Number"></dxi-column>
                             <dxi-column dataField="date" caption="Registration Date"></dxi-column>
                             <dxi-column dataField="gender" caption="Gender"></dxi-column>  
+
                             <!-- <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
                             <div *dxTemplate="let d of 'chartCellTemplate'">
                                 <div class="chart-cell">

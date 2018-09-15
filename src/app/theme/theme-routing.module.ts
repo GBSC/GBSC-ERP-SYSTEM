@@ -13,9 +13,6 @@ import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 
-
-
-
 const routes: Routes = [
     {
         "path": "",
@@ -60,12 +57,13 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule, 
         SuperadminModule,
+        InventorysystemModule, 
         SystemAdministrationModule,
         DashboardModule,
         HrmModule,
         PayrollModule,
-        DashboardModule
-        // AccountModule
+        DashboardModule,
+        AccountModule
     ],
     exports: [
         RouterModule,

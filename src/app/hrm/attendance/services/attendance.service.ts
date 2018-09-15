@@ -14,11 +14,7 @@ export class AttendanceService {
     /** Attendance Admin */
     public attendanceflagexemption;
     public attendancerule;
-
-    /* Over Time */
-    public overtimetype;
-    public overtimeflag;
-
+ 
     constructor(public httpClient: HttpClient) { }
 
     /** Attendance Request CRUD METHODS */
@@ -33,7 +29,7 @@ export class AttendanceService {
     }
 
     async getdataToUpdate(attendanceId, attendanceUrl) {
-        return await this.httpClient.get(`${this.baseUrl}/${attendanceId}/${attendanceUrl}`).toPromise();
+        return await this.httpClient.get(`${this.baseUrl}/${attendanceUrl}/${attendanceId}`).toPromise();
     }
 
 
@@ -233,8 +229,8 @@ export class AttendanceService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendanceflagexemption = await this.httpClient.post(`${this.baseUrl}/AddAttendanceFlagExemption`, data, headers).toPromise();
-        console.log(newattendanceflagexemption);
+        let newflagexemption = await this.httpClient.post(`${this.baseUrl}/AddAttendanceFlagExemption`, data, headers).toPromise();
+        console.log(newflagexemption);
 
     }
 
@@ -292,91 +288,5 @@ export class AttendanceService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/DeleteAttendanceRule/${id}`).toPromise();
-    }
-
-    /** CRUD METHODS */
-    async getAllovertimetype() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.overtimetype = await this.httpClient.get(`${this.baseUrl}/Getovertimetypes`).toPromise();
-        console.log(this.overtimetype);
-        return this.overtimetype;
-    }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addovertimetype(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newovertimetype = await this.httpClient.post(`${this.baseUrl}/Addovertimetype`, data, headers).toPromise();
-        console.log(newovertimetype);
-
-    }
-
-    async updateovertimetype(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let overtimetype = await this.getdataToUpdate(data.key, 'Getovertimetype');
-        overtimetype = { ...overtimetype, ...data.data }
-        console.log(overtimetype);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/Updateovertimetype`, overtimetype).toPromise();
-
-    }
-
-    async Deleteovertimetype(overtimetypeId) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/Deleteovertimetype/${overtimetypeId}`).toPromise();
-    }
-
-    /** CRUD METHODS */
-    async getAllovertimeflag() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.overtimeflag = await this.httpClient.get(`${this.baseUrl}/Getovertimeflags`).toPromise();
-        console.log(this.overtimeflag);
-        return this.overtimeflag;
-    }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addovertimeflag(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newovertimeflag = await this.httpClient.post(`${this.baseUrl}/Addovertimeflag`, data, headers).toPromise();
-        console.log(newovertimeflag);
-
-    }
-
-    async updateovertimeflag(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let overtimeflag = await this.getdataToUpdate(data.key, 'Getovertimeflag');
-        overtimeflag = { ...overtimeflag, ...data.data }
-        console.log(overtimeflag);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/Updateovertimeflag`, overtimeflag).toPromise();
-
-    }
-
-    async Deleteovertimeflag(overtimeflagId) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/Deleteovertimeflag/${overtimeflagId}`).toPromise();
     }
 }

@@ -70,6 +70,10 @@ import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.compone
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
 import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
 import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
+import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component';
+import { UserRosterAttendanceComponent } from './attendance/user-roster-attendance/user-roster-attendance.component';
+import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
+import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -185,6 +189,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 {path: 'overtimetype', component: OvertimetypeComponent},
             ]},
             {path: 'attendancerequest', component: AttendancerequestComponent},
+            {path: 'official-visit-entry', component: OfficialVisitEntryComponent},
+            {path: 'user-roster-attendance', component: UserRosterAttendanceComponent},
+            {path: 'overtime-entitlement', component: OvertimeEntitlementComponent},
+            {path: 'employee-overtime-entitlement', component: EmployeeOvertimeEntitlementComponent},
             { path: 'rostercopy', component: RostercopyComponent },
             { path: 'rostermapping', component: RostermappingComponent },
         ]},

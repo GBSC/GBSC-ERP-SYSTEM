@@ -27,12 +27,16 @@ export class ShiftComponent implements OnInit {
             MinimumOverTime: ['', Validators],
             InTimeShiftThreshold: ['', Validators],
             OutTimeShiftThreshold: ['', Validators],
+            AttendanceFlagId: ['']
              
         });
+
         await this.attendancesetupservice.getshifts();
         this.shift = this.attendancesetupservice.shift
-        console.log(this.shift);
 
+
+        await this.attendancesetupservice.getattendanceflag();
+        let attendanceflag = this.attendancesetupservice.attendanceflag
     }
 
     async addshift(value) {

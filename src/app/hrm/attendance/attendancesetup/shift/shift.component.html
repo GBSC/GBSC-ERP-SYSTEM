@@ -1,325 +1,137 @@
 <div class="m-content">
-    <div class="row">
-        <div class="col-md-12"> 
-  <div class="m-portlet">
-    <div class="m-portlet__head">
-      <div class="m-portlet__head-caption">
-        <div class="m-portlet__head-title">
-          <h3 class="m-portlet__head-text">
-       Shift
-          </h3>
-        </div>
-      </div>
-    </div>
-    <div class="m-portlet__body">
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control" formControlName="Title" name="title" placeholder="3" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
 
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label"> Start Time</label>
-              <div class="col-lg-8">
-                <input type="text" class="form-control" id="m_timepicker_1" readonly="" placeholder="Select time">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                 Shift
+                </h3>
               </div>
             </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime" placeholder="11" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" placeholder="15" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" placeholder="5" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-    
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" formControlName="MinimumIntimationPeriod" placeholder="3" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-    <div class="row">
-        <div class="col-lg-10">
-            <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">Day Continuation Restriction:  </label>
-              <div class="col-lg-8">
-           
-                  <select class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod">
-                      <option value="disabled">Select Restriction </option>
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
           </div>
-        </div>
-        </div>
-      </div>
-      <div class="m--space-07"></div>
+          <div class="m-portlet__body">
+  
+            <form [formGroup]="ShiftForm"> 
 
-      <div class="row">
-          <div class="col-md-10">
-         
-              <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                   For Males:
-                  </label>
-                  <div class="col-lg-8">
-                      <label class="m-checkbox">
-                          <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                          <span></span>
-                        </label> 
+               <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                      <label>
+                      Shift Code:
+                      </label>
+                      <input type="text" class="form-control m-input" formControl="ShiftCode" placeholder="0">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                       Shift Title:
+                      </label>
+                      <input type="text" class="form-control m-input" formControl="ShiftTitle" placeholder="Shift Title">
+                    </div>
                   </div>
-                </div>
-           </div>
-    </div>
-    <div class="m--space-07"></div>
+  
+                  <div class="form-group m-form__group row">
+                      <div class="col-lg-6">
+                        <label>
+                        Start Time:
+                        </label>
+                        <input type="text" class="form-control m-input" formControl="StartTime" placeholder="00:00">
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="">
+                         End Time:
+                        </label>
+                        <input type="text" class="form-control m-input" formControl="EndTime" placeholder="00:00">
+                      </div>
+                    </div>
+  
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                          Grace Time:
+                          </label>
+                          <input type="text" class="form-control m-input" formControl="GraceTime" placeholder="00:00">
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="">
+                          IS Multiple Day Shift:
+                          </label>
+                          <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox"> 
+                                <span></span>
+                              </label>
+                            </div>
+                        </div>
+                      </div>
 
-    <div class="row">
-        <div class="col-md-10">
-       
-            <div class="form-group m-form__group row">
-                <label class="col-lg-4 col-form-label">
-                 For Females:
-                </label>
-                <div class="col-lg-8">
-                    <label class="m-checkbox">
-                        <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                        <span></span>
-                      </label> 
-                </div>
-              </div>
-         </div>
-  </div>
-  <div class="m--space-07"></div>
+                      <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                            Overtime Start Time:
+                            </label>
+                            <input type="text" class="form-control m-input" formControl="OverTimeStartTime" placeholder="00:00">
+                          </div>
+                          <div class="col-lg-6">
+                            <label class="">
+                            Minimum Over Time:
+                            </label>
+                            <input type="text" class="form-control m-input" formControl="MinimumOverTime" placeholder="00:00">
+                          </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                              <label>
+                                  In Time Shift Threshold:
+                              </label>
+                              <input type="text" class="form-control m-input" formControl="InTimeShiftThreshold" placeholder="00:00">
+                            </div>
+                            <div class="col-lg-6">
+                              <label class="">
+                                  Out Time Shift Threshold:
+                              </label>
+                              <input type="text" class="form-control m-input" formControl="OutTimeShiftThreshold" placeholder="00:00">
+                            </div>
+                          </div>
+
+
+                  <div class="form-group m-form__group row">
+                      <div class="col-lg-12">
+                      
+                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                          <th>Attendance Flag</th>
+                          <th>Add</th>
+                          <th>Delete</th>
+                          <tr>
+                            <td>
+                                <select class="form-control m-input" formControl="AttendanceFlagId" id="">
+                                    <option value="" disabled selected>-- Select Attendance Flag --</option>
+                                    <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
+                                  </select>
+                            </td>
+                            <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add </button></td>
+                            <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
+                          </tr>
+                          <tr *ngFor="let field of fieldArray; let i = index">
+                              <td>
+                                  <select class="form-control m-input" formControl="AttendanceFlagId" id="">
+                                      <option value="" disabled selected>-- Select Attendance Flag --</option>
+                                      <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
+                                    </select>
+                              </td>
+                              <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add </button></td>
+                              <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
+                            </tr>
+                        </table>
+                      </div> 
+                    </div>
+   
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> 
+    </div>
     
-      
-  <div class="row">
-      <div class="col-md-10">
-     
-          <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">
-               For Married Only:
-              </label>
-              <div class="col-lg-8">
-                  <label class="m-checkbox">
-                      <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                      <span></span>
-                    </label> 
-              </div>
-            </div>
-       </div>
-</div>
-<div class="m--space-10"></div>
-                        
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Leave Day Type:  </label>
-          <div class="col-lg-8">
-
-            <select class="form-control m-input m-input--solid" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
-              <option value="" disabled selected>-- Select Leave Type --</option>
-              <option *ngFor="let levedaytype of leavesetupservice.leavedaytype" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
-            </select>
-
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Short Leave Allowed:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Allowed Only one in Service:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-                                  
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Job Period Based:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox" formControlName="MinimumIntimationPeriod">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Eligibility Based on:  </label>
-          <div class="col-lg-8">
-       
-              <select class="form-control m-input m-input--solid">
-                  <option value="disabled">Select Eligibility </option>
-                  <option>Confirmed</option>
-                  <option>Confirmed</option>
-                </select>
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-           Is Month Based:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Allow Leave Request on Zero Balance:  </label>
-          <div class="col-lg-8">
-       
-              <select class="form-control m-input m-input--solid">
-                  <option value="disabled">Select Leave Request </option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-           Active:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Leave Application Limit: </label>
-          <div class="col-lg-8">
-        <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
-      </div>
-    </div>
-    </div>
-  </div>
-  <div class="m--space-07"></div>
-
-
-                 </div>
-             </div>
-          </div> 
-       </div>
-    </div>

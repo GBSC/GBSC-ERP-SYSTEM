@@ -5,7 +5,7 @@
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
               <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Over Time Types</h3>
+                <h3 class="m-portlet__head-text">OverTime Flag</h3>
               </div>
             </div>
           </div>
@@ -13,13 +13,13 @@
             <div class="m-section">
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
-                 [dataSource]="Overtimeflag"
-                 keyExpr="overTimeFlagId"
+                 [dataSource]="overtimeflag"
+                 keyExpr="overtimeFlagId"
                  (onRowInserted)="addovertimeflag($event)" 
                  (onRowUpdated)="updateovertimeflag($event)"
                  (onRowRemoved)="deleteovertimeflag($event)">
                   <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Decimal Rounding Matrix" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                    <dxo-popup title="OverTime Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from '../../services/attendance.service';
+import { AttendancesetupService } from '../../services/attendancesetup.service';
 
 @Component({
     selector: 'app-overtimetype',
@@ -9,26 +10,28 @@ import { AttendanceService } from '../../services/attendance.service';
 export class OvertimetypeComponent implements OnInit {
 
     public overtimetype: any;
-    constructor(public attendanceservice: AttendanceService) { }
+    constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getAllovertimeflag();
-        this.overtimetype = this.attendanceservice.overtimetype
+        await this.attendancesetupservice.getAllovertimetype();
+        this.overtimetype = this.attendancesetupservice.overtimetype
         console.log(this.overtimetype);
-
+ 
+        await this.attendancesetupservice.getAllovertimeflag();
+        let overtimeflag = this.attendancesetupservice.overtimeflag
     }
 
     async addovertimetype(value) {
-        this.attendanceservice.addovertimetype(value.data);
+        this.attendancesetupservice.addovertimetype(value.data);
     }
 
     async updateovertimetype(value) {
         console.log(value);
-        this.attendanceservice.updateovertimetype(value);
+        this.attendancesetupservice.updateovertimetype(value);
     }
 
     async deleteovertimetype(value) {
-        this.attendanceservice.Deleteovertimetype(value.key);
+        this.attendancesetupservice.Deleteovertimetype(value.key);
     }
 
 }

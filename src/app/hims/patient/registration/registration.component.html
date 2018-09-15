@@ -332,27 +332,16 @@
 																					</button>
 																				</td>
 																			</tr>
-																			<tr *ngFor="let patientDoucment of Patient?.patientDocuments;let i = index">
-																				<form [formGroup]="editdocumentForm">
-																					<td>
-																						<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="patientDoucment?.documentName"
-																						 formControlName="DocumentName" type="text">
-																					</td>
-																					<td>
-																						<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="patientDoucment?.remarks"
-																						 formControlName="Remarks" type="text">
-																					</td>
-																					<td>
-																						<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="patientDoucment?.filePath"
-																						 type="file" formControlName="FilePath">
-																					</td>
-																					<td>
-																						<button type="button" (click)="removeaddeddata(i)" class="btn btn-primary">
-																							<i class="la la-archive"></i>
-																						</button>
-																					</td>
-																				</form>
-																			</tr>
+																			<tr *ngFor="let patientDoucment of documents;let i = index">
+																				<td>{{patientDoucment?.documentName}}</td>
+																				<td>{{patientDoucment?.remarks}}</td>
+																				<td>{{patientDoucment?.filePath}}</td>
+																				<td>
+																					<button type="button" (click)="removeaddeddata(i)" class="btn btn-primary">
+																						<i class="la la-archive"></i>
+																					</button>
+																				</td>
+																		    </tr>
 																		</tbody>
 
 																		<tbody *ngIf="router.url === '/hims/patient/registration'">

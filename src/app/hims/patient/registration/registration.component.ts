@@ -1,10 +1,8 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Patient } from '../../../models/patient';
 import { PatientService } from '../../patient/services/patient.services';
-import { getLocaleDateTimeFormat } from '@angular/common';
-import { visitValue } from '@angular/compiler/src/util';
+ import { visitValue } from '@angular/compiler/src/util';
 import { Loginform } from '../../../models/loginform';
 import { InventorysystemService } from '../../../../app/Inventorysystem/service/Inventorysystem.service'
 import { Router } from '@angular/router';
@@ -27,7 +25,7 @@ export class RegistrationComponent implements OnInit {
     public referenceForm: FormGroup;
 
     public editdocumentForm : FormGroup;
-    public documents: any = [];
+    public documents  = [];
     public currentDoc: any = {};
     public addpartnet: any;
     public addDocument: any;
@@ -167,8 +165,12 @@ export class RegistrationComponent implements OnInit {
 
     onAddDocument(value) {
        
-        console.log(value);
-     this.addDocument = value;
+      
+        this.addDocument = value;
+        console.log(this.addDocument)
+     
+    //     console.log(value);
+    //  this.addDocument = value;
     }
 
     onAddReference(value) {
@@ -176,10 +178,11 @@ export class RegistrationComponent implements OnInit {
         this.addReference = value;
     }
 
-  async  updatePatient(value){
+  async  updatePatient(){
    // this.patientForm.value.patientId = this.id;
-     let x = await  this.PatientServiceobj.updatePatient(value);
-    console.log(x);
+     let x = await  this.PatientServiceobj.updatePatient(this.id);
+   // console.log(x);
+   console.log(this.id)
     }
 
 
@@ -191,6 +194,7 @@ export class RegistrationComponent implements OnInit {
          
             let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
               this.Patient = Patient;
+              this.documents = Patient.patientDocuments
               console.log(Patient)
            });
           });
@@ -209,6 +213,9 @@ export class RegistrationComponent implements OnInit {
         this.visitnature = this.PatientServiceobj.visitNatures;
         console.log(this.visitnature);
 
+        // if(this.route.url = 'http://localhost:4200/hims/patient/updatepatient/253'){
+
+        // }
    
 
 

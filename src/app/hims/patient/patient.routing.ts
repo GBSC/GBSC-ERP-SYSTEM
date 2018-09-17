@@ -36,12 +36,14 @@ import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'patient',
+        path: 'hims/patient',
         component: RootComponent,   
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },
+            { path: '', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'registration', component: RegistrationComponent },
             { path: 'profile/:id', component: ProfileComponent },
             { path: 'diagnoses', component: DiagnosesComponent },
@@ -59,7 +61,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'visitnote', component: VisitnoteComponent },
             { path: 'visits/:id', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
-            { path: 'home', component: HomeComponent },
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
             { path: 'consultant', component: ConsultantComponent },

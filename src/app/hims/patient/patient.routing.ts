@@ -40,7 +40,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,   
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
-
+            { path: '', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'registration', component: RegistrationComponent },
             { path: 'profile', component: ProfileComponent },
             { path: 'diagnoses', component: DiagnosesComponent },
@@ -58,7 +59,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'visitnote', component: VisitnoteComponent },
             { path: 'visits', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
-            { path: 'home', component: HomeComponent },
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
             { path: 'consultant', component: ConsultantComponent },

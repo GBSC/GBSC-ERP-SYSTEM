@@ -73,7 +73,7 @@ export class AccountService {
             { module: 'SystemAdministration', route: 'systemadministration' },
             { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
-            { module: 'Hospital Management System', route: 'hims' },
+            { module: 'Hospital Management System', route: 'hims/patient' },
             { module: 'Inventory Management System', route: 'inventorysystem' },
             { module: 'Payroll Management System', route: 'payroll' },
             { module: 'Lab Information System', route: 'lab' },

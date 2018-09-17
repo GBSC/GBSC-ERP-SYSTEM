@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit {
     this.availableModules = this.accountService.getAvailableModules();
     this.dataSource = this.accountService.accessibleModules;
 
+    console.log(this.dataSource);
+
   }
 
   selectionChanged(e) {

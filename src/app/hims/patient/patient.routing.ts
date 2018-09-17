@@ -36,8 +36,13 @@ import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
+<<<<<<< HEAD
         path: 'hims/patient',
         component: RootComponent,   
+=======
+        path: 'patient',
+        component: RootComponent,
+>>>>>>> cbc66a0013be062a5203030c16af78b391f9f19e
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 

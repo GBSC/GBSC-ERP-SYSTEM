@@ -12,8 +12,8 @@ export class LeaveSetupService {
     public leaveemppolicy;
     public leavetype;
     public leaveapprover;
-    private baseUrl: string = "http://localhost:58090/api/Leavesetup";
-   // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
+   // private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
+    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
     public proratematrix;
     public decimalroundingmatrix;
     public leavesubtype;
@@ -21,7 +21,7 @@ export class LeaveSetupService {
 
     constructor(private httpClient: HttpClient) { }
 
-
+    
     /** Leave Policy CRUD METHODS */
     async getAllleavepolicy() {
 
@@ -59,7 +59,6 @@ export class LeaveSetupService {
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.httpClient.put(`${this.baseUrl}/UpdateLeavePolicy`, leavpolicy).toPromise();
-
     }
 
 
@@ -151,9 +150,7 @@ export class LeaveSetupService {
         return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
 
     }
-
-
-
+ 
     async Deleteleavyear(leavyearId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -163,7 +160,7 @@ export class LeaveSetupService {
 
 
     /** CRUD METHODS */
-    async getAllleaveapprover() {
+    async getleaveapprover() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
@@ -449,12 +446,12 @@ export class LeaveSetupService {
 
 
     // DEMO ONLY, you can find working methods below
-    async adddecimalroundingmatrix(data) {
+    async addroundingmatrix(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newprmatrix = await this.httpClient.post(`${this.baseUrl}/AddDecimalRoundingMatrix`, data, headers).toPromise();
-        console.log(newprmatrix);
+        let newdecimalmatrix = await this.httpClient.post(`${this.baseUrl}/AddDecimalRoundingMatrix`, data, headers).toPromise();
+        console.log(newdecimalmatrix);
 
     }
 
@@ -536,10 +533,10 @@ export class LeaveSetupService {
     }
 
     async updateleavesubtype(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'Getleavesubtype');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveSubType`, promatrix).toPromise();
+        let subtype = await this.getdataToUpdate(data.key, 'GetLeaveSubType');
+        subtype = { ...subtype, ...data.data }
+        console.log(subtype);
+        return await this.httpClient.put(`${this.baseUrl}/UpdateLeaveSubType`, subtype).toPromise();
 
     }
 

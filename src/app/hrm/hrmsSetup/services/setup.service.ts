@@ -13,8 +13,8 @@ export class SetupService {
 
 
 
-     private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/HrSetup";
-   // private baseUrl: string = "http://localhost:58090/api/HrSetup";
+    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/HrSetup";
+    // private baseUrl: string = "http://localhost:58090/api/HrSetup";
     public country: any;
     public department: any;
     public bank: any;

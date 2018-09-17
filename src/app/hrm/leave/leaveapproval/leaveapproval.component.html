@@ -5,7 +5,7 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Leave approvals</h3>
+              <h3 class="m-portlet__head-text">Leave Approval</h3>
             </div>
           </div>
         </div>
@@ -13,13 +13,13 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="leveapproval"
+               [dataSource]="leaveapproval"
                keyExpr="leaveApprovalId"
                (onRowInserted)="addleaveapproval($event)" 
-              (onRowUpdated)="updateleaveapproval($event)"
+               (onRowUpdated)="updateleaveapproval($event)"
                 (onRowRemoved)="deleteleaveapproval($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Leaveapproval" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Leave Approval" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -29,12 +29,24 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="name"></dxi-column> 
+
+                <dxi-column dataField="name" caption="Name"></dxi-column>
+                  <dxi-column dataField="leaveRequestId" caption="Leave Request">
+                    <dxo-lookup [dataSource]="leaveservice?.leaverequest.userId" displayExpr="firstName" valueExpr="leaveRequestId">
+                    </dxo-lookup> 
+              </dxi-column>
+                  <dxi-column dataField="leaveApproverId" caption="Approver">
+                    <dxo-lookup [dataSource]="leavesetupservice?.leaveapprover" displayExpr="userId" valueExpr="leaveApproverId">
+                    </dxo-lookup> 
+              </dxi-column>
+              <dxi-column dataType="boolean" dataField="isApproved"></dxi-column>
+
               </dx-data-grid>
-            </div>
+            
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

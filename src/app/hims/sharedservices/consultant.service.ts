@@ -6,13 +6,13 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class ConsultantService {
 
-  private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
+    private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getConsultants(): Observable<Consultant> {
-    return this.http.get<Consultant>(this.API_URL + '/HimsSetup/GetConsultants');
-  }
-  
+    getConsultants(): Observable<Consultant> {
+        return this.http.get<Consultant>(this.API_URL + '/HimsSetup/GetConsultants');
+    }
+
 
 }

@@ -1,6 +1,6 @@
-export class referenceRange{
+export class referenceRange {
 
-    referenceRangeId : number;
+    referenceRangeId: number;
 
-    refRange : string;
+    refRange: string;
 }

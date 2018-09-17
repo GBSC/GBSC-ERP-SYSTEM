@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="m-portlet__body">
-
+    <form [formGroup]="leaveRequestForm"> 
       <div class="row">
           <div class="col-md-6">
            <div class="form-group m-form__group row">
@@ -20,11 +20,10 @@
                    Requestioner:
                   </label>
                   <div class="col-lg-8">
-                  <select class="form-control m-input m-input--solid">
-                    <option>Employee no.324</option>
-                    <option>Employee no.674</option>
-                    <option>Employee no.928</option>
-                  </select> 
+                    <select (change)="addleaverequest($event)" class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
+                      <option value="" disabled selected>-- Select Employee --</option>
+                      <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
+                    </select>
                   </div>
                 </div>
            </div>
@@ -93,6 +92,7 @@
         </div>
 
           </div> 
+        </form>
         </div>
      </div>
   </div>
@@ -113,17 +113,16 @@
                         </div>
                         <div class="m-portlet__body">
 
+                   <form [formGroup]="leaveRequestDetailForm">   
                         <div class="row">
                           <div class="col-md-6">
                               <div class="form-group m-form__group">
                                   <label for="exampleInputEmail1">
                                     Leave Year
                                   </label>
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>2018</option> 
-                                      <option>2017</option> 
-                                      <option>2016</option> 
-                                      <option>2015</option> 
+                                  <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
+                                      <option value="" disabled selected>-- Select Leave Year --</option>
+                                      <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                                     </select>
                                 </div>
                           </div>
@@ -135,11 +134,9 @@
                                     <label for="exampleInputEmail1">
                                       Leave Type
                                     </label>
-                                    <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                        <option>-- Select --</option> 
-                                        <option>Type 1</option> 
-                                        <option>Type 2</option> 
-                                        <option>Type 3</option> 
+                                    <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
+                                        <option value="" disabled selected>-- Select Leave Type --</option>
+                                        <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                                       </select>
                                   </div>
                             </div>
@@ -160,19 +157,16 @@
                                 Short Leave
                               </label>
                               <div class="col-3">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>No</option> 
-                                      <option>Yes</option>   
-                                    </select>
+
                               </div>
                               <div class="col-3">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
+                                  <select class="form-control m-input m-input--solid" formControlName="Value" id="exampleSelect1">
                                       <option>0.25</option> 
                                       <option>0.45</option>  
                                     </select>
                               </div>
                               <div class="col-4">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
+                                  <select class="form-control m-input m-input--solid" formControlName="FirstSecondHalf" id="exampleSelect1">
                                       <option>Full Day</option> 
                                       <option>Half Day</option>   
                                     </select>
@@ -183,7 +177,7 @@
                                 <label for="exampleTextarea">
                                   Description
                                 </label>
-                                <textarea class="form-control m-input m-input--solid" id="exampleTextarea" rows="3"></textarea>
+                                <textarea class="form-control m-input m-input--solid" formControlName="Description" id="exampleTextarea" rows="3"></textarea>
                               </div>
 
                               <div class="row">
@@ -192,7 +186,7 @@
                                       <label for="exampleInputPassword1">
                                       Leave Date From:
                                       </label>
-                                      <input type="text" class="form-control m-input--solid" id="m_datepicker_1" readonly="" placeholder="Select date">
+                                      <input type="text" class="form-control m-input--solid" formControlName="DateFrom" id="m_datepicker_1" readonly="" placeholder="Select date">
                                     </div> 
                                 </div>
 
@@ -201,10 +195,32 @@
                                         <label for="exampleInputPassword1">
                                         Leave Date To:
                                         </label>
-                                        <input type="text" class="form-control m-input--solid" id="m_datepicker_1" readonly="" placeholder="Select date">
+                                        <input type="text" class="form-control m-input--solid" formControlName="DateTill" id="m_datepicker_1" readonly="" placeholder="Select date">
                                       </div> 
                                   </div>
                               </div>
+
+                              <div class="row">
+                                <div class="col-md-12"> 
+                            <div class="m-portlet__foot m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions" style="padding:19px;">
+                                  <div class="row">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-6">
+                                      <button type="submit" (click)="addleaverequestordetail()" class="btn btn-success">
+                                        Submit
+                                      </button>
+                                      <button type="reset" class="btn btn-secondary">
+                                        Cancel
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                             </div>
+                         </div>
+                     </div>
+
+                              </form>
 
                                 <dx-data-grid
                                 id="gridContainer" 
@@ -244,7 +260,7 @@
                         </div>
 
 
-                          <div class="row">
+                          <!-- <div class="row">
                               <div class="col-md-12"> 
                           
                             <table class="table table-bordered m-input m-input--solid">
@@ -265,26 +281,7 @@
                             </table>
 
                             </div>
-                              </div>  
-                              <div class="row">
-                                  <div class="col-md-12"> 
-                              <div class="m-portlet__foot m-portlet__foot--fit">
-                                  <div class="m-form__actions m-form__actions">
-                                    <div class="row">
-                                      <div class="col-lg-3"></div>
-                                      <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-success">
-                                          Submit
-                                        </button>
-                                        <button type="reset" class="btn btn-secondary">
-                                          Cancel
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                               </div>
-                           </div>
-                       </div>
+                              </div>   -->
         
          </div>
     

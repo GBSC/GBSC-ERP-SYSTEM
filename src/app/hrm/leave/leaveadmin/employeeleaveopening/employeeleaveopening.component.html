@@ -22,7 +22,7 @@
                     Employee:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="Employee" name="employee">
+                    <select class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
                       <option value="" disabled selected>-- Select Employee --</option>
                       <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
                     </select>
@@ -40,10 +40,10 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveYear" name="leaveyear">
-                      <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyer of leavesetupservice?.leaveyear" [value]="leaveyer.leavYearId">{{leaveyer.startDate}}</option>
-                    </select>
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
+                          <option value="" disabled selected>-- Select Leave Year --</option>
+                          <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                        </select>
                   </div>
                 </div>
               </div>
@@ -91,11 +91,11 @@
                     Leave Type:
                   </label>
                   <div class="col-lg-8">
-                    <!-- <select class="form-control m-input m-input--solid">
-                    <option>Type 1</option> 
-                    <option>Type 2</option> 
-                    <option>Type 3</option> 
-                  </select>  -->
+
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
+                          <option value="" disabled selected>-- Select Leave Type --</option>
+                          <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                        </select>
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@
                     Expiry:
                   </label>
                   <div class="col-lg-8">
-                    <input type="text" formControlName="Expiry" class="form-control m-input m-input--solid" placeholder="12-06-2018">
+                    <input type="date" formControlName="ExpiryDate" class="form-control m-input m-input--solid" placeholder="12-06-2018">
                   </div>
                 </div>
               </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                   <div class="col-lg-3"></div>
                   <div class="col-lg-6">
-                    <button type="reset" class="btn btn-success">
+                    <button type="submit" (click)="addleaveopeningordetail()" class="btn btn-success">
                       Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">
@@ -155,9 +155,20 @@
 
   <div class="m--space-10"></div>
   <div class="row">
-    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Leave Type
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
 
-      <dx-data-grid id="gridContainer" [dataSource]="allowancequantity" keyExpr="Id">
+      <dx-data-grid id="gridContainer" [dataSource]="leveopeningdetail" keyExpr="leaveOpeningDetailId">
         <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true">
         </dxo-editing>
         <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -168,12 +179,17 @@
         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
         </dxo-pager>
 
-        <dxi-column dataField="quantity" caption="Leave Type"></dxi-column>
-        <dxi-column dataField="remarks" caption="Quantity"></dxi-column>
-        <dxi-column dataField="remarks" caption="Expiry"></dxi-column>
+        <dxi-column dataField="leaveTypeId" caption="Leave Type" [width]="450">
+            <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+            </dxo-lookup> 
+            </dxi-column>
+        <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+        <dxi-column dataField="expiryDate" caption="Expiry Date"></dxi-column>
 
       </dx-data-grid>
     </div>
+  </div>
+  </div>
   </div>
 
 
@@ -192,7 +208,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <dx-data-grid id="gridContainer" [dataSource]="allowancequantity" keyExpr="Id">
+          <dx-data-grid id="gridContainer" [dataSource]="leaveopening" keyExpr="leaveOpeningId">
             <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true">
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -203,10 +219,16 @@
             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
             </dxo-pager>
 
-            <dxi-column dataField="quantity" caption="Employee Code"></dxi-column>
-            <dxi-column dataField="remarks" caption="Employee"></dxi-column>
-            <dxi-column dataField="leaveYear" caption="Leave Year"></dxi-column>
-            <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+            <dxi-column dataField="userId" caption="Employee">
+                <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                </dxo-lookup> 
+          </dxi-column>
+           <dxi-column dataField="remarks" caption="Employee"></dxi-column>
+           <dxi-column dataField="leaveYearId" caption="Leave Year">
+              <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+              </dxo-lookup> 
+        </dxi-column>
+           <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
 
           </dx-data-grid>
 

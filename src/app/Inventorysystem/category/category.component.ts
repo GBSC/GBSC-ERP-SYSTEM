@@ -10,14 +10,14 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-    public catgory : any;
+    public catgory: any;
 
-    constructor(public InventorysystemServiceobj: InventorysystemService, public httpClient: HttpClient,) { }
+    constructor(public InventorysystemServiceobj: InventorysystemService, public httpClient: HttpClient, ) { }
 
     async ngOnInit() {
         await this.InventorysystemServiceobj.Getcategories();
-    this.catgory = this.InventorysystemServiceobj.catogories;
-        console.log(this.catgory );
+        this.catgory = this.InventorysystemServiceobj.catogories;
+        console.log(this.catgory);
     }
 
 

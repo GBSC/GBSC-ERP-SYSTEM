@@ -20,18 +20,17 @@ export class ReligionComponent implements OnInit {
     public religion: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
- 
+
     async ngOnInit() {
         await this.dataService.getAllReligions();
         this.religion = this.dataService.religion;
- 
+
     }
 
 
     addNewreligion(religon) {
         this.dataService.addReligion(religon.data);
     }
-
 
     updatereligion(religon) {
         this.dataService.updateReligion(religon);

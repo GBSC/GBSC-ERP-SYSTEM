@@ -8,7 +8,7 @@ export class SuperadminserviceService {
 
     private SystemAdmin_API_URL = "http://gbsc-erp.azurewebsites.net/systemadmin/api/";
 
-    private Account_API_URL = "http://localhost:61161/api/"
+    private Account_API_URL = "http://gbsc-erp.azurewebsites.net/authentication/api/"
 
     constructor(private http: HttpClient) {
 
@@ -20,7 +20,7 @@ export class SuperadminserviceService {
     }
 
     async addModule(module: Module) {
-        let response = await this.http.post(this.SystemAdmin_API_URL + 'Setup/AddModule', module).toPromise();
+        let response = await this.http.post(this.SystemAdmin_API_URL + 'Setup/AddModuleWithAllFeatures', module).toPromise();
         return response;
     }
 

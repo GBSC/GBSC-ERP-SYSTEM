@@ -74,6 +74,46 @@ import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/o
 import { UserRosterAttendanceComponent } from './attendance/user-roster-attendance/user-roster-attendance.component';
 import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
 import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
+import { AllowanceComponent } from './payroll/payrollsetup/allowance/allowance.component';
+import { AllowancearrearComponent } from './payroll/payrollsetup/allowancearrear/allowancearrear.component';
+import { AllowanceDeductionComponent } from './payroll/payrollsetup/allowance-deduction/allowance-deduction.component';
+import { AllowancecalculationtypeComponent } from './payroll/payrollsetup/allowancecalculationtype/allowancecalculationtype.component';
+import { AllowancerateComponent } from './payroll/payrollsetup/allowancerate/allowancerate.component';
+import { BankAdviceTemplateComponent } from './payroll/payrollsetup/bank-advice-template/bank-advice-template.component';
+import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
+import { BenefitComponent } from './payroll/payrollsetup/benefit/benefit.component';
+import { ChequeTemplateComponent } from './payroll/payrollsetup/cheque-template/cheque-template.component';
+import { CompensationTransactionComponent } from './payroll/payrollsetup/compensation-transaction/compensation-transaction.component';
+import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component'; 
+import { FrequencyComponent } from './payroll/payrollsetup/frequency/frequency.component';
+import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.component';
+import { GratuitySlabGratuityComponent } from './payroll/payrollsetup/gratuity-slab-gratuity/gratuity-slab-gratuity.component'; 
+import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
+import { GratuitytypeComponent } from './payroll/payrollsetup/gratuitytype/gratuitytype.component';
+import { LeavingreasonComponent } from './payroll/payrollsetup/leavingreason/leavingreason.component'; 
+import { MasterpayrollComponent } from './payroll/payrollsetup/masterpayroll/masterpayroll.component';
+import { MasterPayrollDetailComponent } from './payroll/payrollsetup/master-payroll-detail/master-payroll-detail.component';
+import { PayrollComponent } from './payroll/payrollsetup/payroll/payroll.component';
+import { PayrollbankComponent } from './payroll/payrollsetup/payrollbank/payrollbank.component';
+import { PayrolltypeComponent } from './payroll/payrollsetup/payrolltype/payrolltype.component';
+import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
+import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
+import { SalaryCalculationTypeComponent } from './payroll/payrollsetup/salary-calculation-type/salary-calculation-type.component';
+import { SalarystructureComponent } from './payroll/payrollsetup/salarystructure/salarystructure.component';
+import { SalarystructuredetailComponent } from './payroll/payrollsetup/salarystructuredetail/salarystructuredetail.component'; 
+import { UsersalaryComponent } from './payroll/payrollsetup/usersalary/usersalary.component';
+import { LoantypeComponent } from './payroll/loansetup/loantype/loantype.component';
+import { UserloanComponent } from './payroll/loansetup/userloan/userloan.component';
+import { IncomeTaxRuleComponent } from './payroll/taxsetup/income-tax-rule/income-tax-rule.component';
+import { TaxAdjustmentReasonComponent } from './payroll/taxsetup/tax-adjustment-reason/tax-adjustment-reason.component';
+import { TaxBenefitComponent } from './payroll/taxsetup/tax-benefit/tax-benefit.component';
+import { TaxableIncomeAdjustmentComponent } from './payroll/taxsetup/taxable-income-adjustment/taxable-income-adjustment.component';
+import { TaxreliefComponent } from './payroll/taxsetup/taxrelief/taxrelief.component';
+import { TaxscheduleComponent } from './payroll/taxsetup/taxschedule/taxschedule.component';
+import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
+import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
+import { GratuityComponent } from './payroll/gratuity/gratuity.component';
+import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -197,6 +237,70 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'rostermapping', component: RostermappingComponent },
         ]},
             
+
+        {
+            path: 'payroll',
+            children: [
+         { path: 'payrollsetup',
+                children: [
+
+                    { path: 'allowance', component: AllowanceComponent },
+                    { path: 'allowancearrear', component: AllowancearrearComponent },
+                    { path: 'allowancededuction', component: AllowanceDeductionComponent },
+                    { path: 'allowancecalculationtype', component: AllowancecalculationtypeComponent },
+                    { path: 'allowancerate', component: AllowancerateComponent }, 
+                    { path: 'bankadvicetemplate', component: BankAdviceTemplateComponent },
+                    { path: 'benefit', component: BenefitComponent },
+                    { path: 'chequetemplate', component: ChequeTemplateComponent },
+                    { path: 'compensationtransaction', component: CompensationTransactionComponent },
+                    { path: 'currency', component: CurrencyComponent },
+                    { path: 'frequency', component: FrequencyComponent },
+                    { path: 'fundsetup', component: FundsetupComponent },
+                    { path: 'gratuityslabgratuity', component: GratuitySlabGratuityComponent }, 
+                    { path: 'gratuityslab', component: GratuityslabComponent },
+                    { path: 'gratuitytype', component: GratuitytypeComponent },
+                    { path: 'leavingreason', component: LeavingreasonComponent }, 
+                    { path: 'masterpayroll', component: MasterpayrollComponent },
+                    { path: 'masterpayrolldetail', component: MasterPayrollDetailComponent },
+                    { path: 'payroll', component: PayrollComponent },
+                    { path: 'payrollbank', component: PayrollbankComponent },
+                    { path: 'payrolltype', component: PayrolltypeComponent },
+                    { path: 'payrollyear', component: PayrollyearComponent },
+                    { path: 'pfpayment', component: PfPaymentComponent },
+                    { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
+                    { path: 'salarystructure', component: SalarystructureComponent },
+                    { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
+                    { path: 'usersalary', component: UsersalaryComponent }
+      
+                ]
+            },
+            { path: 'taxsetup',
+            children: [
+                {path: 'incometaxrule', component: IncomeTaxRuleComponent},
+                {path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent},
+                {path: 'taxbenefit', component: TaxBenefitComponent},
+                {path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent},
+                {path: 'taxrelief', component: TaxreliefComponent},
+                {path: 'taxschedule', component: TaxscheduleComponent},
+                {path: 'taxyear', component: TaxyearComponent},
+        ]},
+
+            { path: 'loansetup',
+            children: [
+                {path: 'loantype', component: LoantypeComponent},
+                {path: 'userloan', component: UserloanComponent},
+        ]}, 
+
+        { path: 'payrolladmin',
+        children: [
+            {path: 'stopsalary', component: StopsalaryComponent} 
+    ]}, 
+
+           {path: 'gratuity', component: GratuityComponent},
+           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent}
+
+        ]}
+
 
         ]
     }

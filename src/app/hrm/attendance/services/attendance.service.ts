@@ -14,6 +14,10 @@ export class AttendanceService {
     /** Attendance Admin */
     public attendanceflagexemption;
     public attendancerule;
+    workingdayot: Object;
+    workingoffdayot: Object;
+    newincomingot: Object;
+    OutgoingOts: Object;
  
     constructor(public httpClient: HttpClient) { }
 
@@ -289,4 +293,157 @@ export class AttendanceService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/DeleteAttendanceRule/${id}`).toPromise();
     }
+
+
+        /** Employee Working Day CRUD METHODS */
+        async getemployeeWorkingDayOts() {
+
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    
+            this.workingdayot = await this.httpClient.get(`http://localhost:58090/api/AttendanceSetup/GetEmployeeWorkingDayOts`).toPromise();
+            console.log(this.workingdayot);
+            return this.workingdayot;
+        }
+    
+        async addemployeeWorkingDayOt(data) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json' } }
+            let newworkingdayot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeWorkingDayOt`, data, headers).toPromise();
+            console.log(newworkingdayot);
+    
+        }
+    
+        async updateemployeeWorkingDayOt(data) {
+    
+            let workingdayot = await this.getdataToUpdate(data.key, 'GetEmployeeWorkingDayOt');
+            workingdayot = { ...workingdayot, ...data.data }
+            console.log(workingdayot);
+            // let authToken = localStorage.getItem('auth_token');  
+            // let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeWorkingDayOt`, workingdayot).toPromise();
+    
+        }
+    
+        async DeleteemployeeWorkingDayOt(id) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeWorkingDayOt/${id}`).toPromise();
+        }
+
+         /** Employee Working Day CRUD METHODS */
+         async getemployeeOffdayOts() {
+
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    
+            this.workingoffdayot = await this.httpClient.get(`http://localhost:58090/api/AttendanceSetup/GetEmployeeOffDayOts`).toPromise();
+            console.log(this.workingoffdayot);
+            return this.workingoffdayot;
+        }
+    
+        async addemployeeOffdayOts(data) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json' } }
+            let newworkingoffdayot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOffDayOts`, data, headers).toPromise();
+            console.log(newworkingoffdayot);
+    
+        }
+    
+        async updateemployeeOffdayOts(data) {
+    
+            let newworkingoffdayot = await this.getdataToUpdate(data.key, 'GetEmployeeOffDayOts');
+            newworkingoffdayot = { ...newworkingoffdayot, ...data.data }
+            console.log(newworkingoffdayot);
+            // let authToken = localStorage.getItem('auth_token');  
+            // let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOffDayOts`, newworkingoffdayot).toPromise();
+    
+        }
+    
+        async DeleteemployeeOffdayOts(id) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeOffDayOts/${id}`).toPromise();
+        }
+
+         /** Employee Working Day CRUD METHODS */
+         async getemployeeIncomingOts() {
+
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    
+            this.newincomingot = await this.httpClient.get(`http://localhost:58090/api/AttendanceSetup/GetEmployeeIncomingOts`).toPromise();
+            console.log(this.newincomingot);
+            return this.newincomingot;
+        }
+    
+        async addemployeeIncomingOts(data) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json' } }
+            let incomingot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeIncomingOts`, data, headers).toPromise();
+            console.log(incomingot);
+    
+        }
+    
+        async updateemployeeIncomingOts(data) {
+    
+            let incomingot = await this.getdataToUpdate(data.key, 'GetEmployeeIncomingOts');
+            incomingot = { ...incomingot, ...data.data }
+            console.log(incomingot);
+            // let authToken = localStorage.getItem('auth_token');  
+            // let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeIncomingOts`, incomingot).toPromise();
+    
+        }
+    
+        async DeleteemployeeIncomingOts(id) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeIncomingOts/${id}`).toPromise();
+        }
+
+         /** Employee Working Day CRUD METHODS */
+         async getemployeeOutgoingOts() {
+
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    
+            this.OutgoingOts = await this.httpClient.get(`http://localhost:58090/api/AttendanceSetup/GetEmployeeOutgoingOts`).toPromise();
+            console.log(this.OutgoingOts);
+            return this.OutgoingOts;
+        }
+    
+        async addemployeeOutgoingOt(data) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json' } }
+            let newOutgoingOts = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOutgoingOt`, data, headers).toPromise();
+            console.log(newOutgoingOts);
+    
+        }
+    
+        async updateemployeeOutgoingOt(data) {
+    
+            let OutgoingOts = await this.getdataToUpdate(data.key, 'GetEmployeeOutgoingOt');
+            OutgoingOts = { ...OutgoingOts, ...data.data }
+            console.log(OutgoingOts);
+            // let authToken = localStorage.getItem('auth_token');  
+            // let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOutgoingOt`, OutgoingOts).toPromise();
+    
+        }
+    
+        async DeleteemployeeOutgoingOt(id) {
+    
+            let authToken = localStorage.getItem('auth_token');
+            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeOutgoingOt/${id}`).toPromise();
+        }
 }

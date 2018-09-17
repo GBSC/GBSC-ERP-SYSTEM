@@ -1,1 +1,86 @@
+<div class="m-content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Employee OverTime Entitlement
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+
+                    <dx-data-grid id="gridContainer" [dataSource]="empoverTimeEntitlement" [columnAutoWidth]="true" [showBorders]="true" [allowColumnReordering]="true">
+                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                        <dxi-column dataField="userId" caption="Employee">
+                            <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column caption="Overtime on Working Day" dataSource="empworkingot">
+                            <dxi-column caption="Include" dataField="IsIncludeOtWorking">
+                            </dxi-column>
+                          
+                            <dxi-column dataField="overTimeTypeId" caption="Type">
+                                <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                </dxo-lookup>
+                            </dxi-column>
+
+                            <dxi-column caption="Type" dataField="WokingOtHours">
+                            </dxi-column>
+                        </dxi-column>
+
+                        <dxi-column caption="Overtime on Off Day" dataSource="empoffdayot">
+                       
+                                <dxi-column caption="Include" dataField="IsIncludeOtWorking">
+                                    </dxi-column>
+                                  
+                                    <dxi-column dataField="overTimeTypeId" caption="Type">
+                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                        </dxo-lookup>
+                                    </dxi-column>
+        
+                                    <dxi-column caption="Type" dataField="WokingOtHours">
+                                    </dxi-column>
+
+                        </dxi-column>
+                        <dxi-column caption="Overtime on Incoming" dataSource="incomingot">
+                            
+                                <dxi-column caption="Include" dataField="IsIncludeOtWorking">
+                                    </dxi-column>
+                                  
+                                    <dxi-column dataField="overTimeTypeId" caption="Type">
+                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                        </dxo-lookup>
+                                    </dxi-column>
+        
+                                    <dxi-column caption="Type" dataField="WokingOtHours">
+                                    </dxi-column>
+
+                        </dxi-column>
+                        <dxi-column caption="Overtime on Out Going" dataSource="outgoingot">
+                            
+                                <dxi-column caption="Include" dataField="IsIncludeOtWorking">
+                                    </dxi-column>
+                                  
+                                    <dxi-column dataField="overTimeTypeId" caption="Type">
+                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                        </dxo-lookup>
+                                    </dxi-column>
+        
+                                    <dxi-column caption="Type" dataField="WokingOtHours">
+                                    </dxi-column>
+                                    
+                        </dxi-column>
+                    </dx-data-grid>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
  

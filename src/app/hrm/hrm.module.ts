@@ -102,6 +102,39 @@ import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.compone
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
 import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
 import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
+import { AllowanceComponent } from './payroll/payrollsetup/allowance/allowance.component';
+import { AllowancearrearComponent } from './payroll/payrollsetup/allowancearrear/allowancearrear.component';
+import { AllowancecalculationtypeComponent } from './payroll/payrollsetup/allowancecalculationtype/allowancecalculationtype.component';
+import { BankAdviceTemplateComponent } from './payroll/payrollsetup/bank-advice-template/bank-advice-template.component';
+import { BenefitComponent } from './payroll/payrollsetup/benefit/benefit.component';
+import { ChequeTemplateComponent } from './payroll/payrollsetup/cheque-template/cheque-template.component';
+import { CompensationTransactionComponent } from './payroll/payrollsetup/compensation-transaction/compensation-transaction.component';
+import { FrequencyComponent } from './payroll/payrollsetup/frequency/frequency.component';
+import { GratuitySlabGratuityComponent } from './payroll/payrollsetup/gratuity-slab-gratuity/gratuity-slab-gratuity.component';
+import { GratuitytypeComponent } from './payroll/payrollsetup/gratuitytype/gratuitytype.component';
+import { LeavingreasonComponent } from './payroll/payrollsetup/leavingreason/leavingreason.component';
+import { MasterpayrollComponent } from './payroll/payrollsetup/masterpayroll/masterpayroll.component';
+import { MasterPayrollDetailComponent } from './payroll/payrollsetup/master-payroll-detail/master-payroll-detail.component';
+import { PayrollComponent } from './payroll/payrollsetup/payroll/payroll.component';
+import { PayrollbankComponent } from './payroll/payrollsetup/payrollbank/payrollbank.component';
+import { PayrolltypeComponent } from './payroll/payrollsetup/payrolltype/payrolltype.component';
+import { SalaryCalculationTypeComponent } from './payroll/payrollsetup/salary-calculation-type/salary-calculation-type.component';
+import { SalarystructureComponent } from './payroll/payrollsetup/salarystructure/salarystructure.component';
+import { SalarystructuredetailComponent } from './payroll/payrollsetup/salarystructuredetail/salarystructuredetail.component';
+import { UsersalaryComponent } from './payroll/payrollsetup/usersalary/usersalary.component';
+import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
+import { LoantypeComponent } from './payroll/loansetup/loantype/loantype.component';
+import { UserloanComponent } from './payroll/loansetup/userloan/userloan.component';
+import { IncomeTaxRuleComponent } from './payroll/taxsetup/income-tax-rule/income-tax-rule.component';
+import { TaxableIncomeAdjustmentComponent } from './payroll/taxsetup/taxable-income-adjustment/taxable-income-adjustment.component';
+import { TaxAdjustmentReasonComponent } from './payroll/taxsetup/tax-adjustment-reason/tax-adjustment-reason.component';
+import { TaxBenefitComponent } from './payroll/taxsetup/tax-benefit/tax-benefit.component';
+import { TaxreliefComponent } from './payroll/taxsetup/taxrelief/taxrelief.component';
+import { TaxscheduleComponent } from './payroll/taxsetup/taxschedule/taxschedule.component';
+import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
+import { GratuityComponent } from './payroll/gratuity/gratuity.component';
+import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
+import { PayrollService } from './payroll/services/payroll.service';
 
 
 @NgModule({
@@ -215,7 +248,45 @@ import { RostercopyComponent } from './attendance/rostercopy/rostercopy.componen
         EmployeeCompanyComponent,
         EmployeedetailComponent,
         RostermappingComponent,
-        RostercopyComponent
+        RostercopyComponent,
+
+        /* Payroll */
+
+
+        AllowanceComponent,
+        AllowancearrearComponent,
+        AllowancecalculationtypeComponent,
+        BankAdviceTemplateComponent,
+        BenefitComponent,
+        ChequeTemplateComponent,
+        CompensationTransactionComponent,
+        FrequencyComponent,
+        GratuitySlabGratuityComponent,
+        GratuitytypeComponent,
+        LeavingreasonComponent,
+        MasterpayrollComponent,
+        MasterPayrollDetailComponent,
+        PayrollComponent,
+        PayrollbankComponent,
+        PayrolltypeComponent,
+        SalaryCalculationTypeComponent,
+        SalarystructureComponent,
+        SalarystructuredetailComponent,
+        UsersalaryComponent,
+        StopsalaryComponent,
+        LoantypeComponent,
+        UserloanComponent,
+        IncomeTaxRuleComponent,
+        TaxableIncomeAdjustmentComponent,
+        TaxAdjustmentReasonComponent,
+        TaxBenefitComponent,
+        TaxreliefComponent,
+        TaxscheduleComponent,
+        TaxyearComponent,
+        GratuityComponent,
+        MonthlyUserSalaryComponent
+
+
 
     ],
     exports: [],
@@ -223,7 +294,8 @@ import { RostercopyComponent } from './attendance/rostercopy/rostercopy.componen
         AttendanceService,
         AttendancesetupService, HrmsService,
         LeaveSetupService, EmployeeService,
-        SystemAdministrationService]
+        SystemAdministrationService,
+    PayrollService]
 
 })
 export class HrmModule { }

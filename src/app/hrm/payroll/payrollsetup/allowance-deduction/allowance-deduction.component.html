@@ -1,0 +1,65 @@
+
+
+<div class="m-content">
+		<div class="row">
+				<div class="col-xl-12">
+				  <div class="m-portlet">
+					<div class="m-portlet__head">
+					  <div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+						  <h3 class="m-portlet__head-text">Allowance Deduction</h3>
+						</div>
+					  </div>
+					</div>
+					<div class="m-portlet__body">
+					  <div class="m-section">
+						<div class="m-section__content" >
+              <dx-data-grid id="gridContainer" [dataSource]="allowancededuction" (onRowInserted)="addAllowances($event)" (onRowUpdated)="EditAllowances($event)" (onRowRemoved)="deleteAllowances($event)"
+              [columnAutoWidth]="true"
+              [showBorders]="true"
+              [allowColumnReordering]="true"
+              > 
+								<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+									<dxo-popup title="Allowance Type" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								</dxo-editing>
+								<dxo-filter-row [visible]="true"></dxo-filter-row>
+								<dxo-header-filter [visible]="true"></dxo-header-filter>
+								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+								<dxo-paging [pageSize]="8"></dxo-paging>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+								<dxi-column dataField="id"  caption="Id" ></dxi-column>
+								<dxi-column dataField="title" caption="Title"></dxi-column>
+                <dxi-column dataField="type"caption="Type">
+										<dxo-lookup [dataSource]="type" valueExpr="value" displayExpr="display"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="calculationtype"caption="Calculation Type">
+										<dxo-lookup [dataSource]="calculationtype" valueExpr="value" displayExpr="display"></dxo-lookup>
+								</dxi-column>
+                <dxi-column dataField="fixedvalue"  caption="Fixed value" [visible]="false"></dxi-column>
+								<dxi-column dataField="expressionPayment" caption="Value Expression (Payment)"></dxi-column>
+                <dxi-column dataField="expressionForeach"caption="Value Expression (Forecast)"></dxi-column>
+                <dxi-column dataField="calcSequenceNo"caption="Calc Sequence No"  [visible]="false"></dxi-column>
+                <dxi-column dataField="reportOrder"  caption="Report Order"  [visible]="false" ></dxi-column>
+								<dxi-column dataField="prorated" caption="Prorated"   dataType="boolean"></dxi-column>
+                <dxi-column dataField="baseAllowance"caption="Base Allowance"   dataType="boolean"></dxi-column>
+                <dxi-column dataField="oneTime"caption="OneTime Allowance"   dataType="boolean"></dxi-column>
+
+                <dxi-column dataField="glCodeAllowance"  caption="GL Code (Allowance)"></dxi-column>
+								<dxi-column dataField="glCodeDeduction" caption="GL Code (Deduction)"></dxi-column>
+								<dxi-column dataField="defaultCostCenter"caption="Default Cost Center"></dxi-column>
+                <dxi-column dataField="arrearallowance"caption="Type">
+										<dxo-lookup [dataSource]="arrearallowance" valueExpr="value" displayExpr="display"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="grossSalary"  caption="Gross Salary"   dataType="boolean"></dxi-column>
+              </dx-data-grid> 
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+		</div>
+</div>
+
+
+
+ 

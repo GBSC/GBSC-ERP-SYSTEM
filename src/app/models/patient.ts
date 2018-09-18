@@ -7,7 +7,7 @@ export class Patient {
     PatientId: number;
     Date: Date;
     RegCity: string;
-    VisitNature: string;
+    VisitNatureId : number;
     MRN: string;
     FirstName: string;
     MiddleName: string;

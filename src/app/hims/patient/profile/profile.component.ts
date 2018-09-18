@@ -2,7 +2,10 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
 import { Patient } from '../../../models/patient';
 import { PatientService } from '../../patient/services/patient.services';
+import { ActivatedRoute } from '@angular/router';
 import { FindPatientComponent } from '../../patient/find-patient/find-patient.component';
+import { Router } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 @Component({
     selector: 'app-profile',
@@ -12,23 +15,43 @@ import { FindPatientComponent } from '../../patient/find-patient/find-patient.co
 export class ProfileComponent implements OnInit {
 
     public patientObj;
-    public currentPatient: any;
+    public currentPatient: {};
+            id: number;
+    public Patient : any ={};
+
+    public visitnature :any ;
+    public vistnatr = [];
 
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(private PatientServiceobj: PatientService, private Router : Router,  private route : ActivatedRoute) { }
 
 
-    async ngOnInit() {
+ async ngOnInit() {
+       // this.currentPatient = this.PatientServiceobj.currentPatient;
+       await this.PatientServiceobj.GetVisitNatures();
+        this.visitnature = this.PatientServiceobj.visitNatures;
 
-        // this.patientObj = this.PatientServiceobj.patient;
-        // console.log(this.patientObj);
+    this.route.params.subscribe(params => {
+        this.id = +params['id'];
+       let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
+           this.Patient = Patient;
+           console.log(this.visitnature)
 
-        this.currentPatient = this.PatientServiceobj.currentPatient;
+           this.vistnatr = this.visitnature.find(t=>t.visitNatureId === Patient.visitNatureId);
+         
+           console.log(Patient)
+        });
+       
+    });
 
-        console.log(this.currentPatient);
+}
 
 
-
-    }
+async editPatient(value){
+    console.log(value)
+    this.Router.navigate(['/hims/patient/updatepatient/'+this.id]);
+    await this.PatientServiceobj.getpatientForupdating(value)
+    console.log(value)
+}
 
 }

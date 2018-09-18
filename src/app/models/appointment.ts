@@ -7,9 +7,9 @@ export interface Appointment {
     TimeOut: string;
     NextAppointment: string;
     VisitStatus: string;
-    VisitNature: string;
+    visitNatureId   : number;
     AppointmentDay: string;
     Remarks: string;
     ConsultantId: number;
-    PatientId: number;
+     VisitId : number;
 }

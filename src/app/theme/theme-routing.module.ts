@@ -58,6 +58,7 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule,
         SuperadminModule,
+        InventorysystemModule, 
         SystemAdministrationModule,
         DashboardModule,
         HrmModule,

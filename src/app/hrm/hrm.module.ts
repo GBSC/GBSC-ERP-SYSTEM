@@ -142,6 +142,7 @@ import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.c
 import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
+import { PayrollSetupService } from './payroll/services/payrollsetup.service';
 
 
 @NgModule({
@@ -309,7 +310,7 @@ import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment
         AttendancesetupService, HrmsService,
         LeaveSetupService, EmployeeService,
         SystemAdministrationService,
-    PayrollService]
+    PayrollService,PayrollSetupService]
 
 })
 export class HrmModule { }

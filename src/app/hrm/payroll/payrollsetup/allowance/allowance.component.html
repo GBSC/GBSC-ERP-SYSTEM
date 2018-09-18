@@ -1,3 +1,256 @@
-<p>
-  allowance works!
-</p>
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+               Allowance/ Deduction
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="allowancedeductionform"> 
+
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label>
+                     Title:
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="Title" placeholder="Title">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                   Fixed Value:
+                    </label>
+                    <input type="number" class="form-control m-input" formControlName="FixedValue" placeholder="0">
+                  </div>
+                </div>
+
+                <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label>
+                      Type:
+                    </label>
+                    <select class="form-control m-input" formControlName="Type" id="">
+                        <option value="" disabled selected>-- Select Type --</option>
+                       <option>Allowance</option>
+                       <option>Deduction</option>
+               </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                    Calculation Type:
+                    </label> 
+                        <select class="form-control m-input" formControlName="AllowanceCalculationTypeId" id="">
+                            <option value="" disabled selected>-- Select Calculation Type --</option>
+                            <option *ngFor ="let calculationtype of payrollsetupservice?.allowancecalculationtype" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
+                   </select>
+                  </div>
+                </div>
+
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3">
+                      <label>
+                        Value Expression (Payment):
+                      </label> 
+                      <textarea class="form-control m-input" formControlName="ValueExpressionPayment" id="exampleTextarea" rows="1"></textarea>
+                    </div>
+                    <div class="col-lg-3">
+                      <label>
+                        Value From :
+                      </label> 
+                      <select class="form-control m-input" formControlName="ValueExpressionPaymentFrom">
+                        <option value="" disabled selected>-- Select Type --</option>
+                       <option>Master Payroll</option>
+                       <option>Monthly Payroll</option>
+               </select>
+                    </div>
+                    <div class="col-lg-3">
+                      <label class="">
+                        Value Expression (Forecast):
+                      </label>
+                      <textarea class="form-control m-input" formControlName="ValueExpressionForecast" rows="1"></textarea>
+                    </div>
+                    <div class="col-lg-3">
+                      <label class="">
+                        Value :
+                      </label>
+                      <select class="form-control m-input" formControlName="ValueExpressionForecastFrom">
+                        <option value="" disabled selected>-- Select Type --</option>
+                       <option>Master Payroll</option>
+                       <option>Monthly Payroll</option>
+               </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group m-form__group row">
+                      <div class="col-lg-6">
+                        <label>
+                          Calculation Sequence Number:
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="CalculationSequenceNumber" placeholder="0">
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="">
+                        Remit Key:
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="RemitKey" placeholder="0">
+                      </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                         Gl Code(Allowance):
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="GlCodeAllowance" placeholder="0">
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="">
+                          Gl Code (Deduction):
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="GlCodeDeduction" placeholder="0">
+                        </div>
+                      </div>
+ 
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                  <label class="">
+                      Default Cost Center:
+                  </label>
+                  <input type="text" class="form-control m-input" formControlName="GlCode" placeholder="0">
+                </div>
+              </div>
+
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-3">
+                      <label class="">
+                      Prorated:
+                      </label>
+                      <div class="m-checkbox-list">
+                          <label class="m-checkbox m-checkbox--state-success">
+                            <input type="checkbox" formControlName="IsProrated"> 
+                            <span></span>
+                          </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <label class="">
+                        Base Allowance:
+                        </label>
+                        <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsBaseAllowance"> 
+                              <span></span>
+                            </label>
+                          </div>
+                      </div>
+
+                      <div class="col-lg-3">
+                        <label class="">
+                            One Time Allowance:
+                        </label>
+                        <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsOneTimeAllowance"> 
+                              <span></span>
+                            </label>
+                          </div>
+                      </div>
+                      <div class="col-lg-3">
+                          <label class="">
+                             Gross Salary:
+                          </label>
+                          <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="IsGrossSalary"> 
+                                <span></span>
+                              </label>
+                            </div>
+                        </div>
+                </div>
+
+                
+                <div class="m--space-30"></div>
+
+                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                  <div class="m-form__actions m-form__actions--solid">
+                    <div class="row">
+                      <div class="col-lg-2"></div>
+                      <div class="col-lg-6">
+                        <button type="reset" class="btn btn-brand">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Allowance Details
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="leaverequestdetail" keyExpr="allowanceDeductionId">
+            <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false">
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+
+            <dxi-column dataField="leaveYearId" caption="Leave Year">
+              <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveTypeId" caption="Leave Type">
+              <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+              </dxo-lookup>
+            </dxi-column>
+
+            <dxi-column dataField="title"></dxi-column>
+            <dxi-column dataField="type"> </dxi-column>
+            <dxi-column dataField="fixedValue" caption="Fixed Value"></dxi-column>
+            <dxi-column dataField="valueExpressionPayment" caption="Value Expression Payment"></dxi-column>
+            <dxi-column dataField="valueExpressionForecast" caption="Value Expression Forecast"></dxi-column>
+            <dxi-column dataField="isProrated" dataType="boolean" caption="Prorated"></dxi-column>
+            <dxi-column dataField="isBaseAllowance" dataType="boolean" caption="BaseAllowance"></dxi-column>
+            <dxi-column dataField="isOneTimeAllowance" dataType="boolean"  caption="One Time Allowance"></dxi-column>
+            <dxi-column dataField="glCodeAllowance" caption="Gl Code Allowance"></dxi-column>
+            <dxi-column dataField="glCodeDeduction" caption="Gl Code Deduction"></dxi-column>
+            <dxi-column dataField="defaultCostCenter" caption="Default Cost Center"></dxi-column>
+            
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  

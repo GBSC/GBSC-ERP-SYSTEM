@@ -17,6 +17,9 @@ export class AllowanceComponent implements OnInit {
 
     await this.payrollsetupservice.getallowancedeductions();
     let allowancededuction = this.payrollsetupservice.allowancededuction;
+   
+    await this.payrollsetupservice.getallowancecalculationtypes();
+    let allowancetype = this.payrollsetupservice.allowancecalculationtype;
   }
 
   async addallowance(value) {

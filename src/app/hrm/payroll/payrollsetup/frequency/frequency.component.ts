@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-frequency',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrequencyComponent implements OnInit {
 
-  constructor() { }
+  public Frequency: any; 
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
+ async ngOnInit() {
+      await this.payrollsetupservice.getfrequencies();
+      this.Frequency = this.payrollsetupservice.frequency;
+    }
+  
+    async addFrequency(value) {
+      await this.payrollsetupservice.addfrequency(value.data);
+    }
+  
+    async updateFrequency(value) {
+      console.log(value);
+      await this.payrollsetupservice.updatefrequency(value);
+    }
+  
+    async deleteFrequency(value) {
+      await this.payrollsetupservice.Deletefrequency(value.key);
+    }
+  
   }
-
-}

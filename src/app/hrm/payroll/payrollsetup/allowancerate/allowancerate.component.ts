@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
     selector: 'app-allowancerate',
@@ -7,24 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllowancerateComponent implements OnInit {
     public allowancerate: any;
-    public allowance: any;
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
+    async ngOnInit() {
+        await this.payrollsetupservice.getallowancerates();
+        this.allowancerate = this.payrollsetupservice.allowancerate;
+  
+        await this.payrollsetupservice.getallowances();
+        let allowancerate = this.payrollsetupservice.allowance;
+    }
 
-    constructor() { }
+    async addAllowanceRate(value) {
+        await this.payrollsetupservice.addallowancerate(value.data);
+    }
 
-    ngOnInit() {
-        this.allowancerate = [
-            {
-                id: "1",
-                allowance: [{ display: "select", value: "select" }],
-                allowancerate: "1200",
-                effectivedate: "12-4-2018",
+    async updateAllowanceRate(value) {
+        console.log(value);
+        await this.payrollsetupservice.updateallowancerate(value);
+    }
 
-            }
-        ]
-
-        this.allowance = [{ value: "select", display: "select" }];
-
+    async deleteAllowanceRate(value) {
+        await this.payrollsetupservice.Deleteallowancerate(value.key);
     }
 
 }

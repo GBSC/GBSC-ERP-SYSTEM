@@ -15,6 +15,7 @@ export class EmpleavepolicyComponent implements OnInit {
 
   public groups: any = [];
   EmployeeleavePolicyForm: FormGroup;
+  public empleavepolicy: any;
   
   constructor(private fb: FormBuilder,public leaveservice:LeaveService,public leavesetupservice:LeaveSetupService, 
     public empservice:EmployeeService, public hrsetupservice:SetupService, public router: Router) { }
@@ -68,6 +69,9 @@ export class EmpleavepolicyComponent implements OnInit {
     }); 
 
 
+    await this.leaveservice.getAllleavepolicyemployee();
+    this.empleavepolicy = this.leaveservice.leavepolicyemployee 
+  
     await this.empservice.GetAllEmployees();
     let employee = this.empservice.employeereg; 
 

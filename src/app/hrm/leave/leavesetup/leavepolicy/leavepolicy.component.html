@@ -154,9 +154,9 @@
                     </div>
            <div class="col-md-2">
               <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="EncashmentDays">
-              <span class="m-form__help">
+              <!-- <span class="m-form__help">
                  Qty in Days
-                </span>
+                </span> -->
             </div>
                   </div>
                 </div>
@@ -266,16 +266,16 @@
                     </div>
            <div class="col-md-2">
               <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="BalanceBroughtForwardQuantity">
-              <span class="m-form__help">
+              <!-- <span class="m-form__help">
                  Qty in Days
-                </span>
+                </span> -->
             </div>
 
             <div class="col-md-2">
                 <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
-                <span class="m-form__help">
+                <!-- <span class="m-form__help">
                  Month
-                  </span>
+                  </span> -->
               </div>
                   </div>
                 </div>
@@ -315,9 +315,9 @@
                     </div>
            <div class="col-md-2">
               <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="FileAttachmentDaysLimit">
-              <span class="m-form__help">
+              <!-- <span class="m-form__help">
                  Qty in Days
-                </span>
+                </span> -->
             </div>
                   </div>
                 </div>
@@ -375,9 +375,9 @@
                   </div>
                   <div class="col-md-2">
                       <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime">
-                      <span class="m-form__help">
+                      <!-- <span class="m-form__help">
                         Months
-                        </span>
+                        </span> -->
                     </div>
                 </div>
               </div>
@@ -393,23 +393,23 @@
                     </label>
            <div class="col-md-2">
               <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="PaidDaysQuantity">
-              <span class="m-form__help">
+              <!-- <span class="m-form__help">
                 Paid
-                </span>
+                </span> -->
             </div>
 
             <div class="col-md-2">
                 <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="HalfPaidDaysQuantity">
-                <span class="m-form__help">
+                <!-- <span class="m-form__help">
                  Half Paid
-                  </span>
+                  </span> -->
               </div>
 
               <div class="col-md-2">
                   <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="UnPaidDaysQuantity">
-                  <span class="m-form__help">
+                  <!-- <span class="m-form__help">
                     UnPaid
-                    </span>
+                    </span> -->
                 </div>
 
                   </div>
@@ -563,6 +563,42 @@
             </div>
 
           </form>
+
+          <dx-data-grid id="gridContainer"
+          [dataSource]="leavepolicy"
+          keyExpr="leavePolicyId"
+          (onRowInserted)="addleavepolicy($event)" 
+          (onRowUpdated)="updateleaveapproval($event)"
+           (onRowRemoved)="deleteleaveapproval($event)">
+           <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+             <dxo-popup title="Leave Approval" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+             </dxo-popup>
+           </dxo-editing>
+           <dxo-filter-row [visible]="true"></dxo-filter-row>
+           <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+           <dxo-paging [pageSize]="6"></dxo-paging>
+           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+           </dxo-pager> 
+ 
+             <dxi-column dataField="leaveYearId" caption="Leave Year">
+               <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+               </dxo-lookup> 
+         </dxi-column>
+             <dxi-column dataField="leaveTypeId" caption="Leave">
+               <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+               </dxo-lookup> 
+         </dxi-column>
+         <dxi-column dataField="groupId" caption="Group">
+          <dxo-lookup [dataSource]="hrsetupservice?.group" displayExpr="name" valueExpr="groupId">
+          </dxo-lookup> 
+    </dxi-column>
+         <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+         <dxi-column dataField="editedAt" caption="Update Date"></dxi-column>
+         <dxi-column dataField="editedBy" caption="Update By"></dxi-column>
+         </dx-data-grid>
+
         </div>
       </div>
     </div>

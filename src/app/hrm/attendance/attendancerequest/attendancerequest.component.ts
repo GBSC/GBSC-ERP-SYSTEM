@@ -7,8 +7,11 @@ import { AttendanceService } from '../services/attendance.service';
     styleUrls: ['./attendancerequest.component.scss']
 })
 export class AttendancerequestComponent implements OnInit {
-
+ 
     public attendancerequest: any;
+    private fieldArray: Array<any> = [];
+    private newAttribute: any = {};
+    
     constructor(public attendanceservice: AttendanceService) { }
 
     async ngOnInit() {
@@ -16,6 +19,14 @@ export class AttendancerequestComponent implements OnInit {
         this.attendancerequest = this.attendanceservice.attendancerequest
         console.log(this.attendancerequest);
 
+    }
+
+    addFieldValue() {
+        this.fieldArray.push(this.newAttribute)
+        this.newAttribute = {};
+    }
+    deleteFieldValue(index) {
+        this.fieldArray.splice(index, 1);
     }
 
     async addattendancerequest(value) {

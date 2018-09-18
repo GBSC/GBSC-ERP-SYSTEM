@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-allowancecalculationtype',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./allowancecalculationtype.component.scss']
 })
 export class AllowancecalculationtypeComponent implements OnInit {
+  public allowanceCalculationtype: any;
 
-  constructor() { }
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.payrollsetupservice.getallowancecalculationtypes();
+    this.allowanceCalculationtype = this.payrollsetupservice.allowancecalculationtype;
+
+  }
+
+  async addAllowanceCalculationType(value) {
+    await this.payrollsetupservice.addallowancecalculationtype(value.data);
+  }
+
+  async updateAllowanceCalculationType(value) {
+    console.log(value);
+    await this.payrollsetupservice.updateallowancecalculationtype(value);
+  }
+
+  async deleteallowanceCalculationType(value) {
+    await this.payrollsetupservice.Deleteallowancecalculationtype(value.key);
   }
 
 }

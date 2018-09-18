@@ -12,32 +12,31 @@ import { LeaveSetupService } from '../../../leave/leaveSetup.service';
 })
 export class AttendanceruleComponent implements OnInit {
 
-    public AttendanceRuleForm: FormGroup;
+    public AttendanceRuleForm;
     public attendancerule: any;
+    public leaves = [];
 
     private fieldArray: Array<any> = [];
     private newAttribute: any = {};
-    
-    constructor(private fb: FormBuilder,public attendanceservice: AttendanceService, 
-        public attendancesetupservice: AttendancesetupService,public leavesetupservice: LeaveSetupService,
-        public hrsetupservice: SetupService,) { }
+
+    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
+        public attendancesetupservice: AttendancesetupService, public leavesetupservice: LeaveSetupService,
+        public hrsetupservice: SetupService, ) {}
 
     async ngOnInit() {
 
         this.AttendanceRuleForm = this.fb.group({
-            GroupId: ['', Validators],
-            AttendanceFlagId: ['', Validators],
-            FlagCount: ['', Validators],
-            ExemptFlagCount: ['', Validators],
-            ExemptMinutes: ['', Validators],
-            ConditionalExemption: ['', Validators], 
-            EffectQuantity: ['', Validators],
-            EffectType: ['', Validators],
-            EffectFrequency: ['', Validators],
-            Action: ['', Validators],
-            LeaveTypeId: ['', Validators]
-
-
+            GroupId: [''],
+            AttendanceFlagId: [''],
+            FlagCount: [''],
+            ExemptFlagCount: [''],
+            ExemptMinutes: [''],
+            ConditionalExemption: [''],
+            EffectQuantity: [''],
+            EffectType: [''],
+            EffectFrequency: [''],
+            Action: [''],
+            LeaveTypeId: ['']
 
         });
 
@@ -47,12 +46,12 @@ export class AttendanceruleComponent implements OnInit {
 
         await this.hrsetupservice.getAllGroups();
         let groups = this.hrsetupservice.group;
-        
+
         await this.attendancesetupservice.getattendanceflag();
         let attendanceflag = this.attendancesetupservice.attendanceflag;
 
         await this.leavesetupservice.getAllleavetype();
-        let leavetype = this.leavesetupservice.leavetype; 
+        let leavetype = this.leavesetupservice.leavetype;
 
 
     }
@@ -77,6 +76,24 @@ export class AttendanceruleComponent implements OnInit {
 
     async deleteattendancerule(value) {
         this.attendanceservice.Deleteattendancerule(value.key);
+    }
+
+    async sendData() {
+
+    }
+
+    getLeaves(e) {
+        this.leaves.push(
+            { LeaveTypeId: e.target.value }
+        );
+        console.log(this.leaves);
+
+        this.AttendanceRuleForm.value = {
+            ...this.AttendanceRuleForm.value,
+            AttendanceRuleLeaveTypes: this.leaves
+        };
+
+        console.log(this.AttendanceRuleForm.value);
     }
 
 }

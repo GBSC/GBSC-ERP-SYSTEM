@@ -56,6 +56,7 @@ export class LeaveService {
 
     }
 
+    
 
     async DeleteLeaveopening(leaveOpeningId) {
 
@@ -114,8 +115,8 @@ export class LeaveService {
 
         this.leavepolicyemployee = await this.httpClient.get(`${this.baseUrl}/Leave/Getleavepolicyemployees`).toPromise();
         //console.log(features);
-        console.log(this.leaveopening);
-        return this.leaveopening;
+        console.log(this.leavepolicyemployee);
+        return this.leavepolicyemployee;
     }
 
 
@@ -205,7 +206,7 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leaverequestdetail = await this.httpClient.get(`${this.baseUrl}/Leave/Getleaverequestdetails`).toPromise();
+        this.leaverequestdetail = await this.httpClient.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();
         console.log(this.leaverequestdetail);
         return this.leaverequestdetail;
     }

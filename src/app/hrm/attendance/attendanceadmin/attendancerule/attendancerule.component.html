@@ -14,7 +14,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="leaveopeningForm"> 
+          <form [formGroup]="AttendanceRuleForm"> 
             <div class="form-group m-form__group row">
               <div class="col-lg-6">
                 <label>
@@ -127,7 +127,7 @@
                         <th>Delete</th>
                         <tr>
                           <td>
-                              <select class="form-control m-input" formControl="LeaveTypeId" id="">
+                              <select (change)="getLeaves($event)" class="form-control m-input" formControl="LeaveTypeId" id="">
                                   <option value="" disabled selected>-- Select Leave Type --</option>
                                   <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
                         

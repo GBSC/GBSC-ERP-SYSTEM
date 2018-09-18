@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-cheque-template',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cheque-template.component.scss']
 })
 export class ChequeTemplateComponent implements OnInit {
+  public chequeTemplate: any;
 
-  constructor() { }
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.payrollsetupservice.getchequetemplates();
+    this.chequeTemplate = this.payrollsetupservice.chequetemplate;
+  }
+
+  async addChequeTemplate(value) {
+    await this.payrollsetupservice.addchequetemplate(value.data);
+  }
+
+  async updateChequeTemplate(value) {
+    console.log(value);
+    await this.payrollsetupservice.updatechequetemplate(value);
+  }
+
+  async deleteChequeTemplate(value) {
+    await this.payrollsetupservice.Deletechequetemplate(value.key);
   }
 
 }

@@ -179,7 +179,7 @@
         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
         </dxo-pager>
 
-        <dxi-column dataField="leaveTypeId" caption="Leave Type" [width]="450">
+        <dxi-column dataField="leaveTypeId" caption="Leave Type">
             <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
             </dxo-lookup> 
             </dxi-column>

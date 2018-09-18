@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-benefit',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BenefitComponent implements OnInit {
 
-  constructor() { }
+  public benefit: any; 
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
+ async ngOnInit() {
+      await this.payrollsetupservice.getbenefits();
+      this.benefit = this.payrollsetupservice.benefits;
+    }
+  
+    async addBenefit(value) {
+      await this.payrollsetupservice.addbenefit(value.data);
+    }
+  
+    async updateBenefit(value) {
+      console.log(value);
+      await this.payrollsetupservice.updatebenefit(value);
+    }
+  
+    async deleteBenefit(value) {
+      await this.payrollsetupservice.Deletebenefit(value.key);
+    }
+  
   }
-
-}

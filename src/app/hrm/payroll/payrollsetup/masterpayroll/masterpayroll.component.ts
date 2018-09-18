@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-masterpayroll',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MasterpayrollComponent implements OnInit {
 
-  constructor() { }
+  public masterPayroll: any; 
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
+ async ngOnInit() {
+      await this.payrollsetupservice.getmasterpayrolls();
+      this.masterPayroll = this.payrollsetupservice.masterpayroll;
+    }
+  
+    async addMasterPayroll(value) {
+      await this.payrollsetupservice.addmasterpayroll(value.data);
+    }
+  
+    async updateMasterPayroll(value) {
+      console.log(value);
+      await this.payrollsetupservice.updatemasterpayroll(value);
+    }
+  
+    async deleteMasterPayroll(value) {
+      await this.payrollsetupservice.Deletemasterpayroll(value.key);
+    }
+  
   }
-
-}

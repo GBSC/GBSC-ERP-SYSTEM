@@ -391,9 +391,9 @@
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">Eligibility Based on: </label>
                     <div class="col-lg-8"> 
-                      <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="leavedaytype" id="">
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="" id="">
                         <option value="" disabled selected>-- Select Leave Eligibility --</option>
-                        <option *ngFor="let leveeligibility of leavesetupservice?.leaveeligibility" [value]="leveeligiblity.leaveEligibilityId">{{leveeligibility.name}}</option>
+                        <option *ngFor="let leveeligibility of leavesetupservice?.leaveeligibility" [value]="leveeligibility.leaveEligibilityId">{{leveeligibility.name}}</option>
                       </select>
                     </div>
                   </div>
@@ -531,6 +531,40 @@
               </div>
   
             </form>
+
+
+            <dx-data-grid id="gridContainer"
+            [dataSource]="empleavepolicy"
+            keyExpr="leavePolicyEmployeeWiseId"
+            (onRowInserted)="addleavepolicy($event)" 
+            (onRowUpdated)="updateleaveapproval($event)"
+             (onRowRemoved)="deleteleaveapproval($event)">
+             <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [useIcons]="true">
+               <dxo-popup title="Leave Policy" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+               </dxo-popup>
+             </dxo-editing>
+             <dxo-filter-row [visible]="true"></dxo-filter-row>
+             <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+             <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+             <dxo-paging [pageSize]="6"></dxo-paging>
+             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+             </dxo-pager> 
+   
+               <dxi-column dataField="leaveYearId" caption="Leave Year">
+                 <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+                 </dxo-lookup> 
+           </dxi-column>
+               <dxi-column dataField="userId" caption="Employee">
+                 <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                 </dxo-lookup> 
+           </dxi-column> 
+ 
+           <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+           <dxi-column dataField="editedAt" caption="Update Date"></dxi-column> 
+           </dx-data-grid>
+
+
           </div>
         </div>
       </div>

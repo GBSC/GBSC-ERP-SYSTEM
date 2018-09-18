@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-payroll',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayrollComponent implements OnInit {
 
-  constructor() { }
+  public payRoll: any; 
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  ngOnInit() {
-  }
-
-}
+   async ngOnInit() {
+        await this.payrollsetupservice.getpayrolls();
+        this.payRoll = this.payrollsetupservice.payroll;
+      }
+    
+      async addPayroll(value) {
+        await this.payrollsetupservice.addpayroll(value.data);
+      }
+    
+      async updatePayroll(value) {
+        console.log(value);
+        await this.payrollsetupservice.updatepayroll(value);
+      }
+    
+      async deletePayroll(value) {
+        await this.payrollsetupservice.Deletepayroll(value.key);
+      }
+    
+    }

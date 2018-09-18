@@ -135,6 +135,13 @@ import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
 import { PayrollService } from './payroll/services/payroll.service';
+import { AllowanceDeductionComponent } from './payroll/payrollsetup/allowance-deduction/allowance-deduction.component';
+import { AllowancerateComponent } from './payroll/payrollsetup/allowancerate/allowancerate.component';
+import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component';
+import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.component';
+import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
+import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
+import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 
 
 @NgModule({
@@ -256,13 +263,18 @@ import { PayrollService } from './payroll/services/payroll.service';
         AllowanceComponent,
         AllowancearrearComponent,
         AllowancecalculationtypeComponent,
+        AllowanceDeductionComponent,
+        AllowancerateComponent,
         BankAdviceTemplateComponent,
         BenefitComponent,
+        CurrencyComponent,
         ChequeTemplateComponent,
         CompensationTransactionComponent,
         FrequencyComponent,
+        GratuityslabComponent,
         GratuitySlabGratuityComponent,
         GratuitytypeComponent,
+        FundsetupComponent,
         LeavingreasonComponent,
         MasterpayrollComponent,
         MasterPayrollDetailComponent,
@@ -273,6 +285,7 @@ import { PayrollService } from './payroll/services/payroll.service';
         SalarystructureComponent,
         SalarystructuredetailComponent,
         UsersalaryComponent,
+        PayrollyearComponent,
         StopsalaryComponent,
         LoantypeComponent,
         UserloanComponent,
@@ -282,6 +295,7 @@ import { PayrollService } from './payroll/services/payroll.service';
         TaxBenefitComponent,
         TaxreliefComponent,
         TaxscheduleComponent,
+        PfPaymentComponent,
         TaxyearComponent,
         GratuityComponent,
         MonthlyUserSalaryComponent

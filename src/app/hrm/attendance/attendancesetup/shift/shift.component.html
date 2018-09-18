@@ -21,13 +21,13 @@
                       <label>
                       Shift Code:
                       </label>
-                      <input type="text" class="form-control m-input" formControl="ShiftCode" placeholder="0">
+                      <input type="text" class="form-control m-input" formControlName="ShiftCode" placeholder="0">
                     </div>
                     <div class="col-lg-6">
                       <label class="">
                        Shift Title:
                       </label>
-                      <input type="text" class="form-control m-input" formControl="ShiftTitle" placeholder="Shift Title">
+                      <input type="text" class="form-control m-input" formControlName="ShiftTitle" placeholder="Shift Title">
                     </div>
                   </div>
   
@@ -36,13 +36,13 @@
                         <label>
                         Start Time:
                         </label>
-                        <input type="text" class="form-control m-input" formControl="StartTime" placeholder="00:00">
+                        <input type="text" class="form-control m-input" formControlName="StartTime" placeholder="00:00">
                       </div>
                       <div class="col-lg-6">
                         <label class="">
                          End Time:
                         </label>
-                        <input type="text" class="form-control m-input" formControl="EndTime" placeholder="00:00">
+                        <input type="text" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
                       </div>
                     </div>
   
@@ -51,7 +51,7 @@
                           <label>
                           Grace Time:
                           </label>
-                          <input type="text" class="form-control m-input" formControl="GraceTime" placeholder="00:00">
+                          <input type="text" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
                         </div>
                         <div class="col-lg-6">
                           <label class="">
@@ -59,7 +59,7 @@
                           </label>
                           <div class="m-checkbox-list">
                               <label class="m-checkbox m-checkbox--state-success">
-                                <input type="checkbox"> 
+                                <input type="checkbox" formControlName="ISMultipleDayShift"> 
                                 <span></span>
                               </label>
                             </div>
@@ -71,13 +71,13 @@
                             <label>
                             Overtime Start Time:
                             </label>
-                            <input type="text" class="form-control m-input" formControl="OverTimeStartTime" placeholder="00:00">
+                            <input type="text" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00">
                           </div>
                           <div class="col-lg-6">
                             <label class="">
                             Minimum Over Time:
                             </label>
-                            <input type="text" class="form-control m-input" formControl="MinimumOverTime" placeholder="00:00">
+                            <input type="text" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00:00">
                           </div>
                         </div>
 
@@ -86,13 +86,13 @@
                               <label>
                                   In Time Shift Threshold:
                               </label>
-                              <input type="text" class="form-control m-input" formControl="InTimeShiftThreshold" placeholder="00:00">
+                              <input type="text" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
                             </div>
                             <div class="col-lg-6">
                               <label class="">
                                   Out Time Shift Threshold:
                               </label>
-                              <input type="text" class="form-control m-input" formControl="OutTimeShiftThreshold" placeholder="00:00">
+                              <input type="text" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
                             </div>
                           </div>
 
@@ -106,7 +106,7 @@
                           <th>Delete</th>
                           <tr>
                             <td>
-                                <select class="form-control m-input" formControl="AttendanceFlagId" id="">
+                                <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                                     <option value="" disabled selected>-- Select Attendance Flag --</option>
                                     <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
                                   </select>
@@ -116,7 +116,7 @@
                           </tr>
                           <tr *ngFor="let field of fieldArray; let i = index">
                               <td>
-                                  <select class="form-control m-input" formControl="AttendanceFlagId" id="">
+                                  <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                                       <option value="" disabled selected>-- Select Attendance Flag --</option>
                                       <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
                                     </select>

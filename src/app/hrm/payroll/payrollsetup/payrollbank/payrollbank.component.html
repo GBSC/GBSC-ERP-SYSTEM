@@ -1,3 +1,195 @@
-<p>
-  payrollbank works!
-</p>
+<div class="m-content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                 Bank
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+  
+            <form [formGroup]="leaveopeningForm"> 
+
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                      <label>
+                      Bank Title:
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="BankTitle" placeholder="Bank Title">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                      Account No:
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="AccountNumber" placeholder="0">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group m-form__group row">
+                      <div class="col-lg-6">
+                        <label>
+                       Routing Code:
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="RoutingCode" placeholder="0">
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="">
+                       Unique Id:
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="UniqueId" placeholder="0">
+                      </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                         Remit Type:
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="RemitType" placeholder="0">
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="">
+                          Remit Key:
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="RemitKey" placeholder="0">
+                        </div>
+                      </div>
+
+                      <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                           Bank Branch Coe:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="BranchCode" placeholder="0">
+                          </div>
+                          <div class="col-lg-6">
+                            <label class="">
+                            Branch:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="Branch" placeholder="0">
+                          </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                              <label>
+                                  Branch Employee Name:
+                              </label>
+                              <input type="text" class="form-control m-input" formControlName="BranchEmplyeeName" placeholder="0">
+                            </div>
+                            <div class="col-lg-6">
+                              <label class="">
+                                  Branch Employee Designation:
+                              </label>
+                              <input type="text" class="form-control m-input" formControlName="BranchEmplyeeDesignation" placeholder="0">
+                            </div>
+                          </div>
+
+                          <div class="form-group m-form__group row">
+                              <div class="col-lg-6">
+                                <label class="">
+                                    First Approver Name:
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="FirstApproverName" placeholder="0">
+                              </div>
+                              <div class="col-lg-6">
+                                <label class="">
+                                    First Approver Designation:
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="FirstApproverDesignation" placeholder="0">
+                              </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                              <div class="col-lg-6">
+                                <label class="">
+                                    Second Approver Name:
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="SecondApproverName" placeholder="0">
+                              </div>
+                              <div class="col-lg-6">
+                                <label class="">
+                                    Second Approver Designation:
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="SecondApproverDesignation" placeholder="0">
+                              </div>
+                            </div>
+
+
+
+              <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                   Bank Advice Template:
+                  </label>
+                  <select class="form-control m-input" formControlName="bankAdviceTemplateId" id="">
+                      <option value="" disabled selected>-- Select Bank Advice Template --</option>
+                      <option *ngFor ="let banktemplate of payrollsetupservice?.bankadvicetemplate" [value]="banktemplate.bankAdviceTemplateId" >{{banktemplate.name}}</option>
+             </select>
+                </div>
+                <div class="col-lg-6">
+                  <label class="">
+                   Cheque Template:
+                  </label> 
+                      <select class="form-control m-input" formControlName="ChequeTemplateId" id="">
+                          <option value="" disabled selected>-- Select Attendance Flag --</option>
+                          <option *ngFor ="let chequetemplate of payrollsetupservice?.chequetemplate" [value]="chequetemplate.chequeTemplateId" >{{chequetemplate.name}}</option>
+                 </select>
+                </div>
+              </div>
+  
+  
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label class="">
+                        Gl Code:
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="GlCode" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Cost Centre Code:
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="CostCentreCode" placeholder="0">
+                  </div>
+                </div>
+
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label class="">
+                        Company Bank:
+                        </label>
+                        <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="CompanyBank"> 
+                              <span></span>
+                            </label>
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <label class="">
+                          Active:
+                          </label>
+                          <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="Active"> 
+                                <span></span>
+                              </label>
+                            </div>
+                        </div>
+                  </div>
+ 
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> 
+    </div>
+    

@@ -13,6 +13,7 @@ import { SetupService } from '../../../hrmsSetup/services/setup.service';
 export class LeavepolicyComponent implements OnInit {
     public leavePolicyForm: FormGroup;
     public groups: any = [];
+    public leavepolicy: any;
 
     constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
@@ -59,6 +60,9 @@ export class LeavepolicyComponent implements OnInit {
 
         });
 
+
+        await this.leavesetupservice.getAllleavepolicy();
+        this.leavepolicy = this.leavesetupservice.leavepolicy;
 
         await this.leavesetupservice.getAllleaveyear();
         let leaveyear = this.leavesetupservice.leaveyear;

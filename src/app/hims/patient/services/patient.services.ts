@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Patient } from '../../../models/patient';
+import { Document } from '../../../models/document';
 import { Appointment } from '../../../models/appointment';
 import { Consultant } from '../../../models/consultant';
 import { himsSetupTest } from '../../../models/himsSetupTest';
@@ -18,6 +19,8 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Reference } from '../../../models/reference';
+import { Spouse } from '../../../models/spouse';
 
 @Injectable()
 export class PatientService {
@@ -26,6 +29,7 @@ export class PatientService {
     public currentPatient: any;
     public SearchPatientbyname : any;
     public patientData : any ;
+    public patientDocumentbyId : any;
 
     public consultant: any;
     public patients: any;
@@ -105,15 +109,49 @@ export class PatientService {
 
     async updatePatient(patient) {
         console.log(patient)
-      return await this.http1.post(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
+      let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
+      return x;
     }
 
     async deletePatient(id) {
         let x = await this.http1.delete(this.API_URL + '/patients/DeletePatient/' + id).toPromise();
         console.log(x);
         return x;
+    }
 
+     addDocument(f : FormData, id){
+ 
+        this.http1.post(this.API_URL+'/patients/AddPatientDocument/'+id, f).subscribe( res => {
+            console.log(res);
+        });
+        
+        //return x;
+    }
 
+    getPatientDocumentByPatientId(id): Observable<Document>{
+        console.log(this.API_URL1+'/patients/GetPatientDocumentsByPatientId/'+id)
+        return  this.http1.get<Document>(this.API_URL+'/patients/GetPatientDocumentsByPatientId/'+id);
+
+    }
+
+    async deleteDocument(id){
+        let x = await this.http1.delete(this.API_URL+'/patients/DeletePatientDocument/'+id).toPromise();
+        console.log(`this.API_URL+'/patients/DeletePatientDocument/'+id`)
+        console.log(x);
+        return x;
+    }
+
+    async updatePatientRef(Reference :Reference)
+    {
+      let x =  await this.http1.put(this.API_URL+'/patients/UpdatePatientReference/',Reference).toPromise();
+      console.log(x);
+      return x;
+    }
+
+    async updatePatientSpouse(Spouse : Spouse){
+        let x =  await this.http1.put(this.API_URL+'/patients/UpdatePartner/',Spouse).toPromise();
+        console.log(x);
+        return x;
     }
 
     setCurrentPatient(patient) {

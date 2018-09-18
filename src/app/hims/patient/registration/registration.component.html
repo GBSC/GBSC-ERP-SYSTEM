@@ -10,10 +10,30 @@
 								<i class="la la-gear"></i>
 							</span>
 							<h3 class="m-portlet__head-text">
-								Add New Patient
+								 Patient Form
 							</h3>
 						</div>
 					</div>
+					<div class="m-portlet__head-tools">
+                        <div class="dropdown">
+                            <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2" type="button">
+                                <span _ngcontent-c21="">
+                                    <i class="fa fa-cog"></i>
+                                </span> Actions
+                            </button>
+                            <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+                                <button class="dropdown-item" (click)="goback()" type="button">
+                                    Go Back
+                                </button>
+                                <button class="dropdown-item" type="button">
+                                    Another action
+                                </button>
+                                <button class="dropdown-item" type="button">
+                                    Something else here
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 				<!--begin::Form-->
 				<form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="patientForm">
@@ -28,7 +48,8 @@
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleSelect1"> Visit Nature </label>
-								<dx-select-box [items]="visitnature" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId">
+								<dx-select-box [items]="visitnature" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true"
+								 formControlName="visitNatureId">
 								</dx-select-box>
 							</div>
 							<div class="form-group col-lg-3">
@@ -43,53 +64,53 @@
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> First Name </label>
 								<!-- [value]="Patient?.firstName" -->
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName" formControlName="FirstName"
-								 name="FirstName" type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName"
+								 formControlName="FirstName" name="FirstName" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> MiddleName </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.middleName" formControlName="MiddleName"
-								 name="MiddleName" type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.middleName"
+								 formControlName="MiddleName" name="MiddleName" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> LastName </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName" formControlName="LastName"
-								 name="LastName" type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName"
+								 formControlName="LastName" name="LastName" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Date Of Birth </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob" formControlName="DOB"
-								 type="date">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob"
+								 formControlName="DOB" type="date">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Place Of Birth </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth" formControlName="PlaceOfBirth"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth"
+								 formControlName="PlaceOfBirth" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Occupation </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.occupation" formControlName="Occupation"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.occupation"
+								 formControlName="Occupation" type="text">
 							</div>
 
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> CNIC </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic" formControlName="NIC"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic"
+								 formControlName="NIC" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Phone Number </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.phoneNumber" formControlName="PhoneNumber"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.phoneNumber"
+								 formControlName="PhoneNumber" type="text">
 							</div>
 						</div>
 						<div class="form-group row">
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Remarks </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks" formControlName="Remarks"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks"
+								 formControlName="Remarks" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Residence Address </label>
@@ -98,13 +119,13 @@
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Office Address </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeAddress" formControlName="OfficeAddress"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeAddress"
+								 formControlName="OfficeAddress" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Office Telephone </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeTel" formControlName="OfficeTel"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeTel"
+								 formControlName="OfficeTel" type="text">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -119,18 +140,18 @@
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> City </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.city" formControlName="City"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.city"
+								 formControlName="City" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> State </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.state" formControlName="State"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.state"
+								 formControlName="State" type="text">
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> PostalCode </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.postalCode" formControlName="PostalCode"
-								 type="text">
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.postalCode"
+								 formControlName="PostalCode" type="text">
 							</div>
 						</div>
 						<div class="form-group row">
@@ -155,8 +176,8 @@
 							<div class="m-accordion m-accordion--default" id="m_accordion_1" role="tablist">
 								<!--begin::Item-->
 								<div class="m-accordion__item">
-									<div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_1_item_1_head" data-toggle="collapse" href="#m_accordion_1_item_1_body"
-									 aria-expanded="false">
+									<div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_1_item_1_head" data-toggle="collapse"
+									 href="#m_accordion_1_item_1_body" aria-expanded="false">
 										<span class="m-accordion__item-icon">
 											<i class="fa flaticon-user-ok"></i>
 										</span>
@@ -188,45 +209,54 @@
 												</ul>
 												<div class="tab-content">
 													<div class="tab-pane active show" id="m_tabs_3_1" role="tabpanel">
-														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="partnerForm">
+														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid"
+														 [formGroup]="partnerForm">
 															<div class="m-portlet__body">
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> FirstName </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="FirstName" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="FirstName" type="text">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> MiddleName </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="MiddleName" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="MiddleName" type="text">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> LastName </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="LastName" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="LastName" type="text">
 																	</div>
 																</div>
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Occupation </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="Occupation" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="Occupation" type="text">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> N.I.C </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="NIC" type="text">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Contact No </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PhoneNumber" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="PhoneNumber" type="text">
 																	</div>
 																</div>
 
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Date Of Birth </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="DOB" type="date">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="DOB" type="date">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Place Of Birth </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PlaceOfBirth" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="PlaceOfBirth" type="text">
 																	</div>
 																</div>
 
@@ -235,35 +265,43 @@
 																<button type="reset" class="btn btn-secondary">
 																	Reset
 																</button>
-																<button type="button" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal" class="btn btn-primary">
+																<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatePatientSpouse(partnerForm.value)" data-dismiss="modal" class="btn btn-primary">
+																	Update
+																</button>
+																<button type="button" *ngIf="router.url === '/hims/patient/registration'" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal" class="btn btn-primary">
 																	Save
 																</button>
 															</div>
 														</form>
 													</div>
 													<div class="tab-pane" id="m_tabs_3_2" role="tabpanel">
-														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="referenceForm">
+														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid"
+														 [formGroup]="referenceForm">
 															<div class="m-portlet__body">
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-4">
 																		<label for="exampleSelect1"> Reference By </label>
 																		<select class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ReferredBy">
-																			<option class="active" [value]="Doctor">Doctor</option>
+																			<option value="Doctor">Doctor</option>
+																			<option  value="Receptionist">Receptionist</option>
 																		</select>
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Person Name </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PersonName">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="PersonName">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Reference Address</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="RefAddress">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="RefAddress">
 																	</div>
 																</div>
 																<div class="form-group m-form__group row">
 																	<div class="form-group col-lg-8">
 																		<label for="exampleInputEmail1">Reference Phone</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="ReferenceTel">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="ReferenceTel">
 																	</div>
 																</div>
 															</div>
@@ -271,7 +309,11 @@
 																<button type="reset" class="btn btn-secondary">
 																	Reset
 																</button>
-																<button type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal" class="btn btn-primary">
+																
+																<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatepatientRef(referenceForm.value)" data-dismiss="modal" class="btn btn-primary">
+																	Update
+																</button>
+																<button *ngIf="router.url === '/hims/patient/registration'" type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal" class="btn btn-primary">
 																	Save
 																</button>
 															</div>
@@ -279,24 +321,36 @@
 													</div>
 													<!-- <here we are using final appointment tag start work> -->
 													<div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
-														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="documentForm">
+														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid"
+														 [formGroup]="documentForm">
 															<div class="m-portlet__body">
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-4">
+																<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/registration'"  >
+																	  <!-- <div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Document Name </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="DocumentName" type="text">
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="DocumentName" type="text">
 																	</div>
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1"> Remarks </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="Remarks" type="text">
-																	</div>
+																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
+																		 formControlName="Remarks" type="text">
+																	</div>  -->
 																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1">Document:</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="file" formControlName="FilePath">
+																		<label for="exampleInputEmail1">File Path:</label>
+																		<input type="file" formControlName="FilePath"/>
 																	</div>
 																</div>
+																<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+																  <div class="form-group col-lg-4">
+																	  <label for="exampleInputEmail1">Document:</label>
+																	  <input type="file" (change)="onfileselect($event)"/>
+																  </div>
+															 	 </div>
 																<div class="form-group m-form__group row">
-																	<button type="button" (click)="addrange()" class="btn btn-primary">
+																	<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary">
+																		Add
+																	</button>
+																	<button  *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary">
 																		Add
 																	</button>
 																	<br>
@@ -305,7 +359,17 @@
 															<div class="m-section">
 																<div class="m-section__content">
 																	<table class="table m-table m-table--head-separator-primary">
-																		<thead>
+																		<thead *ngIf="router.url === '/hims/patient/registration'">
+																			<tr>
+																				<th>
+																					File Path
+																				</th>
+																				<th>
+																					Action
+																				</th>
+																			</tr>
+																		</thead>
+																		<thead *ngIf="router.url === '/hims/patient/updatepatient/'+id">
 																			<tr>
 																				<th>
 																					Document Name
@@ -322,23 +386,16 @@
 																			</tr>
 																		</thead>
 																		<tbody *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-																			<tr *ngFor=" let t of documentss; let i = index">
-																				<td>{{t.DocumentName}}</td>
-																				<td>{{t.Remarks}}</td>
-																				<td>{{t.FilePath}}</td>
-																				<td>
-																					<button type="button" (click)="remove(i)" class="btn btn-primary">
-																						<i class="la la-archive"></i>
-																					</button>
-																				</td>
-																			</tr>
-																			<tr *ngFor="let patientDoucment of documents;let i = index">
+																			<tr *ngFor="let patientDoucment of document;let i = index">
 																				<td>{{patientDoucment?.documentName}}</td>
 																				<td>{{patientDoucment?.remarks}}</td>
-																				<td>{{patientDoucment?.filePath}}</td>
+																				<td> {{patientDoucment?.filePath}}</td>
 																				<td>
-																					<button type="button" (click)="removeaddeddata(i)" class="btn btn-primary">
+																					<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary">
 																						<i class="la la-archive"></i>
+																					</button> | 
+																					<button type="button" (click)="downlaodImage(i)" class="btn btn-primary">
+																						Downlaod
 																					</button>
 																				</td>
 																		    </tr>
@@ -346,8 +403,8 @@
 
 																		<tbody *ngIf="router.url === '/hims/patient/registration'">
 																			<tr *ngFor=" let t of documentss; let i = index">
-																				<td>{{t.DocumentName}}</td>
-																				<td>{{t.Remarks}}</td>
+																				<!-- <td>{{t.DocumentName}}</td>
+																				 <td> {{t.Remarks}}  -->
 																				<td>{{t.FilePath}}</td>
 																				<td>
 																					<button type="button" (click)="remove(i)" class="btn btn-primary">
@@ -360,12 +417,9 @@
 																	</table>
 																</div>
 															</div>
-															<div class="modal-footer">
+															<div *ngIf="router.url === '/hims/patient/registration'"  class="modal-footer">
 																<button type="reset" class="btn btn-secondary">
 																	Reset
-																</button>
-																<button type="button" (click)="onupdatedocument(editdocumentForm.value)" data-dismiss="modal" class="btn btn-primary">
-																	upadate
 																</button>
 																<button type="button" (click)="onAddDocument(documentss)" data-dismiss="modal" class="btn btn-primary">
 																	Save

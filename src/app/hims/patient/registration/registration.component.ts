@@ -144,9 +144,9 @@ export class RegistrationComponent implements OnInit {
         value.patientDocuments = this.addDocument;
         console.log(value);
 
-        // await this.PatientServiceobj.addPatient(value);
-        // this.router.navigate(['/hims/patient/findpatient']);
-        // this.PatientServiceobj.getPatient();
+        await this.PatientServiceobj.addPatient(value);
+        this.router.navigate(['/hims/patient/findpatient']);
+        this.PatientServiceobj.getPatient();
     }
 
     onAddPartner(value) {

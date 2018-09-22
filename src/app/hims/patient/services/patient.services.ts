@@ -36,6 +36,7 @@ export class PatientService {
     public patientAllFormData: any = {};
     public tryImgSrc: any;
     public images: any = [];
+    public patientID : any;
 
 
     // <for appointmnet>
@@ -85,8 +86,10 @@ export class PatientService {
     }
 
     async addPatient(patient: Patient) {
-        let addPatient = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
-        return addPatient;
+        this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
+        console.log(this.patientID)
+        return  this.patientID ;
+         
     }
 
     async getpatientForupdating(value){
@@ -413,8 +416,8 @@ export class PatientService {
 
     async GetVisitNatures() {
         this.visitNatures = await this.http1.get<VisitNature>(this.API_URL + '/HimsSetup/GetVisitNatures/').toPromise();
-        console.log(this.PatientVitals);
-        return this.PatientVitals
+        console.log(this.visitNatures);
+        return this.visitNatures
     }
 
 

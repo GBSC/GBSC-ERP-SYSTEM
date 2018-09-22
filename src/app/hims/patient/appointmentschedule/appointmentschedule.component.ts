@@ -17,7 +17,7 @@ import popup from 'devextreme/ui/popup';
 })
 export class AppointmentscheduleComponent implements OnInit {
 
-    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+    @ViewChild('appointmentgrid') appointmentgrid: DxDataGridComponent;
 
     private patientForm: FormGroup;
     public patientIdIs;
@@ -55,7 +55,7 @@ export class AppointmentscheduleComponent implements OnInit {
     public ConsultantIdTentiveTime: any;
     public id: any;
     public date: any;
-    public visitNatures : any;
+    public visitNatures: any;
 
 
 
@@ -81,13 +81,14 @@ export class AppointmentscheduleComponent implements OnInit {
                 DOB: ['', Validators.required],
                 PhoneNumber: ['', Validators.required],
                 NIC: ['', Validators.required],
+
             });
         this.appointmentForm = this.formBuilder.group(
             {
                 'PatientType': [''],
                 'ConsultantId': ['', Validators.required],
                 'VisitStatus': [''],
-                'visitNatureId': [''],
+                'VisitNatureId': [''],
                 'PatientId': [''],
                 'TimeIn': [''],
                 'TimeOut': [''],
@@ -100,12 +101,6 @@ export class AppointmentscheduleComponent implements OnInit {
             'TimeOut': ['', Validators.required],
             'Remarks': ['', Validators.required]
         });
-    }
-
-    showIt() {
-        if (this.profileForm.valid) {
-            console.log(this.profileForm);
-        }
     }
 
     async  ngOnInit() {
@@ -135,18 +130,53 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(this.test);
 
         await this.PatientServiceobj.GetVisitNatures();
-       this.visitNatures = this.PatientServiceobj.visitNatures;
+        this.visitNatures = this.PatientServiceobj.visitNatures;
         console.log(this.visitNatures);
+
         // await this.PatientServiceobj.GetAppointmentTests();
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
+        
 
 
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
 
-    addrange(id) {
+    showIt() {
+        if (this.profileForm.valid) {
+            console.log(this.profileForm);
+        }
+    }
+
+
+
+    // addrange(id) {
+    //     // console.log(id);
+
+    //     //    console.log(id.value);
+    //     // let testFound = this.findTestById(id);
+    //     // console.log(testFound);
+
+    //     let { value } = this.appointmenttestForm;
+    //     // let test = this.test.find(t => { 
+    //     //     console.log(t.testId === value.TestId); t.testId === value.TestId; })
+    //     console.log(this.test.testName);
+    //     //console.log(test)
+    //     let doc = {
+    //         TestId: value.TestId,
+    //         //TestName : test.testName
+
+    //     }
+    //     this.Tests.push(doc);
+    //     console.log(this.Tests);
+    //     //this.appointmenttestForm.reset();
+
+
+    // }
+
+    
+    addrange() {
         // console.log(id);
 
         //    console.log(id.value);
@@ -154,9 +184,19 @@ export class AppointmentscheduleComponent implements OnInit {
         // console.log(testFound);
 
         let { value } = this.appointmenttestForm;
-
+         let test = this.test.find(t => { 
+          console.log(t.testId === value.TestId);
+        
+          t.testId === value.TestId;
+          console.log(value.TestId);
+         })
+        console.log(this.test);
+        console.log(value.TestId);
+        console.log(test);
+ 
         let doc = {
             TestId: value.TestId,
+            //TestName : test.testName
 
         }
         this.Tests.push(doc);
@@ -164,7 +204,12 @@ export class AppointmentscheduleComponent implements OnInit {
         //this.appointmenttestForm.reset();
 
 
+
+        // new work 
+
+
     }
+
 
     remove(index) {
         this.Tests.splice(index, 1);
@@ -187,11 +232,20 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(value);
         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
         console.log(x)
-        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        console.log(this.getaptbyid);
+
+        // this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+        // console.log(this.getaptbyid);
+
         this.removeall(this.Tests);
+
+        this.appointmentgrid.instance.refresh()
+
         return x;
     }
+
+    // refresh() {
+    //     this.dataGrid.instance.refresh();
+    // }
 
     // async deleteapointmentTest(value) {
     //   console.log(value);
@@ -215,11 +269,18 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
 
-    async onAddPatient(value: Patient) {
+    async onAddPatient(value: Patient, popup) {
         console.log(this.patientForm.value.FirstName);
         console.log(value);
+        delete this.patientForm.value.patientId
         this.patientIdIs = await this.PatientServiceobj.addPatient(value);
+        popup.style.display = 'none'; 
+        console.log(this.PatientServiceobj.patientID);
+ 
+        let x = this.PatientServiceobj.patientID;
+        console.log(x)
         return this.patientIdIs;
+
     }
 
     // async getappointmentbyid(d)
@@ -234,17 +295,30 @@ export class AppointmentscheduleComponent implements OnInit {
     // }
 
     async addApointment(value, cid) {
+
+        if(this.appointmentForm.value.PatientId === '')
+        {
+              this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
+         }
+      
         console.log(cid.value);
         console.log(value);
-        console.log(this.appointmentForm.value);
+      
+        
+
         this.appointmentForm.value.ConsultantId = cid.value;
-       // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+       
+        
+
+        // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
 
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);
         await this.PatientServiceobj.getappointments();
         this.deleteFieldValue();
+        this.appointmentForm.reset();
+        this.appointmentgrid.instance.refresh();
         return x;
     }
 
@@ -310,7 +384,10 @@ export class AppointmentscheduleComponent implements OnInit {
 
     }
 
-
+    hidepopup(popup) {
+        console.log('popup')
+       popup.style.display = 'none'; 
+    }
 
 }
 

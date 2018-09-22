@@ -345,7 +345,7 @@ export class AppointmentscheduleComponent implements OnInit {
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         console.log(this.ConsultantIdTentiveTime);
-
+        console.log(this.ConsultantIdTentiveTime.visitNature)
         return x;
 
     }

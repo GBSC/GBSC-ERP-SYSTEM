@@ -157,8 +157,7 @@
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                <dxi-column dataField="appointmentId" caption="Id" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-                <dxi-column dataField="patientType" caption="Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                 <dxi-column dataField="patientType" caption="Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
@@ -180,10 +179,10 @@
                 <dxi-column dataField="timeIn" caption="Time In" [visible]="false" type="time"></dxi-column>
                 <dxi-column dataField="timeOut" caption="Time Out" [visible]="false" dataType="Time"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks" [visible]="false"></dxi-column>
-                <dxi-column caption="Add Test" cellTemplate="chartCellTemplate" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">
                   <div class="chart-cell">
-                    <dx-button (click)="getCurrentRowData(d)" data-toggle="modal" data-target="#m_modal_3" icon="user"></dx-button>
+                    <dx-button (click)="getCurrentRowData(d)" data-toggle="modal" data-target="#m_modal_3" icon="add"></dx-button>
                   </div>
                 </div>
 

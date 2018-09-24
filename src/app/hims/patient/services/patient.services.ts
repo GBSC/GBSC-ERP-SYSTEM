@@ -7,7 +7,7 @@ import { Appointment } from '../../../models/appointment';
 import { Consultant } from '../../../models/consultant';
 import { himsSetupTest } from '../../../models/himsSetupTest';
 import { AppointmentTest } from '../../../models/appointmentTest';
-import {Visits} from '../../../models/visits'
+import { Visits } from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
 import { VisitNature } from '../../../models/VisitNature';
 import { VisitNote } from '../../../models/visitnote';
@@ -21,6 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reference } from '../../../models/reference';
 import { Spouse } from '../../../models/spouse';
+
+import { Package } from '../../../models/packages';
+
 
 @Injectable()
 export class PatientService {
@@ -54,6 +57,9 @@ export class PatientService {
     //for  ConsultantIdAndTentiveTime
     public ConsultantIdAndTentiveTime: any;
 
+    //for profile 
+
+    public package: any;
     //for Visits control
 
     public visits : any;
@@ -108,7 +114,7 @@ export class PatientService {
     //     return p;
     //   }
     // }
- 
+
 
     async updatePatient(patient) {
         console.log(patient)
@@ -280,9 +286,8 @@ export class PatientService {
     }
 
 
-    async GetVisits()
-    {
-        this.visits = await this.http1.get<Visits>(this.API_URL+'/Visits/GetVisits/').toPromise();
+    async GetVisits() {
+        this.visits = await this.http1.get<Visits>(this.API_URL + '/Visits/GetVisits/').toPromise();
         console.log(this.visits);
         return this.visits;
     }
@@ -315,7 +320,7 @@ export class PatientService {
         let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`,visits).toPromise();
         console.log(x);
         return x;
-        
+
     }
     
     async DeleteVisits(id)
@@ -323,7 +328,7 @@ export class PatientService {
         let x = await this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
         console.log(x);
         return x;
-        
+
     }
     
 

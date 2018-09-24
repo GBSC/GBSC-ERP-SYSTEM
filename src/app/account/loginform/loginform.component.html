@@ -24,10 +24,10 @@ id="m_login">
                             <input type="password" class="form-control m-input m-login__form-input--last" name="Password" placeholder="password"  formControlName="Password" required >
                         </div>
                         <div class="m-login__form-action">
-                            <button type="submit" (click)="onSubmit(loginForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                            <button (click)="login()" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
                                     Sign In
                             </button> 
-                            <button    type="submit"  (click)="revert()" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                            <button  (click)="revert()" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
                                     Revert
                             </button> 
                         </div>

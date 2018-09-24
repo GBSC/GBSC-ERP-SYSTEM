@@ -315,9 +315,6 @@ console.log(this.tests);
         
 
         this.appointmentForm.value.ConsultantId = cid.value;
-       
-        
-
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
 

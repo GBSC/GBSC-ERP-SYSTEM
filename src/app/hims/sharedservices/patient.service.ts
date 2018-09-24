@@ -7,6 +7,7 @@ import { himsSetupTest } from '../../models/himsSetupTest';
 import { AppointmentTest } from '../../models/appointmentTest';
 import { PatientVital } from '../../models/patientvitals';
 import { Patient } from '../../models/patient';
+import {Package} from '../../models/packages'
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -36,6 +37,9 @@ export class PatientService {
 
   //for  ConsultantIdAndTentiveTime
   public ConsultantIdAndTentiveTime: any;
+
+  //for package
+  public package : any;
 
   private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
   private readonly API_URL1 = 'http://localhost:58788/api';
@@ -217,6 +221,34 @@ export class PatientService {
       console.log(x);
       return x;
   }
+
+  
+
+  public async getPackage() {
+    this.package = await this.http.get<Package>(this.API_URL + '/HimsSetup/GetPackages').toPromise();
+    console.log(this.package);
+    return this.package;
+}
+
+
+async addPackage(packge: Package) {
+    let x = await this.http.post(this.API_URL + '/HimsSetup/AddPackage', packge).toPromise();
+    console.log(x);
+    return x;
+}
+
+async updatePackage(packge: Package) {
+
+    let x = await this.http.put(this.API_URL+'/HimsSetup/UpdatePackage/',packge).toPromise();
+    console.log(x);
+    return x;
+}
+
+async daletePackage(id) {
+    let x = await this.http.delete(this.API_URL+'/HimsSetup/DeletePackage/'+id).toPromise();
+    console.log(x);
+    return x;
+}
 
   // setCurrentPatient(currentPatientId) {
   //   console.log(currentPatientId);

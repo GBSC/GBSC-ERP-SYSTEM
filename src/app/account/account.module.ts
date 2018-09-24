@@ -7,6 +7,8 @@ import { RootComponent } from './root/root.component';
 
 import { LoginformComponent } from './loginform/loginform.component';
 import { AccountService } from './service.service';
+import { ModuleGuardService } from './auth/module-guard.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { AccountService } from './service.service';
     providers:
     [
         AccountService,
+        AuthGuardService,
+        ModuleGuardService
 
     ]
 })

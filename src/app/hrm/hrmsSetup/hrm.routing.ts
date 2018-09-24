@@ -1,7 +1,5 @@
 import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RootComponent } from './root/root.component';
-import { HomeComponent } from '../hrmsSetup/home/home.component';
 import { CountryComponent } from '../hrmsSetup/country/country.component';
 import { EmployeeTypes } from '../hrmsSetup/employeetype/employeetype.component';
 import { DepartmentComponent } from '../hrmsSetup/department/department.component';
@@ -10,7 +8,6 @@ import { GradesComponent } from '../hrmsSetup/grade/grade.component';
 import { QualificationComponent } from '../hrmsSetup/qualification/qualification.component';
 import { EmployeeStatuscomponent } from '../hrmsSetup/employeestatus/employeestatus.component';
 import { ReligionComponent } from '../hrmsSetup/religion/religion.component';
-import { ShiftComponent } from '../hrmsSetup/shift/shift.component';
 import { BankComponent } from '../hrmsSetup/bank/bank.component';
 import { DegreeComponent } from '../hrmsSetup/degree/degree.component';
 import { AccountTypeComponent } from '../hrmsSetup/accounttype/accounttype.component';
@@ -28,6 +25,11 @@ import { AllowancesTypeComponent } from '../hrmsSetup/allowancestypes/allowances
 import { RelationComponent } from '../hrmsSetup/relations/relations.component';
 import { CityComponent } from '../hrmsSetup/cities/cities.component';
 import { UniversityComponent } from '../hrmsSetup/university/university.component';
+import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { AuthGuardService } from '../../account/auth/auth-guard.service';
+import { RootComponent } from '../root/root.component';
+import { HrmSetupHomeComponent } from './home/home.component';
+import { ShiftComponent } from '../attendance/attendancesetup/shift/shift.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -35,12 +37,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
         path: 'hrm',
         component: RootComponent,
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
             {
                 path: 'hrmsSetup',
                 children: [
 
-                    { path: 'home', component: HomeComponent },
+                    { path: 'home', component: HrmSetupHomeComponent },
                     { path: 'country', component: CountryComponent },
                     { path: 'employeetype', component: EmployeeTypes },
                     { path: 'function', component: FunctionComponent },

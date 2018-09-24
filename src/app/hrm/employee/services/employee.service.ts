@@ -19,7 +19,6 @@ export class EmployeeService {
     public QualificationForm: FormGroup;
     public allDependentForm: any = [];
     public allExperiencexpForm: any = [];
-
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser
@@ -33,13 +32,13 @@ export class EmployeeService {
             FirstName: [''],
             LastName: [''],
             FatherName: [''],
-            Email: ['Bilal55@yahoo.com'],
-            Cnic: ['4240165259536255'],
-            CnicExpiry: ['11-02-2020'],
-            PhoneNumber: ['0345217865'],
-            HomeNumber: ['021364571665'],
-            DOB: ['11-02-1998'],
-            POB: ['TownShip'],
+            Email: [''],
+            Cnic: [''],
+            CnicExpiry: [''],
+            PhoneNumber: [''],
+            HomeNumber: [''],
+            DOB: [''],
+            POB: [''],
             BloodGroup: [''],
             MaritalStatus: [''],
             Gender: [''],
@@ -74,13 +73,14 @@ export class EmployeeService {
         });
 
         this.QualificationForm = this.fb.group({
-            School: [''],
-            EducationLevel: [''],
+            Name: [''],
+            DegreeId: [],
             Timefrom: ['12-01-2016'],
             Timeto: ['12-01-2017'],
-            Description: ['Well'],
-            GradeId: [''],
-            Course: ['']
+            Grade: [''],
+            Courses: [''],
+            Description: [''],
+            SkillLevel: []
         });
 
         this.Profilepic = this.fb.group({
@@ -90,43 +90,43 @@ export class EmployeeService {
         this.DependantForm = this.fb.group({
 
             Name: [''],
-            Phone: ['031572655'],
-            Email: ['saad3377@yahoo.com'],
-            Address: ['Gulshan'],
-            Country: ['Pakistan'],
-            City: ['Karachi'],
-            State: ['Sindh'],
-            Zip: ['3323'],
-            HomePhone: ['0254-2105523'],
-            PermanentAddress: ['HNo# 54, Rawalpindi, Pakistan']
+            Phone: [''],
+            Email: [''],
+            Address: [''],
+            Country: [''],
+            City: [''],
+            State: [''],
+            Zip: [''],
+            HomePhone: [''],
+            PermanentAddress: ['']
 
         });
 
         this.SocialForm = this.fb.group({
-            Fb: ['http://ww.facebook.com/sheryar'],
-            Twitter: ['http://ww.twiter.com/sheryar'],
-            Instagram: ['http://ww.insta.com/sheryar'],
-            Linkedin: ['http://ww.linkedin.com/sheryar'],
-            GooglePlus: ['http://ww.gplus.com/sheryar'],
-            Youtube: ['http://ww.youtube.com/sheryar'],
-            Blog: ['http://ww.blog.com/sheryar'],
-            Pinterest: ['http://ww.facebook.com/sheryar']
+            Fb: [''],
+            Twitter: [''],
+            Instagram: [''],
+            Linkedin: [''],
+            GooglePlus: [''],
+            Youtube: [''],
+            Blog: [''],
+            Pinterest: ['']
         });
 
         this.experienceForm = this.fb.group({
-            CompanyName: ['CCD'],
-            Designation: ['Marketing'],
-            Timefrom: ['12-01-2017'],
-            Timeto: ['12-01-2018'],
-            Description: ['Owxm']
+            CompanyName: [''],
+            Designation: [''],
+            Timefrom: [''],
+            Timeto: [''],
+            Description: ['']
         });
 
         this.EmpbankForm = this.fb.group({
-            AccountTitle: ['Khalid'],
-            AccountNumber: ['125458655-6'],
-            BankId: [''],
-            BankCode: ['05412'],
-            BankBranch: ['Bahria Town']
+            AccountTitle: [''],
+            AccountNumber: [''],
+            BankTitle: [''],
+            BankCode: [''],
+            BankBranch: ['']
         });
 
         this.documentForm = this.fb.group({
@@ -142,8 +142,11 @@ export class EmployeeService {
 
         this.employeereg = await this.httpClient.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
         console.log(this.employeereg);
-
         return this.employeereg;
+    }
+
+    checkIfDisabled(e) {
+        console.log(e);
     }
 
 
@@ -201,7 +204,7 @@ export class EmployeeService {
     async adduserSocial() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let social = await this.httpClient.post(`${this.baseUrl}/Users/AddUser/${localStorage.getItem('id')}`,
+        let social = await this.httpClient.post(`${this.baseUrl}/Users/UpdateUser/${localStorage.getItem('id')}`,
 
 
             this.SocialForm.value, headers).toPromise();
@@ -209,7 +212,7 @@ export class EmployeeService {
         return social;
     }
 
-    async adduserBank() {
+    async addBank() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
         let bank = await this.httpClient.post(`${this.baseUrl}/Users/AddUserBankById/${localStorage.getItem('id')}`, this.EmpbankForm.value, headers).toPromise();
@@ -217,12 +220,43 @@ export class EmployeeService {
         return bank;
     }
 
+    public allQualifications = [];
+    public currentUniversity: any = {};
+    public university = {
+        Name: '',
+        Qualifications: []
+    }
+
     async adduserUniversities() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let universities = await this.httpClient.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.QualificationForm.value, headers).toPromise();
+        let q = { ...this.QualificationForm.value, Degree: { Name: this.QualificationForm.value.DegreeId } };
+
+        delete q.DegreeId;
+        this.university.Qualifications.push(q);
+        this.allQualifications.push(this.university);
+        console.log(this.allQualifications);
+
+        // this.allQualifications.push(this.createuniversity(this.QualificationForm.value.School));
+        let universities = await this.httpClient.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.allQualifications, { responseType: 'text' }).toPromise();
         console.log(universities);
         return universities;
+    }
+
+    createuniversity(name) {
+        let uni = {
+            Name: '',
+            Qualification: [],
+            SkillLevel: []
+        };
+
+        return uni;
+    }
+
+    createDegree(deg) {
+        return {
+            Degree: deg
+        }
     }
 
 

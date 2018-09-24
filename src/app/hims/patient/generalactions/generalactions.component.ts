@@ -23,11 +23,6 @@ export class GeneralactionsComponent implements OnInit {
     constructor(private PatientServiceobj : PatientService , private router: Router ,  private route : ActivatedRoute) { }
 
     ngOnInit() {
-
-    // this.currentPatient = this.PatientServiceobj.currentPatient;
-
-    // console.log(this.currentPatient);
-
   
     this.route.params.subscribe(params => {
 
@@ -41,13 +36,6 @@ export class GeneralactionsComponent implements OnInit {
     }
 
 async onSubmit()  {
-
-    
-        // let id = this.PatientServiceobj.currentPatient.patientId;
-        // console.log(this.PatientServiceobj.currentPatient);
-        // console.log(this.PatientServiceobj.currentPatient.patientId);
-
-     //this.visitid =  await this.PatientServiceobj.AddVisits(this.id);
 
      await this.PatientServiceobj.AddVisits(this.id);
         this.router.navigate(['/hims/patient/visits/'+this.id]);

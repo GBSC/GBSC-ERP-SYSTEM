@@ -28,6 +28,8 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
+import { ModuleGuardService } from '../../account/auth/module-guard.service';
+import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 
 
@@ -35,11 +37,13 @@ import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'hims/patient',
-        component: RootComponent,
-
+        component: RootComponent,   
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },
+            { path: '', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'registration', component: RegistrationComponent },
             { path: 'profile/:id', component: ProfileComponent },
             { path: 'diagnoses', component: DiagnosesComponent },
@@ -57,7 +61,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'visitnote', component: VisitnoteComponent },
             { path: 'visits/:id', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
-            { path: 'home', component: HomeComponent },
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
             { path: 'consultant', component: ConsultantComponent },

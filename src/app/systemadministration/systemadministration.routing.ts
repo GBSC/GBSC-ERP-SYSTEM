@@ -8,17 +8,17 @@ import { DepartmentComponent } from '../systemadministration/department/departme
 import { FeatureComponent } from '../systemadministration/feature/feature.component';
 import { ModuleComponent } from '../systemadministration/module/module.component';
 import { RoleComponent } from '../systemadministration/role/role.component';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
+import { ModuleGuardService } from '../account/auth/module-guard.service';
 
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
-
-
     {
         path: 'systemadministration',
         component: RootComponent,
-
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },

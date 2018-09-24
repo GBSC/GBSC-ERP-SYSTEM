@@ -145,11 +145,12 @@ export class RegistrationComponent implements OnInit {
         console.log(value);
 
             await this.PatientServiceobj.addPatient(value);
-            // this.router.navigate(['/hims/patient/findpatient']);
-            // this.PatientServiceobj.getPatient();
+            this.router.navigate(['/hims/patient/findpatient']);
+            this.PatientServiceobj.getPatient();
     }
 
     onAddPartner(value) {
+
         delete this.partnerForm.value.PatientId;
         delete this.partnerForm.value.PartnerId;
         console.log(value);
@@ -161,18 +162,52 @@ export class RegistrationComponent implements OnInit {
       console.log(value);
     }
 
-  async updatepatientRef(value){
-        this.referenceForm.value.PatientId = this.id;
+//   async updatepatientRef(value){
+//         this.referenceForm.value.PatientId = this.id;
+//         this.referenceForm.value.patientReferenceId = this.Patient.patientReference.patientReferenceId
+//         await this.PatientServiceobj.updatePatientRef(value)
+//     }
+
+async updatepatientRef(value){
+    this.referenceForm.value.PatientId = this.id;
+    console.log(this.referenceForm.value.PatientId);
+   
+    if(this.Patient.patientReference === null){
+        delete this.referenceForm.value.patientReferenceId 
+        await this.PatientServiceobj.addPatientRef(value)
+        console.log(value)
+    }
+    
+   else if(this.Patient.patientReference.patientReferenceId !== null){
+        console.log(this.Patient.patientReference.patientReferenceId);
         this.referenceForm.value.patientReferenceId = this.Patient.patientReference.patientReferenceId
         await this.PatientServiceobj.updatePatientRef(value)
+        console.log(value);
+        }
+}
+
+ 
+
+async  updatePatientSpouse(value){
+
+    this.partnerForm.value.PatientId = this.id;
+    console.log(this.partnerForm.value.PatientId);
+   
+    if(this.Patient.partner === null){
+        delete this.partnerForm.value.PartnerId
+        await this.PatientServiceobj.addPatientSpouse(value)
+        console.log(value)
     }
-
-  async  updatePatientSpouse(value){
-
-        this.partnerForm.value.PatientId = this.id;
-        this.partnerForm.value.PartnerId = this.Patient.partner.partnerId
+    
+   else if(this.Patient.partner.partnerId !== null){
+        console.log(this.Patient.partner.partnerId);
+        this.partnerForm.value.PartnerId = this.Patient.partner.partnerId;
         await this.PatientServiceobj.updatePatientSpouse(value)
-    }
+        console.log(value);
+        }
+
+}
+
 
 
 

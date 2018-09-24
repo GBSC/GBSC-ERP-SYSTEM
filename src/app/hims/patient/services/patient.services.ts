@@ -116,6 +116,7 @@ export class PatientService {
       return x;
     }
 
+
     async deletePatient(id) {
         let x = await this.http1.delete(this.API_URL + '/patients/DeletePatient/' + id).toPromise();
         console.log(x);
@@ -151,8 +152,21 @@ export class PatientService {
       return x;
     }
 
+    async addPatientRef(Reference :Reference)
+    {
+      let x =  await this.http1.post(this.API_URL+'/patients/AddPatientReference/',Reference).toPromise();
+      console.log(x);
+      return x;
+    }
+
     async updatePatientSpouse(Spouse : Spouse){
         let x =  await this.http1.put(this.API_URL+'/patients/UpdatePartner/',Spouse).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async addPatientSpouse(Spouse : Spouse){
+        let x =  await this.http1.post(this.API_URL+'/patients/AddPartner/',Spouse).toPromise();
         console.log(x);
         return x;
     }

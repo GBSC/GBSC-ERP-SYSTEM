@@ -9,6 +9,7 @@ import {
     DxTemplateModule
 } from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
+import { find } from 'rxjs/operator/find';
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -45,7 +46,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
-    public test: any;
+    public tests    : any;
     public currentpatient: any;
     public e: any;
 
@@ -56,6 +57,10 @@ export class AppointmentscheduleComponent implements OnInit {
     public id: any;
     public date: any;
     public visitNatures: any;
+
+    private getTestbyId : any= [] ; 
+    public gettestName : any = [] ; 
+
 
 
 
@@ -126,8 +131,8 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(this.consultant);
 
         await this.PatientServiceobj.getTests();
-        this.test = this.PatientServiceobj.testing;
-        console.log(this.test);
+        this.tests = this.PatientServiceobj.testing;
+        console.log(this.tests);
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitNatures = this.PatientServiceobj.visitNatures;
@@ -177,38 +182,41 @@ export class AppointmentscheduleComponent implements OnInit {
 
     
     addrange() {
-        // console.log(id);
+console.log(this.tests);
 
-        //    console.log(id.value);
-        // let testFound = this.findTestById(id);
-        // console.log(testFound);
+       let { value } = this.appointmenttestForm;
+ 
+      this.tests.forEach(element => {
+            this.getTestbyId.push(this.tests.find(t=>t.testId === element.testId));
+          });
 
-        let { value } = this.appointmenttestForm;
-         let test = this.test.find(t => { 
-          console.log(t.testId === value.TestId);
-        
-          t.testId === value.TestId;
-          console.log(value.TestId);
-         })
-        console.log(this.test);
-        console.log(value.TestId);
-        console.log(test);
+
+
+
+
+
+         console.log(this.getTestbyId);
  
         let doc = {
             TestId: value.TestId,
-            //TestName : test.testName
+            TestName : this.getTestbyId.testName
 
         }
         this.Tests.push(doc);
         console.log(this.Tests);
         //this.appointmenttestForm.reset();
-
-
+      
 
         // new work 
+    
 
 
     }
+
+    // currentSelectedValue(value)
+    // {
+    //     console.log(value.target);
+    // }
 
 
     remove(index) {

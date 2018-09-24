@@ -144,9 +144,9 @@ export class RegistrationComponent implements OnInit {
         value.patientDocuments = this.addDocument;
         console.log(value);
 
-        await this.PatientServiceobj.addPatient(value);
-        this.router.navigate(['/hims/patient/findpatient']);
-        this.PatientServiceobj.getPatient();
+            await this.PatientServiceobj.addPatient(value);
+            // this.router.navigate(['/hims/patient/findpatient']);
+            // this.PatientServiceobj.getPatient();
     }
 
     onAddPartner(value) {
@@ -340,6 +340,16 @@ console.log(this.route.url+this.document.filePath[i])
   goback()
   {
     this.Location.back();
+  }
+
+  
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
   
 

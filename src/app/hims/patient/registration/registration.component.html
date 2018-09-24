@@ -97,13 +97,16 @@
 
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> CNIC </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic"
-								 formControlName="NIC" type="text">
+								<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic"
+								 formControlName="NIC"  (keypress)="keyPress($event)" minlength=13 maxlength=13 required>
 							</div>
 							<div class="form-group col-lg-3">
 								<label for="exampleInputEmail1"> Phone Number </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.phoneNumber"
-								 formControlName="PhoneNumber" type="text">
+								<!-- <input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.phoneNumber"
+								 formControlName="PhoneNumber"> -->
+
+								 <input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" (keypress)="keyPress($event)" [value]="Patient?.phoneNumber" formControlName="PhoneNumber" minlength=11 maxlength=11 required>
+
 							</div>
 						</div>
 						<div class="form-group row">

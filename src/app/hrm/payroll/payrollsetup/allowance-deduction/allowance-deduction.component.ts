@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-allowance-deduction',
@@ -6,77 +8,56 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./allowance-deduction.component.css']
 })
 export class AllowanceDeductionComponent implements OnInit {
-
-
     public allowancededuction: any;
-    public type: any;
-    public calculationtype: any;
-    public arrearallowance: any;
+    public AllowanceorDeductionForm: FormGroup;
+    private updatingdeduction: any;
 
-    constructor() { }
+    constructor(private fb: FormBuilder, public payrollSetupService: PayrollSetupService) { }
 
-    ngOnInit() {
-        this.allowancededuction = [
-            {
-                id: "1",
-                title: "Basic",
-                fixedvalue: "111",
-                expressionPayment: "abc",
-                type: [{ value: "Allowance", display: "Allowance" }],
-                expressionForeach: "xyz",
-                calcSequenceNo: "12",
-                reportOrder: "1218",
-                prorated: "yes",
-                oneTime: "",
-                baseAllowance: "yes",
-                grossSalary: "yes",
-                glCodeAllowance: "2816.7415",
-                glCodeDeduction: "14.00",
-                defaultCostCenter: "etc",
-            },
-            {
-                id: "2",
-                title: "Basic",
-                fixedvalue: "111",
-                expressionPayment: "abc",
-                type: "aca",
-                expressionForeach: "xyz",
-                calcSequenceNo: "12",
-                reportOrder: "1218",
-                prorated: "yes",
-                oneTime: "",
-                baseAllowance: "yes",
-                grossSalary: "yes",
-                glCodeAllowance: "2816.7415",
-                glCodeDeduction: "14.00",
-                defaultCostCenter: "etc",
-            },
-            {
-                id: "3",
-                title: "Basic",
-                fixedvalue: "111",
-                expressionPayment: "abc",
-                type: "aca",
-                expressionForeach: "xyz",
-                calcSequenceNo: "12",
-                reportOrder: "1218",
-                prorated: "yes",
-                oneTime: "",
-                baseAllowance: "yes",
-                grossSalary: "yes",
-                glCodeAllowance: "2816.7415",
-                glCodeDeduction: "14.00",
-                defaultCostCenter: "etc",
-            }
-        ]
+    async ngOnInit() {
+
+        this.AllowanceorDeductionForm = this.fb.group({
+            Title: ['', Validators],
+            FixedValue: ['', Validators],
+            Type: ['', Validators],
+            AllowanceCalculationTypeId: ['', Validators],
+            ValueExpressionPayment: ['', Validators],
+            ValueExpressionPaymentFrom: ['', Validators],
+            ValueExpressionForecast: ['', Validators],
+            ValueExpressionForecastFrom: ['', Validators],
+            CalculationSequenceNumber: ['', Validators],
+            RemitKey: ['', Validators],
+            GlCodeAllowance: ['', Validators],
+            GlCodeDeduction: ['', Validators],
+            GlCode: ['', Validators],
+            DefaultCostCenter: ['', Validators],
+            IsProrated: ['', Validators],
+            IsBaseAllowance: ['', Validators],
+            IsOneTimeAllowance: ['', Validators],
+            IsGrossSalary: ['', Validators]
+        });
 
 
-        this.type = [{ value: "Allowance", display: "Allowance" }];
-        this.calculationtype = [{ value: "Adjustment", display: "Adjustment" }];
-        this.arrearallowance = [{ value: "", display: "--Select--" }];
-
+        await this.payrollSetupService.getallowancedeductions();
+        this.allowancededuction = this.payrollSetupService.allowancededuction;
+    
+        await this.payrollSetupService.getallowancecalculationtypes();
+        let allowancecalculationtype = this.payrollSetupService.allowancecalculationtype;
     }
 
+    async addAllowanceDeduction() {
+        this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
+        console.log(this.AllowanceorDeductionForm.value);
+    }
 
+    updatingAllowanceDeduction(value){
+        this.updatingdeduction = {...value.oldData, ...value.newData};
+    }
+    async updateAllowanceDeduction() { 
+       await this.payrollSetupService.updateallowancededuction(this.updatingdeduction);
+    }
 
+    async deleteAllowanceDeduction(value) {
+        this.payrollSetupService.Deleteallowancededuction(value.key);
+    }
 }

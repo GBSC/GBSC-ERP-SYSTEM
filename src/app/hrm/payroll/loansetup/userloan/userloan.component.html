@@ -1,3 +1,63 @@
-<p>
-  userloan works!
-</p>
+
+
+<div class="m-content">
+		<div class="row">
+				<div class="col-xl-12">
+				  <div class="m-portlet">
+					<div class="m-portlet__head">
+					  <div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+						  <h3 class="m-portlet__head-text">User Loan</h3>
+						</div>
+					  </div>
+					</div>
+					<div class="m-portlet__body">
+					  <div class="m-section">
+						<div class="m-section__content" >
+              <dx-data-grid id="gridContainer" [dataSource]="UserLoan"
+              keyExpr="userLoanId"
+               (onRowInserted)="addUserLoan($event)"
+								(onRowUpdated)="updateUserLoan()" 
+								(onRowUpdating)="Updatingloan($event)" 
+                (onRowRemoved)="deleteUserLoan($event)"> 
+
+								<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+									<dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								</dxo-editing>
+								<dxo-filter-row [visible]="true"></dxo-filter-row>
+								<dxo-header-filter [visible]="true"></dxo-header-filter>
+								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+								<dxo-paging [pageSize]="8"></dxo-paging>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+          
+                <dxi-column dataField="userId" caption="Employee">
+                    <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                    </dxo-lookup>
+                  </dxi-column>
+                  <dxi-column dataField="loanTypeId" caption="Loan Type">
+                      <dxo-lookup [dataSource]="payrollsetupservice?.loantype" displayExpr="name" valueExpr="loanTypeId">
+                      </dxo-lookup>
+                    </dxi-column>
+
+                <dxi-column dataField="amount" caption="Amount"></dxi-column>
+								<dxi-column dataField="installment" caption="Installment"></dxi-column> 
+								<dxi-column dataField="paidTillNow" caption="Paid Till Now"></dxi-column> 
+								<dxi-column dataField="amountLeft" caption="Amount Left"></dxi-column> 
+								<dxi-column dataField="lastPaidAmount" caption="Last Paid Amount"></dxi-column> 
+								<dxi-column dataField="deductionPercent" caption="Deduction Percent"></dxi-column> 
+								<dxi-column dataField="startMonth" caption="Start Month" dataType="date" format="month"> </dxi-column> 
+								<dxi-column dataField="endMonth" caption="End Month" dataType="date" format="month"></dxi-column> 
+								<dxi-column dataField="lastPaymentDate" caption="Last Payment Date" dataType="date" format="shortdate"></dxi-column> 
+								<dxi-column dataField="isPaid" caption="Paid" dataType="boolean"></dxi-column> 
+						  </dx-data-grid> 
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+		</div>
+</div>
+
+
+
+ 

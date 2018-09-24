@@ -1,3 +1,171 @@
-<p>
-  masterpayroll works!
-</p>
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Master Payroll
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="MasterPayroll">
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Employee:
+                </label>
+                <select class="form-control m-input" formControlName="EmployeeId">
+                  <option value="" disabled selected>-- Select Employee --</option>
+                  <option *ngFor="let user of empservice.employeereg" [value]="user.userId">{{user.firstName}}</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Bank Transfer Code:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="BankTransferCode" placeholder="0">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Currency:
+                </label>
+                <select class="form-control m-input" formControlName="CurrencyId">
+                  <option value="" disabled selected>-- Select Currency --</option>
+                  <option *ngFor="let currency of payrollsetupservice?.Currency" [value]="currency.currencyId">{{currency.name}}</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Calculation Type:
+                </label>
+                <select class="form-control m-input" formControlName="PayrollBankId">
+                  <option value="" disabled selected>-- Select Payroll Bank --</option>
+                  <option *ngFor="let payrollbank of payrollsetupservice?.payrollbank" [value]="payrollbank.payrollBankId">{{payrollbank.bankTitle}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12">
+                <label>
+                  Leave Detail(s):
+                </label>
+
+                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                  <th>Leave</th>
+                  <th>Value</th>
+                  <th>Effective Date</th>
+                  <th>End Date</th>
+                  <th>Frequency</th>
+                  <th>Payroll Type</th>
+                  <th>Add</th>
+                  <th>Delete</th>
+                  <tr>
+                    <td>
+                      <select (change)="getLeaves($event)" class="form-control m-input" formControl="AllowanceId" id="">
+                        <option value="" disabled selected>-- Select Allowance --</option>
+                        <option *ngFor="let allowance of payrollsetupservice?.allowance" [value]="allowance.allowanceId">{{allowance.name}}</option>
+
+                      </select>
+                    </td>
+                    <td>
+                      <input type="number" class="form-control m-input" formControlName="Value" placeholder="0">
+                    </td>
+                    <td>
+                      <input type="date" class="form-control m-input" formControlName="EffectiveDate" placeholder="0">
+                    </td>
+                    <td>
+                      <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+                    </td>
+
+                    <td>
+                      <select class="form-control m-input" formControl="FrequencyId" id="">
+                        <option value="" disabled selected>-- Select Frequency --</option>
+                        <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <select class="form-control m-input" formControl="PayrollTypeId" id="">
+                        <option value="" disabled selected>-- Select Payroll Type --</option>
+                        <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
+                      </select>
+                    </td>
+
+                    <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
+                    <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
+                  </tr>
+                  <tr *ngFor="let field of fieldArray; let i = index">
+                    <td>
+                      <select (change)="getLeaves($event)" class="form-control m-input" formControl="AllowanceId" id="">
+                        <option value="" disabled selected>-- Select Allowance --</option>
+                        <option *ngFor="let allowance of payrollsetupservice?.allowance" [value]="allowance.allowanceId">{{allowance.name}}</option>
+
+                      </select>
+                    </td>
+                    <td>
+                      <input type="number" class="form-control m-input" formControlName="Value" placeholder="0">
+                    </td>
+                    <td>
+                      <input type="date" class="form-control m-input" formControlName="EffectiveDate" placeholder="0">
+                    </td>
+                    <td>
+                      <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+                    </td>
+
+                    <td>
+                      <select class="form-control m-input" formControl="FrequencyId" id="">
+                        <option value="" disabled selected>-- Select Frequency --</option>
+                        <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
+                      </select>
+                    </td>
+
+                    <td>
+                      <select class="form-control m-input" formControl="PayrollTypeId" id="">
+                        <option value="" disabled selected>-- Select Payroll Type --</option>
+                        <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
+                      </select>
+                    </td>
+
+                    <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
+                    <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+
+            <div class="m--space-30"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-6">
+                    <button type="reset" class="btn btn-brand" (click)="addAllowanceDeduction()">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

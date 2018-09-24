@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
     selector: 'app-gratuityslab',
@@ -6,24 +7,25 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./gratuityslab.component.css']
 })
 export class GratuityslabComponent implements OnInit {
-    public Gratuity: any;
-    public orderno: any;
-    constructor() { }
+    public gratuitySlab: any;
+  constructor(public payrollsetupservice: PayrollSetupService) { }
 
-    ngOnInit() {
-        this.Gratuity = [
-            {
-                from: "1",
-                to: "Meezan",
-                multiplcationfactor: "001",
-                orderno: [{ display: "xyz", value: "xyz" }, { display: "xyz", value: "xyz" }],
-            }
+  async ngOnInit() {
+    await this.payrollsetupservice.getgratuityslabs();
+    this.gratuitySlab = this.payrollsetupservice.gratuityslab;
+  }
 
+  async addGratuitySlab(value) {
+    await this.payrollsetupservice.addgratuityslab(value.data);
+  }
 
-        ]
+  async updateGratuitySlab(value) {
+    console.log(value);
+    await this.payrollsetupservice.updategratuityslab(value);
+  }
 
-        this.orderno = [{ value: "General", display: "General" }];
-
-    }
+  async deleteGratuitySlab(value) {
+    await this.payrollsetupservice.Deletegratuityslab(value.key);
+  }
 
 }

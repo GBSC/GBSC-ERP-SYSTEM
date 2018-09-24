@@ -1,3 +1,52 @@
-<p>
-  stopsalary works!
-</p>
+
+
+<div class="m-content">
+		<div class="row">
+				<div class="col-xl-12">
+				  <div class="m-portlet">
+					<div class="m-portlet__head">
+					  <div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+						  <h3 class="m-portlet__head-text">Stop Salary</h3>
+						</div>
+					  </div>
+					</div>
+					<div class="m-portlet__body">
+					  <div class="m-section">
+						<div class="m-section__content" >
+              <dx-data-grid id="gridContainer" [dataSource]="UserLoan"
+              keyExpr="userLoanId"
+               (onRowInserted)="addUserLoan($event)"
+                (onRowUpdated)="updateUserLoan($event)" 
+                (onRowRemoved)="deleteUserLoan($event)"> 
+
+								<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+									<dxo-popup title="Stop Salary" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								</dxo-editing>
+								<dxo-filter-row [visible]="true"></dxo-filter-row>
+								<dxo-header-filter [visible]="true"></dxo-header-filter>
+								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+								<dxo-paging [pageSize]="8"></dxo-paging>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+          
+                <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+                    <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="name" valueExpr="payrollTypeId">
+                    </dxo-lookup>
+                  </dxi-column> 
+
+                <dxi-column dataField="action" caption="Action"></dxi-column>
+								<dxi-column dataField="from" caption="From" dataType="date" format="shortdate"></dxi-column> 
+								<dxi-column dataField="till" caption="Till" dataType="date" format="shortdate"></dxi-column> 
+								<dxi-column dataField="remarks" caption="Remarks"></dxi-column>  
+						  </dx-data-grid> 
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+		</div>
+</div>
+
+
+
+ 

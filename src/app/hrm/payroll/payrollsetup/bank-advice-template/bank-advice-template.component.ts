@@ -13,6 +13,7 @@ export class BankAdviceTemplateComponent implements OnInit {
   constructor(public payrollsetupservice: PayrollSetupService) { }
 
  async ngOnInit() {
+
       await this.payrollsetupservice.getbankadvicetemplates();
       this.bankadvice = this.payrollsetupservice.bankadvicetemplate;
     }

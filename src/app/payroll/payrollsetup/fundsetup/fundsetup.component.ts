@@ -14,6 +14,9 @@ export class FundsetupComponent implements OnInit {
    async ngOnInit() {
         await this.payrollsetupservice.getfundsetups();
         this.fundSetup = this.payrollsetupservice.fundsetup;
+       
+        await this.payrollsetupservice.getpayrollyears();
+        let Payrollyear = this.payrollsetupservice.payrollyear;
       }
     
       async addFundSetup(value) {

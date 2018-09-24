@@ -8,6 +8,7 @@ import { PayrollSetupService } from '../../services/payrollsetup.service';
 })
 export class AllowanceComponent implements OnInit {
   public allowance: any;
+  Allowance: any;
 
   constructor(public payrollsetupservice: PayrollSetupService) { }
 
@@ -26,9 +27,11 @@ export class AllowanceComponent implements OnInit {
     await this.payrollsetupservice.addallowance(value.data);
   }
 
-  async updateallowance(value) {
-    console.log(value);
-    await this.payrollsetupservice.updateallowance(value);
+  async updatingallowance(value) { 
+   this.Allowance = {...value.oldData, ...value.newData};
+  }
+  async updateallowance() { 
+    await this.payrollsetupservice.updateallowance(this.Allowance);
   }
 
   async deleteallowance(value) {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
+import { PayrollService } from '../../services/payroll.service';
+import { PayrollSetupService } from '../../services/payrollsetup.service';
 
 @Component({
   selector: 'app-stopsalary',
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StopsalaryComponent implements OnInit {
 
-  constructor() { }
+  public StopSalary: any;
 
-  ngOnInit() {
+  constructor(public payrollservice: PayrollService, public payrollsetupservice: PayrollSetupService) { }
+
+  async ngOnInit() {
+    await this.payrollservice.getstopsalaries();
+    this.StopSalary = this.payrollservice.stopsalary;
+    
+    await this.payrollsetupservice.getpayrolltypes();
+    let PayrollType = this.payrollsetupservice.payrolltype;
+ 
   }
 
+  async addStopSalary(value) {
+    await this.payrollservice.addstopsalary(value.data);
+  }
+
+  async updateStopSalary(value) {
+    console.log(value);
+    await this.payrollservice.updatestopsalary(value);
+  }
+
+  async deleteStopSalary(value) {
+    await this.payrollservice.Deletestopsalary(value.key);
+  }
 }

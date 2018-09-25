@@ -488,8 +488,13 @@
                                         {{patientDoucment?.remarks}}
                                       </td>
                                       <td>
-                                        <!-- <img src="{{patientDoucment?.filePath}}">  -->
-                                        {{patientDoucment?.filePath}}
+                                          <!-- <button type="button" (click)="downlaodImage(i)" class="btn btn-primary">
+                                            Downlaod
+                                          </button> -->
+
+                                          <a  type="button" class="btn btn-primary mybtn" href="http://gbsc-erp.azurewebsites.net/hims/{{patientDoucment?.filePath}}" download>dasdas</a>
+
+                                            <!-- <img src="http://gbsc-erp.azurewebsites.net/hims/{{patientDoucment?.filePath}}" style="width: 100px; height:100px; ">  -->
                                       </td>
                                     </tr>
                                   </tbody>

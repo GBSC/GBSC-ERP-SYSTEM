@@ -53,5 +53,9 @@ async editPatient(value){
     await this.PatientServiceobj.getpatientForupdating(value)
     console.log(value)
 }
+downloadimage(index){
+
+}
+
 
 }

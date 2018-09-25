@@ -155,74 +155,22 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
 
-
-    // addrange(id) {
-    //     // console.log(id);
-
-    //     //    console.log(id.value);
-    //     // let testFound = this.findTestById(id);
-    //     // console.log(testFound);
-
-    //     let { value } = this.appointmenttestForm;
-    //     // let test = this.test.find(t => { 
-    //     //     console.log(t.testId === value.TestId); t.testId === value.TestId; })
-    //     console.log(this.test.testName);
-    //     //console.log(test)
-    //     let doc = {
-    //         TestId: value.TestId,
-    //         //TestName : test.testName
-
-    //     }
-    //     this.Tests.push(doc);
-    //     console.log(this.Tests);
-    //     //this.appointmenttestForm.reset();
-
-
-    // }
-
     
     addrange() {
-console.log(this.tests);
-
        let { value } = this.appointmenttestForm;
- 
-      this.tests.forEach(element => {
-            this.getTestbyId.push(this.tests.find(t=>t.testId === element.testId));
-          });
-
-
-
-
-
-
-         console.log(this.getTestbyId);
- 
+      let test = this.tests.find(t => t.testId == value.TestId);
         let doc = {
             TestId: value.TestId,
-            TestName : this.getTestbyId.testName
+            TestName : test.testName
 
         }
-        this.Tests.push(doc);
+         this.Tests.push(doc);
         console.log(this.Tests);
-        //this.appointmenttestForm.reset();
-      
-
-        // new work 
-    
-
-
     }
-
-    // currentSelectedValue(value)
-    // {
-    //     console.log(value.target);
-    // }
-
 
     remove(index) {
         this.Tests.splice(index, 1);
     }
-
     removeall(index) {
         // this.Tests.splice(index,10000000000);
         this.Tests.length = 0
@@ -237,18 +185,21 @@ console.log(this.tests);
     // }
 
     async addappointmentTest(value) {
+
+         this.Tests.filter(t => {
+            return delete t.TestName;
+        });
+        
+ 
         console.log(value);
-        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-        console.log(x)
+         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId,value);
+          console.log(x)
+          console.log(this.currentpatient.appointmentId,value);
 
-        // this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        // console.log(this.getaptbyid);
-
-        this.removeall(this.Tests);
-
-        this.appointmentgrid.instance.refresh()
-
-        return x;
+         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+          console.log(this.getaptbyid);
+            this.removeall(value);
+          return x;
     }
 
     // refresh() {

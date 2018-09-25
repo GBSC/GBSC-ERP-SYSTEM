@@ -350,7 +350,7 @@
                   formControlName="AppointmentId" type="text">
               </div>
               <div class="form-group col-lg-2">
-                <button type="button" (click)="addrange(appointmenttestForm.value)" class="btn btn-info blankinput">
+                <button type="button" (click)="addrange()" class="btn btn-info blankinput">
                   +
                 </button>
               </div>
@@ -367,7 +367,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor=" let t of Tests; let i = index">
-                      <td>{{t.TestId}}</td>
+                      <td>{{t.TestName}}</td>
                       <td>
                         <button type="button" (click)="remove(i)" class="btn btn-primary">-</button>
                       </td>
@@ -384,10 +384,10 @@
                   <dxo-paging [pageSize]="3"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                   <dxi-column dataField="testId" caption="Test Code" [allowEditing]="false" [formItem]="{visible: false}">
-                    <dxo-lookup [dataSource]="test" displayExpr="testCode" valueExpr="testId"></dxo-lookup>
+                    <dxo-lookup [dataSource]="tests" displayExpr="testCode" valueExpr="testId"></dxo-lookup>
                   </dxi-column>
                   <dxi-column dataField="testId" caption="Test Name" [allowEditing]="false" [formItem]="{visible: false}">
-                    <dxo-lookup [dataSource]="test" displayExpr="testName" valueExpr="testId"></dxo-lookup>
+                    <dxo-lookup [dataSource]="tests" displayExpr="testName" valueExpr="testId"></dxo-lookup>
                   </dxi-column>
                 </dx-data-grid>
               </div>

@@ -192,7 +192,7 @@ export class PatientService {
     async getAppointmentById(id) {
         console.log(id);
         this.getApptbyId = await this.http1.get<Appointment>(this.API_URL + '/Appointments/GetAppointment/' + id).toPromise();
-        //console.log( this.getApptbyId);
+         console.log( this.getApptbyId);
         // console.log(this.API_URL+'/Appointments/GetAppointment/'+id);
 
         return this.getApptbyId;
@@ -279,9 +279,9 @@ export class PatientService {
 
     async UpdateAppointmentTests(id, appointmentTest: AppointmentTest) {
         //console.log(`${this.API_URL}/Appointments/UpdateAppointmentTests/${id}`);
-
+        console.log(id,appointmentTest);
         let x = await this.http1.post(`${this.API_URL}/Appointments/UpdateAppointmentTests/${id}`, appointmentTest).toPromise();
-        // console.log(x);
+        console.log(x);
         return x;
     }
 

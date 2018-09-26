@@ -12,8 +12,8 @@ export class LeaveSetupService {
     public leaveemppolicy;
     public leavetype;
     public leaveapprover;
-   // private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
-    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
+   private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
+  //  private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
     public proratematrix;
     public decimalroundingmatrix;
     public leavesubtype;
@@ -28,9 +28,9 @@ export class LeaveSetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leavepolicy = await this.httpClient.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
-        console.log(this.leavepolicy);
-        return this.leavepolicy;
+        return await this.httpClient.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
+        // console.log(this.leavepolicy);
+        // return this.leavepolicy;
     }
 
     async getdataToUpdate(leavesId, leavesUrl) {
@@ -48,17 +48,9 @@ export class LeaveSetupService {
 
     }
 
-    async updateleavepolicy(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let leavpolicy = await this.getdataToUpdate(data.key, 'GetLeavePolicy');
-        leavpolicy = { ...leavpolicy, ...data.data }
-        console.log(leavpolicy);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateLeavePolicy`, leavpolicy).toPromise();
+    async updateleavepolicy(data) {   
+        let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.httpClient.put(`${this.baseUrl}/UpdateLeavePolicy`, data,headers).toPromise();
     }
 
 

@@ -71,6 +71,24 @@
               </div>
             </div>
             <div class="m--space-07"></div>
+            <div class="row">
+              <div class="col-md-10">
+
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Leave Eligibility:
+                  </label>
+                  <div class="col-lg-8">
+                    <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId">
+                      <option value="" disabled selected>-- Select Leave Eligibility --</option>
+                      <option *ngFor="let leaveEligibility of leavesetupservice?.leaveeligibility" [value]="leaveEligibility.leaveEligibilityId">{{leaveEligibility.name}}</option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-07"></div>
 
             <div class="m--space-10"></div>
 
@@ -417,7 +435,7 @@
               </div>
               <div class="m--space-10"></div>
 
-
+<!-- 
             <div class="row">
               <div class="col-lg-10">
                 <div class="form-group m-form__group row">
@@ -433,7 +451,7 @@
             </div>
 
             <div class="m--space-10"></div>
-
+ -->
 
             <div class="row">
               <div class="col-md-10">
@@ -551,7 +569,7 @@
                 <div class="row">
                   <div class="col-lg-3"></div>
                   <div class="col-lg-6">
-                    <button type="submit" (click)="addleavepolicy(leavePolicyForm.value)" class="btn btn-success">
+                    <button type="submit" (click)="addleavepolicy()" class="btn btn-success">
                       Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">
@@ -565,13 +583,13 @@
           </form>
 
           <dx-data-grid id="gridContainer"
-          [dataSource]="leavepolicy"
-          keyExpr="leavePolicyId"
-          (onRowInserted)="addleavepolicy($event)" 
-          (onRowUpdated)="updateleaveapproval($event)"
-           (onRowRemoved)="deleteleaveapproval($event)">
+          [dataSource]="LeavePolicies"
+          keyExpr="leavePolicyId"  
+          (onRowUpdated)="updateLeavePolicy()"
+          (onRowUpdating)="updatingleavepolicy($event)"
+           (onRowRemoved)="deleteleavePolicy($event)">
            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-             <dxo-popup title="Leave Approval" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+             <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630" [position]="{ my: 'center', at: 'center', of: window }">
              </dxo-popup>
            </dxo-editing>
            <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -582,21 +600,57 @@
            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
            </dxo-pager> 
  
-             <dxi-column dataField="leaveYearId" caption="Leave Year">
-               <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
-               </dxo-lookup> 
-         </dxi-column>
-             <dxi-column dataField="leaveTypeId" caption="Leave">
-               <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
-               </dxo-lookup> 
-         </dxi-column>
-         <dxi-column dataField="groupId" caption="Group">
-          <dxo-lookup [dataSource]="hrsetupservice?.group" displayExpr="name" valueExpr="groupId">
-          </dxo-lookup> 
-    </dxi-column>
-         <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
-         <dxi-column dataField="editedAt" caption="Update Date"></dxi-column>
-         <dxi-column dataField="editedBy" caption="Update By"></dxi-column>
+           <dxi-column dataField="groupId" caption="Group">
+             <dxo-lookup [dataSource]="hrsetupservice?.group" displayExpr="name" valueExpr="groupId">
+            </dxo-lookup> 
+            </dxi-column>
+                   <dxi-column dataField="leaveYearId" caption="Leave Year" dataType="date" format="year">
+                     <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+                     </dxo-lookup> 
+               </dxi-column>
+                   <dxi-column dataField="leaveTypeId" caption="Leave">
+                     <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                     </dxo-lookup> 
+               </dxi-column>
+                   <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
+                     <dxo-lookup [dataSource]="leavesetupservice?.leavedaytype" displayExpr="name" valueExpr="leaveDayTypeId">
+                     </dxo-lookup> 
+               </dxi-column>
+                   <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
+                     <dxo-lookup [dataSource]="leavesetupservice?.leaveeligibility" displayExpr="name" valueExpr="leaveEligibilityId">
+                     </dxo-lookup> 
+               </dxi-column>
+    <dxi-column dataType="boolean" dataField="isProcessed"></dxi-column>    
+    <dxi-column dataField="entitledQuantity" [visible]="false"></dxi-column>
+    <dxi-column dataField="maximumAllowedBalance" [visible]="false"></dxi-column>
+    <dxi-column dataField="maximumAtATime" [visible]="false"></dxi-column>
+    <dxi-column dataField="minimumAtATime" [visible]="false"></dxi-column>
+    <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
+    <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
+    <dxi-column dataField="encashmentDays"></dxi-column>
+    <dxi-column dataField="encashmentApplicationLimit"></dxi-column>
+    <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>      
+    <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column> 
+    <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
+    <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
+    <dxi-column dataField="isFileAttachmentRequired" dataType="boolean" [visible]="false"></dxi-column>
+    <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
+    <dxi-column dataType="boolean" dataField="isShortLeaveAllowed"></dxi-column>  
+    <dxi-column dataField="shortLeaveLimit"></dxi-column>
+    <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="dayContinuationRestriction"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>  
+    <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
+    <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
+    <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
+    <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="allowOnZeroBalance" [visible]="false"></dxi-column>  
+    <dxi-column dataType="boolean" dataField="isActive"></dxi-column>  
+    <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
+    <dxi-column dataType="boolean" dataField="printOnPaySlip"></dxi-column>  
          </dx-data-grid>
 
         </div>

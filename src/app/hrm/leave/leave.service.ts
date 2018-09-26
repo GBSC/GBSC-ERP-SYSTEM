@@ -9,11 +9,12 @@ export class LeaveService {
     public leaverequest;
     public leavepolicyemployee;
     public leaverequestdetail;
-    //private baseUrl: string = "http://localhost:58090/api";
-    private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api";
+    private baseUrl: string = "http://localhost:58090/api";
+    //private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api";
     public leaveapproval;
     public leaveclosing: Object;
     public newleaverequest;
+    public newleaveopen;
 
     constructor(private httpClient: HttpClient) { }
 
@@ -37,9 +38,9 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newcountry = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data, headers).toPromise();
-        console.log(newcountry);
-
+        this.newleaveopen = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data, headers).toPromise();
+        console.log(this.newleaveopen);
+        return this.newleaveopen;
     }
 
     async updateLeaveopening(data) {
@@ -79,10 +80,10 @@ export class LeaveService {
 
     async addLeaveopeningdetail(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newleaveopndetail = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data, headers).toPromise();
-        console.log(newleaveopndetail);
+        // let authToken = localStorage.getItem('auth_token');
+        // let headers = { headers: { 'Content-Type': 'application/json' } }
+        let newleaveopen = await this.httpClient.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
+      
 
     }
 
@@ -99,7 +100,7 @@ export class LeaveService {
         return await this.httpClient.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
 
     }
-    DeleteLeaveOpeningDetail
+   
     async DeleteLeaveopeningdetail(leaveOpeningdetailId) {
 
         let authToken = localStorage.getItem('auth_token');

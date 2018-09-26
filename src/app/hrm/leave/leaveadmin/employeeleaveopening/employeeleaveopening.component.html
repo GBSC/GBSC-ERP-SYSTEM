@@ -14,7 +14,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="leaveopeningForm">
+          <form [formGroup]="leaveOpeningForm">
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
@@ -57,7 +57,7 @@
                     Remarks:
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control m-input m-input--solid" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
+                    <textarea (change)="addleaveopening($event)" class="form-control m-input m-input--solid" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="leaveopendetailForm">
+          <form [formGroup]="leaveOpenDetailForm">
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
@@ -134,7 +134,7 @@
                 <div class="row">
                   <div class="col-lg-3"></div>
                   <div class="col-lg-6">
-                    <button type="submit" (click)="addleaveopeningordetail()" class="btn btn-success">
+                    <button type="submit" (click)="addLeaveopenDetail()" class="btn btn-success">
                       Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">

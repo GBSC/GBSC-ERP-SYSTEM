@@ -46,7 +46,7 @@ export class AllowanceDeductionComponent implements OnInit {
     }
 
     async addAllowanceDeduction() {
-        this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
+       await this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
         console.log(this.AllowanceorDeductionForm.value);
     }
 

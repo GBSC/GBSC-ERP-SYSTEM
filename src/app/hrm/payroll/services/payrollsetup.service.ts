@@ -345,7 +345,7 @@ export class PayrollSetupService {
 
   }
 
-  async updatecompensationtransaction(data) { 
+  async updatecompensationtransaction(data) {
     let headers = { headers: { 'Content-Type': 'application/json' } }
     return await this.httpClient.put(`${this.baseUrl}/UpdateCompensationTransaction`, data, headers).toPromise();
   }
@@ -447,7 +447,7 @@ export class PayrollSetupService {
 
   }
 
-  async updatefundsetup(data) { 
+  async updatefundsetup(data) {
     let headers = { headers: { 'Content-Type': 'application/json' } }
     return await this.httpClient.put(`${this.baseUrl}/UpdateFundSetup`, data, headers).toPromise();
   }
@@ -727,11 +727,8 @@ export class PayrollSetupService {
   }
 
   async updatepayrollbank(data) {
-
-    let payrollbank = await this.getdataToUpdate(data.key, 'Getpayrollbank');
-    payrollbank = { ...payrollbank, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.httpClient.put(`${this.baseUrl}/UpdatePayrollBank`, payrollbank, headers).toPromise();
+    return await this.httpClient.put(`${this.baseUrl}/UpdatePayrollBank`, data, headers).toPromise();
   }
 
   async Deletepayrollbank(payrollbankId) {
@@ -797,7 +794,7 @@ export class PayrollSetupService {
 
   }
 
-  async updatepayrollyear(data) {  
+  async updatepayrollyear(data) {
     let headers = { headers: { 'Content-Type': 'application/json' } }
     return await this.httpClient.put(`${this.baseUrl}/UpdatePayrollYear`, data, headers).toPromise();
   }
@@ -830,7 +827,7 @@ export class PayrollSetupService {
 
   }
 
-  async updatepfpayment(data) { 
+  async updatepfpayment(data) {
     return await this.httpClient.put(`${this.baseUrl}/UpdatePfPayment`, data).toPromise();
   }
 
@@ -1105,7 +1102,7 @@ export class PayrollSetupService {
 
   }
 
-  async updatetaxbenefit(data) { 
+  async updatetaxbenefit(data) {
     let headers = { headers: { 'Content-Type': 'application/json' } }
     return await this.httpClient.put(`${this.baseUrl}/UpdateTaxBenefit`, data, headers).toPromise();
   }

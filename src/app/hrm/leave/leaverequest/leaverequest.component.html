@@ -20,7 +20,7 @@
                     Requestioner:
                   </label>
                   <div class="col-lg-8">
-                    <select (change)="addleaverequest($event)" class="form-control m-input " formControlName="UserId" name="employee">
+                    <select class="form-control m-input" formControlName="UserId" name="employee">
                       <option value="" disabled selected>-- Select Employee --</option>
                       <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
                     </select>
@@ -34,14 +34,36 @@
                     Requestion Date:
                   </span>
                   <div class="col-lg-8">
-                    12/02/2018
+                      <input type="date" class="form-control" formControlName="RequestDate" placeholder="Select date">
                   </div>
                 </div>
-              </div>
-
+              </div> 
             </div>
 
-
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Request Code:
+                    </label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" formControlName="LeaveRequestCode" placeholder="">
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <span class=" col-lg-4 col-form-label m--font-bolder">
+                     Requested:
+                    </span>
+                    <div class="col-lg-8">
+                        <input type="checkbox" (change)="addleaverequest($event)" class="form-control" formControlName="IsApproved" placeholder="">
+                    </div>
+                  </div>
+                </div> 
+              </div>
+<!-- 
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
@@ -60,7 +82,8 @@
                     Group:
                   </span>
                   <div class="col-lg-8">
-                    12/02/2018
+                  <input type="date" class="form-control " formControlName="DateFrom" placeholder="Select date">
+                           
                   </div>
                 </div>
               </div>
@@ -91,7 +114,7 @@
                 </div>
               </div>
 
-            </div>
+            </div> -->
           </form>
         </div>
       </div>
@@ -155,14 +178,10 @@
             <div class="row">
                 <div class="col-md-4">
                   <div class="form-group m-form__group">
-                    <label for="exampleInputPassword1">
+                    <label for="">
                       Short Leave:
                     </label>
-                    <select class="form-control m-input " formControlName="IsShortLeave" id="exampleSelect1">
-                        <option value="" disabled selected>-- Is Short Leave --</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                      </select>
+                    <input type="checkbox" class="form-control" formControlName="IsShortLeave">
                   </div>
                 </div>
   
@@ -260,8 +279,8 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="leaverequestdetail" keyExpr="leaveRequestDetailId">
-            <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false">
+          <dx-data-grid id="gridContainer" [dataSource]="combinedData" keyExpr="leaveRequestId">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true">
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -271,6 +290,14 @@
             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
             </dxo-pager>
 
+            <dxi-column dataField="userId" caption="Employee">
+              <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userd">
+              </dxo-lookup>
+            </dxi-column>
+
+            <dxi-column dataField="leaveRequestCode"></dxi-column>
+            <dxi-column dataField="requestDate" dataType="date" format="shordate"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isApproved"></dxi-column>
             <dxi-column dataField="leaveYearId" caption="Leave Year">
               <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
               </dxo-lookup>

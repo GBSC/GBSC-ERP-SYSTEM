@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { async } from '@angular/core/testing';
+import { INVALID } from '@angular/forms/src/model';
 
 
 @Component({
@@ -54,8 +55,11 @@ export class RegistrationComponent implements OnInit {
     private patientId: any;
 
 
+    submitted = false;
 
+    spousesubmitted = false;
 
+    referencesubmitted = false;
 
 
 
@@ -64,10 +68,10 @@ export class RegistrationComponent implements OnInit {
     constructor(private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
-            'ReferredBy': ['', Validators.required],
+            'ReferredBy': [''],
             'PersonName': ['', Validators.required],
-            'RefAddress': ['', Validators.required],
-            'ReferenceTel': ['', Validators.required],
+            'RefAddress': [''],
+            'ReferenceTel': [''],
             'PatientId': [''],
             'patientReferenceId': ['']
         });
@@ -78,45 +82,46 @@ export class RegistrationComponent implements OnInit {
         });
         this.partnerForm = this.formBuilder.group({
             'FirstName': ['', Validators.required],
-            'MiddleName': ['', Validators.required],
+            'MiddleName': [''],
             'LastName': ['', Validators.required],
-            'DOB': ['', Validators.required],
-            'PlaceOfBirth': ['', Validators.required],
-            'Occupation': ['', Validators.required],
-            'NIC': ['', Validators.required],
+            'DOB': [''],
+            'PlaceOfBirth': [''],
+            'Occupation': [''],
+            'NIC': [''],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']
         });
         this.patientForm = this.formBuilder.group({
-            'RegCity': ['', Validators.required],
-            'visitNatureId': ['', Validators.required],
+            'RegCity': [''],
+            'visitNatureId': [''],
             'FirstName': ['', Validators.required],
-            'MiddleName': ['', Validators.required],
+            'MiddleName': [''],
             'LastName': ['', Validators.required],
             'DOB': ['', Validators.required],
-            'PlaceOfBirth': ['', Validators.required],
-            'Occupation': ['', Validators.required],
-            'NIC': ['', Validators.required],
+            'PlaceOfBirth': [''],
+            'Occupation': [''],
+            'NIC': ['', [Validators.required , Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['', Validators.required],
-            'OfficeAddress': ['', Validators.required],
-            'ResidenceAddress': ['', Validators.required],
-            'Remarks': ['', Validators.required],
-            'OfficeTel': ['', Validators.required],
-            'ForeignAddress': ['', Validators.required],
+            'PhoneNumber': ['',  [Validators.required , Validators.minLength(11)]],
+            'OfficeAddress': [''],
+            'ResidenceAddress': [''],
+            'Remarks': [''],
+            'OfficeTel': [''],
+            'ForeignAddress': [''],
             'Country': ['', Validators.required],
             'City': ['', Validators.required],
-            'State': ['', Validators.required],
-            'PostalCode': ['', Validators.required],
-            'Initial': ['', Validators.required],
-            'PrivatePatientCons': ['', Validators.required],
-            'PrivateHospital': ['', Validators.required],
-            'AuthorizedPerson': ['', Validators.required],
+            'State': [''],
+            'PostalCode': [''],
+            'Initial': [''],
+            'PrivatePatientCons': [''],
+            'PrivateHospital': [''],
+            'AuthorizedPerson': [''],
             //'patientId' :['',Validators.required]
         });
     }
 
+ 
 
 
     addrange() {
@@ -131,9 +136,9 @@ export class RegistrationComponent implements OnInit {
 
         //this.allDocs.push(this.forevent2);
         this.allDocs.push(this.forevent2);
-         
+
         console.log(this.allDocs)
-//          this.documentss.push(doc);
+        //          this.documentss.push(doc);
         // console.log(this.documentss);
         this.documentForm.reset();
 
@@ -150,37 +155,40 @@ export class RegistrationComponent implements OnInit {
     remove(index) {
         this.allDocs.splice(index, 1);
         console.log(index)
-     }
-
-    async onSubmit(value) {
-        // localStorage.setItem('patientdata', JSON.stringify(value));
-        value.partner = this.addpartnet;
-        value.patientReference = this.addReference;
-       // value.patientDocuments = this.addDocument;
-        console.log(value);
-
-        this.patientId = await this.PatientServiceobj.addPatient(value);
-        console.log(this.patientId);
-
-        //console.log(value.patientDocuments);
-
-        this.upload(this.patientId.patientId);
-
-      
-
-        this.router.navigate(['/hims/patient/findpatient']);
-        this.PatientServiceobj.getPatient();
     }
 
+    get f() { return this.patientForm.controls; }
+    
+    async onSubmit(value) {
+        this.submitted = true;
+        console.log(this.patientForm.invalid);
+        if (this.patientForm.invalid) {
+            return alert('Please Select All Required Fileds') ;
+        }
+
+    
+            value.partner = this.addpartnet;
+            value.patientReference = this.addReference;
+            this.patientId = await this.PatientServiceobj.addPatient(value);
+            this.upload(this.patientId.patientId);
+            this.router.navigate(['/hims/patient/findpatient']);
+            this.PatientServiceobj.getPatient();
+    }
+
+    get s() { return this.partnerForm.controls; }
     onAddPartner(value) {
+        this.spousesubmitted = true;
+
+        if (this.partnerForm.invalid) {
+            return alert('Please Select All Required Fileds') ;
+        }
 
         delete this.partnerForm.value.PatientId;
         delete this.partnerForm.value.PartnerId;
         console.log(value);
         this.addpartnet = value
-        this.partnerForm.reset();
-    }
-    public docs : File[] = [];
+     }
+    public docs: File[] = [];
     onAddDocument() {
 
         // this.docs = {
@@ -190,7 +198,7 @@ export class RegistrationComponent implements OnInit {
         this.docs = this.allDocs
 
         console.log(this.docs);
-        
+
 
 
     }
@@ -239,14 +247,20 @@ export class RegistrationComponent implements OnInit {
 
 
 
+    get r() { return this.referenceForm.controls; }
 
     onAddReference(value) {
+        this.referencesubmitted = true;
+
+        if (this.partnerForm.invalid) {
+            return alert('Please Select All Required Fileds') ;
+        }
+
         delete this.referenceForm.value.PatientId;
         delete this.referenceForm.value.patientReferenceId;
         console.log(value);
         this.addReference = value;
-        this.referenceForm.reset();
-    }
+     }
 
     async  updatePatient(value) {
         this.patientForm.value.patientId = this.id;
@@ -269,7 +283,7 @@ export class RegistrationComponent implements OnInit {
 
     }
 
-   
+
 
     // <start work for image uploading .......... update record
     onfileselect(event) {
@@ -294,43 +308,16 @@ export class RegistrationComponent implements OnInit {
     }
     // <end work for image uploading
 
-    public allDocs : File[] = [];
+    public allDocs: File[] = [];
     public forevent2: any;
     public uploaded = 0;
-    // <start work for image uploading .....registration.....
-    // fileselect(event) {
-    //     this.forevent2 = <File>event.target.files[0];
-    //     console.log(this.forevent2)
-   // this.allDocs.push(this.forevent2);
-
-    //     console.log(this.allDocs);
-    // }
-    // async upload(patientId) {
-    //     const f = new FormData();
-    //     let counter = 0;
-    //     this.docs.filePath.forEach(async (e, i) => {
-    //         console.log(e);
-    //         f.append('f', e);
-    //         let x = await this.PatientServiceobj.addDocument(f, patientId);
-    //         if (x) {
-    //             this.uploaded = this.docs.filePath.length / 100 * counter;
-    //             console.log('uploaded', this.uploaded);
-    //         }
-    //         counter++;
-    //     });
-    //     console.log(f);
-    //     // let x = await this.PatientServiceobj.addDocuments(f, patientId);
-    //     // console.log(x)
-
-    //     // this.Patient.patientDocuments
-    // }
-    // <end work for image uploading........registration......
+ 
 
     fileselect(event) {
         console.log(event);
         this.forevent2 = <File>event.target.files[0];
         console.log(this.forevent2);
-     }
+    }
     async upload(patientId) {
 
         let fileCount: number = this.docs.length;
@@ -339,45 +326,9 @@ export class RegistrationComponent implements OnInit {
             for (let i = 0; i < fileCount; i++) {
                 formData.append('models', this.docs[i]);
             }
-                // do whatever you do...
-                // subscribe to observable to listen for response
         }
         console.log(formData);
-
-
-        // var filestore : FormData[] = [];
-        // console.log(this.docs);
-        // console.log(this.docs.length);
-        // for(var i = 0; i < this.docs.length; ++i) {
-        //     const f = new FormData();
-        //     f.append('models', this.docs[i]);
-        //     filestore.push(f);
-        //     console.log(f);
-        // }
-        // console.log(filestore);
-        //f.append('models', this.docs);
-        // this.docs.forEach(element => {
-        //     f.append('models', element);
-        // });
-        //console.log(f);
         await this.PatientServiceobj.addDocuments(formData, patientId);
-       // console.log(x);
-         //console.log(f);
-         
-        // this.docs.forEach( async (e) => {
-        // console.log(e);
-        //     //console.log(f);
-        //   //  f.append('f', e);
-        //    // console.log(f);
-        // let x = await this.PatientServiceobj.addDocument(e, patientId);
-        // console.log(x);
-        // console.log(f);
-        // });
-        
-        // let x = await this.PatientServiceobj.addDocuments(f, patientId);
-        // console.log(x)
-
-        // this.Patient.patientDocuments
     }
 
 
@@ -487,7 +438,6 @@ export class RegistrationComponent implements OnInit {
     goback() {
         this.Location.back();
     }
-
 
     keyPress(event: any) {
         const pattern = /[0-9\+\-\ ]/;

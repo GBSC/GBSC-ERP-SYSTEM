@@ -124,6 +124,7 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         DeliveryNoteComponent
     ],
     providers: [
+        //  UserService,
         InventorysystemService
     ]
 })

@@ -32,7 +32,11 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
-import { PackageComponent } from './package/package.component';
+import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
+import { VisitdetailComponent } from './visitdetail/visitdetail.component';
+import { ConditionsComponent } from './conditions/conditions.component';
+import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
+import { TestComponent } from './test/test.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -75,7 +79,11 @@ import { PackageComponent } from './package/package.component';
         MenuComponent,
         FooterComponent,
         AppointmentscheduleComponent,
-        PackageComponent,
+        VisitnatureComponent,
+        VisitdetailComponent,
+        ConditionsComponent,
+        DiagnosisComponent,
+        TestComponent,
     ],
     providers: [
         PatientService

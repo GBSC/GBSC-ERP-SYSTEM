@@ -1,69 +1,1231 @@
 <!-- BEGIN: Left Aside -->
 <button class="m-aside-left-close  m-aside-left-close--skin-light" id="m_aside_left_close_btn" appunwraptag="">
-	<i class="la la-close"></i>
-</button>
-<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light">
-	<!-- BEGIN: Brand -->
-	<div class="m-brand  m-brand--skin-light">
-		<a routerLink="/patient/home" class="m-brand__logo">
-			<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png"/>
-		</a>
-	</div>
-	<!-- END: Brand --> 	<!-- BEGIN: Aside Menu -->
-	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light"  		data-menu-vertical="true" 		 data-menu-scrollable="true" data-menu-dropdown-timeout="500"   		>
-		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-				<a  routerLink="/patient/findpatient" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-search"></i>
-					<span class="m-menu__link-text">Find Patient
-					</span>
-					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a>
-			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-				<a  routerLink="/patient/registration" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-time"></i>
-					<span class="m-menu__link-text">
-						Add Patient
-					</span>
-					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a>
-			
-			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-				<a  routerLink="/patient/registration" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-add"></i>
-					<span class="m-menu__link-text">
-						Active Visits
-					</span>
-					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a>
-			
-			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-				<a  routerLink="/patient/registration" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-calendar"></i>
-					<span class="m-menu__link-text">
-							Appointment
-					</span>
-					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a>
-				
-			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-					<a  routerLink="/patient/registration" class="m-menu__link m-menu__toggle">
-						<i class="m-menu__link-icon flaticon-file"></i>
+		<i class="la la-close"></i>
+	</button>
+	<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light">
+		<!-- BEGIN: Brand -->
+		<div class="m-brand  m-brand--skin-light">
+			<a routerLink="/index" class="m-brand__logo">
+				<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png"/>
+			</a>
+		</div>
+		<!-- END: Brand --> 	
+		<!-- BEGIN: Aside Menu -->
+		<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light"  		data-menu-vertical="true" 		 data-menu-scrollable="true" data-menu-dropdown-timeout="500"   		>
+			<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
+
+							  			  <!-- Employees-->
+			  
+											<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+													<a  href="#" class="m-menu__link m-menu__toggle">
+														<i class="m-menu__link-icon flaticon-menu"></i>
+														<span class="m-menu__link-text">
+														Employee
+														</span>
+														<i class="m-menu__ver-arrow la la-angle-right"></i>
+													</a>
+													<div class="m-menu__submenu">
+														<span class="m-menu__arrow"></span>
+														<div class="m-menu__wrapper">
+															<ul class="m-menu__subnav">
+																<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+																	<span class="m-menu__link">
+																		<span class="m-menu__link-text">
+																			Applications
+																		</span>
+																	</span>
+																</li>
+																<!-- <li class="m-menu__section">
+																	<h4 class="m-menu__section-text">
+																		HRMS Setup Forms
+																	</h4>
+																	<i class="m-menu__section-icon flaticon-more-v3"></i>
+																</li> -->
+								  
+																
+																
+																<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																	<a  routerLink="employee/employees" class="m-menu__link">
+																		<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																			<span></span>
+																		</i>
+																		<span class="m-menu__link-text">
+																			Employees
+																		</span>
+																	</a>
+																</li>
+																
+																<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																	<a  routerLink="employee/registration" class="m-menu__link">
+																		<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																			<span></span>
+																		</i>
+																				<span class="m-menu__link-text">
+																					Employee Registration
+																				</span>
+																			</a>
+																		</li>
+																		<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																				<a  routerLink="rolesandprivileges" class="m-menu__link">
+																					<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																						<span></span>
+																					</i>
+																							<span class="m-menu__link-text">
+																								Roles & Priviliges
+																							</span>
+																						</a>
+																					</li>
+
+																		<!-- <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+																				<a  href="#" class="m-menu__link m-menu__toggle">
+																					<span class="m-menu__link-text">
+																					Roles 
+																					</span>
+																					<i class="m-menu__ver-arrow la la-angle-right"></i>
+																				</a>
+																				<div class="m-menu__submenu">
+																					<span class="m-menu__arrow"></span>
+																					<ul class="m-menu__subnav">
+																						<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																							<a  routerLink="rolesandprivileges" class="m-menu__link">
+																								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																									<span></span>
+																								</i>
+																								<span class="m-menu__link-text">
+																								Assign Role
+																								</span>
+																							</a>
+																						</li>
+																		 
+																						<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																							<a  routerLink="module" class="m-menu__link">
+																								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																									<span></span>
+																								</i>
+																								<span class="m-menu__link-text">
+																									Modules
+																								</span>
+																							</a>
+																						</li>
+																				
+																						<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																							<a  routerLink="feature" class="m-menu__link">
+																								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																									<span></span>
+																								</i>
+																								<span class="m-menu__link-text">
+																									Features
+																								</span>
+																							</a>
+																						</li>
+																					</ul>
+																				</div>
+																			</li> -->
+																		
+																	</ul>
+																</div>
+															</div>
+														</li>
+														
+											  <!-- Employee-->
+
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-menu"></i>
 						<span class="m-menu__link-text">
-								Reports
+						Setups
 						</span>
 						<i class="m-menu__ver-arrow la la-angle-right"></i>
 					</a>
-					
+					<div class="m-menu__submenu">
+						<span class="m-menu__arrow"></span>
+						<div class="m-menu__wrapper">
+							<ul class="m-menu__subnav">
+								<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+									<span class="m-menu__link">
+										<span class="m-menu__link-text">
+											Applications
+										</span>
+									</span>
+								</li>
+								<li class="m-menu__section">
+									<h4 class="m-menu__section-text">
+										HRMS Setup Forms
+									</h4>
+									<i class="m-menu__section-icon flaticon-more-v3"></i>
+								</li>
+ 
+								<!-- BEGIN: Company Setup -->
+								<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+										<a  href="#" class="m-menu__link m-menu__toggle">
+											<span class="m-menu__link-text">
+											Company Setup Forms
+											</span>
+											<i class="m-menu__ver-arrow la la-angle-right"></i>
+										</a>
+										<div class="m-menu__submenu">
+											<span class="m-menu__arrow"></span>
+											<ul class="m-menu__subnav">
+												<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+													<a  routerLink="company" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Company
+														</span>
+													</a>
+												</li>
+								 
+												<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+													<a  routerLink="department" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Department
+														</span>
+													</a>
+												</li>
+								 
+												<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+													<a  routerLink="branch" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Branch
+														</span>
+													</a>
+												</li>
+								  
+											</ul>
+										</div>
+									</li>
+
+									<!-- BEGIN: Hrm Setup -->
+								<!-- <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+									<a  href="#" class="m-menu__link m-menu__toggle">
+										<span class="m-menu__link-text">
+										Hrm Setup Forms
+										</span>
+										<i class="m-menu__ver-arrow la la-angle-right"></i>
+									</a>
+									<div class="m-menu__submenu">
+										<span class="m-menu__arrow"></span>
+										<ul class="m-menu__subnav">
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/bank" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Bank
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/costcenters" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Cost Center
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/degree" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Degree
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/designation" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Designation
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/employeestatus" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Employee Status
+													</span>
+												</a>
+											</li>
+							 
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/employeetype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Employee Type
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/function" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Function
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/gazettedholidays" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Gazettedholidays
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/groups" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Group
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/languages" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Language
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/managementlevels" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Management Level 
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/qualification" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Qualification
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/relation" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Relation
+													</span>
+												</a>
+											</li>
+							 
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/skilllevel" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Skill Level
+													</span>
+												</a>
+											</li>
+							 
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="setup/university" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														University
+													</span>
+												</a>
+											</li>
+							 
+
+										</ul>
+									</div>
+								</li> -->
+
+								        <!-- BEGIN: Leave Setup -->
+								<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+									<a  href="#" class="m-menu__link m-menu__toggle">
+										<span class="m-menu__link-text">
+										Leave Setup Forms
+										</span>
+										<i class="m-menu__ver-arrow la la-angle-right"></i>
+									</a>
+									<div class="m-menu__submenu">
+										<span class="m-menu__arrow"></span>
+										<ul class="m-menu__subnav">
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavetype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Type
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavedaytype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Day Type													</span>
+												</a>
+											</li>
+				
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leaveeligibility" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Eligibility
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavepolicy" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Policy
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavepurpose" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Purpose
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavesubtype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Subtype
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leavetypebalance" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Type Balance
+													</span>
+												</a>
+											</li>
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/leaveyear" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Year
+													</span>
+												</a>
+											</li>
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/proratematrix" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Prorate Matrix
+													</span>
+												</a>
+											</li>
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leavesetup/decimalroundmatrix" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Decimal Rounding Matrix
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+
+								</li>
+
+								<!-- BEGIN: Attendance Setup -->
+								<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+									<a  href="#" class="m-menu__link m-menu__toggle">
+										<span class="m-menu__link-text">
+										Attendance Setup Forms
+										</span>
+										<i class="m-menu__ver-arrow la la-angle-right"></i>
+									</a>
+									<div class="m-menu__submenu">
+										<span class="m-menu__arrow"></span>
+										<ul class="m-menu__subnav">
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/assignroster" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Assign Roster
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/attendanceflag" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Attendance Flag												</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/attendancerequestapprover" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Attendance Request Approver
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/attendancerequesttype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Attendance Request Type
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/flagcategory" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Flag Category
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/flageffecttype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Flag Effect Type
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/flagtype" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Flag Type
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/flagvalue" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Flag Value
+													</span>
+												</a>
+											</li>
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/roster" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Roster
+													</span>
+												</a>
+											</li>
+
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="attendance/attendancesetup/shift" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Shift
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+
+
+<!-- 
+								<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+									<a  routerLink="/inner" class="m-menu__link">
+										<span class="m-menu__link-text">
+											Finance
+										</span>
+									</a>
+								</li> -->
+  
+			  
+							</ul>
+						</div>
+					</div>
 				</li>
-			
-		</ul>
+			  <!-- Leave Menu-->
+			  
+			  <li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-menu"></i>
+						<span class="m-menu__link-text">
+						Leave
+						</span>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu">
+						<span class="m-menu__arrow"></span>
+						<div class="m-menu__wrapper">
+							<ul class="m-menu__subnav">
+								<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+									<span class="m-menu__link">
+										<span class="m-menu__link-text">
+											Applications
+										</span>
+									</span>
+								</li>
+								<!-- <li class="m-menu__section">
+									<h4 class="m-menu__section-text">
+										HRMS Setup Forms
+									</h4>
+									<i class="m-menu__section-icon flaticon-more-v3"></i>
+								</li> -->
+ 
+								<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+									<a  href="#" class="m-menu__link m-menu__toggle">
+										<span class="m-menu__link-text">
+										Leave Admin
+										</span>
+										<i class="m-menu__ver-arrow la la-angle-right"></i>
+									</a>
+									<div class="m-menu__submenu">
+										<span class="m-menu__arrow"></span>
+										<ul class="m-menu__subnav">
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/employeeleaveopening" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Opening
+													</span>
+												</a>
+											</li>
+							 
+											<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+												<a  routerLink="leave/leaverequest" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Leave Request
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</li>
+
+								
+								<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+										<a  routerLink="leave/leaveapproval" class="m-menu__link">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Leave Approval
+											</span>
+										</a>
+									</li>
+
+									<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="leave/leaveclosing" class="m-menu__link">
+												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+													<span></span>
+												</i>
+												<span class="m-menu__link-text">
+													Leave Closing
+												</span>
+											</a>
+										</li>
+
+							</ul>
+						</div>
+					</div>
+				</li>
+
+			  <!-- Leave Menu-->
+			   
+
+			  			  <!-- Attendance Menu-->
+			  
+							<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+									<a  href="#" class="m-menu__link m-menu__toggle">
+										<i class="m-menu__link-icon flaticon-menu"></i>
+										<span class="m-menu__link-text">
+										Attendance
+										</span>
+										<i class="m-menu__ver-arrow la la-angle-right"></i>
+									</a>
+									<div class="m-menu__submenu">
+										<span class="m-menu__arrow"></span>
+										<div class="m-menu__wrapper">
+											<ul class="m-menu__subnav">
+												<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+													<span class="m-menu__link">
+														<span class="m-menu__link-text">
+															Applications
+														</span>
+													</span>
+												</li>
+												<!-- <li class="m-menu__section">
+													<h4 class="m-menu__section-text">
+														HRMS Setup Forms
+													</h4>
+													<i class="m-menu__section-icon flaticon-more-v3"></i>
+												</li> -->
+				 
+												<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+													<a  href="#" class="m-menu__link m-menu__toggle">
+														<span class="m-menu__link-text">
+														Attendance Admin
+														</span>
+														<i class="m-menu__ver-arrow la la-angle-right"></i>
+													</a>
+													<div class="m-menu__submenu">
+														<span class="m-menu__arrow"></span>
+														<ul class="m-menu__subnav">
+															<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																<a  routerLink="leave/employeeleaveopening" class="m-menu__link">
+																	<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																		<span></span>
+																	</i>
+																	<span class="m-menu__link-text">
+																		Leave Opening
+																	</span>
+																</a>
+															</li>
+											 
+															<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+																<a  routerLink="leave/leaverequest" class="m-menu__link">
+																	<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																		<span></span>
+																	</i>
+																	<span class="m-menu__link-text">
+																		Leave Request
+																	</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+				
+												
+												<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+														<a  routerLink="leave/leaveapproval" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																Leave Approval
+															</span>
+														</a>
+													</li>
+				
+													<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+															<a  routerLink="leave/leaveclosing" class="m-menu__link">
+																<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																	<span></span>
+																</i>
+																<span class="m-menu__link-text">
+																	Leave Closing
+																</span>
+															</a>
+														</li>
+				
+											</ul>
+										</div>
+									</div>
+								</li>
+				
+							  <!-- Attendance Menu-->
+
+
+
+
+				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-add"></i>
+						<span class="m-menu__link-text">
+							Leave
+						</span>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu">
+						<span class="m-menu__arrow"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true"  data-redirect="true">
+								<span class="m-menu__link">
+									<span class="m-menu__link-text">
+										Add
+									</span>
+								</span>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-icon la la-commenting"></i>
+									<span class="m-menu__link-text">
+										Post
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-icon la la-user"></i>
+									<span class="m-menu__link-text">
+										Member
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-icon la la-cart-arrow-down"></i>
+									<span class="m-menu__link-text">
+										Order
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-icon la la-coffee"></i>
+									<span class="m-menu__link-text">
+										Entry
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-stopwatch"></i>
+						<span class="m-menu__link-text">
+							Customers
+						</span>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu">
+						<span class="m-menu__arrow"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent m-menu__item--bottom" aria-haspopup="true"  data-redirect="true">
+								<span class="m-menu__link">
+									<span class="m-menu__link-text">
+										Customers
+									</span>
+								</span>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Reports
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
+								<a  href="#" class="m-menu__link m-menu__toggle">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Cases
+									</span>
+									<i class="m-menu__ver-arrow la la-angle-right"></i>
+								</a>
+								<div class="m-menu__submenu">
+									<span class="m-menu__arrow"></span>
+									<ul class="m-menu__subnav">
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-computer"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Pending
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--warning">
+																10
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-signs-2"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Urgent
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--danger">
+																6
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-clipboard"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Done
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--success">
+																2
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-multimedia-2"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Archive
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--info m-badge--wide">
+																245
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Clients
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Audit
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom-2" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-settings"></i>
+						<span class="m-menu__link-text">
+							Settings
+						</span>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu m-menu__submenu--up">
+						<span class="m-menu__arrow"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent m-menu__item--bottom-2" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+								<span class="m-menu__link">
+									<span class="m-menu__link-text">
+										Settings
+									</span>
+								</span>
+							</li>
+							<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="hover" data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link m-menu__toggle">
+									<i class="m-menu__link-bullet m-menu__link-bullet--line">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Profile
+									</span>
+									<i class="m-menu__ver-arrow la la-angle-right"></i>
+								</a>
+								<div class="m-menu__submenu">
+									<span class="m-menu__arrow"></span>
+									<ul class="m-menu__subnav">
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-computer"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Pending
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--warning">
+																10
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-signs-2"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Urgent
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--danger">
+																6
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-clipboard"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Done
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--success">
+																2
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+										<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+											<a  routerLink="/inner" class="m-menu__link">
+												<i class="m-menu__link-icon flaticon-multimedia-2"></i>
+												<span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															Archive
+														</span>
+														<span class="m-menu__link-badge">
+															<span class="m-badge m-badge--info m-badge--wide">
+																245
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--line">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Accounts
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--line">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Help
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--line">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Notifications
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--bottom-1" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click">
+					<a  href="#" class="m-menu__link m-menu__toggle">
+						<i class="m-menu__link-icon flaticon-info"></i>
+						<span class="m-menu__link-text">
+							Help
+						</span>
+						<i class="m-menu__ver-arrow la la-angle-right"></i>
+					</a>
+					<div class="m-menu__submenu m-menu__submenu--up">
+						<span class="m-menu__arrow"></span>
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent m-menu__item--bottom-1" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
+								<span class="m-menu__link">
+									<span class="m-menu__link-text">
+										Help
+									</span>
+								</span>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Support
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Blog
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Documentation
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Pricing
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true"  data-redirect="true">
+								<a  routerLink="/inner" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Terms
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- END: Aside Menu -->
 	</div>
-	<!-- END: Aside Menu -->
-</div>
-<div class="m-aside-menu-overlay"></div>
-<!-- END: Left Aside -->
+	<div class="m-aside-menu-overlay"></div>
+	<!-- END: Left Aside -->
+	

@@ -8,14 +8,24 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group m-form__group">
-              <label for="name">School/University</label>
-              <input class="form-control m-input m-input--solid" placeholder="School" name="" type="text">
+              <!-- <label (click)="setUniName($event)" for="name">School/University</label> -->
+              <input (change)="setUniName($event)" class="form-control m-input m-input--solid" placeholder="School" type="text">
              </div>
           </div>
           <div class="col-md-6">
             <div class="form-group m-form__group">
-              <label for="education_level" class="control-label">Education Level</label>
-              <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text">
+              <label for="education_level" class="control-label">Certificate</label>
+              <!-- <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text"> -->
+            <select class="form-control m-input m-input--solid" formControlName="DegreeId" name="Group" id="group">
+                <option value="" disabled selected>-- Select Degree --</option>
+              <option value="middle">Middle</option>
+              <option value="matric">Matric</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="bachelors">Bachelors</option>
+              <option value="undergraduate">UnderGraduates</option>
+              <option value="graduates">Graduates</option>
+              <option value="masters">Masters</option>
+            </select>
             </div>
           </div>
         </div>
@@ -23,8 +33,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group m-form__group">
-                  <label for="skill" class="control-label">Qualification</label>
-           <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" name="qualification" type="text">
+                  <label for="skill" class="control-label">Degree Title</label>
+           <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Degreetitle" name="qualification" type="text">
             
                                   </div>
                                 </div>
@@ -39,7 +49,7 @@
           </div>
       
                           </div>
-                          
+      
         <div class="row">
           <div class="col-md-6">
             <div class="form-group m-form__group">
@@ -64,26 +74,8 @@
                           <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
                         </div>
                       </div>
-                    </div>
-        
-      
-        <!-- <div class="row">
-          <div class="col-md-12">
-            <div class="form-group m-form__group">
-              <label for="to_year" class="control-label">Courses</label>
-              <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
-            </div>
-          </div>
-        </div> -->
-      
-      
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group m-form__group">
-                          <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
-                      </div>
-                    </div>
-                  </div>
+                  \  </div>
+                    
                   </form>
       
  
@@ -96,14 +88,26 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
-        <label for="name">School/University</label>
-        <input class="form-control m-input m-input--solid" placeholder="School" name="" type="text">
+        <label for="name">Name of Institution</label>
+        <input (change)="p($event)" class="form-control m-input m-input--solid"  placeholder="Institute" type="text">
        </div>
     </div>
     <div class="col-md-6">
       <div class="form-group m-form__group">
-        <label for="education_level" class="control-label">Education Level</label>
-        <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text">
+        <label for="education_level" class="control-label">Certificate</label>
+        <!-- <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text"> -->
+      <select class="form-control m-input m-input--solid" formControlName="DegreeId" name="Group" id="group">
+          <option value="" disabled selected>-- Select Degree --</option>
+        <option value="middle">Middle</option>
+        <option value="matric">Matric</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="bachelors">Bachelors</option>
+        <option value="undergraduate">UnderGraduate</option>
+        <option value="graduates">Graduation</option>
+        <option value="masters">Masters</option>
+        <option value="masters">MPhil</option>
+        <option value="masters">Phd</option>
+      </select>
       </div>
     </div>
   </div>
@@ -111,40 +115,47 @@
   <div class="row">
       <div class="col-md-6">
           <div class="form-group m-form__group">
-            <label for="skill" class="control-label">Qualification</label>
+            <label for="skill" class="control-label">Majors</label>
      <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" name="qualification" type="text">
-      
-                            </div>
-                          </div>
+      </div>
+   </div>
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="language" class="control-label">Grade</label>
         <!-- <select class="form-control m-input m-input--solid" formControlName="Grade" name="Grade">
             <option *ngFor ="let grde of SetupServiceobj.grade" [value]="grde.id">{{grde.name}}</option>
         </select> -->
-        <input class="form-control m-input m-input--solid" placeholder="to" name="grade" type="text">
+        <input class="form-control m-input m-input--solid" placeholder="to" formControlName="Grade" name="grade" type="text">
       </div>
     </div>
-
-                    </div>
+  </div>
 
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="from_year" class="control-label">Time Period From</label>
         
-            <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="text">
+            <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="date">
           </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group m-form__group">
           <label for="from_year" class="control-label">To</label> 
-            <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="text">
+            <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="date">
           </div>
         </div>
   </div>
   
+  <div class="row">
+      <div class="col-md-12">
+          <div class="form-group m-form__group">
+            <label for="skill" class="control-label">Corses (if any)</label>
+     <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Courses" name="courses" type="text">
+    </div>
+      </div>
+        </div>
+
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group m-form__group">
@@ -152,24 +163,13 @@
                     <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
                   </div>
                 </div>
-              </div>
-  
-
-  <!-- <div class="row">
-    <div class="col-md-12">
-      <div class="form-group m-form__group">
-        <label for="to_year" class="control-label">Courses</label>
-        <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" />
-      </div>
-    </div>
-  </div> -->
-
-
+              </div> 
+            </form>
+ 
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group m-form__group">
-                    <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
+                    <a class="pull-right" type="" (click)="addFieldValue()">Add More</a>
                 </div>
               </div>
             </div>
-            </form>

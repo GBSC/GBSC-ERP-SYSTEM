@@ -33,9 +33,6 @@ export class BasicinformationComponent implements OnInit {
         await this.SetupServiceobj.getAllDesignations();
         let dsg = this.SetupServiceobj.designation;
 
-        await this.SetupServiceobj.getAllShifts();
-        let shft = this.SetupServiceobj.shift;
-
         await this.SetupServiceobj.getAllLanguages();
         let lng = this.SetupServiceobj.language;
 

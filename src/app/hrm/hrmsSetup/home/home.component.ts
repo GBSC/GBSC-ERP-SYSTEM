@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HrmSetupHomeComponent implements OnInit {
 
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }

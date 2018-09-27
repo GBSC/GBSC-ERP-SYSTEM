@@ -5,6 +5,7 @@ import { PatientService } from '../../patient/services/patient.services';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
+import { async } from '@angular/core/testing';
 
 
 
@@ -18,9 +19,13 @@ export class FindPatientComponent implements OnInit {
 
     //  public currentPatient: any;
     editPatientForm: FormGroup;
+
+    searchPatientForm : FormGroup;
+
     public mypatient: any;
     public xyz: any;
-    public myid: any;
+    public Patientid: any;
+    public searchpatinetbyname : any;
     // public patients;
     constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
         this.editPatientForm = formBuilder.group({
@@ -39,48 +44,40 @@ export class FindPatientComponent implements OnInit {
             'PersonName': ['', Validators.required]
         });
 
+        this.searchPatientForm = formBuilder.group({
+            'name':['',Validators.required],
+            'mrn':['',Validators.required],
+            'contact':['',Validators.required],
+        });
     }
+
 
     async ngOnInit() {
-        await this.PatientServiceobj.getPatient();
-        let par = this.PatientServiceobj.patients;
-        console.log(par);
-        // console.log(this.PatientServiceobj.patients.partner['0'])
-        // .subscribe(data => {
-        //   this.patients = data;
-        //   console.log(data);
-        //   console.log(this.patients.partner);
-        // });
+        // await this.PatientServiceobj.getPatient();
+        //     this.PatientServiceobj.patients;
+        // this.searchpatinetbyname = this.PatientServiceobj.SearchPatientbyname;
+        // console.log(this.searchpatinetbyname)
 
     }
-    // contentReady(e) {
-    //   if (!e.component.getSelectedRowKeys().length)
-    //     e.component.selectRowsByIndexes(0);
-    //     console.log('content ready has been called');
-    //     console.log(e);
-    //     console.log('content ready has been called');
-    // }
-    selectionChanged(e) {
+    
+  async  selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);
-        this.setCurrentPatient(e.selectedRowsData[0]);
-
-    }
-    // async onSubmit({key}) {
-    //   // key is accquired through desctructuring 
-    //   // key is = data.key
-    //   console.log(key);
-    //   console.log(key.patientId);
-    //  await this.PatientServiceobj.updatePatient(key);
-    // }
-
-
-    setCurrentPatient(patient) {
-        this.router.navigate(['/hims/patient/profile']);
-        this.PatientServiceobj.setCurrentPatient(patient);
+      this.Patientid =  e.selectedRowsData[0].patientId
+         console.log(this.Patientid);      
+         this.router.navigate(['/hims/patient/profile/'+this.Patientid]);  
+  
     }
 
-
+async SearchPatient(value){
+    for(let key in value) {
+        if(!value[key]) {
+            delete value[key];
+        }
+    }
+    console.log(value);
+ await this.PatientServiceobj.SearchPatient(value);
+}
 
 }
+

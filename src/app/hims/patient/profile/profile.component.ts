@@ -62,11 +62,12 @@ downloadimage(index){
 //     }
 
 
+
 // saveStringToFile() {
 //     let a:any = document.createElement("a");
 //     document.body.appendChild(a);
 //     a.style = 'display: none';
-//     this.data.saveLicenseToFile('txt', a);
+//     this.data.saveLicenseToFile('lic', a);
 //   }
 
 }

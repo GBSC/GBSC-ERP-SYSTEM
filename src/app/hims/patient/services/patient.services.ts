@@ -129,9 +129,19 @@ export class PatientService {
         return x;
     }
 
-     addDocument(f : FormData, id){
+     addDocument(f, id){
  
         this.http1.post(this.API_URL+'/patients/AddPatientDocument/'+id, f).subscribe( res => {
+            console.log(res);
+        });
+        
+        //return x;
+    }
+
+    
+    addDocuments(models : FormData, id){
+ 
+        this.http1.post(this.API_URL+'/patients/AddPatientDocuments/'+id, models).subscribe( res => {
             console.log(res);
         });
         

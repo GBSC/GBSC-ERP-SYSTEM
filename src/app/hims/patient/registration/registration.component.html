@@ -10,7 +10,7 @@
 								<i class="la la-gear"></i>
 							</span>
 							<h3 class="m-portlet__head-text">
-								 Patient Form
+								 Patient Form 
 							</h3>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 						<div class="form-group row">
 							<div class="form-group col-lg-3">
 								<label for="exampleSelect1"> RegCity </label>
-								<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity" formControlName="RegCity">
+								<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity" formControlName="RegCity" required>
 									<option value="Karaci">Karaci</option>
 									<option value="Multan">Multan</option>
 								</select>
@@ -341,7 +341,7 @@
 																	</div>  -->
 																	<div class="form-group col-lg-4">
 																		<label for="exampleInputEmail1">File Path:</label>
-																		<input type="file" formControlName="FilePath"/>
+																		<input type="file"   formControlName="FilePath"  (change)="fileselect($event)"/>
 																	</div>
 																</div>
 																<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
@@ -378,9 +378,7 @@
 																				<th>
 																					Document Name
 																				</th>
-																				<th>
-																					Remarks
-																				</th>
+																				 
 																				<th>
 																					File Path
 																				</th>
@@ -392,7 +390,7 @@
 																		<tbody *ngIf="router.url === '/hims/patient/updatepatient/'+id">
 																			<tr *ngFor="let patientDoucment of document;let i = index">
 																				<td>{{patientDoucment?.documentName}}</td>
-																				<td>{{patientDoucment?.remarks}}</td>
+																				<!-- <td>{{patientDoucment?.remarks}}</td> -->
 																				<td> {{patientDoucment?.filePath}}</td>
 																				<td>
 																					<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary">
@@ -407,10 +405,10 @@
 																		</tbody>
 
 																		<tbody *ngIf="router.url === '/hims/patient/registration'">
-																			<tr *ngFor=" let t of documentss; let i = index">
+																			<tr *ngFor=" let t of allDocs; let i = index">
 																				<!-- <td>{{t.DocumentName}}</td>
 																				 <td> {{t.Remarks}}  -->
-																				<td>{{t.FilePath}}</td>
+																				<td>{{t.name}}</td>
 																				<td>
 																					<button type="button" (click)="remove(i)" class="btn btn-primary">
 																						<i class="la la-archive"></i>
@@ -426,7 +424,7 @@
 																<button type="reset" class="btn btn-secondary">
 																	Reset
 																</button>
-																<button type="button" (click)="onAddDocument(documentss)" data-dismiss="modal" class="btn btn-primary">
+																<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary">
 																	Save
 																</button>
 															</div>

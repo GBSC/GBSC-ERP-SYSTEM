@@ -9230,10 +9230,6 @@ var PatientModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__patient_patientsetup_visitnature_visitnature_component__ = __webpack_require__("../../../../../src/app/hims/patient/patientsetup/visitnature/visitnature.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__patient_visitdetail_visitdetail_component__ = __webpack_require__("../../../../../src/app/hims/patient/visitdetail/visitdetail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__patient_patientsetup_diagnosis_diagnosis_component__ = __webpack_require__("../../../../../src/app/hims/patient/patientsetup/diagnosis/diagnosis.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__account_auth_module_guard_service__ = __webpack_require__("../../../../../src/app/account/auth/module-guard.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__account_auth_auth_guard_service__ = __webpack_require__("../../../../../src/app/account/auth/auth-guard.service.ts");
-
-
 
 
 
@@ -9265,7 +9261,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["e" /* RouterModule 
     {
         path: 'hims/patient',
         component: __WEBPACK_IMPORTED_MODULE_1__root_root_component__["a" /* RootComponent */],
-        canActivate: [__WEBPACK_IMPORTED_MODULE_28__account_auth_auth_guard_service__["a" /* AuthGuardService */], __WEBPACK_IMPORTED_MODULE_27__account_auth_module_guard_service__["a" /* ModuleGuardService */]],
+        // canActivate: [AuthGuardService, ModuleGuardService],
         children: [
             { path: 'updatepatient/:id', component: __WEBPACK_IMPORTED_MODULE_2__patient_registration_registration_component__["a" /* RegistrationComponent */] },
             { path: '', component: __WEBPACK_IMPORTED_MODULE_20__patient_home_home_component__["a" /* HomeComponent */] },
@@ -9307,7 +9303,7 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["e" /* RouterModule 
 /***/ "../../../../../src/app/hims/patient/patientsetup/diagnosis/diagnosis.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"m-content\">\n    <div class=\"row\">\n       <div class=\"col-xl-12\">\n         <div class=\"m-portlet\">\n           <div class=\"m-portlet__head\">\n             <div class=\"m-portlet__head-caption\">\n               <div class=\"m-portlet__head-title\">\n                 <h3 class=\"m-portlet__head-text\">Add Diagnosis</h3>\n               </div>\n             </div>\n           </div>\n           <div class=\"m-portlet__body\">\n             <div class=\"m-section\">\n               <div class=\"m-section__content\">\n                 <dx-data-grid id=\"gridContainer\" [dataSource]=\"PatientServiceobj?.diagnoses\" (onRowInserted)=\"AddDiagnoses($event)\"   (onRowUpdated)=\"UpdateDiagnoses($event)\" (onRowRemoved)=\"DeleteDiagnoses($event)\"> \n                     <dxo-editing mode=\"row\" [allowAdding]=\"true\" [allowUpdating]=\"true\"   [allowDeleting]=\"true\">\n                 </dxo-editing>\n                   <dxo-filter-row [visible]=\"true\"></dxo-filter-row>\n                   <dxo-header-filter [visible]=\"true\"></dxo-header-filter>\n                   <dxo-paging [pageSize]=\"5\"></dxo-paging>\n                   <dxo-pager [showPageSizeSelector]=\"true\" [allowedPageSizes]=\"[3, 5, 30]\" [showInfo]=\"true\"></dxo-pager>\n                   <dxi-column dataField=\"name\" caption=\"Name\"></dxi-column> \n                   <dxi-column dataField=\"symptoms\" caption=\"Symptoms\"></dxi-column> \n                 </dx-data-grid>\n               </div>\n             </div>\n           </div>\n         </div>\n       </div>\n     </div>\n  </div>"
+module.exports = "<div class=\"m-content\">\r\n    <div class=\"row\">\r\n       <div class=\"col-xl-12\">\r\n         <div class=\"m-portlet\">\r\n           <div class=\"m-portlet__head\">\r\n             <div class=\"m-portlet__head-caption\">\r\n               <div class=\"m-portlet__head-title\">\r\n                 <h3 class=\"m-portlet__head-text\">Add Diagnosis</h3>\r\n               </div>\r\n             </div>\r\n           </div>\r\n           <div class=\"m-portlet__body\">\r\n             <div class=\"m-section\">\r\n               <div class=\"m-section__content\">\r\n                 <dx-data-grid id=\"gridContainer\" [dataSource]=\"PatientServiceobj?.diagnoses\" (onRowInserted)=\"AddDiagnoses($event)\"   (onRowUpdated)=\"UpdateDiagnoses($event)\" (onRowRemoved)=\"DeleteDiagnoses($event)\"> \r\n                     <dxo-editing mode=\"row\" [allowAdding]=\"true\" [allowUpdating]=\"true\"   [allowDeleting]=\"true\">\r\n                 </dxo-editing>\r\n                   <dxo-filter-row [visible]=\"true\"></dxo-filter-row>\r\n                   <dxo-header-filter [visible]=\"true\"></dxo-header-filter>\r\n                   <dxo-paging [pageSize]=\"5\"></dxo-paging>\r\n                   <dxo-pager [showPageSizeSelector]=\"true\" [allowedPageSizes]=\"[3, 5, 30]\" [showInfo]=\"true\"></dxo-pager>\r\n                   <dxi-column dataField=\"name\" caption=\"Name\"></dxi-column> \r\n                   <dxi-column dataField=\"symptoms\" caption=\"Symptoms\"></dxi-column> \r\n                 </dx-data-grid>\r\n               </div>\r\n             </div>\r\n           </div>\r\n         </div>\r\n       </div>\r\n     </div>\r\n  </div>"
 
 /***/ }),
 
@@ -11607,7 +11603,7 @@ var MenuComponent = /** @class */ (function () {
 /***/ "../../../../../src/app/hims/patient/test/test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"m-portlet m-portlet--unair\">\n  <div class=\"m-portlet__head\">\n  <div class=\"m-portlet__head-caption\">\n    <div class=\"m-portlet__head-title\">\n        <span class=\"m-portlet__head-icon\">\n            <i class=\"fa fa-calendar\"></i>\n          </span> \n      <h3 class=\"m-portlet__head-text\">\n        Test \n      </h3>\n    </div>\n  </div>\n  </div>\n  <div class=\"m-portlet__body\">\n    <ul *ngFor=\"let TEST of patientVisitTest\">\n      <li>\n        {{TEST.testName}} \n       </li>\n    </ul>  \n  </div>\n  </div>\n"
+module.exports = "<div class=\"m-portlet m-portlet--unair\">\r\n  <div class=\"m-portlet__head\">\r\n  <div class=\"m-portlet__head-caption\">\r\n    <div class=\"m-portlet__head-title\">\r\n        <span class=\"m-portlet__head-icon\">\r\n            <i class=\"fa fa-calendar\"></i>\r\n          </span> \r\n      <h3 class=\"m-portlet__head-text\">\r\n        Test \r\n      </h3>\r\n    </div>\r\n  </div>\r\n  </div>\r\n  <div class=\"m-portlet__body\">\r\n    <ul *ngFor=\"let TEST of patientVisitTest\">\r\n      <li>\r\n        {{TEST.testName}} \r\n       </li>\r\n    </ul>  \r\n  </div>\r\n  </div>\r\n"
 
 /***/ }),
 

@@ -62,8 +62,8 @@
                       Patient Type
                     </label>
                     <select (change)="selectNewOrPrevious($event)" class="form-control m-input m-input--solid" formControlName="PatientType">
+                       <option value="pervious"> Pervious</option>
                       <option value="new">New</option>
-                      <option value="pervious"> Pervious</option>
                     </select>
                   </div>
                   <div class="row-fluid">
@@ -73,7 +73,7 @@
                     <label for="exampleSelect1"> </label>
                     Patient Name
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
-                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId">
+                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder=" ">
                     </dx-select-box>
                     <!-- [value]="patientForm.FirstName + ' ' +patientForm.LastName"  [value]="patientForm.value.PhoneNumber"  -->
                     <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
@@ -149,7 +149,7 @@
             <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
               <dx-data-grid id="gridContiner" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
                   <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
@@ -158,31 +158,34 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                  <dxi-column dataField="patientType" caption="Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-                <dxi-column dataField="patientId" caption="MRN #" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                <dxi-column dataField="patientId" caption="MRN #" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="patientId" caption="Patients" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                <dxi-column dataField="patientId" caption="Patients" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="lastName" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="patientId" caption="No" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                <dxi-column dataField="patientId" caption="Phone Number" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="patientId" caption="Alternet No" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                <dxi-column dataField="patientId" caption="Alternet No" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="tentativeTime" caption="Tentative Time" dataType="date" format="shortDate" [allowEditing]="false"
+                <dxi-column dataField="tentativeTime" caption="Tentative Time"dataType="datetime" format="shortTime"[allowEditing]="false"
                   [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitNatureId" caption="visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">
                   <dxo-lookup [dataSource]="PatientServiceobj?.visitNatures" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="timeIn" caption="Time In" [visible]="false" type="time"></dxi-column>
-                <dxi-column dataField="timeOut" caption="Time Out" [visible]="false" dataType="Time"></dxi-column>
-                <dxi-column dataField="remarks" caption="Remarks" [visible]="false"></dxi-column>
+                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" type="time"[visible]="false">
+                 </dxi-column>
+                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime" type="time" [visible]="false"></dxi-column>
+                <dxi-column dataField="remarks" caption="Remarks"  [visible]="false"></dxi-column>
                 <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">
                   <div class="chart-cell">
                     <dx-button (click)="getCurrentRowData(d)" data-toggle="modal" data-target="#m_modal_3" icon="add"></dx-button>
+                    <!-- button for custom visit detail form -->
+                    <!-- <dx-button (click)="getCurrentRowDataForSetTime(d)" data-toggle="modal" data-target="#m_modal_4" icon="time"></dx-button> -->
                   </div>
                 </div>
 
@@ -407,3 +410,58 @@
   </div>
 </div>
 <!-- end add visit -->
+<!-- visit detail form start -->
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="m-nav__link-icon flaticon-share"></i>
+        <span class="m-nav__link-text">
+         Visit Detail
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="appointmentTimeForm">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Time In </label>
+                <input class="form-control m-input m-input--solid" type="time" formControlName="TimeIn">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Time Out </label>      
+                <input class="form-control m-input m-input--solid" type="time" formControlName="TimeOut">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Remarks </label>
+                <input class="form-control m-input m-input--solid" 
+                  formControlName="Remarks" type="text">
+              </div>
+    
+            </div>
+            <div class="m-section">
+              <div class="m-section__content">
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="SetTimeInOut(appointmentTimeForm.value)" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- visit detail form end -->

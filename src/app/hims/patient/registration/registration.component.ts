@@ -161,11 +161,11 @@ export class RegistrationComponent implements OnInit {
     
     async onSubmit(value) {
         this.submitted = true;
-        console.log(this.patientForm.invalid);
+     
         if (this.patientForm.invalid) {
             return alert('Please Select All Required Fileds') ;
         }
-
+        console.log(this.patientForm.invalid);
     
             value.partner = this.addpartnet;
             value.patientReference = this.addReference;
@@ -252,7 +252,7 @@ export class RegistrationComponent implements OnInit {
     onAddReference(value) {
         this.referencesubmitted = true;
 
-        if (this.partnerForm.invalid) {
+        if (this.referenceForm.invalid) {
             return alert('Please Select All Required Fileds') ;
         }
 
@@ -349,7 +349,7 @@ export class RegistrationComponent implements OnInit {
 
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                this.documents = Patient.patientDocuments
+                this.documents = Patient.patientDocuments 
                 console.log(Patient)
 
                 this.patientForm.patchValue({

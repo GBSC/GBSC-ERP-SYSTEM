@@ -252,7 +252,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);
-        await this.PatientServiceobj.getappointments();
+        // await this.PatientServiceobj.getappointments();
         await this.PatientServiceobj.getPatient();
         this.par = this.PatientServiceobj.patients;
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);

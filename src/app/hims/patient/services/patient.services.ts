@@ -67,6 +67,7 @@ export class PatientService {
     public getvisitbyid : any;
     public LastestPatientVital : any;
     public currentPatientvisits : any;
+    public ActiveVisits : any;
 
     public visitNatures : any;
     //for visitnote
@@ -309,6 +310,13 @@ export class PatientService {
         GetAppointmentByVisit (id) : Observable<Appointment>
           {
               return this.http1.get<Appointment>(this.API_URL+'/appointments/GetAppointmentByVisit/'+id);       
+         }
+
+    async getActiveVisits()
+         {
+            this.ActiveVisits = await this.http1.get<Visits>(this.API_URL+'/Visits/GetActiveVisits').toPromise();
+            console.log(this.ActiveVisits);
+            return this.ActiveVisits;
          }
 
 

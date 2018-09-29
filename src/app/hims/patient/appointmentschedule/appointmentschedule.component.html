@@ -72,6 +72,18 @@
                   <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> </label>
                     Patient Name
+                      <!-- <dx-lookup class="field-customization" [items]="PatientServiceobj?.patients"
+            [displayExpr]="getDisplayExpr"
+            valueExpr="patientId"
+            [value]="PatientServiceobj?.patients[0].patientId"
+            title="Select Patient"
+            fieldTemplate="field">
+            <div *dxTemplate="let item of 'field'">
+                <div class="custom-field">
+                     <div> {{item.firstName }} {{item.lastName}}</div>
+                </div>
+            </div>
+        </dx-lookup> -->
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
                       *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder=" ">
                     </dx-select-box>

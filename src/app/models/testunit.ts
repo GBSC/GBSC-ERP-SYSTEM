@@ -1,5 +1,5 @@
-export class TestUnit{
-    
-    testUnitId : number;
-    unit : string;
+export class TestUnit {
+
+    testUnitId: number;
+    unit: string;
 }

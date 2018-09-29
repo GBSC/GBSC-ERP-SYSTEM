@@ -55,7 +55,7 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule, 
+        InventorysystemModule,
         SuperadminModule,
         SystemAdministrationModule,
         DashboardModule,

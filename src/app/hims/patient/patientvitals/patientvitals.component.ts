@@ -6,7 +6,7 @@ import { Patient } from '../../../models/patient';
 
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 
 
@@ -25,7 +25,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
-    constructor(private Location : Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    constructor(private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],
@@ -54,7 +54,8 @@ export class PatientvitalsComponent implements OnInit {
             this.id = +params['id'];
 
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
-                this.Patient = Patient;});
+                this.Patient = Patient;
+            });
             console.log(x);
         });
 
@@ -69,11 +70,11 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm.value.VisitId = this.visitid;
 
         let x = await this.PatientServiceobj.AddPatientVital(value);
-         this.router.navigate(['/hims/patient/visits/' + this.patientId]);
+        this.router.navigate(['/hims/patient/visits/' + this.patientId]);
         console.log(x);
 
         console.log(this.PatientVitaLForm.value);
-         this.backClicked()
+        this.backClicked()
         return x;
 
     }

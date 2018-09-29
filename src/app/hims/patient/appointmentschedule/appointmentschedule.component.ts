@@ -46,7 +46,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
-    public tests    : any;
+    public tests: any;
     public currentpatient: any;
     public e: any;
 
@@ -58,8 +58,8 @@ export class AppointmentscheduleComponent implements OnInit {
     public date: any;
     public visitNatures: any;
 
-    private getTestbyId : any= [] ; 
-    public gettestName : any = [] ; 
+    private getTestbyId: any = [];
+    public gettestName: any = [];
 
 
 
@@ -142,7 +142,7 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
-        
+
 
 
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
@@ -180,35 +180,35 @@ export class AppointmentscheduleComponent implements OnInit {
 
     // }
 
-    
+
     addrange() {
-console.log(this.tests);
+        console.log(this.tests);
 
-       let { value } = this.appointmenttestForm;
- 
-      this.tests.forEach(element => {
-            this.getTestbyId.push(this.tests.find(t=>t.testId === element.testId));
-          });
+        let { value } = this.appointmenttestForm;
 
-
+        this.tests.forEach(element => {
+            this.getTestbyId.push(this.tests.find(t => t.testId === element.testId));
+        });
 
 
 
 
-         console.log(this.getTestbyId);
- 
+
+
+        console.log(this.getTestbyId);
+
         let doc = {
             TestId: value.TestId,
-            TestName : this.getTestbyId.testName
+            TestName: this.getTestbyId.testName
 
         }
         this.Tests.push(doc);
         console.log(this.Tests);
         //this.appointmenttestForm.reset();
-      
+
 
         // new work 
-    
+
 
 
     }
@@ -282,9 +282,9 @@ console.log(this.tests);
         console.log(value);
         delete this.patientForm.value.patientId
         this.patientIdIs = await this.PatientServiceobj.addPatient(value);
-        popup.style.display = 'none'; 
+        popup.style.display = 'none';
         console.log(this.PatientServiceobj.patientID);
- 
+
         let x = this.PatientServiceobj.patientID;
         console.log(x)
         return this.patientIdIs;
@@ -304,15 +304,14 @@ console.log(this.tests);
 
     async addApointment(value, cid) {
 
-        if(this.appointmentForm.value.PatientId === '')
-        {
-              this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
-         }
-      
+        if (this.appointmentForm.value.PatientId === '') {
+            this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+        }
+
         console.log(cid.value);
         console.log(value);
-      
-        
+
+
 
         this.appointmentForm.value.ConsultantId = cid.value;
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
@@ -391,7 +390,7 @@ console.log(this.tests);
 
     hidepopup(popup) {
         console.log('popup')
-       popup.style.display = 'none'; 
+        popup.style.display = 'none';
     }
 
 }

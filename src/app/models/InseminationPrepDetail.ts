@@ -1,32 +1,32 @@
-export class InseminationPrepDetail{
+export class InseminationPrepDetail {
 
-    InseminationPrepDetailId : number;
+    InseminationPrepDetailId: number;
 
-    InseminationPrepDate:Date;
-    TreatmentNumber :string;
-    PatientId  : number;
-    ConsultantId  : number;
-    CycleNumber:string;
-    TreatmentType:string;
-    PrepFor:string;
-    CollectionNumber:string;
-    CollectionDate:Date;
-    SampleType:string;
-    ProcedureNumber:string;
-    DetailInseminationDate:Date;
-    Method:string;
-    Volume:string;
-    FinalVolume : string;
-    TotalCount:string;
-    MotileCount:string;
-    RapidLinearProgression:string;
-    MobileCount:string;
-    LinearProgression:string;
-    TimeCompleted:string;
-    MobileCountUnit:string;
-    NonLinearProgression:string;
-    Comments:string;
-    SpecialComment:string;
+    InseminationPrepDate: Date;
+    TreatmentNumber: string;
+    PatientId: number;
+    ConsultantId: number;
+    CycleNumber: string;
+    TreatmentType: string;
+    PrepFor: string;
+    CollectionNumber: string;
+    CollectionDate: Date;
+    SampleType: string;
+    ProcedureNumber: string;
+    DetailInseminationDate: Date;
+    Method: string;
+    Volume: string;
+    FinalVolume: string;
+    TotalCount: string;
+    MotileCount: string;
+    RapidLinearProgression: string;
+    MobileCount: string;
+    LinearProgression: string;
+    TimeCompleted: string;
+    MobileCountUnit: string;
+    NonLinearProgression: string;
+    Comments: string;
+    SpecialComment: string;
 
-    InseminationPrepId : number;
+    InseminationPrepId: number;
 }

@@ -13,16 +13,16 @@ export class LeavepolicyComponent implements OnInit {
 
     public groups: any = [];
     public leavePolicyForm: any;
-    constructor(public fb: FormBuilder,public leavesetupservice:LeaveSetupService, public empservice:EmployeeService, public router: Router) { }
+    constructor(public fb: FormBuilder, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
 
         await this.leavesetupservice.getAllleaveyear();
         let leaveyear = this.leavesetupservice.leaveyear;
-        
+
         await this.leavesetupservice.getAllleavetype();
         let levetype = this.leavesetupservice.leavetype;
-        
+
         await this.leavesetupservice.getAllleavedaytype();
         let levedaytype = this.leavesetupservice.leavedaytype;
 
@@ -65,10 +65,10 @@ export class LeavepolicyComponent implements OnInit {
             IsActive: ['', Validators],
             ApplicationLimit: ['', Validators],
             PrintOnPaySlip: ['', Validators]
-           
-          }); 
 
- 
+        });
+
+
         this.groups = [
             { checked: false, index: '01', name: 'N/A' },
             { checked: true, index: '02', name: 'N/A' },

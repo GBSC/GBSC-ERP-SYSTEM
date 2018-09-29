@@ -10,7 +10,7 @@ export class ModuleGuardService implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         console.log('it worked');
         let module = state.url.split('/')[1];
-        console.log(module);    
+        console.log(module);
         if (this.accountService.checkIfModuleIsAccessible(module)) {
             return true;
         } else {

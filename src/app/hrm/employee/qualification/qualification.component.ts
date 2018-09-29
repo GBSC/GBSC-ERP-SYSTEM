@@ -29,14 +29,14 @@ export class EmployeeQualificationComponent implements OnInit {
         // this.employee.university.Name = e.target.value;
     }
 
-     deleteFieldValue(index) {
+    deleteFieldValue(index) {
         this.fieldArray.splice(index, 1);
     }
 
     constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
 
     async ngOnInit() {
- 
+
 
         await this.SetupServiceobj.getAllqualifications();
         let qualifctn = this.SetupServiceobj.qualification;

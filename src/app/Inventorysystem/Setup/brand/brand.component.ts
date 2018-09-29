@@ -9,10 +9,10 @@ import { Brand } from '../../models/Setup/Brand';
 })
 
 export class BrandComponent implements OnInit {
-    private Brands : any;
-    private newbrand : Brand;
-    
-    constructor(private InventoryService : InventorysystemService) {
+    private Brands: any;
+    private newbrand: Brand;
+
+    constructor(private InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

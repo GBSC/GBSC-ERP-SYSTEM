@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./tax.component.scss']
 })
 export class TaxComponent implements OnInit {
-    private Taxes : any;
-    private UpdatedModel : any;
+    private Taxes: any;
+    private UpdatedModel: any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private InventoryService: InventorysystemService) {
 
     }
 
@@ -23,7 +23,7 @@ export class TaxComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateTax() {

@@ -12,12 +12,12 @@ import { SetupService } from './hrm/hrmsSetup/services/setup.service';
 import { EmployeeService } from './hrm/employee/services/employee.service';
 import { LeaveService } from './hrm/leave/leave.service';
 import { PayrollService } from './payroll/services/payroll.service';
- 
+
 import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
-import { HrmsService } from './hrm/hrmsSetup/services/hrms.service'; 
+import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
-import { HttpClientModule } from '@angular/common/http';   
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -28,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ],
     imports: [
         LayoutModule,
-        BrowserModule, 
+        BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         ThemeRoutingModule,
@@ -38,7 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [ScriptLoaderService, SetupService, EmployeeService,LeaveSetupService, LeaveService, HrmsService],
+    providers: [ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

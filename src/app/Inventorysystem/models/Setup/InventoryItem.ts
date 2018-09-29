@@ -2,7 +2,7 @@ import { Inventory } from "./Inventory";
 
 export interface InventoryItem {
     inventoryItemId: number,
-    name : string,
+    name: string,
     itemCode: string,
     description: string,
     unitPrice: number,
@@ -21,5 +21,5 @@ export interface InventoryItem {
     productTypeId: number,
     inventoryItemCategoryId: number,
     packageTypeId: number,
-    inventory : Inventory
+    inventory: Inventory
 }

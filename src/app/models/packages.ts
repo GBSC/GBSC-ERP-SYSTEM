@@ -1,6 +1,6 @@
-export interface Package{
+export interface Package {
 
-    PackageId : number,
-    PackageCode : string,
-    PackageName : string
+    PackageId: number,
+    PackageCode: string,
+    PackageName: string
 }

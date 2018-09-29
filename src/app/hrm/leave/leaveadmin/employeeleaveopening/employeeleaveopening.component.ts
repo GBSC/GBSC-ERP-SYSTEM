@@ -13,25 +13,25 @@ import { LeaveSetupService } from '../../leaveSetup.service';
 export class EmployeeleaveopeningComponent implements OnInit {
     public leaveopeningForm: any;
     public leaveopendetailForm: any;
-  
-    constructor(public fb: FormBuilder,public leaveservice:LeaveService,public leavesetupservice:LeaveSetupService, public empservice:EmployeeService, public router: Router) { }
+
+    constructor(public fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
 
-        
+
         this.leaveopeningForm = this.fb.group({
             Employee: ['', Validators.required],
             LeaveYear: ['', Validators.required],
             Remarks: ['', Validators.required]
-           
-          }); 
+
+        });
 
 
-          this.leaveopendetailForm = this.fb.group({
-          LeaveType: ['', Validators.required],
-          Quantity: ['', Validators.required],
-          Expiry: ['', Validators.required] 
-          });
+        this.leaveopendetailForm = this.fb.group({
+            LeaveType: ['', Validators.required],
+            Quantity: ['', Validators.required],
+            Expiry: ['', Validators.required]
+        });
 
         await this.empservice.GetAllEmployees();
         let employee = this.empservice.employeereg;
@@ -48,7 +48,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
     }
 
 
-    async addleaveopeningordetail(opening,detail){
+    async addleaveopeningordetail(opening, detail) {
 
         console.log(opening.data);
         this.leaveservice.addLeaveopening(opening.data);

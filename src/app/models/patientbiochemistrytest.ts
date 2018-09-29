@@ -1,22 +1,22 @@
 import { BioChemistryTestDetail } from "./biochemistrytestdetail";
 
-export class PatientBiochemistryTest{
+export class PatientBiochemistryTest {
 
-    PatientBioChemistryTestId : number;
+    PatientBioChemistryTestId: number;
 
-    PatientId : number;
+    PatientId: number;
 
-    ConsultantId : number;
+    ConsultantId: number;
 
-    IsRandon : boolean;
+    IsRandon: boolean;
 
-    IsOnTreatment : boolean;
+    IsOnTreatment: boolean;
 
-    TreatmentNumber : string;
+    TreatmentNumber: string;
 
-    CycleNumber : string;
+    CycleNumber: string;
 
-    PackageId : string;
+    PackageId: string;
 
-    BioChemistryTestDetails : BioChemistryTestDetail[];
+    BioChemistryTestDetails: BioChemistryTestDetail[];
 }

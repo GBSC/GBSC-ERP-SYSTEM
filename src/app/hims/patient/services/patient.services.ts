@@ -11,9 +11,9 @@ import { Visits } from '../../../models/visits'
 import { PatientVital } from '../../../models/patientvitals';
 import { VisitNature } from '../../../models/VisitNature';
 import { VisitNote } from '../../../models/visitnote';
-import {Diagnoses} from  '../../../models/diagnoses'
-import {VisitDiagnosis} from '../../../models/visitdiagnoses';
-import {VisitTest} from  '../../../models/visittest'
+import { Diagnoses } from '../../../models/diagnoses'
+import { VisitDiagnosis } from '../../../models/visitdiagnoses';
+import { VisitTest } from '../../../models/visittest'
 
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -30,16 +30,16 @@ export class PatientService {
 
     public patient;
     public currentPatient: any;
-    public SearchPatientbyname : any;
-    public patientData : any ;
-    public patientDocumentbyId : any;
+    public SearchPatientbyname: any;
+    public patientData: any;
+    public patientDocumentbyId: any;
 
     public consultant: any;
     public patients: any;
     public patientAllFormData: any = {};
     public tryImgSrc: any;
     public images: any = [];
-    public patientID : any;
+    public patientID: any;
 
 
     // <for appointmnet>
@@ -62,18 +62,18 @@ export class PatientService {
     public package: any;
     //for Visits control
 
-    public visits : any;
-    public visitid : any;
-    public getvisitbyid : any;
-    public LastestPatientVital : any;
-    public currentPatientvisits : any;
+    public visits: any;
+    public visitid: any;
+    public getvisitbyid: any;
+    public LastestPatientVital: any;
+    public currentPatientvisits: any;
 
-    public visitNatures : any;
+    public visitNatures: any;
     //for visitnote
-    public vistnote : any;
+    public vistnote: any;
 
     //for diagnoses
-    public diagnoses : any;
+    public diagnoses: any;
 
 
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/hims/api';
@@ -94,15 +94,15 @@ export class PatientService {
     async addPatient(patient: Patient) {
         this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
         console.log(this.patientID)
-        return  this.patientID ;
-         
+        return this.patientID;
+
     }
 
-    async getpatientForupdating(value){
-        this.patientData =  await value
+    async getpatientForupdating(value) {
+        this.patientData = await value
         console.log(this.patientData)
-        return  this.patientData 
-        
+        return this.patientData
+
     }
 
     // async getPatientbyid() {
@@ -118,8 +118,8 @@ export class PatientService {
 
     async updatePatient(patient) {
         console.log(patient)
-      let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
-      return x;
+        let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`, patient).toPromise();
+        return x;
     }
 
 
@@ -129,50 +129,48 @@ export class PatientService {
         return x;
     }
 
-     addDocument(f : FormData, id){
- 
-        this.http1.post(this.API_URL+'/patients/AddPatientDocument/'+id, f).subscribe( res => {
+    addDocument(f: FormData, id) {
+
+        this.http1.post(this.API_URL + '/patients/AddPatientDocument/' + id, f).subscribe(res => {
             console.log(res);
         });
-        
+
         //return x;
     }
 
-    getPatientDocumentByPatientId(id): Observable<Document>{
-        console.log(this.API_URL1+'/patients/GetPatientDocumentsByPatientId/'+id)
-        return  this.http1.get<Document>(this.API_URL+'/patients/GetPatientDocumentsByPatientId/'+id);
+    getPatientDocumentByPatientId(id): Observable<Document> {
+        console.log(this.API_URL1 + '/patients/GetPatientDocumentsByPatientId/' + id)
+        return this.http1.get<Document>(this.API_URL + '/patients/GetPatientDocumentsByPatientId/' + id);
 
     }
 
-    async deleteDocument(id){
-        let x = await this.http1.delete(this.API_URL+'/patients/DeletePatientDocument/'+id).toPromise();
+    async deleteDocument(id) {
+        let x = await this.http1.delete(this.API_URL + '/patients/DeletePatientDocument/' + id).toPromise();
         console.log(`this.API_URL+'/patients/DeletePatientDocument/'+id`)
         console.log(x);
         return x;
     }
 
-    async updatePatientRef(Reference :Reference)
-    {
-      let x =  await this.http1.put(this.API_URL+'/patients/UpdatePatientReference/',Reference).toPromise();
-      console.log(x);
-      return x;
-    }
-
-    async addPatientRef(Reference :Reference)
-    {
-      let x =  await this.http1.post(this.API_URL+'/patients/AddPatientReference/',Reference).toPromise();
-      console.log(x);
-      return x;
-    }
-
-    async updatePatientSpouse(Spouse : Spouse){
-        let x =  await this.http1.put(this.API_URL+'/patients/UpdatePartner/',Spouse).toPromise();
+    async updatePatientRef(Reference: Reference) {
+        let x = await this.http1.put(this.API_URL + '/patients/UpdatePatientReference/', Reference).toPromise();
         console.log(x);
         return x;
     }
 
-    async addPatientSpouse(Spouse : Spouse){
-        let x =  await this.http1.post(this.API_URL+'/patients/AddPartner/',Spouse).toPromise();
+    async addPatientRef(Reference: Reference) {
+        let x = await this.http1.post(this.API_URL + '/patients/AddPatientReference/', Reference).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async updatePatientSpouse(Spouse: Spouse) {
+        let x = await this.http1.put(this.API_URL + '/patients/UpdatePartner/', Spouse).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async addPatientSpouse(Spouse: Spouse) {
+        let x = await this.http1.post(this.API_URL + '/patients/AddPartner/', Spouse).toPromise();
         console.log(x);
         return x;
     }
@@ -292,101 +290,96 @@ export class PatientService {
         return this.visits;
     }
 
-       Getvisit (id) : Observable<Visits>{
-          return this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id);       
-        }
+    Getvisit(id): Observable<Visits> {
+        return this.http1.get<Visits>(this.API_URL + '/Visits/GetVisit/' + id);
+    }
 
-        GetAppointmentByVisit (id) : Observable<Appointment>
-          {
-              return this.http1.get<Appointment>(this.API_URL+'/appointments/GetAppointmentByVisit/'+id);       
-         }
+    GetAppointmentByVisit(id): Observable<Appointment> {
+        return this.http1.get<Appointment>(this.API_URL + '/appointments/GetAppointmentByVisit/' + id);
+    }
 
 
-   async getVisitId(id){
-        this.getvisitbyid = await this.http1.get<Visits>(this.API_URL+'/Visits/GetVisit/'+id).toPromise();
+    async getVisitId(id) {
+        this.getvisitbyid = await this.http1.get<Visits>(this.API_URL + '/Visits/GetVisit/' + id).toPromise();
         console.log(this.getvisitbyid);
         return this.getvisitbyid;
     }
-    
-    async AddVisits(id)
-    {
-        this.visitid = await this.http1.post(this.API_URL+'/Visits/AddVisit/', {patientId: id}).toPromise()
-        console.log(this. visitid);        
-        return this. visitid;        
+
+    async AddVisits(id) {
+        this.visitid = await this.http1.post(this.API_URL + '/Visits/AddVisit/', { patientId: id }).toPromise()
+        console.log(this.visitid);
+        return this.visitid;
     }
-    
-    async UpdateVisits(visits : Visits)
-    {
-        let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`,visits).toPromise();
+
+    async UpdateVisits(visits: Visits) {
+        let x = await this.http1.put(`${this.API_URL}/Visits/UpdateVisit/`, visits).toPromise();
         console.log(x);
         return x;
 
     }
-    
-    async DeleteVisits(id)
-    {
-        let x = await this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
+
+    async DeleteVisits(id) {
+        let x = await this.http1.delete(this.API_URL + '/Visits/DeleteVisit/' + id).toPromise();
         console.log(x);
         return x;
 
     }
-    
 
-    async endVisit(id, visits : Visits ){
 
-        let x = await this.http1.put(this.API_URL+'/Visits/EndVisit/'+id, visits).toPromise()
+    async endVisit(id, visits: Visits) {
+
+        let x = await this.http1.put(this.API_URL + '/Visits/EndVisit/' + id, visits).toPromise()
         console.log(x);
         return x;
     }
 
-    async addvisitDiagnosis(visitDiagnosis : VisitDiagnosis){
-        let x = await this.http1.post(this.API_URL+'/visits/AddVisitDiagnoses/',visitDiagnosis).toPromise();
+    async addvisitDiagnosis(visitDiagnosis: VisitDiagnosis) {
+        let x = await this.http1.post(this.API_URL + '/visits/AddVisitDiagnoses/', visitDiagnosis).toPromise();
         console.log(x);
         return x;
     }
 
-    async addvisitTest(visitTest : VisitTest){
-        let x = await this.http1.post(this.API_URL+'/visits/AddVisitTests/',visitTest).toPromise();
+    async addvisitTest(visitTest: VisitTest) {
+        let x = await this.http1.post(this.API_URL + '/visits/AddVisitTests/', visitTest).toPromise();
         console.log(x);
         return x;
     }
-    
-    
+
+
     async GetPatientVitals() {
         this.PatientVitals = await this.http1.get<PatientVital>(this.API_URL + '/Visits/GetPatientVitals').toPromise();
         console.log(this.PatientVitals);
         return this.PatientVitals
     }
-    
-    GetLastestPatientVital(id) : Observable<PatientVital>{
+
+    GetLastestPatientVital(id): Observable<PatientVital> {
         // `${this.API_URL}/patients/GetLastPatientVital/${this.currentPatient.patientId}`
-        return  this.http1.get<PatientVital>(this.API_URL+'/patients/GetLastPatientVital/'+id);
+        return this.http1.get<PatientVital>(this.API_URL + '/patients/GetLastPatientVital/' + id);
     }
 
-    GetPatientLastestDiagnosis(id):  Observable<VisitDiagnosis>{
-        return  this.http1.get<VisitDiagnosis>(this.API_URL+'/patients/GetPatientLastestDiagnosis/'+id);
+    GetPatientLastestDiagnosis(id): Observable<VisitDiagnosis> {
+        return this.http1.get<VisitDiagnosis>(this.API_URL + '/patients/GetPatientLastestDiagnosis/' + id);
     }
 
-    getpatientLatestTest(id): Observable <VisitTest>{
-        return this.http1.get<VisitTest>(this.API_URL+'/patients/GetPatientLastestTest/'+id);
+    getpatientLatestTest(id): Observable<VisitTest> {
+        return this.http1.get<VisitTest>(this.API_URL + '/patients/GetPatientLastestTest/' + id);
     }
 
-    getpatient (id) : Observable<Patient>
-    {
-        return this.http1.get<Patient>(this.API_URL+'/Patients/GetPatient/'+id);       
+    getpatient(id): Observable<Patient> {
+        return this.http1.get<Patient>(this.API_URL + '/Patients/GetPatient/' + id);
     }
 
-     GetPatientVisits(id): Observable<Visits> {
-        return this.http1.get<Visits>(this.API_URL+'/Patients/GetPatientVisits/'+id);       
+    GetPatientVisits(id): Observable<Visits> {
+        return this.http1.get<Visits>(this.API_URL + '/Patients/GetPatientVisits/' + id);
     }
- 
-    
+
+
     // async GetPatientVisits()
     // {
     //     this.currentPatientvisits = await this.http1.get<Visits>(`${this.API_URL}/patients/GetPatientVisits/${this.currentPatient.patientId}`).toPromise();
     //     console.log(this.currentPatientvisits);
     //     return this.currentPatientvisits;
-        
+
     // }
 
 
@@ -408,29 +401,29 @@ export class PatientService {
         return x;
     }
 
-    async getVisitNote(){
-        this.vistnote = await this.http1.get<VisitNote>(this.API_URL+'/Visits/GetVisitNotes/').toPromise();
+    async getVisitNote() {
+        this.vistnote = await this.http1.get<VisitNote>(this.API_URL + '/Visits/GetVisitNotes/').toPromise();
         console.log(this.vistnote);
         return this.vistnote;
     }
 
-    async addVisitNote(VisitNote : VisitNote){
-        let x  = this.http1.post(this.API_URL+'/Visits/AddVisitNote/',VisitNote).toPromise();
+    async addVisitNote(VisitNote: VisitNote) {
+        let x = this.http1.post(this.API_URL + '/Visits/AddVisitNote/', VisitNote).toPromise();
         console.log(x);
         return x;
     }
 
-    async updateVisitNote(VisitNote : VisitNote){
-        let x = this.http1.put(this.API_URL+'/Visits/UpdateVisitNote/',VisitNote).toPromise();
+    async updateVisitNote(VisitNote: VisitNote) {
+        let x = this.http1.put(this.API_URL + '/Visits/UpdateVisitNote/', VisitNote).toPromise();
         console.log(x);
         return x;
     }
 
-    async deleteVisitNote(id){
+    async deleteVisitNote(id) {
 
-    let  x = this.http1.delete(this.API_URL+'/Visits/DeleteVisit/'+id).toPromise();
-    console.log(x);
-    return x;
+        let x = this.http1.delete(this.API_URL + '/Visits/DeleteVisit/' + id).toPromise();
+        console.log(x);
+        return x;
     }
 
     async GetVisitNatures() {
@@ -468,32 +461,32 @@ export class PatientService {
 
     // //     console.log(currentPatient);
     // }
-   async SearchPatient(patient: Patient){
-        this.SearchPatientbyname = await this.http1.post(this.API_URL+'/patients/SearchPatient/',patient).toPromise();
-        console.log( this.SearchPatientbyname);
+    async SearchPatient(patient: Patient) {
+        this.SearchPatientbyname = await this.http1.post(this.API_URL + '/patients/SearchPatient/', patient).toPromise();
+        console.log(this.SearchPatientbyname);
         return this.SearchPatientbyname;
     }
 
     async getDiagnoses() {
-        this.diagnoses = await this.http1.get<Diagnoses>(this.API_URL+'/HimsSetup/GetDiagnoses/').toPromise();
+        this.diagnoses = await this.http1.get<Diagnoses>(this.API_URL + '/HimsSetup/GetDiagnoses/').toPromise();
         console.log(this.diagnoses);
         return this.diagnoses;
     }
 
-    async addDiagnoses(diagnoses : Diagnoses){
-        let x = await this.http1.post(this.API_URL+'/HimsSetup/AddDiagnosis/',diagnoses).toPromise();
+    async addDiagnoses(diagnoses: Diagnoses) {
+        let x = await this.http1.post(this.API_URL + '/HimsSetup/AddDiagnosis/', diagnoses).toPromise();
         console.log(x);
         return x;
     }
 
-    async updateDiagnoses(diagnoses : Diagnoses){
-        let x = await this.http1.put(this.API_URL+'/HimsSetup/UpdateDiagnosis/',diagnoses).toPromise();
+    async updateDiagnoses(diagnoses: Diagnoses) {
+        let x = await this.http1.put(this.API_URL + '/HimsSetup/UpdateDiagnosis/', diagnoses).toPromise();
         console.log(x);
         return x;
     }
 
-    async deleteDiagnoses(id){
-        let x = await this.http1.delete(this.API_URL+'/HimsSetup/DeleteDiagnosis/'+id).toPromise();
+    async deleteDiagnoses(id) {
+        let x = await this.http1.delete(this.API_URL + '/HimsSetup/DeleteDiagnosis/' + id).toPromise();
         console.log(x);
         return x;
     }

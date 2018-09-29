@@ -16,42 +16,42 @@ export class ProfileComponent implements OnInit {
 
     public patientObj;
     public currentPatient: {};
-            id: number;
-    public Patient : any ={};
+    id: number;
+    public Patient: any = {};
 
-    public visitnature :any ;
+    public visitnature: any;
     public vistnatr = [];
 
 
-    constructor(private PatientServiceobj: PatientService, private Router : Router,  private route : ActivatedRoute) { }
+    constructor(private PatientServiceobj: PatientService, private Router: Router, private route: ActivatedRoute) { }
 
 
- async ngOnInit() {
-       // this.currentPatient = this.PatientServiceobj.currentPatient;
-       await this.PatientServiceobj.GetVisitNatures();
+    async ngOnInit() {
+        // this.currentPatient = this.PatientServiceobj.currentPatient;
+        await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
 
-    this.route.params.subscribe(params => {
-        this.id = +params['id'];
-       let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
-           this.Patient = Patient;
-           console.log(this.visitnature)
+        this.route.params.subscribe(params => {
+            this.id = +params['id'];
+            let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
+                this.Patient = Patient;
+                console.log(this.visitnature)
 
-           this.vistnatr = this.visitnature.find(t=>t.visitNatureId === Patient.visitNatureId);
-         
-           console.log(Patient)
+                this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);
+
+                console.log(Patient)
+            });
+
         });
-       
-    });
 
-}
+    }
 
 
-async editPatient(value){
-    console.log(value)
-    this.Router.navigate(['/hims/patient/updatepatient/'+this.id]);
-    await this.PatientServiceobj.getpatientForupdating(value)
-    console.log(value)
-}
+    async editPatient(value) {
+        console.log(value)
+        this.Router.navigate(['/hims/patient/updatepatient/' + this.id]);
+        await this.PatientServiceobj.getpatientForupdating(value)
+        console.log(value)
+    }
 
 }

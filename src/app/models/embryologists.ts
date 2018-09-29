@@ -1,5 +1,5 @@
-export interface Embryologists{
+export interface Embryologists {
 
-    EmbryologistId : number,
-    Description : string,
+    EmbryologistId: number,
+    Description: string,
 }

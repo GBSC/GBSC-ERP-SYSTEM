@@ -18,13 +18,13 @@ export class DeliveryNoteComponent implements OnInit {
     constructor(private InventoryService: InventorysystemService) {
 
     }
-   
+
     async ngOnInit() {
         this.DeliveryOrder = await this.InventoryService.GetDeliveryOrders();
         this.Transport = await this.InventoryService.GetTransports();
         this.SalesInvoice = await this.InventoryService.GetSalesInvoices();
         this.DeliveryNote = await this.InventoryService.GetDeliveryNotes();
-        
+
     }
 
     async AddDeliveryNote(value) {

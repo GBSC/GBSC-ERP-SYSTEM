@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./inventory-item-category.component.scss']
 })
 export class InventoryItemCategoryComponent implements OnInit {
-    private ItemCategories : any;
-    private UpdatedModel : any;
+    private ItemCategories: any;
+    private UpdatedModel: any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private InventoryService: InventorysystemService) {
 
     }
 
@@ -28,7 +28,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async DeleteItemCategory(value) {

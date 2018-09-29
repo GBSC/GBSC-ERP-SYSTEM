@@ -120,7 +120,7 @@ export class EmployeeHomeComponent implements OnInit {
                 break;
 
             case 'Employee Qualification':
-            // alert('ajksdfljkasdklfj');
+                // alert('ajksdfljkasdklfj');
                 await this.employeeService.adduserUniversities();
                 break;
 

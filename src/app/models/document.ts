@@ -1,8 +1,8 @@
 
 export class Document {
     //DocumentId: number;
- DocumentName: string;
-   Remarks: string;
+    DocumentName: string;
+    Remarks: string;
     FilePath: string;
-    PatientId : number;
+    PatientId: number;
 }

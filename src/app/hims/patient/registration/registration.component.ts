@@ -349,7 +349,7 @@ export class RegistrationComponent implements OnInit {
 
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                this.documents = Patient.patientDocuments 
+                // this.documents = Patient.patientDocuments 
                 console.log(Patient)
 
                 this.patientForm.patchValue({

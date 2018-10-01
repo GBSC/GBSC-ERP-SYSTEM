@@ -42,7 +42,7 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> RegCity </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity" formControlName="RegCity">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || 'loading'" formControlName="RegCity">
 										<option value="Karaci">Karaci</option>
 										<option value="Multan">Multan</option>
 									</select>
@@ -54,7 +54,7 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Gender </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || 'loading'" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
 										<option value="Male">Male</option>
 										<option value="Female">Female</option>
 									</select>
@@ -66,7 +66,7 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> First Name </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName" formControlName="FirstName"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName  || ''" formControlName="FirstName"
 									 name="FirstName" type="text" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
 									<div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
 										<div *ngIf="f.FirstName.errors.required">First Named is require</div>
@@ -74,12 +74,12 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> MiddleName </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.middleName" formControlName="MiddleName"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.middleName || ''" formControlName="MiddleName"
 									 name="MiddleName" type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> LastName </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName" formControlName="LastName"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName || ''" formControlName="LastName"
 									 name="LastName" type="text" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
 									<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
 										<div *ngIf="f.LastName.errors.required">Last Name is require</div>
@@ -97,17 +97,17 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Place Of Birth </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth" formControlName="PlaceOfBirth"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth || ''" formControlName="PlaceOfBirth"
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Occupation </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.occupation" formControlName="Occupation"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.occupation || ''" formControlName="Occupation"
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> CNIC </label>
-									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic"
+									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic || ''"
 									 formControlName="NIC" (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
 									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
 										<div *ngIf="f.NIC.errors.required">NIC is require</div>
@@ -117,7 +117,7 @@
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Phone Number </label>
 									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" (keypress)="keyPress($event)"
-									 [value]="Patient?.phoneNumber" formControlName="PhoneNumber" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
+									 [value]="Patient?.phoneNumber || ''" formControlName="PhoneNumber" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
 									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
 										<div *ngIf="f.PhoneNumber.errors.required">PhoneNumber is require</div>
 										<div *ngIf="f.PhoneNumber.errors.minlength">PhoneNumber must be at least 11 characters</div>
@@ -127,29 +127,29 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Remarks </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks" formControlName="Remarks"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks || ''" formControlName="Remarks"
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Residence Address </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.residenceAddress"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.residenceAddress || ''"
 									 formControlName="ResidenceAddress" type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Office Address </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeAddress" formControlName="OfficeAddress"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeAddress  || ''" formControlName="OfficeAddress"
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Office Telephone </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeTel" formControlName="OfficeTel"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeTel  || ''" formControlName="OfficeTel"
 									 type="text">
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Country </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.country" formControlName="Country"
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.country  || ''" formControlName="Country"
 									 [ngClass]="{ 'is-invalid': submitted && f.Country.errors }">
 										<option value="Pakistan">Pakistan</option>
 										<option value="India">India</option>
@@ -162,7 +162,7 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> City </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.city" formControlName="City"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.city  || ''" formControlName="City"
 									 type="text" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
 									<div *ngIf="submitted && f.City.errors" class="invalid-feedback">
 										<div *ngIf="f.City.errors.required">Please Enter City</div>
@@ -170,29 +170,29 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> State </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.state" formControlName="State"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.state  || ''" formControlName="State"
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> PostalCode </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.postalCode" formControlName="PostalCode"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.postalCode  || ''" formControlName="PostalCode"
 									 type="text">
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Authorized Person </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.authorizedPerson"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.authorizedPerson  || ''"
 									 formControlName="AuthorizedPerson" type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Private Patient Cons </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privatePatientCons"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privatePatientCons  || ''"
 									 formControlName="PrivatePatientCons" type="text">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Private Hospital </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privateHospital"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privateHospital  || ''"
 									 formControlName="PrivateHospital" type="text">
 								</div>
 							</div>

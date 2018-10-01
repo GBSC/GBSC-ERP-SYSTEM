@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Company } from '../systemadministration/model/company';
-import { Module } from '../systemadministration/model/module';
+import { Company } from '../hrm/model/company';
+import { Module } from '../hrm/model/module';
+
 
 @Injectable()
 export class SuperadminserviceService {

@@ -6,7 +6,6 @@ import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
-import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
 import { PayrollModule } from '../payroll/payroll.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { AccountModule } from '../account/account.module';
@@ -59,7 +58,6 @@ const routes: Routes = [
         FinanceModule,
         InventorysystemModule,
         SuperadminModule,
-        SystemAdministrationModule,
         DashboardModule,
         HrmModule,
         PayrollModule,

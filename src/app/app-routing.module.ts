@@ -7,7 +7,6 @@ import { PayrollModule } from '../app/payroll/payroll.module';
 import { AccountModule } from '../app/account/account.module';
 import { FinanceModule } from '../app/finance/finance.module';
 import { LabModule } from '../app/hims/lab/lab.module'
-import { SystemAdministrationModule } from '../app/systemadministration/systemadministration.module';
 
 
 

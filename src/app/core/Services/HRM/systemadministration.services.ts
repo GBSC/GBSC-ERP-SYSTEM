@@ -2,13 +2,13 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { Company } from '../../../systemadministration/model/company';
-import { Branch } from '../../../systemadministration/model/branch';
-import { Department } from '../../../systemadministration/model/department';
-import { Role } from '../../../systemadministration/model/role';
-import { Feature } from '../../../systemadministration/model/feature';
-import { Module } from '../../../systemadministration/model/module';
 import { ApiService } from '../api.service';
+import { Company } from '../../../hrm/model/company';
+import { Branch } from '../../../hrm/hrmsSetup/models/branch,interface';
+import { Department } from '../../../hrm/model/department';
+import { Role } from '../../../hrm/model/role';
+import { Feature } from '../../../hrm/model/feature';
+import { Module } from '../../../hrm/model/module';
 
 export class Product {
     id: string;

@@ -70,7 +70,6 @@ export class AccountService {
 
     getAvailableModules() {
         return [
-            { module: 'SystemAdministration', route: 'systemadministration' },
             { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
             { module: 'Hospital Management System', route: 'hims/patient' },

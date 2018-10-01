@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../services/payrollsetup.service';
 import { EmployeeService } from '../../../employee/services/employee.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-masterpayroll',
@@ -14,10 +15,32 @@ export class MasterpayrollComponent implements OnInit {
 
   private fieldArray: Array<any> = [];
   private newAttribute: any = {};
+  public MasterPayrollForm: any;
+  public Masterdetail = [];
+  public MasterDetailForm: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
+  constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
   async ngOnInit() {
+
+    this.MasterPayrollForm = this.fb.group({
+      UserId: ['', Validators.required],
+      BankTransferCode: ['', Validators.required],
+      CurrencyId: ['', Validators.required],
+      PayrollBankId: ['', Validators.required]
+    })
+
+      this.MasterDetailForm = this.fb.group({
+        Value: ['', Validators.required],
+        EffectiveDate: ['', Validators.required],
+        EndDate: ['', Validators.required],
+        AllowanceId: ['', Validators.required],
+        FrequencyId: ['', Validators.required],
+        PayrollTypeId: ['', Validators.required]
+     
+    });
+
+
     await this.payrollsetupservice.getmasterpayrolls();
     this.masterPayroll = this.payrollsetupservice.masterpayroll;
 
@@ -41,18 +64,38 @@ export class MasterpayrollComponent implements OnInit {
   }
 
   addFieldValue() {
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
+    console.log(this.MasterDetailForm.value);
+
+    this.Masterdetail.push(
+      { "allowanceId": this.newAttribute.allowanceId }
+    );
+    console.log(this.Masterdetail);
+
+    this.MasterPayrollForm.value = {
+      ...this.MasterPayrollForm.value,
+      MasterPayrollDetails: this.Masterdetail
+    };
+    console.log(this.MasterPayrollForm.value);
+    this.fieldArray.push(this.newAttribute);
+    console.log(this.fieldArray);
   }
-  deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
+
+  // deleteFieldValue(index) {
+  //   let y = this.fieldArray.filter(l => l.title == title);
+  //       this.leavesetupservice.leavetype.push(y[0]);
+  //       this.fieldArray.splice(index, 1);
+  // }
+
+  selectLeaveType(e) {
+    let x = this.payrollsetupservice.allowance.filter(a => a.allowanceId == e.target.value);
+    this.newAttribute = x[0];
+    this.payrollsetupservice.allowance = this.payrollsetupservice.allowance.filter(a => a.allowanceId != e.target.value);
+
   }
 
-  async addMasterPayrolldetail(value) {
 
-    await this.payrollsetupservice.addmasterpayroll(value.data);
-
-    await this.payrollsetupservice.addmasterpayrolldetail(value.data);
+  async addMasterPayrolldetail() {
+    await this.payrollsetupservice.addmasterpayroll(this.MasterPayrollForm.value);
   }
 
   async updateMasterPayroll(value) {

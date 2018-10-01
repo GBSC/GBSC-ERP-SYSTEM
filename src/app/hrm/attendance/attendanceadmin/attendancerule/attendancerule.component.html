@@ -20,7 +20,7 @@
                 <label>
                  Group:
                 </label>
-                <select class="form-control m-input" formControl="GroupId" id="">
+                <select class="form-control m-input" formControlName="GroupId" id="">
                     <option value="" disabled selected>-- Select Group --</option>
                     <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
            </select>
@@ -29,9 +29,9 @@
                 <label class="">
                   Attendance Flag:
                 </label> 
-                    <select class="form-control m-input" formControl="AttendanceFlagId" id="">
+                    <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                         <option value="" disabled selected>-- Select Attendance Flag --</option>
-                        <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.groupId" >{{flag.title}}</option>
+                        <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
                </select>
               </div>
             </div>
@@ -42,20 +42,20 @@
                   <label>
                    Action:
                   </label>
-                  <select class="form-control m-input" id="" formControl="Action">
+                  <select class="form-control m-input" formControlName="Action">
                       <option value="" disabled selected>-- Select Action --</option>
-                      <option> Deduction of Leaves Based On Flag Count </option>
-                      <option> Deduction of Leaves Based On Flag Count </option>
+                      <option value="deductionofLeavesBasedOnFlagCount"> Deduction of Leaves Based On Flag Count </option>
+                      <option value="deductionofLeavesBasedOnFlagCount "> Deduction of Leaves Based On Flag Count </option>
           </select>
                 </div>
                 <div class="col-lg-6">
                   <label class="">
                    Effect Frequency:
                   </label>
-                  <select class="form-control m-input" id="" formControl="EffectFrequency">
+                  <select class="form-control m-input" id="" formControlName="EffectFrequency">
                       <option value="" disabled selected>-- Select Effect Frequency --</option>
-                      <option> Once </option>
-                      <option> Once 1 </option>
+                      <option value="once"> Once </option>
+                      <option value="once1"> Once 1 </option>
           </select>
                 </div>
               </div>
@@ -65,13 +65,13 @@
                     <label>
                      Flag Count:
                     </label>
-                    <input type="email" class="form-control m-input" formControl="FlagCount" placeholder="0">
+                    <input type="email" class="form-control m-input" formControlName="FlagCount" placeholder="0">
                   </div>
                   <div class="col-lg-6">
                     <label class="">
                      Exempt Flag Count:
                     </label>
-                    <input type="email" class="form-control m-input" formControl="ExemptFlagCount" placeholder="0">
+                    <input type="email" class="form-control m-input" formControlName="ExemptFlagCount" placeholder="0">
                   </div>
                 </div>
 
@@ -80,17 +80,17 @@
                       <label>
                       Exempt Minutes:
                       </label>
-                      <input type="email" class="form-control m-input" formControl="ExemptMinutes" placeholder="0">
+                      <input type="email" class="form-control m-input" formControlName="ExemptMinutes" placeholder="0">
                     </div>
                     <div class="col-lg-6">
                       <label class="">
                       Conditional Exemption:
                       </label>
-                      <select class="form-control m-input" id="" formControl="ConditionalExemption">
+                      <select class="form-control m-input" id="" formControlName="ConditionalExemption">
                           <option value="" disabled selected>-- Select Conditional Exemption --</option>
-                          <option> Conditional Exemption 1 </option>
-                          <option> Conditional Exemption 2 </option>
-                          <option> Conditional Exemption 3 </option>
+                          <option value="conditionalExemption1"> Conditional Exemption 1 </option>
+                          <option value="conditionalExemption2"> Conditional Exemption 2 </option>
+                          <option value="conditionalExemption3"> Conditional Exemption 3 </option>
                         </select>
                     </div>
                   </div>
@@ -101,16 +101,16 @@
                     <label>
                      Effect Quantity:
                     </label>
-                    <input type="email" class="form-control m-input" formControl="EffectQuantity" placeholder="0">
+                    <input type="email" class="form-control m-input" formControlName="EffectQuantity" placeholder="0">
                   </div>
                   <div class="col-lg-6">
                     <label class="">
                     Effect Type:
                     </label>
-                    <select class="form-control m-input" id="" formControl="EffectType">
+                    <select class="form-control m-input" id="" formControlName="EffectType">
                         <option value="" disabled selected>-- Select Effect Type --</option>
-                        <option> Negative </option>
-                        <option> Positive </option> 
+                        <option value="negative"> Negative </option>
+                        <option value="positive"> Positive </option> 
                       </select>
                   </div>
                 </div>
@@ -120,37 +120,49 @@
                       <label>
                        Leave Detail(s):
                       </label>
-                    
+                      <div class="row">
+                        <div class="col-md-9">
+                            <select (change)="selectLeaveType($event)" class="form-control m-input">
+                              <option value="" disabled>-- Select Leave Type --</option>  
+                              <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
+                              </select> 
+                        </div>
+                    <div class="col-md-3">
+                      <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button>
+                    </div>
+                      </div>
+                      <div class="m--space-50"></div> 
                       <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                        <th>Leave</th>
-                        <th>Add</th>
+            
+                        <th>Leave</th> 
                         <th>Delete</th>
-                        <tr>
-                          <td>
-                              <select (change)="getLeaves($event)" class="form-control m-input" formControl="LeaveTypeId" id="">
-                                  <option value="" disabled selected>-- Select Leave Type --</option>
-                                  <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
-                        
-                                </select>
-                          </td>
-                          <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                          <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                        </tr>
                         <tr *ngFor="let field of fieldArray; let i = index">
-                            <td>
-                                <select class="form-control m-input" formControl="LeaveTypeId" id="">
-                                    <option value="" disabled selected>-- Select Leave Type --</option>
-                                    <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
-                          
-                                  </select>
-                            </td>
-                            <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                            <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                          </tr>
+                  
+                          <td><p>{{field.title}}</p></td> 
+                          <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(field.title, i)">Delete</button></td>
+                        </tr> 
                       </table>
                     </div> 
+                  </div> 
+                  <div class="m--space-50"></div> 
+                  <div class="m-separator m-separator"></div>
+      
+                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                          <button type="submit" class="btn btn-brand" (click)="addattendancerule()">
+                            Submit
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                            Cancel
+                          </button>
+                        </div>
+                        <div class="col-lg-4"></div>
+                      </div>
+                    </div>
                   </div>
- 
           </form>
         </div>
       </div>

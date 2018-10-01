@@ -10,10 +10,10 @@ export class LeaveSetupService {
     public leavedaytype;
     public leaveeligibility;
     public leaveemppolicy;
-    public leavetype;
+    public leavetype = [];
     public leaveapprover;
-   private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
-  //  private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
+    private baseUrl: string = "http://localhost:58090/api/LeaveSetup";
+   // private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/LeaveSetup";
     public proratematrix;
     public decimalroundingmatrix;
     public leavesubtype;
@@ -337,7 +337,10 @@ export class LeaveSetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leavetype = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+        let leaveTypes : any = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+        leaveTypes.forEach(element => {
+            this.leavetype.push(element)
+        });
         console.log(this.leavetype);
         return this.leavetype;
     }

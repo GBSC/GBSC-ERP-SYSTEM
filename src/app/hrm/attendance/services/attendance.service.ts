@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class AttendanceService {
 
-    private baseUrl: string = "http://localhost:58090/api/Attendance";
+     private baseUrl: string = "http://localhost:58090/api/Attendance";
+    //private baseUrl: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Attendance";
     public attendancerequest;
     public empOvertimeEntitlement;
     public officialVisitentry;
@@ -14,10 +15,14 @@ export class AttendanceService {
     /** Attendance Admin */
     public attendanceflagexemption;
     public attendancerule;
-    workingdayot: Object;
-    workingoffdayot: Object;
-    newincomingot: Object;
-    OutgoingOts: Object;
+    public workingdayot;
+    public workingoffdayot;
+    public newincomingot;
+    public OutgoingOts;
+    offdayot: Object;
+    incomingot: Object;
+    outgoingOt: Object;
+    workingDayOt: Object;
  
     constructor(public httpClient: HttpClient) { }
 
@@ -46,14 +51,10 @@ export class AttendanceService {
 
     }
 
-    async updateattendancerequest(data) {
-
-        let attendancerequest = await this.getdataToUpdate(data.key, 'GetAttendanceRequest');
-        attendancerequest = { ...attendancerequest, ...data.data }
-        console.log(attendancerequest);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateAttendanceRequest`, attendancerequest).toPromise();
+    async updateattendancerequest(data) { 
+         let authToken = localStorage.getItem('auth_token');  
+         let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.httpClient.put(`${this.baseUrl}/UpdateAttendanceRequest`, data, headers).toPromise();
 
     }
 
@@ -85,13 +86,10 @@ export class AttendanceService {
     }
 
     async updateempOvertimeEntitlement(data) {
-
-        let empOvertimeEntitlement = await this.getdataToUpdate(data.key, 'GetEmployeeOvertimeEntitlement');
-        empOvertimeEntitlement = { ...empOvertimeEntitlement, ...data.data }
-        console.log(empOvertimeEntitlement);
+ 
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateEmployeeOverTimeEntitlment`, empOvertimeEntitlement).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/UpdateEmployeeOverTimeEntitlment`, data).toPromise();
 
     }
 
@@ -310,19 +308,17 @@ export class AttendanceService {
     
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newworkingdayot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeWorkingDayOt`, data, headers).toPromise();
-            console.log(newworkingdayot);
+            this.workingDayOt = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeWorkingDayOt`, data, headers).toPromise();
+            console.log(this.workingDayOt);
+            return this.workingDayOt;
     
         }
     
         async updateemployeeWorkingDayOt(data) {
-    
-            let workingdayot = await this.getdataToUpdate(data.key, 'GetEmployeeWorkingDayOt');
-            workingdayot = { ...workingdayot, ...data.data }
-            console.log(workingdayot);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeWorkingDayOt`, workingdayot).toPromise();
+     
+            let authToken = localStorage.getItem('auth_token');  
+            let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeWorkingDayOt`, data).toPromise();
     
         }
     
@@ -343,24 +339,22 @@ export class AttendanceService {
             console.log(this.workingoffdayot);
             return this.workingoffdayot;
         }
-    
+   
         async addemployeeOffdayOts(data) {
     
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newworkingoffdayot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOffDayOts`, data, headers).toPromise();
-            console.log(newworkingoffdayot);
+            this.offdayot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOffDayOt`, data, headers).toPromise();
+            console.log(this.offdayot);
+            return this.offdayot;
     
         }
     
         async updateemployeeOffdayOts(data) {
     
-            let newworkingoffdayot = await this.getdataToUpdate(data.key, 'GetEmployeeOffDayOts');
-            newworkingoffdayot = { ...newworkingoffdayot, ...data.data }
-            console.log(newworkingoffdayot);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOffDayOts`, newworkingoffdayot).toPromise();
+            let authToken = localStorage.getItem('auth_token');  
+            let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOffDayOt`, data).toPromise();
     
         }
     
@@ -386,19 +380,16 @@ export class AttendanceService {
     
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json' } }
-            let incomingot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeIncomingOts`, data, headers).toPromise();
-            console.log(incomingot);
+            this.incomingot = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeIncomingOt`, data, headers).toPromise();
+            console.log(this.incomingot);
+            return this.incomingot;
     
         }
     
-        async updateemployeeIncomingOts(data) {
-    
-            let incomingot = await this.getdataToUpdate(data.key, 'GetEmployeeIncomingOts');
-            incomingot = { ...incomingot, ...data.data }
-            console.log(incomingot);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeIncomingOts`, incomingot).toPromise();
+        async updateemployeeIncomingOts(data) { 
+            let authToken = localStorage.getItem('auth_token');  
+            let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeIncomingOt`, data).toPromise();
     
         }
     
@@ -406,7 +397,7 @@ export class AttendanceService {
     
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeIncomingOts/${id}`).toPromise();
+            return await this.httpClient.delete(`http://localhost:58090/api/AttendanceSetup/DeleteEmployeeIncomingOt/${id}`).toPromise();
         }
 
          /** Employee Working Day CRUD METHODS */
@@ -424,19 +415,16 @@ export class AttendanceService {
     
             let authToken = localStorage.getItem('auth_token');
             let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newOutgoingOts = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOutgoingOt`, data, headers).toPromise();
-            console.log(newOutgoingOts);
+            this.outgoingOt = await this.httpClient.post(`http://localhost:58090/api/AttendanceSetup/AddEmployeeOutgoingOt`, data, headers).toPromise();
+            console.log(this.outgoingOt);
+            return this.outgoingOt;
     
         }
     
-        async updateemployeeOutgoingOt(data) {
-    
-            let OutgoingOts = await this.getdataToUpdate(data.key, 'GetEmployeeOutgoingOt');
-            OutgoingOts = { ...OutgoingOts, ...data.data }
-            console.log(OutgoingOts);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOutgoingOt`, OutgoingOts).toPromise();
+        async updateemployeeOutgoingOt(data) { 
+            let authToken = localStorage.getItem('auth_token');  
+            let headers = {headers: {'Content-Type':'application/json'}}
+            return await this.httpClient.put(`http://localhost:58090/api/AttendanceSetup/UpdateEmployeeOutgoingOt`, data).toPromise();
     
         }
     

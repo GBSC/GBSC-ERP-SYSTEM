@@ -191,6 +191,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 children: [
                     { path: '', component: EmployeesComponent },
                     { path: 'registration', component: EmployeeHomeComponent },
+                    { path: 'updateemployee/:id', component: EmployeeHomeComponent },
                     { path: 'basicinformation', component: BasicinformationComponent },
                     { path: 'employees', component: EmployeesComponent },
                     { path: 'employeequalification', component: EmployeeQualificationComponent },

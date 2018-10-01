@@ -16,14 +16,14 @@
           <form [formGroup]="leavePolicyForm">
  
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
   
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                       Group:
                     </label>
                     <div class="col-lg-8">
-                      <select class="form-control m-input m-input--solid" formControlName="GroupId" name="leaveYear" id="">
+                      <select class="form-control m-input" formControlName="GroupId" name="leaveYear" id="">
                         <option value="" disabled selected>-- Select Group --</option>
                         <option *ngFor="let grp of hrsetupservice?.group" [value]="grp.groupId">{{grp.name}}</option>
                       </select>
@@ -35,14 +35,14 @@
               <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
                       <option value="" disabled selected>-- Select Leave Year --</option>
                       <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                     </select>
@@ -54,14 +54,14 @@
             <div class="m--space-07"></div>
               
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
                     Leave Type:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
+                    <select class="form-control m-input " formControlName="LeaveTypeId" name="leavetype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
                       <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                     </select>
@@ -72,14 +72,14 @@
             </div>
             <div class="m--space-07"></div>
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
                     Leave Eligibility:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId">
+                    <select class="form-control m-input" formControlName="LeaveEligibilityId">
                       <option value="" disabled selected>-- Select Leave Eligibility --</option>
                       <option *ngFor="let leaveEligibility of leavesetupservice?.leaveeligibility" [value]="leaveEligibility.leaveEligibilityId">{{leaveEligibility.name}}</option>
                     </select>
@@ -93,11 +93,11 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -106,11 +106,11 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" placeholder="6" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="MaximumAllowedBalance" placeholder="6" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -119,11 +119,11 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime" placeholder="11" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="MaximumAtATime" placeholder="11" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -132,11 +132,11 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" placeholder="15" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="MinimumAtATime" placeholder="15" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -145,11 +145,11 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" placeholder="5" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="MinimumIntimationPeriod" placeholder="5" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -158,7 +158,7 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
   
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
@@ -171,7 +171,7 @@
                       </label>
                     </div>
            <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="EncashmentDays">
+              <input type="number" class="form-control m-input" placeholder="0" formControlName="EncashmentDays">
               <!-- <span class="m-form__help">
                  Qty in Days
                 </span> -->
@@ -182,11 +182,11 @@
               <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" placeholder="3" aria-describedby="days"
+                    <input class="form-control m-input" formControlName="EncashmentApplicationLimit" placeholder="3" aria-describedby="days"
                       type="number">
                   </div>
                 </div>
@@ -195,7 +195,7 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Day Continuation Restriction: </label>
                   <div class="col-lg-8"> 
@@ -204,7 +204,7 @@
                             <span></span>
                           </label>
                        
-                    <!-- <select class="form-control m-input m-input--solid" formControlName="DayContinuationRestriction">
+                    <!-- <select class="form-control m-input" formControlName="DayContinuationRestriction">
                       <option value="disabled">Select Restriction </option>
                       <option>Yes</option>
                       <option>No</option>
@@ -216,7 +216,7 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -234,7 +234,7 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -253,7 +253,7 @@
 
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -271,7 +271,7 @@
             <div class="m--space-10"></div> 
             
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                      Is Balance Brought Forward:
@@ -283,14 +283,14 @@
                       </label>
                     </div>
            <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="BalanceBroughtForwardQuantity">
+              <input type="number" class="form-control m-input" placeholder="0" formControlName="BalanceBroughtForwardQuantity">
               <!-- <span class="m-form__help">
                  Qty in Days
                 </span> -->
             </div>
 
             <div class="col-md-2">
-                <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
+                <input type="number" class="form-control m-input" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
                 <!-- <span class="m-form__help">
                  Month
                   </span> -->
@@ -301,12 +301,12 @@
               <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Leave Day Type: </label>
                   <div class="col-lg-8">
 
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
+                    <select class="form-control m-input" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
                       <option *ngFor="let levedaytype of leavesetupservice?.leavedaytype" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
                     </select>
@@ -320,7 +320,7 @@
 
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                       File Attachement Required:
@@ -332,7 +332,7 @@
                       </label>
                     </div>
            <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="FileAttachmentDaysLimit">
+              <input type="number" class="form-control m-input" placeholder="0" formControlName="FileAttachmentDaysLimit">
               <!-- <span class="m-form__help">
                  Qty in Days
                 </span> -->
@@ -343,7 +343,7 @@
               <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -361,7 +361,7 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -379,7 +379,7 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -392,7 +392,7 @@
                     </label>
                   </div>
                   <div class="col-md-2">
-                      <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime">
+                      <input type="number" class="form-control m-input" placeholder="In Month" formControlName="JobPeriodTime">
                       <!-- <span class="m-form__help">
                         Months
                         </span> -->
@@ -403,28 +403,28 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
   
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
                     Paid/UnPaid Qty /Half PAid:
                     </label>
            <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="PaidDaysQuantity">
+              <input type="number" class="form-control m-input" placeholder="0" formControlName="PaidDaysQuantity">
               <!-- <span class="m-form__help">
                 Paid
                 </span> -->
             </div>
 
             <div class="col-md-2">
-                <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="HalfPaidDaysQuantity">
+                <input type="number" class="form-control m-input" placeholder="In Month" formControlName="HalfPaidDaysQuantity">
                 <!-- <span class="m-form__help">
                  Half Paid
                   </span> -->
               </div>
 
               <div class="col-md-2">
-                  <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="UnPaidDaysQuantity">
+                  <input type="number" class="form-control m-input" placeholder="In Month" formControlName="UnPaidDaysQuantity">
                   <!-- <span class="m-form__help">
                     UnPaid
                     </span> -->
@@ -437,11 +437,11 @@
 
 <!-- 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Eligibility Based on: </label>
                   <div class="col-lg-8"> 
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="leavedaytype" id="">
+                    <select class="form-control m-input" formControlName="LeaveEligibilityId" name="leavedaytype" id="">
                       <option value="" disabled selected>-- Select Leave Eligibility --</option>
                       <option *ngFor="let leveeligibility of leavesetupservice?.leaveeligibility" [value]="leveeligiblity.leaveEligibilityId">{{leveeligibility.name}}</option>
                     </select>
@@ -454,7 +454,7 @@
  -->
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -472,7 +472,7 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
   
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">
@@ -491,7 +491,7 @@
 
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Allow Leave Request on Zero Balance: </label>
                   <div class="col-lg-8">
@@ -502,7 +502,7 @@
                         </label>
                      
 
-                    <!-- <select class="form-control m-input m-input--solid" formControlName="AllowOnZeroBalance">
+                    <!-- <select class="form-control m-input" formControlName="AllowOnZeroBalance">
                       <option value="disabled"> Allow Leave Request </option>
                       <option>Yes</option>
                       <option>No</option>
@@ -516,7 +516,7 @@
 
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -534,11 +534,11 @@
             <div class="m--space-10"></div>
 
             <div class="row">
-              <div class="col-lg-10">
+              <div class="col-md-12">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Leave Application Limit: </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="ApplicationLimit" placeholder="3"
+                    <input class="form-control m-input" formControlName="ApplicationLimit" placeholder="3"
                       type="number">
                   </div>
                 </div>
@@ -547,7 +547,7 @@
             <div class="m--space-07"></div>
 
             <div class="row">
-              <div class="col-md-10">
+              <div class="col-md-12">
 
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">

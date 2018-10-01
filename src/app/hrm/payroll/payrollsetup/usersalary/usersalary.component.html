@@ -27,7 +27,7 @@
                 </dxo-pager>
 
                 <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.salarycalculationtype" displayExpr="exemptPercentage" valueExpr="incomeTaxRuleId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="payrollsetupservice?.incometaxrule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="groupId" caption="Group">

@@ -1,160 +1,65 @@
+
+
 <div class="m-content">
+		<div class="row">
+				<div class="col-xl-12">
+				  <div class="m-portlet">
+					<div class="m-portlet__head">
+					  <div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+						  <h3 class="m-portlet__head-text">Attendance Request</h3>
+						</div>
+					  </div>
+					</div>
+					<div class="m-portlet__body">
+					  <div class="m-section">
+						<div class="m-section__content" >
+              <dx-data-grid id="gridContainer" [dataSource]="attendancerequest"
+              keyExpr="attendanceRequestId"
+               (onRowInserted)="addattendancerequest($event)"
+                (onRowUpdated)="updateattendancerequest()" 
+                (onRowUpdating)="updatingrequest($event)" 
+                (onRowRemoved)="deleteattendancerequest($event)"> 
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Attendance Rules
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-
-          <form [formGroup]="leaveopeningForm"> 
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                 Group:
-                </label>
-                <select class="form-control m-input" formControl="GroupId" id="">
-                    <option value="" disabled selected>-- Select Group --</option>
-                    <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
-           </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Attendance Flag:
-                </label> 
-                    <select class="form-control m-input" formControl="AttendanceFlagId" id="">
-                        <option value="" disabled selected>-- Select Attendance Flag --</option>
-                        <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.groupId" >{{flag.title}}</option>
-               </select>
-              </div>
-            </div>
-
-
-            <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                   Action:
-                  </label>
-                  <select class="form-control m-input" id="" formControl="Action">
-                      <option value="" disabled selected>-- Select Action --</option>
-                      <option> Deduction of Leaves Based On Flag Count </option>
-                      <option> Deduction of Leaves Based On Flag Count </option>
-          </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                   Effect Frequency:
-                  </label>
-                  <select class="form-control m-input" id="" formControl="EffectFrequency">
-                      <option value="" disabled selected>-- Select Effect Frequency --</option>
-                      <option> Once </option>
-                      <option> Once 1 </option>
-          </select>
-                </div>
-              </div>
-
-              <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                     Flag Count:
-                    </label>
-                    <input type="email" class="form-control m-input" formControl="FlagCount" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                     Exempt Flag Count:
-                    </label>
-                    <input type="email" class="form-control m-input" formControl="ExemptFlagCount" placeholder="0">
-                  </div>
-                </div>
-
-                <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
-                      <label>
-                      Exempt Minutes:
-                      </label>
-                      <input type="email" class="form-control m-input" formControl="ExemptMinutes" placeholder="0">
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="">
-                      Conditional Exemption:
-                      </label>
-                      <select class="form-control m-input" id="" formControl="ConditionalExemption">
-                          <option value="" disabled selected>-- Select Conditional Exemption --</option>
-                          <option> Conditional Exemption 1 </option>
-                          <option> Conditional Exemption 2 </option>
-                          <option> Conditional Exemption 3 </option>
-                        </select>
-                    </div>
-                  </div>
-
-                  
-              <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                     Effect Quantity:
-                    </label>
-                    <input type="email" class="form-control m-input" formControl="EffectQuantity" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                    Effect Type:
-                    </label>
-                    <select class="form-control m-input" id="" formControl="EffectType">
-                        <option value="" disabled selected>-- Select Effect Type --</option>
-                        <option> Negative </option>
-                        <option> Positive </option> 
-                      </select>
-                  </div>
-                </div>
-
-                <div class="form-group m-form__group row">
-                    <div class="col-lg-12">
-                      <label>
-                       Leave Detail(s):
-                      </label>
-                    
-                      <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                        <th>Leave</th>
-                        <th>Add</th>
-                        <th>Delete</th>
-                        <tr>
-                          <td>
-                              <select class="form-control m-input" formControl="LeaveTypeId" id="">
-                                  <option value="" disabled selected>-- Select Leave Type --</option>
-                                  <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
-                        
-                                </select>
-                          </td>
-                          <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                          <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                        </tr>
-                        <tr *ngFor="let field of fieldArray; let i = index">
-                            <td>
-                                <select class="form-control m-input" formControl="LeaveTypeId" id="">
-                                    <option value="" disabled selected>-- Select Leave Type --</option>
-                                    <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
-                          
-                                  </select>
-                            </td>
-                            <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                            <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                          </tr>
-                      </table>
-                    </div> 
-                  </div>
+								<dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
+									<dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								</dxo-editing>
+								<dxo-filter-row [visible]="true"></dxo-filter-row>
+								<dxo-header-filter [visible]="true"></dxo-header-filter>
+								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+								<dxo-paging [pageSize]="8"></dxo-paging>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+          
+                <dxi-column dataField="userId" caption="Employee">
+                    <dxo-lookup [dataSource]="Employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                    </dxo-lookup>
+                  </dxi-column> 
+                <dxi-column dataField="attendanceRequestTypeId" caption="Attendace Request Type">
+                    <dxo-lookup [dataSource]="attendanceSetupservice?.attendanceRequestType" displayExpr="name" valueExpr="attendanceRequestTypeId">
+                    </dxo-lookup>
+                  </dxi-column> 
+                <dxi-column dataField="assignRosterId" caption="Assign Roster">
+                    <dxo-lookup [dataSource]="attendanceSetupservice?.asignroster" displayExpr="month" valueExpr="assignRosterId">
+                    </dxo-lookup>
+                  </dxi-column> 
+                <dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">
+                    <dxo-lookup [dataSource]="attendanceSetupservice?.attendancerequestapprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
+                    </dxo-lookup>
+                  </dxi-column> 
  
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> 
-  </div>
-  
+								<dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column> 
+								<dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column> 
+								<dxi-column dataField="isSubmitted" caption="Submitted" dataType="boolean"></dxi-column> 
+								<dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>  
+						  </dx-data-grid> 
+						</div>
+					  </div>
+					</div>
+				  </div>
+				</div>
+		</div>
+</div>
+
+
+
+ 

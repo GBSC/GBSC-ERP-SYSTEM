@@ -14,13 +14,14 @@
 					<div class="m-portlet__body">
 					  <div class="m-section">
 						<div class="m-section__content" >
-              <dx-data-grid id="gridContainer" [dataSource]="UserLoan"
-              keyExpr="userLoanId"
-               (onRowInserted)="addUserLoan($event)"
-                (onRowUpdated)="updateUserLoan($event)" 
-                (onRowRemoved)="deleteUserLoan($event)"> 
+              <dx-data-grid id="gridContainer" [dataSource]="StopSalary"
+              keyExpr="stopSalaryId"
+               (onRowInserted)="addStopSalary($event)"
+                (onRowUpdated)="updateStopSalary()" 
+                (onRowUpdating)="StopSalaryUpdating($event)" 
+                (onRowRemoved)="deleteStopSalary($event)"> 
 
-								<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+								<dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
 									<dxo-popup title="Stop Salary" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
 								</dxo-editing>
 								<dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,7 +31,7 @@
 								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
           
                 <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                    <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="name" valueExpr="payrollTypeId">
+                    <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
                     </dxo-lookup>
                   </dxi-column> 
 
@@ -38,6 +39,7 @@
 								<dxi-column dataField="from" caption="From" dataType="date" format="shortdate"></dxi-column> 
 								<dxi-column dataField="till" caption="Till" dataType="date" format="shortdate"></dxi-column> 
 								<dxi-column dataField="remarks" caption="Remarks"></dxi-column>  
+								
 						  </dx-data-grid> 
 						</div>
 					  </div>

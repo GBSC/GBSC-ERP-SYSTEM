@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from '../services/attendance.service';
 import { EmployeeService } from '../../employee/services/employee.service';
 import { AttendancesetupService } from '../services/attendancesetup.service';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-employee-overtime-entitlement',
@@ -9,17 +10,57 @@ import { AttendancesetupService } from '../services/attendancesetup.service';
     styleUrls: ['./employee-overtime-entitlement.component.scss']
 })
 export class EmployeeOvertimeEntitlementComponent implements OnInit {
-
-
     public empoverTimeEntitlement: any;
-    empworkingot: any;
-    empoffdayot: Object;
-    incomingot: Object;
-    outgoingot: Object;
-    constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, 
+    public empworkingot: any;
+    public empoffdayot;
+    public incomingot;
+    public outgoingot;
+    public Updatedempovertimeentitlement: any;
+    public Updatedworkingot: any;
+    public Updatedincoming: any;
+    public Updatedoffday: any;
+    public Updatedoutgoing: any;
+
+    public WorkingDayOTForm: FormGroup;
+    public EmployeeEntitlementForm: FormGroup;
+    public OffDayOTForm: FormGroup;
+    public IncomingOTForm: FormGroup;
+    public OutgoingOTForm: FormGroup;
+    
+    constructor(private fb: FormBuilder,public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, 
         public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
+        
+        this.WorkingDayOTForm = this.fb.group({
+            IsIncludeOtWorking: ['', Validators],
+            OverTimeTypeId: ['', Validators],
+            WokingOtHours: ['', Validators]
+        });
+        this.OffDayOTForm = this.fb.group({
+            IsIncludeOtOff: ['', Validators],
+            OverTimeTypeId: ['', Validators],
+            OffOtHours: ['', Validators]
+        });
+        this.IncomingOTForm = this.fb.group({
+            IsIncludeOtIncoming: ['', Validators],
+            OverTimeTypeId: ['', Validators],
+            IncomingOtHours: ['', Validators]
+        });
+        this.OutgoingOTForm = this.fb.group({
+            IsIncludeOtOutgoing: ['', Validators],
+            OverTimeTypeId: ['', Validators],
+            OutgoingOtHours: ['', Validators]
+        });
+        this.EmployeeEntitlementForm = this.fb.group({
+            // EmployeeWorkingDayOtId: ['', Validators],
+            // EmployeeOffDayOtId: ['', Validators],
+            // EmployeeIncomingOtId: ['', Validators],
+            // EmployeeOutgoingOtId: ['', Validators] ,
+            UserId: ['', Validators] 
+        });
+
+
         await this.attendanceservice.getempOvertimeEntitlements();
         this.empoverTimeEntitlement = this.attendanceservice.empOvertimeEntitlement
         console.log(this.empoverTimeEntitlement);
@@ -47,27 +88,29 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         let users = this.employeeservice.employeereg
     }
 
-    async addworkingdayot(value) {
-        this.attendanceservice.addemployeeWorkingDayOt(value.data);
+    async addEmployeeEntitlement() {
+       
+       this.EmployeeEntitlementForm.value.employeeWorkingDayOtID = await this.attendanceservice.addemployeeWorkingDayOt(this.WorkingDayOTForm.value);
+       this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addemployeeOffdayOts(this.OffDayOTForm.value);
+       this.EmployeeEntitlementForm.value.employeeIncomingOtID =  await this.attendanceservice.addemployeeIncomingOts(this.IncomingOTForm.value);
+       this.EmployeeEntitlementForm.value.employeeOutgoingOtID =  await this.attendanceservice.addemployeeOutgoingOt(this.OutgoingOTForm.value);
+       console.log(this.EmployeeEntitlementForm.value);
+       await this.attendanceservice.addempOvertimeEntitlement(this.EmployeeEntitlementForm.value);
     }
 
-    async addoffdayot(value) {
-        this.attendanceservice.addemployeeOffdayOts(value.data);
+    async updatingempEntitlement(value){
+        this.Updatedempovertimeentitlement = {...value.oldData, ...value.newData}; 
+        this.Updatedworkingot = {...value.oldData, ...value.newData}; 
+        this.Updatedincoming = {...value.oldData, ...value.newData}; 
+        this.Updatedoffday = {...value.oldData, ...value.newData}; 
+        this.Updatedoutgoing = {...value.oldData, ...value.newData}; 
     }
-    async addincomingot(value) {
-        this.attendanceservice.addemployeeIncomingOts(value.data);
-    }
-    async addoutgoingot(value) {
-        this.attendanceservice.addemployeeOutgoingOt(value.data);
-    }
-    
-    async addempoverTimeEntitlement(value) {
-        this.attendanceservice.addempOvertimeEntitlement(value.data);
-    }
-
-    async updateempoverTimeEntitlement(value) {
-        console.log(value);
-        this.attendanceservice.updateempOvertimeEntitlement(value);
+    async updateempoverTimeEntitlement() { 
+        this.attendanceservice.updateempOvertimeEntitlement( this.Updatedempovertimeentitlement);
+        this.attendanceservice.updateemployeeWorkingDayOt( this.Updatedworkingot);
+        this.attendanceservice.updateemployeeIncomingOts(this.Updatedincoming);
+        this.attendanceservice.updateemployeeOffdayOts(this.Updatedoffday);
+        this.attendanceservice.updateemployeeOutgoingOt(this.Updatedoutgoing);
     }
 
     async deleteempoverTimeEntitlement(value) {

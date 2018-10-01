@@ -7,9 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { Designation } from '../models/designation,interface';
-import { LeaveType } from '../models/leavetype,interface';
+import { HttpClient } from '@angular/common/http'; 
 
 @Component({
     selector: 'app-leavetypes',

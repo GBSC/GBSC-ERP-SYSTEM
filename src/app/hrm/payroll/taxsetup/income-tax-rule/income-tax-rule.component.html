@@ -19,7 +19,7 @@
                 <label>
                  Payrol Year:
                 </label>
-                <select class="form-control m-input" formControl="GroupId" id="">
+                <select class="form-control m-input" formControlName="GroupId" id="">
                     <option value="" disabled selected>-- Select Payrol Year --</option>
                     <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
            </select>
@@ -50,27 +50,27 @@
       <th>Delete</th>
       <tr>
         <td>
-          <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
+          <input type="date" class="form-control m-input" formControlNameName="From" placeholder="0">
         </td>
         <td>
-          <input type="date" class="form-control m-input" formControlName="Till" placeholder="0">
+          <input type="date" class="form-control m-input" formControlNameName="Till" placeholder="0">
         </td>
         
         <td>
-          <select class="form-control m-input" formControl="FrequencyId" id="">
+          <select class="form-control m-input" formControlName="FrequencyId" id="">
             <option value="" disabled selected>-- Select Tax Type --</option>
             <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
           </select>
         </td>
         <td>
-          <input type="text" class="form-control m-input" formControlName="Value" placeholder="0">
+          <input type="text" class="form-control m-input" formControlNameName="Value" placeholder="0">
         </td>
         <td>
-          <input type="number" class="form-control m-input" formControlName="Value" placeholder="0">
+          <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="0">
         </td>
         
         <td>
-          <select class="form-control m-input" formControl="ApplicabaleTo" id="">
+          <select class="form-control m-input" formControlName="ApplicabaleTo" id="">
             <option value="" disabled selected>-- Select Applicable --</option>
             <option value="">Male</option>
             <option value="">Female</option>
@@ -83,25 +83,25 @@
       </tr>
       <tr *ngFor="let field of fieldArray; let i = index">
         <td>
-          <input type="number" class="form-control m-input" formControlName="Value" placeholder="from">
+          <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="from">
         </td>
         <td>
-          <input type="date" class="form-control m-input" formControlName="EffectiveDate" placeholder="to">
+          <input type="date" class="form-control m-input" formControlNameName="EffectiveDate" placeholder="to">
         </td>
             <td>
-              <select class="form-control m-input" formControl="FrequencyId" id="">
+              <select class="form-control m-input" formControlName="FrequencyId" id="">
                 <option value="" disabled selected>-- Select Frequency --</option>
                 <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
               </select>
             </td>
         <td>
-          <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+          <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
         </td>
         <td>
-          <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+          <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
         </td>
         <td>
-          <select class="form-control m-input" formControl="PayrollTypeId" id="">
+          <select class="form-control m-input" formControlName="PayrollTypeId" id="">
             <option value="" disabled selected>-- Select Payroll Type --</option>
             <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
           </select>
@@ -139,27 +139,27 @@
                   <th>Delete</th>
                   <tr>
                     <td>
-                      <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
+                      <input type="date" class="form-control m-input" formControlNameName="From" placeholder="0">
                     </td>
                     <td>
-                      <input type="date" class="form-control m-input" formControlName="Till" placeholder="0">
+                      <input type="date" class="form-control m-input" formControlNameName="Till" placeholder="0">
                     </td>
                     
                     <td>
-                      <select class="form-control m-input" formControl="FrequencyId" id="">
+                      <select class="form-control m-input" formControlName="FrequencyId" id="">
                         <option value="" disabled selected>-- Select Tax Type --</option>
                         <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
                       </select>
                     </td>
                     <td>
-                      <input type="text" class="form-control m-input" formControlName="Value" placeholder="0">
+                      <input type="text" class="form-control m-input" formControlNameName="Value" placeholder="0">
                     </td>
                     <td>
-                      <input type="number" class="form-control m-input" formControlName="Value" placeholder="0">
+                      <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="0">
                     </td>
                     
                     <td>
-                      <select class="form-control m-input" formControl="ApplicabaleTo" id="">
+                      <select class="form-control m-input" formControlName="ApplicabaleTo" id="">
                         <option value="" disabled selected>-- Select Applicable --</option>
                         <option value="">Male</option>
                         <option value="">Female</option>
@@ -172,25 +172,25 @@
                   </tr>
                   <tr *ngFor="let field of fieldArray; let i = index">
                     <td>
-                      <input type="number" class="form-control m-input" formControlName="Value" placeholder="from">
+                      <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="from">
                     </td>
                     <td>
-                      <input type="date" class="form-control m-input" formControlName="EffectiveDate" placeholder="to">
+                      <input type="date" class="form-control m-input" formControlNameName="EffectiveDate" placeholder="to">
                     </td>
                         <td>
-                          <select class="form-control m-input" formControl="FrequencyId" id="">
+                          <select class="form-control m-input" formControlName="FrequencyId" id="">
                             <option value="" disabled selected>-- Select Frequency --</option>
                             <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
                           </select>
                         </td>
                     <td>
-                      <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+                      <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
                     </td>
                     <td>
-                      <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
+                      <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
                     </td>
                     <td>
-                      <select class="form-control m-input" formControl="PayrollTypeId" id="">
+                      <select class="form-control m-input" formControlName="PayrollTypeId" id="">
                         <option value="" disabled selected>-- Select Payroll Type --</option>
                         <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
                       </select>
@@ -218,13 +218,13 @@
                   <label>
                     Personal Exemption:
                   </label>
-                  <input type="text" class="form-control m-input" formControlName="PersonalExemption" placeholder="0">
+                  <input type="text" class="form-control m-input" formControlNameName="PersonalExemption" placeholder="0">
       </div>
       <div class="col-lg-6">
         <label class="">
             Tax Limit:
         </label> 
-        <input type="text" class="form-control m-input" formControlName="TaxLimit" placeholder="0">
+        <input type="text" class="form-control m-input" formControlNameName="TaxLimit" placeholder="0">
       </div>
     </div>
 
@@ -233,13 +233,13 @@
           <label>
               Age Limit:
           </label>
-          <input type="number" class="form-control m-input" formControlName="AgeLimit" placeholder="0">
+          <input type="number" class="form-control m-input" formControlNameName="AgeLimit" placeholder="0">
         </div>
         <div class="col-lg-6">
           <label class="">
               Exempt Percentage:
           </label> 
-          <input type="number" class="form-control m-input" formControlName="ExemptPercentage" placeholder="0">
+          <input type="number" class="form-control m-input" formControlNameName="ExemptPercentage" placeholder="0">
         </div>
       </div>
 
@@ -248,13 +248,13 @@
             <label>
                 Tax Rebate Percentage:
             </label>
-            <input type="number" class="form-control m-input" formControlName="TaxRebatePercentage" placeholder="0">
+            <input type="number" class="form-control m-input" formControlNameName="TaxRebatePercentage" placeholder="0">
           </div>
           <div class="col-lg-6">
             <label class="">
                 Tax Rebate Amount:
             </label> 
-            <input type="number" class="form-control m-input" formControlName="TaxRebateAmount" placeholder="0">
+            <input type="number" class="form-control m-input" formControlNameName="TaxRebateAmount" placeholder="0">
           </div>
         </div>
 

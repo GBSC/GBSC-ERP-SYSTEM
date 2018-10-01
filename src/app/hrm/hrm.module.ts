@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule } from 'devextreme-angular';
+import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -150,7 +150,7 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        DevExtremeModule,
+        DevExtremeModule, 
         HttpClientModule,
         routing
     ],

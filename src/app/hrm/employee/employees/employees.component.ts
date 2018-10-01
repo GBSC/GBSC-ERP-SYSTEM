@@ -36,8 +36,10 @@ export class EmployeesComponent implements OnInit {
         this.router.navigate(['hrm/employee/registration'])
     }
 
-    onupdate() {
+    onupdate(d) {
 
-        this.router.navigate(['hrm/employee/registration'])
+        // this.router.navigate(['hrm/employee/registration'])
+    console.log(d);
+    
     }
 }

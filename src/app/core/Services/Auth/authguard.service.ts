@@ -9,7 +9,7 @@ import { UserService } from '.';
 export class AuthGuard implements CanActivate {
   constructor(
     private router: Router,
-    private userService: UserService
+    //private userService: UserService
   ) {}
 
   canActivate(
@@ -17,7 +17,9 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> {
 
-    return this.userService.isAuthenticated.pipe(take(1));
+    return;
+
+    //return this.userService.isAuthenticated.pipe(take(1));
 
   }
 }

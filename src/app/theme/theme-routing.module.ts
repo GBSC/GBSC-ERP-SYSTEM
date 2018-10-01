@@ -12,6 +12,7 @@ import { SuperadminModule } from '../superadmin/superadmin.module';
 import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
+import { CoreModule } from '../core/core.module';
 
 const routes: Routes = [
     {
@@ -52,12 +53,12 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
+        CoreModule,
         PatientModule,
         LabModule,
         FinanceModule,
         InventorysystemModule,
         SuperadminModule,
-        InventorysystemModule,
         SystemAdministrationModule,
         DashboardModule,
         HrmModule,

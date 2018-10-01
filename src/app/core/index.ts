@@ -1,6 +1,6 @@
 export * from './Services/api.service';
 export * from './Services/Account/service.service';
-export * from './Services/Auth/index';
+//export * from './Services/Auth/index';
 export * from './Services/HIMS/Lab/bio-chemistry.service';
 export * from './Services/HIMS/Lab/inseminationprep.service';
 export * from './Services/HIMS/labconsultant.service';
@@ -9,4 +9,9 @@ export * from './Services/HIMS/patient.services';
 export * from './Services/HRM/systemadministration.services';
 export * from './Services/Inventory/Inventorysystem.service';
 export * from './Services/SuperAdmin/superadminservice.service';
+export * from './Services/Auth/alert.service';
+export * from './Services/Auth/authentication.service';
+export * from './Services/Auth/user.service';
+export * from './Services/Auth/authguard.service';
+export * from './Services/Auth/jwt.service';
 //export * from './Services/SysAdmin/systemadministration.services';

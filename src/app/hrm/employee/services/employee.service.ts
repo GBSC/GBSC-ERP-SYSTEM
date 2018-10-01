@@ -4,6 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { EmployeeBasicInfo } from '../models/employeebasicinfo,interface';
 import { HrmsService } from '../../hrmsSetup/services/hrms.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Employee} from '../../model/employee';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class EmployeeService {
@@ -22,8 +24,8 @@ export class EmployeeService {
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser
-    //private baseUrl: string  = 'http://gbsc-erp.azurewebsites.net/systemadmin/api';
-    private baseUrl: string = 'http://localhost:58090/api';
+    private baseUrl: string  = 'http://gbsc-erp.azurewebsites.net/systemadmin/api';
+    //private baseUrl: string = 'http://localhost:58090/api';
     public firstForm: any;
     constructor(private httpClient: HttpClient, service: HrmsService, private fb: FormBuilder) {
 
@@ -136,14 +138,29 @@ export class EmployeeService {
     }
 
     async GetAllEmployees() {
-
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
         this.employeereg = await this.httpClient.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
         console.log(this.employeereg);
         return this.employeereg;
     }
+
+
+
+
+    GetEmployee(id) : Observable<Employee>
+    {
+        return this.httpClient.get<Employee>(this.baseUrl+'/Users/GetUser/'+id);       
+    }
+
+  async  updateEmployee(Employee  : Employee)
+    {
+    //   let id = localStorage.getItem('id');
+      let x = await  this.httpClient.put(this.baseUrl+'/Users/UpdateUser/',Employee).toPromise();
+      console.log(x);
+      return x;
+    }
+    
 
     checkIfDisabled(e) {
         console.log(e);
@@ -161,6 +178,8 @@ export class EmployeeService {
         localStorage.setItem('id', newuser.userID);
         return newuser;
     }
+
+
 
 
     async addusercompany() {

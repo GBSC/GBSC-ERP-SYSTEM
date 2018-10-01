@@ -33,13 +33,22 @@
     <dxi-column dataField="cnic"></dxi-column>
     <!-- <dxi-column dataField="designation"></dxi-column>
     <dxi-column dataField="department"></dxi-column> -->
-    <dxi-column caption="Edit" cellTemplate="chartCellTemplate"> </dxi-column>
+    <!-- <dxi-column caption="Edit" cellTemplate="chartCellTemplate"> </dxi-column>
     <div *dxTemplate="let d of 'chartCellTemplate'">
       <div class="chart-cell">
-        <dx-button (click)="onupdate()" text="edit">
+        <dx-button (click)="onupdate(d)" text="edit">
         </dx-button>
       </div>
-    </div>
+    </div> -->
+
+
+    <dxi-column caption="Edit" cellTemplate="chartCellTemplate" [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+<div *dxTemplate="let d of 'chartCellTemplate'">
+<div class="chart-cell">
+<dx-button (click)="getCurrentRowData(d)"   icon="edit"></dx-button>
+  </div>
+</div>
+
 
   </dx-data-grid>
 

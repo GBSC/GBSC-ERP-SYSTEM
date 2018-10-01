@@ -60,6 +60,8 @@ export class AppointmentscheduleComponent implements OnInit {
 
     private getTestbyId : any= [] ; 
     public gettestName : any = [] ; 
+
+    submitted = false;
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
 
         // this.profileForm = new FormGroup({
@@ -78,8 +80,8 @@ export class AppointmentscheduleComponent implements OnInit {
                 Gender: ['', Validators.required],
                 LastName: ['', Validators.required],
                 DOB: ['', Validators.required],
-                PhoneNumber: ['', Validators.required],
-                NIC: ['', Validators.required],
+                PhoneNumber:['',  [Validators.required , Validators.minLength(11)]],
+                NIC: ['', [Validators.required , Validators.minLength(13)]],
 
             });
         this.appointmentForm = this.formBuilder.group(
@@ -221,8 +223,17 @@ export class AppointmentscheduleComponent implements OnInit {
         this.showAddNewPatientRow = false;
     }
 
+    get f() { return this.patientForm.controls; }
 
     async onAddPatient(value: Patient, popup) {
+        this.submitted = true;
+
+        if (this.patientForm.invalid) {
+            return alert('Please Select All Required Fileds') ;
+        }
+
+        console.log(this.patientForm)
+
         console.log(this.patientForm.value.FirstName);
         console.log(value);
         delete this.patientForm.value.patientId

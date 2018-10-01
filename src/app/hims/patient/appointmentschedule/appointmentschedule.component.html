@@ -1,6 +1,7 @@
 <!-- <select   class="form-control selectpicker"  *ngIf="newOrPrevious === 'new'? false : true"  data-show-subtext="true" data-live-search="true" formControlName="PatientId" >
     <option class="active" *ngFor="let patient of PatientServiceobj?.patients" >{{patient.firstName}}</option>
 </select>     -->
+
 <div class="m-content">
   <div class="row">
     <div class="col-lg-12">
@@ -72,21 +73,16 @@
                   <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> </label>
                     Patient Name
-                      <!-- <dx-lookup class="field-customization" [items]="PatientServiceobj?.patients"
-            [displayExpr]="getDisplayExpr"
-            valueExpr="patientId"
-            [value]="PatientServiceobj?.patients[0].patientId"
-            title="Select Patient"
-            fieldTemplate="field">
-            <div *dxTemplate="let item of 'field'">
-                <div class="custom-field">
-                     <div> {{item.firstName }} {{item.lastName}}</div>
-                </div>
-            </div>
-        </dx-lookup> -->
+                   <!-- <dx-lookup class="field-customization" [items]="PatientServiceobj?.patients" displayExpr="fullName" valueExpr="patientId" [value]="PatientServiceobj?.patients[0].patientId"  formControlName="PatientId" title="Select Patient" fieldTemplate="field">
+                      <div *dxTemplate="let item of 'field'">
+                          <div class="custom-field">
+                                <div> {{item.firstName }} {{item.lastName}}</div>  
+                          </div>
+                      </div>
+                  </dx-lookup>   -->
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
                       *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder=" ">
-                    </dx-select-box>
+                    </dx-select-box> 
                     <!-- [value]="patientForm.FirstName + ' ' +patientForm.LastName"  [value]="patientForm.value.PhoneNumber"  -->
                     <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
                       class="form-control m-input m-input--solid" formControlName="PatientId" disabled>
@@ -231,32 +227,54 @@
               <div class="form-group row">
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> First Name </label>
-                  <input formControlName="FirstName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid">
+                  <input formControlName="FirstName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
+									<div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+										<div *ngIf="f.FirstName.errors.required">First Named is require</div>
+									</div>
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> LastName </label>
-                  <input formControlName="LastName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid">
+                  <input formControlName="LastName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
+									<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+										<div *ngIf="f.LastName.errors.required">Last Name is require</div>
+									</div>
+               
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleSelect1"> Gender </label>
-                  <select formControlName="Gender" class="form-control m-input ng-pristine ng-valid ng-touched">
+                  <select formControlName="Gender" class="form-control m-input ng-pristine ng-valid ng-touched" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }"> 
                     <option class="active" value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
+                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+										<div *ngIf="f.Gender.errors.required">Gender is require</div>
+									</div>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> Date Of Birth </label>
-                  <input formControlName="DOB" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="date">
+                  <input formControlName="DOB" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
+									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+										<div *ngIf="f.DOB.errors.required">Date Of Birth is require</div>
+									</div>
+                
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> CNIC </label>
-                  <input formControlName="NIC" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid">
+                  <input formControlName="NIC" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
+									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
+										<div *ngIf="f.NIC.errors.required">NIC is require</div>
+										<div *ngIf="f.NIC.errors.minlength">NIC must be at least 13 characters</div>
+									</div>
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> PhoneNumber </label>
-                  <input formControlName="PhoneNumber" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid">
+                  <input formControlName="PhoneNumber" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
+									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+										<div *ngIf="f.PhoneNumber.errors.required">PhoneNumber is require</div>
+										<div *ngIf="f.PhoneNumber.errors.minlength">PhoneNumber must be at least 11 characters</div>
+									</div>
                 </div>
               </div>
               <div class="form-group row">

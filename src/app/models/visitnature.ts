@@ -1,6 +1,6 @@
-export interface VisitNature{
+export interface VisitNature {
 
-    VisitNatureId : number;
-    Nature : string;
+    VisitNatureId: number;
+    Nature: string;
 
 }

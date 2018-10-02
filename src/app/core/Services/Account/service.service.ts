@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Injectable()
 export class AccountService {
     public accessibleModules: any = ['patient'];
-    private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/authentication/api/auth/login';
+    private readonly API_URL = 'authentication/api/auth/login';
     private loggedInUser: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService : ApiService) {
     }
 
     async login(credentials) {
-        let response: any = await this.http.post(`${this.API_URL}`, credentials).toPromise();
+        let response: any = await this.ApiService.post(this.API_URL, credentials).toPromise();
 
         if (response.status && response.message === 'Login Successful') {
             let userData = {
@@ -31,7 +32,6 @@ export class AccountService {
         } else if (response.status === false || response.message === 'Invalid username or passowrd') {
             alert(response.message);
         }
-
     }
 
     isAuthenticated() {
@@ -70,6 +70,7 @@ export class AccountService {
 
     getAvailableModules() {
         return [
+            { module: 'SystemAdministration', route: 'systemadministration' },
             { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
             { module: 'Hospital Management System', route: 'hims/patient' },

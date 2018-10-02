@@ -24,7 +24,14 @@ export class DeliveryNoteComponent implements OnInit {
         this.Transport = await this.InventoryService.GetTransports();
         this.SalesInvoice = await this.InventoryService.GetSalesInvoices();
         this.DeliveryNote = await this.InventoryService.GetDeliveryNotes();
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+        
+=======
+>>>>>>> d6ac958d896e8ef818ac88e42f5a4d3ae70abb56
+>>>>>>> master
     }
 
     async AddDeliveryNote(value) {

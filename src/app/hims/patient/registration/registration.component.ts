@@ -1,13 +1,22 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Patient } from '../../../models/patient';
 import { PatientService } from '../../patient/services/patient.services';
+<<<<<<< HEAD
+=======
+import { getLocaleDateTimeFormat } from '@angular/common';
+>>>>>>> master
 import { visitValue } from '@angular/compiler/src/util';
 import { Loginform } from '../../../models/loginform';
 import { InventorysystemService } from '../../../../app/Inventorysystem/service/Inventorysystem.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 import { Location } from '@angular/common';
+=======
+
+>>>>>>> master
 
 
 @Component({
@@ -17,7 +26,6 @@ import { Location } from '@angular/common';
 
 })
 
-
 export class RegistrationComponent implements OnInit {
 
     private patientForm: FormGroup;
@@ -25,7 +33,11 @@ export class RegistrationComponent implements OnInit {
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
 
+<<<<<<< HEAD
     public editdocumentForm: FormGroup;
+=======
+    public editdocumentForm : FormGroup;
+>>>>>>> master
     public documents: any = [];
     public currentDoc: any = {};
     public addpartnet: any;
@@ -43,24 +55,35 @@ export class RegistrationComponent implements OnInit {
 
     public Patient: any = ' ';
 
+<<<<<<< HEAD
     private document: any = [];
 
     private forevent: File = null;
 
+=======
+>>>>>>> master
 
 
 
 
     public documentss: any = [];
+<<<<<<< HEAD
     constructor(private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+=======
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route : ActivatedRoute) {
+>>>>>>> master
 
         this.referenceForm = this.formBuilder.group({
             'ReferredBy': ['', Validators.required],
             'PersonName': ['', Validators.required],
             'RefAddress': ['', Validators.required],
+<<<<<<< HEAD
             'ReferenceTel': ['', Validators.required],
             'PatientId': [''],
             'patientReferenceId': ['']
+=======
+            'ReferenceTel': ['', Validators.required]
+>>>>>>> master
         });
         this.documentForm = this.formBuilder.group({
             'DocumentName': ['', Validators.required],
@@ -76,8 +99,11 @@ export class RegistrationComponent implements OnInit {
             'Occupation': ['', Validators.required],
             'NIC': ['', Validators.required],
             'PhoneNumber': ['', Validators.required],
+<<<<<<< HEAD
             'PatientId': [''],
             'PartnerId': ['']
+=======
+>>>>>>> master
         });
         this.patientForm = this.formBuilder.group({
             'RegCity': ['', Validators.required],
@@ -92,6 +118,7 @@ export class RegistrationComponent implements OnInit {
             'Gender': ['', Validators.required],
             'PhoneNumber': ['', Validators.required],
             'OfficeAddress': ['', Validators.required],
+
             'ResidenceAddress': ['', Validators.required],
             'Remarks': ['', Validators.required],
             'OfficeTel': ['', Validators.required],
@@ -106,15 +133,25 @@ export class RegistrationComponent implements OnInit {
             'AuthorizedPerson': ['', Validators.required],
             //'patientId' :['',Validators.required]
         });
+
+        this.editdocumentForm = this.formBuilder.group({
+            'DocumentName': ['', Validators.required],
+            'Remarks': ['', Validators.required],
+            'FilePath': ['', Validators.required]
+        });
     }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     addrange() {
 
         let { value } = this.documentForm;
 
         let doc = {
+<<<<<<< HEAD
             //  DocumentName: value.DocumentName,
             //  Remarks: value.Remarks,
             FilePath: value.FilePath
@@ -130,11 +167,30 @@ export class RegistrationComponent implements OnInit {
         // } else {
         //     alert('All fields are required');
         // }
+=======
+            DocumentName: value.DocumentName,
+            Remarks: value.Remarks,
+            FilePath: value.FilePath
+        }
+
+        if (this.documentForm.valid) {
+            this.documentss.push(doc);
+            console.log(this.documentss);
+            this.documentForm.reset();
+        } else {
+            alert('All fields are required');
+        }
+>>>>>>> master
 
     }
 
     remove(index) {
         this.documentss.splice(index, 1);
+    }
+    removeaddeddata(i)
+    {
+        this.Patient.patientDocuments.splice(i,1 )
+        console.log(i)
     }
 
     async onSubmit(value) {
@@ -143,20 +199,28 @@ export class RegistrationComponent implements OnInit {
         value.patientReference = this.addReference;
         value.patientDocuments = this.addDocument;
         console.log(value);
+<<<<<<< HEAD
 
         await this.PatientServiceobj.addPatient(value);
         this.router.navigate(['/hims/patient/findpatient']);
         this.PatientServiceobj.getPatient();
+=======
+        await this.PatientServiceobj.addPatient(value);
+        this.router.navigate(['/hims/patient/findpatient']);
+        this.PatientServiceobj.getPatient();
+        
+        // this.PatientServiceobj.getPatient();
+        // console.log(value);
+        // return
+>>>>>>> master
     }
 
     onAddPartner(value) {
-
-        delete this.partnerForm.value.PatientId;
-        delete this.partnerForm.value.PartnerId;
         console.log(value);
         this.addpartnet = value
     }
 
+<<<<<<< HEAD
     onAddDocument(value) {
         this.addDocument = value;
         console.log(value);
@@ -212,14 +276,27 @@ export class RegistrationComponent implements OnInit {
 
 
 
+=======
+
+    onupdatedocument(value){
+       // this.updateDocument = value
+        // console.log(this.documentss)
+        console.log(value)
+     }
+
+    onAddDocument(value) {
+       
+        console.log(value);
+     this.addDocument = value;
+    }
+>>>>>>> master
 
     onAddReference(value) {
-        delete this.referenceForm.value.PatientId;
-        delete this.referenceForm.value.patientReferenceId;
         console.log(value);
         this.addReference = value;
     }
 
+<<<<<<< HEAD
     async  updatePatient(value) {
         this.patientForm.value.patientId = this.id;
         this.patientForm.value.mrn = this.Patient.mrn;
@@ -272,11 +349,19 @@ export class RegistrationComponent implements OnInit {
         console.log(i)
         await this.PatientServiceobj.deleteDocument(id);
         this.document.splice(i, 1)
+=======
+  async  updatePatient(value){
+      console.log(value);
+   // this.patientForm.value.patientId = this.id;
+    //  let x = await  this.PatientServiceobj.updatePatient(value);
+    // console.log(x);
+>>>>>>> master
     }
 
 
     async ngOnInit() {
 
+<<<<<<< HEAD
         console.log(this.router.url);
 
         this.route.params.subscribe((params) => {
@@ -369,8 +454,35 @@ export class RegistrationComponent implements OnInit {
 
 
     }
+=======
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+  
+         
+            this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
+              this.Patient = Patient;
+              
+              this.patientForm.patchValue({
+                  FirstName: Patient.firstName,
+                });
+
+           });
 
 
+          });
+
+
+        await this.PatientServiceobj.getPatient()
+        let x = this.PatientServiceobj.patients
+        console.log(x);
+        console.log(this.PatientServiceobj.patients)
+>>>>>>> master
+
+        await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
+        let y = this.PatientServiceobj.patientData
+        console.log(y);
+
+<<<<<<< HEAD
     goback() {
         this.Location.back();
     }
@@ -385,6 +497,16 @@ export class RegistrationComponent implements OnInit {
         }
     }
 
+=======
+        await this.PatientServiceobj.GetVisitNatures();
+        this.visitnature = this.PatientServiceobj.visitNatures;
+        console.log(this.visitnature);
+
+   
+
+
+    }
+>>>>>>> master
 
 
 }

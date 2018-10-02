@@ -75,6 +75,7 @@ export class VisitsComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.id = +params['id'];
 
+<<<<<<< HEAD
             this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe((Patient) => {
 
                 this.Patient = Patient;
@@ -84,6 +85,15 @@ export class VisitsComponent implements OnInit {
         });
 
         console.log(this.id);
+=======
+            this.Patient = Patient;
+            console.log(Patient.PatientId)
+         });
+           
+         });
+        
+          console.log(this.id);
+>>>>>>> master
 
         this.vist = await this.PatientServiceobj.getVisitId(this.id);
         console.log(this.vist)

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Patient } from '../../../models/patient';
-import { Document } from '../../../models/document';
 import { Appointment } from '../../../models/appointment';
 import { Consultant } from '../../../models/consultant';
 import { himsSetupTest } from '../../../models/himsSetupTest';
@@ -19,8 +18,6 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reference } from '../../../models/reference';
-import { Spouse } from '../../../models/spouse';
 
 import { Package } from '../../../models/packages';
 
@@ -30,16 +27,24 @@ export class PatientService {
 
     public patient;
     public currentPatient: any;
+<<<<<<< HEAD
     public SearchPatientbyname: any;
     public patientData: any;
     public patientDocumentbyId: any;
+=======
+    public SearchPatientbyname : any;
+    public patientData : any ;
+>>>>>>> master
 
     public consultant: any;
     public patients: any;
     public patientAllFormData: any = {};
     public tryImgSrc: any;
     public images: any = [];
+<<<<<<< HEAD
     public patientID: any;
+=======
+>>>>>>> master
 
 
     // <for appointmnet>
@@ -92,10 +97,15 @@ export class PatientService {
     }
 
     async addPatient(patient: Patient) {
+<<<<<<< HEAD
         this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
         console.log(this.patientID)
         return this.patientID;
 
+=======
+        let addPatient = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
+        return addPatient;
+>>>>>>> master
     }
 
     async getpatientForupdating(value) {
@@ -118,15 +128,19 @@ export class PatientService {
 
     async updatePatient(patient) {
         console.log(patient)
+<<<<<<< HEAD
         let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`, patient).toPromise();
         return x;
+=======
+      return await this.http1.post(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
+>>>>>>> master
     }
-
 
     async deletePatient(id) {
         let x = await this.http1.delete(this.API_URL + '/patients/DeletePatient/' + id).toPromise();
         console.log(x);
         return x;
+<<<<<<< HEAD
     }
 
     addDocument(f: FormData, id) {
@@ -173,6 +187,10 @@ export class PatientService {
         let x = await this.http1.post(this.API_URL + '/patients/AddPartner/', Spouse).toPromise();
         console.log(x);
         return x;
+=======
+
+
+>>>>>>> master
     }
 
     setCurrentPatient(patient) {
@@ -428,8 +446,8 @@ export class PatientService {
 
     async GetVisitNatures() {
         this.visitNatures = await this.http1.get<VisitNature>(this.API_URL + '/HimsSetup/GetVisitNatures/').toPromise();
-        console.log(this.visitNatures);
-        return this.visitNatures
+        console.log(this.PatientVitals);
+        return this.PatientVitals
     }
 
 

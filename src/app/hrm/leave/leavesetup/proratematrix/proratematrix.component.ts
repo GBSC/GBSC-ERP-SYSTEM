@@ -15,12 +15,24 @@ export class ProratematrixComponent implements OnInit {
         this.proratematrix = this.leavesetupservice.proratematrix
         console.log(this.proratematrix);
 
+<<<<<<< HEAD
     }
 
     async addprmatrix(value) {
         this.leavesetupservice.addproratematrix(value.data);
     }
 
+=======
+        await this.leavesetupservice.getAllleavepolicy();
+        let typeofleave = this.leavesetupservice.leavepolicy;
+
+    }
+
+    async addprmatrix(value) {
+        this.leavesetupservice.addproratematrix(value.data);
+    }
+
+>>>>>>> master
     async updateprmatrix(value) {
         this.leavesetupservice.updateproratematrix(value);
     }

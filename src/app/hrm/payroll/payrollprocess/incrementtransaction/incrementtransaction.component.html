@@ -1,0 +1,79 @@
+<div color="primary">
+ 
+</div>
+<div class="container mat-elevation-z8">
+ 
+  <dx-data-grid
+  id="gridContainer" 
+  [dataSource]="branch"
+  keyExpr="Id">
+  <dxo-editing 
+       mode="popup"
+       [allowUpdating]="true"
+       [allowDeleting]="true"
+       [allowAdding]="true">
+  </dxo-editing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+<dxo-search-panel 
+  [visible]="true" 
+  [width]="240" 
+  placeholder="Search..."></dxo-search-panel>
+  <dxo-paging [pageSize]="8"></dxo-paging>
+  <dxo-pager 
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 10, 20]"
+      [showInfo]="true">
+  </dxo-pager>
+
+  <dxi-column dataField="employee" caption="Employee">
+    <dxo-lookup
+    [dataSource]="employee"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="payrollyear" caption="Payroll Year">
+    <dxo-lookup
+    [dataSource]="payrollyear"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="payrolltype" caption="Payroll Type">
+    <dxo-lookup
+    [dataSource]="payrolltype"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="incrementon" caption="Increment On">
+    <dxo-lookup
+    [dataSource]="incrmnton"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="incrementfactor" caption="Increment Factor">
+    <dxo-lookup
+    [dataSource]="incrmntfactor"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+
+  <dxi-column dataField="IncrementDate" dataType="date" format="shortDate"></dxi-column>
+  <dxi-column dataField="Annual Revision"></dxi-column>
+  <dxi-column dataField="percentage" caption="percentage">
+    <dxo-lookup
+    [dataSource]="percentage"
+    displayExpr="Name"
+    valueExpr="ID"></dxo-lookup>
+  </dxi-column>
+
+  <dxi-column dataField="Amount"></dxi-column>
+  <dxi-column dataField="marketbaseadjustment" caption="Market Base Adjustment"></dxi-column>
+  <dxi-column dataField="Remarks"></dxi-column> 
+</dx-data-grid>
+</div>

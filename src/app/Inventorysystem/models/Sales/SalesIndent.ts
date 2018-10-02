@@ -1,4 +1,5 @@
 export interface SalesIndent {
+<<<<<<< HEAD
     SalesIndentId: number,
     Date: Date,
     SalesIndentNumber: string,
@@ -16,4 +17,23 @@ export interface SalesIndent {
     DeliveryOrderId: number,
     SalesInvoiceId: number,
     DeliveryChallanId: number
+=======
+    salesIndentId: number,
+    date: Date,
+    salesIndentNumber: string,
+    totalTradePrice: number,
+    totalTradeOfferDiscount: number,
+    totalTradeOffer: number,
+    issueDate: Date,
+    isIssued: boolean,
+    approvedDate: Date,
+    isApproved: boolean,
+    processedDate: Date,
+    isProcessed: boolean,
+    userId: number,
+    salesOrderId: number,
+    deliveryOrderId: number,
+    salesInvoiceId: number,
+    deliveryChallanId: number
+>>>>>>> d6ac958d896e8ef818ac88e42f5a4d3ae70abb56
 }

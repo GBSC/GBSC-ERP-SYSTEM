@@ -16,10 +16,20 @@ export class AssignrosterComponent implements OnInit {
         await this.attendancesetupservice.getasignrosters();
         this.assignroster = this.attendancesetupservice.asignroster
         console.log(this.assignroster);
+<<<<<<< HEAD
+=======
+
+        await this.attendancesetupservice.getrosters();
+        let Roster = this.attendancesetupservice.roster;
+>>>>>>> master
 
     }
 
     async addassignroster(value) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         this.attendancesetupservice.addasignroster(value.data);
     }
 

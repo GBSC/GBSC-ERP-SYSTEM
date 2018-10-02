@@ -17,6 +17,7 @@ export class LeaveyearsetupComponent implements OnInit {
 
     }
 
+<<<<<<< HEAD
     async addleaveyear(lyear) {
         console.log(lyear.data);
         this.leavesetupservice.addleaveyear(lyear.data);
@@ -35,6 +36,24 @@ export class LeaveyearsetupComponent implements OnInit {
 
 
     }
+=======
+    async addleaveyear(value) {
+        console.log(value.data);
+        this.leavesetupservice.addleaveyear(value.data);
+      }
+      
+      async updateleaveyear(value) { 
+        this.leavesetupservice.updateleaveyear(value);  
+     
+      }
+
+      async deleteleaveyear(value) {
+        console.log(value); 
+        this.leavesetupservice.Deleteleavyear(value.key); 
+     
+     
+      }
+>>>>>>> master
 
 
 }

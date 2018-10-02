@@ -132,7 +132,7 @@
         <h2>Create A Role</h2>
       </div>
       <div class="name-container">
-        <input type="text" id="name" (change)="role.Name = $event.target.value" placeholder="Insert role name here...">
+        <input type="text" id="name" class="form-control m-input" (change)="role.Name = $event.target.value" placeholder="Insert role name here...">
       </div>
       <div class="content-container">
         <div class="right">
@@ -160,8 +160,8 @@
 
       </div>
       <div class="role-actions">
-        <button (click)="showPopup = false">Cancel</button>
-        <button (click)="saveRole()">Save Role</button>
+        <button class="btn btn-primary" (click)="showPopup = false">Cancel</button>
+        <button class="btn btn-info" (click)="saveRole()">Save Role</button>
       </div>
     </div>
     <div class="popup" *ngIf="popup">
@@ -179,8 +179,8 @@
           </div>
         </div>
         <div class="p-actions">
-          <button class="btn btn-primary" (click)="popup = false">Cancel</button>
-          <button (click)="savePermissions()" class="btn btn-primary">Done</button>
+          <button  class="btn btn-primary" (click)="popup = false">Cancel</button>
+          <button class="btn btn-info" (click)="savePermissions()">Done</button>
         </div>
       </div>
     </div>

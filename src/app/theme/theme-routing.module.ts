@@ -6,12 +6,22 @@ import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
+<<<<<<< HEAD
 import { PayrollModule } from '../payroll/payroll.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 import { CoreModule } from '../core/core.module';
+=======
+import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
+import { DashboardModule } from '../dashboard/dashboard.module';
+import { HrmModule } from '../hrm/hrm.module';
+import { SuperadminModule } from '../superadmin/superadmin.module';
+import { AccountModule } from '../account/account.module';
+
+
+>>>>>>> master
 
 const routes: Routes = [
     {
@@ -60,9 +70,6 @@ const routes: Routes = [
         SuperadminModule,
         DashboardModule,
         HrmModule,
-        PayrollModule,
-        DashboardModule,
-        AccountModule
     ],
     exports: [
         RouterModule,

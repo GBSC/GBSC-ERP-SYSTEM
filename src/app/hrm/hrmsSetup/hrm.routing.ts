@@ -28,8 +28,8 @@ import { UniversityComponent } from '../hrmsSetup/university/university.componen
 import { ModuleGuardService } from '../../account/auth/module-guard.service';
 import { AuthGuardService } from '../../account/auth/auth-guard.service';
 import { RootComponent } from '../root/root.component';
-import { HrmSetupHomeComponent } from './home/home.component';
 import { ShiftComponent } from '../attendance/attendancesetup/shift/shift.component';
+import { HrmSetupHomeComponent } from './home/home.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([

@@ -12,22 +12,6 @@ import { SetupService } from '../../../hrmsSetup/services/setup.service';
     styleUrls: ['./employeeleaveopening.component.css']
 })
 export class EmployeeleaveopeningComponent implements OnInit {
-<<<<<<< HEAD
-    public leaveopeningForm: any;
-    public leaveopendetailForm: any;
-
-    constructor(public fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService, public router: Router) { }
-
-    async ngOnInit() {
-
-
-        this.leaveopeningForm = this.fb.group({
-            Employee: ['', Validators.required],
-            LeaveYear: ['', Validators.required],
-            Remarks: ['', Validators.required]
-
-        });
-=======
     public leaveOpeningForm: FormGroup;
     public leaveOpenDetailForm: FormGroup;
     public leaveopening: any;
@@ -41,7 +25,6 @@ export class EmployeeleaveopeningComponent implements OnInit {
             UserId: ['', Validators.required],
             LeaveYearId: ['', Validators.required],
             Remarks: ['', Validators.required]
->>>>>>> master
 
         });
 
@@ -60,14 +43,6 @@ export class EmployeeleaveopeningComponent implements OnInit {
         this.leveopeningdetail = this.leaveservice.leaveopeningdetail
         console.log(this.leveopeningdetail);
 
-<<<<<<< HEAD
-        this.leaveopendetailForm = this.fb.group({
-            LeaveType: ['', Validators.required],
-            Quantity: ['', Validators.required],
-            Expiry: ['', Validators.required]
-        });
-=======
->>>>>>> master
 
         await this.empservice.GetAllEmployees();
         let employee = this.empservice.employeereg;
@@ -80,18 +55,6 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     }
 
-<<<<<<< HEAD
-
-    async addleaveopeningordetail(opening, detail) {
-
-        console.log(opening.data);
-        this.leaveservice.addLeaveopening(opening.data);
-
-        console.log(opening.data);
-        this.leaveservice.addLeaveopeningdetail(detail.data);
-
-
-=======
     
     async addLeaveopenDetail(){  
         
@@ -106,7 +69,6 @@ export class EmployeeleaveopeningComponent implements OnInit {
     async addleaveopening(e) {
         this.leaveOpeningId = await this.leaveservice.addLeaveopening(this.leaveOpeningForm.value);
         console.log(this.leaveOpenDetailForm.value);
->>>>>>> master
     }
 
 }

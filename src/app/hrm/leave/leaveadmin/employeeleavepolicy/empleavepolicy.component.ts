@@ -13,22 +13,6 @@ import { LeaveService } from '../../leave.service';
 })
 export class EmpleavepolicyComponent implements OnInit {
 
-<<<<<<< HEAD
-    public groups: any = [];
-
-    constructor() { }
-
-    ngOnInit() {
-
-        this.groups = [
-            { checked: false, index: '01', name: 'N/A' },
-            { checked: true, index: '02', name: 'N/A' },
-            { checked: false, index: '03', name: 'N/A' },
-            { checked: false, index: '04', name: 'N/A' },
-            { checked: false, index: '05', name: 'N/A' }
-        ]
-    }
-=======
   public groups: any = [];
   EmployeeleavePolicyForm: FormGroup;
   public empleavepolicy: any;
@@ -106,7 +90,6 @@ export class EmpleavepolicyComponent implements OnInit {
     await this.hrsetupservice.getAllGroups();
     let groups = this.hrsetupservice.group;
   }
->>>>>>> master
 
   async addemployeeleavepolicy(empleavepolicy){
     console.log(empleavepolicy);

@@ -22,25 +22,6 @@ export class AttendancerequestComponent implements OnInit {
         this.attendancerequest = this.attendanceservice.attendancerequest
         console.log(this.attendancerequest);
 
-<<<<<<< HEAD
-    public attendancerequest: any;
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getattendancerequests();
-        this.attendancerequest = this.attendanceservice.attendancerequest
-        console.log(this.attendancerequest);
-
-    }
-
-    async addattendancerequest(value) {
-        this.attendanceservice.addattendancerequest(value.data);
-    }
-
-    async updateattendancerequest(value) {
-        console.log(value);
-        this.attendanceservice.updateattendancerequest(value);
-=======
         await this.Employeeservice.GetAllEmployees();
         let requesttype = this.Employeeservice.employeereg;
         
@@ -65,7 +46,6 @@ export class AttendancerequestComponent implements OnInit {
 
     async updateattendancerequest() { 
         this.attendanceservice.updateattendancerequest( this.UpdatingRequest);
->>>>>>> master
     }
 
     async deleteattendancerequest(value) {

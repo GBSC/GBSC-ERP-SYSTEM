@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../services/systemadministration.services';
+import { SystemAdministrationService } from '../../systemadministration/service/systemadministration.services';
 
 @Component({
     selector: 'app-role',

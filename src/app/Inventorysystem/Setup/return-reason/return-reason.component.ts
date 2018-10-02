@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons: any;
-    private UpdatedModel: any;
+    private ReturnReasons : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
@@ -24,7 +24,7 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateReturnReason() {
@@ -32,7 +32,7 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     async DeleteReturnReason(value) {
-        return await this, this.InventoryService.DeleteReturnReason(value.key);
+        return await this,this.InventoryService.DeleteReturnReason(value.key);
     }
 
 }

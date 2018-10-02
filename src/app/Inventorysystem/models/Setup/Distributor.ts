@@ -10,7 +10,7 @@ export interface Distributor {
     country: string,
     landlineNumber: string,
     mobileNumber: string,
-    hasTerritory: boolean;
+    hasTerritory : boolean;
     faxNumber: string,
     email: string,
     nature: string,

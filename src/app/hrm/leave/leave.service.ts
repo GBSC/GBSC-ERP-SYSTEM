@@ -57,10 +57,7 @@ export class LeaveService {
 
     }
 
-<<<<<<< HEAD
-=======
     
->>>>>>> master
 
     async DeleteLeaveopening(leaveOpeningId) {
 
@@ -246,13 +243,8 @@ export class LeaveService {
         return await this.httpClient.delete(`${this.baseUrl}/Leave/Deleteleaverequestdetail/${leaverequestdetailId}`).toPromise();
     }
 
-<<<<<<< HEAD
-    /** CRUD METHODS */
-    async getAllleaveapproval() {
-=======
        /** CRUD METHODS */
        async getleaveapprovals() {
->>>>>>> master
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }

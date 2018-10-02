@@ -12,12 +12,12 @@ import { ValidationStatesModule } from '../../../theme/pages/default/components/
 
 
 
-export class AreaComponent implements OnInit {
-    private Regions: any;
-    private Areas: any;
-    private newarea: Area;
+export class AreaComponent implements OnInit  {
+    private Regions : any;
+    private Areas : any;
+    private newarea : Area;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 

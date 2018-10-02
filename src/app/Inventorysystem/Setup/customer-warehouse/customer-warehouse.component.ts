@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./customer-warehouse.component.scss']
 })
 export class CustomerWarehouseComponent implements OnInit {
-    private CustomerWarehouses: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    private CustomerWarehouses : any;
+    private CustomerTypes : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
@@ -26,7 +26,7 @@ export class CustomerWarehouseComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
         //console.log(this.UpdatedModel);
     }
 

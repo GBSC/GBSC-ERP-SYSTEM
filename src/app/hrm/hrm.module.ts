@@ -150,11 +150,7 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-<<<<<<< HEAD
-        DevExtremeModule,
-=======
         DevExtremeModule, 
->>>>>>> master
         HttpClientModule,
         routing
     ],
@@ -258,13 +254,6 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         ExperienceComponent,
         EmployeesComponent,
         EmployeeCompanyComponent,
-<<<<<<< HEAD
-        EmployeedetailComponent
-
-    ],
-    exports: [],
-    providers: [LeaveService, SetupService, AttendanceService, AttendancesetupService, HrmsService, LeaveSetupService, EmployeeService, SystemAdministrationService]
-=======
         EmployeedetailComponent,
         RostermappingComponent,
         RostercopyComponent,
@@ -322,7 +311,6 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         LeaveSetupService, EmployeeService,
         SystemAdministrationService,
     PayrollService,PayrollSetupService]
->>>>>>> master
 
 })
 export class HrmModule { }

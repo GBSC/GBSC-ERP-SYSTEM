@@ -11,19 +11,12 @@ import { EmployeeService } from '../../employee/services/employee.service';
 export class OfficialVisitEntryComponent implements OnInit {
 
     public officialVisitentry: any;
-<<<<<<< HEAD
-    constructor(public attendanceservice: AttendanceService) { }
-=======
     constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
->>>>>>> master
 
     async ngOnInit() {
         await this.attendanceservice.getofficialVisitentries();
         this.officialVisitentry = this.attendanceservice.officialVisitentry
-<<<<<<< HEAD
-        console.log(this.officialVisitentry);
-=======
         //console.log(this.officialVisitentry);
 
         await this.empservice.GetAllEmployees();
@@ -31,7 +24,6 @@ export class OfficialVisitEntryComponent implements OnInit {
 
         await this.companyservice.getBranches();
         let branch = this.companyservice.branches
->>>>>>> master
 
     }
 

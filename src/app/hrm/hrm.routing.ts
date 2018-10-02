@@ -114,6 +114,7 @@ import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
 import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -289,7 +290,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'loansetup',
             children: [
                 {path: 'loantype', component: LoantypeComponent},
-                {path: 'userloan', component: UserloanComponent},
+                {path: 'userloan', component: UserloanComponent}
         ]}, 
 
         { path: 'payrolladmin',
@@ -298,7 +299,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     ]}, 
 
            {path: 'gratuity', component: GratuityComponent},
-           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent}
+           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent},
+           {path: 'payslip', component: PayslipComponent}
 
         ]}
 

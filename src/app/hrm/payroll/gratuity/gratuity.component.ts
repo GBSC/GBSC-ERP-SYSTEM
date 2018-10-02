@@ -17,7 +17,7 @@ export class GratuityComponent implements OnInit {
   private updatingGratuity: any;
   private gratuityslab : GratuitySlabGratuity[];
  
-  private GratuityForm: any;
+  public GratuityForm: any;
 
   constructor(private fb: FormBuilder,public payrollservice: PayrollService, 
     public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }

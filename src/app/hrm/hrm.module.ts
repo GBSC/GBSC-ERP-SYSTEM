@@ -143,6 +143,7 @@ import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratu
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { PayrollSetupService } from './payroll/services/payrollsetup.service';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
 @NgModule({
@@ -299,7 +300,8 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         PfPaymentComponent,
         TaxyearComponent,
         GratuityComponent,
-        MonthlyUserSalaryComponent
+        MonthlyUserSalaryComponent,
+        PayslipComponent
 
 
 

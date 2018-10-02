@@ -72,128 +72,108 @@
                     <div class="tab-content col-sm-4">
 
                         <div class="tab-pane active" id="m_tabs_1_2" role="tabpanel">
-                            <div class="m-widget4">
-                                <div class="m-widget4__item">
+                            <div class="m-portlet__body">
 
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Height
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.height}}
-                                            <!-- {{PatientServiceobj?.getvisitbyid.patientVital.height}} -->
-                                            <!-- {{getvisitid?.patientVital?.height}} -->
-                                        </span>
-                                    </span>
+                                <div class="m-section">
+                                    <!-- <div  class="row">
+                                <div  class="col-lg-4">
+                                    <h3  class="m-section__heading">
+                                        Last Vitals
+                                    </h3>
                                 </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Weight
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.weight}}
-                                            <!-- {{visit?.patientVital.weight}} -->
-                                        </span>
-                                    </span>
+                                <div  class="col-lg-8">
+                                    <h3  class="m-section__heading">
+                                        9/24/2018 07:58:22
+                                    </h3>
                                 </div>
-                                <!-- <div class="m-widget4__item">										
-                                  <div class="m-widget4__info">
-                                    <span class="m-widget4__title">
-                                      Calculated (BMI)
-                                    </span>
-                                    <br>
-                                  </div>
-                                  <span class="m-widget4__ext">
-                                    <span class="m-widget4__number m--font-brand">
-                                      {{leatestPatientVitals.calculatedBMI}} 
-                                    </span>
-                                  </span>
-                                </div> -->
+                              </div> -->
 
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Temperature
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.temperature}}
-                                            <!-- {{visit?.patientVital.temperature}} -->
-                                            <!-- {{getvisitid.patientVital.temperature}}  -->
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Respiratory Rate
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.respiratoryRate}}
-                                            <!-- {{visit?.patientVital.respiratoryRate}} -->
-                                            <!-- {{getvisitid.patientVital.respiratoryRate}}  -->
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Pulse
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.pulse}}
-                                            <!-- {{visit?.patientVital.pulse}} -->
-                                            <!-- {{getvisitid.patientVital.pulse}}   -->
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Blood Pressure
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.bloodPressure}}
-                                            <!-- {{visit?.patientVital.bloodPressure}} -->
-                                            <!-- {{getvisitid.patientVital.bloodPressure}}   -->
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Blood Oxygen Saturation
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{visit.patientVital?.bloodOxygenSaturation}}
+                                    <div class="m-section__content">
+                                        <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+                                            <div class="m-demo__preview">
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Height(cm)
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.height}}cm
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        {{visit.patientVital?.weight}}(kg)
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            21 kg
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Temperature (C)
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.temperature}} C
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Respiratory Rate
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.respiratoryRate}} / min
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Pulse
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.pulse}} / min
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Blood Pressure
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.bloodPressure}}
+                                                        </h6>
+                                                    </span>
+                                                </p>
+                                                <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Blood Oxygen Saturation
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                            {{visit.patientVital?.bloodOxygenSaturation}}%
+                                                        </h6>
+                                                    </span>
+                                                </p>
 
-                                            <!-- {{visit?.patientVital.bloodOxygenSaturation}} -->
-                                            <!-- {{getvisitid.patientVital.bloodOxygenSaturation}}   -->
-                                        </span>
-                                    </span>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
+
                             </div>
+
                         </div>
                         <div class="tab-pane" id="m_tabs_1_1" role="tabpanel">
                             <div class="m-widget4">

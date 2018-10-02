@@ -61,11 +61,7 @@ export class AppointmentscheduleComponent implements OnInit {
     private getTestbyId : any= [] ; 
     public gettestName : any = [] ; 
 
-
-
-
-    ///////////////////
-    public falto: any;
+    submitted = false;
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
 
         // this.profileForm = new FormGroup({
@@ -84,8 +80,8 @@ export class AppointmentscheduleComponent implements OnInit {
                 Gender: ['', Validators.required],
                 LastName: ['', Validators.required],
                 DOB: ['', Validators.required],
-                PhoneNumber: ['', Validators.required],
-                NIC: ['', Validators.required],
+                PhoneNumber:['',  [Validators.required , Validators.minLength(11)]],
+                NIC: ['', [Validators.required , Validators.minLength(13)]],
 
             });
         this.appointmentForm = this.formBuilder.group(
@@ -155,74 +151,22 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
 
-
-    // addrange(id) {
-    //     // console.log(id);
-
-    //     //    console.log(id.value);
-    //     // let testFound = this.findTestById(id);
-    //     // console.log(testFound);
-
-    //     let { value } = this.appointmenttestForm;
-    //     // let test = this.test.find(t => { 
-    //     //     console.log(t.testId === value.TestId); t.testId === value.TestId; })
-    //     console.log(this.test.testName);
-    //     //console.log(test)
-    //     let doc = {
-    //         TestId: value.TestId,
-    //         //TestName : test.testName
-
-    //     }
-    //     this.Tests.push(doc);
-    //     console.log(this.Tests);
-    //     //this.appointmenttestForm.reset();
-
-
-    // }
-
     
     addrange() {
-console.log(this.tests);
-
        let { value } = this.appointmenttestForm;
- 
-      this.tests.forEach(element => {
-            this.getTestbyId.push(this.tests.find(t=>t.testId === element.testId));
-          });
-
-
-
-
-
-
-         console.log(this.getTestbyId);
- 
+      let test = this.tests.find(t => t.testId == value.TestId);
         let doc = {
             TestId: value.TestId,
-            TestName : this.getTestbyId.testName
+            TestName : test.testName
 
         }
-        this.Tests.push(doc);
+         this.Tests.push(doc);
         console.log(this.Tests);
-        //this.appointmenttestForm.reset();
-      
-
-        // new work 
-    
-
-
     }
-
-    // currentSelectedValue(value)
-    // {
-    //     console.log(value.target);
-    // }
-
 
     remove(index) {
         this.Tests.splice(index, 1);
     }
-
     removeall(index) {
         // this.Tests.splice(index,10000000000);
         this.Tests.length = 0
@@ -237,18 +181,21 @@ console.log(this.tests);
     // }
 
     async addappointmentTest(value) {
+
+         this.Tests.filter(t => {
+            return delete t.TestName;
+        });
+        
+ 
         console.log(value);
-        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-        console.log(x)
+         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId,value);
+          console.log(x)
+          console.log(this.currentpatient.appointmentId,value);
 
-        // this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        // console.log(this.getaptbyid);
-
-        this.removeall(this.Tests);
-
-        this.appointmentgrid.instance.refresh()
-
-        return x;
+         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+          console.log(this.getaptbyid);
+            this.removeall(value);
+          return x;
     }
 
     // refresh() {
@@ -276,8 +223,17 @@ console.log(this.tests);
         this.showAddNewPatientRow = false;
     }
 
+    get f() { return this.patientForm.controls; }
 
     async onAddPatient(value: Patient, popup) {
+        this.submitted = true;
+
+        if (this.patientForm.invalid) {
+            return alert('Please Select All Required Fileds') ;
+        }
+
+        console.log(this.patientForm)
+
         console.log(this.patientForm.value.FirstName);
         console.log(value);
         delete this.patientForm.value.patientId
@@ -291,39 +247,33 @@ console.log(this.tests);
 
     }
 
-    // async getappointmentbyid(d)
-    // {
-    //   this.currentpatient = d.key;
-    //   console.log(d.key)
-    //   //console.log(value.key.appointmentId);
-    //   let x = await this.PatientServiceobj.getAppointmentById(value.key.appointmentId);
-    //   console.log(x);
-    //   return x;
-
-    // }
-
     async addApointment(value, cid) {
 
-        if(this.appointmentForm.value.PatientId === '')
+        if(this.appointmentForm.value.PatientId === null)
         {
               this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
          }
       
         console.log(cid.value);
         console.log(value);
-      
-        
-
+    
         this.appointmentForm.value.ConsultantId = cid.value;
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
 
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);
-        await this.PatientServiceobj.getappointments();
+        // await this.PatientServiceobj.getappointments();
+        await this.PatientServiceobj.getPatient();
+        this.par = this.PatientServiceobj.patients;
+        await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
+        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         this.deleteFieldValue();
+
         this.appointmentForm.reset();
-        this.appointmentgrid.instance.refresh();
+        this.patientForm.reset();
+        this.patientForm.value.FirstName ='';
+        this.patientForm.value.LastName ='';
         return x;
     }
 
@@ -335,6 +285,35 @@ console.log(this.tests);
         return x;
     }
 
+    public SetTime :any;
+    getCurrentRowDataForSetTime(d)
+    {
+        // if (d.key.timeIn === '' || d.key.timeOut === '' || d.key.remarks === ''){
+        //     this.SetTime = d.key;
+        //     console.log(d.key);
+
+        // }
+        // else{
+        //     console.log('else body');
+
+        // }
+        this.SetTime = d.key;
+       console.log(d.key);
+    }
+
+  async  SetTimeInOut(value){
+        console.log(value);
+        this.SetTime.timeIn = <Date>value.TimeIn;
+        this.SetTime.timeOut = <Date>value.TimeOut;
+        this.SetTime.remarks = value.Remarks;
+        console.log(this.SetTime);
+        let x = await this.PatientServiceobj.updateAppoint(this.SetTime);
+        console.log(x);
+        this.appointmentTimeForm.reset();
+        return x;   
+    }
+
+
     async deleteAppointment(value) {
         console.log(value.key.appointmentId);
         let x = await this.PatientServiceobj.deleteAppointment(value.key.appointmentId);
@@ -344,15 +323,10 @@ console.log(this.tests);
 
     async getConsultantIdAndTentive(cid, date) {
         console.log(cid.value, date.value);
-        let x = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
-        console.log(x);
-
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         console.log(this.ConsultantIdTentiveTime);
-        console.log(this.ConsultantIdTentiveTime.visitNature)
-        return x;
-
+        console.log(this.ConsultantIdTentiveTime.visitNature);
     }
 
     selectNewOrPrevious(e) {

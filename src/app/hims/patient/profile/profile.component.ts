@@ -53,5 +53,21 @@ async editPatient(value){
     await this.PatientServiceobj.getpatientForupdating(value)
     console.log(value)
 }
+downloadimage(index){
+
+}
+
+// startDownload( ) {
+//     Content-Disposition: attachment; filename="sad";
+//     }
+
+
+
+// saveStringToFile() {
+//     let a:any = document.createElement("a");
+//     document.body.appendChild(a);
+//     a.style = 'display: none';
+//     this.data.saveLicenseToFile('lic', a);
+//   }
 
 }

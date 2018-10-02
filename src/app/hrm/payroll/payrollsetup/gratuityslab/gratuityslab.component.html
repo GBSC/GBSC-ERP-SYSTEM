@@ -1,37 +1,119 @@
 <div class="m-content">
+
   <div class="row">
-    <div class="col-xl-12">
+    <div class="col-md-12">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Gratuity Setup</h3>
+              <h3 class="m-portlet__head-text">
+               Gartuity Slab
+              </h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="gratuitySlab" 
-                keyExpr="gratuitySlabId" 
-                (onRowInserted)="addGratuitySlab($event)"
-                (onRowUpdated)="updateGratuitySlab($event)" 
-                (onRowRemoved)="deleteGratuitySlab($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Gratuity Setup" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-                </dxo-editing>
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
-                <dxi-column dataField="title" caption="Title"></dxi-column>
-                <dxi-column dataField="employmentDaysFrom" caption="Employee Period (Days) From"></dxi-column>
-                <dxi-column dataField="employmentDaysTill" caption="Employee Period (Days) To"></dxi-column>
-                <dxi-column dataField="multiplicationFactor" caption="Multiplcation Factor"></dxi-column>
-              </dx-data-grid>
+
+          <form [formGroup]="gratuitySlabForm">
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Title:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="Title" placeholder="">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                 Multiplication Factor:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="MultiplicationFactor" placeholder="0">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Employment Days From:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="EmploymentDaysFrom" placeholder="0">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Employment Days Till:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="EmploymentDaysTill" placeholder="0">
+              </div>
+            </div>
+          </form>
+
+            <div class="m--space-30"></div>
+            <div class="m--space-30"></div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Gratuity Slab Gratuity</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer"
+                        [dataSource]="[]"
+                         keyExpr="gratuitySlabGratuityId"
+                         (onRowInserted)="addGratuitySlabGratuity($event)" 
+                         (onRowUpdated)="updateMasterDetail($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                            <dxo-popup title="Master Payroll Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                            </dxo-popup>
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager> 
+                          <dxi-column dataField="slabAmount"></dxi-column> 
+                   
+                          <!-- <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
+                            <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
+                            </dxo-lookup> 
+                            </dxi-column> -->
+                          <!-- <dxi-column dataField="gratuityId" caption="Gratuity">
+                            <dxo-lookup [dataSource]="payrollservice?.getgratuities" displayExpr="gratuityAmount" valueExpr="gratuityId">
+                            </dxo-lookup> 
+                            </dxi-column>   -->
+                        </dx-data-grid>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+            <div class="m--space-30"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-6">
+                    <button type="reset" class="btn btn-brand" (click)="submitForm(gratuitySlabForm.value)">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>  
         </div>
       </div>
     </div>

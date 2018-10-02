@@ -36,13 +36,13 @@
                         <label>
                         Start Time:
                         </label>
-                        <input type="text" class="form-control m-input" formControlName="StartTime" placeholder="00:00">
+                        <input type="date" class="form-control m-input" formControlName="StartTime" placeholder="00:00">
                       </div>
                       <div class="col-lg-6">
                         <label class="">
                          End Time:
                         </label>
-                        <input type="text" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
+                        <input type="date" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
                       </div>
                     </div>
   
@@ -51,7 +51,7 @@
                           <label>
                           Grace Time:
                           </label>
-                          <input type="text" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
+                          <input type="date" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
                         </div>
                         <div class="col-lg-6">
                           <label class="">
@@ -59,7 +59,7 @@
                           </label>
                           <div class="m-checkbox-list">
                               <label class="m-checkbox m-checkbox--state-success">
-                                <input type="checkbox" formControlName="ISMultipleDayShift"> 
+                                <input type="checkbox" formControlName="IsMultiple"> 
                                 <span></span>
                               </label>
                             </div>
@@ -71,13 +71,13 @@
                             <label>
                             Overtime Start Time:
                             </label>
-                            <input type="text" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00">
+                            <input type="time" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00">
                           </div>
                           <div class="col-lg-6">
                             <label class="">
                             Minimum Over Time:
                             </label>
-                            <input type="text" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00:00">
+                            <input type="time" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00:00">
                           </div>
                         </div>
 
@@ -86,49 +86,75 @@
                               <label>
                                   In Time Shift Threshold:
                               </label>
-                              <input type="text" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
+                              <input type="time" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
                             </div>
                             <div class="col-lg-6">
                               <label class="">
                                   Out Time Shift Threshold:
                               </label>
-                              <input type="text" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
+                              <input type="time" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
                             </div>
                           </div>
-
-
-                  <div class="form-group m-form__group row">
-                      <div class="col-lg-12">
-                      
-                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                          <th>Attendance Flag</th>
-                          <th>Add</th>
-                          <th>Delete</th>
-                          <tr>
-                            <td>
-                                <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
-                                    <option value="" disabled selected>-- Select Attendance Flag --</option>
-                                    <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
-                                  </select>
-                            </td>
-                            <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add </button></td>
-                            <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                          </tr>
-                          <tr *ngFor="let field of fieldArray; let i = index">
-                              <td>
-                                  <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
-                                      <option value="" disabled selected>-- Select Attendance Flag --</option>
-                                      <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId">{{flag.title}}</option>
-                                    </select>
-                              </td>
-                              <td>   <button class="btn btn-info" type="button" (click)="addFieldValue()">Add </button></td>
-                              <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                            </tr>
-                        </table>
-                      </div> 
-                    </div>
-   
             </form>
+ 
+            <div class="m--space-30"></div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Attendance Flag</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer"
+                        [dataSource]="[]"
+                         keyExpr="assignRosterId"
+                         (onRowInserted)="addAssignroster($event)" 
+                         (onRowUpdated)="updateMasterDetail($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                            <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                            </dxo-popup>
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>  
+                          <dxi-column dataField="description" caption="Description"> 
+                            </dxi-column>
+                        </dx-data-grid>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div class="m--space-30"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-2"></div>
+                  <div class="col-lg-6">
+                    <button type="reset" class="btn btn-brand" (click)="addshift(ShiftForm.value)">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

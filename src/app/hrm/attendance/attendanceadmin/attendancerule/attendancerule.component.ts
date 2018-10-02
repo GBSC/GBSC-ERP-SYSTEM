@@ -3,8 +3,9 @@ import { AttendanceService } from '../../services/attendance.service';
 import { AttendancesetupService } from '../../services/attendancesetup.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { SetupService } from '../../../hrmsSetup/services/setup.service';
-import { LeaveSetupService } from '../../../leave/leaveSetup.service';
-import { LeaveType } from '../../../hrmsSetup/models/leavetype.interface';
+import { LeaveSetupService } from '../../../leave/leaveSetup.service'; 
+import { AttendanceRuleLeaveType } from '../../../model/AttendanceRuleLeaveType';
+import { AttendanceRule } from '../../../model/attendanceRule';
 
 @Component({
     selector: 'app-attendancerule',
@@ -15,10 +16,7 @@ export class AttendanceruleComponent implements OnInit {
 
     public AttendanceRuleForm;
     public attendancerule: any;
-    public leaves = [];
-
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = null;
+    private leaves : AttendanceRuleLeaveType[]; 
     public attendanceRule: any;
 
     constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
@@ -26,6 +24,8 @@ export class AttendanceruleComponent implements OnInit {
         public hrsetupservice: SetupService, ) { }
 
     async ngOnInit() {
+
+        this.leaves = []; 
 
         this.AttendanceRuleForm = this.fb.group({
             GroupId: ['', Validators.required],
@@ -37,8 +37,7 @@ export class AttendanceruleComponent implements OnInit {
             EffectQuantity: ['', Validators.required],
             EffectType: ['', Validators.required],
             EffectFrequency: ['', Validators.required],
-            Action: ['', Validators.required]
-            //LeaveTypeId: ['', Validators.required]
+            Action: ['', Validators.required] 
 
         });
 
@@ -53,42 +52,25 @@ export class AttendanceruleComponent implements OnInit {
         let attendanceflag = this.attendancesetupservice.attendanceflag;
 
         await this.leavesetupservice.getAllleavetype();
-        let leavetype = this.leavesetupservice.leavetype;
-        //this.b = this.a;
+        let leavetype = this.leavesetupservice.leavetype; 
 
     }
 
-    addFieldValue() { 
-        this.leaves.push(
-            { "leaveTypeId" : this.newAttribute.leaveTypeId }
-        );
+    async attendanceRuleLeave(value) {
+        let data = value.data;
+        this.leaves.push(data);
         console.log(this.leaves);
-        
-        this.AttendanceRuleForm.value = {
-            ...this.AttendanceRuleForm.value,
-            AttendanceRuleLeaveTypes: this.leaves
-        }; 
-        console.log(this.AttendanceRuleForm.value); 
-        this.fieldArray.push(this.newAttribute); 
-        console.log(this.fieldArray); 
-    }
+      }
 
-    deleteFieldValue(title, index) {
-        let y = this.fieldArray.filter(l => l.title == title);
-        this.leavesetupservice.leavetype.push(y[0]);
-        this.fieldArray.splice(index, 1);
-    } 
-    selectLeaveType(e) { 
-        let x = this.leavesetupservice.leavetype.filter(l => l.leaveTypeId == e.target.value);
-        this.newAttribute = x[0]; 
-        this.leavesetupservice.leavetype = this.leavesetupservice.leavetype.filter(l => l.leaveTypeId != e.target.value);
-         
-    }
-
-    async addattendancerule() { 
-         
-        this.attendanceservice.addattendancerule(this.AttendanceRuleForm.value);
-        console.log(this.AttendanceRuleForm.value);
+    async addattendancerule(value) { 
+        console.log(value);
+        let attendanceRule = new AttendanceRule();
+        attendanceRule = {...attendanceRule, ...value};
+        console.log(this.leaves);
+        attendanceRule.attendanceRuleLeaveTypes = this.leaves;
+        console.log(attendanceRule);
+        let r= this.attendanceservice.addattendancerule(attendanceRule);
+        console.log(r);
 
     }
 
@@ -103,19 +85,5 @@ export class AttendanceruleComponent implements OnInit {
     async deleteattendancerule(value) {
         this.attendanceservice.Deleteattendancerule(value.key);
     }
-
-    // getLeaves(e) {
-
-    //     this.leaves.push(
-    //         { LeaveTypeId: e.target.value }
-    //     );
-    //     console.log(this.leaves);
-    //     this.AttendanceRuleForm.value = {
-    //         ...this.AttendanceRuleForm.value,
-    //         AttendanceRuleLeaveTypes: this.leaves
-    //     };
-
-    //     console.log(this.AttendanceRuleForm.value);
-    // }
 
 }

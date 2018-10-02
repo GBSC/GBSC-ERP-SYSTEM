@@ -57,102 +57,62 @@
           </form>
 
             <div class="m--space-30"></div>
-
-            <form [formGroup]="MasterDetailForm">
-              <div class="form-group m-form__group row">
-                <div class="col-md-2">
-                  <label>
-                    Allowance:
-                  </label>
-                  <select formControlName="AllowanceId" class="form-control m-input">
-                    <option value="">--- Select Allowance ---</option>
-                    <option *ngFor="let allowance of payrollsetupservice?.allowance" [value]="allowance.allowanceId">{{allowance.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-1">
-                  <label>
-                    Value:
-                  </label>
-                  <input type="number" class="form-control m-input" formControlName="Value" placeholder="0">
-                </div>
-                <div class="col-md-2">
-                  <label>
-                    Effective Date:
-                  </label>
-                  <input type="date" class="form-control m-input" formControlName="EffectiveDate" placeholder="0">
-                </div>
-                <div class="col-md-2">
-                  <label>
-                    End Date:
-                  </label>
-                  <input type="date" class="form-control m-input" formControlName="EndDate" placeholder="0">
-                </div>
-                <div class="col-md-2">
-                  <label>
-                    Frequency:
-                  </label>
-                  <select class="form-control m-input" formControlName="FrequencyId">
-                    <option value="">--- Select Frequency ---</option>
-                    <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-2">
-                  <label>
-                    Payroll Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="PayrollTypeId">
-                    <option value="">--- Select Payroll Type ---</option>
-                    <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
-                  </select>
-                </div>
-                <div class="col-md-1">
-                  <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add</button></td>
-                </div>
-              </div>
-            </form>
             <div class="m--space-30"></div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-12">
-                <label>
-                  Leave Detail(s):
-                </label>
-
-                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                  <th>Allowance</th>
-                  <th>Value</th>
-                  <th>Effective Date</th>
-                  <th>End Date</th>
-                  <th>Frequency</th>
-                  <th>Payroll Type</th>
-                  <th>Delete</th>
-                  <tr *ngFor="let field of fieldArray; let i = index">
-                    <td>
-                      <p>{{field.allowance}}
-                    </td>
-                    <td>
-                      <p>{{field.value}}
-                    </td>
-                    <td>
-                      <p>{{field.effectiveDate}}
-                    </td>
-                    <td>
-                      <p>{{field.endDate}}
-                    </td>
-
-                    <td>
-                      <p>{{field.frequency}}
-                    </td>
-
-                    <td>
-                      <p>{{field.payrollType}}
-                    </td>
-                    <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                  </tr>
-                </table>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Master Payroll Detail</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer"
+                        [dataSource]="[]"
+                         keyExpr="masterPayrollDetailsId"
+                         (onRowInserted)="addMasterPayrolldetail($event)" 
+                         (onRowUpdated)="updateMasterDetail($event)"
+                          (onRowRemoved)="deleteleavetypebalance($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                            <dxo-popup title="Master Payroll Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                            </dxo-popup>
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager> 
+                          <dxi-column dataField="value"></dxi-column>
+                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
+                          <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
+                   
+                          <dxi-column dataField="allowanceId" caption="Allowance">
+                            <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                          <dxi-column dataField="frequencyId" caption="Frequency">
+                            <dxo-lookup [dataSource]="payrollsetupservice?.frequency" displayExpr="name" valueExpr="frequencyId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                          <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+                            <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                 
+                        </dx-data-grid>
+                      
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
+          </div>
 
             <div class="m--space-30"></div>
 
@@ -161,7 +121,7 @@
                 <div class="row">
                   <div class="col-lg-2"></div>
                   <div class="col-lg-6">
-                    <button type="reset" class="btn btn-brand" (click)="addAllowanceDeduction()">
+                    <button type="reset" class="btn btn-brand" (click)="submitForm(MasterPayrollForm.value)">
                       Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">

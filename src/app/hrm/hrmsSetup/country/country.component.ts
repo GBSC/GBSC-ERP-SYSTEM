@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Country } from '../models/country,interface';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'; 
 import { SetupService } from '../services/setup.service';
 import { HttpClient } from '@angular/common/http';
 @Component({

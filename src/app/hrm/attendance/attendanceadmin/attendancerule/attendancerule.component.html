@@ -65,13 +65,13 @@
                     <label>
                      Flag Count:
                     </label>
-                    <input type="email" class="form-control m-input" formControlName="FlagCount" placeholder="0">
+                    <input type="number" class="form-control m-input" formControlName="FlagCount" placeholder="0">
                   </div>
                   <div class="col-lg-6">
                     <label class="">
                      Exempt Flag Count:
                     </label>
-                    <input type="email" class="form-control m-input" formControlName="ExemptFlagCount" placeholder="0">
+                    <input type="number" class="form-control m-input" formControlName="ExemptFlagCount" placeholder="0">
                   </div>
                 </div>
 
@@ -80,7 +80,7 @@
                       <label>
                       Exempt Minutes:
                       </label>
-                      <input type="email" class="form-control m-input" formControlName="ExemptMinutes" placeholder="0">
+                      <input type="number" class="form-control m-input" formControlName="ExemptMinutes" placeholder="0">
                     </div>
                     <div class="col-lg-6">
                       <label class="">
@@ -101,7 +101,7 @@
                     <label>
                      Effect Quantity:
                     </label>
-                    <input type="email" class="form-control m-input" formControlName="EffectQuantity" placeholder="0">
+                    <input type="number" class="form-control m-input" formControlName="EffectQuantity" placeholder="0">
                   </div>
                   <div class="col-lg-6">
                     <label class="">
@@ -114,36 +114,47 @@
                       </select>
                   </div>
                 </div>
-
-                <div class="form-group m-form__group row">
-                    <div class="col-lg-12">
-                      <label>
-                       Leave Detail(s):
-                      </label>
-                      <div class="row">
-                        <div class="col-md-9">
-                            <select (change)="selectLeaveType($event)" class="form-control m-input">
-                              <option value="" disabled>-- Select Leave Type --</option>  
-                              <option *ngFor ="let leavetype of leavesetupservice?.leavetype" [value]="leavetype.leaveTypeId">{{leavetype.title}}</option>
-                              </select> 
+ 
+                <div class="row">
+                    <div class="col-xl-12">
+                      <div class="m-portlet">
+                        <div class="m-portlet__head">
+                          <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">Attendance Flag</h3>
+                            </div>
+                          </div>
                         </div>
-                    <div class="col-md-3">
-                      <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button>
-                    </div>
+                        <div class="m-portlet__body">
+                          <div class="m-section">
+                            <div class="m-section__content">
+                              <dx-data-grid id="gridContainer"
+                              [dataSource]="[]"
+                               keyExpr="attendanceRuleId"
+                               (onRowInserted)="attendanceRuleLeave($event)" >
+                                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                  <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                                  </dxo-popup>
+                                </dxo-editing>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                <dxo-paging [pageSize]="6"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                </dxo-pager>  
+                                <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                                    <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                                    </dxo-lookup> 
+                                    </dxi-column>
+                              </dx-data-grid>
+                            
+                          </div>
+                        </div>
                       </div>
-                      <div class="m--space-50"></div> 
-                      <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-            
-                        <th>Leave</th> 
-                        <th>Delete</th>
-                        <tr *ngFor="let field of fieldArray; let i = index">
-                  
-                          <td><p>{{field.title}}</p></td> 
-                          <td>   <button class="btn btn-danger"  type="button" (click)="deleteFieldValue(field.title, i)">Delete</button></td>
-                        </tr> 
-                      </table>
-                    </div> 
-                  </div> 
+                    </div>
+                  </div>
+                </div>
                   <div class="m--space-50"></div> 
                   <div class="m-separator m-separator"></div>
       
@@ -152,7 +163,7 @@
                       <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4">
-                          <button type="submit" class="btn btn-brand" (click)="addattendancerule()">
+                          <button type="submit" class="btn btn-brand" (click)="addattendancerule(AttendanceRuleForm.value)">
                             Submit
                           </button>
                           <button type="reset" class="btn btn-secondary">

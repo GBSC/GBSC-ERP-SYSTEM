@@ -55,9 +55,6 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes),
         PharmacyModule,
-        PatientModule,
-        LabModule,
-        FinanceModule, 
         CoreModule,
         PatientModule,
         LabModule,

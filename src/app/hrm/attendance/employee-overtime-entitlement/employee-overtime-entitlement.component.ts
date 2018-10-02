@@ -21,26 +21,6 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
     public Updatedoffday: any;
     public Updatedoutgoing: any;
 
-<<<<<<< HEAD
-
-    public empoverTimeEntitlement: any;
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getempOvertimeEntitlements();
-        this.empoverTimeEntitlement = this.attendanceservice.empOvertimeEntitlement
-        console.log(this.empoverTimeEntitlement);
-
-    }
-
-    async addempoverTimeEntitlement(value) {
-        this.attendanceservice.addempOvertimeEntitlement(value.data);
-    }
-
-    async updateempoverTimeEntitlement(value) {
-        console.log(value);
-        this.attendanceservice.updateempOvertimeEntitlement(value);
-=======
     public WorkingDayOTForm: FormGroup;
     public EmployeeEntitlementForm: FormGroup;
     public OffDayOTForm: FormGroup;
@@ -131,7 +111,6 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         this.attendanceservice.updateemployeeIncomingOts(this.Updatedincoming);
         this.attendanceservice.updateemployeeOffdayOts(this.Updatedoffday);
         this.attendanceservice.updateemployeeOutgoingOt(this.Updatedoutgoing);
->>>>>>> master
     }
 
     async deleteempoverTimeEntitlement(value) {

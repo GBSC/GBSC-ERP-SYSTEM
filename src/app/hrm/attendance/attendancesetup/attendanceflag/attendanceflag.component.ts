@@ -15,8 +15,6 @@ export class AttendanceflagComponent implements OnInit {
         await this.attendancesetupservice.getattendanceflag();
         this.attendanceflag = this.attendancesetupservice.attendanceflag
         console.log(this.attendanceflag);
-<<<<<<< HEAD
-=======
 
         await this.attendancesetupservice.getflagCategories();
         let flagcategory = this.attendancesetupservice.flagCategory;
@@ -26,7 +24,6 @@ export class AttendanceflagComponent implements OnInit {
 
         await this.attendancesetupservice.getflagvalues();
         let flagvalue = this.attendancesetupservice.flagvalue;
->>>>>>> master
 
     }
 

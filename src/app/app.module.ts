@@ -11,16 +11,13 @@ import { AuthModule } from "./auth/auth.module";
 import { SetupService } from './hrm/hrmsSetup/services/setup.service';
 import { EmployeeService } from './hrm/employee/services/employee.service';
 import { LeaveService } from './hrm/leave/leave.service';
-<<<<<<< HEAD
-import { PayrollService } from './payroll/services/payroll.service';
-
-=======
->>>>>>> master
 import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
 import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
 
 
 
@@ -42,7 +39,11 @@ import { HttpClientModule } from '@angular/common/http';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
+    providers: [{
+        provide: UrlSerializer,
+        useClass: LowerCaseUrlSerializer
+    },
+    ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

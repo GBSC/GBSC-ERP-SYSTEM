@@ -11,15 +11,6 @@ import { EmployeeService } from '../../employee/services/employee.service';
 export class OvertimeEntitlementComponent implements OnInit {
 
     public overtimeEntitlement: any;
-<<<<<<< HEAD
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getempOvertimeEntitlements();
-        this.overtimeEntitlement = this.attendanceservice.overtimeEntitlement
-        console.log(this.overtimeEntitlement);
-
-=======
     constructor(public attendanceservice: AttendanceService,public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -32,7 +23,6 @@ export class OvertimeEntitlementComponent implements OnInit {
 
         await this.employeeservice.GetAllEmployees();
         let user = this.employeeservice.employeereg
->>>>>>> master
     }
 
     async addovertimeEntitlement(value) {

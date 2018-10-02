@@ -8,7 +8,7 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
 })
 export class ItemPriceStructureComponent implements OnInit {
     private ItemPriceStructures: any;
-    private UpdatedModel: any;
+    private UpdatedModel : any;
 
     constructor(private InventoryService: InventorysystemService) {
 
@@ -24,7 +24,7 @@ export class ItemPriceStructureComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateItemPriceStructure() {

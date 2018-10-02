@@ -4,11 +4,11 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ApiService } from '../api.service';
 import { Company } from '../../../hrm/model/company';
-import { Branch } from '../../../hrm/hrmsSetup/models/branch,interface';
 import { Department } from '../../../hrm/model/department';
 import { Role } from '../../../hrm/model/role';
 import { Feature } from '../../../hrm/model/feature';
 import { Module } from '../../../hrm/model/module';
+import { Branch } from '../../../hrm/model/branch';
 
 export class Product {
     id: string;

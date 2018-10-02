@@ -34,10 +34,17 @@ export class AccountService {
 
     }
 
+    async logout()
+    {
+        localStorage.removeItem('user');
+
+        this.router.navigate(['login']);
+    }
+
     isAuthenticated() {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-            console.log('user is called');
+            console.log(user);
             console.log(user.accessibleModules);
             // console.log(user);
             this.accessibleModules = user.accessibleModules;

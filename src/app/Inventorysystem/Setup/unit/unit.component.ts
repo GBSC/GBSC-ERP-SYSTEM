@@ -9,15 +9,15 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./unit.component.css']
 })
 export class UnitComponent implements OnInit {
-    private Units: any;
-    private UpdatedModel: any;
+    private Units : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
     async ngOnInit() {
-        this.Units = await this.InventoryService.GetUnits();
+       this.Units = await this.InventoryService.GetUnits();
     }
 
     async AddUnit(value) {
@@ -26,7 +26,7 @@ export class UnitComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateUnit() {

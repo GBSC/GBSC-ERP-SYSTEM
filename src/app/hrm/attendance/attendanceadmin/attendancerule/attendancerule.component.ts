@@ -14,25 +14,6 @@ import { AttendanceRule } from '../../../model/attendanceRule';
 })
 export class AttendanceruleComponent implements OnInit {
 
-<<<<<<< HEAD
-    public attendancerule: any;
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getattendancerules();
-        this.attendancerule = this.attendanceservice.attendancerule
-        console.log(this.attendancerule);
-
-    }
-
-    async addattendancerule(value) {
-        this.attendanceservice.addattendancerule(value.data);
-    }
-
-    async updateattendancerule(value) {
-        console.log(value);
-        this.attendanceservice.updateattendancerule(value);
-=======
     public AttendanceRuleForm;
     public attendancerule: any;
     private leaves : AttendanceRuleLeaveType[]; 
@@ -99,7 +80,6 @@ export class AttendanceruleComponent implements OnInit {
 
     async updateattendancerule() {
         this.attendanceservice.updateattendancerule(this.attendanceRule);
->>>>>>> master
     }
 
     async deleteattendancerule(value) {

@@ -10,28 +10,6 @@ import { AttendancesetupService } from '../../services/attendancesetup.service';
 export class OvertimeflagComponent implements OnInit {
 
     public overtimeflag: any;
-<<<<<<< HEAD
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getAllovertimeflag();
-        this.overtimeflag = this.attendanceservice.overtimeflag
-        console.log(this.overtimeflag);
-
-    }
-
-    async addovertimeflag(value) {
-        this.attendanceservice.addovertimeflag(value.data);
-    }
-
-    async updateovertimeflag(value) {
-        console.log(value);
-        this.attendanceservice.updateovertimeflag(value);
-    }
-
-    async deleteovertimeflag(value) {
-        this.attendanceservice.Deleteovertimeflag(value.key);
-=======
     constructor(public attendanceSetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
@@ -51,7 +29,6 @@ export class OvertimeflagComponent implements OnInit {
 
     async deleteovertimeflag(value) {
         this.attendanceSetupservice.Deleteovertimeflag(value.key);
->>>>>>> master
     }
 
 }

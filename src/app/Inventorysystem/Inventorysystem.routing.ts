@@ -50,9 +50,6 @@ import { PurchaseReturnItemComponent } from './Purchase/purchase-return-item/pur
 import { PurchaseIndentComponent } from './Purchase/purchase-indent/purchase-indent.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-
-
-
     {
         path: 'Inventorysystem',
         component: RootComponent,

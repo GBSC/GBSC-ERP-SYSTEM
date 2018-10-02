@@ -8,11 +8,11 @@ import { CustomerAccount } from '../../models/Setup/CustomerAccount';
     styleUrls: ['./customer-account.component.scss']
 })
 export class CustomerAccountComponent implements OnInit {
-    private CustomerAccounts: any;
-    private CustomerTypes: any;
-    private updatedmodel: CustomerAccount;
+    private CustomerAccounts : any;
+    private CustomerTypes : any;
+    private updatedmodel : CustomerAccount;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(private InventoryService : InventorysystemService) { }
 
     async ngOnInit() {
         this.CustomerAccounts = await this.InventoryService.GetCustomerAccounts();
@@ -35,7 +35,7 @@ export class CustomerAccountComponent implements OnInit {
 
     UpdateModel(value) {
         //this.updatedmodel = Object.assign(value.oldData, value.newData);
-        this.updatedmodel = { ...value.oldData, ...value.newData };
+        this.updatedmodel = {...value.oldData, ...value.newData};
         console.log(this.updatedmodel);
     }
 

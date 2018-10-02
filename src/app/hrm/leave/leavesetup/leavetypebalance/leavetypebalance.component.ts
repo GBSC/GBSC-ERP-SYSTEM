@@ -10,21 +10,12 @@ import { EmployeeService } from '../../../employee/services/employee.service';
 export class LeavetypebalanceComponent implements OnInit {
 
     public leavetypebalance: any;
-<<<<<<< HEAD
-    constructor(public leavesetupservice: LeaveSetupService) { }
-=======
     constructor(public leavesetupservice: LeaveSetupService, public employeeservice: EmployeeService) { }
->>>>>>> master
 
     async ngOnInit() {
         await this.leavesetupservice.getAllleavetypebalance();
         this.leavetypebalance = this.leavesetupservice.leavetypebalance
         console.log(this.leavetypebalance);
-<<<<<<< HEAD
-
-    }
-
-=======
 
         await this.leavesetupservice.getAllleavetype();
         let typeofleave = this.leavesetupservice.leavetype;
@@ -35,7 +26,6 @@ export class LeavetypebalanceComponent implements OnInit {
     }
 
 
->>>>>>> master
     async addleavetypebalance(value) {
         this.leavesetupservice.addleavetypebalance(value.data);
     }
@@ -47,11 +37,6 @@ export class LeavetypebalanceComponent implements OnInit {
 
     async deleteleavetypebalance(value) {
         this.leavesetupservice.Deleteleavetypebalance(value.key);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> master
     }
 
 }

@@ -143,6 +143,7 @@ import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratu
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { PayrollSetupService } from './payroll/services/payrollsetup.service';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
 @NgModule({
@@ -150,11 +151,7 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-<<<<<<< HEAD
-        DevExtremeModule,
-=======
         DevExtremeModule, 
->>>>>>> master
         HttpClientModule,
         routing
     ],
@@ -258,13 +255,6 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         ExperienceComponent,
         EmployeesComponent,
         EmployeeCompanyComponent,
-<<<<<<< HEAD
-        EmployeedetailComponent
-
-    ],
-    exports: [],
-    providers: [LeaveService, SetupService, AttendanceService, AttendancesetupService, HrmsService, LeaveSetupService, EmployeeService, SystemAdministrationService]
-=======
         EmployeedetailComponent,
         RostermappingComponent,
         RostercopyComponent,
@@ -310,7 +300,8 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         PfPaymentComponent,
         TaxyearComponent,
         GratuityComponent,
-        MonthlyUserSalaryComponent
+        MonthlyUserSalaryComponent,
+        PayslipComponent
 
 
 
@@ -322,7 +313,6 @@ import { PayrollSetupService } from './payroll/services/payrollsetup.service';
         LeaveSetupService, EmployeeService,
         SystemAdministrationService,
     PayrollService,PayrollSetupService]
->>>>>>> master
 
 })
 export class HrmModule { }

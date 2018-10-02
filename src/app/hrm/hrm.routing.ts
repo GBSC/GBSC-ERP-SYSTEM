@@ -114,12 +114,15 @@ import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
 import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
         path: 'hrm', component: RootComponent,
+        canActivate : [AuthGuardService],
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
@@ -159,30 +162,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'leave',
                 children: [
-<<<<<<< HEAD
-                    {
-                        path: 'leavesetup',
-                        children: [
-
-                            { path: 'leavepurpose', component: LeavepurposeComponent },
-                            { path: 'leaveyear', component: LeaveyearsetupComponent },
-                            { path: 'leavepolicy', component: LeavepolicyComponent },
-                            { path: 'leavetype', component: LeavetypeComponent },
-                            { path: 'leavedaytype', component: LeavedaytypeComponent },
-                            { path: 'leaveeligibility', component: LeaveeligibilityComponent },
-                            { path: 'leavesubtype', component: LeavesubtypeComponent },
-                            { path: 'leavetypebalance', component: LeavetypebalanceComponent },
-                            { path: 'leaveapproval', component: LeaveapprovalComponent },
-                            { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
-                            { path: 'proratematrix', component: ProratematrixComponent }
-                        ]
-                    },
-                    { path: 'employeeleaveopening', component: EmployeeleaveopeningComponent },
-                    { path: 'leaverequest', component: LeaverequestComponent },
-
-                ]
-            },
-=======
              { path: 'leavesetup',
                     children: [
  
@@ -209,7 +188,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                {path: 'leaveapproval', component: LeaveapprovalComponent}
  
             ]},
->>>>>>> master
 
             {
                 path: 'employee',
@@ -229,34 +207,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'attendance',
                 children: [
-<<<<<<< HEAD
-                    {
-                        path: 'attendancesetup',
-                        children: [
-
-                            { path: 'assignroster', component: AssignrosterComponent },
-                            { path: 'attendanceflag', component: AttendanceflagComponent },
-                            { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
-                            { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
-                            { path: 'flagcategory', component: FlagcategoryComponent },
-                            { path: 'flageffecttype', component: FlageffecttypeComponent },
-                            { path: 'flagtype', component: FlagtypeComponent },
-                            { path: 'flagvalue', component: FlagvalueComponent },
-                            { path: 'roster', component: RosterComponent },
-                            { path: 'shift', component: ShiftComponent }
-                        ]
-                    },
-                    {
-                        path: 'attendanceadmin',
-                        children: [
-                            { path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent },
-                            { path: 'attendancerule', component: AttendanceruleComponent },
-                        ]
-                    },
-                    { path: 'attendancerequest', component: AttendancerequestComponent },
-                ]
-            },
-=======
              { path: 'attendancesetup',
                     children: [
 
@@ -342,7 +292,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'loansetup',
             children: [
                 {path: 'loantype', component: LoantypeComponent},
-                {path: 'userloan', component: UserloanComponent},
+                {path: 'userloan', component: UserloanComponent}
         ]}, 
 
         { path: 'payrolladmin',
@@ -351,11 +301,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     ]}, 
 
            {path: 'gratuity', component: GratuityComponent},
-           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent}
+           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent},
+           {path: 'payslip', component: PayslipComponent}
 
         ]}
 
->>>>>>> master
 
         ]
     }

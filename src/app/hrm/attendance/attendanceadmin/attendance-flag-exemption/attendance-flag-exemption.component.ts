@@ -10,14 +10,6 @@ import { AttendancesetupService } from '../../services/attendancesetup.service';
 export class AttendanceFlagExemptionComponent implements OnInit {
 
     public attendanceflagExemption: any;
-<<<<<<< HEAD
-    constructor(public attendanceservice: AttendanceService) { }
-
-    async ngOnInit() {
-        await this.attendanceservice.getattendanceflagexemptions();
-        this.attendanceflagExemption = this.attendanceservice.attendanceflagexemption
-        console.log(this.attendanceflagExemption);
-=======
     constructor(public attendanceservice: AttendanceService,public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
@@ -31,7 +23,6 @@ export class AttendanceFlagExemptionComponent implements OnInit {
         await this.attendancesetupservice.getflagtypes();
         let flagtype = this.attendancesetupservice.flagtype;
 
->>>>>>> master
 
     }
 

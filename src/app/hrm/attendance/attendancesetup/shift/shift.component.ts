@@ -17,23 +17,6 @@ export class ShiftComponent implements OnInit {
  
     constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
 
-<<<<<<< HEAD
-
-    public shift: any;
-    constructor(public attendancesetupservice: AttendancesetupService) { }
-
-    async ngOnInit() {
-        await this.attendancesetupservice.getshifts();
-        this.shift = this.attendancesetupservice.shift
-        console.log(this.shift);
-
-    }
-
-    async addshift(value) {
-        this.attendancesetupservice.addshift(value.data);
-    }
-
-=======
     async ngOnInit() {
 
        this.assignRoster = []; 
@@ -81,7 +64,6 @@ export class ShiftComponent implements OnInit {
       
     }
 
->>>>>>> master
     async updateshift(value) {
         console.log(value);
         this.attendancesetupservice.updateshift(value);

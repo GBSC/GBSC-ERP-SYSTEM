@@ -1,0 +1,453 @@
+<div class="m-content">
+    <div class="m-portlet">
+      <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <span class="m-portlet__head-icon m--hide">
+              <i class="la la-gear"></i>
+            </span>
+              <h3 class="m-portlet__head-text">
+                 Dispatch Note
+              </h3>
+          </div>
+        </div>
+      </div>
+        <!--begin::Form-->
+        <form class="m-form">
+            <div class="m-portlet__body">
+  
+                <div class="m-form m-form--label-align-right">
+                    <div class="m-portlet__foot m-portlet__foot--top m-portlet__foot--fit">
+                        <div style="margin-bottom: 30px">
+                            <div class="row align-items-end">
+                                <div class="col-sm-12 m--align-left m--valign-bottom">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group m-form__group">
+                                                <label for="exampleInputEmail1">
+                                                   Date
+                                                </label>
+                                                <dx-date-box
+                                                [min]="minDate"
+                                                [max]="maxDate"
+                                                [(value)]="currentDate">
+                                            </dx-date-box>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-form__group">
+                                                <label for="exampleInputEmail1">
+                                                    Dispatch Note #
+                                                </label>
+                                                <input type="text" name="LastName" class="form-control m-input m-input--solid" id="InputlastName" aria-describedby="emailHelp" placeholder="C-2487" value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="exampleInputEmail1">
+                                                
+                                            </label>
+                                            <button style="margin-top: 44px;" type="button" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info">
+                                                Get DO
+                                            </button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-form__group">
+                                                <label for="exampleInputEmail1">
+                                                    Dispatch Note Time
+                                                </label>
+                                               
+                                                    <dx-date-box
+                                                        [value]="now"
+                                                        type="time">
+                                                    </dx-date-box>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group m-form__group">
+                                                <label for="exampleInputEmail1">
+                                                    Load Sheet #
+                                                </label>
+                                                <input type="text" name="WHDSNO" class="form-control m-input m-input--solid" id="WHDSNO" aria-describedby="WHDSNO" placeholder="S-548" value="">
+  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="m-form__group form-group row">
+  
+                                                <div class="col-12">
+                                                    <div class="m-checkbox-inline">
+                                                        <label class="m-checkbox">
+                                                            <input type="checkbox">
+                                                            Metro DN
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+  
+  
+                                    </div>
+  
+                                 
+                                </div>
+                            </div>
+  
+                        </div>
+  
+                        
+                    </div>
+                    <div class="m-portlet__foot m-portlet__foot--top m-portlet__foot--fit">
+                      <div style="margin-top: 30px; margin-bottom: 30px;">
+                          <div class="row align-items-end">
+                              <div class="col-sm-5 m--align-left m--valign-bottom">
+                                  <div class="form-group m-form__group row">
+                                      <label for="example-text-input" class="col-4 col-form-label">
+                                        Transporter
+                                      </label>
+                                      <div class="col-8">
+                                          <select class="form-control m-input" id="exampleSelect1">
+                                              <option>
+                                                1
+                                              </option>
+                                              <option>
+                                                2
+                                              </option>
+                                              <option>
+                                                3
+                                              </option>
+                                              <option>
+                                                4
+                                              </option>
+                                              <option>
+                                                5
+                                              </option>
+                                            </select>                                      </div>
+                                    </div>
+                                  <div class="form-group m-form__group row">
+                                        <label for="example-text-input" class="col-4 col-form-label">
+                                          Broker
+                                        </label>
+                                        <div class="col-8">
+                                            <select class="form-control m-input" id="exampleSelect1">
+                                                <option>
+                                                  1
+                                                </option>
+                                                <option>
+                                                  2
+                                                </option>
+                                                <option>
+                                                  3
+                                                </option>
+                                                <option>
+                                                  4
+                                                </option>
+                                                <option>
+                                                  5
+                                                </option>
+                                              </select>                                      </div>
+                                    </div>
+                                  <div class="form-group m-form__group row">
+                                        <label for="example-text-input" class="col-4 col-form-label">
+                                          Deliver To
+                                        </label>
+                                        <div class="col-8">
+                                            <select class="form-control m-input" id="exampleSelect1">
+                                                <option>
+                                                  1
+                                                </option>
+                                                <option>
+                                                  2
+                                                </option>
+                                                <option>
+                                                  3
+                                                </option>
+                                                <option>
+                                                  4
+                                                </option>
+                                                <option>
+                                                  5
+                                                </option>
+                                              </select>                                      </div>
+                                  </div>
+                                  <div class="form-group m-form__group row">
+                                      <label for="example-text-input" class="col-4 col-form-label">
+                                        Deliver From
+                                      </label>
+                                      <div class="col-8">
+                                          <select class="form-control m-input" id="exampleSelect1">
+                                              <option>
+                                                1
+                                              </option>
+                                              <option>
+                                                2
+                                              </option>
+                                              <option>
+                                                3
+                                              </option>
+                                              <option>
+                                                4
+                                              </option>
+                                              <option>
+                                                5
+                                              </option>
+                                            </select>                                      </div>
+                                    </div>
+                                  <div class="form-group m-form__group row">
+                                        <label for="example-text-input" class="col-4 col-form-label">
+                                          To Warehouse
+                                        </label>
+                                        <div class="col-8">
+                                            <select class="form-control m-input" id="exampleSelect1">
+                                                <option>
+                                                  1
+                                                </option>
+                                                <option>
+                                                  2
+                                                </option>
+                                                <option>
+                                                  3
+                                                </option>
+                                                <option>
+                                                  4
+                                                </option>
+                                                <option>
+                                                  5
+                                                </option>
+                                              </select>                                      </div>
+                                      </div>
+                                  <div class="form-group m-form__group row">
+                                          <label for="example-text-input" class="col-4 col-form-label">
+                                            Description
+                                          </label>
+                                          <div class="col-8">
+                                              <select class="form-control m-input" id="exampleSelect1">
+                                                  <option>
+                                                    1
+                                                  </option>
+                                                  <option>
+                                                    2
+                                                  </option>
+                                                  <option>
+                                                    3
+                                                  </option>
+                                                  <option>
+                                                    4
+                                                  </option>
+                                                  <option>
+                                                    5
+                                                  </option>
+                                                </select>                                      </div>
+                                     </div>
+                                  <div class="form-group m-form__group row">
+                                        <label for="example-text-input" class="col-4 col-form-label">
+                                         Freight Claim By
+                                        </label>
+                                        <div class="col-8 ">
+                                            <select class="form-control m-input" id="exampleSelect1">
+                                                <option>
+                                                  1
+                                                </option>
+                                                <option>
+                                                  2
+                                                </option>
+                                                <option>
+                                                  3
+                                                </option>
+                                                <option>
+                                                  4
+                                                </option>
+                                                <option>
+                                                  5
+                                                </option>
+                                              </select>                                      </div>
+                                    </div>
+                              </div>
+                              <div class="col-sm-7 m--align-left m--valign-bottom">
+                                
+                              </div>
+                          </div>
+                              
+                      </div>
+  
+                      
+                  </div>
+                  <div class="m-portlet__foot m-portlet__foot--top m-portlet__foot--fit">
+                  <div style="margin-top: 30px;">
+                              <div class="row align-items-end">
+                                  <div class="col-sm-12 m--align-left m--valign-bottom">
+                                          <div class="form-group m-form__group row">
+                                                  <dx-data-grid
+                                                  id="gridContainer"
+                                                  [dataSource]=""
+                                                  [columns]="['Prod. ID', 'Product', 'Qty', 'Unit', '(Equiv.)','Unit','Price','Rate Unit','Basic Amount','Commission','CommAmount','TO/(Ltr)','TO Amount','CommissionedAmount','STRate','STAmount','Amount','Cancel','IsComplete','Shipped']"
+                                                  [showBorders]="true">
+                                              </dx-data-grid>
+                                          </div>
+          
+                                          <div class="form-group m-form__group row">
+                                                  <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Total Quantity
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Extended Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Discount Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Discounted Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Shipped
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Order Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                          </div>
+                                          <div class="form-group m-form__group row">
+                                                  <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  S/Tax Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Gross Value
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Trade Offer
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Order Value Inc. WHT@
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      1000
+                                                                  </span>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <div class="m-checkbox-inline">
+                                                                  <label class="m-checkbox">
+                                                                      <input type="checkbox">
+                                                                     Apply With @
+                                                                      <span></span>
+                                                                  </label><input aria-describedby="emailHelp" class="form-control m-input m-input--solid" id="InputlastName" name="LastName" placeholder="S-548" type="text" value="">
+                                                                      
+                                                              </div>
+                                                   </div>
+                                                   <div class="col-sm-2">
+                                                          <div class="m-checkbox-inline">
+                                                                  <label class="m-checkbox">
+                                                                      <input type="checkbox">
+                                                                    Subject to approval
+                                                                      <span>
+                                                                      </span>
+                                                                  </label>
+                                                              </div>
+                                                   </div>
+                                          </div>
+                                          <div class="form-group m-form__group row">
+                                                  <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Created By
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      Muhammad Ali Khan
+                                                                  </span>
+                                                   </div>  
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                 Created Host
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                      Muhammad Ali Khan
+                                                                  </span>
+                                                   </div>  
+                                                   <div class="col-sm-2">
+                                                          <h4 class="m-widget24__title">
+                                                                  Created At  
+                                                              </h4>
+                                                              <span class="m-widget24__desc">
+                                                                  28/11/2018 10:55 AM
+                                                                  </span>
+                                                   </div>  
+                                                   <div class="col-sm-2">
+                                                      <h4 class="m-widget24__title">
+                                                              Updated By
+                                                          </h4>
+                                                          <span class="m-widget24__desc">
+                                                                  Muhammad Ali Khan
+                                                              </span>
+                                               </div>  
+                                               <div class="col-sm-2">
+                                                      <h4 class="m-widget24__title">
+                                                          Updated Host
+                                                          </h4>
+                                                          <span class="m-widget24__desc">
+                                                                  Muhammad Ali Khan
+                                                              </span>
+                                               </div>  
+                                               <div class="col-sm-2">
+                                                      <h4 class="m-widget24__title">
+                                                          Updated At  
+                                                          </h4>
+                                                          <span class="m-widget24__desc">
+                                                                 21/10/2018 10:55 AM
+                                                              </span>
+                                               </div> 
+                                          </div>
+          
+  
+                                  </div></div></div></div>
+                    </div>
+  
+            </div>
+            </form>
+            </div>
+          </div>
+  

@@ -1,0 +1,113 @@
+<div class="m-content">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Sales Indent</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <div class="m-section">
+              <div class="m-section__content">
+  
+                  <div class="row">
+                      <div class="col-md-6"> 
+                          <div class="form-group m-form__group row">
+                              <label class="col-lg-4 col-form-label">
+                               Date:
+                              </label>
+                              <div class="col-lg-8">
+                                  <input class="form-control m-input" name="date" placeholder="12-02-2018" type="text">
+                             
+                              </div>
+                            </div>
+                       </div>
+  
+                       <div class="col-md-6"> 
+                          <div class="form-group m-form__group row">
+                              <label class="col-lg-4 col-form-label">
+                               Order No:
+                              </label>
+                              <div class="col-lg-8">
+                                  <input class="form-control m-input" disabled name="orderno" placeholder="25594" type="number">
+                             
+                              </div>
+                            </div>
+                       </div>
+              </div>
+  
+              <div class="row">
+                  <div class="col-md-6"> 
+                      <div class="form-group m-form__group row">
+                          <label class="col-lg-4 col-form-label">
+                              Business Name:
+                          </label>
+                          <div class="col-lg-8">
+                              <input class="form-control m-input" name="shop" placeholder="Best Buy" type="text">
+                         
+                          </div>
+                        </div>
+                   </div>
+  
+                   <div class="col-md-6"> 
+                      <div class="form-group m-form__group row">
+                          <label class="col-lg-4 col-form-label">
+                          Customer Name :
+                          </label>
+                          <div class="col-lg-8">
+                              <input class="form-control m-input" name="shopkeeper" placeholder="John Smith" type="text">
+                         
+                          </div>
+                        </div>
+                   </div>
+          </div>
+  
+          <div class="row">
+              <div class="col-md-6"> 
+                  <div class="form-group m-form__group row">
+                      <label class="col-lg-4 col-form-label">
+                       Sales Person:
+                      </label>
+                      <div class="col-lg-8">
+                          <input class="form-control m-input" name="salesperson" placeholder="Rollins Smith" type="text">
+                     
+                      </div>
+                    </div>
+               </div> 
+      </div>
+   
+              <div class="m--space-07"></div>
+  
+  
+              <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+              (onRowRemoved)="deleteLanguage($event)">
+  
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager>
+  
+              <dxi-column dataField="code" caption="Item Code"></dxi-column>
+              <dxi-column dataField="name" caption="Item Name"></dxi-column>
+              <dxi-column dataField="description" caption="Quantity"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
+              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
+  
+            </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

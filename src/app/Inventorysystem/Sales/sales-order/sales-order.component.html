@@ -1,0 +1,193 @@
+<div class="m-content">
+	<div class="row">
+		<div class="col-lg-12">
+			<!--begin::Portlet-->
+			<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<span class="m-portlet__head-icon m--hide">
+								<i class="la la-gear"></i>
+							</span>
+							<h3 class="m-portlet__head-text">
+								Sales Order
+							</h3>
+						</div>
+					</div>
+					<div class="m-portlet__head-tools">
+						<div class="dropdown">
+							<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+							 id="dropdownMenu2" type="button">
+								<span _ngcontent-c21="">
+									<i class="fa fa-cog"></i>
+								</span> Actions
+							</button>
+							<div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+								<button class="dropdown-item" type="button">
+									Go Back
+								</button>
+								<button class="dropdown-item" type="button">
+									Another action
+								</button>
+								<button class="dropdown-item" type="button">
+									Something else here
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--begin::Form-->
+
+				<form [formGroup]="SalesOrderForm">
+					<div class="m-portlet__body">
+						<div class="form-group row">
+							<div class="form-group col-lg-4">
+								<label for="exampleInputEmail1"> Date</label>
+								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="issueDate"
+								 type="date">
+							</div>
+							<div class="paddind">
+								<label for="exampleSelect1"> Sales Indent </label>
+								<dx-select-box [items]="SalesIndent" displayExpr="salesIndentNumber" valueExpr="salesIndentId" [searchEnabled]="true"
+								 placeholder="Search...">
+								</dx-select-box>
+							</div>
+							<div class="form-group col-lg-4">
+								<label for="exampleInputEmail1">MSO # </label>
+								<input class="form-control m-input  ng-untouched ng-pristine ng-invalid">
+							</div>
+							<div class="form-group col-lg-4">
+								<label for="exampleInputEmail1"> Delivery Month</label>
+								<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" type="month">
+							</div>
+						</div>
+						<div class="form-group row">
+
+							<div class="form-group col-lg-4">
+								<div class="paddind">
+									<label for="exampleSelect1"> Sales Person </label>
+									<dx-select-box [items]="SalesPerson" displayExpr="firstName" valueExpr="salesPersonId" (onSelectionChanged)="getSelectedDistributors($event)"
+									 [searchEnabled]="true" placeholder="Search...">
+									</dx-select-box>
+								</div>
+								<div class="paddind">
+									<label for="exampleSelect1"> Customer Type </label>
+									<dx-select-box [items]="CustomerTypes" displayExpr="name" valueExpr="customerTypeId" (onSelectionChanged)="getSelectedCustomerDetails($event)"
+									 [searchEnabled]="true" placeholder="Search...">
+									</dx-select-box>
+								</div>
+								<div class="paddind">
+									<label for="exampleSelect1"> Customer </label>
+									<dx-select-box [items]="FilteredCustomers" displayExpr="name" valueExpr="customerId" [searchEnabled]="true"
+									 placeholder="Search...">
+									</dx-select-box>
+								</div>
+								<div class="paddind">
+									<label for="exampleSelect1"> Deliver To </label>
+									<dx-select-box [items]="FilteredWarehouses" displayExpr="name" valueExpr="customerWarehouseId" [searchEnabled]="true"
+									 placeholder="Search...">
+									</dx-select-box>
+								</div>
+								<div class="paddind">
+									<label for="exampleSelect1"> Deliver From </label>
+									<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" value="{{DispAddress}}" type="text"
+									 placeholder="Select Sales Person...">
+								</div>
+							</div>
+							<div class="form-group col-lg-4">
+								<div class="paddind">
+									<label for="exampleSelect1"> Payment Method </label>
+									<dx-select-box [items]="ModeOfPayment" displayExpr="name" valueExpr="modeOfPaymentId" [searchEnabled]="true"
+									 placeholder="Search...">
+									</dx-select-box>
+									<div class="m-checkbox-inline">
+										<label>
+											<label for="exampleSelect1">Days </label>
+											<input type="text" class="form-control m-input m-input--solid">
+										</label>
+									</div>
+								</div>
+								
+								<div class="m-form__group form-group">
+									<div class="m-checkbox-inline">
+										<label class="m-checkbox">
+											<input type="checkbox"> Cancel
+											<span></span>
+										</label>
+										<label class="m-checkbox">
+											<input type="checkbox"> Is Complete
+											<span></span>
+										</label>
+									</div>
+
+								</div>
+
+								<div class="paddind">
+									<label for="exampleSelect1"> Tax </label>
+									<dx-select-box [items]="Tax" displayExpr="name" valueExpr="taxId" [searchEnabled]="true" placeholder="Search...">
+									</dx-select-box>
+								</div>
+							</div>
+
+							<div class="form-group col-lg-4">
+								<div class="paddind">
+									<label for="exampleSelect1"> Contact Person </label>
+									<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" type="text">
+
+								</div>
+								<div class="paddind">
+
+									<label for="exampleSelect1"> Contact Person No </label>
+									<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" type="text">
+
+								</div>
+								<div class="paddind">
+									<label for="exampleSelect1"> Against Lot No </label>
+									<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" type="text">
+
+								</div>
+								<div class="paddind">
+
+									<label for="exampleSelect1">Ret PO No </label>
+									<input class="form-control m-input  ng-untouched ng-pristine ng-invalid" value="jbran" type="text">
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="form-group row">
+							<div class="form-group col-lg-4">
+								<label for="exampleTextarea">
+									Description
+								</label>
+								<textarea class="form-control m-input" id="exampleTextarea" rows="4"></textarea>
+							</div>
+							<!--  -->
+						</div>
+						<div class="form-group row">
+							<div class="form-group col-lg-12">
+								<div class="form-action pull-right">
+									<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+										Add
+									</button>
+								</div>
+								<div class="form-action pull-right">
+									<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" (click)="SubmitSalesOrderForm(SalesOrderForm.value)">
+										Submit Form
+									</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</form>
+
+				<app-sales-order-item>
+
+				</app-sales-order-item>
+			</div>
+		</div>
+	</div>
+</div>

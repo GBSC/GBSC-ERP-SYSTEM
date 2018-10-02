@@ -55,6 +55,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
 
         children: [
+            { path: '', component: HomeComponent },
             { path: 'home', component: HomeComponent },
             {
                 path: "setup",

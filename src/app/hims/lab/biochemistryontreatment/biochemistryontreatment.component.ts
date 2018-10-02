@@ -19,98 +19,94 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
-  private consultants: Consultant;
-  private patients: Patient;
-  private spouse : Spouse;
-  private patient : Patient;
-  private bioChemistryontreatmentForm : FormGroup;
-  private tests : BioChemistryTest;
-  private units : TestUnit;
-  private testDetail : BioChemistryTestDetail[];
+    private consultants: Consultant;
+    private patients: Patient;
+    private spouse: Spouse;
+    private patient: Patient;
+    private bioChemistryontreatmentForm: FormGroup;
+    private tests: BioChemistryTest;
+    private units: TestUnit;
+    private testDetail: BioChemistryTestDetail[];
 
-  public packg : any;
+    public packg: any;
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
-
-
-  constructor(private formBuilder : FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService : BioChemistryService) {
-
-    this.bioChemistryontreatmentForm = formBuilder.group({
-      'PatientId' : ['',Validators.required],
-      'ConsultantId' : ['', Validators.required],
-      'LMP' : [],
-      'IsRandom':[false] ,
-      'Treatment':['',Validators.required],
-      'Cycle':['',Validators.required],
-      'TreatmentType':['',Validators.required]    
-    });
-
-   }
-
-  ngOnInit() {
-
-    this.testDetail = [];
-
-    this.patientcb.onValueChanged.subscribe(res=>this.populatePatientDate(res.component.option("value")));
-
-    this.consultantService.getConsultants()
-      .subscribe(consultants => this.consultants = consultants)
-    
-    this.patientService.getPatient()
-    .subscribe(patients => this.patients = patients);
-
-      this.patientService.getPackage();
-      this.packg = this.patientService.package;
-
-    this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
-
-    this.bioChemistryService.getUnits().subscribe(units=> this.units = units);
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
+    constructor(private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService: BioChemistryService) {
 
-  }
+        this.bioChemistryontreatmentForm = formBuilder.group({
+            'PatientId': ['', Validators.required],
+            'ConsultantId': ['', Validators.required],
+            'LMP': [],
+            'IsRandom': [false],
+            'Treatment': ['', Validators.required],
+            'Cycle': ['', Validators.required],
+            'TreatmentType': ['', Validators.required]
+        });
 
-  onsubmit(value)
-  {
+    }
 
-    let patientBioChemistryTest = new PatientBiochemistryTest();
+    ngOnInit() {
 
-    console.log(value);
+        this.testDetail = [];
 
-    // patientBioChemistryTest = {...patientBioChemistryTest, ...value};
+        this.patientcb.onValueChanged.subscribe(res => this.populatePatientDate(res.component.option("value")));
 
-    // patientBioChemistryTest.IsOnTreatment = true;
-    // patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
+        this.consultantService.getConsultants()
+            .subscribe(consultants => this.consultants = consultants)
 
-    // console.log(patientBioChemistryTest);
-  }
+        this.patientService.getPatient()
+            .subscribe(patients => this.patients = patients);
 
-  populatePatientDate(patientId)
-  {
-      this.patientService.getPatientWithPartner(patientId).subscribe(patient=>{   
-      this.patient = patient;
-      console.log(patient.partner);
-      this.spouse = patient.partner;
-      });
-  }
+        this.patientService.getPackage();
+        this.packg = this.patientService.package;
 
-  addBioChemistryTestDetail(value)
-  {
-    let data = value.data;
+        this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
 
-    this.testDetail.push(data);
+        this.bioChemistryService.getUnits().subscribe(units => this.units = units);
 
-    console.log(this.testDetail);
-  }
 
-  updateBioChemistryTestDetail(value)
-  {
-    let data = value.data;
 
-    // this.testDetail.push(data);
+    }
 
-    console.log(this.testDetail);
-  }
+    onsubmit(value) {
+
+        let patientBioChemistryTest = new PatientBiochemistryTest();
+
+        console.log(value);
+
+        // patientBioChemistryTest = {...patientBioChemistryTest, ...value};
+
+        // patientBioChemistryTest.IsOnTreatment = true;
+        // patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
+
+        // console.log(patientBioChemistryTest);
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            console.log(patient.partner);
+            this.spouse = patient.partner;
+        });
+    }
+
+    addBioChemistryTestDetail(value) {
+        let data = value.data;
+
+        this.testDetail.push(data);
+
+        console.log(this.testDetail);
+    }
+
+    updateBioChemistryTestDetail(value) {
+        let data = value.data;
+
+        // this.testDetail.push(data);
+
+        console.log(this.testDetail);
+    }
 
 
 

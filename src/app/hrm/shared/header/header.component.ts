@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
+import { AccountService } from '../../../account/service.service';
 
 
 @Component({
@@ -8,9 +9,14 @@ import { Helpers } from '../../../helpers';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    constructor() { }
+    constructor(private accountService : AccountService) { }
 
     ngOnInit() {
+    }
+
+    logout()
+    {
+        this.accountService.logout();
     }
 
 }

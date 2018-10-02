@@ -1,0 +1,107 @@
+<div class="row" style="margin-top:-10px; margin-bottom:36px;">
+ 
+
+</div>
+ 
+  <dx-data-grid
+  id="gridContainer"
+  [dataSource]="allowance"
+  keyExpr="id"
+  (onRowInserted)="addAllowances($event)"
+  (onRowUpdated)="EditAllowances($event)"
+  (onRowRemoved)="deleteAllowances($event)"> 
+ 
+  <dxo-editing 
+       mode="popup"
+       [allowUpdating]="true"
+       [allowDeleting]="true"
+       [allowAdding]="true"
+       [useIcons]="true">
+
+       <dxo-popup
+       title="Allowance Type"
+       [showTitle]="true"
+       [width]="700"
+       [height]="345"
+       [position]="{ my: 'center', at: 'center', of: window }">
+     </dxo-popup>
+  </dxo-editing>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter> 
+
+<dxo-search-panel 
+  [visible]="true" 
+  [width]="240" 
+  placeholder="Search..."></dxo-search-panel>
+  <dxo-paging [pageSize]="8"></dxo-paging>
+  <dxo-pager 
+      [showPageSizeSelector]="true"
+      [allowedPageSizes]="[5, 10, 20]"
+      [showInfo]="true">
+  </dxo-pager>
+
+  <dxi-column dataField="processdate" caption="Process Date" dataType="date"  format="shortDate"></dxi-column>
+  <dxi-column dataField="year" caption="Year">
+
+    <dxo-lookup
+    [dataSource]="year"
+    displayExpr="Name"
+    valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+<dxi-column dataField="month" caption="Month">
+
+  <dxo-lookup
+  [dataSource]="month"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+<dxi-column dataField="payrolltype" caption="Payroll Type">
+
+  <dxo-lookup
+  [dataSource]="payrolltype"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+<dxi-column dataField="cmpnybank" caption="Company Bank">
+
+  <dxo-lookup
+  [dataSource]="companybank"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+<dxi-column dataField="processtype" caption="Process Type">
+
+  <dxo-lookup
+  [dataSource]="processtype"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+<dxi-column dataField="criteria" caption="Criteria">
+
+  <dxo-lookup
+  [dataSource]="criteria"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+<dxi-column dataField="from" caption="From">
+
+  <dxo-lookup
+  [dataSource]="from"
+  displayExpr="Name"
+  valueExpr="ID">
+</dxo-lookup>
+</dxi-column>
+
+</dx-data-grid>
+ 

@@ -1,6 +1,6 @@
-export interface VisitTest{
+export interface VisitTest {
 
-    VisitTestId : number,
-    TestId : number,
-    VisitId : number,
+    VisitTestId: number,
+    TestId: number,
+    VisitId: number,
 }

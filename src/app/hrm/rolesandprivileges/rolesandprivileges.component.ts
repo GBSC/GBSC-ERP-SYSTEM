@@ -30,7 +30,7 @@ export class RolesandprivilegesComponent implements OnInit {
     public showPopup: boolean = false;
 
     constructor(private systemAdmin: SystemAdministrationService) { }
-    
+
     createNewRole() {
         this.showPopup = true;
         console.log(this.showPopup);
@@ -59,7 +59,7 @@ export class RolesandprivilegesComponent implements OnInit {
             permissions: []
 
         }
- 
+
     }
 
 

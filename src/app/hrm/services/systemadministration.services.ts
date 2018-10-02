@@ -125,7 +125,7 @@ export class SystemAdministrationService {
     public data: any;
 
     private readonly API_URL = "http://gbsc-erp.azurewebsites.net/systemadmin/api/setup";
-   // private baseUrl: string = "http://localhost:50908/api";
+    // private baseUrl: string = "http://localhost:50908/api";
     public modules: any = [];
 
 
@@ -153,7 +153,7 @@ export class SystemAdministrationService {
                         FeatureId: f.featureId,
                         name: f.name,
                         ModuleId: f.moduleId,
-                        permissions: f.permissions.map( p => {
+                        permissions: f.permissions.map(p => {
                             return {
                                 Attribute: p.attribute,
                                 FeatureId: p.featureId
@@ -166,13 +166,6 @@ export class SystemAdministrationService {
 
         console.log(this.modules);
     }
-    //   async GetUserModulesById(userId) {
-
-    //     let modules = await this.http.get(`${this.baseUrl}/Users/GetUserModules/${userId}`).toPromise();
-    // // console.log(licenseId);
-    // console.log(modules); 
-    //     return modules;
-    //   }
 
     async getPermissions() {
         let response = await this.httpClient.get('http://gbsc-erp.azurewebsites.net/systemadmin/api/setup/getpermissions').toPromise();

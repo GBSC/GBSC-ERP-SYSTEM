@@ -1,38 +1,37 @@
-export class Tvopu
-{
+export class Tvopu {
 
-    TvopuId : number;
+    TvopuId: number;
 
-    CycleNumber : number;
+    CycleNumber: number;
 
-    TreatmentNumber : number;
+    TreatmentNumber: number;
 
-    TimeStart : Date;
+    TimeStart: Date;
 
-    TimeFinish : Date;
+    TimeFinish: Date;
 
-    IsActive : boolean;
+    IsActive: boolean;
 
-    Remarks : string;
+    Remarks: string;
 
-    PickoutCount : string;
+    PickoutCount: string;
 
-    PickupDate : Date;
+    PickupDate: Date;
 
-    FollicileAspiratedLeft : string;
+    FollicileAspiratedLeft: string;
 
-    FollicileAspiratedRight : string;
+    FollicileAspiratedRight: string;
 
-    OociteCollectedLeft : string;
+    OociteCollectedLeft: string;
 
-    OociteCollectedRight : string;
+    OociteCollectedRight: string;
 
-    PackageId : number;
+    PackageId: number;
 
-    ConsultantId : number;
+    ConsultantId: number;
 
-    PatientId : number;
+    PatientId: number;
 
-    EmbryologistId : number;
-    
+    EmbryologistId: number;
+
 }

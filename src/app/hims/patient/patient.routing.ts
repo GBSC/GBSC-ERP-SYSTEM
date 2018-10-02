@@ -71,11 +71,3 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         ]
     }
 ]);
-
-
-// export const routing: ModuleWithProviders = RouterModule.forChild([
-
-//   { path: 'patient/registration', component: PatientComponent}
-
-// ]);
-

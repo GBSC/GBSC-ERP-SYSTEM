@@ -1,9 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Department } from '../models/department.interface';
-
 import { BehaviorSubject } from 'rxjs';
 
 import { SetupService } from '../services/setup.service';

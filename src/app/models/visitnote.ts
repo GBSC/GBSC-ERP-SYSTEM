@@ -1,8 +1,8 @@
-export interface VisitNote{
+export interface VisitNote {
 
-    VisitNoteId : number;
-    ClinicalNote : string;
-    VisitId : number;
+    VisitNoteId: number;
+    ClinicalNote: string;
+    VisitId: number;
 
 
 }

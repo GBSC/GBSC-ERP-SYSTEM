@@ -10,6 +10,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
 
 
 
@@ -17,7 +18,7 @@ const routes: Routes = [
     {
         "path": "",
         "component": ThemeComponent,
-        "canActivate": [AuthGuard],
+        "canActivate": [AuthGuardService],
         "children": [
             {
                 "path": "index",

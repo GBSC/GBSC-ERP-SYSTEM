@@ -115,12 +115,14 @@ import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalar
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
         path: 'hrm', component: RootComponent,
+        canActivate : [AuthGuardService],
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },

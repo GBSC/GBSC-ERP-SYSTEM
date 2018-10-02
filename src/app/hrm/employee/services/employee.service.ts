@@ -22,8 +22,8 @@ export class EmployeeService {
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser
-    //private baseUrl: string  = 'http://gbsc-erp.azurewebsites.net/systemadmin/api';
-    private baseUrl: string = 'http://localhost:58090/api';
+    private baseUrl: string  = 'http://gbsc-erp.azurewebsites.net/systemadmin/api';
+    // private baseUrl: string = 'http://localhost:58090/api';
     public firstForm: any;
     constructor(private httpClient: HttpClient, service: HrmsService, private fb: FormBuilder) {
 

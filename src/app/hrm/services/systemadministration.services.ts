@@ -166,13 +166,6 @@ export class SystemAdministrationService {
 
         console.log(this.modules);
     }
-    //   async GetUserModulesById(userId) {
-
-    //     let modules = await this.http.get(`${this.baseUrl}/Users/GetUserModules/${userId}`).toPromise();
-    // // console.log(licenseId);
-    // console.log(modules); 
-    //     return modules;
-    //   }
 
     async getPermissions() {
         let response = await this.httpClient.get('http://gbsc-erp.azurewebsites.net/systemadmin/api/setup/getpermissions').toPromise();

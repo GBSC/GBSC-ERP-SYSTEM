@@ -404,7 +404,7 @@ export class InventorysystemService {
     async GetPurchaseIndentItems() {
         this.PurchaseIndentItem = await this.http.get<PurchaseIndentItem>(this.API_URL + 'Purchase/GetPurchaseIndentItems').toPromise();
         //console.log(this.PurchaseIndentItem);
-        return this.PurchaseOrderItem;
+        return this.PurchaseIndentItem;
     }
 
     async AddPurchaseIndentItem(PurchaseIndentItem: PurchaseIndentItem) {

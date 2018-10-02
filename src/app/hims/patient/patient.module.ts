@@ -37,7 +37,9 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
 import { TestComponent } from './test/test.component';
-// import { SharedModule } from './shared/shared.module';
+import { ReportsComponent } from './Reports/reports/reports.component';
+import { ActiveVisitsComponent } from './active-visits/active-visits.component';
+ // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
@@ -84,7 +86,9 @@ import { TestComponent } from './test/test.component';
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
-    ],
+        ReportsComponent,
+        ActiveVisitsComponent,
+     ],
     providers: [
         PatientService
     ]

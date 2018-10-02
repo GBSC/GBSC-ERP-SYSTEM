@@ -82,10 +82,10 @@
                 </div>
                 <div class="col-lg-6">
                   <label class="">
-                    Fund Setup:
+                    Minimum Service Period:
                   </label> 
                       <select class="form-control m-input" formControlName="FundSetupId" id="">
-                          <option value="" disabled selected>-- Select Fund Setup --</option>
+                          <option value="" disabled selected>-- Select Minimum Service Period --</option>
                           <option *ngFor ="let fundsetup of payrollsetupservice?.fundsetup" [value]="fundsetup.fundSetupId" >{{fundsetup.minServicePeriod}}</option>
                  </select>
                 </div>

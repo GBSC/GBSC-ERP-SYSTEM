@@ -61,6 +61,9 @@ export class MonthlyUserSalaryComponent implements OnInit {
     await this.payrollsetupservice.getpayrolls();
     let payRoll = this.payrollsetupservice.payroll;
 
+    await this.payrollservice.getpayslips();
+    let paySlip = this.payrollservice.Payslip;
+
   }
 
   async RosterAttendance(value) {

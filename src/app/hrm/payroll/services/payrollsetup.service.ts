@@ -1237,8 +1237,6 @@ export class PayrollSetupService {
 
   async updateloantype(data) {
 
-    //let loantype = await this.getdataToUpdate(data.key, 'Getloantype');
-    //loantype = { ...loantype, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
     return await this.httpClient.put(`${this.baseUrl}/UpdateLoanType`, data, headers).toPromise();
   }

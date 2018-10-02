@@ -10,7 +10,7 @@ import { EmployeeService } from '../../../employee/services/employee.service';
 export class UserloanComponent implements OnInit {
 
   public UserLoan: any;
-  Updateloan: any;
+  public Updateloan: any;
 
   constructor(public payrollsetupservice: PayrollSetupService,public employeeservice : EmployeeService) { }
 

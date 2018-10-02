@@ -63,13 +63,10 @@ export class GratuityComponent implements OnInit {
     console.log(this.gratuityslab);
   }
 
-  async addGratuity(value) {
-    console.log(value);
+  async addGratuity(value) { 
     let pushslab = new GratuitySlab();
-    pushslab = {...pushslab, ...value};
-    console.log(this.gratuityslab);
-    pushslab.gratuitySlabGratuities = this.gratuityslab;
-    console.log(pushslab); 
+    pushslab = {...pushslab, ...value}; 
+    pushslab.gratuitySlabGratuities = this.gratuityslab; 
    let x= await this.payrollservice.addgratuity(pushslab);
    console.log(x);
    this.GratuityForm.reset();

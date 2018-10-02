@@ -23,16 +23,9 @@
                    <dxi-column dataField="branchCode" caption="Branch Code"></dxi-column>
                    <dxi-column dataField="address" caption="Address"></dxi-column>
                    <dxi-column dataField="phone" caption="Phone"></dxi-column>
-                   <dxi-column
-                   dataField="companyId"
-                   caption="Comapnies"
-                   [width]="125">         
-                   <dxo-lookup
-                       [dataSource]="com"
-                       displayExpr="name"
-                       valueExpr="companyId">
-                   </dxo-lookup>
-               </dxi-column>
+                   <dxi-column dataField="companyId" caption="Comapnies" [width]="125">         
+                   <dxo-lookup [dataSource]="com" displayExpr="name" valueExpr="companyId"></dxo-lookup>
+                  </dxi-column>
                  </dx-data-grid>
                </div>
              </div>

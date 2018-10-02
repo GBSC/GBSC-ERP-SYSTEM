@@ -34,14 +34,6 @@
 
 
 
-<<<<<<< HEAD
-export const routing: ModuleWithProviders = RouterModule.forChild([
-    {
-        path: 'hims/patient',
-        component: RootComponent,
-        // canActivate: [AuthGuardService, ModuleGuardService],
-        children: [
-=======
 // export const routing: ModuleWithProviders = RouterModule.forChild([
 //     {
 // <<<<<<< HEAD
@@ -53,7 +45,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 // >>>>>>> cbc66a0013be062a5203030c16af78b391f9f19e
 //         canActivate: [AuthGuardService, ModuleGuardService],
 //         children: [
->>>>>>> master
 
 //             { path: 'updatepatient/:id', component: RegistrationComponent },
 //             { path: '', component: HomeComponent },

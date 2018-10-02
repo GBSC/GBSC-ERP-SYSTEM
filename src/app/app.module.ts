@@ -16,6 +16,8 @@ import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
 
 
 
@@ -37,7 +39,11 @@ import { HttpClientModule } from '@angular/common/http';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
+    providers: [{
+        provide: UrlSerializer,
+        useClass: LowerCaseUrlSerializer
+    },
+    ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

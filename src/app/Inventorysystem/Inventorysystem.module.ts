@@ -63,11 +63,11 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        routing,
         DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
-    ],
+        routing
+        ],
     declarations: [
 
         RootComponent,

@@ -27,24 +27,14 @@ export class PatientService {
 
     public patient;
     public currentPatient: any;
-<<<<<<< HEAD
-    public SearchPatientbyname: any;
-    public patientData: any;
-    public patientDocumentbyId: any;
-=======
     public SearchPatientbyname : any;
     public patientData : any ;
->>>>>>> master
 
     public consultant: any;
     public patients: any;
     public patientAllFormData: any = {};
     public tryImgSrc: any;
     public images: any = [];
-<<<<<<< HEAD
-    public patientID: any;
-=======
->>>>>>> master
 
 
     // <for appointmnet>
@@ -97,15 +87,8 @@ export class PatientService {
     }
 
     async addPatient(patient: Patient) {
-<<<<<<< HEAD
-        this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
-        console.log(this.patientID)
-        return this.patientID;
-
-=======
         let addPatient = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
         return addPatient;
->>>>>>> master
     }
 
     async getpatientForupdating(value) {
@@ -128,69 +111,15 @@ export class PatientService {
 
     async updatePatient(patient) {
         console.log(patient)
-<<<<<<< HEAD
-        let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`, patient).toPromise();
-        return x;
-=======
       return await this.http1.post(`${this.API_URL}/patients/UpdatePatient/`,patient).toPromise();
->>>>>>> master
     }
 
     async deletePatient(id) {
         let x = await this.http1.delete(this.API_URL + '/patients/DeletePatient/' + id).toPromise();
         console.log(x);
         return x;
-<<<<<<< HEAD
-    }
-
-    addDocument(f: FormData, id) {
-
-        this.http1.post(this.API_URL + '/patients/AddPatientDocument/' + id, f).subscribe(res => {
-            console.log(res);
-        });
-
-        //return x;
-    }
-
-    getPatientDocumentByPatientId(id): Observable<Document> {
-        console.log(this.API_URL1 + '/patients/GetPatientDocumentsByPatientId/' + id)
-        return this.http1.get<Document>(this.API_URL + '/patients/GetPatientDocumentsByPatientId/' + id);
-
-    }
-
-    async deleteDocument(id) {
-        let x = await this.http1.delete(this.API_URL + '/patients/DeletePatientDocument/' + id).toPromise();
-        console.log(`this.API_URL+'/patients/DeletePatientDocument/'+id`)
-        console.log(x);
-        return x;
-    }
-
-    async updatePatientRef(Reference: Reference) {
-        let x = await this.http1.put(this.API_URL + '/patients/UpdatePatientReference/', Reference).toPromise();
-        console.log(x);
-        return x;
-    }
-
-    async addPatientRef(Reference: Reference) {
-        let x = await this.http1.post(this.API_URL + '/patients/AddPatientReference/', Reference).toPromise();
-        console.log(x);
-        return x;
-    }
-
-    async updatePatientSpouse(Spouse: Spouse) {
-        let x = await this.http1.put(this.API_URL + '/patients/UpdatePartner/', Spouse).toPromise();
-        console.log(x);
-        return x;
-    }
-
-    async addPatientSpouse(Spouse: Spouse) {
-        let x = await this.http1.post(this.API_URL + '/patients/AddPartner/', Spouse).toPromise();
-        console.log(x);
-        return x;
-=======
 
 
->>>>>>> master
     }
 
     setCurrentPatient(patient) {

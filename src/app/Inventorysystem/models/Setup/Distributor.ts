@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import { SalesPerson } from "./SalesPerson";
 
->>>>>>> d6ac958d896e8ef818ac88e42f5a4d3ae70abb56
 export interface Distributor {
     distributorId: number,
     dRN: string,
@@ -19,10 +16,6 @@ export interface Distributor {
     nature: string,
     contactName: string,
     contactNumber: string,
-<<<<<<< HEAD
-    territoryId: number
-=======
     territoryId: number,
     salesPeople : SalesPerson[]
->>>>>>> d6ac958d896e8ef818ac88e42f5a4d3ae70abb56
 }

@@ -6,6 +6,7 @@ import { HrmsService } from '../../hrmsSetup/services/hrms.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Employee} from '../../model/employee';
 import { Observable } from 'rxjs';
+import { async } from '@angular/core/testing';
 
 @Injectable()
 export class EmployeeService {
@@ -153,6 +154,7 @@ export class EmployeeService {
         return this.httpClient.get<Employee>(this.baseUrl+'/Users/GetUser/'+id);       
     }
 
+
   async  updateEmployee(Employee  : Employee)
     {
     //   let id = localStorage.getItem('id');
@@ -160,7 +162,21 @@ export class EmployeeService {
       console.log(x);
       return x;
     }
+
+    async updateUersById(Employee  : Employee){
+        let x = await  this.httpClient.put(this.baseUrl+'/Users/UpdateUserDetail/'+localStorage.getItem('id'),Employee).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async updateUserCompanyById(Employee  : Employee){
+        let x = await  this.httpClient.put(this.baseUrl+'/Users/UpdateUserCompany/'+localStorage.getItem('id'),Employee).toPromise();
+        console.log(x);
+        return x;
+    }
     
+
+
 
     checkIfDisabled(e) {
         console.log(e);
@@ -202,14 +218,45 @@ export class EmployeeService {
         console.log(fomrData);
 
         let authToken = localStorage.getItem('auth_token');
-        // let headers = { headers: { 'Content-Type': 'multipart/form-data'} }
-        let headers = { headers: { 'Content-Type': 'application/json' } }
+        let headers = { headers: { 'Content-Type': 'multipart/form-data'} }; 
         let userpic = await this.httpClient.post(`${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}`, headers, this.selectedPic).toPromise();
         console.log(userpic);
         return userpic;
     }
 
-    // ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
+
+    addDocument(file :FormData){
+         this.httpClient.post(this.baseUrl+'/Users/AddUserPhotoById/'+localStorage.getItem('id'), file).subscribe( res => {
+            console.log(res);
+        });
+    }
+
+    addDocuments(models : FormData){
+ 
+        this.httpClient.post(this.baseUrl+'/Users/AddUserDocumentsById/'+localStorage.getItem('id'), models).subscribe( res => {
+            console.log(res);
+        });
+        
+        //return x;
+    }
+
+    public DocumentsByUserId : any;
+   async GetDocumentsByUserId()
+    {
+        this.DocumentsByUserId = await this.httpClient.get(this.baseUrl+'/Users/GetDocumentsByUserId/'+localStorage.getItem('id')).toPromise();
+        console.log(this.DocumentsByUserId);
+        return this.DocumentsByUserId;
+    }
+
+    async deleteUserDocument(id)
+    {
+        let x = await this.httpClient.delete(this.baseUrl+'/Users/DeleteUserDocumentById/'+id).toPromise();
+        console.log(x);
+        return x;
+    }
+
+
+     //  ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
 
     async adduserDocuments() {
         let authToken = localStorage.getItem('auth_token');

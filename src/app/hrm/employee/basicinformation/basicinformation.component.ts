@@ -79,26 +79,32 @@ export class BasicinformationComponent implements OnInit {
         console.log(value);
        this.employee.EmpbasicForm.value.userId = this.id;
             // value = {...this.Employee, ...value}
-            this.joinValues(value, this.Employee);
-        //  await this.employee.updateEmployee(value);
+           // this.joinValues(value, this.Employee);
+         await this.employee.updateEmployee(value);
     }
 
-    joinValues(form, data) {
-        console.log(data)
-      
-        for(let k in data) {
-            for(let p in form) {
-                p = p.substr(0, 1).toLowerCase() + p.substr(1);
-                // console.log(p);
-                if(p === k) {
-                    console.log('--------------')
-                    console.log('fro,m join values', k, data[k], p, form[p]);
-                    // console.log(form)
-                    console.log('--------------')
-                }
-            }
-        }
+    async updateUersById(value)
+    {
+        console.log(value);
+        await this.employee.updateUersById(value);
     }
+
+    // joinValues(form, data) {
+    //     console.log(data)
+      
+    //     for(let k in data) {
+    //         for(let p in form) {
+    //             p = p.substr(0, 1).toLowerCase() + p.substr(1);
+    //             // console.log(p);
+    //             if(p === k) {
+    //                 console.log('--------------')
+    //                 console.log('fro,m join values', k, data[k], p, form[p]);
+    //                 // console.log(form)
+    //                 console.log('--------------')
+    //             }
+    //         }
+    //     }
+    // }
 
     async ngOnInit() {
 
@@ -114,7 +120,28 @@ export class BasicinformationComponent implements OnInit {
                       //  let emp = this.Employee;
                             this.employee.EmpbasicForm.patchValue({
                                 FirstName : this.Employee.firstName,
+                                LastName : this.Employee.lastName,
+                                FatherName  : this.Employee.fatherName,
+                                DOB  : this.Employee.dob,
+                                POB  : this.Employee.pob,
+                                Cnic  : this.Employee.cnic,
+                                CnicExpiry  : this.Employee.cnicExpiry,
+                                Email  : this.Employee.email,
+                                LanguageId  : this.Employee.languageId,
+                                ReligionId  : this.Employee.religionId,
+                                CityId  : this.Employee.cityId,
+                                BloodGroup  : this.Employee.bloodGroup,
+                                MaritalStatus  : this.Employee.maritalStatus,
+                                PhoneNumber  : this.Employee.phoneNumber,
+                                HomeNumber  : this.Employee.homeNumber,
+                                Address  : this.Employee.address,
+                                PermanentAddress  : this.Employee.permanentAddress,
+
+
+
+
                             });
+                            console.log(Employee)
                             console.log(this.Employee.firstName)
                           //  console.log(emp.firstName)
 

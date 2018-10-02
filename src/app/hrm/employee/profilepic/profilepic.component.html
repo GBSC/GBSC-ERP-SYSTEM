@@ -24,6 +24,11 @@
           </span>
         </div>
       </div>
-      <input (change)="getProfilePic($event)" name="myFile" type="file">
+      <!-- (change)="getProfilePic($event)"  -->
+      <input type="file" (change)="onfileselect($event)" />
     </div>
   </div>
+
+  <button (click)="onupload()">
+    onupload
+  </button>

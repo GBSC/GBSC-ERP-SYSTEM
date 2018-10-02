@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
 
 declare let mLayout: any;
@@ -7,17 +7,16 @@ declare let mLayout: any;
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
+export class HeaderComponent implements OnInit, AfterViewInit {
     constructor() { }
 
     ngOnInit() {
     }
 
-    // ngAfterViewInit() {
+    ngAfterViewInit() {
 
-    //     mLayout.initHeader();
+        mLayout.initHeader();
 
-    // }
+    }
 
 }

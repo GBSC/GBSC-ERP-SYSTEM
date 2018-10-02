@@ -1,0 +1,30 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Brand</h3>
+      </div>
+    </div>
+  </div>
+  
+<div class="m-portlet__body">
+<div class="row">
+  <div class="col-md-12"> 
+    <dx-data-grid id="gridContainer" [dataSource]="Brands" keyExpr="brandId" (onRowUpdating)="mergeBrand($event)" (onRowInserted)="AddBrand($event)" (onRowUpdated)="UpdateBrand()" (onRowRemoved)="DeleteBrand($event)"> 
+      <dx-button text="Refresh data" (onClick)="refresh()"></dx-button>
+      <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+        <dxo-popup title="Add Brand" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+      </dxo-editing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dxo-paging [pageSize]="5"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+      <dxi-column dataField="name" caption="Name"></dxi-column>
+      <dxi-column dataField="showInNsv" caption="ShowInNsv"  dataType="boolean"></dxi-column>
+      </dx-data-grid> 
+   </div>
+
+   
+</div>
+</div></div>

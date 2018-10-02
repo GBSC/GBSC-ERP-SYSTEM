@@ -141,7 +141,7 @@
                             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                             </dxo-pager>  
                             <dxi-column dataField="monthlyUserSalaryId" caption="Monthly User Salary">
-                              <dxo-lookup [dataSource]="payrollservice?.monthlyUserSalary" displayExpr="totalWorkingDaysInMonth" valueExpr="monthlyUserSalaryId">
+                              <dxo-lookup [dataSource]="payrollservice?.monthlyUserSalary" displayExpr="PresentDays" valueExpr="monthlyUserSalaryId">
                               </dxo-lookup> 
                             </dxi-column>
                             <dxi-column dataField="slabAmount" caption="Amount"></dxi-column>

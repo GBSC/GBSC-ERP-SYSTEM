@@ -18,7 +18,7 @@
 
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
 
-                  <dxo-popup title="Bank" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Leave Year" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,6 +30,8 @@
                 </dxo-pager>
 
 
+                <dxi-column dataField="name" caption="Name"></dxi-column>
+                <dxi-column dataField="year" caption="Year"  dataType="date" format="year"></dxi-column>
                 <dxi-column dataField="startDate" dataType="date" format="shortDate"></dxi-column>
                 <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
                 <dxi-column dataType="boolean" dataField="isCurrentYear"></dxi-column>

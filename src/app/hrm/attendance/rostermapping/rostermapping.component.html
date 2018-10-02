@@ -1,0 +1,122 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Roster Mapping</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group m-form__group">
+                    <label for="Group" class="control-label">Year</label>
+                    <select class="form-control m-input" name="Years" id="Years">
+                      <option value="" disabled selected>-- Select Year --</option>
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+            
+                <div class="col-md-3">
+                  <div class="form-group m-form__group">
+                    <label for="Group" class="control-label">Roster</label>
+                    <select class="form-control m-input" name="Roster" id="Roster">
+                      <option value="" disabled selected>-- Select Roster --</option>
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="form-group m-form__group">
+                    <label for="Group" class="control-label">Month</label>
+                    <select class="form-control m-input"  name="Month" id="Month">
+                      <option value="" disabled selected>-- Select Month --</option>
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label>
+                      Date Range
+                    </label>
+                    <div class="input-group m-form__group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                            <input type="checkbox" checked="">
+                            <span></span>
+                          </label>
+                        </span>
+                      </div>
+                      <input type="date" formControlName="ConfirmDueDate" class="form-control m-input" aria-label="Text input with checkbox">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <h4>Employee List</h4>
+              <br>
+              <div class="row">
+               <div class="col-sm-4">
+                <div class="form-group m-form__group">
+                  <label for="Group" class="control-label">Criteria</label>
+                  <select class="form-control m-input" name="Month" id="Month">
+                    <option value="" disabled selected>-- Select all --</option>
+                    <option></option>
+                  </select>
+                </div>
+               </div>
+
+               <div class="col-sm-3">
+                <div class="form-group m-form__group">
+                  <label>
+                   Employee
+                  </label>
+                  <div class="input-group m-form__group">
+                    <input type="date" formControlName="ConfirmDueDate" class="form-control m-input" aria-label="Text input with checkbox">
+                  </div>
+                </div>
+              </div>
+
+              </div>
+
+              <div class="row">
+                <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
+                (onRowRemoved)="deleteLanguage($event)">
+    
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+    
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+    
+                <dxi-column dataField="code" caption="Employee Code"></dxi-column>
+                <dxi-column dataField="name" caption="Name"></dxi-column>
+                <dxi-column dataField="description" caption="Branch"></dxi-column>
+                <dxi-column dataField="description" caption="Department"></dxi-column>
+                
+    
+              </dx-data-grid>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 

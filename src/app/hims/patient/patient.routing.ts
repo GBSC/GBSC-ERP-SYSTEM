@@ -1,85 +1,86 @@
-import { ModuleWithProviders } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { RootComponent } from './root/root.component';
+// import { ModuleWithProviders } from '@angular/core';
+// import { RouterModule } from '@angular/router';
+// import { RootComponent } from './root/root.component';
 
-import { RegistrationComponent } from '../patient/registration/registration.component';
-import { ProfileComponent } from '../patient/profile/profile.component';
-import { AllergiesComponent } from '../patient/allergies/allergies.component';
+// import { RegistrationComponent } from '../patient/registration/registration.component';
+// import { ProfileComponent } from '../patient/profile/profile.component';
+// import { AllergiesComponent } from '../patient/allergies/allergies.component';
 
-import { DiagnosesComponent } from '../patient/diagnoses/diagnoses.component';
-import { RecentvisitsComponent } from '../patient/recentvisits/recentvisits.component';
-import { LatestobservationComponent } from '../patient/latestobservation/latestobservation.component';
-import { FamilyComponent } from '../patient/family/family.component';
-import { HealthTrendSummaryComponent } from '../patient/health-trend-summary/health-trend-summary.component';
-import { WeightGraphComponent } from '../patient/weight-graph/weight-graph.component';
-import { VitalsComponent } from '../patient/vitals/vitals.component';
-import { AppointmentsComponent } from '../patient/appointments/appointments.component';
-import { PatientvitalsComponent } from '../patient/patientvitals/patientvitals.component';
-import { AdmitinpatientComponent } from '../patient/admitinpatient/admitinpatient.component';
-import { GeneralactionsComponent } from '../patient/generalactions/generalactions.component';
-import { VisitnoteComponent } from '../patient/visitnote/visitnote.component';
-import { VisitsComponent } from '../patient/visits/visits.component';
-import { AppointmentsblockComponent } from '../patient/appointmentsblock/appointmentsblock.component';
-import { FindPatientComponent } from '../patient/find-patient/find-patient.component';
-import { HomeComponent } from '../patient/home/home.component';
-import { AppointmentscheduleComponent } from '../patient/appointmentschedule/appointmentschedule.component';
-import { ConsultantComponent } from '../patient/consultant/consultant.component';
-import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
-import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
-import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
-import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
-import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
-import { ReportsComponent } from '../patient/Reports/reports/reports.component';
-import { ModuleGuardService } from '../../account/auth/module-guard.service';
-import { AuthGuardService } from '../../account/auth/auth-guard.service';
+// import { DiagnosesComponent } from '../patient/diagnoses/diagnoses.component';
+// import { RecentvisitsComponent } from '../patient/recentvisits/recentvisits.component';
+// import { LatestobservationComponent } from '../patient/latestobservation/latestobservation.component';
+// import { FamilyComponent } from '../patient/family/family.component';
+// import { HealthTrendSummaryComponent } from '../patient/health-trend-summary/health-trend-summary.component';
+// import { WeightGraphComponent } from '../patient/weight-graph/weight-graph.component';
+// import { VitalsComponent } from '../patient/vitals/vitals.component';
+// import { AppointmentsComponent } from '../patient/appointments/appointments.component';
+// import { PatientvitalsComponent } from '../patient/patientvitals/patientvitals.component';
+// import { AdmitinpatientComponent } from '../patient/admitinpatient/admitinpatient.component';
+// import { GeneralactionsComponent } from '../patient/generalactions/generalactions.component';
+// import { VisitnoteComponent } from '../patient/visitnote/visitnote.component';
+// import { VisitsComponent } from '../patient/visits/visits.component';
+// import { AppointmentsblockComponent } from '../patient/appointmentsblock/appointmentsblock.component';
+// import { FindPatientComponent } from '../patient/find-patient/find-patient.component';
+// import { HomeComponent } from '../patient/home/home.component';
+// import { AppointmentscheduleComponent } from '../patient/appointmentschedule/appointmentschedule.component';
+// import { ConsultantComponent } from '../patient/consultant/consultant.component';
+// import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-test.component';
+// import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
+// import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
+// import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
+// import { ModuleGuardService } from '../../account/auth/module-guard.service';
+// import { AuthGuardService } from '../../account/auth/auth-guard.service';
 
 
-
-
-export const routing: ModuleWithProviders = RouterModule.forChild([
-    {
-        path: 'hims/patient',
-        component: RootComponent,   
-        // canActivate: [AuthGuardService, ModuleGuardService],
-        children: [
-
-            { path: 'updatepatient/:id', component: RegistrationComponent },
-            { path: '', component: HomeComponent },
-            { path: 'home', component: HomeComponent },
-            { path: 'registration', component: RegistrationComponent },
-            { path: 'profile/:id', component: ProfileComponent },
-            { path: 'diagnoses', component: DiagnosesComponent },
-            { path: 'recentvisits', component: RecentvisitsComponent },
-            { path: 'latestobservation', component: LatestobservationComponent },
-            { path: 'family', component: FamilyComponent },
-            { path: 'health_trend_summary', component: HealthTrendSummaryComponent },
-            { path: 'allergies', component: AllergiesComponent },
-            { path: 'weight_graph', component: WeightGraphComponent },
-            { path: 'vitals', component: VitalsComponent },
-            { path: 'appointments', component: AppointmentsComponent },
-            { path: 'patientvitals/:id', component: PatientvitalsComponent },
-            { path: 'admitinpatient', component: AdmitinpatientComponent },
-            { path: 'generalactions', component: GeneralactionsComponent },
-            { path: 'visitnote', component: VisitnoteComponent },
-            { path: 'visits/:id', component: VisitsComponent },
-            { path: 'appointmentsblock', component: AppointmentsblockComponent },
-            { path: 'findpatient', component: FindPatientComponent },
-            { path: 'appointmentschedule', component: AppointmentscheduleComponent },
-            { path: 'consultant', component: ConsultantComponent },
-            { path: 'visitnature', component: VisitnatureComponent },
-            { path: 'himssetuptest', component: HimsSetupTestComponent },
-            { path: 'visitdetail/:id', component: VisitdetailComponent },
-            { path: 'diagnose', component: DiagnosisComponent },
-            { path: 'activevisits', component: ActiveVisitsComponent },
-            { path: 'reports', component: ReportsComponent }
-        ]
-    }
-]);
 
 
 // export const routing: ModuleWithProviders = RouterModule.forChild([
+//     {
+// <<<<<<< HEAD
+//         path: 'hims/patient',
+//         component: RootComponent,   
+// =======
+//         path: 'patient',
+//         component: RootComponent,
+// >>>>>>> cbc66a0013be062a5203030c16af78b391f9f19e
+//         canActivate: [AuthGuardService, ModuleGuardService],
+//         children: [
 
-//   { path: 'patient/registration', component: PatientComponent}
-
+//             { path: 'updatepatient/:id', component: RegistrationComponent },
+//             { path: '', component: HomeComponent },
+//             { path: 'home', component: HomeComponent },
+//             { path: 'registration', component: RegistrationComponent },
+//             { path: 'profile/:id', component: ProfileComponent },
+//             { path: 'diagnoses', component: DiagnosesComponent },
+//             { path: 'recentvisits', component: RecentvisitsComponent },
+//             { path: 'latestobservation', component: LatestobservationComponent },
+//             { path: 'family', component: FamilyComponent },
+//             { path: 'health_trend_summary', component: HealthTrendSummaryComponent },
+//             { path: 'allergies', component: AllergiesComponent },
+//             { path: 'weight_graph', component: WeightGraphComponent },
+//             { path: 'vitals', component: VitalsComponent },
+//             { path: 'appointments', component: AppointmentsComponent },
+//             { path: 'patientvitals/:id', component: PatientvitalsComponent },
+//             { path: 'admitinpatient', component: AdmitinpatientComponent },
+//             { path: 'generalactions', component: GeneralactionsComponent },
+//             { path: 'visitnote', component: VisitnoteComponent },
+//             { path: 'visits/:id', component: VisitsComponent },
+//             { path: 'appointmentsblock', component: AppointmentsblockComponent },
+//             { path: 'findpatient', component: FindPatientComponent },
+//             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
+//             { path: 'consultant', component: ConsultantComponent },
+//             { path: 'visitnature', component: VisitnatureComponent },
+//             { path: 'himssetuptest', component: HimsSetupTestComponent },
+//             { path: 'visitdetail/:id', component: VisitdetailComponent },
+//             { path: 'diagnose', component: DiagnosisComponent },
+//         ]
+//     }
 // ]);
+
+
+// // export const routing: ModuleWithProviders = RouterModule.forChild([
+
+// //   { path: 'patient/registration', component: PatientComponent}
+
+// // ]);
 

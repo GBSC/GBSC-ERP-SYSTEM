@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../../hrm/payroll/services/payrollsetup.service';
 
 @Component({
     selector: 'app-payrollyear',
@@ -7,19 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayrollyearComponent implements OnInit {
 
-    public payrollyaer: any;
+    public payrollyear: any;
 
-    constructor() { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-    ngOnInit() {
-        this.payrollyaer = [
-            {
-                year: "2014",
-                startDate: "12-4-2018",
-                endDate: "12-4-2020",
-                isCurrentPayrollYear: "12-4-2016"
-            }
-        ]
-    }
-
-}
+    async ngOnInit() {
+         await this.payrollsetupservice.getpayrollyears();
+         this.payrollyear = this.payrollsetupservice.payrollyear;
+       }
+     
+       async addPayrollYear(value) {
+         await this.payrollsetupservice.addpayrollyear(value.data);
+       }
+     
+       async updatePayrollYear(value) {
+         console.log(value);
+         await this.payrollsetupservice.updatepayrollyear(value);
+       }
+     
+       async deletePayrollYear(value) {
+         await this.payrollsetupservice.Deletepayrollyear(value.key);
+       }
+     
+     }

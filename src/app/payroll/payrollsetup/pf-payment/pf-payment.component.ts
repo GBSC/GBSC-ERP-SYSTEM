@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService } from '../../../hrm/payroll/services/payrollsetup.service';
 
 @Component({
     selector: 'app-pf-payment',
@@ -6,22 +7,25 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./pf-payment.component.css']
 })
 export class PfPaymentComponent implements OnInit {
-    public pfpayment: any;
-    public allowance: any;
-    constructor() { }
+    public pfPayment: any; 
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-    ngOnInit() {
-        this.pfpayment = [
-            {
-                allowance: [{ value: "select", display: "select" }],
-                employercontribution: "yes",
-                employeecontribution: "yes",
-
-            }
-        ]
-
-        this.allowance = [{ value: "select", display: "select" }];
-
+    async ngOnInit() {
+        await this.payrollsetupservice.getpfpayments();
+        this.pfPayment = this.payrollsetupservice.pfpayment;
+      }
+    
+      async addPFPayment(value) {
+        await this.payrollsetupservice.addpfpayment(value.data);
+      }
+    
+      async updatePFPayment(value) {
+        console.log(value);
+        await this.payrollsetupservice.updatepfpayment(value);
+      }
+    
+      async deletePFPayment(value) {
+        await this.payrollsetupservice.Deletepfpayment(value.key);
+      }
+    
     }
-
-}

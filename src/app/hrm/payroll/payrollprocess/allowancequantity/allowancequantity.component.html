@@ -1,0 +1,94 @@
+<div class="m-content">
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Allowance Quantity</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+              <dx-data-grid
+              id="gridContainer" 
+              [dataSource]="allowancequantity"
+              keyExpr="Id">
+              <dxo-editing 
+                   mode="popup"
+                   [allowUpdating]="true"
+                   [allowDeleting]="true"
+                   [allowAdding]="true">
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+            
+            <dxo-search-panel 
+              [visible]="true" 
+              [width]="240" 
+              placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager 
+                  [showPageSizeSelector]="true"
+                  [allowedPageSizes]="[5, 10, 20]"
+                  [showInfo]="true">
+              </dxo-pager>
+            
+              <dxi-column dataField="employee" caption="Employee">
+                <dxo-lookup
+                [dataSource]="employee"
+                displayExpr="Name"
+                valueExpr="ID"></dxo-lookup>
+              </dxi-column>
+            
+              <dxi-column dataField="month" caption="Month">
+                <dxo-lookup
+                [dataSource]="month"
+                displayExpr="Name"
+                valueExpr="ID"></dxo-lookup>
+              </dxi-column>
+            
+              <dxi-column dataField="year" caption="Year">
+                <dxo-lookup
+                [dataSource]="year"
+                displayExpr="Name"
+                valueExpr="ID"></dxo-lookup>
+              </dxi-column>
+            
+              <dxi-column dataField="allowance" caption="Allowance">
+                <dxo-lookup
+                [dataSource]="incrmnton"
+                displayExpr="Name"
+                valueExpr="ID"></dxo-lookup>
+              </dxi-column>
+            
+              <dxi-column dataField="payrolltype" caption="Payroll Type">
+                <dxo-lookup
+                [dataSource]="payrolltype"
+                displayExpr="Name"
+                valueExpr="ID"></dxo-lookup>
+              </dxi-column>
+             <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+              <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+                
+            </dx-data-grid>
+            
+          </div>
+          </div>
+          </div>
+</div></div></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,11 +7,12 @@ import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
-import { PayrollModule } from '../payroll/payroll.module';
-import { SuperadminModule } from '../superadmin/superadmin.module';
-import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
+import { SuperadminModule } from '../superadmin/superadmin.module';
+import { AccountModule } from '../account/account.module';
+
+
 
 const routes: Routes = [
     {
@@ -55,15 +56,12 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule, 
+        InventorysystemModule,
         SuperadminModule,
         InventorysystemModule, 
         SystemAdministrationModule,
         DashboardModule,
         HrmModule,
-        PayrollModule,
-        DashboardModule,
-        AccountModule
     ],
     exports: [
         RouterModule,

@@ -9,7 +9,6 @@ import {
     DxTemplateModule
 } from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
-import { find } from 'rxjs/operator/find';
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -18,7 +17,7 @@ import { find } from 'rxjs/operator/find';
 })
 export class AppointmentscheduleComponent implements OnInit {
 
-    @ViewChild('appointmentgrid') appointmentgrid: DxDataGridComponent;
+    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 
     private patientForm: FormGroup;
     public patientIdIs;
@@ -46,7 +45,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
-    public tests    : any;
+    public test: any;
     public currentpatient: any;
     public e: any;
 
@@ -56,12 +55,12 @@ export class AppointmentscheduleComponent implements OnInit {
     public ConsultantIdTentiveTime: any;
     public id: any;
     public date: any;
-    public visitNatures: any;
+    public visitNatures : any;
 
-    private getTestbyId : any= [] ; 
-    public gettestName : any = [] ; 
 
-    submitted = false;
+
+    ///////////////////
+    public falto: any;
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
 
         // this.profileForm = new FormGroup({
@@ -80,16 +79,15 @@ export class AppointmentscheduleComponent implements OnInit {
                 Gender: ['', Validators.required],
                 LastName: ['', Validators.required],
                 DOB: ['', Validators.required],
-                PhoneNumber:['',  [Validators.required , Validators.minLength(11)]],
-                NIC: ['', [Validators.required , Validators.minLength(13)]],
-
+                PhoneNumber: ['', Validators.required],
+                NIC: ['', Validators.required],
             });
         this.appointmentForm = this.formBuilder.group(
             {
                 'PatientType': [''],
                 'ConsultantId': ['', Validators.required],
                 'VisitStatus': [''],
-                'VisitNatureId': [''],
+                'visitNatureId': [''],
                 'PatientId': [''],
                 'TimeIn': [''],
                 'TimeOut': [''],
@@ -102,6 +100,12 @@ export class AppointmentscheduleComponent implements OnInit {
             'TimeOut': ['', Validators.required],
             'Remarks': ['', Validators.required]
         });
+    }
+
+    showIt() {
+        if (this.profileForm.valid) {
+            console.log(this.profileForm);
+        }
     }
 
     async  ngOnInit() {
@@ -127,46 +131,45 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(this.consultant);
 
         await this.PatientServiceobj.getTests();
-        this.tests = this.PatientServiceobj.testing;
-        console.log(this.tests);
+        this.test = this.PatientServiceobj.testing;
+        console.log(this.test);
 
         await this.PatientServiceobj.GetVisitNatures();
-        this.visitNatures = this.PatientServiceobj.visitNatures;
+       this.visitNatures = this.PatientServiceobj.visitNatures;
         console.log(this.visitNatures);
-
         // await this.PatientServiceobj.GetAppointmentTests();
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
-        
 
 
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
 
-    showIt() {
-        if (this.profileForm.valid) {
-            console.log(this.profileForm);
-        }
-    }
+    addrange(id) {
+        // console.log(id);
 
+        //    console.log(id.value);
+        // let testFound = this.findTestById(id);
+        // console.log(testFound);
 
-    
-    addrange() {
-       let { value } = this.appointmenttestForm;
-      let test = this.tests.find(t => t.testId == value.TestId);
+        let { value } = this.appointmenttestForm;
+
         let doc = {
             TestId: value.TestId,
-            TestName : test.testName
 
         }
-         this.Tests.push(doc);
+        this.Tests.push(doc);
         console.log(this.Tests);
+        //this.appointmenttestForm.reset();
+
+
     }
 
     remove(index) {
         this.Tests.splice(index, 1);
     }
+
     removeall(index) {
         // this.Tests.splice(index,10000000000);
         this.Tests.length = 0
@@ -181,26 +184,14 @@ export class AppointmentscheduleComponent implements OnInit {
     // }
 
     async addappointmentTest(value) {
-
-         this.Tests.filter(t => {
-            return delete t.TestName;
-        });
-        
- 
         console.log(value);
-         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId,value);
-          console.log(x)
-          console.log(this.currentpatient.appointmentId,value);
-
-         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-          console.log(this.getaptbyid);
-            this.removeall(value);
-          return x;
+        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
+        console.log(x)
+        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+        console.log(this.getaptbyid);
+        this.removeall(this.Tests);
+        return x;
     }
-
-    // refresh() {
-    //     this.dataGrid.instance.refresh();
-    // }
 
     // async deleteapointmentTest(value) {
     //   console.log(value);
@@ -223,57 +214,37 @@ export class AppointmentscheduleComponent implements OnInit {
         this.showAddNewPatientRow = false;
     }
 
-    get f() { return this.patientForm.controls; }
 
-    async onAddPatient(value: Patient, popup) {
-        this.submitted = true;
-
-        if (this.patientForm.invalid) {
-            return alert('Please Select All Required Fileds') ;
-        }
-
-        console.log(this.patientForm)
-
+    async onAddPatient(value: Patient) {
         console.log(this.patientForm.value.FirstName);
         console.log(value);
-        delete this.patientForm.value.patientId
         this.patientIdIs = await this.PatientServiceobj.addPatient(value);
-        popup.style.display = 'none'; 
-        console.log(this.PatientServiceobj.patientID);
- 
-        let x = this.PatientServiceobj.patientID;
-        console.log(x)
         return this.patientIdIs;
-
     }
 
-    async addApointment(value, cid) {
+    // async getappointmentbyid(d)
+    // {
+    //   this.currentpatient = d.key;
+    //   console.log(d.key)
+    //   //console.log(value.key.appointmentId);
+    //   let x = await this.PatientServiceobj.getAppointmentById(value.key.appointmentId);
+    //   console.log(x);
+    //   return x;
 
-        if(this.appointmentForm.value.PatientId === null)
-        {
-              this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
-         }
-      
+    // }
+
+    async addApointment(value, cid) {
         console.log(cid.value);
         console.log(value);
-    
+        console.log(this.appointmentForm.value);
         this.appointmentForm.value.ConsultantId = cid.value;
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
 
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(x);
-        // await this.PatientServiceobj.getappointments();
-        await this.PatientServiceobj.getPatient();
-        this.par = this.PatientServiceobj.patients;
-        await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+        await this.PatientServiceobj.getappointments();
         this.deleteFieldValue();
-
-        this.appointmentForm.reset();
-        this.patientForm.reset();
-        this.patientForm.value.FirstName ='';
-        this.patientForm.value.LastName ='';
         return x;
     }
 
@@ -285,35 +256,6 @@ export class AppointmentscheduleComponent implements OnInit {
         return x;
     }
 
-    public SetTime :any;
-    getCurrentRowDataForSetTime(d)
-    {
-        // if (d.key.timeIn === '' || d.key.timeOut === '' || d.key.remarks === ''){
-        //     this.SetTime = d.key;
-        //     console.log(d.key);
-
-        // }
-        // else{
-        //     console.log('else body');
-
-        // }
-        this.SetTime = d.key;
-       console.log(d.key);
-    }
-
-  async  SetTimeInOut(value){
-        console.log(value);
-        this.SetTime.timeIn = <Date>value.TimeIn;
-        this.SetTime.timeOut = <Date>value.TimeOut;
-        this.SetTime.remarks = value.Remarks;
-        console.log(this.SetTime);
-        let x = await this.PatientServiceobj.updateAppoint(this.SetTime);
-        console.log(x);
-        this.appointmentTimeForm.reset();
-        return x;   
-    }
-
-
     async deleteAppointment(value) {
         console.log(value.key.appointmentId);
         let x = await this.PatientServiceobj.deleteAppointment(value.key.appointmentId);
@@ -323,10 +265,15 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async getConsultantIdAndTentive(cid, date) {
         console.log(cid.value, date.value);
+        let x = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
+        console.log(x);
+
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         console.log(this.ConsultantIdTentiveTime);
-        console.log(this.ConsultantIdTentiveTime.visitNature);
+
+        return x;
+
     }
 
     selectNewOrPrevious(e) {
@@ -363,10 +310,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     }
 
-    hidepopup(popup) {
-        console.log('popup')
-       popup.style.display = 'none'; 
-    }
+
 
 }
 

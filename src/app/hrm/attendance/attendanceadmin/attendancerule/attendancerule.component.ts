@@ -16,6 +16,7 @@ export class AttendanceruleComponent implements OnInit {
 
     public AttendanceRuleForm;
     public attendancerule: any;
+    private LeaveTypes : any;
     private leaves : AttendanceRuleLeaveType[]; 
     public attendanceRule: any;
 
@@ -51,7 +52,7 @@ export class AttendanceruleComponent implements OnInit {
         await this.attendancesetupservice.getattendanceflag();
         let attendanceflag = this.attendancesetupservice.attendanceflag;
 
-        await this.leavesetupservice.getAllleavetype();
+        this.LeaveTypes = await this.leavesetupservice.getAllleavetype();
         let leavetype = this.leavesetupservice.leavetype; 
 
     }
@@ -69,7 +70,7 @@ export class AttendanceruleComponent implements OnInit {
         console.log(this.leaves);
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
         console.log(attendanceRule);
-        let r= this.attendanceservice.addattendancerule(attendanceRule);
+        let r= await this.attendanceservice.addattendancerule(attendanceRule);
         console.log(r);
 
     }

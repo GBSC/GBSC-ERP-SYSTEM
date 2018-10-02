@@ -337,12 +337,9 @@ export class LeaveSetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        let leaveTypes : any = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
-        leaveTypes.forEach(element => {
-            this.leavetype.push(element)
-        });
-        console.log(this.leavetype);
-        return this.leavetype;
+        let leaveTypes = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+        console.log(leaveTypes);
+        return leaveTypes;
     }
 
 

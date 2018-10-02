@@ -104,7 +104,7 @@
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                       <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">Attendance Flag</h3>
+                        <h3 class="m-portlet__head-text">Assign Roster</h3>
                       </div>
                     </div>
                   </div>
@@ -114,10 +114,9 @@
                         <dx-data-grid id="gridContainer"
                         [dataSource]="[]"
                          keyExpr="assignRosterId"
-                         (onRowInserted)="addAssignroster($event)" 
-                         (onRowUpdated)="updateMasterDetail($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                            <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                         (onRowInserted)="assignroster($event)">
+                          <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                            <dxo-popup title="Assign Roster" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                             </dxo-popup>
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -127,8 +126,12 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager>  
-                          <dxi-column dataField="description" caption="Description"> 
-                            </dxi-column>
+                          <!-- <dxi-column dataField="description" caption="Description">  -->
+
+                              <dxi-column dataField="assignRosterId" caption="Leave Type">
+                                  <dxo-lookup [dataSource]="AssignRosters" displayExpr="description" valueExpr="assignRosterId">
+                                  </dxo-lookup> 
+                                  </dxi-column> 
                         </dx-data-grid>
                       
                     </div>

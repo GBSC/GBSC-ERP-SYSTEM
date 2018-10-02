@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { PharmacyService } from './service/pharmacy.service';
 import { CategoryComponent } from './category/category.component';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { AddnewsupplierComponent } from './addnewsupplier/addnewsupplier.component';
@@ -20,12 +19,12 @@ import { IssuanceComponent } from './issuance/issuance.component';
 @NgModule({
   imports: [
     CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        routing,
-        DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule,
+    FormsModule,
+    ReactiveFormsModule,
+    routing,
+    DxButtonModule,
+    DevExtremeModule,
+    DxDataGridModule,
   ],
   declarations: [
     AddnewsupplierComponent,
@@ -40,9 +39,6 @@ import { IssuanceComponent } from './issuance/issuance.component';
     RootComponent,
     SupplierComponent,
     UnitComponent
-  ],
-  providers: [
-    PharmacyService
   ]
 })
 export class PharmacyModule { }

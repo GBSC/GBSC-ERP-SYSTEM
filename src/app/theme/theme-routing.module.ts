@@ -1,22 +1,16 @@
 import { NgModule } from '@angular/core';
 import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from "../auth/_guards/auth.guard";
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
-<<<<<<< HEAD
-import { PayrollModule } from '../payroll/payroll.module';
-import { CoreModule } from '../core/core.module';
-=======
->>>>>>> master
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 import { PharmacyModule } from '../pharmacy/pharmacy.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
-import { AuthGuardService } from '../account/auth/auth-guard.service';
+import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
 
 
 

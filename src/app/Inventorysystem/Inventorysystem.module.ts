@@ -10,7 +10,6 @@ import { HeaderComponent } from '../Inventorysystem/shared/header/header.compone
 import { MenuComponent } from '../Inventorysystem/shared/menu/menu.component';
 
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
-import { InventorysystemService } from '../../app/Inventorysystem/service/Inventorysystem.service';
 import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { PurchaseInvoiceComponent } from './Purchase/purchase-invoice/purchase-invoice.component';
 import { PurchaseOrderComponent } from './Purchase/purchase-order/purchase-order.component';
@@ -122,10 +121,6 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent
-    ],
-    providers: [
-        //  UserService,
-        InventorysystemService
     ]
 })
 export class InventorysystemModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
 import { Brand } from '../../models/Setup/Brand';
 
 @Component({

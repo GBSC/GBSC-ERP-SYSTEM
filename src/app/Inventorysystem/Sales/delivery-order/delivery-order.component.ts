@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { ScriptLoaderService } from '../../../_services/script-loader.service';
 import { Helpers } from '../../../helpers';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
 import { DeliveryOrder } from '../../models/Sales/DeliveryOrder';
 @Component({
     selector: 'DeliveryOrder',

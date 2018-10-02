@@ -8,7 +8,7 @@ import { Spouse } from '../../../models/spouse';
 import { BioChemistryTestDetail } from '../../../models/biochemistrytestdetail';
 import { BioChemistryTest } from '../../../models/biochemistrytest';
 import { TestUnit } from '../../../models/testunit';
-import { BioChemistryService } from '../services/bio-chemistry.service';
+import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
 

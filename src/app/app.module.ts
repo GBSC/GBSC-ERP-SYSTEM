@@ -7,17 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScriptLoaderService } from "./_services/script-loader.service";
 import { ThemeRoutingModule } from "./theme/theme-routing.module";
-import { AuthModule } from "./auth/auth.module";
-import { SetupService } from './hrm/hrmsSetup/services/setup.service';
-import { EmployeeService } from './hrm/employee/services/employee.service';
-import { LeaveService } from './hrm/leave/leave.service';
-import { LeaveSetupService } from './hrm/leave/leaveSetup.service';
-import { HrmsService } from './hrm/hrmsSetup/services/hrms.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
+import { SetupService } from './core/Services/HRM/Setup/setup.service';
+import { EmployeeService } from './core/Services/HRM/Employee/employee.service';
+import { LeaveSetupService } from './core/Services/HRM/Leave/leaveSetup.service';
+import { LeaveService } from './core/Services/HRM/Leave/leave.service';
+import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
 
 
 
@@ -33,17 +32,12 @@ import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
         BrowserAnimationsModule,
         AppRoutingModule,
         ThemeRoutingModule,
-        AuthModule,
         FormsModule,
         ReactiveFormsModule,
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [{
-        provide: UrlSerializer,
-        useClass: LowerCaseUrlSerializer
-    },
-    ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

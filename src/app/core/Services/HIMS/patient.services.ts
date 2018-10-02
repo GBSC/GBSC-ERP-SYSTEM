@@ -93,6 +93,11 @@ export class PatientService {
         return this.patients;
     }
 
+    getPatientWithPartner(PatientId: number): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/getpatientwithpartner/' + PatientId);
+        //return this.http.get<Patient>(this.API_URL + '/patients/getpatientwithpartner/' + PatientId);
+    }
+
     async addPatient(patient: Patient) {
         this.patientID = await this.ApiService.post(this.API_URL + 'patients/AddPatient', patient).toPromise();
         //this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
@@ -219,7 +224,7 @@ export class PatientService {
         //return x;
     }
 
-    async updateAppoint(appointment: Appointment) {
+    async updateAppointment(appointment: Appointment) {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
         //console.log(appointment);
         //return await this.http1.put(`${this.API_URL}/Appointments/UpdateAppointment/`, appointment).toPromise();
@@ -417,6 +422,34 @@ export class PatientService {
     //     return this.currentPatientvisits;
 
     // }
+
+    public async getPackage() {
+        this.package = await this.ApiService.get(this.API_URL + 'HimsSetup/GetPackages').toPromise();
+        //this.package = await this.http.get<Package>(this.API_URL + '/HimsSetup/GetPackages').toPromise();
+        //console.log(this.package);
+        return this.package;
+    }
+
+    async addPackage(packge: Package) {
+        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddPackage', packge).toPromise();
+        //let x = await this.http.post(this.API_URL + '/HimsSetup/AddPackage', packge).toPromise();
+        //console.log(x);
+        //return x;
+    }
+
+    async updatePackage(packge: Package) {
+        return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdatePackage', packge).toPromise();
+        //let x = await this.http.put(this.API_URL + '/HimsSetup/UpdatePackage/', packge).toPromise();
+        //console.log(x);
+        //return x;
+    }
+
+    async daletePackage(id) {
+        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePackage/' + id).toPromise();
+        //let x = await this.http.delete(this.API_URL + '/HimsSetup/DeletePackage/' + id).toPromise();
+        //console.log(x);
+        //return x;
+    }
 
 
     async AddPatientVital(patientVital: PatientVital) {

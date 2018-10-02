@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import form from 'devextreme/ui/form';
-import { SystemAdministrationService } from '../services/systemadministration.services';
+import { SystemAdministrationService } from '../../core/Services/HRM/systemadministration.services';
 
 @Component({
     selector: 'app-module',

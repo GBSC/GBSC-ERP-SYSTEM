@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
 import { CustomerWarehouse } from '../../models/Setup/CustomerWarehouse';
 import { CustomerType } from '../../models/Setup/CustomerType';
 import { Customer } from '../../models/Setup/Customer';
@@ -24,7 +24,7 @@ export class SalesOrderComponent implements OnInit {
     private CustomerWarehouses : any;
     private FilteredWarehouses : any
     private CustomerTypes : any;
-    private Distributors : Distributor[] =[];
+    private Distributors : any;
     private FilteredDistributor : Distributor;
     private DispAddress : string = "";
     private SalesOrderForm : FormGroup;

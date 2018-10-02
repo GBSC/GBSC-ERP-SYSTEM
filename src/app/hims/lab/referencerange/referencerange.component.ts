@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BioChemistryService } from '../services/bio-chemistry.service';
 import { referenceRange } from '../../../models/referenceRange';
+import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 
 @Component({
     selector: 'app-referencerange',

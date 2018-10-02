@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PatientService } from '../../patient/services/patient.services';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Patient } from '../../../../app/models/patient'
 import { AppointmentTest } from '../../../../app/models/appointmentTest'
@@ -9,6 +8,7 @@ import {
     DxTemplateModule
 } from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
+import { PatientService } from '../../../core';
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -251,7 +251,7 @@ export class AppointmentscheduleComponent implements OnInit {
     async updateAppointment(value) {
         console.log(value.key);
 
-        let x = await this.PatientServiceobj.updateAppoint(value.key);
+        let x = await this.PatientServiceobj.updateAppointment(value.key);
         console.log(x);
         return x;
     }

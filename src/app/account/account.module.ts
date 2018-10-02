@@ -6,9 +6,6 @@ import { routing } from './account.routing';
 import { RootComponent } from './root/root.component';
 
 import { LoginformComponent } from './loginform/loginform.component';
-import { AccountService } from './service.service';
-import { ModuleGuardService } from './auth/module-guard.service';
-import { AuthGuardService } from './auth/auth-guard.service';
 
 
 @NgModule({
@@ -22,13 +19,6 @@ import { AuthGuardService } from './auth/auth-guard.service';
     declarations: [
 
         RootComponent,
-        LoginformComponent],
-    providers:
-    [
-        AccountService,
-        AuthGuardService,
-        ModuleGuardService
-
-    ]
+        LoginformComponent]
 })
 export class AccountModule { }

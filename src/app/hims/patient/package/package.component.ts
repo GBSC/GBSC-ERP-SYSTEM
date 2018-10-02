@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../sharedservices/patient.service'
+import { PatientService } from '../../../core/Services/HIMS/patient.services';
 
 @Component({
     selector: 'app-package',

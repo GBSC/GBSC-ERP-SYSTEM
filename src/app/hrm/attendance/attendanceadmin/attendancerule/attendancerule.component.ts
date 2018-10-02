@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../../services/attendance.service';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
+import { AttendancesetupService } from '../../../../core/Services/HRM/Attendance/attendancesetup.service';
+import { AttendanceService } from '../../../../core/Services/HRM/Attendance/attendance.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { SetupService } from '../../../hrmsSetup/services/setup.service';
 import { LeaveSetupService } from '../../../leave/leaveSetup.service'; 

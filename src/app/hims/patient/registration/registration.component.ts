@@ -2,11 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Patient } from '../../../models/patient';
-import { PatientService } from '../../patient/services/patient.services';
+import { PatientService } from '../../../core/Services/HIMS/patient.services';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
 import { Loginform } from '../../../models/loginform';
-import { InventorysystemService } from '../../../../app/Inventorysystem/service/Inventorysystem.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 

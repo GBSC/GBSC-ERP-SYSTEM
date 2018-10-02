@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InseminationprepService } from '../services/inseminationprep.service';
 import { InseminationPrep } from '../../../models/inseminationprep';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import validator from 'devextreme/ui/validator';
@@ -11,6 +10,7 @@ import { Spouse } from '../../../models/spouse';
 import { PatientService } from '../../sharedservices/patient.service';
 
 import { DxSelectBoxComponent } from 'devextreme-angular';
+import { InseminationprepService } from '../../../core/Services/HIMS/Lab/inseminationprep.service';
 
 @Component({
     selector: 'app-inseminationprep',

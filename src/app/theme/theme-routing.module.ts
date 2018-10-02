@@ -8,7 +8,6 @@ import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { PayrollModule } from '../payroll/payroll.module';
 import { CoreModule } from '../core/core.module';
-import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';

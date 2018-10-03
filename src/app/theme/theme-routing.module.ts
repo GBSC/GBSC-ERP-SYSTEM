@@ -62,7 +62,6 @@ const routes: Routes = [
         DashboardModule,
         HrmModule,
         PayrollModule,
-        DashboardModule,
         AccountModule
     ],
     exports: [

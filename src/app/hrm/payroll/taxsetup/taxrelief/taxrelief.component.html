@@ -29,8 +29,8 @@
 								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 								<dxo-paging [pageSize]="8"></dxo-paging>
 								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-                <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
-                    <dxo-lookup [dataSource]="payrollsetupservice?.incometaxrule" displayExpr="name" valueExpr="incomeTaxRuleId">
+                <dxi-column dataField="incomeTaxRuleId" caption="Tax Limit">
+                    <dxo-lookup [dataSource]="payrollsetupservice?.incometaxrule" displayExpr="taxLimit" valueExpr="incomeTaxRuleId">
                     </dxo-lookup> 
                     </dxi-column>
                 <dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>

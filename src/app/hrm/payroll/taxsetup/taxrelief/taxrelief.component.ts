@@ -17,7 +17,7 @@ export class TaxreliefComponent implements OnInit {
       await this.payrollsetupservice.gettaxreliefs();
       this.taxRelief = this.payrollsetupservice.taxrelief;
 
-      await this.payrollsetupservice.incometaxrule();
+      await this.payrollsetupservice.getincometaxrules();
       let incomeTaxrule = this.payrollsetupservice.incometaxrule;
   }
 

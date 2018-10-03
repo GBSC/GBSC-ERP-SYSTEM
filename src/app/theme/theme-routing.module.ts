@@ -8,6 +8,7 @@ import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
+import { PharmacyModule } from '../pharmacy/pharmacy.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
 import { AuthGuardService } from '../account/auth/auth-guard.service';
@@ -53,6 +54,7 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
+        PharmacyModule,
         CoreModule,
         PatientModule,
         LabModule,

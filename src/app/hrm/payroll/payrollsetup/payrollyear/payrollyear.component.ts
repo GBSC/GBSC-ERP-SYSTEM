@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-payrollyear',
@@ -8,26 +8,33 @@ import { PayrollSetupService } from '../../services/payrollsetup.service';
 })
 export class PayrollyearComponent implements OnInit {
 
-    public payrollyaer: any;
-    payrollYear: any;
+    public payrollYear: any;
+    private updatingYear: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-       
-        this.payrollYear = await this.payrollsetupservice.getpayrollyears();
+
+        await this.payrollsetupservice.getpayrollyears();
+        this.payrollYear = this.payrollsetupservice.payrollyear;
     }
 
-    async addpayrollyear(value){
+    async addpayrollyear(value) {
         await this.payrollsetupservice.addpayrollyear(value.data);
     }
 
-    async updatepayrollyear(value) { 
-       await this.payrollsetupservice.updatepayrollyear(value);
+    updatingpayrollyear(value) {
+        this.updatingYear = { ...value.oldData, ...value.newData };
+        console.log(this.updatingYear);
+    }
+
+    async updatepayrollyear() {
+        await this.payrollsetupservice.updatepayrollyear(this.updatingYear);
+
     }
 
     async deletepayrollyear(value) {
-       await this.payrollsetupservice.Deletepayrollyear(value.key);
+        await this.payrollsetupservice.Deletepayrollyear(value.key);
     }
 
 }

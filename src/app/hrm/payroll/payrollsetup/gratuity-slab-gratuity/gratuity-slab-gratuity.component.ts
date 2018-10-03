@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-gratuity-slab-gratuity',
@@ -14,6 +14,12 @@ export class GratuitySlabGratuityComponent implements OnInit {
   async ngOnInit() {
     await this.payrollsetupservice.getgratuityslabGratuities();
     this.gratuitySlabGratuity = this.payrollsetupservice.gratuityslabGratuity;
+   
+    await this.payrollsetupservice.getgratuityslabs();
+    let gratuitySlab = this.payrollsetupservice.gratuityslab;
+   
+    // await this.payrollsetupservice.getgratuities();
+    // let Gratuity = this.payrollsetupservice.gratuity;
   }
 
   async addGratuitySlabGratuity(value) {

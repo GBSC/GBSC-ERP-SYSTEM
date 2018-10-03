@@ -14,7 +14,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="leaveopeningForm">
+          <form [formGroup]="leaveOpeningForm">
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
@@ -22,7 +22,7 @@
                     Employee:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
+                    <select class="form-control m-input" formControlName="UserId" name="employee">
                       <option value="" disabled selected>-- Select Employee --</option>
                       <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
                     </select>
@@ -40,7 +40,7 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                      <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
+                      <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
                           <option value="" disabled selected>-- Select Leave Year --</option>
                           <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                         </select>
@@ -57,7 +57,7 @@
                     Remarks:
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control m-input m-input--solid" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
+                    <textarea (change)="addleaveopening($event)" class="form-control m-input" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="leaveopendetailForm">
+          <form [formGroup]="leaveOpenDetailForm">
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
@@ -92,7 +92,7 @@
                   </label>
                   <div class="col-lg-8">
 
-                      <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
+                      <select class="form-control m-input" formControlName="LeaveTypeId" name="leavetype" id="">
                           <option value="" disabled selected>-- Select Leave Type --</option>
                           <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                         </select>
@@ -108,7 +108,7 @@
                     Quantity:
                   </label>
                   <div class="col-lg-8">
-                    <input type="text" formControlName="Quantity" class="form-control m-input m-input--solid" placeholder="9">
+                    <input type="text" formControlName="Quantity" class="form-control m-input" placeholder="9">
                   </div>
                 </div>
               </div>
@@ -121,7 +121,7 @@
                     Expiry:
                   </label>
                   <div class="col-lg-8">
-                    <input type="date" formControlName="ExpiryDate" class="form-control m-input m-input--solid" placeholder="12-06-2018">
+                    <input type="date" formControlName="ExpiryDate" class="form-control m-input" placeholder="12-06-2018">
                   </div>
                 </div>
               </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                   <div class="col-lg-3"></div>
                   <div class="col-lg-6">
-                    <button type="submit" (click)="addleaveopeningordetail()" class="btn btn-success">
+                    <button type="submit" (click)="addLeaveopenDetail()" class="btn btn-success">
                       Submit
                     </button>
                     <button type="reset" class="btn btn-secondary">

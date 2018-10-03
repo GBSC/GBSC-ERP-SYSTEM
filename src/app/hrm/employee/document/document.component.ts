@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { async } from '@angular/core/testing';
+import { EmployeeService } from '../../../core';
 
 
 
@@ -27,6 +26,7 @@ export class DocumentComponent implements OnInit {
         // }); 
         await this.employee.GetDocumentsByUserId();
         let UserDocuments = this.employee.DocumentsByUserId;
+
     }
     async addDocuments() {
         let doc = await this.employee.adduserDocuments();
@@ -36,7 +36,7 @@ export class DocumentComponent implements OnInit {
     getDocumentsBankFormValue() {
         this.setdocumentsFormValue.emit(this.documentForm.value);
     }
-
+    
     private  forimg: File[]   = [];
     public allDocs: File[] = [];
 
@@ -69,5 +69,5 @@ export class DocumentComponent implements OnInit {
       console.log(value);
     let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
     }
-
+    
 }

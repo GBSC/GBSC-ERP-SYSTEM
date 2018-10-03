@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employees',
@@ -11,6 +11,7 @@ export class EmployeesComponent implements OnInit {
 
     emp: any;
     public employeeId :any;
+
     constructor(public employee: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
@@ -37,6 +38,7 @@ export class EmployeesComponent implements OnInit {
         this.router.navigate(['hrm/employee/registration'])
     }
 
+  
 //     onupdate(d) {
 //     console.log(d.key);
 //      this.employeeId  =  d.key 
@@ -44,11 +46,11 @@ export class EmployeesComponent implements OnInit {
 
 //    //     this.router.navigate(['hrm/employee/registration'])
 //     }
-    getCurrentRowData(d)
-    {
-        console.log(d.key);
-     this.employeeId  =  d.key 
-     this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
+getCurrentRowData(d)
+{
+    console.log(d.key);
+ this.employeeId  =  d.key 
+ this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
 
-    }
+}
 }

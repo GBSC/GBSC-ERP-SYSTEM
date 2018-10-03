@@ -1,11 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HrmsService } from '../services/hrms.service';
-import { Roster } from '../models/roster,interface';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 

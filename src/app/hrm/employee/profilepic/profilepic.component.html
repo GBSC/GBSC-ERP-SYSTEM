@@ -1,34 +1,34 @@
 
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-    <h4>Profile Picture</h4>
+  <h4>Profile Picture</h4>
 
 </div>
 
 <form class="signup-form" [formGroup]="employee.Profilepic"> 
 <div class="form-group m-form__group row">
-    <label class="col-form-label col-lg-3 col-sm-12">
-      Single File Upload
-    </label>
-    <div class="col-lg-4 col-md-9 col-sm-12 image-picker">
-      <div class="m-dropzone dropzone" id="m-dropzone-one"> 
-        <div class="m-dropzone__msg dz-message needsclick">
-          <h3 class="m-dropzone__msg-title">
-            Drop files here or click to upload.
-          </h3>
-          <span class="m-dropzone__msg-desc">
-            This is just a demo dropzone. Selected files are
-            <strong>
-              not
-            </strong>
-            actually uploaded.
-          </span>
-        </div>
+  <label class="col-form-label col-lg-3 col-sm-12">
+    Single File Upload
+  </label>
+  <div class="col-lg-4 col-md-9 col-sm-12 image-picker">
+    <div class="m-dropzone dropzone" id="m-dropzone-one"> 
+      <div class="m-dropzone__msg dz-message needsclick">
+        <h3 class="m-dropzone__msg-title">
+          Drop files here or click to upload.
+        </h3>
+        <span class="m-dropzone__msg-desc">
+          This is just a demo dropzone. Selected files are
+          <strong>
+            not
+          </strong>
+          actually uploaded.
+        </span>
       </div>
-      <!-- (change)="getProfilePic($event)"  -->
-      <input type="file" (change)="onfileselect($event)" />
     </div>
+    <!-- (change)="getProfilePic($event)"  -->
+    <input type="file" (change)="onfileselect($event)" />
   </div>
+</div>
 
-  <button (click)="onupload()">
-    onupload
-  </button>
+<button (click)="onupload()">
+  onupload
+</button>

@@ -1,49 +1,49 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-    <h4>Add New Documents</h4>
+  <h4>Add New Documents</h4>
 
 </div>
 
 <form class="signup-form" [formGroup]="employee.documentForm"> 
 <div class="row">
-  <input type="file" multiple (change)="fileselect($event)">
-  <button (click)="onupload()">dasdasdas</button>
-    <div class="col-md-8">
-      6
-      <div class="form-group m-form__group row">
-        <label class="col-form-label col-lg-4 col-sm-12">
-          File Type Validation
-        </label>
-        <div class="col-lg-8 col-md-9 col-sm-12">
-          <div class="m-dropzone dropzone m-dropzone--success dz-clickable" action="" id="m-dropzone-three">
-            <div class="m-dropzone__msg dz-message needsclick">
-              <h3 class="m-dropzone__msg-title">
-                Drop files here or click to upload.
-              </h3>
-              <!-- <span class="m-dropzone__msg-desc">
-                Only image, pdf and psd files are allowed for upload
-              </span> -->
-            </div>
-
+<input type="file" multiple (change)="fileselect($event)">
+<button (click)="onupload()">dasdasdas</button>
+  <div class="col-md-8">
+    6
+    <div class="form-group m-form__group row">
+      <label class="col-form-label col-lg-4 col-sm-12">
+        File Type Validation
+      </label>
+      <div class="col-lg-8 col-md-9 col-sm-12">
+        <div class="m-dropzone dropzone m-dropzone--success dz-clickable" action="" id="m-dropzone-three">
+          <div class="m-dropzone__msg dz-message needsclick">
+            <h3 class="m-dropzone__msg-title">
+              Drop files here or click to upload.
+            </h3>
+            <!-- <span class="m-dropzone__msg-desc">
+              Only image, pdf and psd files are allowed for upload
+            </span> -->
           </div>
+
         </div>
       </div>
-
     </div>
- </div>
- </form>
 
- <dx-data-grid id="gridContainer" [dataSource]="employee?.DocumentsByUserId" (onRowRemoved)="deleteUserDocument($event)"> 
-    <dxo-editing mode="row" [allowDeleting]="true">
-</dxo-editing>
-  <dxo-filter-row [visible]="true"></dxo-filter-row>
-  <dxo-header-filter [visible]="true"></dxo-header-filter>
-  <dxo-paging [pageSize]="5"></dxo-paging>
-  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-  <dxi-column dataField="filePath" caption="Documents" [width]="100" [allowFiltering]="false"
-  [allowSorting]="false" cellTemplate="cellTemplate"></dxi-column>
-  <dxi-column dataField="documentName" caption="Document Name"></dxi-column>
-  <div *dxTemplate="let data of 'cellTemplate'">
-      <img [src]="data.value"/>
   </div>
+</div>
+</form>
+
+<dx-data-grid id="gridContainer" [dataSource]="employee?.DocumentsByUserId" (onRowRemoved)="deleteUserDocument($event)"> 
+  <dxo-editing mode="row" [allowDeleting]="true">
+</dxo-editing>
+<dxo-filter-row [visible]="true"></dxo-filter-row>
+<dxo-header-filter [visible]="true"></dxo-header-filter>
+<dxo-paging [pageSize]="5"></dxo-paging>
+<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+<dxi-column dataField="filePath" caption="Documents" [width]="100" [allowFiltering]="false"
+[allowSorting]="false" cellTemplate="cellTemplate"></dxi-column>
+<dxi-column dataField="documentName" caption="Document Name"></dxi-column>
+<div *dxTemplate="let data of 'cellTemplate'">
+    <img [src]="data.value"/>
+</div>
 </dx-data-grid>
 

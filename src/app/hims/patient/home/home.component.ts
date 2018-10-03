@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
-
-import { Loginform } from '../../../models/loginform';
-
+import { Loginform } from '../../../core/Models/Auth/loginform';
 
 @Component({
     selector: 'app-home',

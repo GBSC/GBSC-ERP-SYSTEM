@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { SetupService, EmployeeService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 
 @Component({
     selector: 'app-employeecompany',
@@ -13,13 +11,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EmployeeCompanyComponent implements OnInit {
 
     @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
-
+   
     public EmpCompanyForm: any;
+
     public id : any;
     public Employee : any;
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService,  public router: Router, private route: ActivatedRoute) { }
 
-    async ngOnInit() {
+async ngOnInit() {
 
         console.log(this.router.url);
 
@@ -81,7 +80,7 @@ export class EmployeeCompanyComponent implements OnInit {
         let cmp = await this.employee.addusercompany();
         console.log(cmp);
     }
-
+    
     async update(value)
     {
         let x = await this.employee.updateUserCompanyById(value);

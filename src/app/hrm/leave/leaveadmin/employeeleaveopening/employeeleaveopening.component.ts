@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LeaveService } from '../../leave.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
+import { SetupService, LeaveService, LeaveSetupService, EmployeeService } from '../../../../core';
 
 @Component({
     selector: 'app-employeeleaveopening',
@@ -12,8 +9,8 @@ import { SetupService } from '../../../hrmsSetup/services/setup.service';
     styleUrls: ['./employeeleaveopening.component.css']
 })
 export class EmployeeleaveopeningComponent implements OnInit {
-    public leaveopeningForm: FormGroup;
-    public leaveopendetailForm: FormGroup;
+    public leaveOpeningForm: FormGroup;
+    public leaveOpenDetailForm: FormGroup;
     public leaveopening: any;
     public leveopeningdetail: any;
 
@@ -21,7 +18,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.leaveopeningForm = this.fb.group({
+        this.leaveOpeningForm = this.fb.group({
             UserId: ['', Validators.required],
             LeaveYearId: ['', Validators.required],
             Remarks: ['', Validators.required]
@@ -29,7 +26,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
         });
 
 
-        this.leaveopendetailForm = this.fb.group({
+        this.leaveOpenDetailForm = this.fb.group({
             LeaveTypeId: ['', Validators.required],
             Quantity: ['', Validators.required],
             ExpiryDate: ['', Validators.required]
@@ -55,13 +52,20 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     }
 
-
-    async addleaveopeningordetail() {
-
-        // console.log(opening);
-        this.leaveservice.addLeaveopening(this.leaveopeningForm.value);
-        this.leaveservice.addLeaveopeningdetail(this.leaveopendetailForm.value);
-
+    
+    async addLeaveopenDetail(){  
+        
+        // console.log(this.leaveopendetailForm.value);
+        // console.log(this.leaveOpeningId);
+        // let LDForm = {...this.leaveopendetailForm.value, leaveOpeningId: this.leaveOpeningId.leaveOpeningID}
+        this.leaveOpenDetailForm.value.leaveOpeningId = this.leaveOpeningId.leaveOpeningID;
+        await this.leaveservice.addLeaveopeningdetail(this.leaveOpenDetailForm.value);
+    }
+    public leaveOpeningId;
+    
+    async addleaveopening(e) {
+        this.leaveOpeningId = await this.leaveservice.addLeaveopening(this.leaveOpeningForm.value);
+        console.log(this.leaveOpenDetailForm.value);
     }
 
 }

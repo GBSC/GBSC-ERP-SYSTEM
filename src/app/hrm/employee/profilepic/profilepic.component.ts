@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-profilepic',
@@ -37,6 +38,7 @@ export class ProfilepicComponent implements OnInit {
         this.employee.selectedPic = e.target.files[0];
     }
 
+    
 
     private forevent: File = null;
 
@@ -55,7 +57,7 @@ export class ProfilepicComponent implements OnInit {
         console.log(file);
  
      }
-    
+     
 
     // async addpic() {
 

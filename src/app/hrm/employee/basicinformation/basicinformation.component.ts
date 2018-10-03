@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
 import { Router, ActivatedRoute } from '@angular/router';
- 
+import { EmployeeService, SetupService } from '../../../core';
 
 @Component({
     selector: 'app-basicinformation',
@@ -23,8 +21,6 @@ export class BasicinformationComponent implements OnInit {
     public basicInfo: any = {};
 
     // async ngOnInit() {
-
-      
 
     //     this.basicInfo = await this.employee.getBasicInfoOfCurrentUser();
     //     console.log(this.basicInfo);
@@ -74,8 +70,7 @@ export class BasicinformationComponent implements OnInit {
 
     //   //   }
     // }
-
-   async update(value){
+    async update(value){
         console.log(value);
        this.employee.EmpbasicForm.value.userId = this.id;
             // value = {...this.Employee, ...value}
@@ -191,6 +186,4 @@ export class BasicinformationComponent implements OnInit {
 
 
     }
-
-
 }

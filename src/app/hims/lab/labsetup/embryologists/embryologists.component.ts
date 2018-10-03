@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BioChemistryService } from '../../../lab/services/bio-chemistry.service'
+import { BioChemistryService } from '../../../../core';
 
 @Component({
     selector: 'app-embryologists',

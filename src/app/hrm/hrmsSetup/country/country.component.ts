@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Country } from '../models/country,interface';
-import { SetupService } from '../services/setup.service';
 import { HttpClient } from '@angular/common/http';
+import { SetupService } from '../../../core';
 @Component({
     selector: 'app-country',
     templateUrl: './country.component.html',

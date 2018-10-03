@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { LeaveSetupService } from '../leaveSetup.service';
+import { LeaveSetupService, EmployeeService, LeaveService } from '../../../core';
 import { Router } from '@angular/router';
-import { LeaveService } from '../leave.service';
-import { EmployeeService } from '../../employee/services/employee.service';
 
 @Component({
     selector: 'app-leaverequest',
@@ -15,6 +13,8 @@ export class LeaverequestComponent implements OnInit {
     public leaveRequestForm: FormGroup;
     public leaveRequestDetailForm: FormGroup;
     public leaverequestdetail: any;
+    public combinedData = {};
+    leaverequest: any;
 
     constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public leaveservice: LeaveService) { }
@@ -22,7 +22,10 @@ export class LeaverequestComponent implements OnInit {
     async ngOnInit() {
 
         this.leaveRequestForm = this.fb.group({
-            UserId: ['', Validators]
+            UserId: ['', Validators],
+            LeaveRequestCode: ['', Validators],
+            RequestDate: ['', Validators],
+            IsApproved: ['', Validators]
         });
 
         this.leaveRequestDetailForm = this.fb.group({
@@ -36,11 +39,17 @@ export class LeaverequestComponent implements OnInit {
             Value: ['', Validators],
             ApprovalId: ['']
         });
-
+ 
 
         await this.leaveservice.getAllleaverequestdetail();
         this.leaverequestdetail = this.leaveservice.leaverequestdetail;
 
+        await this.leaveservice.getAllleaverequest();
+        this.leaverequest = this.leaveservice.leaverequest;
+        this.combinedData = {...this.leaverequestdetail, ...this.leaverequest}
+
+        console.log(this.combinedData);
+        
         await this.empservice.GetAllEmployees();
         let employee = this.empservice.employeereg;
  

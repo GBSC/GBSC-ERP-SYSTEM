@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-benefit',
@@ -8,25 +8,25 @@ import { PayrollSetupService } from '../../services/payrollsetup.service';
 })
 export class BenefitComponent implements OnInit {
 
-  public benefit: any; 
+  public benefit: any;
   constructor(public payrollsetupservice: PayrollSetupService) { }
 
- async ngOnInit() {
-      await this.payrollsetupservice.getbenefits();
-      this.benefit = this.payrollsetupservice.benefits;
-    }
-  
-    async addBenefit(value) {
-      await this.payrollsetupservice.addbenefit(value.data);
-    }
-  
-    async updateBenefit(value) {
-      console.log(value);
-      await this.payrollsetupservice.updatebenefit(value);
-    }
-  
-    async deleteBenefit(value) {
-      await this.payrollsetupservice.Deletebenefit(value.key);
-    }
-  
+  async ngOnInit() {
+    await this.payrollsetupservice.getbenefits();
+    this.benefit = this.payrollsetupservice.benefits;
   }
+
+  async addBenefit(value) {
+    await this.payrollsetupservice.addbenefit(value.data);
+  }
+
+  async updateBenefit(value) {
+    console.log(value);
+    await this.payrollsetupservice.updatebenefit(value);
+  }
+
+  async deleteBenefit(value) {
+    await this.payrollsetupservice.Deletebenefit(value.key);
+  }
+
+}

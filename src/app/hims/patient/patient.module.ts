@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { PatientService } from '../patient/services/patient.services';
-//import { routing } from './patient.routing';
-//import { RootComponent } from './root/root.component';
+import { routing } from './patient.routing';
+import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DiagnosesComponent } from './diagnoses/diagnoses.component';
@@ -47,13 +45,13 @@ import { TestComponent } from './test/test.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-       // routing,
+        routing,
         //SharedModule,
         HttpClientModule
     ],
     declarations: [
 
-       // RootComponent,
+        RootComponent,
         RegistrationComponent,
         ProfileComponent,
         DiagnosesComponent,
@@ -84,9 +82,6 @@ import { TestComponent } from './test/test.component';
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
-    ],
-    providers: [
-        PatientService
     ]
 })
 export class PatientModule { }

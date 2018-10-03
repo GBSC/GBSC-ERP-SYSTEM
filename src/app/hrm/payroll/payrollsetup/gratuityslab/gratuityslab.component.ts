@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PayrollSetupService, PayrollService } from '../../../../core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GratuitySlabGratuity } from '../../../../core/Models/HRM/gratuitySlabGratuity';
+import { GratuitySlab } from '../../../../core/Models/HRM/gratuitySlab';
 
 @Component({
     selector: 'app-gratuityslab',
@@ -6,24 +10,59 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./gratuityslab.component.css']
 })
 export class GratuityslabComponent implements OnInit {
-    public Gratuity: any;
-    public orderno: any;
-    constructor() { }
+    public gratuitySlab: any;
 
-    ngOnInit() {
-        this.Gratuity = [
-            {
-                from: "1",
-                to: "Meezan",
-                multiplcationfactor: "001",
-                orderno: [{ display: "xyz", value: "xyz" }, { display: "xyz", value: "xyz" }],
-            }
+    public gratuitySlabForm;
+    private gratuitySlabGratuityDetail : GratuitySlabGratuity[];
+    
+  constructor(private fb: FormBuilder,public payrollsetupservice: PayrollSetupService,
+    public payrollservice: PayrollService) { }
+
+  async ngOnInit() {
+
+    this.gratuitySlabGratuityDetail = [];
+
+    this.gratuitySlabForm = this.fb.group({
+      Title: ['', Validators.required],
+      MultiplicationFactor: ['', Validators.required],
+      EmploymentDaysFrom: ['', Validators.required],
+      EmploymentDaysTill: ['', Validators.required]
+    });
 
 
-        ]
+    await this.payrollsetupservice.getgratuityslabs();
+    this.gratuitySlab = this.payrollsetupservice.gratuityslab;
 
-        this.orderno = [{ value: "General", display: "General" }];
+     await this.payrollservice.getgratuities();
+  }
 
+  async addGratuitySlabGratuity(value) {
+    let data = value.data; 
+      this.gratuitySlabGratuityDetail.push(data); 
+      console.log(this.gratuitySlabGratuityDetail); 
     }
+    
+    async submitForm(value)
+    {
+      console.log(value);
+      let gratuityslab = new GratuitySlab();
+      
+      gratuityslab = {...gratuityslab, ...value};
+      console.log(this.gratuitySlabGratuityDetail);
+      gratuityslab.gratuitySlabGratuities = this.gratuitySlabGratuityDetail;
+      console.log(gratuityslab);
+      let x = await this.payrollsetupservice.addgratuityslab(gratuityslab);
+      console.log(x);
+      
+  }
+
+  async updateGratuitySlab(value) {
+    console.log(value);
+    await this.payrollsetupservice.updategratuityslab(value);
+  }
+
+  async deleteGratuitySlab(value) {
+    await this.payrollsetupservice.Deletegratuityslab(value.key);
+  }
 
 }

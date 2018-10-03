@@ -114,12 +114,15 @@ import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
 import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
         path: 'hrm', component: RootComponent,
+        canActivate : [AuthGuardService],
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
@@ -191,7 +194,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 children: [
                     { path: '', component: EmployeesComponent },
                     { path: 'registration', component: EmployeeHomeComponent },
-                    { path: 'employeeupdate/:id', component: EmployeeHomeComponent },                          
+                    { path: 'updateemployee/:id', component: EmployeeHomeComponent },
                     { path: 'basicinformation', component: BasicinformationComponent },
                     { path: 'employees', component: EmployeesComponent },
                     { path: 'employeequalification', component: EmployeeQualificationComponent },
@@ -289,7 +292,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'loansetup',
             children: [
                 {path: 'loantype', component: LoantypeComponent},
-                {path: 'userloan', component: UserloanComponent},
+                {path: 'userloan', component: UserloanComponent}
         ]}, 
 
         { path: 'payrolladmin',
@@ -298,7 +301,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     ]}, 
 
            {path: 'gratuity', component: GratuityComponent},
-           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent}
+           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent},
+           {path: 'payslip', component: PayslipComponent}
 
         ]}
 

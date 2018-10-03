@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { EmployeeService } from '../services/employee.service';
+import { SetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-social',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-bank-advice-template',
@@ -13,6 +13,7 @@ export class BankAdviceTemplateComponent implements OnInit {
   constructor(public payrollsetupservice: PayrollSetupService) { }
 
  async ngOnInit() {
+
       await this.payrollsetupservice.getbankadvicetemplates();
       this.bankadvice = this.payrollsetupservice.bankadvicetemplate;
     }

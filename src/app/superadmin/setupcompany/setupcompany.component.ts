@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SuperadminserviceService } from '../superadminservice.service';
+import { SuperadminserviceService } from '../../core';
 
 
 @Component({
@@ -16,17 +16,17 @@ export class SetupcompanyComponent implements OnInit {
 
     private companyId: number;
 
-    private HimsInstalled : boolean;
+    private HimsInstalled: boolean;
 
-    private HrmInstalled : boolean;
+    private HrmInstalled: boolean;
 
-    private ImsInstalled : boolean;
+    private ImsInstalled: boolean;
 
-    private PmsInstalled : boolean;
+    private PmsInstalled: boolean;
 
-    private AccountingSystemInstalled : boolean;
+    private AccountingSystemInstalled: boolean;
 
-    private LisInstalled : boolean;
+    private LisInstalled: boolean;
 
     constructor(private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
 
@@ -59,33 +59,27 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     async onAddModule(value) {
-        
+
         var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
         let response: any = await this.superAdminService.addModule(module);
 
-        if(value == "Hospital Management System")
-        {
+        if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
-        else if(value == "Human Resource Management")
-        {
+        else if (value == "Human Resource Management") {
             this.HrmInstalled = true;
         }
-        else if(value == "Inventory Management System")
-        {
+        else if (value == "Inventory Management System") {
             this.ImsInstalled = true;
         }
-        else if(value == "Payroll Management System")
-        {
+        else if (value == "Payroll Management System") {
             this.PmsInstalled = true;
         }
-        else if(value == "Accounting System")
-        {
+        else if (value == "Accounting System") {
             this.AccountingSystemInstalled = true;
         }
-        else if(value == "Lab Information System")
-        {
+        else if (value == "Lab Information System") {
             this.LisInstalled = true;
         }
     }

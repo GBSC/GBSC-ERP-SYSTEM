@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-salarystructuredetail',
@@ -14,6 +14,18 @@ export class SalarystructuredetailComponent implements OnInit {
     async ngOnInit() {
         await this.payrollsetupservice.getsalarystructuredetails();
         this.salaryStructureDetail = this.payrollsetupservice.salarystructuredetail;
+       
+        await this.payrollsetupservice.getsalarycalculationtypes();
+        let salaryCalculationtype = this.payrollsetupservice.salarycalculationtype;
+        
+        await this.payrollsetupservice.getbenefits();
+        let benefit = this.payrollsetupservice.benefits;
+        
+        await this.payrollsetupservice.getallowances();
+        let allowance = this.payrollsetupservice.allowance;
+        
+        await this.payrollsetupservice.getsalarystructures();
+        let salarystructure = this.payrollsetupservice.salarystructure;
     }
 
     async addSalaryStructureDetail(value) {

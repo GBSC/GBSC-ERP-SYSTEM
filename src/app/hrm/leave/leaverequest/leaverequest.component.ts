@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { LeaveSetupService } from '../leaveSetup.service';
+import { LeaveSetupService, EmployeeService, LeaveService } from '../../../core';
 import { Router } from '@angular/router';
-import { LeaveService } from '../leave.service';
-import { EmployeeService } from '../../employee/services/employee.service';
 
 @Component({
     selector: 'app-leaverequest',

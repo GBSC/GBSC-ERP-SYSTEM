@@ -2,9 +2,8 @@ import { Inject, Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { Loginform } from '../../models/loginform';
-
-import { AccountService } from '../service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AccountService } from '../../core';
 
 @Component({
     selector: 'app-loginform',

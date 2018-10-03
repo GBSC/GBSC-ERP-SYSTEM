@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BioChemistryService } from '../../../../core/Services/HIMS/Lab/bio-chemistry.service';
+import { BioChemistryService } from '../../../../core';
 import { TestUnit } from '../../../../models/testunit';
 
 @Component({

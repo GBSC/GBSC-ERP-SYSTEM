@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-experience',

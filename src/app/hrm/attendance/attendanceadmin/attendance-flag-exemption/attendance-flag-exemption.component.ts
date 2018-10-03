@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendancesetupService } from '../../../../core/Services/HRM/Attendance/attendancesetup.service';
-import { AttendanceService } from '../../../../core/Services/HRM/Attendance/attendance.service';
+import { AttendancesetupService, AttendanceService } from '../../../../core';
 
 @Component({
     selector: 'app-attendance-flag-exemption',

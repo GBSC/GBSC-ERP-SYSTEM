@@ -14,11 +14,10 @@ import { LoginformComponent } from './loginform/loginform.component';
         FormsModule,
         ReactiveFormsModule,
         routing,
-
     ],
     declarations: [
-
         RootComponent,
-        LoginformComponent]
+        LoginformComponent
+    ]
 })
 export class AccountModule { }

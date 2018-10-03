@@ -86,11 +86,20 @@ export class PatientService {
     constructor(private http1: HttpClient, private ApiService: ApiService) {
     }
 
+    // getPatient() : Observable<Patient> {
+    //     return this.ApiService.get(this.API_URL + 'patients/getpatients');
+    //     //return this.patients;
+    // }
+
     async getPatient() {
         this.patients = await this.ApiService.get(this.API_URL + 'patients/getpatients').toPromise();
         //this.patients = await this.http1.get<Patient>(this.API_URL + '/patients/getpatients').toPromise();
         //console.log(this.patients);
         return this.patients;
+    }
+
+    getPatientObservable(): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + '/patients/getpatients');
     }
 
     getPatientWithPartner(PatientId: number): Observable<Patient> {

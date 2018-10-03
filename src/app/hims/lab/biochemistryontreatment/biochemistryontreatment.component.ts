@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConsultantService } from '../../sharedservices/consultant.service';
 import { Consultant } from '../../../models/consultant';
 import { Patient } from '../../../models/patient';
-import { PatientService } from '../../sharedservices/patient.service';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { Spouse } from '../../../models/spouse';
 import { BioChemistryTestDetail } from '../../../models/biochemistrytestdetail';
@@ -11,6 +9,7 @@ import { TestUnit } from '../../../models/testunit';
 import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
+import { ConsultantService, PatientService } from '../../../core';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -20,7 +19,7 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 export class BiochemistryontreatmentComponent implements OnInit {
 
     private consultants: Consultant;
-    private patients: Patient;
+    private patients: any;
     private spouse: Spouse;
     private patient: Patient;
     private bioChemistryontreatmentForm: FormGroup;
@@ -56,7 +55,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
         this.consultantService.getConsultants()
             .subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatient()
+        this.patientService.getPatientObservable()
             .subscribe(patients => this.patients = patients);
 
         this.patientService.getPackage();

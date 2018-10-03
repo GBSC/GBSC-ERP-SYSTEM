@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 @Component({
     selector: 'app-delivery-note',
     templateUrl: './delivery-note.component.html',

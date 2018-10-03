@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PatientVital } from '../../../models/patientvitals';
-import { PatientService } from '../../../core/Services/HIMS/patient.services';
+import { PatientService } from '../../../core';
 
 @Component({
     selector: 'app-diagnoses',

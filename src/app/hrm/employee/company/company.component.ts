@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { SetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employeecompany',

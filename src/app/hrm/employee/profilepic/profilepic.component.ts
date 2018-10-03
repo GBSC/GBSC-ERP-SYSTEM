@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-profilepic',

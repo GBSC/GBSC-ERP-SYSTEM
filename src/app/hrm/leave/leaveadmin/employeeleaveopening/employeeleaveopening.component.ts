@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LeaveService } from '../../leave.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
+import { SetupService, LeaveService, LeaveSetupService, EmployeeService } from '../../../../core';
 
 @Component({
     selector: 'app-employeeleaveopening',

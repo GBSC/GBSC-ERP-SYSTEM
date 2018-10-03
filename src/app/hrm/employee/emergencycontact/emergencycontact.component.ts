@@ -1,8 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { EmployeeService, SetupService } from '../../../core';
 
 @Component({
     selector: 'app-emergencycontact',

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../../../core/Services/HRM/Attendance/attendance.service';
-import { AttendancesetupService } from '../../../core/Services/HRM/Attendance/attendancesetup.service';
-import { EmployeeService } from '../../../core/Services/HRM/Employee/employee.service';
+import { EmployeeService , AttendancesetupService , AttendanceService } from '../../../core';
 
 @Component({
     selector: 'app-attendancerequest',

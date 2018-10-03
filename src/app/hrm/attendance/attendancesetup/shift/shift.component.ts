@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
 import { Shift } from '../../../model/shift';
 import { AssignRosterShift } from '../../../model/assignRosterShift';
+import { AttendancesetupService } from '../../../../core';
 
 @Component({
     selector: 'app-shift',

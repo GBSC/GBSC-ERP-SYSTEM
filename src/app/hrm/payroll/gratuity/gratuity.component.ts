@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../services/payrollsetup.service'; 
-import { PayrollService } from '../services/payroll.service';
-import { EmployeeService } from '../../employee/services/employee.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { GratuitySlabGratuity } from '../../model/gratuitySlabGratuity';
 import { GratuitySlab } from '../../model/gratuitySlab';
+import { EmployeeService, PayrollService, PayrollSetupService } from '../../../core';
 
 @Component({
   selector: 'app-gratuity',

@@ -1,9 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
- 
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
  

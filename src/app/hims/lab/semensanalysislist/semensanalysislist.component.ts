@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 
 @Component({
     selector: 'app-semensanalysislist',

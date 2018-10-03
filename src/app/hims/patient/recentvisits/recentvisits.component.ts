@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../../core/Services/HIMS/patient.services';
+import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Visits } from '../../../models/visits';

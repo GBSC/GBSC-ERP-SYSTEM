@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendancesetupService } from '../../../../core/Services/HRM/Attendance/attendancesetup.service';
-import { AttendanceService } from '../../../../core/Services/HRM/Attendance/attendance.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
-import { LeaveSetupService } from '../../../leave/leaveSetup.service'; 
 import { AttendanceRuleLeaveType } from '../../../model/AttendanceRuleLeaveType';
 import { AttendanceRule } from '../../../model/attendanceRule';
+import { AttendanceService, AttendancesetupService, LeaveSetupService, SetupService } from '../../../../core';
 
 @Component({
     selector: 'app-attendancerule',

@@ -10,7 +10,7 @@ import { HrmModule } from '../hrm/hrm.module';
 import { PharmacyModule } from '../pharmacy/pharmacy.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
-import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
+import { AuthGuardService } from '../core';
 
 
 

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PayrollService } from '../services/payroll.service';
-import { PayrollSetupService } from '../services/payrollsetup.service';
-import { EmployeeService } from '../../employee/services/employee.service';
 import { UserLoanPayslip } from '../../model/userLoanPayslip';
 import { PaySlip } from '../../model/payslip';
+import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
 
 @Component({
   selector: 'app-payslip',

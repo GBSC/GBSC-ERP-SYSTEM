@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';  
-import { SetupService } from '../services/setup.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
+import { SetupService } from '../../../core';
 
 @Component({
     selector: 'app-cities',

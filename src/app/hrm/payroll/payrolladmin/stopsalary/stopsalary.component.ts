@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollService } from '../../services/payroll.service';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollService, PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-stopsalary',

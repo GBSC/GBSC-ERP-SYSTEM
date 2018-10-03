@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { PayrollSetupService, EmployeeService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterPayrollDetail } from '../../../model/MasterPayrollDetail';
 import { MasterPayroll } from '../../../model/masterPayroll';

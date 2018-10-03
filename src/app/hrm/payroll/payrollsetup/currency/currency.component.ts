@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Patient } from '../../../../app/models/patient'
+import { Patient } from '../../../../app/models/patient';
 import { AppointmentTest } from '../../../../app/models/appointmentTest'
 import {
     DxDataGridModule, DxLoadPanelModule,

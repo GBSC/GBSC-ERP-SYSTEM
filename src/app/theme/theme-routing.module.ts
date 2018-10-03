@@ -6,18 +6,19 @@ import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
-import { SystemAdministrationModule } from '../systemadministration/systemadministration.module';
-import { PayrollModule } from '../payroll/payroll.module';
-import { SuperadminModule } from '../superadmin/superadmin.module';
-import { AccountModule } from '../account/account.module';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { HrmModule } from '../hrm/hrm.module';
+import { SuperadminModule } from '../superadmin/superadmin.module';
+import { CoreModule } from '../core/core.module';
+import { AuthGuardService } from '../account/auth/auth-guard.service';
+
+
 
 const routes: Routes = [
     {
         "path": "",
         "component": ThemeComponent,
-        "canActivate": [AuthGuard],
+        "canActivate": [AuthGuardService],
         "children": [
             {
                 "path": "index",
@@ -52,17 +53,14 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
+        CoreModule,
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule, 
+        InventorysystemModule,
         SuperadminModule,
-        InventorysystemModule, 
-        SystemAdministrationModule,
         DashboardModule,
         HrmModule,
-        PayrollModule,
-        AccountModule
     ],
     exports: [
         RouterModule,

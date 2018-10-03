@@ -1,0 +1,54 @@
+
+
+<div class="m-content">
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">PF Payment Setup</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <dx-data-grid id="gridContainer" [dataSource]="pfPayment" 
+            (onRowInserted)="addPFPayment($event)"
+             (onRowUpdated)="updatePFPayment()" 
+             (onRowUpdating)="updatingPFPayment($event)" 
+             (onRowRemoved)="deletePFPayment($event)"> 
+              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+                <dxo-popup title="PF Payment" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+              <dxi-column dataField="leavingReasonId" caption="Leaving Reason">
+                <dxo-lookup [dataSource]="payrollsetupservice?.leavingreason" displayExpr="name" valueExpr="leavingReasonId"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="userId"caption="Employee">
+              <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+          </dxi-column>
+            <dxi-column dataField="fundSetupId"caption="Fund Setup">
+              <dxo-lookup [dataSource]="payrollsetupservice?.fundsetup" displayExpr="pfEmployeeContribution" valueExpr="fundSetupId"></dxo-lookup>
+          </dxi-column>
+              <dxi-column dataField="isEmployerContribution"  caption="Employer Contribution" dataType="boolean"></dxi-column>
+              <dxi-column dataField="isEmployeeContribution" caption="Employee Contribution"  dataType="boolean"></dxi-column>
+              <dxi-column dataField="startDate" caption="Start Date"  dataType="date" format="shortdate"></dxi-column>
+              <dxi-column dataField="lastAddedDate" caption="Last Added Date"  dataType="date" format="shortdate"></dxi-column>
+              </dx-data-grid> 
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+

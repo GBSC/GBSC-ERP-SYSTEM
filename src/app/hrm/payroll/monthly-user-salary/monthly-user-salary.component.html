@@ -1,0 +1,219 @@
+<div class="m-content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                 Monthly User Salary
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+  
+            <form [formGroup]="MonthlyUserSalaryForm"> 
+              <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                      Month Start Date:
+                  </label> 
+                  <input type="date" class="form-control m-input" formControlName="MonthStartDate" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Month End Date:
+                    </label> 
+                    <input type="date" class="form-control m-input" formControlName="MonthEndDate" placeholder="0">
+                </div>
+              </div>
+              <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                      Total Working Days In Month:
+                  </label> 
+                  <input type="text" class="form-control m-input" formControlName="TotalWorkingDaysInMonth" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Present Days:
+                    </label> 
+                    <input type="text" class="form-control m-input" formControlName="PresentDays" placeholder="0">
+                </div>
+              </div>
+              <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                      Leave Days:
+                  </label> 
+                  <input type="text" class="form-control m-input" formControlName="LeaveDays" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Absent Days:
+                    </label> 
+                    <input type="text" class="form-control m-input" formControlName="AbsentDays" placeholder="0">
+                </div>
+              </div>
+              
+
+              <div class="form-group m-form__group row">
+                <div class="col-lg-12">
+                  <label>
+                      OverTime Hours:
+                  </label> 
+                  <input type="number" class="form-control m-input" formControlName="OvertimeHours" placeholder="0">
+                  </div>
+              </div>
+  
+              
+              <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                    Stop From:
+                      </label>
+                      <input type="date" class="form-control m-input" formControlName="StopFrom" placeholder="0">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                        Stop Till:
+                      </label>
+                      <input type="date" class="form-control m-input" formControlName="StopTill" placeholder="0">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                      <label>
+                        Stop Salary:
+                      </label>
+                      <select class="form-control m-input" formControlName="StopSalaryId" id="">
+                        <option value="" disabled selected>-- Select Stop Salary --</option>
+                        <option *ngFor ="let stopSalary of payrollservice?.stopsalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                        User Salary:
+                      </label>
+                      <select class="form-control m-input" formControlName="UserSalaryId" id="">
+                            <option value="" disabled selected>-- Select User Salary --</option>
+                            <option *ngFor ="let userSalary of payrollsetupservice?.usersalary" [value]="userSalary.userSalaryId" >{{userSalary.salary}}</option>
+                          </select>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group m-form__group row">
+                      <div class="col-lg-6">
+                        <label>
+                          Pf Payment:
+                        </label>
+                        <select class="form-control m-input" formControlName="PfPaymentId" id="">
+                          <option value="" disabled selected>-- Select Pf Payment --</option>
+                          <option *ngFor ="let pfpayment of payrollsetupservice?.pfpayment" [value]="pfpayment.pfPaymentId" >{{pfpayment.lastestTotalPfAmount}}</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="">
+                          Pay Roll:
+                        </label>
+                        <select class="form-control m-input" formControlName="PayrollId" id="">
+                          <option value="" disabled selected>-- Select Monthly Salary --</option>
+                          <option *ngFor ="let payroll of payrollsetupservice?.payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <div class="col-lg-6">
+                        <label>
+                          Payslip:
+                        </label>
+                        <select class="form-control m-input" formControlName="PayslipId" id="">
+                          <option value="" disabled selected>-- Select Payslip --</option>
+                          <option *ngFor ="let payslip of payrollsetupservice?.pfpayment" [value]="pfpayment.pfPaymentId" >{{pfpayment.lastestTotalPfAmount}}</option>
+                        </select>
+                      </div>
+                      <div class="col-lg-6">
+                        <label class="">
+                          Pay Roll:
+                        </label>
+                        <select class="form-control m-input" formControlName="PayrollId" id="">
+                          <option value="" disabled selected>-- Select Monthly Salary --</option>
+                          <option *ngFor ="let payroll of payrollsetupservice?.payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                  
+                  <div class="row">
+                      <div class="col-xl-12">
+                        <div class="m-portlet">
+                          <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                              <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">User Roster Attendance</h3>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="m-portlet__body">
+                            <div class="m-section">
+                              <div class="m-section__content">
+                                <dx-data-grid id="gridContainer"
+                                [dataSource]="[]"
+                                 keyExpr="userRosterAttendanceId"
+                                 (onRowInserted)="RosterAttendance($event)" >
+                                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                    <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                                    </dxo-popup>
+                                  </dxo-editing>
+                                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+                  
+                                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                  <dxo-paging [pageSize]="6"></dxo-paging>
+                                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                  </dxo-pager>  
+                                  <dxi-column dataField="userId" caption="Employee">
+                                    <dxo-lookup [dataSource]="Employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                                    </dxo-lookup> 
+                                  </dxi-column>
+                                  <dxi-column dataField="attendanceDate" dataType="date" format="shortDate" caption="Attendance Date"></dxi-column>
+                                  <dxi-column dataField="isPresent" dataType="boolean" caption="Present"></dxi-column>
+                                  <dxi-column dataField="checkInTime" dataType="datetime" format="shortTime" caption="Chekin Time"></dxi-column>
+                                  <dxi-column dataField="checkOutTime" dataType="datetime" format="shortTime" caption="CheckOut Time"></dxi-column>
+                                </dx-data-grid>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="m--space-50"></div> 
+                    <div class="m-separator m-separator"></div>
+        
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                      <div class="m-form__actions m-form__actions--solid">
+                        <div class="row">
+                          <div class="col-lg-4"></div>
+                          <div class="col-lg-4">
+                            <button type="submit" class="btn btn-brand" (click)="addMonthlySalary(MonthlyUserSalaryForm.value)">
+                              Submit
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                              Cancel
+                            </button>
+                          </div>
+                          <div class="col-lg-4"></div>
+                        </div>
+                      </div>
+                    </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> 
+    </div>
+    

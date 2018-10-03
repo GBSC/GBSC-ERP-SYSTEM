@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 
-import { HomeDetails } from '../models/home.details.interface';
-
-
-import { Observable } from 'rxjs/Rx';
-
-
-import { Country } from '../models/country,interface';
 
 @Injectable()
 

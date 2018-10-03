@@ -14,21 +14,21 @@
         <div class="m-portlet__body">
           <div class="m-section">
           <div class="m-section__content" >
-            <dx-data-grid id="gridContainer" [dataSource]="allowancerate"(onRowInserted)="addAllowances($event)" (onRowUpdated)="EditAllowances($event)" (onRowRemoved)="deleteAllowances($event)"> 
+            <dx-data-grid id="gridContainer" [dataSource]="allowancerate"(onRowInserted)="addAllowanceRate($event)" (onRowUpdated)="updateAllowanceRate($event)" (onRowRemoved)="deleteAllowanceRate($event)"> 
               <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-                <dxo-popup title="Allowance Type" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                <dxo-popup title="Allowance Rate" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
               </dxo-editing>
               <dxo-filter-row [visible]="true"></dxo-filter-row>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
               <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
               <dxo-paging [pageSize]="8"></dxo-paging>
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-              <dxi-column dataField="id"  caption="ID" ></dxi-column>
-              <dxi-column dataField="allowance"caption="Allowance">
-                <dxo-lookup [dataSource]="allowance" valueExpr="value" displayExpr="display"></dxo-lookup>
+  
+              <dxi-column dataField="allowanceId"caption="Allowance">
+                <dxo-lookup [dataSource]="allowance" valueExpr="name" displayExpr="allowanceId"></dxo-lookup>
             </dxi-column>
-              <dxi-column dataField="allowancerate"  caption="Allowance Rate" ></dxi-column>
-              <dxi-column dataField="effectivedate" caption="Effective Date" dataType="date" format="shortDate"></dxi-column>
+              <dxi-column dataField="allowanceRate"  caption="Allowance Rate" ></dxi-column>
+              <dxi-column dataField="effectiveDate" caption="Effective Date" dataType="date" format="shortDate"></dxi-column>
               </dx-data-grid> 
           </div>
           </div>

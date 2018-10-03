@@ -1,290 +1,323 @@
 <div class="m-content">
   <div class="row">
-      <div class="col-md-12"> 
-<div class="m-portlet">
-  <div class="m-portlet__head">
-    <div class="m-portlet__head-caption">
-      <div class="m-portlet__head-title">
-        <h3 class="m-portlet__head-text">
-      Leave Header
-        </h3>
-      </div>
-    </div>
-  </div>
-  <div class="m-portlet__body">
-
-      <div class="row">
-          <div class="col-md-6">
-           <div class="form-group m-form__group row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Header
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="leaveRequestForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
-                   Requestioner:
+                    Requestioner:
                   </label>
                   <div class="col-lg-8">
-                  <select class="form-control m-input m-input--solid">
-                    <option>Employee no.324</option>
-                    <option>Employee no.674</option>
-                    <option>Employee no.928</option>
-                  </select> 
+                    <select class="form-control m-input" formControlName="UserId" name="employee">
+                      <option value="" disabled selected>-- Select Employee --</option>
+                      <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
+                    </select>
                   </div>
                 </div>
-           </div>
-
-           <div class="col-md-6">
-              <div class="form-group m-form__group row">
-                  <span class=" col-lg-4 col-form-label m--font-bolder">
-                      Requestion Date:
-                    </span>
-                     <div class="col-lg-8">
-                      12/02/2018 
-                     </div>
-                   </div>
               </div>
 
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <span class=" col-lg-4 col-form-label m--font-bolder">
+                    Requestion Date:
+                  </span>
+                  <div class="col-lg-8">
+                      <input type="date" class="form-control" formControlName="RequestDate" placeholder="Select date">
+                  </div>
+                </div>
+              </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Request Code:
+                    </label>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" formControlName="LeaveRequestCode" placeholder="">
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-6">
+                  <div class="form-group m-form__group row">
+                    <span class=" col-lg-4 col-form-label m--font-bolder">
+                     Requested:
+                    </span>
+                    <div class="col-lg-8">
+                        <input type="checkbox" (change)="addleaverequest($event)" class="form-control" formControlName="IsApproved" placeholder="">
+                    </div>
+                  </div>
+                </div> 
+              </div>
+<!-- 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <span class=" col-lg-4 col-form-label m--font-bolder">
+                    Designation:
+                  </span>
+                  <div class="col-lg-8">
+                    12/02/2018
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <span class=" col-lg-4 col-form-label m--font-bolder">
+                    Group:
+                  </span>
+                  <div class="col-lg-8">
+                  <input type="date" class="form-control " formControlName="DateFrom" placeholder="Select date">
+                           
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <span class=" col-lg-4 col-form-label m--font-bolder">
+                    Department:
+                  </span>
+                  <div class="col-lg-8">
+                    12/02/2018
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <span class=" col-lg-4 col-form-label m--font-bolder">
+                    Category:
+                  </span>
+                  <div class="col-lg-8">
+                    12/02/2018
+                  </div>
+                </div>
+              </div>
+
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
 
   <div class="row">
-      <div class="col-md-6">
-          <div class="form-group m-form__group row">
-              <span class=" col-lg-4 col-form-label m--font-bolder">
-                 Designation:
-                </span>
-                 <div class="col-lg-8">
-                  12/02/2018 
-                 </div>
-               </div>
-       </div>
-
-       <div class="col-md-6">
-          <div class="form-group m-form__group row">
-              <span class=" col-lg-4 col-form-label m--font-bolder">
-                  Group:
-                </span>
-                 <div class="col-lg-8">
-                  12/02/2018 
-                 </div>
-               </div>
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Detail
+              </h3>
+            </div>
           </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="leaveRequestDetailForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Leave Year
+                  </label>
+                  <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
+                    <option value="" disabled selected>-- Select Leave Year --</option>
+                    <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Leave Type
+                  </label>
+                  <select class="form-control m-input " formControlName="LeaveTypeId" name="leavetype" id="">
+                    <option value="" disabled selected>-- Select Leave Type --</option>
+                    <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Balance
+                  </label>
+                  <input type="number" class="form-control m-input m-input--solid" id="" aria-describedby="emailHelp" placeholder="0">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group m-form__group">
+                    <label for="">
+                      Short Leave:
+                    </label>
+                    <input type="checkbox" class="form-control" formControlName="IsShortLeave">
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="form-group m-form__group">
+                    <label class="label_visiblity">
+                      Leave Date To:
+                    </label>
+                    <select class="form-control m-input " formControlName="Value" id="exampleSelect1">
+                        <option value="" disabled selected>-- Select Leave Value --</option>
+                        <option>0.25</option>
+                        <option>0.45</option>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group m-form__group">
+                      <label class="label_visiblity">
+                        Leave Date To:
+                      </label>
+                      <select class="form-control m-input " formControlName="FirstSecondHalf" id="exampleSelect1">
+                          <option value="" disabled selected>-- Select Half --</option>
+                          <option>Full Day</option>
+                          <option>Half Day</option>
+                        </select>
+                    </div>
+                  </div>
+              </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputPassword1">
+                    Leave Date From:
+                  </label>
+                  <input type="date" class="form-control " formControlName="DateFrom" placeholder="Select date">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
+                  <label for="exampleInputPassword1">
+                    Leave Date To:
+                  </label>
+                  <input type="date" class="form-control " formControlName="DateTill" placeholder="Select date">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group m-form__group">
+              <label for="exampleTextarea">
+                Description
+              </label>
+              <textarea class="form-control m-input " formControlName="Description" id="exampleTextarea" rows="3"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions m-form__actions" style="padding:19px;">
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                        <button type="submit" (click)="addleaverequestordetail()" class="btn btn-success">
+                          Submit
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Details
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="combinedData" keyExpr="leaveRequestId">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true">
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+
+            <dxi-column dataField="userId" caption="Employee">
+              <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userd">
+              </dxo-lookup>
+            </dxi-column>
+
+            <dxi-column dataField="leaveRequestCode"></dxi-column>
+            <dxi-column dataField="requestDate" dataType="date" format="shordate"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isApproved"></dxi-column>
+            <dxi-column dataField="leaveYearId" caption="Leave Year">
+              <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveTypeId" caption="Leave Type">
+              <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+              </dxo-lookup>
+            </dxi-column>
+
+            <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
+            <dxi-column dataField="value" caption="Leave Value"> </dxi-column>
+            <dxi-column dataField="description" caption="Description"></dxi-column>
+            <dxi-column dataField="dateFrom" caption="From Date"></dxi-column>
+            <dxi-column dataField="dateTill" caption="To Date"></dxi-column>
+
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
-
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group m-form__group row">
-            <span class=" col-lg-4 col-form-label m--font-bolder">
-                Department:
-              </span>
-               <div class="col-lg-8">
-                12/02/2018 
-               </div>
-             </div>
-     </div>
-
-     <div class="col-md-6">
-        <div class="form-group m-form__group row">
-            <span class=" col-lg-4 col-form-label m--font-bolder">
-                Category:
-              </span>
-               <div class="col-lg-8">
-                12/02/2018 
-               </div>
-             </div>
-        </div>
-
-          </div> 
-        </div>
-     </div>
-  </div>
- </div>
-
-                        
-                        <div class="row">
-                            <div class="col-md-12"> 
-                        <div class="m-portlet">
-                        <div class="m-portlet__head">
-                          <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                              <h3 class="m-portlet__head-text">
-                            Leave Detail
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="m-portlet__body">
-
-                        <div class="row">
-                          <div class="col-md-6">
-                              <div class="form-group m-form__group">
-                                  <label for="exampleInputEmail1">
-                                    Leave Year
-                                  </label>
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>2018</option> 
-                                      <option>2017</option> 
-                                      <option>2016</option> 
-                                      <option>2015</option> 
-                                    </select>
-                                </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group m-form__group">
-                                    <label for="exampleInputEmail1">
-                                      Leave Type
-                                    </label>
-                                    <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                        <option>-- Select --</option> 
-                                        <option>Type 1</option> 
-                                        <option>Type 2</option> 
-                                        <option>Type 3</option> 
-                                      </select>
-                                  </div>
-                            </div>
-  
-                            <div class="col-md-6">
-                                <div class="form-group m-form__group">
-                                    <label for="exampleInputEmail1">
-                                      Balance
-                                    </label>
-                                    <input type="number" class="form-control m-input m-input--solid" id="" aria-describedby="emailHelp" placeholder="0">
-                                  </div>
-                            </div> 
-                          </div>
-
-
-                          <div class="form-group m-form__group row">
-                              <label for="example-number-input" class="col-2 col-form-label">
-                                Short Leave
-                              </label>
-                              <div class="col-3">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>No</option> 
-                                      <option>Yes</option>   
-                                    </select>
-                              </div>
-                              <div class="col-3">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>0.25</option> 
-                                      <option>0.45</option>  
-                                    </select>
-                              </div>
-                              <div class="col-4">
-                                  <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                      <option>Full Day</option> 
-                                      <option>Half Day</option>   
-                                    </select>
-                              </div>
-                            </div>
-                        
-                            <div class="form-group m-form__group">
-                                <label for="exampleTextarea">
-                                  Description
-                                </label>
-                                <textarea class="form-control m-input m-input--solid" id="exampleTextarea" rows="3"></textarea>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group m-form__group">
-                                      <label for="exampleInputPassword1">
-                                      Leave Date From:
-                                      </label>
-                                      <input type="text" class="form-control m-input--solid" id="m_datepicker_1" readonly="" placeholder="Select date">
-                                    </div> 
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group m-form__group">
-                                        <label for="exampleInputPassword1">
-                                        Leave Date To:
-                                        </label>
-                                        <input type="text" class="form-control m-input--solid" id="m_datepicker_1" readonly="" placeholder="Select date">
-                                      </div> 
-                                  </div>
-                              </div>
-
-                                <dx-data-grid
-                                id="gridContainer" 
-                                [dataSource]="allowancequantity"
-                                keyExpr="Id">
-                                <dxo-editing 
-                                     mode="popup"
-                                     [allowUpdating]="true"
-                                     [allowDeleting]="true">
-                                </dxo-editing>
-                                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                              
-                              <dxo-search-panel 
-                                [visible]="true" 
-                                [width]="240" 
-                                placeholder="Search..."></dxo-search-panel>
-                                <dxo-paging [pageSize]="8"></dxo-paging>
-                                <dxo-pager 
-                                    [showPageSizeSelector]="true"
-                                    [allowedPageSizes]="[5, 10, 20]"
-                                    [showInfo]="true">
-                                </dxo-pager>
-                               
-                               <dxi-column dataField="payrolltype" caption="Leave Year"> </dxi-column>
-                               <dxi-column dataField="quantity" caption="Leave Type"></dxi-column>
-                               <dxi-column dataField="remarks" caption="Is Short Leave"></dxi-column>
-                               <dxi-column dataField="remarks" caption="Description"></dxi-column>
-                               <dxi-column dataField="remarks" caption="From Date"></dxi-column>
-                               <dxi-column dataField="remarks" caption="To Date"></dxi-column>
-                                  
-                              </dx-data-grid>
-
-                             </div>
-                           </div>
-                          </div>
-                        </div>
-
-
-                          <div class="row">
-                              <div class="col-md-12"> 
-                          
-                            <table class="table table-bordered m-input m-input--solid">
-                              <thead>Approver</thead>
-                              <tr>
-                                <td><label for="example-text-input" class="col-3 col-form-label">
-                                  EM LM
-                                </label></td>
-                                <td>
-                                  <select class="form-control m-input m-input--solid">
-                                    <option>Employee no.324</option>
-                                    <option>Employee no.674</option>
-                                    <option>Employee no.928</option>
-                                  </select> 
-                                </td>
-                              </tr>
-                            <tbody> 
-                            </table>
-
-                            </div>
-                              </div>  
-                              <div class="row">
-                                  <div class="col-md-12"> 
-                              <div class="m-portlet__foot m-portlet__foot--fit">
-                                  <div class="m-form__actions m-form__actions">
-                                    <div class="row">
-                                      <div class="col-lg-3"></div>
-                                      <div class="col-lg-6">
-                                        <button type="submit" class="btn btn-success">
-                                          Submit
-                                        </button>
-                                        <button type="reset" class="btn btn-secondary">
-                                          Cancel
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                               </div>
-                           </div>
-                       </div>
-        
-         </div>
-    

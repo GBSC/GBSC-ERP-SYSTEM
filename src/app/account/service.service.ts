@@ -8,7 +8,7 @@ export class AccountService {
     public accessibleModules: any = ['patient'];
     private readonly API_URL = 'http://gbsc-erp.azurewebsites.net/authentication/api/auth/login';
     private loggedInUser: any;
- 
+
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     }
 
@@ -34,10 +34,17 @@ export class AccountService {
 
     }
 
+    async logout()
+    {
+        localStorage.removeItem('user');
+
+        this.router.navigate(['login']);
+    }
+
     isAuthenticated() {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-            console.log('user is called');
+            console.log(user);
             console.log(user.accessibleModules);
             // console.log(user);
             this.accessibleModules = user.accessibleModules;
@@ -49,10 +56,10 @@ export class AccountService {
 
     checkIfModuleIsAccessible(module) {
         console.log(module);
-        let isAccessible; 
-        
+        let isAccessible;
+
         this.getAvailableModules().forEach(m => {
-            if(m.route === module) {
+            if (m.route === module) {
                 isAccessible = this.accessibleModules.find(mod => {
                     return mod.Description === m.module;
                 });
@@ -70,7 +77,6 @@ export class AccountService {
 
     getAvailableModules() {
         return [
-            { module: 'SystemAdministration', route: 'systemadministration' },
             { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
             { module: 'Hospital Management System', route: 'hims/patient' },
@@ -78,11 +84,11 @@ export class AccountService {
             { module: 'Payroll Management System', route: 'payroll' },
             { module: 'Lab Information System', route: 'lab' },
             { module: 'Accounting System', route: 'accounting' }
-          ];
+        ];
     }
 
     findRouteModule(module) {
-       return this.getAvailableModules().find(m => {
+        return this.getAvailableModules().find(m => {
             return m.module === module.Description;
         });
     }

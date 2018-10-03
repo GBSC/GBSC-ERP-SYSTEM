@@ -1,10 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HrmsService } from '../services/hrms.service';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'; 
 import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { Accounttype } from '../models/accounttype,interface';
+import { HttpClient } from '@angular/common/http'; 
 
 @Component({
     selector: 'app-accounttype',

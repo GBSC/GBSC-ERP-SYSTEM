@@ -123,25 +123,37 @@
                           <h3 class="m-section__heading">
                               PF Setup
                             </h3>
+
+                            <div class="form-group m-form__group row">
+                              <div class="col-lg-6">
+                                <label>
+                                Payroll Year:
+                                </label>
+                                <select class="form-control m-input" formControlName="PayrollYearId" id="">
+                                    <option value="" disabled selected>-- Select Payroll Year --</option>
+                                    <option *ngFor ="let year of payrollsetupservice.payrollyear" [value]="year.payrollYearId" >{{year.year}}</option>
+                           </select>
+                              </div>
+
                             <div class="form-group m-form__group">
                               <label for="exampleInputEmail1">
                                 Employeer Contribution (%)
                               </label>
-                              <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                              <input type="number" class="form-control m-input" formControlName="PfEmployerContribution" formControlName="PfEmployerContribution" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             </div>
                          
                             <div class="form-group m-form__group">
                                 <label for="exampleInputEmail1">
                                   Employee Contribution (%)
                                 </label>
-                                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <input type="number" class="form-control m-input" formControlName="PfEmployeeContribution" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                               </div>
     
                               <div class="form-group m-form__group">
                                   <label for="exampleInputEmail1">
                                    Taxable Amount Label
                                   </label>
-                                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                  <input type="number" class="form-control m-input" formControlName="TaxableAmountLimit" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
     
                       </div>
@@ -153,19 +165,17 @@
                               <label for="exampleInputEmail1">
                                 Minimum Service provider (Year) 
                               </label>
-                              <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Service Provider Year">
+                              <input type="number" class="form-control m-input" formControlName="MinServicePeriod" id="" aria-describedby="emailHelp" placeholder="Minimum Service Provider Year">
                             </div>
         
                             <div class="form-group m-form__group">
                                 <label for="exampleSelect1">
                                 Applicable Form
                                 </label>
-                                <select class="form-control m-input" id="exampleSelect1">
-                                  <option>Joining	</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>	4</option>
-                                  <option>	5</option>
+                                <select class="form-control m-input" formControlName="ApplicableFrom" id="exampleSelect1">
+                                  <option value="" disabled selected>-- Select Applicable Form --</option>
+                                  <option value="joining">Joining	</option>
+                                  <option value="confirmation">Confirmation</option> 
                                 </select>
                               </div>
                       </div>
@@ -177,35 +187,35 @@
                               <label for="exampleInputEmail1">
                                 Minimum Salary
                               </label>
-                              <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                              <input type="number" class="form-control m-input" formControlName="EobiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                             </div>
         
                             <div class="form-group m-form__group">
                                 <label for="exampleInputEmail1">
                                  Employeer Contribution (%)
                                 </label>
-                                <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                <input type="number" class="form-control m-input" formControlName="EobiEmployerContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                               </div>
         
                               <div class="form-group m-form__group">
                                   <label for="exampleInputEmail1">
                                    Employee Contribution (%)
                                   </label>
-                                  <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                  <input type="number" class="form-control m-input" formControlName="EobiEmployeeContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                 </div>
         
                                 <div class="form-group m-form__group">
                                     <label for="exampleInputEmail1">
                                      Maximum Contribution (%)
                                     </label>
-                                    <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                    <input type="number" class="form-control m-input" formControlName="MaximumContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                   </div>
         
                                   <div class="form-group m-form__group">
                                       <label for="exampleInputEmail1">
                                       EOBI Execmpt Age Limit
                                       </label>
-                                      <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                      <input type="number" class="form-control m-input" formControlName="ExemptAge" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                     </div>
                       </div>
                       <div class="tab-pane" id="SESSI">
@@ -216,21 +226,21 @@
                               <label for="exampleInputEmail1">
                                 Minimum Salary
                               </label>
-                              <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                              <input type="number" class="form-control m-input" formControlName="SessiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                             </div>
                           
                             <div class="form-group m-form__group">
                                 <label for="exampleInputEmail1">
                                  Employeer Contribution (%)
                                 </label>
-                                <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                <input type="number" class="form-control m-input" formControlName="SessiEmployerContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                               </div>
                           
                               <div class="form-group m-form__group">
                                   <label for="exampleInputEmail1">
                                    Employee Contribution (%)
                                   </label>
-                                  <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                  <input type="number" class="form-control m-input" formControlName="SessiEmployeeContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                 </div>
                               
                                
@@ -242,21 +252,21 @@
                                     <label for="exampleInputEmail1">
                                       Minimum Salary
                                     </label>
-                                    <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                    <input type="number" class="form-control m-input" formControlName="PessiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                   </div>
                           
                                   <div class="form-group m-form__group">
                                       <label for="exampleInputEmail1">
                                        Employeer Contribution (%)
                                       </label>
-                                      <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                      <input type="number" class="form-control m-input" formControlName="PessiEmployerContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                     </div>
                           
                                     <div class="form-group m-form__group">
                                         <label for="exampleInputEmail1">
                                          Employee Contribution (%)
                                         </label>
-                                        <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                        <input type="number" class="form-control m-input" formControlName="PessiEmployeeContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                       </div>  
                       </div>
                       <div class="tab-pane" id="IESSI">
@@ -267,21 +277,21 @@
                                           <label for="exampleInputEmail1">
                                             Minimum Salary
                                           </label>
-                                          <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                          <input type="text" class="form-control m-input" formControlName="IessiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                         </div>
                           
                                         <div class="form-group m-form__group">
                                             <label for="exampleInputEmail1">
                                              Employeer Contribution (%)
                                             </label>
-                                            <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                            <input type="text" class="form-control m-input" formControlName="IessiEmployerContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                           </div>
                           
                                           <div class="form-group m-form__group">
                                               <label for="exampleInputEmail1">
                                                Employee Contribution (%)
                                               </label>
-                                              <input type="text" class="form-control m-input" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                                              <input type="text" class="form-control m-input" formControlName="IessiEmployeeContribution" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
                                             </div>
                       </div>
                      

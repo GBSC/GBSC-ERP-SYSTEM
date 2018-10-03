@@ -1,0 +1,184 @@
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-3">
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                    Inventory Setup
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body" style="padding: 0px !important;">
+              <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+                <div class="m-demo__preview">
+                  <ul class="m-nav nav nav-tabs">
+                    <li  class="m-nav__item">
+                      <a class="m-nav__link" href="#PType" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-share"></i>
+                        <span class="m-nav__link-text">
+                          Product Type</span>
+                      </a>
+                    </li>
+                    <li class="m-nav__item">
+                      <a class="m-nav__link" href="#Brand" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-info"></i>
+                        <span class="m-nav__link-text">
+                          Brand
+                        </span>
+                      </a>
+                    </li>
+                    <li class="m-nav__item">
+                      <a class="m-nav__link" href="#ICategory" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                           Product Category
+                        </span>
+                      </a>
+                    </li>
+                  
+                    <li class="m-nav__item">
+                      <a class="m-nav__link" href="#Unit" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                           Unit
+                        </span>
+                      </a>
+                    </li>
+                    <li class="m-nav__item">
+                        <a class="m-nav__link" href="#PackCategory" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                             Pack Category
+                          </span>
+                        </a>
+                      </li>
+                      <li class="m-nav__item">
+                        <a class="m-nav__link" href="#PackType" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                             Pack Type
+                          </span>
+                        </a>
+                      </li>
+                      <li class="m-nav__item">
+                        <a class="m-nav__link" href="#PackSize" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                             Pack Size
+                          </span>
+                        </a>
+                      </li>
+                      <li class="m-nav__item">
+                        <a class="m-nav__link" href="#PackageType" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                             Package Type
+                          </span>
+                        </a>
+                      </li>
+                      <li class="m-nav__item">
+                        <a class="m-nav__link" href="#Inventory" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                             Inventory 
+                          </span>
+                        </a>
+                      </li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <!-- Tab panes -->
+          <div class="m-portlet">
+            <div class="">
+              <div class="tab-content">
+              <div class="tab-pane active" id="PType"><app-product-type></app-product-type></div>
+              <div class="tab-pane" id="Brand"><app-brand></app-brand></div>
+                <div class="tab-pane" id="ICategory"><app-inventory-item-category></app-inventory-item-category></div>
+                <div class="tab-pane" id="Unit"><app-unit></app-unit></div>
+                <div class="tab-pane" id="PackCategory"><app-product-pack-category></app-product-pack-category></div>
+                <div class="tab-pane" id="PackType"><app-product-pack-type></app-product-pack-type></div>
+                <div class="tab-pane" id="PackSize"><app-product-pack-size></app-product-pack-size></div>
+                <div class="tab-pane" id="PackageType"><app-package-type></app-package-type></div>
+                <div class="tab-pane" id="Inventory"> 
+                    <div class="m-portlet">
+                        <div class="m-portlet__head">
+                          <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">Product Inventory</h3>
+                            </div>
+                          </div>
+                        </div>
+                      
+                      
+                      <div class="m-portlet__body">
+                      <div class="row">
+                        <div class="col-md-12"> 
+                          <dx-data-grid id="gridContainer" [dataSource]="InventoryItems" keyExpr="inventoryItemId" (onRowInserted)="AddInventoryItem($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventoryItem()" (onRowRemoved)="DeleteInventoryItem($event)"> 
+                            <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+                              <dxo-popup title="Add Product" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                            </dxo-editing>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+                            <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                            <dxo-paging [pageSize]="8"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+                            <dxi-column dataField="name" caption="Name"></dxi-column>
+                            <dxi-column dataField="itemCode" caption="Code"></dxi-column>
+                            <dxi-column dataField="description"caption="Description" [visible]="false"></dxi-column>
+                            <dxi-column dataField="unitPrice" caption="Unit Price"></dxi-column>
+                            <dxi-column dataField="packTypeInPackageType" caption="PackType In PackageType" [visible]="false"></dxi-column>
+                            <dxi-column dataField="dose" caption="Dose" [visible]="false"></dxi-column>
+                            <dxi-column dataField="minLevel" caption="Minimum Level" [visible]="false"></dxi-column>
+                            <dxi-column dataField="costPrice" caption="Cost Price" [visible]="false"></dxi-column>
+                            <dxi-column dataField="retailPrice" caption="Retail Price" [visible]="false"></dxi-column>
+                            <dxi-column dataField="purchaseDate" caption="Purchase Date" dataType="date" format="shortDate"></dxi-column>
+                            <dxi-column dataField="tradeOfferAmount" caption="Trade Offer Amount" [visible]="false"></dxi-column>
+                            <dxi-column dataField="brandId"caption="Brand" [visible]="false">
+                                <dxo-lookup [dataSource]="Brands" valueExpr="brandId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="unitId"caption="Unit" [visible]="false">
+                                <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="packTypeId"caption="Pack Type" [visible]="false">
+                                <dxo-lookup [dataSource]="PackTypes" valueExpr="packTypeId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="packSizeId"caption="Pack Size" [visible]="false">
+                                <dxo-lookup [dataSource]="PackSizes" valueExpr="packSizeId" displayExpr="size"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="packCategoryId"caption="Pack Category" [visible]="false">
+                                <dxo-lookup [dataSource]="PackCategories" valueExpr="packCategoryId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="productTypeId"caption="Product Type" [visible]="false">
+                                <dxo-lookup [dataSource]="ProductTypes" valueExpr="productTypeId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="inventoryItemCategoryId"caption="Product Category" [visible]="false">
+                                <dxo-lookup [dataSource]="InventoryItemCategories" valueExpr="inventoryItemCategoryId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="packageTypeId"caption="Package Type" [visible]="false">
+                                <dxo-lookup [dataSource]="PackageTypes" valueExpr="packageTypeId" displayExpr="name"></dxo-lookup>
+                            </dxi-column>
+
+                            </dx-data-grid> 
+                         </div>
+                      
+                         
+                      </div>
+                      </div></div>
+                </div>
+              
+            </div>
+           
+          </div>
+        </div>
+    
+    
+      </div>
+   </div>

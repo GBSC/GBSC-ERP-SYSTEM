@@ -1,5 +1,5 @@
-export interface EmbryologyCode{
+export interface EmbryologyCode {
 
-    EmbryologyCodeId : number,
-    Description : string,
+    EmbryologyCodeId: number,
+    Description: string,
 }

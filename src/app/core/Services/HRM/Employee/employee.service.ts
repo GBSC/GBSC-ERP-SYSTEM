@@ -190,8 +190,8 @@ export class EmployeeService {
 
     async addusercompany() {
         console.log(this.EmpCompanyForm.value);
-        this.EmpCompanyForm.value.FirstName = "John"
-        this.EmpCompanyForm.value.LastName = "Doe"
+        console.log(localStorage.getItem('id'));
+
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
         let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/AddUserDetailsById/${localStorage.getItem('id')}`, this.EmpCompanyForm.value).toPromise();

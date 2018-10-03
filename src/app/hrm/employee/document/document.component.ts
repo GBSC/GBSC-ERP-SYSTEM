@@ -24,6 +24,8 @@ export class DocumentComponent implements OnInit {
         //   BankCode: ['', Validators.required],
         //   BankBranch: ['', Validators.required]
         // }); 
+        await this.employee.GetDocumentsByUserId();
+        let UserDocuments = this.employee.DocumentsByUserId;
 
     }
     async addDocuments() {
@@ -34,4 +36,38 @@ export class DocumentComponent implements OnInit {
     getDocumentsBankFormValue() {
         this.setdocumentsFormValue.emit(this.documentForm.value);
     }
+    
+    private  forimg: File[]   = [];
+    public allDocs: File[] = [];
+
+    fileselect(event) {
+        console.log(event);
+        this.forimg = event.target.files;
+        console.log(this.forimg);
+    }
+
+
+   async onupload() {
+
+
+            const y = new FormData();
+            let fileCount: number = this.forimg.length;
+            if (fileCount > 0) { 
+                for (let i = 0; i < fileCount; i++) {
+                    y.append('models', this.forimg[i]);
+                }
+                
+            }
+            await this.employee.GetDocumentsByUserId();
+             this.employee.DocumentsByUserId;
+            await  this.employee.addDocuments(y);
+            await this.employee.GetDocumentsByUserId();
+             this.employee.DocumentsByUserId;
+    }
+
+  async  deleteUserDocument(value){
+      console.log(value);
+    let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
+    }
+    
 }

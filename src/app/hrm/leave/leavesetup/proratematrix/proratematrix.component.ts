@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService, LeaveService} from '../../../../core';
+import { LeaveSetupService, LeaveService } from '../../../../core';
 
 @Component({
     selector: 'app-proratematrix',

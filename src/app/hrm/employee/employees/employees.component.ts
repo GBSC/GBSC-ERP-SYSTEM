@@ -10,6 +10,8 @@ import { EmployeeService } from '../../../core';
 export class EmployeesComponent implements OnInit {
 
     emp: any;
+    public employeeId :any;
+
     constructor(public employee: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
@@ -36,10 +38,19 @@ export class EmployeesComponent implements OnInit {
         this.router.navigate(['hrm/employee/registration'])
     }
 
-    onupdate(d) {
+  
+//     onupdate(d) {
+//     console.log(d.key);
+//      this.employeeId  =  d.key 
+//      this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
 
-        // this.router.navigate(['hrm/employee/registration'])
-    console.log(d);
-    
-    }
+//    //     this.router.navigate(['hrm/employee/registration'])
+//     }
+getCurrentRowData(d)
+{
+    console.log(d.key);
+ this.employeeId  =  d.key 
+ this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
+
+}
 }

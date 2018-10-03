@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
+import { AccountService } from '../../../core';
 
  declare let mLayout: any;
 @Component({
@@ -9,15 +10,14 @@ import { Helpers } from '../../../helpers';
 })
 export class HeaderComponent implements OnInit {
  
-    constructor() { }
+    constructor(private accountService : AccountService) { }
 
     ngOnInit() {
     }
 
-    // ngAfterViewInit() {
-
-    //     mLayout.initHeader();
-
-    // }
+    logout()
+    {
+        this.accountService.logout();
+    }
 
 }

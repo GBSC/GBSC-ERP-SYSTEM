@@ -34,6 +34,14 @@ export class AccountService {
         }
     }
 
+    logout()
+    {
+        localStorage.removeItem('user');
+
+        this.router.navigate(['login']);
+
+    }
+
     isAuthenticated() {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user) {

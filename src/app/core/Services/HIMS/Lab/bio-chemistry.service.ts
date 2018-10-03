@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
-import { BioChemistryTest } from '../../../../models/biochemistrytest';
 import { Observable } from 'rxjs';
-import { TestUnit } from '../../../../models/testunit';
-import { referenceRange } from '../../../../models/referenceRange';
-import { Embryologists } from '../../../../models/embryologists';
-import { EmbryologyCode } from '../../../../models/embryologycodes';
+import { BioChemistryTest } from '../../../Models/HIMS/biochemistrytest';
+import { TestUnit } from '../../../Models/HIMS/testunit';
+import { referenceRange } from '../../../Models/HIMS/referenceRange';
+import { Embryologists } from '../../../Models/HIMS/embryologists';
+import { EmbryologyCode } from '../../../Models/HIMS/embryologycodes';
 
 
 @Injectable()

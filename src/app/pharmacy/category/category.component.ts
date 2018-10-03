@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PharmacyService } from '../service/pharmacy.service';
 
+import { PharmacyService } from '../../core';
 
 
 @Component({

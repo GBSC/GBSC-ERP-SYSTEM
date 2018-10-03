@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { PatientService } from '../patient/services/patient.services';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
@@ -84,9 +82,6 @@ import { TestComponent } from './test/test.component';
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
-    ],
-    providers: [
-        PatientService
     ]
 })
 export class PatientModule { }

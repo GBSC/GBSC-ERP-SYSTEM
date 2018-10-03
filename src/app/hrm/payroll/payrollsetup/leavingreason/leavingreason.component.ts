@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
-
+import { PayrollSetupService } from '../../../../core';
 @Component({
   selector: 'app-leavingreason',
   templateUrl: './leavingreason.component.html',

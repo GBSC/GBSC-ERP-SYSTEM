@@ -7,7 +7,6 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SuperadminserviceService } from './superadminservice.service';
 
 @NgModule({
     imports: [
@@ -22,8 +21,6 @@ import { SuperadminserviceService } from './superadminservice.service';
         HeaderComponent,
         MenuComponent,
         FooterComponent
-    ],
-
-    providers: [SuperadminserviceService]
+    ]
 })
 export class SuperadminModule { }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../services/attendance.service';
-import { EmployeeService } from '../../employee/services/employee.service';
-import { SystemAdministrationService } from '../../services/systemadministration.services';
+import { AttendanceService, SystemAdministrationService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-official-visit-entry',

@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators,FormGroup } from '@angular/forms';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
 import { Router } from '@angular/router';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
-import { LeaveService } from '../../leave.service';
+import { EmployeeService, LeaveService, LeaveSetupService, SetupService } from '../../../../core';
 
 @Component({
     selector: 'app-empleavepolicy',

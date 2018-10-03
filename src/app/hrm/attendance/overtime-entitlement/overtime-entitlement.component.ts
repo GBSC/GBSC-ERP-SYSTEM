@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../services/attendance.service';
-import { AttendancesetupService } from '../services/attendancesetup.service';
-import { EmployeeService } from '../../employee/services/employee.service';
+import { AttendanceService, AttendancesetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-overtime-entitlement',

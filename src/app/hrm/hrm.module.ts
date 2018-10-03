@@ -43,8 +43,6 @@ import { LeavesubtypeComponent } from './leave/leavesetup/leavesubtype/leavesubt
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
 import { DecimalroundingmatrixComponent } from './leave/leavesetup/decimalroundingmatrix/decimalroundingmatrix.component';
 import { ProratematrixComponent } from './leave/leavesetup/proratematrix/proratematrix.component';
-import { LeaveService } from './leave/leave.service';
-import { LeaveSetupService } from './leave/leaveSetup.service';
 
 
 import { EmployeeHomeComponent } from './employee/home/home.component';
@@ -58,7 +56,6 @@ import { EmployeeQualificationComponent } from './employee/qualification/qualifi
 import { CpasswordComponent } from './employee/cpassword/cpassword.component';
 import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { ExperienceComponent } from './employee/experience/experience.component';
-import { EmployeeService } from './employee/services/employee.service';
 import { EmployeesComponent } from './employee/employees/employees.component';
 import { EmployeeCompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
@@ -92,11 +89,6 @@ import { FeatureComponent } from '../hrm/feature/feature.component';
 import { ModuleComponent } from '../hrm/module/module.component';
 import { RoleComponent } from '../hrm/role/role.component';
 import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
-import { SystemAdministrationService } from '../hrm/services/systemadministration.services';
-import { AttendanceService } from './attendance/services/attendance.service';
-import { AttendancesetupService } from './attendance/services/attendancesetup.service';
-import { HrmsService } from './hrmsSetup/services/hrms.service';
-import { SetupService } from './hrmsSetup/services/setup.service';
 import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
 import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
@@ -134,7 +126,6 @@ import { TaxscheduleComponent } from './payroll/taxsetup/taxschedule/taxschedule
 import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
 import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
-import { PayrollService } from './payroll/services/payroll.service';
 import { AllowanceDeductionComponent } from './payroll/payrollsetup/allowance-deduction/allowance-deduction.component';
 import { AllowancerateComponent } from './payroll/payrollsetup/allowancerate/allowancerate.component';
 import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component';
@@ -142,7 +133,6 @@ import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.c
 import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
-import { PayrollSetupService } from './payroll/services/payrollsetup.service';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
@@ -306,13 +296,7 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
     ],
-    exports: [],
-    providers: [LeaveService, SetupService,
-        AttendanceService,
-        AttendancesetupService, HrmsService,
-        LeaveSetupService, EmployeeService,
-        SystemAdministrationService,
-    PayrollService,PayrollSetupService]
+    exports: []
 
 })
 export class HrmModule { }

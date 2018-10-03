@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../../services/attendance.service';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
+import { AttendancesetupService, AttendanceService } from '../../../../core';
 
 @Component({
     selector: 'app-attendance-flag-exemption',
@@ -10,7 +9,7 @@ import { AttendancesetupService } from '../../services/attendancesetup.service';
 export class AttendanceFlagExemptionComponent implements OnInit {
 
     public attendanceflagExemption: any;
-    constructor(public attendanceservice: AttendanceService,public attendancesetupservice: AttendancesetupService) { }
+    constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
         await this.attendanceservice.getattendanceflagexemptions();

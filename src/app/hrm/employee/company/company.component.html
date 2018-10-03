@@ -7,7 +7,7 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Designation</label>
-        <select class="form-control m-input m-input--solid" formControlName="DesignationId" name="Designation" id="Designation">
+        <select class="form-control m-input m-input--solid"   formControlName="DesignationId" name="Designation" id="Designation">
           <option value="" disabled selected>-- Select Designation --</option>
           <option *ngFor="let cdsg of SetupServiceobj.designation" [value]="cdsg.designationId">{{cdsg.name}}</option>
         </select>
@@ -17,8 +17,8 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Group" class="control-label">Group</label>
-        <select class="form-control m-input m-input--solid" formControlName="GroupId" name="Group" id="group">
-          <option value="" disabled selected>-- Select Group --</option>
+        <select class="form-control m-input m-input--solid"  [value]="Employee?.groupId" formControlName="GroupId" name="Group" id="group">
+          <option value="" disabled >-- Select Group --</option>
           <option *ngFor="let grp of SetupServiceobj.group" [value]="grp.groupId">{{grp.name}}</option>
         </select>
       </div>
@@ -77,7 +77,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="Empstatus">Employee Status</label>
-        <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" name="EmpStatus">
+        <select class="form-control m-input m-input--solid" [value]="Employee?.employeeStatusId" formControlName="EmployeeStatusId" name="EmpStatus">
           <option value="" disabled selected>-- Select Employee Status --</option>
           <option *ngFor="let cempstatus of SetupServiceobj.employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
@@ -247,5 +247,6 @@
   </div>
 
   <div class="m--space-07"></div>
+  <button (click)="update(employee.EmpCompanyForm.value)">update</button>
 
 </form>

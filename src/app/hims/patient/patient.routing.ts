@@ -28,17 +28,13 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
-import { ModuleGuardService } from '../../account/auth/module-guard.service';
-import { AuthGuardService } from '../../account/auth/auth-guard.service';
-
-
-
+import { AuthGuardService, ModuleGuardService } from '../../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'hims/patient',
         component: RootComponent,   
-        // canActivate: [AuthGuardService, ModuleGuardService],
+        canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },

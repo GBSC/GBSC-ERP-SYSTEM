@@ -1,160 +1,286 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-8">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Application Status</h3>
+<div class="m-portlet m-portlet--tabs">
+        <div class="m-portlet__head" style="padding: 0px 0px 0px 0px;background:#dee1e7;">
+         
+            <div class="m-portlet__head-tools">
+
+
+                <div class="container">
+                    <div class="scroller scroller-left"><i class="la la-angle-left"></i></div>
+                    <div class="scroller scroller-right"><i class="la la-angle-right"></i></div>
+                    <div class="wrapper">
+
+                <ul  class="nav nav-tabs m-tabs-line m-tabs-line--primary m-tabs-line--2x list" role="tablist">
+                    <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_tabs_6_1" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #4d65bf;">
+                            <i class="la la-users" style="display: block; height: 33px;font-size: 46px;"></i>
+                            Human Resource Management
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                      <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #0070c4;">
+                          <i class="la la-hospital-o" style="display: block; height: 33px;font-size: 46px;"></i>
+                          Hospital Management System
+                      </a>
+                  </li>
+                  <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                      <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_6" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #3173e9;">
+                          <i class="la la-user-md" style="display: block; height: 33px;font-size: 46px;"></i>
+                          Lab Information System
+                      </a>
+                  </li>
+                  <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #d95531;">
+                        <i class="la la-shopping-cart" style="display: block; height: 33px;font-size: 46px;"></i>
+                        Inventory Management System
+                    </a>
+                </li>
+                <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                  <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_4" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #3173e9;">
+                      <i class="la 	la-usd" style="display: block; height: 33px;font-size: 46px;"></i>
+                      Payroll Management System
+                  </a>
+              </li>
+              <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_5" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #ac1f40;">
+                    <i class="la la-credit-card" style="display: block; height: 33px;font-size: 46px;"></i>
+                    Accounting System
+                </a>
+            </li>
+            
+                 
+        
+                </ul>
+
+              </div>
             </div>
-          </div>
+
+
+            </div>
         </div>
         <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="dataSource" (onSelectionChanged)="selectionChanged($event)" [showBorders]="true">
-
-                <dxo-selection mode="single"></dxo-selection>
-
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
-                <!-- <dxi-column dataField="SNo"caption="S.No"></dxi-column> -->
-                <dxi-column dataField="Description" caption="Description"></dxi-column>
-              </dx-data-grid>
+            <div class="tab-content">
+                <div class="tab-pane active" id="m_tabs_6_1" role="tabpanel">
+                   <div class="container">
+                     <div class="row">
+                        <div class="col-sm-3">
+                            <ul class="m-nav">
+                                <li class="m-nav__section m-nav__section--first">
+                                  <span class="m-nav__section-text">
+                                      Attendance
+                                  </span>
+                                </li>
+                                <li class="m-nav__item">
+                                  <a href="" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-share"></i>
+                                    <span class="m-nav__link-text">
+                                        Attendance Admin
+                                    </span>
+                                  </a>
+                                </li>
+                                <li class="m-nav__item">
+                                  <a href="/hrm/attendance/attendancerequest" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                    <span class="m-nav__link-text">
+                                        Attendance Request
+                                        
+                                    </span>
+                                  </a>
+                                </li>
+                                <li class="m-nav__item">
+                                  <a href="/hrm/attendance/official-visit-entry" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                    <span class="m-nav__link-text">
+                                        Official Visit Entry
+                                       
+                                    </span>
+                                  </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/hrm/attendance/overtime-entitlement" class="m-nav__link">
+                                      <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                      <span class="m-nav__link-text">
+                                          OverTime Entitlement
+                                         
+                                      </span>
+                                    </a>
+                                  </li>
+                                  <li class="m-nav__item">
+                                    <a href="/hrm/attendance/employee-overtime-entitlement" class="m-nav__link">
+                                      <i class="m-nav__link-icon flaticon-info"></i>
+                                      <span class="m-nav__link-text">
+                                          Employee OverTime Entitlemen
+                                      </span>
+                                    </a>
+                                  </li>
+                            
+                              </ul>
+                         </div>
+                       <div class="col-sm-3">
+                          <ul class="m-nav">
+															<li class="m-nav__section m-nav__section--first">
+																<span class="m-nav__section-text">
+                                    Employees
+																</span>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/employee/employees" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-share"></i>
+																	<span class="m-nav__link-text">
+                                      Employees
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/employee/registration" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-chat-1"></i>
+																	<span class="m-nav__link-text">
+                                      Employee Registration
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/rolesandprivileges" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-info"></i>
+																	<span class="m-nav__link-text">
+                                      Roles & Priviliges
+																	</span>
+																</a>
+															</li>
+													
+														</ul>
+                       </div>
+                       <div class="col-sm-3">
+                          <ul class="m-nav">
+															<li class="m-nav__section m-nav__section--first">
+																<span class="m-nav__section-text">
+                                   Leave
+																</span>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/leave/leaverequest" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-share"></i>
+																	<span class="m-nav__link-text">
+                                      Leave Request
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/leave/leaveapproval" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-chat-1"></i>
+																	<span class="m-nav__link-text">
+                                      Leave Approval
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/leave/leaveclosing" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-info"></i>
+																	<span class="m-nav__link-text">
+                                      Leave Closing
+																	</span>
+																</a>
+															</li>
+                              
+														</ul>
+                       </div>
+                    
+                       <div class="col-sm-3">
+                          <ul class="m-nav">
+															<li class="m-nav__section m-nav__section--first">
+																<span class="m-nav__section-text">
+																	Setup Configuration
+																</span>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/company" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-share"></i>
+																	<span class="m-nav__link-text">
+                                      Company Setup
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/leave/leavesetup/leavetype" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-chat-1"></i>
+																	<span class="m-nav__link-text">
+                                      Leave Setup 
+																	</span>
+																</a>
+															</li>
+															<li class="m-nav__item">
+																<a href="/hrm/attendance/attendancesetup/roster" class="m-nav__link">
+																	<i class="m-nav__link-icon flaticon-info"></i>
+																	<span class="m-nav__link-text">
+                                      Attendance Setup
+																	</span>
+																</a>
+                              </li>
+                              <li class="m-nav__item">
+                                  <a href="/hrm/attendance/overtime/overtimeflag" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                    <span class="m-nav__link-text">
+                                        Overtime Setup 
+                                    </span>
+                                  </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/hrm/payroll/payrollsetup/allowance" class="m-nav__link">
+                                      <i class="m-nav__link-icon flaticon-info"></i>
+                                      <span class="m-nav__link-text">
+                                          Payroll Setup
+                                      </span>
+                                    </a>
+                                  </li>
+                                  <li class="m-nav__item">
+                                      <a href="/hrm/payroll/taxsetup/incometaxrule" class="m-nav__link">
+                                        <i class="m-nav__link-icon flaticon-info"></i>
+                                        <span class="m-nav__link-text">
+                                            Tax Setup
+                                        </span>
+                                      </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a href="/hrm/payroll/loansetup/loantype" class="m-nav__link">
+                                          <i class="m-nav__link-icon flaticon-info"></i>
+                                          <span class="m-nav__link-text">
+                                              Loan Setup
+                                          </span>
+                                        </a>
+                                      </li>
+													
+														</ul>
+                       </div>
+                     </div>
+                   </div>
+                </div>
+                <div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
+                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </div>
+                <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="col-xl-4">
-      <div class="m-portlet">
-        <div class=""></div>
-        <div class="m-portlet__body">
-          <div class="m-widget19">
-            <div class="">
-              <img alt="" class="img img_dp" src="assets/app/media/img//blog/blog1.jpg">
-            </div>
-            <div class="m-widget19__content">
-              <div class="m-widget19__header">
-                <div class="m-widget19__info">
-                  <span class="m-widget19__username"> Mujtaba Ahmed </span>
-                  <br>
-                  <span class="m-widget19__time"> Applied For Registration </span>
-                </div>
-              </div>
-              <hr>
-              <div class="m-widget19__header">
-                <div class="m-widget19__info">
-                  <span class="m-widget19__username"> Electrical </span>
-                  <br>
-                  <span class="m-widget19__time"> Discipline </span>
-                </div>
-                <div class="m-widget19__stats">
-                  <span class="m-widget19__number m--font-brand"> Process </span>
-                  <span class="m-widget19__comment"> PECNO </span>
-                </div>
-              </div>
-              <hr>
-              <div class="m-widget19__body border"> Application No : 1452 </div>
-              <br>
-              <div class="m-widget19__body noborder"> MemberShip </div>
-            </div>
-            <div class="m-widget19__action">
-              <button class="btn m-btn-primary" type="button"> Review Application </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-=======
-=======
->>>>>>> cbc66a0013be062a5203030c16af78b391f9f19e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
-  <div class="m-content">
-    <div class="row">
-        <div class="col-xl-8">
-          <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Application Status</h3>
-            </div>
-            </div>
-          </div>
-          <div class="m-portlet__body">
-            <div class="m-section">
-            <div class="m-section__content" >
-              <dx-data-grid id="gridContainer" [dataSource]="dataSource"
-              [showBorders]="true"> 
-      
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-                <!-- <dxi-column dataField="SNo"caption="S.No"></dxi-column> -->
-                <dxi-column dataField="Description"caption="Description"></dxi-column>
-                  </dx-data-grid> 
-            </div>
-            </div>
-          </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="m-portlet">
-            <div class=""></div>
-            <div class="m-portlet__body">
-              <div class="m-widget19">
-                <div class="">
-                  <img alt="" class="img img_dp" src="assets/app/media/img//blog/blog1.jpg">
-                </div>
-                <div class="m-widget19__content">
-                  <div class="m-widget19__header">
-                    <div class="m-widget19__info">
-                      <span class="m-widget19__username"> Mujtaba Ahmed </span>
-                      <br>
-                      <span class="m-widget19__time"> Applied For Registration </span>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="m-widget19__header">
-                    <div class="m-widget19__info">
-                      <span class="m-widget19__username"> Electrical </span>
-                      <br>
-                      <span class="m-widget19__time"> Discipline </span>
-                    </div>
-                    <div class="m-widget19__stats">
-                      <span class="m-widget19__number m--font-brand"> Process </span>
-                      <span class="m-widget19__comment"> PECNO </span>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="m-widget19__body border"> Application No : 1452 </div>
-                  <br>
-                  <div class="m-widget19__body noborder"> MemberShip </div>
-                </div>
-                <div class="m-widget19__action">
-                  <button class="btn m-btn-primary" type="button"> Review Application </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
- 
 
 
 
 
 
 
-<<<<<<< HEAD
->>>>>>> hrms
-=======
->>>>>>> cbc66a0013be062a5203030c16af78b391f9f19e

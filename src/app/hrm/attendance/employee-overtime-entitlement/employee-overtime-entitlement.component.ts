@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../services/attendance.service';
-import { EmployeeService } from '../../employee/services/employee.service';
-import { AttendancesetupService } from '../services/attendancesetup.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AttendanceService, AttendancesetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employee-overtime-entitlement',

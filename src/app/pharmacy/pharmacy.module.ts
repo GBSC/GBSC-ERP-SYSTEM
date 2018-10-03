@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { PharmacyService } from './service/pharmacy.service';
 import { CategoryComponent } from './category/category.component';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { AddnewsupplierComponent } from './addnewsupplier/addnewsupplier.component';
@@ -19,36 +18,45 @@ import { IssuanceComponent } from './issuance/issuance.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
   imports: [
     CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        routing,
-        DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule,
+    FormsModule,
+    ReactiveFormsModule,
+    routing,
+    DxButtonModule,
+    DevExtremeModule,
+    DxDataGridModule,
   ],
   declarations: [
+    FooterComponent,
+    HeaderComponent,
+    MenuComponent,
+    RootComponent,
     AddnewsupplierComponent,
     CategoryComponent,
     GoodsreceiptComponent,
-    HomeComponent,
     InventoryItemComponent,
     IssuanceComponent,
     ItemdetailComponent,
     PurchaseOrderComponent,
     ReturnmedicineComponent,
-    RootComponent,
     SupplierComponent,
+    RootComponent,
+    HomeComponent,
     UnitComponent,
     HeaderComponent,
-    MenuComponent,
-    FooterComponent
+    FooterComponent,
+    MenuComponent
   ],
   providers: [
-    PharmacyService
+    {
+      provide: UrlSerializer,
+      useClass: LowerCaseUrlSerializer
+  },
   ]
 })
 export class PharmacyModule { }

@@ -3,7 +3,6 @@ import { environment } from '../../../environments/environment';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { JwtService } from './Auth/jwt.service';
 import { _throw } from 'rxjs/observable/throw';
 import { catchError } from 'rxjs/operators';
 
@@ -11,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
   constructor(
     private http: HttpClient,
-    private jwtService: JwtService
+    //private jwtService: JwtService
   ) {}
 
   private formatErrors(error: any) {

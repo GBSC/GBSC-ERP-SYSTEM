@@ -1,16 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { InseminationprepService } from '../services/inseminationprep.service';
-import { InseminationPrep } from '../../../models/inseminationprep';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import validator from 'devextreme/ui/validator';
-import { InseminationPrepDetail } from '../../../models/InseminationPrepDetail';
-import { ConsultantService } from '../../sharedservices/consultant.service';
-import { Consultant } from '../../../models/consultant';
-import { Patient } from '../../../models/patient';
-import { Spouse } from '../../../models/spouse';
-import { PatientService } from '../../sharedservices/patient.service';
 
 import { DxSelectBoxComponent } from 'devextreme-angular';
+import { InseminationprepService } from '../../../core/Services/HIMS/Lab/inseminationprep.service';
+import { ConsultantService, PatientService } from '../../../core';
+import { Consultant } from '../../../core/Models/HIMS/consultant';
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { Spouse } from '../../../core/Models/HIMS/spouse';
 
 @Component({
     selector: 'app-inseminationprep',
@@ -78,7 +75,7 @@ export class InseminationprepComponent implements OnInit {
         this.consultantService.getConsultants()
             .subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatient()
+        this.patientService.getPatientObservable()
             .subscribe(patients => this.patients = patients);
 
     }

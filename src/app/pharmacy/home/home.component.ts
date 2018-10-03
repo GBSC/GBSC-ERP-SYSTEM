@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PharmacyService } from '../../core';
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',

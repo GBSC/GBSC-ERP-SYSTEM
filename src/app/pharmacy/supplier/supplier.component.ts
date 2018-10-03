@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { PharmacyService } from '../service/pharmacy.service';
+import { PharmacyService } from '../../core';
 
 
 @Component({

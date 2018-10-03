@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../api.service';
 import { environment } from '../../../../environments/environment';
-import { Company } from '../../../hrm/model/company';
-import { Module } from '../../../hrm/model/module';
+import { Company } from '../../Models/HRM/company';
+import { Module } from '../../Models/HRM/module';
 
 @Injectable()
 export class SuperadminserviceService {

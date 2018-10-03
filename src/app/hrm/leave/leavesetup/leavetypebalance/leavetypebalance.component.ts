@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { EmployeeService, LeaveSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-leavetypebalance',

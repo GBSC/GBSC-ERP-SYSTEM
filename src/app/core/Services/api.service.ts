@@ -3,7 +3,6 @@ import { environment } from '../../../environments/environment';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { JwtService } from './Auth/jwt.service';
 import { _throw } from 'rxjs/observable/throw';
 import { catchError } from 'rxjs/operators';
 
@@ -11,11 +10,11 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
   constructor(
     private http: HttpClient,
-    private jwtService: JwtService
-  ) {}
+    //private jwtService: JwtService
+  ) { }
 
   private formatErrors(error: any) {
-    return  _throw(error.error);
+    return _throw(error.error);
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
@@ -26,14 +25,14 @@ export class ApiService {
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 

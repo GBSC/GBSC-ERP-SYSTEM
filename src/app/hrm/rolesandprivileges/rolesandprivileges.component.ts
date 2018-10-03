@@ -1,12 +1,7 @@
 
 
 import { NgModule, Component, Pipe, PipeTransform, enableProdMode, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { DxTreeViewModule, DxListModule, DxTemplateModule } from 'devextreme-angular';
-
-import { SystemAdministrationService } from '../services/systemadministration.services';
+import { SystemAdministrationService } from '../../core';
 
 
 @Pipe({ name: 'title' })
@@ -30,7 +25,7 @@ export class RolesandprivilegesComponent implements OnInit {
     public showPopup: boolean = false;
 
     constructor(private systemAdmin: SystemAdministrationService) { }
-    
+
     createNewRole() {
         this.showPopup = true;
         console.log(this.showPopup);
@@ -59,7 +54,7 @@ export class RolesandprivilegesComponent implements OnInit {
             permissions: []
 
         }
- 
+
     }
 
 

@@ -2,7 +2,6 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CountryComponent } from '../hrmsSetup/country/country.component';
 import { EmployeeTypes } from '../hrmsSetup/employeetype/employeetype.component';
-import { DepartmentComponent } from '../hrmsSetup/department/department.component';
 import { FunctionComponent } from '../hrmsSetup/function/function.component';
 import { GradesComponent } from '../hrmsSetup/grade/grade.component';
 import { QualificationComponent } from '../hrmsSetup/qualification/qualification.component';
@@ -25,11 +24,10 @@ import { AllowancesTypeComponent } from '../hrmsSetup/allowancestypes/allowances
 import { RelationComponent } from '../hrmsSetup/relations/relations.component';
 import { CityComponent } from '../hrmsSetup/cities/cities.component';
 import { UniversityComponent } from '../hrmsSetup/university/university.component';
-import { ModuleGuardService } from '../../account/auth/module-guard.service';
-import { AuthGuardService } from '../../account/auth/auth-guard.service';
 import { RootComponent } from '../root/root.component';
-import { HrmSetupHomeComponent } from './home/home.component';
 import { ShiftComponent } from '../attendance/attendancesetup/shift/shift.component';
+import { HrmSetupHomeComponent } from './home/home.component';
+import { AuthGuardService, ModuleGuardService } from '../../core';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([

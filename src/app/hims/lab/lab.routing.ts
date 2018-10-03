@@ -9,15 +9,14 @@ import { BiochemistryontreatmentComponent } from './biochemistryontreatment/bioc
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
-import {BiochemistrytestComponent} from  '../lab/labsetup/biochemistrytest/biochemistrytest.component';
+import { BiochemistrytestComponent } from '../lab/labsetup/biochemistrytest/biochemistrytest.component';
 import { ReferencerangeComponent } from './referencerange/referencerange.component';
 import { EmbryologysectionComponent } from './embryologysection/embryologysection.component';
-import {TestunitComponent} from '../lab/labsetup/testunit/testunit.component';
+import { TestunitComponent } from '../lab/labsetup/testunit/testunit.component';
 
-import {EmbryologistsComponent} from '../lab/labsetup/embryologists/embryologists.component'
-import {EmbryologycodesComponent} from '../lab/labsetup/embryologycodes/embryologycodes.component'
-import { ModuleGuardService } from '../../account/auth/module-guard.service';
-import { AuthGuardService } from '../../account/auth/auth-guard.service';
+import { EmbryologistsComponent } from '../lab/labsetup/embryologists/embryologists.component'
+import { EmbryologycodesComponent } from '../lab/labsetup/embryologycodes/embryologycodes.component'
+import { AuthGuardService, ModuleGuardService } from '../../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 

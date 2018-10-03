@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventorysystemModule } from '../../Inventorysystem.module';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-customer-price-pick-level',

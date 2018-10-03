@@ -1,13 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { SkillLevels } from '../models/skilllevel,interface';
+import { HttpClient } from '@angular/common/http'; 
 
 @Component({
     selector: 'app-skilllevels',

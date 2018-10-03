@@ -5,6 +5,11 @@ import { Helpers } from "./helpers";
 @Component({
     selector: 'body',
     templateUrl: './app.component.html',
+    styles:[`
+    app-loginform {
+        height: 100%;
+    }
+    `],
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
@@ -31,5 +36,5 @@ export class AppComponent implements OnInit {
         });
     }
 
-    
+
 }

@@ -3,12 +3,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ApiService } from '../api.service';
-import { Company } from '../../../hrm/model/company';
-import { Department } from '../../../hrm/model/department';
-import { Role } from '../../../hrm/model/role';
-import { Feature } from '../../../hrm/model/feature';
-import { Module } from '../../../hrm/model/module';
-import { Branch } from '../../../hrm/model/branch';
+import { Company } from '../../Models/HRM/company';
+import { Branch } from '../../Models/HRM/branch';
+import { Department } from '../../Models/HRM/department';
+import { Role } from '../../Models/HRM/role';
+import { Feature } from '../../Models/HRM/feature';
+import { Module } from '../../Models/HRM/module';
 
 export class Product {
     id: string;

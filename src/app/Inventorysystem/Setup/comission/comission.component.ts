@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { Comission } from '../../models/Setup/Comission';
+import { InventorysystemService } from '../../../core';
+import { Comission } from '../../../core/Models/Inventory/Setup/Comission';
 
 @Component({
     selector: 'app-comission',

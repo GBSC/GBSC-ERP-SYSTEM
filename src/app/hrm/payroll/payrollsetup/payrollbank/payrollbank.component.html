@@ -1,0 +1,279 @@
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Bank
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="PayrollBankForm">
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Bank Title:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="BankTitle" placeholder="Bank Title">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Account No:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="AccountNumber">
+              </div>
+            </div>
+
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Routing Code:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="RoutingCode">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Unique Id:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="UniqueId">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Remit Type:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="RemitType" placeholder="">
+              </div>
+              <div class="col-lg-6">
+                <label>
+                  Remit Key:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="RemitKey" placeholder="">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Bank Branch Coe:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="BranchCode">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Branch:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="Branch">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Branch Contact Number:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="BranchContactNumber">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Branch Address:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="BranchAddress">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Branch Employee Name:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="BranchEmplyeeName">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Branch Employee Designation:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="BranchEmplyeeDesignation">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label class="">
+                  First Approver Name:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="FirstApproverName">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  First Approver Designation:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="FirstApproverDesignation">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label class="">
+                  Second Approver Name:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="SecondApproverName">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Second Approver Designation:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="SecondApproverDesignation">
+              </div>
+            </div>
+
+
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Bank Advice Template:
+                </label>
+                <select class="form-control m-input" formControlName="BankAdviceTemplateId" id="">
+                  <option value="" disabled selected>-- Select Bank Advice Template --</option>
+                  <option *ngFor="let banktemplate of payrollsetupservice?.bankadvicetemplate" [value]="banktemplate.bankAdviceTemplateId">{{banktemplate.name}}</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Cheque Template:
+                </label>
+                <select class="form-control m-input" formControlName="ChequeTemplateId" id="">
+                  <option value="" disabled selected>-- Select Cheque Template --</option>
+                  <option *ngFor="let chequetemplate of payrollsetupservice?.chequetemplate" [value]="chequetemplate.chequeTemplateId">{{chequetemplate.name}}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label class="">
+                  Gl Code:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="GlCode">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Cost Centre Code:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="CostCentreCode">
+              </div>
+            </div>
+            <div class="m--space-30"></div>
+
+            <div class="m-form__group form-group">
+              <div class="m-checkbox-inline">
+                <label class="m-checkbox">
+                  <input type="checkbox" formControlName="CompanyBank"> Company Bank
+                  <span></span>
+                </label>
+                <label class="m-checkbox">
+                  <input type="checkbox" formControlName="Active"> Active
+                  <span></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="m--space-50"></div>
+
+            <div class="m-separator m-separator"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                    <button type="submit" class="btn btn-brand" (click)="addPayrollBank()">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                  <div class="col-lg-4"></div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Payroll Bank Details
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="payrollBank" keyExpr="payrollBankId" (onRowUpdated)="updatePayrollBank()"
+            (onRowUpdating)="updatingPayrollBank($event)" (onRowRemoved)="deletePayrollBank($event)">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+              <dxo-popup title="Payroll Bank" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+
+            <dxi-column dataField="bankTitle"></dxi-column>
+            <dxi-column dataField="accountNumber"> </dxi-column>
+            <dxi-column dataField="routingCode" [visible]="false"></dxi-column>
+            <dxi-column dataField="uniqueId"></dxi-column>
+            <dxi-column dataField="remitType" [visible]="false"></dxi-column>
+            <dxi-column dataField="remitKey" [visible]="false"></dxi-column>
+            <dxi-column dataField="branchCode" [visible]="false"></dxi-column>
+            <dxi-column dataField="branch"></dxi-column>
+            <dxi-column dataField="branchContactNumber"></dxi-column>
+            <dxi-column dataField="branchAddress" [visible]="false"></dxi-column>
+            <dxi-column dataField="branchEmplyeeName"></dxi-column>
+            <dxi-column dataField="branchEmplyeeDesignation" [visible]="false"></dxi-column>
+            <dxi-column dataField="firstApproverName"></dxi-column>
+            <dxi-column dataField="firstApproverDesignation" [visible]="false"></dxi-column>
+            <dxi-column dataField="secondApproverName"></dxi-column>
+            <dxi-column dataField="secondApproverDesignation" [visible]="false"></dxi-column>
+            <dxi-column dataField="bankAdviceTemplateId" caption="Bank Advice Template">
+              <dxo-lookup [dataSource]="payrollsetupservice?.bankadvicetemplate" displayExpr="name" valueExpr="bankAdviceTemplateId"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="chequeTemplateId" caption="Cheque Template">
+              <dxo-lookup [dataSource]="payrollsetupservice.chequetemplate" displayExpr="name" valueExpr="chequeTemplateId"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="costCentreCode" [visible]="false"></dxi-column>
+            <dxi-column dataField="glCode" [visible]="false"></dxi-column>
+            <dxi-column dataField="companyBank" dataType="boolean"></dxi-column>
+            <dxi-column dataField="active" dataType="boolean" [visible]="false"></dxi-column>
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {PatientService} from '../../../hims/patient/services/patient.services';
+import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
-import { PatientVital } from '../../../models/patientvitals';
 
 
 
@@ -25,10 +24,7 @@ export class VitalsComponent implements OnInit {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe((patientVital) => {
-        this.patientVital = patientVital 
-        console.log(this.patientVital)
-       });
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital );
   console.log(x);
   
      });

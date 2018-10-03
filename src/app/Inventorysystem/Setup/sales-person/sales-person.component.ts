@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { Area } from '../../models/Setup/Area';
-import { Territory } from '../../models/Setup/Territory';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-sales-person',

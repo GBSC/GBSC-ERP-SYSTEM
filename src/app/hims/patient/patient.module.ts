@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { PatientService } from '../patient/services/patient.services';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
@@ -37,9 +35,7 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
 import { TestComponent } from './test/test.component';
-import { ReportsComponent } from './Reports/reports/reports.component';
-import { ActiveVisitsComponent } from './active-visits/active-visits.component';
- // import { SharedModule } from './shared/shared.module';
+// import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
@@ -86,11 +82,6 @@ import { ActiveVisitsComponent } from './active-visits/active-visits.component';
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
-        ReportsComponent,
-        ActiveVisitsComponent,
-     ],
-    providers: [
-        PatientService
     ]
 })
 export class PatientModule { }

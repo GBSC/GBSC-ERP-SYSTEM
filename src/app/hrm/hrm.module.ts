@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule } from 'devextreme-angular';
+import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -32,7 +32,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LeavepolicyComponent } from './leave/leavesetup/leavepolicy/leavepolicy.component';
 import { LeavetypeComponent } from './leave/leavesetup/leavetype/leavetype.component';
 import { LeavedaytypeComponent } from './leave/leavesetup/leavedaytype/leavedaytype.component';
-import { LeaveapprovalComponent } from './leave/leavesetup/leaveapproval/leaveapproval.component';
 import { LeavepurposeComponent } from './leave/leavesetup/leavepurpose/leavepurpose.component';
 import { LeaveeligibilityComponent } from './leave/leavesetup/leaveeligibility/leaveeligibility.component';
 import { LeaveyearsetupComponent } from './leave/leavesetup/leaveyearsetup/leaveyearsetup.component';
@@ -44,8 +43,6 @@ import { LeavesubtypeComponent } from './leave/leavesetup/leavesubtype/leavesubt
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
 import { DecimalroundingmatrixComponent } from './leave/leavesetup/decimalroundingmatrix/decimalroundingmatrix.component';
 import { ProratematrixComponent } from './leave/leavesetup/proratematrix/proratematrix.component';
-import { LeaveService } from './leave/leave.service';
-import { LeaveSetupService } from './leave/leaveSetup.service';
 
 
 import { EmployeeHomeComponent } from './employee/home/home.component';
@@ -59,11 +56,10 @@ import { EmployeeQualificationComponent } from './employee/qualification/qualifi
 import { CpasswordComponent } from './employee/cpassword/cpassword.component';
 import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { ExperienceComponent } from './employee/experience/experience.component';
-import { EmployeeService } from './employee/services/employee.service';
 import { EmployeesComponent } from './employee/employees/employees.component';
 import { EmployeeCompanyComponent } from './employee/company/company.component';
 import { EmployeedetailComponent } from './employee/employeedetail/employeedetail.component';
- 
+
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
 
@@ -86,7 +82,6 @@ import { FlagtypeComponent } from './attendance/attendancesetup/flagtype/flagtyp
 import { FlagvalueComponent } from './attendance/attendancesetup/flagvalue/flagvalue.component';
 import { RosterComponent } from './attendance/attendancesetup/roster/roster.component';
 import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
-
 import { BranchComponent } from '../hrm/branch/branch.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { CompanyComponent } from '../hrm/company/company.component';
@@ -94,30 +89,70 @@ import { FeatureComponent } from '../hrm/feature/feature.component';
 import { ModuleComponent } from '../hrm/module/module.component';
 import { RoleComponent } from '../hrm/role/role.component';
 import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
-import { SystemAdministrationService } from '../hrm/services/systemadministration.services';
-import { AttendanceService } from './attendance/services/attendance.service';
-import { AttendancesetupService } from './attendance/services/attendancesetup.service';
-import { HrmsService } from './hrmsSetup/services/hrms.service';
-import { SetupService } from './hrmsSetup/services/setup.service';
+import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
+import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
+import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
+import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
+import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
+import { AllowanceComponent } from './payroll/payrollsetup/allowance/allowance.component';
+import { AllowancearrearComponent } from './payroll/payrollsetup/allowancearrear/allowancearrear.component';
+import { AllowancecalculationtypeComponent } from './payroll/payrollsetup/allowancecalculationtype/allowancecalculationtype.component';
+import { BankAdviceTemplateComponent } from './payroll/payrollsetup/bank-advice-template/bank-advice-template.component';
+import { BenefitComponent } from './payroll/payrollsetup/benefit/benefit.component';
+import { ChequeTemplateComponent } from './payroll/payrollsetup/cheque-template/cheque-template.component';
+import { CompensationTransactionComponent } from './payroll/payrollsetup/compensation-transaction/compensation-transaction.component';
+import { FrequencyComponent } from './payroll/payrollsetup/frequency/frequency.component';
+import { GratuitySlabGratuityComponent } from './payroll/payrollsetup/gratuity-slab-gratuity/gratuity-slab-gratuity.component';
+import { GratuitytypeComponent } from './payroll/payrollsetup/gratuitytype/gratuitytype.component';
+import { LeavingreasonComponent } from './payroll/payrollsetup/leavingreason/leavingreason.component';
+import { MasterpayrollComponent } from './payroll/payrollsetup/masterpayroll/masterpayroll.component';
+import { MasterPayrollDetailComponent } from './payroll/payrollsetup/master-payroll-detail/master-payroll-detail.component';
+import { PayrollComponent } from './payroll/payrollsetup/payroll/payroll.component';
+import { PayrollbankComponent } from './payroll/payrollsetup/payrollbank/payrollbank.component';
+import { PayrolltypeComponent } from './payroll/payrollsetup/payrolltype/payrolltype.component';
+import { SalaryCalculationTypeComponent } from './payroll/payrollsetup/salary-calculation-type/salary-calculation-type.component';
+import { SalarystructureComponent } from './payroll/payrollsetup/salarystructure/salarystructure.component';
+import { SalarystructuredetailComponent } from './payroll/payrollsetup/salarystructuredetail/salarystructuredetail.component';
+import { UsersalaryComponent } from './payroll/payrollsetup/usersalary/usersalary.component';
+import { StopsalaryComponent } from './payroll/payrolladmin/stopsalary/stopsalary.component';
+import { LoantypeComponent } from './payroll/loansetup/loantype/loantype.component';
+import { UserloanComponent } from './payroll/loansetup/userloan/userloan.component';
+import { IncomeTaxRuleComponent } from './payroll/taxsetup/income-tax-rule/income-tax-rule.component';
+import { TaxableIncomeAdjustmentComponent } from './payroll/taxsetup/taxable-income-adjustment/taxable-income-adjustment.component';
+import { TaxAdjustmentReasonComponent } from './payroll/taxsetup/tax-adjustment-reason/tax-adjustment-reason.component';
+import { TaxBenefitComponent } from './payroll/taxsetup/tax-benefit/tax-benefit.component';
+import { TaxreliefComponent } from './payroll/taxsetup/taxrelief/taxrelief.component';
+import { TaxscheduleComponent } from './payroll/taxsetup/taxschedule/taxschedule.component';
+import { TaxyearComponent } from './payroll/taxsetup/taxyear/taxyear.component';
+import { GratuityComponent } from './payroll/gratuity/gratuity.component';
+import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
+import { AllowanceDeductionComponent } from './payroll/payrollsetup/allowance-deduction/allowance-deduction.component';
+import { AllowancerateComponent } from './payroll/payrollsetup/allowancerate/allowancerate.component';
+import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component';
+import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.component';
+import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
+import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
+import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
+import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DevExtremeModule,
-    HttpClientModule,
-    routing
-  ],
-  declarations: [
-    FooterComponent,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DevExtremeModule, 
+        HttpClientModule,
+        routing
+    ],
+    declarations: [
+        FooterComponent,
         HeaderComponent,
         MenuComponent,
         RootComponent,
 
         BranchComponent,
-       DepartmentComponent,
+        DepartmentComponent,
         CompanyComponent,
         FeatureComponent,
         ModuleComponent,
@@ -125,31 +160,31 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         RolesandprivilegesComponent,
 
         HrmSetupHomeComponent,
-        DesignationComponent, 
-        ManagementLevelsComponent, 
+        DesignationComponent,
+        ManagementLevelsComponent,
         GazettedHolidaysComponent,
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent, 
+        BloodGroupComponent,
         CountryComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent, 
-        EmployeeTypes, 
-        FunctionComponent, 
+        CityComponent,
+        EmployeeTypes,
+        FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
         MaritalStatusComponent,
-        ReligionComponent, 
+        ReligionComponent,
         BankComponent,
         CityComponent,
-        AccountTypeComponent, 
+        AccountTypeComponent,
         UniversityComponent,
 
-                
+
         /* HRM Attendance Components */
 
         AttendanceFlagExemptionComponent,
@@ -177,9 +212,9 @@ import { SetupService } from './hrmsSetup/services/setup.service';
 
         /* HRM Leave Components */
         LeavepolicyComponent,
+        LeaveapproverComponent,
         LeavetypeComponent,
-        LeavedaytypeComponent,
-        LeaveapprovalComponent,
+        LeavedaytypeComponent, 
         LeavepurposeComponent,
         LeaveeligibilityComponent,
         LeaveyearsetupComponent,
@@ -191,6 +226,8 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         LeavetypebalanceComponent,
         DecimalroundingmatrixComponent,
         ProratematrixComponent,
+        LeaveclosingComponent,
+        LeaveapprovalComponent,
 
         /* Employee Registration */
 
@@ -206,13 +243,60 @@ import { SetupService } from './hrmsSetup/services/setup.service';
         CpasswordComponent,
         EmployeeBankComponent,
         ExperienceComponent,
-        EmployeesComponent, 
-        EmployeeCompanyComponent, 
-        EmployeedetailComponent
+        EmployeesComponent,
+        EmployeeCompanyComponent,
+        EmployeedetailComponent,
+        RostermappingComponent,
+        RostercopyComponent,
 
-  ],
-  exports: [],
-  providers: [LeaveService,SetupService, AttendanceService,AttendancesetupService,HrmsService, LeaveSetupService,EmployeeService,SystemAdministrationService]
-  
+        /* Payroll */
+
+
+        AllowanceComponent,
+        AllowancearrearComponent,
+        AllowancecalculationtypeComponent,
+        AllowanceDeductionComponent,
+        AllowancerateComponent,
+        BankAdviceTemplateComponent,
+        BenefitComponent,
+        CurrencyComponent,
+        ChequeTemplateComponent,
+        CompensationTransactionComponent,
+        FrequencyComponent,
+        GratuityslabComponent,
+        GratuitySlabGratuityComponent,
+        GratuitytypeComponent,
+        FundsetupComponent,
+        LeavingreasonComponent,
+        MasterpayrollComponent,
+        MasterPayrollDetailComponent,
+        PayrollComponent,
+        PayrollbankComponent,
+        PayrolltypeComponent,
+        SalaryCalculationTypeComponent,
+        SalarystructureComponent,
+        SalarystructuredetailComponent,
+        UsersalaryComponent,
+        PayrollyearComponent,
+        StopsalaryComponent,
+        LoantypeComponent,
+        UserloanComponent,
+        IncomeTaxRuleComponent,
+        TaxableIncomeAdjustmentComponent,
+        TaxAdjustmentReasonComponent,
+        TaxBenefitComponent,
+        TaxreliefComponent,
+        TaxscheduleComponent,
+        PfPaymentComponent,
+        TaxyearComponent,
+        GratuityComponent,
+        MonthlyUserSalaryComponent,
+        PayslipComponent
+
+
+
+    ],
+    exports: []
+
 })
 export class HrmModule { }

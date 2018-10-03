@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { CustomerType } from '../../models/Setup/CustomerType';
+import { InventorysystemService } from '../../../core';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
     selector: 'app-customer-type',
@@ -8,10 +8,10 @@ import { CustomerType } from '../../models/Setup/CustomerType';
     styleUrls: ['./customer-type.component.scss']
 })
 export class CustomerTypeComponent implements OnInit {
-    private CustomerTypes: any;
-    private newCusTyp: CustomerType;
+    private CustomerTypes : any;
+    private newCusTyp : CustomerType;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 

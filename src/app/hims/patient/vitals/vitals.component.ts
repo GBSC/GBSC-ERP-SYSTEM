@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../../hims/patient/services/patient.services';
+import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
-import { PatientVital } from '../../../models/patientvitals';
 
 
 
@@ -12,23 +11,23 @@ import { PatientVital } from '../../../models/patientvitals';
 })
 export class VitalsComponent implements OnInit {
 
-    public leatestPatientVitals = {};
-
+    public leatestPatientVitals ={};
+ 
     id: number;
 
     // patientVital :  PatientVital   ;
-    public patientVital: any = {};
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) { }
+    public patientVital : any = {}; 
+    constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) { }
 
-    async ngOnInit() {
-        this.route.params.subscribe(params => {
+   async ngOnInit() {
+    this.route.params.subscribe(params => {
 
-            this.id = +params['id'];
-
-            let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital);
-            console.log(x);
-
-        });
+        this.id = +params['id'];
+ 
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital );
+  console.log(x);
+  
+     });
 
     }
 

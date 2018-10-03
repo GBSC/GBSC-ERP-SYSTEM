@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventorysystemModule } from '../../Inventorysystem.module';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-customer-price-pick-level',
@@ -8,11 +8,11 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./customer-price-pick-level.component.scss']
 })
 export class CustomerPricePickLevelComponent implements OnInit {
-    private CustomerPrices: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    private CustomerPrices : any;
+    private CustomerTypes : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 

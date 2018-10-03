@@ -1,12 +1,7 @@
 
 
 import { NgModule, Component, Pipe, PipeTransform, enableProdMode, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { DxTreeViewModule, DxListModule, DxTemplateModule } from 'devextreme-angular';
-
-import { SystemAdministrationService } from '../services/systemadministration.services';
+import { SystemAdministrationService } from '../../core';
 
 
 @Pipe({ name: 'title' })

@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-
+import { InventorysystemService } from '../../../core';
 @Component({
     selector: 'app-customer-bank',
     templateUrl: './customer-bank.component.html',
     styleUrls: ['./customer-bank.component.scss']
 })
 export class CustomerBankComponent implements OnInit {
-    private CustomerBanks: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    private CustomerBanks : any;
+    private CustomerTypes : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService){
 
-    }
+     }
 
     async ngOnInit() {
         this.CustomerBanks = await this.InventoryService.GetCustomerBanks();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+        this.CustomerTypes= await this.InventoryService.GetCustomerTypes();
     }
 
     async AddCustomerBank(value) {
@@ -27,7 +26,7 @@ export class CustomerBankComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
         //console.log(this.UpdatedModel);
     }
 

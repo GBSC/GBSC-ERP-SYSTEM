@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-territory',
@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./territory.component.scss']
 })
 export class TerritoryComponent implements OnInit {
-    private Territories: any;
-    private Areas: any;
-    private UpdatedModel: any;
+    private Territories : any;
+    private Areas : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
@@ -26,7 +26,7 @@ export class TerritoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateTerritory() {

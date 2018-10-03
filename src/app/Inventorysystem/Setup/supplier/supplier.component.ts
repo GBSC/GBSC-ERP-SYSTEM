@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 
 @Component({
@@ -11,10 +11,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
 })
 export class SupplierComponent implements OnInit {
     public Supplier: any;
-    public UpdatedModel: any;
+    public UpdatedModel : any;
 
     constructor(private InventoryService: InventorysystemService) {
-
+       
     }
 
     async  ngOnInit() {
@@ -27,7 +27,7 @@ export class SupplierComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateSupplier() {

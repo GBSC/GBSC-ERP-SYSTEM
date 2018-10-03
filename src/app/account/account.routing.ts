@@ -8,14 +8,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
-        path: 'account',
-        component: RootComponent,
-
-        children: [
-
-            { path: 'loginform', component: LoginformComponent },
-
-        ]
+        path: '',
+        component: LoginformComponent
     }
 
 ]);

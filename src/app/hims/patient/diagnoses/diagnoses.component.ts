@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../../hims/patient/services/patient.services';
 import { ActivatedRoute } from '@angular/router';
-import { PatientVital } from '../../../models/patientvitals';
+import { PatientService } from '../../../core';
 
 @Component({
     selector: 'app-diagnoses',
@@ -10,27 +9,27 @@ import { PatientVital } from '../../../models/patientvitals';
 })
 export class DiagnosesComponent implements OnInit {
 
-
+ 
     id: number;
-    public patientVisitDiagnoses = [];
+    public patientVisitDiagnoses= []; 
 
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) {
+    constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) {
 
-    }
+     }
 
-    async ngOnInit() {
-        this.route.params.subscribe(params => {
+   async ngOnInit() {
+    this.route.params.subscribe(params => {
 
-            this.id = +params['id'];
-
-            let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses: any) => {
-                this.patientVisitDiagnoses = patientVisitDiagnoses;
-                console.log(patientVisitDiagnoses);
-                console.log(this.patientVisitDiagnoses)
-            });
-            console.log(x);
-
-        });
+        this.id = +params['id'];
+ 
+       let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses : any) => {
+        this.patientVisitDiagnoses = patientVisitDiagnoses;
+        console.log(patientVisitDiagnoses);
+        console.log(this.patientVisitDiagnoses)
+       } );
+  console.log(x);
+  
+     });
 
     }
 

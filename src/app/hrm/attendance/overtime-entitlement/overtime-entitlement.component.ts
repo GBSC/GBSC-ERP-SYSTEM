@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../services/attendance.service';
+import { AttendanceService, AttendancesetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-overtime-entitlement',
@@ -9,13 +9,18 @@ import { AttendanceService } from '../services/attendance.service';
 export class OvertimeEntitlementComponent implements OnInit {
 
     public overtimeEntitlement: any;
-    constructor(public attendanceservice: AttendanceService) { }
+    constructor(public attendanceservice: AttendanceService,public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getempOvertimeEntitlements();
+        await this.attendanceservice.getovertimeEntitlements();
         this.overtimeEntitlement = this.attendanceservice.overtimeEntitlement
-        console.log(this.overtimeEntitlement);
+        //console.log(this.overtimeEntitlement);
+        
+        await this.attendancesetupservice.getAllovertimetype();
+        let overtimetype = this.attendancesetupservice.overtimetype
 
+        await this.employeeservice.GetAllEmployees();
+        let user = this.employeeservice.employeereg
     }
 
     async addovertimeEntitlement(value) {

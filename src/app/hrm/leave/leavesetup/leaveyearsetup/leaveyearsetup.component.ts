@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
+import { LeaveSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-leaveyearsetup',
@@ -17,24 +17,22 @@ export class LeaveyearsetupComponent implements OnInit {
 
     }
 
-    async addleaveyear(lyear) {
-        console.log(lyear.data);
-        this.leavesetupservice.addleaveyear(lyear.data);
-    }
+    async addleaveyear(value) {
+        console.log(value.data);
+        this.leavesetupservice.addleaveyear(value.data);
+      }
+      
+      async updateleaveyear(value) { 
+        this.leavesetupservice.updateleaveyear(value);  
+     
+      }
 
-    async updateleaveyear(levyear) {
-        console.log(levyear);
-        this.leavesetupservice.updateleaveyear(levyear);
-        console.log('in updated year')
-
-    }
-
-    async deleteleaveyear(lvyear) {
-        console.log(lvyear);
-        this.leavesetupservice.Deleteleavyear(lvyear.key);
-
-
-    }
+      async deleteleaveyear(value) {
+        console.log(value); 
+        this.leavesetupservice.Deleteleavyear(value.key); 
+     
+     
+      }
 
 
 }

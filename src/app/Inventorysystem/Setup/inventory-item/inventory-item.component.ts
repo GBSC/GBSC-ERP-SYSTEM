@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 
 
@@ -10,18 +10,18 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
 })
 
 export class InventoryItemComponent implements OnInit {
-    private InventoryItems: any;
-    private Brands: any;
-    private Units: any;
-    private PackTypes: any;
-    private PackSizes: any;
-    private PackCategories: any;
-    private ProductTypes: any;
-    private InventoryItemCategories: any;
-    private PackageTypes: any;
-    private UpdatedModel: any;
-
-    constructor(private InventoryService: InventorysystemService) {
+    private InventoryItems : any;
+    private Brands : any;
+    private Units : any;
+    private PackTypes : any;
+    private PackSizes : any;
+    private PackCategories : any;
+    private ProductTypes : any;
+    private InventoryItemCategories : any;
+    private PackageTypes : any;
+    private UpdatedModel : any;
+    
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
@@ -43,7 +43,7 @@ export class InventoryItemComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateInventoryItem() {

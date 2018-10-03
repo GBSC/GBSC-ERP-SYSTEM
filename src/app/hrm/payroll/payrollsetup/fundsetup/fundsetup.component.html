@@ -1,0 +1,387 @@
+<div appunwraptag="" class="m-subheader">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title m-subheader__title--separator">
+        Payroll Setup
+      </h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a class="m-nav__link m-nav__link--icon" href="#" ng-reflect-href="#">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          Home
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+              Payroll Setup
+            </span>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+              Fund Setup
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+
+    </div>
+  </div>
+</div>
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Fund Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding:0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#home-r" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      PF Setup
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#Gratuity" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Gratuity Setup
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#EOBI" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      EOBI Setup
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#SESSI" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Social Security Institution
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#PESSI" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      PESSI Setup
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#IESSI" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      IESSI Setup
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+        <div class="m-portlet__body">
+          <form [formGroup]="FundSetupForm">
+            <div class="tab-content">
+              <div class="tab-pane active" id="home-r">
+                <h3 class="m-section__heading">
+                  PF Setup
+                </h3>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Payroll Year
+                  </label>
+                  <select class="form-control m-input" formControlName="PayrollYearId" id="">
+                    <option value="" disabled selected>-- Select Payroll Year --</option>
+                    <option *ngFor="let year of payrollsetupservice.payrollyear" [value]="year.payrollYearId">{{year.name}}</option>
+                  </select>
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employeer Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="PfEmployerContribution" formControlName="PfEmployerContribution"
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employee Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="PfEmployeeContribution" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Taxable Amount Label
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="TaxableAmountLimit" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                </div>
+
+              </div>
+              <div class="tab-pane" id="Gratuity">
+                <h3 class="m-section__heading">
+                  Gratuity Setup
+                </h3>
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Minimum Service provider (Year)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="MinServicePeriod" id="" aria-describedby="emailHelp" placeholder="Minimum Service Provider Year">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleSelect1">
+                    Applicable Form
+                  </label>
+                  <select class="form-control m-input" formControlName="ApplicableFrom" id="exampleSelect1">
+                    <option value="" disabled selected>-- Select Applicable Form --</option>
+                    <option value="joining">Joining </option>
+                    <option value="confirmation">Confirmation</option>
+                  </select>
+                </div>
+              </div>
+              <div class="tab-pane" id="EOBI">
+                <h3 class="m-section__heading">
+                  EOBI Setup
+                </h3>
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Minimum Salary
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="EobiMinimumSalary" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employeer Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="EobiEmployerContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employee Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="EobiEmployeeContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Maximum Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="MaximumContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    EOBI Execmpt Age Limit
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="ExemptAge" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                </div>
+              </div>
+              <div class="tab-pane" id="SESSI">
+                <h3 class="m-section__heading">
+                  Social Security Institution
+                </h3>
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Minimum Salary
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="SessiMinimumSalary" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employeer Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="SessiEmployerContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employee Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="SessiEmployeeContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+
+              </div>
+              <div class="tab-pane" id="PESSI">
+                <h3 class="m-section__heading">PESSI</h3>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Minimum Salary
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="PessiMinimumSalary" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employeer Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="PessiEmployerContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employee Contribution (%)
+                  </label>
+                  <input type="number" class="form-control m-input" formControlName="PessiEmployeeContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+              </div>
+              <div class="tab-pane" id="IESSI">
+                <h3 class="m-section__heading">
+                  IESSI
+                </h3>
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Minimum Salary
+                  </label>
+                  <input type="text" class="form-control m-input" formControlName="IessiMinimumSalary" id="" aria-describedby="emailHelp" placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employeer Contribution (%)
+                  </label>
+                  <input type="text" class="form-control m-input" formControlName="IessiEmployerContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+
+                <div class="form-group m-form__group">
+                  <label for="exampleInputEmail1">
+                    Employee Contribution (%)
+                  </label>
+                  <input type="text" class="form-control m-input" formControlName="IessiEmployeeContribution" id="" aria-describedby="emailHelp"
+                    placeholder="Minimum Salary">
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__foot m-portlet__foot--fit">
+              <div class="m-form__actions">
+                <button type="submit" (click)="addFundSetup()" class="btn btn-primary">
+                  Save
+                </button> |
+                <button type="reset" class="btn btn-secondary">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Fund Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="fundSetup"
+           keyExpr="fundSetupId"
+            (onRowUpdated)="updateFundSetup()"
+            (onRowUpdating)="updatingFundSetup($event)"
+             (onRowRemoved)="deleteAllowanceDeduction($event)">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+              <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+ 
+            <dxi-column dataField="payrollYearId" caption="Payroll Year">
+              <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="pfEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="pfEmployeeContribution"></dxi-column>
+            <dxi-column dataField="taxableAmountLimit"></dxi-column>
+            <dxi-column dataField="minServicePeriod"></dxi-column>
+            <dxi-column dataField="applicableFrom"></dxi-column>
+            <dxi-column dataField="eobiMinimumSalary"></dxi-column>
+            <dxi-column dataField="eobiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiEmployeeContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="maximumContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="exemptAge"></dxi-column>
+            <dxi-column dataField="sessiMinimumSalary"></dxi-column>
+            <dxi-column dataField="sessiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiEmployeeContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiMinimumSalary" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiEmployeeContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="iessiMinimumSalary"></dxi-column>
+            <dxi-column dataField="iessiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="iessiEmployeeContribution" [visible]="false"></dxi-column>
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

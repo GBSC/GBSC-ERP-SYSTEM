@@ -1,6 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-
+import { InventorysystemService } from '../../../core';
 @Component({
     selector: 'app-delivery-note',
     templateUrl: './delivery-note.component.html',
@@ -18,13 +17,12 @@ export class DeliveryNoteComponent implements OnInit {
     constructor(private InventoryService: InventorysystemService) {
 
     }
-
+   
     async ngOnInit() {
         this.DeliveryOrder = await this.InventoryService.GetDeliveryOrders();
         this.Transport = await this.InventoryService.GetTransports();
         this.SalesInvoice = await this.InventoryService.GetSalesInvoices();
         this.DeliveryNote = await this.InventoryService.GetDeliveryNotes();
-
     }
 
     async AddDeliveryNote(value) {

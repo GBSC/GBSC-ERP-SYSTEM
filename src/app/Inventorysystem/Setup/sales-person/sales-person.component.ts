@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { Area } from '../../models/Setup/Area';
-import { Territory } from '../../models/Setup/Territory';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-sales-person',
@@ -9,13 +7,13 @@ import { Territory } from '../../models/Setup/Territory';
     styleUrls: ['./sales-person.component.scss']
 })
 export class SalesPersonComponent implements OnInit {
-    private SalesPeople: any;
-    private Distributors: any;
-    private Areas: any;
-    private Territories: any;
-    private UpdatedModel: any;
+    private SalesPeople : any;
+    private Distributors : any;
+    private Areas : any;
+    private Territories : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService){
         this.getFilteredDistributors = this.getFilteredDistributors.bind(this);
         this.getFilteredTerritories = this.getFilteredTerritories.bind(this);
     }
@@ -23,8 +21,8 @@ export class SalesPersonComponent implements OnInit {
     async ngOnInit() {
         this.SalesPeople = await this.InventoryService.GetSalesPeople();
         this.Areas = await this.InventoryService.GetAreas();
-        this.Territories = await this.InventoryService.GetTerritories();
-        this.Distributors = await this.InventoryService.GetDistributors();
+        this.Territories= await this.InventoryService.GetTerritories();
+        this.Distributors =  await this.InventoryService.GetDistributors();
     }
 
     async AddSalesPerson(value) {
@@ -33,7 +31,7 @@ export class SalesPersonComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateSalesPerson() {
@@ -59,10 +57,10 @@ export class SalesPersonComponent implements OnInit {
     }
 
     onEditorPreparing(e) {
-        if (e.parentType === "dataRow" && e.dataField === "territoryId") {
+        if(e.parentType === "dataRow" && e.dataField === "territoryId") {
             e.editorOptions.disabled = (typeof e.row.data.areaId !== "number");
         }
-        if (e.parentType === "dataRow" && e.dataField === "distributorId") {
+        if(e.parentType === "dataRow" && e.dataField === "distributorId") {
             e.editorOptions.disabled = (typeof e.row.data.territoryId !== "number");
         }
     }

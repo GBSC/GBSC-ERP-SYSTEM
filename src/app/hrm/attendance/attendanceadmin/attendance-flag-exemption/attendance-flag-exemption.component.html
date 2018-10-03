@@ -5,7 +5,7 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Attendance Flag </h3>
+              <h3 class="m-portlet__head-text">Attendance Flag Exemption </h3>
             </div>
           </div>
         </div>
@@ -32,13 +32,13 @@
                 <dxi-column dataField="date" dataType="date" format="shortDate" ></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
 
-                <dxi-column dataField="attendanceFlagId" caption="Attendance Flag" [width]="450">
-                  <dxo-lookup [dataSource]="data.attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                  <dxo-lookup [dataSource]="attendancesetupservice?.attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
                   </dxo-lookup>
                   </dxi-column>
 
-                <dxi-column dataField="flagTypeId" caption="Flag Type" [width]="450">
-                  <dxo-lookup [dataSource]="data.flagtype" displayExpr="name" valueExpr="flagTypeId">
+                <dxi-column dataField="flagTypeId" caption="Flag Type">
+                  <dxo-lookup [dataSource]="attendancesetupservice?.flagtype" displayExpr="name" valueExpr="flagTypeId">
                   </dxo-lookup>
                   </dxi-column>  
               </dx-data-grid>

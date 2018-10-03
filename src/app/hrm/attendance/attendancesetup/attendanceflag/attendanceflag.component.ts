@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
+import { AttendancesetupService } from '../../../../core';
 
 @Component({
     selector: 'app-attendanceflag',
@@ -15,6 +15,15 @@ export class AttendanceflagComponent implements OnInit {
         await this.attendancesetupservice.getattendanceflag();
         this.attendanceflag = this.attendancesetupservice.attendanceflag
         console.log(this.attendanceflag);
+
+        await this.attendancesetupservice.getflagCategories();
+        let flagcategory = this.attendancesetupservice.flagCategory;
+
+        await this.attendancesetupservice.getflagEffecttypes();
+        let flageffect = this.attendancesetupservice.flagEffecttype;
+
+        await this.attendancesetupservice.getflagvalues();
+        let flagvalue = this.attendancesetupservice.flagvalue;
 
     }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-mode-of-payment',
@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./mode-of-payment.component.scss']
 })
 export class ModeOfPaymentComponent implements OnInit {
-    private ModeOfPayments: any;
-    private UpdatedModel: any;
+    private ModeOfPayments : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(private InventoryService : InventorysystemService) { }
 
     async ngOnInit() {
         this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
@@ -23,7 +23,7 @@ export class ModeOfPaymentComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateModeOfPayment() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmployeeService } from '../../../core';
 
 
 

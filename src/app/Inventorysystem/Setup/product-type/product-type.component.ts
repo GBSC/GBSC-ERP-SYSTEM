@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-product-type',
@@ -8,8 +8,8 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
 })
 export class ProductTypeComponent implements OnInit {
     private ProductTypes: any;
-    private UpdatedModel: any;
-
+    private UpdatedModel : any;
+    
     constructor(private InventoryService: InventorysystemService) {
 
     }
@@ -24,7 +24,7 @@ export class ProductTypeComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async UpdateProductType() {

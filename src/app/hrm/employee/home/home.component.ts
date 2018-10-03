@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employeehome',
@@ -32,7 +32,7 @@ export class EmployeeHomeComponent implements OnInit {
 
     ngOnInit() {
         this.tabItem = this.tabs[this.showingCurrently];
-
+        
         let currentUser = this.employeeService.getBasicInfoOfCurrentUser();
     }
 

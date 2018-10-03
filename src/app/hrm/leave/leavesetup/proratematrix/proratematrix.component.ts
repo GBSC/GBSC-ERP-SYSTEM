@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
+import { LeaveSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-proratematrix',
@@ -14,6 +14,9 @@ export class ProratematrixComponent implements OnInit {
         await this.leavesetupservice.getproratematrix();
         this.proratematrix = this.leavesetupservice.proratematrix
         console.log(this.proratematrix);
+
+        await this.leavesetupservice.getAllleavepolicy();
+        let typeofleave = this.leavesetupservice.leavepolicy;
 
     }
 

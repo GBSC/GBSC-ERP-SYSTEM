@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { Territory } from '../../models/Setup/Territory';
+import { InventorysystemService } from '../../../core';
 import { DxDataGridModule, DxPopupModule } from "devextreme-angular";
 
 
@@ -10,13 +9,13 @@ import { DxDataGridModule, DxPopupModule } from "devextreme-angular";
     styleUrls: ['./distributor.component.scss']
 })
 export class DistributorComponent implements OnInit {
-    private Distributors: any;
-    private Territories: any;
-    private UnassignedTerritories: any;
-    private UpdatedModel: any;
-    private DataSource: any;
+    private Distributors : any;
+    private Territories : any;
+    private UnassignedTerritories : any;
+    private UpdatedModel : any;
+    private DataSource : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }
@@ -44,7 +43,7 @@ export class DistributorComponent implements OnInit {
 
     UpdateModel(value) {
         //console.log(value);
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
         //console.log(this.UpdatedModel);
     }
 

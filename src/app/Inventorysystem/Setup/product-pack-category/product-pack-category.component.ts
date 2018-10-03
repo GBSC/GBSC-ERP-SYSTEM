@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-product-pack-category',
@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
     styleUrls: ['./product-pack-category.component.scss']
 })
 export class ProductPackCategoryComponent implements OnInit {
-    private PackCategories: any;
-    private UpdatedModel: any;
+    private PackCategories : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
@@ -25,7 +25,7 @@ export class ProductPackCategoryComponent implements OnInit {
 
     UpdateModel(value) {
         //console.log(value);
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = { ...value.oldData, ...value.newData};
         //console.log(this.UpdatedModel);
     }
 

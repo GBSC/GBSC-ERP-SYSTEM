@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-
+import { InventorysystemService } from '../../../core';
 @Component({
     selector: 'app-product-pack-size',
     templateUrl: './product-pack-size.component.html',
     styleUrls: ['./product-pack-size.component.scss']
 })
 export class ProductPackSizeComponent implements OnInit {
-    private PackSizes: any;
-    private UpdatedModel: any;
+    private PackSizes : any;
+    private UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private InventoryService : InventorysystemService) {
 
     }
 
     async ngOnInit() {
-        this.PackSizes = await this.InventoryService.GetPackSizes();
+       this.PackSizes = await this.InventoryService.GetPackSizes();
     }
 
     async AddPackSize(value) {

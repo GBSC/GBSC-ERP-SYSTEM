@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employees',
@@ -36,8 +36,10 @@ export class EmployeesComponent implements OnInit {
         this.router.navigate(['hrm/employee/registration'])
     }
 
-    onupdate() {
+    onupdate(d) {
 
-        this.router.navigate(['hrm/employee/registration'])
+        // this.router.navigate(['hrm/employee/registration'])
+    console.log(d);
+    
     }
 }

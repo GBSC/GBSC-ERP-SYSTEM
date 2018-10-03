@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
+import { InventorysystemService } from '../../../core';
 
 @Component({
     selector: 'app-inventory',
@@ -9,9 +9,9 @@ import { InventorysystemService } from '../../service/Inventorysystem.service';
 export class InventoryComponent implements OnInit {
     private InventoryItems: any;
     private Inventories: any;
-    private UpdatedModel: any;
-    private UnassignedItems: any;
-    private DataSource: any;
+    private UpdatedModel : any;
+    private UnassignedItems : any;
+    private DataSource : any;
 
     constructor(private InventoryService: InventorysystemService) {
         this.onPopupShown = this.onPopupShown.bind(this);
@@ -36,7 +36,7 @@ export class InventoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
+        this.UpdatedModel = {...value.oldData, ...value.newData};
     }
 
     async AddInventory(value) {

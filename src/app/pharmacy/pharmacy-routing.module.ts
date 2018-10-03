@@ -15,7 +15,7 @@ import { ReturnmedicineComponent } from './returnmedicine/returnmedicine.compone
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
-    path: 'Pharmacy',
+    path: 'pharmacy',
     component: RootComponent,
 
     children: [

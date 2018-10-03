@@ -12,37 +12,16 @@ import { PharmacyModule } from '../pharmacy/pharmacy.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
 import { AuthGuardService } from '../account/auth/auth-guard.service';
+import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
 
 
 
 const routes: Routes = [
     {
         "path": "",
-        "component": ThemeComponent,
-        "canActivate": [AuthGuardService],
-        "children": [
-            {
-                "path": "index",
-                "loadChildren": ".\/pages\/subheader--type-search\/index\/index.module#IndexModule"
-            },
-            {
-                "path": "inner",
-                "loadChildren": ".\/pages\/default\/inner\/inner.module#InnerModule"
-            },
-            {
-                "path": "profile",
-                "loadChildren": ".\/pages\/default\/profile\/profile.module#ProfileModule"
-            },
-            {
-                "path": "404",
-                "loadChildren": ".\/pages\/default\/not-found\/not-found.module#NotFoundModule"
-            },
-            {
-                "path": "",
-                "redirectTo": "index",
-                "pathMatch": "full"
-            }
-        ]
+        "redirectTo":"employee/dashboard",
+        "pathMatch":"full",
+        "canActivate": [AuthGuardService]
     },
     {
         "path": "**",

@@ -16,18 +16,27 @@ import { RootComponent } from './root/root.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { UnitComponent } from './unit/unit.component';
 import { IssuanceComponent } from './issuance/issuance.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { MenuComponent } from './shared/menu/menu.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
   imports: [
     CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        routing,
-        DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule,
+    FormsModule,
+    ReactiveFormsModule,
+    routing,
+    DxButtonModule,
+    DevExtremeModule,
+    DxDataGridModule,
   ],
   declarations: [
+    FooterComponent,
+    HeaderComponent,
+    MenuComponent,
+    RootComponent,
     AddnewsupplierComponent,
     CategoryComponent,
     GoodsreceiptComponent,
@@ -42,6 +51,10 @@ import { IssuanceComponent } from './issuance/issuance.component';
     UnitComponent
   ],
   providers: [
+    {
+      provide: UrlSerializer,
+      useClass: LowerCaseUrlSerializer
+  },
     PharmacyService
   ]
 })

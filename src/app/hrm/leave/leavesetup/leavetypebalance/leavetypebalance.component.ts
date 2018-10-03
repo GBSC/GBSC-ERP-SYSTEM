@@ -1,36 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
+import { EmployeeService, LeaveSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-leavetypebalance',
-  templateUrl: './leavetypebalance.component.html',
-  styleUrls: ['./leavetypebalance.component.scss']
+    selector: 'app-leavetypebalance',
+    templateUrl: './leavetypebalance.component.html',
+    styleUrls: ['./leavetypebalance.component.scss']
 })
 export class LeavetypebalanceComponent implements OnInit {
 
-  public leavetypebalance: any;
-  constructor(public leavesetupservice:LeaveSetupService) { }
+    public leavetypebalance: any;
+    constructor(public leavesetupservice: LeaveSetupService, public employeeservice: EmployeeService) { }
 
-  async ngOnInit() {
-      await this.leavesetupservice.getAllleavetypebalance(); 
-      this.leavetypebalance = this.leavesetupservice.leavetypebalance
-      console.log(this.leavetypebalance);
-      
-  }
+    async ngOnInit() {
+        await this.leavesetupservice.getAllleavetypebalance();
+        this.leavetypebalance = this.leavesetupservice.leavetypebalance
+        console.log(this.leavetypebalance);
 
-  async addleavetypebalance(value) { 
-      this.leavesetupservice.addleavetypebalance(value.data);
-    }
-    
-    async updateleavetypebalance(value) { 
-      this.leavesetupservice.updateleavetypebalance(value);  
-   
+        await this.leavesetupservice.getAllleavetype();
+        let typeofleave = this.leavesetupservice.leavetype;
+
+        await this.employeeservice.GetAllEmployees();
+        let employe = this.employeeservice.employeereg;
+
     }
 
-    async deleteleavetypebalance(value) {  
-      this.leavesetupservice.Deleteleavetypebalance(value.key); 
-   
-   
+
+    async addleavetypebalance(value) {
+        this.leavesetupservice.addleavetypebalance(value.data);
+    }
+
+    async updateleavetypebalance(value) {
+        this.leavesetupservice.updateleavetypebalance(value);
+
+    }
+
+    async deleteleavetypebalance(value) {
+        this.leavesetupservice.Deleteleavetypebalance(value.key);
     }
 
 }

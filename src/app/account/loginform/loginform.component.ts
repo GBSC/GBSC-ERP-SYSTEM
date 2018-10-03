@@ -1,10 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm, FormBuilder } from '@angular/forms';
-import { Loginform } from '../../models/loginform';
-
-import { AccountService } from '../service.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AccountService } from '../../core';
+import { Loginform } from '../../core/Models/Auth/loginform';
 
 @Component({
     selector: 'app-loginform',
@@ -22,8 +21,8 @@ export class LoginformComponent implements OnInit {
     constructor(private formBuilder: FormBuilder, private accountservice: AccountService, private router: Router, private route: ActivatedRoute) {
 
         this.loginForm = formBuilder.group({
-            'Username' : ['rootadmin', Validators.required],
-            'Password' : ['Pass@2018', Validators.required]
+            'Username': ['rootadmin', Validators.required],
+            'Password': ['Pass@2018', Validators.required]
         });
     }
 

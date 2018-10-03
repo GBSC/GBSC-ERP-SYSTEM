@@ -44,6 +44,12 @@ export class RootComponent implements OnInit {
             }
         });
     }
+    
+    ngAfterViewInit() {
+        this._script.loadScripts('app-widgets-bootstrap-datetimepicker',
+            ['assets/demo/default/custom/components/forms/widgets/bootstrap-datetimepicker.js']);
+
+    }
 
 
 }

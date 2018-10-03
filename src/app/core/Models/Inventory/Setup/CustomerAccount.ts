@@ -1,0 +1,20 @@
+export interface CustomerAccount {
+    customerAccountId: number,
+    name: string,
+    accountCode: string,
+    accountTitle: string,
+    accountNumber: string,
+    routingCode: string,
+    swiftCode: string,
+    remitCode: string,
+    remitKey: string,
+    uniqueId: string,
+    remitTyoe: string,
+    branchCode: string,
+    branch: string,
+    branchContactNumber: string,
+    branchAddress: string,
+    glCode: string,
+    active: boolean,
+    customerTypeId: number
+}

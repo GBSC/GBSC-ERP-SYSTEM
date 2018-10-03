@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import {BioChemistryService} from '../../services/bio-chemistry.service';
-import {TestUnit} from '../../../../models/testunit';
+import { BioChemistryService } from '../../../../core';
+import { TestUnit } from '../../../../core/Models/HIMS/testunit';
 
 @Component({
-  selector: 'app-testunit',
-  templateUrl: './testunit.component.html',
-  styleUrls: ['./testunit.component.scss']
+    selector: 'app-testunit',
+    templateUrl: './testunit.component.html',
+    styleUrls: ['./testunit.component.scss']
 })
 export class TestunitComponent implements OnInit {
 
-  private units : TestUnit;
+    private units: TestUnit;
 
-  constructor(private bioChemistryService : BioChemistryService) { }
+    constructor(private bioChemistryService: BioChemistryService) { }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.bioChemistryService.getUnits().subscribe(units=> this.units = units);
+        this.bioChemistryService.getUnits().subscribe(units => this.units = units);
 
-  }
+    }
 
 
-  addNewTest(test){
+    addNewTest(test) {
 
-    this.bioChemistryService.addUnit(test.data);
+        this.bioChemistryService.addUnit(test.data);
 
-  }
+    }
 
 }

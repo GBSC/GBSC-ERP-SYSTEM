@@ -1,35 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
+import { AttendancesetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-flageffecttype',
-  templateUrl: './flageffecttype.component.html',
-  styleUrls: ['./flageffecttype.component.scss']
+    selector: 'app-flageffecttype',
+    templateUrl: './flageffecttype.component.html',
+    styleUrls: ['./flageffecttype.component.scss']
 })
 export class FlageffecttypeComponent implements OnInit {
 
-   
-  public flageffecttype: any;
-  constructor(public attendancesetupservice:AttendancesetupService) { }
 
-  async ngOnInit() {
-      await this.attendancesetupservice.getflagEffecttypes(); 
-      this.flageffecttype = this.attendancesetupservice.flagEffecttype
-      console.log(this.flageffecttype);
-      
-  }
+    public flageffecttype: any;
+    constructor(public attendancesetupservice: AttendancesetupService) { }
 
-  async addflageffecttype(value) { 
-      this.attendancesetupservice.addflagEffecttype(value.data);
+    async ngOnInit() {
+        await this.attendancesetupservice.getflagEffecttypes();
+        this.flageffecttype = this.attendancesetupservice.flagEffecttype
+        console.log(this.flageffecttype);
+
     }
-    
+
+    async addflageffecttype(value) {
+        this.attendancesetupservice.addflagEffecttype(value.data);
+    }
+
     async updateflageffecttype(value) {
-      console.log(value); 
-      this.attendancesetupservice.updateflagEffecttype(value);   
+        console.log(value);
+        this.attendancesetupservice.updateflagEffecttype(value);
     }
 
-    async deleteflageffecttype(value) { 
-      this.attendancesetupservice.DeleteflagEffecttype(value.key);
+    async deleteflageffecttype(value) {
+        this.attendancesetupservice.DeleteflagEffecttype(value.key);
     }
 
 }

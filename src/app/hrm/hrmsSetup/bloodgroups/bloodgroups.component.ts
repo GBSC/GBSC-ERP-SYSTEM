@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { BloodGroup } from '../models/bloodgroup,interface';
+import { HttpClient } from '@angular/common/http'; 
+import { SetupService } from '../../../core';
 
 @Component({
     selector: 'app-bloodgroups',

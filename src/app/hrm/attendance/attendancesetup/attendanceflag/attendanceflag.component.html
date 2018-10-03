@@ -19,7 +19,7 @@
                (onRowUpdated)="updateattendanceflag($event)"
                (onRowRemoved)="deleteattendanceflag($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Decimal Rounding Matrix" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -29,21 +29,20 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="flagCategoryId" caption="Flag Category" [width]="450">
-                  <dxo-lookup [dataSource]="data.flagcategory" displayExpr="Name" valueExpr="flagCategoryId">
+                <dxi-column dataField="flagCategoryId" caption="Flag Category">
+                  <dxo-lookup [dataSource]="attendancesetupservice?.flagCategory" displayExpr="name" valueExpr="flagCategoryId">
                   </dxo-lookup> 
                 </dxi-column>
-                <dxi-column dataField="title"></dxi-column> 
-                <dxi-column dataField="flagValueId" caption="Effect By" [width]="450">
-                    <dxo-lookup [dataSource]="data.flageffecttype" displayExpr="Name" valueExpr="flagEffectTypeId">
+                <dxi-column dataField="title" caption="Name"></dxi-column> 
+                <dxi-column dataField="flagEffectTypeId" caption="Effect By">
+                    <dxo-lookup [dataSource]="attendancesetupservice?.flagEffecttype" displayExpr="name" valueExpr="flagEffectTypeId">
                     </dxo-lookup> 
                   </dxi-column>
-                  <dxi-column dataField="flagValueId" caption="Flag Value" [width]="450">
-                      <dxo-lookup [dataSource]="data.flagvalue" displayExpr="Name" valueExpr="flagValueId">
+                  <dxi-column dataField="flagValueId" caption="Flag Value">
+                      <dxo-lookup [dataSource]="attendancesetupservice?.flagvalue" displayExpr="value" valueExpr="flagValueId">
                       </dxo-lookup> 
                     </dxi-column>
-                <dxi-column dataType="boolean" dataField="active" caption ="Is Active"></dxi-column>  
-                
+                <dxi-column dataType="boolean" dataField="isActive" caption ="Is Active"></dxi-column>   
               </dx-data-grid>
             </div>
             </div>

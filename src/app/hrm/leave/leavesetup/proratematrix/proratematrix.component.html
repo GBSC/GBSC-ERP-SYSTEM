@@ -14,7 +14,7 @@
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
                [dataSource]="proratematrix"
-               keyExpr="proRateMatrixId"
+               keyExpr="prorateMatrixId"
                (onRowInserted)="addprmatrix($event)" 
               (onRowUpdated)="updateprmatrix($event)"
                 (onRowRemoved)="deleteprmatrix($event)">
@@ -29,13 +29,13 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="fromRange"></dxi-column> 
-                <dxi-column dataField="tillRange"></dxi-column> 
+                <dxi-column dataField="from"></dxi-column> 
+                <dxi-column dataField="till"></dxi-column> 
                 <dxi-column dataField="percentage"></dxi-column> 
-                <dxi-column dataField="leavePolicyId" caption="Leave Type" [width]="450">
-                  <dxo-lookup [dataSource]="data.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                <!-- <dxi-column dataField="leavePolicyId" caption="Leave Type" [width]="450">
+                  <dxo-lookup [dataSource]="leavesetupservice?.leavepolicy" displayExpr="title" valueExpr="leavePolicyId">
                   </dxo-lookup> 
-                  </dxi-column>
+                  </dxi-column> -->
               </dx-data-grid>
             </div>
         </div>

@@ -180,7 +180,7 @@ export class EmployeeService {
     async addEmployee() {
 
         // let allFormDataInOne = this.prepareFormData();
-
+console.log(this.EmpbasicForm.value);
         let newuser: any = await this.ApiService.post(`${this.baseUrl}/Users/AddUser`, this.EmpbasicForm.value).toPromise();
         console.log(newuser);
         localStorage.setItem('id', newuser.userID);

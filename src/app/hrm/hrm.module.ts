@@ -134,6 +134,16 @@ import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratu
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { LeaveService } from '../core/Services/HRM/Leave/leave.service';
+import { SetupService } from '../core/Services/HRM/Setup/setup.service';
+import { AttendanceService } from '../core/Services/HRM/Attendance/attendance.service';
+import { AttendancesetupService } from '../core/Services/HRM/Attendance/attendancesetup.service';
+import { HrmsService } from '../core/Services/HRM/Setup/hrms.service';
+import { LeaveSetupService } from '../core/Services/HRM/Leave/leaveSetup.service';
+import { EmployeeService } from '../core/Services/HRM/Employee/employee.service';
+import { SystemAdministrationService } from '../core';
+import { PayrollService } from '../core/Services/HRM/Payroll/payroll.service';
+import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.service';
 
 
 @NgModule({
@@ -296,7 +306,14 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
 
 
     ],
-    exports: []
+    exports: [],
+
+    providers: [LeaveService, SetupService,
+        AttendanceService,
+        AttendancesetupService, HrmsService,
+        LeaveSetupService, EmployeeService,
+        SystemAdministrationService,
+    PayrollService,PayrollSetupService] 
 
 })
 export class HrmModule { }

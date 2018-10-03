@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService, PharmacyService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 @Component({
     selector: 'app-inventory',

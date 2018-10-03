@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 
 @Component({
@@ -13,17 +13,17 @@ export class SupplierComponent implements OnInit {
     public Supplier: any;
     public UpdatedModel : any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private PharmacyService: PharmacyService) {
        
     }
 
     async  ngOnInit() {
-        this.Supplier = await this.InventoryService.GetSuppliers();
+        this.Supplier = await this.PharmacyService.GetSuppliers();
     }
 
     async AddSupplier(value) {
-        await this.InventoryService.AddSupplier(value.data);
-        this.Supplier = await this.InventoryService.GetSuppliers();
+        await this.PharmacyService.AddSupplier(value.data);
+        this.Supplier = await this.PharmacyService.GetSuppliers();
     }
 
     UpdateModel(value) {
@@ -31,11 +31,11 @@ export class SupplierComponent implements OnInit {
     }
 
     async UpdateSupplier() {
-        return await this.InventoryService.UpdateSupplier(this.UpdatedModel);
+        return await this.PharmacyService.UpdateSupplier(this.UpdatedModel);
     }
 
     async DeleteSupplier(value) {
-        return await this.InventoryService.DeleteSupplier(value.key);
+        return await this.PharmacyService.DeleteSupplier(value.key);
     }
 
 

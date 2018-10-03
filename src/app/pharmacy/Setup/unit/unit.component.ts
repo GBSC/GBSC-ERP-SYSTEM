@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 
 @Component({
@@ -11,17 +11,17 @@ export class UnitComponent implements OnInit {
     private Units : any;
     private UpdatedModel : any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private PharmacyService : PharmacyService) {
 
     }
 
     async ngOnInit() {
-       this.Units = await this.InventoryService.GetUnits();
+       this.Units = await this.PharmacyService.GetUnits();
     }
 
     async AddUnit(value) {
-        await this.InventoryService.AddUnit(value.data);
-        this.Units = await this.InventoryService.GetUnits();
+        await this.PharmacyService.AddUnit(value.data);
+        this.Units = await this.PharmacyService.GetUnits();
     }
 
     UpdateModel(value) {
@@ -29,11 +29,11 @@ export class UnitComponent implements OnInit {
     }
 
     async UpdateUnit() {
-        return await this.InventoryService.UpdateUnit(this.UpdatedModel);
+        return await this.PharmacyService.UpdateUnit(this.UpdatedModel);
     }
 
     async DeleteUnit(value) {
-        return await this.InventoryService.DeleteUnit(value.key);
+        return await this.PharmacyService.DeleteUnit(value.key);
     }
 
 }

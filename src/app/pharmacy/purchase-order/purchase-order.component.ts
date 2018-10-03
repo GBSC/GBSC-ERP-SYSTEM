@@ -11,49 +11,29 @@ import { PharmacyService } from '../../core';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    public PurchaseOrderForm: FormGroup;
+    private PurchaseOrder: any;
+    private Supplier: any;
+    private User: any;
 
-    public supplierdata: any;
+    constructor(private PharmacyService: PharmacyService) {
 
-    constructor(private formBuilder: FormBuilder, public InventorysystemServiceobj: PharmacyService) {
-        this.PurchaseOrderForm = this.formBuilder.group({
-            'OrderDate': ['', Validators.required],
-            'OrderNumber': ['', Validators.required],
-            'OrderRemarks': ['', Validators.required],
-            'OrderType': ['', Validators.required],
-            'SalesTax': ['', Validators.required],
-            'SupplierId': ['', Validators.required]
-        });
     }
 
     async ngOnInit() {
-
-        this.supplierdata = await this.InventorysystemServiceobj.GetSuppliers();
-        console.log(this.supplierdata);
-
-
-        let y = await this.InventorysystemServiceobj.GetPurchaseOrders();
-        console.log(y);
-
+        this.Supplier = await this.PharmacyService.GetSuppliers();
+        this.PurchaseOrder = await this.PharmacyService.GetPurchaseOrders();
     }
 
-
-
-    async onSubmit(value) {
-        await this.InventorysystemServiceobj.AddPurchaseOrder(value);
+    async AddPurchaseOrder(value) {
+        await this.PharmacyService.AddPurchaseOrder(value);
     }
 
     async UpdatePurchaseOrder(value) {
-        console.log(value.key);
-        await this.InventorysystemServiceobj.UpdatePurchaseOrder(value.key);
-
+        await this.PharmacyService.UpdatePurchaseOrder(value.key);
     }
 
     async DeletePurchaseOrder(value) {
-        console.log(value.key.purchaseOrderId);
-
-        await this.InventorysystemServiceobj.DeletePurchaseOrder(value.key.purchaseOrderId);
-
+        await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId);
     }
 
 }

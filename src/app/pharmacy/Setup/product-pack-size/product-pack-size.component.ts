@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
+
 @Component({
     selector: 'app-product-pack-size',
     templateUrl: './product-pack-size.component.html',
@@ -9,17 +10,17 @@ export class ProductPackSizeComponent implements OnInit {
     private PackSizes : any;
     private UpdatedModel : any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private PharmacyService : PharmacyService) {
 
     }
 
     async ngOnInit() {
-       this.PackSizes = await this.InventoryService.GetPackSizes();
+       this.PackSizes = await this.PharmacyService.GetPackSizes();
     }
 
     async AddPackSize(value) {
-        await this.InventoryService.AddPackSize(value.data);
-        this.PackSizes = await this.InventoryService.GetPackSizes();
+        await this.PharmacyService.AddPackSize(value.data);
+        this.PackSizes = await this.PharmacyService.GetPackSizes();
     }
 
     UpdateModel(value) {
@@ -27,11 +28,11 @@ export class ProductPackSizeComponent implements OnInit {
     }
 
     async UpdatePackSize() {
-        return await this.InventoryService.UpdatePackSize(this.UpdatedModel);
+        return await this.PharmacyService.UpdatePackSize(this.UpdatedModel);
     }
 
     async DeletePackSize(value) {
-        return await this.InventoryService.DeletePackSize(value.key);
+        return await this.PharmacyService.DeletePackSize(value.key);
     }
 
 }

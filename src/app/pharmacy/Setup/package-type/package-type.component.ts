@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 @Component({
     selector: 'app-package-type',
@@ -10,17 +10,17 @@ export class PackageTypeComponent implements OnInit {
     private PackageTypes: any;
     private UpdatedModel : any;
     
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     async ngOnInit() {
-        this.PackageTypes = await this.InventoryService.GetPackageTypes();
+        this.PackageTypes = await this.PharmacyService.GetPackageTypes();
     }
 
     async AddPackageType(value) {
-        await this.InventoryService.AddPackageType(value.data);
-        this.PackageTypes = await this.InventoryService.GetPackageTypes();
+        await this.PharmacyService.AddPackageType(value.data);
+        this.PackageTypes = await this.PharmacyService.GetPackageTypes();
     }
 
     UpdateModel(value) {
@@ -28,11 +28,11 @@ export class PackageTypeComponent implements OnInit {
     }
 
     async UpdatePackageType() {
-        return await this.InventoryService.UpdatePackageType(this.UpdatedModel);
+        return await this.PharmacyService.UpdatePackageType(this.UpdatedModel);
     }
 
     async DeletePackageType(value) {
-        return await this.InventoryService.DeletePackageType(value.key);
+        return await this.PharmacyService.DeletePackageType(value.key);
     }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 @Component({
     selector: 'app-return-reason',
@@ -10,17 +10,17 @@ export class ReturnReasonComponent implements OnInit {
     private ReturnReasons : any;
     private UpdatedModel : any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private PharmacyService : PharmacyService) {
 
     }
 
     async ngOnInit() {
-        this.ReturnReasons = await this.InventoryService.GetReturnReasons();
+        this.ReturnReasons = await this.PharmacyService.GetReturnReasons();
     }
 
     async AddReturnReason(value) {
-        await this.InventoryService.AddReturnReason(value.data);
-        this.ReturnReasons = await this.InventoryService.GetReturnReasons();
+        await this.PharmacyService.AddReturnReason(value.data);
+        this.ReturnReasons = await this.PharmacyService.GetReturnReasons();
     }
 
     UpdateModel(value) {
@@ -28,11 +28,11 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     async UpdateReturnReason() {
-        return await this.InventoryService.UpdateReturnReason(this.UpdatedModel);
+        return await this.PharmacyService.UpdateReturnReason(this.UpdatedModel);
     }
 
     async DeleteReturnReason(value) {
-        return await this,this.InventoryService.DeleteReturnReason(value.key);
+        return await this,this.PharmacyService.DeleteReturnReason(value.key);
     }
 
 }

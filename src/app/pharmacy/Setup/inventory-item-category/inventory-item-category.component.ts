@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { PharmacyService } from '../../../core';
 
 @Component({
     selector: 'app-inventory-item-category',
@@ -10,21 +10,21 @@ export class InventoryItemCategoryComponent implements OnInit {
     private ItemCategories : any;
     private UpdatedModel : any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private PharmacyService : PharmacyService) {
 
     }
 
     async ngOnInit() {
-        this.ItemCategories = await this.InventoryService.GetInventoryItemCategories();
+        this.ItemCategories = await this.PharmacyService.GetInventoryItemCategories();
     }
 
     async AddItemCategory(value) {
-        await this.InventoryService.AddInventoryItemCategory(value.data);
-        this.ItemCategories = await this.InventoryService.GetInventoryItemCategories();
+        await this.PharmacyService.AddInventoryItemCategory(value.data);
+        this.ItemCategories = await this.PharmacyService.GetInventoryItemCategories();
     }
 
     async UpdateItemCategory() {
-        return await this.InventoryService.UpdateInventoryItemCategory(this.UpdatedModel);
+        return await this.PharmacyService.UpdateInventoryItemCategory(this.UpdatedModel);
     }
 
     UpdateModel(value) {
@@ -32,7 +32,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     async DeleteItemCategory(value) {
-        return await this.InventoryService.DeleteInventoryItemCategory(value.key);
+        return await this.PharmacyService.DeleteInventoryItemCategory(value.key);
     }
 
 }

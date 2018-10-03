@@ -21,24 +21,24 @@ export class InventoryItemComponent implements OnInit {
     private PackageTypes : any;
     private UpdatedModel : any;
     
-    constructor(private InventoryService : PharmacyService) {
+    constructor(private PharmacyService : PharmacyService) {
 
     }
 
     async ngOnInit() {
-        // this.InventoryItems = await this.InventoryService.GetInventoryItems();
-        // this.Units = await this.InventoryService.GetUnits();
-        // this.PackTypes = await this.InventoryService.GetPackTypes();
-        // this.PackSizes = await this.InventoryService.GetPackSizes();
-        // this.PackCategories = await this.InventoryService.GetPackCategories();
-        // this.ProductTypes = await this.InventoryService.GetProductTypes();
-        // this.InventoryItemCategories = await this.InventoryService.GetInventoryItemCategories();
-        // this.PackageTypes = await this.InventoryService.GetPackageTypes();
+        this.InventoryItems = await this.PharmacyService.GetInventoryItems();
+        this.Units = await this.PharmacyService.GetUnits();
+        this.PackTypes = await this.PharmacyService.GetPackTypes();
+        this.PackSizes = await this.PharmacyService.GetPackSizes();
+        this.PackCategories = await this.PharmacyService.GetPackCategories();
+        this.ProductTypes = await this.PharmacyService.GetProductTypes();
+        this.InventoryItemCategories = await this.PharmacyService.GetInventoryItemCategories();
+        this.PackageTypes = await this.PharmacyService.GetPackageTypes();
     }
 
     async AddInventoryItem(value) {
-        await this.InventoryService.AddInventoryItem(value.data);
-        this.InventoryItems = await this.InventoryService.GetInventoryItems();
+        await this.PharmacyService.AddInventoryItem(value.data);
+        this.InventoryItems = await this.PharmacyService.GetInventoryItems();
     }
 
     UpdateModel(value) {
@@ -46,11 +46,11 @@ export class InventoryItemComponent implements OnInit {
     }
 
     async UpdateInventoryItem() {
-        return await this.InventoryService.UpdateInventoryItem(this.UpdatedModel);
+        return await this.PharmacyService.UpdateInventoryItem(this.UpdatedModel);
     }
 
     async DeleteInventoryItem(value) {
-        return await this.InventoryService.DeleteInventoryItem(value.key);
+        return await this.PharmacyService.DeleteInventoryItem(value.key);
     }
 
 }

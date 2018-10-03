@@ -7,9 +7,26 @@ import { PharmacyService } from '../../core';
 })
 export class GoodsreceiptComponent implements OnInit {
 
-    constructor() { }
+    private GRN: any;
 
-    ngOnInit() {
+    constructor(private PharmacyService: PharmacyService) {
+
+    }
+
+    async ngOnInit() {
+        this.GRN = await this.PharmacyService.GetGRN();
+    }
+
+    async AddGRN(value) {
+        await this.PharmacyService.AddGRN(value);
+    }
+
+    async UpdateGRN(value) {
+        await this.PharmacyService.UpdateGRN(value.Key);
+    }
+
+    async DeleteGRN(value) {
+        await this.PharmacyService.DeleteGRN(value.Key.GRNId);
     }
 
 }

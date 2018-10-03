@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventorysystemModule } from '../../Inventorysystem.module';
 import { InventorysystemService } from '../../../core';
 import { FormGroup } from '@angular/forms';
-import { Region } from '../../models/Setup/Region';
+import { Region } from '../../../core/Models/Inventory/Setup/Region';
 
 @Component({
     selector: 'app-region',

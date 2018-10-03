@@ -1,7 +1,4 @@
-//import { Spouse } from "src/app/models/spouse";
-import { Spouse } from '../../../src/app/models/spouse'
-// import { Reference } from "src/app/models/reference";
-
+import { Spouse } from "./spouse";
 export class Patient {
 
     PatientId: number;
@@ -35,8 +32,6 @@ export class Patient {
     display: string;
     Document: Document;
     partner: Spouse;
-    // Reference : Reference;
-
 }
 
 

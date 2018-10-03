@@ -1,4 +1,4 @@
-import { MasterPayrollDetail } from "../model/MasterPayrollDetail";
+import { MasterPayrollDetail } from "./masterPayrollDetail";
 
 export class MasterPayroll {
 

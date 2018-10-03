@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
-import { CustomerWarehouse } from '../../models/Setup/CustomerWarehouse';
-import { CustomerType } from '../../models/Setup/CustomerType';
-import { Customer } from '../../models/Setup/Customer';
-import { Distributor } from '../../models/Setup/Distributor';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
 
 @Component({
     selector: 'app-sales-order',

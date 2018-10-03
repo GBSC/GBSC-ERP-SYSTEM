@@ -17,6 +17,8 @@ import { EmployeeService } from './core/Services/HRM/Employee/employee.service';
 import { LeaveSetupService } from './core/Services/HRM/Leave/leaveSetup.service';
 import { LeaveService } from './core/Services/HRM/Leave/leave.service';
 import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
+import { ApiService } from './core/Services/api.service';
+import { CoreModule } from './core/core.module';
 
 
 
@@ -37,7 +39,7 @@ import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService, SetupService, EmployeeService, LeaveSetupService, LeaveService, HrmsService],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

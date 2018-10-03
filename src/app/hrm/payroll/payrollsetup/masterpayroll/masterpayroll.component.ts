@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService, EmployeeService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MasterPayrollDetail } from '../../../model/MasterPayrollDetail';
-import { MasterPayroll } from '../../../model/masterPayroll';
+import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
+import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 
 @Component({
   selector: 'app-masterpayroll',

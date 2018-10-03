@@ -1,29 +1,26 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Patient } from '../../../models/patient';
-import { Document } from '../../../models/document';
-import { Appointment } from '../../../models/appointment';
-import { Consultant } from '../../../models/consultant';
-import { himsSetupTest } from '../../../models/himsSetupTest';
-import { AppointmentTest } from '../../../models/appointmentTest';
-import { Visits } from '../../../models/visits'
-import { PatientVital } from '../../../models/patientvitals';
-import { VisitNature } from '../../../models/VisitNature';
-import { VisitNote } from '../../../models/visitnote';
-import { Diagnoses } from '../../../models/diagnoses'
-import { VisitDiagnosis } from '../../../models/visitdiagnoses';
-import { VisitTest } from '../../../models/visittest'
-
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Reference } from '../../../models/reference';
-import { Spouse } from '../../../models/spouse';
-
-import { Package } from '../../../models/packages';
 import { ApiService } from '../api.service';
+import { Patient } from '../../Models/HIMS/patient';
+import { Reference } from '../../Models/HIMS/reference';
+import { Spouse } from '../../Models/HIMS/spouse';
+import { Appointment } from '../../Models/HIMS/appointment';
+import { Consultant } from '../../Models/HIMS/consultant';
+import { himsSetupTest } from '../../Models/HIMS/himsSetupTest';
+import { AppointmentTest } from '../../Models/HIMS/appointmentTest';
+import { Visits } from '../../Models/HIMS/visits';
+import { VisitDiagnosis } from '../../Models/HIMS/visitdiagnoses';
+import { VisitTest } from '../../Models/HIMS/visittest';
+import { PatientVital } from '../../Models/HIMS/patientvitals';
+import { Package } from '../../Models/HIMS/packages';
+import { VisitNote } from '../../Models/HIMS/visitnote';
+import { VisitNature } from '../../Models/HIMS/visitnature';
+import { Diagnoses } from '../../Models/HIMS/diagnoses';
 
 
 @Injectable()

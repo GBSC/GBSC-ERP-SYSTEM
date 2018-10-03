@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Patient } from '../../../../app/models/patient';
-import { AppointmentTest } from '../../../../app/models/appointmentTest'
 import {
     DxDataGridModule, DxLoadPanelModule,
     DxDataGridComponent,
@@ -9,6 +7,7 @@ import {
 } from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
 import { PatientService } from '../../../core';
+import { Patient } from '../../../core/Models/HIMS/patient';
 
 @Component({
     selector: 'app-appointmentschedule',

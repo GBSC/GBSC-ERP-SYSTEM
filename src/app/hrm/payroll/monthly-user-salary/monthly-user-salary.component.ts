@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserRosterAttendance } from '../../model/userRosterAttendance';
-import { MonthlyUserSalary } from '../../model/monthlyUserSalary';
 import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
+import { UserRosterAttendance } from '../../../core/Models/HRM/userRosterAttendance';
+import { MonthlyUserSalary } from '../../../core/Models/HRM/monthlyUserSalary';
 
 @Component({
   selector: 'app-monthly-user-salary',

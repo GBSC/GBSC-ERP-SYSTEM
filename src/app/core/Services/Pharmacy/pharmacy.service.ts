@@ -4,18 +4,18 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { MAX_LENGTH_VALIDATOR } from '@angular/forms/src/directives/validators';
-import { SalesOrder } from '../../../pharmacy/models/SalesOrder';
-import { SalesOrderItem } from '../../../pharmacy/models/SalesOrderItem';
-import { PurchaseOrder } from '../../../pharmacy/models/PurchaseOrder';
-import { PurchaseOrderItem } from '../../../pharmacy/models/PurchaseOrderItem';
-import { GRN } from '../../../pharmacy/models/GRN';
-import { Inventory } from '../../../pharmacy/models/Inventory';
-import { InventoryItem } from '../../../pharmacy/models/InventoryItem';
-import { InventoryItemCategory } from '../../../pharmacy/models/InventoryItemCategory';
-import { Supplier } from '../../../pharmacy/models/Supplier';
-import { Unit } from '../../../pharmacy/models/Unit';
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
+import { SalesOrder } from '../../Models/Pharmacy/SalesOrder';
+import { SalesOrderItem } from '../../Models/Pharmacy/SalesOrderItem';
+import { PurchaseOrder } from '../../Models/Pharmacy/PurchaseOrder';
+import { PurchaseOrderItem } from '../../Models/Pharmacy/PurchaseOrderItem';
+import { GRN } from '../../Models/Pharmacy/GRN';
+import { Inventory } from '../../Models/Pharmacy/Inventory';
+import { InventoryItem } from '../../Models/Pharmacy/InventoryItem';
+import { InventoryItemCategory } from '../../Models/Pharmacy/InventoryItemCategory';
+import { Supplier } from '../../Models/Pharmacy/Supplier';
+import { Unit } from '../../Models/Pharmacy/Unit';
 
 
 @Injectable()

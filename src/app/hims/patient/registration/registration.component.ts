@@ -1,13 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { Patient } from '../../../models/patient';
 import { PatientService } from '../../../core';
 import { getLocaleDateTimeFormat } from '@angular/common';
 import { visitValue } from '@angular/compiler/src/util';
-import { Loginform } from '../../../models/loginform';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Loginform } from '../../../core/Models/Auth/loginform';
 
 
 

@@ -15,6 +15,11 @@ import { RootComponent } from './root/root.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { UnitComponent } from './unit/unit.component';
 import { IssuanceComponent } from './issuance/issuance.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { MenuComponent } from './shared/menu/menu.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
   imports: [
@@ -30,15 +35,24 @@ import { IssuanceComponent } from './issuance/issuance.component';
     AddnewsupplierComponent,
     CategoryComponent,
     GoodsreceiptComponent,
-    HomeComponent,
     InventoryItemComponent,
     IssuanceComponent,
     ItemdetailComponent,
     PurchaseOrderComponent,
     ReturnmedicineComponent,
-    RootComponent,
     SupplierComponent,
-    UnitComponent
+    RootComponent,
+    HomeComponent,
+    UnitComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent
+  ],
+  providers: [
+    {
+      provide: UrlSerializer,
+      useClass: LowerCaseUrlSerializer
+    }
   ]
 })
 export class PharmacyModule { }

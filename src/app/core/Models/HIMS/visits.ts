@@ -1,5 +1,6 @@
-import { PatientVital } from '../models/patientvitals'
+
 import { VisitDiagnosis } from './visitdiagnoses';
+import { PatientVital } from './patientvitals';
 export interface Visits {
 
     VisitId: number,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InventorysystemService } from '../../../core';
-import { CustomerAccount } from '../../models/Setup/CustomerAccount';
+import { CustomerAccount } from '../../../core/Models/Inventory/Setup/CustomerAccount';
 
 @Component({
     selector: 'app-customer-account',

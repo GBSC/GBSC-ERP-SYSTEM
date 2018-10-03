@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { InventorysystemService } from '../../../core';
-import { Area } from '../../models/Setup/Area';
 import { DxDataGridComponent } from "devextreme-angular";
 import { ValidationStatesModule } from '../../../theme/pages/default/components/forms/validation/validation-states/validation-states.module';
+import { Area } from '../../../core/Models/Inventory/Setup/Area';
 
 @Component({
     selector: 'app-area',

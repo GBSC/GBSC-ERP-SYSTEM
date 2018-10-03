@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Visits } from '../../../models/visits';
+import { Visits } from '../../../core/Models/HIMS/visits';
 
 
 

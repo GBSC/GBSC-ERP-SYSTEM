@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Consultant } from '../../../models/consultant';
-import { Patient } from '../../../models/patient';
 import { DxSelectBoxComponent } from 'devextreme-angular';
-import { Spouse } from '../../../models/spouse';
-import { BioChemistryTestDetail } from '../../../models/biochemistrytestdetail';
-import { BioChemistryTest } from '../../../models/biochemistrytest';
-import { TestUnit } from '../../../models/testunit';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
 import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 import { ConsultantService, PatientService } from '../../../core';
+import { Consultant } from '../../../core/Models/HIMS/consultant';
+import { Spouse } from '../../../core/Models/HIMS/spouse';
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistrytestdetail';
+import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
+import { TestUnit } from '../../../core/Models/HIMS/testunit';
+import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
 
 @Component({
     selector: 'app-biochemistry',

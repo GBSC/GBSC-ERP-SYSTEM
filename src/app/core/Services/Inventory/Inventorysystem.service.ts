@@ -5,116 +5,57 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { MAX_LENGTH_VALIDATOR } from '@angular/forms/src/directives/validators';
 
-//SetupImports
-import { Area } from '../../../Inventorysystem/models/Setup/Area';
-import { Brand } from '../../../Inventorysystem/models/Setup/Brand';
-import { Comission } from '../../../Inventorysystem/models/Setup/Comission';
-import { Customer } from '../../../Inventorysystem/models/Setup/Customer';
-import { CustomerAccount } from '../../../Inventorysystem/models/Setup/CustomerAccount';
-import { CustomerBank } from '../../../Inventorysystem/models/Setup/CustomerBank';
-import { CustomerPricePickLevel } from '../../../Inventorysystem/models/Setup/CustomerPricePickLevel';
-import { CustomerType } from '../../../Inventorysystem/models/Setup/CustomerType';
-import { CustomerWarehouse } from '../../../Inventorysystem/models/Setup/CustomerWarehouse';
-import { Distributor } from '../../../Inventorysystem/models/Setup/Distributor';
-import { Inventory } from '../../../Inventorysystem/models/Setup/Inventory';
-import { InventoryItem } from '../../../Inventorysystem/models/Setup/InventoryItem';
-import { InventoryItemCategory } from '../../../Inventorysystem/models/Setup/InventoryItemCategory';
-import { ItemPriceStructure } from '../../../Inventorysystem/models/Setup/ItemPriceStructure';
-import { ModeOfPayment } from '../../../Inventorysystem/models/Setup/ModeOfPayment';
-import { PackageType } from '../../../Inventorysystem/models/Setup/PackageType';
-import { PackCategory } from '../../../Inventorysystem/models/Setup/PackCategory';
-import { PackSize } from '../../../Inventorysystem/models/Setup/PackSize';
-import { PackType } from '../../../Inventorysystem/models/Setup/PackType';
-import { ProductType } from '../../../Inventorysystem/models/Setup/ProductType';
-import { Region } from '../../../Inventorysystem/models/Setup/Region';
-import { ReturnReason } from '../../../Inventorysystem/models/Setup/ReturnReason';
-import { SalesPerson } from '../../../Inventorysystem/models/Setup/SalesPerson';
-import { Supplier } from '../../../Inventorysystem/models/Setup/Supplier';
-import { Tax } from '../../../Inventorysystem/models/Setup/Tax';
-import { Territory } from '../../../Inventorysystem/models/Setup/Territory';
-import { Transport } from '../../../Inventorysystem/models/Setup/Transport';
-import { Unit } from '../../../Inventorysystem/models/Setup/Unit';
-
-//SalesImports
-import { SalesIndent } from '../../../Inventorysystem/models/Sales/SalesIndent';
-import { SalesIndentItem } from '../../../Inventorysystem/models/Sales/SalesIndentItem';
-import { SalesOrder } from '../../../Inventorysystem/models/Sales/SalesOrder';
-import { SalesOrderItem } from '../../../Inventorysystem/models/Sales/SalesOrderItem';
-import { DeliveryOrder } from '../../../Inventorysystem/models/Sales/DeliveryOrder';
-import { DeliveryOrderItem } from '../../../Inventorysystem/models/Sales/DeliveryOrderItem';
-import { DeliveryNote } from '../../../Inventorysystem/models/Sales/DeliveryNote';
-import { SalesInvoice } from '../../../Inventorysystem/models/Sales/SalesInvoice';
-import { SalesReturn } from '../../../Inventorysystem/models/Sales/SalesReturn';
-import { SalesReturnItem } from '../../../Inventorysystem/models/Sales/SalesReturnItem';
-
-//PurchaseImports
-import { PurchaseIndent } from '../../../Inventorysystem/models/Purchase/PurchaseIndent';
-import { PurchaseIndentItem } from '../../../Inventorysystem/models/Purchase/PurchaseIndentItem';
-import { PurchaseOrder } from '../../../Inventorysystem/models/Purchase/PurchaseOrder';
-import { PurchaseOrderItem } from '../../../Inventorysystem/models/Purchase/PurchaseOrderItem';
-import { PurchaseInvoice } from '../../../Inventorysystem/models/Purchase/PurchaseInvoice';
-import { GRN } from '../../../Inventorysystem/models/Purchase/GRN';
-import { PurchaseReturn } from '../../../Inventorysystem/models/Purchase/PurchaseReturn';
-import { PurchaseReturnItem } from '../../../Inventorysystem/models/Purchase/PurchaseReturnItem';
-
 import { ApiService } from '../api.service';
 import { Observable } from 'rxjs';
+import { SalesIndent } from '../../Models/Inventory/Sales/SalesIndent';
+import { SalesIndentItem } from '../../Models/Inventory/Sales/SalesIndentItem';
+import { DeliveryOrder } from '../../Models/Inventory/Sales/DeliveryOrder';
+import { DeliveryOrderItem } from '../../Models/Inventory/Sales/DeliveryOrderItem';
+import { DeliveryNote } from '../../Models/Inventory/Sales/DeliveryNote';
+import { SalesInvoice } from '../../Models/Inventory/Sales/SalesInvoice';
+import { SalesReturn } from '../../Models/Inventory/Sales/SalesReturn';
+import { SalesReturnItem } from '../../Models/Inventory/Sales/SalesReturnItem';
+import { PurchaseIndent } from '../../Models/Inventory/Purchase/PurchaseIndent';
+import { PurchaseIndentItem } from '../../Models/Inventory/Purchase/PurchaseIndentItem';
+import { PurchaseInvoice } from '../../Models/Inventory/Purchase/PurchaseInvoice';
+import { PurchaseReturn } from '../../Models/Inventory/Purchase/PurchaseReturn';
+import { PurchaseReturnItem } from '../../Models/Inventory/Purchase/PurchaseReturnItem';
+import { Area } from '../../Models/Inventory/Setup/Area';
+import { Brand } from '../../Models/Inventory/Setup/Brand';
+import { Comission } from '../../Models/Inventory/Setup/Comission';
+import { Customer } from '../../Models/Inventory/Setup/Customer';
+import { CustomerAccount } from '../../Models/Inventory/Setup/CustomerAccount';
+import { CustomerBank } from '../../Models/Inventory/Setup/CustomerBank';
+import { CustomerPricePickLevel } from '../../Models/Inventory/Setup/CustomerPricePickLevel';
+import { CustomerType } from '../../Models/Inventory/Setup/CustomerType';
+import { CustomerWarehouse } from '../../Models/Inventory/Setup/CustomerWarehouse';
+import { ItemPriceStructure } from '../../Models/Inventory/Setup/ItemPriceStructure';
+import { ModeOfPayment } from '../../Models/Inventory/Setup/ModeOfPayment';
+import { PackageType } from '../../Models/Inventory/Setup/PackageType';
+import { PackCategory } from '../../Models/Inventory/Setup/PackCategory';
+import { PackSize } from '../../Models/Inventory/Setup/PackSize';
+import { PackType } from '../../Models/Inventory/Setup/PackType';
+import { ProductType } from '../../Models/Inventory/Setup/ProductType';
+import { Region } from '../../Models/Inventory/Setup/Region';
+import { ReturnReason } from '../../Models/Inventory/Setup/ReturnReason';
+import { SalesPerson } from '../../Models/Inventory/Setup/SalesPerson';
+import { Tax } from '../../Models/Inventory/Setup/Tax';
+import { Territory } from '../../Models/Inventory/Setup/Territory';
+import { SalesOrder } from '../../Models/Inventory/Sales/SalesOrder';
+import { SalesOrderItem } from '../../Models/Inventory/Sales/SalesOrderItem';
+import { PurchaseOrder } from '../../Models/Inventory/Purchase/PurchaseOrder';
+import { PurchaseOrderItem } from '../../Models/Inventory/Purchase/PurchaseOrderItem';
+import { GRN } from '../../Models/Inventory/Purchase/GRN';
+import { Distributor } from '../../Models/Inventory/Setup/Distributor';
+import { Inventory } from '../../Models/Inventory/Setup/Inventory';
+import { InventoryItem } from '../../Models/Inventory/Setup/InventoryItem';
+import { InventoryItemCategory } from '../../Models/Inventory/Setup/InventoryItemCategory';
+import { Supplier } from '../../Models/Inventory/Setup/Supplier';
+import { Unit } from '../../Models/Inventory/Setup/Unit';
 
 
 @Injectable()
 export class InventorysystemService {
-
-    // //Purchase
-    // public PurchaseIndent: any;
-    // public PurchaseIndentItem: any;
-    // public PurchaseOrder: any;
-    // public PurchaseOrderItem: any;
-    // public PurchaseInvoice: any;
-    // public GRN: any;
-    // public PurchaseReturn: any;
-    // public PurchaseReturnItem: any;
-
-    // //Sales
-    // public SalesIndent: any;
-    // public SalesIndentItem: any;
-    // public SalesOrder: any;
-    // public SalesOrderItem: any;
-    // public DeliveryOrder: any;
-    // public DeliveryOrderItem: any;
-    // public DeliveryNote: any;
-    // public SalesInvoice: any;
-    // public SalesReturn: any;
-    // public SalesReturnItem: any;
-
-    // //Setup
-    // public Area: any;
-    // public Brand: any;
-    // public Comission: any;
-    // public Customer: any;
-    // public CustomerAccount: any;
-    // public CustomerBank: any;
-    // public CustomerPricePickLevel: any;
-    // public CustomerType: any;
-    // public CustomerWarehouse: any;
-    // public Distributor: any
-    // public Inventory: any;
-    // public InventoryItem: any;
-    // public InventoryItemCategory: any;
-    // public ItemPriceStructure: any;
-    // public ModeOfPayment: any;
-    // public PackageType: any;
-    // public PackCategory: any;
-    // public PackSize: any;
-    // public PackType: any;
-    // public ProductType: any;
-    // public Region: any;
-    // public ReturnReason: any;
-    // public SalesPerson: any;
-    // public Supplier: any;
-    // public Tax: any;
-    // public Territory: any;
-    // public Transport: any;
-    // public Unit: any;
 
     private readonly API_URL = 'inventory/api/';
     constructor(private http: HttpClient, private ApiService : ApiService) {

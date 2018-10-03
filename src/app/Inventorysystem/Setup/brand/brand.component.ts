@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
 import { InventorysystemService } from '../../../core';
-import { Brand } from '../../models/Setup/Brand';
+import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 
 @Component({
     selector: 'app-brand',

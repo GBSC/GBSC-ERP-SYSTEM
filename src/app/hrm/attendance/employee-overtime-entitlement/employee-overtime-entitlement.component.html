@@ -1,217 +1,217 @@
 <div class="m-content">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">
-                    Employee Overime Entitlement
-                </h3>
-              </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                  Employee Overime Entitlement
+              </h3>
             </div>
           </div>
-          <div class="m-portlet__body">
-  
-            <form [formGroup]="EmployeeEntitlementForm">
-  
-              <div class="form-group m-form__group row">
-                <div class="col-lg-8">
-                  <label>
-                   Employee:
-                  </label>
-                  <select class="form-control m-input" formControlName="UserId" id="">
-                    <option value="" disabled selected>-- Select Employee --</option>
-                    <option *ngFor ="let employee of employeeservice?.employeereg" [value]="employee.userId" >{{employee.firstName}}</option>
-           </select>
-                </div> 
-              </div>
-  
-              <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                        Employee Working Day Ot
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="m--space-50"></div>
+        </div>
+        <div class="m-portlet__body">
 
-              <form [formGroup]="WorkingDayOTForm">
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    OverTime Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                    <option value="" disabled selected>-- Select Type --</option>
-                    <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-           </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Include Ot Working:
-                  </label>
-                  <input type="checkbox" formControlName="IsIncludeOtWorking">
-                </div>
-              </div>  
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    Woking Ot Hours:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="WokingOtHours" placeholder="">
-                </div> 
-              </div>
-              </form>
+          <form [formGroup]="EmployeeEntitlementForm">
 
-              <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                        Employee Off Day Ot
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="m--space-50"></div>
-
-              <form [formGroup]="OffDayOTForm">
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    OverTime Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                    <option value="" disabled selected>-- Select Type --</option>
-                    <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-           </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Include Ot Working:
-                  </label>
-                  <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOff">
-                </div>
-              </div>
-  
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    Off Ot Hours:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="OffOtHours" placeholder="">
-                </div> 
+            <div class="form-group m-form__group row">
+              <div class="col-lg-8">
+                <label>
+                 Employee:
+                </label>
+                <select class="form-control m-input" formControlName="UserId" id="">
+                  <option value="" disabled selected>-- Select Employee --</option>
+                  <option *ngFor ="let employee of employeeservice?.employeereg" [value]="employee.userId" >{{employee.firstName}}</option>
+         </select>
               </div> 
-              </form>
+            </div>
 
-              <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                        Employee Incoming Ot
-                    </h3>
-                  </div>
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Employee Working Day Ot
+                  </h3>
                 </div>
               </div>
-              <div class="m--space-50"></div>
+            </div>
+            <div class="m--space-50"></div>
 
-              <form [formGroup]="IncomingOTForm">
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    OverTime Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                    <option value="" disabled selected>-- Select Type --</option>
-                    <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-           </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Include Ot Working:
-                  </label>
-                  <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtIncoming">
-                </div>
+            <form [formGroup]="WorkingDayOTForm">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  OverTime Type:
+                </label>
+                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                  <option value="" disabled selected>-- Select Type --</option>
+                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+         </select>
               </div>
-  
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    Incoming Ot Hours:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="IncomingOtHours" placeholder="">
-                </div> 
+              <div class="col-lg-6">
+                <label class="">
+                  Include Ot Working:
+                </label>
+                <input type="checkbox" formControlName="IsIncludeOtWorking">
               </div>
-              </form>
-
-              <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                        Employee Outgoing Ot
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="m--space-50"></div>
-
-              <form [formGroup]="OutgoingOTForm">
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    OverTime Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                    <option value="" disabled selected>-- Select Type --</option>
-                    <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-           </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Include Ot Working:
-                  </label>
-                  <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOutgoing">
-                </div>
-              </div>
-  
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    OverTimeTypeId:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="OutgoingOtHours" placeholder="">
-                </div> 
-              </div>
-              </form>
-   
-              <div class="m--space-50"></div> 
-              <div class="m-separator m-separator"></div>
-  
-              <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                <div class="m-form__actions m-form__actions--solid">
-                  <div class="row">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                      <button type="submit" class="btn btn-brand" (click)="addEmployeeEntitlement()">
-                        Submit
-                      </button>
-                      <button type="reset" class="btn btn-secondary">
-                        Cancel
-                      </button>
-                    </div>
-                    <div class="col-lg-4"></div>
-                  </div>
-                </div>
-              </div>
-  
+            </div>  
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Woking Ot Hours:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="WokingOtHours" placeholder="">
+              </div> 
+            </div>
             </form>
-          </div>
+
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Employee Off Day Ot
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-50"></div>
+
+            <form [formGroup]="OffDayOTForm">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  OverTime Type:
+                </label>
+                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                  <option value="" disabled selected>-- Select Type --</option>
+                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+         </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Include Ot Working:
+                </label>
+                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOff">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Off Ot Hours:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="OffOtHours" placeholder="">
+              </div> 
+            </div> 
+            </form>
+
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Employee Incoming Ot
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-50"></div>
+
+            <form [formGroup]="IncomingOTForm">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  OverTime Type:
+                </label>
+                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                  <option value="" disabled selected>-- Select Type --</option>
+                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+         </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Include Ot Working:
+                </label>
+                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtIncoming">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Incoming Ot Hours:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="IncomingOtHours" placeholder="">
+              </div> 
+            </div>
+            </form>
+
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Employee Outgoing Ot
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="m--space-50"></div>
+
+            <form [formGroup]="OutgoingOTForm">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  OverTime Type:
+                </label>
+                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                  <option value="" disabled selected>-- Select Type --</option>
+                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+         </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Include Ot Working:
+                </label>
+                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOutgoing">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  OverTimeTypeId:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="OutgoingOtHours" placeholder="">
+              </div> 
+            </div>
+            </form>
+ 
+            <div class="m--space-50"></div> 
+            <div class="m-separator m-separator"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                    <button type="submit" class="btn btn-brand" (click)="addEmployeeEntitlement()">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                  <div class="col-lg-4"></div>
+                </div>
+              </div>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
 
 
@@ -249,92 +249,92 @@
 
 <!-- <div class="m-content">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="m-portlet">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
-                                Employee OverTime Entitlement
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="m-portlet">
+              <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                          <h3 class="m-portlet__head-text">
+                              Employee OverTime Entitlement
+                          </h3>
+                      </div>
+                  </div>
+              </div>
+              <div class="m-portlet__body">
 
-                    <dx-data-grid id="gridContainer" [dataSource]="empoverTimeEntitlement"
-                    keyExpr="employeeOverTimeEntitlementId"
-                    (onRowInserted)="addEmployeeEntitlement($event)"
-                    (onRowUpdated)="updateempoverTimeEntitlement()"
-                    (onRowUpdating)="updatingempEntitlement($event)"
-                     [columnAutoWidth]="true" [showBorders]="true" [allowColumnReordering]="true">
-                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"></dxo-editing>
-                        <dxi-column dataField="userId" caption="Employee">
-                            <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
-                            </dxo-lookup>
-                        </dxi-column>
-                        <dxi-column caption="Overtime on Working Day" dataSource="empworkingot" keyExpr="employeeWorkingDayOtId">
-                            <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
-                            </dxi-column>
+                  <dx-data-grid id="gridContainer" [dataSource]="empoverTimeEntitlement"
+                  keyExpr="employeeOverTimeEntitlementId"
+                  (onRowInserted)="addEmployeeEntitlement($event)"
+                  (onRowUpdated)="updateempoverTimeEntitlement()"
+                  (onRowUpdating)="updatingempEntitlement($event)"
+                   [columnAutoWidth]="true" [showBorders]="true" [allowColumnReordering]="true">
+                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"></dxo-editing>
+                      <dxi-column dataField="userId" caption="Employee">
+                          <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                          </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column caption="Overtime on Working Day" dataSource="empworkingot" keyExpr="employeeWorkingDayOtId">
+                          <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
+                          </dxi-column>
+                        
+                          <dxi-column dataField="overTimeTypeId" caption="Type">
+                              <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                              </dxo-lookup>
+                          </dxi-column>
+
+                          <dxi-column caption="Type" dataField="wokingOtHours">
+                          </dxi-column>
+                      </dxi-column>
+
+                      <dxi-column caption="Overtime on Off Day" dataSource="empoffdayot" keyExpr="employeeOverTimeEntitlementId">
+                     
+                              <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking" dataType="boolean">
+                                  </dxi-column>
+                                
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                      </dxo-lookup>
+                                  </dxi-column>
+      
+                                  <dxi-column caption="Type" dataField="WokingOtHours">
+                                  </dxi-column>
+
+                      </dxi-column>
+                      <dxi-column caption="Overtime on Incoming" dataSource="incomingot" keyExpr="employeeIncomingOtId">
                           
-                            <dxi-column dataField="overTimeTypeId" caption="Type">
-                                <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
-                                </dxo-lookup>
-                            </dxi-column>
+                              <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
+                                  </dxi-column>
+                                
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                      </dxo-lookup>
+                                  </dxi-column>
+      
+                                  <dxi-column caption="Type" dataField="wokingOtHours">
+                                  </dxi-column>
 
-                            <dxi-column caption="Type" dataField="wokingOtHours">
-                            </dxi-column>
-                        </dxi-column>
-
-                        <dxi-column caption="Overtime on Off Day" dataSource="empoffdayot" keyExpr="employeeOverTimeEntitlementId">
-                       
-                                <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking" dataType="boolean">
-                                    </dxi-column>
-                                  
-                                    <dxi-column dataField="overTimeTypeId" caption="Type">
-                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
-                                        </dxo-lookup>
-                                    </dxi-column>
-        
-                                    <dxi-column caption="Type" dataField="WokingOtHours">
-                                    </dxi-column>
-
-                        </dxi-column>
-                        <dxi-column caption="Overtime on Incoming" dataSource="incomingot" keyExpr="employeeIncomingOtId">
-                            
-                                <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
-                                    </dxi-column>
-                                  
-                                    <dxi-column dataField="overTimeTypeId" caption="Type">
-                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
-                                        </dxo-lookup>
-                                    </dxi-column>
-        
-                                    <dxi-column caption="Type" dataField="wokingOtHours">
-                                    </dxi-column>
-
-                        </dxi-column>
-                        <dxi-column caption="Overtime on Out Going" dataSource="outgoingot" keyExpr="employeeOutgoingOtId">
-                            
-                                <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
-                                    </dxi-column>
-                                  
-                                    <dxi-column dataField="overTimeTypeId" caption="Type">
-                                        <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
-                                        </dxo-lookup>
-                                    </dxi-column>
-        
-                                    <dxi-column caption="Type" dataField="wokingOtHours">
-                                    </dxi-column>
-                                     
-                        </dxi-column>
-                    </dx-data-grid>
+                      </dxi-column>
+                      <dxi-column caption="Overtime on Out Going" dataSource="outgoingot" keyExpr="employeeOutgoingOtId">
+                          
+                              <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
+                                  </dxi-column>
+                                
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
+                                      </dxo-lookup>
+                                  </dxi-column>
+      
+                                  <dxi-column caption="Type" dataField="wokingOtHours">
+                                  </dxi-column>
+                                   
+                      </dxi-column>
+                  </dx-data-grid>
 
 
-                </div>
-            </div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-  -->
+-->

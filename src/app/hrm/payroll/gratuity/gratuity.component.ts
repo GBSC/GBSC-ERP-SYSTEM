@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../services/payrollsetup.service'; 
-import { PayrollService } from '../services/payroll.service';
-import { EmployeeService } from '../../employee/services/employee.service';
 import { Validators, FormBuilder } from '@angular/forms';
-import { GratuitySlabGratuity } from '../../model/gratuitySlabGratuity';
-import { GratuitySlab } from '../../model/gratuitySlab';
+import { EmployeeService, PayrollService, PayrollSetupService } from '../../../core';
+import { GratuitySlabGratuity } from '../../../core/Models/HRM/gratuitySlabGratuity';
+import { GratuitySlab } from '../../../core/Models/HRM/gratuitySlab';
 
 @Component({
   selector: 'app-gratuity',
@@ -63,10 +61,13 @@ export class GratuityComponent implements OnInit {
     console.log(this.gratuityslab);
   }
 
-  async addGratuity(value) { 
+  async addGratuity(value) {
+    console.log(value);
     let pushslab = new GratuitySlab();
-    pushslab = {...pushslab, ...value}; 
-    pushslab.gratuitySlabGratuities = this.gratuityslab; 
+    pushslab = {...pushslab, ...value};
+    console.log(this.gratuityslab);
+    pushslab.gratuitySlabGratuities = this.gratuityslab;
+    console.log(pushslab); 
    let x= await this.payrollservice.addgratuity(pushslab);
    console.log(x);
    this.GratuityForm.reset();

@@ -1,160 +1,160 @@
 <div class="m-content">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">
-                 Gratuity 
-                </h3>
-              </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+               Gratuity 
+              </h3>
             </div>
           </div>
-          <div class="m-portlet__body">
-  
-            <form [formGroup]="GratuityForm"> 
+        </div>
+        <div class="m-portlet__body">
 
+          <form [formGroup]="GratuityForm"> 
+
+
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label>
+                        Gratuity Amount:
+                    </label>
+                    <input type="number" class="form-control m-input" formControlName="GratuityAmount" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Total Salary:
+                    </label>
+                    <input type="number" class="form-control m-input" formControlName="TotalSalary" placeholder="0">
+                  </div>
+                </div>
 
                 <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
-                      <label>
-                          Gratuity Amount:
-                      </label>
-                      <input type="number" class="form-control m-input" formControlName="GratuityAmount" placeholder="0">
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="">
-                          Total Salary:
-                      </label>
-                      <input type="number" class="form-control m-input" formControlName="TotalSalary" placeholder="0">
-                    </div>
+                  <div class="col-lg-6">
+                    <label>
+                        From:
+                    </label>
+                    <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
                   </div>
-
-                  <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
-                      <label>
-                          From:
-                      </label>
-                      <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="">
-                          Total Salary:
-                      </label>
-                      <input type="date" class="form-control m-input" formControlName="To" placeholder="0">
-                    </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                        Total Salary:
+                    </label>
+                    <input type="date" class="form-control m-input" formControlName="To" placeholder="0">
                   </div>
+                </div>
 
 
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                   Gratuity Type:
-                  </label>
-                  <select class="form-control m-input" formControlName="GratuityTypeId" id="">
-                      <option value="" disabled selected>-- Select Gratuity Type --</option>
-                      <option *ngFor ="let gratutitytype of payrollsetupservice?.gratuitytype" [value]="gratutitytype.gratuityTypeId" >{{gratutitytype.name}}</option>
-             </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Leaving Reason:
-                  </label> 
-                      <select class="form-control m-input" formControlName="LeavingReasonId" id="">
-                          <option value="" disabled selected>-- Select Leaving Reason --</option>
-                          <option *ngFor ="let leavereason of payrollsetupservice?.leavingreason" [value]="leavereason.leavingReasonId" >{{leavereason.name}}</option>
-                 </select>
-                </div>
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                 Gratuity Type:
+                </label>
+                <select class="form-control m-input" formControlName="GratuityTypeId" id="">
+                    <option value="" disabled selected>-- Select Gratuity Type --</option>
+                    <option *ngFor ="let gratutitytype of payrollsetupservice?.gratuitytype" [value]="gratutitytype.gratuityTypeId" >{{gratutitytype.name}}</option>
+           </select>
               </div>
-
-
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                   Employee:
-                  </label>
-                  <select class="form-control m-input" formControlName="UserId" id="">
-                      <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor ="let user of Employeeservice?.employeereg" [value]="user.userId" >{{user.firstName}}</option>
-             </select>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                    Minimum Service Period:
-                  </label> 
-                      <select class="form-control m-input" formControlName="FundSetupId" id="">
-                          <option value="" disabled selected>-- Select Minimum Service Period --</option>
-                          <option *ngFor ="let fundsetup of payrollsetupservice?.fundsetup" [value]="fundsetup.fundSetupId" >{{fundsetup.minServicePeriod}}</option>
-                 </select>
-                </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Leaving Reason:
+                </label> 
+                    <select class="form-control m-input" formControlName="LeavingReasonId" id="">
+                        <option value="" disabled selected>-- Select Leaving Reason --</option>
+                        <option *ngFor ="let leavereason of payrollsetupservice?.leavingreason" [value]="leavereason.leavingReasonId" >{{leavereason.name}}</option>
+               </select>
               </div>
+            </div>
 
-              <div class="row">
-                  <div class="col-xl-12">
-                    <div class="m-portlet">
-                      <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                          <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Gratuity Slab</h3>
-                          </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                 Employee:
+                </label>
+                <select class="form-control m-input" formControlName="UserId" id="">
+                    <option value="" disabled selected>-- Select Employee --</option>
+                    <option *ngFor ="let user of Employeeservice?.employeereg" [value]="user.userId" >{{user.firstName}}</option>
+           </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Minimum Service Period:
+                </label> 
+                    <select class="form-control m-input" formControlName="FundSetupId" id="">
+                        <option value="" disabled selected>-- Select Minimum Service Period --</option>
+                        <option *ngFor ="let fundsetup of payrollsetupservice?.fundsetup" [value]="fundsetup.fundSetupId" >{{fundsetup.minServicePeriod}}</option>
+               </select>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12">
+                  <div class="m-portlet">
+                    <div class="m-portlet__head">
+                      <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                          <h3 class="m-portlet__head-text">Gratuity Slab</h3>
                         </div>
                       </div>
-                      <div class="m-portlet__body">
-                        <div class="m-section">
-                          <div class="m-section__content">
-                            <dx-data-grid id="gridContainer"
-                            [dataSource]="[]"
-                             keyExpr="gratuitySlabId"
-                             (onRowInserted)="gratuitySlab($event)" >
-                              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                                </dxo-popup>
-                              </dxo-editing>
-                              <dxo-filter-row [visible]="true"></dxo-filter-row>
-                              <dxo-header-filter [visible]="true"></dxo-header-filter>
-              
-                              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                              <dxo-paging [pageSize]="6"></dxo-paging>
-                              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                              </dxo-pager>  
-                              <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
-                                <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
-                                </dxo-lookup> 
-                              </dxi-column>
-                              <dxi-column dataField="slabAmount" caption="Amount"></dxi-column>
-                            </dx-data-grid>
-                          
-                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                      <div class="m-section">
+                        <div class="m-section__content">
+                          <dx-data-grid id="gridContainer"
+                          [dataSource]="[]"
+                           keyExpr="gratuitySlabId"
+                           (onRowInserted)="gratuitySlab($event)" >
+                            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                              <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                              </dxo-popup>
+                            </dxo-editing>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            
+                            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                            <dxo-paging [pageSize]="6"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                            </dxo-pager>  
+                            <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
+                              <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
+                              </dxo-lookup> 
+                            </dxi-column>
+                            <dxi-column dataField="slabAmount" caption="Amount"></dxi-column>
+                          </dx-data-grid>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-                    <div class="m--space-50"></div> 
-                    <div class="m-separator m-separator"></div>
-        
-                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                      <div class="m-form__actions m-form__actions--solid">
-                        <div class="row">
-                          <div class="col-lg-4"></div>
-                          <div class="col-lg-4">
-                            <button type="submit" class="btn btn-brand" (click)="addGratuity(GratuityForm.value)">
-                              Submit
-                            </button>
-                            <button type="reset" class="btn btn-secondary">
-                              Cancel
-                            </button>
-                          </div>
-                          <div class="col-lg-4"></div>
+            </div>
+                  <div class="m--space-50"></div> 
+                  <div class="m-separator m-separator"></div>
+      
+                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                          <button type="submit" class="btn btn-brand" (click)="addGratuity(GratuityForm.value)">
+                            Submit
+                          </button>
+                          <button type="reset" class="btn btn-secondary">
+                            Cancel
+                          </button>
                         </div>
+                        <div class="col-lg-4"></div>
                       </div>
                     </div>
-            </form>
-          </div>
+                  </div>
+          </form>
         </div>
       </div>
-    </div> 
     </div>
-    
+  </div> 
+  </div>
+  

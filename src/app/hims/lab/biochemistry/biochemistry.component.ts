@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConsultantService } from '../../sharedservices/consultant.service';
-import { Consultant } from '../../../models/consultant';
-import { Patient } from '../../../models/patient';
-import { PatientService } from '../../sharedservices/patient.service';
 import { DxSelectBoxComponent } from 'devextreme-angular';
-import { Spouse } from '../../../models/spouse';
-import { BioChemistryTestDetail } from '../../../models/biochemistrytestdetail';
-import { BioChemistryTest } from '../../../models/biochemistrytest';
-import { TestUnit } from '../../../models/testunit';
-import { BioChemistryService } from '../services/bio-chemistry.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
+import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
+import { ConsultantService, PatientService } from '../../../core';
+import { Consultant } from '../../../core/Models/HIMS/consultant';
+import { Spouse } from '../../../core/Models/HIMS/spouse';
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistrytestdetail';
+import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
+import { TestUnit } from '../../../core/Models/HIMS/testunit';
+import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
 
 @Component({
     selector: 'app-biochemistry',
@@ -20,7 +19,7 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 export class BiochemistryComponent implements OnInit {
 
     private consultants: Consultant;
-    private patients: Patient;
+    private patients: any;
     private spouse: Spouse;
     private patient: Patient;
     private testDetail: BioChemistryTestDetail[];
@@ -51,7 +50,7 @@ export class BiochemistryComponent implements OnInit {
         this.consultantService.getConsultants()
             .subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatient()
+        this.patientService.getPatientObservable()
             .subscribe(patients => this.patients = patients);
 
         this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);

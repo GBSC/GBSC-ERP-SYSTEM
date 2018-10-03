@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../api.service';
-import { InseminationPrep } from '../../../../models/inseminationprep';
+import { InseminationPrep } from '../../../Models/HIMS/inseminationprep';
 
 @Injectable()
 export class InseminationprepService {

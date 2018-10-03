@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BioChemistryService } from '../../services/bio-chemistry.service';
-import { TestUnit } from '../../../../models/testunit';
+import { BioChemistryService } from '../../../../core';
+import { TestUnit } from '../../../../core/Models/HIMS/testunit';
 
 @Component({
     selector: 'app-testunit',

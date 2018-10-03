@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { LeaveService } from '../../leave.service';
+import { LeaveSetupService, LeaveService} from '../../../../core';
 
 @Component({
     selector: 'app-proratematrix',
@@ -12,6 +11,7 @@ export class ProratematrixComponent implements OnInit {
     public leaveemppolicy: any;
     public leavepolicy: any;
     public promatrix: any;
+
     constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
@@ -29,7 +29,7 @@ export class ProratematrixComponent implements OnInit {
         this.leavesetupservice.addproratematrix(value.data);
     }
 
-     updatingpromatrix(value) {
+    updatingpromatrix(value) {
         this.promatrix = {...value.oldData, ...value.newData};
     }
    

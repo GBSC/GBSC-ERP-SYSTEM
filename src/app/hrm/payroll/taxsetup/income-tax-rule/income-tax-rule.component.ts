@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
- 
+import { PayrollSetupService } from '../../../../core';
+
 @Component({
   selector: 'app-income-tax-rule',
   templateUrl: './income-tax-rule.component.html',

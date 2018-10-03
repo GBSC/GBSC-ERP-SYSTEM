@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SuperadminserviceService } from '../superadminservice.service';
+import { SuperadminserviceService } from '../../core';
 
 
 @Component({

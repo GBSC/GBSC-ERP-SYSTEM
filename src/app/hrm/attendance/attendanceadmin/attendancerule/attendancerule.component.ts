@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../../services/attendance.service';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
-import { LeaveSetupService } from '../../../leave/leaveSetup.service'; 
-import { AttendanceRuleLeaveType } from '../../../model/AttendanceRuleLeaveType';
-import { AttendanceRule } from '../../../model/attendanceRule';
+import { AttendanceService, AttendancesetupService, LeaveSetupService, SetupService } from '../../../../core';
+import { AttendanceRuleLeaveType } from '../../../../core/Models/HRM/AttendanceRuleLeaveType';
+import { AttendanceRule } from '../../../../core/Models/HRM/attendanceRule';
 
 @Component({
     selector: 'app-attendancerule',
@@ -72,7 +69,6 @@ export class AttendanceruleComponent implements OnInit {
         console.log(attendanceRule);
         let r= await this.attendanceservice.addattendancerule(attendanceRule);
         console.log(r);
-
     }
 
     AttendanceRuleUpdating(value) {

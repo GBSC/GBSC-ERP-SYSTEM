@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { EmployeeService, LeaveSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-leavetypebalance',
@@ -11,7 +10,6 @@ export class LeavetypebalanceComponent implements OnInit {
 
     public leavetypebalance: any;
     public LeaveType: any;
-
     constructor(public leavesetupservice: LeaveSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -20,7 +18,7 @@ export class LeavetypebalanceComponent implements OnInit {
         console.log(this.leavetypebalance);
 
         this.LeaveType = await this.leavesetupservice.getAllleavetype();
-        
+
         await this.employeeservice.GetAllEmployees();
         let employe = this.employeeservice.employeereg;
 

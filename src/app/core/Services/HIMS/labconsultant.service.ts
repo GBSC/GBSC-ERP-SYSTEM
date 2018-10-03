@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ApiService } from '../api.service';
-import { Consultant } from '../../../models/consultant';
+import { Consultant } from '../../Models/HIMS/consultant';
 
 @Injectable()
 export class ConsultantService {

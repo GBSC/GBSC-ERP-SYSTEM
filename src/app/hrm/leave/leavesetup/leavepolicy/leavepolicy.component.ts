@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { EmployeeService, LeaveSetupService, SetupService } from '../../../../core';
 import { Router } from '@angular/router';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
 
 @Component({
     selector: 'app-leavepolicy',
@@ -83,15 +81,7 @@ export class LeavepolicyComponent implements OnInit {
 
         await this.hrsetupservice.getAllGroups();
         let groups = this.hrsetupservice.group;
-      
-
-        // this.groups = [
-        //     { checked: false, index: '01', name: 'N/A' },
-        //     { checked: true, index: '02', name: 'N/A' },
-        //     { checked: false, index: '03', name: 'N/A' },
-        //     { checked: false, index: '04', name: 'N/A' },
-        //     { checked: false, index: '05', name: 'N/A' }
-        // ]
+   
     }
 
     async addleavepolicy() {

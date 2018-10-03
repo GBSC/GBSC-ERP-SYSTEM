@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { AttendancesetupService, EmployeeService } from '../../../../core';
 
 @Component({
     selector: 'app-attendancerequestapprover',

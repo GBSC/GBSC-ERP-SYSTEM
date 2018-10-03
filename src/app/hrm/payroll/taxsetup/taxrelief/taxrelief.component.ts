@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-taxrelief',
@@ -9,7 +9,7 @@ import { PayrollSetupService } from '../../services/payrollsetup.service';
 export class TaxreliefComponent implements OnInit {
 
   public taxRelief: any;
-    updatingtaxRelief: any;
+  public  updatingtaxRelief: any;
 
   constructor(public payrollsetupservice: PayrollSetupService) { }
 

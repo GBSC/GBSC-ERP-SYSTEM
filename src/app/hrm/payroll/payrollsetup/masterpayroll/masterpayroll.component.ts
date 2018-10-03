@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
-import { EmployeeService } from '../../../employee/services/employee.service';
+import { PayrollSetupService, EmployeeService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MasterPayrollDetail } from '../../../model/MasterPayrollDetail';
-import { MasterPayroll } from '../../../model/masterPayroll';
+import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
+import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 
 @Component({
   selector: 'app-masterpayroll',
@@ -67,36 +66,6 @@ export class MasterpayrollComponent implements OnInit {
     await this.payrollsetupservice.getpayrolltypes();
     let payrolltype = this.payrollsetupservice.payrolltype;
   }
-
-  // addFieldValue() {
-  //   console.log(this.MasterDetailForm.value);
-
-  //   this.Masterdetail.push(
-  //     { "allowanceId": this.newAttribute.allowanceId }
-  //   );
-  //   console.log(this.Masterdetail);
-
-  //   this.MasterPayrollForm.value = {
-  //     ...this.MasterPayrollForm.value,
-  //     MasterPayrollDetails: this.Masterdetail
-  //   };
-  //   console.log(this.MasterPayrollForm.value);
-  //   this.fieldArray.push(this.newAttribute);
-  //   console.log(this.fieldArray);
-  // }
-
-  // deleteFieldValue(index) {
-  //   let y = this.fieldArray.filter(l => l.title == title);
-  //       this.leavesetupservice.leavetype.push(y[0]);
-  //       this.fieldArray.splice(index, 1);
-  // }
-
-  // selectLeaveType(e) {
-  //   let x = this.payrollsetupservice.allowance.filter(a => a.allowanceId == e.target.value);
-  //   this.newAttribute = x[0];
-  //   this.payrollsetupservice.allowance = this.payrollsetupservice.allowance.filter(a => a.allowanceId != e.target.value);
-
-  // }
 
 
   async addMasterPayrolldetail(value) {

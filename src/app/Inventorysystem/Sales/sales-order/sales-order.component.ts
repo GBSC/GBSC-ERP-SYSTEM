@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { CustomerWarehouse } from '../../models/Setup/CustomerWarehouse';
-import { CustomerType } from '../../models/Setup/CustomerType';
-import { Customer } from '../../models/Setup/Customer';
-import { Distributor } from '../../models/Setup/Distributor';
+import { InventorysystemService } from '../../../core/Services/Inventory/Inventorysystem.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
 
 @Component({
     selector: 'app-sales-order',
@@ -24,7 +21,7 @@ export class SalesOrderComponent implements OnInit {
     private CustomerWarehouses : any;
     private FilteredWarehouses : any
     private CustomerTypes : any;
-    private Distributors : Distributor[] =[];
+    private Distributors : any;
     private FilteredDistributor : Distributor;
     private DispAddress : string = "";
     private SalesOrderForm : FormGroup;

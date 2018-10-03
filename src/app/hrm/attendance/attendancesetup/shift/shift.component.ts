@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AttendancesetupService } from '../../services/attendancesetup.service';
-import { Shift } from '../../../model/shift';
-import { AssignRosterShift } from '../../../model/assignRosterShift';
+import { AttendancesetupService } from '../../../../core';
+import { AssignRosterShift } from '../../../../core/Models/HRM/assignRosterShift';
+import { Shift } from '../../../../core/Models/HRM/shift';
 
 @Component({
     selector: 'app-shift',
@@ -13,10 +13,9 @@ export class ShiftComponent implements OnInit {
  
     public ShiftForm: FormGroup;
     public shift: any;
-    private assignRoster: AssignRosterShift[];
+    private assignRoster: AssignRosterShift[]; 
     private AssignRosters : any;
- 
-    constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
+     constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 
@@ -44,7 +43,7 @@ export class ShiftComponent implements OnInit {
         let attendanceflag = this.attendancesetupservice.attendanceflag
 
         this.AssignRosters = await this.attendancesetupservice.getasignrosters();
-        //let rosterAssign = this.attendancesetupservice
+       
     }
 
     async assignroster(value) {
@@ -55,8 +54,10 @@ export class ShiftComponent implements OnInit {
 
     async addshift(value) { 
       let shifts = new Shift();
-      shifts = {...shifts, ...value}; 
-      shifts.AssignRosterShifts = this.assignRoster; 
+      shifts = {...shifts, ...value};
+      console.log(this.assignRoster);
+      shifts.AssignRosterShifts = this.assignRoster;
+      console.log(shifts);
       let s = await this.attendancesetupservice.addshift(shifts); 
       this.ShiftForm.reset();
       

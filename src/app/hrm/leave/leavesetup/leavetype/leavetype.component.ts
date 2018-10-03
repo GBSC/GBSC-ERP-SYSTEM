@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
+import { LeaveSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-leavetype',
@@ -13,8 +13,7 @@ export class LeavetypeComponent implements OnInit {
 
     async ngOnInit() {
         this.levetype =  await this.leavesetupservice.getAllleavetype();
-    //    this.leavesetupservice.leavetype
-    //     console.log(this.levetype);
+
 
     }
 

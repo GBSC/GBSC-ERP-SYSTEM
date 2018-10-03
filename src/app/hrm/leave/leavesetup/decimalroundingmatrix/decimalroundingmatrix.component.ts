@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../leaveSetup.service';
-import { LeaveService } from '../../leave.service';
+import { LeaveSetupService } from '../../../../core';
+import { LeaveService } from '../../../../core';
 
 @Component({
     selector: 'app-decimalroundingmatrix',

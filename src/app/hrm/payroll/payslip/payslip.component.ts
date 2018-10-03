@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PayrollService } from '../services/payroll.service';
-import { PayrollSetupService } from '../services/payrollsetup.service';
-import { EmployeeService } from '../../employee/services/employee.service';
-import { UserLoanPayslip } from '../../model/userLoanPayslip';
-import { PaySlip } from '../../model/payslip';
+import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
+import { UserLoanPayslip } from '../../../core/Models/HRM/userLoanPayslip';
+import { PaySlip } from '../../../core/Models/HRM/payslip';
 
 @Component({
   selector: 'app-payslip',
@@ -50,19 +48,16 @@ export class PayslipComponent implements OnInit {
 
     await this.payrollsetupservice.getuserloans();
     let userLoan = this.payrollsetupservice.userloan;
-
     await this.Employeeservice.GetAllEmployees();
     let User = this.Employeeservice.employeereg;
   }
 
   async userLoan(value) {
-    console.log(value);
     let data = value.data;
     this.userloan.push(data);
     console.log(this.userloan);
   }
 
-  // public xx : [] = [];
   async addPayslip(value) {
 
     let pushloanslip = new PaySlip();

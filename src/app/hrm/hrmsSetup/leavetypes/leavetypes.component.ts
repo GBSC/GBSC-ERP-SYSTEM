@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http'; 
 
@@ -10,15 +10,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeaveTypeComponent implements OnInit {
 
-    public leavetype: any; 
+    public leavetype: any;
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-        this.leavetype = await this.dataService.getAllLeaveType();
-        // this.leavetype = this.dataService.leavetype;
+        await this.dataService.getAllLeaveType();
+        this.leavetype = this.dataService.leavetype;
 
         // this.dataService.GetAllLeaveType().subscribe((data)=>this.leavetypes=data);
     }

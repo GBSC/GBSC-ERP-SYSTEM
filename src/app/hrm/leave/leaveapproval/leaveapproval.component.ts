@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveService } from '../leave.service';
-import { LeaveSetupService } from '../leaveSetup.service';
+import { LeaveService, LeaveSetupService } from '../../../core';
 
 @Component({
   selector: 'app-leaveapproval',

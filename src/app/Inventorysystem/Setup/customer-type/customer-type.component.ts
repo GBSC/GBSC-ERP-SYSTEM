@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../service/Inventorysystem.service';
-import { CustomerType } from '../../models/Setup/CustomerType';
+import { InventorysystemService } from '../../../core';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
     selector: 'app-customer-type',

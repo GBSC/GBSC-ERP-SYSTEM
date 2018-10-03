@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { PharmacyService } from './service/pharmacy.service';
 import { CategoryComponent } from './category/category.component';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { AddnewsupplierComponent } from './addnewsupplier/addnewsupplier.component';
@@ -40,22 +39,24 @@ import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
     AddnewsupplierComponent,
     CategoryComponent,
     GoodsreceiptComponent,
-    HomeComponent,
     InventoryItemComponent,
     IssuanceComponent,
     ItemdetailComponent,
     PurchaseOrderComponent,
     ReturnmedicineComponent,
-    RootComponent,
     SupplierComponent,
-    UnitComponent
+    RootComponent,
+    HomeComponent,
+    UnitComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent
   ],
   providers: [
     {
       provide: UrlSerializer,
       useClass: LowerCaseUrlSerializer
   },
-    PharmacyService
   ]
 })
 export class PharmacyModule { }

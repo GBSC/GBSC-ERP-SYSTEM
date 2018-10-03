@@ -13,6 +13,7 @@ import { PurchaseOrderComponent } from './purchase-order/purchase-order.componen
 import { UnitComponent } from './unit/unit.component';
 import { ReturnmedicineComponent } from './returnmedicine/returnmedicine.component';
 
+
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
     path: 'pharmacy',

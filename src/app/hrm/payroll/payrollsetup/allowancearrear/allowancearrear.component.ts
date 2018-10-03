@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
   selector: 'app-allowancearrear',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
-import { AccountService } from '../../../account/service.service';
+import { AccountService } from '../../../core';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
     logout()
     {
-        this.accountService.logout();
+        //this.accountService.logout();
     }
 
 }

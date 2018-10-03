@@ -1,11 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
- 
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http'; 
+import { SetupService } from '../../../core';
 @Component({
     selector: 'app-employeestatus',
     templateUrl: './employeestatus.component.html',

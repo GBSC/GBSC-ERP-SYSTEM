@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { InventorysystemService } from '../../Inventorysystem/service/Inventorysystem.service';
-import { PharmacyService } from '../service/pharmacy.service';
+import { PharmacyService } from '../../core';
 
 
 @Component({

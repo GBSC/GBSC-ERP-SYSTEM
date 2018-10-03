@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
-
- declare let mLayout: any;
+  declare let mLayout: any;
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -10,14 +9,9 @@ import { Helpers } from '../../../helpers';
 export class HeaderComponent implements OnInit {
  
     constructor() { }
-
-    ngOnInit() {
+     ngOnInit() {
     }
-
-    // ngAfterViewInit() {
-
-    //     mLayout.initHeader();
-
-    // }
-
-}
+     // ngAfterViewInit() {
+     //     mLayout.initHeader();
+     // }
+ }

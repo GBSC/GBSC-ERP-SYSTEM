@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {PatientService} from '../../../hims/patient/services/patient.services'
+import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Patient } from '../../../models/patient';
-import { Visits } from '../../../models/visits';
  import {Location} from '@angular/common';
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { Visits } from '../../../core/Models/HIMS/visits';
 
 
 

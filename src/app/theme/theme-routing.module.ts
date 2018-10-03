@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from "../auth/_guards/auth.guard";
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
@@ -11,8 +10,8 @@ import { HrmModule } from '../hrm/hrm.module';
 import { PharmacyModule } from '../pharmacy/pharmacy.module';
 import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
-import { AuthGuardService } from '../account/auth/auth-guard.service';
 import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
+import { AuthGuardService } from '../core';
 
 
 

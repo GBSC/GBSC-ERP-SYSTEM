@@ -25,11 +25,5 @@ export interface SalesOrder {
     SpecialDiscountAmount: number,
     ExtraDiscountPercentage: number,
     ExtraDiscountAmount: number,
-    UserId: number,
-    DeliveryOrderId: number,
-    SalesIndentId: number,
-    SalesPersonId: number,
-    ModeOfPaymentId: number,
-    CustomerId: number,
-    TaxId: number
+    UserId: number
 }

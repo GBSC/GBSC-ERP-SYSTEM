@@ -18,6 +18,5 @@ export interface PurchaseOrder {
     Remarks: string,
     Status: boolean,
     SupplierId: number,
-    PurchaseIndentId: number,
     UserId: number
 }

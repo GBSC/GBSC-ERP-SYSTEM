@@ -16,6 +16,14 @@ import { InventoryItem } from '../../Models/Pharmacy/InventoryItem';
 import { InventoryItemCategory } from '../../Models/Pharmacy/InventoryItemCategory';
 import { Supplier } from '../../Models/Pharmacy/Supplier';
 import { Unit } from '../../Models/Pharmacy/Unit';
+import { PackageType } from '../../Models/Pharmacy/PackageType';
+import { PackCategory } from '../../Models/Pharmacy/PackCategory';
+import { PackSize } from '../../Models/Pharmacy/PackSize';
+import { PackType } from '../../Models/Pharmacy/PackType';
+import { ProductType } from '../../Models/Pharmacy/ProductType';
+import { ReturnReason } from '../../Models/Pharmacy/ReturnReason';
+import { SalesReturnItem } from '../../Models/Pharmacy/SalesReturnItem';
+import { SalesReturn } from '../../Models/Pharmacy/SalesReturn';
 
 
 @Injectable()
@@ -59,6 +67,40 @@ export class PharmacyService {
 
     DeleteSalesOrderItem(id) : Observable<SalesOrderItem> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrderItem/' + id);
+    }
+
+    //SalesReturn
+    GetSalesReturns() : Observable<SalesReturn> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturns');
+    }
+
+    AddSalesReturn(SalesReturn: SalesReturn) : Observable<SalesReturn> {
+        return this.ApiService.post(this.API_URL + "Sales/AddSalesReturn", SalesReturn);
+    }
+
+    UpdateSalesReturn(SalesReturn: SalesReturn) : Observable<SalesReturn> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesReturn', SalesReturn);
+    }
+
+    DeleteSalesReturn(id) : Observable<SalesReturn> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturn/' + id);
+    }
+
+    //SalesReturnItem
+    GetSalesReturnItems() : Observable<SalesReturnItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnItems');
+    }
+
+    AddSalesReturnItem(SalesReturnItem: SalesReturnItem) : Observable<SalesReturnItem> {
+        return this.ApiService.post(this.API_URL + "Sales/AddSalesReturnItem", SalesReturnItem);
+    }
+
+    UpdateSalesReturnItem(SalesReturnItem: SalesReturnItem) : Observable<SalesReturnItem> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesReturnItem', SalesReturnItem);
+    }
+
+    DeleteSalesReturnItem(id) : Observable<SalesReturnItem> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturnItem/' + id);
     }
 
     //PurchaseOrder
@@ -161,6 +203,108 @@ export class PharmacyService {
 
     DeleteInventoryItemCategory(id) : Observable<InventoryItemCategory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCategory/' + id);
+    }
+
+    //PackageType
+    GetPackageTypes() : Observable<PackageType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackageTypes');
+    }
+
+    AddPackageType(PackageType: PackageType) : Observable<PackageType> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddPackageType', PackageType);
+    }
+
+    UpdatePackageType(PackageType: PackageType) : Observable<PackageType> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdatePackageType', PackageType);
+    }
+
+    DeletePackageType(id) : Observable<PackageType> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeletePackageType/' + id);
+    }
+
+    //PackCategory
+    GetPackCategories() : Observable<PackCategory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackCategories');
+    }
+
+    AddPackCategory(PackCategory: PackCategory) : Observable<PackCategory> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddPackCategory', PackCategory);
+    }
+
+    UpdatePackCategory(PackCategory: PackCategory) : Observable<PackCategory> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdatePackCategory', PackCategory);
+    }
+
+    DeletePackCategory(id) : Observable<PackCategory> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeletePackCategory/' + id);
+    }
+
+    //PackSize
+    GetPackSizes() : Observable<PackSize> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackSizes');
+    }
+
+    AddPackSize(PackSize: PackSize) : Observable<PackSize> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddPackSize', PackSize);
+    }
+
+    UpdatePackSize(PackSize: PackSize) : Observable<PackSize> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdatePackSize', PackSize);
+    }
+
+    DeletePackSize(id) : Observable<PackSize> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeletePackSize/' + id);
+    }
+
+    //PackType
+    GetPackTypes() : Observable<PackType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackTypes');
+    }
+
+    AddPackType(PackType: PackType) : Observable<PackType> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddPackType', PackType);
+    }
+
+    UpdatePackType(PackType: PackType) : Observable<PackType> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdatePackType', PackType);
+    }
+
+    DeletePackType(id) : Observable<PackType> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeletePackType/' + id);
+    }
+
+    //ProductType
+    GetProductTypes() : Observable<ProductType> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetProductTypes');
+    }
+
+    AddProductType(ProductType: ProductType) : Observable<ProductType> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddProductType', ProductType);
+    }
+
+    UpdateProductType(ProductType: ProductType) : Observable<ProductType> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateProductType', ProductType);
+    }
+
+    DeleteProductType(id) : Observable<ProductType> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteProductType/' + id);
+    }
+    
+    //ReturnReason
+    GetReturnReasons() : Observable<ReturnReason> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasons');
+    }
+
+    AddReturnReason(ReturnReason: ReturnReason) : Observable<ReturnReason> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddReturnReason', ReturnReason);
+    }
+
+    UpdateReturnReason(ReturnReason: ReturnReason) : Observable<ReturnReason> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateReturnReason', ReturnReason);
+    }
+
+    DeleteReturnReason(id) : Observable<ReturnReason> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteReturnReason/' + id);
     }
 
     //Supplier

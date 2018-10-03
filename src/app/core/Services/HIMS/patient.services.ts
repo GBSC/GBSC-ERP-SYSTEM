@@ -74,8 +74,8 @@ export class PatientService {
     public diagnoses: any;
 
 
-    private readonly API_URL = 'hims/api';
-    private readonly API_URL1 = 'http://localhost:58788/api';
+    private readonly API_URL = 'hims/api/';
+    //private readonly API_URL = 'http://localhost:58788/api/';
 
 
     dialogData: any;
@@ -96,7 +96,7 @@ export class PatientService {
     }
 
     getPatientObservable(): Observable<Patient> {
-        return this.ApiService.get(this.API_URL + '/patients/getpatients');
+        return this.ApiService.get(this.API_URL + 'patients/getpatients');
     }
 
     getPatientWithPartner(PatientId: number): Observable<Patient> {

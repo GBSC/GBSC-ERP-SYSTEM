@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../systemadministration/service/systemadministration.services';
+import { SystemAdministrationService } from '../../core';
 @Component({
     selector: 'app-department',
     templateUrl: './department.component.html',

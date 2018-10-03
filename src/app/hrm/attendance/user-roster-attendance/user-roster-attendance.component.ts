@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AttendanceService } from '../services/attendance.service';
+import { AttendanceService } from '../../../core';
 
 @Component({
     selector: 'app-user-roster-attendance',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PayrollSetupService } from '../../../../core';
 
 @Component({
     selector: 'app-allowance-deduction',

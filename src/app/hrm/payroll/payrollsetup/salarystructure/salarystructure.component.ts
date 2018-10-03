@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../services/payrollsetup.service';
-import { SetupService } from '../../../hrmsSetup/services/setup.service';
+import { PayrollSetupService, SetupService } from '../../../../core';
 
 @Component({
   selector: 'app-salarystructure',

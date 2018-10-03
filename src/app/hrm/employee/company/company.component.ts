@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { SetupService, EmployeeService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-employeecompany',
@@ -11,11 +11,38 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeCompanyComponent implements OnInit {
 
     @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
-
+   
     public EmpCompanyForm: any;
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService) { }
 
-    async ngOnInit() {
+    public id : any;
+    public Employee : any;
+    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService,  public router: Router, private route: ActivatedRoute) { }
+
+async ngOnInit() {
+
+        console.log(this.router.url);
+
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+
+                    this.employee.GetEmployee(this.id).subscribe((Employee) => {
+                       this.Employee = Employee
+                      //  let emp = this.Employee;
+                            
+                      
+                           console.log(Employee)
+
+                            
+                    });
+
+
+                    
+                    
+
+        
+
+        });
+
         await this.SetupServiceobj.getAllFunctions();
         let fnc = this.SetupServiceobj.function;
 
@@ -52,6 +79,12 @@ export class EmployeeCompanyComponent implements OnInit {
     async addcompanyinfo() {
         let cmp = await this.employee.addusercompany();
         console.log(cmp);
+    }
+    
+    async update(value)
+    {
+        let x = await this.employee.updateUserCompanyById(value);
+        console.log(x);
     }
 
 

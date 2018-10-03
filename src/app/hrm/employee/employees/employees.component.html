@@ -30,23 +30,25 @@
     <dxi-column dataField="lastName"></dxi-column>
     <dxi-column dataField="fatherName"></dxi-column>
     <dxi-column dataField="email"></dxi-column>
-    <dxi-column dataField="cnic"></dxi-column> 
-
+    <dxi-column dataField="cnic"></dxi-column>
+    <!-- <dxi-column dataField="designation"></dxi-column>
+    <dxi-column dataField="department"></dxi-column> -->
     <!-- <dxi-column caption="Edit" cellTemplate="chartCellTemplate"> </dxi-column>
     <div *dxTemplate="let d of 'chartCellTemplate'">
       <div class="chart-cell">
-        <dx-button (click)="getData(d)" text="edit">
+        <dx-button (click)="onupdate(d)" text="edit">
         </dx-button>
       </div>
     </div> -->
 
-    <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90"></dxi-column>
-    <div *dxTemplate="let d of 'chartCellTemplate'">
-      <div class="chart-cell">
-        <dx-button (click)="onupdate(d)" icon="add"></dx-button>
-       
-      </div>
-    </div>
+
+    <dxi-column caption="Edit" cellTemplate="chartCellTemplate" [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+<div *dxTemplate="let d of 'chartCellTemplate'">
+<div class="chart-cell">
+<dx-button (click)="getCurrentRowData(d)"   icon="edit"></dx-button>
+  </div>
+</div>
+
 
   </dx-data-grid>
 

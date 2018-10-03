@@ -16,8 +16,7 @@ import { TestunitComponent } from '../lab/labsetup/testunit/testunit.component';
 
 import { EmbryologistsComponent } from '../lab/labsetup/embryologists/embryologists.component'
 import { EmbryologycodesComponent } from '../lab/labsetup/embryologycodes/embryologycodes.component'
-import { ModuleGuardService } from '../../account/auth/module-guard.service';
-import { AuthGuardService } from '../../account/auth/auth-guard.service';
+import { AuthGuardService, ModuleGuardService } from '../../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 

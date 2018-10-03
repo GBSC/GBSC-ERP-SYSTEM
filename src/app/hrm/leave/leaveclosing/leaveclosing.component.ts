@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveService } from '../leave.service';
-import { LeaveSetupService } from '../leaveSetup.service'; 
-import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { SystemAdministrationService } from '../../services/systemadministration.services';
+import { LeaveService, SystemAdministrationService, LeaveSetupService, SetupService } from '../../../core';
 
 @Component({
   selector: 'app-leaveclosing',

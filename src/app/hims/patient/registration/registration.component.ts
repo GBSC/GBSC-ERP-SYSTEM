@@ -218,6 +218,7 @@ export class RegistrationComponent implements OnInit {
             this.referenceForm.value.patientReferenceId = this.Patient.patientReference.patientReferenceId
             await this.PatientServiceobj.updatePatientRef(value)
             console.log(value);
+            this.router.navigate(['/hims/patient/findpatient']);
         }
     }
 
@@ -239,6 +240,8 @@ export class RegistrationComponent implements OnInit {
             this.partnerForm.value.PartnerId = this.Patient.partner.partnerId;
             await this.PatientServiceobj.updatePatientSpouse(value)
             console.log(value);
+            this.router.navigate(['/hims/patient/findpatient']);
+
         }
 
     }
@@ -279,7 +282,9 @@ export class RegistrationComponent implements OnInit {
         let x = await this.PatientServiceobj.updatePatient(value);
         console.log(x);
 
-        console.log(value)
+        console.log(value);
+        this.router.navigate(['/hims/patient/findpatient']);
+
 
     }
 

@@ -10,6 +10,8 @@ import { EmployeeService } from '../../../employee/services/employee.service';
 export class LeavetypebalanceComponent implements OnInit {
 
     public leavetypebalance: any;
+    public LeaveType: any;
+
     constructor(public leavesetupservice: LeaveSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -17,9 +19,8 @@ export class LeavetypebalanceComponent implements OnInit {
         this.leavetypebalance = this.leavesetupservice.leavetypebalance
         console.log(this.leavetypebalance);
 
-        await this.leavesetupservice.getAllleavetype();
-        let typeofleave = this.leavesetupservice.leavetype;
-
+        this.LeaveType = await this.leavesetupservice.getAllleavetype();
+        
         await this.employeeservice.GetAllEmployees();
         let employe = this.employeeservice.employeereg;
 

@@ -99,16 +99,14 @@
  
             <div class="m--space-30"></div>
             <div class="row">
-              <div class="col-xl-12">
-                <div class="m-portlet">
+              <div class="col-xl-12"> 
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                       <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">Assign Roster</h3>
                       </div>
                     </div>
-                  </div>
-                  <div class="m-portlet__body">
+                  </div> 
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
@@ -128,14 +126,11 @@
                           </dxo-pager>  
                           <!-- <dxi-column dataField="description" caption="Description">  -->
 
-                              <dxi-column dataField="assignRosterId" caption="Leave Type">
+                              <dxi-column dataField="assignRosterId" caption="Assign Roster">
                                   <dxo-lookup [dataSource]="AssignRosters" displayExpr="description" valueExpr="assignRosterId">
                                   </dxo-lookup> 
                                   </dxi-column> 
                         </dx-data-grid>
-                      
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

@@ -30,7 +30,7 @@
                   <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
                   </dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="gratuityId" caption="Gratuity">
+                <dxi-column dataField="gratuityId" caption="Gratuity" [visible]="false">
                   <dxo-lookup [dataSource]="payrollsetupservice?.gratuity" displayExpr="gratuityAmount" valueExpr="gratuityId">
                   </dxo-lookup>
                 </dxi-column>

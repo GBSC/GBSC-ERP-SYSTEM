@@ -14,6 +14,7 @@ export class LeavepolicyComponent implements OnInit {
     public leavePolicyForm: FormGroup;
     public groups: any = [];
     public leavepolicy: any;
+    public leavetype: any;
     private updatingleavePolicy: any;
     private LeavePolicies : any;
 
@@ -71,8 +72,8 @@ export class LeavepolicyComponent implements OnInit {
         await this.leavesetupservice.getAllleaveyear();
         let leaveyear = this.leavesetupservice.leaveyear;
 
-        await this.leavesetupservice.getAllleavetype();
-        let levetype = this.leavesetupservice.leavetype;
+        this.leavetype = await this.leavesetupservice.getAllleavetype();
+        //let levetype = this.leavesetupservice.leavetype;
 
         await this.leavesetupservice.getAllleavedaytype();
         let levedaytype = this.leavesetupservice.leavedaytype;

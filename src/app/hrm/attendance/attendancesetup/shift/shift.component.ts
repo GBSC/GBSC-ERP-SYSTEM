@@ -53,15 +53,11 @@ export class ShiftComponent implements OnInit {
         console.log(this.assignRoster);
       }
 
-    async addshift(value) {
-       console.log(value);
+    async addshift(value) { 
       let shifts = new Shift();
-      shifts = {...shifts, ...value};
-      console.log(this.assignRoster);
-      shifts.AssignRosterShifts = this.assignRoster;
-      console.log(shifts);
-      let s = await this.attendancesetupservice.addshift(shifts);
-      console.log(s);
+      shifts = {...shifts, ...value}; 
+      shifts.AssignRosterShifts = this.assignRoster; 
+      let s = await this.attendancesetupservice.addshift(shifts); 
       this.ShiftForm.reset();
       
     }

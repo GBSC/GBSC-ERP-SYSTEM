@@ -1069,14 +1069,10 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leavetype = await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
-        return this.leavetype;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return await this.httpClient.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+       // return this.leavetype;
     }
 
-    // DEMO ONLY, you can find working methods below
     async addLeaveTypes(data) {
 
         let authToken = localStorage.getItem('auth_token');

@@ -48,12 +48,9 @@ export class GratuityslabComponent implements OnInit {
       console.log(value);
       let gratuityslab = new GratuitySlab();
       
-      gratuityslab = {...gratuityslab, ...value};
-      console.log(this.gratuitySlabGratuityDetail);
+      gratuityslab = {...gratuityslab, ...value}; 
       gratuityslab.gratuitySlabGratuities = this.gratuitySlabGratuityDetail;
-      console.log(gratuityslab);
       let x = await this.payrollsetupservice.addgratuityslab(gratuityslab);
-      console.log(x);
       
   }
 

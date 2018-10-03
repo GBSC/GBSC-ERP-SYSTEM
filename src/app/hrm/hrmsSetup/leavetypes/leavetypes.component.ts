@@ -10,15 +10,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeaveTypeComponent implements OnInit {
 
-    public leavetype: any;
+    public leavetype: any; 
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-        await this.dataService.getAllLeaveType();
-        this.leavetype = this.dataService.leavetype;
+        this.leavetype = await this.dataService.getAllLeaveType();
+        // this.leavetype = this.dataService.leavetype;
 
         // this.dataService.GetAllLeaveType().subscribe((data)=>this.leavetypes=data);
     }

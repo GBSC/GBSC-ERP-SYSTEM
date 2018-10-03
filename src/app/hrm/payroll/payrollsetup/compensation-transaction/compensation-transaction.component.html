@@ -157,7 +157,7 @@
           <dxi-column dataField="amount" caption="Amount"></dxi-column>
           <dxi-column dataField="month" caption="Month" dataType="date" format="month"></dxi-column>
 
-            <dxi-column dataField="payrollyearId" caption="Payroll Year">
+            <dxi-column dataField="payrollyearId" caption="Payroll Year"  [visible]="false">
               <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
           </dxi-column>
             <dxi-column dataField="payrollTypeId" caption="Payroll Type">

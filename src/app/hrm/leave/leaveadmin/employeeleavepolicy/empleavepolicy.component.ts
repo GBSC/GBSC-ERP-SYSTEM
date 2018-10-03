@@ -69,8 +69,8 @@ export class EmpleavepolicyComponent implements OnInit {
     }); 
 
 
-    await this.leaveservice.getAllleavepolicyemployee();
-    this.empleavepolicy = this.leaveservice.leavepolicyemployee 
+    this.empleavepolicy = await this.leaveservice.getleavepolicyemployee();
+    //  = this.leaveservice.leavepolicyemployee 
   
     await this.empservice.GetAllEmployees();
     let employee = this.empservice.employeereg; 

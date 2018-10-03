@@ -63,7 +63,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input " formControlName="LeaveTypeId" name="leavetype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
-                      <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                      <option *ngFor="let levetype of leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                     </select>
 
                   </div>

@@ -29,8 +29,7 @@ export class LeaveSetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         return await this.httpClient.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
-        // console.log(this.leavepolicy);
-        // return this.leavepolicy;
+   
     }
 
     async getdataToUpdate(leavesId, leavesUrl) {
@@ -286,50 +285,7 @@ export class LeaveSetupService {
         return await this.httpClient.delete(`${this.baseUrl}/DeleteLeaveEligibility/${leaveeligibilityId}`).toPromise();
     }
 
-    /** CRUD METHODS */
-    async getAllleaveemppolicy() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.leaveemppolicy = await this.httpClient.get(`${this.baseUrl}/GetLeavePolicyEmployees`).toPromise();
-        console.log(this.leaveemppolicy);
-        return this.leaveemppolicy;
-    }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addleaveemppolicy(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newleaveemppolicy = await this.httpClient.post(`${this.baseUrl}/AddLeavePolicyEmployee`, data, headers).toPromise();
-        console.log(newleaveemppolicy);
-
-    }
-
-    async updateleaveemppolicy(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let leaveemppolicy = await this.getdataToUpdate(data.key, 'GetLeaveEmpPolicy');
-        leaveemppolicy = { ...leaveemppolicy, ...data.data }
-        console.log(leaveemppolicy);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.httpClient.put(`${this.baseUrl}/UpdateLeavePolicyEmployee`, leaveemppolicy).toPromise();
-
-    }
-
-
-
-    async Deleteleaveemppolicy(leaveemppolicyId) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.httpClient.delete(`${this.baseUrl}/DeleteLeavePolicyEmployee/${leaveemppolicyId}`).toPromise();
-    }
 
     /** CRUD METHODS */
     async getAllleavetype() {
@@ -448,10 +404,7 @@ export class LeaveSetupService {
     }
 
     async updatedecimalroundingmatrix(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'GetdecimalroundingMatrix');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.httpClient.put(`${this.baseUrl}/UpdateDecimalRoundingMatrix`, promatrix).toPromise();
+        return await this.httpClient.put(`${this.baseUrl}/UpdateDecimalRoundingMatrix`, data).toPromise();
 
     }
 
@@ -487,15 +440,10 @@ export class LeaveSetupService {
     }
 
     async updateproratematrix(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'GetprorateMatrix');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.httpClient.put(`${this.baseUrl}/UpdateProrateMatrix`, promatrix).toPromise();
-
+        return await this.httpClient.put(`${this.baseUrl}/UpdateProrateMatrix`, data).toPromise();
     }
 
     async Deleteproratematrix(prrateId) {
-
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.httpClient.delete(`${this.baseUrl}/DeleteProrateMatrix/${prrateId}`).toPromise();

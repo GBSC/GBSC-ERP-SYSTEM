@@ -109,15 +109,11 @@ export class LeaveService {
     }
 
     /** CRUD METHODS LEAVE REQUEST*/
-    async getAllleavepolicyemployee() {
+    async getleavepolicyemployee() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.leavepolicyemployee = await this.httpClient.get(`${this.baseUrl}/Leave/Getleavepolicyemployees`).toPromise();
-        //console.log(features);
-        console.log(this.leavepolicyemployee);
-        return this.leavepolicyemployee;
+        return await this.httpClient.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployees`).toPromise();
     }
 
 

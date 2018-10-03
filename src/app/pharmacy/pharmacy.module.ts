@@ -16,6 +16,9 @@ import { RootComponent } from './root/root.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { UnitComponent } from './unit/unit.component';
 import { IssuanceComponent } from './issuance/issuance.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
   imports: [
@@ -39,7 +42,10 @@ import { IssuanceComponent } from './issuance/issuance.component';
     ReturnmedicineComponent,
     RootComponent,
     SupplierComponent,
-    UnitComponent
+    UnitComponent,
+    HeaderComponent,
+    MenuComponent,
+    FooterComponent
   ],
   providers: [
     PharmacyService

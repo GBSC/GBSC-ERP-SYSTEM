@@ -12,6 +12,7 @@ export class EmployeeHomeComponent implements OnInit {
 
 
     public currentUser: any;
+    public id: number;
     tabItem: any;
     public text = 'Next';
     public selectedTabStyles = '.m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-arrow';
@@ -32,24 +33,29 @@ export class EmployeeHomeComponent implements OnInit {
     constructor(public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
+
+        // get URL parameters
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id']; // --> Name must match wanted parameter
+            console.log(this.id);
+        });
+
         this.tabItem = this.tabs[this.showingCurrently];
         this.currentUser = await this.employeeService.getBasicInfoOfCurrentUser();
-        console.log( this.currentUser);
-        
+        console.log(this.currentUser);
+
     }
 
- 
+
     setTabItem(item, i) {
         this.tabItem = item;
         this.showingCurrently = i;
-        console.log();
+
         if (this.tabItem.name === 'Documents') {
             this.text = 'Save';
         }
-        console.log(item);
-        console.log(this.tabItem)
         this.tabItem.selected = true;
-    
+
     }
 
     setForms() {
@@ -77,7 +83,7 @@ export class EmployeeHomeComponent implements OnInit {
             }
 
         }
- 
+
         if (this.text === 'Save') {
             console.log(this.employeeService.allFormData);
             this.setForms();
@@ -91,8 +97,8 @@ export class EmployeeHomeComponent implements OnInit {
     async submit() {
         switch (this.tabItem.name) {
             case 'Basic Information':
-                if(this.employeeService.updateEmployeeBool) {
-                   return await this.employeeService.updateEmployee();
+                if (this.employeeService.updateEmployeeBool) {
+                    return await this.employeeService.updateEmployee();
                 }
                 await this.employeeService.addEmployee();
                 this.router.navigate(['employee/employees']);
@@ -115,7 +121,7 @@ export class EmployeeHomeComponent implements OnInit {
                 await this.employeeService.adduserSocial();
                 break;
 
-            case 'Employee Qualification': 
+            case 'Employee Qualification':
                 await this.employeeService.adduserUniversities();
                 break;
 

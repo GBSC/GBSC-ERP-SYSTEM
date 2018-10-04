@@ -102,7 +102,7 @@
         <div class="m-portlet__body">
           <div [ngSwitch]="tabItem?.name" class="tab-content">
              <div *ngSwitchCase="'Basic Information'" id="home-r">
-              <app-basicinformation (setBasicinfoFormValue)=getbasicinfoFormValue($event)></app-basicinformation>
+              <app-basicinformation (setBasicinfoFormValue)="getbasicinfoFormValue($event)" [id]="id"></app-basicinformation>
             </div>
             <div *ngSwitchCase="'Profile Picture'" id="profile-r"><app-profilepic (setpicFormValue)=getProfilepicFormValue($event)></app-profilepic></div>
             <div *ngSwitchCase="'Emergency Contacts'" id="settings-r"><app-emergencycontact (setDepndntFormValue)=getdepndntFormValue($event)></app-emergencycontact></div>

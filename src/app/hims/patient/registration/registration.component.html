@@ -406,7 +406,7 @@
 																					</tr>
 																				</thead>
 																				<tbody *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-																					<tr *ngFor="let patientDoucment of document;let i = index">
+																					<tr *ngFor="let patientDoucment of documents;let i = index">
 																						<td>{{patientDoucment?.documentName}}</td>
 																						<td> {{patientDoucment?.filePath}}</td>
 																						<td>

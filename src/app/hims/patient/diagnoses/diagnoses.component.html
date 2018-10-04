@@ -8,15 +8,12 @@
               </span>
           <h3 class="m-portlet__head-text">
               DIAGNOSES
-            <small>
-              portlet sub title
-            </small>
           </h3>
         </div>
       </div>
     </div>
     <div class="m-portlet__body">
-        <ul *ngFor="let diagn of res">
+        <ul *ngFor="let diagn of patientVisitDiagnoses">
           <li>
             {{diagn.name}} 
            </li>

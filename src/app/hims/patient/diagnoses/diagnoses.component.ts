@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { PatientService } from '../../../core';
-import { Diagnoses } from '../../../core/Models/HIMS/diagnoses';
-import { VisitDiagnosis } from '../../../core/Models/HIMS/visitdiagnoses';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-diagnoses',
@@ -13,7 +11,7 @@ export class DiagnosesComponent implements OnInit {
 
  
     id: number;
-    public patientVisitDiagnoses : VisitDiagnosis[] = []; 
+    public patientVisitDiagnoses= []; 
 
     constructor(private PatientServiceobj : PatientService, private route : ActivatedRoute) {
 
@@ -24,9 +22,12 @@ export class DiagnosesComponent implements OnInit {
 
         this.id = +params['id'];
  
-        this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((res : VisitDiagnosis) => {
-            this.patientVisitDiagnoses.push(res);
-        })
+       let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses : any) => {
+        this.patientVisitDiagnoses = patientVisitDiagnoses;
+        console.log(patientVisitDiagnoses);
+        console.log(this.patientVisitDiagnoses)
+       } );
+  console.log(x);
   
      });
 

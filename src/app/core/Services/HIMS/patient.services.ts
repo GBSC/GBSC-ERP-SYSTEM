@@ -65,6 +65,7 @@ export class PatientService {
     public getvisitbyid: any;
     public LastestPatientVital: any;
     public currentPatientvisits: any;
+    public ActiveVisits : any;
 
     public visitNatures: any;
     //for visitnote
@@ -80,7 +81,7 @@ export class PatientService {
 
     dialogData: any;
 
-    constructor(private http1: HttpClient, private ApiService: ApiService) {
+    constructor(private ApiService: ApiService) {
     }
 
     // getPatient() : Observable<Patient> {
@@ -89,7 +90,7 @@ export class PatientService {
     // }
 
     async getPatient() {
-        this.patients = await this.ApiService.get(this.API_URL + 'patients/getpatients').toPromise();
+        this.patients = <Patient>(await this.ApiService.get(this.API_URL + 'patients/getpatients').toPromise());
         //this.patients = await this.http1.get<Patient>(this.API_URL + '/patients/getpatients').toPromise();
         //console.log(this.patients);
         return this.patients;
@@ -154,6 +155,15 @@ export class PatientService {
         //    console.log(res);
         //});
 
+        //return x;
+    }
+
+    addDocuments(models : FormData, id){
+ 
+        this.ApiService.post(this.API_URL+'/patients/AddPatientDocuments/'+id, models).subscribe( res => {
+            console.log(res);
+        });
+        
         //return x;
     }
 
@@ -328,6 +338,20 @@ export class PatientService {
     Getvisit(id): Observable<Visits> {
         return this.ApiService.get(this.API_URL + 'Visits/GetVisit/' + id);
         //return this.http1.get<Visits>(this.API_URL + '/Visits/GetVisit/' + id);
+    }
+
+    async getActiveVisits()
+    {
+        this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL+'/Visits/GetActiveVisits').toPromise());
+        console.log(this.ActiveVisits);
+        return this.ActiveVisits;
+    }
+
+    async getActiveVisitsTesting()
+    {
+        this.ActiveVisits = await this.ApiService.get(this.API_URL+'/Visits/GetActiveVisits').toPromise();
+        console.log(this.ActiveVisits);
+        return this.ActiveVisits;
     }
 
     GetAppointmentByVisit(id): Observable<Appointment> {

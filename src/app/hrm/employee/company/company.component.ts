@@ -26,20 +26,11 @@ async ngOnInit() {
             this.id = +params['id'];
             console.log(this.id);
                     this.employee.GetEmployee(this.id).subscribe((Employee) => {
-                       this.Employee = Employee
-                      //  let emp = this.Employee;
-                            
-                      
+                       this.Employee = Employee 
                            console.log(Employee)
 
                             
-                    });
-
-
-                    
-                    
-
-        
+                    }); 
 
         });
 
@@ -68,10 +59,23 @@ async ngOnInit() {
         await this.SetupServiceobj.getAllEmployeeStatus();
         let cempstatus = this.SetupServiceobj.employeestatus;
     }
+
     getcompanyFormValue() {
         this.setCompanyFormValue.emit(this.EmpCompanyForm.value);
     }
 
+    public leavingDateinput= false;
+    enableInput(e) {
+        console.log(e);
+        switch (e.target.id) {
+            case 'chL':
+                this.leavingDateinput = e.target.checked
+                break;
+        
+            default:
+                break;
+        }
+    }
     doit(e) {
         console.log(e.target.value)
     }

@@ -11,36 +11,34 @@ import { EmployeeService } from '../../../core';
 export class EmployeeHomeComponent implements OnInit {
 
 
+    public currentUser: any;
     tabItem: any;
     public text = 'Next';
     public selectedTabStyles = '.m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-arrow';
     public showingCurrently: any = 0;
     public tabs =
-    [
-        { name: "Basic Information", icon: 'm-nav__link-icon fa fa-info-circle', selected: false },
-        { name: "Profile Picture", icon: 'm-nav__link-icon fa fa-user-circle', selected: false },
-        { name: "Employee Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
-        { name: "Emergency Contacts", icon: 'm-nav__link-icon fa fa-contao', selected: false },
-        { name: "Social Networking", icon: 'm-nav__link-icon fa fa-linkedin', selected: false },
-        { name: "Employee Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
-        { name: "Work Experience", icon: 'm-nav__link-icon fa fa-black-tie', selected: false },
-        { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
-        { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
-    ]
+        [
+            { name: "Basic Information", icon: 'm-nav__link-icon fa fa-info-circle', selected: false },
+            { name: "Profile Picture", icon: 'm-nav__link-icon fa fa-user-circle', selected: false },
+            { name: "Employee Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
+            { name: "Employee Dependants", icon: 'm-nav__link-icon fa fa-contao', selected: false },
+            { name: "Social Networking", icon: 'm-nav__link-icon fa fa-linkedin', selected: false },
+            { name: "Employee Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
+            { name: "Work Experience", icon: 'm-nav__link-icon fa fa-black-tie', selected: false },
+            { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
+            { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
+        ]
 
     constructor(public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.tabItem = this.tabs[this.showingCurrently];
+        this.currentUser = await this.employeeService.getBasicInfoOfCurrentUser();
+        console.log( this.currentUser);
         
-        let currentUser = this.employeeService.getBasicInfoOfCurrentUser();
     }
 
-    //   async onsubmit() {
-    //     console.log(this.signupForm.value);
-    //  let d= await this.data.signup(this.signupForm.value);
-    //  console.log(d);
-    //   }
+ 
     setTabItem(item, i) {
         this.tabItem = item;
         this.showingCurrently = i;
@@ -51,10 +49,7 @@ export class EmployeeHomeComponent implements OnInit {
         console.log(item);
         console.log(this.tabItem)
         this.tabItem.selected = true;
-        // let allFormsData = this.employeeService.allFormData;
-        // console.log(allFormsData);
-
-
+    
     }
 
     setForms() {
@@ -82,9 +77,7 @@ export class EmployeeHomeComponent implements OnInit {
             }
 
         }
-
-
-
+ 
         if (this.text === 'Save') {
             console.log(this.employeeService.allFormData);
             this.setForms();
@@ -98,8 +91,11 @@ export class EmployeeHomeComponent implements OnInit {
     async submit() {
         switch (this.tabItem.name) {
             case 'Basic Information':
+                if(this.employeeService.updateEmployeeBool) {
+                   return await this.employeeService.updateEmployee();
+                }
                 await this.employeeService.addEmployee();
-                this.router.navigate(['employees']);
+                this.router.navigate(['employee/employees']);
                 console.log(this.activatedRoute.url);
                 break;
             case 'Profile Picture':
@@ -119,8 +115,7 @@ export class EmployeeHomeComponent implements OnInit {
                 await this.employeeService.adduserSocial();
                 break;
 
-            case 'Employee Qualification':
-                // alert('ajksdfljkasdklfj');
+            case 'Employee Qualification': 
                 await this.employeeService.adduserUniversities();
                 break;
 

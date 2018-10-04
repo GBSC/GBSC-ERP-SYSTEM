@@ -23,9 +23,18 @@ export class EmployeeService {
     public allExperiencexpForm: any = [];
     public employeereg: Object;
     public allFormData: any = {};
-    public currentlyLoggedinUser
+    public currentlyLoggedinUser;
     private baseUrl: string  = 'systemadmin/api';
     public firstForm: any;
+    public currentUser : any = {};
+
+    public selectedUni = {
+        Name: '',
+        Qualifications: []
+    };
+    public addedUniversities = [];
+    public updateEmployeeBool = false
+
     constructor(private service: HrmsService, private fb: FormBuilder, private ApiService : ApiService) {
 
 
@@ -75,7 +84,7 @@ export class EmployeeService {
 
         this.QualificationForm = this.fb.group({
             Name: [''],
-            DegreeId: [],
+            DegreeId: [''],
             Timefrom: ['12-01-2016'],
             Timeto: ['12-01-2017'],
             Grade: [''],
@@ -152,12 +161,14 @@ export class EmployeeService {
     }
 
 
-    async  updateEmployee(Employee  : Employee)
+    async updateEmployee()
     {
-    //   let id = localStorage.getItem('id');
-      let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUser',Employee).toPromise();
-      console.log(x);
-      return x;
+    // //   let id = localStorage.getItem('id');
+    //   let x = await  this.ApiService.post(this.baseUrl+'/Users/UpdateUser', data).toPromise();
+    //   console.log(x);
+    //   return x;
+    console.log(this.updateEmployeeBool);
+    
     }
 
     async updateUersById(Employee  : Employee){
@@ -167,15 +178,11 @@ export class EmployeeService {
     }
 
     async updateUserCompanyById(Employee  : Employee){
-        let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUserCompany/'+localStorage.getItem('id'),Employee).toPromise();
+        let x = await  this.ApiService.post(this.baseUrl+'/Users/UpdateUserCompany/'+localStorage.getItem('id'),Employee).toPromise();
         console.log(x);
         return x;
     }
-
-    checkIfDisabled(e) {
-        console.log(e);
-    }
-
+  
     // DEMO ONLY, you can find working methods below
     async addEmployee() {
 
@@ -259,7 +266,7 @@ export class EmployeeService {
     async adduserSocial() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let social = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUser/${localStorage.getItem('id')}`, this.SocialForm.value).toPromise();
+        let social = await this.ApiService.put(`${this.baseUrl}/Users/UpdateUserSocial/${localStorage.getItem('id')}`, this.SocialForm.value).toPromise();
         console.log(social);
         return social;
     }
@@ -282,19 +289,23 @@ export class EmployeeService {
     async adduserUniversities() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let q = { ...this.QualificationForm.value, Degree: { Name: this.QualificationForm.value.DegreeId } };
-
-        delete q.DegreeId;
-        this.university.Qualifications.push(q);
-        this.allQualifications.push(this.university);
+        let q = { ...this.QualificationForm.value };
+        // Degree: { Name: this.QualificationForm.value.DegreeId }
+        console.log(q);
+        q.DegreeId = Number.parseInt(q.DegreeId);
+        // this.university.Qualifications.push(q);
+        this.selectedUni.Qualifications.push(q);
+        let uniAddedAlready = this.allQualifications.find(q => q.Name === this.selectedUni.Name);
+        if(!uniAddedAlready) {
+            this.allQualifications.push(this.selectedUni);
+        }
         console.log(this.allQualifications);
-
-        // this.allQualifications.push(this.createuniversity(this.QualificationForm.value.School));
+ 
         let universities = await this.ApiService.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.allQualifications).toPromise();
         console.log(universities);
         return universities;
     }
-
+ 
     createuniversity(name) {
         let uni = {
             Name: '',
@@ -324,6 +335,7 @@ export class EmployeeService {
         let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, this.allDependentForm).toPromise();
         return relation;
     }
+    
 
 
     async adduserexperience() {
@@ -339,27 +351,12 @@ export class EmployeeService {
     async getBasicInfoOfCurrentUser() {
         this.currentlyLoggedinUser = localStorage.getItem('id');
         console.log(this.currentlyLoggedinUser);
-        return await this.ApiService.get(`${this.baseUrl}/Users/GetUser/${this.currentlyLoggedinUser}`).toPromise();
+
+        this.currentUser = await this.ApiService.get(`${this.baseUrl}/Users/GetUser/${this.currentlyLoggedinUser}`).toPromise();
+        return this.currentUser;
     }
 
-    // prepareFormData(): any {
-    //   let form = {};
-    //   form = {
-    //     ...this.allFormData.Empbasicinfo,
-    //     ...this.allFormData.QualificationForm,
-    //     ...this.allFormData.experience,
-    //     ...this.allFormData.Profilepic,
-    //     ...this.allFormData.DependantForm,
-    //     ...this.allFormData.SocialForm,
-    // home    ...this.allFormData.documentForm,
-    //     ...this.allFormData.EmpCompanyForm,
-    //     ...this.allFormData.EmpbankForm
-    //   }
-
-    //   return form;
-    // }
-
-
+ 
     getProfileInfo(value) {
         this.allFormData.profileInfo = value;
     }
@@ -386,21 +383,14 @@ export class EmployeeService {
 
     }
 
+    setBasicInfoFormValues(){
 
-    // DeleteEmployeeBasicInfos(EmployeeBasicInfo : EmployeeBasicInfo): void {
-
-    // console.log(EmployeeBasicInfo);
-
-    // let authToken = localStorage.getItem('auth_token');
-    // let headers = {headers: {'Content-Type':'application/json','Authorization':`bearer ${authToken}`}}
-
-    // this.ApiService.delete('http://demo-gbscinc.azurewebsites.net/hrisservice/api/EmployeeReg/DeleteEmployeeBasicInfo/'+EmployeeBasicInfo.Id).subscribe(data => {
-    //   console.log(data); 
-    // },
-    //   (error: HttpErrorResponse) => {
-    //     console.log(error.name + ' ' + error.message);
-    //   });
-
+        this.EmpbasicForm.value.FirstName = this.currentUser.firstName;
+        console.log(this.currentUser);
+        console.log(this.EmpbasicForm.value);
+        
+    }
+ 
 }
 
 

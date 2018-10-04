@@ -75,7 +75,7 @@ export class BasicinformationComponent implements OnInit {
        this.employee.EmpbasicForm.value.userId = this.id;
             // value = {...this.Employee, ...value}
            // this.joinValues(value, this.Employee);
-         await this.employee.updateEmployee(value);
+         await this.employee.updateEmployee();
     }
 
     async updateUersById(value)
@@ -102,63 +102,57 @@ export class BasicinformationComponent implements OnInit {
     // }
 
     async ngOnInit() {
+ 
+        // console.log(this.router.url);
 
+        // this.route.params.subscribe((params) => {
+        //     this.id = +params['id'];
 
-
-        console.log(this.router.url);
-
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-
-                    this.employee.GetEmployee(this.id).subscribe((Employee) => {
-                       this.Employee = Employee
-                      //  let emp = this.Employee;
-                            this.employee.EmpbasicForm.patchValue({
-                                FirstName : this.Employee.firstName,
-                                LastName : this.Employee.lastName,
-                                FatherName  : this.Employee.fatherName,
-                                DOB  : this.Employee.dob,
-                                POB  : this.Employee.pob,
-                                Cnic  : this.Employee.cnic,
-                                CnicExpiry  : this.Employee.cnicExpiry,
-                                Email  : this.Employee.email,
-                                LanguageId  : this.Employee.languageId,
-                                ReligionId  : this.Employee.religionId,
-                                CityId  : this.Employee.cityId,
-                                BloodGroup  : this.Employee.bloodGroup,
-                                MaritalStatus  : this.Employee.maritalStatus,
-                                PhoneNumber  : this.Employee.phoneNumber,
-                                HomeNumber  : this.Employee.homeNumber,
-                                Address  : this.Employee.address,
-                                PermanentAddress  : this.Employee.permanentAddress,
+        //             this.employee.GetEmployee(this.id).subscribe((Employee) => {
+        //                this.Employee = Employee
+        //               //  let emp = this.Employee;
+        //                     this.employee.EmpbasicForm.patchValue({
+        //                         FirstName : this.Employee.firstName,
+        //                         LastName : this.Employee.lastName,
+        //                         FatherName  : this.Employee.fatherName,
+        //                         DOB  : this.Employee.dob,
+        //                         POB  : this.Employee.pob,
+        //                         Cnic  : this.Employee.cnic,
+        //                         CnicExpiry  : this.Employee.cnicExpiry,
+        //                         Email  : this.Employee.email,
+        //                         LanguageId  : this.Employee.languageId,
+        //                         ReligionId  : this.Employee.religionId,
+        //                         CityId  : this.Employee.cityId,
+        //                         BloodGroup  : this.Employee.bloodGroup,
+        //                         MaritalStatus  : this.Employee.maritalStatus,
+        //                         PhoneNumber  : this.Employee.phoneNumber,
+        //                         HomeNumber  : this.Employee.homeNumber,
+        //                         Address  : this.Employee.address,
+        //                         PermanentAddress  : this.Employee.permanentAddress,
 
 
 
 
-                            });
-                            console.log(Employee)
-                            console.log(this.Employee.firstName)
-                          //  console.log(emp.firstName)
+        //                     });
+        //                     console.log(Employee)
+        //                     console.log(this.Employee.firstName)
+        //                   //  console.log(emp.firstName)
 
                             
-                    });
+        //             });
 
+ 
 
-                    
-                    
+        // });
 
-        
-
-        });
-
-            // this.basicInfo = await this.employee.getBasicInfoOfCurrentUser();
-            // console.log(this.basicInfo);
-            // await this.employee.GetAllEmployees();
-            // this.basic = this.employee.employeereg;
-            // this.employee.EmpbasicForm.value.FirstName = this.basicInfo.firstName;
-            // this.employee.EmpbasicForm.value.LastName = this.basicInfo.lastName;
+        //     // this.basicInfo = await this.employee.getBasicInfoOfCurrentUser();
+        //     // console.log(this.basicInfo);
+        //     // await this.employee.GetAllEmployees();
+        //     // this.basic = this.employee.employeereg;
+        //     // this.employee.EmpbasicForm.value.FirstName = this.basicInfo.firstName;
+        //     // this.employee.EmpbasicForm.value.LastName = this.basicInfo.lastName;
     
-            // console.log(this.employee.EmpbasicForm.value);
+        //     // console.log(this.employee.EmpbasicForm.value);
     
             await this.SetupServiceobj.getAllDesignations();
             let dsg = this.SetupServiceobj.designation;
@@ -180,10 +174,6 @@ export class BasicinformationComponent implements OnInit {
             await this.SetupServiceobj.getAllCities();
             let cty = this.SetupServiceobj.city;
 
-
-
-
-
-
+ 
     }
 }

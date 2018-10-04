@@ -10,10 +10,12 @@ import { EmployeeService, SetupService } from '../../../core';
 export class EmployeeQualificationComponent implements OnInit {
     @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
 
-    setQualificationFormValue: any;
+    public setQualificationFormValue: any;
     public QualificationForm: any;
     private fieldArray: Array<any> = [];
     private newAttribute: any = {};
+    public addedUni = [];
+    public selectedUni = '';
 
     addFieldValue() {
         this.employee.allQualifications.push({ ...this.employee.QualificationForm.value });
@@ -44,19 +46,23 @@ export class EmployeeQualificationComponent implements OnInit {
         await this.SetupServiceobj.getAllDegrees();
         let dgree = this.SetupServiceobj.degree;
 
-        await this.SetupServiceobj.getAllgrades();
-        let grde = this.SetupServiceobj.grades;
-
         await this.SetupServiceobj.getAllUniversities();
         let uni = this.SetupServiceobj.university;
+     }
 
-        // this.employee.currentUniversity = this.employee.allQualifications[0];
+    p(e,u) {
+            console.log(e,u);
+            this.employee.selectedUni = {Name: '', Qualifications: []}
+            this.employee.university.Name = u;
+            this.employee.selectedUni.Name =u;
+            this.employee.addedUniversities.push(this.employee.selectedUni);
+            console.log(this.employee.university);
     }
 
-    p(e) {
-        console.log(e);
-        this.employee.university.Name = e.target.value;
-        console.log(this.employee.university);
+    setSelectedUniversity(e){
+        console.log(this.employee.addedUniversities);
+        this.employee.selectedUni = this.employee.addedUniversities.find(u => u.Name === e.target.value)
+        console.log(this.employee.selectedUni)
     }
 
     getQualificationFormValue() {

@@ -220,12 +220,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text">
               <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
+                <input id="chL" #chL (change)="enableInput($event)" type="checkbox" checked="">
                 <span></span>
               </label>
             </span>
           </div>
-          <input type="date" formControlName="LeavingDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input [disabled]="!leavingDateinput" type="date" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 

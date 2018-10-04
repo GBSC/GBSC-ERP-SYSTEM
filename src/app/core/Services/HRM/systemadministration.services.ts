@@ -30,7 +30,7 @@ export class SystemAdministrationService {
     public data: any;
 
     private readonly API_URL = "systemadmin/api/setup/";
-    // private baseUrl: string = "http://localhost:50908/api";
+    //private API_URL = "http://localhost:58090/api/Setup/";
     public modules: any = [];
 
 
@@ -80,15 +80,15 @@ export class SystemAdministrationService {
         //console.log(response);
     }
 
-    async getCompany() {
-        this.companies = await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
+    async getCompanies() {
+         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
         //console.log(this.companies);
-        return this.companies;
+   
     }
 
 
     async addCompany(company: Company) {
-        let abc = await this.ApiService.post(this.API_URL + 'addcompany', company).toPromise();
+        let abc = await this.ApiService.post(this.API_URL + 'AddCompany', company).toPromise();
         //console.log(abc);
         return abc;
     }

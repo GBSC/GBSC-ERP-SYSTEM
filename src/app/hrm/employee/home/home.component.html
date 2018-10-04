@@ -120,7 +120,7 @@
                     {{text}}
                   </button> | 
                   <button type="submit" (click)="submit($event)" class="btn btn-primary" >
-                       Save 
+                       {{employeeService.updateEmployeeBool? 'Update' : 'Save'}} 
                     </button>  
             </div>
           </div>

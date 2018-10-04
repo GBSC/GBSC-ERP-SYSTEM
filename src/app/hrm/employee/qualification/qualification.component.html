@@ -3,173 +3,98 @@
 
 </div>
 
-<div *ngFor="let field of fieldArray; let i = index">
-  <form class="signup-form" [formGroup]="employee.QualificationForm"> 
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group m-form__group">
-            <!-- <label (click)="setUniName($event)" for="name">School/University</label> -->
-            <input (change)="setUniName($event)" class="form-control m-input m-input--solid" placeholder="School" type="text">
-           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group m-form__group">
-            <label for="education_level" class="control-label">Certificate</label>
-            <!-- <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text"> -->
-          <select class="form-control m-input m-input--solid" formControlName="DegreeId" name="Group" id="group">
-              <option value="" disabled selected>-- Select Degree --</option>
-            <option value="middle">Middle</option>
-            <option value="matric">Matric</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="bachelors">Bachelors</option>
-            <option value="undergraduate">UnderGraduates</option>
-            <option value="graduates">Graduates</option>
-            <option value="masters">Masters</option>
-          </select>
-          </div>
-        </div>
+<form class="signup-form" [formGroup]="employee.QualificationForm">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="form-group m-form__group">
+        <label for="name">Add Name of Institution</label>
+        <input #u class="form-control m-input m-input--solid" placeholder="Institute" type="text">
       </div>
-    
-      <div class="row">
-          <div class="col-md-6">
-              <div class="form-group m-form__group">
-                <label for="skill" class="control-label">Degree Title</label>
-         <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Degreetitle" name="qualification" type="text">
-          
-                                </div>
-                              </div>
-        <div class="col-md-6">
-          <div class="form-group m-form__group">
-            <label for="language" class="control-label">Grade</label>
-            <!-- <select class="form-control m-input m-input--solid" formControlName="Grade" name="Grade">
-                <option *ngFor ="let grde of SetupServiceobj.grade" [value]="grde.id">{{grde.name}}</option>
-            </select> -->
-            <input class="form-control m-input m-input--solid" placeholder="to" name="grade" type="text">
-          </div>
-        </div>
-    
-                        </div>
-    
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group m-form__group">
-            <label for="from_year" class="control-label">Time Period From</label>
-            
-                <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="text">
-              </div>
-              </div>
-    
-              <div class="col-md-6">
-                <div class="form-group m-form__group">
-              <label for="from_year" class="control-label">To</label> 
-                <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="text">
-              </div>
-            </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="education_level" class="control-label">Select Institute</label>
+        <select (change)="setSelectedUniversity($event)" class="form-control m-input m-input--solid">
+          <option value="" disabled selected>-- Select Added Institute --</option>
+          <option *ngFor="let uni of employee.addedUniversities" [value]="uni.Name">{{uni.Name}}</option>
+        </select>
       </div>
-      
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group m-form__group">
-                        <label for="to_year" class="control-label">Description</label>
-                        <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
-                      </div>
-                    </div>
-                \  </div>
-                  
-                </form>
-    
-
-<button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
-
-</div>
-
-
-<form class="signup-form" [formGroup]="employee.QualificationForm"> 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group m-form__group">
-      <label for="name">Name of Institution</label>
-      <input (change)="p($event)" class="form-control m-input m-input--solid"  placeholder="Institute" type="text">
-     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group m-form__group">
-      <label for="education_level" class="control-label">Certificate</label>
-      <!-- <input class="form-control m-input m-input--solid" placeholder="Qualification" name="Educationlevel" type="text"> -->
-    <select class="form-control m-input m-input--solid" formControlName="DegreeId" name="Group" id="group">
-        <option value="" disabled selected>-- Select Degree --</option>
-      <option value="middle">Middle</option>
-      <option value="matric">Matric</option>
-      <option value="intermediate">Intermediate</option>
-      <option value="bachelors">Bachelors</option>
-      <option value="undergraduate">UnderGraduate</option>
-      <option value="graduates">Graduation</option>
-      <option value="masters">Masters</option>
-      <option value="masters">MPhil</option>
-      <option value="masters">Phd</option>
-    </select>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group m-form__group">
+        <button (click)="p($event, u.value)">Add</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row">
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="skill" class="control-label">Degree</label>
+        <select class="form-control m-input m-input--solid" formControlName="DegreeId">
+          <option value="" disabled selected>-- Select Degree --</option>
+          <option *ngFor="let degree of SetupServiceobj?.degree" [value]="degree.degreeId">{{degree.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="skill" class="control-label">Majors</label>
+        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" name="qualification"
+          type="text">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="language" class="control-label">Grade</label>
+        <input class="form-control m-input m-input--solid" placeholder="to" formControlName="Grade" name="grade" type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-md-6">
-        <div class="form-group m-form__group">
-          <label for="skill" class="control-label">Majors</label>
-   <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" name="qualification" type="text">
+      <div class="form-group m-form__group">
+        <label for="from_year" class="control-label">Time Period From</label>
+
+        <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="date">
+      </div>
     </div>
- </div>
-  <div class="col-md-6">
-    <div class="form-group m-form__group">
-      <label for="language" class="control-label">Grade</label>
-      <!-- <select class="form-control m-input m-input--solid" formControlName="Grade" name="Grade">
-          <option *ngFor ="let grde of SetupServiceobj.grade" [value]="grde.id">{{grde.name}}</option>
-      </select> -->
-      <input class="form-control m-input m-input--solid" placeholder="to" formControlName="Grade" name="grade" type="text">
+
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="from_year" class="control-label">To</label>
+        <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="date">
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group m-form__group">
-      <label for="from_year" class="control-label">Time Period From</label>
-      
-          <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="date">
-        </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group m-form__group">
-        <label for="from_year" class="control-label">To</label> 
-          <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="date">
-        </div>
-      </div>
-</div>
-
-<div class="row">
+  <div class="row">
     <div class="col-md-12">
-        <div class="form-group m-form__group">
-          <label for="skill" class="control-label">Corses (if any)</label>
-   <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Courses" name="courses" type="text">
-  </div>
-    </div>
+      <div class="form-group m-form__group">
+        <label for="skill" class="control-label">Corses (if any)</label>
+        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Courses" name="courses" type="text">
       </div>
+    </div>
+  </div>
 
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group m-form__group">
-                  <label for="to_year" class="control-label">Description</label>
-                  <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
-                </div>
-              </div>
-            </div> 
-          </form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group">
+        <label for="to_year" class="control-label">Description</label>
+        <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1"
+          data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
+      </div>
+    </div>
+  </div>
+</form>
 
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group m-form__group">
-                  <a class="pull-right" type="" (click)="addFieldValue()">Add More</a>
-              </div>
-            </div>
-          </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-group m-form__group">
+      <a class="pull-right" type="" (click)="addFieldValue()">Add More</a>
+    </div>
+  </div>
+</div>

@@ -308,49 +308,49 @@ export class SetupService {
 
     }
 
-    /** CRUD METHODS Grade */
+    // /** CRUD METHODS Grade */
 
-    async getAllgrades() {
+    // async getAllgrades() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
-        console.log(this.grades);
-        return this.grades;
+    //     this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
+    //     console.log(this.grades);
+    //     return this.grades;
 
-    }
+    // }
 
 
-    // DEMO ONLY, you can find working methods below
-    async addGrade(data) {
+    // // DEMO ONLY, you can find working methods below
+    // async addGrade(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
-        return this.grades;
-    }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json' } }
+    //     this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
+    //     return this.grades;
+    // }
 
-    async updateGrade(data) {
-        ``
+    // async updateGrade(data) {
+    //     ``
 
-        let grade = await this.getdataToUpdate(data.key, 'GetGrade');
-        grade = { ...grade, ...data.data }
-        console.log(grade);
+    //     let grade = await this.getdataToUpdate(data.key, 'GetGrade');
+    //     grade = { ...grade, ...data.data }
+    //     console.log(grade);
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
-    }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json' } }
+    //     return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
+    // }
 
-    async DeleteGrade(id) {
+    // async DeleteGrade(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    //     let authToken = localStorage.getItem('auth_token');
+    //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
+    //     return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
 
-    }
+    // }
 
 
     /** CRUD METHODS Qualification */

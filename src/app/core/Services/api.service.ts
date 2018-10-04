@@ -18,7 +18,6 @@ export class ApiService {
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-    console.log(`${environment.api_url}${path}`);
     return this.http.get(`${environment.api_url}${path}`, { params })
       .pipe(catchError(this.formatErrors));
   }
@@ -26,7 +25,7 @@ export class ApiService {
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 

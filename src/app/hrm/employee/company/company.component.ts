@@ -24,7 +24,6 @@ async ngOnInit() {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-            console.log(this.id);
                     this.employee.GetEmployee(this.id).subscribe((Employee) => {
                        this.Employee = Employee
                       //  let emp = this.Employee;

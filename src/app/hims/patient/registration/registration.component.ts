@@ -213,6 +213,9 @@ export class RegistrationComponent implements OnInit {
             this.referenceForm.value.patientReferenceId = this.Patient.patientReference.patientReferenceId
             await this.PatientServiceobj.updatePatientRef(value)
             console.log(value);
+            let updatepatientRefId = this.id;
+            console.log(updatepatientRefId);
+            this.router.navigate(['/hims/patient/profile/'+updatepatientRefId]);  
         }
     }
 
@@ -234,6 +237,8 @@ export class RegistrationComponent implements OnInit {
             this.partnerForm.value.PartnerId = this.Patient.partner.partnerId;
             await this.PatientServiceobj.updatePatientSpouse(value)
             console.log(value);
+            let updatedpatientId = this.id;
+            this.router.navigate(['/hims/patient/profile/'+updatedpatientId]);  
         }
 
     }
@@ -274,7 +279,10 @@ export class RegistrationComponent implements OnInit {
         let x = await this.PatientServiceobj.updatePatient(value);
         console.log(x);
 
-        console.log(value)
+        console.log(value);
+        let updatedpatientId = this.id;
+        this.router.navigate(['/hims/patient/profile/'+updatedpatientId]);  
+
 
     }
 
@@ -285,21 +293,23 @@ export class RegistrationComponent implements OnInit {
         this.forevent = <File>event.target.files[0];
         console.log(this.forevent)
     }
-    onupload() {
+  async  onupload() {
+     
+
         const f = new FormData();
         f.append('f', this.forevent);
-        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.document = document
-            console.log(document)
-        });
-        console.log(f);
-        this.PatientServiceobj.addDocument(f, this.id);
-        console.log(f);
-        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.document = document
-            console.log(document)
-        });
-        // this.Patient.patientDocuments
+        console.log(f); 
+        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
+        console.log(this.document);
+        await this.PatientServiceobj.addDocument(f, this.id);
+
+        console.log(this.document);
+        // this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
+        //     this.document = document;
+        //     console.log(document);
+        // });
+        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
+        console.log(this.document);
     }
     // <end work for image uploading
 
@@ -340,11 +350,8 @@ export class RegistrationComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-
-
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                // this.documents = Patient.patientDocuments 
                 console.log(Patient)
 
                 this.patientForm.patchValue({
@@ -375,7 +382,6 @@ export class RegistrationComponent implements OnInit {
                 });
 
                 this.partnerForm.patchValue({
-
                     FirstName: Patient.partner.firstName,
                     MiddleName: Patient.partner.middleName,
                     LastName: Patient.partner.lastName,
@@ -387,31 +393,27 @@ export class RegistrationComponent implements OnInit {
                 });
 
                 this.referenceForm.patchValue({
-
                     ReferredBy: Patient.patientReference.referredBy,
                     PersonName: Patient.patientReference.personName,
                     RefAddress: Patient.patientReference.refAddress,
                     ReferenceTel: Patient.patientReference.referenceTel,
                 });
             });
-
-
         });
 
-        await this.PatientServiceobj.getPatient()
-        let x = this.PatientServiceobj.patients
+        await this.PatientServiceobj.getPatient();
+        let x = this.PatientServiceobj.patients;
         console.log(x);
-        console.log(this.PatientServiceobj.patients)
+        console.log(this.PatientServiceobj.patients);
 
         await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
-        let y = this.PatientServiceobj.patientData
+        let y = this.PatientServiceobj.patientData;
         console.log(y);
 
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.document = document
-            console.log(document)
+            this.document = document;
+            console.log(document);
         });
-
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;

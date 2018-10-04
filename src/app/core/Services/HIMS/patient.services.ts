@@ -440,7 +440,7 @@ export class PatientService {
     }
 
     GetPatientVisits(id): Observable<Visits> {
-        return this.ApiService.get(this.API_URL + 'Patients/GetPatientVisits' + id);
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientVisits/' + id);
         //return this.http1.get<Visits>(this.API_URL + '/Patients/GetPatientVisits/' + id);
     }
 

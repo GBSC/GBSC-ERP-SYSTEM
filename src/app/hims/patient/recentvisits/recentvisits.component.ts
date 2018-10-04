@@ -20,11 +20,11 @@ export class RecentvisitsComponent implements OnInit {
 
     }
 
-    async ngOnInit() {
+    ngOnInit() {
         this.rout.params.subscribe(params => {
         this.id = +params['id'];    
-        let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(visits=> this.visits = visits );
-        console.log(x);
+        let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(res => this.visits = res );
+        console.log(this.visits);
     }); 
 
 

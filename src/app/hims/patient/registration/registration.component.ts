@@ -82,8 +82,8 @@ export class RegistrationComponent implements OnInit {
             'DOB': [''],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': [''],
-            'PhoneNumber': ['', Validators.required],
+            'NIC': ['', [Validators.required , Validators.minLength(13)]],
+            'PhoneNumber': ['',  [Validators.required , Validators.minLength(11)]],
             'PatientId': [''],
             'PartnerId': ['']
         });
@@ -343,8 +343,7 @@ export class RegistrationComponent implements OnInit {
     async ngOnInit() {
 
         console.log(this.router.url);
-
-        this.route.params.subscribe((params) => {
+         this.route.params.subscribe((params) => {
             this.id = +params['id'];
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
@@ -396,7 +395,7 @@ export class RegistrationComponent implements OnInit {
                 });
             });
         });
-
+     
         await this.PatientServiceobj.getPatient();
         let x = this.PatientServiceobj.patients;
         console.log(x);
@@ -412,6 +411,8 @@ export class RegistrationComponent implements OnInit {
         //     this.document = document;
         //     console.log(document);
         // });
+
+
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;

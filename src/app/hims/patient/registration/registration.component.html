@@ -264,14 +264,19 @@
 																			</div>
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> N.I.C </label>
-																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text">
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
+																				<div *ngIf="spousesubmitted && s.NIC.errors" class="invalid-feedback">
+																					<div *ngIf="s.NIC.errors.required">NIC is require</div>
+																					<div *ngIf="s.NIC.errors.minlength">NIC must be at least 13 characters</div>
+																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> Contact No </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PhoneNumber" type="text"
-																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.PhoneNumber.errors }">
+																				(keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': spousesubmitted && s.PhoneNumber.errors }">
 																				<div *ngIf="spousesubmitted && s.PhoneNumber.errors" class="invalid-feedback">
 																					<div *ngIf="s.PhoneNumber.errors.required">Phone Number is require</div>
+																					<div *ngIf="s.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
 																				</div>
 																			</div>
 																		</div>

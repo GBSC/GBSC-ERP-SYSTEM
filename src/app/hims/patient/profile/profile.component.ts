@@ -2,7 +2,6 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
-import { FindPatientComponent } from '../../patient/find-patient/find-patient.component';
 import { Router } from '@angular/router';
 import { async } from '@angular/core/testing';
 

@@ -14,7 +14,7 @@
 								</h3>
 							</div>
 						</div>
-						<div class="m-portlet__head-tools">
+						<!-- <div class="m-portlet__head-tools">
 							<div class="dropdown">
 								<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
 								 type="button">
@@ -34,16 +34,16 @@
 									</button>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<!--begin::Form-->
 					<form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="patientForm">
 						<div class="m-portlet__body">
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
-									<label for="exampleSelect1"> RegCity </label>
+									<label for="exampleSelect1"> Reg City </label>
 									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || 'loading'" formControlName="RegCity">
-										<option value="Karaci">Karaci</option>
+										<option value="Karaci">Karachi</option>
 										<option value="Multan">Multan</option>
 									</select>
 								</div>
@@ -55,8 +55,8 @@
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Gender </label>
 									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || 'loading'" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
-										<option value="Male">Male</option>
 										<option value="Female">Female</option>
+										<option value="Male">Male</option>
 									</select>
 									<div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
 										<div *ngIf="f.Gender.errors.required">Please Select Gender</div>
@@ -73,12 +73,12 @@
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
-									<label for="exampleInputEmail1"> MiddleName </label>
+									<label for="exampleInputEmail1"> Middle Name </label>
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.middleName || ''" formControlName="MiddleName"
 									 name="MiddleName" type="text">
 								</div>
 								<div class="form-group col-lg-3">
-									<label for="exampleInputEmail1"> LastName </label>
+									<label for="exampleInputEmail1"> Last Name </label>
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName || ''" formControlName="LastName"
 									 name="LastName" type="text" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
 									<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
@@ -86,7 +86,7 @@
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
-									<label for="exampleInputEmail1"> Date Of Birth </label>
+									<label for="exampleInputEmail1"> Date of Birth </label>
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob" formControlName="DOB"
 									 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
 									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
@@ -96,7 +96,7 @@
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
-									<label for="exampleInputEmail1"> Place Of Birth </label>
+									<label for="exampleInputEmail1"> Place of Birth </label>
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.placeOfBirth || ''" formControlName="PlaceOfBirth"
 									 type="text">
 								</div>
@@ -151,10 +151,10 @@
 									<label for="exampleSelect1"> Country </label>
 									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.country  || ''" formControlName="Country"
 									 [ngClass]="{ 'is-invalid': submitted && f.Country.errors }">
+									 <option value="Canada">Canada</option>
+									 <option value="India">India</option>
 										<option value="Pakistan">Pakistan</option>
-										<option value="India">India</option>
 										<option value="USA">U.S.A</option>
-										<option value="Canada">Canada</option>
 									</select>
 									<div *ngIf="submitted && f.Country.errors" class="invalid-feedback">
 										<div *ngIf="f.Country.errors.required">Please Select Country</div>
@@ -237,7 +237,7 @@
 																	<div class="m-portlet__body">
 																		<div class="form-group m-form__group row">
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> FirstName </label>
+																				<label for="exampleInputEmail1"> First Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="FirstName" type="text"
 																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.FirstName.errors }">
 																				<div *ngIf="spousesubmitted && s.FirstName.errors" class="invalid-feedback">
@@ -245,11 +245,11 @@
 																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> MiddleName </label>
+																				<label for="exampleInputEmail1"> Middle Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="MiddleName" type="text">
 																			</div>
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> LastName </label>
+																				<label for="exampleInputEmail1"> Last Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="LastName" type="text"
 																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.LastName.errors }">
 																				<div *ngIf="spousesubmitted && s.LastName.errors" class="invalid-feedback">
@@ -264,24 +264,29 @@
 																			</div>
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> N.I.C </label>
-																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text">
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
+																				<div *ngIf="spousesubmitted && s.NIC.errors" class="invalid-feedback">
+																					<div *ngIf="s.NIC.errors.required">NIC is require</div>
+																					<div *ngIf="s.NIC.errors.minlength">NIC must be at least 13 characters</div>
+																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> Contact No </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PhoneNumber" type="text"
-																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.PhoneNumber.errors }">
+																				(keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': spousesubmitted && s.PhoneNumber.errors }">
 																				<div *ngIf="spousesubmitted && s.PhoneNumber.errors" class="invalid-feedback">
 																					<div *ngIf="s.PhoneNumber.errors.required">Phone Number is require</div>
+																					<div *ngIf="s.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
 																				</div>
 																			</div>
 																		</div>
 																		<div class="form-group m-form__group row">
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> Date Of Birth </label>
+																				<label for="exampleInputEmail1"> Date of Birth </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="DOB" type="date">
 																			</div>
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> Place Of Birth </label>
+																				<label for="exampleInputEmail1"> Place of Birth </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PlaceOfBirth" type="text">
 																			</div>
 																		</div>

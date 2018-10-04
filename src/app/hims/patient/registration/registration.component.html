@@ -1,43 +1,17 @@
 <div class="m-content">
-	<div class="row">
-		<div class="col-lg-12">
-			<!--begin::Portlet-->
-			<div class="m-portlet">
-				<div class="m-portlet__head">
-					<div class="m-portlet__head-caption">
-						<div class="m-portlet__head-title">
-							<span class="m-portlet__head-icon m--hide">
-								<i class="la la-gear"></i>
-							</span>
-							<h3 class="m-portlet__head-text">
-								Add New Patient
-							</h3>
-						</div>
-					</div>
-				</div>
-				<!--begin::Form-->
-				<form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="patientForm">
-					<div class="m-portlet__body">
-						<div class="form-group row">
-							<div class="form-group col-lg-3">
-								<label for="exampleSelect1"> RegCity </label>
-								<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity" formControlName="RegCity">
-									<option value="Karaci">Karaci</option>
-									<option value="Multan">Multan</option>
-								</select>
-							</div>
-							<div class="form-group col-lg-3">
-								<label for="exampleSelect1"> Visit Nature </label>
-								<dx-select-box [items]="visitnature" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true"
-								 formControlName="visitNatureId">
-								</dx-select-box>
-							</div>
-							<div class="form-group col-lg-3">
-								<label for="exampleSelect1"> Gender </label>
-								<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender" formControlName="Gender">
-									<option class="active" value="Male">Male</option>
-									<option value="Female">Female</option>
-								</select>
+		<div class="row">
+			<div class="col-lg-12">
+				<!--begin::Portlet-->
+				<div class="m-portlet">
+					<div class="m-portlet__head">
+						<div class="m-portlet__head-caption">
+							<div class="m-portlet__head-title">
+								<span class="m-portlet__head-icon m--hide">
+									<i class="la la-gear"></i>
+								</span>
+								<h3 class="m-portlet__head-text">
+									Patient Form
+								</h3>
 							</div>
 						</div>
 						<!-- <div class="m-portlet__head-tools">
@@ -150,10 +124,27 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group col-lg-3">
-								<label for="exampleInputEmail1"> Phone Number </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.phoneNumber"
-								 formControlName="PhoneNumber" type="text">
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Remarks </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.remarks || ''" formControlName="Remarks"
+									 type="text">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Residence Address </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.residenceAddress || ''"
+									 formControlName="ResidenceAddress" type="text">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Office Address </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeAddress  || ''" formControlName="OfficeAddress"
+									 type="text">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Office Telephone </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.officeTel  || ''" formControlName="OfficeTel"
+									 type="text">
+								</div>
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
@@ -188,10 +179,22 @@
 									 type="text">
 								</div>
 							</div>
-							<div class="form-group col-lg-3">
-								<label for="exampleInputEmail1"> Residence Address </label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.residenceAddress"
-								 formControlName="ResidenceAddress" type="text">
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Authorized Person </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.authorizedPerson  || ''"
+									 formControlName="AuthorizedPerson" type="text">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleInputEmail1"> Private Patient Cons </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privatePatientCons  || ''"
+									 formControlName="PrivatePatientCons" type="text">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Private Hospital </label>
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privateHospital  || ''"
+									 formControlName="PrivateHospital" type="text">
+								</div>
 							</div>
 							<div class="form-group row">
 								<div class="col-lg-12">
@@ -288,99 +291,92 @@
 																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Occupation </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="Occupation" type="text">
+																	<div class="modal-footer">
+																		<button type="reset" class="btn btn-secondary">
+																			Reset
+																		</button>
+																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatePatientSpouse(partnerForm.value)"
+																		 data-dismiss="modal" class="btn btn-primary">
+																			Update
+																		</button>
+																		<button type="button" *ngIf="router.url === '/hims/patient/registration'" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal"
+																		 class="btn btn-primary">
+																			Save
+																		</button>
 																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> N.I.C </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="NIC" type="text">
-																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Contact No </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="PhoneNumber" type="text">
-																	</div>
-																</div>
-
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Date Of Birth </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="DOB" type="date">
-																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Place Of Birth </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="PlaceOfBirth" type="text">
-																	</div>
-																</div>
-
+																</form>
 															</div>
-															<div class="modal-footer">
-																<button type="reset" class="btn btn-secondary">
-																	Reset
-																</button>
-																<button type="button" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal" class="btn btn-primary">
-																	Save
-																</button>
+															<div class="tab-pane" id="m_tabs_3_2" role="tabpanel">
+																<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="referenceForm">
+																	<div class="m-portlet__body">
+																		<div class="form-group m-form__group row">
+																			<div class="form-group col-lg-4">
+																				<label for="exampleSelect1"> Reference By </label>
+																				<select class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ReferredBy">
+																					<option value="Doctor">Doctor</option>
+																					<option value="Receptionist">Receptionist</option>
+																				</select>
+																			</div>
+																			<div class="form-group col-lg-4">
+																				<label for="exampleInputEmail1"> Person Name </label>
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PersonName" [ngClass]="{ 'is-invalid': referencesubmitted && r.PersonName.errors }">
+																				<div *ngIf="referencesubmitted && r.PersonName.errors" class="invalid-feedback">
+																					<div *ngIf="r.PersonName.errors.required">Person Name is require</div>
+																				</div>
+																			</div>
+																			<div class="form-group col-lg-4">
+																				<label for="exampleInputEmail1"> Reference Address</label>
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="RefAddress">
+																			</div>
+																		</div>
+																		<div class="form-group m-form__group row">
+																			<div class="form-group col-lg-8">
+																				<label for="exampleInputEmail1">Reference Phone</label>
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="ReferenceTel">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="reset" class="btn btn-secondary">
+																			Reset
+																		</button>
+	
+																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatepatientRef(referenceForm.value)"
+																		 data-dismiss="modal" class="btn btn-primary">
+																			Update
+																		</button>
+																		<button *ngIf="router.url === '/hims/patient/registration'" type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal"
+																		 class="btn btn-primary">
+																			Save
+																		</button>
+																	</div>
+																</form>
 															</div>
-														</form>
-													</div>
-													<div class="tab-pane" id="m_tabs_3_2" role="tabpanel">
-														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid"
-														 [formGroup]="referenceForm">
-															<div class="m-portlet__body">
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-4">
-																		<label for="exampleSelect1"> Reference By </label>
-																		<select class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ReferredBy">
-																			<option class="active" [value]="Doctor">Doctor</option>
-																		</select>
-																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Person Name </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="PersonName">
-																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Reference Address</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="RefAddress">
-																	</div>
-																</div>
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-8">
-																		<label for="exampleInputEmail1">Reference Phone</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="ReferenceTel">
-																	</div>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="reset" class="btn btn-secondary">
-																	Reset
-																</button>
-																<button type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal" class="btn btn-primary">
-																	Save
-																</button>
-															</div>
-														</form>
-													</div>
-													<!-- <here we are using final appointment tag start work> -->
-													<div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
-														<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid"
-														 [formGroup]="documentForm">
-															<div class="m-portlet__body">
-																<div class="form-group m-form__group row">
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1"> Document Name </label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"
-																		 formControlName="DocumentName" type="text">
+															<!-- <here we are using final appointment tag start work> -->
+															<div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
+																<form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" [formGroup]="documentForm">
+																	<div class="m-portlet__body">
+																		<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/registration'">
+																			<div class="form-group col-lg-4">
+																				<label for="exampleInputEmail1">File Path:</label>
+																				<input type="file" formControlName="FilePath" (change)="fileselect($event)" />
+																			</div>
+																		</div>
+																		<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+																			<div class="form-group col-lg-4">
+																				<label for="exampleInputEmail1">Document:</label>
+																				<input type="file" (change)="onfileselect($event)" />
+																			</div>
+																		</div>
+																		<div class="form-group m-form__group row">
+																			<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary">
+																				Add
+																			</button>
+																			<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary">
+																				Add
+																			</button>
+																			<br>
+																		</div>
 																	</div>
 																	<div class="m-section">
 																		<div class="m-section__content">
@@ -434,131 +430,41 @@
 																			</table>
 																		</div>
 																	</div>
-																	<div class="form-group col-lg-4">
-																		<label for="exampleInputEmail1">Document:</label>
-																		<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="file"
-																		 formControlName="FilePath">
+																	<div *ngIf="router.url === '/hims/patient/registration'" class="modal-footer">
+																		<button type="reset" class="btn btn-secondary">
+																			Reset
+																		</button>
+																		<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary">
+																			Save
+																		</button>
 																	</div>
-																</div>
-																<div class="form-group m-form__group row">
-																	<button type="button" (click)="addrange()" class="btn btn-primary">
-																		Add
-																	</button>
-																	<br>
-																</div>
+																</form>
 															</div>
-															<div class="m-section">
-																<div class="m-section__content">
-																	<table class="table m-table m-table--head-separator-primary">
-																		<thead>
-																			<tr>
-																				<th>
-																					Document Name
-																				</th>
-																				<th>
-																					Remarks
-																				</th>
-																				<th>
-																					File Path
-																				</th>
-																				<th>
-																					Action
-																				</th>
-																			</tr>
-																		</thead>
-																		<tbody *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-																			<tr *ngFor=" let t of documentss; let i = index">
-																				<td>{{t.DocumentName}}</td>
-																				<td>{{t.Remarks}}</td>
-																				<td>{{t.FilePath}}</td>
-																				<td>
-																					<button type="button" (click)="remove(i)" class="btn btn-primary">
-																						<i class="la la-archive"></i>
-																					</button>
-																				</td>
-																			</tr>
-																			<tr *ngFor="let patientDoucment of Patient?.patientDocuments;let i = index">
-																				<td>
-																					{{patientDoucment.documentName}}
-																				</td>
-																				<td>
-																					{{patientDoucment.remarks}}
-																				</td>
-																				<td>
-																					{{patientDoucment.filePath}}
-																				</td>
-																				<td>
-																					<button type="button" (click)="removeaddeddata(i)" class="btn btn-primary">
-																						<i class="la la-archive"></i>
-																					</button>
-																				</td>
-																			</tr>
-																		</tbody>
-
-																		<tbody *ngIf="router.url === '/hims/patient/registration'">
-																			<tr *ngFor=" let t of documentss; let i = index">
-																				<td>{{t.DocumentName}}</td>
-																				<td>{{t.Remarks}}</td>
-																				<td>{{t.FilePath}}</td>
-																				<td>
-																					<button type="button" (click)="remove(i)" class="btn btn-primary">
-																						<i class="la la-archive"></i>
-																					</button>
-																				</td>
-																			</tr>
-																		</tbody>
-
-																	</table>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="reset" class="btn btn-secondary">
-																	Reset
-																</button>
-																<button type="button" (click)="onupdatedocument(editdocumentForm.value)" data-dismiss="modal" class="btn btn-primary">
-																	upadate
-																</button>
-																<button type="button" (click)="onAddDocument(documentss)" data-dismiss="modal" class="btn btn-primary">
-																	Save
-																</button>
-															</div>
-														</form>
+														</div>
 													</div>
-													<!-- <here we are using final appointment tag end work> -->
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!--end::Item-->
 							</div>
-							<!-- more information end -->
-						</div>
-						<div class="form-group row">
-							<div class="form-group col-lg-12">
-								<!-- <div class="form-action pull-right" *ngIf="routerLink='/hims/patient/updatePatient/id'">
-									routerLink="/hims/patient/findpatient" 
-									 <button type="submit" (click)="updatePatient(patientForm.value)"  class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
-										Update 
-									</button> 
-								</div> -->
-								<div *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-									<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
-										Update Patient
-									</button>
-								</div>
-								<div class="form-action pull-right" *ngIf="router.url === '/hims/patient/registration'">
-									<button type="submit" (click)="onSubmit(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
-										Add Patient
-									</button>
+							<div class="form-group row">
+								<div class="form-group col-lg-12">
+									<div *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+										<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											Update Patient
+										</button>
+									</div>
+									<div class="form-action pull-right" *ngIf="router.url === '/hims/patient/registration'">
+										<button type="submit" (click)="onSubmit(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											Add Patient
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</form>
-				<!--end::Form-->
+					</form>
+				</div>
 			</div>
-			<!--end::Portlet-->
 		</div>
 	</div>
-</div>

@@ -24,7 +24,10 @@ export class VitalsComponent implements OnInit {
 
         this.id = +params['id'];
  
-       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe(patientVital => this.patientVital = patientVital );
+       let x = this.PatientServiceobj.GetLastestPatientVital(this.id).subscribe((patientVital) => {
+        this.patientVital = patientVital 
+        console.log(this.patientVital)
+       });
   console.log(x);
   
      });

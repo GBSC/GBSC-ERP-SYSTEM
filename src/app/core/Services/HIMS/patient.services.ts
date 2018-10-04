@@ -145,17 +145,9 @@ export class PatientService {
         //return x;
     }
 
-    async addDocument(f: FormData, id) {
+     addDocument(f: FormData, id) : Observable<any> {
 
-        return await this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f).subscribe(res => {
-            console.log(res);
-        });
-
-        //this.http1.post(this.API_URL + '/patients/AddPatientDocument/' + id, f).subscribe(res => {
-        //    console.log(res);
-        //});
-
-        //return x;
+        return this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f);
     }
 
     addDocuments(models : FormData, id){
@@ -167,7 +159,7 @@ export class PatientService {
         //return x;
     }
 
-    getPatientDocumentByPatientId(id): Observable<Document> {
+     getPatientDocumentByPatientId(id) {
         return this.ApiService.get(this.API_URL + 'patients/GetPatientDocumentsByPatientId/' + id);
         //console.log(this.API_URL1 + '/patients/GetPatientDocumentsByPatientId/' + id)
         //return this.http1.get<Document>(this.API_URL + '/patients/GetPatientDocumentsByPatientId/' + id);

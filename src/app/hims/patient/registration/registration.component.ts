@@ -40,8 +40,6 @@ export class RegistrationComponent implements OnInit {
 
     public Patient: any = ' ';
 
-    private document: any = [];
-
     private forevent: File = null;
 
 
@@ -57,9 +55,6 @@ export class RegistrationComponent implements OnInit {
     referencesubmitted = false;
 
 
-
-
-    public documentss: any = [];
     constructor(private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
@@ -295,21 +290,13 @@ export class RegistrationComponent implements OnInit {
     }
   async  onupload() {
      
-
         const f = new FormData();
         f.append('f', this.forevent);
-        console.log(f); 
-        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
-        console.log(this.document);
-        await this.PatientServiceobj.addDocument(f, this.id);
 
-        console.log(this.document);
-        // this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-        //     this.document = document;
-        //     console.log(document);
-        // });
-        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
-        console.log(this.document);
+        await this.PatientServiceobj.addDocument(f, this.id).toPromise();
+
+        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe(resp=> this.documents = resp);
+        
     }
     // <end work for image uploading
 
@@ -340,7 +327,7 @@ export class RegistrationComponent implements OnInit {
     async deleteDocument(id, i) {
         console.log(i)
         await this.PatientServiceobj.deleteDocument(id);
-        this.document.splice(i, 1)
+        this.documents.splice(i, 1)
     }
 
 
@@ -411,7 +398,7 @@ export class RegistrationComponent implements OnInit {
         console.log(y);
 
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.document = document;
+            this.documents = document;
             console.log(document);
         });
 

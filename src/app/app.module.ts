@@ -19,6 +19,7 @@ import { LeaveService } from './core/Services/HRM/Leave/leave.service';
 import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
 import { ApiService } from './core/Services/api.service';
 import { CoreModule } from './core/core.module';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 
@@ -39,7 +40,9 @@ import { CoreModule } from './core/core.module';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
+        {provide: LocationStrategy, useClass: HashLocationStrategy}, 
+        ScriptLoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,307 @@
+<div class="m-content">
+  <div  class="m-portlet m-portlet--mobile">
+    <div  class="m-portlet__head">
+      <div  class="m-portlet__head-caption">
+        <div  class="m-portlet__head-title">
+          <h3  class="m-portlet__head-text"> Khawaja Mujtaba <small  class="pad_15">
+            <a  class="m-link" href="#"> Edit </a>
+            <a  class="m-link pad_8" href="#"> Contact Info </a></small>
+            <br>
+            <small > Male 16 Year(s) (02-Sep-2001) </small>
+          </h3>
+        </div>
+      </div>
+      <div  class="m-portlet__head-tools">
+        <ul  class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+          <li  class="nav-item m-tabs__item">
+            <a  class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget2_tab2_content1" role="tab"> Patient Id </a>
+          </li>
+          <li  class="nav-item m-tabs__item">
+            <a  class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget2_tab1_content" role="tab"> 548HTU </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div  class="row">
+    <div  class="col-lg-12">
+      <div  class="m-portlet">
+        <div  class="m-portlet__head">
+          <div  class="m-portlet__head-caption">
+            <div  class="m-portlet__head-title">
+              <span  class="m-portlet__head-icon m--hide">
+                <i  class="la la-gear"></i>
+              </span>
+              <h3  class="m-portlet__head-text">Daily Appointments </h3>
+            </div>
+          </div>
+        </div>
+        <form  class="m-form ng-untouched ng-pristine ng-valid" novalidate="">
+          <div  class="m-portlet__body">
+            <div  class="form-group row">
+              <div  class="form-group col-lg-3">
+                <label  for="exampleSelect1"> Consultant </label>
+                <select  class="form-control m-input ng-pristine ng-invalid ng-touched">
+                  <option  class="active" value="Saeeda Rehman" >Saeeda Rehman</option>
+                  <option  value="Zeeshan Akhtar" >Zeeshan Akhtar</option>
+                </select>
+              </div>
+              <div  class="form-group col-lg-3">
+                <label  for="exampleInputEmail1">  Date </label>
+                <div  class="input-group date">
+                  <input  class="form-control m-input" id="m_datepicker_2" type="text">
+                  <div  class="input-group-append">
+                    <span  class="input-group-text">
+                      <i  class="la la-calendar"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div  class="form-group  col-lg-6 blanklable">
+                <label for="exampleInputEmail1" class="blanklable"></label>
+                <button type="button" class="btn btn-primary blanklable pull-right" data-toggle="modal" data-target="#m_modal_1">
+                   Send SMS +
+                  </button>
+              </div>
+            </div>
+          </div>
+        </form>
+            <div class="m-portlet__body">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
+                    Tentative Appointment
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#m_tabs_3_3">
+                    Final Appointment
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active show" id="m_tabs_3_1" role="tabpanel">
+                  <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients"> 
+                        <dxo-paging [pageSize]="5"></dxo-paging>
+                        <dxo-editing mode="cell" [allowUpdating]="true"></dxo-editing>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                        <dxi-column dataField="fullName" caption="Patient Name"></dxi-column>
+                        <dxi-column dataField="partner.fullName"></dxi-column>
+                        <dxi-column dataField="mrn"></dxi-column>
+                        <dxi-column dataField="phoneNumber"></dxi-column>
+                        <dxi-column dataField="officeTel" caption="Alternet No"></dxi-column>  
+                        <!-- <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
+                        <div *dxTemplate="let d of 'chartCellTemplate'">
+                            <div class="chart-cell">
+                                <dx-button  icon="plus"></dx-button>
+                            </div>
+                        </div> -->
+                    </dx-data-grid> 
+                   </div>
+                <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
+                  <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients"> 
+                    <dxo-paging [pageSize]="5"></dxo-paging>
+                
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                    <dxi-column dataField="fullName" caption="Patient Name"></dxi-column>
+                    <dxi-column dataField="partner.fullName"></dxi-column>
+                    <dxi-column dataField="mrn"></dxi-column>
+                    <dxi-column dataField="phoneNumber"></dxi-column>
+                    <dxi-column dataField="officeTel" caption="Alternet No"></dxi-column>  
+                    <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
+                    <div *dxTemplate="let d of 'chartCellTemplate'">
+                        <div class="chart-cell">
+                            <dx-button data-toggle="modal" data-target="#m_modal_2" icon="plus"></dx-button> | 
+                            <dx-button data-toggle="modal" data-target="#m_modal_3"  icon="edit"></dx-button>
+                        </div>
+                    </div>
+                </dx-data-grid>
+              </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- strat model for send sms -->
+<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <i class="m-nav__link-icon flaticon-share"></i>
+            <span class="m-nav__link-text">
+                Send SMS
+            </span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              ×
+            </span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="m-form m-form--fit m-form--label-align-right">
+              <div  class="m-portlet__body">
+                  <div  class="form-group row">
+                    <div  class="form-group col-lg-12">
+                      <label  for="exampleSelect1"> Consultant </label>
+                    </div>
+                  
+                  </div>
+                  <div  class="form-group row">
+                      <div  class="form-group col-lg-4">
+                        <label class="m-radio">
+                          <input type="radio" name="example_3" value="1">
+                          Cancelled
+                          <span></span>
+                        </label>
+                      </div>
+                      <div  class="form-group col-lg-4">
+                        <label class="m-radio">
+                          <input type="radio" name="example_3" value="1">
+                          Done
+                          <span></span>
+                        </label>
+                      </div>
+                      <div  class="form-group col-lg-4">
+                        <label class="m-radio">
+                          <input type="radio" name="example_3" value="1">
+                          Reschedule
+                          <span></span>
+                        </label>
+                      </div>
+                    </div>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button"  class="btn btn-primary">
+                    Send SMS
+                  </button>
+                  <button type="button"   data-dismiss="modal" class="btn btn-secondary">
+                    Cancel 
+                  </button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end model for send sms -->
+
+  <!-- start visit detail -->
+  <div class="modal fade" id="m_modal_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <i class="m-nav__link-icon flaticon-share"></i>
+              <span class="m-nav__link-text">
+                  Visit Detail
+              </span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="m-form m-form--fit m-form--label-align-right">
+                <div  class="m-portlet__body">
+                    <div  class="form-group row">
+                      <div  class="form-group col-lg-6">
+                        <label  for="exampleInputEmail1"> Time In </label>
+                        <div  class="input-group date">
+                          <input  class="form-control m-input" id="m_datepicker_2" type="text">
+                          <div  class="input-group-append"><span  class="input-group-text">
+                            <i  class="la la-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div  class="form-group col-lg-6">
+                        <label  for="exampleInputEmail1"> Time Out </label>
+                        <div  class="input-group date">
+                          <input  class="form-control m-input" id="m_datepicker_2" type="text">
+                          <div  class="input-group-append"><span  class="input-group-text">
+                            <i  class="la la-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div  class="form-group row">
+                      <div class="form-group col-lg-12">
+                          <label for="exampleTextarea">
+                            Remarks
+                          </label>
+                          <textarea class="form-control m-input" id="exampleTextarea" rows="3"></textarea>
+                        </div>
+                  </div>
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-primary">
+                      Submit
+                    </button>
+                    <button type="button"   data-dismiss="modal" class="btn btn-secondary">
+                      Cancel 
+                    </button>
+                  </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- end visit detail -->
+
+  <!-- start add visit -->
+  <div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <i class="m-nav__link-icon flaticon-share"></i>
+              <span class="m-nav__link-text">
+                 Add Test
+              </span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="m-form m-form--fit m-form--label-align-right">
+                <div  class="m-portlet__body">
+                    <div  class="form-group row">
+                        <div class="form-group col-lg-10">
+                          <label for="example-text-input">
+                              Text
+                            </label>
+                            <select  class="form-control m-input ng-pristine ng-invalid ng-touched">
+                              <option  class="active" value="Saeeda Rehman">Serum LH</option>
+                            </select>
+                          </div>
+                        <div class="form-group col-lg-2">
+                            <button type="button" class="btn btn-info blankinput">
+                                +
+                              </button>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-primary">
+                      Submit
+                    </button>
+                    <button type="button"   data-dismiss="modal" class="btn btn-secondary">
+                      Cancel 
+                    </button>
+                  </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- end add visit -->
+
+  

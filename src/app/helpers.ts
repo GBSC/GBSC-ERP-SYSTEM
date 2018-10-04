@@ -15,18 +15,18 @@ export class Helpers {
         $(element).removeAttr('appunwraptag').unwrap();
     }
 
-    /**
-     * Set title markup
-     * @param title
-     */
+	/**
+	 * Set title markup
+	 * @param title
+	 */
     static setTitle(title) {
         $('.m-subheader__title').text(title);
     }
 
-    /**
-     * Breadcrumbs markup
-     * @param breadcrumbs
-     */
+	/**
+	 * Breadcrumbs markup
+	 * @param breadcrumbs
+	 */
     static setBreadcrumbs(breadcrumbs) {
         if (breadcrumbs) $('.m-subheader__title').addClass('m-subheader__title--separator');
 

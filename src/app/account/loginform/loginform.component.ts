@@ -1,43 +1,57 @@
 import { Inject, Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, NgForm, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AccountService } from '../../core';
-import { Loginform } from '../../core/Models/Auth/loginform';
+import { FormGroup,FormControl, Validators, NgForm,  FormBuilder} from '@angular/forms';
+import { Loginform } from '../../models/loginform';
+
+import { AccountService } from '../service.service';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-loginform',
-    templateUrl: './loginform.component.html',
-    styleUrls: ['./loginform.component.css'],
+  selector: 'app-loginform',
+  templateUrl: './loginform.component.html',
+  styleUrls: ['./loginform.component.css'],
 
 
 })
 export class LoginformComponent implements OnInit {
 
 
-    loginForm: FormGroup;
-    public myLoginForm = new Loginform();
+       loginForm   : FormGroup;
+public myLoginForm = new Loginform();
 
-    constructor(private formBuilder: FormBuilder, private accountservice: AccountService, private router: Router, private route: ActivatedRoute) {
+  constructor( private formBuilder: FormBuilder,private accountservice: AccountService, private router: Router) {
 
-        this.loginForm = formBuilder.group({
-            'Username': ['rootadmin', Validators.required],
-            'Password': ['Pass@2018', Validators.required]
-        });
-    }
+    this.loginForm = formBuilder.group({
+      'Username' : ['admin', Validators.required],
+      'Password' : ['Pass@2018', Validators.required]
+    });
+  }
 
-    ngOnInit() {
+  ngOnInit() {
 
-    }
 
-    async login() {
-        this.accountservice.login(this.loginForm.value);
-    }
+    
+  }
 
-    revert() {
-        //    this.route.url.subscribe(d => console.log(d))
-        console.log(this.route.snapshot.url);
-    }
+  async onSubmit(value) {
+    localStorage.setItem('loginCred', JSON.stringify(value));
+    console.log(value);
+    let res = await this.accountservice.login(this.loginForm.value);
+    let { auth_token, expires_in, id } = res.response; 
+    localStorage.setItem('token', auth_token);
+    this.router.navigate(['/patient/home']);
+
+
+  }
+
+  // onSubmit(value) {
+  //   localStorage.setItem('loginCred', JSON.stringify(value));
+  //   console.log(value);
+  // }
+
+revert() {
+  this.loginForm.reset();
+}
 
 
 }

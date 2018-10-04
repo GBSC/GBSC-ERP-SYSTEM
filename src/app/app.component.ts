@@ -5,11 +5,6 @@ import { Helpers } from "./helpers";
 @Component({
     selector: 'body',
     templateUrl: './app.component.html',
-    styles:[`
-    app-loginform {
-        height: 100%;
-    }
-    `],
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
@@ -19,22 +14,15 @@ export class AppComponent implements OnInit {
     constructor(private _router: Router) {
     }
 
-    public ngOnInit() {
-        this._router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
+    ngOnInit() {
+        this._router.events.subscribe((route) => {
+            if (route instanceof NavigationStart) {
                 Helpers.setLoading(true);
                 Helpers.bodyClass(this.globalBodyClass);
-
-                let url = (<NavigationStart>event).url;
-                if (url !== url.toLowerCase()) {
-                    this._router.navigateByUrl((<NavigationStart>event).url.toLowerCase());
-                }
             }
-            if (event instanceof NavigationEnd) {
+            if (route instanceof NavigationEnd) {
                 Helpers.setLoading(false);
             }
         });
     }
-
-
 }

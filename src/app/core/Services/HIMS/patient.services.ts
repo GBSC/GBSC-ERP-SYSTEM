@@ -21,8 +21,7 @@ import { Package } from '../../Models/HIMS/packages';
 import { VisitNote } from '../../Models/HIMS/visitnote';
 import { VisitNature } from '../../Models/HIMS/visitnature';
 import { Diagnoses } from '../../Models/HIMS/diagnoses';
-
-
+ 
 @Injectable()
 export class PatientService {
 
@@ -145,17 +144,15 @@ export class PatientService {
         //return x;
     }
 
-    async addDocument(f: FormData, id) {
-
-        return await this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f).subscribe(res => {
-            console.log(res);
-        });
-
+    addDocument(f: FormData, id) : Observable<File>  {
+        //return await this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f).toPromise();
+        return this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f);
+ 
         //this.http1.post(this.API_URL + '/patients/AddPatientDocument/' + id, f).subscribe(res => {
         //    console.log(res);
         //});
 
-        //return x;
+           
     }
 
     addDocuments(models : FormData, id){

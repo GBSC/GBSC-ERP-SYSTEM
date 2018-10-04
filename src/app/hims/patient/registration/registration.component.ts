@@ -293,24 +293,20 @@ export class RegistrationComponent implements OnInit {
         this.forevent = <File>event.target.files[0];
         console.log(this.forevent)
     }
-  async  onupload() {
+     onupload() {
      
-
         const f = new FormData();
         f.append('f', this.forevent);
         console.log(f); 
-        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
-        console.log(this.document);
-        await this.PatientServiceobj.addDocument(f, this.id);
+          this.PatientServiceobj.addDocument(f, this.id).subscribe(res => console.log(res));
 
-        console.log(this.document);
-        // this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-        //     this.document = document;
-        //     console.log(document);
-        // });
-        this.document = await this.PatientServiceobj.getPatientDocumentByPatientId(this.id).toPromise();
-        console.log(this.document);
-    }
+        // console.log(this.document);
+        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
+            this.document = document;
+            console.log(document);
+        });
+        // console.log(this.document);
+       }
     // <end work for image uploading
 
     public allDocs: File[] = [];
@@ -410,16 +406,23 @@ export class RegistrationComponent implements OnInit {
         let y = this.PatientServiceobj.patientData;
         console.log(y);
 
-        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.document = document;
-            console.log(document);
-        });
+        this.getPatientDocumentByPatientId();
+
+        // this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
+        //     this.document = document;
+        //     console.log(document);
+        // });
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
         console.log(this.visitnature);
     }
-
+    getPatientDocumentByPatientId() {
+        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
+            this.document = document;
+            console.log(document);
+        });
+    }
 
     goback() {
         this.Location.back();

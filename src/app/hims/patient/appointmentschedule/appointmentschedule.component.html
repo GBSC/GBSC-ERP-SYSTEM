@@ -149,7 +149,8 @@
                 <dxi-column dataField="patientId" caption="Alternet No" [width]="125">
                   <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="tentativeTime" caption="Time"></dxi-column>
+                <dxi-column dataField="tentativeTime" caption="Tentative Time" dataType="datetime" format="shortTime" [allowEditing]="false"
+                [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status"></dxi-column>
               </dx-data-grid>
             </div>

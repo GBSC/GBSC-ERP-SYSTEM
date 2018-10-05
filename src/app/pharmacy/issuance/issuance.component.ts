@@ -42,13 +42,13 @@ export class IssuanceComponent implements OnInit {
     }
 
     async onPopupShown() {
-        console.log("Popup Shown");
+        ///console.log("Popup Shown");
         //this.GridDataSource = this.InventoryItems;
         this.LookUpDataSource = this.FilteredItems;
     }
 
     async onPopupHide() {
-        console.log("Popup Hidden");
+        //console.log("Popup Hidden");
         //this.GridDataSource = this.Items;
         this.LookUpDataSource = this.Items;
     }
@@ -78,13 +78,8 @@ export class IssuanceComponent implements OnInit {
     
     AddItem(value)
     {
-        console.log(value);
-        this.Items.push(value.data);
-        console.log(this.Items);
         var a : any  = this.FilteredItems;
-        console.log(a);
         this.FilteredItems = a.filter(a => a.itemCode != value.data.itemCode);
-        console.log(this.FilteredItems);
     }
 
     addfinal()

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../../core';
+import { PackCategory } from '../../../core/Models/Pharmacy/PackCategory';
 
 @Component({
     selector: 'app-product-pack-category',
@@ -7,20 +8,20 @@ import { PharmacyService } from '../../../core';
     styleUrls: ['./product-pack-category.component.scss']
 })
 export class ProductPackCategoryComponent implements OnInit {
-    private PackCategories : any;
+    private PackCategories : PackCategory;
     private UpdatedModel : any;
 
     constructor(private PharmacyService : PharmacyService) {
 
     }
 
-    async ngOnInit() {
-        this.PackCategories = await this.PharmacyService.GetPackCategories();
+    ngOnInit() {
+        this.PharmacyService.GetPackCategories().subscribe((res : PackCategory) => this.PackCategories =  res);
     }
 
     async AddPackCategory(value) {
-        await this.PharmacyService.AddPackCategory(value.data);
-        this.PackCategories = await this.PharmacyService.GetPackCategories();
+        await this.PharmacyService.AddPackCategory(value.data).toPromise();
+        this.PharmacyService.GetPackCategories().subscribe((res : PackCategory) => this.PackCategories =  res);
     }
 
     UpdateModel(value) {
@@ -30,11 +31,11 @@ export class ProductPackCategoryComponent implements OnInit {
     }
 
     async UpdatePackCategory() {
-        return await this.PharmacyService.UpdatePackCategory(this.UpdatedModel);
+        return await this.PharmacyService.UpdatePackCategory(this.UpdatedModel).toPromise();
     }
 
     async DeletePackCategory(value) {
-        return await this.PharmacyService.DeletePackCategory(value.key);
+        return await this.PharmacyService.DeletePackCategory(value.key).toPromise();
     }
 
 }

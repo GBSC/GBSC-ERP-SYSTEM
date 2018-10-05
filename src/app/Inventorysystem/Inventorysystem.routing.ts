@@ -51,7 +51,7 @@ import { PurchaseIndentComponent } from './Purchase/purchase-indent/purchase-ind
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'Inventorysystem',
+        path: 'inventorysystem',
         component: RootComponent,
 
         children: [
@@ -94,15 +94,15 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: "sales",
                 children: [
                     { path: 'dispatchnote', component: DeliveryNoteComponent },
-                    { path: 'DeliveryOrder', component: DeliveryOrderComponent },
-                    { path: 'DeliveryOrderItem', component: DeliveryOrderItemComponent },
-                    { path: 'SalesIndent', component: SalesIndentComponent },
-                    { path: 'SalesIndentItem', component: SalesIndentItemComponent },
-                    { path: 'SalesInvoice', component: SalesInvoiceComponent },
+                    { path: 'deliveryOrder', component: DeliveryOrderComponent },
+                    { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
+                    { path: 'salesindent', component: SalesIndentComponent },
+                    { path: 'salesindentitem', component: SalesIndentItemComponent },
+                    { path: 'salesinvoice', component: SalesInvoiceComponent },
                     { path: 'salesorder', component: SalesOrderComponent },
-                    { path: 'SalesOrderItem', component: SalesOrderItemComponent },
-                    { path: 'SalesReturn', component: SalesReturnComponent },
-                    { path: 'SalesReturnItem', component: SalesReturnItemComponent }
+                    { path: 'salesorderitem', component: SalesOrderItemComponent },
+                    { path: 'salesreturn', component: SalesReturnComponent },
+                    { path: 'salesreturnitem', component: SalesReturnItemComponent }
                 ]
             },
             {

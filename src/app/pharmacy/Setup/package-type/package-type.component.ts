@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../../core';
+import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
 
 @Component({
     selector: 'app-package-type',
@@ -7,20 +8,20 @@ import { PharmacyService } from '../../../core';
     styleUrls: ['./package-type.component.scss']
 })
 export class PackageTypeComponent implements OnInit {
-    private PackageTypes: any;
+    private PackageTypes: PackageType;
     private UpdatedModel : any;
     
     constructor(private PharmacyService: PharmacyService) {
 
     }
 
-    async ngOnInit() {
-        this.PackageTypes = await this.PharmacyService.GetPackageTypes();
+    ngOnInit() {
+        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);
     }
 
     async AddPackageType(value) {
-        await this.PharmacyService.AddPackageType(value.data);
-        this.PackageTypes = await this.PharmacyService.GetPackageTypes();
+        await this.PharmacyService.AddPackageType(value.data).toPromise();
+        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);
     }
 
     UpdateModel(value) {
@@ -28,11 +29,11 @@ export class PackageTypeComponent implements OnInit {
     }
 
     async UpdatePackageType() {
-        return await this.PharmacyService.UpdatePackageType(this.UpdatedModel);
+        return await this.PharmacyService.UpdatePackageType(this.UpdatedModel).toPromise();
     }
 
     async DeletePackageType(value) {
-        return await this.PharmacyService.DeletePackageType(value.key);
+        return await this.PharmacyService.DeletePackageType(value.key).toPromise();
     }
 
 }

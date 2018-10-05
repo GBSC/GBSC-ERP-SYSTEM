@@ -40,22 +40,6 @@
         </div>
     </div>
 
-    <!-- <div class="m-portlet m-portlet--mobile">
-        <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text"> Purchase Order
-                    </h3>
-                </div>
-            </div>
-            <div class="m-portlet__head-tools">
-                <ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
-                    <button class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" data-toggle="modal" data-target="#m_modal_4"> Add New </button>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
 
     <div class="modal fade model" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -71,6 +55,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <!-- <form class="m-form" [formGroup]="PurchaseOrderForm" ngNativeValidate> -->
                     <form class="m-form" [formGroup]="PurchaseOrderForm" ngNativeValidate>
                         <div class="m-portlet__body">
                             <div class="form-group row">
@@ -115,8 +100,8 @@
                                     <select class="form-control m-input m-input--solid" formControlName="OrderType" required>
                                         <option value="abc">abc </option>
                                     </select>
-
                                 </div>
+
                                 <div class="form-group col-lg-4">
                                     <label>Sales Tax </label>
                                     <input type="text" class="form-control m-input m-input--solid " formControlName="SalesTax" placeholder="">
@@ -220,7 +205,10 @@
                                         <button type="reset" class="btn btn-primary">
                                             Pre Rec
                                         </button> |
-                                        <button type="reset" class="btn btn-success" (click)="onSubmit(PurchaseOrderForm.value)" data-dismiss="modal">
+                                        <!-- <button type="reset" class="btn btn-success" (click)="onSubmit(PurchaseOrderForm.value)" data-dismiss="modal">
+                                            Save
+                                        </button> -->
+                                        <button type="reset" class="btn btn-success" data-dismiss="modal">
                                             Save
                                         </button>
                                     </div>
@@ -232,342 +220,6 @@
             </div>
         </div>
     </div>
-
-
-
-    <!-- <div class="row">
-        <div class="col-lg-12">
-            <div class="m-portlet">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <span class="m-portlet__head-icon m--hide">
-                                <i class="la la-gear"></i>
-                            </span>
-                            <h3 class="m-portlet__head-text">
-                                Purchase Order
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <form class="m-form" [formGroup]="PurchaseOrderForm" ngNativeValidate>
-                    <div class="m-portlet__body">
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Order Number
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderNumber">
-                            </div>
-                            <div class="form-group  col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    PO Date
-                                </label>
-                                <div class="input-group date">
-                                    <input type="date" class="form-control m-input" formControlName="OrderDate" required>
-
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Supplier
-                                </label>
-                                <select class="form-control m-input m-input--solid" formControlName="SupplierId" required>
-                                    <option *ngFor="let supplier of InventorysystemServiceobj?.Suppliers" [value]="supplier.supplierId"> {{supplier.name}}</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Order Remarks
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderRemarks">
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Order Type
-                                </label>
-                                <select class="form-control m-input m-input--solid" formControlName="OrderType" required>
-                                    <option value="abc">abc </option>
-                                </select>
-
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label>Sales Tax </label>
-                                <input type="text" class="form-control m-input m-input--solid " formControlName="SalesTax" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    PO #
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="PO  Number">
-                            </div>
-                            <div class="form-group  col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    PO Date
-                                </label>
-                                <div class="input-group date">
-                                    <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <i class="la la-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Status
-                                </label>
-                                <select class="form-control m-input m-input--solid" id="exampleSelect1">
-                                    <option> Uncleared </option>
-                                    <option> Clear </option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-1">
-                                <label for="exampleInputEmail1">
-                                    Currency
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="01">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    placeholder="">
-                            </div>
-
-                            <div class="form-group  col-lg-4">
-                                <label for="exampleInputEmail1">
-                                    Exchange Rate
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Supplier">
-                            </div>
-                            <div class="form-group col-lg-4">
-                                <label>
-                                    Sales Tax %
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-8">
-                                <label for="exampleInputEmail1">
-                                    Remarks
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderRemarks" placeholder="Remarks">
-                            </div>
-                            <div class="form-group  col-lg-2">
-                                <div class="m-form__group form-group">
-                                    <div class="m-checkbox-list">
-                                        <label>
-                                        </label>
-                                        <label class="m-checkbox blankinput">
-                                            <input type="checkbox"> Default
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-2 blankinput">
-                                <div class="m--align-right blankinput">
-                                    <input class="btn btn-primary blankinput" type="submit" value="Post">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m-portlet__foot m-portlet__foot--fit">
-                        <div class="m-form__actions m-form__actions">
-                            <div class="row">
-                                <div class="col-lg-12 m--align-right">
-                                    <button type="reset" class="btn btn-primary">
-                                        Next Rec
-                                    </button> |
-                                    <button type="reset" class="btn btn-primary">
-                                        Pre Rec
-                                    </button> |
-                                    <button type="reset" class="btn btn-success" (click)="onSubmit(PurchaseOrderForm.value)">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="row">
-        <div class="col-xl-12">
-            <div class="m-portlet">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Purchase Order Detail</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="m-portlet__body">
-                    <div class="m-section">
-                        <div class="m-section__content">
-                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand tblheader">
-                                <thead>
-                                    <tr>
-                                        <th scope="row">Manual Code</th>
-                                        <th>Description</th>
-                                        <th>No Of Pack Type</th>
-                                        <th>Order Qty</th>
-                                        <th>Bonus Qty</th>
-                                        <th>Unit Per Flag</th>
-                                        <th>Rate</th>
-                                        <th>Gross Amount</th>
-                                        <th>Disc %</th>
-                                        <th>Disc Amount</th>
-                                        <th>Stax %</th>
-                                        <th>Stax Amount</th>
-                                        <th>Net Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">001</th>
-                                        <td>Abc</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>
-                                            <input class="form-control m-input m-input--solid blankinput" type="checkbox">
-                                        </td>
-                                        <td>19.00</td>
-                                        <td>20.00</td>
-                                        <td>1 %</td>
-                                        <td>10</td>
-                                        <td>1 %</td>
-                                        <td>12.00</td>
-                                        <td>125.00</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <div class="form-group row">
-                                <div class="form-group col-lg-1">
-                                    <label></label>
-                                    <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                        placeholder="Remarks">
-                                </div>
-                                <div class="form-group col-lg-1">
-                                    <label></label>
-                                    <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                        placeholder="Remarks">
-                                </div>
-                                <div class="form-group col-lg-1">
-                                    <label></label>
-                                    <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                        placeholder="Remarks">
-                                </div>
-                                <div class="form-group  col-lg-3">
-                                    <div class="m-form__group form-group">
-                                        <div class="m-checkbox-list">
-                                            <label>Total Grand</label>
-                                            <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Remarks">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group  col-lg-2">
-                                    <div class="m-form__group form-group">
-                                        <div class="m-checkbox-list">
-                                            <label></label>
-                                            <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                placeholder="Remarks">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group  col-lg-2">
-                                    <div class="m-form__group form-group">
-                                        <div class="m-checkbox-list">
-                                            <label></label>
-                                            <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                placeholder="Remarks">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group  col-lg-2">
-                                    <div class="m-form__group form-group">
-                                        <div class="m-checkbox-list">
-                                            <label></label>
-                                            <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                                placeholder="Remarks">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="form-group col-lg-3">
-                                    <label for="exampleInputEmail1">
-                                        Pack Type
-                                    </label>
-                                    <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pack Type">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="exampleInputEmail1">
-                                        Pack Size
-                                    </label>
-                                    <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pack Size">
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="exampleInputEmail1">
-                                        Stock Position
-                                    </label>
-                                    <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Stock Position">
-
-                                </div>
-                                <div class="form-group col-lg-3">
-                                    <label for="exampleInputEmail1">
-                                        # Lines
-                                    </label>
-                                    <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="1">
-
-                                </div>
-                            </div>
-
-                            <div class="m-portlet__foot">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 m--valign-middle">
-                                    </div>
-                                    <div class="col-lg-6 m--align-right">
-                                        <div class="btn-group m-btn-group">
-                                            <button type="submit" class="btn btn-success">
-                                                <i class="la la-paperclip"></i>
-                                            </button>
-                                            <button type="submit" class="btn btn-success">
-                                                <i class="la la-file-text-o"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <div class="row">
         <div class="col-xl-12">
@@ -584,10 +236,10 @@
                 <div class="m-portlet__body">
                     <div class="m-section">
                         <div class="m-section__content">
-                            <dx-data-grid id="gridContainer" [dataSource]="InventorysystemServiceobj.Purchaseorders" (onRowUpdated)="UpdatePurchaseOrder($event)"
-                                (onRowRemoved)="DeletePurchaseOrder($event)">
-                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-                                </dxo-editing>
+                            <dx-data-grid id="gridContainer" [dataSource]="PurchaseOrders" (onRowUpdated)="UpdatePurchaseOrder()" (onRowUpdating)="UpdateModel($event)" (onRowRemoved)="DeletePurchaseOrder($event)">
+                                <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="false"[useIcons]="true">	
+                                    <dxo-popup title="Update Purchase Order" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                                  </dxo-editing>
                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                                 <dxo-paging [pageSize]="5"></dxo-paging>
@@ -597,9 +249,8 @@
                                 <dxi-column dataField="orderRemarks" caption="Order Remarks"></dxi-column>
                                 <dxi-column dataField="orderType" caption="Order Type"></dxi-column>
                                 <dxi-column dataField="salesTax" caption="SalesTax"></dxi-column>
-                                <dxi-column dataField="supplierId" caption="Suppliers" [width]="125">
-                                    <dxo-lookup [dataSource]="supplierdata" displayExpr="name" valueExpr="supplierId">
-                                    </dxo-lookup>
+                                <dxi-column dataField="supplierId" caption="Suppliers">
+                                    <dxo-lookup [dataSource]="Suppliers" displayExpr="name" valueExpr="supplierId"></dxo-lookup>
                                 </dxi-column>
 
                             </dx-data-grid>

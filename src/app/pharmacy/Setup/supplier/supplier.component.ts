@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PharmacyService } from '../../../core';
+import { Supplier } from '../../../core/Models/Pharmacy/Supplier';
 
 
 @Component({
@@ -10,20 +11,20 @@ import { PharmacyService } from '../../../core';
     styleUrls: ['./supplier.component.css']
 })
 export class SupplierComponent implements OnInit {
-    public Supplier: any;
+    public Suppliers : any;
     public UpdatedModel : any;
 
     constructor(private PharmacyService: PharmacyService) {
        
     }
 
-    async  ngOnInit() {
-        this.Supplier = await this.PharmacyService.GetSuppliers();
+    ngOnInit() {
+        this.PharmacyService.GetSuppliers().subscribe((res : Supplier) => this.Suppliers = res);
     }
 
     async AddSupplier(value) {
-        await this.PharmacyService.AddSupplier(value.data);
-        this.Supplier = await this.PharmacyService.GetSuppliers();
+        await this.PharmacyService.AddSupplier(value.data).toPromise();
+        this.PharmacyService.GetSuppliers().subscribe((res : Supplier) => this.Suppliers = res);
     }
 
     UpdateModel(value) {
@@ -31,11 +32,11 @@ export class SupplierComponent implements OnInit {
     }
 
     async UpdateSupplier() {
-        return await this.PharmacyService.UpdateSupplier(this.UpdatedModel);
+        return await this.PharmacyService.UpdateSupplier(this.UpdatedModel).toPromise();
     }
 
     async DeleteSupplier(value) {
-        return await this.PharmacyService.DeleteSupplier(value.key);
+        return await this.PharmacyService.DeleteSupplier(value.key).toPromise();
     }
 
 

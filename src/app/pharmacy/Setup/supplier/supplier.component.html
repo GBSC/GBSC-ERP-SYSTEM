@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12"> 
                 <dx-data-grid id="gridContainer" [dataSource]="Suppliers" keyExpr="supplierId" (onRowInserted)="AddSupplier($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateSupplier($event)" (onRowRemoved)="DeleteSupplier($event)">
-                    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                    <dxo-editing mode="popup" [allowAdding]="true"  [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                         <dxo-popup title="Add Supplier" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>

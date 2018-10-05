@@ -1,5 +1,5 @@
-<div class="m-content">
-    <div class="m-portlet m-portlet--mobile">
+ <div class="m-content">
+    <!-- <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
@@ -39,7 +39,7 @@
                         </ul> 
                     </div> 
             </div> 
-    </div>
+    </div> -->
   
     <div class="row">
       <div class="col-lg-12">
@@ -58,7 +58,7 @@
             </div>
           </div>
             <!--begin::Form-->
-            <form class="m-form">
+            <form class="m-form" [formGroup]="IssuanceForm">
                 <div class="m-portlet__body">
                   
                     <div class="form-group row">
@@ -66,74 +66,104 @@
                             <label for="exampleInputEmail1">
                                 MRN No
                             </label>
-                            <input type="text" class="form-control m-input m-input--solid">
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="MRN">
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
                                 Issue No
                             </label>
-                            <input type="text" class="form-control m-input m-input--solid">
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="IssuanceNo">
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
                                 Issue Date
                               </label>
                             <div class="input-group date">
-                                <input type="text" class="form-control m-input" readonly="" placeholder="Select date" id="m_datepicker_2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="la la-calendar"></i>
-                                    </span>
-                                </div>
+                                <input type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate">
                              </div>
                         </div>
                         <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Slip No
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="SlipNo">
                             </div>
                     </div>
-   
- 
                     <div class="form-group row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                    P. Name
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName">
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                   S. Name
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName">
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                    Remarks
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Department
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
                             </div>
-                        </div>
-       
+                        </div>       
                 </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary">
+                        Reset
+                    </button>
+                    <button type="button" (click)="onsubmit(IssuanceForm.value)"  class="btn btn-primary">
+                        Save
+                    </button>
+                </div>
+
+
   
             </form>
             <!--end::Form-->
+       
+            <div class="row">
+                <div class="m-portlet__body">
+                    <div class="m-section">
+                        <div class="m-section__content">
+                            <dx-data-grid id="gridContainer" [dataSource]="issuance" (onRowInserted)="AddIssuance($event)" >
+                                <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+                                </dxo-editing>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                <dxo-paging [pageSize]="5"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 30]" [showInfo]="true"></dxo-pager>
+                                 <dxi-column dataField="itemCode" caption="Manual Code" [width]="125">
+                                    <dxo-lookup [dataSource]="issuance" displayExpr="itemCode" valueExpr="itemCode"></dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="description" value="issuance?.description" caption="Description"></dxi-column>
+                                <dxi-column dataField="packType" caption="Pack Type"></dxi-column>
+                                <dxi-column dataField="packSize" caption="Pack Size"></dxi-column>
+                                <dxi-column dataField="noOfPackType" caption="No of Pack Type"></dxi-column>
+                                <dxi-column dataField="qty" caption="Qty"></dxi-column>
+                                <dxi-column dataField="rate" caption="Rate"></dxi-column>
+                                <dxi-column dataField="netAmount" caption="Net Amount"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--end::Portlet-->
+        <button (click)="addfinal()">adasda</button>
       </div>
     </div>
-    
+   
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-xl-12">
           <div class="m-portlet">
             <div class="m-portlet__head">
@@ -257,5 +287,5 @@
             </div>
           </div>
         </div>
-    </div>
+    </div> -->
   </div>

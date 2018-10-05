@@ -28,6 +28,10 @@ import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
 import { InventoryItemCategoryComponent } from './Setup/inventory-item-category/inventory-item-category.component';
 import { InventoryItemComponent } from './Setup/inventory-item/inventory-item.component';
+import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
+import { ReturnViewComponent } from './return-view/return-view.component';
+import { GrnViewComponent } from './grn-view/grn-view.component';
+import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 
 @NgModule({
   imports: [
@@ -62,7 +66,11 @@ import { InventoryItemComponent } from './Setup/inventory-item/inventory-item.co
     ProductTypeComponent,
     ReturnReasonComponent,
     SupplierComponent,
-    UnitComponent
+    UnitComponent,
+    IssuanceViewComponent,
+    ReturnViewComponent,
+    GrnViewComponent,
+    PurhcaseorderViewComponent
   ],
   providers: [
     {

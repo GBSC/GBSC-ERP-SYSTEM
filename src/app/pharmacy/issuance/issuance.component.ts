@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
+import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
 
 @Component({
     selector: 'app-issuance',
@@ -10,48 +12,17 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class IssuanceComponent implements OnInit {
     
-    private SalesOrderForm : FormGroup;
     private IssuanceForm : FormGroup;
-    private SalesOrders : any;
-    private issuance : any;
+    private SalesOrders : SalesOrder;
+    private InventoryItems : InventoryItem;
+    private Items : InventoryItem[] = [];
+    private FilteredItems : InventoryItem;
+    private GridDataSource : any;
+    private LookUpDataSource : any;
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
-        
-        // this.SalesOrderForm = this.FormBuilder.group( {
-        //     salesOrderId : [''],
-        //     salesOrderCode : [''],
-        //     issueDate : [''],
-        //     isIssued : [''],
-        //     approvedDate : [''],
-        //     isApproved : [''],
-        //     processedDate : [''],
-        //     isProcessed : [''],
-        //     remarks : [''],
-        //     slipNumber : [''],
-        //     status : [''],
-        //     contactPerson : [''],
-        //     contactPersonNumber : [''],
-        //     againstLotNumber : [''],
-        //     deliveryDate : [''],
-        //     totalQuantity : [''],
-        //     extendedAmount : [''],
-        //     discountedAmount : [''],
-        //     shipped : [''],
-        //     discountAmount : [''],
-        //     salesTaxAmount : [''],
-        //     orderAmount : [''],
-        //     specialDiscountPercentage : [''],
-        //     specialDiscountAmount : [''],
-        //     extraDiscountPercentage : [''],
-        //     extraDiscountAmount : [''],
-        //     userId : [''],
-        //     deliveryOrderId : [''],
-        //     salesIndentId : [''],
-        //     salesPersonId : [''],
-        //     modeOfPaymentId : [''],
-        //     customerId : [''],
-        //     taxId : ['']
-        // });
+        this.onPopupShown = this.onPopupShown.bind(this);
+        this.onPopupHide = this.onPopupHide.bind(this);
         this.IssuanceForm = this.FormBuilder.group({
             MRN : [''],
             IssuanceNo:[''],
@@ -62,55 +33,63 @@ export class IssuanceComponent implements OnInit {
             Remarks:[''],
             Department :[''],
             InventoryItems : ['']
-
-        })
+        });
     }
 
-    async ngOnInit() {
-        this.SalesOrders = await this.PharmacyService.GetSalesOrders();
-        
-        this.PharmacyService.GetInventoryItems().subscribe(result => {
-            this.issuance = result;
-            console.log(this.issuance);
-        });
+    ngOnInit() {
+        this.PharmacyService.GetSalesOrders().subscribe((res : SalesOrder) => this.SalesOrders = res);
+        this.PharmacyService.GetInventoryItems().subscribe((result : InventoryItem ) => { this.InventoryItems = result; this.FilteredItems = result; console.log(this.InventoryItems, this.FilteredItems); });
+    }
 
+    async onPopupShown() {
+        console.log("Popup Shown");
+        //this.GridDataSource = this.InventoryItems;
+        this.LookUpDataSource = this.FilteredItems;
+    }
+
+    async onPopupHide() {
+        console.log("Popup Hidden");
+        //this.GridDataSource = this.Items;
+        this.LookUpDataSource = this.Items;
     }
 
     async AddSalesOrder(value) {
-        return await this.PharmacyService.AddSalesOrder(value);
+        console.log(value);
+        await this.PharmacyService.AddSalesOrder(value).toPromise();
+        this.PharmacyService.GetSalesOrders().subscribe((res : SalesOrder) => this.SalesOrders = res);
     }
 
     async UpdateSalesOrder(value) {
-        return await this.PharmacyService.UpdateSalesOrder(value.Key);
+        return await this.PharmacyService.UpdateSalesOrder(value.Key).toPromise();
     }
 
     async DeleteSalesOrder(value) {
-        return await this.PharmacyService.DeleteSalesOrder(value.Key.SalesOrderId);
+        return await this.PharmacyService.DeleteSalesOrder(value.Key.SalesOrderId).toPromise();
     }
 
     SubmitSalesOrderForm(value) {
         console.log(value);
     }
 
-    public vae : any;
     onsubmit(value)
     {
-        this.vae = value;
         console.log(value);
     }
-    public rr = [];
-    public rrrr = [];
-    AddIssuance(value)
+    
+    AddItem(value)
     {
-        let x  =  value.data;
-        this.rr.push(x);
-  
-        console.log(this.rr)
+        console.log(value);
+        this.Items.push(value.data);
+        console.log(this.Items);
+        var a : any  = this.FilteredItems;
+        console.log(a);
+        this.FilteredItems = a.filter(a => a.itemCode != value.data.itemCode);
+        console.log(this.FilteredItems);
     }
 
     addfinal()
     {
-        this.IssuanceForm.value.InventoryItems = this.rr;
+        this.IssuanceForm.value.InventoryItems = this.Items;
         console.log(this.IssuanceForm.value);
     }
 

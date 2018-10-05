@@ -33,22 +33,14 @@ export class InventoryItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem) => { this.InventoryItems = res; console.log("InventoryItems = ", this.InventoryItems); console.log("Subscription Results = ", res); });
+        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem) => this.InventoryItems = res);
         this.PharmacyService.GetUnits().subscribe((res : Unit) => this.Units = res);
         this.PharmacyService.GetPackTypes().subscribe((res : PackType) => this.PackTypes = res);
         this.PharmacyService.GetPackSizes().subscribe((res : PackSize) => this.PackSizes = res);
         this.PharmacyService.GetPackCategories().subscribe((res : PackCategory) => this.PackCategories = res);
         this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
         this.PharmacyService.GetInventoryItemCategories().subscribe((res : InventoryItemCategory) => this.InventoryItemCategories = res);
-        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);
-        console.log("InventoryItems", this.InventoryItems);
-        console.log("Units", this.Units);
-        console.log("PackTypes", this.PackTypes);
-        console.log("PackSizes", this.PackSizes);
-        console.log("PackCategories", this.PackCategories);
-        console.log("ProductTypes", this.ProductTypes);
-        console.log("InventoryItemCategories", this.InventoryItemCategories);
-        console.log("PackageTypes", this.PackageTypes);
+        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);   
     }
 
     async AddInventoryItem(value) {

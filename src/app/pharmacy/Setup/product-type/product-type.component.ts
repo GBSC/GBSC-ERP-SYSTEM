@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../../core';
+import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
 
 @Component({
     selector: 'app-product-type',
@@ -7,20 +8,20 @@ import { PharmacyService } from '../../../core';
     styleUrls: ['./product-type.component.scss']
 })
 export class ProductTypeComponent implements OnInit {
-    private ProductTypes: any;
+    private ProductTypes: ProductType;
     private UpdatedModel : any;
     
     constructor(private PharmacyService: PharmacyService) {
 
     }
 
-    async ngOnInit() {
-        this.ProductTypes = await this.PharmacyService.GetProductTypes();
+    ngOnInit() {
+        this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
     }
 
     async AddProductType(value) {
-        await this.PharmacyService.AddProductType(value.data);
-        this.ProductTypes = await this.PharmacyService.GetProductTypes();
+        await this.PharmacyService.AddProductType(value.data).toPromise();
+        this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
     }
 
     UpdateModel(value) {
@@ -28,11 +29,11 @@ export class ProductTypeComponent implements OnInit {
     }
 
     async UpdateProductType() {
-        return await this.PharmacyService.UpdateProductType(this.UpdatedModel);
+        return await this.PharmacyService.UpdateProductType(this.UpdatedModel).toPromise();
     }
 
     async DeleteProductType(value) {
-        return await this.PharmacyService.DeleteProductType(value.key);
+        return await this.PharmacyService.DeleteProductType(value.key).toPromise();
     }
 
 }

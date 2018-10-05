@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PharmacyService } from '../../core';
+import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
+import { Supplier } from '../../core/Models/Pharmacy/Supplier';
 
 
 
@@ -11,9 +13,9 @@ import { PharmacyService } from '../../core';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    private PurchaseOrders: any;
-    private Suppliers: any;
-    private User: any;
+    private PurchaseOrders : PurchaseOrder;
+    private Suppliers: Supplier;
+    //private User: any;
     private UpdatedModel : any;
     private PurchaseOrderForm : FormGroup;
 
@@ -22,15 +24,13 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.PharmacyService.GetSuppliers().subscribe(res => this.Suppliers = res);
-        this.PharmacyService.GetPurchaseOrders().subscribe(res => this.PurchaseOrders = res);
-        console.log(this.PurchaseOrders);
-        console.log(this.Suppliers);
+        this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => this.Suppliers = res);
+        this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
     }
 
     async AddPurchaseOrder(value) {
-        await this.PharmacyService.AddPurchaseOrder(value);
-        this.PurchaseOrders = await this.PharmacyService.GetPurchaseOrders();
+        await this.PharmacyService.AddPurchaseOrder(value).toPromise();
+        this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
     }
 
     UpdateModel(value) {
@@ -38,11 +38,11 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
     async UpdatePurchaseOrder() {
-        await this.PharmacyService.UpdatePurchaseOrder(this.UpdatedModel);
+        await this.PharmacyService.UpdatePurchaseOrder(this.UpdatedModel).toPromise();
     }
 
     async DeletePurchaseOrder(value) {
-        await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId);
+        await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId).toPromise();
     }
 
 }

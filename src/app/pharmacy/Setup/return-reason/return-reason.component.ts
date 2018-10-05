@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../../core';
+import { ReturnReason } from '../../../core/Models/Pharmacy/ReturnReason';
 
 @Component({
     selector: 'app-return-reason',
@@ -7,20 +8,20 @@ import { PharmacyService } from '../../../core';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons : any;
+    private ReturnReasons : ReturnReason;
     private UpdatedModel : any;
 
     constructor(private PharmacyService : PharmacyService) {
 
     }
 
-    async ngOnInit() {
-        this.ReturnReasons = await this.PharmacyService.GetReturnReasons();
+    ngOnInit() {
+        this.PharmacyService.GetReturnReasons().subscribe((res : ReturnReason) => this.ReturnReasons = res);
     }
 
     async AddReturnReason(value) {
-        await this.PharmacyService.AddReturnReason(value.data);
-        this.ReturnReasons = await this.PharmacyService.GetReturnReasons();
+        await this.PharmacyService.AddReturnReason(value.data).toPromise();
+        this.PharmacyService.GetReturnReasons().subscribe((res : ReturnReason) => this.ReturnReasons = res);
     }
 
     UpdateModel(value) {
@@ -28,11 +29,11 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     async UpdateReturnReason() {
-        return await this.PharmacyService.UpdateReturnReason(this.UpdatedModel);
+        return await this.PharmacyService.UpdateReturnReason(this.UpdatedModel).toPromise();
     }
 
     async DeleteReturnReason(value) {
-        return await this,this.PharmacyService.DeleteReturnReason(value.key);
+        return await this,this.PharmacyService.DeleteReturnReason(value.key).toPromise();
     }
 
 }

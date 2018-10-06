@@ -26,7 +26,7 @@ export class AttendanceService {
     outgoingOt: Object;
     workingDayOt: Object;
  
-    constructor(public httpClient: HttpClient, private ApiService : ApiService) { }
+    constructor(private ApiService : ApiService) { }
 
     /** Attendance Request CRUD METHODS */
     async getattendancerequests() {

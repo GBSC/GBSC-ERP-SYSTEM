@@ -9,16 +9,16 @@ import { SystemAdministrationService } from '../../core';
 })
 export class CompanyComponent implements OnInit {
 
+    public companies: any;
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) {
 
     }
 
-    ngOnInit() {
-        let abc = this.SystemAdministrationServiceobj.getCompany();
-        this.SystemAdministrationServiceobj.companies;
-        console.log(abc);
+    async ngOnInit() {
+        this.companies = await this.SystemAdministrationServiceobj.getCompanies();
+        //this.companies = this.SystemAdministrationServiceobj.companies;
+        console.log(this.companies);
 
-        console.log(this.SystemAdministrationServiceobj.companies);
     }
 
     async addCompany(value) {
@@ -29,11 +29,7 @@ export class CompanyComponent implements OnInit {
 
     async updateCompany(value) {
         console.log(value);
-        console.log(value.key);
-        // console.log(value.key.companyId, value.data);
-        // let updatedCompany = value.data;
-        // updatedCompany.companyId = value.key.companyId;
-        // console.log(updatedCompany);
+        console.log(value.key); 
         await this.SystemAdministrationServiceobj.updateCompany(value.key);
     }
 

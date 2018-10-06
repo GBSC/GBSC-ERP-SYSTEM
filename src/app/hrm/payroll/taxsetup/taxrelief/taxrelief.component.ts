@@ -9,7 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 export class TaxreliefComponent implements OnInit {
 
   public taxRelief: any;
-    updatingtaxRelief: any;
+  public  updatingtaxRelief: any;
 
   constructor(public payrollsetupservice: PayrollSetupService) { }
 
@@ -17,7 +17,7 @@ export class TaxreliefComponent implements OnInit {
       await this.payrollsetupservice.gettaxreliefs();
       this.taxRelief = this.payrollsetupservice.taxrelief;
 
-      await this.payrollsetupservice.incometaxrule();
+      await this.payrollsetupservice.getincometaxrules();
       let incomeTaxrule = this.payrollsetupservice.incometaxrule;
   }
 

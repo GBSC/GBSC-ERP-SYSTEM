@@ -12,9 +12,10 @@ export class SetupService {
         throw new Error("Method not implemented.");
     }
 
-    private baseUrl: string = "SystemAdmin/api/HrSetup";
-    private baseUrl2: string = "SystemAdmin/api/Setup";
-    // private baseUrl: string = "http://localhost:58090/api/HrSetup";
+    // private baseUrl: string = "SystemAdmin/api/HrSetup";
+    // private baseUrl2: string = "SystemAdmin/api/Setup";
+    private baseUrl = "http://localhost:58090/api/HrSetup";
+    private baseUrl2 = "http://localhost:58090/api/Setup";
     public country: any;
     public department: any;
     public bank: any;
@@ -307,52 +308,7 @@ export class SetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFunction/${id}`).toPromise();
 
     }
-
-    /** CRUD METHODS Grade */
-
-    async getAllgrades() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
-        console.log(this.grades);
-        return this.grades;
-
-    }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addGrade(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
-        return this.grades;
-    }
-
-    async updateGrade(data) {
-        ``
-
-        let grade = await this.getdataToUpdate(data.key, 'GetGrade');
-        grade = { ...grade, ...data.data }
-        console.log(grade);
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
-    }
-
-    async DeleteGrade(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
-
-    }
-
-
+ 
     /** CRUD METHODS Qualification */
 
     async getAllqualifications() {
@@ -1069,14 +1025,10 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leavetype = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
-        return this.leavetype;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        //return await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+       // return this.leavetype;
     }
 
-    // DEMO ONLY, you can find working methods below
     async addLeaveTypes(data) {
 
         let authToken = localStorage.getItem('auth_token');

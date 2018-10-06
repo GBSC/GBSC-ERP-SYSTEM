@@ -2,13 +2,13 @@
   <h4>Company Information</h4>
 
 </div>
-<form class="signup-form" [formGroup]="employee.EmpCompanyForm">
+<form class="signup-form" [formGroup]="employeeService.EmpCompanyForm">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Designation</label>
-        <select class="form-control m-input m-input--solid"   formControlName="DesignationId" name="Designation" id="Designation">
-          <option value="" disabled selected>-- Select Designation --</option>
+        <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="Employee?.name">
+     
           <option *ngFor="let cdsg of SetupServiceobj.designation" [value]="cdsg.designationId">{{cdsg.name}}</option>
         </select>
       </div>
@@ -17,8 +17,8 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Group" class="control-label">Group</label>
-        <select class="form-control m-input m-input--solid"  [value]="Employee?.groupId" formControlName="GroupId" name="Group" id="group">
-          <option value="" disabled >-- Select Group --</option>
+        <select class="form-control m-input m-input--solid"  [value]="Employee?.groupId" formControlName="GroupId" [value]="Employee?.name">
+   
           <option *ngFor="let grp of SetupServiceobj.group" [value]="grp.groupId">{{grp.name}}</option>
         </select>
       </div>
@@ -29,29 +29,20 @@
 
 
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label for="Designation" class="control-label">Employee Grade</label>
-        <select class="form-control m-input m-input--solid" formControlName="GradeId" name="grade" id="">
-          <option value="" disabled selected>-- Select Employee Grade --</option>
-          <option *ngFor="let grd of SetupServiceobj.grades" [value]="grd.gradeId">{{grd.name}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Function</label>
-        <select class="form-control m-input m-input--solid" formControlName="FunctionId" name="Managementlevel" id="mnglevel">
-          <option value="" disabled selected>-- Select Function --</option>
+        <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="Employee?.name">
+ 
           <option *ngFor="let fnc of SetupServiceobj.function" [value]="fnc.functionId">{{fnc.name}}</option>
         </select>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
-        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" name="manglevel" id="mlevel">
-          <option value="" disabled selected>-- Select Language --</option>
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="Employee?.managementLevelId">
+        
           <option *ngFor="let ml of SetupServiceobj.managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
         </select>
       </div>
@@ -64,34 +55,25 @@
 
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Emptype">Employee Type</label>
-        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" name="EmpType">
-          <option value="" disabled selected>-- Select Employee Type --</option>
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="Employee?.name">
+        
           <option *ngFor="let cemptype of SetupServiceobj.employeetype" [value]="cemptype.employeeTypeId">{{cemptype.name}}</option>
         </select>
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Empstatus">Employee Status</label>
-        <select class="form-control m-input m-input--solid" [value]="Employee?.employeeStatusId" formControlName="EmployeeStatusId" name="EmpStatus">
-          <option value="" disabled selected>-- Select Employee Status --</option>
+        <select class="form-control m-input m-input--solid" [value]="Employee?.employeeStatusId" formControlName="EmployeeStatusId" [value]="Employee?.name">
+          <!-- <option value="" disabled selected>-- Select Employee Status --</option> -->
           <option *ngFor="let cempstatus of SetupServiceobj.employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label for="Designation" class="control-label">Office Shift</label>
-        <select class="form-control m-input m-input--solid" formControlName="Shift" name="OfficeShift" id="OfficeShift">
-          <option value="" disabled selected>-- Select Shift --</option>
-          <option *ngFor="let cshft of SetupServiceobj.shift" [value]="cshft.shiftsId">{{cshft.shiftCode}}</option>
-        </select>
-      </div>
-    </div>
+    </div> 
   </div>
   <div class="m--space-07"></div>
   <div class="row">
@@ -110,7 +92,7 @@
               </label>
             </span>
           </div>
-          <input formControlName="ContractStart" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input formControlName="ContractStart" [value]="Employee?.contractStart" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div> 
     </div>
@@ -129,7 +111,7 @@
               </label>
             </span>
           </div>
-          <input type="text" formControlName="ContractEnd" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="text" formControlName="ContractEnd" [value]="Employee?.contractEnd" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -149,7 +131,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="AppointmentDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="AppointmentDate" [value]="Employee?.appointmentDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -162,7 +144,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="employee_id">Next Appraisal Date</label>
-        <input formControlName="NextApprisalDate" class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth"
+        <input formControlName="NextApprisalDate" [value]="Employee?.nextApprisalDate" class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth"
           type="date">
       </div>
     </div>
@@ -181,7 +163,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="ConfirmDueDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="ConfirmDueDate" [value]="Employee?.confirmDueDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
     </div>
@@ -200,7 +182,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="ConfirmationDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="ConfirmationDate" [value]="Employee?.confirmationDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -220,12 +202,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text">
               <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" checked="">
+                <input id="chL" #chL (change)="enableInput($event)" type="checkbox" checked="">
                 <span></span>
               </label>
             </span>
           </div>
-          <input type="date" formControlName="LeavingDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input [disabled]="!leavingDateinput" formControlName="LeavingDate" [value]="Employee?.leavingDate" type="date" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -233,20 +215,21 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="username"> Resign Date</label>
-        <input formControlName="ResignDate" class="form-control m-input m-input--solid" id="DOI" name="resigndate" placeholder="2018-03-23" aria-describedby="username"
+        <input formControlName="ResignDate" class="form-control m-input m-input--solid" [value]="Employee?.resignDate" placeholder="2018-03-23" aria-describedby="username"
           type="date">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" class="form-control m-input m-input--solid" id="Approver" name="Approvedby" aria-describedby="DateofLeaving"
+        <input type="text" formControlName="Approver" [value]="Employee?.approver" class="form-control m-input m-input--solid" id="Approver" name="Approvedby" aria-describedby="DateofLeaving"
           placeholder="Approved By">
       </div>
     </div>
   </div>
 
   <div class="m--space-07"></div>
-  <button (click)="update(employee.EmpCompanyForm.value)">update</button>
-
+  <div> 
+  <button (click)="update(employeeService.EmpCompanyForm.value)">update</button>
+ </div>
 </form>

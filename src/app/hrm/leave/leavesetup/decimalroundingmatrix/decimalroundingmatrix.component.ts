@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../../../core';
+import { LeaveSetupService, LeaveService } from '../../../../core';
 
 @Component({
     selector: 'app-decimalroundingmatrix',
@@ -9,19 +9,32 @@ import { LeaveSetupService } from '../../../../core';
 export class DecimalroundingmatrixComponent implements OnInit {
 
     public decimalrounding: any;
-    constructor(public leavesetupservice: LeaveSetupService) { }
+    public leavePolicy: any;
+    public decimalmatrix: any;
+    public Employeeleave: any;
+
+    constructor(public leavesetupservice: LeaveSetupService,public leaveservice: LeaveService) { }
 
     async ngOnInit() {
+
         await this.leavesetupservice.getdecimalroundingmatrix();
         this.decimalrounding = this.leavesetupservice.decimalroundingmatrix
+       
+         this.leavePolicy = await this.leavesetupservice.getAllleavepolicy();
+    
+         this.Employeeleave = await this.leaveservice.getleavepolicyemployee();
+ 
     }
 
     async adddrmatrix(value) {
         this.leavesetupservice.addroundingmatrix(value.data);
     }
 
-    async updatedrmatrix(value) {
-        this.leavesetupservice.updatedecimalroundingmatrix(value);
+    async updatedrmatrix() {
+        this.leavesetupservice.updatedecimalroundingmatrix( this.decimalmatrix);
+    }
+    async updatingrmatrix(value) {
+        this.decimalmatrix = {...value.oldData, ...value.newData};
     }
 
     async deletedrmatrix(value) {

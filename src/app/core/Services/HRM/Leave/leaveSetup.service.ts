@@ -452,10 +452,7 @@ export class LeaveSetupService {
     }
 
     async updatedecimalroundingmatrix(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'GetdecimalroundingMatrix');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.ApiService.put(`${this.baseUrl}/UpdateDecimalRoundingMatrix`, promatrix).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateDecimalRoundingMatrix`, data).toPromise();
 
     }
 
@@ -491,15 +488,10 @@ export class LeaveSetupService {
     }
 
     async updateproratematrix(data) {
-        let promatrix = await this.getdataToUpdate(data.key, 'GetprorateMatrix');
-        promatrix = { ...promatrix, ...data.data }
-        console.log(promatrix);
-        return await this.ApiService.put(`${this.baseUrl}/UpdateProrateMatrix`, promatrix).toPromise();
-
+        return await this.ApiService.put(`${this.baseUrl}/UpdateProrateMatrix`, data).toPromise();
     }
 
     async Deleteproratematrix(prrateId) {
-
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.delete(`${this.baseUrl}/DeleteProrateMatrix/${prrateId}`).toPromise();

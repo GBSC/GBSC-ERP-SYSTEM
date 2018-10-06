@@ -121,7 +121,7 @@
                         <div class="m-portlet__head">
                           <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                              <h3 class="m-portlet__head-text">Attendance Flag</h3>
+                              <h3 class="m-portlet__head-text">Leave Type</h3>
                             </div>
                           </div>
                         </div>
@@ -132,7 +132,7 @@
                               [dataSource]="[]"
                                keyExpr="attendanceRuleId"
                                (onRowInserted)="attendanceRuleLeave($event)" >
-                                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                   <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                                   </dxo-popup>
                                 </dxo-editing>
@@ -144,7 +144,7 @@
                                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                 </dxo-pager>  
                                 <dxi-column dataField="leaveTypeId" caption="Leave Type">
-                                    <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                                    <dxo-lookup [dataSource]="LeaveTypes" displayExpr="title" valueExpr="leaveTypeId">
                                     </dxo-lookup> 
                                     </dxi-column>
                               </dx-data-grid>

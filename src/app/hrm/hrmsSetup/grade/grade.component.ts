@@ -17,28 +17,28 @@ export class GradesComponent implements OnInit {
 
 
     async ngOnInit() {
-        // this.dataService.getAllgrades().subscribe((data)=>this.grade=data);
-        await this.dataService.getAllgrades();
-        this.grade = this.dataService.grades;
-        //  console.log(this.grade);
+        // // this.dataService.getAllgrades().subscribe((data)=>this.grade=data);
+        // await this.dataService.getAllgrades();
+        // this.grade = this.dataService.grades;
+        // //  console.log(this.grade);
 
     }
 
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
-    addNewGrade(grde) {
+    // addNewGrade(grde) {
 
-        this.dataService.addGrade(grde.data);
-    }
+    //     this.dataService.addGrade(grde.data);
+    // }
 
-    gradeEdit(grad) {
+    // gradeEdit(grad) {
 
-        this.dataService.updateGrade(grad);
-    }
+    //     this.dataService.updateGrade(grad);
+    // }
 
-    deletegrade(grade) {
+    // deletegrade(grade) {
 
-        this.dataService.DeleteGrade(grade.key);
-    }
+    //     this.dataService.DeleteGrade(grade.key);
+    // }
 
 }

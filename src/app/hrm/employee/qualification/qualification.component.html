@@ -2,6 +2,22 @@
   <h4>Add New Qualification</h4>
 </div>
 
+
+<div class="m-accordion m-accordion--default m-accordion--solid" id="m_accordion_3" role="tablist">
+    <!--begin::Item-->
+    <div class="m-accordion__item">
+      <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_3_item_1_head" data-toggle="collapse" href="#m_accordion_3_item_1_body" aria-expanded="    false">
+        <span class="m-accordion__item-icon">
+          <i class="la la-graduation-cap"></i>
+        </span>
+        <span class="m-accordion__item-title">
+          Add New Qualification
+        </span>
+        <span class="m-accordion__item-mode"></span>
+      </div>
+      <div class="m-accordion__item-body collapse" id="m_accordion_3_item_1_body" role="tabpanel" aria-labelledby="m_accordion_3_item_1_head" data-parent="#m_accordion_3">
+        <div class="m-accordion__item-content">
+            
 <form class="signup-form" [formGroup]="employee.QualificationForm">
   <div class="row">
     <div class="col-md-5">
@@ -92,6 +108,58 @@
         update
       </button>        
 </div>
-</form>
+</form> 
+</div>
+</div>
+</div>
+<!--end::Item-->  
+</div>
 
+<div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Education Detail</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="qualification"
+               keyExpr="universityId" 
+               (onRowUpdated)="updateQualification()"
+               (onRowUpdating)="updatingQualification($event)" >
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
+                  <dxo-popup title="Education Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="qualifications.name"></dxi-column>
+                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="grade"></dxi-column>
+                <dxi-column dataField="courses"></dxi-column>
+                <dxi-column dataField="description"></dxi-column>
+                <dxi-column dataField="degreeId" caption="Employee">
+                    <dxo-lookup [dataSource]="SetupServiceobj?.degree" displayExpr="name" valueExpr="degreeId">
+                    </dxo-lookup> 
+              </dxi-column> 
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
  

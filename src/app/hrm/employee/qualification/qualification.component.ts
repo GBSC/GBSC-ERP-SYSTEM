@@ -11,15 +11,19 @@ import { Employee } from '../../../core/Models/HRM/employee';
 })
 export class EmployeeQualificationComponent implements OnInit {
     public Employee: any;
+    public qualification: any;
+
     @Input('id') id: number;
     @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
 
     public setQualificationFormValue: any;
     public QualificationForm: any;
+    public degree: any;
     private fieldArray: Array<any> = [];
     private newAttribute: any = {};
     public addedUni = [];
     public selectedUni = '';
+    private UserQualifications : Array<any> = [];
 
     addFieldValue() {
         this.employee.allQualifications.push({ ...this.employee.QualificationForm.value });
@@ -55,6 +59,14 @@ export class EmployeeQualificationComponent implements OnInit {
 
     async ngOnInit() {
 
+        this.qualification = await this.employee.GetQualificationByUserId(); 
+        // var a : any = this.qualification[0].qualifications[0];
+        // console.log(a);
+        this.qualification.forEach(element => {
+            this.UserQualifications.push(element.qualifications[0])
+        });
+        console.log(this.UserQualifications);
+        
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
   console.log(this.id)

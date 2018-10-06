@@ -12,10 +12,10 @@ export class SetupService {
         throw new Error("Method not implemented.");
     }
 
-    // private baseUrl: string = "SystemAdmin/api/HrSetup";
-    // private baseUrl2: string = "SystemAdmin/api/Setup";
-    private baseUrl = "http://localhost:58090/api/HrSetup";
-    private baseUrl2 = "http://localhost:58090/api/Setup";
+    private baseUrl: string = "SystemAdmin/api/HrSetup";
+    private baseUrl2: string = "SystemAdmin/api/Setup";
+    //private baseUrl = "http://localhost:58090/api/HrSetup";
+    // private baseUrl2 = "http://localhost:58090/api/Setup";
     public country: any;
     public department: any;
     public bank: any;

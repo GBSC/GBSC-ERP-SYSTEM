@@ -18,6 +18,7 @@ export class EmployeeService {
     public compForm = {};
     private UserDependants : any;
     private UserExp : any;
+    private userQualification : any;
     public EmpCompanyForm: FormGroup;
     public documentForm: FormGroup;
     public EmpbankForm: FormGroup;
@@ -33,8 +34,8 @@ export class EmployeeService {
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser;
-    // private baseUrl: string  = 'systemadmin/api';
-    private baseUrl = 'http://localhost:58090/api';
+    private baseUrl: string  = 'systemadmin/api';
+    //private baseUrl = 'http://localhost:58090/api';
     public firstForm: any;
     public currentUser: any = {};
 
@@ -65,8 +66,8 @@ export class EmployeeService {
             Email: [''],
             Cnic: [''],
             CnicExpiry: [''],
-            PhoneNumber: [''],
-            HomeNumber: [''],
+            Phone: [''],
+            HomePhone: [''],
             DOB: [''],
             POB: [''],
             BloodGroup: [''],
@@ -148,8 +149,7 @@ export class EmployeeService {
             FunctionId: [''],
             GroupId: [''],
             EmployeeStatusId: [''],
-            EmployeeTypeId: [''],
-            Shift: [''],
+            EmployeeTypeId: [''], 
             DesignationId: [''],
             ContractStart: [''],
             ContractEnd: [''],
@@ -377,6 +377,13 @@ export class EmployeeService {
         Name: '',
         Qualifications: []
     }
+
+
+    async GetQualificationByUserId(){
+        this.userQualification = await this.ApiService.get(this.baseUrl + '/Users/GetUniversityByUserId/' + localStorage.getItem('id')).toPromise();
+        return this.userQualification;
+    }
+
 
     async adduserUniversities() {
         let authToken = localStorage.getItem('auth_token');

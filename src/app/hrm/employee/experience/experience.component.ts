@@ -42,8 +42,7 @@ export class ExperienceComponent implements OnInit {
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
                 this.Employee = resp;
-                console.log(this.Employee);
-
+                console.log(this.Employee); 
                 //   this.patchValues(resp);
 
             });
@@ -83,7 +82,7 @@ export class ExperienceComponent implements OnInit {
         let a: EmployeeExperience = value.data;
         a.userId = localStorage.getItem('id');
         console.log(a);
-        await this.employeeService.adduserDependant(a);
+        await this.employeeService.AddworkExperience(a);
     }
     private updatingExp: EmployeeExperience; 
 

@@ -19,6 +19,7 @@ import { LeaveService } from './core/Services/HRM/Leave/leave.service';
 import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
 import { ApiService } from './core/Services/api.service';
 import { CoreModule } from './core/core.module';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 

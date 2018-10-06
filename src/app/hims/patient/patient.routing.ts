@@ -28,13 +28,15 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
+import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
+import { ReportsComponent } from '../patient/Reports/reports/reports.component';
 import { AuthGuardService, ModuleGuardService } from '../../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'hims/patient',
         component: RootComponent,   
-        canActivate: [AuthGuardService, ModuleGuardService],
+        // canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },
@@ -64,6 +66,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'himssetuptest', component: HimsSetupTestComponent },
             { path: 'visitdetail/:id', component: VisitdetailComponent },
             { path: 'diagnose', component: DiagnosisComponent },
+            { path: 'reports', component: ReportsComponent },
+            { path: 'activevisits', component: ActiveVisitsComponent },
         ]
     }
 ]);

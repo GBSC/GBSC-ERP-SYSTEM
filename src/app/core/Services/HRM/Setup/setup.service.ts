@@ -12,10 +12,16 @@ export class SetupService {
         throw new Error("Method not implemented.");
     }
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
     // private baseUrl: string = "SystemAdmin/api/HrSetup";
     // private baseUrl2: string = "SystemAdmin/api/Setup";
     private baseUrl = "http://localhost:58090/api/HrSetup";
     private baseUrl2 = "http://localhost:58090/api/Setup";
+=======
+    private baseUrl: string = "SystemAdmin/api/HrSetup";
+    private baseUrl2: string = "SystemAdmin/api/Setup";
+    // private baseUrl: string = "http://localhost:58090/api/HrSetup";
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
     public country: any;
     public department: any;
     public bank: any;
@@ -316,9 +322,15 @@ export class SetupService {
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
     //     this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
     //     console.log(this.grades);
     //     return this.grades;
+=======
+        this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
+        console.log(this.grades);
+        return this.grades;
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
 
     // }
 
@@ -326,11 +338,19 @@ export class SetupService {
     // // DEMO ONLY, you can find working methods below
     // async addGrade(data) {
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json' } }
     //     this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
     //     return this.grades;
     // }
+=======
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
+        return this.grades;
+    }
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
 
     // async updateGrade(data) {
     //     ``
@@ -339,17 +359,28 @@ export class SetupService {
     //     grade = { ...grade, ...data.data }
     //     console.log(grade);
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json' } }
     //     return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
     // }
+=======
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
+    }
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
 
     // async DeleteGrade(id) {
 
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
     //     return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
+=======
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
 
     // }
 
@@ -1070,8 +1101,16 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
+<<<<<<< HEAD:src/app/core/Services/HRM/Setup/setup.service.ts
         return await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
        // return this.leavetype;
+=======
+        this.leavetype = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+        return this.leavetype;
+        // (error: HttpErrorResponse) => {
+        //   console.log(error.name + ' ' + error.message);
+        // });
+>>>>>>> origin:src/app/core/Services/HRM/Setup/setup.service.ts
     }
 
     async addLeaveTypes(data) {

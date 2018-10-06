@@ -2,65 +2,63 @@
   <h4>Add New Work Experience</h4>
 
 </div>
-
 <div *ngFor="let field of fieldArray; let i = index">
-
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group m-form__group" id="newAttributeCompany">
-      <label for="company_name">Company Name</label>
-      <input class="form-control m-input m-input--solid" placeholder="Company Name" name="company_name" type="text" value="" id="company_name">
+  <form class="signup-form" [formGroup]="employeeService.experienceForm"> 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group" id="newAttributeCompany">
+        <label for="company_name">Company Name</label>
+        <input class="form-control m-input m-input--solid" formControlName="CompanyName" [value]="Employee?.companyName" placeholder="Company Name" name="company_name" type="text" value="" id="company_name">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group" id="newAttributePost">
+        <label for="post">Designation</label>
+        <input class="form-control m-input m-input--solid" formControlName="Designation" [value]="Employee?.designation" placeholder="Post" name="post" type="text" value="" id="post">
+      </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="form-group m-form__group" id="newAttributePost">
-      <label for="post">Designation</label>
-      <input class="form-control m-input m-input--solid" placeholder="Post" name="post" type="text" value="" id="post">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group" id="newAttributeTimefrom">
+        <label for="from_year" class="control-label">Time Period From</label>
+     
+            <input type="date" class="form-control m-input m-input--solid date" formControlName="Timefrom" [value]="Employee?.timefrom" placeholder="from" name="from_date">
+         </div>
+         </div>
+         <div class="col-md-6">
+          <div class="form-group m-form__group" id="newAttributeTimeto">
+          <label for="from_year" class="control-label">Time Period To</label>
+          <div class="col-md-6">
+            <input type="date" class="form-control m-input m-input--solid date" formControlName="Timeto" [value]="Employee?.timeto" placeholder="to" name="to_date">
+          </div>
+        
+      </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group m-form__group" id="newAttributeTimefrom">
-      <label for="from_year" class="control-label">Time Period From</label>
-   
-          <input type="date" class="form-control m-input m-input--solid date" placeholder="from">
-       </div>
-       </div>
-       <div class="col-md-6">
-        <div class="form-group m-form__group" id="newAttributeTimeto">
-        <label for="from_year" class="control-label">Time Period To</label>
-        <div class="col-md-6">
-          <input type="date" class="form-control m-input m-input--solid date" placeholder="to">
-        </div>
-      
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group" id="newAttributeDescription">
+        <label for="description">Description</label>
+        <textarea class="form-control m-input m-input--solid" formControlName="Description" [value]="Employee?.description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="4" id="description"></textarea>
+        <span class="countdown"></span> </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group m-form__group" id="newAttributeDescription">
-      <label for="description">Description</label>
-      <textarea class="form-control m-input m-input--solid" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="4" id="description"></textarea>
-      <span class="countdown"></span> </div>
-  </div>
-</div>
+  </form>
 <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
 </div>
-
-
-<form class="signup-form" [formGroup]="employee.experienceForm"> 
+<form class="signup-form" [formGroup]="employeeService.experienceForm"> 
 <div class="row">
   <div class="col-md-6">
     <div class="form-group m-form__group" id="newAttributeCompany">
       <label for="company_name">Company Name</label>
-      <input class="form-control m-input m-input--solid" formControlName="CompanyName" placeholder="Company Name" name="company_name" type="text" value="" id="company_name">
+      <input class="form-control m-input m-input--solid" formControlName="CompanyName" [value]="Employee?.companyName" placeholder="Company Name" name="company_name" type="text" value="" id="company_name">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group m-form__group" id="newAttributePost">
       <label for="post">Designation</label>
-      <input class="form-control m-input m-input--solid" formControlName="Designation" placeholder="Post" name="post" type="text" value="" id="post">
+      <input class="form-control m-input m-input--solid" formControlName="Designation" [value]="Employee?.designation" placeholder="Post" name="post" type="text" value="" id="post">
     </div>
   </div>
 </div>
@@ -69,14 +67,14 @@
     <div class="form-group m-form__group" id="newAttributeTimefrom">
       <label for="from_year" class="control-label">Time Period From</label>
    
-          <input type="date" class="form-control m-input m-input--solid date" formControlName="Timefrom" placeholder="from" name="from_date">
+          <input type="date" class="form-control m-input m-input--solid date" formControlName="Timefrom" [value]="Employee?.timefrom" placeholder="from" name="from_date">
        </div>
        </div>
        <div class="col-md-6">
         <div class="form-group m-form__group" id="newAttributeTimeto">
         <label for="from_year" class="control-label">Time Period To</label>
         <div class="col-md-6">
-          <input type="date" class="form-control m-input m-input--solid date" formControlName="Timeto" placeholder="to" name="to_date">
+          <input type="date" class="form-control m-input m-input--solid date" formControlName="Timeto" [value]="Employee?.timeto" placeholder="to" name="to_date">
         </div>
       
     </div>
@@ -86,7 +84,7 @@
   <div class="col-md-12">
     <div class="form-group m-form__group" id="newAttributeDescription">
       <label for="description">Description</label>
-      <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="4" id="description"></textarea>
+      <textarea class="form-control m-input m-input--solid" formControlName="Description" [value]="Employee?.description" placeholder="Description" data-show-counter="1" data-limit="300" name="description" cols="30" rows="4" id="description"></textarea>
       <span class="countdown"></span> </div>
   </div>
 </div>
@@ -98,5 +96,10 @@
       <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
   </div>
 </div>
+</div>
+<div *ngIf="router.url === '/hrm/employee/updateemployee/'+id">
+  <button (click)="update(employeeService.experienceForm.value)">
+      update
+    </button>        
 </div>
 </form> 

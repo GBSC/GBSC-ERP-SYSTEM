@@ -42,6 +42,7 @@ export class EmployeeHomeComponent implements OnInit {
 
         this.tabItem = this.tabs[this.showingCurrently];
         this.currentUser = await this.employeeService.getBasicInfoOfCurrentUser();
+        this.employeeService.currentUser = this.currentUser;
         console.log(this.currentUser);
 
     }
@@ -54,6 +55,7 @@ export class EmployeeHomeComponent implements OnInit {
         if (this.tabItem.name === 'Documents') {
             this.text = 'Save';
         }
+        console.log(item,i); 
         this.tabItem.selected = true;
 
     }
@@ -95,14 +97,15 @@ export class EmployeeHomeComponent implements OnInit {
     }
 
     async submit() {
+        console.log(this.tabItem);
         switch (this.tabItem.name) {
             case 'Basic Information':
-                if (this.employeeService.updateEmployeeBool) {
-                    return await this.employeeService.updateEmployee();
-                }
+                // if (this.employeeService.updateEmployeeBool) {
+                //     return await this.employeeService.updateEmployee();
+                // }
                 await this.employeeService.addEmployee();
-                this.router.navigate(['employee/employees']);
-                console.log(this.activatedRoute.url);
+                // this.router.navigate(['employee/employees']);
+                // console.log(this.activatedRoute.url);
                 break;
             case 'Profile Picture':
                 await this.employeeService.adduserProfilepic();
@@ -112,7 +115,7 @@ export class EmployeeHomeComponent implements OnInit {
                 await this.employeeService.addusercompany();
                 break;
 
-            case 'Emergency Contacts':
+            case 'Employee Dependants':
                 await this.employeeService.adduserRelation();
 
                 break;

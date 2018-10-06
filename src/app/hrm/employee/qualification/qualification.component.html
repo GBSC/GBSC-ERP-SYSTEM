@@ -33,7 +33,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="skill" class="control-label">Degree</label>
-        <select class="form-control m-input m-input--solid" formControlName="DegreeId">
+        <select class="form-control m-input m-input--solid" formControlName="DegreeId" [value]="Employee?.degreeId">
           <option value="" disabled selected>-- Select Degree --</option>
           <option *ngFor="let degree of SetupServiceobj?.degree" [value]="degree.degreeId">{{degree.name}}</option>
         </select>
@@ -42,14 +42,14 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="skill" class="control-label">Majors</label>
-        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" name="qualification"
+        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Name" [value]="Employee?.name"
           type="text">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="language" class="control-label">Grade</label>
-        <input class="form-control m-input m-input--solid" placeholder="to" formControlName="Grade" name="grade" type="text">
+        <input class="form-control m-input m-input--solid" placeholder="to" formControlName="Grade" [value]="Employee?.grade" type="text">
       </div>
     </div>
   </div>
@@ -59,14 +59,14 @@
       <div class="form-group m-form__group">
         <label for="from_year" class="control-label">Time Period From</label>
 
-        <input class="form-control m-input m-input--solid" formControlName="Timefrom" placeholder="from" name="from_year" type="date">
+        <input class="form-control m-input m-input--solid" formControlName="Timefrom" [value]="Employee?.timefrom" placeholder="from" type="date">
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="from_year" class="control-label">To</label>
-        <input class="form-control m-input m-input--solid" formControlName="Timeto" placeholder="to" name="to_year" type="date">
+        <input class="form-control m-input m-input--solid" formControlName="Timeto" [value]="Employee?.timeto" placeholder="to" name="to_year" type="date">
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@
     <div class="col-md-12">
       <div class="form-group m-form__group">
         <label for="skill" class="control-label">Corses (if any)</label>
-        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Courses" name="courses" type="text">
+        <input class="form-control m-input m-input--solid" placeholder="Qualification" formControlName="Courses" [value]="Employee?.courses" name="courses" type="text">
       </div>
     </div>
   </div>
@@ -84,17 +84,16 @@
     <div class="col-md-12">
       <div class="form-group m-form__group">
         <label for="to_year" class="control-label">Description</label>
-        <textarea class="form-control m-input m-input--solid" formControlName="Description" placeholder="Description" data-show-counter="1"
+        <textarea class="form-control m-input m-input--solid" formControlName="Description" [value]="Employee?.description" placeholder="Description" data-show-counter="1"
           data-limit="300" name="description" cols="30" rows="3" id="d_description"></textarea>
       </div>
     </div>
   </div>
+  <div *ngIf="router.url === '/hrm/employee/updateemployee/'+id">
+    <button (click)="update(employee.QualificationForm.value)">
+        update
+      </button>        
+</div>
 </form>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="form-group m-form__group">
-      <a class="pull-right" type="" (click)="addFieldValue()">Add More</a>
-    </div>
-  </div>
-</div>
+ 

@@ -6,9 +6,16 @@ import { HrmsService } from '../Setup/hrms.service';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
 import { Employee } from '../../../Models/HRM/employee';
-
+import { EmployeeCompany } from '../../../Models/HRM/employeeCompany';
+import { EmployeeSocial } from '../../../Models/HRM/employeeSocial';
+import { EmployeeQualification } from '../../../Models/HRM/employeeQualification';
+import { EmployeeBank } from '../../../Models/HRM/employeeBank';
+import { EmployeeExperience } from '../../../Models/HRM/employeeExperience';
+import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
 @Injectable()
 export class EmployeeService {
+
+    public compForm = {};
 
     public EmpCompanyForm: FormGroup;
     public documentForm: FormGroup;
@@ -20,22 +27,34 @@ export class EmployeeService {
     public Profilepic: FormGroup;
     public QualificationForm: FormGroup;
     public allDependentForm: any = [];
+    public UserCompanyForm: any = [];
     public allExperiencexpForm: any = [];
     public employeereg: Object;
     public allFormData: any = {};
     public currentlyLoggedinUser;
-    private baseUrl: string  = 'systemadmin/api';
+    // private baseUrl: string  = 'systemadmin/api';
+    private baseUrl = 'http://localhost:58090/api';
     public firstForm: any;
-    public currentUser : any = {};
+    public currentUser: any = {};
 
     public selectedUni = {
         Name: '',
         Qualifications: []
     };
     public addedUniversities = [];
-    public updateEmployeeBool = false
 
-    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService : ApiService) {
+    public addedDependants = [];
+    public selectedDependants = {};
+    
+
+    public updateEmployeeBool = false
+    public getuni: any;
+
+
+    public usercomapnies = [];
+
+    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService: ApiService) {
+
 
 
         this.EmpbasicForm = this.fb.group({
@@ -60,27 +79,7 @@ export class EmployeeService {
             PermanentAddress: ['']
         });
 
-        this.EmpCompanyForm = this.fb.group({
-            DesignationId: [''],
-            ManagementLevelId: [''],
-            FunctionId: [''],
-            GroupId: [''],
-            EmployeeStatusId: [''],
-            EmployeeTypeId: [''],
-            Shift: [''],
-            GradeId: [''],
-            QualificationId: [''],
-            ContractStart: [''],
-            ContractEnd: [''],
-            AppointmentDate: [''],
-            NextApprisalDate: [''],
-            ConfirmDueDate: [''],
-            ConfirmationDate: [''],
-            LeavingDate: [''],
-            ResignDate: [''],
-            Approver: ['']
 
-        });
 
         this.QualificationForm = this.fb.group({
             Name: [''],
@@ -113,14 +112,14 @@ export class EmployeeService {
         });
 
         this.SocialForm = this.fb.group({
-            Fb: [''],
-            Twitter: [''],
-            Instagram: [''],
-            Linkedin: [''],
-            GooglePlus: [''],
-            Youtube: [''],
-            Blog: [''],
-            Pinterest: ['']
+            FacebookUrl: [''],
+            TwitterUrl: [''],
+            BloggerProfile: [''],
+            LinkedinUrl: [''],
+            GooglePlusUrl: [''],
+            InstagramUrl: [''],
+            PinterestUrl: [''],
+            YoutubeUrl: ['']
         });
 
         this.experienceForm = this.fb.group({
@@ -143,6 +142,40 @@ export class EmployeeService {
             Documents: ['']
         });
 
+        this.EmpCompanyForm = this.fb.group({
+            ManagementLevelId: [''],
+            FunctionId: [''],
+            GroupId: [''],
+            EmployeeStatusId: [''],
+            EmployeeTypeId: [''],
+            Shift: [''],
+            DesignationId: [''],
+            ContractStart: [''],
+            ContractEnd: [''],
+            AppointmentDate: [''],
+            NextApprisalDate: [''],
+            ConfirmDueDate: [''],
+            ConfirmationDate: [''],
+            LeavingDate: [''],
+            ResignDate: [''],
+            Approver: ['']
+
+        });
+
+
+        this.UserCompanyForm = this.fb.group({
+            DesignationId: [''],
+            ContractStart: [''],
+            ContractEnd: [''],
+            AppointmentDate: [''],
+            NextApprisalDate: [''],
+            ConfirmDueDate: [''],
+            ConfirmationDate: [''],
+            LeavingDate: [''],
+            ResignDate: [''],
+            Approver: ['']
+        });
+
     }
 
     async GetAllEmployees() {
@@ -155,40 +188,52 @@ export class EmployeeService {
         return this.employeereg;
     }
 
-    GetEmployee(id) : Observable<Employee>
-    {
-        return this.ApiService.get(this.baseUrl+'/Users/GetUser/'+id);       
+
+    GetUniversity(id): Observable<EmployeeQualification> {
+        return this.ApiService.get(this.baseUrl + '/HrSetup/GetUniversities/' + id);
+    }
+
+    GetEmployee(id): Observable<Employee> {
+        return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
     }
 
 
-    async updateEmployee()
-    {
-    // //   let id = localStorage.getItem('id');
-    //   let x = await  this.ApiService.post(this.baseUrl+'/Users/UpdateUser', data).toPromise();
-    //   console.log(x);
-    //   return x;
-    console.log(this.updateEmployeeBool);
-    
+    async updateEmployee() {
+        //   let id = localStorage.getItem('id');
+        //   let x = await  this.ApiService.post(this.baseUrl+'/Users/UpdateUser').toPromise();
+        //   console.log(x);
+        //   return x;
+        // console.log(this.updateEmployeeBool);
+
     }
 
-    async updateUersById(Employee  : Employee){
-        let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUserDetail/'+localStorage.getItem('id'),Employee).toPromise();
+    async updateUersById(Employee: Employee) {
+        console.log(Employee);
+        let x = await this.ApiService.post(this.baseUrl + '/Users/UpdateUserDetail/' + localStorage.getItem('id'), Employee).toPromise();
         console.log(x);
+        console.log(Employee);
         return x;
     }
 
-    async updateUserCompanyById(Employee  : Employee){
-        let x = await  this.ApiService.post(this.baseUrl+'/Users/UpdateUserCompany/'+localStorage.getItem('id'),Employee).toPromise();
-        console.log(x);
-        return x;
+    async updateUserCompanyById(Employee: EmployeeCompany) {
+       
+        this.prepareCompanyDetails();
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(this.compForm); 
+
+        let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserCompany/${localStorage.getItem('id')}`, this.compForm).toPromise();
+        console.log(usercompany);
+        
     }
-  
+
     // DEMO ONLY, you can find working methods below
     async addEmployee() {
 
         // let allFormDataInOne = this.prepareFormData();
-
-        let newuser: any = await this.ApiService.post(`${this.baseUrl}/Users/AddUser`, this.EmpbasicForm.value).toPromise();
+        console.log(this.EmpbasicForm.value);
+        let newuser = await this.ApiService.post(`${this.baseUrl}/Users/AddUser`, this.EmpbasicForm.value).toPromise();
         console.log(newuser);
         localStorage.setItem('id', newuser.userID);
         return newuser;
@@ -196,12 +241,13 @@ export class EmployeeService {
 
 
     async addusercompany() {
-        console.log(this.EmpCompanyForm.value);
-        console.log(localStorage.getItem('id'));
-
+        this.prepareCompanyDetails();
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/AddUserDetailsById/${localStorage.getItem('id')}`, this.EmpCompanyForm.value).toPromise();
+        console.log(this.compForm);
+
+        let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/AddUserDetailsById/${localStorage.getItem('id')}`, this.compForm).toPromise();
+        console.log(usercompany);
         return usercompany;
     }
 
@@ -224,36 +270,34 @@ export class EmployeeService {
 
     // ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
 
-    addDocument(file :FormData){
-        this.ApiService.post(this.baseUrl+'/Users/AddUserPhotoById/'+localStorage.getItem('id'), file).subscribe( res => {
-           console.log(res);
-       });
+    addDocument(file: FormData) {
+        this.ApiService.post(this.baseUrl + '/Users/AddUserPhotoById/' + localStorage.getItem('id'), file).subscribe(res => {
+            console.log(res);
+        });
     }
 
-   addDocuments(models : FormData){
+    addDocuments(models: FormData) {
 
-       this.ApiService.post(this.baseUrl+'/Users/AddUserDocumentsById/'+localStorage.getItem('id'), models).subscribe( res => {
-           console.log(res);
-       });
+        this.ApiService.post(this.baseUrl + '/Users/AddUserDocumentsById/' + localStorage.getItem('id'), models).subscribe(res => {
+            console.log(res);
+        });
     }
 
-   public DocumentsByUserId : any;
-   async GetDocumentsByUserId()
-    {
-        this.DocumentsByUserId = await this.ApiService.get(this.baseUrl+'/Users/GetDocumentsByUserId/'+localStorage.getItem('id')).toPromise();
+    public DocumentsByUserId: any;
+    async GetDocumentsByUserId() {
+        this.DocumentsByUserId = await this.ApiService.get(this.baseUrl + '/Users/GetDocumentsByUserId/' + localStorage.getItem('id')).toPromise();
         console.log(this.DocumentsByUserId);
         return this.DocumentsByUserId;
     }
 
-    async deleteUserDocument(id)
-    {
-        let x = await this.ApiService.delete(this.baseUrl+'/Users/DeleteUserDocumentById/'+id).toPromise();
+    async deleteUserDocument(id) {
+        let x = await this.ApiService.delete(this.baseUrl + '/Users/DeleteUserDocumentById/' + id).toPromise();
         console.log(x);
         return x;
     }
 
 
-     //  ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
+    //  ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
 
     async adduserDocuments() {
         let authToken = localStorage.getItem('auth_token');
@@ -266,9 +310,51 @@ export class EmployeeService {
     async adduserSocial() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let social = await this.ApiService.put(`${this.baseUrl}/Users/UpdateUserSocial/${localStorage.getItem('id')}`, this.SocialForm.value).toPromise();
+        let social = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserSocial/${localStorage.getItem('id')}`, this.SocialForm.value).toPromise();
         console.log(social);
         return social;
+    }
+
+    async updateuserSocial(EmployeeSocial: EmployeeSocial) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(EmployeeSocial);
+        let social = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserSocial/${localStorage.getItem('id')}`, EmployeeSocial).toPromise();
+        console.log(social);
+        return social;
+    }
+    async updateuserRelation(EmployeeDependant: EmployeeDependant) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(EmployeeDependant);
+        let dependnt = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, EmployeeDependant).toPromise();
+        console.log(dependnt);
+        return dependnt;
+    }
+    async updateuserQualification(EmployeeQualification: EmployeeQualification) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(EmployeeQualification);
+        let qualification = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserQualification/${localStorage.getItem('id')}`, EmployeeQualification).toPromise();
+        console.log(qualification);
+        return qualification;
+    }
+
+    async updateuserWorkExperience(EmployeeExperience: EmployeeExperience) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(EmployeeExperience);
+        let workExp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperiencesById/${localStorage.getItem('id')}`, EmployeeExperience).toPromise();
+        console.log(workExp);
+        return workExp;
+    }
+    async updateuserBank(EmployeeBank: EmployeeBank) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        console.log(EmployeeBank);
+        let bankuser = await this.ApiService.post(`${this.baseUrl}/Users/AddUserBankById/${localStorage.getItem('id')}`, EmployeeBank).toPromise();
+        console.log(bankuser);
+        return bankuser;
     }
 
     async addBank() {
@@ -296,16 +382,17 @@ export class EmployeeService {
         // this.university.Qualifications.push(q);
         this.selectedUni.Qualifications.push(q);
         let uniAddedAlready = this.allQualifications.find(q => q.Name === this.selectedUni.Name);
-        if(!uniAddedAlready) {
+        if (!uniAddedAlready) {
             this.allQualifications.push(this.selectedUni);
         }
         console.log(this.allQualifications);
- 
-        let universities = await this.ApiService.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.allQualifications).toPromise();
+
+        let universities = await this.ApiService.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.QualificationForm.value).toPromise();
         console.log(universities);
         return universities;
     }
- 
+
+
     createuniversity(name) {
         let uni = {
             Name: '',
@@ -323,29 +410,51 @@ export class EmployeeService {
     }
 
 
+    async UpdateDependant(Dependant: EmployeeDependant) {
+
+        console.log(this.currentUser);
+
+        let authToken = localStorage.getItem('auth_token');
+        console.log(this.allDependentForm);
+        this.allDependentForm[0] = this.DependantForm.value;
+        let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, Dependant).toPromise();
+        return relation;
+    }
+
+
+
+    async Updateexperience(experience: EmployeeExperience) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: ({ 'Content-Type': 'application/json' }) }
+        this.allExperiencexpForm[0] = this.experienceForm.value;
+        let exp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperiencesById/${localStorage.getItem('id')}`, experience).toPromise();
+        console.log(exp);
+        return exp;
+    }
+
+
+
     async adduserRelation() {
 
         let authToken = localStorage.getItem('auth_token');
-        // let headers = { headers: { } }
-        // console.log(this.DependantForm.value);
-        console.log(this.allDependentForm);
-        // if(this.allDependentForm.length === 1) {
-        this.allDependentForm[0] = this.DependantForm.value;
-        // }
-        let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, this.allDependentForm).toPromise();
+        console.log(this.addedDependants);
+        // this.allDependentForm[0] = this.DependantForm.value;
+        let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, this.addedDependants).toPromise();
         return relation;
     }
-    
+
 
 
     async adduserexperience() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: ({ 'Content-Type': 'application/json' }) }
         this.allExperiencexpForm[0] = this.experienceForm.value;
-        let exp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperiencesById/${localStorage.getItem('id')}`, this.allExperiencexpForm).toPromise();
+        let exp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperiencesById/${localStorage.getItem('id')}`, this.experienceForm.value).toPromise();
         console.log(exp);
         return exp;
     }
+
+
 
 
     async getBasicInfoOfCurrentUser() {
@@ -356,7 +465,7 @@ export class EmployeeService {
         return this.currentUser;
     }
 
- 
+
     getProfileInfo(value) {
         this.allFormData.profileInfo = value;
     }
@@ -383,14 +492,41 @@ export class EmployeeService {
 
     }
 
-    setBasicInfoFormValues(){
+    setBasicInfoFormValues() {
 
         this.EmpbasicForm.value.FirstName = this.currentUser.firstName;
         console.log(this.currentUser);
         console.log(this.EmpbasicForm.value);
-        
+
     }
- 
+
+
+    prepareCompanyDetails() {
+
+        let cf = this.EmpCompanyForm.value;
+
+        this.compForm = {
+
+            ManagementLevelId: cf.ManagementLevelId,
+            FunctionId: cf.FunctionId,
+            GroupId: cf.GroupId,
+            EmployeeStatusId: cf.EmployeeStatusId,
+            EmployeeTypeId: cf.EmployeeTypeId,
+            userCompany: {
+                DesignationId: cf.DesignationId,
+                ContractStart: cf.ContractStart,
+                ContractEnd: cf.ContractEnd,
+                AppointmentDate: cf.AppointmentDate,
+                NextApprisalDate: cf.NextApprisalDate,
+                ConfirmDueDate: cf.ConfirmDueDate,
+                ConfirmationDate: cf.ConfirmationDate,
+                LeavingDate: cf.LeavingDate,
+                ResignDate: cf.ResignDate,
+                Approver: cf.Approver
+            }
+        }
+
+    }
 }
 
 

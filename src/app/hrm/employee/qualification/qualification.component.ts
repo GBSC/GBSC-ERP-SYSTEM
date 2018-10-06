@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-employeequalification',
@@ -8,6 +10,8 @@ import { EmployeeService, SetupService } from '../../../core';
     styleUrls: ['./qualification.component.css']
 })
 export class EmployeeQualificationComponent implements OnInit {
+    public Employee: any;
+    @Input('id') id: number;
     @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
 
     public setQualificationFormValue: any;
@@ -34,10 +38,34 @@ export class EmployeeQualificationComponent implements OnInit {
         this.fieldArray.splice(index, 1);
     }
 
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
+    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute)
+     {
+        this.QualificationForm = this.fb.group({
+            Name: [''],
+            DegreeId: [''],
+            Timefrom: ['12-01-2016'],
+            Timeto: ['12-01-2017'],
+            Grade: [''],
+            Courses: [''],
+            Description: [''],
+            SkillLevel: []
+        });
+      }
 
     async ngOnInit() {
 
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+  console.log(this.id)
+
+        this.employee.GetUniversity(this.id).subscribe(resp => {
+
+            this.Employee = resp;
+         this.patchValues(resp);
+
+        });
+    });
 
         await this.SetupServiceobj.getAllqualifications();
         let qualifctn = this.SetupServiceobj.qualification;
@@ -49,6 +77,13 @@ export class EmployeeQualificationComponent implements OnInit {
         await this.SetupServiceobj.getAllUniversities();
         let uni = this.SetupServiceobj.university;
      }
+ 
+     async update(value) {
+        console.log(value);
+      await this.employee.updateuserQualification(value);
+
+    }
+
 
     p(e,u) {
             console.log(e,u);
@@ -73,4 +108,20 @@ export class EmployeeQualificationComponent implements OnInit {
         let qualification = await this.employee.adduserUniversities();
         console.log(qualification);
     }
+
+    patchValues(qualification : any) {
+
+        this.QualificationForm.patchValue({
+
+            Name:  qualification.name,
+            DegreeId: qualification.degreeId,
+            Timefrom: qualification.timeFrom,
+            Timeto: qualification.timeTo,
+            Grade: qualification.grade,
+            Courses: qualification.courses,
+            Description: qualification.description 
+
+        });
+      }
 }
+

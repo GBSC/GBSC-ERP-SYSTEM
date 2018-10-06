@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core'; 
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../../../core';
+import { EmployeeService } from '../../../core'; 
+import { EmployeeExperience } from '../../../core/Models/HRM/employeeExperience';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-experience',
@@ -12,20 +13,49 @@ export class ExperienceComponent implements OnInit {
 
     @Output('setExpFormValue') setExpFormValue = new EventEmitter();
     public experienceForm: any;
+    public Employee: any;
+    @Input('id') id: number;
+    
     private fieldArray: Array<any> = [];
     private newAttribute: any = {};
 
-    constructor(public employee: EmployeeService, public fb: FormBuilder) { }
+    constructor(public employeeService: EmployeeService, public fb: FormBuilder,
+        public router: Router, private route: ActivatedRoute) 
+    { 
+        this.experienceForm = this.fb.group({
+            CompanyName: [''],
+            Designation: [''],
+            Timefrom: [''],
+            Timeto: [''],
+            Description: ['']
+        });
+
+    }
 
     async ngOnInit() {
 
-        this.employee.allExperiencexpForm.push({ ...this.employee.experienceForm.value });
-        this.employee.firstForm = this.employee.allExperiencexpForm[0];
+        this.employeeService.GetEmployee(this.id).subscribe(resp => {
+
+            this.Employee = resp;
+            console.log(this.Employee);
+
+         //   this.patchValues(resp);
+
+        });
+
+        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
+        this.employeeService.firstForm = this.employeeService.allExperiencexpForm[0];
+    }
+
+    async update(value) {
+        console.log(value);
+      await this.employeeService.updateuserWorkExperience(value);
+
     }
 
     addFieldValue() {
-        this.employee.allExperiencexpForm.push({ ...this.employee.experienceForm.value });
-        console.log(this.employee.allExperiencexpForm);
+        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
+        console.log(this.employeeService.allExperiencexpForm);
         this.fieldArray.push(this.newAttribute)
         this.newAttribute = {};
     }
@@ -33,12 +63,27 @@ export class ExperienceComponent implements OnInit {
         this.fieldArray.splice(index, 1);
     }
     async addexpinfo() {
-        let exp = await this.employee.adduserexperience();
+        let exp = await this.employeeService.adduserexperience();
         console.log(exp);
     }
 
     getexperienceFormValue() {
         this.setExpFormValue.emit(this.experienceForm.value);
     }
+
+
+    patchValues(workExperience : any) {
+
+        this.employeeService.experienceForm.patchValue({ 
+
+            CompanyName: workExperience.companyName ,
+            Designation:  workExperience.designation,
+            Timefrom:  workExperience.timefrom,
+            Timeto:  workExperience.timeto,
+            Description:  workExperience.description 
+
+        });
+      }
+
 
 }

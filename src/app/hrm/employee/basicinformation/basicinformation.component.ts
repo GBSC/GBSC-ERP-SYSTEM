@@ -14,8 +14,8 @@ export class BasicinformationComponent implements OnInit {
 
     public basic: any;
     public Employee: Employee;
-
     @Input('id') id: number;
+
     @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
 
     public EmpbasicForm: FormGroup;
@@ -52,6 +52,7 @@ export class BasicinformationComponent implements OnInit {
 
     async update(value) {
         console.log(value);
+      await this.employeeService.updateUersById(value);
 
     }
 
@@ -97,7 +98,7 @@ export class BasicinformationComponent implements OnInit {
 
     patchValues(employee : any) {
 
-        this.EmpbasicForm.patchValue({
+        this.employeeService.EmpbasicForm.patchValue({
             FirstName: employee.firstName,
             LastName: employee.lastName,
             FatherName: employee.fatherName,
@@ -116,5 +117,9 @@ export class BasicinformationComponent implements OnInit {
             Address: employee.address,
             PermanentAddress: employee.permanentAddress
         });
+    }
+
+    async Formsubmit(){
+        await this.employeeService.addEmployee();
     }
 }

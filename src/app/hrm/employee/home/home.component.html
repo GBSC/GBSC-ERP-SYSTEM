@@ -86,10 +86,7 @@
 
         </div>
       </div>
-
-
-
-      <!-- required for floating -->
+ 
       <!-- Nav tabs -->
 
     </div>
@@ -105,7 +102,7 @@
               <app-basicinformation (setBasicinfoFormValue)="getbasicinfoFormValue($event)" [id]="id"></app-basicinformation>
             </div>
             <div *ngSwitchCase="'Profile Picture'" id="profile-r"><app-profilepic (setpicFormValue)=getProfilepicFormValue($event)></app-profilepic></div>
-            <div *ngSwitchCase="'Emergency Contacts'" id="settings-r"><app-emergencycontact (setDepndntFormValue)=getdepndntFormValue($event)></app-emergencycontact></div>
+            <div *ngSwitchCase="'Employee Dependants'" id="Emergency"><app-emergencycontact (setDepndntFormValue)=getdepndntFormValue($event)></app-emergencycontact></div>
             <div *ngSwitchCase="'Social Networking'"  id="Social"><app-social (setExpFormValue)=getexperienceFormValue($event)></app-social></div>
             <div *ngSwitchCase="'Employee Qualification'"  id="Qualification"><app-employeequalification (setQualificationFormValue)=getQualificationFormValue($event)></app-employeequalification></div>
             <div *ngSwitchCase="'Work Experience'"  id="Experience"><app-experience (setExpFormValue)=getexperienceFormValue($event)></app-experience></div>
@@ -113,14 +110,14 @@
             <div *ngSwitchCase="'Employee Company Information'"  id="CompanyInfo"><app-employeecompany (setCompanyFormValue)=getCompanyFormValue($event)></app-employeecompany></div>
             <div *ngSwitchCase="'Documents'" id="Document"><app-document (setdocumentsFormValue)=getDocumentsBankFormValue($event)></app-document></div> 
  
-        <div class="m-portlet__foot m-portlet__foot--fit">
+        <div class="m-portlet__foot m-portlet__foot--fit" *ngIf="router.url === '/hrm/employee/registration'">
             <div class="m-form__actions">
                
-              <button type="submit" (click)="next($event)" class="btn btn-primary" >
+            <!-- <button type="submit" (click)="next($event)" class="btn btn-primary" >
                     {{text}}
-                  </button> | 
+                  </button> |  -->
                   <button type="submit" (click)="submit($event)" class="btn btn-primary" >
-                       {{employeeService.updateEmployeeBool? 'Update' : 'Save'}} 
+                       Save
                     </button>  
             </div>
           </div>

@@ -1,7 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
+import { Employee } from '../../../core/Models/HRM/employee';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-emergencycontact',
@@ -14,28 +16,84 @@ export class EmergencycontactComponent implements OnInit {
     public DependantForm: any;
     public fieldArray: Array<any> = [];
     public newAttribute: any = {};
+    public Employee: Employee;
+    @Input('id') id: number;
 
 
+    constructor(public fb: FormBuilder, public employeeService: EmployeeService, private SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute) {
+        this.DependantForm = this.fb.group({
 
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
+            Name: [''],
+            Phone: [''],
+            Email: [''],
+            Address: [''],
+            Country: [''],
+            City: [''],
+            State: [''],
+            Zip: [''],
+            HomePhone: [''],
+            PermanentAddress: ['']
+
+        });
+    }
 
     async ngOnInit() {
 
+        this.employeeService.GetEmployee(this.id).subscribe(resp => {
+
+            this.Employee = resp;
+            console.log(this.Employee);
+
+            // this.patchValues(resp);
+
+        });
+
+        this.employeeService.addedDependants = this.employeeService.currentUser.relations.map(r => {
+            for(let k in r) {
+                r[k.substr(0, 1).toUpperCase() + k.substr(1)] = r[k];
+            }
+            return r;
+        });
+        console.log(this.employeeService.addedDependants)
+        console.log(this.employeeService.currentUser.relations)
+        console.log(this.employeeService.currentUser)
         await this.SetupServiceobj.getAllRelation();
         let reltn = this.SetupServiceobj.relation;
 
         await this.SetupServiceobj.getAllCountries();
         let countries = this.SetupServiceobj.country;
 
-        this.employee.allDependentForm.push({ ...this.employee.DependantForm.value });
-        this.employee.firstForm = this.employee.allDependentForm[0];
+        this.employeeService.allDependentForm.push({ ...this.employeeService.DependantForm.value });
+        this.employeeService.firstForm = this.employeeService.allDependentForm[0];
         await this.SetupServiceobj.getAllCities();
         let cities = this.SetupServiceobj.city;
     }
 
+    ec(e, f) {
+        e.preventDefault();
+        console.log(e, f);
+        this.employeeService.selectedDependants = {}
+        this.employeeService.DependantForm.value.Name = f;
+        this.employeeService.addedDependants.push(this.employeeService.DependantForm.value);
+        console.log(this.employeeService.addedDependants);
+    }
+
+    setSelectedDependant(e) {
+        console.log(this.employeeService.addedDependants);
+        this.employeeService.selectedDependants = this.employeeService.addedDependants.find(u => u.Name === e.target.value)
+        console.log(this.employeeService.selectedDependants)
+    }
+
+    async update(value) {
+        console.log(value);
+        await this.employeeService.UpdateDependant(value);
+
+    }
+
     addFieldValue() {
-        this.employee.allDependentForm.push({ ...this.employee.DependantForm.value });
-        console.log(this.employee.allDependentForm);
+        this.employeeService.allDependentForm.push({ ...this.employeeService.DependantForm.value });
+        console.log(this.employeeService.allDependentForm);
         this.fieldArray.push(this.newAttribute)
         this.newAttribute = {};
     }
@@ -46,5 +104,23 @@ export class EmergencycontactComponent implements OnInit {
     getdepndntFormValue() {
         console.log(this.DependantForm.value);
         this.setDepndntFormValue.emit(this.DependantForm.value);
+    }
+
+    patchValues(dependant: any) {
+
+        this.employeeService.DependantForm.patchValue({
+
+            Name: dependant.name,
+            Phone: dependant.phone,
+            Email: dependant.email,
+            Address: dependant.address,
+            Country: dependant.country,
+            City: dependant.city,
+            State: dependant.state,
+            Zip: dependant.zip,
+            HomePhone: dependant.homePhone,
+            PermanentAddress: dependant.permanentAddress
+
+        });
     }
 }

@@ -6,6 +6,10 @@ import {
     DxTemplateModule
 } from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
+<<<<<<< HEAD
+=======
+import { find } from 'rxjs/operator/find';
+>>>>>>> master
 import { PatientService } from '../../../core';
 import { Patient } from '../../../core/Models/HIMS/patient';
 
@@ -247,10 +251,17 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async addApointment(value, cid) {
 
+<<<<<<< HEAD
         if(this.appointmentForm.value.PatientId === null)
         {
               this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
          }
+=======
+        if(this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '')
+        {
+              this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
+        }
+>>>>>>> master
       
         console.log(cid.value);
         console.log(value);
@@ -366,6 +377,17 @@ export class AppointmentscheduleComponent implements OnInit {
        popup.style.display = 'none'; 
     }
 
+<<<<<<< HEAD
+=======
+    keyPress(event: any) {
+        const pattern = /[0-9\+\-\ ]/;
+
+        let inputChar = String.fromCharCode(event.charCode);
+        if (event.keyCode != 8 && !pattern.test(inputChar)) {
+            event.preventDefault();
+        }
+    }
+>>>>>>> master
 
 
 }

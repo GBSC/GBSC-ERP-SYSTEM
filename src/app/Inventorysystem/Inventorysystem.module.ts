@@ -123,7 +123,11 @@ import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent
+<<<<<<< HEAD
     ],
     providers:[{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
+=======
+    ]
+>>>>>>> master
 })
 export class InventorysystemModule { }

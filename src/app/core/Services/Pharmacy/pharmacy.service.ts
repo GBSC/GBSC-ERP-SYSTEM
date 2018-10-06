@@ -16,6 +16,7 @@ import { InventoryItem } from '../../Models/Pharmacy/InventoryItem';
 import { InventoryItemCategory } from '../../Models/Pharmacy/InventoryItemCategory';
 import { Supplier } from '../../Models/Pharmacy/Supplier';
 import { Unit } from '../../Models/Pharmacy/Unit';
+<<<<<<< HEAD
 import { PackageType } from '../../Models/Pharmacy/PackageType';
 import { PackCategory } from '../../Models/Pharmacy/PackCategory';
 import { PackSize } from '../../Models/Pharmacy/PackSize';
@@ -24,6 +25,8 @@ import { ProductType } from '../../Models/Pharmacy/ProductType';
 import { ReturnReason } from '../../Models/Pharmacy/ReturnReason';
 import { SalesReturnItem } from '../../Models/Pharmacy/SalesReturnItem';
 import { SalesReturn } from '../../Models/Pharmacy/SalesReturn';
+=======
+>>>>>>> master
 
 
 @Injectable()
@@ -47,6 +50,7 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder);
     }
 
+<<<<<<< HEAD
     DeleteSalesOrder(id : number) : Observable<SalesOrder> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrder/' + id);
     }
@@ -55,6 +59,12 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderDetailsByCode/' + code);
     }
 
+=======
+    DeleteSalesOrder(id) : Observable<SalesOrder> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrder/' + id);
+    }
+
+>>>>>>> master
     //SalesOrderItem
 
     GetSalesOrderItems() : Observable<SalesOrderItem> {
@@ -69,6 +79,7 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrderItem', SalesOrderItem);
     }
 
+<<<<<<< HEAD
     DeleteSalesOrderItem(id : number) : Observable<SalesOrderItem> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrderItem/' + id);
     }
@@ -111,6 +122,12 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturnItem/' + id);
     }
 
+=======
+    DeleteSalesOrderItem(id) : Observable<SalesOrderItem> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrderItem/' + id);
+    }
+
+>>>>>>> master
     //PurchaseOrder
     GetPurchaseOrders() : Observable<PurchaseOrder> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrders');
@@ -124,6 +141,7 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseOrder', PurchaseOrder);
     }
 
+<<<<<<< HEAD
     DeletePurchaseOrder(id : number) : Observable<PurchaseOrder> {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrder/' + id);
     }
@@ -132,6 +150,12 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetPurchaseOrderDetailsByCode/' + code);
     }
 
+=======
+    DeletePurchaseOrder(id) : Observable<PurchaseOrder> {
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrder/' + id);
+    }
+
+>>>>>>> master
     //PurchaseOrderItem
     GetPurchaseOrderItems() : Observable<PurchaseOrderItem> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderItems');
@@ -145,7 +169,11 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseOrderItem', PurchaseOrderItem);
     }
 
+<<<<<<< HEAD
     DeletePurchaseOrderItem(id : number) : Observable<PurchaseOrderItem> {
+=======
+    DeletePurchaseOrderItem(id) : Observable<PurchaseOrderItem> {
+>>>>>>> master
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrderItem/' + id);
     }
 
@@ -162,6 +190,7 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdateGRN', GRN);
     }
 
+<<<<<<< HEAD
     DeleteGRN(id : number) : Observable<GRN> {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN' + id);
     }
@@ -170,6 +199,12 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetGrnDetailsByCode/' + code);
     }
 
+=======
+    DeleteGRN(id) : Observable<GRN> {
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN' + id);
+    }
+
+>>>>>>> master
     //Inventory
     GetInventories() : Observable<Inventory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventories');
@@ -193,7 +228,10 @@ export class PharmacyService {
     }
 
     AddInventoryItem(InventoryItem: InventoryItem) : Observable<InventoryItem> {
+<<<<<<< HEAD
         console.log(InventoryItem);
+=======
+>>>>>>> master
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem);
     }
 
@@ -201,7 +239,11 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventoryItem', InventoryItem);
     }
 
+<<<<<<< HEAD
     DeleteInventoryItem(id : number) : Observable<InventoryItem> {
+=======
+    DeleteInventoryItem(id) : Observable<InventoryItem> {
+>>>>>>> master
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventoryItem/' + id);
     }
 
@@ -218,6 +260,7 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateCategory', InventoryItemCategory);
     }
 
+<<<<<<< HEAD
     DeleteInventoryItemCategory(id : number) : Observable<InventoryItemCategory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCategory/' + id);
     }
@@ -324,6 +367,12 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteReturnReason/' + id);
     }
 
+=======
+    DeleteInventoryItemCategory(id) : Observable<InventoryItemCategory> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteCategory/' + id);
+    }
+
+>>>>>>> master
     //Supplier
     GetSuppliers() : Observable<Supplier> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
@@ -337,7 +386,11 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateSupplier', Supplier);
     }
 
+<<<<<<< HEAD
     DeleteSupplier(id: number) : Observable<Supplier> {
+=======
+    DeleteSupplier(id) : Observable<Supplier> {
+>>>>>>> master
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteSupplier/' + id);
     }
 
@@ -354,7 +407,14 @@ export class PharmacyService {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateUnit', Unit);
     }
 
+<<<<<<< HEAD
     DeleteUnit(id : number) : Observable<Unit> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteUnit/' + id);
     }
+=======
+    DeleteUnit(id) : Observable<Unit> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteUnit/' + id);
+    }
+
+>>>>>>> master
 }

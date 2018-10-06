@@ -11,10 +11,14 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     //private jwtService: JwtService
+<<<<<<< HEAD
   ) {}
+=======
+  ) { }
+>>>>>>> master
 
   private formatErrors(error: any) {
-    return  _throw(error.error);
+    return _throw(error.error);
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
@@ -25,14 +29,14 @@ export class ApiService {
   put(path: string, body: Object = {}): Observable<any> {
     return this.http.put(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${environment.api_url}${path}`,
-      JSON.stringify(body)
+      body
     ).pipe(catchError(this.formatErrors));
   }
 

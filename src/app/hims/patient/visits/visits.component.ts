@@ -78,7 +78,7 @@ export class VisitsComponent implements OnInit {
            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe((Patient)=> {
 
             this.Patient = Patient;
-            console.log(Patient.PatientId)
+            //console.log(Patient.PatientId)
          });
            
          });

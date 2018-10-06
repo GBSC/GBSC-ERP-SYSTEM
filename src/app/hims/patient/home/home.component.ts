@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, NgForm } from '@angular/forms';
 import { Loginform } from '../../../core/Models/Auth/loginform';
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 @Component({
     selector: 'app-home',
@@ -8,10 +12,6 @@ import { Loginform } from '../../../core/Models/Auth/loginform';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-
-
-
     public currentUser = new Loginform();
 
     constructor() {

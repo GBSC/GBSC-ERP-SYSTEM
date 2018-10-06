@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { PharmacyService } from '../../core';
+<<<<<<< HEAD
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
+=======
+>>>>>>> master
 
 @Component({
     selector: 'app-issuance',

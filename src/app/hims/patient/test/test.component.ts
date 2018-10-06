@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',

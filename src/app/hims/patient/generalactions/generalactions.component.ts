@@ -3,9 +3,12 @@ import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> master
 
 @Component({
     selector: 'app-generalactions',

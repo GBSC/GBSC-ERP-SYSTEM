@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { PatientService } from '../../../core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+=======
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { PatientService } from '../../../core';
+>>>>>>> master
 
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';

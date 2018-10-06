@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+<<<<<<< HEAD
+=======
+import { CategoryComponent } from './category/category.component';
+>>>>>>> master
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { HomeComponent } from './home/home.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
@@ -14,6 +18,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
+<<<<<<< HEAD
 import { ReturnmedicineDetailComponent } from './returnmedicine-detail/returnmedicine-detail.component';
 import { PurchaseOrderDetailsComponent } from './purchase-order-details/purchase-order-details.component';
 import { IssuanceDetailComponent } from './issuance-detail/issuance-detail.component';
@@ -32,6 +37,8 @@ import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { ReturnViewComponent } from './return-view/return-view.component';
 import { GrnViewComponent } from './grn-view/grn-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
+=======
+>>>>>>> master
 
 @NgModule({
   imports: [
@@ -44,17 +51,28 @@ import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-v
     DxDataGridModule,
   ],
   declarations: [
+<<<<<<< HEAD
     HomeComponent,
+=======
+>>>>>>> master
     FooterComponent,
     HeaderComponent,
     MenuComponent,
     RootComponent,
+<<<<<<< HEAD
     GoodsreceiptComponent,
+=======
+    AddnewsupplierComponent,
+    CategoryComponent,
+    GoodsreceiptComponent,
+    InventoryItemComponent,
+>>>>>>> master
     IssuanceComponent,
     IssuanceDetailComponent,
     PurchaseOrderComponent,
     PurchaseOrderDetailsComponent,
     ReturnmedicineComponent,
+<<<<<<< HEAD
     ReturnmedicineDetailComponent,
     InventoryComponent,
     InventoryItemCategoryComponent,
@@ -71,6 +89,15 @@ import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-v
     ReturnViewComponent,
     GrnViewComponent,
     PurhcaseorderViewComponent
+=======
+    SupplierComponent,
+    RootComponent,
+    HomeComponent,
+    UnitComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent
+>>>>>>> master
   ],
   providers: [
     {

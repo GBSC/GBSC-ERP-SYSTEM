@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PharmacyService } from '../../core';
+<<<<<<< HEAD
 import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
+=======
+>>>>>>> master
 
 
 

@@ -20,6 +20,7 @@ import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
 
 
+
 export const routing: ModuleWithProviders = RouterModule.forChild([
   {
     path: 'pharmacy',

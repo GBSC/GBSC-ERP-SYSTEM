@@ -263,11 +263,7 @@
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> CNIC </label>
-<<<<<<< HEAD
-                  <input formControlName="NIC" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
-=======
                   <input formControlName="NIC" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
->>>>>>> master
 									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
 										<div *ngIf="f.NIC.errors.required">NIC is require</div>
 										<div *ngIf="f.NIC.errors.minlength">NIC must be at least 13 characters</div>
@@ -275,11 +271,7 @@
                 </div>
                 <div class="form-group col-lg-4">
                   <label for="exampleInputEmail1"> PhoneNumber </label>
-<<<<<<< HEAD
-                  <input formControlName="PhoneNumber" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
-=======
                   <input formControlName="PhoneNumber" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"   (keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
->>>>>>> master
 									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
 										<div *ngIf="f.PhoneNumber.errors.required">PhoneNumber is require</div>
 										<div *ngIf="f.PhoneNumber.errors.minlength">PhoneNumber must be at least 11 characters</div>
@@ -503,8 +495,4 @@
   </div>
 </div>
 
-<<<<<<< HEAD
 <!-- visit detail form end -->
-=======
-<!-- visit detail form end -->
->>>>>>> master

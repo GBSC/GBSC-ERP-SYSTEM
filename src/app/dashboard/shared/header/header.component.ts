@@ -10,11 +10,7 @@ import { AccountService } from '../../../core';
 })
 export class HeaderComponent implements OnInit {
  
-<<<<<<< HEAD
-    constructor() { }
-=======
     constructor(private accountService : AccountService) { }
->>>>>>> master
 
     ngOnInit() {
     }

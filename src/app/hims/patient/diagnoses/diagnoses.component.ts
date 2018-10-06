@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { ActivatedRoute } from '@angular/router';
-import { PatientService } from '../../../core';
-=======
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
->>>>>>> master
 
 @Component({
     selector: 'app-diagnoses',

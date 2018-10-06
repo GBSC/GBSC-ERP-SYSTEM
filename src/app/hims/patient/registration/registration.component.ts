@@ -1,20 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-<<<<<<< HEAD
-import { PatientService } from '../../../core';
-import { getLocaleDateTimeFormat } from '@angular/common';
-import { visitValue } from '@angular/compiler/src/util';
-import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { Loginform } from '../../../core/Models/Auth/loginform';
-
-=======
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../../core';
 import { Loginform } from '../../../core/Models/Auth/loginform';
->>>>>>> master
 
 
 @Component({

@@ -97,11 +97,7 @@ export class PatientService {
     }
 
     getPatientObservable(): Observable<Patient> {
-<<<<<<< HEAD
-        return this.ApiService.get(this.API_URL + '/patients/getpatients');
-=======
         return this.ApiService.get(this.API_URL + 'patients/getpatients');
->>>>>>> master
     }
 
     getPatientWithPartner(PatientId: number): Observable<Patient> {

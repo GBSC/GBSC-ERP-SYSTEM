@@ -11,11 +11,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     //private jwtService: JwtService
-<<<<<<< HEAD
   ) {}
-=======
-  ) { }
->>>>>>> master
 
   private formatErrors(error: any) {
     return _throw(error.error);

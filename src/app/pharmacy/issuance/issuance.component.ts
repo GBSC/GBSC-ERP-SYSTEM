@@ -14,6 +14,7 @@ import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
 export class IssuanceComponent implements OnInit {
     
     private IssuanceForm : FormGroup;
+    private InventoryItemForm : FormGroup;
     private SalesOrders : SalesOrder;
     private InventoryItems : InventoryItem;
     private Items : InventoryItem[] = [];
@@ -21,6 +22,7 @@ export class IssuanceComponent implements OnInit {
     private FilteredItems : InventoryItem;
     private GridDataSource : any;
     private LookUpDataSource : any;
+    private SalesOrderItemForm : FormGroup;
 
 
 
@@ -31,6 +33,7 @@ export class IssuanceComponent implements OnInit {
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
+
         this.IssuanceForm = this.FormBuilder.group({
             MRN : [''],
             IssuanceNo:[''],
@@ -40,9 +43,40 @@ export class IssuanceComponent implements OnInit {
             SpouseName : [''],
             Remarks:[''],
             Department :[''],
-            InventoryItems : [''],
-            itemCode:['']
+            InventoryItems : this.FormBuilder.array([])
+            // itemCode:['']
         });
+
+        this.InventoryItemForm = FormBuilder.group({
+           Description:[''],
+           PackType:[''],
+           PackSize:[''],
+           PackQuantity:[''],
+           Rate :[''],
+           InventoryItemId :[''],
+           OrderUnitQuantity :[''],
+           ItemTotalAmount :[''],
+        });
+
+        // this.DispForm = FormBuilder.group({
+        //     Description:[''],
+        //     PackType:[''],
+        //     PackSize:[''],
+        //     PackQuantity:[''],
+        //     Rate :['']
+        //     InventoryItemId :[''],
+        //     OrderUnitQuantity :[''],
+        //     ItemTotalAmount :[''],
+        //  });
+
+        // this.SalesOrderItemForm = FormBuilder.group({
+        //     InventoryItem : [this.InventoryItemForm],
+        //     OrderUnitQuantity :[''],
+        //     ItemTotalAmount :[''],
+
+        //  });
+
+     
     }
 public xcx : any;
   async  ngOnInit() {
@@ -50,19 +84,14 @@ public xcx : any;
       this.xcx =  this.PharmacyService.GetInventoryItems().subscribe((result : InventoryItem ) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
 
          
-       await this.PharmacyService.GetInventoryItemstest();
-       this.ovais = this.PharmacyService.GetInventoryItemstestvar;
+      this.ovais = await this.PharmacyService.GetInventoryItemstest();
        console.log(this.ovais);
 
    
     }
 
-    // getcellvalue(value)
-    // {
-    //     console.log(value);
-    //     console.log(this.ovais);
 
-    // }
+ 
   
     public data : any  = {};
     public arraydata =[];
@@ -70,7 +99,11 @@ public xcx : any;
     {
         console.log(value);
         this.data = this.ovais.find(x=> x.itemCode === value);
-        console.log(this.data)
+        // this.InventoryItemForm.value.Description = this.data.description;
+        // this.InventoryItemForm.value.PackType = this.data.packType.name;
+        // this.InventoryItemForm.value.PackSize = this.data.packSize.size;
+        console.log(this.data);
+
         // this.arraydata.push(this.data);
 
     }
@@ -108,14 +141,37 @@ public xcx : any;
         console.log(value);
     }
 
-    onsubmit(value , rate)
+    onsubmit(value)
     {
-        this.arraydata.push(this.data);
-        console.log( this.total);
+        console.log(value)
 
-        this.total += Number.parseInt(rate);
-        console.log(rate);
+    }
+    public desc : any;
+    onsubmitInventeryDetail(value , rate , Description)
+    {
+        let data = value;
         console.log(value);
+        this.InventoryItemForm.value.Description = this.data.description;
+        this.InventoryItemForm.value.PackType = this.data.packType.name;
+        this.InventoryItemForm.value.PackSize = this.data.packSize.size;
+        // let x : number = 45.4646;
+        // console.log(x.toFixed(0));
+        this.InventoryItemForm.value.PackQuantity =  (this.InventoryItemForm.value.OrderUnitQuantity / this.InventoryItemForm.value.PackSize).toFixed(0);
+        console.log(this.InventoryItemForm.value.PackQuantity);
+
+        console.log(this.InventoryItemForm.value.Description);
+        console.log(this.InventoryItemForm.value);
+        this.arraydata.push(data);
+
+ 
+ 
+        // console.log( this.total);
+        // this.total += Number.parseInt(rate);
+        // console.log( this.total);
+        // console.log(rate);
+        console.log(this.IssuanceForm.value);
+        console.log(this.arraydata);
+        // console.log(value);
     }
     
     AddItem(value)
@@ -130,9 +186,21 @@ public xcx : any;
 
     addfinal()
     {
-        this.IssuanceForm.value.InventoryItems = this.Items;
+
+
+        
+        delete this.InventoryItemForm.value.Description;
+        delete this.InventoryItemForm.value.PackQuantity;
+        delete this.InventoryItemForm.value.PackSize;
+        delete this.InventoryItemForm.value.PackType;
+        delete this.InventoryItemForm.value.Rate;
+
+        this.IssuanceForm.value.InventoryItems = this.arraydata;
         console.log(this.IssuanceForm.value);
-        console.log(this.ovais);
+
+        // this.IssuanceForm.value.InventoryItems = this.Items;
+        // console.log(this.IssuanceForm.value);
+        // console.log(this.ovais);
 
     }
     // setAreaValue(rowData: any, value: any): void {

@@ -191,11 +191,11 @@ export class PharmacyService {
     GetInventoryItems() : Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
     }
-public GetInventoryItemstestvar : any;
-  async  GetInventoryItemstest() {
-        this.GetInventoryItemstestvar = await this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems').toPromise();
-        return this.GetInventoryItemstestvar;
+    
+    async  GetInventoryItemstest() {
+        return await this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems').toPromise();
     }
+
     AddInventoryItem(InventoryItem: InventoryItem) : Observable<InventoryItem> {
         console.log(InventoryItem);
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem);

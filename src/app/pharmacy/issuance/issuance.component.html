@@ -1,80 +1,105 @@
 <div class="m-content">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <!--begin::Portlet-->
-            <div class="m-portlet">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <span class="m-portlet__head-icon m--hide">
-                                <i class="la la-gear"></i>
-                            </span>
-                            <h3 class="m-portlet__head-text">
-                                Issuance Medicine
-                            </h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Issuance Medicine
+                                </h3>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--begin::Form-->
-                <form class="m-form" [formGroup]="IssuanceForm">
-                    <div class="m-portlet__body">
-
-                        <div class="form-group row">
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    MRN No
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="MRN">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Issue No
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="IssuanceNo">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Issue Date
-                                </label>
-                                <div class="input-group date">
-                                    <input type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate">
+                    <!--begin::Form-->
+                    <form class="m-form" [formGroup]="IssuanceForm">
+                        <div class="m-portlet__body">
+    
+                            <div class="form-group row">
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        MRN No
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="MRN">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        Issue No
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="IssuanceNo">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        Issue Date
+                                    </label>
+                                    <div class="input-group date">
+                                        <input type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate">
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        Slip No
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="SlipNo">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Slip No
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="SlipNo">
+                            <div class="form-group row">
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        P. Name
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        S. Name
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        Remarks
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                                </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleInputEmail1">
+                                        Department
+                                    </label>
+                                    <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                                </div>
                             </div>
+                            <div class="modal-footer">
+                                    <button type="reset" class="btn btn-secondary">
+                                        Reset
+                                    </button>
+                                    <!-- , rate.value -->
+                                    <button type="button" (click)="onsubmit(IssuanceForm.value)" class="btn btn-primary">
+                                        Save
+                                    </button>
+                                </div>
+                                     
+                                  
+    
+                
                         </div>
-                        <div class="form-group row">
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    P. Name
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    S. Name
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Remarks
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Department
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
-                            </div>
-                        </div>
-                                 <div class="form-group m-form__group row">
+                  
+                    </form>
+                    <!--end::Form-->
+
+    
+                    <div class="row">
+                        <div class="m-portlet__body">
+                            <div class="m-section">
+                                <div class="m-section__content">
+                                    
+                    <form [formGroup]="InventoryItemForm" >
+                            <div class="form-group m-form__group row">
                                     <div class="col-lg-12">
                                         <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                                         <th>Manual Code</th>
@@ -85,368 +110,134 @@
                                         <th>Qty</th>
                                         <th>Rate</th>
                                         <th>Net Amount</th>
+                                        <th>Action</th>
                                         <tr >
+                                            <!-- <input class="form-control m-input m-input--solid"  #rate> -->
                                             <td>
-                                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalue(IssuanceForm.value.itemCode)"
-                                                formControlName="itemCode">
+                                                <select class="form-control m-input ng-pristine ng-valid ng-touched" style="width: 100px;" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
+                                                formControlName="InventoryItemId">
                                                 <option *ngFor="let x of ovais" [value]="x?.itemCode">{{x?.itemCode}} </option>
                                             </select>
                                         </td>
-                                            <td><input class="form-control m-input m-input--solid" [value]="data?.description || ''"></td>
-                                            <td><input class="form-control m-input m-input--solid"  #rate>
-                                            </td>
+                                        <!-- <td><input class="form-control m-input m-input--solid"  [value]="data?.description || ''" disabled ></td>
+                                        <td><input class="form-control m-input m-input--solid"  [value]="data.packType?.name || ''" disabled></td>
+                                        <td><input class="form-control m-input m-input--solid"   [value]="data.packSize?.size || ''" disabled></td>                            
+                                        <td><input class="form-control m-input m-input--solid"  disabled ></td>                            
+                                        <td><input class="form-control m-input m-input--solid" formControlName="OrderUnitQuantity" ></td>   
+                                        <td><input class="form-control m-input m-input--solid"  [value]="data?.rate || ''" disabled ></td>      
+                                        <td><input class="form-control m-input m-input--solid" formControlName="ItemTotalAmount" #rate></td>      
+                                      -->
+                                           <td><input class="form-control m-input m-input--solid" formControlName="Description" [value]="data?.description || ''" disabled formControlName="itemCode" ></td>
+                                            <td><input class="form-control m-input m-input--solid" formControlName="PackType" [value]="data.packType?.name || ''" disabled></td>
+                                            <td><input class="form-control m-input m-input--solid" formControlName="PackSize" [value]="data.packSize?.size || ''" disabled></td>                            
+                                            <td><input class="form-control m-input m-input--solid" formControlName="PackQuantity" disabled ></td>                            
+                                            <td><input class="form-control m-input m-input--solid" formControlName="OrderUnitQuantity" ></td>   
+                                            <td><input class="form-control m-input m-input--solid" formControlName="Rate" [value]="data?.rate || ''" disabled ></td>      
+                                            <td><input class="form-control m-input m-input--solid" formControlName="ItemTotalAmount" #rate></td>        
+                                           
                                             <td>
+                                                    <button type="button" (click)="onsubmitInventeryDetail(InventoryItemForm.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                            <i class="la la-add"></i>
+                                                        </button>
                                             </td>
-                        
-                                            <td>
-                                            </td>
-                        
-                                            <td>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
                                         </tr>
                                         </table>
                                     </div>
                                 </div> 
-                              
-
-                            
-
-                        <!-- <div class="row">
-
-                            <dx-select-box [items]="ovais" displayExpr="itemCode" valueExpr="itemCode" [searchEnabled]="true" formControlName="itemCode"
-                                (change)="getcellvalue(IssuanceForm.value.itemCode)">
-                            </dx-select-box>
-
-                           
-                            <input class="form-control m-input m-input--solid" [value]="data?.description || ''">
-                            <input class="form-control m-input m-input--solid" #rate>
-
-                        </div> -->
-                    </div>
-                    <div class="modal-footer">
-                        <button type="reset" class="btn btn-secondary">
-                            Reset
-                        </button>
-                        <button type="button" (click)="onsubmit(IssuanceForm.value , rate.value)" class="btn btn-primary">
-                            Save
-                        </button>
-                    </div>
-                    <div class="m-portlet__body">
-
-                    <div class="form-group m-form__group row">
-                            <div class="col-lg-12">
-                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Manual Code #
-                                    </th>
-                                    <th>
-                                        Description
-                                    </th>
-                                    <th>
-                                        Pack Type
-                                    </th>
-                                    <th>
-                                        Pack Size
-                                    </th>
-                                    <th>
-                                        Pack Quantity
-                                    </th>
-                                    <th>
-                                        Qty
-                                    </th>
-                                    <th>
-                                        Rate
-                                    </th>
-                                    <th>
-                                        Net Amount
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let x of arraydata ; let i = index">
-                                    <th scope="row">
-                                        {{x?.itemCode}}
-                                    </th>
-                                    <td>
-                                        {{x?.description}}
-                                    </td>
-                                    <td>
-                                        Stone
-                                    </td>
-                                    <td>
-                                        @jhon
-                                    </td>
-                                    <td>
-                                        @jhon
-                                    </td>
-                                    <td>
-                                        Stone
-                                    </td>
-                                    <td>
-                                        @jhon
-                                    </td>
-                                    <td>
-                                        @jhon
-                                    </td>
-                                    <td>
-                                        <button type="button" (click)="remove(i)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                            <i class="la la-remove"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-                        </div>
-                        </div>
-                        <div class="form-group m-form__group row">
-                                <div class="col-lg-10"></div>
-                                <div class="col-lg-2">
-                                    <input class="form-control m-input m-input--solid" disabled #rate>
+                         
+                            <div >
+        
+                            <div class="form-group m-form__group row">
+                                    <div class="col-lg-12">
+                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Manual Code #
+                                            </th>
+                                            <th>
+                                                Description
+                                            </th>
+                                            <th>
+                                                Pack Type
+                                            </th>
+                                            <th>
+                                                Pack Size
+                                            </th>
+                                            <th>
+                                                Pack Quantity
+                                            </th>
+                                            <th>
+                                                Qty
+                                            </th>
+                                            <th>
+                                                Rate
+                                            </th>
+                                            <th>
+                                                Net Amount
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let x of arraydata ; let i = index">
+                                            <th scope="row">
+                                                {{x?.InventoryItemId}}
+                                            </th>
+                                            <td>
+                                                {{x?.Description}}
+                                            </td>
+                                            <td>
+                                                {{x?.PackType}}
+                                            </td>
+                                            <td>
+                                                {{x?.PackSize}}
+                                            </td>
+                                            <td>
+                                                {{x?.PackQuantity}}
+                                            </td>
+                                            <td>
+                                               {{x?.OrderUnitQuantity}}
+                                            </td>
+                                            <td>
+                                               {{x?.Rate}}
+                                            </td>
+                                            <td>
+                                                {{x?.ItemTotalAmount}}
+                                            </td>
+                                            <td>
+                                                <button type="button" (click)="remove(i)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                    <i class="la la-remove"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+        
+        
+                                    </tbody>
+                                </table>
                                 </div>
-                        </div>
-                        </div>
-
-                </form>
-                <!--end::Form-->
-
-                <div class="row">
-                    <div class="m-portlet__body">
-                        <div class="m-section">
-                            <div class="m-section__content">
-                                <!-- <div class="m-section">
-                                    <div class="m-section__content">
-                                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        Manual Code #
-                                                    </th>
-                                                    <th>
-                                                        Description
-                                                    </th>
-                                                    <th>
-                                                        Pack Type
-                                                    </th>
-                                                    <th>
-                                                        Pack Size
-                                                    </th>
-                                                    <th>
-                                                        Pack Quantity
-                                                    </th>
-                                                    <th>
-                                                        Qty
-                                                    </th>
-                                                    <th>
-                                                        Rate
-                                                    </th>
-                                                    <th>
-                                                        Net Amount
-                                                    </th>
-                                                    <th>
-                                                        Action
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr *ngFor="let x of arraydata ; let i = index">
-                                                    <th scope="row">
-                                                        {{x?.itemCode}}
-                                                    </th>
-                                                    <td>
-                                                        {{x?.description}}
-                                                    </td>
-                                                    <td>
-                                                        Stone
-                                                    </td>
-                                                    <td>
-                                                        @jhon
-                                                    </td>
-                                                    <td>
-                                                        @jhon
-                                                    </td>
-                                                    <td>
-                                                        Stone
-                                                    </td>
-                                                    <td>
-                                                        @jhon
-                                                    </td>
-                                                    <td>
-                                                        @jhon
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" (click)="remove(i)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                                            <i class="la la-remove"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div> -->
-                                <!-- <dx-data-grid id="gridContainer" [dataSource]="Items" (onRowInserted)="AddItem($event)" >
-                                <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
-                                    <dxo-popup [onHiding]="onPopupHide" [onShown]="onPopupShown" title="Add Item" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-                                </dxo-editing>
-                                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                                <dxo-paging [pageSize]="5"></dxo-paging>
-                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 30]" [showInfo]="true"></dxo-pager>
-                                 <dxi-column dataField="itemCode" caption="Manual Code" [width]="125" [setCellValue]="setAreaValue">
-                                    <dxo-lookup [dataSource]="LookUpDataSource" displayExpr="itemCode" valueExpr="itemCode"></dxo-lookup>
-                                </dxi-column>
-                                <dxi-column dataField="description" value="data?.description" caption="Description"></dxi-column>
-                                <dxi-column dataField="packType" caption="Pack Type"></dxi-column>
-                                <dxi-column dataField="packSize" caption="Pack Size"></dxi-column>
-                                <dxi-column dataField="noOfPackType" caption="Pack Quantity"></dxi-column>
-                                <dxi-column dataField="qty" caption="Qty"></dxi-column>
-                                <dxi-column dataField="rate" caption="Rate"></dxi-column>
-                                <dxi-column dataField="netAmount" caption="Net Amount"></dxi-column>
-                            </dx-data-grid> -->
+                                </div>
+                                <div class="form-group m-form__group row">
+                                        <div class="col-lg-10"></div>
+                                        <div class="col-lg-2">
+                                            {{total}}
+                                            <!-- <input class="form-control m-input m-input--solid"  disabled > -->
+                                        </div>
+                                </div>
+                                </div>
+        
+                        </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--end::Portlet-->
+                <button (click)="addfinal()">adasda</button>
             </div>
-            <!--end::Portlet-->
-            <button (click)="addfinal()">adasda</button>
         </div>
-    </div>
-
-
-    <!-- <div class="row">
-        <div class="col-xl-12">
-          <div class="m-portlet">
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">Issuance Details</h3>
-                </div>
-              </div>
-            </div>
-            <div class="m-portlet__body">
-              <div class="m-section">
-                <div class="m-section__content" >
-                  <div  style="overflow-x:auto;"  >
-                  <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand tblheader">
-                    <thead>
-                      <tr>
-                        <th scope="row">Manual Code</th>
-                        <th>Description</th>
-                        <th>Pack Type</th>
-                        <th>Pack Size</th>
-                        <th>No of Pack Type</th>
-                        <th>Qty</th>
-                        <th>Rate</th>
-                        <th>Net Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">
-                            001
-                        </th>
-                        <td>Abc</td>
-                        <td>Any</td>
-                        <td>2</td>
-                        <td>8</td>
-                        <td>1</td>
-                        <td>18.00</td>
-                        <td>18.00></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">
-                            001
-                        </th>
-                        <td>Abc</td>
-                        <td>Any</td>
-                        <td>2</td>
-                        <td>8</td>
-                        <td>1</td>
-                        <td>18.00</td>
-                        <td>18.00></td>
-                      </tr>
-                      <tr>
-                        <th scope="row">
-                            001
-                        </th>
-                        <td>Abc</td>
-                        <td>Any</td>
-                        <td>2</td>
-                        <td>8</td>
-                        <td>1</td>
-                        <td>18.00</td>
-                        <td>18.00></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  </div>
-  
-                  <div class="form-group row">
-                      <div class="form-group col-lg-1">
-                        <label></label>
-                          <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                      </div>
-                      <div class="form-group col-lg-1">
-                          <label></label>
-                          <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                      </div>
-                      <div class="form-group col-lg-1">
-                          <label></label>
-                          <input type="text" class="form-control m-input m-input--solid blankinput" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                      </div>
-                      <div class="form-group  col-lg-2">                               
-                        </div>   
-                      <div class="form-group  col-lg-3">  
-                          <div class="m-form__group form-group">
-                              <div class="m-checkbox-list">
-                                <label>Stock Position</label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cost Price">
-                              </div>
-                            </div>                                  
-                      </div>
-                        <div class="form-group  col-lg-1">                               
-                        </div>    
-                       <div class="form-group  col-lg-3">  
-                          <div class="m-form__group form-group">
-                              <div class="m-checkbox-list">
-                                <label>Total</label>
-                                <input type="text" class="form-control m-input m-input--solid " id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                              </div>
-                            </div>                                  
-                      </div>
-  
-                  </div>   
-
-                  
-                  <div class="form-group row">
-                      <div class="form-group col-lg-5">
-                      </div>
-                      <div class="form-group  col-lg-3">  
-                          <div class="m-form__group form-group">
-                              <div class="m-checkbox-list">
-                                <label>Cost Price</label>
-                                <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cost Price">
-                              </div>
-                            </div>                                  
-                      </div>
-                      <div class="form-group  col-lg-4">                               
-                      </div>      
-                  </div> 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div> -->
-</div>
+    
+    
+         </div>

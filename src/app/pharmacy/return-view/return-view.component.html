@@ -11,22 +11,60 @@
   <div class="m-portlet__body">
   <div class="row">
     <div class="col-md-12"> 
-      <dx-data-grid id="gridContainer" [dataSource]="SalesReturns" keyExpr="salesReturnId"> 
-        <dxo-editing  mode="popup"[allowUpdating]="false"[allowDeleting]="false"[allowAdding]="false"[useIcons]="false">	
-          <dxo-popup [onShown]="GetPurchaseOrderDetails" title="Sales Return Detail" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-        </dxo-editing>
+        <dx-data-grid
+        [dataSource]="SalesReturns"  
+        [remoteOperations]="true"
+        height="600"
+        showBorders="true"
+        [masterDetail]="{ enabled: true, template: 'detail' }">
+    
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-paging [pageSize]="8"></dxo-paging>
-        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        <dxi-column dataField="stockQuantity" caption="Quantity"></dxi-column>
-        </dx-data-grid> 
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-editing
+            mode="row"
+            [allowAdding]="false"
+            [allowUpdating]="false"
+            [allowDeleting]="false">
+        </dxo-editing>
+        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+    
+        <dxi-column dataField="returnNumber" caption="Return Code"></dxi-column>
+        <dxi-column dataField="returnDate" caption="Return Date" dataType="date"></dxi-column>
+        <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount"></dxi-column>
+        
+    
+        <div *dxTemplate="let order of 'detail'">
+            <dx-data-grid
+                [dataSource]="GetPurchaseOrderDetails(order.data)"
+                showBorders="true">            
+            </dx-data-grid>
+        </div>
+    
+        <!-- <dxo-summary>
+            <dxi-total-item
+                column="Freight"
+                summaryType="sum">
+                <dxo-value-format
+                    type="decimal"
+                    [precision]="2"
+                ></dxo-value-format>
+            </dxi-total-item>    
+            <dxi-group-item
+                column="Freight"
+                summaryType="sum">
+                <dxo-value-format
+                    type="decimal"
+                    [precision]="2"
+                ></dxo-value-format>
+            </dxi-group-item>
+            <dxi-group-item
+                summaryType="count">
+            </dxi-group-item>
+        </dxo-summary> -->
+    </dx-data-grid> 
      </div>
   </div>
   </div></div>

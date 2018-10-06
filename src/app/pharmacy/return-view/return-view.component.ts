@@ -20,7 +20,9 @@ export class ReturnViewComponent implements OnInit {
   }
 
   GetPurchaseOrderDetails(value) {
+    console.log(value);
     this.PharmacyService.GetSalesReturnDetailsByCode(value.data.returnNumber).subscribe((res : SalesReturn) => this.DetailSR = res);
+    return this.DetailSR;
   }
 
 }

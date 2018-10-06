@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
+import { ReportsComponent } from '../patient/Reports/reports/reports.component';
+import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DiagnosesComponent } from './diagnoses/diagnoses.component';
 import { RecentvisitsComponent } from './recentvisits/recentvisits.component';
@@ -53,6 +55,8 @@ import { TestComponent } from './test/test.component';
 
         RootComponent,
         RegistrationComponent,
+        ActiveVisitsComponent,
+        ReportsComponent,
         ProfileComponent,
         DiagnosesComponent,
         RecentvisitsComponent,

@@ -8,10 +8,6 @@ import { Loginform } from '../../../core/Models/Auth/loginform';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-
-
-
     public currentUser = new Loginform();
 
     constructor() {

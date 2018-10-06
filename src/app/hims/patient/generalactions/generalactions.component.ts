@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
 
-
-
-
 @Component({
     selector: 'app-generalactions',
     templateUrl: './generalactions.component.html',

@@ -99,8 +99,9 @@
                               <dxo-header-filter [visible]="true"></dxo-header-filter>
                               <dxo-paging [pageSize]="5"></dxo-paging>
                               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 30]" [showInfo]="true"></dxo-pager>
-                               <dxi-column dataField="itemCode" caption="Manual Code" [width]="125">
-                                  <dxo-lookup [dataSource]="issuance" displayExpr="itemCode" valueExpr="itemCode"></dxo-lookup>
+                              <!-- [setCellValue]="setAreaValue" -->
+                               <dxi-column dataField="itemCode" caption="Manual Code" [width]="125" [setCellValue]="setAreaValue">
+                                  <dxo-lookup [dataSource]="issuance" displayExpr="itemCode" valueExpr="itemCode" ></dxo-lookup>
                               </dxi-column>
                               <dxi-column dataField="description" value="issuance?.description" caption="Description"></dxi-column>
                               <dxi-column dataField="packType" caption="Pack Type"></dxi-column>

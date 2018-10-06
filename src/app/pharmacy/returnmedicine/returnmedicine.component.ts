@@ -65,6 +65,7 @@ export class ReturnmedicineComponent implements OnInit {
     public rrrr = [];
     AddIssuance(value)
     {
+        console.log(value);
         let x  =  value.data;
         this.rr.push(x);
   
@@ -75,5 +76,27 @@ export class ReturnmedicineComponent implements OnInit {
     {
         this.ReturnMedicineForm.value.InventoryItems = this.rr;
         console.log(this.ReturnMedicineForm.value);
+    }
+
+
+    // public val : any;
+    // public currentSelected = {}
+    // setAreaValue(rowData: any,value : any) : void {
+    //     this.val = value;
+    //     console.log(value);
+
+    //   //  console.log(this.ovais);
+    //             // console.log(this.aaa);
+    //             // let dddd = this.ovais.find(t => t.itemCode === value);
+    //             // console.log(dddd)
+    //     // this.aaa = this.xcx.find(x=> x.itemCode == value)
+    //    //  console.log(this.aaa.find(a => a.itemCode === value));
+
+    // }
+
+
+    setAreaValue(rowData: any,value : any) : void
+    {
+        console.log(value);
     }
 }

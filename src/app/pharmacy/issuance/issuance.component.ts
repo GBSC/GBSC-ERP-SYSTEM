@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DxSelectBoxComponent } from 'devextreme-angular';
 
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -16,9 +17,16 @@ export class IssuanceComponent implements OnInit {
     private SalesOrders : SalesOrder;
     private InventoryItems : InventoryItem;
     private Items : InventoryItem[] = [];
+    private aaa : InventoryItem[] = []; 
     private FilteredItems : InventoryItem;
     private GridDataSource : any;
     private LookUpDataSource : any;
+
+
+
+    private ovais : any;
+
+ 
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
         this.onPopupShown = this.onPopupShown.bind(this);
@@ -32,14 +40,43 @@ export class IssuanceComponent implements OnInit {
             SpouseName : [''],
             Remarks:[''],
             Department :[''],
-            InventoryItems : ['']
+            InventoryItems : [''],
+            itemCode:['']
         });
     }
-
-    ngOnInit() {
+public xcx : any;
+  async  ngOnInit() {
         this.PharmacyService.GetSalesOrders().subscribe((res : SalesOrder) => this.SalesOrders = res);
-        this.PharmacyService.GetInventoryItems().subscribe((result : InventoryItem ) => { this.InventoryItems = result; this.FilteredItems = result; });
+      this.xcx =  this.PharmacyService.GetInventoryItems().subscribe((result : InventoryItem ) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
+
+         
+       await this.PharmacyService.GetInventoryItemstest();
+       this.ovais = this.PharmacyService.GetInventoryItemstestvar;
+       console.log(this.ovais);
+
+   
     }
+
+    // getcellvalue(value)
+    // {
+    //     console.log(value);
+    //     console.log(this.ovais);
+
+    // }
+  
+    public data : any  = {};
+    public arraydata =[];
+    getcellvalue(value)
+    {
+        console.log(value);
+        this.data = this.ovais.find(x=> x.itemCode === value);
+        console.log(this.data)
+        // this.arraydata.push(this.data);
+
+    }
+
+    public total = 0;
+
 
     async onPopupShown() {
         ///console.log("Popup Shown");
@@ -71,8 +108,13 @@ export class IssuanceComponent implements OnInit {
         console.log(value);
     }
 
-    onsubmit(value)
+    onsubmit(value , rate)
     {
+        this.arraydata.push(this.data);
+        console.log( this.total);
+
+        this.total += Number.parseInt(rate);
+        console.log(rate);
         console.log(value);
     }
     
@@ -82,10 +124,36 @@ export class IssuanceComponent implements OnInit {
         this.FilteredItems = a.filter(a => a.itemCode != value.data.itemCode);
     }
 
+    remove(index) {
+        this.arraydata.splice(index, 1);
+    }
+
     addfinal()
     {
         this.IssuanceForm.value.InventoryItems = this.Items;
         console.log(this.IssuanceForm.value);
+        console.log(this.ovais);
+
     }
+    // setAreaValue(rowData: any, value: any): void {
+    //     console.log(rowData)
+    //     console.log(value);
+    //     // rowData.inventoryItemId = null;
+    //     //  (<any>this).defaultSetCellValue(rowData, value);
+    // }
+
+    public val : any;
+        setAreaValue(rowData: any,value : any) : void {
+            this.val = value;
+            console.log(value);
+            console.log(this.ovais);
+                    // console.log(this.aaa);
+                    // let dddd = this.ovais.find(t => t.itemCode === value);
+                    // console.log(dddd)
+            // this.aaa = this.xcx.find(x=> x.itemCode == value)
+           //  console.log(this.aaa.find(a => a.itemCode === value));
+ 
+        }
+ 
 
 }

@@ -13,7 +13,6 @@ export interface InventoryItem {
     retailPrice: string,
     purchaseDate: string,
     tradeOfferAmount: number,
-    brandId: number,
     unitId: number,
     packTypeId: number,
     packSizeId: number,

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
 import { Employee } from '../../../core/Models/HRM/employee';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 
 @Component({
     selector: 'app-emergencycontact',
@@ -17,6 +17,7 @@ export class EmergencycontactComponent implements OnInit {
     public fieldArray: Array<any> = [];
     public newAttribute: any = {};
     public Employee: Employee;
+    public dependant: any;
     @Input('id') id: number;
 
 
@@ -50,14 +51,16 @@ export class EmergencycontactComponent implements OnInit {
         });
 
         this.employeeService.addedDependants = this.employeeService.currentUser.relations.map(r => {
-            for(let k in r) {
+            for (let k in r) {
                 r[k.substr(0, 1).toUpperCase() + k.substr(1)] = r[k];
             }
             return r;
         });
-        console.log(this.employeeService.addedDependants)
-        console.log(this.employeeService.currentUser.relations)
-        console.log(this.employeeService.currentUser)
+
+        this.dependant = await this.employeeService.GetRelationsByUserId();
+        console.log(this.dependant);
+
+
         await this.SetupServiceobj.getAllRelation();
         let reltn = this.SetupServiceobj.relation;
 
@@ -105,6 +108,27 @@ export class EmergencycontactComponent implements OnInit {
         console.log(this.DependantForm.value);
         this.setDepndntFormValue.emit(this.DependantForm.value);
     }
+
+    async addDependant(value) {
+        let a: EmployeeDependant = value.data;
+        a.userId = localStorage.getItem('id');
+        console.log(a);
+        await this.employeeService.adduserDependant(a);
+    }
+    private updatingModel: EmployeeDependant; 
+
+    async updatingDependant(value) {  
+        this.updatingModel = { ...value.oldData, ...value.newData }
+        console.log(value);
+        
+    }
+
+    async updateDependant() {
+        await this.employeeService.Updaterelation(this.updatingModel);
+        console.log(this.updatingModel);
+        
+    }
+
 
     patchValues(dependant: any) {
 

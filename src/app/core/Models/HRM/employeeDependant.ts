@@ -9,5 +9,6 @@ export interface EmployeeDependant {
     State: string,
     Zip: string,
     HomePhone: string,
-    PermanentAddress: string
+    PermanentAddress: string,
+    userId : any
 }

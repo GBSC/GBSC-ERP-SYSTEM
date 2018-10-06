@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
@@ -16,7 +17,8 @@ export class EmployeeBankComponent implements OnInit {
 
     public EmpbankForm: FormGroup;
     // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService)
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute)
      {
         this.EmpbankForm = this.fb.group({
             AccountTitle: [''],
@@ -29,6 +31,9 @@ export class EmployeeBankComponent implements OnInit {
 
     async ngOnInit() {
 
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+            
         this.employee.GetEmployee(this.id).subscribe(resp => {
 
             this.Employee = resp;
@@ -36,6 +41,7 @@ export class EmployeeBankComponent implements OnInit {
             this.patchValues(resp);
 
         });
+              });
     }
 
     async update(value) {

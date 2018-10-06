@@ -1,4 +1,82 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+           
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Working Experience</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <div class="m-section">
+              <div class="m-section__content">
+                <dx-data-grid id="gridContainer"
+                 [dataSource]="workExperience"
+                 keyExpr="workExperienceId" 
+                (onRowUpdated)="updateExperience()"
+                (onRowUpdating)="updatingExperience($event)"
+                (onRowInserted)="addExperience($event)"  
+                (onRowRemoved)="deleteleavetype($event)">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                    <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                    </dxo-popup>
+                  </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="6"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager> 
+                  <dxi-column dataField="Company"></dxi-column>
+                  <dxi-column dataField="designation"></dxi-column>
+                  <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
+                  <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
+                  <dxi-column dataField="description"></dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+<!-- <div>
+<button (click)="update()">
+update
+</button>        
+</div>
+</form> -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
   <h4>Add New Work Experience</h4>
 
 </div>
@@ -102,4 +180,4 @@
       update
     </button>        
 </div>
-</form> 
+</form>  -->

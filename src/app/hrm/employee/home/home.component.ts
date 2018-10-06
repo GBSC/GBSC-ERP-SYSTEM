@@ -116,7 +116,7 @@ export class EmployeeHomeComponent implements OnInit {
                 break;
 
             case 'Employee Dependants':
-                await this.employeeService.adduserRelation();
+               // await this.employeeService.adduserRelation();
 
                 break;
 

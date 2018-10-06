@@ -4,5 +4,6 @@ export interface EmployeeExperience {
     Designation: string,
     Timefrom: Date,
     Timeto: Date,
-    Description: Date
+    Description: Date,
+    userId : any
 }

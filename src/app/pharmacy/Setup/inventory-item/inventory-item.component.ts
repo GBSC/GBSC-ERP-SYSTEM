@@ -44,6 +44,7 @@ export class InventoryItemComponent implements OnInit {
     }
 
     async AddInventoryItem(value) {
+        console.log(value);
         await this.PharmacyService.AddInventoryItem(value.data).toPromise();
         this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem) => this.InventoryItems = res);
     }

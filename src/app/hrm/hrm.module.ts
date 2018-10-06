@@ -68,8 +68,7 @@ import { AttendanceruleComponent } from './attendance/attendanceadmin/attendance
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
 import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
 import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component';
-import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
-import { UserRosterAttendanceComponent } from './attendance/user-roster-attendance/user-roster-attendance.component';
+import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component'; 
 import { OvertimeflagComponent } from './attendance/overtime/overtimeflag/overtimeflag.component';
 import { OvertimetypeComponent } from './attendance/overtime/overtimetype/overtimetype.component';
 import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
@@ -192,8 +191,7 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
         AttendancerequestComponent,
         OvertimeEntitlementComponent,
         OfficialVisitEntryComponent,
-        EmployeeOvertimeEntitlementComponent,
-        UserRosterAttendanceComponent,
+        EmployeeOvertimeEntitlementComponent, 
 
         OvertimeflagComponent,
         OvertimetypeComponent,

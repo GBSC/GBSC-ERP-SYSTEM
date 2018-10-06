@@ -14,6 +14,9 @@ export class PayslipComponent implements OnInit {
   public PayslipForm: any;
   public PaySlip;
   private userloan: UserLoanPayslip[];
+  public currentUserLoan = [] ;
+  public userLoanId = {} ;
+  public Updateloan: any;
 
   constructor(private fb: FormBuilder, public payrollservice: PayrollService,
     public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -43,6 +46,8 @@ export class PayslipComponent implements OnInit {
     await this.payrollservice.getMonthlySalaries();
     let monthlySalary = this.payrollservice.monthlyUserSalary;
 
+    await this.payrollsetupservice.getuserloans();
+    let userLoan = this.payrollsetupservice.userloan;
     await this.Employeeservice.GetAllEmployees();
     let User = this.Employeeservice.employeereg;
   }
@@ -53,17 +58,31 @@ export class PayslipComponent implements OnInit {
     console.log(this.userloan);
   }
 
-  async addGratuity(value) {
-    console.log(value);
+  async addPayslip(value) {
+
     let pushloanslip = new PaySlip();
-    pushloanslip = { ...pushloanslip, ...value };
-    console.log(this.userloan);
-    pushloanslip.UserLoanPayslips = this.userloan;
-    console.log(pushloanslip);
+    pushloanslip = { ...pushloanslip, ...value }; 
+    pushloanslip.UserLoanPayslips = this.userloan; 
+    pushloanslip.UserLoanPayslips = this.currentUserLoan;
     let x = await this.payrollservice.addpayslip(pushloanslip);
     console.log(x);
-    this.PayslipForm.reset();
-
+    // this.xx = this.currentUserLoan;
+    // console.log(this.xx.userLoanId)
+     this.PayslipForm.reset();
+  }
+ 
+  GetUserloan(value){ 
+    this.currentUserLoan = this.payrollsetupservice.userloan.filter(ul => ul.userId == value)
+  }
+  
+  Updatingloan(value) { 
+    this.Updateloan = {...value.oldData, ...value.newData}; 
+    console.log(this.Updateloan);
+    
   }
 
+  async updateUserLoan() { 
+    await this.payrollsetupservice.updateuserloan(this.Updateloan);
+  }
+  
 }

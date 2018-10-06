@@ -26,7 +26,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent
+        AppComponent,
+
     ],
     imports: [
         LayoutModule,
@@ -39,7 +40,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+        ScriptLoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

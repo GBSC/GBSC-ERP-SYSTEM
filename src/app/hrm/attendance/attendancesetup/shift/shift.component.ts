@@ -14,8 +14,8 @@ export class ShiftComponent implements OnInit {
     public ShiftForm: FormGroup;
     public shift: any;
     private assignRoster: AssignRosterShift[]; 
- 
-    constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
+    private AssignRosters : any;
+     constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 
@@ -42,8 +42,8 @@ export class ShiftComponent implements OnInit {
         await this.attendancesetupservice.getattendanceflag();
         let attendanceflag = this.attendancesetupservice.attendanceflag
 
-        await this.attendancesetupservice.getrosters();
-        let rosterAssign = this.attendancesetupservice.roster
+        this.AssignRosters = await this.attendancesetupservice.getasignrosters();
+       
     }
 
     async assignroster(value) {
@@ -52,15 +52,14 @@ export class ShiftComponent implements OnInit {
         console.log(this.assignRoster);
       }
 
-    async addshift(value) {
-       console.log(value);
+    async addshift(value) { 
       let shifts = new Shift();
       shifts = {...shifts, ...value};
       console.log(this.assignRoster);
       shifts.AssignRosterShifts = this.assignRoster;
       console.log(shifts);
-      let x = await this.attendancesetupservice.addshift(shifts);
-      console.log(x);
+      let s = await this.attendancesetupservice.addshift(shifts); 
+      this.ShiftForm.reset();
       
     }
 

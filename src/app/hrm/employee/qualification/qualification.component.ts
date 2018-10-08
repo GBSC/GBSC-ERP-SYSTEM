@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from '../../../core/Models/HRM/employee';
+import { EmployeeQualification } from '../../../core/Models/HRM/employeeQualification';
 
 @Component({
     selector: 'app-employeequalification',
@@ -60,21 +61,15 @@ export class EmployeeQualificationComponent implements OnInit {
     async ngOnInit() {
 
         this.qualification = await this.employee.GetQualificationByUserId(); 
-        // var a : any = this.qualification[0].qualifications[0];
-        // console.log(a);
-        this.qualification.forEach(element => {
-            this.UserQualifications.push(element.qualifications[0])
-        });
-        console.log(this.UserQualifications);
-        
+  
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-  console.log(this.id)
+        console.log(this.id)
 
         this.employee.GetUniversity(this.id).subscribe(resp => {
 
             this.Employee = resp;
-         this.patchValues(resp);
+        // this.patchValues(resp);
 
         });
     });
@@ -97,14 +92,14 @@ export class EmployeeQualificationComponent implements OnInit {
     }
 
 
-    p(e,u) {
-            console.log(e,u);
-            this.employee.selectedUni = {Name: '', Qualifications: []}
-            this.employee.university.Name = u;
-            this.employee.selectedUni.Name =u;
-            this.employee.addedUniversities.push(this.employee.selectedUni);
-            console.log(this.employee.university);
-    }
+    // p(e,u) {
+    //         console.log(e,u);
+    //         this.employee.selectedUni = {Name: '', Qualifications: []}
+    //         this.employee.university.Name = u;
+    //         this.employee.selectedUni.Name =u;
+    //         this.employee.addedUniversities.push(this.employee.selectedUni);
+    //         console.log(this.employee.university);
+    // }
 
     setSelectedUniversity(e){
         console.log(this.employee.addedUniversities);
@@ -116,24 +111,34 @@ export class EmployeeQualificationComponent implements OnInit {
         this.setQualificationFormValue.emit(this.QualificationForm.value);
     }
 
-    async addqualification() {
-        let qualification = await this.employee.adduserUniversities();
+    async addQualification(value) {
+        let a: EmployeeQualification = value.data;
+        a.userId = localStorage.getItem('id');
+        console.log(a);
+        let qualification = await this.employee.adduserUniversities(value.data);
         console.log(qualification);
     }
+    async updatingQualification(value) {
+        this.qualification = {...value.oldData, ...value.newData}
+    }
+    async updateQualification(value) {
+        await this.employee.updateuserQualification(this.qualification);
+       
+    }
 
-    patchValues(qualification : any) {
+    // patchValues(qualification : any) {
 
-        this.QualificationForm.patchValue({
+    //     this.QualificationForm.patchValue({
 
-            Name:  qualification.name,
-            DegreeId: qualification.degreeId,
-            Timefrom: qualification.timeFrom,
-            Timeto: qualification.timeTo,
-            Grade: qualification.grade,
-            Courses: qualification.courses,
-            Description: qualification.description 
+    //         Name:  qualification.name,
+    //         DegreeId: qualification.degreeId,
+    //         Timefrom: qualification.timeFrom,
+    //         Timeto: qualification.timeTo,
+    //         Grade: qualification.grade,
+    //         Courses: qualification.courses,
+    //         Description: qualification.description 
 
-        });
-      }
+    //     });
+    //   }
 }
 

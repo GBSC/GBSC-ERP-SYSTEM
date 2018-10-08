@@ -125,7 +125,7 @@ export class EmployeeHomeComponent implements OnInit {
                 break;
 
             case 'Employee Qualification':
-                await this.employeeService.adduserUniversities();
+               // await this.employeeService.adduserUniversities();
                 break;
 
             case 'Work Experience':

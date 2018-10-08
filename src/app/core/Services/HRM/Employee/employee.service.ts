@@ -86,12 +86,11 @@ export class EmployeeService {
         this.QualificationForm = this.fb.group({
             Name: [''],
             DegreeId: [''],
-            Timefrom: ['12-01-2016'],
-            Timeto: ['12-01-2017'],
+            Timefrom: [''],
+            Timeto: [''],
             Grade: [''],
             Courses: [''],
-            Description: [''],
-            SkillLevel: []
+            Description: [''] 
         });
 
         this.Profilepic = this.fb.group({
@@ -205,12 +204,12 @@ export class EmployeeService {
         //   console.log(x);
         //   return x;
         // console.log(this.updateEmployeeBool);
-
     }
 
     async updateUersById(Employee: Employee) {
         console.log(Employee);
-        let x = await this.ApiService.post(this.baseUrl + '/Users/UpdateUserDetail/' + localStorage.getItem('id'), Employee).toPromise();
+        Employee.userId = localStorage.getItem('id'); 
+        let x = await this.ApiService.post(this.baseUrl + '/Users/UpdateUserDetail', Employee).toPromise();
         console.log(x);
         console.log(Employee);
         return x;
@@ -332,11 +331,10 @@ export class EmployeeService {
         console.log(dependnt);
         return dependnt;
     }
-    async updateuserQualification(EmployeeQualification: EmployeeQualification) {
+    async updateuserQualification(data) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        console.log(EmployeeQualification);
-        let qualification = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserQualification/${localStorage.getItem('id')}`, EmployeeQualification).toPromise();
+        let qualification = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserQualification/${localStorage.getItem('id')}`, data).toPromise();
         console.log(qualification);
         return qualification;
     }
@@ -385,24 +383,20 @@ export class EmployeeService {
     }
 
 
-    async adduserUniversities() {
+    async adduserUniversities(data) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let q = { ...this.QualificationForm.value };
-        // Degree: { Name: this.QualificationForm.value.DegreeId }
-        console.log(q);
-        q.DegreeId = Number.parseInt(q.DegreeId);
-        // this.university.Qualifications.push(q);
-        this.selectedUni.Qualifications.push(q);
-        let uniAddedAlready = this.allQualifications.find(q => q.Name === this.selectedUni.Name);
-        if (!uniAddedAlready) {
-            this.allQualifications.push(this.selectedUni);
-        }
-        console.log(this.allQualifications);
-
-        let universities = await this.ApiService.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.QualificationForm.value).toPromise();
+        let universities = await this.ApiService.post(`${this.baseUrl}/HrSetup/AddUniversity`, data).toPromise();
         console.log(universities);
         return universities;
+    }
+  
+    async UpdateuserUniversities(data) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        let university = await this.ApiService.put(`${this.baseUrl}/HrSetup/UpdateUniversity`, data).toPromise();
+        console.log(university);
+        return university;
     }
 
 

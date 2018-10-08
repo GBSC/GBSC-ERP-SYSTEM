@@ -58,6 +58,7 @@ export class BasicinformationComponent implements OnInit {
 
     async updateUersById(value) {
         console.log(value);
+        
         await this.employeeService.updateUersById(value);
     }
 
@@ -70,35 +71,13 @@ export class BasicinformationComponent implements OnInit {
             this.patchValues(resp);
 
         });
-
-
-
-    //     await this.SetupServiceobj.getAllDesignations();
-    //     let dsg = this.SetupServiceobj.designation;
-
-    //     await this.SetupServiceobj.getAllLanguages();
-    //     let lng = this.SetupServiceobj.language;
-
-
-    //     await this.SetupServiceobj.getAllFunctions();
-    //     let func = this.SetupServiceobj.function;
-
-    //     await this.SetupServiceobj.getAllReligions();
-    //     let relg = this.SetupServiceobj.religion;
-    //     console.log(relg);
-
-    //     await this.SetupServiceobj.getAllGazettedHolidays();
-    //     let holiday = this.SetupServiceobj.gazetholidays;
-
-    //     await this.SetupServiceobj.getAllCities();
-    //     let cty = this.SetupServiceobj.city;
-
-
+ 
     }
 
     patchValues(employee : any) {
 
         this.employeeService.EmpbasicForm.patchValue({
+
             FirstName: employee.firstName,
             LastName: employee.lastName,
             FatherName: employee.fatherName,

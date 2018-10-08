@@ -5,5 +5,6 @@ export interface EmployeeQualification {
     Timefrom: Date,
     Timeto: Date, 
     Courses: string,
-    Description: string
+    Description: string,
+    userId : any
 }

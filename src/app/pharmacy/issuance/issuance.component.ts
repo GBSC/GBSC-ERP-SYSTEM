@@ -157,11 +157,14 @@ public xcx : any;
         // let x : number = 45.4646;
         // console.log(x.toFixed(0));
         this.InventoryItemForm.value.PackQuantity =  (this.InventoryItemForm.value.OrderUnitQuantity / this.InventoryItemForm.value.PackSize).toFixed(0);
-        console.log(this.InventoryItemForm.value.PackQuantity);
-
-        console.log(this.InventoryItemForm.value.Description);
-        console.log(this.InventoryItemForm.value);
+        
+        this.InventoryItemForm.value.Rate = this.data.unitPrice;
+          this.InventoryItemForm.value.ItemTotalAmount =  this.InventoryItemForm.value.PackQuantity  * this.InventoryItemForm.value.Rate;
+ 
+         console.log(this.InventoryItemForm.value);
         this.arraydata.push(data);
+
+
 
  
  

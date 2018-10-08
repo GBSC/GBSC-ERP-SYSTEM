@@ -13,6 +13,10 @@ export class BasicinformationComponent implements OnInit {
 
 
     public basic: any;
+    public religion: any;
+    public language: any;
+    public city: any;
+    
     public Employee: Employee;
     @Input('id') id: number;
 
@@ -63,6 +67,12 @@ export class BasicinformationComponent implements OnInit {
     }
 
      async ngOnInit() {
+         
+         this.religion = await this.SetupServiceobj.getAllReligions();
+
+         this.language = await this.SetupServiceobj.getAllLanguages();
+
+         this.city = await this.SetupServiceobj.getAllCities();
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
@@ -72,13 +82,13 @@ export class BasicinformationComponent implements OnInit {
 
         });
  
+
     }
 
     patchValues(employee : any) {
 
         this.employeeService.EmpbasicForm.patchValue({
-
-            FirstName: employee.firstName,
+            FirstName: employee.firstName || '',
             LastName: employee.lastName,
             FatherName: employee.fatherName,
             Email: employee.email,

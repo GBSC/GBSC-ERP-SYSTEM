@@ -8,9 +8,10 @@ import { EmployeeService } from '../../../core';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
+
 export class EmployeeHomeComponent implements OnInit {
 
-
+    private UserId : number;
     public currentUser: any;
     public id: number;
     tabItem: any;
@@ -37,7 +38,10 @@ export class EmployeeHomeComponent implements OnInit {
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id']; // --> Name must match wanted parameter
-            console.log(this.id);
+            console.log(this.id);   
+            console.log(this.employeeService.latestAddedUserId);
+            this.employeeService.latestAddedUserId = this.id;   
+            console.log(this.employeeService.latestAddedUserId);
         });
 
         this.tabItem = this.tabs[this.showingCurrently];
@@ -99,13 +103,9 @@ export class EmployeeHomeComponent implements OnInit {
     async submit() {
         console.log(this.tabItem);
         switch (this.tabItem.name) {
-            case 'Basic Information':
-                // if (this.employeeService.updateEmployeeBool) {
-                //     return await this.employeeService.updateEmployee();
-                // }
-                await this.employeeService.addEmployee();
-                // this.router.navigate(['employee/employees']);
-                // console.log(this.activatedRoute.url);
+            case 'Basic Information': 
+                let a  = await this.employeeService.addEmployee();
+                console.log(this.employeeService.latestAddedUserId);
                 break;
             case 'Profile Picture':
                 await this.employeeService.adduserProfilepic();
@@ -129,7 +129,7 @@ export class EmployeeHomeComponent implements OnInit {
                 break;
 
             case 'Work Experience':
-                await this.employeeService.adduserexperience();
+                //await this.employeeService.adduserexperience();
                 break;
 
             case 'Employee Bank Account':

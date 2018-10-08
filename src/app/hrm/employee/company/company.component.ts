@@ -13,6 +13,8 @@ export class EmployeeCompanyComponent implements OnInit {
     @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
    
     public EmpCompanyForm: any;
+    public designation: any;
+    public managementlevel: any;
 
     public id : any;
     public Employee : any;
@@ -49,17 +51,15 @@ async ngOnInit() {
 
         // console.log(this.router.url);
 
-        // this.route.params.subscribe((params) => {
-        //     this.id = +params['id'];
-        //     console.log(this.id);
-        //             this.employee.GetEmployee(this.id).subscribe((Employee) => {
-        //                this.Employee = Employee 
-        //                    console.log(Employee)
-
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+            console.log(this.id);
+                    this.employeeService.GetEmployee(this.id).subscribe((Employee) => {
+                       this.Employee = Employee  
                             
-        //             }); 
+                    }); 
 
-        // });
+        });
 
         await this.SetupServiceobj.getAllFunctions();
         let fnc = this.SetupServiceobj.function;
@@ -67,18 +67,15 @@ async ngOnInit() {
         await this.SetupServiceobj.getAllqualifications();
         let qf = this.SetupServiceobj.qualification;
 
+        this.designation = await this.SetupServiceobj.getAllDesignations();
+        console.log(this.designation);
+ 
 
-        await this.SetupServiceobj.getAllManagementlevels();
-        let ml = this.SetupServiceobj.managementlevel;
-
-        await this.SetupServiceobj.getAllDesignations();
-        let cdsg = this.SetupServiceobj.designation;
-
-        await this.SetupServiceobj.getAllManagementlevels();
-        let mnglevel = this.SetupServiceobj.managementlevel;
+        this.managementlevel = await this.SetupServiceobj.getAllManagementlevels(); 
 
         await this.SetupServiceobj.getAllGroups();
         let grp = this.SetupServiceobj.group;
+        console.log(grp);
 
         await this.SetupServiceobj.getAllEmployeeTypes();
         let cemptype = this.SetupServiceobj.employeetype;
@@ -120,10 +117,7 @@ async ngOnInit() {
     }
 
    
-    patchValues(company : any) {
-
-        console.log(company);
-        
+    patchValues(company : any) { 
         this.employeeService.EmpCompanyForm.patchValue({
 
             DesignationId: company.designationId,

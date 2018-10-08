@@ -82,7 +82,7 @@ export class EmployeeQualificationComponent implements OnInit {
         this.setQualificationFormValue.emit(this.QualificationForm.value);
     }
 
-    async addQualification(value) {
+    async addQualification(value) { 
         console.log(value);
         await this.employee.adduserUniversity(value.data);
         

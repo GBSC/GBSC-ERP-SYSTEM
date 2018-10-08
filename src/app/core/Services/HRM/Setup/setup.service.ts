@@ -443,11 +443,8 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.religion = await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
-        return this.religion;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
+         
     }
 
     // DEMO ONLY, you can find working methods below
@@ -666,11 +663,10 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.designation = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
-        return this.designation;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        let a = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
+        console.log(a);
+        return a;
+        
     }
 
     // DEMO ONLY, you can find working methods below
@@ -710,11 +706,8 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.managementlevel = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
-        return this.managementlevel;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
+         
     }
 
     // DEMO ONLY, you can find working methods below
@@ -756,7 +749,6 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
         this.group = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
         console.log(this.group);
         return this.group;
@@ -845,11 +837,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.language = await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
-        return this.language;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+         return await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
@@ -1196,11 +1184,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.city = await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
-        return this.city;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
     // DEMO ONLY, you can find working methods below

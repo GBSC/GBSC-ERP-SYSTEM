@@ -10,7 +10,7 @@
             <label for="">
                 First Name
             </label>
-            <input type="text"  formControlName="FirstName" [value]="Employee?.firstName" class="form-control m-input m-input--solid" id="FirstName" name="FirstName" aria-describedby="emailHelp" placeholder="First Name">
+            <input type="text"  formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" id="FirstName" name="FirstName" aria-describedby="emailHelp" placeholder="First Name">
         </div> 
       </div>
       <div class="col-md-6">
@@ -18,7 +18,7 @@
             <label for="">
                 Last Name
             </label>
-            <input type="text"  formControlName="LastName" [value]="Employee?.lastName" class="form-control m-input m-input--solid" id="LastName" name="LastName" aria-describedby="emailHelp" placeholder="Last Name">
+            <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" id="LastName" name="LastName" aria-describedby="emailHelp" placeholder="Last Name">
         </div> 
       </div>
 </div>
@@ -28,20 +28,20 @@
   <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="email" class="control-label">Father Name</label>
-        <input type="text"  formControlName="FatherName" [value]="Employee?.fatherName" class="form-control m-input m-input--solid" id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
+        <input type="text"  formControlName="FatherName" [value]="Employee?.fatherName || ''" class="form-control m-input m-input--solid" id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
       </div>
     </div>
 
     <div class="col-md-4">
         <div class="form-group m-form__group">
           <label for="employee_id">Date of Birth</label>
-          <input class="form-control m-input m-input--solid" formControlName="DOB" [value]="Employee?.dob" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="date">
+          <input class="form-control m-input m-input--solid" formControlName="DOB" [value]="Employee?.dob || ''" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="date">
         </div>
       </div>
       <div class="col-md-4">
           <div class="form-group m-form__group">
             <label for="employee_id">Place of Birth</label>
-            <input class="form-control m-input m-input--solid" formControlName="POB" id="POB" name="pob" [value]="Employee?.pob" placeholder="eg.Karachi" aria-describedby="PlaceofBirth" type="text">
+            <input class="form-control m-input m-input--solid" formControlName="POB" id="POB" name="pob" [value]="Employee?.pob || ''" placeholder="eg.Karachi" aria-describedby="PlaceofBirth" type="text">
           </div>
         </div> 
     </div>
@@ -52,19 +52,19 @@
   <div class="col-md-4">
     <div class="form-group m-form__group">
       <label for="username">Cnic</label>
-      <input class="form-control m-input m-input--solid" id="cnic" formControlName="Cnic" name="cnic" [value]="Employee?.cnic" placeholder="42401-5486552-6" aria-describedby="cnic" type="number">
+      <input class="form-control m-input m-input--solid" id="cnic" formControlName="Cnic" name="cnic" [value]="Employee?.cnic || ''" placeholder="42401-5486552-6" aria-describedby="cnic" type="number">
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group m-form__group">
       <label for="" class="control-label">Cnic Expiry</label>
-      <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23">
+      <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry || ''" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23">
     </div>
   </div>
   <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="email" class="control-label">Email</label>
-        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email || ''" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
       </div>
     </div>
 </div>
@@ -73,27 +73,27 @@
           <div class="col-md-4">
                   <div class="form-group m-form__group">
                           <label for="cnlanguageic" class="control-label">Language</label>
-                          <select class="form-control m-input m-input--solid" formControlName="LanguageId" name="language" id="lng">
-                                 <option value="" disabled selected>-- Select Language --</option>
-                                  <option *ngFor ="let lng of SetupServiceobj.language ">{{lng.name}}</option>
+                          <select class="form-control m-input m-input--solid" formControlName="LanguageId" [value]="Employee?.name || ''" name="language" id="lng">
+                                 <!-- <option value="" disabled selected>-- Select Language --</option> -->
+                                  <option *ngFor ="let lng of SetupServiceobj.language" [value]="lng.languageId">{{lng.name}}</option>
                               </select>
                         </div>
           </div>
           <div class="col-md-4">
                   <div class="form-group m-form__group">
                           <label for="Religion" class="control-label">Religion</label>
-                          <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.religionId" id="Religion">
-                              <option value="" disabled selected>-- Select Religion --</option>
-                                  <option *ngFor ="let relg of SetupServiceobj.religion " >{{relg.name}}</option>
+                          <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
+                              <!-- <option value="" disabled selected>-- Select Religion --</option> -->
+                                  <option *ngFor ="let relg of SetupServiceobj.religion" [value]="relg.religionId">{{relg.name}}</option>
                               </select>
                         </div>
           </div>
           <div class="col-md-4">
               <div class="form-group m-form__group">
                 <label for="City" class="control-label">City</label>
-                <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.cityId" name="City" id="city">
-                    <option value="" disabled selected>-- Select City --</option>
-                        <option *ngFor ="let cty of SetupServiceobj.city ">{{cty.name}}</option>
+                <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                        <option *ngFor ="let cty of SetupServiceobj.city" [value]="cty?.cityId">{{cty.name}}</option>
                     </select>
               </div>
             </div>
@@ -105,7 +105,7 @@
           <div class="col-md-4">
             <div class="form-group m-form__group">
               <label for="employee_id">Blood Group</label>
-              <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup" name="BloodGroup" id="BloodGroup">
+              <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup || ''" name="BloodGroup" id="BloodGroup">
                   <option value="" disabled selected>-- Select Blood Group --</option>
                       <option>A</option>
                       <option>B</option>
@@ -134,7 +134,7 @@
           <div class="col-md-4">
             <div class="form-group m-form__group">
               <label for="Designation" class="control-label">Marital Status</label>
-              <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus" name="MaritalStatus" id="MaritalStatus">
+              <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''" name="MaritalStatus" id="MaritalStatus">
                   <option value="" disabled selected>-- Select Marital Status --</option>
                   <option>Single</option>
                   <option>Married</option>
@@ -151,14 +151,14 @@
               <div class="col-md-6">
                       <div class="form-group m-form__group">
                         <label for="Contact-Number">Contact Number</label>
-                        <input class="form-control m-input m-input--solid" formControlName="Phone" [value]="Employee?.phone" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
+                        <input class="form-control m-input m-input--solid" formControlName="Phone" [value]="Employee?.phone || ''" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
                       </div>
                     </div>
 
                     <div class="col-md-6">
                           <div class="form-group m-form__group">
                             <label for="Contact-Number">Home</label>
-                            <input class="form-control m-input m-input--solid" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
+                            <input class="form-control m-input m-input--solid" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
                           </div>
                         </div>
         </div>
@@ -170,7 +170,7 @@
                           <label for="exampleTextarea">
                           Address
                           </label>
-                          <textarea class="form-control m-input m-input--solid" formControlName="Address" name="Address" [value]="Employee?.address" id="Address" rows="3" placeholder="Test Address"></textarea>
+                          <textarea class="form-control m-input m-input--solid" formControlName="Address" name="Address" [value]="Employee?.address || ''" id="Address" rows="3" placeholder="Test Address"></textarea>
                       </div> 
             </div>
         </div>
@@ -180,14 +180,14 @@
                         <label for="exampleTextarea">
                        Permanent Address
                         </label>
-                        <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" [value]="Employee?.permanentAddress" name="Address" id="Address2" rows="3" placeholder="Test Address 2"></textarea>
+                        <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" [value]="Employee?.permanentAddress || ''" name="Address" id="Address2" rows="3" placeholder="Test Address 2"></textarea>
                     </div> 
           </div>
       </div>
 <div>
 
 <div *ngIf="router.url === '/hrm/employee/updateemployee/' +id">
-    <button (click)="update(employeeService.EmpbasicForm.value)">
+    <button class="btn btn-primary" (click)="update(employeeService.EmpbasicForm.value)">
         update
       </button>        
 </div>  

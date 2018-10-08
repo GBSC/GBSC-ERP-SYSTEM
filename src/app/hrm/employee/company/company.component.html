@@ -9,7 +9,7 @@
         <label for="Designation" class="control-label">Designation</label>
         <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="Employee?.name ||''">
      
-          <option *ngFor="let cdsg of designation" [value]="cdsg.designationId">{{cdsg.name}}</option>
+          <option *ngFor="let companydsg of designation" [value]="companydsg.designationId">{{companydsg.name}}</option>
         </select>
       </div>
     </div>
@@ -18,8 +18,7 @@
       <div class="form-group m-form__group">
         <label for="Group" class="control-label">Group</label>
         <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name ||''">
-   
-          <option *ngFor="let grp of SetupServiceobj?.group" [value]="grp.groupId">{{grp.name}}</option>
+          <option *ngFor="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
         </select>
       </div>
     </div>
@@ -34,16 +33,16 @@
         <label for="Designation" class="control-label">Function</label>
         <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="Employee?.name ||''">
  
-          <option *ngFor="let fnc of SetupServiceobj?.function" [value]="fnc.functionId">{{fnc.name}}</option>
+          <option *ngFor="let fnc of functions" [value]="fnc.functionId">{{fnc.name}}</option>
         </select>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
-        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="Employee?.managementLevelId">
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="Employee?.name">
         
-          <option *ngFor="let ml of SetupServiceobj?.managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
+          <option *ngFor="let ml of managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
         </select>
       </div>
     </div>
@@ -60,7 +59,7 @@
         <label for="Emptype">Employee Type</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="Employee?.name ||''">
         
-          <option *ngFor="let cemptype of SetupServiceobj?.employeetype" [value]="cemptype.employeeTypeId">{{cemptype.name}}</option>
+          <option *ngFor="let cemptype of employeetype" [value]="cemptype.employeeTypeId">{{cemptype.name}}</option>
         </select>
       </div>
     </div>
@@ -221,8 +220,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" [value]="Employee?.approver" class="form-control m-input m-input--solid" id="Approver" name="Approvedby" aria-describedby="DateofLeaving"
-          placeholder="Approved By">
+        <input type="text" formControlName="Approver" [value]="Employee?.approver" class="form-control m-input m-input--solid" placeholder="Approved By">
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@
             <label for="">
                 First Name
             </label>
-            <input type="text"  formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" id="FirstName" name="FirstName" aria-describedby="emailHelp" placeholder="First Name">
+            <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" placeholder="First Name">
         </div> 
       </div>
       <div class="col-md-6">
@@ -18,7 +18,7 @@
             <label for="">
                 Last Name
             </label>
-            <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" id="LastName" name="LastName" aria-describedby="emailHelp" placeholder="Last Name">
+            <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" placeholder="Last Name">
         </div> 
       </div>
 </div>
@@ -75,7 +75,7 @@
                           <label for="cnlanguageic" class="control-label">Language</label>
                           <select class="form-control m-input m-input--solid" formControlName="LanguageId" [value]="Employee?.name || ''" name="language" id="lng">
                                  <!-- <option value="" disabled selected>-- Select Language --</option> -->
-                                  <option *ngFor ="let lng of SetupServiceobj.language" [value]="lng.languageId">{{lng.name}}</option>
+                                  <option *ngFor ="let lng of language" [value]="lng.languageId">{{lng.name}}</option>
                               </select>
                         </div>
           </div>
@@ -84,7 +84,7 @@
                           <label for="Religion" class="control-label">Religion</label>
                           <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
                               <!-- <option value="" disabled selected>-- Select Religion --</option> -->
-                                  <option *ngFor ="let relg of SetupServiceobj.religion" [value]="relg.religionId">{{relg.name}}</option>
+                                  <option *ngFor ="let relg of religion" [value]="relg.religionId">{{relg.name}}</option>
                               </select>
                         </div>
           </div>
@@ -93,7 +93,7 @@
                 <label for="City" class="control-label">City</label>
                 <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">
                     <!-- <option value="" disabled selected>-- Select City --</option> -->
-                        <option *ngFor ="let cty of SetupServiceobj.city" [value]="cty?.cityId">{{cty.name}}</option>
+                        <option *ngFor ="let cty of city" [value]="cty?.cityId">{{cty.name}}</option>
                     </select>
               </div>
             </div>

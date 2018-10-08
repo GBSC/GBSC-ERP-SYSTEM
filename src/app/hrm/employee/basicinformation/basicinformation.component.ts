@@ -15,9 +15,8 @@ export class BasicinformationComponent implements OnInit {
     public basic: any;
     public religion: any;
     public language: any;
-    public city: any;
-    
-    public Employee: Employee;
+    public city: any; 
+    public Employee: any;
     @Input('id') id: number;
 
     @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
@@ -69,26 +68,23 @@ export class BasicinformationComponent implements OnInit {
      async ngOnInit() {
          
          this.religion = await this.SetupServiceobj.getAllReligions();
-
+         console.log(this.religion);
+         
          this.language = await this.SetupServiceobj.getAllLanguages();
 
          this.city = await this.SetupServiceobj.getAllCities();
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
+            this.Employee = resp; 
+             this.patchValues(resp);
 
-            this.Employee = resp;
-
-            this.patchValues(resp);
-
-        });
- 
-
+        }); 
     }
 
     patchValues(employee : any) {
 
         this.employeeService.EmpbasicForm.patchValue({
-            FirstName: employee.firstName || '',
+            FirstName: employee.firstName,
             LastName: employee.lastName,
             FatherName: employee.fatherName,
             Email: employee.email,

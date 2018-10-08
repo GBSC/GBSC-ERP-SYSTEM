@@ -37,11 +37,8 @@ export class EmployeeHomeComponent implements OnInit {
 
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
-            this.id = params['id']; // --> Name must match wanted parameter
-            console.log(this.id);   
-            console.log(this.employeeService.latestAddedUserId);
-            this.employeeService.latestAddedUserId = this.id;   
-            console.log(this.employeeService.latestAddedUserId);
+            this.id = params['id']; // --> Name must match wanted parameter 
+            this.employeeService.latestAddedUserId = this.id;    
         });
 
         this.tabItem = this.tabs[this.showingCurrently];

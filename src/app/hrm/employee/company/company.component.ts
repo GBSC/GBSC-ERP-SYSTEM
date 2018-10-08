@@ -14,32 +14,33 @@ export class EmployeeCompanyComponent implements OnInit {
    
     public EmpCompanyForm: any;
     public designation: any;
+    public employeetype: any;
+    public functions: any;
+    public groups: any;
     public managementlevel: any;
-
     public id : any;
     public Employee : any;
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService,  public router: Router, private route: ActivatedRoute)
-     {
-      
-        this.EmpCompanyForm = this.fb.group({
-           
-            ManagementLevelId: [''],
-            FunctionId: [''],
-            GroupId: [''],
-            EmployeeStatusId: [''],
-            EmployeeTypeId: [''],
-            Shift: [''],
-            GradeId: [''],
-            QualificationId: ['']
-
-        });
-        
-
-      }
-
     
-async ngOnInit() {
+    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService,  public router: Router, private route: ActivatedRoute){}
+    
+async ngOnInit() { 
 
+    this.functions = await this.SetupServiceobj.getAllFunctions();  
+
+    this.designation = await this.SetupServiceobj.getAllDesignations();
+    console.log(this.designation);
+
+    this.managementlevel = await this.SetupServiceobj.getAllManagementlevels(); 
+    console.log(this.managementlevel);
+
+    this.groups = await this.SetupServiceobj.getAllGroups();
+    console.log(this.groups);
+
+    this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes(); 
+
+    await this.SetupServiceobj.getAllEmployeeStatus();
+    let cempstatus = this.SetupServiceobj.employeestatus;
+    
 
     this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
@@ -47,41 +48,17 @@ async ngOnInit() {
 
         this.patchValues(resp);
 
-    });
-
-        // console.log(this.router.url);
+    }); 
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
             console.log(this.id);
-                    this.employeeService.GetEmployee(this.id).subscribe((Employee) => {
-                       this.Employee = Employee  
-                            
-                    }); 
-
+                    this.employeeService.GetEmployee(this.id).subscribe(resp => {
+                       this.Employee = resp  
+                         this.patchValues(resp);
+                    });  
         });
 
-        await this.SetupServiceobj.getAllFunctions();
-        let fnc = this.SetupServiceobj.function;
-
-        await this.SetupServiceobj.getAllqualifications();
-        let qf = this.SetupServiceobj.qualification;
-
-        this.designation = await this.SetupServiceobj.getAllDesignations();
-        console.log(this.designation);
- 
-
-        this.managementlevel = await this.SetupServiceobj.getAllManagementlevels(); 
-
-        await this.SetupServiceobj.getAllGroups();
-        let grp = this.SetupServiceobj.group;
-        console.log(grp);
-
-        await this.SetupServiceobj.getAllEmployeeTypes();
-        let cemptype = this.SetupServiceobj.employeetype;
-
-        await this.SetupServiceobj.getAllEmployeeStatus();
-        let cempstatus = this.SetupServiceobj.employeestatus;
     }
 
     getcompanyFormValue() {

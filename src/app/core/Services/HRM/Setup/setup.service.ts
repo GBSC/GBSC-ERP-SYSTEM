@@ -107,8 +107,6 @@ export class SetupService {
         return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
     }
 
-    /** CRUD METHODS  FOR DESIGNATIONS*/
-
 
     /** CRUD METHODS DEPARTMENTS */
     async getAllDepartments() {
@@ -148,22 +146,13 @@ export class SetupService {
         return await this.ApiService.get(`${this.hrUrl}/DeleteDepartment` + data.key).toPromise();
     }
 
-
-
-
-
-
     /** CRUD METHODS BANK */
     async getAllBanks() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
         this.bank = await this.ApiService.get(`${this.hrUrl}/GetBanks`).toPromise();
-        return this.bank;
-        // (error: HttpErrorResponse) => {
-        //     console.log(error.name + ' ' + error.message);
-        //   };
+        return this.bank; 
     }
 
     // DEMO ONLY, you can find working methods below
@@ -203,9 +192,8 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.get(`${this.hrUrl}/GetEmployeeTypes`).toPromise();
 
-        this.employeetype = await this.ApiService.get(`${this.hrUrl}/GetEmployeeTypes`).toPromise();
-        return this.employeetype;
     }
 
     // DEMO ONLY, you can find working methods below
@@ -276,9 +264,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.function = await this.ApiService.get(`${this.hrUrl}/GetFunctions`).toPromise();
-        return this.function;
+        return await this.ApiService.get(`${this.hrUrl}/GetFunctions`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
@@ -662,8 +648,9 @@ export class SetupService {
     async getAllDesignations() {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
+        console.log("Iam here 1");
         let a = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
+        console.log("I am here 2")
         console.log(a);
         return a;
         
@@ -701,12 +688,11 @@ export class SetupService {
 
     /** CRUD METHODS  FOR managementlevel*/
     async getAllManagementlevels() {
-
-
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        return await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
+        let a = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
+        console.log("ALL MANAGEMENT LEVELS HERE!!!!!!!!!!!!!!!!!!");
+        return a;
          
     }
 
@@ -748,14 +734,10 @@ export class SetupService {
     async getAllGroups() {
 
         let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        this.group = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
-        console.log(this.group);
-        return this.group;
-
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } };
+        let a = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
+        console.log("ALL GROUPS HERE!!!!!!!!!!!!!!", a);
+        return a;
     }
 
     // DEMO ONLY, you can find working methods below

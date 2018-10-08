@@ -39,14 +39,7 @@ export class EmployeesComponent implements OnInit {
         this.router.navigate(['hrm/employee/registration'])
     }
 
-
-    //     onupdate(d) {
-    //     console.log(d.key);
-    //      this.employeeId  =  d.key 
-    //      this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
-
-    //    //     this.router.navigate(['hrm/employee/registration'])
-    //     }
+ 
     getCurrentRowData(d) {
         console.log(d.key);
         this.userId = d.key;

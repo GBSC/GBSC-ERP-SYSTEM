@@ -12,9 +12,10 @@ export class SetupService {
         throw new Error("Method not implemented.");
     }
 
-    private baseUrl: string = "SystemAdmin/api/HrSetup";
-    private baseUrl2: string = "SystemAdmin/api/Setup";
-    // private baseUrl: string = "http://localhost:58090/api/HrSetup";
+    private hrUrl: string = "SystemAdmin/api/HrSetup";
+    private setupUrl: string = "SystemAdmin/api/Setup";
+    // private hrUrl = "http://localhost:58090/api/HrSetup";
+    // private setupUrl = "http://localhost:58090/api/Setup";
     public country: any;
     public department: any;
     public bank: any;
@@ -56,7 +57,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.country = await this.ApiService.get(this.baseUrl2 + '/GetCountries').toPromise();
+        this.country = await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
         //console.log(features);
         console.log(this.country);
         return this.country;
@@ -69,7 +70,7 @@ export class SetupService {
     }
 
     async getdataToUpdate(countryId, countryUrl) {
-        return await this.ApiService.get(`${this.baseUrl}/${countryUrl}/${countryId}`).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/${countryUrl}/${countryId}`).toPromise();
     }
 
 
@@ -78,7 +79,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newcountry = await this.ApiService.post(this.baseUrl + '/AddCountry', data).toPromise();
+        let newcountry = await this.ApiService.post(this.hrUrl + '/AddCountry', data).toPromise();
         console.log(newcountry);
 
     }
@@ -93,7 +94,7 @@ export class SetupService {
         console.log(country);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(this.baseUrl2 + '/UpdateCountry', country).toPromise();
+        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', country).toPromise();
 
     }
 
@@ -103,7 +104,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.ApiService.delete(this.baseUrl2 + '/DeleteCountry/${countryId}').toPromise();
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
     }
 
     /** CRUD METHODS  FOR DESIGNATIONS*/
@@ -115,7 +116,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.department = await this.ApiService.get(`${this.baseUrl}/GetAllDepartment`).toPromise();
+        this.department = await this.ApiService.get(`${this.hrUrl}/GetAllDepartment`).toPromise();
         return this.department;
     }
 
@@ -124,7 +125,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newdepart = await this.ApiService.post(`${this.baseUrl}/addDepartment`, data).toPromise();
+        let newdepart = await this.ApiService.post(`${this.hrUrl}/addDepartment`, data).toPromise();
 
     }
 
@@ -135,7 +136,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/addDepartment`, data.key).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addDepartment`, data.key).toPromise();
 
     }
 
@@ -144,7 +145,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.get(`${this.baseUrl}/DeleteDepartment` + data.key).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/DeleteDepartment` + data.key).toPromise();
     }
 
 
@@ -158,7 +159,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.bank = await this.ApiService.get(`${this.baseUrl}/GetBanks`).toPromise();
+        this.bank = await this.ApiService.get(`${this.hrUrl}/GetBanks`).toPromise();
         return this.bank;
         // (error: HttpErrorResponse) => {
         //     console.log(error.name + ' ' + error.message);
@@ -170,7 +171,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newbank = await this.ApiService.post(`${this.baseUrl}/AddBank`, data).toPromise();
+        let newbank = await this.ApiService.post(`${this.hrUrl}/AddBank`, data).toPromise();
         console.log(newbank);
 
     }
@@ -186,7 +187,7 @@ export class SetupService {
         console.log(bank);
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/UpdateBank`, bank).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateBank`, bank).toPromise();
 
     }
 
@@ -194,7 +195,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteBank/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteBank/${id}`).toPromise();
     }
 
     /** CRUD METHODS EmployeeTypes */
@@ -203,7 +204,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.employeetype = await this.ApiService.get(`${this.baseUrl}/GetEmployeeTypes`).toPromise();
+        this.employeetype = await this.ApiService.get(`${this.hrUrl}/GetEmployeeTypes`).toPromise();
         return this.employeetype;
     }
 
@@ -212,7 +213,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/addEmployeeType`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addEmployeeType`, data).toPromise();
 
     }
 
@@ -223,7 +224,7 @@ export class SetupService {
         console.log(emptype);
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateEmployeeType`, emptype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, emptype).toPromise();
     }
 
     async DeleteEmployeeType(id) {
@@ -231,7 +232,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteEmployeeType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeType/${id}`).toPromise();
     }
 
     /** CRUD METHODS Branch */
@@ -241,7 +242,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.branch = await this.ApiService.get(`${this.baseUrl}/GetAllBranches`).toPromise();
+        this.branch = await this.ApiService.get(`${this.hrUrl}/GetAllBranches`).toPromise();
         return this.branch;
     }
 
@@ -250,7 +251,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/addBranch`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addBranch`, data).toPromise();
 
     }
 
@@ -258,7 +259,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/addBranch`, data.key).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addBranch`, data.key).toPromise();
     }
 
     async DeleteBranch(data) {
@@ -266,7 +267,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.get(`${this.baseUrl}/DeleteBranch` + data.key).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/DeleteBranch` + data.key).toPromise();
     }
 
     /** CRUD METHODS Function */
@@ -276,7 +277,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.function = await this.ApiService.get(`${this.baseUrl}/GetFunctions`).toPromise();
+        this.function = await this.ApiService.get(`${this.hrUrl}/GetFunctions`).toPromise();
         return this.function;
     }
 
@@ -285,7 +286,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newfunction = await this.ApiService.post(`${this.baseUrl}/AddFunction`, data).toPromise();
+        let newfunction = await this.ApiService.post(`${this.hrUrl}/AddFunction`, data).toPromise();
     }
 
     async updatefunction(data) {
@@ -296,7 +297,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateFunction`, funct).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, funct).toPromise();
     }
 
     async Deletefunction(id) {
@@ -304,55 +305,10 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteFunction/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteFunction/${id}`).toPromise();
 
     }
-
-    /** CRUD METHODS Grade */
-
-    async getAllgrades() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.grades = await this.ApiService.get(`${this.baseUrl}/GetGrades`).toPromise();
-        console.log(this.grades);
-        return this.grades;
-
-    }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addGrade(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.grades = await this.ApiService.post(`${this.baseUrl}/AddGrade`, data).toPromise();
-        return this.grades;
-    }
-
-    async updateGrade(data) {
-        ``
-
-        let grade = await this.getdataToUpdate(data.key, 'GetGrade');
-        grade = { ...grade, ...data.data }
-        console.log(grade);
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGrade`, grade).toPromise();
-    }
-
-    async DeleteGrade(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteGrade/${id}`).toPromise();
-
-    }
-
-
+ 
     /** CRUD METHODS Qualification */
 
     async getAllqualifications() {
@@ -360,7 +316,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.qualification = await this.ApiService.get(`${this.baseUrl}/GetQualifications`).toPromise();
+        this.qualification = await this.ApiService.get(`${this.hrUrl}/GetQualifications`).toPromise();
         return this.qualification;
         // (error: HttpErrorResponse) => 
         //   console.log(error.name + ' ' + error.message);
@@ -372,7 +328,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.qualification = await this.ApiService.post(`${this.baseUrl}/AddQualification`, data).toPromise();
+        this.qualification = await this.ApiService.post(`${this.hrUrl}/AddQualification`, data).toPromise();
         return this.qualification;
     }
 
@@ -384,14 +340,14 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateQualification`, qf).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateQualification`, qf).toPromise();
     }
 
     async DeleteQualification(id) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteQualification/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteQualification/${id}`).toPromise();
         // },
         //   (error: HttpErrorResponse) => {
         //     console.log(error.name + ' ' + error.message);
@@ -406,7 +362,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.employeestatus = await this.ApiService.get(`${this.baseUrl}/GetEmployeeStatuses`).toPromise();
+        this.employeestatus = await this.ApiService.get(`${this.hrUrl}/GetEmployeeStatuses`).toPromise();
         return this.employeestatus;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -418,7 +374,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.employeestatus = await this.ApiService.post(`${this.baseUrl}/AddEmployeeStatus`, data).toPromise();
+        this.employeestatus = await this.ApiService.post(`${this.hrUrl}/AddEmployeeStatus`, data).toPromise();
         return this.employeestatus;
     }
 
@@ -430,7 +386,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateEmployeeStatus`, estatus).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, estatus).toPromise();
     }
 
     async DeleteEmployeeStatus(id) {
@@ -438,7 +394,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteEmployeeStatus/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeStatus/${id}`).toPromise();
 
     }
 
@@ -450,7 +406,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.maritalstatus = await this.ApiService.get(`${this.baseUrl}/GetMaritialStatuses`).toPromise();
+        this.maritalstatus = await this.ApiService.get(`${this.hrUrl}/GetMaritialStatuses`).toPromise();
         return this.maritalstatus;
     }
 
@@ -459,7 +415,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.maritalstatus = await this.ApiService.post(`${this.baseUrl}/AddMaritialStatus/`, data).toPromise();
+        this.maritalstatus = await this.ApiService.post(`${this.hrUrl}/AddMaritialStatus/`, data).toPromise();
         return this.maritalstatus;
     }
 
@@ -467,7 +423,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateMaritialStatus/`, data.key).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateMaritialStatus/`, data.key).toPromise();
     }
 
     async DeleteMaritalStatus(data) {
@@ -475,7 +431,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.get(`${this.baseUrl}/DeleteMaritialStatus/` + data.key).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/DeleteMaritialStatus/` + data.key).toPromise();
         // },
         //   (error: HttpErrorResponse) => {
         //     console.log(error.name + ' ' + error.message);
@@ -490,7 +446,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.religion = await this.ApiService.get(`${this.baseUrl}/GetReligions`).toPromise();
+        this.religion = await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
         return this.religion;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -502,7 +458,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.religion = await this.ApiService.post(`${this.baseUrl}/AddReligion/`, data).toPromise();
+        this.religion = await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
         return this.religion;
     }
 
@@ -514,7 +470,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateReligion`, rlg).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateReligion`, rlg).toPromise();
     }
 
     async DeleteReligion(id) {
@@ -522,7 +478,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteReligion/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteReligion/${id}`).toPromise();
         // },
         //   (error: HttpErrorResponse) => {
         //     console.log(error.name + ' ' + error.message);
@@ -540,7 +496,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.roster = await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
+        this.roster = await this.ApiService.get(`${this.hrUrl}/GetRosters`).toPromise();
 
 
         // (error: HttpErrorResponse) => {
@@ -553,7 +509,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.roster = await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
+        this.roster = await this.ApiService.post(`${this.hrUrl}/AddRoster`, data).toPromise();
         return this.roster;
     }
 
@@ -565,7 +521,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateRoster`, roster).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateRoster`, roster).toPromise();
     }
 
     async DeleteRoster(id) {
@@ -573,7 +529,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteRoster/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteRoster/${id}`).toPromise();
 
     }
 
@@ -584,7 +540,7 @@ export class SetupService {
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-    //     this.shift = await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
+    //     this.shift = await this.ApiService.get(`${this.hrUrl}/GetShifts`).toPromise();
     //     return this.shift;
     //     // (error: HttpErrorResponse) => {
     //     //   console.log(error.name + ' ' + error.message);
@@ -596,7 +552,7 @@ export class SetupService {
 
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json' } }
-    //     this.shift = await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
+    //     this.shift = await this.ApiService.post(`${this.hrUrl}/AddShift`, data).toPromise();
     //     return this.shift;
     // }
 
@@ -608,7 +564,7 @@ export class SetupService {
 
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json' } }
-    //     return await this.ApiService.put(`${this.baseUrl}/UpdateShift`, shft, headers).toPromise();
+    //     return await this.ApiService.put(`${this.hrUrl}/UpdateShift`, shft, headers).toPromise();
     // }
 
     // async DeleteShift(id) {
@@ -616,7 +572,7 @@ export class SetupService {
     //     let authToken = localStorage.getItem('auth_token');
     //     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-    //     return await this.ApiService.delete(`${this.baseUrl}/DeleteShift/${id}`).toPromise();
+    //     return await this.ApiService.delete(`${this.hrUrl}/DeleteShift/${id}`).toPromise();
 
     // }
 
@@ -627,7 +583,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.degree = await this.ApiService.get(`${this.baseUrl}/GetDegrees`).toPromise();
+        this.degree = await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
         return this.degree;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -639,7 +595,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.degree = await this.ApiService.post(`${this.baseUrl}/AddDegree`, data).toPromise();
+        this.degree = await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
         return this.degree;
     }
 
@@ -651,7 +607,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateDegree`, deg).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, deg).toPromise();
 
     }
 
@@ -660,7 +616,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteDegree/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteDegree/${id}`).toPromise();
 
     }
 
@@ -673,7 +629,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.accounttype = await this.ApiService.get(`${this.baseUrl}/GetAccountTypes`).toPromise();
+        this.accounttype = await this.ApiService.get(`${this.hrUrl}/GetAccountTypes`).toPromise();
         return this.accounttype;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -685,7 +641,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.accounttype = await this.ApiService.post(`${this.baseUrl}/AddAccountType`, data).toPromise();
+        this.accounttype = await this.ApiService.post(`${this.hrUrl}/AddAccountType`, data).toPromise();
         return this.accounttype;
     }
 
@@ -697,7 +653,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAccountType`, actype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateAccountType`, actype).toPromise();
     }
 
     async DeleteAccounttype(id) {
@@ -705,7 +661,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteAccountType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAccountType/${id}`).toPromise();
 
     }
 
@@ -716,7 +672,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.designation = await this.ApiService.get(`${this.baseUrl}/GetDesignations`).toPromise();
+        this.designation = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
         return this.designation;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -728,7 +684,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.designation = await this.ApiService.post(`${this.baseUrl}/AddDesignation`, data).toPromise();
+        this.designation = await this.ApiService.post(`${this.hrUrl}/AddDesignation`, data).toPromise();
         return this.designation;
     }
 
@@ -741,7 +697,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateDesignation`, desg).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDesignation`, desg).toPromise();
     }
 
     async DeleteDesignation(id) {
@@ -749,7 +705,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteDesignation/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteDesignation/${id}`).toPromise();
     }
 
 
@@ -760,7 +716,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.managementlevel = await this.ApiService.get(`${this.baseUrl}/GetManagementLevels`).toPromise();
+        this.managementlevel = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
         return this.managementlevel;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -772,7 +728,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.managementlevel = await this.ApiService.post(`${this.baseUrl}/AddManagementLevel`, data).toPromise();
+        this.managementlevel = await this.ApiService.post(`${this.hrUrl}/AddManagementLevel`, data).toPromise();
         return this.managementlevel;
     }
 
@@ -787,7 +743,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateManagementLevel`, mlevel).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, mlevel).toPromise();
     }
 
     async DeleteManagementLevel(id) {
@@ -795,7 +751,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteManagementLevel/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteManagementLevel/${id}`).toPromise();
     }
 
 
@@ -807,7 +763,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.group = await this.ApiService.get(`${this.baseUrl}/GetGroups`).toPromise();
+        this.group = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
         console.log(this.group);
         return this.group;
 
@@ -821,7 +777,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.group = await this.ApiService.post(`${this.baseUrl}/AddGroup`, data).toPromise();
+        this.group = await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
         return this.group;
     }
 
@@ -833,7 +789,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGroup`, group).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateGroup`, group).toPromise();
     }
 
     async DeleteGroup(id) {
@@ -842,7 +798,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteGroup/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteGroup/${id}`).toPromise();
 
     }
 
@@ -852,7 +808,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.costcenter = await this.ApiService.get(`${this.baseUrl}/GetCostCenters`).toPromise();
+        this.costcenter = await this.ApiService.get(`${this.hrUrl}/GetCostCenters`).toPromise();
         return this.costcenter;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -864,7 +820,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.costcenter = await this.ApiService.post(`${this.baseUrl}/AddCostCenter`, data).toPromise();
+        this.costcenter = await this.ApiService.post(`${this.hrUrl}/AddCostCenter`, data).toPromise();
         return this.costcenter;
     }
 
@@ -876,7 +832,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateCostCenter`, cc).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateCostCenter`, cc).toPromise();
     }
 
     async DeleteCostCenter(id) {
@@ -884,7 +840,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteCostCenter/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteCostCenter/${id}`).toPromise();
     }
 
 
@@ -895,7 +851,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.language = await this.ApiService.get(`${this.baseUrl}/GetLanguages`).toPromise();
+        this.language = await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
         return this.language;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -908,7 +864,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.language = await this.ApiService.post(`${this.baseUrl}/AddLanguage`, data).toPromise();
+        this.language = await this.ApiService.post(`${this.hrUrl}/AddLanguage`, data).toPromise();
         return this.language;
     }
 
@@ -920,7 +876,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLanguage`, lang).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateLanguage`, lang).toPromise();
     }
 
     async DeleteLanguage(id) {
@@ -928,7 +884,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteLanguage/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteLanguage/${id}`).toPromise();
 
     }
 
@@ -942,7 +898,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.gazetholidays = await this.ApiService.get(`${this.baseUrl}/GetHolidays`).toPromise();
+        this.gazetholidays = await this.ApiService.get(`${this.hrUrl}/GetHolidays`).toPromise();
         return this.gazetholidays;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -954,7 +910,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.gazetholidays = await this.ApiService.post(`${this.baseUrl}/AddHoliday`, data).toPromise();
+        this.gazetholidays = await this.ApiService.post(`${this.hrUrl}/AddHoliday`, data).toPromise();
         return this.gazetholidays;
     }
 
@@ -966,7 +922,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateHoliday`, hd).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateHoliday`, hd).toPromise();
     }
 
     async DeleteGazettedHolidays(id) {
@@ -974,7 +930,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteHoliday/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteHoliday/${id}`).toPromise();
     }
 
 
@@ -985,7 +941,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.skilllevels = await this.ApiService.get(`${this.baseUrl}/GetSkillLevels`).toPromise();
+        this.skilllevels = await this.ApiService.get(`${this.hrUrl}/GetSkillLevels`).toPromise();
         return this.skilllevels;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -997,7 +953,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.skilllevels = await this.ApiService.post(`${this.baseUrl}/AddSkillLevel`, data).toPromise();
+        this.skilllevels = await this.ApiService.post(`${this.hrUrl}/AddSkillLevel`, data).toPromise();
         return this.skilllevels;
     }
 
@@ -1010,7 +966,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateSkillLevel`, skl).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateSkillLevel`, skl).toPromise();
     }
 
     async DeleteSkillLevel(id) {
@@ -1018,7 +974,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteSkillLevel/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteSkillLevel/${id}`).toPromise();
     }
 
 
@@ -1029,7 +985,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.bloodgroup = await this.ApiService.get(`${this.baseUrl}/GetBloodGroups`).toPromise();
+        this.bloodgroup = await this.ApiService.get(`${this.hrUrl}/GetBloodGroups`).toPromise();
         return this.bloodgroup;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -1041,7 +997,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.bloodgroup = await this.ApiService.post(`${this.baseUrl}/AddBloodGroup`, data).toPromise();
+        this.bloodgroup = await this.ApiService.post(`${this.hrUrl}/AddBloodGroup`, data).toPromise();
         return this.bloodgroup;
     }
 
@@ -1049,7 +1005,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateBloodGroup`, data.key).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateBloodGroup`, data.key).toPromise();
     }
 
     async DeleteBloodGroups(data) {
@@ -1057,7 +1013,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteBloodGroup` + data.key).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteBloodGroup` + data.key).toPromise();
     }
 
 
@@ -1069,19 +1025,15 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.leavetype = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
-        return this.leavetype;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        //return await this.ApiService.get(`${this.hrUrl}/GetLeaveTypes`).toPromise();
+       // return this.leavetype;
     }
 
-    // DEMO ONLY, you can find working methods below
     async addLeaveTypes(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.leavetype = await this.ApiService.post(`${this.baseUrl}/AddLeaveType`, data).toPromise();
+        this.leavetype = await this.ApiService.post(`${this.hrUrl}/AddLeaveType`, data).toPromise();
         return this.leavetype;
     }
 
@@ -1093,7 +1045,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveType`, ltype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateLeaveType`, ltype).toPromise();
     }
 
     async DeleteLeaveTypes(id) {
@@ -1102,7 +1054,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteLeaveType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteLeaveType/${id}`).toPromise();
 
     }
 
@@ -1115,7 +1067,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.allowancetype = await this.ApiService.get(`${this.baseUrl}/GetAllowancesTypes`).toPromise();
+        this.allowancetype = await this.ApiService.get(`${this.hrUrl}/GetAllowancesTypes`).toPromise();
         return this.allowancetype;
     }
 
@@ -1125,7 +1077,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.allowancetype = await this.ApiService.post(`${this.baseUrl}/AddAllowancesType`, data).toPromise();
+        this.allowancetype = await this.ApiService.post(`${this.hrUrl}/AddAllowancesType`, data).toPromise();
         return this.allowancetype;
     }
 
@@ -1137,7 +1089,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAllowancesType`, alowncetype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateAllowancesType`, alowncetype).toPromise();
     }
 
     async DeleteAllowancesType(id) {
@@ -1145,7 +1097,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowancesType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAllowancesType/${id}`).toPromise();
 
     }
 
@@ -1156,7 +1108,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.advancetype = await this.ApiService.get(`${this.baseUrl}/GetAdvanceTypes`).toPromise();
+        this.advancetype = await this.ApiService.get(`${this.hrUrl}/GetAdvanceTypes`).toPromise();
         return this.advancetype;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -1169,7 +1121,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/AddAdvanceType`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/AddAdvanceType`, data).toPromise();
     }
 
     async updateAdvanceType(data) {
@@ -1181,7 +1133,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAdvanceType`, advancetype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateAdvanceType`, advancetype).toPromise();
     }
 
     async DeleteAdvanceType(id) {
@@ -1190,7 +1142,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteAdvanceType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAdvanceType/${id}`).toPromise();
 
     }
 
@@ -1204,7 +1156,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.relation = await this.ApiService.get(`${this.baseUrl}/GetRelations`).toPromise();
+        this.relation = await this.ApiService.get(`${this.hrUrl}/GetRelations`).toPromise();
         return this.relation;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -1217,7 +1169,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/AddRelation`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/AddRelation`, data).toPromise();
     }
 
     async updateRelation(data) {
@@ -1229,7 +1181,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateRelation`, relation).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateRelation`, relation).toPromise();
     }
 
     async DeleteRelation(id) {
@@ -1238,7 +1190,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteRelation/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
 
     }
 
@@ -1250,7 +1202,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.city = await this.ApiService.get(this.baseUrl2 + '/GetCities').toPromise();
+        this.city = await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
         return this.city;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -1262,7 +1214,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        this.city = await this.ApiService.post(this.baseUrl2 + '/AddCity', data).toPromise();
+        this.city = await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
         return this.city;
     }
 
@@ -1274,7 +1226,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(this.baseUrl2 + '/UpdateCity', cty).toPromise();
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', cty).toPromise();
     }
 
     async DeleteCity(id) {
@@ -1282,7 +1234,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(this.baseUrl2 + '/DeleteCity/${id}').toPromise();
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${id}').toPromise();
     }
 
 
@@ -1293,7 +1245,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.university = await this.ApiService.get(`${this.baseUrl}/GetUniversities`).toPromise();
+        this.university = await this.ApiService.get(`${this.hrUrl}/GetUniversities`).toPromise();
         return this.university;
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
@@ -1305,7 +1257,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/AddUniversity`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/AddUniversity`, data).toPromise();
     }
 
     async updateuniversity(data) {
@@ -1317,7 +1269,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateUniversity`, uni).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateUniversity`, uni).toPromise();
     }
 
     async Deleteuniversity(id) {
@@ -1325,7 +1277,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteUniversity/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteUniversity/${id}`).toPromise();
 
     }
 
@@ -1339,7 +1291,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.get(`${this.baseUrl}/`);
+        return await this.ApiService.get(`${this.hrUrl}/`);
         // (error: HttpErrorResponse) => {
         //   console.log(error.name + ' ' + error.message);
         // });
@@ -1350,14 +1302,14 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.post(`${this.baseUrl}/addGender`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addGender`, data).toPromise();
     }
 
     async updateGenders(data) {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGender`, data.key).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateGender`, data.key).toPromise();
     }
 
     async DeleteGenders(data) {
@@ -1365,7 +1317,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteGender` + data.key).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteGender` + data.key).toPromise();
 
     }
 

@@ -14,7 +14,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
   private MonthlyUserSalaryForm: any
   private rosterAttendance: UserRosterAttendance[];
   public stopSalary: any;
-  monthlyUserSalary: any;
+  public monthlyUserSalary: any;
 
   constructor(private fb: FormBuilder, public payrollservice: PayrollService,
     public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -58,6 +58,8 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     await this.payrollsetupservice.getpayrolls();
     let payRoll = this.payrollsetupservice.payroll;
+    await this.payrollservice.getpayslips();
+    let paySlip = this.payrollservice.Payslip;
 
   }
 

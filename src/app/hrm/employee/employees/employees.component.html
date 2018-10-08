@@ -12,28 +12,28 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-  <dx-data-grid id="gridContainer" [dataSource]="emp" [showBorders]="true" (onToolbarPreparing)="onToolbarPreparing($event)"
-    keyExpr="userId">
-    <!-- (onRowInserted)="addNewreligion($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="emp" [showBorders]="true" (onToolbarPreparing)="onToolbarPreparing($event)"
+                keyExpr="userId">
+                <!-- (onRowInserted)="addNewreligion($event)"
   (onRowUpdating)="updatereligion($event)"
   (onRowRemoving)="deletereligion($event)" -->
-    <dxo-editing mode="popup" [allowDeleting]="true" useicon="true">
-    </dxo-editing>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-editing mode="popup" [allowDeleting]="true" useicon="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-    <dxo-paging [pageSize]="6"></dxo-paging>
-    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-    </dxo-pager>
-    <dxi-column dataField="firstName"></dxi-column>
-    <dxi-column dataField="lastName"></dxi-column>
-    <dxi-column dataField="fatherName"></dxi-column>
-    <dxi-column dataField="email"></dxi-column>
-    <dxi-column dataField="cnic"></dxi-column>
-    <!-- <dxi-column dataField="designation"></dxi-column>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxi-column dataField="firstName"></dxi-column>
+                <dxi-column dataField="lastName"></dxi-column>
+                <dxi-column dataField="fatherName"></dxi-column>
+                <dxi-column dataField="email"></dxi-column>
+                <dxi-column dataField="cnic"></dxi-column>
+                <!-- <dxi-column dataField="designation"></dxi-column>
     <dxi-column dataField="department"></dxi-column> -->
-    <!-- <dxi-column caption="Edit" cellTemplate="chartCellTemplate"> </dxi-column>
+                <!-- <dxi-column caption="Edit" cellTemplate="chartCellTemplate"> </dxi-column>
     <div *dxTemplate="let d of 'chartCellTemplate'">
       <div class="chart-cell">
         <dx-button (click)="onupdate(d)" text="edit">
@@ -42,18 +42,18 @@
     </div> -->
 
 
-    <dxi-column caption="Edit" cellTemplate="chartCellTemplate" [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-<div *dxTemplate="let d of 'chartCellTemplate'">
-<div class="chart-cell">
-<dx-button (click)="getCurrentRowData(d)"   icon="edit"></dx-button>
-  </div>
-</div>
+                <dxi-column caption="Edit" cellTemplate="chartCellTemplate" [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <div *dxTemplate="let d of 'chartCellTemplate'">
+                  <div class="chart-cell">
+                    <dx-button (click)="getCurrentRowData(d)" icon="edit"></dx-button>
+                  </div>
+                </div>
 
 
-  </dx-data-grid>
+              </dx-data-grid>
 
-</div>
-</div>
-</div>
-</div>
-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

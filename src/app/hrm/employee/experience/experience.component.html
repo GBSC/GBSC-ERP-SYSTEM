@@ -16,9 +16,9 @@
                 <dx-data-grid id="gridContainer"
                  [dataSource]="workExperience"
                  keyExpr="workExperienceId" 
+                 (onRowInserted)="addExperience($event)"
                 (onRowUpdated)="updateExperience()"
-                (onRowUpdating)="updatingExperience($event)"
-                (onRowInserted)="addExperience($event)">
+                (onRowUpdating)="updatingExperience($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                     <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>
@@ -41,13 +41,7 @@
           </div>
         </div>
       </div>
-    </div> 
-<!-- <div>
-<button (click)="update()">
-update
-</button>        
-</div>
-</form> -->
+    </div>  
 </div>
 
 

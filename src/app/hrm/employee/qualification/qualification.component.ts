@@ -4,6 +4,7 @@ import { EmployeeService, SetupService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from '../../../core/Models/HRM/employee';
 import { EmployeeQualification } from '../../../core/Models/HRM/employeeQualification';
+import { DataGrid } from 'primeng/primeng';
 
 @Component({
     selector: 'app-employeequalification',
@@ -66,79 +67,34 @@ export class EmployeeQualificationComponent implements OnInit {
             this.id = +params['id'];
         console.log(this.id)
 
-        this.employee.GetUniversity(this.id).subscribe(resp => {
-
-            this.Employee = resp;
-        // this.patchValues(resp);
-
-        });
     });
 
-        await this.SetupServiceobj.getAllqualifications();
-        let qualifctn = this.SetupServiceobj.qualification;
-        console.log(qualifctn);
-
-        await this.SetupServiceobj.getAllDegrees();
-        let dgree = this.SetupServiceobj.degree;
-
-        await this.SetupServiceobj.getAllUniversities();
-        let uni = this.SetupServiceobj.university;
+        this.degree = await this.SetupServiceobj.getAllDegrees();
      }
  
-     async update(value) {
-        console.log(value);
-      await this.employee.updateuserQualification(value);
+    //  async update(value) {
+    //     console.log(value);
+    //   await this.employee.updateuserQualification(value);
 
-    }
-
-
-    // p(e,u) {
-    //         console.log(e,u);
-    //         this.employee.selectedUni = {Name: '', Qualifications: []}
-    //         this.employee.university.Name = u;
-    //         this.employee.selectedUni.Name =u;
-    //         this.employee.addedUniversities.push(this.employee.selectedUni);
-    //         console.log(this.employee.university);
     // }
-
-    setSelectedUniversity(e){
-        console.log(this.employee.addedUniversities);
-        this.employee.selectedUni = this.employee.addedUniversities.find(u => u.Name === e.target.value)
-        console.log(this.employee.selectedUni)
-    }
 
     getQualificationFormValue() {
         this.setQualificationFormValue.emit(this.QualificationForm.value);
     }
 
     async addQualification(value) {
-        let a: EmployeeQualification = value.data;
-        a.userId = localStorage.getItem('id');
-        console.log(a);
-        let qualification = await this.employee.adduserUniversities(value.data);
-        console.log(qualification);
+        console.log(value);
+        await this.employee.adduserUniversity(value.data);
+        
     }
     async updatingQualification(value) {
         this.qualification = {...value.oldData, ...value.newData}
+        console.log(value);
+        
     }
-    async updateQualification(value) {
-        await this.employee.updateuserQualification(this.qualification);
-       
+    async updateQualification() {
+        await this.employee.updateuseruniversity(this.qualification);
+
     }
-
-    // patchValues(qualification : any) {
-
-    //     this.QualificationForm.patchValue({
-
-    //         Name:  qualification.name,
-    //         DegreeId: qualification.degreeId,
-    //         Timefrom: qualification.timeFrom,
-    //         Timeto: qualification.timeTo,
-    //         Grade: qualification.grade,
-    //         Courses: qualification.courses,
-    //         Description: qualification.description 
-
-    //     });
-    //   }
 }
 

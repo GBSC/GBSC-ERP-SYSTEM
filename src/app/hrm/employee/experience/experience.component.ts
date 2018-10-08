@@ -15,6 +15,7 @@ export class ExperienceComponent implements OnInit {
     public experienceForm: any;
     public Employee: any;
     public workExperience: any;
+    private updatingExp: any; 
     @Input('id') id: number;
 
     private fieldArray: Array<any> = [];
@@ -57,17 +58,7 @@ export class ExperienceComponent implements OnInit {
         console.log(value);
         await this.employeeService.updateuserWorkExperience(value);
 
-    }
-
-    addFieldValue() {
-        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
-        console.log(this.employeeService.allExperiencexpForm);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
-    }
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
+    } 
     async addexpinfo() {
         let exp = await this.employeeService.adduserexperience();
         console.log(exp);
@@ -78,38 +69,16 @@ export class ExperienceComponent implements OnInit {
     }
 
 
-    async addExperience(value) {
-        let a: EmployeeExperience = value.data;
-        a.userId = localStorage.getItem('id');
-        console.log(a);
-        await this.employeeService.AddworkExperience(a);
+    async addExperience(value) { 
+        await this.employeeService.AddworkExperience(value.data);
     }
-    private updatingExp: EmployeeExperience; 
 
-    async updatingExperience(value) { 
-        // let a: EmployeeDependant = value.data;
-        // a.userId = localStorage.getItem('id');
-        // console.log(a);
+    async updatingExperience(value) {  
         this.updatingExp = { ...value.oldData, ...value.newData }
     }
 
     async updateExperience() {
-        await this.employeeService.Updaterelation(this.updatingExp);
+        await this.employeeService.UpdateworkExperience(this.updatingExp);
     }
-
-
-    patchValues(workExperience: any) {
-
-        this.employeeService.experienceForm.patchValue({
-
-            CompanyName: workExperience.companyName,
-            Designation: workExperience.designation,
-            Timefrom: workExperience.timefrom,
-            Timeto: workExperience.timeto,
-            Description: workExperience.description
-
-        });
-    }
-
 
 }

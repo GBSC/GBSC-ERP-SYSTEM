@@ -18,6 +18,7 @@ export class EmergencycontactComponent implements OnInit {
     public newAttribute: any = {};
     public Employee: Employee;
     public dependant: any;
+    private updatingModel: any; 
     @Input('id') id: number;
 
 
@@ -109,13 +110,9 @@ export class EmergencycontactComponent implements OnInit {
         this.setDepndntFormValue.emit(this.DependantForm.value);
     }
 
-    async addDependant(value) {
-        let a: EmployeeDependant = value.data;
-        a.userId = localStorage.getItem('id');
-        console.log(a);
-        await this.employeeService.adduserDependant(a);
+    async addDependant(value) { 
+        await this.employeeService.adduserDependant(value.data);
     }
-    private updatingModel: EmployeeDependant; 
 
     async updatingDependant(value) {  
         this.updatingModel = { ...value.oldData, ...value.newData }

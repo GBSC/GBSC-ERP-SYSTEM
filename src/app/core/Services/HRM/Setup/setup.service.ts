@@ -317,10 +317,7 @@ export class SetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         this.qualification = await this.ApiService.get(`${this.hrUrl}/GetQualifications`).toPromise();
-        return this.qualification;
-        // (error: HttpErrorResponse) => 
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return this.qualification; 
     }
 
     // DEMO ONLY, you can find working methods below
@@ -583,11 +580,8 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        this.degree = await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
-        return this.degree;
-        // (error: HttpErrorResponse) => {
-        //   console.log(error.name + ' ' + error.message);
-        // });
+        return await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
+        
     }
 
     // DEMO ONLY, you can find working methods below

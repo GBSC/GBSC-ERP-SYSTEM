@@ -13,10 +13,10 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer"
+              <dx-data-grid #university id="gridContainer"
                [dataSource]="qualification"
                keyExpr="universityId" 
-               (onRowInserted)="addQualification()"
+               (onRowInserted)="addQualification($event)"
                (onRowUpdated)="updateQualification()"
                (onRowUpdating)="updatingQualification($event)">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
@@ -37,7 +37,7 @@
                 <dxi-column dataField="courses"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
                 <dxi-column dataField="degreeId" caption="Degree">
-                    <dxo-lookup [dataSource]="SetupServiceobj?.degree" displayExpr="name" valueExpr="degreeId">
+                    <dxo-lookup [dataSource]="degree" displayExpr="name" valueExpr="degreeId">
                     </dxo-lookup> 
               </dxi-column> 
               </dx-data-grid>

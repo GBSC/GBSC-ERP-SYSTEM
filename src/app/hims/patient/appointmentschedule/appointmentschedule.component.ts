@@ -143,6 +143,10 @@ export class AppointmentscheduleComponent implements OnInit {
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
 
+    calculateCellValue(data) {
+        return [data.firstName, data.lastName].join(" ");
+    }
+
     showIt() {
         if (this.profileForm.valid) {
             console.log(this.profileForm);

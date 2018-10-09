@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PharmacyService } from '../../core';
 import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
+import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 
 
 
@@ -18,20 +19,78 @@ export class PurchaseOrderComponent implements OnInit {
     //private User: any;
     private UpdatedModel : any;
     private PurchaseOrderForm : FormGroup;
+    private PurchaseOrderDetailsForm : FormGroup;
+    private AllItems : InventoryItem;
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
-        this.PurchaseOrderForm = this.FormBuilder.group( {} );
+        this.PurchaseOrderForm = this.FormBuilder.group( {
+            PurchaseOrderId: [''],
+            OrderNumber: [''],
+            OrderDate: [''],
+            OrderType: [''],
+            OrderRemarks: [''],
+            IssueDate: [''],
+            IsIssued: [''],
+            ApprovedDate: [''],
+            IsApproved: [''],
+            ProcessedDate: [''],
+            IsProcessed: [''],
+            VendorBillNumber: [''],
+            BillDate: [''],
+            Origin: [''],
+            Currency: [''],
+            ExchangeRate: [''],
+            Remarks: [''],
+            Status: [''],
+            SupplierId: [''],
+            PurchaseOrderItems: this.FormBuilder.array([])
+        } );
+
+        this.PurchaseOrderDetailsForm = this.FormBuilder.group( {
+            PurchaseOrderItemId: [''],
+            PackType: [''],
+            PackSize: [''],
+            NumberPackType: [''],
+            BatchNumber: [''],
+            Quantity: [''],
+            ExpiryDate: [''],
+            Rate: [''],
+            ExchangeRate: [''],
+            GrossAmount: [''],
+            DiscountPercentage: [''],
+            DiscountAmount: [''],
+            AfterDiscountAmount: [''],
+            GstPercentage: [''],
+            GstAmount: [''],
+            AfterGstAmount: [''],
+            FreightPercentage: [''],
+            FreightAmount: [''],
+            DeliveryPercentage: [''],
+            DeliveryAmount: [''],
+            OtherPercentage: [''],
+            OtherAmount: [''],
+            NetAmount: [''],
+            CostPrice: [''],
+            RetailPrice: [''],
+            GrandTotal: [''],
+            InventoryItemId: [''],
+            InventoryId: [''],
+            PurchaseOrderId: ['']
+        } );
     }
 
     ngOnInit() {
         this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => this.Suppliers = res);
-        this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
+        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem ) => this.AllItems = res );
+        //this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
     }
 
     async AddPurchaseOrder(value) {
         await this.PharmacyService.AddPurchaseOrder(value).toPromise();
         this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
     }
+
+    
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };

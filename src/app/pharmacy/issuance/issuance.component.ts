@@ -134,7 +134,8 @@ export class IssuanceComponent implements OnInit {
 
     remove(index, value) {
         let item = this.arraydata.splice(index, 1);
-        this.Invs = this.Invs.splice(index, 1);
+        //this.Invs = this.Invs.filter(this.arraydata)
+        //this.Invs = this.Invs.splice(index, 1);
         console.log(item)
         console.log(value);
         this.total -= Number.parseInt(value);

@@ -13,7 +13,10 @@ export class BasicinformationComponent implements OnInit {
 
 
     public basic: any;
-    public Employee: Employee;
+    public religion: any;
+    public language: any;
+    public city: any; 
+    public Employee: any;
     @Input('id') id: number;
 
     @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
@@ -58,42 +61,24 @@ export class BasicinformationComponent implements OnInit {
 
     async updateUersById(value) {
         console.log(value);
+        
         await this.employeeService.updateUersById(value);
     }
 
      async ngOnInit() {
+         
+         this.religion = await this.SetupServiceobj.getAllReligions();
+         console.log(this.religion);
+         
+         this.language = await this.SetupServiceobj.getAllLanguages();
+
+         this.city = await this.SetupServiceobj.getAllCities();
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
+            this.Employee = resp; 
+             this.patchValues(resp);
 
-            this.Employee = resp;
-
-            this.patchValues(resp);
-
-        });
-
-
-
-    //     await this.SetupServiceobj.getAllDesignations();
-    //     let dsg = this.SetupServiceobj.designation;
-
-    //     await this.SetupServiceobj.getAllLanguages();
-    //     let lng = this.SetupServiceobj.language;
-
-
-    //     await this.SetupServiceobj.getAllFunctions();
-    //     let func = this.SetupServiceobj.function;
-
-    //     await this.SetupServiceobj.getAllReligions();
-    //     let relg = this.SetupServiceobj.religion;
-    //     console.log(relg);
-
-    //     await this.SetupServiceobj.getAllGazettedHolidays();
-    //     let holiday = this.SetupServiceobj.gazetholidays;
-
-    //     await this.SetupServiceobj.getAllCities();
-    //     let cty = this.SetupServiceobj.city;
-
-
+        }); 
     }
 
     patchValues(employee : any) {

@@ -1,4 +1,5 @@
 export interface  Employee {
+
     FirstName : string,
     LastName : string,
     Phone : string,
@@ -16,7 +17,9 @@ export interface  Employee {
     Address : string,
     PermanentAddress : string,
     ReligionId : number,
-    CityId : number,  
-    DateCreated : Date,
+    CityId : number ,
+    UserLanguages : Array<any>,
+    userId  : any
+    
     
 }

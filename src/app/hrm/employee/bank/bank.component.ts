@@ -11,6 +11,7 @@ import { Employee } from '../../../core/Models/HRM/employee';
 })
 export class EmployeeBankComponent implements OnInit {
     public Employee: any;
+    public Userbank: any;
     @Input('id') id: number;
 
     @Output('setBankFormValue') setBankFormValue = new EventEmitter();
@@ -30,6 +31,8 @@ export class EmployeeBankComponent implements OnInit {
       }
 
     async ngOnInit() {
+
+        this.Userbank = await this.employee.GetBankByUserId(); 
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
@@ -64,10 +67,10 @@ export class EmployeeBankComponent implements OnInit {
         this.EmpbankForm.patchValue({
 
             AccountNumber:  employeeBank.accountNumber, 
-            AccountTitle:  employeeBank.accountTitle, 
+            AccountName:  employeeBank.accountName, 
             BankTitle:  employeeBank.bankTitle, 
             BankCode:  employeeBank.bankCode, 
-            BankBranch:  employeeBank.bankBranch, 
+            Branch:  employeeBank.branch
         });
       }
 }

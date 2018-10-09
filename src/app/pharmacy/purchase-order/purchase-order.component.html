@@ -25,73 +25,84 @@
                                 <label for="exampleInputEmail1">
                                     PO No
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(IssuanceForm.value.CRN)"
-                                formControlName="CRN" >
-                                <option *ngFor="let x of AllCustomers" [value]="x?.crn">{{x?.crn}} </option>
-                            </select>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderNumber"
+                                    disabled>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    Issue No
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="IssuanceNo"  disabled>
-                            </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Issue Date
+                                    PO Date
                                 </label>
                                 <div class="input-group date">
-                                    <input type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate" disabled>
+                                    <input type="date" class="form-control m-input m-input--solid" formControlName="OrderDate"
+                                        disabled>
                                 </div>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    Slip No
+                                    Status
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="SlipNumber" disabled> 
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="IsApproved"
+                                    disabled>
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <label for="exampleInputEmail1">
+                                    Tax
+                                </label>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks"
+                                    disabled>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    P. Name
+                                    Supplier
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName"  [value]="customerdata?.name || ''" disabled>
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSuppliers(PurchaseOrderForm.value.SupplierId)"
+                                    formControlName="SupplierId">
+                                    <option *ngFor="let x of Suppliers" [value]="x?.name">{{x?.name}} </option>
+                                </select>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    S. Name
+                                    Origin
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="customerdata?.contactName || ''" disabled>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Origin"
+                                    disabled>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    Remarks
+                                    Currency
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetCurrencies(PurchaseOrderForm.value.CurrencyId)"
+                                    formControlName="CurrencyId">
+                                    <option *ngFor="let x of Currencies" [value]="x?.name">{{x?.name}} </option>
+                                </select>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                    Department
+                                    Exchange Rate
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="ExchangeRate"
+                                    [value]="SelectedCurrency?.exchangeRate || ''" disabled>
                             </div>
+
                         </div>
                         <div class="modal-footer">
-                                <button type="reset" class="btn btn-secondary">
-                                    Reset
-                                </button>
-                                <!-- , rate.value -->
-                                <button type="button" (click)="onsubmit(IssuanceForm.value)" class="btn btn-primary">
-                                    Save
-                                </button>
-                            </div>
-                                 
-                              
+                            <button type="reset" class="btn btn-secondary">
+                                Reset
+                            </button>
+                            <!-- , rate.value -->
+                            <button type="button" (click)="onsubmit(IssuanceForm.value)" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
 
-            
+
+
+
                     </div>
-              
+
                 </form>
                 <!--end::Form-->
 
@@ -100,130 +111,143 @@
                     <div class="m-portlet__body">
                         <div class="m-section">
                             <div class="m-section__content">
-                                
-                <form [formGroup]="InventoryItemForm" >
-                        <div class="form-group m-form__group row">
-                                <div class="col-lg-12">
-                                    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                    <th>Manual Code</th>
-                                    <th>Description</th>
-                                    <th>Pack Type</th>
-                                    <th>Pack Size</th>
-                                    <th>Pack Quantity</th>
-                                    <th>Qty</th>
-                                    <th>Rate</th>
-                                    <th>Net Amount</th>
-                                    <th>Action</th>
-                                    <tr >
-                                        <!-- <input class="form-control m-input m-input--solid"  #rate> -->
-                                        <td>
-                                            <select class="form-control m-input ng-pristine ng-valid ng-touched" style="width: 100px;" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
-                                            formControlName="InventoryItemId">
-                                            <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}} </option>
-                                        </select>
-                                    </td>
-                                       <td><input class="form-control m-input m-input--solid" formControlName="Description" [value]="data?.description || ''" disabled  ></td>
-                                        <td><input class="form-control m-input m-input--solid" formControlName="PackType" [value]="data.packType?.name"  disabled></td>
-                                        <td><input class="form-control m-input m-input--solid" formControlName="PackSize" [value]="data.packSize?.size" disabled></td>                            
-                                        <td><input class="form-control m-input m-input--solid" formControlName="PackQuantity" disabled ></td>                            
-                                        <td><input type="number" class="form-control m-input m-input--solid" formControlName="OrderUnitQuantity" ></td>   
-                                        <td><input class="form-control m-input m-input--solid" formControlName="UnitPrice" [value]="data?.unitPrice || ''" disabled ></td>      
-                                        <td><input class="form-control m-input m-input--solid" formControlName="ItemTotalAmount" disabled></td>        
-                                       
-                                        <td>
-                                        <button type="button" (click)="onsubmitInventeryDetail(InventoryItemForm.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                                <i class="la la-add"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    </table>
-                                </div>
-                            </div> 
-                     
-                        <div >
-    
-                        <div class="form-group m-form__group row">
-                                <div class="col-lg-12">
-                        <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Manual Code #
-                                        </th>
-                                        <th>
-                                            Description
-                                        </th>
-                                        <th>
-                                            Pack Type
-                                        </th>
-                                        <th>
-                                            Pack Size
-                                        </th>
-                                        <th>
-                                            Pack Quantity
-                                        </th>
-                                        <th>
-                                            Qty
-                                        </th>
-                                        <th>
-                                            Rate
-                                        </th>
-                                        <th>
-                                            Net Amount
-                                        </th>
-                                        <th>
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let x of arraydata ; let i = index">
-                                        <th scope="row">
-                                            {{x?.InventoryItemId}}
-                                        </th>
-                                        <td>
-                                            {{x?.Description}}
-                                        </td>
-                                        <td>
-                                            {{x?.PackType}}
-                                        </td>
-                                        <td>
-                                            {{x?.PackSize}}
-                                        </td>
-                                        <td>
-                                            {{x?.PackQuantity}}
-                                        </td>
-                                        <td>
-                                           {{x?.OrderUnitQuantity}}
-                                        </td>
-                                        <td>
-                                           {{x?.UnitPrice}}
-                                        </td>
-                                        <td>
-                                            {{x?.ItemTotalAmount}}
-                                        </td>
-                                        <td>
-                                            <button type="button" (click)="remove(i, x?.ItemTotalAmount)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                                <i class="la la-remove"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-    
-    
-                                </tbody>
-                            </table>
-                            </div>
-                            </div>
-                            <div class="form-group m-form__group row">
-                                    <div class="col-lg-10"></div>
-                                    <div class="col-lg-2">
-                                        {{total}}
-                                        <!-- <input class="form-control m-input m-input--solid"  disabled > -->
+
+                                <!-- <form [formGroup]="InventoryItemForm">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-12">
+                                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                                <th>Manual Code</th>
+                                                <th>Description</th>
+                                                <th>Pack Type</th>
+                                                <th>Pack Size</th>
+                                                <th>Pack Quantity</th>
+                                                <th>Qty</th>
+                                                <th>Rate</th>
+                                                <th>Net Amount</th>
+                                                <th>Action</th>
+                                                <tr>
+                                                     <td>
+                                                        <select class="form-control m-input ng-pristine ng-valid ng-touched"
+                                                            style="width: 100px;" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
+                                                            formControlName="InventoryItemId">
+                                                            <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="Description" [value]="data?.description || ''"
+                                                            disabled></td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="PackType" [value]="data.packType?.name"
+                                                            disabled></td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="PackSize" [value]="data.packSize?.size"
+                                                            disabled></td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="PackQuantity" disabled></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="OrderUnitQuantity"></td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="UnitPrice" [value]="data?.unitPrice || ''"
+                                                            disabled></td>
+                                                    <td><input class="form-control m-input m-input--solid"
+                                                            formControlName="ItemTotalAmount" disabled></td>
+
+                                                    <td>
+                                                        <button type="button" (click)="onsubmitInventeryDetail(InventoryItemForm.value)"
+                                                            class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                            <i class="la la-add"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
-                            </div>
-                            </div>
-    
-                    </form>
+
+                                    <div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-12">
+                                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                Manual Code #
+                                                            </th>
+                                                            <th>
+                                                                Description
+                                                            </th>
+                                                            <th>
+                                                                Pack Type
+                                                            </th>
+                                                            <th>
+                                                                Pack Size
+                                                            </th>
+                                                            <th>
+                                                                Pack Quantity
+                                                            </th>
+                                                            <th>
+                                                                Qty
+                                                            </th>
+                                                            <th>
+                                                                Rate
+                                                            </th>
+                                                            <th>
+                                                                Net Amount
+                                                            </th>
+                                                            <th>
+                                                                Action
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let x of arraydata ; let i = index">
+                                                            <th scope="row">
+                                                                {{x?.InventoryItemId}}
+                                                            </th>
+                                                            <td>
+                                                                {{x?.Description}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.PackType}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.PackSize}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.PackQuantity}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.OrderUnitQuantity}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.UnitPrice}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.ItemTotalAmount}}
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" (click)="remove(i, x?.ItemTotalAmount)"
+                                                                    class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                                    <i class="la la-remove"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-10"></div>
+                                            <div class="col-lg-2">
+                                                {{total}}
+                                             </div>
+                                        </div>
+                                    </div>
+
+                                </form> -->
                             </div>
                         </div>
                     </div>
@@ -235,4 +259,4 @@
     </div>
 
 
-     </div>
+</div>

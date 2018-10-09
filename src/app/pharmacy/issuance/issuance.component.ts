@@ -19,7 +19,7 @@ export class IssuanceComponent implements OnInit {
     private SalesOrders: SalesOrder;
     private InventoryItems: InventoryItem;
     private Items: InventoryItem[] = [];
-    private aaa: InventoryItem[] = [];
+    private aaa: InventoryItem[];
     private FilteredItems: InventoryItem;
     private GridDataSource: any;
     private LookUpDataSource: any;

@@ -19,6 +19,7 @@ import { ProductTypeComponent } from './Setup/product-type/product-type.componen
 import { ReturnReasonComponent } from './Setup/return-reason/return-reason.component';
 import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
+import { CurrencyComponent } from './Setup/currency/currency.component';
 
 
 
@@ -48,7 +49,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
               { path: 'producttype', component: ProductTypeComponent },
               { path: 'returnreason', component: ReturnReasonComponent },
               { path: 'supplier', component: SupplierComponent },
-              { path: 'unit', component: UnitComponent }
+              { path: 'unit', component: UnitComponent },
+              { path: 'currency', component: CurrencyComponent }
             ]
         }
     ]

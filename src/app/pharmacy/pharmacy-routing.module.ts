@@ -7,6 +7,7 @@ import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { IssuanceComponent } from './issuance/issuance.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { ReturnmedicineComponent } from './returnmedicine/returnmedicine.component';
+import { ReturnViewComponent } from './return-view/return-view.component';
 import { InventoryComponent } from './Setup/inventory/inventory.component';
 import { InventoryItemComponent } from './Setup/inventory-item/inventory-item.component';
 import { InventoryItemCategoryComponent } from './Setup/inventory-item-category/inventory-item-category.component';
@@ -31,7 +32,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         { path: 'grn', component: GoodsreceiptComponent},
         { path: 'issuance', component: IssuanceComponent},
         { path: 'purchaseorder', component: PurchaseOrderComponent},
+        { path: 'returnview', component: ReturnViewComponent },
         { path: 'return', component: ReturnmedicineComponent},
+
         {
           path: "setup",
           children: [

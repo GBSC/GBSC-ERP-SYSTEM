@@ -8,21 +8,23 @@ import { PharmacyService } from '../../core';
   styleUrls: ['./return-view.component.scss']
 })
 export class ReturnViewComponent implements OnInit {
-  private SalesReturns : SalesReturn;
-  private DetailSR : SalesReturn;
+  private SalesReturns: any;
+  private DetailSR: any;
 
-  constructor(private PharmacyService : PharmacyService) {
+  constructor(private PharmacyService: PharmacyService) {
 
   }
 
   ngOnInit() {
-    this.PharmacyService.GetSalesReturns().subscribe((res : SalesReturn) => this.SalesReturns = res);
+    this.PharmacyService.GetSalesReturns().subscribe(res => {
+      console.log(res);
+
+      this.SalesReturns = res;
+      console.log(this.SalesReturns);
+
+    });
   }
 
-  GetPurchaseOrderDetails(value) {
-    console.log(value);
-    this.PharmacyService.GetSalesReturnDetailsByCode(value.data.returnNumber).subscribe((res : SalesReturn) => this.DetailSR = res);
-    return this.DetailSR;
-  }
+
 
 }

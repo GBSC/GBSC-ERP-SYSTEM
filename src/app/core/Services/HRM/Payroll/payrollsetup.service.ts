@@ -227,7 +227,6 @@ export class PayrollSetupService {
     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
     this.benefits = await this.ApiService.get(`${this.baseUrl}/GetBenefits`).toPromise();
-    console.log(this.benefits);
     return this.benefits;
   }
 
@@ -237,20 +236,15 @@ export class PayrollSetupService {
     let authToken = localStorage.getItem('auth_token');
     let headers = { headers: { 'Content-Type': 'application/json' } }
     let newbenefit = await this.ApiService.post(`${this.baseUrl}/AddBenefit`, data).toPromise();
-    console.log(newbenefit);
 
   }
 
   async updatebenefit(data) {
-
-    let benefit = await this.getdataToUpdate(data.key, 'GetBenefit');
-    benefit = { ...benefit, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateBenefit`, benefit).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/UpdateBenefit`, data).toPromise();
   }
 
   async Deletebenefit(benefitId) {
-
     let authToken = localStorage.getItem('auth_token');
     let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
     return await this.ApiService.delete(`${this.baseUrl}/DeleteBenefit/${benefitId}`).toPromise();

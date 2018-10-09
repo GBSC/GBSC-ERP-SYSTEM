@@ -32,20 +32,21 @@ export class EmployeeBankComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.Userbank = await this.employee.GetBankByUserId(); 
-
+        
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
             
         this.employee.GetEmployee(this.id).subscribe(resp => {
-
             this.Employee = resp;
-
             this.patchValues(resp);
-
         });
               });
-    }
+    
+              this.Userbank = await this.employee.GetBankByUserId(); 
+              console.log(this.Userbank.accountNumber);
+      
+              
+            }
 
     async update(value) {
         console.log(value);

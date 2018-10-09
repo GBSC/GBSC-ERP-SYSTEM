@@ -20,12 +20,15 @@ export class BenefitComponent implements OnInit {
     await this.payrollsetupservice.addbenefit(value.data);
   }
 
-  async updateBenefit(value) {
-    console.log(value);
-    await this.payrollsetupservice.updatebenefit(value);
+  updatingBenefit(value) { 
+     this.benefit = {...value.oldData, ...value.newData};
   }
 
-  async deleteBenefit(value) {
+  async updateBenefit() { 
+    await this.payrollsetupservice.updatebenefit(this.benefit);
+  }
+
+  async Deletebenefit(value) {
     await this.payrollsetupservice.Deletebenefit(value.key);
   }
 

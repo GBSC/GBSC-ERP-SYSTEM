@@ -16,7 +16,8 @@
                [dataSource]="attendanceRequestapprover"
                keyExpr="attendanceRequestApproverId"
                (onRowInserted)="addRequestapprover($event)" 
-              (onRowUpdated)="updateRequestapprover($event)"
+              (onRowUpdating)="updatingRequestapprover($event)"
+              (onRowUpdated)="updateRequestapprover()"
                 (onRowRemoved)="deleteRequestapprover($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Attendance Request Approver" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">

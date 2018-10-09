@@ -4,35 +4,35 @@
 </div>
 
 <form class="signup-form" [formGroup]="employee.EmpbankForm"> 
- 
+ <div *ngFor="let x of Userbank">
 <div class="col-sm-6">
     <div class="form-group m-form__group">
       <label for="account_title">Account Title</label>
-      <input class="form-control m-input m-input--solid" formControlName="AccountName" [value]="Employee?.accountName || ''" placeholder="Account Title" name="account_title" type="text">
+      <input class="form-control m-input m-input--solid" formControlName="AccountName" [value]="x?.accountName || ''" placeholder="Account Title" name="account_title" type="text">
     </div>
     <div class="form-group m-form__group">
       <label for="account_number">Account Number</label>
-      <input class="form-control m-input m-input--solid" formControlName="AccountNumber" [value]="Employee?.accountNumber || ''" placeholder="Account Number" name="account_number" type="text">
+      <input class="form-control m-input m-input--solid" formControlName="AccountNumber" [value]="x?.accountNumber || ''" placeholder="Account Number" name="account_number" type="text">
     </div>
   </div>
-  
+
   <div class="col-sm-6">
     <div class="form-group m-form__group">
         <label for="bank">Bank Name</label>
-        <input class="form-control m-input m-input--solid" formControlName="BankTitle" [value]="Employee?.bankTitle || ''" placeholder="Bank Name" name="bank_code" type="text">
+        <input class="form-control m-input m-input--solid" formControlName="BankTitle" [value]="x?.bankTitle || ''" placeholder="Bank Name" name="bank_code" type="text">
        </div>
     <div class="form-group m-form__group">
       <label for="bank_code">Bank Code</label>
-      <input class="form-control m-input m-input--solid" formControlName="BankCode"  [value]="Employee?.bankCode || ''" placeholder="Bank Code" name="bank_code" type="text">
+      <input class="form-control m-input m-input--solid" formControlName="BankCode"  [value]="x?.bankCode || ''" placeholder="Bank Code" name="bank_code" type="text">
     </div>
   </div>
   <div class="col-sm-6">
     <div class="form-group m-form__group">
       <label for="bank_branch">Bank Branch</label>
-      <input class="form-control m-input m-input--solid" formControlName="Branch" [value]="Employee?.branch || ''" placeholder="Bank Branch" name="bank_branch" type="text" value="" id="bank_branch">
+      <input class="form-control m-input m-input--solid" formControlName="Branch" [value]="x?.branch || ''" placeholder="Bank Branch" name="bank_branch" type="text" value="" id="bank_branch">
     </div>
   </div>
-  
+</div>
 <div *ngIf="router.url === '/hrm/employee/updateemployee/' +id">
   <button (click)="update(employee.EmpbankForm.value)" class="btn btn-primary">
       update

@@ -12,122 +12,103 @@ import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
     styleUrls: ['./issuance.component.css']
 })
 export class IssuanceComponent implements OnInit {
-    
-    private IssuanceForm : FormGroup;
-    private InventoryItemForm : FormGroup;
-    private SalesOrders : SalesOrder;
-    private InventoryItems : InventoryItem;
-    private Items : InventoryItem[] = [];
-    private aaa : InventoryItem[] = []; 
-    private FilteredItems : InventoryItem;
-    private GridDataSource : any;
-    private LookUpDataSource : any;
-    private SalesOrderItemForm : FormGroup;
+
+    private IssuanceForm: FormGroup;
+    private InventoryItemForm: FormGroup;
+    private SalesOrders: SalesOrder;
+    private InventoryItems: InventoryItem;
+    private Items: InventoryItem[] = [];
+    private aaa: InventoryItem[] = [];
+    private FilteredItems: InventoryItem;
+    private GridDataSource: any;
+    private LookUpDataSource: any;
+    private SalesOrderItemForm: FormGroup;
+    private filterItems: InventoryItem[];
 
 
 
-    private ovais : any;
-
+    private AllItems: any;
+    private AllCustomers : any;
  
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
-        this.onPopupShown = this.onPopupShown.bind(this);
-        this.onPopupHide = this.onPopupHide.bind(this);
+
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+ 
 
         this.IssuanceForm = this.FormBuilder.group({
-            MRN : [''],
-            IssuanceNo:[''],
-            IssuanceDate : [''],
-            SlipNo : [''],
-            PatientName : [''],
-            SpouseName : [''],
-            Remarks:[''],
-            Department :[''],
-            InventoryItems : this.FormBuilder.array([])
+            Department: [''],
+            Remarks: [''],
+            OrderAmount: [''],
+            SlipNumber: [''],
+            IssuanceNo: [''],
+            CRN: [''],
+            IssuanceDate: [''],
+            PatientName: [''],
+            SpouseName: [''],
+
+            SalesOrderItems: this.FormBuilder.array([]),
             // itemCode:['']
         });
 
         this.InventoryItemForm = FormBuilder.group({
-           Description:[''],
-           PackType:[''],
-           PackSize:[''],
-           PackQuantity:[''],
-           Rate :[''],
-           InventoryItemId :[''],
-           OrderUnitQuantity :[''],
-           ItemTotalAmount :[''],
+            Description: [''],
+            PackType: [''],
+            PackSize: [''],
+            PackQuantity: [''],
+            UnitPrice: [''],
+            InventoryItemId: [''],
+            OrderUnitQuantity: [''],
+            ItemTotalAmount: [''],
         });
 
-        // this.DispForm = FormBuilder.group({
-        //     Description:[''],
-        //     PackType:[''],
-        //     PackSize:[''],
-        //     PackQuantity:[''],
-        //     Rate :['']
-        //     InventoryItemId :[''],
-        //     OrderUnitQuantity :[''],
-        //     ItemTotalAmount :[''],
-        //  });
 
-        // this.SalesOrderItemForm = FormBuilder.group({
-        //     InventoryItem : [this.InventoryItemForm],
-        //     OrderUnitQuantity :[''],
-        //     ItemTotalAmount :[''],
-
-        //  });
-
-     
     }
-public xcx : any;
-  async  ngOnInit() {
-        this.PharmacyService.GetSalesOrders().subscribe((res : SalesOrder) => this.SalesOrders = res);
-      this.xcx =  this.PharmacyService.GetInventoryItems().subscribe((result : InventoryItem ) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
-
-         
-      this.ovais = await this.PharmacyService.GetInventoryItemstest();
-       console.log(this.ovais);
-
-   
-    }
-
-
  
-  
-    public data : any  = {};
-    public arraydata =[];
-    getcellvalue(value)
-    {
+    async  ngOnInit() {
+        this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
+        this.PharmacyService.GetInventoryItems().subscribe((result: InventoryItem) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
+        this.AllItems = await this.PharmacyService.GetInventoryItemstest();
+        this.filterItems = this.AllItems;
+        console.log(this.AllItems);
+
+        this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
+    }
+   public customerdata : any ={};
+    getcellvalueForCustomer(value){
         console.log(value);
-        this.data = this.ovais.find(x=> x.itemCode === value);
+        this.customerdata = this.AllCustomers.find(x => x.crn == value);
+        console.log(this.customerdata);
+
+    }
+
+
+
+
+    public data: any = {};
+    public arraydata = [];
+    getcellvalue(value) {
+        console.log(value);
+        this.data = this.AllItems.find(x => x.inventoryItemId == value);
+        console.log(this.AllItems);
+
         // this.InventoryItemForm.value.Description = this.data.description;
         // this.InventoryItemForm.value.PackType = this.data.packType.name;
         // this.InventoryItemForm.value.PackSize = this.data.packSize.size;
         console.log(this.data);
-
-        // this.arraydata.push(this.data);
+         // this.arraydata.push(this.data);
 
     }
 
     public total = 0;
 
 
-    async onPopupShown() {
-        ///console.log("Popup Shown");
-        //this.GridDataSource = this.InventoryItems;
-        this.LookUpDataSource = this.FilteredItems;
-    }
+ 
 
-    async onPopupHide() {
-        //console.log("Popup Hidden");
-        //this.GridDataSource = this.Items;
-        this.LookUpDataSource = this.Items;
-    }
-
-    async AddSalesOrder(value) {
-        console.log(value);
-        await this.PharmacyService.AddSalesOrder(value).toPromise();
-        this.PharmacyService.GetSalesOrders().subscribe((res : SalesOrder) => this.SalesOrders = res);
-    }
+    // async AddSalesOrder(value) {
+    //     console.log(value);
+    //     await this.PharmacyService.AddSalesOrder(value).toPromise();
+    //     this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
+    // }
 
     async UpdateSalesOrder(value) {
         return await this.PharmacyService.UpdateSalesOrder(value.Key).toPromise();
@@ -141,90 +122,68 @@ public xcx : any;
         console.log(value);
     }
 
-    onsubmit(value)
-    {
+    onsubmit(value) {
         console.log(value)
 
     }
-    public desc : any;
-    onsubmitInventeryDetail(value , rate , Description)
-    {
+    public desc: any;
+    onsubmitInventeryDetail(value) {
+        console.log(this.data);
+        // let item = this.data.find(d => d.inventoryItemId === value.inventoryItemId);
         let data = value;
-        console.log(value);
+
+        if (!this.data.packType) {
+            this.data.packType = {};
+            this.data.packType.name = '';
+            this.InventoryItemForm.value.PackType = this.data.packType.name;
+        } else {
+            this.InventoryItemForm.value.PackType = this.data.packType.name;
+        }
         this.InventoryItemForm.value.Description = this.data.description;
-        this.InventoryItemForm.value.PackType = this.data.packType.name;
         this.InventoryItemForm.value.PackSize = this.data.packSize.size;
-        // let x : number = 45.4646;
-        // console.log(x.toFixed(0));
-        this.InventoryItemForm.value.PackQuantity =  (this.InventoryItemForm.value.OrderUnitQuantity / this.InventoryItemForm.value.PackSize).toFixed(0);
-        
-        this.InventoryItemForm.value.Rate = this.data.unitPrice;
-          this.InventoryItemForm.value.ItemTotalAmount =  this.InventoryItemForm.value.PackQuantity  * this.InventoryItemForm.value.Rate;
- 
-         console.log(this.InventoryItemForm.value);
+        this.InventoryItemForm.value.PackQuantity = (this.InventoryItemForm.value.OrderUnitQuantity / this.InventoryItemForm.value.PackSize).toFixed(0);
+        this.InventoryItemForm.value.UnitPrice = this.data.unitPrice || '';
+        this.InventoryItemForm.value.ItemTotalAmount = this.InventoryItemForm.value.PackQuantity * this.InventoryItemForm.value.UnitPrice;
+
+        this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
+
         this.arraydata.push(data);
-
-
-
- 
- 
-        // console.log( this.total);
-        // this.total += Number.parseInt(rate);
-        // console.log( this.total);
-        // console.log(rate);
-        console.log(this.IssuanceForm.value);
-        console.log(this.arraydata);
-        // console.log(value);
+      //  this.InventoryItemForm.value.inventoryItemId = this.data.name;
+        this.total += Number.parseInt(this.InventoryItemForm.value.ItemTotalAmount);
+        this.InventoryItemForm.reset();
     }
-    
-    AddItem(value)
-    {
-        var a : any  = this.FilteredItems;
+
+    AddItem(value) {
+        var a: any = this.FilteredItems;
         this.FilteredItems = a.filter(a => a.itemCode != value.data.itemCode);
     }
 
-    remove(index) {
-        this.arraydata.splice(index, 1);
+    remove(index, value) {
+        let item = this.arraydata.splice(index, 1);
+        console.log(item)
+        console.log(value);
+        this.total -= Number.parseInt(value);
+
     }
+    addfinal() {
+        this.arraydata.filter(t => {
+            delete t.Description;
+            delete t.PackQuantity;
+            delete t.PackSize;
+            delete t.PackType;
+            delete t.Rate;
+        });
 
-    addfinal()
-    {
+     delete  this.IssuanceForm.value.IssuanceNo;
+     delete  this.IssuanceForm.value.MRN;
+     delete  this.IssuanceForm.value.IssuanceDate;
+     delete  this.IssuanceForm.value.PatientName;
+     delete  this.IssuanceForm.value.SpouseName;
 
-
-        
-        delete this.InventoryItemForm.value.Description;
-        delete this.InventoryItemForm.value.PackQuantity;
-        delete this.InventoryItemForm.value.PackSize;
-        delete this.InventoryItemForm.value.PackType;
-        delete this.InventoryItemForm.value.Rate;
-
-        this.IssuanceForm.value.InventoryItems = this.arraydata;
+         this.IssuanceForm.value.SalesOrderItems = this.arraydata;
         console.log(this.IssuanceForm.value);
-
-        // this.IssuanceForm.value.InventoryItems = this.Items;
-        // console.log(this.IssuanceForm.value);
-        // console.log(this.ovais);
-
+        this.IssuanceForm.value.OrderAmount = this.total;
+       this.PharmacyService.AddSalesOrder(this.IssuanceForm.value).subscribe(r => console.log(r));
     }
-    // setAreaValue(rowData: any, value: any): void {
-    //     console.log(rowData)
-    //     console.log(value);
-    //     // rowData.inventoryItemId = null;
-    //     //  (<any>this).defaultSetCellValue(rowData, value);
-    // }
-
-    public val : any;
-        setAreaValue(rowData: any,value : any) : void {
-            this.val = value;
-            console.log(value);
-            console.log(this.ovais);
-                    // console.log(this.aaa);
-                    // let dddd = this.ovais.find(t => t.itemCode === value);
-                    // console.log(dddd)
-            // this.aaa = this.xcx.find(x=> x.itemCode == value)
-           //  console.log(this.aaa.find(a => a.itemCode === value));
- 
-        }
- 
 
 }

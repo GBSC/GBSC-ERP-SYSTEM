@@ -24,6 +24,7 @@ import { ProductType } from '../../Models/Pharmacy/ProductType';
 import { ReturnReason } from '../../Models/Pharmacy/ReturnReason';
 import { SalesReturnItem } from '../../Models/Pharmacy/SalesReturnItem';
 import { SalesReturn } from '../../Models/Pharmacy/SalesReturn';
+import { Customer } from '../../Models/Pharmacy/Customer';
 
 
 @Injectable()
@@ -360,5 +361,9 @@ export class PharmacyService {
 
     DeleteUnit(id : number) : Observable<Unit> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteUnit/' + id);
+    }
+
+    getCustomers() : Observable<Customer>{
+        return this.ApiService.get(this.API_URL+'Setup/GetCustomers');
     }
 }

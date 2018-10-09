@@ -157,7 +157,7 @@ export class EmployeeService {
             ContractStart: [''],
             ContractEnd: [''],
             AppointmentDate: [''],
-            NextApprisalDate: [''],
+            NextAppraisalDate: [''],
             ConfirmDueDate: [''],
             ConfirmationDate: [''],
             LeavingDate: [''],
@@ -172,7 +172,7 @@ export class EmployeeService {
             ContractStart: [''],
             ContractEnd: [''],
             AppointmentDate: [''],
-            NextApprisalDate: [''],
+            NextAppraisalDate: [''],
             ConfirmDueDate: [''],
             ConfirmationDate: [''],
             LeavingDate: [''],
@@ -199,6 +199,11 @@ export class EmployeeService {
 
     GetEmployee(id): Observable<Employee> {
         return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
+    }
+
+    GetEmployeeCompany(id) : Observable<EmployeeCompany>{
+
+        return this.ApiService.get(this.baseUrl + '/Users/GetUserCompany/' + id);
     }
 
 
@@ -564,7 +569,7 @@ export class EmployeeService {
                 ContractStart: cf.ContractStart,
                 ContractEnd: cf.ContractEnd,
                 AppointmentDate: cf.AppointmentDate,
-                NextApprisalDate: cf.NextApprisalDate,
+                NextAppraisalDate: cf.NextAppraisalDate,
                 ConfirmDueDate: cf.ConfirmDueDate,
                 ConfirmationDate: cf.ConfirmationDate,
                 LeavingDate: cf.LeavingDate,

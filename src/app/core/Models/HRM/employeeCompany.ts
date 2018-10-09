@@ -10,7 +10,7 @@ export interface EmployeeCompany {
     ContractStart: Date,
     ContractEnd: Date,
     AppointmentDate: Date,
-    NextApprisalDate: Date,
+    NextAppraisalDate: Date,
     ConfirmDueDate: Date,
     ConfirmationDate: Date,
     LeavingDate: Date,

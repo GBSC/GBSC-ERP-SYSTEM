@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SetupService, EmployeeService } from '../../../core';
-import { Router, ActivatedRoute } from '@angular/router'; 
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-employeecompany',
@@ -10,69 +10,63 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-    @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
-   
+
     public EmpCompanyForm: any;
     public designation: any;
     public employeetype: any;
     public functions: any;
     public groups: any;
     public managementlevel: any;
-    public id : any;
-    public Employee : any;
-    
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService,  public router: Router, private route: ActivatedRoute){}
-    
-async ngOnInit() { 
+    public id: any;
+    public EmployeeCompany: any;
 
-    this.functions = await this.SetupServiceobj.getAllFunctions();  
+    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) { }
 
-    this.designation = await this.SetupServiceobj.getAllDesignations();
-    console.log(this.designation);
+    async ngOnInit() {
 
-    this.managementlevel = await this.SetupServiceobj.getAllManagementlevels(); 
-    console.log(this.managementlevel);
+        this.functions = await this.SetupServiceobj.getAllFunctions();
 
-    this.groups = await this.SetupServiceobj.getAllGroups();
-    console.log(this.groups);
+        this.designation = await this.SetupServiceobj.getAllDesignations();
 
-    this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes(); 
+        this.managementlevel = await this.SetupServiceobj.getAllManagementlevels();
 
-    await this.SetupServiceobj.getAllEmployeeStatus();
-    let cempstatus = this.SetupServiceobj.employeestatus;
-    
+        this.groups = await this.SetupServiceobj.getAllGroups();
 
-    this.employeeService.GetEmployee(this.id).subscribe(resp => {
+        this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
 
-        this.Employee = resp;
+        await this.SetupServiceobj.getAllEmployeeStatus();
 
-        this.patchValues(resp);
+        let cempstatus = this.SetupServiceobj.employeestatus;
 
-    }); 
 
         this.route.params.subscribe((params) => {
+
             this.id = +params['id'];
-            console.log(this.id);
-                    this.employeeService.GetEmployee(this.id).subscribe(resp => {
-                       this.Employee = resp  
-                         this.patchValues(resp);
-                    });  
+
+            this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
+
+                this.EmployeeCompany = resp
+
+                console.log(this.EmployeeCompany);
+
+                //this.patchValues(resp);
+            });
+
+
         });
 
+
+
     }
 
-    getcompanyFormValue() {
-        this.setCompanyFormValue.emit(this.EmpCompanyForm.value);
-    }
-
-    public leavingDateinput= false;
+    public leavingDateinput = false;
     enableInput(e) {
         console.log(e);
         switch (e.target.id) {
             case 'chL':
                 this.leavingDateinput = e.target.checked
                 break;
-        
+
             default:
                 break;
         }
@@ -85,16 +79,17 @@ async ngOnInit() {
         let cmp = await this.employeeService.addusercompany();
         console.log(cmp);
     }
-    
-    async update(value)
-    {
-        let x = await this.employeeService.updateUserCompanyById(value);
-        console.log(x);
-        console.log(this.employeeService.EmpCompanyForm.value);
+
+    async update(value) {
+
+        console.log(value);
+        // let x = await this.employeeService.updateUserCompanyById(value);
+        // console.log(x);
+        // console.log(this.employeeService.EmpCompanyForm.value);
     }
 
-   
-    patchValues(company : any) { 
+
+    patchValues(company: any) {
         this.employeeService.EmpCompanyForm.patchValue({
 
             DesignationId: company.designationId,
@@ -107,7 +102,7 @@ async ngOnInit() {
             ContractStart: company.ContractStart,
             ContractEnd: company.contractEnd,
             AppointmentDate: company.appointmentDate,
-            NextApprisalDate: company.nextApprisalDate,
+            NextAppraisalDate: company.nextAppraisalDate,
             ConfirmDueDate: company.confirmDueDate,
             ConfirmationDate: company.confirmationDate,
             LeavingDate: company.leavingDate,

@@ -91,7 +91,11 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturn/' + id);
     }
 
-    GetSalesReturnDetailsByCode(code : string) : Observable<SalesReturn> {
+    // async GetSalesReturnDetailsByCode(code){
+    //     return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code).toPromise();
+    // }
+
+    GetSalesReturnDetailsByCode(code) : Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code);
     }
 

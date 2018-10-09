@@ -67,10 +67,10 @@ export class EmployeeBankComponent implements OnInit {
         this.EmpbankForm.patchValue({
 
             AccountNumber:  employeeBank.accountNumber, 
-            AccountTitle:  employeeBank.accountTitle, 
+            AccountName:  employeeBank.accountName, 
             BankTitle:  employeeBank.bankTitle, 
             BankCode:  employeeBank.bankCode, 
-            BankBranch:  employeeBank.bankBranch, 
+            Branch:  employeeBank.branch
         });
       }
 }

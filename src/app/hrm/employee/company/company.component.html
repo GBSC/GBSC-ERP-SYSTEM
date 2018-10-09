@@ -8,8 +8,8 @@
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Designation</label>
         <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="Employee?.name ||''">
-     
-          <option *ngFor="let companydsg of designation" [value]="companydsg.designationId">{{companydsg.name}}</option>
+          <option> --- Select Designation ---</option>
+          <option *ngFor="let d of designation" [value]="d.designationId">{{d.name}}</option>
         </select>
       </div>
     </div>
@@ -40,8 +40,8 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
-        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="Employee?.name">
-        
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="Employee?.name ||''">
+          <option> --- Select Management Level ---</option>
           <option *ngFor="let ml of managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
         </select>
       </div>
@@ -59,7 +59,7 @@
         <label for="Emptype">Employee Type</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="Employee?.name ||''">
         
-          <option *ngFor="let cemptype of employeetype" [value]="cemptype.employeeTypeId">{{cemptype.name}}</option>
+          <option *ngFor="let emptype of employeetype" [value]="emptype.employeeTypeId">{{emptype.name}}</option>
         </select>
       </div>
     </div>
@@ -90,7 +90,7 @@
               </label>
             </span>
           </div>
-          <input formControlName="ContractStart" [value]="Employee?.contractStart" type="text" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input formControlName="ContractStart" [value]="Employee?.contractStart || ''" type="date" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div> 
     </div>
@@ -109,7 +109,7 @@
               </label>
             </span>
           </div>
-          <input type="text" formControlName="ContractEnd" [value]="Employee?.contractEnd" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="ContractEnd" [value]="Employee?.contractEnd || ''" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -129,7 +129,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="AppointmentDate" [value]="Employee?.appointmentDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="AppointmentDate" [value]="Employee?.appointmentDate || ''" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -142,7 +142,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="employee_id">Next Appraisal Date</label>
-        <input formControlName="NextApprisalDate" [value]="Employee?.nextApprisalDate" class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth"
+        <input formControlName="NextApprisalDate" [value]="Employee?.nextApprisalDate || ''" class="form-control m-input m-input--solid" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth"
           type="date">
       </div>
     </div>
@@ -161,7 +161,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="ConfirmDueDate" [value]="Employee?.confirmDueDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="ConfirmDueDate" [value]="Employee?.confirmDueDate || ''" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
     </div>
@@ -180,7 +180,7 @@
               </label>
             </span>
           </div>
-          <input type="date" formControlName="ConfirmationDate" [value]="Employee?.confirmationDate" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input type="date" formControlName="ConfirmationDate" [value]="Employee?.confirmationDate || ''" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -205,7 +205,7 @@
               </label>
             </span>
           </div>
-          <input [disabled]="!leavingDateinput" formControlName="LeavingDate" [value]="Employee?.leavingDate" type="date" class="form-control m-input--solid" aria-label="Text input with checkbox">
+          <input [disabled]="!leavingDateinput" formControlName="LeavingDate" [value]="Employee?.leavingDate || ''" type="date" class="form-control m-input--solid" aria-label="Text input with checkbox">
         </div>
       </div>
 
@@ -213,14 +213,14 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="username"> Resign Date</label>
-        <input formControlName="ResignDate" class="form-control m-input m-input--solid" [value]="Employee?.resignDate" placeholder="2018-03-23" aria-describedby="username"
+        <input formControlName="ResignDate" class="form-control m-input m-input--solid" [value]="Employee?.resignDate || ''" placeholder="2018-03-23" aria-describedby="username"
           type="date">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" [value]="Employee?.approver" class="form-control m-input m-input--solid" placeholder="Approved By">
+        <input type="text" formControlName="Approver" [value]="Employee?.approver || ''" class="form-control m-input m-input--solid" placeholder="Approved By">
       </div>
     </div>
   </div>

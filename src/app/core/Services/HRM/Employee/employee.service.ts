@@ -136,11 +136,11 @@ export class EmployeeService {
         });
 
         this.EmpbankForm = this.fb.group({
-            AccountTitle: [''],
+            AccountName: [''],
             AccountNumber: [''],
             BankTitle: [''],
             BankCode: [''],
-            BankBranch: ['']
+            Branch: ['']
         });
 
         this.documentForm = this.fb.group({

@@ -14,7 +14,7 @@ export class ReturnmedicineComponent implements OnInit {
     public issuance : any;
     private ReturnMedicineForm : FormGroup;
 
-    constructor(private PharmacyService: PharmacyService,private FormBuilder : FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
 
@@ -34,7 +34,7 @@ export class ReturnmedicineComponent implements OnInit {
 
     async ngOnInit() {
         this.ReturnReason = await this.PharmacyService.GetReturnReasons();
-        this.SalesReturn = await this.PharmacyService.GetSalesReturns();
+        this.SalesReturn = await this.PharmacyService.GetSalesReturns().toPromise();
 
         this.PharmacyService.GetInventoryItems().subscribe(result => {
             this.issuance = result;
@@ -61,6 +61,7 @@ export class ReturnmedicineComponent implements OnInit {
         this.vae = value;
         console.log(value);
     }
+
     public rr = [];
     public rrrr = [];
     AddIssuance(value)

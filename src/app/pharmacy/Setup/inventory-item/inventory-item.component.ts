@@ -18,6 +18,7 @@ import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
 })
 
 export class InventoryItemComponent implements OnInit {
+    
     private InventoryItems : InventoryItem;
     private Units : Unit;
     private PackTypes : PackType;

@@ -192,6 +192,18 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventory/' + id);
     }
 
+    GetInventoryByItemId(id) : Observable<Inventory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryByItemId/' + id);
+    }
+
+    GetInventoryByItemIds(ids : number[]) : Observable<Inventory> {
+        return this.ApiService.post(this.API_URL + 'Setup/GetInventoryByItemIds', ids);
+    }
+
+    UpdateInventories(Inventories : Inventory[]) : Observable<Inventory> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', Inventories);
+    }
+
     //InventoryItem
     GetInventoryItems() : Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');

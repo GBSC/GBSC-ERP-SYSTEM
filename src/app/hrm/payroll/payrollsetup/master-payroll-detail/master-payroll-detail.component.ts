@@ -9,6 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 export class MasterPayrollDetailComponent implements OnInit {
 
   public masterPayrollDetail: any; 
+  public masterdetailupdating: any;
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
    async ngOnInit() {
@@ -16,17 +17,18 @@ export class MasterPayrollDetailComponent implements OnInit {
         this.masterPayrollDetail = this.payrollsetupservice.masterpayrolldetail;
       }
     
-      async addMasterPayrollDetail(value) {
-        await this.payrollsetupservice.addmasterpayrolldetail(value.data);
+      async addMasterPayrolldetail(value) {
+
+        let x = await this.payrollsetupservice.addmasterpayroll(value.data);
       }
     
-      async updateMasterPayrollDetail(value) {
+      updatingMasterDetail(value) {
+        this.masterdetailupdating = { ...value.oldData, ...value.newData };
         console.log(value);
-        await this.payrollsetupservice.updatemasterpayrolldetail(value);
-      }
     
-      async deleteMasterPayrollDetail(value) {
-        await this.payrollsetupservice.Deletemasterpayrolldetail(value.key);
+      }
+      async updateMasterDetail() {
+        await this.payrollsetupservice.updatemasterpayrolldetail(this.masterdetailupdating);
       }
     
     }

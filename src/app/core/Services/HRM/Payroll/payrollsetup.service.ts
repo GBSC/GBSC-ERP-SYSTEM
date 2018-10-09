@@ -475,11 +475,8 @@ export class PayrollSetupService {
   }
 
   async updategratuityslab(data) {
-
-    let gratuityslab = await this.getdataToUpdate(data.key, 'GetGratuitySlab');
-    gratuityslab = { ...gratuityslab, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateGratuitySlab`, gratuityslab).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/UpdateGratuitySlab`, data).toPromise();
   }
 
   async Deletegratuityslab(gratuityslabId) {
@@ -614,12 +611,9 @@ export class PayrollSetupService {
 
   }
 
-  async updatemasterpayroll(data) {
-
-    let masterpayroll = await this.getdataToUpdate(data.key, 'GetMasterPayroll');
-    masterpayroll = { ...masterpayroll, ...data.data }
+  async updatemasterpayroll(data) { 
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayroll`, masterpayroll).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayroll`, data).toPromise();
   }
 
   async Deletemasterpayroll(masterpayrollId) {
@@ -652,10 +646,8 @@ export class PayrollSetupService {
 
   async updatemasterpayrolldetail(data) {
 
-    let masterpayroll = await this.getdataToUpdate(data.key, 'GetMasterPayroll');
-    masterpayroll = { ...masterpayroll, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayrollDetail`, masterpayroll).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayrollDetail`, data).toPromise();
   }
 
   async Deletemasterpayrolldetail(masterdetailId) {

@@ -12,6 +12,9 @@ import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 export class MasterpayrollComponent implements OnInit {
 
   public masterPayroll: any;
+  public payrollMaster: any;
+  public users: any;
+  public masterdetailupdating: any;
   public masterPayrollDetail: any;
   private payrollDetail: MasterPayrollDetail[];
 
@@ -51,14 +54,17 @@ export class MasterpayrollComponent implements OnInit {
     await this.payrollsetupservice.getmasterpayrolldetails();
     this.masterPayrollDetail = this.payrollsetupservice.masterpayrolldetail;
 
-    await this.empservice.GetAllEmployees();
-    let users = this.empservice.employeereg;
+    this.users = await this.empservice.GetAllEmployees();
+     
 
     await this.payrollsetupservice.getCurrencies();
     let currency = this.payrollsetupservice.Currency;
 
     await this.payrollsetupservice.getallowances();
     let allowance = this.payrollsetupservice.allowance;
+
+    await this.payrollsetupservice.getpayrollbanks();
+    let bank = this.payrollsetupservice.payrollbank;
 
     await this.payrollsetupservice.getfrequencies();
     let frequency = this.payrollsetupservice.frequency;
@@ -73,13 +79,16 @@ export class MasterpayrollComponent implements OnInit {
     this.payrollDetail.push(data);
   }
 
-  updateMasterDetail(value) {
-    let data = value.data;
+  updatingMasterDetail(value) {
+    this.masterdetailupdating = { ...value.oldData, ...value.newData };
+    console.log(value);
 
-    console.log(this.payrollDetail);
   }
-  async submitForm(value) {
+  async updateMasterDetail() {
+    await this.payrollsetupservice.updatemasterpayrolldetail(this.masterdetailupdating);
+  }
 
+  async submitForm(value) {
     let masterPayroll = new MasterPayroll();
     masterPayroll = { ...masterPayroll, ...value };
     masterPayroll.MasterPayrollDetails = this.payrollDetail;
@@ -87,14 +96,18 @@ export class MasterpayrollComponent implements OnInit {
 
   }
 
-  async updateMasterPayroll(value) {
-    console.log(value);
-    await this.payrollsetupservice.updatemasterpayroll(value);
+   updatingMasterPayroll(value) { 
+    this.payrollMaster = {...value.oldData, ...value.newData};
   }
+  
+  async updateMasterPayroll() {
+    await this.payrollsetupservice.updatemasterpayroll(this.payrollMaster);
+  }
+
+
 
   async deleteMasterPayroll(value) {
     await this.payrollsetupservice.Deletemasterpayroll(value.key);
   }
-
-
+ 
 }

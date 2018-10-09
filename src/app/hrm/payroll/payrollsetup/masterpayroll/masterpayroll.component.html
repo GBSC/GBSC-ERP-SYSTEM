@@ -49,14 +49,13 @@
                   Calculation Type:
                 </label>
                 <select class="form-control m-input" formControlName="PayrollBankId">
-                  <option value="" disabled selected>-- Select Payroll Bank --</option>
-                  <option *ngFor="let payrollbank of payrollsetupservice?.payrollbank" [value]="payrollbank.payrollBankId">{{payrollbank.bankTitle}}</option>
+                  <option value="" disabled>-- Select Payroll Bank --</option>
+                  <option *ngFor="let pb of payrollsetupservice.payrollbank" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
                 </select>
               </div>
             </div>
           </form>
-
-            <div class="m--space-30"></div>
+ 
             <div class="m--space-30"></div>
             <div class="row">
               <div class="col-xl-12">
@@ -75,11 +74,10 @@
                         [dataSource]="[]"
                          keyExpr="masterPayrollDetailsId"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
-                         (onRowUpdated)="updateMasterDetail($event)"
+                         (onRowUpdating)="updatingMasterDetail($event)"
+                         (onRowUpdated)="updateMasterDetail()"
                           (onRowRemoved)="deleteleavetypebalance($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                            <dxo-popup title="Master Payroll Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                            </dxo-popup>
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -135,4 +133,45 @@
       </div>
     </div>
   </div>
+
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+           Master Payroll 
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+      <dx-data-grid id="gridContainer" [dataSource]="masterPayroll"
+       keyExpr="masterPayrollId"
+        (onRowUpdated)="updateMasterPayroll()"
+        (onRowUpdating)="updatingMasterPayroll($event)"
+         (onRowRemoved)="deleteMasterPayroll($event)">
+        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+        </dxo-editing>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter> 
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-paging [pageSize]="4"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+        </dxo-pager>
+
+        <dxi-column dataField="userId" caption="Employee">
+          <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="bankTransferCode"></dxi-column> 
+        <dxi-column dataField="currencyId" caption="Currency">
+          <dxo-lookup [dataSource]="payrollsetupservice?.Currency" displayExpr="name" valueExpr="currencyId"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="payrollBankId" caption="Payroll Bank">
+          <dxo-lookup [dataSource]="payrollsetupservice?.payrollbank" displayExpr="bankTitle" valueExpr="payrollBankId"></dxo-lookup>
+        </dxi-column>
+      </dx-data-grid>
+
+    </div>
+  </div>
+
 </div>

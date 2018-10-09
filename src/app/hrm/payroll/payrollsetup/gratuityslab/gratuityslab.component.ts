@@ -11,7 +11,7 @@ import { GratuitySlab } from '../../../../core/Models/HRM/gratuitySlab';
 })
 export class GratuityslabComponent implements OnInit {
     public gratuitySlab: any;
-
+    public UpdatinggratuitySlab: any;
     public gratuitySlabForm;
     private gratuitySlabGratuityDetail : GratuitySlabGratuity[];
     
@@ -36,29 +36,33 @@ export class GratuityslabComponent implements OnInit {
      await this.payrollservice.getgratuities();
   }
 
-  async addGratuitySlabGratuity(value) {
-    let data = value.data; 
-      this.gratuitySlabGratuityDetail.push(data); 
-      console.log(this.gratuitySlabGratuityDetail); 
-    }
+  
+  // async addGratuitySlabGratuity(value) {
+  //   let data = value.data; 
+  //     this.gratuitySlabGratuityDetail.push(data); 
+  //     console.log(this.gratuitySlabGratuityDetail); 
+  //   }
     
-    async submitForm(value)
-    {
-      console.log(value);
-      let gratuityslab = new GratuitySlab();
+  //   async submitForm(value)
+  //   {
+  //     console.log(value);
+  //     let gratuityslab = new GratuitySlab();
+  //     gratuityslab = {...gratuityslab, ...value}; 
+  //     gratuityslab.gratuitySlabGratuities = this.gratuitySlabGratuityDetail;
       
-      gratuityslab = {...gratuityslab, ...value};
-      console.log(this.gratuitySlabGratuityDetail);
-      gratuityslab.gratuitySlabGratuities = this.gratuitySlabGratuityDetail;
-      console.log(gratuityslab);
-      let x = await this.payrollsetupservice.addgratuityslab(gratuityslab);
+  //   }
+    
+    async addGratuityslab(value){
+      let x = await this.payrollsetupservice.addgratuityslab(value.data);
       console.log(x);
-      
   }
 
-  async updateGratuitySlab(value) {
-    console.log(value);
-    await this.payrollsetupservice.updategratuityslab(value);
+  async updatingGratuitySlab(value) { 
+    this.UpdatinggratuitySlab = {...value.oldData, ...value.newData};
+  }
+
+  async updateGratuitySlab() {
+    await this.payrollsetupservice.updategratuityslab(this.UpdatinggratuitySlab);
   }
 
   async deleteGratuitySlab(value) {

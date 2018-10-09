@@ -9,6 +9,7 @@ import { AttendancesetupService, EmployeeService } from '../../../../core';
 export class AttendancerequestapproverComponent implements OnInit {
 
     public attendanceRequestapprover: any;
+    public attendanceapprover: any;
     constructor(public attendancesetupservice: AttendancesetupService, public employeeservice:EmployeeService) { }
 
     async ngOnInit() {
@@ -25,9 +26,13 @@ export class AttendancerequestapproverComponent implements OnInit {
         this.attendancesetupservice.addattendanceRequestapprover(value.data);
     }
 
-    async updateRequestapprover(value) {
+    async updatingRequestapprover(value) {
         console.log(value);
-        this.attendancesetupservice.updateattendanceRequestapprover(value);
+        this.attendanceapprover = {...value.oldData, ...value.newData};
+    }
+   
+    async updateRequestapprover() { 
+       await this.attendancesetupservice.updateattendanceRequestapprover( this.attendanceapprover);
     }
 
     async deleteRequestapprover(value) {

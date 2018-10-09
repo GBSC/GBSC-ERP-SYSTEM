@@ -14,8 +14,11 @@
             <div class="m-section__content">
               <dx-data-grid id="gridContainer" [dataSource]="companies"
               keyExpr="companyId"
-               (onRowInserted)="addCompany($event)" (onRowUpdated)="updateCompany($event)" (onRowRemoved)="deleteCompany($event)"> 
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
+               (onRowInserted)="addCompany($event)" 
+               (onRowUpdating)="updatingCompany($event)" 
+               (onRowUpdated)="updateCompany()" 
+               (onRowRemoved)="deleteCompany($event)"> 
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
               </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

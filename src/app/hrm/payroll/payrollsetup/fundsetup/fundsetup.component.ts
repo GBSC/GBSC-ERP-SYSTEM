@@ -56,8 +56,9 @@ export class FundsetupComponent implements OnInit {
       updatingFundSetup(value){
         this.updatingfundSetup = {...value.oldData, ...value.newData};
     }
+    
     async updateFundSetup() { 
-       await this.payrollsetupservice.updateallowancededuction(this.updatingfundSetup);
+       await this.payrollsetupservice.updatefundsetup(this.updatingfundSetup);
     }
     
       async deleteFundSetup(value) {

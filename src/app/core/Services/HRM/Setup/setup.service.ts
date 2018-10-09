@@ -735,8 +735,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } };
-        let a = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
-        console.log("ALL GROUPS HERE!!!!!!!!!!!!!!", a);
+        let a = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise(); 
         return a;
     }
 

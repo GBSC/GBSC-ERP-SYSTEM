@@ -10,6 +10,7 @@ import { SystemAdministrationService } from '../../core';
 export class CompanyComponent implements OnInit {
 
     public companies: any;
+    public updatingcompany: any;
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) {
 
     }
@@ -21,23 +22,22 @@ export class CompanyComponent implements OnInit {
 
     }
 
-    async addCompany(value) {
-        console.log(value.key);
-        await this.SystemAdministrationServiceobj.addCompany(value.key);
+    async addCompany(value) { 
+        await this.SystemAdministrationServiceobj.addCompany(value.data);
     }
 
 
-    async updateCompany(value) {
-        console.log(value);
-        console.log(value.key); 
-        await this.SystemAdministrationServiceobj.updateCompany(value.key);
+    async updatingCompany(value) { 
+        this.updatingcompany = {...value.oldData, ...value.newData};
+    }
+
+    async updateCompany() { 
+        await this.SystemAdministrationServiceobj.updateCompany(this.updatingcompany);
     }
 
 
-    async deleteCompany(value) {
-        console.log(value.key.companyId);
-
-        await this.SystemAdministrationServiceobj.deletCompany(value.key.companyId)
+    async deleteCompany(value) { 
+        await this.SystemAdministrationServiceobj.deletCompany(value.key)
     }
 
 }

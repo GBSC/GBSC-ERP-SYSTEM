@@ -14,8 +14,7 @@ export class BranchComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.SystemAdministrationServiceobj.getCompanies();
-        this.com = this.SystemAdministrationServiceobj.companies;
+        this.com = await this.SystemAdministrationServiceobj.getCompanies(); 
         console.log(this.com);
 
         await this.SystemAdministrationServiceobj.getBranches();

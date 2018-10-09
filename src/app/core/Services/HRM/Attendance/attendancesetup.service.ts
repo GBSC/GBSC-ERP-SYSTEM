@@ -128,13 +128,9 @@ export class AttendancesetupService {
     }
 
     async updateattendanceRequestapprover(data) {
-
-        let attendancerequestapprover = await this.getdataToUpdate(data.key, 'GetAttendanceRequestApprover');
-        attendancerequestapprover = { ...attendancerequestapprover, ...data.data }
-        console.log(attendancerequestapprover);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestApprover`, attendancerequestapprover).toPromise();
+        let authToken = localStorage.getItem('auth_token');  
+        let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestApprover`, data).toPromise();
 
     }
 

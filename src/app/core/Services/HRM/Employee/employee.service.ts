@@ -364,7 +364,8 @@ export class EmployeeService {
     async updateuserBank(EmployeeBank: EmployeeBank) {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json' } } 
-        let bankuser = await this.ApiService.put(`${this.baseUrl}/Users/UpdateUserBankByUserId/${this.latestAddedUserId}`, EmployeeBank).toPromise();
+        EmployeeBank.userId = this.latestAddedUserId; 
+        let bankuser = await this.ApiService.put(`${this.baseUrl}/HrSetup/UpdateBank`, EmployeeBank).toPromise();
         console.log(bankuser);
         return bankuser;
     }

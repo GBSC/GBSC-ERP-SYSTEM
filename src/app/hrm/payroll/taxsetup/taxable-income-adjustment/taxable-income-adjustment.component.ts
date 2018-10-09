@@ -9,6 +9,7 @@ import { PayrollSetupService, SetupService, EmployeeService } from '../../../../
 export class TaxableIncomeAdjustmentComponent implements OnInit {
 
     public taxableIncomeAdjustment: any;
+    public groups: any;
     updatingincomeAdjustment: any;
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }
@@ -26,8 +27,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
         await this.payrollsetupservice.gettaxadjustmentreasons();
         let TaxAdjustmentReason = this.payrollsetupservice.taxadjustmentreason;
 
-        await this.setupservice.getAllGroups();
-        let group = this.setupservice.group;
+        this.groups = await this.setupservice.getAllGroups(); 
 
         await this.employeeservice.GetAllEmployees();
         let user = this.employeeservice.employeereg;

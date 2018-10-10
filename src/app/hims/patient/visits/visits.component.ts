@@ -7,15 +7,15 @@ import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Visits } from '../../../core/Models/HIMS/visits';
 
-
-
-
 @Component({
     selector: 'app-visits',
     templateUrl: './visits.component.html',
     styleUrls: ['./visits.component.css']
 })
 export class VisitsComponent implements OnInit {
+
+    public VisitNoteByVisitId : any;
+    public AppointmentByVisitId : any;
 
     public VisitTests: any = [];
     public VisitDiagnoses: any = [];
@@ -65,9 +65,6 @@ export class VisitsComponent implements OnInit {
         'TestId':['',Validators.required],
         'VisitId':['']
         });
-
-
-
     }
 
    async ngOnInit() {
@@ -105,6 +102,13 @@ export class VisitsComponent implements OnInit {
         await this.PatientServiceobj.getDiagnoses();
         this.diagnoses = this.PatientServiceobj.diagnoses;
         console.log(this.diagnoses);
+        
+
+        this.visitid = this.PatientServiceobj.visitid;
+        console.log(this.visitid);
+
+    //    this.VisitNoteByVisitId = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
+    //    console.log(this.VisitNoteByVisitId);
      }
 
     onSubmit()  {
@@ -124,12 +128,23 @@ export class VisitsComponent implements OnInit {
         console.log(this.id);
     }
 //add visitnote
+
     async onsubmit(value){
         let y = await this.PatientServiceobj.visitid.visitID;
         this.PatientVisitNoteForm.value.VisitId = y;
         let x=  await this.PatientServiceobj.addVisitNote(value);
         console.log(x)
+
+        // this.visitid = this.PatientServiceobj.visitid;
+        // console.log(this.visitid);
+ 
     }
+
+    public VisitNoteByVisitIdForEdit : any;
+    //  async getVisitNoteByVisitIdForEdit(){
+    //     this.VisitNoteByVisitIdForEdit = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
+    //     console.log(this.VisitNoteByVisitIdForEdit);
+    // }
 
     async addappointment(value){
         this.PatientAppointmentForm.value.PatientId = this.id;
@@ -138,6 +153,10 @@ export class VisitsComponent implements OnInit {
         console.log(value);
         console.log(x)
         console.log(this.vistid);
+        
+ 
+
+
     }
 
     async addvisitdiagnosis(value){

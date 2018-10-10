@@ -20,6 +20,8 @@ export class PatientvitalsComponent implements OnInit {
     public PatientVitaLForm: FormGroup;
     public currentPatient: any;
     public visitid: any;
+    public PatientVitalsByVisitId : any;
+
     id: number;
     Patient: Patient;
     patientId: number;
@@ -32,14 +34,15 @@ export class PatientvitalsComponent implements OnInit {
             Temperature: ['', Validators.required],
             Pulse: ['', Validators.required],
             RespiratoryRate: ['', Validators.required],
-            BloodPressure: ['', Validators.required],
+            BloodPressureUp: ['', Validators.required],
+            BloodPressureDown: ['', Validators.required],
             BloodOxygenSaturation: ['', Validators.required],
             VisitId: ['', Validators.required]
         });
 
     }
 
-    ngOnInit() {
+  async  ngOnInit() {
 
         this.currentPatient = this.PatientServiceobj.currentPatient;
         console.log(this.currentPatient);
@@ -57,6 +60,10 @@ export class PatientvitalsComponent implements OnInit {
             console.log(x);
         });
 
+
+            this.PatientVitalsByVisitId = await this.PatientServiceobj.getPatientVitalByVisitId(this.visitid.visitID);
+            console.log(this.PatientVitalsByVisitId);
+
     }
 
     async  onsubmit(value) {
@@ -66,7 +73,7 @@ export class PatientvitalsComponent implements OnInit {
 
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         this.PatientVitaLForm.value.VisitId = this.visitid;
-
+        console.log(value);
         let x = await this.PatientServiceobj.AddPatientVital(value);
          this.router.navigate(['/hims/patient/visits/' + this.patientId]);
         console.log(x);

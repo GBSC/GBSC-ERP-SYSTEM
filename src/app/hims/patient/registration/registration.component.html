@@ -42,7 +42,7 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Reg City </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || 'loading'" formControlName="RegCity">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || ''" formControlName="RegCity">
 										<option value="Karaci">Karachi</option>
 										<option value="Multan">Multan</option>
 									</select>
@@ -54,7 +54,7 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Gender </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || 'loading'" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || ''" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
 										<option value="Female">Female</option>
 										<option value="Male">Male</option>
 									</select>

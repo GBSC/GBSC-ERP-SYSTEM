@@ -30,13 +30,32 @@ export class GeneralactionsComponent implements OnInit {
      });
      console.log(this.id);
 
+     this.today = Date.now();
+      let   fixedTimezone = this.today;
+      
+      console.log(fixedTimezone)
+      console.log(this.today)
+        // let require;
+        // let dateFormat =   require('dateformat');
+        // let now = new Date();
+        // dateFormat(now, "dd, mm, yyyy, h:MM:ss TT"); 
+        // console.log('111',now);
+        // console.log('22222222',dateFormat);
+        // console.log('333333333333',require);
+
+
+
     }
+
+    public today : any;
 
 async onSubmit()  {
 
      await this.PatientServiceobj.AddVisits(this.id);
         this.router.navigate(['/hims/patient/visits/'+this.id]);
         console.log(this.id);
+
+   
     }
 
 }

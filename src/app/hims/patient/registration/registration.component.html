@@ -16,7 +16,7 @@
 						</div>
 						<!-- <div class="m-portlet__head-tools">
 							<div class="dropdown">
-								<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
+								<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary m-btn m-btn--custom dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
 								 type="button">
 									<span _ngcontent-c21="">
 										<i class="fa fa-cog"></i>
@@ -197,12 +197,12 @@
 								</div>
 								<div class="form-group col-lg-3">
 										<div class="form-action pull-right margin" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-											<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-primary m-btn m-btn--custom">
 												Update Patient
 											</button>
 										</div>
 										<div class="form-action pull-right margin" *ngIf="router.url === '/hims/patient/registration'">
-											<button type="submit" (click)="onSubmit(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											<button type="submit" (click)="onSubmit(patientForm.value)" class="btn btn-primary m-btn m-btn--custom">
 												Add Patient
 											</button>
 										</div>
@@ -227,7 +227,7 @@
 											<div class="m-accordion__item-body collapse" id="m_accordion_1_item_1_body" role="tabpanel" aria-labelledby="m_accordion_1_item_1_head"
 											 data-parent="#m_accordion_1">
 												<div class="m-accordion__item-content">
-													<div class="m-portlet__body">
+													<div class="m-portlet__body" style="padding: 0px;">
 														<ul class="nav nav-pills" role="tablist">
 															<li class="nav-item">
 																<a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
@@ -306,15 +306,15 @@
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
 																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatePatientSpouse(partnerForm.value)"
-																		 data-dismiss="modal" class="btn btn-primary">
+																		 data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Update
 																		</button>
 																		<button type="button" *ngIf="router.url === '/hims/patient/registration'" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal"
-																		 class="btn btn-primary">
+																		 class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>
@@ -351,16 +351,16 @@
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
 	
 																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatepatientRef(referenceForm.value)"
-																		 data-dismiss="modal" class="btn btn-primary">
+																		 data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Update
 																		</button>
 																		<button *ngIf="router.url === '/hims/patient/registration'" type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal"
-																		 class="btn btn-primary">
+																		 class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>
@@ -375,22 +375,23 @@
 																				<label for="exampleInputEmail1">File Path:</label>
 																				<input type="file" formControlName="FilePath" (change)="fileselect($event)" />
 																			</div>
+																			<div class="form-group col-lg-2">
+																				<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																					Add
+																				</button>
+																				<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																					Add
+																				</button>
+																				<br>
+																			</div>
 																		</div>
-																		<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-																			<div class="form-group col-lg-4">
+																		<div class="form-group col-lg-4" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+																			<div class="form-group">
 																				<label for="exampleInputEmail1">Document:</label>
 																				<input type="file" (change)="onfileselect($event)" />
 																			</div>
 																		</div>
-																		<div class="form-group m-form__group row">
-																			<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary">
-																				Add
-																			</button>
-																			<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary">
-																				Add
-																			</button>
-																			<br>
-																		</div>
+																	
 																	</div>
 																	<div class="m-section">
 																		<div class="m-section__content">
@@ -424,7 +425,7 @@
 																						<td>{{patientDoucment?.documentName}}</td>
 																						<td> {{patientDoucment?.filePath}}</td>
 																						<td>
-																							<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary">
+																							<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary m-btn m-btn--custom">
 																								<i class="la la-archive"></i>
 																							</button>
 																						</td>
@@ -435,7 +436,7 @@
 																					<tr *ngFor=" let t of allDocs; let i = index">
 																						<td>{{t.name}}</td>
 																						<td>
-																							<button type="button" (click)="remove(i)" class="btn btn-primary">
+																							<button type="button" (click)="remove(i)" class="btn btn-primary m-btn m-btn--custom">
 																								<i class="la la-archive"></i>
 																							</button>
 																						</td>
@@ -445,10 +446,10 @@
 																		</div>
 																	</div>
 																	<div *ngIf="router.url === '/hims/patient/registration'" class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
-																		<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary">
+																		<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 
 import { Router } from '@angular/router';
+
 import { ActivatedRoute } from '@angular/router';
 import {Location} from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
@@ -61,8 +62,7 @@ export class PatientvitalsComponent implements OnInit {
         });
 
 
-            this.PatientVitalsByVisitId = await this.PatientServiceobj.getPatientVitalByVisitId(this.visitid.visitID);
-            console.log(this.PatientVitalsByVisitId);
+         
 
     }
 
@@ -70,22 +70,26 @@ export class PatientvitalsComponent implements OnInit {
 
         this.visitid = this.PatientServiceobj.visitid.visitID;
         // console.log(this.visitid.value);
-
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         this.PatientVitaLForm.value.VisitId = this.visitid;
         console.log(value);
         let x = await this.PatientServiceobj.AddPatientVital(value);
-         this.router.navigate(['/hims/patient/visits/' + this.patientId]);
-        console.log(x);
-
-        console.log(this.PatientVitaLForm.value);
-         this.backClicked()
+        // this.router.navigate(['/hims/patient/visits/' + this.patientId]);
+        // console.log(x);
+        // console.log(this.PatientVitaLForm.value);
+        //  this.backClicked()
+        // this.PatientVitalsByVisitId = await this.PatientServiceobj.getPatientVitalByVisitId(this.visitid.visitID);
+        // console.log(this.PatientVitalsByVisitId);
         return x;
-
     }
 
     backClicked() {
         this.Location.back();
+    }
+
+    editvitals()
+    {
+
     }
 
 

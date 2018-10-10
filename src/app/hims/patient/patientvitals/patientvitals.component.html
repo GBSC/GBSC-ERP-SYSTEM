@@ -2,8 +2,8 @@
     <div  class="row">
         <div  class="col-lg-12">
           
-          <div  class="m-portlet">
-            <div  class="m-portlet__head">
+          <div  class="m-portlet-body">
+            <!-- <div  class="m-portlet__head">
               <div  class="m-portlet__head-caption">
                 <div  class="m-portlet__head-title">
                   <span  class="m-portlet__head-icon m--hide">
@@ -15,39 +15,38 @@
                 </div>
               </div>
               
-            </div>
-            
-            <form  class="m-form m-form--label-align-left" [formGroup]="PatientVitaLForm"  >
+            </div> -->
+            <!-- <form  class="m-form m-form--label-align-left" [formGroup]="PatientVitaLForm"  >
               <div  class="m-portlet__body">
                 
                 <div  class="form-group row">
                   <div  class="form-group col-lg-6">
                      <label  for="exampleInputEmail1"> Height </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="Height" [value]="PatientVitalsByVisitId?.height || ''" placeholder="Height" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="Height" placeholder="Height" type="text">
                   </div>
                   <div  class="form-group col-lg-6">
                     <label  for="exampleInputEmail1"> Weight </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="Weight" [value]="PatientVitalsByVisitId?.weight || ''"  placeholder="Weight" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="Weight" placeholder="Weight" type="text">
                   </div>
                 </div>
                 <div  class="form-group row">
                   <div  class="form-group col-lg-6">
                     <label  for="exampleInputEmail1"> Temperature </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="Temperature" [value]="PatientVitalsByVisitId?.temperature || ''" placeholder="Temperature" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="Temperature" placeholder="Temperature" type="text">
                   </div>
                   <div  class="form-group col-lg-6">
                     <label  for="exampleInputEmail1"> Pulse </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="Pulse" [value]="PatientVitalsByVisitId?.pulse || ''" placeholder="Pulse" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="Pulse" placeholder="Pulse" type="text">
                   </div>
                 </div>
                 <div  class="form-group row">
                   <div  class="form-group col-lg-6">
                     <label  for="exampleInputEmail1"> Respiratory Rate </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="RespiratoryRate" [value]="PatientVitalsByVisitId?.respiratoryRate || ''" placeholder="Respiratory Rate" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="RespiratoryRate" placeholder="Respiratory Rate" type="text">
                   </div>
                   <div  class="form-group col-lg-6">
                     <label  for="exampleInputEmail1"> Blood Oxygen Saturation </label>
-                    <input  class="form-control m-input m-input--solid" formControlName="BloodOxygenSaturation" [value]="PatientVitalsByVisitId?.bloodOxygenSaturation || ''" placeholder="Blood Oxygen Saturation" type="text">
+                    <input  class="form-control m-input m-input--solid" formControlName="BloodOxygenSaturation"  placeholder="Blood Oxygen Saturation" type="text">
                   </div>
                 </div>
                 <div  class="form-group row">
@@ -55,10 +54,10 @@
                       <label  for="exampleInputEmail1"> Blood Pressure </label>
                       <div class="row">
                           <div  class="form-group col-lg-6">
-                              <input  class="form-control m-input m-input--solid" placeholder="Systolic" [value]="PatientVitalsByVisitId?.bloodPressureUp || ''" formControlName="BloodPressureUp" type="text">
+                              <input  class="form-control m-input m-input--solid" placeholder="Systolic" formControlName="BloodPressureUp" type="text">
                           </div>
                           <div  class="form-group col-lg-6">
-                              <input  class="form-control m-input m-input--solid" placeholder="Diastolic" [value]="PatientVitalsByVisitId?.bloodPressureDown || ''" formControlName="BloodPressureDown" type="text">
+                              <input  class="form-control m-input m-input--solid" placeholder="Diastolic" formControlName="BloodPressureDown" type="text">
                           </div>
                       </div>
                     </div>
@@ -70,7 +69,106 @@
                       <button type="submit" (click)="onsubmit(PatientVitaLForm.value)" class="btn btn-primary">Save</button>
                   </div>
               </div>
-            </form>
+            </form> -->
+           
+           
+           
+            <form [formGroup]="PatientVitaLForm">
+                <div class="m-demo__preview">
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Height(cm)
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" placeholder="Height(cm)" formcontrolname="Height">
+                            </h6>
+                        </span>
+                    </p>
+
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Weight(cm)
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" placeholder=" Weight(cm)" formcontrolname="Weight">
+                            </h6>
+                        </span>
+                    </p>
+               
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Temperature (C)
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" placeholder="Temperature (C)" formcontrolname="Temperature">
+                            </h6>
+                        </span>
+                    </p>
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Respiratory Rate
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" placeholder="Respiratory Rate" formcontrolname="RespiratoryRate">
+                            </h6>
+                        </span>
+                    </p>
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Pulse
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" placeholder="Pulse" formcontrolname="Pulse">
+                            </h6>
+                        </span>
+                    </p>
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Blood Pressure Systolic
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" formcontrolname="BloodPressureUp" placeholder="Systolic">
+                            </h6>
+                        </span>
+                    </p>
+                    <p class="row">
+                        <span class="col-lg-5 m--font-boldest">
+                            Blood Pressure Diastolic
+                        </span>
+                        <span class="col-lg-7">
+                            <h6 class="m--font-brand">
+                                <input  class="form-control m-input m-input--solid" formcontrolname="BloodPressureDown" placeholder="Diastolic"> 
+                            </h6>
+                        </span>
+                    </p> 
+                    <p class="row">
+                      <span class="col-lg-5 m--font-boldest">
+                          Blood Oxygen Saturation
+                      </span>
+                      <span class="col-lg-7">
+                          <h6 class="m--font-brand">
+                              <input  class="form-control m-input m-input--solid" formcontrolname="BloodOxygenSaturation" placeholder="Diastolic"> 
+                          </h6>
+                      </span>
+                    </p>
+                </div>
+
+                <div class="modal-footer" *>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                   <button type="submit" (click)="onsubmit(PatientVitaLForm.value)" class="btn btn-primary">Save</button>
+                 </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                   <button type="submit" (click)="onsubmit(PatientVitaLForm.value)" class="btn btn-primary">Save</button>
+                 </div>
+                </form>
+           
             <!-- <div class="m-portlet">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -81,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="m-portlet__body">
+              <div class="m-portlet__body">
                     
                     <div class="m-section">
                         <div class="m-section__content">
@@ -143,9 +241,9 @@
     
                     
                     
-                </div>
+                </div> 
                 
-            </div> -->
+            </div>  -->
           </div>
         </div>
       </div>

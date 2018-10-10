@@ -9,6 +9,7 @@ import { PayrollSetupService, SetupService, EmployeeService } from '../../../../
 export class UsersalaryComponent implements OnInit {
 
     public userSalary: any;
+    public groups: any;
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }
 
@@ -19,8 +20,7 @@ export class UsersalaryComponent implements OnInit {
         await this.payrollsetupservice.getincometaxrules();
         let incometaxRule = this.payrollsetupservice.incometaxrule;
 
-        await this.setupservice.getAllGroups();
-        let group = this.setupservice.group;
+        this.groups = await this.setupservice.getAllGroups();
 
         await this.employeeservice.GetAllEmployees();
         let user = this.employeeservice.employeereg;

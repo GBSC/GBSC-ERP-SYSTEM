@@ -12,10 +12,13 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="payRoll" (onRowInserted)="addPayroll($event)" (onRowUpdated)="updatePayroll($event)"
+              <dx-data-grid id="gridContainer"
+               [dataSource]="payRoll" 
+               keyExpr="payrollId"
+               (onRowInserted)="addPayroll($event)" 
+               (onRowUpdated)="updatePayroll($event)"
                 (onRowRemoved)="deletePayroll($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Payroll" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -31,7 +34,7 @@
                   </dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="masterPayrollId" caption="Master Payroll">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.masterpayroll" displayExpr="masterPayrollId" valueExpr="masterPayrollId">
+                  <dxo-lookup [dataSource]="payrollsetupservice?.masterpayroll" displayExpr="bankTransferCode" valueExpr="masterPayrollId">
                   </dxo-lookup>
                 </dxi-column>
 

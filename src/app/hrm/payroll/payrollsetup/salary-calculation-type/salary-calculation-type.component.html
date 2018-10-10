@@ -12,7 +12,10 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="salaryCalculationType" (onRowInserted)="addSalaryCalculationType($event)" (onRowUpdated)="updateSalaryCalculationType($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="salaryCalculationType" 
+              keyExpr="salaryCalculationTypeId" 
+              (onRowInserted)="addSalaryCalculationType($event)" 
+              (onRowUpdated)="updateSalaryCalculationType($event)"
                 (onRowRemoved)="deleteSalaryCalculationType($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Salary Calculation Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>

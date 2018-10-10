@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LeavepolicyComponent implements OnInit {
     public leavePolicyForm: FormGroup;
-    public groups: any = [];
+    public groups: any;
     public leavepolicy: any;
     public leavetype: any;
     private updatingleavePolicy: any;
@@ -79,8 +79,7 @@ export class LeavepolicyComponent implements OnInit {
         await this.leavesetupservice.getAllleaveeligibility();
         let leaveEligibility = this.leavesetupservice.leaveeligibility;
 
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
+        this.groups = await this.hrsetupservice.getAllGroups(); 
    
     }
 

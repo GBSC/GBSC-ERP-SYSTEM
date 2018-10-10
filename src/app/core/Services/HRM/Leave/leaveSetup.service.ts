@@ -309,22 +309,13 @@ export class LeaveSetupService {
 
     }
 
-    async updateleaveemppolicy(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let leaveemppolicy = await this.getdataToUpdate(data.key, 'GetLeaveEmpPolicy');
-        leaveemppolicy = { ...leaveemppolicy, ...data.data }
-        console.log(leaveemppolicy);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePolicyEmployee`, leaveemppolicy).toPromise();
+    async updateleaveemppolicy(data) { 
+        let authToken = localStorage.getItem('auth_token');  
+        let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePolicyEmployee`, data).toPromise();
 
     }
-
-
-
+ 
     async Deleteleaveemppolicy(leaveemppolicyId) {
 
         let authToken = localStorage.getItem('auth_token');

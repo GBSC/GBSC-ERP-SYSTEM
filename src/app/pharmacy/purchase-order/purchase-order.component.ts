@@ -17,32 +17,25 @@ export class PurchaseOrderComponent implements OnInit {
 
     private PurchaseOrders : PurchaseOrder;
     private Suppliers: Supplier;
-    //private User: any;
+    private SelectedSupplier : Supplier;
     private UpdatedModel : any;
     private PurchaseOrderForm : FormGroup;
     private PurchaseOrderDetailsForm : FormGroup;
     private InventoryItems : InventoryItem;
+    private SelectedInventoryItem : InventoryItem;
+    private InventoryItemsArray : InventoryItem[];
+    private FilteredInventoryItems : InventoryItem[];
     private Currencies : Currency[];
     private SelectedCurrency : Currency;
+    private TotalOrderAmount : number;
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group( {
-            PurchaseOrderId: [''],
             OrderNumber: [''],
             OrderDate: [''],
-            OrderType: [''],
-            OrderRemarks: [''],
-            IssueDate: [''],
-            IsIssued: [''],
-            ApprovedDate: [''],
             IsApproved: [''],
-            ProcessedDate: [''],
-            IsProcessed: [''],
-            VendorBillNumber: [''],
-            BillDate: [''],
             Origin: [''],
             Remarks: [''],
-            Status: [''],
             SupplierId: [''],
             CurrencyId : [''],
             ExchangeRate : [''],
@@ -50,71 +43,104 @@ export class PurchaseOrderComponent implements OnInit {
         } );
 
         this.PurchaseOrderDetailsForm = this.FormBuilder.group( {
-            PurchaseOrderItemId: [''],
-            PackType: [''],
-            PackSize: [''],
-            NumberPackType: [''],
-            BatchNumber: [''],
-            Quantity: [''],
-            ExpiryDate: [''],
-            Rate: [''],
-            GrossAmount: [''],
-            DiscountPercentage: [''],
-            DiscountAmount: [''],
-            AfterDiscountAmount: [''],
-            GstPercentage: [''],
-            GstAmount: [''],
-            AfterGstAmount: [''],
-            FreightPercentage: [''],
-            FreightAmount: [''],
-            DeliveryPercentage: [''],
-            DeliveryAmount: [''],
-            OtherPercentage: [''],
-            OtherAmount: [''],
-            NetAmount: [''],
-            CostPrice: [''],
-            RetailPrice: [''],
-            GrandTotal: [''],
-            InventoryItemId: [''],
-            InventoryId: [''],
-            PurchaseOrderId: ['']
+            ManualCode : [''],
+            Description : [''],
+            PackType : [''],
+            OrderQuantity : [''],
+            BonusQuantity : [''],
+            PerUnit : [''],
+            Rate : [''],
+            GrossAmount : [''],
+            DiscountPercentage : [''],
+            DiscountAmount : [''],
+            SalesTaxPercentage : [''],
+            SalesTaxAmount : [''],
+            NetAmount : ['']
         } );
     }
 
     ngOnInit() {
-        this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => { this.Suppliers = res; console.log(this.Suppliers); });
-        console.log(this.Suppliers);
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem ) => { this.InventoryItems = res; console.log(this.InventoryItems); });
-        console.log(this.InventoryItems);
-        this.PharmacyService.GetCurrency().subscribe((res : Currency[]) => { this.Currencies = res; console.log(this.Currencies); });
-        console.log(this.Currencies);
-        //this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
+        this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => { this.Suppliers = res; });
+        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem ) => { this.InventoryItems = res; this.FilteredInventoryItems.push(res); });
+        this.PharmacyService.GetCurrency().subscribe((res : Currency[]) => { this.Currencies = res; });
     }
 
-    async AddPurchaseOrder(value) {
-        await this.PharmacyService.AddPurchaseOrder(value).toPromise();
-        this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
-    }
+    // async AddPurchaseOrder(value) {
+    //     await this.PharmacyService.AddPurchaseOrder(value).toPromise();
+    //     this.PharmacyService.GetPurchaseOrders().subscribe((res : PurchaseOrder ) => this.PurchaseOrders = res);
+    // }
 
-    UpdateModel(value) {
-        this.UpdatedModel = { ...value.oldData, ...value.newData };
-    }
+    // UpdateModel(value) {
+    //     this.UpdatedModel = { ...value.oldData, ...value.newData };
+    // }
 
-    async UpdatePurchaseOrder() {
-        await this.PharmacyService.UpdatePurchaseOrder(this.UpdatedModel).toPromise();
-    }
+    // async UpdatePurchaseOrder() {
+    //     await this.PharmacyService.UpdatePurchaseOrder(this.UpdatedModel).toPromise();
+    // }
 
-    async DeletePurchaseOrder(value) {
-        await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId).toPromise();
-    }
+    // async DeletePurchaseOrder(value) {
+    //     await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId).toPromise();
+    // }
 
-    GetSuppliers(value){
+    GetSupplierDetails(value){
         console.log(value);
+        var a : any = this.Suppliers;
+        this.SelectedSupplier = a.find(a => a.inventoryCurrencyId == value);
     }
 
-    GetCurrencies(value){
+    GetCurrencyDetails(value){
         console.log(value);
         this.SelectedCurrency = this.Currencies.find(a => a.inventoryCurrencyId == value);
+    }
+
+    GetItemDetails(value) {
+        var a : any = this.InventoryItems;
+        this.SelectedInventoryItem = a.find(x => x.inventoryItemId == value);
+    }
+
+    AddPurchaseOrderDetails(value) {
+        console.log(value);
+        
+        //this.PurchaseOrderDetailsForm.value.inventoryItemId = this.SelectedInventoryItem.inventoryItemId;
+
+
+        //this.FilteredInventoryItems = this.FilteredInventoryItems.filter(a => a.itemCode != this.SelectedInventoryItem.itemCode);
+        //this.InventoryItemsArray.push(value);
+        //this.TotalOrderAmount += Number.parseInt(this.PurchaseOrderDetailsForm.value.NetAmount);
+        //this.PurchaseOrderDetailsForm.reset();
+    }
+
+    RemovePurchaseOrderDetails(index, value) {
+        let item = this.InventoryItemsArray.splice(index, 1);
+        this.TotalOrderAmount -= Number.parseInt(value);
+    }
+
+    SavePurchaseOrderForm(value) {
+        console.log(value);
+    }
+
+    SubmitPurchaseOrder() {
+        // this.arraydata.filter(t => {
+        //     delete t.Description;
+        //     delete t.PackQuantity;
+        //     delete t.PackSize;
+        //     delete t.PackType;
+        //     delete t.Rate;
+        //     delete t.stockQuantity;
+        // });
+
+        // delete this.IssuanceForm.value.IssuanceNo;
+        // delete this.IssuanceForm.value.MRN;
+        // delete this.IssuanceForm.value.IssuanceDate;
+        // delete this.IssuanceForm.value.PatientName;
+        // delete this.IssuanceForm.value.SpouseName;
+
+        // this.IssuanceForm.value.SalesOrderItems = this.arraydata;
+        // console.log(this.IssuanceForm.value);
+        // this.IssuanceForm.value.OrderAmount = this.total;
+        // this.PharmacyService.AddSalesOrder(this.IssuanceForm.value).subscribe(r => console.log(r));
+        
+        // this.UpdateStockPosition(this.Invs);
     }
 
 }

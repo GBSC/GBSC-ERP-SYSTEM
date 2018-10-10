@@ -58,9 +58,9 @@
                                 <label for="exampleInputEmail1">
                                     Supplier
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSuppliers(PurchaseOrderForm.value.SupplierId)"
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSupplierDetails(PurchaseOrderForm.value.SupplierId)"
                                     formControlName="SupplierId">
-                                    <option *ngFor="let x of Suppliers" [value]="x?.name">{{x?.name}} </option>
+                                    <option *ngFor="let x of Suppliers" [value]="x?.supplierId"> {{x?.name}} </option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
@@ -74,9 +74,9 @@
                                 <label for="exampleInputEmail1">
                                     Currency
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetCurrencies(PurchaseOrderForm.value.CurrencyId)"
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetCurrencyDetails(PurchaseOrderForm.value.CurrencyId)"
                                     formControlName="CurrencyId">
-                                    <option *ngFor="let x of Currencies" [value]="x?.name">{{x?.name}} </option>
+                                    <option *ngFor="let x of Currencies" [value]="x?.inventoryCurrencyId">{{x?.name}} </option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
@@ -93,7 +93,7 @@
                                 Reset
                             </button>
                             <!-- , rate.value -->
-                            <button type="button" (click)="onsubmit(IssuanceForm.value)" class="btn btn-primary">
+                            <button type="button" (click)="SavePurchaseOrderForm(PurchaseOrderForm.value)" class="btn btn-primary">
                                 Save
                             </button>
                         </div>
@@ -112,49 +112,61 @@
                         <div class="m-section">
                             <div class="m-section__content">
 
-                                <!-- <form [formGroup]="InventoryItemForm">
+                                <!-- <form [formGroup]="PurchaseOrderDetailsForm">
                                     <div class="form-group m-form__group row">
                                         <div class="col-lg-12">
                                             <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                                                 <th>Manual Code</th>
                                                 <th>Description</th>
                                                 <th>Pack Type</th>
-                                                <th>Pack Size</th>
-                                                <th>Pack Quantity</th>
-                                                <th>Qty</th>
+                                                <th>Order Quantity</th>
+                                                <th>Bonus Quantity</th>
+                                                <th>Per Unit</th>
                                                 <th>Rate</th>
+                                                <th>Gross Amount</th>
+                                                <th>Discount %</th>
+                                                <th>Discount Amount</th>
+                                                <th>Sales Tax %</th>
+                                                <th>Sales Tax Amount</th>
                                                 <th>Net Amount</th>
-                                                <th>Action</th>
                                                 <tr>
                                                      <td>
                                                         <select class="form-control m-input ng-pristine ng-valid ng-touched"
-                                                            style="width: 100px;" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
+                                                            style="width: 100px;" (change)="GetItemDetails(PurchaseOrderDetailsForm.value.InventoryItemId)"
                                                             formControlName="InventoryItemId">
-                                                            <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
+                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.inventoryItemId">
+                                                                {{x?.itemCode}}
                                                             </option>
                                                         </select>
                                                     </td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="Description" [value]="data?.description || ''"
+                                                            formControlName="Description" [value]="SelectedInventoryItem?.description || ''"
                                                             disabled></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackType" [value]="data.packType?.name"
+                                                            formControlName="PackType" [value]="SelectedInventoryItem.packType?.name"
                                                             disabled></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackSize" [value]="data.packSize?.size"
-                                                            disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackQuantity" disabled></td>
+                                                            formControlName="Quantity" disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderUnitQuantity"></td>
+                                                            formControlName="BonusQuantity"></td>
+                                                    <td><input type="checkbox" class="form-control m-input m-input--solid"
+                                                            formControlName="BonusQuantity"></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="UnitPrice" [value]="data?.unitPrice || ''"
+                                                            formControlName="Rate" [value]="SelectedInventoryItem?.unitPrice || ''"
                                                             disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="ItemTotalAmount" disabled></td>
-
-                                                    <td>
-                                                        <button type="button" (click)="onsubmitInventeryDetail(InventoryItemForm.value)"
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="GrossAmount"></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="DiscountPercentage"></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="DiscountAmount"></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="GstPercentage"></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="GstAmount"></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                            formControlName="NetAmount"></td>
+                                                        <button type="button" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)"
                                                             class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                             <i class="la la-add"></i>
                                                         </button>
@@ -171,40 +183,29 @@
                                                 <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                                                     <thead>
                                                         <tr>
-                                                            <th>
-                                                                Manual Code #
-                                                            </th>
-                                                            <th>
-                                                                Description
-                                                            </th>
-                                                            <th>
-                                                                Pack Type
-                                                            </th>
-                                                            <th>
-                                                                Pack Size
-                                                            </th>
-                                                            <th>
-                                                                Pack Quantity
-                                                            </th>
-                                                            <th>
-                                                                Qty
-                                                            </th>
-                                                            <th>
-                                                                Rate
-                                                            </th>
-                                                            <th>
-                                                                Net Amount
-                                                            </th>
-                                                            <th>
-                                                                Action
-                                                            </th>
+                                                            <th>Manual Code</th>
+                                                            <th>Description</th>
+                                                            <th>Pack Type</th>
+                                                            <th>Order Quantity</th>
+                                                            <th>Bonus Quantity</th>
+                                                            <th>Per Unit</th>
+                                                            <th>Rate</th>
+                                                            <th>Gross Amount</th>
+                                                            <th>Discount %</th>
+                                                            <th>Discount Amount</th>
+                                                            <th>Sales Tax %</th>
+                                                            <th>Sales Tax Amount</th>
+                                                            <th>Net Amount</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let x of arraydata ; let i = index">
+                                                        <tr *ngFor="let x of InventoryItemsArray ; let i = index">
                                                             <th scope="row">
                                                                 {{x?.InventoryItemId}}
                                                             </th>
+                                                            <td>
+                                                                {{x?.ManualCode}}
+                                                            </td>
                                                             <td>
                                                                 {{x?.Description}}
                                                             </td>
@@ -212,22 +213,37 @@
                                                                 {{x?.PackType}}
                                                             </td>
                                                             <td>
-                                                                {{x?.PackSize}}
+                                                                {{x?.OrderQuantity}}
                                                             </td>
                                                             <td>
-                                                                {{x?.PackQuantity}}
+                                                                {{x?.BonusQuantity}}
                                                             </td>
                                                             <td>
-                                                                {{x?.OrderUnitQuantity}}
+                                                                {{x?.PerUnit}}
                                                             </td>
                                                             <td>
-                                                                {{x?.UnitPrice}}
+                                                                {{x?.Rate}}
                                                             </td>
                                                             <td>
-                                                                {{x?.ItemTotalAmount}}
+                                                                {{x?.GrossAmount}}
                                                             </td>
                                                             <td>
-                                                                <button type="button" (click)="remove(i, x?.ItemTotalAmount)"
+                                                                {{x?.DiscountPercentage}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.DiscountAmount}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.SalesTaxPercentage}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.SalesTaxAmount}}
+                                                            </td>
+                                                            <td>
+                                                                {{x?.NetAmount}}
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" (click)="RemovePurchaseOrderDetails(i, x?.NetAmount)"
                                                                     class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                                     <i class="la la-remove"></i>
                                                                 </button>
@@ -254,9 +270,7 @@
                 </div>
             </div>
             <!--end::Portlet-->
-            <button (click)="addfinal()">adasda</button>
+            <button (click)="SubmitPurchaseOrder()">Submit</button>
         </div>
     </div>
-
-
 </div>

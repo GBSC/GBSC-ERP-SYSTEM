@@ -18,6 +18,10 @@ import { ProductTypeComponent } from './Setup/product-type/product-type.componen
 import { ReturnReasonComponent } from './Setup/return-reason/return-reason.component';
 import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
+import { GrnViewComponent } from './grn-view/grn-view.component';
+import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
+import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
+import { ReturnViewComponent } from './return-view/return-view.component';
 
 
 
@@ -29,9 +33,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         { path: '', component: HomeComponent },
         { path: 'home', component: HomeComponent },
         { path: 'grn', component: GoodsreceiptComponent},
+        { path: 'grnview', component: GrnViewComponent},
         { path: 'issuance', component: IssuanceComponent},
+        { path: 'issuanceview', component: IssuanceViewComponent},
         { path: 'purchaseorder', component: PurchaseOrderComponent},
+        { path: 'purchaseorderview', component: PurhcaseorderViewComponent},
         { path: 'return', component: ReturnmedicineComponent},
+        { path: 'returnview', component: ReturnViewComponent},
         {
           path: "setup",
           children: [

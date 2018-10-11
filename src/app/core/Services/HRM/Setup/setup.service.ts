@@ -559,7 +559,7 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-     getAllDegrees() : Observable<any> {
+    getAllDegrees(): Observable<any> {
 
         return this.ApiService.get(`${this.hrUrl}/GetDegrees`);
 

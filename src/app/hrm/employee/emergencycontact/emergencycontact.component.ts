@@ -25,7 +25,7 @@ export class EmergencycontactComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.employeeService.GetRelationsByUserId(this.id).subscribe(resp=>this.relations = resp);
+        this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
 
     }
 
@@ -37,11 +37,11 @@ export class EmergencycontactComponent implements OnInit {
 
     updateRelation(value) {
 
-        let relation = this.relations.find(r=>r.relationId == value.key);
+        let relation = this.relations.find(r => r.relationId == value.key);
 
-        relation = {...relation, ...value.data};
+        relation = { ...relation, ...value.data };
 
-        this.employeeService.updateUserRelation(relation).subscribe(resp=>console.log(resp));
+        this.employeeService.updateUserRelation(relation).subscribe(resp => console.log(resp));
     }
 
 }

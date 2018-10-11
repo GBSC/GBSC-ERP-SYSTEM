@@ -753,12 +753,12 @@ export class PayrollSetupService {
         return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollType`, payrolltype).toPromise();
     }
 
-  async Deletepayrolltype(id) {
+    async Deletepayrolltype(id) {
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeletePayrollType/${id}`).toPromise();
-  }
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl}/DeletePayrollType/${id}`).toPromise();
+    }
 
 
     async getpayrollyears() {
@@ -853,12 +853,12 @@ export class PayrollSetupService {
         return await this.ApiService.put(`${this.baseUrl}/UpdateSalaryCalculationType`, salarycalculationtype).toPromise();
     }
 
-  async Deletesalarycalculationtype(id) {
+    async Deletesalarycalculationtype(id) {
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryCalculationType/${id}`).toPromise();
-  }
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryCalculationType/${id}`).toPromise();
+    }
 
     async getsalarystructures() {
 

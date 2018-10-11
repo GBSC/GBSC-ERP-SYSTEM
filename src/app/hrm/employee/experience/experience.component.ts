@@ -13,7 +13,7 @@ export class ExperienceComponent implements OnInit {
 
     @Input('employeeId') id: number;
 
-    public experiences : any;
+    public experiences: any;
 
     constructor(public employeeService: EmployeeService) {
 
@@ -21,20 +21,19 @@ export class ExperienceComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.employeeService.getWorkExperience(this.id).subscribe(resp=> this.experiences = resp);
+        this.employeeService.getWorkExperience(this.id).subscribe(resp => this.experiences = resp);
 
     }
 
 
-    addWorkExperience(value)
-    {
+    addWorkExperience(value) {
         value.data.userId = this.id;
 
-        this.employeeService.addWorkExperience(value.data).subscribe(resp=>console.log(resp));
+        this.employeeService.addWorkExperience(value.data).subscribe(resp => console.log(resp));
     }
 
     updateWorkExperience(value) {
-        
+
         let expereince = this.experiences.find(x => x.WorkExperienceId == value.key);
 
         expereince = { ...expereince, ...value.data };

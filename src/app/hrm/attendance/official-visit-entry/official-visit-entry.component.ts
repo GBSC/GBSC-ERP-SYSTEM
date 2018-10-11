@@ -13,9 +13,8 @@ export class OfficialVisitEntryComponent implements OnInit {
         public empservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getofficialVisitentries();
-        this.officialVisitentry = this.attendanceservice.officialVisitentry
-        //console.log(this.officialVisitentry);
+        
+        this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
 
         await this.empservice.GetAllEmployees();
         let employee = this.empservice.employeereg
@@ -26,16 +25,15 @@ export class OfficialVisitEntryComponent implements OnInit {
     }
 
     async addofficialVisitentry(value) {
-        this.attendanceservice.addofficialVisitentry(value.data);
+        this.attendanceservice.addOfficialVisitEntry(value.data);
     }
 
-    async updateofficialVisitentry(value) {
-        console.log(value);
-        this.attendanceservice.updateofficialVisitentry(value);
+    async updateofficialVisitentry(value) { 
+        this.attendanceservice.updateOfficialVisitEntry(value);
     }
 
     async deleteofficialVisitentry(value) {
-        this.attendanceservice.DeleteofficialVisitentry(value.key);
+        this.attendanceservice.DeleteOfficialVisitEntry(value.key);
     }
 
 }

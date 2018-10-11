@@ -128,7 +128,7 @@ export class LeaveService {
 
     }
 
-    async updateleavepolicyemployee(data) { 
+    async updateleavepolicyemployee(data) {
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee`, data).toPromise();

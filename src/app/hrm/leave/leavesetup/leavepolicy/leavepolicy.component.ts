@@ -79,8 +79,8 @@ export class LeavepolicyComponent implements OnInit {
         await this.leavesetupservice.getAllleaveeligibility();
         let leaveEligibility = this.leavesetupservice.leaveeligibility;
 
-        this.groups = await this.hrsetupservice.getAllGroups(); 
-   
+        this.groups = await this.hrsetupservice.getAllGroups();
+
     }
 
     async addleavepolicy() {

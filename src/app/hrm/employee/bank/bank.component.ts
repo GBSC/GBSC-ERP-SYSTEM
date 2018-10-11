@@ -21,20 +21,19 @@ export class EmployeeBankComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.employeeService.getBanks(this.id).subscribe(resp=>this.banks = resp);
+        this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
 
 
     }
 
-    addBank(value)
-    {
+    addBank(value) {
         value.data.userId = this.id;
 
-        this.employeeService.addBank(value.data).subscribe(resp=>console.log(resp));
+        this.employeeService.addBank(value.data).subscribe(resp => console.log(resp));
     }
 
     updateBank(value) {
-        
+
         let bank = this.banks.find(x => x.bankId == value.key);
 
         bank = { ...bank, ...value.data };

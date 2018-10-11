@@ -32,15 +32,14 @@ export class EmployeeQualificationComponent implements OnInit {
 
     }
 
-    addQualification(value)
-    {
+    addQualification(value) {
         value.data.userId = this.id;
 
-        this.employeeService.addQualification(value.data).subscribe(resp=>console.log(resp));
+        this.employeeService.addQualification(value.data).subscribe(resp => console.log(resp));
     }
 
     updateQualification(value) {
-        
+
         let qualification = this.qualifications.find(x => x.universityId == value.key);
 
         qualification = { ...qualification, ...value.data };

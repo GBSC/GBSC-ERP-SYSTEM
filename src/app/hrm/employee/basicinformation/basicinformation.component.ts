@@ -51,14 +51,13 @@ export class BasicinformationComponent implements OnInit {
 
     }
 
-     update(value) {
+    update(value) {
 
         value.UserId = this.id;
 
-         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp=>
-            {
-                this.showSuccess("Basic Information Updated");
-            });
+        this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
+            this.showSuccess("Basic Information Updated");
+        });
 
     }
 

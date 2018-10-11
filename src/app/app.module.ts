@@ -30,7 +30,7 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
             timeOut: 5000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
-          }), // ToastrModule added
+        }), // ToastrModule added
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,

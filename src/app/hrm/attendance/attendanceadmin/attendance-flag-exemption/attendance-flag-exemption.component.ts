@@ -9,33 +9,30 @@ import { AttendancesetupService, AttendanceService } from '../../../../core';
 export class AttendanceFlagExemptionComponent implements OnInit {
 
     public attendanceflagExemption: any;
+    public attendanceFlag: any;
+    public flagType: any;
+
     constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getattendanceflagexemptions();
-        this.attendanceflagExemption = this.attendanceservice.attendanceflagexemption
-        console.log(this.attendanceflagExemption);
+        this.attendanceflagExemption = await this.attendanceservice.getAttendanceFlagExemptions();
 
-        await this.attendancesetupservice.getattendanceflag();
-        let flag = this.attendancesetupservice.attendanceflag;
+        this.attendanceFlag = await this.attendancesetupservice.getAttendanceFlags();
 
-        await this.attendancesetupservice.getflagtypes();
-        let flagtype = this.attendancesetupservice.flagtype;
-
-
+        this.flagType = await this.attendancesetupservice.getFlagTypes(); 
     }
 
     async addflagExemption(value) {
-        this.attendanceservice.addattendanceflagexemption(value.data);
+        this.attendanceservice.addAttendanceFlagExemption(value.data);
     }
 
     async updateflagExemption(value) {
         console.log(value);
-        this.attendanceservice.updateattendanceflagexemption(value);
+        this.attendanceservice.updateAttendanceFlagExemption(value);
     }
 
     async deleteflagExemption(value) {
-        this.attendanceservice.Deleteattendanceflagexemption(value.key);
+        this.attendanceservice.DeleteAttendanceFlagExemption(value.key);
     }
 
 }

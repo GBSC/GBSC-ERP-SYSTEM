@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -152,7 +153,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         this.bank = await this.ApiService.get(`${this.hrUrl}/GetBanks`).toPromise();
-        return this.bank; 
+        return this.bank;
     }
 
     // DEMO ONLY, you can find working methods below
@@ -294,7 +295,7 @@ export class SetupService {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteFunction/${id}`).toPromise();
 
     }
- 
+
     /** CRUD METHODS Qualification */
 
     async getAllqualifications() {
@@ -303,7 +304,7 @@ export class SetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         this.qualification = await this.ApiService.get(`${this.hrUrl}/GetQualifications`).toPromise();
-        return this.qualification; 
+        return this.qualification;
     }
 
     // DEMO ONLY, you can find working methods below
@@ -430,7 +431,7 @@ export class SetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
-         
+
     }
 
     // DEMO ONLY, you can find working methods below
@@ -558,13 +559,10 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-    async getAllDegrees() {
+     getAllDegrees() : Observable<any> {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return this.ApiService.get(`${this.hrUrl}/GetDegrees`);
 
-        return await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
-        
     }
 
     // DEMO ONLY, you can find working methods below
@@ -653,7 +651,7 @@ export class SetupService {
         console.log("I am here 2")
         console.log(a);
         return a;
-        
+
     }
 
     // DEMO ONLY, you can find working methods below
@@ -693,7 +691,7 @@ export class SetupService {
         let a = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
         console.log("ALL MANAGEMENT LEVELS HERE!!!!!!!!!!!!!!!!!!");
         return a;
-         
+
     }
 
     // DEMO ONLY, you can find working methods below
@@ -735,7 +733,7 @@ export class SetupService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } };
-        let a = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise(); 
+        let a = await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
         return a;
     }
 
@@ -818,7 +816,7 @@ export class SetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-         return await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
@@ -989,7 +987,7 @@ export class SetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         //return await this.ApiService.get(`${this.hrUrl}/GetLeaveTypes`).toPromise();
-       // return this.leavetype;
+        // return this.leavetype;
     }
 
     async addLeaveTypes(data) {

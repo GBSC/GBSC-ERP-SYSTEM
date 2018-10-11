@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService , AttendancesetupService , AttendanceService } from '../../../core';
+import { EmployeeService, AttendancesetupService, AttendanceService } from '../../../core';
 
 @Component({
     selector: 'app-attendancerequest',
@@ -7,28 +7,27 @@ import { EmployeeService , AttendancesetupService , AttendanceService } from '..
     styleUrls: ['./attendancerequest.component.scss']
 })
 export class AttendancerequestComponent implements OnInit {
- 
-    public attendancerequest: any; 
+
+    public attendancerequest: any;
     private UpdatingRequest;
-    
-    constructor(public attendanceservice: AttendanceService,public attendanceSetupservice: AttendancesetupService,
+
+    constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
         public Employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        
+
         await this.attendanceservice.getattendancerequests();
         this.attendancerequest = this.attendanceservice.attendancerequest
         console.log(this.attendancerequest);
 
-        await this.Employeeservice.GetAllEmployees();
-        let requesttype = this.Employeeservice.employeereg;
-        
+        let requesttype = await this.Employeeservice.GetAllEmployees();
+
         await this.attendanceSetupservice.getattendanceRequestTypes();
         let employee = this.attendanceSetupservice.attendanceRequestType;
-       
+
         await this.attendanceSetupservice.getasignrosters();
         let assignrostr = this.attendanceSetupservice.asignroster;
-       
+
         await this.attendanceSetupservice.getattendanceRequestapprover();
         let requestApprovr = this.attendanceSetupservice.attendancerequestapprover;
     }
@@ -39,11 +38,11 @@ export class AttendancerequestComponent implements OnInit {
     }
 
     async updatingrequest(value) {
-        this.UpdatingRequest = { ...value.oldData, ...value.newData};
+        this.UpdatingRequest = { ...value.oldData, ...value.newData };
     }
 
-    async updateattendancerequest() { 
-        this.attendanceservice.updateattendancerequest( this.UpdatingRequest);
+    async updateattendancerequest() {
+        this.attendanceservice.updateattendancerequest(this.UpdatingRequest);
     }
 
     async deleteattendancerequest(value) {

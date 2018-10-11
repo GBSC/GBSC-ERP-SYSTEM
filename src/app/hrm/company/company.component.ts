@@ -22,21 +22,21 @@ export class CompanyComponent implements OnInit {
 
     }
 
-    async addCompany(value) { 
+    async addCompany(value) {
         await this.SystemAdministrationServiceobj.addCompany(value.data);
     }
 
 
-    async updatingCompany(value) { 
-        this.updatingcompany = {...value.oldData, ...value.newData};
+    async updatingCompany(value) {
+        this.updatingcompany = { ...value.oldData, ...value.newData };
     }
 
-    async updateCompany() { 
+    async updateCompany() {
         await this.SystemAdministrationServiceobj.updateCompany(this.updatingcompany);
     }
 
 
-    async deleteCompany(value) { 
+    async deleteCompany(value) {
         await this.SystemAdministrationServiceobj.deletCompany(value.key)
     }
 

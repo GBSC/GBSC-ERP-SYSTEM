@@ -10,68 +10,37 @@ import { Employee } from '../../../core/Models/HRM/employee';
     styleUrls: ['./bank.component.css']
 })
 export class EmployeeBankComponent implements OnInit {
+
     public Employee: any;
-    public Userbank: any;
-    @Input('id') id: number;
+    public banks: any;
 
-    @Output('setBankFormValue') setBankFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
 
-    public EmpbankForm: FormGroup;
-    // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute)
-     {
-        this.EmpbankForm = this.fb.group({
-            AccountTitle: [''],
-            AccountNumber: [''],
-            BankTitle: [''],
-            BankCode: [''],
-            BankBranch: ['']
-        });
-      }
+    constructor(public employeeService: EmployeeService) {
+    }
 
     async ngOnInit() {
 
+        this.employeeService.getBanks(this.id).subscribe(resp=>this.banks = resp);
+
+
+    }
+
+    addBank(value)
+    {
+        value.data.userId = this.id;
+
+        this.employeeService.addBank(value.data).subscribe(resp=>console.log(resp));
+    }
+
+    updateBank(value) {
         
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-            
-        this.employee.GetEmployee(this.id).subscribe(resp => {
-            this.Employee = resp;
-            this.patchValues(resp);
-        });
-              });
-    
-              this.Userbank = await this.employee.GetBankByUserId(); 
-              console.log(this.Userbank.accountNumber);
-      
-              
-            }
+        let bank = this.banks.find(x => x.bankId == value.key);
 
-    async update(value) {
-        console.log(value);
-      await this.employee.updateuserBank(value);
+        bank = { ...bank, ...value.data };
 
-    }
-    getBankFormValue() {
-        this.setBankFormValue.emit(this.EmpbankForm.value);
+        this.employeeService.updateBank(bank).subscribe(resp => console.log(resp));
     }
 
-    async adduserbank() {
-        let usrbnk = await this.employee.addBank();
-        console.log(usrbnk);
 
-    }
-
-    patchValues(employeeBank : any) {
-
-        this.EmpbankForm.patchValue({
-
-            AccountNumber:  employeeBank.accountNumber, 
-            AccountName:  employeeBank.accountName, 
-            BankTitle:  employeeBank.bankTitle, 
-            BankCode:  employeeBank.bankCode, 
-            Branch:  employeeBank.branch
-        });
-      }
 }

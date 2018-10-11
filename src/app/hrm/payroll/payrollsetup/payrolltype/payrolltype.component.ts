@@ -8,25 +8,25 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class PayrolltypeComponent implements OnInit {
 
-    public payrollType: any; 
+    public payrollType: any;
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
-   async ngOnInit() {
+    async ngOnInit() {
         await this.payrollsetupservice.getpayrolltypes();
         this.payrollType = this.payrollsetupservice.payrolltype;
-      }
-    
-      async addPayrollType(value) {
+    }
+
+    async addPayrollType(value) {
         await this.payrollsetupservice.addpayrolltype(value.data);
-      }
-    
-      async updatePayrollType(value) {
+    }
+
+    async updatePayrollType(value) {
         console.log(value);
         await this.payrollsetupservice.updatepayrolltype(value);
-      }
-    
-      async deletePayrollType(value) {
-        await this.payrollsetupservice.Deletepayrolltype(value.key);
-      }
-    
     }
+
+    async deletePayrollType(value) {
+        await this.payrollsetupservice.Deletepayrolltype(value.key);
+    }
+
+}

@@ -3,37 +3,37 @@ import { Router } from '@angular/router';
 import { AccountService, DashboardService } from '../../core';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public dataSource: any = [];
-  public availableModules = [];
-  constructor(service: DashboardService, private router: Router, private accountService: AccountService) {
-    this.dataSource = service.getCompanies();
-  }
+    public dataSource: any = [];
+    public availableModules = [];
+    constructor(service: DashboardService, private router: Router, private accountService: AccountService) {
+        this.dataSource = service.getCompanies();
+    }
 
 
-  ngOnInit() {
-    this.availableModules = this.accountService.getAvailableModules();
-    this.dataSource = this.accountService.accessibleModules;
+    ngOnInit() {
+        this.availableModules = this.accountService.getAvailableModules();
+        this.dataSource = this.accountService.accessibleModules;
 
-    console.log(this.dataSource);
+        console.log(this.dataSource);
 
-  }
+    }
 
-  selectionChanged(e) {
+    selectionChanged(e) {
 
-    let route: any;
+        let route: any;
 
-    e.component.collapseAll(-1);
-    route = this.availableModules.find(m => {
-      return m.module === e.selectedRowsData[0].Description;
-    });
+        e.component.collapseAll(-1);
+        route = this.availableModules.find(m => {
+            return m.module === e.selectedRowsData[0].Description;
+        });
 
-    this.router.navigate([`${route.route}`]);
+        this.router.navigate([`${route.route}`]);
 
-  }
+    }
 
 }

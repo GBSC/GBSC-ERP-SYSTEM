@@ -25,15 +25,15 @@
                         Basic Information</span>
                     </a>
                   </li>
-                  <li class="m-nav__item">
+                  <!-- <li class="m-nav__item" *ngIf="id">
                     <a class="m-nav__link" href="#PPicture" data-toggle="tab">
                       <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                       <span class="m-nav__link-text">
                         Profile Picture
                       </span>
                     </a>
-                  </li>
-                  <li class="m-nav__item">
+                  </li> -->
+                  <li class="m-nav__item" *ngIf="id">
                     <a class="m-nav__link" href="#EmployeeCInfo" data-toggle="tab">
                       <i class="m-nav__link-icon flaticon-info"></i>
                       <span class="m-nav__link-text">
@@ -41,7 +41,7 @@
                       </span>
                     </a>
                   </li>
-                  <li class="m-nav__item">
+                  <li class="m-nav__item" *ngIf="id">
                     <a class="m-nav__link" href="#EDependants" data-toggle="tab">
                       <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                       <span class="m-nav__link-text">
@@ -49,7 +49,7 @@
                       </span>
                     </a>
                   </li>
-                  <li class="m-nav__item">
+                  <li class="m-nav__item" *ngIf="id">
                       <a class="m-nav__link" href="#Social" data-toggle="tab">
                         <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                         <span class="m-nav__link-text">
@@ -57,7 +57,7 @@
                         </span>
                       </a>
                     </li>
-                    <li class="m-nav__item">
+                    <li class="m-nav__item" *ngIf="id">
                       <a class="m-nav__link" href="#EQualification" data-toggle="tab">
                         <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                         <span class="m-nav__link-text">
@@ -65,7 +65,7 @@
                         </span>
                       </a>
                     </li>
-                    <li class="m-nav__item">
+                    <li class="m-nav__item" *ngIf="id">
                         <a class="m-nav__link" href="#WExperience" data-toggle="tab">
                           <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                           <span class="m-nav__link-text">
@@ -73,7 +73,7 @@
                           </span>
                         </a>
                       </li>
-                      <li class="m-nav__item">
+                      <li class="m-nav__item" *ngIf="id">
                         <a class="m-nav__link" href="#EBankAc" data-toggle="tab">
                           <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                           <span class="m-nav__link-text">
@@ -81,14 +81,14 @@
                           </span>
                         </a>
                       </li>
-                      <li class="m-nav__item">
+                      <!-- <li class="m-nav__item" *ngIf="id">
                         <a class="m-nav__link" href="#Documents" data-toggle="tab">
                           <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                           <span class="m-nav__link-text">
                             Documents
                           </span>
                         </a>
-                      </li>
+                      </li> -->
                 </ul>
               </div>
             </div>
@@ -103,15 +103,15 @@
         <div class="m-portlet">
           <div class="m-portlet__body">
             <div class="tab-content">
-            <div class="tab-pane active" id="BInformation"><app-basicinformation></app-basicinformation> </div>
-            <div class="tab-pane" id="PPicture"><app-profilepic></app-profilepic></div>
-              <div class="tab-pane" id="EmployeeCInfo"><app-employeecompany></app-employeecompany></div>
-              <div class="tab-pane" id="EDependants"><app-emergencycontact></app-emergencycontact></div>
-              <div class="tab-pane" id="Social"><app-social></app-social></div>
-              <div class="tab-pane" id="EQualificationr"><app-employeequalification></app-employeequalification></div>
-              <div class="tab-pane" id="WExperience"><app-experience></app-experience></div>
-              <div class="tab-pane" id="EBankAc"><app-employeebank></app-employeebank></div>
-              <div class="tab-pane" id="Documents"><app-document></app-document></div>
+            <div class="tab-pane active" id="BInformation"><app-basicinformation [employeeId]="id" (updateMessage)='displayToast($event)'></app-basicinformation> </div>
+            <!-- <div class="tab-pane" id="PPicture" *ngIf="id"><app-profilepic [employeeId]="id"></app-profilepic></div> -->
+              <div class="tab-pane" id="EmployeeCInfo" *ngIf="id"><app-employeecompany [employeeId]="id" (updateMessage)='displayToast($event)'></app-employeecompany></div>
+              <div class="tab-pane" id="EDependants" *ngIf="id"><app-emergencycontact [employeeId]="id"></app-emergencycontact></div>
+              <div class="tab-pane" id="Social" *ngIf="id"><app-social [employeeId]="id" (updateMessage)='displayToast($event)'></app-social></div>
+              <div class="tab-pane" id="EQualification" *ngIf="id"><app-employeequalification [employeeId]="id"></app-employeequalification></div>
+              <div class="tab-pane" id="WExperience" *ngIf="id"><app-experience [employeeId]="id"></app-experience></div>
+              <div class="tab-pane" id="EBankAc" *ngIf="id"><app-employeebank [employeeId]="id"></app-employeebank></div>
+              <!-- <div class="tab-pane" id="Documents" *ngIf="id"><app-document [employeeId]="id"></app-document></div> -->
             </div>
           </div>
          

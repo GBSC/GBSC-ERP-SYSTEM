@@ -17,7 +17,7 @@ export class LeaveService {
     public newleaverequest;
     public newleaveopen;
 
-    constructor(private ApiService : ApiService) { }
+    constructor(private ApiService: ApiService) { }
 
     /** CRUD METHODS LEAVE OPENING */
     async getleaveopening() {
@@ -58,7 +58,7 @@ export class LeaveService {
 
     }
 
-    
+
 
     async DeleteLeaveopening(leaveOpeningId) {
 
@@ -84,7 +84,7 @@ export class LeaveService {
         // let authToken = localStorage.getItem('auth_token');
         // let headers = { headers: { 'Content-Type': 'application/json' } }
         let newleaveopen = await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
-      
+
 
     }
 
@@ -101,7 +101,7 @@ export class LeaveService {
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
 
     }
-   
+
     async DeleteLeaveopeningdetail(leaveOpeningdetailId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -109,8 +109,8 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
     }
 
-     /** CRUD METHODS LEAVE REQUEST*/
-     async getleavepolicyemployee() {
+    /** CRUD METHODS LEAVE REQUEST*/
+    async getleavepolicyemployee() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
@@ -151,7 +151,7 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee/${id}`).toPromise();
     }
 
-   //   Leave Admin Methods
+    //   Leave Admin Methods
 
     /** CRUD METHODS LEAVE REQUEST*/
     async getAllleaverequest() {
@@ -159,7 +159,7 @@ export class LeaveService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequests`).toPromise();
-     
+
     }
 
 
@@ -212,7 +212,7 @@ export class LeaveService {
         console.log(data);
         // let authToken = localStorage.getItem('auth_token');
         // let headers = { headers: { 'Content-Type': 'application/json' } }
-      let newleaverequestdetail = await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
+        let newleaverequestdetail = await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
 
     }
 
@@ -236,8 +236,8 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/Deleteleaverequestdetail/${leaverequestdetailId}`).toPromise();
     }
 
-       /** CRUD METHODS */
-       async getleaveapprovals() {
+    /** CRUD METHODS */
+    async getleaveapprovals() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
@@ -271,7 +271,7 @@ export class LeaveService {
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveApproval`, leaveapproval).toPromise();
 
     }
- 
+
     async Deleteleaveapproval(leaveapprovalId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -279,46 +279,46 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveApproval/${leaveapprovalId}`).toPromise();
     }
 
-           /** CRUD METHODS */
-           async getleaveclosings() {
+    /** CRUD METHODS */
+    async getleaveclosings() {
 
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.leaveclosing = await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveClosings`).toPromise();
-            console.log(this.leaveclosing);
-            return this.leaveclosing;
-        }
-    
-    
-        // DEMO ONLY, you can find working methods below
-        async addleaveclosing(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newleaveclosing = await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveClosing`, data).toPromise();
-            console.log(newleaveclosing);
-    
-        }
-    
-        async updateleaveclosing(data) {
-    
-            console.log(data.key);
-            console.log(data);
-    
-            let leaveclosing = await this.getdataToUpdate(data.key, 'Leave/GetLeaveClosing');
-            leaveclosing = { ...leaveclosing, ...data.data }
-            console.log(leaveclosing);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveClosing`, leaveclosing).toPromise();
-    
-        }
-     
-        async Deleteleaveclosing(leaveclosingId) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveClosing/${leaveclosingId}`).toPromise();
-        }
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+
+        this.leaveclosing = await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveClosings`).toPromise();
+        console.log(this.leaveclosing);
+        return this.leaveclosing;
+    }
+
+
+    // DEMO ONLY, you can find working methods below
+    async addleaveclosing(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        let newleaveclosing = await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveClosing`, data).toPromise();
+        console.log(newleaveclosing);
+
+    }
+
+    async updateleaveclosing(data) {
+
+        console.log(data.key);
+        console.log(data);
+
+        let leaveclosing = await this.getdataToUpdate(data.key, 'Leave/GetLeaveClosing');
+        leaveclosing = { ...leaveclosing, ...data.data }
+        console.log(leaveclosing);
+        // let authToken = localStorage.getItem('auth_token');  
+        // let headers = {headers: {'Content-Type':'application/json'}}
+        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveClosing`, leaveclosing).toPromise();
+
+    }
+
+    async Deleteleaveclosing(leaveclosingId) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveClosing/${leaveclosingId}`).toPromise();
+    }
 }

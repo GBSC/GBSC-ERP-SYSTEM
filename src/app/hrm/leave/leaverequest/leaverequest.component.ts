@@ -39,20 +39,20 @@ export class LeaverequestComponent implements OnInit {
             Value: ['', Validators],
             ApprovalId: ['']
         });
- 
+
 
         await this.leaveservice.getAllleaverequestdetail();
         this.leaverequestdetail = this.leaveservice.leaverequestdetail;
 
         await this.leaveservice.getAllleaverequest();
         this.leaverequest = this.leaveservice.leaverequest;
-        this.combinedData = {...this.leaverequestdetail, ...this.leaverequest}
+        this.combinedData = { ...this.leaverequestdetail, ...this.leaverequest }
 
         console.log(this.combinedData);
-        
+
         await this.empservice.GetAllEmployees();
         let employee = this.empservice.employeereg;
- 
+
         await this.leavesetupservice.getleaveapprover();
         let leaveapprovr = this.leavesetupservice.leaveapprover;
 
@@ -72,8 +72,8 @@ export class LeaverequestComponent implements OnInit {
     leaveRequestId;
 
     async addleaverequest(e) {
-       // console.log(this.leaveRequestForm.value);
-       this.leaveRequestId = await this.leaveservice.addleaverequest(this.leaveRequestForm.value);
+        // console.log(this.leaveRequestForm.value);
+        this.leaveRequestId = await this.leaveservice.addleaverequest(this.leaveRequestForm.value);
         console.log(this.leaveRequestDetailForm.value);
     }
 

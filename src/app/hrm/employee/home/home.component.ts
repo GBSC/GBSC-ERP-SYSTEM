@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-employeehome',
@@ -13,14 +14,24 @@ export class EmployeeHomeComponent implements OnInit {
 
     public id: number;
 
-    constructor(public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(private toastr: ToastrService, public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id']; // --> Name must match wanted parameter 
+
+            console.log("route id ", this.id);
         });
+
+        console.log("user id ", this.id)
+
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
 
     }
 

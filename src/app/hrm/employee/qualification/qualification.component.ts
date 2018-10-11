@@ -12,89 +12,41 @@ import { DataGrid } from 'primeng/primeng';
     styleUrls: ['./qualification.component.css']
 })
 export class EmployeeQualificationComponent implements OnInit {
-    public Employee: any;
-    public qualification: any;
 
-    @Input('id') id: number;
-    @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
+    public degrees: any;
+    public qualifications: any;
 
-    public setQualificationFormValue: any;
-    public QualificationForm: any;
-    public degree: any;
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
-    public addedUni = [];
-    public selectedUni = '';
-    private UserQualifications : Array<any> = [];
 
-    addFieldValue() {
-        this.employee.allQualifications.push({ ...this.employee.QualificationForm.value });
-        console.log(this.employee.allQualifications);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
+    @Input('employeeId') id: number;
+
+
+    constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute) {
     }
-
-    setUniName(e) {
-        console.log(e);
-        // console.log(this.employee.university);
-        // this.employee.university.Name = e.target.value;
-    }
-
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
-
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute)
-     {
-        this.QualificationForm = this.fb.group({
-            Name: [''],
-            DegreeId: [''],
-            Timefrom: ['12-01-2016'],
-            Timeto: ['12-01-2017'],
-            Grade: [''],
-            Courses: [''],
-            Description: [''],
-            SkillLevel: []
-        });
-      }
 
     async ngOnInit() {
 
-        this.qualification = await this.employee.GetQualificationByUserId(); 
-  
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-        console.log(this.id)
+        this.SetupServiceobj.getAllDegrees().subscribe(resp => this.degrees = resp);
 
-    });
+        this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
 
-        this.degree = await this.SetupServiceobj.getAllDegrees();
-     }
- 
-    //  async update(value) {
-    //     console.log(value);
-    //   await this.employee.updateuserQualification(value);
-
-    // }
-
-    getQualificationFormValue() {
-        this.setQualificationFormValue.emit(this.QualificationForm.value);
     }
 
-    async addQualification(value) { 
-        console.log(value);
-        await this.employee.adduserUniversity(value.data);
+    addQualification(value)
+    {
+        value.data.userId = this.id;
+
+        this.employeeService.addQualification(value.data).subscribe(resp=>console.log(resp));
+    }
+
+    updateQualification(value) {
         
-    }
-    async updatingQualification(value) {
-        this.qualification = {...value.oldData, ...value.newData}
-        console.log(value);
-        
-    }
-    async updateQualification() {
-        await this.employee.updateuseruniversity(this.qualification);
+        let qualification = this.qualifications.find(x => x.universityId == value.key);
 
+        qualification = { ...qualification, ...value.data };
+
+        this.employeeService.updateQualification(qualification).subscribe(resp => console.log(resp));
     }
+
 }
 

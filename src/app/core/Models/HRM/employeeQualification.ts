@@ -4,10 +4,10 @@ export interface EmployeeQualification {
     Code: string,
     DegreeId: number,
     TimeFrom: Date,
-    TimeTo: Date, 
+    TimeTo: Date,
     Grade: string,
     Courses: string,
     Description: string,
-    userId : any,
-    SkillLevels :Array<any> 
+    userId: any,
+    SkillLevels: Array<any>
 }

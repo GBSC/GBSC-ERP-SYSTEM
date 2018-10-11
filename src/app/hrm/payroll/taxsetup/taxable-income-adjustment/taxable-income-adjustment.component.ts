@@ -27,7 +27,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
         await this.payrollsetupservice.gettaxadjustmentreasons();
         let TaxAdjustmentReason = this.payrollsetupservice.taxadjustmentreason;
 
-        this.groups = await this.setupservice.getAllGroups(); 
+        this.groups = await this.setupservice.getAllGroups();
 
         await this.employeeservice.GetAllEmployees();
         let user = this.employeeservice.employeereg;

@@ -65,7 +65,7 @@ export class PatientService {
     public getvisitbyid: any;
     public LastestPatientVital: any;
     public currentPatientvisits: any;
-    public ActiveVisits : any;
+    public ActiveVisits: any;
 
     public visitNatures: any;
     //for visitnote
@@ -113,14 +113,14 @@ export class PatientService {
         return this.patientID.patientId;
     }
 
-    async addSpouse(Spouse:Spouse){
-        let x = await this.ApiService.post(this.API_URL+'patients/AddPartner',Spouse).toPromise();
+    async addSpouse(Spouse: Spouse) {
+        let x = await this.ApiService.post(this.API_URL + 'patients/AddPartner', Spouse).toPromise();
         console.log(x);
         return x;
     }
 
-    async addPatientReference(Reference:Reference){
-        let x = await this.ApiService.post(this.API_URL+'patients/AddPatientReference',Reference).toPromise();
+    async addPatientReference(Reference: Reference) {
+        let x = await this.ApiService.post(this.API_URL + 'patients/AddPatientReference', Reference).toPromise();
         console.log(x);
         return x;
     }
@@ -145,7 +145,7 @@ export class PatientService {
     // }
 
 
-    async updatePatient(patient : Patient) {
+    async updatePatient(patient: Patient) {
         return await this.ApiService.put(this.API_URL + 'patients/UpdatePatient', patient).toPromise();
         //console.log(patient)
         //let x = await this.http1.put(`${this.API_URL}/patients/UpdatePatient/`, patient).toPromise();
@@ -160,21 +160,21 @@ export class PatientService {
         //return x;
     }
 
-     addDocument(f: FormData, id) : Observable<any> {
+    addDocument(f: FormData, id): Observable<any> {
 
         return this.ApiService.post(this.API_URL + 'patients/AddPatientDocument/' + id, f);
     }
 
-    addDocuments(models : FormData, id){
- 
-        this.ApiService.post(this.API_URL+'/patients/AddPatientDocuments/'+id, models).subscribe( res => {
+    addDocuments(models: FormData, id) {
+
+        this.ApiService.post(this.API_URL + '/patients/AddPatientDocuments/' + id, models).subscribe(res => {
             console.log(res);
         });
-        
+
         //return x;
     }
 
-     getPatientDocumentByPatientId(id) {
+    getPatientDocumentByPatientId(id) {
         return this.ApiService.get(this.API_URL + 'patients/GetPatientDocumentsByPatientId/' + id);
         //console.log(this.API_URL1 + '/patients/GetPatientDocumentsByPatientId/' + id)
         //return this.http1.get<Document>(this.API_URL + '/patients/GetPatientDocumentsByPatientId/' + id);
@@ -347,16 +347,14 @@ export class PatientService {
         //return this.http1.get<Visits>(this.API_URL + '/Visits/GetVisit/' + id);
     }
 
-    async getActiveVisits()
-    {
-        this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL+'/Visits/GetActiveVisits').toPromise());
+    async getActiveVisits() {
+        this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise());
         console.log(this.ActiveVisits);
         return this.ActiveVisits;
     }
 
-    async getActiveVisitsTesting()
-    {
-        this.ActiveVisits = await this.ApiService.get(this.API_URL+'/Visits/GetActiveVisits').toPromise();
+    async getActiveVisitsTesting() {
+        this.ActiveVisits = await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise();
         console.log(this.ActiveVisits);
         return this.ActiveVisits;
     }

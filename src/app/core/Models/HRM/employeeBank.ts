@@ -8,5 +8,5 @@ export interface EmployeeBank {
     SwiftCode: number,
     Branch: string,
     IsActive: boolean,
-    userId : any 
+    userId: any
 }

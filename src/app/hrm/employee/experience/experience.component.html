@@ -14,11 +14,10 @@
             <div class="m-section">
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
-                 [dataSource]="workExperience"
+                 [dataSource]="experiences"
                  keyExpr="workExperienceId" 
-                 (onRowInserted)="addExperience($event)"
-                (onRowUpdated)="updateExperience()"
-                (onRowUpdating)="updatingExperience($event)">
+                 (onRowInserted)="addWorkExperience($event)"
+                (onRowUpdated)="updateWorkExperience()">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                     <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>

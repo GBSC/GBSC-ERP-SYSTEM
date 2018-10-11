@@ -10,7 +10,7 @@ export class AttendancerequestapproverComponent implements OnInit {
 
     public attendanceRequestapprover: any;
     public attendanceapprover: any;
-    constructor(public attendancesetupservice: AttendancesetupService, public employeeservice:EmployeeService) { }
+    constructor(public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
         await this.attendancesetupservice.getattendanceRequestapprover();
@@ -19,7 +19,7 @@ export class AttendancerequestapproverComponent implements OnInit {
 
         await this.employeeservice.GetAllEmployees();
         let employe = this.employeeservice.employeereg;
-    
+
     }
 
     async addRequestapprover(value) {
@@ -28,11 +28,11 @@ export class AttendancerequestapproverComponent implements OnInit {
 
     async updatingRequestapprover(value) {
         console.log(value);
-        this.attendanceapprover = {...value.oldData, ...value.newData};
+        this.attendanceapprover = { ...value.oldData, ...value.newData };
     }
-   
-    async updateRequestapprover() { 
-       await this.attendancesetupservice.updateattendanceRequestapprover( this.attendanceapprover);
+
+    async updateRequestapprover() {
+        await this.attendancesetupservice.updateattendanceRequestapprover(this.attendanceapprover);
     }
 
     async deleteRequestapprover(value) {

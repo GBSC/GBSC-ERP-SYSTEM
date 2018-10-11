@@ -15,12 +15,9 @@
                             <div class="m-section">
                               <div class="m-section__content">
                                 <dx-data-grid id="gridContainer"
-                                 [dataSource]="dependant"
+                                 [dataSource]="relations"
                                  keyExpr="relationId" 
-                                (onRowUpdated)="updateDependant()"
-                                (onRowUpdating)="updatingDependant($event)"
-                                (onRowInserted)="addDependant($event)"  
-                                (onRowRemoved)="deleteleavetype($event)">
+                                 (onRowInserted)="addRelation($event)" (onRowUpdated)="updateRelation($event)" >
                                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                     <dxo-popup title="Dependants" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                                     </dxo-popup>

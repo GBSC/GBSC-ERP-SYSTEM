@@ -15,11 +15,13 @@ export class BasicinformationComponent implements OnInit {
     public basic: any;
     public religion: any;
     public language: any;
-    public city: any; 
+    public city: any;
     public Employee: any;
-    @Input('id') id: number;
 
-    @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
+
+    @Output() updateMessage = new EventEmitter();
+
 
     public EmpbasicForm: FormGroup;
 
@@ -49,41 +51,54 @@ export class BasicinformationComponent implements OnInit {
 
     }
 
-    getbasicinfoFormValue() {
-        this.setBasicinfoFormValue.emit(this.EmpbasicForm.value);
+     update(value) {
+
+        value.UserId = this.id;
+
+         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp=>
+            {
+                this.showSuccess("Basic Information Updated");
+            });
+
     }
 
-    async update(value) {
-        console.log(value);
-      await this.employeeService.updateUersById(value);
+    async ngOnInit() {
+
+        this.religion = await this.SetupServiceobj.getAllReligions();
+
+        this.language = await this.SetupServiceobj.getAllLanguages();
+
+        this.city = await this.SetupServiceobj.getAllCities();
+
+        if (this.id) {
+            this.employeeService.GetEmployee(this.id).subscribe(resp => {
+
+                this.Employee = resp;
+
+                this.patchValues(resp);
+
+            });
+        }
+
 
     }
 
-    async updateUersById(value) {
-        console.log(value);
-        
-        await this.employeeService.updateUersById(value);
+    showSuccess(message) {
+
+        this.updateMessage.emit(message);
     }
 
-     async ngOnInit() {
-         
-         this.religion = await this.SetupServiceobj.getAllReligions();
-         console.log(this.religion);
-         
-         this.language = await this.SetupServiceobj.getAllLanguages();
+    isUpdate(): boolean {
 
-         this.city = await this.SetupServiceobj.getAllCities();
-
-        this.employeeService.GetEmployee(this.id).subscribe(resp => {
-            this.Employee = resp; 
-             this.patchValues(resp);
-
-        }); 
+        if (this.id > 0)
+            return true;
+        else
+            return false;
     }
 
-    patchValues(employee : any) {
+    patchValues(employee: any) {
 
-        this.employeeService.EmpbasicForm.patchValue({
+        this.EmpbasicForm.patchValue({
             FirstName: employee.firstName,
             LastName: employee.lastName,
             FatherName: employee.fatherName,
@@ -104,7 +119,11 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
-    async Formsubmit(){
-        await this.employeeService.addEmployee();
+    async Formsubmit(value) {
+
+        this.employeeService.addEmployee(value).subscribe(resp => {
+
+            this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
+        })
     }
 }

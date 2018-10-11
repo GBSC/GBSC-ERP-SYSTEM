@@ -11,74 +11,35 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ExperienceComponent implements OnInit {
 
-    @Output('setExpFormValue') setExpFormValue = new EventEmitter();
-    public experienceForm: any;
-    public Employee: any;
-    public workExperience: any;
-    private updatingExp: any; 
-    @Input('id') id: number;
+    @Input('employeeId') id: number;
 
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
+    public experiences : any;
 
-    constructor(public employeeService: EmployeeService, public fb: FormBuilder,
-        public router: Router, private route: ActivatedRoute) {
-        this.experienceForm = this.fb.group({
-            CompanyName: [''],
-            Designation: [''],
-            Timefrom: [''],
-            Timeto: [''],
-            Description: ['']
-        });
+    constructor(public employeeService: EmployeeService) {
 
     }
 
     async ngOnInit() {
- 
-        this.workExperience = await this.employeeService.GetExperienceByUserId();
 
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
+        this.employeeService.getWorkExperience(this.id).subscribe(resp=> this.experiences = resp);
 
-            this.employeeService.GetEmployee(this.id).subscribe(resp => {
-
-                this.Employee = resp;
-                console.log(this.Employee); 
-                //   this.patchValues(resp);
-
-            });
-        });
-
-
-        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
-        this.employeeService.firstForm = this.employeeService.allExperiencexpForm[0];
-    }
-
-    async update(value) {
-        console.log(value);
-        await this.employeeService.updateuserWorkExperience(value);
-
-    } 
-    async addexpinfo() {
-        let exp = await this.employeeService.adduserexperience();
-        console.log(exp);
-    }
-
-    getexperienceFormValue() {
-        this.setExpFormValue.emit(this.experienceForm.value);
     }
 
 
-    async addExperience(value) { 
-        await this.employeeService.AddworkExperience(value.data);
+    addWorkExperience(value)
+    {
+        value.data.userId = this.id;
+
+        this.employeeService.addWorkExperience(value.data).subscribe(resp=>console.log(resp));
     }
 
-    async updatingExperience(value) {  
-        this.updatingExp = { ...value.oldData, ...value.newData }
-    }
+    updateWorkExperience(value) {
+        
+        let expereince = this.experiences.find(x => x.WorkExperienceId == value.key);
 
-    async updateExperience() {
-        await this.employeeService.UpdateworkExperience(this.updatingExp);
+        expereince = { ...expereince, ...value.data };
+
+        this.employeeService.updateWorkExperience(expereince).subscribe(resp => console.log(resp));
     }
 
 }

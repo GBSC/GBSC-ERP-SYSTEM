@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../../core';
 
@@ -11,8 +11,10 @@ import { EmployeeService } from '../../../core';
 })
 export class DocumentComponent implements OnInit {
 
-    @Output('setdocumentsFormValue') setdocumentsFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
+
     public documentForm: FormGroup;
+
     constructor(public employee: EmployeeService, public fb: FormBuilder) { }
 
     async ngOnInit() {
@@ -24,20 +26,17 @@ export class DocumentComponent implements OnInit {
         //   BankCode: ['', Validators.required],
         //   BankBranch: ['', Validators.required]
         // }); 
-        await this.employee.GetDocumentsByUserId();
-        let UserDocuments = this.employee.DocumentsByUserId;
+        // await this.employee.GetDocumentsByUserId();
+        // let UserDocuments = this.employee.DocumentsByUserId;
 
     }
     async addDocuments() {
-        let doc = await this.employee.adduserDocuments();
-        console.log(doc);
+        // let doc = await this.employee.adduserDocuments();
+        // console.log(doc);
     }
 
-    getDocumentsBankFormValue() {
-        this.setdocumentsFormValue.emit(this.documentForm.value);
-    }
-    
-    private  forimg: File[]   = [];
+
+    private forimg: File[] = [];
     public allDocs: File[] = [];
 
     fileselect(event) {
@@ -47,27 +46,27 @@ export class DocumentComponent implements OnInit {
     }
 
 
-   async onupload() {
+    async onupload() {
 
 
-            const y = new FormData();
-            let fileCount: number = this.forimg.length;
-            if (fileCount > 0) { 
-                for (let i = 0; i < fileCount; i++) {
-                    y.append('models', this.forimg[i]);
-                }
-                
+        const y = new FormData();
+        let fileCount: number = this.forimg.length;
+        if (fileCount > 0) {
+            for (let i = 0; i < fileCount; i++) {
+                y.append('models', this.forimg[i]);
             }
-            await this.employee.GetDocumentsByUserId();
-             this.employee.DocumentsByUserId;
-            await  this.employee.addDocuments(y);
-            await this.employee.GetDocumentsByUserId();
-             this.employee.DocumentsByUserId;
+
+        }
+        // await this.employee.GetDocumentsByUserId();
+        // this.employee.DocumentsByUserId;
+        // await this.employee.addDocuments(y);
+        // await this.employee.GetDocumentsByUserId();
+        // this.employee.DocumentsByUserId;
     }
 
-  async  deleteUserDocument(value){
-      console.log(value);
-    let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
+    async  deleteUserDocument(value) {
+        console.log(value);
+        let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
     }
-    
+
 }

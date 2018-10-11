@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SetupService, EmployeeService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,10 +17,35 @@ export class EmployeeCompanyComponent implements OnInit {
     public functions: any;
     public groups: any;
     public managementlevel: any;
-    public id: any;
+
+    @Input('employeeId') id: number;
+
+    @Output() updateMessage = new EventEmitter();
+
     public EmployeeCompany: any;
 
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) { }
+    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
+
+        this.EmpCompanyForm = this.fb.group({
+            ManagementLevelId: [''],
+            FunctionId: [''],
+            EmployeeStatusId: [''],
+            EmployeeTypeId: [''],
+            DesignationId: [''],
+            ContractStartDate: [''],
+            ContractEndDate: [''],
+            AppointmentDate: [''],
+            NextAppraisalDate: [''],
+            ConfirmationDueDate: [''],
+            ConfirmationDate: [''],
+            LeavingDate: [''],
+            ResignDate: [''],
+            Approver: [''],
+            UserId: [this.id]
+
+        });
+
+    }
 
     async ngOnInit() {
 
@@ -47,9 +72,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
                 this.EmployeeCompany = resp
 
-                console.log(this.EmployeeCompany);
-
-                //this.patchValues(resp);
+                this.patchValues(resp);
             });
 
 
@@ -59,55 +82,60 @@ export class EmployeeCompanyComponent implements OnInit {
 
     }
 
-    public leavingDateinput = false;
-    enableInput(e) {
-        console.log(e);
-        switch (e.target.id) {
-            case 'chL':
-                this.leavingDateinput = e.target.checked
-                break;
+    showSuccess(message) {
 
-            default:
-                break;
-        }
-    }
-    doit(e) {
-        console.log(e.target.value)
+        this.updateMessage.emit(message);
     }
 
-    async addcompanyinfo() {
-        let cmp = await this.employeeService.addusercompany();
-        console.log(cmp);
-    }
 
     async update(value) {
 
+        value.UserId = this.id;
+
         console.log(value);
-        // let x = await this.employeeService.updateUserCompanyById(value);
-        // console.log(x);
-        // console.log(this.employeeService.EmpCompanyForm.value);
+
+        if (this.EmployeeCompany.userCompanyId > 0) {
+
+            value.UserCompanyId = this.EmployeeCompany.userCompanyId;
+
+            this.employeeService.updateUserCompany(value).subscribe(c => {
+
+                this.showSuccess("Company Information Updated");
+
+            })
+        }
+        else {
+
+            this.employeeService.addUserCompany(value).subscribe(c => {
+
+                this.showSuccess("Company Information Added");
+
+            })
+
+        }
     }
 
 
     patchValues(company: any) {
-        this.employeeService.EmpCompanyForm.patchValue({
+
+        this.EmpCompanyForm.patchValue({
 
             DesignationId: company.designationId,
             ManagementLevelId: company.managementlevelId,
             FunctionId: company.functionId,
-            GroupId: company.groupId,
             EmployeeStatusId: company.employeeStatusId,
             EmployeeTypeId: company.employeeTypeId,
             ShiftId: company.shiftId,
-            ContractStart: company.ContractStart,
-            ContractEnd: company.contractEnd,
+            ContractStartDate: company.ContractStartDate,
+            ContractEndDate: company.contractEndDate,
             AppointmentDate: company.appointmentDate,
             NextAppraisalDate: company.nextAppraisalDate,
-            ConfirmDueDate: company.confirmDueDate,
+            ConfirmationDueDate: company.confirmationDueDate,
             ConfirmationDate: company.confirmationDate,
             LeavingDate: company.leavingDate,
             ResignDate: company.resignDate,
-            Approver: company.approver
+            Approver: company.approver,
+            userId: this.id
         });
     }
 

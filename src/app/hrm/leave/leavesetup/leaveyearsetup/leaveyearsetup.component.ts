@@ -20,19 +20,19 @@ export class LeaveyearsetupComponent implements OnInit {
     async addleaveyear(value) {
         console.log(value.data);
         this.leavesetupservice.addleaveyear(value.data);
-      }
-      
-      async updateleaveyear(value) { 
-        this.leavesetupservice.updateleaveyear(value);  
-     
-      }
+    }
 
-      async deleteleaveyear(value) {
-        console.log(value); 
-        this.leavesetupservice.Deleteleavyear(value.key); 
-     
-     
-      }
+    async updateleaveyear(value) {
+        this.leavesetupservice.updateleaveyear(value);
+
+    }
+
+    async deleteleaveyear(value) {
+        console.log(value);
+        this.leavesetupservice.Deleteleavyear(value.key);
+
+
+    }
 
 
 }

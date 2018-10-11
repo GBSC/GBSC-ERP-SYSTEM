@@ -12,7 +12,7 @@ export class SuperadminserviceService {
 
     // private Account_API_URL = "http://localhost:61161/api/"
 
-    constructor(private http: HttpClient, private ApiService : ApiService) {
+    constructor(private http: HttpClient, private ApiService: ApiService) {
 
     }
 

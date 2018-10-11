@@ -7,15 +7,15 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./product-pack-type.component.scss']
 })
 export class ProductPackTypeComponent implements OnInit {
-    private PackTypes : any;
-    private UpdatedModel : any;
+    private PackTypes: any;
+    private UpdatedModel: any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private InventoryService: InventorysystemService) {
 
     }
 
     async ngOnInit() {
-       this.PackTypes = await this.InventoryService.GetPackTypes();
+        this.PackTypes = await this.InventoryService.GetPackTypes();
     }
 
     async AddPackType(value) {

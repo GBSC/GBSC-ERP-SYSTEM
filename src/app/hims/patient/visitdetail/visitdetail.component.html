@@ -1,4 +1,11 @@
 <div class="m-content">
+        <!-- <div class="row">
+            <div class="col-lg-4">
+                    <div class="m-portlet">
+                    <app-patientvitals></app-patientvitals>
+                    </div>              
+            </div>
+        </div> -->
     <div class="row">
         <div class="col-lg-12">
             <div class="m-portlet">
@@ -79,11 +86,23 @@
                                                     </span>
                                                     <span class="col-lg-4">
                                                         <h6 class="m--font-brand">
-                                                            <input type="text" [value]="visit.patientVital?.height" formControlName="Height">
+                                                                {{visit.patientVital?.height}}(cm)
+                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
                                                          </h6>
                                                     </span>
                                                 </p>
                                                 <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Weight(kg)
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                                {{visit.patientVital?.weight}}(kg)
+                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
+                                                         </h6>
+                                                    </span>
+                                                </p>
+                                                <!-- <p class="row">
                                                     <span class="col-lg-8 m--font-boldest">
                                                         {{visit.patientVital?.weight}}(kg)
                                                     </span>
@@ -92,7 +111,7 @@
                                                             21 kg
                                                         </h6>
                                                     </span>
-                                                </p>
+                                                </p> -->
                                                 <p class="row">
                                                     <span class="col-lg-8 m--font-boldest">
                                                         Temperature (C)

@@ -27,6 +27,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
+    public visit : any = {}; 
     constructor(private Location : Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
@@ -57,12 +58,14 @@ export class PatientvitalsComponent implements OnInit {
             this.id = +params['id'];
 
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
-                this.Patient = Patient;});
+            this.Patient = Patient;});
+
+
             console.log(x);
         });
-
-
-         
+        
+        let x = this.PatientServiceobj.Getvisit(this.visitid.visitID).subscribe(visit=>
+            this.visit = visit);
 
     }
 
@@ -75,7 +78,7 @@ export class PatientvitalsComponent implements OnInit {
         console.log(value);
         let x = await this.PatientServiceobj.AddPatientVital(value);
         // this.router.navigate(['/hims/patient/visits/' + this.patientId]);
-        // console.log(x);
+        console.log(x);
         // console.log(this.PatientVitaLForm.value);
         //  this.backClicked()
         // this.PatientVitalsByVisitId = await this.PatientServiceobj.getPatientVitalByVisitId(this.visitid.visitID);
@@ -86,11 +89,5 @@ export class PatientvitalsComponent implements OnInit {
     backClicked() {
         this.Location.back();
     }
-
-    editvitals()
-    {
-
-    }
-
 
 }

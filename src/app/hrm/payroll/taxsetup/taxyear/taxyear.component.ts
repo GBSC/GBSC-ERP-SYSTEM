@@ -22,12 +22,12 @@ export class TaxyearComponent implements OnInit {
         await this.payrollsetupservice.addtaxyear(value.data);
     }
 
-    updatingTaxYear(value) {
-        this.taxyear = { ...value.olddata, ...value.newdata };
-    }
-    async updateTaxYear() {
-        await this.payrollsetupservice.updatetaxyear(this.taxyear);
-    }
+  updatingTaxYear(value){
+    this.taxyear = {...value.oldData, ...value.newData};
+  }
+  async updateTaxYear() { 
+    await this.payrollsetupservice.updatetaxyear(this.taxyear);
+  }
 
     async deleteTaxYear(value) {
         await this.payrollsetupservice.Deletetaxyear(value.key);

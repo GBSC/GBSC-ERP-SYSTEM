@@ -11,7 +11,7 @@ export class LeaveService {
     public leavepolicyemployee;
     public leaverequestdetail;
     //private baseUrl: string = "http://localhost:58090/api";
-    private baseUrl: string = "/SystemAdmin/api";
+    private baseUrl: string = "SystemAdmin/api";
     public leaveapproval;
     public leaveclosing: Object;
     public newleaverequest;
@@ -128,17 +128,10 @@ export class LeaveService {
 
     }
 
-    async updateleavepolicyemployee(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let leaverqst = await this.getdataToUpdate(data.key, 'Getleavepolicyemployee');
-        leaverqst = { ...leaverqst, ...data.data }
-        console.log(leaverqst);
+    async updateleavepolicyemployee(data) { 
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleavepolicyemployee`, leaverqst).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee`, data).toPromise();
 
     }
 
@@ -148,7 +141,7 @@ export class LeaveService {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-        return await this.ApiService.delete(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeavePolicyEmployee/${id}`).toPromise();
     }
 
     //   Leave Admin Methods

@@ -7,43 +7,44 @@ import { LeaveService, SystemAdministrationService, LeaveSetupService, SetupServ
     styleUrls: ['./leaveclosing.component.scss']
 })
 export class LeaveclosingComponent implements OnInit {
-    public leaveyear;
-    public leaveclose;
 
-    constructor(public leaveservice: LeaveService, public systemadminservice: SystemAdministrationService,
-        public leavesetupservice: LeaveSetupService, public setupservice: SetupService) { }
+  public group: any;
+  public leaveyear: any;
+  public leaveclose: any;
 
-    async ngOnInit() {
+  constructor(public leaveservice: LeaveService, public systemadminservice: SystemAdministrationService,
+    public leavesetupservice: LeaveSetupService, public setupservice: SetupService) { }
 
-        await this.leaveservice.getleaveclosings();
-        this.leaveclose = this.leaveservice.leaveclosing
-        console.log(this.leaveclose);
+  async ngOnInit() {
 
-        await this.leavesetupservice.getAllleaveyear();
-        this.leaveyear = this.leavesetupservice.leaveyear
-        console.log(this.leaveyear);
+    await this.leaveservice.getleaveclosings();
+    this.leaveclose = this.leaveservice.leaveclosing
+    console.log(this.leaveclose);
 
-        await this.setupservice.getAllGroups();
-        let groups = this.setupservice.group;
+    await this.leavesetupservice.getAllleaveyear();
+    this.leaveyear = this.leavesetupservice.leaveyear
+    console.log(this.leaveyear);
 
-        await this.systemadminservice.getDepartments();
-        let department = this.systemadminservice.departments;
-    }
+    this.group = await this.setupservice.getAllGroups();
 
-    async addleaveclosing(value) {
-        console.log(value.data);
-        let x = await this.leaveservice.addleaveclosing(value.data);
-        console.log(x)
-    }
+    await this.systemadminservice.getDepartments();
+    let department = this.systemadminservice.departments;
+  }
 
-    async updateleaveclosing(value) {
-        this.leaveservice.updateleaveclosing(value);
+  async addleaveclosing(value) {
+    console.log(value.data);
+    let x = await this.leaveservice.addleaveclosing(value.data);
+    console.log(x)
+  }
 
-    }
+  async updateleaveclosing(value) {
+    this.leaveservice.updateleaveclosing(value);
 
-    async deleteleaveclosing(value) {
-        this.leaveservice.Deleteleaveclosing(value.key);
+  }
+
+  async deleteleaveclosing(value) {
+    this.leaveservice.Deleteleaveclosing(value.key);
 
 
-    }
+  }
 }

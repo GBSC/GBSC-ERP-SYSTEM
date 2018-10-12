@@ -159,9 +159,9 @@
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''"
                                                             disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderQuantity"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
+                                                    <td><input type="number" #OrderQuantity class="form-control m-input m-input--solid"
+                                                            formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value)"></td>
+                                                    <td><input type="number" #BonusQuantity class="form-control m-input m-input--solid"
                                                             formControlName="BonusQuantity"></td>
                                                     <td><input class="form-control m-input m-input--solid"
                                                             formControlName="PerUnit" [value]="SelectedInventoryItem?.unit?.name || ''"
@@ -170,7 +170,9 @@
                                                         formControlName="Rate" [value]="SelectedInventoryItem?.retailPrice || ''"
                                                         disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="GrossAmount"></td>
+                                                            formControlName="GrossAmount" [value]="PurchaseOrderDetailsForm.value.GrossAmount || ''" disabled>
+                                                            {{ PurchaseOrderDetailsForm.value.OrderQuantity * PurchaseOrderDetailsForm.value.Rate }}
+                                                        </td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="DiscountPercentage"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"

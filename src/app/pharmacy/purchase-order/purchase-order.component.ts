@@ -105,6 +105,12 @@ export class PurchaseOrderComponent implements OnInit {
         console.log(this.SelectedInventoryItem);
     }
 
+    CalculateGrossAmount(value) {
+        console.log(value);
+        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>value * <number>this.SelectedInventoryItem.retailPrice;
+        console.log(this.PurchaseOrderDetailsForm.value.GrossAmount);
+    }
+
     AddPurchaseOrderDetails(value) {
         console.log(value);
         this.PurchaseOrderDetailsForm.value.InventoryItemId = <number>this.SelectedInventoryItem.inventoryItemId;
@@ -115,7 +121,7 @@ export class PurchaseOrderComponent implements OnInit {
         this.PurchaseOrderDetailsForm.value.PerUnit = this.SelectedInventoryItem.unit.name;
         this.PurchaseOrderDetailsForm.value.Rate = <number>this.SelectedInventoryItem.retailPrice;
         console.log("Gross Amount 1", this.PurchaseOrderDetailsForm.value.GrossAmount);
-        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number> this.PurchaseOrderDetailsForm.value.PerUnit;
+        //this.PurchaseOrderDetailsForm.value.GrossAmount = this.PurchaseOrderDetailsForm.value.OrderQuantity * this.PurchaseOrderDetailsForm.value.Rate;
         console.log("Gross Amount 2", this.PurchaseOrderDetailsForm.value.GrossAmount);
         console.log(<number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number>this.PurchaseOrderDetailsForm.value.Rate);
         //this.PurchaseOrderDetailsForm.value.GrossAmount = 111;

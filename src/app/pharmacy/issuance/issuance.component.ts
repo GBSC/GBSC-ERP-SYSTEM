@@ -31,6 +31,7 @@ export class IssuanceComponent implements OnInit {
     private AllCustomers : any;
     private data: any = {};
     private arraydata = [];
+    private StockQuantityarraydata : any[] = [];
     private total : number = 0;
     private desc: any;
 
@@ -61,14 +62,14 @@ export class IssuanceComponent implements OnInit {
             InventoryItemId: [''],
             OrderUnitQuantity: [''],
             ItemTotalAmount: [''],
-            StockQuantity: ['']
-        });
+            StockQuantity: [''],
+         });
 
     }
  
     async  ngOnInit() {
         this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
-        this.PharmacyService.GetInventoryItems().subscribe((result: InventoryItem) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
+        // this.PharmacyService.GetInventoryItems().subscribe((result: InventoryItem) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
         this.AllItems = await this.PharmacyService.GetInventoryItemstest();
         this.filterItems = this.AllItems;
         console.log(this.AllItems);
@@ -85,7 +86,8 @@ export class IssuanceComponent implements OnInit {
     getcellvalue(value) {
         console.log(value);
         this.data = this.AllItems.find(x => x.inventoryItemId == value);
-        this.GetStockPosition(value);
+        // this.GetStockPosition(value);
+        console.log(value.inventoryItemId);
         console.log(this.AllItems);
         console.log(this.data);
     }
@@ -97,7 +99,18 @@ export class IssuanceComponent implements OnInit {
     async DeleteSalesOrder(value) {
         return await this.PharmacyService.DeleteSalesOrder(value.Key.SalesOrderId).toPromise();
     }
-    
+    public issuanceformvalue : any
+    onsubmit(value) {	
+        this.IssuanceForm.value.CRN =     this.customerdata.crn || '';
+        this.IssuanceForm.value.PatientName =     this.customerdata.name || '';
+        this.IssuanceForm.value.SpouseName =     this.customerdata.contactName || '';
+
+        console.log(value);
+           }	   
+           
+           
+
+    public finalstockquantity  : any;
     onsubmitInventeryDetail(value) {
         console.log(this.data);
         let data = value;
@@ -115,14 +128,28 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.PackQuantity = (this.InventoryItemForm.value.OrderUnitQuantity / this.InventoryItemForm.value.PackSize).toFixed(0);
         this.InventoryItemForm.value.UnitPrice = this.data.unitPrice || '';
         this.InventoryItemForm.value.ItemTotalAmount = this.InventoryItemForm.value.PackQuantity * this.InventoryItemForm.value.UnitPrice;
-        this.InventoryItemForm.value.stockQuantity = this.Inv.stockQuantity;
-
-        this.Inv.stockQuantity = this.Inv.stockQuantity - this.InventoryItemForm.value.PackQuantity;
-        this.Invs.push(this.Inv);
+        this.InventoryItemForm.value.StockQuantity = this.data.inventory.stockQuantity;
+        this.finalstockquantity = this.InventoryItemForm.value.StockQuantity - this.InventoryItemForm.value.OrderUnitQuantity;
+        this.InventoryItemForm.value.StockQuantity = this.finalstockquantity ;
+        console.log(data);
 
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
 
         this.arraydata.push(data);
+        console.log(this.InventoryItemForm.value);
+        console.log(data.InventoryItemId);
+
+        console.log(Number.parseInt(data.InventoryItemId));
+        let x = {
+            StockQuantity : data.StockQuantity,
+            InventoryItemId  : Number.parseInt(data.InventoryItemId),
+            InventoryId : <number>this.data.inventory.inventoryId
+        };
+        console.log(x);
+ 
+          this.StockQuantityarraydata.push(x);
+        console.log(this.StockQuantityarraydata);
+
         this.total += Number.parseInt(this.InventoryItemForm.value.ItemTotalAmount);
         this.InventoryItemForm.reset();
     }
@@ -134,7 +161,8 @@ export class IssuanceComponent implements OnInit {
 
     remove(index, value) {
         let item = this.arraydata.splice(index, 1);
-        //this.Invs = this.Invs.filter(this.arraydata)
+        // this.StockQuantityarraydata.splice(index,1);
+        //this.Invs = this.Invs.find(item.inventoryId);
         //this.Invs = this.Invs.splice(index, 1);
         console.log(item)
         console.log(value);
@@ -142,13 +170,18 @@ export class IssuanceComponent implements OnInit {
     }
 
     addfinal() {
+
+
+        console.log( this.finalstockquantity );
+
+        
         this.arraydata.filter(t => {
             delete t.Description;
             delete t.PackQuantity;
             delete t.PackSize;
             delete t.PackType;
             delete t.Rate;
-            delete t.stockQuantity;
+            delete t.StockQuantity;
         });
 
         delete this.IssuanceForm.value.IssuanceNo;
@@ -160,18 +193,20 @@ export class IssuanceComponent implements OnInit {
         this.IssuanceForm.value.SalesOrderItems = this.arraydata;
         console.log(this.IssuanceForm.value);
         this.IssuanceForm.value.OrderAmount = this.total;
+
+        console.log(this.IssuanceForm.value);
+        console.log(this.StockQuantityarraydata);
+
         this.PharmacyService.AddSalesOrder(this.IssuanceForm.value).subscribe(r => console.log(r));
         
-        this.UpdateStockPosition(this.Invs);
+        this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => console.log(res));
+        this.IssuanceForm.reset();
+        this.arraydata.length = 0;
+        this.total = 0;
+        
+         
+ 
     }
 
-    GetStockPosition(value) {
-        console.log(value);
-        this.PharmacyService.GetInventoryByItemId(value).subscribe(res => this.Inv = res);
-    }
-
-    UpdateStockPosition(value) {
-        this.PharmacyService.UpdateInventories(value);
-    }
 
 }

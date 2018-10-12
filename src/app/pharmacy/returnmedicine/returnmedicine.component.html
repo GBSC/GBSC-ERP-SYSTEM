@@ -24,27 +24,31 @@
                           <label for="exampleInputEmail1">
                               MRN No
                           </label>
-                          <input type="text" class="form-control m-input m-input--solid" formControlName="MRN">
+                          <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(ReturnMedicineForm.value.CRN)"
+                          formControlName="CRN">
+                          <option *ngFor="let x of AllCustomers" [value]="x?.crn">{{x?.crn}} </option>
+                      </select>
                       </div>
                       <div class="form-group col-lg-3">
                           <label for="exampleInputEmail1">
                               Return No
                           </label>
-                          <input type="text" class="form-control m-input m-input--solid" formControlName="ReturnNo">
+                          <input type="text" class="form-control m-input m-input--solid" formControlName="ReturnNo" disabled>
                       </div>
                       <div class="form-group col-lg-3">
                           <label for="exampleInputEmail1">
                             Return Date
                             </label>
                           <div class="input-group date">
-                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate">
+                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" disabled>
                            </div>
                       </div>
                       <div class="form-group col-lg-3">
                               <label for="exampleInputEmail1">
                                   Slip No
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="SlipNo">
+                              <!-- (keydown)="onKeydown($event)" -->
+                              <input type="text" class="form-control m-input m-input--solid"  #box formControlName="SlipNo"  (keydown)="onKeydown(box.value, $event)">
                           </div>
                   </div>
                   <div class="form-group row">
@@ -52,13 +56,15 @@
                               <label for="exampleInputEmail1">
                                  P. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName">
-                          </div>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="customerdata?.name || ''"
+                              disabled>
+                            </div>
                           <div class="form-group col-lg-3">
                               <label for="exampleInputEmail1">
                                 S. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName">
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="customerdata?.shortName || ''"
+                              disabled>
                           </div>
                           <div class="form-group col-lg-3">
                               <label for="exampleInputEmail1">

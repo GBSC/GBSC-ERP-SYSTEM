@@ -197,7 +197,7 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryByItemId/' + id);
     }
     
-    UpdateInventories(Inventories : Inventory[]) : Observable<Inventory> {
+    UpdateInventories(Inventories : Inventory[]) : Observable<any> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', Inventories);
     }
 

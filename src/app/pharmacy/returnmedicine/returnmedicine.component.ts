@@ -13,20 +13,25 @@ export class ReturnmedicineComponent implements OnInit {
     private SalesReturn: any;
     public issuance : any;
     private ReturnMedicineForm : FormGroup;
+    private AllCustomers : any;
+    private customerdata : any ={};
+
+
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
 
-            MRN : [''],
+            CRN: [''],
+            PatientName: [''],
+            SpouseName: [''],
+            Department: [''],
+            Remarks: [''],
+
             ReturnNo:[''],
             ReturnDate : [''],
             SlipNo : [''],
-            PatientName : [''],
-            SpouseName : [''],
-            Remarks:[''],
-            Department :[''],
-            InventoryItems : ['']
+            // InventoryItems : ['']
 
         });
 
@@ -36,11 +41,22 @@ export class ReturnmedicineComponent implements OnInit {
         this.ReturnReason = await this.PharmacyService.GetReturnReasons();
         this.SalesReturn = await this.PharmacyService.GetSalesReturns().toPromise();
 
+        this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
+
         this.PharmacyService.GetInventoryItems().subscribe(result => {
             this.issuance = result;
             console.log(this.issuance);
         });
     }
+
+    getcellvalueForCustomer(value){
+        console.log(value);
+        this.customerdata = this.AllCustomers.find(x => x.crn == value);
+        console.log(this.customerdata);
+
+    }
+
+
 
     async AddSalesReturn(value) {
         return await this.PharmacyService.AddSalesReturn(value);
@@ -61,6 +77,17 @@ export class ReturnmedicineComponent implements OnInit {
         this.vae = value;
         console.log(value);
     }
+
+        keyPress(event: any){
+            console.log(event)
+        }
+
+        onKeydown(value, event) {
+            if (event.key === "Enter") {
+              console.log(value);
+
+            }
+          }
 
     public rr = [];
     public rrrr = [];

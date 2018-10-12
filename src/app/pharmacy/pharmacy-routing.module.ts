@@ -7,6 +7,7 @@ import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { IssuanceComponent } from './issuance/issuance.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
 import { ReturnmedicineComponent } from './returnmedicine/returnmedicine.component';
+import { ReturnViewComponent } from './return-view/return-view.component';
 import { InventoryComponent } from './Setup/inventory/inventory.component';
 import { InventoryItemComponent } from './Setup/inventory-item/inventory-item.component';
 import { InventoryItemCategoryComponent } from './Setup/inventory-item-category/inventory-item-category.component';
@@ -18,10 +19,14 @@ import { ProductTypeComponent } from './Setup/product-type/product-type.componen
 import { ReturnReasonComponent } from './Setup/return-reason/return-reason.component';
 import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
+<<<<<<< HEAD
 import { GrnViewComponent } from './grn-view/grn-view.component';
 import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { ReturnViewComponent } from './return-view/return-view.component';
+=======
+import { CurrencyComponent } from './Setup/currency/currency.component';
+>>>>>>> a1399844772a3105df328ca6614c230390993e1c
 
 
 
@@ -37,9 +42,15 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         { path: 'issuance', component: IssuanceComponent},
         { path: 'issuanceview', component: IssuanceViewComponent},
         { path: 'purchaseorder', component: PurchaseOrderComponent},
+<<<<<<< HEAD
         { path: 'purchaseorderview', component: PurhcaseorderViewComponent},
         { path: 'return', component: ReturnmedicineComponent},
         { path: 'returnview', component: ReturnViewComponent},
+=======
+        { path: 'returnview', component: ReturnViewComponent },
+        { path: 'return', component: ReturnmedicineComponent},
+
+>>>>>>> a1399844772a3105df328ca6614c230390993e1c
         {
           path: "setup",
           children: [
@@ -53,7 +64,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
               { path: 'producttype', component: ProductTypeComponent },
               { path: 'returnreason', component: ReturnReasonComponent },
               { path: 'supplier', component: SupplierComponent },
-              { path: 'unit', component: UnitComponent }
+              { path: 'unit', component: UnitComponent },
+              { path: 'currency', component: CurrencyComponent }
             ]
         }
     ]

@@ -16,7 +16,8 @@
         [remoteOperations]="true"
         height="600"
         showBorders="true"
-        [masterDetail]="{ enabled: true, template: 'detail' }">
+        [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true"
+        [showBorders]="true">
     
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -29,41 +30,15 @@
             [allowDeleting]="false">
         </dxo-editing>
         <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
-    
-        <dxi-column dataField="returnNumber" caption="Return Code"></dxi-column>
-        <dxi-column dataField="returnDate" caption="Return Date" dataType="date"></dxi-column>
-        <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+        <dxo-selection mode="single"></dxo-selection>
         <dxi-column dataField="totalReturnAmount" caption="Return Amount"></dxi-column>
-        
-    
+
         <div *dxTemplate="let order of 'detail'">
             <dx-data-grid
-                [dataSource]="GetPurchaseOrderDetails(order.data)"
+                [dataSource]="order.data.salesReturnItems"
                 showBorders="true">            
             </dx-data-grid>
         </div>
-    
-        <!-- <dxo-summary>
-            <dxi-total-item
-                column="Freight"
-                summaryType="sum">
-                <dxo-value-format
-                    type="decimal"
-                    [precision]="2"
-                ></dxo-value-format>
-            </dxi-total-item>    
-            <dxi-group-item
-                column="Freight"
-                summaryType="sum">
-                <dxo-value-format
-                    type="decimal"
-                    [precision]="2"
-                ></dxo-value-format>
-            </dxi-group-item>
-            <dxi-group-item
-                summaryType="count">
-            </dxi-group-item>
-        </dxo-summary> -->
     </dx-data-grid> 
      </div>
   </div>

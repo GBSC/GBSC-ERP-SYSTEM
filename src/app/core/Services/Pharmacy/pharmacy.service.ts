@@ -24,6 +24,8 @@ import { ProductType } from '../../Models/Pharmacy/ProductType';
 import { ReturnReason } from '../../Models/Pharmacy/ReturnReason';
 import { SalesReturnItem } from '../../Models/Pharmacy/SalesReturnItem';
 import { SalesReturn } from '../../Models/Pharmacy/SalesReturn';
+import { Customer } from '../../Models/Pharmacy/Customer';
+import { Currency } from '../../Models/Pharmacy/Currency';
 
 
 @Injectable()
@@ -90,7 +92,11 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturn/' + id);
     }
 
-    GetSalesReturnDetailsByCode(code : string) : Observable<SalesReturn> {
+    // async GetSalesReturnDetailsByCode(code){
+    //     return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code).toPromise();
+    // }
+
+    GetSalesReturnDetailsByCode(code) : Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code);
     }
 
@@ -187,6 +193,14 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventory/' + id);
     }
 
+    GetInventoryByItemId(id) : Observable<Inventory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryByItemId/' + id);
+    }
+    
+    UpdateInventories(Inventories : Inventory[]) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', Inventories);
+    }
+
     //InventoryItem
     GetInventoryItems() : Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
@@ -214,16 +228,33 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetCategories');
     }
 
-    AddInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<SalesOrder> {
+    AddInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<InventoryItemCategory> {
         return this.ApiService.post(this.API_URL + 'Setup/AddCategory', InventoryItemCategory);
     }
 
-    UpdateInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<SalesOrder> {
+    UpdateInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<InventoryItemCategory> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateCategory', InventoryItemCategory);
     }
 
     DeleteInventoryItemCategory(id : number) : Observable<InventoryItemCategory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCategory/' + id);
+    }
+
+     //Currency
+     GetCurrency() : Observable<Currency[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrencies');
+    }
+
+    AddCurrency(Currency: Currency) : Observable<Currency> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddInventoryCurrency', Currency);
+    }
+
+    UpdateCurrency(Currency: Currency) : Observable<Currency> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventoryCurrency', Currency);
+    }
+
+    DeleteCurrency(id : number) : Observable<Currency> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventoryCurrency/' + id);
     }
 
     //PackageType
@@ -360,5 +391,9 @@ export class PharmacyService {
 
     DeleteUnit(id : number) : Observable<Unit> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteUnit/' + id);
+    }
+
+    getCustomers() : Observable<Customer>{
+        return this.ApiService.get(this.API_URL+'Setup/GetCustomers');
     }
 }

@@ -32,6 +32,7 @@ import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { ReturnViewComponent } from './return-view/return-view.component';
 import { GrnViewComponent } from './grn-view/grn-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
+import { CurrencyComponent } from './Setup/currency/currency.component';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-v
     IssuanceViewComponent,
     ReturnViewComponent,
     GrnViewComponent,
-    PurhcaseorderViewComponent
+    PurhcaseorderViewComponent,
+    CurrencyComponent
   ],
   providers: [
     {

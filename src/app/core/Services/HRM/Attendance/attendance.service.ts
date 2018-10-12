@@ -65,10 +65,7 @@ export class AttendanceService {
     }
 
     async updateOfficialVisitEntry(data) {
-
-        let officialVisitentry = await this.getdataToUpdate(data.key, 'GetOfficialVisitEntry');
-        officialVisitentry = { ...officialVisitentry, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateOfficialVisitEntry`, officialVisitentry).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOfficialVisitEntry`, data).toPromise();
 
     }
 

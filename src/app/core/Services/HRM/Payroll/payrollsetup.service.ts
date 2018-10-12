@@ -10,7 +10,6 @@ export class PayrollSetupService {
     constructor(private ApiService: ApiService) { }
 
     async getAllowances() {
-
         return await this.ApiService.get(`${this.baseUrl}/GetAllowances`).toPromise();
     }
 
@@ -19,7 +18,6 @@ export class PayrollSetupService {
     }
 
     async addAllowance(data) {
-
         return await this.ApiService.post(`${this.baseUrl}/AddAllowance`, data).toPromise();
 
     }

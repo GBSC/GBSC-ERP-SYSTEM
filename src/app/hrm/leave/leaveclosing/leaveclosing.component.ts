@@ -17,10 +17,8 @@ export class LeaveclosingComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.leaveservice.getleaveclosings();
-        this.leaveclose = this.leaveservice.leaveclosing
-        console.log(this.leaveclose);
-
+        this.leaveclose = await this.leaveservice.getleaveclosings();
+         
         await this.leavesetupservice.getAllleaveyear();
         this.leaveyear = this.leavesetupservice.leaveyear
         console.log(this.leaveyear);

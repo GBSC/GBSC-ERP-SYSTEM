@@ -13,6 +13,10 @@ export class LeaverequestComponent implements OnInit {
     public leaveRequestForm: FormGroup;
     public leaveRequestDetailForm: FormGroup;
     public leaverequestdetail: any;
+    public leaveYear: any;
+    public employees: any;
+    public leaveType: any;
+    public leaveApprovr: any;
     public combinedData = {};
     leaverequest: any;
 
@@ -41,39 +45,31 @@ export class LeaverequestComponent implements OnInit {
         });
 
 
-        await this.leaveservice.getAllleaverequestdetail();
-        this.leaverequestdetail = this.leaveservice.leaverequestdetail;
-
+        this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
+         
         await this.leaveservice.getAllleaverequest();
         this.leaverequest = this.leaveservice.leaverequest;
         this.combinedData = { ...this.leaverequestdetail, ...this.leaverequest }
+ 
+        this.employees = await this.empservice.GetAllEmployees();
 
-        console.log(this.combinedData);
-
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg;
-
-        await this.leavesetupservice.getleaveapprover();
-        let leaveapprovr = this.leavesetupservice.leaveapprover;
-
-        await this.leavesetupservice.getAllleaveyear();
-        let leaveyear = this.leavesetupservice.leaveyear;
-
-        await this.leavesetupservice.getAllleavetype();
-        let levetype = this.leavesetupservice.leavetype;
-    }
+        this.leaveApprovr = await this.leavesetupservice.getleaveapprover();
+       
+        this.leaveYear = await this.leavesetupservice.getAllleaveyear();
+   
+        this.leaveType =await this.leavesetupservice.getAllleavetype();
+     }
 
     async addleaverequestordetail() {
         console.log(this.leaveRequestDetailForm.value);
         this.leaveRequestDetailForm.value.leaveRequestId = this.leaveRequestId.leaverequestID;
-        await this.leaveservice.addleaverequestdetail(this.leaveRequestDetailForm.value);
+        await this.leaveservice.addLeaveRequestDetail(this.leaveRequestDetailForm.value);
     }
 
     leaveRequestId;
 
-    async addleaverequest(e) {
-        // console.log(this.leaveRequestForm.value);
-        this.leaveRequestId = await this.leaveservice.addleaverequest(this.leaveRequestForm.value);
+    async addleaverequest(e) { 
+        this.leaveRequestId = await this.leaveservice.addLeaveRequest(this.leaveRequestForm.value);
         console.log(this.leaveRequestDetailForm.value);
     }
 

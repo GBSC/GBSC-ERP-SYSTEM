@@ -7,36 +7,32 @@ import { LeaveService, LeaveSetupService } from '../../../core';
     styleUrls: ['./leaveapproval.component.scss']
 })
 export class LeaveapprovalComponent implements OnInit {
-    public leaveapproval;
+    public leaveapproval : any;
+    public leaveApprover : any;
+    public leaveRequest : any;
 
     constructor(public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
 
-        await this.leaveservice.getleaveapprovals();
-        this.leaveapproval = this.leaveservice.leaveapproval
-        console.log(this.leaveapproval);
+        this.leaveapproval = await this.leaveservice.getLeaveApprovals();
 
-        await this.leavesetupservice.getleaveapprover();
-        let leaveapprovr = this.leavesetupservice.leaveapprover;
+        this.leaveApprover = await this.leavesetupservice.getleaveapprover();
 
-        await this.leaveservice.getAllleaverequest();
-        let leavereqst = this.leaveservice.leaverequest;
-    }
+        this.leaveRequest = await this.leaveservice.getAllleaverequest();
+        }
 
     async addleaveapproval(value) {
-        this.leaveservice.addleaveapproval(value.data);
+        this.leaveservice.addLeaveApproval(value.data);
     }
 
     async updateleaveapproval(value) {
-        this.leaveservice.updateleaveapproval(value);
+        this.leaveservice.updateLeaveApproval(value);
 
     }
 
     async deleteleaveapproval(value) {
-        this.leaveservice.Deleteleaveapproval(value.key);
-
-
+        this.leaveservice.DeleteLeaveAapproval(value.key);
     }
 
 }

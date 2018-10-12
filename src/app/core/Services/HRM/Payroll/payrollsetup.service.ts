@@ -6,9 +6,7 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class PayrollSetupService {
 
-    private baseUrl: string = "SystemAdmin/api/PayrollSetup";
-    //private baseUrl: string = "http://localhost:58090/api/PayrollSetup";
-   
+    private baseUrl: string = "SystemAdmin/api/PayrollSetup"; 
 
     constructor(private ApiService: ApiService) { }
 

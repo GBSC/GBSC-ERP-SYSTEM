@@ -132,7 +132,7 @@ export class AttendanceService {
 
     async addAttendanceFlagExemption(data) {
  
-        let newflagexemption = await this.ApiService.post(`${this.baseUrl}/AddAttendanceFlagExemption`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddAttendanceFlagExemption`, data).toPromise();
 
     }
 

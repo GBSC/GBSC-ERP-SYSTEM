@@ -12,7 +12,7 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                 <dx-data-grid id="gridContainer" [dataSource]="SystemAdministrationServiceobj.departments" 
+                 <dx-data-grid id="gridContainer" [dataSource]="deprt" 
                  (onRowInserted)="addDepartment($event)" 
                  (onRowUpdated)="updateDepartment($event)" 
                  (onRowRemoved)="deletDepartment($event)">
@@ -28,7 +28,7 @@
                    dataField="branchId"
                    caption="Branches"
                    [width]="225">         
-                   <dxo-lookup [dataSource]="deprt" displayExpr="name" valueExpr="branchId"></dxo-lookup>
+                   <dxo-lookup [dataSource]="branch" displayExpr="name" valueExpr="branchId"></dxo-lookup>
                </dxi-column>
                  </dx-data-grid>
                </div>

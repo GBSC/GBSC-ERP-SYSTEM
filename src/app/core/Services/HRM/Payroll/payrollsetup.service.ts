@@ -1,48 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 
 @Injectable()
 export class PayrollSetupService {
 
-    private baseUrl: string = "SystemAdmin/api/PayrollSetup"; 
+    private baseUrl: string = "SystemAdmin/api/PayrollSetup";
 
     constructor(private ApiService: ApiService) { }
 
     async getAllowances() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/GetAllowances`).toPromise();
     }
 
     async getdataToUpdate(payrollId, payrollUrl) {
         return await this.ApiService.get(`${this.baseUrl}/${payrollUrl}/${payrollId}`).toPromise();
     }
- 
+
     async addAllowance(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddAllowance`, data).toPromise();
 
     }
 
     async updateAllowance(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateAllowance`, data).toPromise();
     }
 
     async deleteAllowance(allowanceId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowance/${allowanceId}`).toPromise();
     }
 
     async getAllowanceArrears() {
- 
-       return await this.ApiService.get(`${this.baseUrl}/GetAllowanceArrears`).toPromise();
+
+        return await this.ApiService.get(`${this.baseUrl}/GetAllowanceArrears`).toPromise();
     }
 
 
     async addAllowanceArrear(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddAllowanceArrear`, data).toPromise();
     }
 
@@ -54,19 +53,19 @@ export class PayrollSetupService {
     }
 
     async deleteAllowanceArrear(allowancearrearId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceArrear/${allowancearrearId}`).toPromise();
     }
 
     async getAllowanceDeductions() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/GetAllowancedeductions`).toPromise();
     }
 
 
     async addAllowanceDeduction(data) {
- 
-       return await this.ApiService.post(`${this.baseUrl}/AddAllowanceDeduction`, data).toPromise();
+
+        return await this.ApiService.post(`${this.baseUrl}/AddAllowanceDeduction`, data).toPromise();
     }
 
     async updateAllowanceDeduction(data) {
@@ -75,19 +74,19 @@ export class PayrollSetupService {
     }
 
     async DeleteAllowanceDeduction(allowancedeductionId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceDeduction/${allowancedeductionId}`).toPromise();
     }
 
     async getAllowanceCalculationTypes() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/GetAllowanceCalculationTypes`).toPromise();
     }
 
 
     async addAllowanceCalculationType(data) {
 
-      return await this.ApiService.post(`${this.baseUrl}/AddAllowanceCalculationType`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddAllowanceCalculationType`, data).toPromise();
     }
 
     async updateAllowanceCalculationType(data) {
@@ -98,14 +97,14 @@ export class PayrollSetupService {
     }
 
     async DeleteAllowanceCalculationType(allowancecalculationtypeId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceCalculationType/${allowancecalculationtypeId}`).toPromise();
     }
 
     async getAllowanceRates() {
- 
-       return await this.ApiService.get(`${this.baseUrl}/GetAllowanceRates`).toPromise();
-        }
+
+        return await this.ApiService.get(`${this.baseUrl}/GetAllowanceRates`).toPromise();
+    }
 
 
     async addAllowanceRate(data) {
@@ -121,12 +120,13 @@ export class PayrollSetupService {
     }
 
     async deleteAallowanceRate(allowancerateId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceRate/${allowancerateId}`).toPromise();
     }
 
     async getBenefits() {
-        return await this.ApiService.get(`${this.baseUrl}/GetBenefits`).toPromise();    }
+        return await this.ApiService.get(`${this.baseUrl}/GetBenefits`).toPromise();
+    }
 
 
     async addBenefit(data) {
@@ -135,24 +135,24 @@ export class PayrollSetupService {
     }
 
     async updateBenefit(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateBenefit`, data).toPromise();
     }
 
     async deleteBenefit(benefitId) {
-        
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteBenefit/${benefitId}`).toPromise();
     }
 
     async getBankAdviceTemplates() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetBankAdviceTemplates`).toPromise();
-        }
+    }
 
 
     async addBankAdviceTemplate(data) {
- 
-       return await this.ApiService.post(`${this.baseUrl}/AddBankAdviceTemplate`, data).toPromise();
+
+        return await this.ApiService.post(`${this.baseUrl}/AddBankAdviceTemplate`, data).toPromise();
     }
 
     async updateBankAdviceTemplate(data) {
@@ -163,12 +163,12 @@ export class PayrollSetupService {
     }
 
     async deleteBankAdviceTemplate(bankadvicetemplateId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteBankAdviceTemplate/${bankadvicetemplateId}`).toPromise();
     }
 
     async getChequeTemplates() {
-    
+
         return await this.ApiService.get(`${this.baseUrl}/GetChequeTemplates`).toPromise();
     }
 
@@ -202,23 +202,23 @@ export class PayrollSetupService {
     }
 
     async updateCompensationTransaction(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateCompensationTransaction`, data).toPromise();
     }
 
     async deleteCompensationTransaction(compensationtransactionId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteCompensationTransaction/${compensationtransactionId}`).toPromise();
     }
 
-    async getCurrencies() { 
+    async getCurrencies() {
 
-     return await this.ApiService.get(`${this.baseUrl}/GetCurrencies`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetCurrencies`).toPromise();
     }
 
     async addCurrency(data) {
- 
-     return await this.ApiService.post(`${this.baseUrl}/AddCurrency`, data).toPromise();
+
+        return await this.ApiService.post(`${this.baseUrl}/AddCurrency`, data).toPromise();
     }
 
     async updateCurrency(data) {
@@ -268,7 +268,7 @@ export class PayrollSetupService {
     }
 
     async updateFundSetup(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateFundSetup`, data).toPromise();
     }
 
@@ -284,9 +284,9 @@ export class PayrollSetupService {
 
 
     async addGratuitySlab(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddGratuitySlab`, data).toPromise();
-       
+
     }
 
     async updateGratuitySlab(data) {
@@ -301,12 +301,12 @@ export class PayrollSetupService {
 
     async getGratuityTypes() {
 
-      return await this.ApiService.get(`${this.baseUrl}/GetGratuityTypes`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetGratuityTypes`).toPromise();
     }
 
 
     async addGratuityType(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddGratuityType`, data).toPromise();
     }
 
@@ -324,13 +324,13 @@ export class PayrollSetupService {
 
     async getGratuitySlabGratuities() {
 
-       return await this.ApiService.get(`${this.baseUrl}/GetGratuitySlabGratuities`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetGratuitySlabGratuities`).toPromise();
     }
 
 
     async addGratuitySlabGratuity(data) {
 
-     return await this.ApiService.post(`${this.baseUrl}/AddGratuitySlabGratuity`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddGratuitySlabGratuity`, data).toPromise();
     }
 
     async updateGratuitySlabGratuity(data) {
@@ -370,15 +370,15 @@ export class PayrollSetupService {
     async getMasterPayrolls() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetMasterPayrolls`).toPromise();
-        }
+    }
 
     async addMasterPayroll(data) {
 
-      return await this.ApiService.post(`${this.baseUrl}/AddMasterPayroll`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddMasterPayroll`, data).toPromise();
     }
 
     async updateMasterPayroll(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayroll`, data).toPromise();
     }
 
@@ -396,7 +396,7 @@ export class PayrollSetupService {
 
     async addMasterPayrollDetail(data) {
 
-     return await this.ApiService.post(`${this.baseUrl}/AddMasterPayrollDetail`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddMasterPayrollDetail`, data).toPromise();
     }
 
     async updateMasterPayrollDetail(data) {
@@ -416,7 +416,7 @@ export class PayrollSetupService {
     }
 
     async addPayroll(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddPayroll`, data).toPromise();
     }
 
@@ -436,14 +436,14 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetPayrollBanks`).toPromise();
     }
- 
+
     async addPayrollBank(data) {
 
-     return await this.ApiService.post(`${this.baseUrl}/AddPayrollBank`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddPayrollBank`, data).toPromise();
     }
 
     async updatePayrollBank(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollBank`, data).toPromise();
     }
 
@@ -453,12 +453,12 @@ export class PayrollSetupService {
     }
 
     async getPayrollTypes() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/GetPayrollTypes`).toPromise();
     }
- 
+
     async addPayrollType(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddPayrollType`, data).toPromise();
     }
 
@@ -477,7 +477,7 @@ export class PayrollSetupService {
 
     async getPayrollYears() {
 
-       return await this.ApiService.get(`${this.baseUrl}/GetPayrollYears`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetPayrollYears`).toPromise();
     }
 
 
@@ -487,7 +487,7 @@ export class PayrollSetupService {
     }
 
     async updatePayrollYear(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollYear`, data).toPromise();
     }
 
@@ -499,13 +499,13 @@ export class PayrollSetupService {
 
     async getPfPayments() {
 
-      return await this.ApiService.get(`${this.baseUrl}/GetPfPayments`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetPfPayments`).toPromise();
     }
 
 
     async addPfPayment(data) {
 
-     return await this.ApiService.post(`${this.baseUrl}/AddPfPayment`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddPfPayment`, data).toPromise();
     }
 
     async updatePfPayment(data) {
@@ -588,7 +588,7 @@ export class PayrollSetupService {
 
     async getUserSalaries() {
 
-    return await this.ApiService.get(`${this.baseUrl}/GetUserSalaries`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/GetUserSalaries`).toPromise();
     }
 
 
@@ -609,15 +609,10 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteUserSalary/${usersalaryId}`).toPromise();
     }
 
-
-
-    /** Tax Setups */
-
     async getIncomeTaxRules() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRules`).toPromise();
     }
-
 
     async addIncomeTaxRule(data) {
 
@@ -637,7 +632,7 @@ export class PayrollSetupService {
     async getTaxableIncomeAdjustments() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetTaxableIncomeAdjustments`).toPromise();
-        }
+    }
 
     async addTaxableIncomeAdjustment(data) {
 
@@ -645,7 +640,7 @@ export class PayrollSetupService {
     }
 
     async updateTaxableIncomeAdjustment(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxableIncomeAdjustment`, data).toPromise();
     }
 
@@ -655,18 +650,18 @@ export class PayrollSetupService {
     }
 
     async getTaxAdjustmentReasons() {
- 
-       return await this.ApiService.get(`${this.baseUrl}/GetTaxAdjustmentReasons`).toPromise();
+
+        return await this.ApiService.get(`${this.baseUrl}/GetTaxAdjustmentReasons`).toPromise();
     }
 
 
     async addTaxAdjustmentReason(data) {
 
-       return await this.ApiService.post(`${this.baseUrl}/AddTaxAdjustmentReason`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddTaxAdjustmentReason`, data).toPromise();
     }
 
     async updateTaxAdjustmentReason(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxAdjustmentReason`, data).toPromise();
     }
 
@@ -677,16 +672,16 @@ export class PayrollSetupService {
 
     async getTaxBenefits() {
 
-      return await this.ApiService.get(`${this.baseUrl}/GetTaxBenefits`).toPromise();
-        }
+        return await this.ApiService.get(`${this.baseUrl}/GetTaxBenefits`).toPromise();
+    }
 
     async addTaxBenefit(data) {
- 
+
         let newtaxbenefit = await this.ApiService.post(`${this.baseUrl}/AddTaxBenefit`, data).toPromise();
     }
 
     async updateTaxBenefit(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxBenefit`, data).toPromise();
     }
 
@@ -697,8 +692,8 @@ export class PayrollSetupService {
 
     async getTaxReliefs() {
 
-       return await this.ApiService.get(`${this.baseUrl}/GetTaxReliefs`).toPromise();
-     }
+        return await this.ApiService.get(`${this.baseUrl}/GetTaxReliefs`).toPromise();
+    }
 
     async addTaxRelief(data) {
 
@@ -706,32 +701,33 @@ export class PayrollSetupService {
     }
 
     async updateTaxRelief(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxRelief`, data).toPromise();
     }
 
     async deleteTaxRelief(taxreliefId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteTaxRelief/${taxreliefId}`).toPromise();
     }
 
     async getTaxSchedules() {
 
-       return await this.ApiService.get(`${this.baseUrl}/GetTaxSchedules`).toPromise();    }
+        return await this.ApiService.get(`${this.baseUrl}/GetTaxSchedules`).toPromise();
+    }
 
 
     async addTaxSchedule(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/AddTaxSchedule`, data).toPromise();
     }
 
     async updateTaxSchedule(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxSchedule`, data).toPromise();
     }
 
     async deleteTaxSchedule(taxscheduleId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteTaxSchedule/${taxscheduleId}`).toPromise();
     }
 
@@ -739,15 +735,15 @@ export class PayrollSetupService {
     async gettTaxYears() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetTaxYears`).toPromise();
-        }
+    }
 
     async addtTaxYear(data) {
- 
-       return await this.ApiService.post(`${this.baseUrl}/AddTaxYear`, data).toPromise();
+
+        return await this.ApiService.post(`${this.baseUrl}/AddTaxYear`, data).toPromise();
     }
 
     async updateTaxYear(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateTaxYear`, data).toPromise();
     }
 
@@ -756,21 +752,18 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteTaxYear/${taxyearId}`).toPromise();
     }
 
-    /** Loan Setups */
-
-
     async getLoanTypes() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetLoanTypes`).toPromise();      
+        return await this.ApiService.get(`${this.baseUrl}/GetLoanTypes`).toPromise();
     }
-  
+
     async addLoanType(data) {
 
         let newloantype = await this.ApiService.post(`${this.baseUrl}/AddLoanType`, data).toPromise();
     }
 
     async updateLoanType(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateLoanType`, data).toPromise();
     }
 
@@ -790,13 +783,13 @@ export class PayrollSetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddUserLoan`, data).toPromise();
     }
 
-    async updateUserLoan(data) { 
- 
+    async updateUserLoan(data) {
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateUserLoan`, data).toPromise();
     }
 
-    async deleteUserLoan(userloanId) { 
-        
+    async deleteUserLoan(userloanId) {
+
         return await this.ApiService.delete(`${this.baseUrl}/DeleteUserLoan/${userloanId}`).toPromise();
     }
 

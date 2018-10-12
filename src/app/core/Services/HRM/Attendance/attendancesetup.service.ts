@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 @Injectable()
 export class AttendancesetupService {
 
-private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
- 
+    private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
+
     constructor(private ApiService: ApiService) { }
 
-    /** Assign Roster CRUD'S */
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
@@ -37,7 +35,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAssignRoster/${id}`).toPromise();
     }
 
-    /** Attendance Flag CRUD'S */
     async getAttendanceFlags() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`).toPromise();
@@ -51,7 +48,7 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
     async updateAttendanceFlag(data) {
 
         let attendanceflag = await this.getdataToUpdate(data.key, 'GetAttendanceFlag');
-        attendanceflag = { ...attendanceflag, ...data.data } 
+        attendanceflag = { ...attendanceflag, ...data.data }
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, attendanceflag).toPromise();
 
     }
@@ -61,7 +58,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
     }
 
 
-    /** Attendance Request Approver CRUD'S */
     async getAttendanceRequestApprover() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestApprovers`).toPromise();
@@ -83,7 +79,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
     }
 
 
-    /** Attendance Request Approver CRUD'S */
     async getAttendanceRequestTypes() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`).toPromise();
@@ -107,7 +102,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceRequestType/${id}`).toPromise();
     }
 
-    /** Flag Category Approver CRUD'S */
     async getFlagCategories() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetFlagCategories`).toPromise();
@@ -121,7 +115,7 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
     async updateFlagCategory(data) {
 
         let flagCategory = await this.getdataToUpdate(data.key, 'GetFlagCategory');
-        flagCategory = { ...flagCategory, ...data.data } 
+        flagCategory = { ...flagCategory, ...data.data }
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagCategory`, flagCategory).toPromise();
 
     }
@@ -130,7 +124,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagCategory/${id}`).toPromise();
     }
 
-    /** Flag Effect Type CRUD'S */
     async getFlagEffectTypes() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetFlagEffectTypes`).toPromise();
@@ -174,7 +167,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagType/${id}`).toPromise();
     }
 
-    /** Flag Value CRUD'S */
     async getFlagValues() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetFlagValues`).toPromise();
@@ -199,7 +191,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagValue/${id}`).toPromise();
     }
 
-    /** Roster CRUD'S */
     async getRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
     }
@@ -244,7 +235,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteShift/${id}`).toPromise();
     }
 
-    /** CRUD'S */
     async getAllOvertimeType() {
         return await this.ApiService.get(`${this.baseUrl}/GetOverTimeTypes`).toPromise();
     }
@@ -265,7 +255,7 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeType/${overtimetypeId}`).toPromise();
     }
 
-    /** CRUD'S */
+
     async getAllOvertimeFlag() {
         return await this.ApiService.get(`${this.baseUrl}/GetOverTimeFlags`).toPromise();
     }

@@ -9,59 +9,59 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FundsetupComponent implements OnInit {
 
-    public fundSetup: any; 
+    public fundSetup: any;
     public FundSetupForm: FormGroup;
-  private updatingfundSetup: any;
-    
-    constructor(private fb: FormBuilder,public payrollsetupservice: PayrollSetupService) { }
+    private updatingfundSetup: any;
 
-   async ngOnInit() {
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
-    this.FundSetupForm = this.fb.group({
-      PayrollYearId: ['', Validators],
-      PfEmployerContribution: ['', Validators],
-      PfEmployeeContribution: ['', Validators],
-      TaxableAmountLimit: ['', Validators],
-      MinServicePeriod: ['', Validators],
-      ApplicableFrom: ['', Validators],
-      EobiMinimumSalary: ['', Validators],
-      EobiEmployerContribution: ['', Validators],
-      EobiEmployeeContribution: ['', Validators],
-      MaximumContribution: ['', Validators],
-      ExemptAge: ['', Validators],
-      SessiMinimumSalary: ['', Validators],
-      SessiEmployerContribution: ['', Validators],
-      SessiEmployeeContribution: ['', Validators],
-      PessiMinimumSalary: ['', Validators],
-      PessiEmployerContribution: ['', Validators],
-      PessiEmployeeContribution: ['', Validators],
-      IessiMinimumSalary: ['', Validators],
-      IessiEmployerContribution: ['', Validators],
-      IessiEmployeeContribution: ['', Validators]
-  });
+    async ngOnInit() {
+
+        this.FundSetupForm = this.fb.group({
+            PayrollYearId: ['', Validators],
+            PfEmployerContribution: ['', Validators],
+            PfEmployeeContribution: ['', Validators],
+            TaxableAmountLimit: ['', Validators],
+            MinServicePeriod: ['', Validators],
+            ApplicableFrom: ['', Validators],
+            EobiMinimumSalary: ['', Validators],
+            EobiEmployerContribution: ['', Validators],
+            EobiEmployeeContribution: ['', Validators],
+            MaximumContribution: ['', Validators],
+            ExemptAge: ['', Validators],
+            SessiMinimumSalary: ['', Validators],
+            SessiEmployerContribution: ['', Validators],
+            SessiEmployeeContribution: ['', Validators],
+            PessiMinimumSalary: ['', Validators],
+            PessiEmployerContribution: ['', Validators],
+            PessiEmployeeContribution: ['', Validators],
+            IessiMinimumSalary: ['', Validators],
+            IessiEmployerContribution: ['', Validators],
+            IessiEmployeeContribution: ['', Validators]
+        });
 
         await this.payrollsetupservice.getfundsetups();
         this.fundSetup = this.payrollsetupservice.fundsetup;
-       
+
         await this.payrollsetupservice.getpayrollyears();
         let Payrollyear = this.payrollsetupservice.payrollyear;
-      }
-    
-      async addFundSetup() {
+    }
+
+    async addFundSetup() {
         await this.payrollsetupservice.addfundsetup(this.FundSetupForm.value);
         console.log(this.FundSetupForm.value);
-        
-      }
-    
-      updatingFundSetup(value){
-        this.updatingfundSetup = {...value.oldData, ...value.newData};
+
     }
-    async updateFundSetup() { 
-       await this.payrollsetupservice.updateallowancededuction(this.updatingfundSetup);
+
+    updatingFundSetup(value) {
+        this.updatingfundSetup = { ...value.oldData, ...value.newData };
     }
-    
-      async deleteFundSetup(value) {
+    async updateFundSetup() {
+        await this.payrollsetupservice.updateallowancededuction(this.updatingfundSetup);
+    }
+
+    async deleteFundSetup(value) {
         await this.payrollsetupservice.Deletefundsetup(value.key);
-      }
-    
     }
+
+}

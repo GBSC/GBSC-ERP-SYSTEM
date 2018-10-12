@@ -160,7 +160,7 @@
                                                             formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderQuantity"></td>
+                                                            formControlName="OrderQuantity" (onkeydown)="CalculateGrossAmount(value)"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="BonusQuantity"></td>
                                                     <td><input class="form-control m-input m-input--solid"
@@ -170,7 +170,9 @@
                                                         formControlName="Rate" [value]="SelectedInventoryItem?.retailPrice || ''"
                                                         disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="GrossAmount"></td>
+                                                            formControlName="GrossAmount" [value]="PurchaseOrderDetailsForm.value.GrossAmount || ''" disabled>
+                                                            {{ PurchaseOrderDetailsForm.value.OrderQuantity * PurchaseOrderDetailsForm.value.Rate }}
+                                                        </td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="DiscountPercentage"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"

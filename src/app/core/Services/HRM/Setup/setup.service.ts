@@ -308,7 +308,7 @@ export class SetupService {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteFunction/${id}`).toPromise();
 
     }
- 
+
     /** CRUD METHODS Qualification */
 
     async getAllqualifications() {
@@ -1026,7 +1026,7 @@ export class SetupService {
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
         //return await this.ApiService.get(`${this.hrUrl}/GetLeaveTypes`).toPromise();
-       // return this.leavetype;
+        // return this.leavetype;
     }
 
     async addLeaveTypes(data) {

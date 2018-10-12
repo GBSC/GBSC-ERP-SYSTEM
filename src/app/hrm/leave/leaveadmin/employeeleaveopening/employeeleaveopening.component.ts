@@ -52,9 +52,9 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     }
 
-    
-    async addLeaveopenDetail(){  
-        
+
+    async addLeaveopenDetail() {
+
         // console.log(this.leaveopendetailForm.value);
         // console.log(this.leaveOpeningId);
         // let LDForm = {...this.leaveopendetailForm.value, leaveOpeningId: this.leaveOpeningId.leaveOpeningID}
@@ -62,7 +62,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
         await this.leaveservice.addLeaveopeningdetail(this.leaveOpenDetailForm.value);
     }
     public leaveOpeningId;
-    
+
     async addleaveopening(e) {
         this.leaveOpeningId = await this.leaveservice.addLeaveopening(this.leaveOpeningForm.value);
         console.log(this.leaveOpenDetailForm.value);

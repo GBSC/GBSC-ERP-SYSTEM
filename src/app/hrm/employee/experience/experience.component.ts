@@ -33,7 +33,7 @@ export class ExperienceComponent implements OnInit {
     }
 
     async ngOnInit() {
- 
+
         this.workExperience = await this.employeeService.GetExperienceByUserId();
 
         this.route.params.subscribe((params) => {
@@ -85,9 +85,9 @@ export class ExperienceComponent implements OnInit {
         console.log(a);
         await this.employeeService.adduserDependant(a);
     }
-    private updatingExp: EmployeeExperience; 
+    private updatingExp: EmployeeExperience;
 
-    async updatingExperience(value) { 
+    async updatingExperience(value) {
         // let a: EmployeeDependant = value.data;
         // a.userId = localStorage.getItem('id');
         // console.log(a);

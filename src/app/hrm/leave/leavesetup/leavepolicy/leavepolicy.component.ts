@@ -14,7 +14,7 @@ export class LeavepolicyComponent implements OnInit {
     public leavepolicy: any;
     public leavetype: any;
     private updatingleavePolicy: any;
-    private LeavePolicies : any;
+    private LeavePolicies: any;
 
     constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
@@ -64,7 +64,7 @@ export class LeavepolicyComponent implements OnInit {
 
         this.LeavePolicies = await this.leavesetupservice.getAllleavepolicy();
         console.log(this.LeavePolicies);
-        
+
         //this.leavepolicy = this.leavesetupservice.leavepolicy;
 
         await this.leavesetupservice.getAllleaveyear();
@@ -75,13 +75,13 @@ export class LeavepolicyComponent implements OnInit {
 
         await this.leavesetupservice.getAllleavedaytype();
         let levedaytype = this.leavesetupservice.leavedaytype;
-        
+
         await this.leavesetupservice.getAllleaveeligibility();
         let leaveEligibility = this.leavesetupservice.leaveeligibility;
 
         await this.hrsetupservice.getAllGroups();
         let groups = this.hrsetupservice.group;
-   
+
     }
 
     async addleavepolicy() {
@@ -93,14 +93,14 @@ export class LeavepolicyComponent implements OnInit {
         // console.log(value);
         this.updatingleavePolicy = { ...value.oldData, ...value.newData };
         console.log(this.updatingleavePolicy);
-  
+
     }
     async updateLeavePolicy() {
         await this.leavesetupservice.updateleavepolicy(this.updatingleavePolicy);
     }
 
-   async deleteleavePolicy(value){
+    async deleteleavePolicy(value) {
 
-    await this.leavesetupservice.Deleteleavpolicy(value.key);
+        await this.leavesetupservice.Deleteleavpolicy(value.key);
     }
 }

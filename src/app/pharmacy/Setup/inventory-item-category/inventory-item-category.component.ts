@@ -8,20 +8,20 @@ import { InventoryItemCategory } from '../../../core/Models/Pharmacy/InventoryIt
     styleUrls: ['./inventory-item-category.component.scss']
 })
 export class InventoryItemCategoryComponent implements OnInit {
-    private ItemCategories : InventoryItemCategory;
-    private UpdatedModel : any;
+    private ItemCategories: InventoryItemCategory;
+    private UpdatedModel: any;
 
-    constructor(private PharmacyService : PharmacyService) {
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetInventoryItemCategories().subscribe((res : InventoryItemCategory) => this.ItemCategories = res);
+        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => this.ItemCategories = res);
     }
 
     async AddItemCategory(value) {
         await this.PharmacyService.AddInventoryItemCategory(value.data).toPromise();
-        this.PharmacyService.GetInventoryItemCategories().subscribe((res : InventoryItemCategory) => this.ItemCategories = res);
+        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => this.ItemCategories = res);
     }
 
     async UpdateItemCategory() {
@@ -29,7 +29,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async DeleteItemCategory(value) {

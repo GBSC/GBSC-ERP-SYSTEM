@@ -1,6 +1,6 @@
-export class  MasterPayrollDetail {
+export class MasterPayrollDetail {
 
-    masterPayrollDetailsId:number;
+    masterPayrollDetailsId: number;
     value: number;
     effectiveDate: Date;
     endDate: Date;

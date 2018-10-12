@@ -10,23 +10,23 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class GoodsreceiptComponent implements OnInit {
 
     private GRN: any;
-    private GoodReceiptNoteForm : FormGroup;
-    public Suppliers : any;
-    public InventItems : any;
+    private GoodReceiptNoteForm: FormGroup;
+    public Suppliers: any;
+    public InventItems: any;
 
-    constructor(private PharmacyService: PharmacyService , private formBuilder : FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
 
-            'GRN' : [''],
-            'GRNDate':[''],
-            'SupplierId':[''],
-            'Type':[''],
-            'Manual':[''],
-            'ManualDate':[''],
-            'PoNo':[''],
-            'Post':[''],
-            'InventoryItems':['']
+            'GRN': [''],
+            'GRNDate': [''],
+            'SupplierId': [''],
+            'Type': [''],
+            'Manual': [''],
+            'ManualDate': [''],
+            'PoNo': [''],
+            'Post': [''],
+            'InventoryItems': ['']
 
         });
 
@@ -35,13 +35,13 @@ export class GoodsreceiptComponent implements OnInit {
     async ngOnInit() {
         this.GRN = await this.PharmacyService.GetGRN();
 
-        this.PharmacyService.GetSuppliers().subscribe(result =>{
-            this.Suppliers = result 
+        this.PharmacyService.GetSuppliers().subscribe(result => {
+            this.Suppliers = result
             console.log(this.Suppliers);
         })
 
-        this.PharmacyService.GetInventoryItems().subscribe(result =>{
-            this.InventItems = result 
+        this.PharmacyService.GetInventoryItems().subscribe(result => {
+            this.InventItems = result
             console.log(this.InventItems);
         });
 
@@ -60,25 +60,22 @@ export class GoodsreceiptComponent implements OnInit {
         await this.PharmacyService.DeleteGRN(value.Key.GRNId);
     }
 
-   
-    public vae : any;
-    onsubmit(value)
-    {
+
+    public vae: any;
+    onsubmit(value) {
         this.vae = value;
         console.log(value);
     }
     public rr = [];
     public rrrr = [];
-    AddIssuance(value)
-    {
-        let x  =  value.data;
+    AddIssuance(value) {
+        let x = value.data;
         this.rr.push(x);
-  
+
         console.log(this.rr)
     }
 
-    addfinal()
-    {
+    addfinal() {
         this.GoodReceiptNoteForm.value.InventoryItems = this.rr;
         console.log(this.GoodReceiptNoteForm.value);
     }

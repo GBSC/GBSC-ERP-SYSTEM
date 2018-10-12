@@ -115,18 +115,18 @@ export class EmergencycontactComponent implements OnInit {
         console.log(a);
         await this.employeeService.adduserDependant(a);
     }
-    private updatingModel: EmployeeDependant; 
+    private updatingModel: EmployeeDependant;
 
-    async updatingDependant(value) {  
+    async updatingDependant(value) {
         this.updatingModel = { ...value.oldData, ...value.newData }
         console.log(value);
-        
+
     }
 
     async updateDependant() {
         await this.employeeService.Updaterelation(this.updatingModel);
         console.log(this.updatingModel);
-        
+
     }
 
 

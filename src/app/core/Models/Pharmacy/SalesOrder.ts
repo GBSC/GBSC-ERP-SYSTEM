@@ -28,5 +28,5 @@ export interface SalesOrder {
     ExtraDiscountPercentage: number,
     ExtraDiscountAmount: number,
     UserId: number,
-    InventoryItems : InventoryItem[]
+    InventoryItems: InventoryItem[]
 }

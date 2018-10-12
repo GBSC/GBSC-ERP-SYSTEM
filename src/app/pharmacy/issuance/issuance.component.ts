@@ -26,17 +26,17 @@ export class IssuanceComponent implements OnInit {
     private SalesOrderItemForm: FormGroup;
     private filterItems: InventoryItem[];
 
-    private customerdata : any ={};
+    private customerdata: any = {};
     private AllItems: any;
-    private AllCustomers : any;
+    private AllCustomers: any;
     private data: any = {};
     private arraydata = [];
-    private StockQuantityarraydata : any[] = [];
-    private total : number = 0;
+    private StockQuantityarraydata: any[] = [];
+    private total: number = 0;
     private desc: any;
 
-    private Inv : Inventory;
-    private Invs : Inventory[];
+    private Inv: Inventory;
+    private Invs: Inventory[];
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
 
@@ -63,10 +63,10 @@ export class IssuanceComponent implements OnInit {
             OrderUnitQuantity: [''],
             ItemTotalAmount: [''],
             StockQuantity: [''],
-         });
+        });
 
     }
- 
+
     async  ngOnInit() {
         this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
         // this.PharmacyService.GetInventoryItems().subscribe((result: InventoryItem) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
@@ -76,7 +76,7 @@ export class IssuanceComponent implements OnInit {
 
         this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
     }
-    getcellvalueForCustomer(value){
+    getcellvalueForCustomer(value) {
         console.log(value);
         this.customerdata = this.AllCustomers.find(x => x.crn == value);
         console.log(this.customerdata);
@@ -99,18 +99,18 @@ export class IssuanceComponent implements OnInit {
     async DeleteSalesOrder(value) {
         return await this.PharmacyService.DeleteSalesOrder(value.Key.SalesOrderId).toPromise();
     }
-    public issuanceformvalue : any
-    onsubmit(value) {	
-        this.IssuanceForm.value.CRN =     this.customerdata.crn || '';
-        this.IssuanceForm.value.PatientName =     this.customerdata.name || '';
-        this.IssuanceForm.value.SpouseName =     this.customerdata.contactName || '';
+    public issuanceformvalue: any
+    onsubmit(value) {
+        this.IssuanceForm.value.CRN = this.customerdata.crn || '';
+        this.IssuanceForm.value.PatientName = this.customerdata.name || '';
+        this.IssuanceForm.value.SpouseName = this.customerdata.contactName || '';
 
         console.log(value);
-           }	   
-           
-           
+    }
 
-    public finalstockquantity  : any;
+
+
+    public finalstockquantity: any;
     onsubmitInventeryDetail(value) {
         console.log(this.data);
         let data = value;
@@ -130,7 +130,7 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.ItemTotalAmount = this.InventoryItemForm.value.PackQuantity * this.InventoryItemForm.value.UnitPrice;
         this.InventoryItemForm.value.StockQuantity = this.data.inventory.stockQuantity;
         this.finalstockquantity = this.InventoryItemForm.value.StockQuantity - this.InventoryItemForm.value.OrderUnitQuantity;
-        this.InventoryItemForm.value.StockQuantity = this.finalstockquantity ;
+        this.InventoryItemForm.value.StockQuantity = this.finalstockquantity;
         console.log(data);
 
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
@@ -141,13 +141,13 @@ export class IssuanceComponent implements OnInit {
 
         console.log(Number.parseInt(data.InventoryItemId));
         let x = {
-            StockQuantity : data.StockQuantity,
-            InventoryItemId  : Number.parseInt(data.InventoryItemId),
-            InventoryId : <number>this.data.inventory.inventoryId
+            StockQuantity: data.StockQuantity,
+            InventoryItemId: Number.parseInt(data.InventoryItemId),
+            InventoryId: <number>this.data.inventory.inventoryId
         };
         console.log(x);
- 
-          this.StockQuantityarraydata.push(x);
+
+        this.StockQuantityarraydata.push(x);
         console.log(this.StockQuantityarraydata);
 
         this.total += Number.parseInt(this.InventoryItemForm.value.ItemTotalAmount);
@@ -172,9 +172,9 @@ export class IssuanceComponent implements OnInit {
     addfinal() {
 
 
-        console.log( this.finalstockquantity );
+        console.log(this.finalstockquantity);
 
-        
+
         this.arraydata.filter(t => {
             delete t.Description;
             delete t.PackQuantity;
@@ -198,14 +198,14 @@ export class IssuanceComponent implements OnInit {
         console.log(this.StockQuantityarraydata);
 
         this.PharmacyService.AddSalesOrder(this.IssuanceForm.value).subscribe(r => console.log(r));
-        
+
         this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => console.log(res));
         this.IssuanceForm.reset();
         this.arraydata.length = 0;
         this.total = 0;
-        
-         
- 
+
+
+
     }
 
 

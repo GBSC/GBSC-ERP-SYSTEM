@@ -22,7 +22,7 @@ export class LeaveSetupService {
 
     constructor(private ApiService: ApiService) { }
 
-    
+
     /** Leave Policy CRUD METHODS */
     async getAllleavepolicy() {
 
@@ -49,8 +49,8 @@ export class LeaveSetupService {
 
     }
 
-    async updateleavepolicy(data) {   
-        let headers = {headers: {'Content-Type':'application/json'}}
+    async updateleavepolicy(data) {
+        let headers = { headers: { 'Content-Type': 'application/json' } }
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePolicy`, data).toPromise();
     }
 
@@ -143,7 +143,7 @@ export class LeaveSetupService {
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
 
     }
- 
+
     async Deleteleavyear(leavyearId) {
 
         let authToken = localStorage.getItem('auth_token');
@@ -338,7 +338,7 @@ export class LeaveSetupService {
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-        let leaveTypes : any = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
+        let leaveTypes: any = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
         leaveTypes.forEach(element => {
             this.leavetype.push(element)
         });

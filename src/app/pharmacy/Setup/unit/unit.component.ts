@@ -9,24 +9,24 @@ import { Unit } from '../../../core/Models/Pharmacy/Unit';
     styleUrls: ['./unit.component.css']
 })
 export class UnitComponent implements OnInit {
-    private Units : Unit;
-    private UpdatedModel : any;
+    private Units: Unit;
+    private UpdatedModel: any;
 
-    constructor(private PharmacyService : PharmacyService) {
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-       this.PharmacyService.GetUnits().subscribe((res : Unit) => this.Units = res);
+        this.PharmacyService.GetUnits().subscribe((res: Unit) => this.Units = res);
     }
 
     async AddUnit(value) {
         await this.PharmacyService.AddUnit(value.data).toPromise();
-        this.PharmacyService.GetUnits().subscribe((res : Unit) => this.Units = res);
+        this.PharmacyService.GetUnits().subscribe((res: Unit) => this.Units = res);
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateUnit() {

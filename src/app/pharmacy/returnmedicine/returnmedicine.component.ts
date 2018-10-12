@@ -11,14 +11,14 @@ export class ReturnmedicineComponent implements OnInit {
 
     private ReturnReason: any;
     private SalesReturn: any;
-    public issuance : any;
-    private ReturnMedicineForm : FormGroup;
-    private AllCustomers : any;
-    private customerdata : any ={};
+    public issuance: any;
+    private ReturnMedicineForm: FormGroup;
+    private AllCustomers: any;
+    private customerdata: any = {};
 
 
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
 
@@ -28,9 +28,9 @@ export class ReturnmedicineComponent implements OnInit {
             Department: [''],
             Remarks: [''],
 
-            ReturnNo:[''],
-            ReturnDate : [''],
-            SlipNo : [''],
+            ReturnNo: [''],
+            ReturnDate: [''],
+            SlipNo: [''],
             // InventoryItems : ['']
 
         });
@@ -49,7 +49,7 @@ export class ReturnmedicineComponent implements OnInit {
         });
     }
 
-    getcellvalueForCustomer(value){
+    getcellvalueForCustomer(value) {
         console.log(value);
         this.customerdata = this.AllCustomers.find(x => x.crn == value);
         console.log(this.customerdata);
@@ -70,38 +70,35 @@ export class ReturnmedicineComponent implements OnInit {
         return await this.PharmacyService.DeleteSalesReturn(value.Key.SalesReturnId);
     }
 
-    
-    public vae : any;
-    onsubmit(value)
-    {
+
+    public vae: any;
+    onsubmit(value) {
         this.vae = value;
         console.log(value);
     }
 
-        keyPress(event: any){
-            console.log(event)
+    keyPress(event: any) {
+        console.log(event)
+    }
+
+    onKeydown(value, event) {
+        if (event.key === "Enter") {
+            console.log(value);
+
         }
-
-        onKeydown(value, event) {
-            if (event.key === "Enter") {
-              console.log(value);
-
-            }
-          }
+    }
 
     public rr = [];
     public rrrr = [];
-    AddIssuance(value)
-    {
+    AddIssuance(value) {
         console.log(value);
-        let x  =  value.data;
+        let x = value.data;
         this.rr.push(x);
-  
+
         console.log(this.rr)
     }
 
-    addfinal()
-    {
+    addfinal() {
         this.ReturnMedicineForm.value.InventoryItems = this.rr;
         console.log(this.ReturnMedicineForm.value);
     }
@@ -123,8 +120,7 @@ export class ReturnmedicineComponent implements OnInit {
     // }
 
 
-    setAreaValue(rowData: any,value : any) : void
-    {
+    setAreaValue(rowData: any, value: any): void {
         console.log(value);
     }
 }

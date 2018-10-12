@@ -21,5 +21,5 @@ export interface PurchaseOrder {
     Status: boolean,
     SupplierId: number,
     UserId: number,
-    PurchaseOrderDetails : PurchaseOrderItem[]
+    PurchaseOrderDetails: PurchaseOrderItem[]
 }

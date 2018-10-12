@@ -8,20 +8,20 @@ import { PackSize } from '../../../core/Models/Pharmacy/PackSize';
     styleUrls: ['./product-pack-size.component.scss']
 })
 export class ProductPackSizeComponent implements OnInit {
-    private PackSizes : PackSize;
-    private UpdatedModel : any;
+    private PackSizes: PackSize;
+    private UpdatedModel: any;
 
-    constructor(private PharmacyService : PharmacyService) {
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-       this.PharmacyService.GetPackSizes().subscribe((res : PackSize) => this.PackSizes = res);
+        this.PharmacyService.GetPackSizes().subscribe((res: PackSize) => this.PackSizes = res);
     }
 
     async AddPackSize(value) {
         await this.PharmacyService.AddPackSize(value.data).toPromise();
-        this.PharmacyService.GetPackSizes().subscribe((res : PackSize) => this.PackSizes = res);
+        this.PharmacyService.GetPackSizes().subscribe((res: PackSize) => this.PackSizes = res);
     }
 
     UpdateModel(value) {

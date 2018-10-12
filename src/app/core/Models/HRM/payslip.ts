@@ -12,9 +12,9 @@ export class PaySlip {
     taxAmount: number;
     pfDeductionAmount: number;
     loanDeductionAmount: number;
-    netAmount: number; 
-    monthlyUserSalaryId: number; 
-    userId: number; 
-    UserLoanPayslips : UserLoanPayslip[];
-    
+    netAmount: number;
+    monthlyUserSalaryId: number;
+    userId: number;
+    UserLoanPayslips: UserLoanPayslip[];
+
 }

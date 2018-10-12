@@ -11,10 +11,10 @@ import { InventorysystemService } from '../../../core';
 })
 export class SupplierComponent implements OnInit {
     public Supplier: any;
-    public UpdatedModel : any;
+    public UpdatedModel: any;
 
     constructor(private InventoryService: InventorysystemService) {
-       
+
     }
 
     async  ngOnInit() {
@@ -27,7 +27,7 @@ export class SupplierComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateSupplier() {

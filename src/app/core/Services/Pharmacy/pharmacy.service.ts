@@ -32,63 +32,63 @@ import { Currency } from '../../Models/Pharmacy/Currency';
 export class PharmacyService {
 
     private readonly API_URL = 'inventory/api/';
-    constructor(private http: HttpClient, private ApiService : ApiService) {
+    constructor(private http: HttpClient, private ApiService: ApiService) {
 
     }
 
     //SalesOrder
-    GetSalesOrders() : Observable<SalesOrder> {
+    GetSalesOrders(): Observable<SalesOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrders');
     }
 
-    AddSalesOrder(SalesOrder: SalesOrder) : Observable<SalesOrder> {
+    AddSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesOrder", SalesOrder);
     }
 
-    UpdateSalesOrder(SalesOrder: SalesOrder) : Observable<SalesOrder> {
+    UpdateSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder);
     }
 
-    DeleteSalesOrder(id : number) : Observable<SalesOrder> {
+    DeleteSalesOrder(id: number): Observable<SalesOrder> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrder/' + id);
     }
 
-    GetSalesOrderDetailsByCode(code : string) : Observable<SalesOrder> {
+    GetSalesOrderDetailsByCode(code: string): Observable<SalesOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderDetailsByCode/' + code);
     }
 
     //SalesOrderItem
 
-    GetSalesOrderItems() : Observable<SalesOrderItem> {
+    GetSalesOrderItems(): Observable<SalesOrderItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItems');
     }
 
-    AddSalesOrderItem(SalesOrderItem: SalesOrderItem) : Observable<SalesOrderItem> {
+    AddSalesOrderItem(SalesOrderItem: SalesOrderItem): Observable<SalesOrderItem> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesOrderItem", SalesOrderItem);
     }
 
-    UpdateSalesOrderItem(SalesOrderItem: SalesOrderItem) : Observable<SalesOrderItem> {
+    UpdateSalesOrderItem(SalesOrderItem: SalesOrderItem): Observable<SalesOrderItem> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrderItem', SalesOrderItem);
     }
 
-    DeleteSalesOrderItem(id : number) : Observable<SalesOrderItem> {
+    DeleteSalesOrderItem(id: number): Observable<SalesOrderItem> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrderItem/' + id);
     }
 
     //SalesReturn
-    GetSalesReturns() : Observable<SalesReturn> {
+    GetSalesReturns(): Observable<SalesReturn> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturns');
     }
 
-    AddSalesReturn(SalesReturn: SalesReturn) : Observable<SalesReturn> {
+    AddSalesReturn(SalesReturn: SalesReturn): Observable<SalesReturn> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesReturn", SalesReturn);
     }
 
-    UpdateSalesReturn(SalesReturn: SalesReturn) : Observable<SalesReturn> {
+    UpdateSalesReturn(SalesReturn: SalesReturn): Observable<SalesReturn> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesReturn', SalesReturn);
     }
 
-    DeleteSalesReturn(id : number) : Observable<SalesReturn> {
+    DeleteSalesReturn(id: number): Observable<SalesReturn> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturn/' + id);
     }
 
@@ -96,304 +96,304 @@ export class PharmacyService {
     //     return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code).toPromise();
     // }
 
-    GetSalesReturnDetailsByCode(code) : Observable<SalesReturnItem> {
+    GetSalesReturnDetailsByCode(code): Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code);
     }
 
     //SalesReturnItem
-    GetSalesReturnItems() : Observable<SalesReturnItem> {
+    GetSalesReturnItems(): Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnItems');
     }
 
-    AddSalesReturnItem(SalesReturnItem: SalesReturnItem) : Observable<SalesReturnItem> {
+    AddSalesReturnItem(SalesReturnItem: SalesReturnItem): Observable<SalesReturnItem> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesReturnItem", SalesReturnItem);
     }
 
-    UpdateSalesReturnItem(SalesReturnItem: SalesReturnItem) : Observable<SalesReturnItem> {
+    UpdateSalesReturnItem(SalesReturnItem: SalesReturnItem): Observable<SalesReturnItem> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesReturnItem', SalesReturnItem);
     }
 
-    DeleteSalesReturnItem(id) : Observable<SalesReturnItem> {
+    DeleteSalesReturnItem(id): Observable<SalesReturnItem> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesReturnItem/' + id);
     }
 
     //PurchaseOrder
-    GetPurchaseOrders() : Observable<PurchaseOrder> {
+    GetPurchaseOrders(): Observable<PurchaseOrder> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrders');
     }
 
-    AddPurchaseOrder(PurchaseOrder: PurchaseOrder) : Observable<PurchaseOrder> {
+    AddPurchaseOrder(PurchaseOrder: PurchaseOrder): Observable<PurchaseOrder> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseOrder', PurchaseOrder);
     }
 
-    UpdatePurchaseOrder(PurchaseOrder: PurchaseOrder) : Observable<PurchaseOrder> {
+    UpdatePurchaseOrder(PurchaseOrder: PurchaseOrder): Observable<PurchaseOrder> {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseOrder', PurchaseOrder);
     }
 
-    DeletePurchaseOrder(id : number) : Observable<PurchaseOrder> {
+    DeletePurchaseOrder(id: number): Observable<PurchaseOrder> {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrder/' + id);
     }
 
-    GetPurchaseOrderDetailsByCode(code : string) : Observable<PurchaseOrder> {
+    GetPurchaseOrderDetailsByCode(code: string): Observable<PurchaseOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetPurchaseOrderDetailsByCode/' + code);
     }
 
     //PurchaseOrderItem
-    GetPurchaseOrderItems() : Observable<PurchaseOrderItem> {
+    GetPurchaseOrderItems(): Observable<PurchaseOrderItem> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderItems');
     }
 
-    AddPurchaseOrderItem(PurchaseOrderItem: PurchaseOrderItem) : Observable<PurchaseOrderItem> {
+    AddPurchaseOrderItem(PurchaseOrderItem: PurchaseOrderItem): Observable<PurchaseOrderItem> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseOrderItem', PurchaseOrderItem);
     }
 
-    UpdatePurchaseOrderItem(PurchaseOrderItem: PurchaseOrderItem) : Observable<PurchaseOrderItem> {
+    UpdatePurchaseOrderItem(PurchaseOrderItem: PurchaseOrderItem): Observable<PurchaseOrderItem> {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseOrderItem', PurchaseOrderItem);
     }
 
-    DeletePurchaseOrderItem(id : number) : Observable<PurchaseOrderItem> {
+    DeletePurchaseOrderItem(id: number): Observable<PurchaseOrderItem> {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrderItem/' + id);
     }
 
     //GRN
-    GetGRN() : Observable<GRN> {
+    GetGRN(): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNs');
     }
 
-    AddGRN(GRN: GRN) : Observable<GRN> {
+    AddGRN(GRN: GRN): Observable<GRN> {
         return this.ApiService.post(this.API_URL + "Purchase/AddGRN", GRN);
     }
 
-    UpdateGRN(GRN: GRN) : Observable<GRN> {
+    UpdateGRN(GRN: GRN): Observable<GRN> {
         return this.ApiService.put(this.API_URL + 'Purchase/UpdateGRN', GRN);
     }
 
-    DeleteGRN(id : number) : Observable<GRN> {
+    DeleteGRN(id: number): Observable<GRN> {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN' + id);
     }
 
-    GetGrnDetailsByCode(code : string) : Observable<GRN> {
+    GetGrnDetailsByCode(code: string): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Sales/GetGrnDetailsByCode/' + code);
     }
 
     //Inventory
-    GetInventories() : Observable<Inventory> {
+    GetInventories(): Observable<Inventory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventories');
     }
 
-    AddInventory(Inventory: Inventory) : Observable<Inventory> {
+    AddInventory(Inventory: Inventory): Observable<Inventory> {
         return this.ApiService.post(this.API_URL + 'Setup/AddInventory', Inventory);
     }
 
-    UpdateInventory(Inventory: Inventory) : Observable<Inventory> {
+    UpdateInventory(Inventory: Inventory): Observable<Inventory> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventory', Inventory);
     }
 
-    DeleteInventory(id) : Observable<Inventory> {
+    DeleteInventory(id): Observable<Inventory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventory/' + id);
     }
 
-    GetInventoryByItemId(id) : Observable<Inventory> {
+    GetInventoryByItemId(id): Observable<Inventory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryByItemId/' + id);
     }
-    
-    UpdateInventories(Inventories : Inventory[]) : Observable<any> {
+
+    UpdateInventories(Inventories: Inventory[]): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', Inventories);
     }
 
     //InventoryItem
-    GetInventoryItems() : Observable<InventoryItem> {
+    GetInventoryItems(): Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
     }
-    
+
     async  GetInventoryItemstest() {
         return await this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems').toPromise();
     }
 
-    AddInventoryItem(InventoryItem: InventoryItem) : Observable<InventoryItem> {
+    AddInventoryItem(InventoryItem: InventoryItem): Observable<InventoryItem> {
         console.log(InventoryItem);
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryItem', InventoryItem);
     }
 
-    UpdateInventoryItem(InventoryItem: InventoryItem) : Observable<InventoryItem> {
+    UpdateInventoryItem(InventoryItem: InventoryItem): Observable<InventoryItem> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventoryItem', InventoryItem);
     }
 
-    DeleteInventoryItem(id : number) : Observable<InventoryItem> {
+    DeleteInventoryItem(id: number): Observable<InventoryItem> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventoryItem/' + id);
     }
 
     //InventoryItemCategory
-    GetInventoryItemCategories() : Observable<InventoryItemCategory> {
+    GetInventoryItemCategories(): Observable<InventoryItemCategory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCategories');
     }
 
-    AddInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<InventoryItemCategory> {
+    AddInventoryItemCategory(InventoryItemCategory: InventoryItemCategory): Observable<InventoryItemCategory> {
         return this.ApiService.post(this.API_URL + 'Setup/AddCategory', InventoryItemCategory);
     }
 
-    UpdateInventoryItemCategory(InventoryItemCategory: InventoryItemCategory) : Observable<InventoryItemCategory> {
+    UpdateInventoryItemCategory(InventoryItemCategory: InventoryItemCategory): Observable<InventoryItemCategory> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateCategory', InventoryItemCategory);
     }
 
-    DeleteInventoryItemCategory(id : number) : Observable<InventoryItemCategory> {
+    DeleteInventoryItemCategory(id: number): Observable<InventoryItemCategory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCategory/' + id);
     }
 
-     //Currency
-     GetCurrency() : Observable<Currency[]> {
+    //Currency
+    GetCurrency(): Observable<Currency[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrencies');
     }
 
-    AddCurrency(Currency: Currency) : Observable<Currency> {
+    AddCurrency(Currency: Currency): Observable<Currency> {
         return this.ApiService.post(this.API_URL + 'Setup/AddInventoryCurrency', Currency);
     }
 
-    UpdateCurrency(Currency: Currency) : Observable<Currency> {
+    UpdateCurrency(Currency: Currency): Observable<Currency> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventoryCurrency', Currency);
     }
 
-    DeleteCurrency(id : number) : Observable<Currency> {
+    DeleteCurrency(id: number): Observable<Currency> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteInventoryCurrency/' + id);
     }
 
     //PackageType
-    GetPackageTypes() : Observable<PackageType> {
+    GetPackageTypes(): Observable<PackageType> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackageTypes');
     }
 
-    AddPackageType(PackageType: PackageType) : Observable<PackageType> {
+    AddPackageType(PackageType: PackageType): Observable<PackageType> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackageType', PackageType);
     }
 
-    UpdatePackageType(PackageType: PackageType) : Observable<PackageType> {
+    UpdatePackageType(PackageType: PackageType): Observable<PackageType> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdatePackageType', PackageType);
     }
 
-    DeletePackageType(id : number) : Observable<PackageType> {
+    DeletePackageType(id: number): Observable<PackageType> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeletePackageType/' + id);
     }
 
     //PackCategory
-    GetPackCategories() : Observable<PackCategory> {
+    GetPackCategories(): Observable<PackCategory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackCategories');
     }
 
-    AddPackCategory(PackCategory: PackCategory) : Observable<PackCategory> {
+    AddPackCategory(PackCategory: PackCategory): Observable<PackCategory> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackCategory', PackCategory);
     }
 
-    UpdatePackCategory(PackCategory: PackCategory) : Observable<PackCategory> {
+    UpdatePackCategory(PackCategory: PackCategory): Observable<PackCategory> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdatePackCategory', PackCategory);
     }
 
-    DeletePackCategory(id : number) : Observable<PackCategory> {
+    DeletePackCategory(id: number): Observable<PackCategory> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeletePackCategory/' + id);
     }
 
     //PackSize
-    GetPackSizes() : Observable<PackSize> {
+    GetPackSizes(): Observable<PackSize> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackSizes');
     }
 
-    AddPackSize(PackSize: PackSize) : Observable<PackSize> {
+    AddPackSize(PackSize: PackSize): Observable<PackSize> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackSize', PackSize);
     }
 
-    UpdatePackSize(PackSize: PackSize) : Observable<PackSize> {
+    UpdatePackSize(PackSize: PackSize): Observable<PackSize> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdatePackSize', PackSize);
     }
 
-    DeletePackSize(id : number) : Observable<PackSize> {
+    DeletePackSize(id: number): Observable<PackSize> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeletePackSize/' + id);
     }
 
     //PackType
-    GetPackTypes() : Observable<PackType> {
+    GetPackTypes(): Observable<PackType> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackTypes');
     }
 
-    AddPackType(PackType: PackType) : Observable<PackType> {
+    AddPackType(PackType: PackType): Observable<PackType> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackType', PackType);
     }
 
-    UpdatePackType(PackType: PackType) : Observable<PackType> {
+    UpdatePackType(PackType: PackType): Observable<PackType> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdatePackType', PackType);
     }
 
-    DeletePackType(id : number) : Observable<PackType> {
+    DeletePackType(id: number): Observable<PackType> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeletePackType/' + id);
     }
 
     //ProductType
-    GetProductTypes() : Observable<ProductType> {
+    GetProductTypes(): Observable<ProductType> {
         return this.ApiService.get(this.API_URL + 'Setup/GetProductTypes');
     }
 
-    AddProductType(ProductType: ProductType) : Observable<ProductType> {
+    AddProductType(ProductType: ProductType): Observable<ProductType> {
         return this.ApiService.post(this.API_URL + 'Setup/AddProductType', ProductType);
     }
 
-    UpdateProductType(ProductType: ProductType) : Observable<ProductType> {
+    UpdateProductType(ProductType: ProductType): Observable<ProductType> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateProductType', ProductType);
     }
 
-    DeleteProductType(id : number) : Observable<ProductType> {
+    DeleteProductType(id: number): Observable<ProductType> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteProductType/' + id);
     }
-    
+
     //ReturnReason
-    GetReturnReasons() : Observable<ReturnReason> {
+    GetReturnReasons(): Observable<ReturnReason> {
         return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasons');
     }
 
-    AddReturnReason(ReturnReason: ReturnReason) : Observable<ReturnReason> {
+    AddReturnReason(ReturnReason: ReturnReason): Observable<ReturnReason> {
         return this.ApiService.post(this.API_URL + 'Setup/AddReturnReason', ReturnReason);
     }
 
-    UpdateReturnReason(ReturnReason: ReturnReason) : Observable<ReturnReason> {
+    UpdateReturnReason(ReturnReason: ReturnReason): Observable<ReturnReason> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateReturnReason', ReturnReason);
     }
 
-    DeleteReturnReason(id : number) : Observable<ReturnReason> {
+    DeleteReturnReason(id: number): Observable<ReturnReason> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteReturnReason/' + id);
     }
 
     //Supplier
-    GetSuppliers() : Observable<Supplier> {
+    GetSuppliers(): Observable<Supplier> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
     }
 
-    AddSupplier(Supplier: Supplier) : Observable<Supplier> {
+    AddSupplier(Supplier: Supplier): Observable<Supplier> {
         return this.ApiService.post(this.API_URL + 'Setup/AddSupplier', Supplier);
     }
 
-    UpdateSupplier(Supplier: Supplier) : Observable<Supplier> {
+    UpdateSupplier(Supplier: Supplier): Observable<Supplier> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateSupplier', Supplier);
     }
 
-    DeleteSupplier(id: number) : Observable<Supplier> {
+    DeleteSupplier(id: number): Observable<Supplier> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteSupplier/' + id);
     }
 
     //Unit
-    GetUnits() : Observable<Unit> {
+    GetUnits(): Observable<Unit> {
         return this.ApiService.get(this.API_URL + 'Setup/GetUnits');
     }
 
-    AddUnit(Unit: Unit) : Observable<Unit> {
+    AddUnit(Unit: Unit): Observable<Unit> {
         return this.ApiService.post(this.API_URL + 'Setup/AddUnit', Unit);
     }
 
-    UpdateUnit(Unit: Unit) : Observable<Unit> {
+    UpdateUnit(Unit: Unit): Observable<Unit> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateUnit', Unit);
     }
 
-    DeleteUnit(id : number) : Observable<Unit> {
+    DeleteUnit(id: number): Observable<Unit> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteUnit/' + id);
     }
 
-    getCustomers() : Observable<Customer>{
-        return this.ApiService.get(this.API_URL+'Setup/GetCustomers');
+    getCustomers(): Observable<Customer> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCustomers');
     }
 }

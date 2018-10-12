@@ -9,13 +9,13 @@ import { AttendanceService, AttendancesetupService, EmployeeService } from '../.
 export class OvertimeEntitlementComponent implements OnInit {
 
     public overtimeEntitlement: any;
-    constructor(public attendanceservice: AttendanceService,public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
+    constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
         await this.attendanceservice.getovertimeEntitlements();
         this.overtimeEntitlement = this.attendanceservice.overtimeEntitlement
         //console.log(this.overtimeEntitlement);
-        
+
         await this.attendancesetupservice.getAllovertimetype();
         let overtimetype = this.attendancesetupservice.overtimetype
 

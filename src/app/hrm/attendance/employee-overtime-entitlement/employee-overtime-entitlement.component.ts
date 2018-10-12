@@ -24,12 +24,12 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
     public OffDayOTForm: FormGroup;
     public IncomingOTForm: FormGroup;
     public OutgoingOTForm: FormGroup;
-    
-    constructor(private fb: FormBuilder,public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, 
+
+    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService,
         public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        
+
         this.WorkingDayOTForm = this.fb.group({
             IsIncludeOtWorking: ['', Validators],
             OverTimeTypeId: ['', Validators],
@@ -55,7 +55,7 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
             // EmployeeOffDayOtId: ['', Validators],
             // EmployeeIncomingOtId: ['', Validators],
             // EmployeeOutgoingOtId: ['', Validators] ,
-            UserId: ['', Validators] 
+            UserId: ['', Validators]
         });
 
 
@@ -66,7 +66,7 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         await this.attendanceservice.getemployeeWorkingDayOts();
         this.empworkingot = this.attendanceservice.workingdayot
         console.log(this.empworkingot);
-        
+
         await this.attendanceservice.getemployeeOffdayOts();
         this.empoffdayot = this.attendanceservice.workingoffdayot
         console.log(this.empoffdayot);
@@ -87,25 +87,25 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
     }
 
     async addEmployeeEntitlement() {
-       
-       this.EmployeeEntitlementForm.value.employeeWorkingDayOtID = await this.attendanceservice.addemployeeWorkingDayOt(this.WorkingDayOTForm.value);
-       this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addemployeeOffdayOts(this.OffDayOTForm.value);
-       this.EmployeeEntitlementForm.value.employeeIncomingOtID =  await this.attendanceservice.addemployeeIncomingOts(this.IncomingOTForm.value);
-       this.EmployeeEntitlementForm.value.employeeOutgoingOtID =  await this.attendanceservice.addemployeeOutgoingOt(this.OutgoingOTForm.value);
-       console.log(this.EmployeeEntitlementForm.value);
-       await this.attendanceservice.addempOvertimeEntitlement(this.EmployeeEntitlementForm.value);
+
+        this.EmployeeEntitlementForm.value.employeeWorkingDayOtID = await this.attendanceservice.addemployeeWorkingDayOt(this.WorkingDayOTForm.value);
+        this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addemployeeOffdayOts(this.OffDayOTForm.value);
+        this.EmployeeEntitlementForm.value.employeeIncomingOtID = await this.attendanceservice.addemployeeIncomingOts(this.IncomingOTForm.value);
+        this.EmployeeEntitlementForm.value.employeeOutgoingOtID = await this.attendanceservice.addemployeeOutgoingOt(this.OutgoingOTForm.value);
+        console.log(this.EmployeeEntitlementForm.value);
+        await this.attendanceservice.addempOvertimeEntitlement(this.EmployeeEntitlementForm.value);
     }
 
-    async updatingempEntitlement(value){
-        this.Updatedempovertimeentitlement = {...value.oldData, ...value.newData}; 
-        this.Updatedworkingot = {...value.oldData, ...value.newData}; 
-        this.Updatedincoming = {...value.oldData, ...value.newData}; 
-        this.Updatedoffday = {...value.oldData, ...value.newData}; 
-        this.Updatedoutgoing = {...value.oldData, ...value.newData}; 
+    async updatingempEntitlement(value) {
+        this.Updatedempovertimeentitlement = { ...value.oldData, ...value.newData };
+        this.Updatedworkingot = { ...value.oldData, ...value.newData };
+        this.Updatedincoming = { ...value.oldData, ...value.newData };
+        this.Updatedoffday = { ...value.oldData, ...value.newData };
+        this.Updatedoutgoing = { ...value.oldData, ...value.newData };
     }
-    async updateempoverTimeEntitlement() { 
-        this.attendanceservice.updateempOvertimeEntitlement( this.Updatedempovertimeentitlement);
-        this.attendanceservice.updateemployeeWorkingDayOt( this.Updatedworkingot);
+    async updateempoverTimeEntitlement() {
+        this.attendanceservice.updateempOvertimeEntitlement(this.Updatedempovertimeentitlement);
+        this.attendanceservice.updateemployeeWorkingDayOt(this.Updatedworkingot);
         this.attendanceservice.updateemployeeIncomingOts(this.Updatedincoming);
         this.attendanceservice.updateemployeeOffdayOts(this.Updatedoffday);
         this.attendanceservice.updateemployeeOutgoingOt(this.Updatedoutgoing);

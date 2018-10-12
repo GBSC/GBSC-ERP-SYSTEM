@@ -18,7 +18,7 @@ export class AttendanceFlagExemptionComponent implements OnInit {
 
         await this.attendancesetupservice.getattendanceflag();
         let flag = this.attendancesetupservice.attendanceflag;
-        
+
         await this.attendancesetupservice.getflagtypes();
         let flagtype = this.attendancesetupservice.flagtype;
 

@@ -9,23 +9,23 @@ import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
 })
 export class ProductTypeComponent implements OnInit {
     private ProductTypes: ProductType;
-    private UpdatedModel : any;
-    
+    private UpdatedModel: any;
+
     constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
     }
 
     async AddProductType(value) {
         await this.PharmacyService.AddProductType(value.data).toPromise();
-        this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateProductType() {

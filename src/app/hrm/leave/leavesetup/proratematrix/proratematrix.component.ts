@@ -20,7 +20,7 @@ export class ProratematrixComponent implements OnInit {
         console.log(this.proratematrix);
 
         this.leavepolicy = await this.leavesetupservice.getAllleavepolicy();
- 
+
         this.leaveemppolicy = await this.leaveservice.getleavepolicyemployee();
 
     }
@@ -30,14 +30,14 @@ export class ProratematrixComponent implements OnInit {
     }
 
     updatingpromatrix(value) {
-        this.promatrix = {...value.oldData, ...value.newData};
+        this.promatrix = { ...value.oldData, ...value.newData };
     }
-   
-     updatepromatrix() {
-         this.leavesetupservice.updateproratematrix( this.promatrix);
+
+    updatepromatrix() {
+        this.leavesetupservice.updateproratematrix(this.promatrix);
     }
 
     async deleteprmatrix(value) {
-       await this.leavesetupservice.Deleteproratematrix(value.key);
+        await this.leavesetupservice.Deleteproratematrix(value.key);
     }
 }

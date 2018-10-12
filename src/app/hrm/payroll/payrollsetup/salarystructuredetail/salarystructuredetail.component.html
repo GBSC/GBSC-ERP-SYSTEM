@@ -27,19 +27,19 @@
                 </dxo-pager>
 
                 <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.salarycalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="benefitId" caption="Benefit">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.benefits" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                 </dxi-column>
 
                 <dxi-column dataField="allowanceId" caption="Allowance">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
                 </dxi-column>
                 
                 <dxi-column dataField="salaryStructureId" caption="Salary Structure">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.salarystructure" displayExpr="title" valueExpr="salaryStructureId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="salarystructure" displayExpr="title" valueExpr="salaryStructureId"></dxo-lookup>
                 </dxi-column>
  
                 <dxi-column dataField="value" caption="Value"></dxi-column>

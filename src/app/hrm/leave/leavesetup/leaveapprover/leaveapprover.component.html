@@ -31,7 +31,7 @@
 
                 <dxi-column dataField="name" caption="Name"></dxi-column>
                 <dxi-column dataField="userId" caption="Employee">
-                    <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                    <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                     </dxo-lookup> 
               </dxi-column>
               <!-- <dxi-column dataField="name" caption="Name"></dxi-column>  -->

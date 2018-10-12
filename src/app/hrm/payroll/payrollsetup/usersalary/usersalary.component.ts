@@ -9,34 +9,34 @@ import { PayrollSetupService, SetupService, EmployeeService } from '../../../../
 export class UsersalaryComponent implements OnInit {
 
     public userSalary: any;
+    public users: any;
+    public incometaxRule: any;
     public groups: any;
+
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getusersalaries();
-        this.userSalary = this.payrollsetupservice.usersalary;
 
-        await this.payrollsetupservice.getincometaxrules();
-        let incometaxRule = this.payrollsetupservice.incometaxrule;
+        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+
+        this.incometaxRule = await this.payrollsetupservice.getIncomeTaxRules();
 
         this.groups = await this.setupservice.getAllGroups();
 
-        await this.employeeservice.GetAllEmployees();
-        let user = this.employeeservice.employeereg;
+        this.users = await this.employeeservice.GetAllEmployees();
     }
 
     async addUserSalary(value) {
-        await this.payrollsetupservice.addusersalary(value.data);
+        await this.payrollsetupservice.addUserSalary(value.data);
     }
 
-    async updateUserSalary(value) {
-        console.log(value);
-        await this.payrollsetupservice.updateusersalary(value);
+    async updateUserSalary(value) { 
+        await this.payrollsetupservice.updateUserSalary(value);
     }
 
     async deleteUserSalary(value) {
-        await this.payrollsetupservice.Deleteusersalary(value.key);
+        await this.payrollsetupservice.deleteUserSalary(value.key);
     }
 
 }

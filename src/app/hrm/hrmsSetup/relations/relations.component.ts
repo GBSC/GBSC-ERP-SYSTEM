@@ -17,13 +17,9 @@ export class RelationComponent implements OnInit {
 
     async ngOnInit() {
         await this.dataService.getAllRelation();
-        this.relation = this.dataService.relation;
-        // console.log(this.relation);
-        // this.dataService.GetAllRelation().subscribe((data)=>this.Relation=data);
+        this.relation = this.dataService.relation; 
     }
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
+ 
 
     addrelation(relation) {
         this.dataService.addRelation(relation.data);

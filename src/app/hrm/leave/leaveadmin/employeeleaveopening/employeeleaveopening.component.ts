@@ -42,9 +42,9 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
         this.employees = await this.empservice.GetAllEmployees(); 
 
-        this.leaveYear = await this.leavesetupservice.getAllleaveyear(); 
+        this.leaveYear = await this.leavesetupservice.getLeaveYears(); 
 
-        this.leaveType = await this.leavesetupservice.getAllleavetype();
+        this.leaveType = await this.leavesetupservice.getLeaveTypes();
     }
 
 

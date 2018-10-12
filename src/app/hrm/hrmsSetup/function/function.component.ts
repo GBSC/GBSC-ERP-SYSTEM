@@ -19,8 +19,6 @@ export class FunctionComponent implements OnInit {
 
         await this.dataService.getAllFunctions();
         this.func = this.dataService.function;
-        console.log(this.func);
-
     }
 
 

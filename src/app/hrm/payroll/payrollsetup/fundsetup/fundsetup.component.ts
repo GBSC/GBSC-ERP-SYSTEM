@@ -11,7 +11,8 @@ export class FundsetupComponent implements OnInit {
 
     public fundSetup: any;
     public FundSetupForm: FormGroup;
-    private updatingfundSetup: any;
+    public payrollYears: any;
+    public updatingfundSetup: any;
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
@@ -40,17 +41,14 @@ export class FundsetupComponent implements OnInit {
             IessiEmployeeContribution: ['', Validators]
         });
 
-        await this.payrollsetupservice.getfundsetups();
-        this.fundSetup = this.payrollsetupservice.fundsetup;
+        this.fundSetup = await this.payrollsetupservice.getFundSetups();
 
-        await this.payrollsetupservice.getpayrollyears();
-        let Payrollyear = this.payrollsetupservice.payrollyear;
+        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
     }
 
     async addFundSetup() {
-        await this.payrollsetupservice.addfundsetup(this.FundSetupForm.value);
-        console.log(this.FundSetupForm.value);
 
+        await this.payrollsetupservice.addFundSetup(this.FundSetupForm.value);
     }
 
     updatingFundSetup(value) {
@@ -58,11 +56,11 @@ export class FundsetupComponent implements OnInit {
     }
 
     async updateFundSetup() {
-        await this.payrollsetupservice.updatefundsetup(this.updatingfundSetup);
+        await this.payrollsetupservice.updateFundSetup(this.updatingfundSetup);
     }
 
     async deleteFundSetup(value) {
-        await this.payrollsetupservice.Deletefundsetup(value.key);
+        await this.payrollsetupservice.deleteFundSetup(value.key);
     }
 
 }

@@ -19,20 +19,8 @@ export class DocumentComponent implements OnInit {
 
     async ngOnInit() {
 
-        // this.documentForm = this.fb.group({
-        //   AccountTitle: ['', Validators.required],
-        //   AccountNumber: ['', Validators.required],
-        //   BankName: ['', Validators.required],
-        //   BankCode: ['', Validators.required],
-        //   BankBranch: ['', Validators.required]
-        // }); 
-        // await this.employee.GetDocumentsByUserId();
-        // let UserDocuments = this.employee.DocumentsByUserId;
-
     }
-    async addDocuments() {
-        // let doc = await this.employee.adduserDocuments();
-        // console.log(doc);
+    async addDocuments() { 
     }
 
 
@@ -40,9 +28,7 @@ export class DocumentComponent implements OnInit {
     public allDocs: File[] = [];
 
     fileselect(event) {
-        console.log(event);
         this.forimg = event.target.files;
-        console.log(this.forimg);
     }
 
 
@@ -56,16 +42,10 @@ export class DocumentComponent implements OnInit {
                 y.append('models', this.forimg[i]);
             }
 
-        }
-        // await this.employee.GetDocumentsByUserId();
-        // this.employee.DocumentsByUserId;
-        // await this.employee.addDocuments(y);
-        // await this.employee.GetDocumentsByUserId();
-        // this.employee.DocumentsByUserId;
+        } 
     }
 
     async  deleteUserDocument(value) {
-        console.log(value);
         let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
     }
 

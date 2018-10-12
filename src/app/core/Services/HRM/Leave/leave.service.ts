@@ -5,23 +5,12 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class LeaveService {
 
-    public leaveopening;
-    public leaveopeningdetail;
-    public leaverequest;
-    public leavepolicyemployee;
-    public leaverequestdetail;
-    //private baseUrl: string = "http://localhost:58090/api";
     private baseUrl: string = "SystemAdmin/api";
-    public leaveapproval;
-    public leaveclosing: Object;
-    public newleaverequest;
-    public newleaveopen;
 
     constructor(private ApiService: ApiService) { }
 
-    /** CRUD METHODS LEAVE OPENING */
     async getLeaveOpening() {
- 
+
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveOpenings`).toPromise();
     }
 
@@ -29,22 +18,18 @@ export class LeaveService {
         return await this.ApiService.get(`${this.baseUrl}/${leaveUrl}/${leaveId}`).toPromise();
     }
 
-
-    // DEMO ONLY, you can find working methods below
     async addLeaveOpening(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data).toPromise();
     }
 
-    async updateLeaveOpening(data) { 
+    async updateLeaveOpening(data) {
 
         let leaveopen = await this.getdataToUpdate(data.key, 'GetLeaveOpening');
-        leaveopen = { ...leaveopen, ...data.data }  
+        leaveopen = { ...leaveopen, ...data.data }
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, leaveopen).toPromise();
 
     }
-
-
 
     async deleteLeaveOpening(leaveOpeningId) {
 
@@ -54,12 +39,12 @@ export class LeaveService {
 
     async getLeaveOpeningDetail() {
 
-      return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveOpeningDetails`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveOpeningDetails`).toPromise();
     }
 
     async addLeaveOpeningDetail(data) {
 
-     return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
     }
 
     async updateLeaveOpeningDetail(data) {
@@ -71,45 +56,36 @@ export class LeaveService {
     }
 
     async DeleteLeaveOpeningDetail(leaveOpeningdetailId) {
-         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
+        return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
     }
 
-    /** CRUD METHODS LEAVE REQUEST*/
+
     async getLeavePolicyEmployee() {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployees`).toPromise();
     }
 
-
-    // DEMO ONLY, you can find working methods below
     async addLeavePolicyEmployee(data) {
-        
+
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeavePolicyEmployee`, data).toPromise();
-        
+
     }
 
     async updateLeavePolicyEmployee(data) {
-        
+
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee`, data).toPromise();
 
     }
-
-
 
     async DeleteLeavePolicyEmployee(id) {
 
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeavePolicyEmployee/${id}`).toPromise();
     }
 
-    //   Leave Admin Methods
-
-    /** CRUD METHODS LEAVE REQUEST*/
     async getAllleaverequest() {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequests`).toPromise();
 
     }
 
-
-    // DEMO ONLY, you can find working methods below
     async addLeaveRequest(data) {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data).toPromise();
     }
@@ -117,7 +93,7 @@ export class LeaveService {
     async updateLeaveRequest(data) {
 
         let leaverqst = await this.getdataToUpdate(data.key, 'GetLeaveRequest');
-        leaverqst = { ...leaverqst, ...data.data } 
+        leaverqst = { ...leaverqst, ...data.data }
         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, leaverqst).toPromise();
     }
 
@@ -130,11 +106,11 @@ export class LeaveService {
 
     /** CRUD METHODS LEAVE REQUEST*/
     async getLeaveRequestDetails() {
-       return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();
     }
 
 
-    // DEMO ONLY, you can find working methods below
+
     async addLeaveRequestDetail(data) {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
     }
@@ -145,21 +121,19 @@ export class LeaveService {
         return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, leaverqst).toPromise();
 
     }
- 
+
     async DeleteLeaveRequestDetail(leaverequestdetailId) {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/Deleteleaverequestdetail/${leaverequestdetailId}`).toPromise();
     }
 
-    /** CRUD METHODS */
+
     async getLeaveApprovals() {
 
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveApprovals`).toPromise();
     }
 
-
-    // DEMO ONLY, you can find working methods below
     async addLeaveApproval(data) {
- 
+
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveApproval`, data).toPromise();
     }
 
@@ -172,32 +146,27 @@ export class LeaveService {
     }
 
     async DeleteLeaveAapproval(leaveapprovalId) {
- 
+
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveApproval/${leaveapprovalId}`).toPromise();
     }
 
-    /** CRUD METHODS */
-    async getleaveclosings() {
- 
+    async getLeaveClosings() {
+
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveClosings`).toPromise();
     }
-
-
-    // DEMO ONLY, you can find working methods below
-    async addleaveclosing(data) {
  
+    async addLeaveClosing(data) {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveClosing`, data).toPromise();
     }
 
-    async updateleaveclosing(data) {
+    async updateLeaveClosing(data) {
 
         let leaveclosing = await this.getdataToUpdate(data.key, 'Leave/GetLeaveClosing');
         leaveclosing = { ...leaveclosing, ...data.data }
-         return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveClosing`, leaveclosing).toPromise();
-
+        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveClosing`, leaveclosing).toPromise();
     }
 
-    async Deleteleaveclosing(leaveclosingId) {
+    async DeleteLeaveClosing(leaveclosingId) {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveClosing/${leaveclosingId}`).toPromise();
     }
 }

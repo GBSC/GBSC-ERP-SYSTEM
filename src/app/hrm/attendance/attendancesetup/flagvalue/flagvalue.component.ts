@@ -22,7 +22,6 @@ export class FlagvalueComponent implements OnInit {
     }
 
     async updateflagvalue(value) {
-        console.log(value);
         this.attendancesetupservice.updateFlagValue(value);
     }
 

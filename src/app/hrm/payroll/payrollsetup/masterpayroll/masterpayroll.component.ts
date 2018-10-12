@@ -14,15 +14,18 @@ export class MasterpayrollComponent implements OnInit {
     public masterPayroll: any;
     public payrollMaster: any;
     public users: any;
+    public frequency: any;
     public masterdetailupdating: any;
     public masterPayrollDetail: any;
     private payrollDetail: MasterPayrollDetail[];
 
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
+    public banksPayroll: any;
+    public payrollType: any;
     public MasterPayrollForm: any;
     public Masterdetail = [];
+    public allowance: any;
     public MasterDetailForm: any;
+    public currency: any;
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
@@ -37,40 +40,22 @@ export class MasterpayrollComponent implements OnInit {
             PayrollBankId: ['', Validators.required]
         });
 
-        //   this.MasterDetailForm = this.fb.group({
-        //     Value: ['', Validators.required],
-        //     EffectiveDate: ['', Validators.required],
-        //     EndDate: ['', Validators.required],
-        //     AllowanceId: ['', Validators.required],
-        //     FrequencyId: ['', Validators.required],
-        //     PayrollTypeId: ['', Validators.required]
 
-        // });
+        this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
 
-
-        await this.payrollsetupservice.getmasterpayrolls();
-        this.masterPayroll = this.payrollsetupservice.masterpayroll;
-
-        await this.payrollsetupservice.getmasterpayrolldetails();
-        this.masterPayrollDetail = this.payrollsetupservice.masterpayrolldetail;
+        this.masterPayrollDetail = await this.payrollsetupservice.getMasterPayrollDetails();
 
         this.users = await this.empservice.GetAllEmployees();
 
+        this.currency = await this.payrollsetupservice.getCurrencies();
 
-        await this.payrollsetupservice.getCurrencies();
-        let currency = this.payrollsetupservice.Currency;
+        this.allowance = await this.payrollsetupservice.getAllowances(); 
 
-        await this.payrollsetupservice.getallowances();
-        let allowance = this.payrollsetupservice.allowance;
+        this.banksPayroll = await this.payrollsetupservice.getPayrollBanks();
 
-        await this.payrollsetupservice.getpayrollbanks();
-        let bank = this.payrollsetupservice.payrollbank;
+        this.frequency = await this.payrollsetupservice.getFrequencies();
 
-        await this.payrollsetupservice.getfrequencies();
-        let frequency = this.payrollsetupservice.frequency;
-
-        await this.payrollsetupservice.getpayrolltypes();
-        let payrolltype = this.payrollsetupservice.payrolltype;
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
     }
 
 
@@ -81,18 +66,17 @@ export class MasterpayrollComponent implements OnInit {
 
     updatingMasterDetail(value) {
         this.masterdetailupdating = { ...value.oldData, ...value.newData };
-        console.log(value);
 
     }
     async updateMasterDetail() {
-        await this.payrollsetupservice.updatemasterpayrolldetail(this.masterdetailupdating);
+        await this.payrollsetupservice.updateMasterPayrollDetail(this.masterdetailupdating);
     }
 
     async submitForm(value) {
         let masterPayroll = new MasterPayroll();
         masterPayroll = { ...masterPayroll, ...value };
         masterPayroll.MasterPayrollDetails = this.payrollDetail;
-        let x = await this.payrollsetupservice.addmasterpayroll(masterPayroll);
+        let x = await this.payrollsetupservice.addMasterPayroll(masterPayroll);
 
     }
 
@@ -101,13 +85,13 @@ export class MasterpayrollComponent implements OnInit {
     }
 
     async updateMasterPayroll() {
-        await this.payrollsetupservice.updatemasterpayroll(this.payrollMaster);
+        await this.payrollsetupservice.updateMasterPayroll(this.payrollMaster);
     }
 
 
 
     async deleteMasterPayroll(value) {
-        await this.payrollsetupservice.Deletemasterpayroll(value.key);
+        await this.payrollsetupservice.deleteMasterPayroll(value.key);
     }
 
 }

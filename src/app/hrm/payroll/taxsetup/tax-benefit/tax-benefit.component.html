@@ -29,15 +29,15 @@
 							<dxo-paging [pageSize]="8"></dxo-paging>
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 							<dxi-column dataField="payrollTypeId" caption="Payroll Type">
-									<dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+									<dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="taxYearId" caption="Tax Year">
-									<dxo-lookup [dataSource]="payrollsetupservice?.taxyear" displayExpr="name" valueExpr="taxYearId">
+									<dxo-lookup [dataSource]="taxYear" displayExpr="name" valueExpr="taxYearId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="benefitId" caption="Benefit">
-									<dxo-lookup [dataSource]="payrollsetupservice?.benefits" displayExpr="name" valueExpr="benefitId">
+									<dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="from" caption="From" dataType="date" format="shortdate"></dxi-column>

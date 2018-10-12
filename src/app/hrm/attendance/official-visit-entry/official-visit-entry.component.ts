@@ -8,7 +8,10 @@ import { AttendanceService, SystemAdministrationService, EmployeeService } from 
 })
 export class OfficialVisitEntryComponent implements OnInit {
 
+    public branches: any;
+    public employee: any;
     public officialVisitentry: any;
+
     constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
 
@@ -16,11 +19,9 @@ export class OfficialVisitEntryComponent implements OnInit {
         
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
 
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg
+        this.employee = await this.empservice.GetAllEmployees();
 
-        await this.companyservice.getBranches();
-        let branch = this.companyservice.branches
+        this.branches = await this.companyservice.getBranches();
 
     }
 

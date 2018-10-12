@@ -92,8 +92,6 @@ export class EmployeeCompanyComponent implements OnInit {
 
         value.UserId = this.id;
 
-        console.log(value);
-
         if (this.EmployeeCompany.userCompanyId > 0) {
 
             value.UserCompanyId = this.EmployeeCompany.userCompanyId;

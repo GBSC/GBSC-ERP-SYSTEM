@@ -17,8 +17,7 @@ export class CompanyComponent implements OnInit {
 
     async ngOnInit() {
         this.companies = await this.SystemAdministrationServiceobj.getCompanies();
-        //this.companies = this.SystemAdministrationServiceobj.companies;
-        console.log(this.companies);
+
 
     }
 

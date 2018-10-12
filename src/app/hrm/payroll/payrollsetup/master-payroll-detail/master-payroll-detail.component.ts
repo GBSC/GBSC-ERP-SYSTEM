@@ -13,22 +13,21 @@ export class MasterPayrollDetailComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getmasterpayrolldetails();
-        this.masterPayrollDetail = this.payrollsetupservice.masterpayrolldetail;
+
+        this.masterPayrollDetail =  await this.payrollsetupservice.getMasterPayrollDetails();  
     }
 
     async addMasterPayrolldetail(value) {
 
-        let x = await this.payrollsetupservice.addmasterpayroll(value.data);
+         await this.payrollsetupservice.addMasterPayrollDetail(value.data);
     }
 
     updatingMasterDetail(value) {
-        this.masterdetailupdating = { ...value.oldData, ...value.newData };
-        console.log(value);
+        this.masterdetailupdating = { ...value.oldData, ...value.newData }; 
 
     }
     async updateMasterDetail() {
-        await this.payrollsetupservice.updatemasterpayrolldetail(this.masterdetailupdating);
+        await this.payrollsetupservice.updateMasterPayrollDetail(this.masterdetailupdating);
     }
 
 }

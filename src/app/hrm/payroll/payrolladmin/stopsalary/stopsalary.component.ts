@@ -8,31 +8,30 @@ import { PayrollService, PayrollSetupService } from '../../../../core';
 })
 export class StopsalaryComponent implements OnInit {
 
+    public PayrollType: any;
     public StopSalary: any;
     private updatingstopsalary: any;
 
     constructor(public payrollservice: PayrollService, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollservice.getstopsalaries();
-        this.StopSalary = this.payrollservice.stopsalary;
+        this.StopSalary = await this.payrollservice.getStopSalaries();
 
-        await this.payrollsetupservice.getpayrolltypes();
-        let PayrollType = this.payrollsetupservice.payrolltype;
+        this.PayrollType = await this.payrollsetupservice.getPayrollTypes(); 
     }
 
     async addStopSalary(value) {
-        await this.payrollservice.addstopsalary(value.data);
+        await this.payrollservice.addStopSalary(value.data);
     }
 
     StopSalaryUpdating(value) {
         this.updatingstopsalary = { ...value.oldData, ...value.newData };
     }
     async updateStopSalary() {
-        await this.payrollservice.updatestopsalary(this.updatingstopsalary);
+        await this.payrollservice.updateStopSalary(this.updatingstopsalary);
     }
 
     async deleteStopSalary(value) {
-        await this.payrollservice.Deletestopsalary(value.key);
+        await this.payrollservice.deleteStopSalary(value.key);
     }
 }

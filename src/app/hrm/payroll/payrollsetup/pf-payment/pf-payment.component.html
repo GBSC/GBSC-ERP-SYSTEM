@@ -23,13 +23,13 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="leavingReasonId" caption="Leaving Reason">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.leavingreason" displayExpr="name" valueExpr="leavingReasonId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="leavingReason" displayExpr="name" valueExpr="leavingReasonId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="userId" caption="Employee">
-                  <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="fundSetupId" caption="Fund Setup">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.fundsetup" displayExpr="pfEmployeeContribution" valueExpr="fundSetupId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="fundSetup" displayExpr="pfEmployeeContribution" valueExpr="fundSetupId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="isEmployerContribution" caption="Employer Contribution" dataType="boolean"></dxi-column>
                 <dxi-column dataField="isEmployeeContribution" caption="Employee Contribution" dataType="boolean"></dxi-column>

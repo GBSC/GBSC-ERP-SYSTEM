@@ -8,8 +8,9 @@ import { LeaveService, SystemAdministrationService, LeaveSetupService, SetupServ
 })
 export class LeaveclosingComponent implements OnInit {
 
-    public group: any;
-    public leaveyear: any;
+    public departments: any;
+    public groups: any;
+    public leaveYears: any;
     public leaveclose: any;
 
     constructor(public leaveservice: LeaveService, public systemadminservice: SystemAdministrationService,
@@ -17,31 +18,26 @@ export class LeaveclosingComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.leaveclose = await this.leaveservice.getleaveclosings();
+        this.leaveclose = await this.leaveservice.getLeaveClosings();
          
-        await this.leavesetupservice.getAllleaveyear();
-        this.leaveyear = this.leavesetupservice.leaveyear
-        console.log(this.leaveyear);
+        this.leaveYears = await this.leavesetupservice.getLeaveYears(); 
 
-        this.group = await this.setupservice.getAllGroups();
+        this.groups = await this.setupservice.getAllGroups();
 
-        await this.systemadminservice.getDepartments();
-        let department = this.systemadminservice.departments;
+        this.departments =await this.systemadminservice.getDepartments(); 
     }
 
     async addleaveclosing(value) {
-        console.log(value.data);
-        let x = await this.leaveservice.addleaveclosing(value.data);
-        console.log(x)
+        let x = await this.leaveservice.addLeaveClosing(value.data);
     }
 
     async updateleaveclosing(value) {
-        this.leaveservice.updateleaveclosing(value);
+        await this.leaveservice.updateLeaveClosing(value);
 
     }
 
     async deleteleaveclosing(value) {
-        this.leaveservice.Deleteleaveclosing(value.key);
+        this.leaveservice.DeleteLeaveClosing(value.key);
 
 
     }

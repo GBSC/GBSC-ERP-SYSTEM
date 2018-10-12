@@ -82,7 +82,6 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addEmployeeOffdayOts(this.OffDayOTForm.value);
         this.EmployeeEntitlementForm.value.employeeIncomingOtID = await this.attendanceservice.addEmployeeIncomingOts(this.IncomingOTForm.value);
         this.EmployeeEntitlementForm.value.employeeOutgoingOtID = await this.attendanceservice.addEmployeeOutgoingOt(this.OutgoingOTForm.value);
-        console.log(this.EmployeeEntitlementForm.value);
         await this.attendanceservice.addEmpOvertimeEntitlement(this.EmployeeEntitlementForm.value);
     }
 

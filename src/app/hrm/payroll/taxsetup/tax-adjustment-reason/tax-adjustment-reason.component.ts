@@ -9,17 +9,17 @@ import { PayrollSetupService } from '../../../../core';
 export class TaxAdjustmentReasonComponent implements OnInit {
 
     public taxAdjustmentReason: any;
-    Updatingreason: any;
+    public Updatingreason: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.gettaxadjustmentreasons();
-        this.taxAdjustmentReason = this.payrollsetupservice.taxadjustmentreason;
-    }
+
+        this.taxAdjustmentReason = await this.payrollsetupservice.getTaxAdjustmentReasons();
+  }
 
     async addTaxAdjustmentReason(value) {
-        await this.payrollsetupservice.addtaxadjustmentreason(value.data);
+        await this.payrollsetupservice.addTaxAdjustmentReason(value.data);
     }
 
     updatingAdjustmentReason(value) {
@@ -27,11 +27,11 @@ export class TaxAdjustmentReasonComponent implements OnInit {
     }
 
     async updateTaxAdjustmentReason() {
-        await this.payrollsetupservice.updatetaxadjustmentreason(this.Updatingreason);
+        await this.payrollsetupservice.updateTaxAdjustmentReason(this.Updatingreason);
     }
 
     async deleteTaxAdjustmentReason(value) {
-        await this.payrollsetupservice.Deletetaxadjustmentreason(value.key);
+        await this.payrollsetupservice.DeleteTaxAdjustmentReason(value.key);
     }
 
 }

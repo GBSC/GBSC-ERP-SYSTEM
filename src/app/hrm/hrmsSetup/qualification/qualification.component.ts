@@ -15,16 +15,12 @@ export class QualificationComponent implements OnInit {
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
-    async ngOnInit() {
-        //  this.dataService.getAllFunctions().subscribe((data)=>this.qualification=data);
+    async ngOnInit() { 
         await this.dataService.getAllqualifications();
         this.qualification = this.dataService.qualification;
-        console.log(this.qualification);
 
     }
 
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addNewqualification(qfc) {
         this.dataService.addQualification(qfc.data);

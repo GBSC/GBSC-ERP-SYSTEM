@@ -35,7 +35,7 @@
                 <dxi-column dataField="name" caption="Name"></dxi-column>
                 <dxi-column dataField="description" caption="Description"></dxi-column> 
                 <dxi-column dataField="allowanceDeductionId" caption="Allowance Deduction" [width]="300">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.allowancededuction" displayExpr="title" valueExpr="allowanceDeductionId">
+                  <dxo-lookup [dataSource]="allowanceDeductions" displayExpr="title" valueExpr="allowanceDeductionId">
                   </dxo-lookup> 
             </dxi-column>
             <dxi-column dataField="isDefaultAllowance" dataType="boolean"  caption="Default Allowance"></dxi-column>

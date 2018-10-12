@@ -144,8 +144,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
 
         let flagEffecttype = await this.getdataToUpdate(data.key, 'GetFlagEffectType');
         flagEffecttype = { ...flagEffecttype, ...data.data }
-        console.log(flagEffecttype);
-
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagEffectType`, flagEffecttype).toPromise();
 
     }
@@ -154,7 +152,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagEffectType/${id}`).toPromise();
     }
 
-    /** Flag Type CRUD'S */
     async getFlagTypes() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetFlagTypes`).toPromise();
@@ -216,7 +213,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
 
         let roster = await this.getdataToUpdate(data.key, 'Getroster');
         roster = { ...roster, ...data.data }
-        console.log(roster);
         return await this.ApiService.put(`${this.baseUrl}/UpdateRoster`, roster).toPromise();
 
     }
@@ -226,7 +222,6 @@ private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
         return await this.ApiService.delete(`${this.baseUrl}/DeleteRoster/${id}`).toPromise();
     }
 
-    /** Shift CRUD'S */
     async getShifts() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();

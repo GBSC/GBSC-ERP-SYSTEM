@@ -15,26 +15,24 @@ export class PayrollyearComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.payrollsetupservice.getpayrollyears();
-        this.payrollYear = this.payrollsetupservice.payrollyear;
+        this.payrollYear = await this.payrollsetupservice.getPayrollYears();
     }
 
     async addpayrollyear(value) {
-        await this.payrollsetupservice.addpayrollyear(value.data);
+        await this.payrollsetupservice.addPayrollYear(value.data);
     }
 
     updatingpayrollyear(value) {
         this.updatingYear = { ...value.oldData, ...value.newData };
-        console.log(this.updatingYear);
     }
 
     async updatepayrollyear() {
-        await this.payrollsetupservice.updatepayrollyear(this.updatingYear);
+        await this.payrollsetupservice.updatePayrollYear(this.updatingYear);
 
     }
 
     async deletepayrollyear(value) {
-        await this.payrollsetupservice.Deletepayrollyear(value.key);
+        await this.payrollsetupservice.deletePayrollYear(value.key);
     }
 
 }

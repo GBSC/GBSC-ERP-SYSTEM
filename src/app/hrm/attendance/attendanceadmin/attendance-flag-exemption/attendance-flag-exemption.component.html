@@ -33,12 +33,12 @@
                 <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
 
                 <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                  <dxo-lookup [dataSource]="attendancesetupservice?.attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                  <dxo-lookup [dataSource]="attendanceFlag" displayExpr="title" valueExpr="attendanceFlagId">
                   </dxo-lookup>
                   </dxi-column>
 
                 <dxi-column dataField="flagTypeId" caption="Flag Type">
-                  <dxo-lookup [dataSource]="attendancesetupservice?.flagtype" displayExpr="name" valueExpr="flagTypeId">
+                  <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
                   </dxo-lookup>
                   </dxi-column>  
               </dx-data-grid>

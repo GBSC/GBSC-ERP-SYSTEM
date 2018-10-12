@@ -10,7 +10,7 @@ export class AttendanceService {
 
     constructor(private ApiService: ApiService) { }
 
-    /** Attendance Request CRUD METHODS */
+
     async getAttendanceRequests() {
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequests`).toPromise();
     }
@@ -33,7 +33,7 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceRequest/${id}`).toPromise();
     }
 
-    /** OverTime Entitlement CRUD METHODS */
+
     async getEmpOvertimeEntitlements() {
  
         return  await this.ApiService.get(`${this.baseUrl}/GetEmployeeOverTimeEntitlments`).toPromise();
@@ -54,7 +54,7 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteEmployeeOverTimeEntitlment/${id}`).toPromise();
     }
 
-    /** Official Visit Entry CRUD METHODS */
+ 
     async getOfficialVisitEntries() {  
         return await this.ApiService.get(`${this.baseUrl}/GetOfficialVisitEntries`).toPromise();
     }
@@ -69,7 +69,6 @@ export class AttendanceService {
 
         let officialVisitentry = await this.getdataToUpdate(data.key, 'GetOfficialVisitEntry');
         officialVisitentry = { ...officialVisitentry, ...data.data }
-        console.log(officialVisitentry); 
         return await this.ApiService.put(`${this.baseUrl}/UpdateOfficialVisitEntry`, officialVisitentry).toPromise();
 
     }
@@ -92,9 +91,7 @@ export class AttendanceService {
     async updateOvertimeEntitlement(data) {
 
         let overtimeEntitlement = await this.getdataToUpdate(data.key, 'GetOverTimeEntitlement');
-        overtimeEntitlement = { ...overtimeEntitlement, ...data.data }
-        console.log(overtimeEntitlement);
-        
+        overtimeEntitlement = { ...overtimeEntitlement, ...data.data }        
        
         return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeEntitlement`, overtimeEntitlement).toPromise();
 
@@ -105,7 +102,6 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeEntitlement/${id}`).toPromise();
     }
 
-    /**User Roster Attendance CRUD METHODS */
     async getUserRosterAttendances() {
  
         return await this.ApiService.get(`${this.baseUrl}/GetUserRosterAttendances`).toPromise();
@@ -120,7 +116,6 @@ export class AttendanceService {
 
         let userRosterattendance = await this.getdataToUpdate(data.key, 'GetUserRosterAttendance');
         userRosterattendance = { ...userRosterattendance, ...data.data }
-        console.log(userRosterattendance); 
         return await this.ApiService.put(`${this.baseUrl}/UpdateUserRosterAttendance`, userRosterattendance).toPromise();
 
     }
@@ -130,9 +125,6 @@ export class AttendanceService {
     }
 
 
-    /** Attendance  Admin CRUD'S*/
-
-    /** Attendance Flag Exemption CRUD METHODS */
     async getAttendanceFlagExemptions() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlagExemptions`).toPromise();
@@ -141,7 +133,6 @@ export class AttendanceService {
     async addAttendanceFlagExemption(data) {
  
         let newflagexemption = await this.ApiService.post(`${this.baseUrl}/AddAttendanceFlagExemption`, data).toPromise();
-        console.log(newflagexemption);
 
     }
 
@@ -149,7 +140,6 @@ export class AttendanceService {
 
         let attendanceflagexemption = await this.getdataToUpdate(data.key, 'GetAttendanceFlagExemption');
         attendanceflagexemption = { ...attendanceflagexemption, ...data.data }
-        console.log(attendanceflagexemption); 
        
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlagExemption`, attendanceflagexemption).toPromise();
 
@@ -160,7 +150,6 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceFlagExemption/${id}`).toPromise();
     }
 
-    /** Attendance Rule CRUD METHODS */
     async getAttendanceRules() { 
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRules`).toPromise();
 
@@ -175,9 +164,7 @@ export class AttendanceService {
     async updateAttendanceRule(data) {
 
         let attendancerule = await this.getdataToUpdate(data.key, 'GetAttendanceRule');
-        attendancerule = { ...attendancerule, ...data.data }
-        console.log(attendancerule); 
-       
+        attendancerule = { ...attendancerule, ...data.data }       
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRule`, attendancerule).toPromise();
 
     }
@@ -188,7 +175,6 @@ export class AttendanceService {
     }
 
 
-    /** Employee Working Day CRUD METHODS */
     async getEmployeeWorkingDayOts() { 
        return await this.ApiService.get(`${this.baseUrl2}/GetEmployeeWorkingDayOts`).toPromise();
 
@@ -209,7 +195,6 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeWorkingDayOt/${id}`).toPromise();
     }
 
-    /** Employee Working Day CRUD METHODS */
     async getEmployeeOffdayOts() {  
         return await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOffDayOts`).toPromise();
     }
@@ -231,7 +216,6 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOffDayOts/${id}`).toPromise();
     }
 
-    /** Employee Working Day CRUD METHODS */
     async getEmployeeIncomingOts() {
         return await this.ApiService.get(`${this.baseUrl2}/GetEmployeeIncomingOts`).toPromise();
     }
@@ -253,7 +237,6 @@ export class AttendanceService {
         return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeIncomingOt/${id}`).toPromise();
     }
 
-    /** Employee Working Day CRUD METHODS */
     async getEmployeeOutgoingOts() {
  
         return await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOutgoingOts`).toPromise();

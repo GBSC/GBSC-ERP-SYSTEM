@@ -21,7 +21,6 @@ export class FlageffecttypeComponent implements OnInit {
     }
 
     async updateflageffecttype(value) {
-        console.log(value);
         this.attendancesetupservice.updateFlagEffectType(value);
     }
 

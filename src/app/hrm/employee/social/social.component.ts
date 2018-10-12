@@ -51,7 +51,6 @@ export class SocialComponent implements OnInit {
 
     update(value) {
 
-        console.log(value);
         this.employeeService.updateuserSocial(this.id, value).subscribe(resp => this.showSuccess("Social information updated"));
 
     }

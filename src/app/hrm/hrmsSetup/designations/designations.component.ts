@@ -19,14 +19,10 @@ export class DesignationComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllDesignations();
         this.designatn = this.dataService.designation;
-        //console.log(this.designatn);
-        // this.dataService.getAllDesignations().subscribe((data)=>this.designation=data);
+        
     }
 
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
+ 
     addDesignation(desg) {
 
         this.dataService.addDesignation(desg.data);

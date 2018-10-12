@@ -24,7 +24,6 @@ export class OvertimetypeComponent implements OnInit {
     }
 
     async updateovertimetype(value) {
-        console.log(value);
         this.attendancesetupservice.updateOvertimeType(value);
     }
 

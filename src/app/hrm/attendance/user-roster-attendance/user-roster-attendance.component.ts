@@ -20,7 +20,6 @@ export class UserRosterAttendanceComponent implements OnInit {
     }
 
     async updateuserRosterattendance(value) {
-        console.log(value);
         this.attendanceservice.updateUserRosterAttendance(value);
     }
 

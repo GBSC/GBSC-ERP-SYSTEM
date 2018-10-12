@@ -25,7 +25,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input" formControlName="GroupId" name="leaveYear" id="">
                       <option value="" disabled selected>-- Select Group --</option>
-                      <option *ngFor="let grp of hrsetupservice?.group" [value]="grp.groupId">{{grp.name}}</option>
+                      <option *ngFor="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
                     </select>
 
                   </div>
@@ -44,7 +44,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
                       <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                      <option *ngFor="let leaveyear of leaveYears" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                     </select>
 
                   </div>
@@ -63,7 +63,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input " formControlName="LeaveTypeId" name="leavetype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
-                      <option *ngFor="let levetype of leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                      <option *ngFor="let levetype of leaveTypes" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                     </select>
 
                   </div>
@@ -81,7 +81,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input" formControlName="LeaveEligibilityId">
                       <option value="" disabled selected>-- Select Leave Eligibility --</option>
-                      <option *ngFor="let leaveEligibility of leavesetupservice?.leaveeligibility" [value]="leaveEligibility.leaveEligibilityId">{{leaveEligibility.name}}</option>
+                      <option *ngFor="let leaveEligibility of leaveEligibility" [value]="leaveEligibility.leaveEligibilityId">{{leaveEligibility.name}}</option>
                     </select>
 
                   </div>
@@ -222,7 +222,7 @@
 
                     <select class="form-control m-input" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
-                      <option *ngFor="let levedaytype of leavesetupservice?.leavedaytype" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
+                      <option *ngFor="let levedaytype of leveDayTypes" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
                     </select>
 
                   </div>
@@ -523,19 +523,19 @@
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveYearId" caption="Leave Year">
-              <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+              <dxo-lookup [dataSource]="leaveYears" displayExpr="year" valueExpr="leaveYearId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveTypeId" caption="Leave">
-              <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+              <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
-              <dxo-lookup [dataSource]="leavesetupservice?.leavedaytype" displayExpr="name" valueExpr="leaveDayTypeId">
+              <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
-              <dxo-lookup [dataSource]="leavesetupservice?.leaveeligibility" displayExpr="name" valueExpr="leaveEligibilityId">
+              <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>

@@ -12,12 +12,12 @@ export class BenefitComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getbenefits();
-        this.benefit = this.payrollsetupservice.benefits;
+
+        this.benefit = await this.payrollsetupservice.getBenefits();
     }
 
     async addBenefit(value) {
-        await this.payrollsetupservice.addbenefit(value.data);
+        await this.payrollsetupservice.addBenefit(value.data);
     }
 
     updatingBenefit(value) {
@@ -25,11 +25,11 @@ export class BenefitComponent implements OnInit {
     }
 
     async updateBenefit() {
-        await this.payrollsetupservice.updatebenefit(this.benefit);
+        await this.payrollsetupservice.updateBenefit(this.benefit);
     }
 
     async Deletebenefit(value) {
-        await this.payrollsetupservice.Deletebenefit(value.key);
+        await this.payrollsetupservice.deleteBenefit(value.key);
     }
 
 }

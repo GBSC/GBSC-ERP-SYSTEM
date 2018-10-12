@@ -132,7 +132,7 @@
                   </label>
                   <select class="form-control m-input" formControlName="PayrollYearId" id="">
                     <option value="" disabled selected>-- Select Payroll Year --</option>
-                    <option *ngFor="let year of payrollsetupservice.payrollyear" [value]="year.payrollYearId">{{year.name}}</option>
+                    <option *ngFor="let year of payrollYears" [value]="year.payrollYearId">{{year.name}}</option>
                   </select>
                 </div>
 
@@ -355,7 +355,7 @@
             </dxo-pager>
  
             <dxi-column dataField="payrollYearId" caption="Payroll Year">
-              <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
+              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
             </dxi-column>
             <dxi-column dataField="pfEmployerContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="pfEmployeeContribution"></dxi-column>

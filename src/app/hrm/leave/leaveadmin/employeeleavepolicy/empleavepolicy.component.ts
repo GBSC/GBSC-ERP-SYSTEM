@@ -78,19 +78,18 @@ export class EmpleavepolicyComponent implements OnInit {
 
         this.employees = await this.empservice.GetAllEmployees(); 
 
-        this.leaveyear = await this.leavesetupservice.getAllleaveyear();
+        this.leaveyear = await this.leavesetupservice.getLeaveYears();
 
-        this.leaveTypes = await this.leavesetupservice.getAllleavetype();
+        this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
-        this.leaveDayType = await this.leavesetupservice.getAllleavedaytype();
+        this.leaveDayType = await this.leavesetupservice.getLeaveDayTypes();
 
-        this.leaveEligiblity = await this.leavesetupservice.getAllleaveeligibility();
+        this.leaveEligiblity = await this.leavesetupservice.getLeaveEligibilities();
 
         this.groups = await this.hrsetupservice.getAllGroups();
     }
 
     async addemployeeleavepolicy(empleavepolicy) {
-        console.log(empleavepolicy);
         this.message = this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
         setTimeout(() => {
             this.message = null;
@@ -100,7 +99,6 @@ export class EmpleavepolicyComponent implements OnInit {
 
     updatingEmpleavepolicy(value) {
         this.updatingEmpleavePolicy = { ...value.oldData, ...value.newData };
-        console.log(this.updatingEmpleavePolicy);
 
     }
     async updateEmpLeavePolicy() {

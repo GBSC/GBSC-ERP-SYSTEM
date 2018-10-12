@@ -21,7 +21,6 @@ export class AttendancerequesttypeComponent implements OnInit {
     }
 
     async updateRequesttype(value) {
-        console.log(value);
         this.attendancesetupservice.updateAttendanceRequestType(value);
     }
 

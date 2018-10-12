@@ -9,32 +9,32 @@ import { PayrollSetupService, SetupService, EmployeeService } from '../../../../
 export class TaxableIncomeAdjustmentComponent implements OnInit {
 
     public taxableIncomeAdjustment: any;
+    public taxAdjustmentReason: any;
+    public payrollType: any;
+    public users: any;
+    public taxYears: any;
     public groups: any;
     updatingincomeAdjustment: any;
+
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.gettaxableincomeadjustments();
-        this.taxableIncomeAdjustment = this.payrollsetupservice.taxableincomeadjustment;
+        this.taxableIncomeAdjustment = await this.payrollsetupservice.getTaxableIncomeAdjustments();
 
-        await this.payrollsetupservice.gettaxyears();
-        let Taxyear = this.payrollsetupservice.taxyear;
+        this.taxYears = await this.payrollsetupservice.gettTaxYears();
 
-        await this.payrollsetupservice.getpayrolltypes();
-        let PayrollType = this.payrollsetupservice.payrolltype;
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
 
-        await this.payrollsetupservice.gettaxadjustmentreasons();
-        let TaxAdjustmentReason = this.payrollsetupservice.taxadjustmentreason;
+        this.taxAdjustmentReason = await this.payrollsetupservice.getTaxAdjustmentReasons();
 
         this.groups = await this.setupservice.getAllGroups();
 
-        await this.employeeservice.GetAllEmployees();
-        let user = this.employeeservice.employeereg;
+        this.users = await this.employeeservice.GetAllEmployees();
     }
 
     async addTaxableincomeAdjustment(value) {
-        await this.payrollsetupservice.addtaxableincomeadjustment(value.data);
+        await this.payrollsetupservice.addTaxableIncomeAdjustment(value.data);
     }
 
     updatingTaxableincomeAdjustment(value) {
@@ -42,11 +42,11 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
     }
 
     async updateTaxableincomeAdjustment() {
-        await this.payrollsetupservice.updatetaxableincomeadjustment(this.updatingincomeAdjustment);
+        await this.payrollsetupservice.updateTaxableIncomeAdjustment(this.updatingincomeAdjustment);
     }
 
     async deleteTaxableincomeAdjustment(value) {
-        await this.payrollsetupservice.Deletetaxableincomeadjustment(value.key);
+        await this.payrollsetupservice.deleteTaxableIncomeAdjustment(value.key);
     }
 
 }

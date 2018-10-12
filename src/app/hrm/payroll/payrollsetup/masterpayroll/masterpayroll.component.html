@@ -23,7 +23,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of empservice.employeereg" [value]="user.userId">{{user.firstName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -41,7 +41,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="CurrencyId">
                   <option value="" disabled selected>-- Select Currency --</option>
-                  <option *ngFor="let currency of payrollsetupservice?.Currency" [value]="currency.currencyId">{{currency.name}}</option>
+                  <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -50,7 +50,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="PayrollBankId">
                   <option value="" disabled>-- Select Payroll Bank --</option>
-                  <option *ngFor="let pb of payrollsetupservice.payrollbank" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
+                  <option *ngFor="let pb of banksPayroll" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
                 </select>
               </div>
             </div>
@@ -91,15 +91,15 @@
                           <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
                    
                           <dxi-column dataField="allowanceId" caption="Allowance">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
                             </dxo-lookup> 
                             </dxi-column>
                           <dxi-column dataField="frequencyId" caption="Frequency">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.frequency" displayExpr="name" valueExpr="frequencyId">
+                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
                             </dxo-lookup> 
                             </dxi-column>
                           <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+                            <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
                             </dxo-lookup> 
                             </dxi-column>
                  

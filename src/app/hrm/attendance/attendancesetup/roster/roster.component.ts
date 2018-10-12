@@ -19,7 +19,6 @@ export class RosterComponent implements OnInit {
     }
 
     async updateroster(value) {
-        console.log(value);
         this.attendancesetupservice.updateRoster(value);
     }
 

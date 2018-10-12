@@ -12,21 +12,20 @@ export class ChequeTemplateComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getchequetemplates();
-        this.chequeTemplate = this.payrollsetupservice.chequetemplate;
+
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
     }
 
     async addChequeTemplate(value) {
-        await this.payrollsetupservice.addchequetemplate(value.data);
+        await this.payrollsetupservice.addChequeTemplate(value.data);
     }
 
-    async updateChequeTemplate(value) {
-        console.log(value);
-        await this.payrollsetupservice.updatechequetemplate(value);
+    async updateChequeTemplate(value) { 
+        await this.payrollsetupservice.updateChequeTemplate(value);
     }
 
     async deleteChequeTemplate(value) {
-        await this.payrollsetupservice.Deletechequetemplate(value.key);
+        await this.payrollsetupservice.deleteChequeTemplate(value.key);
     }
 
 }

@@ -21,11 +21,8 @@ export class EmployeeHomeComponent implements OnInit {
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id']; // --> Name must match wanted parameter 
-
-            console.log("route id ", this.id);
         });
 
-        console.log("user id ", this.id)
 
     }
 

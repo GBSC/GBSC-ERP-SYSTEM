@@ -13,10 +13,13 @@ export class PayslipComponent implements OnInit {
 
     public PayslipForm: any;
     public PaySlip;
-    private userloan: UserLoanPayslip[];
+    public userloan: UserLoanPayslip[];
     public currentUserLoan = [];
     public userLoanId = {};
     public Updateloan: any;
+    public monthlySalary: any;
+    public users: any;
+    public userLoans: any;
 
     constructor(private fb: FormBuilder, public payrollservice: PayrollService,
         public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -40,22 +43,18 @@ export class PayslipComponent implements OnInit {
             UserId: ['', Validators]
         });
 
-        await this.payrollservice.getpayslips();
-        this.PaySlip = this.payrollservice.Payslip;
+        this.PaySlip = await this.payrollservice.getPayslips();
 
-        await this.payrollservice.getMonthlySalaries();
-        let monthlySalary = this.payrollservice.monthlyUserSalary;
+        this.monthlySalary = await this.payrollservice.getMonthlySalaries();
 
-        await this.payrollsetupservice.getuserloans();
-        let userLoan = this.payrollsetupservice.userloan;
-        await this.Employeeservice.GetAllEmployees();
-        let User = this.Employeeservice.employeereg;
+        this.userLoans = await this.payrollsetupservice.getUserLoans();
+
+        this.users = await this.Employeeservice.GetAllEmployees();
     }
 
     async userLoan(value) {
         let data = value.data;
-        this.userloan.push(data);
-        console.log(this.userloan);
+        this.userloan.push(data); 
     }
 
     async addPayslip(value) {
@@ -64,25 +63,20 @@ export class PayslipComponent implements OnInit {
         pushloanslip = { ...pushloanslip, ...value };
         pushloanslip.UserLoanPayslips = this.userloan;
         pushloanslip.UserLoanPayslips = this.currentUserLoan;
-        let x = await this.payrollservice.addpayslip(pushloanslip);
-        console.log(x);
-        // this.xx = this.currentUserLoan;
-        // console.log(this.xx.userLoanId)
+        let x = await this.payrollservice.addPayslip(pushloanslip);
         this.PayslipForm.reset();
     }
 
     GetUserloan(value) {
-        this.currentUserLoan = this.payrollsetupservice.userloan.filter(ul => ul.userId == value)
+        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)
     }
 
     Updatingloan(value) {
-        this.Updateloan = { ...value.oldData, ...value.newData };
-        console.log(this.Updateloan);
-
+        this.Updateloan = { ...value.oldData, ...value.newData }; 
     }
 
     async updateUserLoan() {
-        await this.payrollsetupservice.updateuserloan(this.Updateloan);
+        await this.payrollsetupservice.updateUserLoan(this.Updateloan);
     }
 
 }

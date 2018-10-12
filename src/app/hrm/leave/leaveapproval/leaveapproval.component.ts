@@ -17,7 +17,7 @@ export class LeaveapprovalComponent implements OnInit {
 
         this.leaveapproval = await this.leaveservice.getLeaveApprovals();
 
-        this.leaveApprover = await this.leavesetupservice.getleaveapprover();
+        this.leaveApprover = await this.leavesetupservice.getLeaveApprovers();
 
         this.leaveRequest = await this.leaveservice.getAllleaverequest();
         }

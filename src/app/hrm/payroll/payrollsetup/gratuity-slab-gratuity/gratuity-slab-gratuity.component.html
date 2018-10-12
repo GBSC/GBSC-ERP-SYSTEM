@@ -26,7 +26,7 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="slabAmount" caption="Slab Amount"></dxi-column>
                 <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
+                  <dxo-lookup [dataSource]="gratuitySlab" displayExpr="title" valueExpr="gratuitySlabId">
                   </dxo-lookup>
                 </dxi-column> 
               </dx-data-grid>

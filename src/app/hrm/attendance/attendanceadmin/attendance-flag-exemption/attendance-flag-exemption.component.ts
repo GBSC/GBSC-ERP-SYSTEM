@@ -27,7 +27,6 @@ export class AttendanceFlagExemptionComponent implements OnInit {
     }
 
     async updateflagExemption(value) {
-        console.log(value);
         this.attendanceservice.updateAttendanceFlagExemption(value);
     }
 

@@ -5,8 +5,8 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class AttendanceService {
 
-     private baseUrl: string = "SystemAdmin/api/Attendance";
-     private baseUrl2: string = "SystemAdmin/api/AttendanceSetup";
+    private baseUrl: string = "SystemAdmin/api/Attendance";
+    private baseUrl2: string = "SystemAdmin/api/AttendanceSetup";
 
     public attendancerequest;
     public empOvertimeEntitlement;
@@ -25,8 +25,8 @@ export class AttendanceService {
     incomingot: Object;
     outgoingOt: Object;
     workingDayOt: Object;
- 
-    constructor(private ApiService : ApiService) { }
+
+    constructor(private ApiService: ApiService) { }
 
     /** Attendance Request CRUD METHODS */
     async getattendancerequests() {
@@ -53,9 +53,9 @@ export class AttendanceService {
 
     }
 
-    async updateattendancerequest(data) { 
-         let authToken = localStorage.getItem('auth_token');  
-         let headers = {headers: {'Content-Type':'application/json'}}
+    async updateattendancerequest(data) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequest`, data).toPromise();
 
     }
@@ -88,7 +88,7 @@ export class AttendanceService {
     }
 
     async updateempOvertimeEntitlement(data) {
- 
+
         // let authToken = localStorage.getItem('auth_token');  
         // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateEmployeeOverTimeEntitlment`, data).toPromise();
@@ -295,141 +295,141 @@ export class AttendanceService {
     }
 
 
-        /** Employee Working Day CRUD METHODS */
-        async getemployeeWorkingDayOts() {
+    /** Employee Working Day CRUD METHODS */
+    async getemployeeWorkingDayOts() {
 
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.workingdayot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeWorkingDayOts`).toPromise();
-            console.log(this.workingdayot);
-            return this.workingdayot;
-        }
-    
-        async addemployeeWorkingDayOt(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            this.workingDayOt = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeWorkingDayOt`, data).toPromise();
-            console.log(this.workingDayOt);
-            return this.workingDayOt;
-    
-        }
-    
-        async updateemployeeWorkingDayOt(data) {
-     
-            let authToken = localStorage.getItem('auth_token');  
-            let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeWorkingDayOt`, data).toPromise();
-    
-        }
-    
-        async DeleteemployeeWorkingDayOt(id) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeWorkingDayOt/${id}`).toPromise();
-        }
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
 
-         /** Employee Working Day CRUD METHODS */
-         async getemployeeOffdayOts() {
+        this.workingdayot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeWorkingDayOts`).toPromise();
+        console.log(this.workingdayot);
+        return this.workingdayot;
+    }
 
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.workingoffdayot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOffDayOts`).toPromise();
-            console.log(this.workingoffdayot);
-            return this.workingoffdayot;
-        }
-   
-        async addemployeeOffdayOts(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            this.offdayot = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeOffDayOt`, data).toPromise();
-            console.log(this.offdayot);
-            return this.offdayot;
-    
-        }
-    
-        async updateemployeeOffdayOts(data) {
-    
-            let authToken = localStorage.getItem('auth_token');  
-            let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeOffDayOt`, data).toPromise();
-    
-        }
-    
-        async DeleteemployeeOffdayOts(id) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOffDayOts/${id}`).toPromise();
-        }
+    async addemployeeWorkingDayOt(data) {
 
-         /** Employee Working Day CRUD METHODS */
-         async getemployeeIncomingOts() {
-            this.newincomingot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeIncomingOts`).toPromise();
-            console.log(this.newincomingot);
-            return this.newincomingot;
-        }
-    
-        async addemployeeIncomingOts(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            this.incomingot = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeIncomingOt`, data).toPromise();
-            console.log(this.incomingot);
-            return this.incomingot;
-    
-        }
-    
-        async updateemployeeIncomingOts(data) { 
-            let authToken = localStorage.getItem('auth_token');  
-            let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeIncomingOt`, data).toPromise();
-    
-        }
-    
-        async DeleteemployeeIncomingOts(id) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeIncomingOt/${id}`).toPromise();
-        }
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        this.workingDayOt = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeWorkingDayOt`, data).toPromise();
+        console.log(this.workingDayOt);
+        return this.workingDayOt;
 
-         /** Employee Working Day CRUD METHODS */
-         async getemployeeOutgoingOts() {
+    }
 
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.OutgoingOts = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOutgoingOts`).toPromise();
-            console.log(this.OutgoingOts);
-            return this.OutgoingOts;
-        }
-    
-        async addemployeeOutgoingOt(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            this.outgoingOt = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeOutgoingOt`, data).toPromise();
-            console.log(this.outgoingOt);
-            return this.outgoingOt;
-    
-        }
-    
-        async updateemployeeOutgoingOt(data) { 
-            let authToken = localStorage.getItem('auth_token');  
-            let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeOutgoingOt`, data).toPromise();
-    
-        }
-    
-        async DeleteemployeeOutgoingOt(id) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOutgoingOt/${id}`).toPromise();
-        }
+    async updateemployeeWorkingDayOt(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeWorkingDayOt`, data).toPromise();
+
+    }
+
+    async DeleteemployeeWorkingDayOt(id) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeWorkingDayOt/${id}`).toPromise();
+    }
+
+    /** Employee Working Day CRUD METHODS */
+    async getemployeeOffdayOts() {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+
+        this.workingoffdayot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOffDayOts`).toPromise();
+        console.log(this.workingoffdayot);
+        return this.workingoffdayot;
+    }
+
+    async addemployeeOffdayOts(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        this.offdayot = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeOffDayOt`, data).toPromise();
+        console.log(this.offdayot);
+        return this.offdayot;
+
+    }
+
+    async updateemployeeOffdayOts(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeOffDayOt`, data).toPromise();
+
+    }
+
+    async DeleteemployeeOffdayOts(id) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOffDayOts/${id}`).toPromise();
+    }
+
+    /** Employee Working Day CRUD METHODS */
+    async getemployeeIncomingOts() {
+        this.newincomingot = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeIncomingOts`).toPromise();
+        console.log(this.newincomingot);
+        return this.newincomingot;
+    }
+
+    async addemployeeIncomingOts(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        this.incomingot = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeIncomingOt`, data).toPromise();
+        console.log(this.incomingot);
+        return this.incomingot;
+
+    }
+
+    async updateemployeeIncomingOts(data) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeIncomingOt`, data).toPromise();
+
+    }
+
+    async DeleteemployeeIncomingOts(id) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeIncomingOt/${id}`).toPromise();
+    }
+
+    /** Employee Working Day CRUD METHODS */
+    async getemployeeOutgoingOts() {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+
+        this.OutgoingOts = await this.ApiService.get(`${this.baseUrl2}/GetEmployeeOutgoingOts`).toPromise();
+        console.log(this.OutgoingOts);
+        return this.OutgoingOts;
+    }
+
+    async addemployeeOutgoingOt(data) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        this.outgoingOt = await this.ApiService.post(`${this.baseUrl2}/AddEmployeeOutgoingOt`, data).toPromise();
+        console.log(this.outgoingOt);
+        return this.outgoingOt;
+
+    }
+
+    async updateemployeeOutgoingOt(data) {
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json' } }
+        return await this.ApiService.put(`${this.baseUrl2}/UpdateEmployeeOutgoingOt`, data).toPromise();
+
+    }
+
+    async DeleteemployeeOutgoingOt(id) {
+
+        let authToken = localStorage.getItem('auth_token');
+        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOutgoingOt/${id}`).toPromise();
+    }
 }

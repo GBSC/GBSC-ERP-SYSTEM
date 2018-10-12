@@ -12,7 +12,7 @@ export class LeavetypeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        this.levetype =  await this.leavesetupservice.getAllleavetype();
+        this.levetype = await this.leavesetupservice.getAllleavetype();
 
 
     }

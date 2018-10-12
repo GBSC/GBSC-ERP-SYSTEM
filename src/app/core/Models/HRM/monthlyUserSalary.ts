@@ -16,6 +16,6 @@ export class MonthlyUserSalary {
     UserSalaryId: number;
     PfPaymentId: number;
     PayslipId: number;
-    PayrollId: number; 
-   UserRosterAttendances: UserRosterAttendance[];
+    PayrollId: number;
+    UserRosterAttendances: UserRosterAttendance[];
 }

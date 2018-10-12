@@ -13,10 +13,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProfilepicComponent implements OnInit {
     @Output('setBankFormValue') setpicFormValue = new EventEmitter();
     public Profilepic: any;
-    constructor(public employee: EmployeeService, public fb: FormBuilder,public router: Router, private route: ActivatedRoute ) { }
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, private route: ActivatedRoute) { }
 
     public selectedPic;
-    public id : any;
+    public id: any;
 
 
     async ngOnInit() {
@@ -38,7 +38,7 @@ export class ProfilepicComponent implements OnInit {
         this.employee.selectedPic = e.target.files[0];
     }
 
-    
+
 
     private forevent: File = null;
 
@@ -47,17 +47,17 @@ export class ProfilepicComponent implements OnInit {
         console.log(this.forevent)
     }
 
-    
+
     onupload() {
         const file = new FormData();
         file.append('file', this.forevent);
- 
+
         console.log(file);
         this.employee.addDocument(file);
         console.log(file);
- 
-     }
-     
+
+    }
+
 
     // async addpic() {
 

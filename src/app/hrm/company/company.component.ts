@@ -29,7 +29,7 @@ export class CompanyComponent implements OnInit {
 
     async updateCompany(value) {
         console.log(value);
-        console.log(value.key); 
+        console.log(value.key);
         await this.SystemAdministrationServiceobj.updateCompany(value.key);
     }
 

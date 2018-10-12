@@ -15,7 +15,7 @@ export class OvertimetypeComponent implements OnInit {
         await this.attendancesetupservice.getAllovertimetype();
         this.overtimetype = this.attendancesetupservice.overtimetype
         console.log(this.overtimetype);
- 
+
         await this.attendancesetupservice.getAllovertimeflag();
         let overtimeflag = this.attendancesetupservice.overtimeflag
     }

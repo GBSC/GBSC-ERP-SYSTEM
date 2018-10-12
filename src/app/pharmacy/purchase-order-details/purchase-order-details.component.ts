@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
 
 @Component({
-  selector: 'app-purchase-order-details',
-  templateUrl: './purchase-order-details.component.html',
-  styleUrls: ['./purchase-order-details.component.scss']
+    selector: 'app-purchase-order-details',
+    templateUrl: './purchase-order-details.component.html',
+    styleUrls: ['./purchase-order-details.component.scss']
 })
 export class PurchaseOrderDetailsComponent implements OnInit {
 

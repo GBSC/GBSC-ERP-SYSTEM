@@ -35,50 +35,50 @@ import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-v
 import { CurrencyComponent } from './Setup/currency/currency.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule,
-  ],
-  declarations: [
-    HomeComponent,
-    FooterComponent,
-    HeaderComponent,
-    MenuComponent,
-    RootComponent,
-    GoodsreceiptComponent,
-    IssuanceComponent,
-    IssuanceDetailComponent,
-    PurchaseOrderComponent,
-    PurchaseOrderDetailsComponent,
-    ReturnmedicineComponent,
-    ReturnmedicineDetailComponent,
-    InventoryComponent,
-    InventoryItemCategoryComponent,
-    InventoryItemComponent,
-    PackageTypeComponent,
-    ProductPackCategoryComponent,
-    ProductPackSizeComponent,
-    ProductPackTypeComponent,
-    ProductTypeComponent,
-    ReturnReasonComponent,
-    SupplierComponent,
-    UnitComponent,
-    IssuanceViewComponent,
-    ReturnViewComponent,
-    GrnViewComponent,
-    PurhcaseorderViewComponent,
-    CurrencyComponent
-  ],
-  providers: [
-    {
-      provide: UrlSerializer,
-      useClass: LowerCaseUrlSerializer
-  },
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
+    ],
+    declarations: [
+        HomeComponent,
+        FooterComponent,
+        HeaderComponent,
+        MenuComponent,
+        RootComponent,
+        GoodsreceiptComponent,
+        IssuanceComponent,
+        IssuanceDetailComponent,
+        PurchaseOrderComponent,
+        PurchaseOrderDetailsComponent,
+        ReturnmedicineComponent,
+        ReturnmedicineDetailComponent,
+        InventoryComponent,
+        InventoryItemCategoryComponent,
+        InventoryItemComponent,
+        PackageTypeComponent,
+        ProductPackCategoryComponent,
+        ProductPackSizeComponent,
+        ProductPackTypeComponent,
+        ProductTypeComponent,
+        ReturnReasonComponent,
+        SupplierComponent,
+        UnitComponent,
+        IssuanceViewComponent,
+        ReturnViewComponent,
+        GrnViewComponent,
+        PurhcaseorderViewComponent,
+        CurrencyComponent
+    ],
+    providers: [
+        {
+            provide: UrlSerializer,
+            useClass: LowerCaseUrlSerializer
+        },
+    ]
 })
 export class PharmacyModule { }

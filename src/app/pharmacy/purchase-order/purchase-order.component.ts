@@ -16,8 +16,8 @@ import { PurchaseOrderItem } from '../../core/Models/Inventory/Purchase/Purchase
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    private PurchaseOrders : PurchaseOrder;
-    private NewPurchaseOrder : PurchaseOrder;
+    private PurchaseOrders: PurchaseOrder;
+    private NewPurchaseOrder: PurchaseOrder;
     private Suppliers: Supplier;
     private SelectedSupplier : Supplier;
     private UpdatedModel : any;
@@ -45,34 +45,34 @@ export class PurchaseOrderComponent implements OnInit {
             Origin: [''],
             Remarks: [''],
             SupplierId: [''],
-            CurrencyId : [''],
-            ExchangeRate : [''],
+            CurrencyId: [''],
+            ExchangeRate: [''],
             PurchaseOrderItems: this.FormBuilder.array([])
-        } );
+        });
 
-        this.PurchaseOrderDetailsForm = this.FormBuilder.group( {
-            InventoryItemId : [''],
-            ManualCode : [''],
-            Description : [''],
-            PackType : [''],
+        this.PurchaseOrderDetailsForm = this.FormBuilder.group({
+            InventoryItemId: [''],
+            ManualCode: [''],
+            Description: [''],
+            PackType: [''],
             StockQuantity: [''],
-            OrderQuantity : [''],
-            BonusQuantity : [''],
-            PerUnit : [''],
-            Rate : [''],
-            GrossAmount : [''],
-            DiscountPercentage : [''],
-            DiscountAmount : [''],
-            SalesTaxPercentage : [''],
-            SalesTaxAmount : [''],
-            NetAmount : ['']
-        } );
+            OrderQuantity: [''],
+            BonusQuantity: [''],
+            PerUnit: [''],
+            Rate: [''],
+            GrossAmount: [''],
+            DiscountPercentage: [''],
+            DiscountAmount: [''],
+            SalesTaxPercentage: [''],
+            SalesTaxAmount: [''],
+            NetAmount: ['']
+        });
     }
 
     ngOnInit() {
-        this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => { this.Suppliers = res; });
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem ) => { this.InventoryItems = res; this.FilteredInventoryItems = res; });
-        this.PharmacyService.GetCurrency().subscribe((res : Currency[]) => { this.Currencies = res; });
+        this.PharmacyService.GetSuppliers().subscribe((res: Supplier) => { this.Suppliers = res; });
+        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => { this.InventoryItems = res; this.FilteredInventoryItems = res; });
+        this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => { this.Currencies = res; });
     }
 
     // async AddPurchaseOrder(value) {
@@ -92,20 +92,20 @@ export class PurchaseOrderComponent implements OnInit {
     //     await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId).toPromise();
     // }
 
-    GetSupplierDetails(value){
+    GetSupplierDetails(value) {
         console.log(value);
-        var a : any = this.Suppliers;
+        var a: any = this.Suppliers;
         this.SelectedSupplier = a.find(a => a.inventoryCurrencyId == value);
     }
 
-    GetCurrencyDetails(value){
+    GetCurrencyDetails(value) {
         console.log(value);
         this.SelectedCurrency = this.Currencies.find(a => a.inventoryCurrencyId == value);
     }
 
     GetItemDetails(value) {
         console.log(value);
-        var a : any = this.InventoryItems;
+        var a: any = this.InventoryItems;
         this.SelectedInventoryItem = a.find(x => x.itemCode == value);
         console.log(this.SelectedInventoryItem);
     }

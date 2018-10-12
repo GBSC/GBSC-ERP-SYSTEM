@@ -13,17 +13,17 @@ export class DecimalroundingmatrixComponent implements OnInit {
     public decimalmatrix: any;
     public Employeeleave: any;
 
-    constructor(public leavesetupservice: LeaveSetupService,public leaveservice: LeaveService) { }
+    constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
 
         await this.leavesetupservice.getdecimalroundingmatrix();
         this.decimalrounding = this.leavesetupservice.decimalroundingmatrix
-       
-         this.leavePolicy = await this.leavesetupservice.getAllleavepolicy();
-    
-         this.Employeeleave = await this.leaveservice.getleavepolicyemployee();
- 
+
+        this.leavePolicy = await this.leavesetupservice.getAllleavepolicy();
+
+        this.Employeeleave = await this.leaveservice.getleavepolicyemployee();
+
     }
 
     async adddrmatrix(value) {
@@ -31,10 +31,10 @@ export class DecimalroundingmatrixComponent implements OnInit {
     }
 
     async updatedrmatrix() {
-        this.leavesetupservice.updatedecimalroundingmatrix( this.decimalmatrix);
+        this.leavesetupservice.updatedecimalroundingmatrix(this.decimalmatrix);
     }
     async updatingrmatrix(value) {
-        this.decimalmatrix = {...value.oldData, ...value.newData};
+        this.decimalmatrix = { ...value.oldData, ...value.newData };
     }
 
     async deletedrmatrix(value) {

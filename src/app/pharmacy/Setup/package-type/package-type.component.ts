@@ -9,23 +9,23 @@ import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
 })
 export class PackageTypeComponent implements OnInit {
     private PackageTypes: PackageType;
-    private UpdatedModel : any;
-    
+    private UpdatedModel: any;
+
     constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);
+        this.PharmacyService.GetPackageTypes().subscribe((res: PackageType) => this.PackageTypes = res);
     }
 
     async AddPackageType(value) {
         await this.PharmacyService.AddPackageType(value.data).toPromise();
-        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);
+        this.PharmacyService.GetPackageTypes().subscribe((res: PackageType) => this.PackageTypes = res);
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdatePackageType() {

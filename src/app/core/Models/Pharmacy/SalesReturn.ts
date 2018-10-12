@@ -7,5 +7,5 @@ export interface SalesReturn {
     Remarks: string,
     TotalReturnAmount: number,
     ReturnReasonId: number,
-    SalesReturnItems : SalesReturnItem[]
+    SalesReturnItems: SalesReturnItem[]
 }

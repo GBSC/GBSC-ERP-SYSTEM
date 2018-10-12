@@ -11,9 +11,9 @@ import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 export class InventoryComponent implements OnInit {
     private InventoryItems: InventoryItem;
     private Inventories: Inventory;
-    private UpdatedModel : any;
-    private UnassignedItems : any;
-    private DataSource : any;
+    private UpdatedModel: any;
+    private UnassignedItems: any;
+    private DataSource: any;
 
     constructor(private PharmacyService: PharmacyService) {
         this.onPopupShown = this.onPopupShown.bind(this);
@@ -37,7 +37,7 @@ export class InventoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async AddInventory(value) {
@@ -60,7 +60,7 @@ export class InventoryComponent implements OnInit {
         this.PharmacyService.GetInventoryItems().subscribe(res => this.InventoryItems = res);
         console.log(this.InventoryItems);
         this.DataSource = this.InventoryItems;
-        var a : any = this.InventoryItems;
+        var a: any = this.InventoryItems;
         this.UnassignedItems = a.filter(a => a.inventory === null);
         console.log(this.UnassignedItems);
     }

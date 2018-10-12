@@ -18,8 +18,7 @@ export class EmployeeBankComponent implements OnInit {
     public EmpbankForm: FormGroup;
     // public EmpBankForm: FormGroup;
     constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute)
-     {
+        public router: Router, private route: ActivatedRoute) {
         this.EmpbankForm = this.fb.group({
             AccountTitle: [''],
             AccountNumber: [''],
@@ -27,26 +26,26 @@ export class EmployeeBankComponent implements OnInit {
             BankCode: [''],
             BankBranch: ['']
         });
-      }
+    }
 
     async ngOnInit() {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-            
-        this.employee.GetEmployee(this.id).subscribe(resp => {
 
-            this.Employee = resp;
+            this.employee.GetEmployee(this.id).subscribe(resp => {
 
-            this.patchValues(resp);
+                this.Employee = resp;
 
+                this.patchValues(resp);
+
+            });
         });
-              });
     }
 
     async update(value) {
         console.log(value);
-      await this.employee.updateuserBank(value);
+        await this.employee.updateuserBank(value);
 
     }
     getBankFormValue() {
@@ -59,15 +58,15 @@ export class EmployeeBankComponent implements OnInit {
 
     }
 
-    patchValues(employeeBank : any) {
+    patchValues(employeeBank: any) {
 
         this.EmpbankForm.patchValue({
 
-            AccountNumber:  employeeBank.accountNumber, 
-            AccountTitle:  employeeBank.accountTitle, 
-            BankTitle:  employeeBank.bankTitle, 
-            BankCode:  employeeBank.bankCode, 
-            BankBranch:  employeeBank.bankBranch, 
+            AccountNumber: employeeBank.accountNumber,
+            AccountTitle: employeeBank.accountTitle,
+            BankTitle: employeeBank.bankTitle,
+            BankCode: employeeBank.bankCode,
+            BankBranch: employeeBank.bankBranch,
         });
-      }
+    }
 }

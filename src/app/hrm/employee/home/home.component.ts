@@ -18,17 +18,17 @@ export class EmployeeHomeComponent implements OnInit {
     public selectedTabStyles = '.m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-arrow';
     public showingCurrently: any = 0;
     public tabs =
-        [
-            { name: "Basic Information", icon: 'm-nav__link-icon fa fa-info-circle', selected: false },
-            { name: "Profile Picture", icon: 'm-nav__link-icon fa fa-user-circle', selected: false },
-            { name: "Employee Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
-            { name: "Employee Dependants", icon: 'm-nav__link-icon fa fa-contao', selected: false },
-            { name: "Social Networking", icon: 'm-nav__link-icon fa fa-linkedin', selected: false },
-            { name: "Employee Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
-            { name: "Work Experience", icon: 'm-nav__link-icon fa fa-black-tie', selected: false },
-            { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
-            { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
-        ]
+    [
+        { name: "Basic Information", icon: 'm-nav__link-icon fa fa-info-circle', selected: false },
+        { name: "Profile Picture", icon: 'm-nav__link-icon fa fa-user-circle', selected: false },
+        { name: "Employee Company Information", icon: 'm-nav__link-icon fa fa-building', selected: false },
+        { name: "Employee Dependants", icon: 'm-nav__link-icon fa fa-contao', selected: false },
+        { name: "Social Networking", icon: 'm-nav__link-icon fa fa-linkedin', selected: false },
+        { name: "Employee Qualification", icon: 'm-nav__link-icon fa fa-graduation-cap', selected: false },
+        { name: "Work Experience", icon: 'm-nav__link-icon fa fa-black-tie', selected: false },
+        { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
+        { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
+    ]
 
     constructor(public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -55,7 +55,7 @@ export class EmployeeHomeComponent implements OnInit {
         if (this.tabItem.name === 'Documents') {
             this.text = 'Save';
         }
-        console.log(item,i); 
+        console.log(item, i);
         this.tabItem.selected = true;
 
     }
@@ -116,7 +116,7 @@ export class EmployeeHomeComponent implements OnInit {
                 break;
 
             case 'Employee Dependants':
-               // await this.employeeService.adduserRelation();
+                // await this.employeeService.adduserRelation();
 
                 break;
 

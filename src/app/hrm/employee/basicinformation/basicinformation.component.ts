@@ -52,7 +52,7 @@ export class BasicinformationComponent implements OnInit {
 
     async update(value) {
         console.log(value);
-      await this.employeeService.updateUersById(value);
+        await this.employeeService.updateUersById(value);
 
     }
 
@@ -61,7 +61,7 @@ export class BasicinformationComponent implements OnInit {
         await this.employeeService.updateUersById(value);
     }
 
-     async ngOnInit() {
+    async ngOnInit() {
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
@@ -73,30 +73,30 @@ export class BasicinformationComponent implements OnInit {
 
 
 
-    //     await this.SetupServiceobj.getAllDesignations();
-    //     let dsg = this.SetupServiceobj.designation;
+        //     await this.SetupServiceobj.getAllDesignations();
+        //     let dsg = this.SetupServiceobj.designation;
 
-    //     await this.SetupServiceobj.getAllLanguages();
-    //     let lng = this.SetupServiceobj.language;
+        //     await this.SetupServiceobj.getAllLanguages();
+        //     let lng = this.SetupServiceobj.language;
 
 
-    //     await this.SetupServiceobj.getAllFunctions();
-    //     let func = this.SetupServiceobj.function;
+        //     await this.SetupServiceobj.getAllFunctions();
+        //     let func = this.SetupServiceobj.function;
 
-    //     await this.SetupServiceobj.getAllReligions();
-    //     let relg = this.SetupServiceobj.religion;
-    //     console.log(relg);
+        //     await this.SetupServiceobj.getAllReligions();
+        //     let relg = this.SetupServiceobj.religion;
+        //     console.log(relg);
 
-    //     await this.SetupServiceobj.getAllGazettedHolidays();
-    //     let holiday = this.SetupServiceobj.gazetholidays;
+        //     await this.SetupServiceobj.getAllGazettedHolidays();
+        //     let holiday = this.SetupServiceobj.gazetholidays;
 
-    //     await this.SetupServiceobj.getAllCities();
-    //     let cty = this.SetupServiceobj.city;
+        //     await this.SetupServiceobj.getAllCities();
+        //     let cty = this.SetupServiceobj.city;
 
 
     }
 
-    patchValues(employee : any) {
+    patchValues(employee: any) {
 
         this.employeeService.EmpbasicForm.patchValue({
             FirstName: employee.firstName,
@@ -119,7 +119,7 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
-    async Formsubmit(){
+    async Formsubmit() {
         await this.employeeService.addEmployee();
     }
 }

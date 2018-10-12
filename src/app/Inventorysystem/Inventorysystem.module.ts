@@ -68,7 +68,7 @@ import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
         DevExtremeModule,
         DxDataGridModule,
         routing
-        ],
+    ],
     declarations: [
 
         RootComponent,
@@ -124,6 +124,6 @@ import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
         UnitComponent,
         DeliveryNoteComponent
     ],
-    providers:[{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
 })
 export class InventorysystemModule { }

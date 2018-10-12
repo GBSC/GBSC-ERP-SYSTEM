@@ -7,19 +7,19 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-setup.component.scss']
 })
 export class CustomerSetupComponent implements OnInit {
-    private Customers : any;
-    private CustomerTypes : any;
-    private SalesPeople : any;
-    private ModeOfPayments : any;
-    private UpdatedModel : any;
+    private Customers: any;
+    private CustomerTypes: any;
+    private SalesPeople: any;
+    private ModeOfPayments: any;
+    private UpdatedModel: any;
 
-    constructor(private InventoryService : InventorysystemService) { }
+    constructor(private InventoryService: InventorysystemService) { }
 
     async ngOnInit() {
-       this.Customers = await this.InventoryService.GetCustomers();
-       this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
-       this.SalesPeople = await this.InventoryService.GetSalesPeople();
-       this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
+        this.Customers = await this.InventoryService.GetCustomers();
+        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+        this.SalesPeople = await this.InventoryService.GetSalesPeople();
+        this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
     }
 
     async AddCustomer(value) {
@@ -30,7 +30,7 @@ export class CustomerSetupComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
         //console.log(this.UpdatedModel);
     }
 

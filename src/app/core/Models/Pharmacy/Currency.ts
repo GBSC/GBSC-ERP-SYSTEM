@@ -1,8 +1,8 @@
-export interface Currency{
+export interface Currency {
 
-    inventoryCurrencyId : number,
-    name : string,
-    exchangeRate : number,
-    lastUpdated : Date
-    
+    inventoryCurrencyId: number,
+    name: string,
+    exchangeRate: number,
+    lastUpdated: Date
+
 }

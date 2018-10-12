@@ -107,7 +107,8 @@ export class PurchaseOrderComponent implements OnInit {
 
     CalculateGrossAmount(value) {
         console.log(value);
-        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number>this.SelectedInventoryItem.retailPrice;;
+        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>value * <number>this.SelectedInventoryItem.retailPrice;
+        console.log(this.PurchaseOrderDetailsForm.value.GrossAmount);
     }
 
     AddPurchaseOrderDetails(value) {

@@ -130,7 +130,7 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_3_1" role="tabpanel">
-              <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)">
+              <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -159,7 +159,7 @@
             <!-- <here we are using final appointment tag start work> -->
             <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
-              <dx-data-grid id="gridContiner" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)">
+              <dx-data-grid id="gridContiner" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
                   <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>

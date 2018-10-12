@@ -31,6 +31,11 @@ export class PurchaseOrderComponent implements OnInit {
     private Currencies : Currency[];
     private SelectedCurrency : Currency;
     private TotalOrderAmount : number;
+    private GrossAmount : number = 0;
+    private SalesTaxAmount : number = 0;
+    private DiscountAmount : number = 0;
+    private NetAmount : number = 0;
+    private OrderQuantity : number = 0;
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group( {
@@ -105,10 +110,32 @@ export class PurchaseOrderComponent implements OnInit {
         console.log(this.SelectedInventoryItem);
     }
 
-    CalculateGrossAmount(value) {
+    CalculateGrossAmount(ordervalue, bonusvalue) {
+        this.GrossAmount = (<number>ordervalue * <number>this.SelectedInventoryItem.retailPrice) + (<number>bonusvalue * <number>this.SelectedInventoryItem.retailPrice);
+        console.log(this.GrossAmount);
+        // this.PurchaseOrderDetailsForm.value.GrossAmount = this.GrossAmount;
+    }
+
+    CalculateSalesTaxAmount(value) {
         console.log(value);
-        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>value * <number>this.SelectedInventoryItem.retailPrice;
-        console.log(this.PurchaseOrderDetailsForm.value.GrossAmount);
+        this.SalesTaxAmount = (<number>value * <number>this.GrossAmount) / 100;
+        console.log(this.SalesTaxAmount);
+        // this.PurchaseOrderDetailsForm.value.SalesTaxAmount = this.SalesTaxAmount;
+        this.CalculateNetAmount();
+    }
+
+    CalculateDiscountAmount(value) {
+        console.log(value);
+        this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
+        console.log(this.DiscountAmount);
+        // this.PurchaseOrderDetailsForm.value.DiscountAmount = this.DiscountAmount;
+        this.CalculateNetAmount();
+    }
+
+    CalculateNetAmount() {
+        this.NetAmount = this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount;
+        console.log(this.NetAmount);
+        // this.PurchaseOrderDetailsForm.value.NetAmount = this.NetAmount;
     }
 
     AddPurchaseOrderDetails(value) {
@@ -120,43 +147,41 @@ export class PurchaseOrderComponent implements OnInit {
         this.PurchaseOrderDetailsForm.value.StockQuantity = <number>this.SelectedInventoryItem.inventory.stockQuantity;
         this.PurchaseOrderDetailsForm.value.PerUnit = this.SelectedInventoryItem.unit.name;
         this.PurchaseOrderDetailsForm.value.Rate = <number>this.SelectedInventoryItem.retailPrice;
-        console.log("Gross Amount 1", this.PurchaseOrderDetailsForm.value.GrossAmount);
-        //this.PurchaseOrderDetailsForm.value.GrossAmount = this.PurchaseOrderDetailsForm.value.OrderQuantity * this.PurchaseOrderDetailsForm.value.Rate;
-        console.log("Gross Amount 2", this.PurchaseOrderDetailsForm.value.GrossAmount);
-        console.log(<number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number>this.PurchaseOrderDetailsForm.value.Rate);
-        //this.PurchaseOrderDetailsForm.value.GrossAmount = 111;
-        this.PurchaseOrderDetailsForm.value.SalesTaxAmount = (<number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage * <number>this.PurchaseOrderDetailsForm.value.GrossAmount) / 100;
-        //console.log((<number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage * <number>this.PurchaseOrderDetailsForm.value.GrossAmount) / 100);
-        this.PurchaseOrderDetailsForm.value.DiscountAmount = (<number>this.PurchaseOrderDetailsForm.value.DiscountPercentage * (<number>this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount)) / 100;
-        this.PurchaseOrderDetailsForm.value.NetAmount = this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount - this.PurchaseOrderDetailsForm.value.DiscountAmount;
+        this.PurchaseOrderDetailsForm.value.GrossAmount = this.GrossAmount;
+        this.PurchaseOrderDetailsForm.value.SalesTaxAmount = this.SalesTaxAmount;
+        this.PurchaseOrderDetailsForm.value.DiscountAmount = this.DiscountAmount;
+        this.PurchaseOrderDetailsForm.value.NetAmount = this.NetAmount;
         console.log(this.PurchaseOrderDetailsForm.value);
+
         this.FilteredInventoryItems = this.FilteredInventoryItems.filter(b => b.itemCode != value.ManualCode);
         console.log(this.FilteredInventoryItems);
 
         var b = {
             PackType: this.PurchaseOrderDetailsForm.value.packType.name,
             PackSize: this.PurchaseOrderDetailsForm.value.packSize.name,
-            Quantity: this.PurchaseOrderDetailsForm.value.Quantity,
+            Quantity: this.OrderQuantity,
             ExchangeRate: this.PurchaseOrderForm.value.ExchangeRate,
-            GrossAmount: <number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number> this.PurchaseOrderDetailsForm.value.PerUnit,
+            GrossAmount: this.PurchaseOrderDetailsForm.value.GrossAmount,
             DiscountPercentage: this.PurchaseOrderDetailsForm.value.DiscountPercentage,
             DiscountAmount: this.PurchaseOrderDetailsForm.value.DiscountAmount,
             AfterDiscountAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount - this.PurchaseOrderDetailsForm.value.DiscountAmount,
-            GstPercentage: this.PurchaseOrderDetailsForm.value.GstPercentage,
+            GstPercentage: this.PurchaseOrderDetailsForm.value.SalesTaxPercentage,
             GstAmount: this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
             AfterGstAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
             NetAmount: this.PurchaseOrderDetailsForm.value.NetAmount,
-            RetailPrice: <number>this.PurchaseOrderDetailsForm.value.PerUnit * <number>this.PurchaseOrderDetailsForm.value.Quantity,
-            CostPrice: <number>this.SelectedInventoryItem.costPrice  * <number>this.PurchaseOrderDetailsForm.value.Quantity,
+            RetailPrice: this.PurchaseOrderDetailsForm.value.RetailPrice * this.OrderQuantity,
+            CostPrice: <number>this.SelectedInventoryItem.costPrice * this.OrderQuantity,
             InventoryItemId: this.SelectedInventoryItem.inventoryItemId,
             InventoryId: this.SelectedInventoryItem.InventoryId
         };
         console.log(b);
+
         // this.PurchaseOrderDetail = value;
         // //this.TotalOrderAmount += Number.parseInt(this.PurchaseOrderDetailsForm.value.NetAmount);
-        //this.PurchaseOrderDetailsArray.push(b);
+        this.PurchaseOrderDetailsArray.push(b);
         console.log(this.PurchaseOrderDetailsArray);
-        //this.PurchaseOrderDetailsForm.reset();
+
+        this.PurchaseOrderDetailsForm.reset();
     }
 
     RemovePurchaseOrderDetails(index, value) {

@@ -19,14 +19,10 @@ import { ProductTypeComponent } from './Setup/product-type/product-type.componen
 import { ReturnReasonComponent } from './Setup/return-reason/return-reason.component';
 import { SupplierComponent } from './Setup/supplier/supplier.component';
 import { UnitComponent } from './Setup/unit/unit.component';
-<<<<<<< HEAD
 import { GrnViewComponent } from './grn-view/grn-view.component';
 import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
-import { ReturnViewComponent } from './return-view/return-view.component';
-=======
 import { CurrencyComponent } from './Setup/currency/currency.component';
->>>>>>> a1399844772a3105df328ca6614c230390993e1c
 
 
 
@@ -42,15 +38,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         { path: 'issuance', component: IssuanceComponent},
         { path: 'issuanceview', component: IssuanceViewComponent},
         { path: 'purchaseorder', component: PurchaseOrderComponent},
-<<<<<<< HEAD
         { path: 'purchaseorderview', component: PurhcaseorderViewComponent},
         { path: 'return', component: ReturnmedicineComponent},
         { path: 'returnview', component: ReturnViewComponent},
-=======
-        { path: 'returnview', component: ReturnViewComponent },
-        { path: 'return', component: ReturnmedicineComponent},
 
->>>>>>> a1399844772a3105df328ca6614c230390993e1c
         {
           path: "setup",
           children: [

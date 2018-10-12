@@ -145,7 +145,7 @@
                                                         <select class="form-control m-input ng-pristine ng-valid ng-touched"
                                                             style="width: 100px;" (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)"
                                                             formControlName="ManualCode">
-                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.inventoryItemId">
+                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
                                                                 {{x?.itemCode}}
                                                             </option>
                                                         </select>
@@ -154,32 +154,33 @@
                                                             formControlName="Description" [value]="SelectedInventoryItem?.description || ''"
                                                             disabled></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name"
+                                                            formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name || ''"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity"
+                                                            formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="OrderQuantity"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="BonusQuantity"></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PerUnit" [value]="SelectedInventoryItem?.retailPrice || ''"
-                                                            disabled></td>
+                                                            formControlName="PerUnit" [value]="SelectedInventoryItem?.unit?.name || ''"
+                                                            disabled></td> 
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="Rate"></td>
+                                                        formControlName="Rate" [value]="SelectedInventoryItem?.retailPrice || ''"
+                                                        disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="GrossAmount"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="DiscountPercentage"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="DiscountAmount"></td>
+                                                            formControlName="DiscountAmount" disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="SalesTaxPercentage"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="SalesTaxAmount"></td>
+                                                            formControlName="SalesTaxAmount" disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="NetAmount"></td>
+                                                            formControlName="NetAmount" disabled></td>
                                                     <td>
                                                         <button type="button" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)"
                                                             class="btn btn-success m-btn m-btn--icon m-btn--icon-only">

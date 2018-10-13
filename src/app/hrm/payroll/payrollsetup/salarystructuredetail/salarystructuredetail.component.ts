@@ -9,25 +9,6 @@ import { PayrollSetupService } from '../../../../core';
 export class SalarystructuredetailComponent implements OnInit {
 
     public salaryStructureDetail: any;
-<<<<<<< HEAD
-    constructor(public payrollsetupservice: PayrollSetupService) { }
-
-    async ngOnInit() {
-        await this.payrollsetupservice.getsalarystructuredetails();
-        this.salaryStructureDetail = this.payrollsetupservice.salarystructuredetail;
-
-        await this.payrollsetupservice.getsalarycalculationtypes();
-        let salaryCalculationtype = this.payrollsetupservice.salarycalculationtype;
-
-        await this.payrollsetupservice.getbenefits();
-        let benefit = this.payrollsetupservice.benefits;
-
-        await this.payrollsetupservice.getallowances();
-        let allowance = this.payrollsetupservice.allowance;
-
-        await this.payrollsetupservice.getsalarystructures();
-        let salarystructure = this.payrollsetupservice.salarystructure;
-=======
     public salaryCalculationtype: any;
     public benefit: any;
     public allowance: any;
@@ -45,7 +26,6 @@ export class SalarystructuredetailComponent implements OnInit {
         this.allowance = await this.payrollsetupservice.getAllowances();
 
         this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
->>>>>>> master
     }
 
     async addSalaryStructureDetail(value) {

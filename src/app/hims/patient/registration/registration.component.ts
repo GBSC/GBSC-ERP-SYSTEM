@@ -157,14 +157,6 @@ export class RegistrationComponent implements OnInit {
         }
         console.log(this.patientForm.invalid);
 
-<<<<<<< HEAD
-        value.partner = this.addpartnet;
-        value.patientReference = this.addReference;
-        this.patientId = await this.PatientServiceobj.addPatient(value);
-        this.upload(this.patientId.patientId);
-        this.router.navigate(['/hims/patient/findpatient']);
-        this.PatientServiceobj.getPatient();
-=======
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
@@ -174,7 +166,6 @@ export class RegistrationComponent implements OnInit {
         // this.upload(this.patientId);
         // this.router.navigate(['/hims/patient/findpatient']);
         // this.PatientServiceobj.getPatient();
->>>>>>> master
     }
 
     get s() { return this.partnerForm.controls; }
@@ -187,10 +178,6 @@ export class RegistrationComponent implements OnInit {
         }
         // delete this.partnerForm.value.PatientId;
         delete this.partnerForm.value.PartnerId;
-<<<<<<< HEAD
-        console.log(value);
-        this.addpartnet = value
-=======
         if (this.patientId === undefined) {
             return alert('First Add Patient Detail');
         }
@@ -217,7 +204,6 @@ export class RegistrationComponent implements OnInit {
 
         // console.log(value);
         // this.addReference = value;
->>>>>>> master
     }
     public docs: File[] = [];
     onAddDocument() {
@@ -286,21 +272,6 @@ export class RegistrationComponent implements OnInit {
 
 
 
-<<<<<<< HEAD
-    onAddReference(value) {
-        this.referencesubmitted = true;
-
-        if (this.referenceForm.invalid) {
-            return alert('Please Select All Required Fileds');
-        }
-
-        delete this.referenceForm.value.PatientId;
-        delete this.referenceForm.value.patientReferenceId;
-        console.log(value);
-        this.addReference = value;
-    }
-=======
->>>>>>> master
 
     async  updatePatient(value) {
         this.patientForm.value.patientId = this.id;
@@ -348,10 +319,6 @@ export class RegistrationComponent implements OnInit {
     public allDocs: File[] = [];
     public forevent2: any;
     public uploaded = 0;
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
     fileselect(event) {
         console.log(event);

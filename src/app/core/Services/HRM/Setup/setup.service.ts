@@ -601,15 +601,6 @@ export class SetupService {
 
 
     async getAllLeaveType() {
-<<<<<<< HEAD
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        //return await this.ApiService.get(`${this.hrUrl}/GetLeaveTypes`).toPromise();
-        // return this.leavetype;
-=======
->>>>>>> master
     }
 
     async addLeaveTypes(data) {

@@ -9,34 +9,11 @@ import { PayrollSetupService } from '../../../../core';
 export class TaxyearComponent implements OnInit {
 
     public TaxYear: any;
-<<<<<<< HEAD
-    taxyear: any;
-=======
     public taxyear: any;
->>>>>>> master
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        await this.payrollsetupservice.gettaxyears();
-        this.TaxYear = this.payrollsetupservice.taxyear;
-    }
-
-    async addTaxYear(value) {
-        await this.payrollsetupservice.addtaxyear(value.data);
-    }
-
-    updatingTaxYear(value) {
-        this.taxyear = { ...value.olddata, ...value.newdata };
-    }
-    async updateTaxYear() {
-        await this.payrollsetupservice.updatetaxyear(this.taxyear);
-    }
-
-    async deleteTaxYear(value) {
-        await this.payrollsetupservice.Deletetaxyear(value.key);
-=======
         this.TaxYear = await this.payrollsetupservice.gettTaxYears();
     }
 
@@ -53,6 +30,5 @@ export class TaxyearComponent implements OnInit {
 
     async deleteTaxYear(value) {
         await this.payrollsetupservice.deleteTaxYear(value.key);
->>>>>>> master
     }
 }

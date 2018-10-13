@@ -19,9 +19,6 @@ export class DashboardComponent implements OnInit {
         this.availableModules = this.accountService.getAvailableModules();
         this.dataSource = this.accountService.accessibleModules;
 
-<<<<<<< HEAD
-        console.log(this.dataSource);
-
     }
 
     selectionChanged(e) {
@@ -35,21 +32,6 @@ export class DashboardComponent implements OnInit {
 
         this.router.navigate([`${route.route}`]);
 
-=======
-    }
-
-    selectionChanged(e) {
-
-        let route: any;
-
-        e.component.collapseAll(-1);
-        route = this.availableModules.find(m => {
-            return m.module === e.selectedRowsData[0].Description;
-        });
-
-        this.router.navigate([`${route.route}`]);
-
->>>>>>> master
     }
 
 }

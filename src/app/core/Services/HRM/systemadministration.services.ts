@@ -25,11 +25,7 @@ export class SystemAdministrationService {
     public modules: any = [];
 
 
-<<<<<<< HEAD
-    constructor(private httpClient: HttpClient, private ApiService: ApiService) {
-=======
     constructor(private ApiService: ApiService) {
->>>>>>> master
     }
 
 
@@ -73,10 +69,6 @@ export class SystemAdministrationService {
 
     async getCompanies() {
         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
-<<<<<<< HEAD
-        //console.log(this.companies);
-=======
->>>>>>> master
 
     }
 

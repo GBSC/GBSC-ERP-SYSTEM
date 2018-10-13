@@ -8,33 +8,12 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class BankAdviceTemplateComponent implements OnInit {
 
-<<<<<<< HEAD
-    public bankadvice: any;
-=======
     public bankAdviceTemplates: any;
->>>>>>> master
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
 
-<<<<<<< HEAD
-        await this.payrollsetupservice.getbankadvicetemplates();
-        this.bankadvice = this.payrollsetupservice.bankadvicetemplate;
-    }
-
-    async addBankAdviceTemplate(value) {
-        await this.payrollsetupservice.addbankadvicetemplate(value.data);
-    }
-
-    async updateBankAdviceTemplate(value) {
-        console.log(value);
-        await this.payrollsetupservice.updatebankadvicetemplate(value);
-    }
-
-    async deleteBankAdviceTemplate(value) {
-        await this.payrollsetupservice.Deletebankadvicetemplate(value.key);
-=======
         this.bankAdviceTemplates = await this.payrollsetupservice.getBankAdviceTemplates();
     }
 
@@ -48,7 +27,6 @@ export class BankAdviceTemplateComponent implements OnInit {
 
     async deleteBankAdviceTemplate(value) {
         await this.payrollsetupservice.deleteBankAdviceTemplate(value.key);
->>>>>>> master
     }
 
 }

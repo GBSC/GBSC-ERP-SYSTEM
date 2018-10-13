@@ -26,19 +26,12 @@ export class CompanyComponent implements OnInit {
     }
 
 
-<<<<<<< HEAD
-    async updateCompany(value) {
-        console.log(value);
-        console.log(value.key);
-        await this.SystemAdministrationServiceobj.updateCompany(value.key);
-=======
     async updatingCompany(value) {
         this.updatingcompany = { ...value.oldData, ...value.newData };
     }
 
     async updateCompany() {
         await this.SystemAdministrationServiceobj.updateCompany(this.updatingcompany);
->>>>>>> master
     }
 
 

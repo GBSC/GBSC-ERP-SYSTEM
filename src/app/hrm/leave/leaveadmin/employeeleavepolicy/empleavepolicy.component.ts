@@ -13,8 +13,6 @@ export class EmpleavepolicyComponent implements OnInit {
     public groups: any = [];
     EmployeeleavePolicyForm: FormGroup;
     public empleavepolicy: any;
-<<<<<<< HEAD
-=======
     public employees: any;
     public leaveyear: any;
     public leaveTypes: any;
@@ -23,7 +21,6 @@ export class EmpleavepolicyComponent implements OnInit {
     public updatingEmpleavePolicy: any;
     public message: any = null;
     public messagetext: "Add Successfully";
->>>>>>> master
 
     constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
@@ -77,34 +74,6 @@ export class EmpleavepolicyComponent implements OnInit {
         });
 
 
-<<<<<<< HEAD
-        this.empleavepolicy = await this.leaveservice.getleavepolicyemployee();
-        //this.empleavepolicy = this.leaveservice.leavepolicyemployee 
-
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg;
-
-        await this.leavesetupservice.getAllleaveyear();
-        let leaveyear = this.leavesetupservice.leaveyear;
-
-        await this.leavesetupservice.getAllleavetype();
-        let levetype = this.leavesetupservice.leavetype;
-
-        await this.leavesetupservice.getAllleavedaytype();
-        let levedaytype = this.leavesetupservice.leavedaytype;
-
-        await this.leavesetupservice.getAllleaveeligibility();
-        let leaveeligiblity = this.leavesetupservice.leaveeligibility;
-
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
-    }
-
-    async addemployeeleavepolicy(empleavepolicy) {
-        console.log(empleavepolicy);
-        this.leaveservice.addleavepolicyemployee(empleavepolicy);
-    }
-=======
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
 
         this.employees = await this.empservice.GetAllEmployees();
@@ -140,6 +109,5 @@ export class EmpleavepolicyComponent implements OnInit {
         await this.leaveservice.DeleteLeavePolicyEmployee(value.key);
     }
 
->>>>>>> master
 
 }

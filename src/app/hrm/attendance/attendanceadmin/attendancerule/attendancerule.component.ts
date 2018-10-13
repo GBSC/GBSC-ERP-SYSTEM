@@ -13,11 +13,7 @@ export class AttendanceruleComponent implements OnInit {
 
     public AttendanceRuleForm;
     public attendancerule: any;
-<<<<<<< HEAD
-    private LeaveTypes: any;
-=======
     public LeaveTypes: any;
->>>>>>> master
     private leaves: AttendanceRuleLeaveType[];
     public attendanceRule: any;
     public attendanceflag: any;
@@ -51,32 +47,13 @@ export class AttendanceruleComponent implements OnInit {
 
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
-<<<<<<< HEAD
-        this.LeaveTypes = await this.leavesetupservice.getAllleavetype();
-        let leavetype = this.leavesetupservice.leavetype;
-=======
         this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
->>>>>>> master
 
     }
 
     async attendanceRuleLeave(value) {
         let data = value.data;
         this.leaves.push(data);
-<<<<<<< HEAD
-        console.log(this.leaves);
-    }
-
-    async addattendancerule(value) {
-        console.log(value);
-        let attendanceRule = new AttendanceRule();
-        attendanceRule = { ...attendanceRule, ...value };
-        console.log(this.leaves);
-        attendanceRule.attendanceRuleLeaveTypes = this.leaves;
-        console.log(attendanceRule);
-        let r = await this.attendanceservice.addattendancerule(attendanceRule);
-        console.log(r);
-=======
     }
 
     async addattendancerule(value) {
@@ -84,7 +61,6 @@ export class AttendanceruleComponent implements OnInit {
         attendanceRule = { ...attendanceRule, ...value };
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
         let r = await this.attendanceservice.addAttendanceRule(attendanceRule);
->>>>>>> master
     }
 
     AttendanceRuleUpdating(value) {

@@ -49,20 +49,9 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
 
     async addLeaveopenDetail() {
-<<<<<<< HEAD
-
-        // console.log(this.leaveopendetailForm.value);
-        // console.log(this.leaveOpeningId);
-        // let LDForm = {...this.leaveopendetailForm.value, leaveOpeningId: this.leaveOpeningId.leaveOpeningID}
-=======
->>>>>>> master
         this.leaveOpenDetailForm.value.leaveOpeningId = this.leaveOpeningId.leaveOpeningID;
         await this.leaveservice.addLeaveOpeningDetail(this.leaveOpenDetailForm.value);
     }
-<<<<<<< HEAD
-    public leaveOpeningId;
-=======
->>>>>>> master
 
     async addleaveopening(e) {
         this.leaveOpeningId = await this.leaveservice.addLeaveOpening(this.leaveOpeningForm.value);

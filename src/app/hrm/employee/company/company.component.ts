@@ -10,10 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-<<<<<<< HEAD
-    @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
-=======
->>>>>>> master
 
     public EmpCompanyForm: any;
     public designation: any;
@@ -30,16 +26,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
 
-<<<<<<< HEAD
-    public id: any;
-    public Employee: any;
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
-
         this.EmpCompanyForm = this.fb.group({
-
-=======
-        this.EmpCompanyForm = this.fb.group({
->>>>>>> master
             ManagementLevelId: [''],
             FunctionId: [''],
             EmployeeStatusId: [''],
@@ -58,28 +45,12 @@ export class EmployeeCompanyComponent implements OnInit {
 
         });
 
-<<<<<<< HEAD
-
     }
 
-
-=======
-    }
-
->>>>>>> master
     async ngOnInit() {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
 
-<<<<<<< HEAD
-        this.employeeService.GetEmployee(this.id).subscribe(resp => {
-
-            this.Employee = resp;
-
-            this.patchValues(resp);
-
-        });
-=======
         this.designation = await this.SetupServiceobj.getAllDesignations();
 
         this.managementlevel = await this.SetupServiceobj.getAllManagementlevels();
@@ -87,17 +58,11 @@ export class EmployeeCompanyComponent implements OnInit {
         this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
->>>>>>> master
 
         await this.SetupServiceobj.getAllEmployeeStatus();
 
         let cempstatus = this.SetupServiceobj.employeestatus;
 
-<<<<<<< HEAD
-
-        //             }); 
-=======
->>>>>>> master
 
         this.route.params.subscribe((params) => {
 
@@ -122,18 +87,6 @@ export class EmployeeCompanyComponent implements OnInit {
         this.updateMessage.emit(message);
     }
 
-<<<<<<< HEAD
-    public leavingDateinput = false;
-    enableInput(e) {
-        console.log(e);
-        switch (e.target.id) {
-            case 'chL':
-                this.leavingDateinput = e.target.checked
-                break;
-
-            default:
-                break;
-=======
 
     async update(value) {
 
@@ -148,29 +101,9 @@ export class EmployeeCompanyComponent implements OnInit {
                 this.showSuccess("Company Information Updated");
 
             })
->>>>>>> master
         }
         else {
 
-<<<<<<< HEAD
-    async addcompanyinfo() {
-        let cmp = await this.employeeService.addusercompany();
-        console.log(cmp);
-    }
-
-    async update(value) {
-        let x = await this.employeeService.updateUserCompanyById(value);
-        console.log(x);
-        console.log(this.employeeService.EmpCompanyForm.value);
-    }
-
-
-    patchValues(company: any) {
-
-        console.log(company);
-
-        this.employeeService.EmpCompanyForm.patchValue({
-=======
             this.employeeService.addUserCompany(value).subscribe(c => {
 
                 this.showSuccess("Company Information Added");
@@ -184,7 +117,6 @@ export class EmployeeCompanyComponent implements OnInit {
     patchValues(company: any) {
 
         this.EmpCompanyForm.patchValue({
->>>>>>> master
 
             DesignationId: company.designationId,
             ManagementLevelId: company.managementlevelId,

@@ -13,25 +13,6 @@ export class AllowancecalculationtypeComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        await this.payrollsetupservice.getallowancecalculationtypes();
-        this.allowanceCalculationtype = this.payrollsetupservice.allowancecalculationtype;
-        console.log(this.allowanceCalculationtype);
-
-    }
-
-    async addAllowanceCalculationType(value) {
-        await this.payrollsetupservice.addallowancecalculationtype(value.data);
-    }
-
-    async updateAllowanceCalculationType(value) {
-        console.log(value);
-        await this.payrollsetupservice.updateallowancecalculationtype(value);
-    }
-
-    async deleteallowanceCalculationType(value) {
-        await this.payrollsetupservice.Deleteallowancecalculationtype(value.key);
-=======
 
         this.allowanceCalculationtype = await this.payrollsetupservice.getAllowanceCalculationTypes();
     }
@@ -46,7 +27,6 @@ export class AllowancecalculationtypeComponent implements OnInit {
 
     async deleteallowanceCalculationType(value) {
         await this.payrollsetupservice.DeleteAllowanceCalculationType(value.key);
->>>>>>> master
     }
 
 }

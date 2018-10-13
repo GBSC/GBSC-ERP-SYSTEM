@@ -16,49 +16,8 @@ import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
 @Injectable()
 export class EmployeeService {
 
-<<<<<<< HEAD
-    public compForm = {};
-    private UserDependants: any;
-    private UserExp: any;
-    public EmpCompanyForm: FormGroup;
-    public documentForm: FormGroup;
-    public EmpbankForm: FormGroup;
-    public SocialForm: FormGroup;
-    public DependantForm: FormGroup;
-    public EmpbasicForm: FormGroup;
-    public experienceForm: FormGroup;
-    public Profilepic: FormGroup;
-    public QualificationForm: FormGroup;
-    public allDependentForm: any = [];
-    public UserCompanyForm: any = [];
-    public allExperiencexpForm: any = [];
-    public employeereg: Object;
-    public allFormData: any = {};
-    public currentlyLoggedinUser;
-    // private baseUrl: string  = 'systemadmin/api';
-    private baseUrl = 'http://localhost:58090/api';
-    public firstForm: any;
-    public currentUser: any = {};
-
-    public selectedUni = {
-        Name: '',
-        Qualifications: []
-    };
-    public addedUniversities = [];
-
-    public addedDependants = [];
-    public selectedDependants = {};
-
-
-    public updateEmployeeBool = false
-    public getuni: any;
-
-
-    public usercomapnies = [];
-=======
     private baseUrl: string = 'systemadmin/api';
     public employeereg;
->>>>>>> master
 
 
     constructor(private service: HrmsService, private fb: FormBuilder, private ApiService: ApiService) {
@@ -83,24 +42,10 @@ export class EmployeeService {
     }
 
 
-<<<<<<< HEAD
-    async updateUserCompanyById(Employee: EmployeeCompany) {
-
-        this.prepareCompanyDetails();
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        console.log(this.compForm);
-
-        let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUserCompany/${localStorage.getItem('id')}`, this.compForm).toPromise();
-        console.log(usercompany);
-
-=======
     addEmployee(employee): Observable<any> {
 
         return this.ApiService.post(`${this.baseUrl}/Users/AddUser`, employee);
 
->>>>>>> master
     }
 
     //Employee Company
@@ -152,24 +97,9 @@ export class EmployeeService {
     }
 
 
-<<<<<<< HEAD
-    async updateuserBank(EmployeeBank: EmployeeBank) {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let bankuser = await this.ApiService.put(`${this.baseUrl}/Users/UpdateUserBankByUserId/${localStorage.getItem('id')}`, EmployeeBank).toPromise();
-        console.log(bankuser);
-        return bankuser;
-    }
-
-    async GetRelationsByUserId() {
-        this.UserDependants = await this.ApiService.get(this.baseUrl + '/Users/GetRelationsByUserId/' + localStorage.getItem('id')).toPromise();
-        return this.UserDependants;
-    }
-=======
     //Employee Relations
 
     GetRelationsByUserId(id): Observable<any> {
->>>>>>> master
 
         return this.ApiService.get(this.baseUrl + '/Users/GetRelationsByUserId/' + id);
     }
@@ -192,35 +122,12 @@ export class EmployeeService {
         return this.ApiService.get(this.baseUrl + '/Users/GetUserQualification/' + userId);
     }
 
-<<<<<<< HEAD
-    async GetExperienceByUserId() {
-        this.UserExp = await this.ApiService.get(this.baseUrl + '/Users/GetworkExperienceByUserId/' + localStorage.getItem('id')).toPromise();
-        return this.UserExp;
-    }
-
-    async AddworkExperience(data) {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: ({ 'Content-Type': 'application/json' }) }
-        let exp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperience/${localStorage.getItem('id')}`, data).toPromise();
-        console.log(exp);
-        return exp;
-    }
-
-    async UpdateworkExperience(data) {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: ({ 'Content-Type': 'application/json' }) }
-        let exp = await this.ApiService.put(`${this.baseUrl}/Users/UpdateWorkExperience/${localStorage.getItem('id')}`, data).toPromise();
-        console.log(exp);
-        return exp;
-    }
-=======
     addQualification(qualification: any): Observable<any> {
 
         return this.ApiService.post(`${this.baseUrl}/Users/AddQualification`, qualification);
     }
 
     updateQualification(qualification: any): Observable<any> {
->>>>>>> master
 
         return this.ApiService.post(`${this.baseUrl}/Users/UpdateQualification`, qualification);
     }
@@ -230,32 +137,10 @@ export class EmployeeService {
 
     getWorkExperience(userId): Observable<any> {
 
-<<<<<<< HEAD
-    //     let authToken = localStorage.getItem('auth_token');
-    //     console.log(this.addedDependants);
-    //     // this.allDependentForm[0] = this.DependantForm.value;
-    //     let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, this.addedDependants).toPromise();
-    //     return relation;
-    // }
-
-    async adduserDependant(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let relation = await this.ApiService.post(`${this.baseUrl}/HrSetup/AddRelation`, data).toPromise();
-        return relation;
-    }
-
-    async Updaterelation(data) {
-        let authToken = localStorage.getItem('auth_token');
-        let reltion = await this.ApiService.put(`${this.baseUrl}/HrSetup/UpdateRelation`, data).toPromise();
-        return reltion;
-    }
-=======
         return this.ApiService.get(this.baseUrl + '/Users/GetworkExperienceByUserId/' + userId);
     }
 
     addWorkExperience(experience: any): Observable<any> {
->>>>>>> master
 
         return this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperience`, experience);
     }

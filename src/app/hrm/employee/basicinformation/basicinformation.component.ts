@@ -53,13 +53,7 @@ export class BasicinformationComponent implements OnInit {
 
     update(value) {
 
-<<<<<<< HEAD
-    async update(value) {
-        console.log(value);
-        await this.employeeService.updateUersById(value);
-=======
         value.UserId = this.id;
->>>>>>> master
 
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
             this.showSuccess("Basic Information Updated");
@@ -68,11 +62,6 @@ export class BasicinformationComponent implements OnInit {
     }
 
     async ngOnInit() {
-<<<<<<< HEAD
-
-        this.employeeService.GetEmployee(this.id).subscribe(resp => {
-=======
->>>>>>> master
 
         this.religion = await this.SetupServiceobj.getAllReligions();
 
@@ -83,35 +72,13 @@ export class BasicinformationComponent implements OnInit {
         if (this.id) {
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
-<<<<<<< HEAD
-        //     await this.SetupServiceobj.getAllDesignations();
-        //     let dsg = this.SetupServiceobj.designation;
-
-        //     await this.SetupServiceobj.getAllLanguages();
-        //     let lng = this.SetupServiceobj.language;
-=======
                 this.Employee = resp;
 
                 this.patchValues(resp);
->>>>>>> master
 
             });
         }
 
-<<<<<<< HEAD
-        //     await this.SetupServiceobj.getAllFunctions();
-        //     let func = this.SetupServiceobj.function;
-
-        //     await this.SetupServiceobj.getAllReligions();
-        //     let relg = this.SetupServiceobj.religion;
-        //     console.log(relg);
-
-        //     await this.SetupServiceobj.getAllGazettedHolidays();
-        //     let holiday = this.SetupServiceobj.gazetholidays;
-
-        //     await this.SetupServiceobj.getAllCities();
-        //     let cty = this.SetupServiceobj.city;
-=======
 
     }
 
@@ -119,7 +86,6 @@ export class BasicinformationComponent implements OnInit {
 
         this.updateMessage.emit(message);
     }
->>>>>>> master
 
     isUpdate(): boolean {
 
@@ -152,16 +118,11 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
-<<<<<<< HEAD
-    async Formsubmit() {
-        await this.employeeService.addEmployee();
-=======
     async Formsubmit(value) {
 
         this.employeeService.addEmployee(value).subscribe(resp => {
 
             this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
         })
->>>>>>> master
     }
 }

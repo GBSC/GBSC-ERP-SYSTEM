@@ -14,40 +14,21 @@ export class AllowancearrearComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        await this.payrollsetupservice.getallowancearrears();
-        this.allowancearrear = this.payrollsetupservice.allowancearrear;
-
-    }
-
-    async addallowancearrear(value) {
-        await this.payrollsetupservice.addallowancearrear(value.data);
-=======
 
         this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
     }
 
     async addallowancearrear(value) {
         await this.payrollsetupservice.addAllowanceArrear(value.data);
->>>>>>> master
         this.clientGrid.instance.refresh();
     }
 
     async updateallowancearrear(value) {
-<<<<<<< HEAD
-        console.log(value);
-        await this.payrollsetupservice.updateallowancearrear(value);
-    }
-
-    async deleteallowancearrear(value) {
-        await this.payrollsetupservice.Deleteallowancearrear(value.key);
-=======
         await this.payrollsetupservice.updateAllowanceArrear(value);
     }
 
     async deleteallowancearrear(value) {
         await this.payrollsetupservice.deleteAllowanceArrear(value.key);
->>>>>>> master
     }
 
 }

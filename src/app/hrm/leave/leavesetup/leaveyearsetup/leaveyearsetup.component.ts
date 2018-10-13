@@ -15,24 +15,7 @@ export class LeaveyearsetupComponent implements OnInit {
     }
 
     async addleaveyear(value) {
-<<<<<<< HEAD
-        console.log(value.data);
-        this.leavesetupservice.addleaveyear(value.data);
-    }
-
-    async updateleaveyear(value) {
-        this.leavesetupservice.updateleaveyear(value);
-
-    }
-
-    async deleteleaveyear(value) {
-        console.log(value);
-        this.leavesetupservice.Deleteleavyear(value.key);
-
-
-=======
         this.leavesetupservice.addLeaveYear(value.data);
->>>>>>> master
     }
 
     async updateleaveyear(value) {

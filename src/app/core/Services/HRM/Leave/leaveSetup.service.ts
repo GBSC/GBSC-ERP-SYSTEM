@@ -8,17 +8,7 @@ export class LeaveSetupService {
 
     constructor(private ApiService: ApiService) { }
 
-<<<<<<< HEAD
-
-    /** Leave Policy CRUD METHODS */
-    async getAllleavepolicy() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-=======
     async getLeavePolicies() {
->>>>>>> master
         return await this.ApiService.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
     }
 
@@ -30,12 +20,7 @@ export class LeaveSetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddLeavePolicy`, data).toPromise();
     }
 
-<<<<<<< HEAD
-    async updateleavepolicy(data) {
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-=======
     async updateLeavePolicy(data) {
->>>>>>> master
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePolicy`, data).toPromise();
     }
 
@@ -78,11 +63,6 @@ export class LeaveSetupService {
         leavyear = { ...leavyear, ...data.data }
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
     }
-<<<<<<< HEAD
-
-    async Deleteleavyear(leavyearId) {
-=======
->>>>>>> master
 
     async DeleteLeaveYear(leavyearId) {
 
@@ -166,23 +146,8 @@ export class LeaveSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteLeavePolicyEmployee/${leaveemppolicyId}`).toPromise();
     }
 
-<<<<<<< HEAD
-    /** CRUD METHODS */
-    async getAllleavetype() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        let leaveTypes: any = await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
-        leaveTypes.forEach(element => {
-            this.leavetype.push(element)
-        });
-        console.log(this.leavetype);
-        return this.leavetype;
-=======
     async getLeaveTypes() {
         return await this.ApiService.get(`${this.baseUrl}/GetLeaveTypes`).toPromise();
->>>>>>> master
     }
 
     async addLeaveType(data) {

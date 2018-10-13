@@ -14,7 +14,16 @@ export class MonthlyUserSalaryComponent implements OnInit {
     private MonthlyUserSalaryForm: any
     private rosterAttendance: UserRosterAttendance[];
     public stopSalary: any;
+<<<<<<< HEAD
     public monthlyUserSalary: any;
+=======
+    public paySlip: any;
+    public employees: any;
+    public userSalary: any;
+    public monthlyUserSalary: any;
+    public pfPayment: any;
+    public payroll: any;
+>>>>>>> master
 
     constructor(private fb: FormBuilder, public payrollservice: PayrollService,
         public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -41,6 +50,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
             PayrollId: ['', Validators]
         });
 
+<<<<<<< HEAD
         // await this.payrollservice.month();
         // this.monthlyUserSalary = this.payrollservice.stopsalary;
 
@@ -61,11 +71,25 @@ export class MonthlyUserSalaryComponent implements OnInit {
         await this.payrollservice.getpayslips();
         let paySlip = this.payrollservice.Payslip;
 
+=======
+        this.stopSalary = await this.payrollservice.getStopSalaries();
+
+        this.employees = await this.Employeeservice.GetAllEmployees();
+
+        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+
+        this.pfPayment = await this.payrollsetupservice.getPfPayments();
+
+        this.payroll = await this.payrollsetupservice.getPayrolls();
+
+        this.paySlip = await this.payrollservice.getPayslips();
+>>>>>>> master
     }
 
     async RosterAttendance(value) {
         let data = value.data;
         this.rosterAttendance.push(data);
+<<<<<<< HEAD
         console.log(this.rosterAttendance);
     }
 
@@ -80,6 +104,16 @@ export class MonthlyUserSalaryComponent implements OnInit {
         console.log(x);
         this.MonthlyUserSalaryForm.reset();
 
+=======
+    }
+
+    async addMonthlySalary(value) {
+        let monthlySalary = new MonthlyUserSalary();
+        monthlySalary = { ...monthlySalary, ...value };
+        monthlySalary.UserRosterAttendances = this.rosterAttendance;
+        let x = await this.payrollservice.addMonthlySalary(monthlySalary);
+        this.MonthlyUserSalaryForm.reset();
+>>>>>>> master
     }
 
 }

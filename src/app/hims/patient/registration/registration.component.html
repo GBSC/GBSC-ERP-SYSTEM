@@ -16,7 +16,7 @@
 						</div>
 						<!-- <div class="m-portlet__head-tools">
 							<div class="dropdown">
-								<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
+								<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary m-btn m-btn--custom dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
 								 type="button">
 									<span _ngcontent-c21="">
 										<i class="fa fa-cog"></i>
@@ -42,7 +42,7 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Reg City </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || 'loading'" formControlName="RegCity">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || ''" formControlName="RegCity">
 										<option value="Karaci">Karachi</option>
 										<option value="Multan">Multan</option>
 									</select>
@@ -54,7 +54,7 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Gender </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || 'loading'" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.gender  || ''" formControlName="Gender" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
 										<option value="Female">Female</option>
 										<option value="Male">Male</option>
 									</select>
@@ -69,7 +69,7 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName  || ''" formControlName="FirstName"
 									 name="FirstName" type="text" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
 									<div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-										<div *ngIf="f.FirstName.errors.required">First Named is require</div>
+										<div *ngIf="f.FirstName.errors.required">First Named is required</div>
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
@@ -82,7 +82,7 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.lastName || ''" formControlName="LastName"
 									 name="LastName" type="text" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
 									<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
-										<div *ngIf="f.LastName.errors.required">Last Name is require</div>
+										<div *ngIf="f.LastName.errors.required">Last Name is required</div>
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
@@ -90,7 +90,7 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob" formControlName="DOB"
 									 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
 									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-										<div *ngIf="f.DOB.errors.required">Date Of Birth is require</div>
+										<div *ngIf="f.DOB.errors.required">Date Of Birth is required</div>
 									</div>
 								</div>
 							</div>
@@ -110,7 +110,7 @@
 									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic || ''"
 									 formControlName="NIC" (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
 									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
-										<div *ngIf="f.NIC.errors.required">NIC is require</div>
+										<div *ngIf="f.NIC.errors.required">NIC is required</div>
 										<div *ngIf="f.NIC.errors.minlength">NIC must be at least 13 characters</div>
 									</div>
 								</div>
@@ -119,8 +119,8 @@
 									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" (keypress)="keyPress($event)"
 									 [value]="Patient?.phoneNumber || ''" formControlName="PhoneNumber" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
 									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
-										<div *ngIf="f.PhoneNumber.errors.required">PhoneNumber is require</div>
-										<div *ngIf="f.PhoneNumber.errors.minlength">PhoneNumber must be at least 11 characters</div>
+										<div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
+										<div *ngIf="f.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
 									</div>
 								</div>
 							</div>
@@ -174,7 +174,7 @@
 									 type="text">
 								</div>
 								<div class="form-group col-lg-3">
-									<label for="exampleInputEmail1"> PostalCode </label>
+									<label for="exampleInputEmail1"> Postal Code </label>
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.postalCode  || ''" formControlName="PostalCode"
 									 type="text">
 								</div>
@@ -195,8 +195,22 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.privateHospital  || ''"
 									 formControlName="PrivateHospital" type="text">
 								</div>
+								<div class="form-group col-lg-3">
+										<div class="form-action pull-right margin" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+											<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-primary m-btn m-btn--custom">
+												Update Patient
+											</button>
+										</div>
+										<div class="form-action pull-right margin" *ngIf="router.url === '/hims/patient/registration'">
+											<button type="submit" (click)="onSubmit(patientForm.value)" class="btn btn-primary m-btn m-btn--custom">
+												Add Patient
+											</button>
+										</div>
+								</div>
 							</div>
-							<div class="form-group row">
+
+
+							<div class="form-group row" >
 								<div class="col-lg-12">
 									<div class="m-accordion m-accordion--default" id="m_accordion_1" role="tablist">
 										<div class="m-accordion__item">
@@ -213,7 +227,7 @@
 											<div class="m-accordion__item-body collapse" id="m_accordion_1_item_1_body" role="tabpanel" aria-labelledby="m_accordion_1_item_1_head"
 											 data-parent="#m_accordion_1">
 												<div class="m-accordion__item-content">
-													<div class="m-portlet__body">
+													<div class="m-portlet__body" style="padding: 0px;">
 														<ul class="nav nav-pills" role="tablist">
 															<li class="nav-item">
 																<a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
@@ -241,7 +255,7 @@
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="FirstName" type="text"
 																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.FirstName.errors }">
 																				<div *ngIf="spousesubmitted && s.FirstName.errors" class="invalid-feedback">
-																					<div *ngIf="s.FirstName.errors.required">First Name is require</div>
+																					<div *ngIf="s.FirstName.errors.required">First Name is required</div>
 																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
@@ -253,7 +267,7 @@
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="LastName" type="text"
 																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.LastName.errors }">
 																				<div *ngIf="spousesubmitted && s.LastName.errors" class="invalid-feedback">
-																					<div *ngIf="s.LastName.errors.required">Last Name is require</div>
+																					<div *ngIf="s.LastName.errors.required">Last Name is required</div>
 																				</div>
 																			</div>
 																		</div>
@@ -266,7 +280,7 @@
 																				<label for="exampleInputEmail1"> N.I.C </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
 																				<div *ngIf="spousesubmitted && s.NIC.errors" class="invalid-feedback">
-																					<div *ngIf="s.NIC.errors.required">NIC is require</div>
+																					<div *ngIf="s.NIC.errors.required">NIC is required</div>
 																					<div *ngIf="s.NIC.errors.minlength">NIC must be at least 13 characters</div>
 																				</div>
 																			</div>
@@ -275,7 +289,7 @@
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PhoneNumber" type="text"
 																				(keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': spousesubmitted && s.PhoneNumber.errors }">
 																				<div *ngIf="spousesubmitted && s.PhoneNumber.errors" class="invalid-feedback">
-																					<div *ngIf="s.PhoneNumber.errors.required">Phone Number is require</div>
+																					<div *ngIf="s.PhoneNumber.errors.required">Phone Number is required</div>
 																					<div *ngIf="s.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
 																				</div>
 																			</div>
@@ -292,15 +306,15 @@
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
 																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatePatientSpouse(partnerForm.value)"
-																		 data-dismiss="modal" class="btn btn-primary">
+																		 data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Update
 																		</button>
 																		<button type="button" *ngIf="router.url === '/hims/patient/registration'" (click)="onAddPartner(partnerForm.value)" data-dismiss="modal"
-																		 class="btn btn-primary">
+																		 class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>
@@ -321,7 +335,7 @@
 																				<label for="exampleInputEmail1"> Person Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PersonName" [ngClass]="{ 'is-invalid': referencesubmitted && r.PersonName.errors }">
 																				<div *ngIf="referencesubmitted && r.PersonName.errors" class="invalid-feedback">
-																					<div *ngIf="r.PersonName.errors.required">Person Name is require</div>
+																					<div *ngIf="r.PersonName.errors.required">Person Name is required</div>
 																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
@@ -337,16 +351,16 @@
 																		</div>
 																	</div>
 																	<div class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
 	
 																		<button type="button" *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="updatepatientRef(referenceForm.value)"
-																		 data-dismiss="modal" class="btn btn-primary">
+																		 data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Update
 																		</button>
 																		<button *ngIf="router.url === '/hims/patient/registration'" type="button" (click)="onAddReference(referenceForm.value)" data-dismiss="modal"
-																		 class="btn btn-primary">
+																		 class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>
@@ -361,22 +375,23 @@
 																				<label for="exampleInputEmail1">File Path:</label>
 																				<input type="file" formControlName="FilePath" (change)="fileselect($event)" />
 																			</div>
+																			<div class="form-group col-lg-2">
+																				<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																					Add
+																				</button>
+																				<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																					Add
+																				</button>
+																				<br>
+																			</div>
 																		</div>
-																		<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
-																			<div class="form-group col-lg-4">
+																		<div class="form-group col-lg-4" *ngIf="router.url === '/hims/patient/updatepatient/'+id">
+																			<div class="form-group">
 																				<label for="exampleInputEmail1">Document:</label>
 																				<input type="file" (change)="onfileselect($event)" />
 																			</div>
 																		</div>
-																		<div class="form-group m-form__group row">
-																			<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary">
-																				Add
-																			</button>
-																			<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary">
-																				Add
-																			</button>
-																			<br>
-																		</div>
+																	
 																	</div>
 																	<div class="m-section">
 																		<div class="m-section__content">
@@ -410,7 +425,7 @@
 																						<td>{{patientDoucment?.documentName}}</td>
 																						<td> {{patientDoucment?.filePath}}</td>
 																						<td>
-																							<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary">
+																							<button type="button" (click)="deleteDocument(patientDoucment.patientDocumentId , i)" class="btn btn-primary m-btn m-btn--custom">
 																								<i class="la la-archive"></i>
 																							</button>
 																						</td>
@@ -421,7 +436,7 @@
 																					<tr *ngFor=" let t of allDocs; let i = index">
 																						<td>{{t.name}}</td>
 																						<td>
-																							<button type="button" (click)="remove(i)" class="btn btn-primary">
+																							<button type="button" (click)="remove(i)" class="btn btn-primary m-btn m-btn--custom">
 																								<i class="la la-archive"></i>
 																							</button>
 																						</td>
@@ -431,10 +446,10 @@
 																		</div>
 																	</div>
 																	<div *ngIf="router.url === '/hims/patient/registration'" class="modal-footer">
-																		<button type="reset" class="btn btn-secondary">
+																		<button type="reset" class="btn btn-warning m-btn m-btn--custom">
 																			Reset
 																		</button>
-																		<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary">
+																		<button type="button" (click)="onAddDocument()" data-dismiss="modal" class="btn btn-primary m-btn m-btn--custom">
 																			Save
 																		</button>
 																	</div>
@@ -448,7 +463,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group row">
+							<!-- <div class="form-group row">
 								<div class="form-group col-lg-12">
 									<div *ngIf="router.url === '/hims/patient/updatepatient/'+id">
 										<button type="submit" (click)="updatePatient(patientForm.value)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
@@ -461,7 +476,7 @@
 										</button>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</form>
 				</div>

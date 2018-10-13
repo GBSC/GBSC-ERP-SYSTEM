@@ -9,6 +9,7 @@ import { AttendanceService, AttendancesetupService, EmployeeService } from '../.
 export class OvertimeEntitlementComponent implements OnInit {
 
     public overtimeEntitlement: any;
+<<<<<<< HEAD
     constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -21,19 +22,31 @@ export class OvertimeEntitlementComponent implements OnInit {
 
         await this.employeeservice.GetAllEmployees();
         let user = this.employeeservice.employeereg
+=======
+    public overTimetype: any;
+    public employee: any;
+
+    constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
+
+    async ngOnInit() {
+        this.overtimeEntitlement = await this.attendanceservice.getOvertimeEntitlements();
+
+        this.overTimetype = await this.attendancesetupservice.getAllOvertimeType();
+
+        this.employee = await this.employeeservice.GetAllEmployees();
+>>>>>>> master
     }
 
     async addovertimeEntitlement(value) {
-        this.attendanceservice.addovertimeEntitlement(value.data);
+        this.attendanceservice.addOvertimeEntitlement(value.data);
     }
 
     async updateovertimeEntitlement(value) {
-        console.log(value);
-        this.attendanceservice.updateovertimeEntitlement(value);
+        this.attendanceservice.updateOvertimeEntitlement(value);
     }
 
     async deleteovertimeEntitlement(value) {
-        this.attendanceservice.DeleteovertimeEntitlement(value.key);
+        this.attendanceservice.DeleteOvertimeEntitlement(value.key);
     }
 
 }

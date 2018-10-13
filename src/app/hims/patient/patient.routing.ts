@@ -36,7 +36,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'hims/patient',
         component: RootComponent,
+<<<<<<< HEAD
         canActivate: [AuthGuardService, ModuleGuardService],
+=======
+        // canActivate: [AuthGuardService, ModuleGuardService],
+>>>>>>> master
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },
@@ -47,15 +51,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'diagnoses', component: DiagnosesComponent },
             { path: 'recentvisits', component: RecentvisitsComponent },
             { path: 'latestobservation', component: LatestobservationComponent },
-            { path: 'family', component: FamilyComponent },
-            { path: 'health_trend_summary', component: HealthTrendSummaryComponent },
             { path: 'allergies', component: AllergiesComponent },
-            { path: 'weight_graph', component: WeightGraphComponent },
             { path: 'vitals', component: VitalsComponent },
             { path: 'appointments', component: AppointmentsComponent },
             { path: 'patientvitals/:id', component: PatientvitalsComponent },
             { path: 'admitinpatient', component: AdmitinpatientComponent },
-            { path: 'generalactions', component: GeneralactionsComponent },
             { path: 'visitnote', component: VisitnoteComponent },
             { path: 'visits/:id', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },

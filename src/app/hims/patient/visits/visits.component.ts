@@ -7,15 +7,15 @@ import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Visits } from '../../../core/Models/HIMS/visits';
 
-
-
-
 @Component({
     selector: 'app-visits',
     templateUrl: './visits.component.html',
     styleUrls: ['./visits.component.css']
 })
 export class VisitsComponent implements OnInit {
+
+    public VisitNoteByVisitId : any;
+    public AppointmentByVisitId : any;
 
     public VisitTests: any = [];
     public VisitDiagnoses: any = [];
@@ -65,9 +65,6 @@ export class VisitsComponent implements OnInit {
             'TestId': ['', Validators.required],
             'VisitId': ['']
         });
-
-
-
     }
 
     async ngOnInit() {
@@ -129,6 +126,10 @@ export class VisitsComponent implements OnInit {
         this.PatientVisitNoteForm.value.VisitId = y;
         let x = await this.PatientServiceobj.addVisitNote(value);
         console.log(x)
+
+        // this.visitid = this.PatientServiceobj.visitid;
+        // console.log(this.visitid);
+ 
     }
 
     async addappointment(value) {
@@ -138,6 +139,10 @@ export class VisitsComponent implements OnInit {
         console.log(value);
         console.log(x)
         console.log(this.vistid);
+        
+ 
+
+
     }
 
     async addvisitdiagnosis(value) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../../../core';
 
@@ -11,39 +11,30 @@ import { EmployeeService } from '../../../core';
 })
 export class DocumentComponent implements OnInit {
 
-    @Output('setdocumentsFormValue') setdocumentsFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
+
     public documentForm: FormGroup;
+
     constructor(public employee: EmployeeService, public fb: FormBuilder) { }
 
     async ngOnInit() {
 
-        // this.documentForm = this.fb.group({
-        //   AccountTitle: ['', Validators.required],
-        //   AccountNumber: ['', Validators.required],
-        //   BankName: ['', Validators.required],
-        //   BankCode: ['', Validators.required],
-        //   BankBranch: ['', Validators.required]
-        // }); 
-        await this.employee.GetDocumentsByUserId();
-        let UserDocuments = this.employee.DocumentsByUserId;
-
     }
     async addDocuments() {
-        let doc = await this.employee.adduserDocuments();
-        console.log(doc);
     }
 
+<<<<<<< HEAD
     getDocumentsBankFormValue() {
         this.setdocumentsFormValue.emit(this.documentForm.value);
     }
+=======
+>>>>>>> master
 
     private forimg: File[] = [];
     public allDocs: File[] = [];
 
     fileselect(event) {
-        console.log(event);
         this.forimg = event.target.files;
-        console.log(this.forimg);
     }
 
 
@@ -58,6 +49,7 @@ export class DocumentComponent implements OnInit {
             }
 
         }
+<<<<<<< HEAD
         await this.employee.GetDocumentsByUserId();
         this.employee.DocumentsByUserId;
         await this.employee.addDocuments(y);
@@ -67,6 +59,11 @@ export class DocumentComponent implements OnInit {
 
     async  deleteUserDocument(value) {
         console.log(value);
+=======
+    }
+
+    async  deleteUserDocument(value) {
+>>>>>>> master
         let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
     }
 

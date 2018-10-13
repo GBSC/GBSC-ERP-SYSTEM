@@ -11,7 +11,12 @@ import { GratuitySlab } from '../../../../core/Models/HRM/gratuitySlab';
 })
 export class GratuityslabComponent implements OnInit {
     public gratuitySlab: any;
+    public gratuities: any;
+    public UpdatinggratuitySlab: any;
+    public gratuitySlabForm: any;
+    public gratuitySlabGratuityDetail: GratuitySlabGratuity[];
 
+<<<<<<< HEAD
     public gratuitySlabForm;
     private gratuitySlabGratuityDetail: GratuitySlabGratuity[];
 
@@ -63,5 +68,42 @@ export class GratuityslabComponent implements OnInit {
     async deleteGratuitySlab(value) {
         await this.payrollsetupservice.Deletegratuityslab(value.key);
     }
+=======
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService,
+        public payrollservice: PayrollService) { }
+
+    async ngOnInit() {
+
+        this.gratuitySlabGratuityDetail = [];
+
+        this.gratuitySlabForm = this.fb.group({
+            Title: ['', Validators.required],
+            MultiplicationFactor: ['', Validators.required],
+            EmploymentDaysFrom: ['', Validators.required],
+            EmploymentDaysTill: ['', Validators.required]
+        });
+
+        this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
+
+        this.gratuities = await this.payrollservice.getGratuities();
+    }
+
+
+    async addGratuityslab(value) {
+        await this.payrollsetupservice.addGratuitySlab(value.data);
+    }
+
+    async updatingGratuitySlab(value) {
+        this.UpdatinggratuitySlab = { ...value.oldData, ...value.newData };
+    }
+
+    async updateGratuitySlab() {
+        await this.payrollsetupservice.updateGratuitySlab(this.UpdatinggratuitySlab);
+    }
+
+    async deleteGratuitySlab(value) {
+        await this.payrollsetupservice.deleteGratuitySlab(value.key);
+    }
+>>>>>>> master
 
 }

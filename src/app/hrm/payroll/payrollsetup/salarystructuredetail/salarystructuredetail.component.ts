@@ -9,6 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 export class SalarystructuredetailComponent implements OnInit {
 
     public salaryStructureDetail: any;
+<<<<<<< HEAD
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
@@ -26,19 +27,37 @@ export class SalarystructuredetailComponent implements OnInit {
 
         await this.payrollsetupservice.getsalarystructures();
         let salarystructure = this.payrollsetupservice.salarystructure;
+=======
+    public salaryCalculationtype: any;
+    public benefit: any;
+    public allowance: any;
+    public salarystructure: any;
+
+    constructor(public payrollsetupservice: PayrollSetupService) { }
+
+    async ngOnInit() {
+        this.salaryStructureDetail = await this.payrollsetupservice.getSalaryStructureDetails();
+
+        this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
+
+        this.benefit = await this.payrollsetupservice.getBenefits();
+
+        this.allowance = await this.payrollsetupservice.getAllowances();
+
+        this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
+>>>>>>> master
     }
 
     async addSalaryStructureDetail(value) {
-        await this.payrollsetupservice.addsalarystructuredetail(value.data);
+        await this.payrollsetupservice.addSalaryStructureDetail(value.data);
     }
 
     async updateSalaryStructureDetail(value) {
-        console.log(value);
-        await this.payrollsetupservice.updatesalarystructuredetail(value);
+        await this.payrollsetupservice.updateSalaryStructureDetail(value);
     }
 
     async deleteSalaryStructureDetail(value) {
-        await this.payrollsetupservice.Deletesalarystructuredetail(value.key);
+        await this.payrollsetupservice.deleteSalaryStructureDetail(value.key);
     }
 
 }

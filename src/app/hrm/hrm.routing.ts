@@ -183,8 +183,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         children: [
                             { path: 'leaveopening', component: EmployeeleaveopeningComponent },
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
+<<<<<<< HEAD
                         ]                    
 },
+=======
+                        ]
+                    },
+>>>>>>> master
                     { path: 'leaverequest', component: LeaverequestComponent },
                     { path: 'leaveclosing', component: LeaveclosingComponent },
                     { path: 'leaveapproval', component: LeaveapprovalComponent }

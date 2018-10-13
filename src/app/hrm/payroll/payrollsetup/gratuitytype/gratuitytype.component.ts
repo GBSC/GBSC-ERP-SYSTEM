@@ -9,6 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 export class GratuitytypeComponent implements OnInit {
 
     public gratuityType: any;
+<<<<<<< HEAD
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
@@ -27,6 +28,26 @@ export class GratuitytypeComponent implements OnInit {
 
     async deleteGratuityType(value) {
         await this.payrollsetupservice.Deletegratuitytype(value.key);
+=======
+
+    constructor(public payrollsetupservice: PayrollSetupService) { }
+
+    async ngOnInit() {
+
+        this.gratuityType = await this.payrollsetupservice.getGratuityTypes();
+    }
+
+    async addGratuityType(value) {
+        await this.payrollsetupservice.addGratuityType(value.data);
+    }
+
+    async updateGratuityType(value) {
+        await this.payrollsetupservice.updateGratuityType(value);
+    }
+
+    async deleteGratuityType(value) {
+        await this.payrollsetupservice.deleteGratuityType(value.key);
+>>>>>>> master
     }
 
 }

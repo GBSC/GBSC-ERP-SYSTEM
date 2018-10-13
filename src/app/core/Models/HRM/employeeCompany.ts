@@ -7,13 +7,20 @@ export interface EmployeeCompany {
     EmployeeStatusId: number,
     EmployeeTypeId: number,
     Shift: number,
+<<<<<<< HEAD
     ContractStart: Date,
     ContractEnd: Date,
+=======
+    ContractStartDate: Date,
+    ContractEndDate: Date,
+>>>>>>> master
     AppointmentDate: Date,
-    NextApprisalDate: Date,
-    ConfirmDueDate: Date,
+    NextAppraisalDate: Date,
+    ConfirmationDueDate: Date,
     ConfirmationDate: Date,
     LeavingDate: Date,
     ResignDate: Date,
-    Approver: string
+    Approver: string,
+    UserId: number,
+    UserCompanyId: number
 }

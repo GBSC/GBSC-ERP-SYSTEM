@@ -12,6 +12,7 @@ export class ChequeTemplateComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
+<<<<<<< HEAD
         await this.payrollsetupservice.getchequetemplates();
         this.chequeTemplate = this.payrollsetupservice.chequetemplate;
     }
@@ -27,6 +28,22 @@ export class ChequeTemplateComponent implements OnInit {
 
     async deleteChequeTemplate(value) {
         await this.payrollsetupservice.Deletechequetemplate(value.key);
+=======
+
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
+    }
+
+    async addChequeTemplate(value) {
+        await this.payrollsetupservice.addChequeTemplate(value.data);
+    }
+
+    async updateChequeTemplate(value) {
+        await this.payrollsetupservice.updateChequeTemplate(value);
+    }
+
+    async deleteChequeTemplate(value) {
+        await this.payrollsetupservice.deleteChequeTemplate(value.key);
+>>>>>>> master
     }
 
 }

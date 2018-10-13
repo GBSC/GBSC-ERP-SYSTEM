@@ -108,9 +108,24 @@ export class PatientService {
     async addPatient(patient: Patient) {
         this.patientID = await this.ApiService.post(this.API_URL + 'patients/AddPatient', patient).toPromise();
         //this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
-        //console.log(this.patientID)
-        return this.patientID;
+        console.log(this.patientID);
+        console.log(this.patientID.patientId);
+        return this.patientID.patientId;
     }
+
+    async addSpouse(Spouse: Spouse) {
+        let x = await this.ApiService.post(this.API_URL + 'patients/AddPartner', Spouse).toPromise();
+        console.log(x);
+        return x;
+    }
+
+    async addPatientReference(Reference: Reference) {
+        let x = await this.ApiService.post(this.API_URL + 'patients/AddPatientReference', Reference).toPromise();
+        console.log(x);
+        return x;
+    }
+
+
 
     async getpatientForupdating(value) {
         this.patientData = await value

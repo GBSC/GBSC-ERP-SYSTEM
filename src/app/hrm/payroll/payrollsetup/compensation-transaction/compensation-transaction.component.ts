@@ -11,7 +11,15 @@ export class CompensationTransactionComponent implements OnInit {
 
     public compensationTransaction: any;
     public CompensationTransactionForm: FormGroup;
+<<<<<<< HEAD
     updatingTransaction: any;
+=======
+    public payrollYears: any;
+    public allowances: any;
+    public employees: any;
+    public payrollTypes: any;
+    public updatingTransaction: any;
+>>>>>>> master
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
@@ -28,6 +36,7 @@ export class CompensationTransactionComponent implements OnInit {
             IsTaxableIncome: ['', Validators]
         });
 
+<<<<<<< HEAD
         await this.payrollsetupservice.getcompensationtransactions();
         this.compensationTransaction = this.payrollsetupservice.compensationtransaction;
 
@@ -59,6 +68,32 @@ export class CompensationTransactionComponent implements OnInit {
 
     async deleteCompensationTransaction(value) {
         await this.payrollsetupservice.Deletecompensationtransaction(value.key);
+=======
+        this.compensationTransaction = await this.payrollsetupservice.getCompensationTransactions();
+
+        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+
+        this.employees = await this.employeeservice.GetAllEmployees();
+
+        this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
+
+        this.allowances = await this.payrollsetupservice.getAllowances();
+    }
+
+    async addCompensationTransaction() {
+        await this.payrollsetupservice.addCompensationTransaction(this.CompensationTransactionForm.value);
+    }
+
+    updatingCompensationTransaction(value) {
+        this.updatingTransaction = { ...value.oldData, ...value.newData };
+    }
+    async updateCompensationTransact() {
+        await this.payrollsetupservice.updateCompensationTransaction(this.updatingTransaction);
+    }
+
+    async deleteCompensationTransaction(value) {
+        await this.payrollsetupservice.deleteCompensationTransaction(value.key);
+>>>>>>> master
     }
 
 }

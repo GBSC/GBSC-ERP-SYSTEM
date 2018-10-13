@@ -9,6 +9,13 @@ import { EmployeeService, AttendancesetupService, AttendanceService } from '../.
 export class AttendancerequestComponent implements OnInit {
 
     public attendancerequest: any;
+<<<<<<< HEAD
+=======
+    public attendanceRequestTypes: any;
+    public attendanceRequestApprover: any;
+    public assignroster: any;
+    public employees: any;
+>>>>>>> master
     private UpdatingRequest;
 
     constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
@@ -16,6 +23,7 @@ export class AttendancerequestComponent implements OnInit {
 
     async ngOnInit() {
 
+<<<<<<< HEAD
         await this.attendanceservice.getattendancerequests();
         this.attendancerequest = this.attendanceservice.attendancerequest
         console.log(this.attendancerequest);
@@ -31,11 +39,22 @@ export class AttendancerequestComponent implements OnInit {
 
         await this.attendanceSetupservice.getattendanceRequestapprover();
         let requestApprovr = this.attendanceSetupservice.attendancerequestapprover;
+=======
+        this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
+
+        this.employees = await this.Employeeservice.GetAllEmployees();
+
+        this.attendanceRequestTypes = await this.attendanceSetupservice.getAttendanceRequestTypes();
+
+        this.assignroster = await this.attendanceSetupservice.getAsignRosters();
+
+        this.attendanceRequestApprover = await this.attendanceSetupservice.getAttendanceRequestApprover();
+>>>>>>> master
     }
 
 
     async addattendancerequest(value) {
-        this.attendanceservice.addattendancerequest(value.data);
+        this.attendanceservice.addAttendanceRequest(value.data);
     }
 
     async updatingrequest(value) {
@@ -43,11 +62,15 @@ export class AttendancerequestComponent implements OnInit {
     }
 
     async updateattendancerequest() {
+<<<<<<< HEAD
         this.attendanceservice.updateattendancerequest(this.UpdatingRequest);
+=======
+        this.attendanceservice.updateAttendanceRequest(this.UpdatingRequest);
+>>>>>>> master
     }
 
     async deleteattendancerequest(value) {
-        this.attendanceservice.Deleteattendancerequest(value.key);
+        this.attendanceservice.deleteAttendanceRequest(value.key);
     }
 
 }

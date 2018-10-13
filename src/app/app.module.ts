@@ -12,7 +12,12 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
+<<<<<<< HEAD
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+=======
+import { ToastrModule } from 'ngx-toastr';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
+>>>>>>> master
 
 
 
@@ -23,6 +28,13 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
     ],
     imports: [
+        CommonModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }), // ToastrModule added
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,

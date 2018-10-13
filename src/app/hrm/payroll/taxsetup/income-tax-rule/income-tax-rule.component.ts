@@ -9,11 +9,16 @@ import { PayrollSetupService } from '../../../../core';
 export class IncomeTaxRuleComponent implements OnInit {
 
     public incomeTax: any;
+<<<<<<< HEAD
+=======
+    public payrollYears: any;
+>>>>>>> master
     public UpdateTaxRule: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
+<<<<<<< HEAD
         await this.payrollsetupservice.getincometaxrules();
         this.incomeTax = this.payrollsetupservice.incometaxrule;
 
@@ -26,12 +31,29 @@ export class IncomeTaxRuleComponent implements OnInit {
         await this.payrollsetupservice.addincometaxrule(value.data);
     }
 
+=======
+
+        this.incomeTax = await this.payrollsetupservice.getIncomeTaxRules();
+
+        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+
+    }
+
+    async addIncomeTaxRule(value) {
+        await this.payrollsetupservice.addIncomeTaxRule(value.data);
+    }
+
+>>>>>>> master
     UpdatingIncomeTaxRule(value) {
         this.UpdateTaxRule = { ...value.oldData, ...value.newData };
     }
 
     async updateIncomeTaxRule() {
+<<<<<<< HEAD
         await this.payrollsetupservice.updateincometaxrule(this.UpdateTaxRule);
+=======
+        await this.payrollsetupservice.updateIncomeTaxRule(this.UpdateTaxRule);
+>>>>>>> master
     }
 
     async deleteIncomeTaxRule(value) {

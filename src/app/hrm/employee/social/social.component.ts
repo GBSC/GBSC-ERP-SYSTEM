@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,12 +11,19 @@ import { SetupService, EmployeeService } from '../../../core';
 })
 export class SocialComponent implements OnInit {
     public Employee: any;
+<<<<<<< HEAD
     @Input('id') id: number;
+=======
+    @Input('employeeId') id: number;
+    @Output() updateMessage = new EventEmitter();
+
+>>>>>>> master
     public SocialForm: any;
 
     constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public employeeService: EmployeeService,
         public router: Router, private route: ActivatedRoute) {
         this.SocialForm = this.fb.group({
+<<<<<<< HEAD
             Fb: ['', Validators.required],
             Twitter: ['', Validators.required],
             Instagram: ['', Validators.required],
@@ -25,6 +32,16 @@ export class SocialComponent implements OnInit {
             Youtube: ['', Validators.required],
             Blog: ['', Validators.required],
             Pinterest: ['', Validators.required]
+=======
+            FacebookUrl: [''],
+            TwitterUrl: [''],
+            BloggerProfile: [''],
+            LinkedinUrl: [''],
+            GooglePlusUrl: [''],
+            InstagramUrl: [''],
+            PinterestUrl: [''],
+            YoutubeUrl: ['']
+>>>>>>> master
         });
 
     }
@@ -33,10 +50,16 @@ export class SocialComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
+<<<<<<< HEAD
             console.log(this.id)
 
             //     this.PatientServiceobj.getpatient(this.id).subscribe((Patient : any)=> {
             //       this.Patient = Patient;
+=======
+
+        });
+
+>>>>>>> master
 
             //       this.patientForm.patchValue({
             //           FirstName: Patient.firstName,
@@ -44,6 +67,7 @@ export class SocialComponent implements OnInit {
 
             //    });
 
+<<<<<<< HEAD
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
                 this.Employee = resp;
@@ -51,35 +75,51 @@ export class SocialComponent implements OnInit {
                 console.log(this.Employee);
             });
 
+=======
+            this.patchValues(resp);
+>>>>>>> master
 
+        });
 
+    }
 
+<<<<<<< HEAD
 
         });
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
             console.log(this.id);
             this.Employee = resp;
+=======
+    update(value) {
 
-            this.patchValues(resp);
-
-        });
+        this.employeeService.updateuserSocial(this.id, value).subscribe(resp => this.showSuccess("Social information updated"));
+>>>>>>> master
 
     }
 
+    showSuccess(message) {
+
+        this.updateMessage.emit(message);
+    }
+
+<<<<<<< HEAD
     async update(value) {
         console.log(value);
         await this.employeeService.updateuserSocial(value);
 
     }
+=======
+
+>>>>>>> master
     patchValues(social: any) {
 
-        this.employeeService.SocialForm.patchValue({
+        this.SocialForm.patchValue({
 
             FacebookUrl: social.facebookUrl,
             TwitterUrl: social.twitterUrl,
             BloggerProfile: social.bloggerProfile,
-            LinkedinUrl: social.linkedinUrl,
+            LinkedinUrGooglePlusUrll: social.linkedinUrl,
             GooglePlusUrl: social.googlePlusUrl,
             InstagramUrl: social.instagramUrl,
             PinterestUrl: social.pinterestUrl,

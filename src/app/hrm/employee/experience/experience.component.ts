@@ -11,25 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ExperienceComponent implements OnInit {
 
-    @Output('setExpFormValue') setExpFormValue = new EventEmitter();
-    public experienceForm: any;
-    public Employee: any;
-    public workExperience: any;
-    @Input('id') id: number;
+    @Input('employeeId') id: number;
 
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
-
-    constructor(public employeeService: EmployeeService, public fb: FormBuilder,
-        public router: Router, private route: ActivatedRoute) {
-        this.experienceForm = this.fb.group({
-            CompanyName: [''],
-            Designation: [''],
-            Timefrom: [''],
-            Timeto: [''],
-            Description: ['']
-        });
-
+<<<<<<< HEAD
     }
 
     async ngOnInit() {
@@ -40,45 +24,22 @@ export class ExperienceComponent implements OnInit {
             this.id = +params['id'];
 
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
+=======
+    public experiences: any;
+>>>>>>> master
 
-                this.Employee = resp;
-                console.log(this.Employee);
-
-                //   this.patchValues(resp);
-
-            });
-        });
-
-
-        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
-        this.employeeService.firstForm = this.employeeService.allExperiencexpForm[0];
-    }
-
-    async update(value) {
-        console.log(value);
-        await this.employeeService.updateuserWorkExperience(value);
+    constructor(public employeeService: EmployeeService) {
 
     }
 
-    addFieldValue() {
-        this.employeeService.allExperiencexpForm.push({ ...this.employeeService.experienceForm.value });
-        console.log(this.employeeService.allExperiencexpForm);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
-    }
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
-    async addexpinfo() {
-        let exp = await this.employeeService.adduserexperience();
-        console.log(exp);
-    }
+    async ngOnInit() {
 
-    getexperienceFormValue() {
-        this.setExpFormValue.emit(this.experienceForm.value);
+        this.employeeService.getWorkExperience(this.id).subscribe(resp => this.experiences = resp);
+
     }
 
 
+<<<<<<< HEAD
     async addExperience(value) {
         let a: EmployeeExperience = value.data;
         a.userId = localStorage.getItem('id');
@@ -96,21 +57,21 @@ export class ExperienceComponent implements OnInit {
 
     async updateExperience() {
         await this.employeeService.Updaterelation(this.updatingExp);
+=======
+    addWorkExperience(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addWorkExperience(value.data).subscribe(resp => console.log(resp));
+>>>>>>> master
     }
 
+    updateWorkExperience(value) {
 
-    patchValues(workExperience: any) {
+        let expereince = this.experiences.find(x => x.WorkExperienceId == value.key);
 
-        this.employeeService.experienceForm.patchValue({
+        expereince = { ...expereince, ...value.data };
 
-            CompanyName: workExperience.companyName,
-            Designation: workExperience.designation,
-            Timefrom: workExperience.timefrom,
-            Timeto: workExperience.timeto,
-            Description: workExperience.description
-
-        });
+        this.employeeService.updateWorkExperience(expereince).subscribe(resp => console.log(resp));
     }
-
 
 }

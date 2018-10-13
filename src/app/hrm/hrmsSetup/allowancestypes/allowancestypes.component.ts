@@ -20,11 +20,8 @@ export class AllowancesTypeComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllAllowancesType();
         this.allowance = this.dataService.allowancetype;
-        console.log(this.allowance);
-        // this.dataService.GetAllAllowancesType().subscribe((data)=>this.AllowancesType=data);
     }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addAllowances(alowance) {
 

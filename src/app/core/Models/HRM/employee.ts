@@ -1,4 +1,8 @@
 export interface Employee {
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     FirstName: string,
     LastName: string,
     Phone: string,
@@ -17,6 +21,12 @@ export interface Employee {
     PermanentAddress: string,
     ReligionId: number,
     CityId: number,
+<<<<<<< HEAD
     DateCreated: Date,
+=======
+    UserLanguages: Array<any>,
+    userId: any
+
+>>>>>>> master
 
 }

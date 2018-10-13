@@ -8,6 +8,7 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class GratuitySlabGratuityComponent implements OnInit {
 
+<<<<<<< HEAD
     public gratuitySlabGratuity: any;
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
@@ -33,6 +34,29 @@ export class GratuitySlabGratuityComponent implements OnInit {
 
     async deleteGratuitySlabGratuity(value) {
         await this.payrollsetupservice.DeletegratuityslabGratuity(value.key);
+=======
+    public gratuitySlab: any;
+    public gratuitySlabGratuity: any;
+
+    constructor(public payrollsetupservice: PayrollSetupService) { }
+
+    async ngOnInit() {
+        this.gratuitySlabGratuity = await this.payrollsetupservice.getGratuitySlabGratuities();
+
+        this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
+    }
+
+    async addGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.addGratuitySlabGratuity(value.data);
+    }
+
+    async updateGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.updateGratuitySlabGratuity(value);
+    }
+
+    async deleteGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.deleteGratuitySlabGratuity(value.key);
+>>>>>>> master
     }
 
 }

@@ -12,22 +12,19 @@ export class OvertimeflagComponent implements OnInit {
     constructor(public attendanceSetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendanceSetupservice.getAllovertimeflag();
-        this.overtimeflag = this.attendanceSetupservice.overtimeflag
-        console.log(this.overtimeflag);
+        this.overtimeflag = await this.attendanceSetupservice.getAllOvertimeFlag();
     }
 
     async addovertimeflag(value) {
-        this.attendanceSetupservice.addovertimeflag(value.data);
+        this.attendanceSetupservice.addOvertimeFlag(value.data);
     }
 
-    async updateovertimeflag(value) {
-        console.log(value);
-        this.attendanceSetupservice.updateovertimeflag(value);
+    async updateovertimeflag(value) { 
+        this.attendanceSetupservice.updateOvertimeFlag(value);
     }
 
     async deleteovertimeflag(value) {
-        this.attendanceSetupservice.Deleteovertimeflag(value.key);
+        this.attendanceSetupservice.DeleteOvertimeFlag(value.key);
     }
 
 }

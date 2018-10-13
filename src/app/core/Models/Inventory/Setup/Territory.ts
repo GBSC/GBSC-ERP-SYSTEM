@@ -3,7 +3,7 @@ import { Distributor } from "./Distributor";
 export interface Territory {
     territoryId: number,
     name: string,
-    isAssigned : boolean,
+    isAssigned: boolean,
     areaId: number,
-    distributor : Distributor
+    distributor: Distributor
 }

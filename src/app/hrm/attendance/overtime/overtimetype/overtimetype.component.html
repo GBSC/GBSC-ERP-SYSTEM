@@ -5,7 +5,7 @@
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
               <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Over Time Type</h3>
+                <h3 class="m-portlet__head-text">Overtime Type</h3>
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
                  (onRowUpdated)="updateovertimetype($event)"
                  (onRowRemoved)="deleteovertimetype($event)">
                   <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Over Time Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                    <dxo-popup title="Overtime Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -31,7 +31,7 @@
                   </dxo-pager> 
                   <dxi-column dataField="title"></dxi-column> 
                   <dxi-column dataField="overtimeFlagId" caption="Overtime Flag">
-                    <dxo-lookup [dataSource]="attendancesetupservice?.overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
+                    <dxo-lookup [dataSource]="overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
                     </dxo-lookup> 
                   </dxi-column>
                   <dxi-column dataType="boolean" dataField="active" caption ="Is Active"></dxi-column> 

@@ -13,32 +13,31 @@ export class DecimalroundingmatrixComponent implements OnInit {
     public decimalmatrix: any;
     public Employeeleave: any;
 
-    constructor(public leavesetupservice: LeaveSetupService,public leaveservice: LeaveService) { }
+    constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
 
-        await this.leavesetupservice.getdecimalroundingmatrix();
-        this.decimalrounding = this.leavesetupservice.decimalroundingmatrix
-       
-         this.leavePolicy = await this.leavesetupservice.getAllleavepolicy();
-    
-         this.Employeeleave = await this.leaveservice.getleavepolicyemployee();
- 
+        this.decimalrounding = await this.leavesetupservice.getDecimalRoundingMatrixs();
+
+        this.leavePolicy = await this.leavesetupservice.getLeavePolicies();
+
+        this.Employeeleave = await this.leaveservice.getLeavePolicyEmployee();
     }
 
     async adddrmatrix(value) {
-        this.leavesetupservice.addroundingmatrix(value.data);
+        this.leavesetupservice.addRoundingMatrix(value.data);
+    }
+
+    async updatingrmatrix(value) {
+        this.decimalmatrix = { ...value.oldData, ...value.newData };
     }
 
     async updatedrmatrix() {
-        this.leavesetupservice.updatedecimalroundingmatrix( this.decimalmatrix);
-    }
-    async updatingrmatrix(value) {
-        this.decimalmatrix = {...value.oldData, ...value.newData};
+        this.leavesetupservice.updateDecimalRoundingMatrix(this.decimalmatrix);
     }
 
     async deletedrmatrix(value) {
-        this.leavesetupservice.Deletedecimalroundingmatrix(value.key);
+        this.leavesetupservice.deleteDecimalRoundingMatrix(value.key);
 
 
     }

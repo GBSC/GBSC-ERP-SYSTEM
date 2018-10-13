@@ -2,41 +2,37 @@ import { Component, OnInit } from '@angular/core';
 import { LeaveService, LeaveSetupService } from '../../../core';
 
 @Component({
-  selector: 'app-leaveapproval',
-  templateUrl: './leaveapproval.component.html',
-  styleUrls: ['./leaveapproval.component.scss']
+    selector: 'app-leaveapproval',
+    templateUrl: './leaveapproval.component.html',
+    styleUrls: ['./leaveapproval.component.scss']
 })
 export class LeaveapprovalComponent implements OnInit {
-  public leaveapproval;
+    public leaveapproval : any;
+    public leaveApprover : any;
+    public leaveRequest : any;
 
-  constructor(public leaveservice:LeaveService,public leavesetupservice:LeaveSetupService) { }
+    constructor(public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService) { }
 
-  async ngOnInit() {
- 
-    await this.leaveservice.getleaveapprovals(); 
-    this.leaveapproval = this.leaveservice.leaveapproval
-    console.log(this.leaveapproval);
+    async ngOnInit() {
 
-    await this.leavesetupservice.getleaveapprover();
-    let leaveapprovr = this.leavesetupservice.leaveapprover;
+        this.leaveapproval = await this.leaveservice.getLeaveApprovals();
 
-    await this.leaveservice.getAllleaverequest();
-    let leavereqst = this.leaveservice.leaverequest;
-  }
+        this.leaveApprover = await this.leavesetupservice.getLeaveApprovers();
 
-  async addleaveapproval(value) { 
-    this.leaveservice.addleaveapproval(value.data);
-  }
-  
-  async updateleaveapproval(value) { 
-    this.leaveservice.updateleaveapproval(value);  
- 
-  }
+        this.leaveRequest = await this.leaveservice.getAllleaverequest();
+        }
 
-  async deleteleaveapproval(value) { 
-    this.leaveservice.Deleteleaveapproval(value.key); 
- 
- 
-  }
+    async addleaveapproval(value) {
+        this.leaveservice.addLeaveApproval(value.data);
+    }
+
+    async updateleaveapproval(value) {
+        this.leaveservice.updateLeaveApproval(value);
+
+    }
+
+    async deleteleaveapproval(value) {
+        this.leaveservice.DeleteLeaveAapproval(value.key);
+    }
 
 }

@@ -12,7 +12,7 @@ export class Gratuity {
     leavingReasonId: number;
     userId: number;
     fundSetupId: number;
-   // userSalaries : UserSalary[];
-    gratuitySlabGratuities : any;
-    
+    // userSalaries : UserSalary[];
+    gratuitySlabGratuities: any;
+
 }

@@ -10,12 +10,12 @@ export interface Distributor {
     country: string,
     landlineNumber: string,
     mobileNumber: string,
-    hasTerritory : boolean;
+    hasTerritory: boolean;
     faxNumber: string,
     email: string,
     nature: string,
     contactName: string,
     contactNumber: string,
     territoryId: number,
-    salesPeople : SalesPerson[]
+    salesPeople: SalesPerson[]
 }

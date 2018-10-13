@@ -12,25 +12,21 @@ export class LeaveeligibilityComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getAllleaveeligibility();
-        this.leaveeligibility = this.leavesetupservice.leaveeligibility
-        console.log(this.leaveeligibility);
+        this.leaveeligibility = await this.leavesetupservice.getLeaveEligibilities(); ;
 
     }
 
     async addleaveeligibility(value) {
-        this.leavesetupservice.addleaveeligibility(value.data);
+        this.leavesetupservice.addLeaveEligibility(value.data);
     }
 
-    async updateleaveeligibility(value) {
-        console.log(value);
-        this.leavesetupservice.updateleaveeligibility(value);
+    async updateleaveeligibility(value) { 
+        this.leavesetupservice.updateLeaveEligibility(value);
 
     }
 
-    async deleteleaveeligibility(value) {
-        console.log(value);
-        this.leavesetupservice.Deleteleaveeligibility(value.key);
+    async deleteleaveeligibility(value) { 
+        this.leavesetupservice.deleteLeaveEligibility(value.key);
 
 
     }

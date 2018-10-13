@@ -31,19 +31,19 @@
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 				
 							<dxi-column dataField="userId" caption="Employee">
-									<dxo-lookup [dataSource]="Employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+									<dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
 									</dxo-lookup>
 								</dxi-column> 
 							<dxi-column dataField="attendanceRequestTypeId" caption="Attendace Request Type">
-									<dxo-lookup [dataSource]="attendanceSetupservice?.attendanceRequestType" displayExpr="name" valueExpr="attendanceRequestTypeId">
+									<dxo-lookup [dataSource]="attendanceRequestTypes" displayExpr="name" valueExpr="attendanceRequestTypeId">
 									</dxo-lookup>
 								</dxi-column> 
 							<dxi-column dataField="assignRosterId" caption="Assign Roster">
-									<dxo-lookup [dataSource]="attendanceSetupservice?.asignroster" displayExpr="month" valueExpr="assignRosterId">
+									<dxo-lookup [dataSource]="assignroster" displayExpr="month" valueExpr="assignRosterId">
 									</dxo-lookup>
 								</dxi-column> 
 							<dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">
-									<dxo-lookup [dataSource]="attendanceSetupservice?.attendancerequestapprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
+									<dxo-lookup [dataSource]="attendanceRequestApprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
 									</dxo-lookup>
 								</dxi-column> 
 

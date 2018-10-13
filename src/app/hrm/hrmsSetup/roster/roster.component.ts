@@ -18,9 +18,7 @@ export class RosterComponent implements OnInit {
 
     async ngOnInit() {
         await this.dataService.getAllRosters();
-        this.roster = this.dataService.roster;
-        // console.log(this.roster);
-        // this.dataService.getAllRosters().subscribe((data)=>this.roster=data);
+        this.roster = this.dataService.roster; 
     }
 
     addNewRoster(roster) {

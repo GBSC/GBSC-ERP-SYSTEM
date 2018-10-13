@@ -31,7 +31,7 @@
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
          
                 <dxi-column dataField="payrollYearId" caption="Payroll Year">
-                    <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollYearId">
+                    <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId">
                     </dxo-lookup>
                   </dxi-column> 
               <dxi-column dataField="personalExemption" caption="Personal Exemption"></dxi-column>

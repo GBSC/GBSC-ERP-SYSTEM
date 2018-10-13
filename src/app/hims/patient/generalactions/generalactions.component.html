@@ -5,14 +5,38 @@
       <h3  class="m-portlet__head-text"> General Actions </h3>
     </div></div></div><div  class="m-portlet__body">
       <div  class="m-list-search">
-        <div  class="m-list-search__results">
+          <!-- || visits[0].startTime  | date: 'MM/dd/yyyy' !==  time | date: 'dd/MM/yyyy' -->
+        <div  class="m-list-search__results" *ngIf="lastpatientvisit !== null">
         <a (click)="onSubmit()"  class="m-list-search__result-item">
           <span  class="m-list-search__result-item-icon">
             <i  class="fa fa-map-marker	m--font-white"></i>
           </span>
           <span  class="m-list-search__result-item-text"> Start Visit </span>
         </a>
-         <!-- <a  class="m-list-search__result-item" href="#">
+      </div>
+      <div  class="m-list-search__results" *ngIf="lastpatientvisit === null">
+          <a (click)="Endvisit()"  class="m-list-search__result-item">
+            <span  class="m-list-search__result-item-icon">
+              <i  class="fa fa-map-marker	m--font-white"></i>
+            </span>
+            <span  class="m-list-search__result-item-text"> End Visit </span>
+          </a>
+        </div>
+        {{time | date: 'MM/dd/yyyy'}} {{visits[0].startTime | date: 'MM/dd/yyyy'}}
+        <div  class="m-list-search__results" *ngIf="visits[0].startTime | date: 'MM/dd/yyyy' ===  time | date: 'MM/dd/yyyy'">
+          <a (click)="already()"  class="m-list-search__result-item">
+            <span  class="m-list-search__result-item-icon">
+              <i  class="fa fa-map-marker	m--font-white"></i>
+            </span>
+            <span  class="m-list-search__result-item-text"> already </span>
+          </a>
+        </div>  
+
+    </div>
+  </div>
+</div>
+
+  <!-- <a  class="m-list-search__result-item" href="#">
           <span  class="m-list-search__result-item-icon">
             <i  class="fa fa-plus m--font-white"></i>
           </span>
@@ -48,7 +72,3 @@
           </span>
           <span  class="m-list-search__result-item-text"> Delete Patient </span>
         </a> -->
-      </div>
-    </div>
-  </div>
-</div>

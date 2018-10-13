@@ -12,6 +12,7 @@ import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 export class MasterpayrollComponent implements OnInit {
 
     public masterPayroll: any;
+<<<<<<< HEAD
     public masterPayrollDetail: any;
     private payrollDetail: MasterPayrollDetail[];
 
@@ -20,6 +21,22 @@ export class MasterpayrollComponent implements OnInit {
     public MasterPayrollForm: any;
     public Masterdetail = [];
     public MasterDetailForm: any;
+=======
+    public payrollMaster: any;
+    public users: any;
+    public frequency: any;
+    public masterdetailupdating: any;
+    public masterPayrollDetail: any;
+    private payrollDetail: MasterPayrollDetail[];
+
+    public banksPayroll: any;
+    public payrollType: any;
+    public MasterPayrollForm: any;
+    public Masterdetail = [];
+    public allowance: any;
+    public MasterDetailForm: any;
+    public currency: any;
+>>>>>>> master
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
@@ -34,6 +51,7 @@ export class MasterpayrollComponent implements OnInit {
             PayrollBankId: ['', Validators.required]
         });
 
+<<<<<<< HEAD
         //   this.MasterDetailForm = this.fb.group({
         //     Value: ['', Validators.required],
         //     EffectiveDate: ['', Validators.required],
@@ -43,8 +61,14 @@ export class MasterpayrollComponent implements OnInit {
         //     PayrollTypeId: ['', Validators.required]
 
         // });
+=======
 
+        this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
+>>>>>>> master
 
+        this.masterPayrollDetail = await this.payrollsetupservice.getMasterPayrollDetails();
+
+<<<<<<< HEAD
         await this.payrollsetupservice.getmasterpayrolls();
         this.masterPayroll = this.payrollsetupservice.masterpayroll;
 
@@ -66,8 +90,28 @@ export class MasterpayrollComponent implements OnInit {
         await this.payrollsetupservice.getpayrolltypes();
         let payrolltype = this.payrollsetupservice.payrolltype;
     }
+=======
+        this.users = await this.empservice.GetAllEmployees();
 
+        this.currency = await this.payrollsetupservice.getCurrencies();
 
+        this.allowance = await this.payrollsetupservice.getAllowances();
+
+        this.banksPayroll = await this.payrollsetupservice.getPayrollBanks();
+
+        this.frequency = await this.payrollsetupservice.getFrequencies();
+
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
+    }
+
+>>>>>>> master
+
+    async addMasterPayrolldetail(value) {
+        let data = value.data;
+        this.payrollDetail.push(data);
+    }
+
+<<<<<<< HEAD
     async addMasterPayrolldetail(value) {
         let data = value.data;
         this.payrollDetail.push(data);
@@ -95,6 +139,36 @@ export class MasterpayrollComponent implements OnInit {
     async deleteMasterPayroll(value) {
         await this.payrollsetupservice.Deletemasterpayroll(value.key);
     }
+=======
+    updatingMasterDetail(value) {
+        this.masterdetailupdating = { ...value.oldData, ...value.newData };
 
+    }
+    async updateMasterDetail() {
+        await this.payrollsetupservice.updateMasterPayrollDetail(this.masterdetailupdating);
+    }
+
+    async submitForm(value) {
+        let masterPayroll = new MasterPayroll();
+        masterPayroll = { ...masterPayroll, ...value };
+        masterPayroll.MasterPayrollDetails = this.payrollDetail;
+        let x = await this.payrollsetupservice.addMasterPayroll(masterPayroll);
+
+    }
+
+    updatingMasterPayroll(value) {
+        this.payrollMaster = { ...value.oldData, ...value.newData };
+    }
+
+    async updateMasterPayroll() {
+        await this.payrollsetupservice.updateMasterPayroll(this.payrollMaster);
+    }
+
+>>>>>>> master
+
+
+    async deleteMasterPayroll(value) {
+        await this.payrollsetupservice.deleteMasterPayroll(value.key);
+    }
 
 }

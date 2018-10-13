@@ -1,572 +1,522 @@
 <div class="m-content">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                 Employee Leave Policy
-              </h3>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Employee Leave Policy
+                </h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="m-portlet__body">
-
-          <form [formGroup]="EmployeeleavePolicyForm">
-
+          <div class="m-portlet__body">
+  
+            <form [formGroup]="EmployeeleavePolicyForm">
+  
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Employee:
+                    </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
+                        <option value="" disabled selected>-- Select Employee --</option>
+                        <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="row">
+                <div class="col-md-10">
+  
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Leave Year:
+                    </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
+                        <option value="" disabled selected>-- Select Leave Year --</option>
+                        <option *ngFor="let leaveyear of leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                      </select>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-md-10">
+  
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Leave Type:
+                    </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
+                        <option value="" disabled selected>-- Select Leave Type --</option>
+                        <option *ngFor="let levetype of leaveTypes" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
+                      </select>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="m--space-10"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" placeholder="6" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime" placeholder="11" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" placeholder="15" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" placeholder="5" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
+                    <div class="col-lg-8">
+                      <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" placeholder="3" aria-describedby="days"
+                        type="number">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Leave Day Type: </label>
+                    <div class="col-lg-8">
+  
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
+                        <option value="" disabled selected>-- Select Leave Type --</option>
+                        <option *ngFor="let levedaytype of leaveDayType" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
+                      </select>
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="m--space-10"></div>
+  
+              <div class="row">
+                <div class="col-md-10">
+  
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">
+                      Paid/UnPaid Qty /Half Paid:
+                    </label>
+                    <div class="col-md-3">
+                      <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="PaidDaysQuantity">
+                    </div>
+  
+                    <div class="col-md-3">
+                      <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="HalfPaidDaysQuantity">
+                    </div>
+  
+                    <div class="col-md-2">
+                      <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="UnPaidDaysQuantity">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-10"></div>
+  
+  
+              <div class="row">
+                <div class="col-lg-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Eligibility Based on: </label>
+                    <div class="col-lg-8">
+                      <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="" id="">
+                        <option value="" disabled selected>-- Select Leave Eligibility --</option>
+                        <option *ngFor="let leveeligibility of leaveEligiblity" [value]="leveeligibility.leaveEligibilityId">{{leveeligibility.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="m--space-10"></div>
+  
               <div class="row">
                   <div class="col-md-10">
                     <div class="form-group m-form__group row">
                       <label class="col-lg-4 col-form-label">
-                        Employee:
+                        File Attachement Required:
                       </label>
-                      <div class="col-lg-8">
-                        <select class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
-                          <option value="" disabled selected>-- Select Employee --</option>
-                          <option *ngFor="let employee of empservice?.employeereg" [value]="employee.userId">{{employee.firstName}}</option>
-                        </select>
+                      <div class="col-lg-1">
+                        <label class="m-checkbox">
+                          <input type="checkbox" formControlName="IsFileAttachmentRequired">
+                          <span></span>
+                        </label>
+                      </div>
+                      <div class="col-md-7">
+                        <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="FileAttachmentDaysLimit">
                       </div>
                     </div>
                   </div>
+                </div>
+                <div class="m--space-10"></div>
     
-                </div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Leave Year:
-                  </label>
-                  <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveYearId" name="leaveYear" id="">
-                      <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
-                    </select>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-              
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Leave Type:
-                  </label>
-                  <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveTypeId" name="leavetype" id="">
-                      <option value="" disabled selected>-- Select Leave Type --</option>
-                      <option *ngFor="let levetype of leavesetupservice?.leavetype" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
-                    </select>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" placeholder="6" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime" placeholder="11" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" placeholder="15" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" placeholder="5" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-                <div class="col-md-10">
-  
-                  <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                     Leave is Encashable:
-                    </label>
-                    <div class="col-lg-1">
-                      <label class="m-checkbox">
-                        <input type="checkbox" formControlName="IsEncashable">
-                        <span></span>
-                      </label>
-                    </div>
-           <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="EncashmentDays">
-            </div>
-                  </div>
-                </div>
-              </div>
-              <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" placeholder="3" aria-describedby="days"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Day Continuation Restriction: </label>
-                  <div class="col-lg-8"> 
-                          <label class="m-checkbox">
-                            <input type="checkbox" formControlName="DayContinuationRestriction">
-                            <span></span>
-                          </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    For Males:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsMale">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    For Females:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsFemale">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    For Married Only:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsMarried">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div> 
-            
-            <div class="row">
-                <div class="col-md-10">
+                <div class="row">
+                  <div class="col-md-10">
+    
                     <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                     Is Balance Brought Forward:
-                    </label>
-                    <div class="col-lg-1">
+                      <label class="col-lg-4 col-form-label">
+                        Job Period Based:
+                      </label>
+                      <div class="col-lg-1">
+                        <label class="m-checkbox">
+                          <input type="checkbox" formControlName="IsJobPeriodBased">
+                          <span></span>
+                        </label>
+                      </div>
+                      <div class="col-md-7">
+                        <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m--space-10"></div>
+  
+              <div class="row">
+                  <div class="col-md-10">
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-4 col-form-label">
+                        Is Balance Brought Forward:
+                      </label>
+                      <div class="col-lg-1">
+                        <label class="m-checkbox">
+                          <input type="checkbox" formControlName="IsBalanceBroughtForward">
+                          <span></span>
+                        </label>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="BalanceBroughtForwardQuantity">
+                      </div>
+    
+                      <div class="col-md-3">
+                        <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m--space-10"></div>
+  
+              <div class="row">
+                  <div class="col-md-10">
+    
+                    <div class="form-group m-form__group row">
+                      <label class="col-lg-4 col-form-label">
+                        Leave is Encashable:
+                      </label>
+                      <div class="col-lg-1">
+                        <label class="m-checkbox">
+                          <input type="checkbox" formControlName="IsEncashable">
+                          <span></span>
+                        </label>
+                      </div>
+                      <div class="col-md-7">
+                        <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="EncashmentDays">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="m--space-10"></div>
+  
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-lg-4 col-form-label">Day Continuation Restriction: </label>
+                    <div class="col-lg-3">
                       <label class="m-checkbox">
-                        <input type="checkbox" formControlName="IsBalanceBroughtForward">
+                        <input type="checkbox" formControlName="DayContinuationRestriction">
                         <span></span>
                       </label>
                     </div>
-           <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="BalanceBroughtForwardQuantity">
-            </div>
-
-            <div class="col-md-2">
-                <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity">
-              </div>
-                  </div>
-                </div>
-              </div>
-              <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Leave Day Type: </label>
-                  <div class="col-lg-8">
-
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
-                      <option value="" disabled selected>-- Select Leave Type --</option>
-                      <option *ngFor="let levedaytype of leavesetupservice?.leavedaytype" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
-                    </select>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="m--space-10"></div>
-
-
-            <div class="row">
-                <div class="col-md-10">
-                  <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                      File Attachement Required:
+  
+                    <div class="m--space-07"></div>
+  
+                    <label class="col-md-3 col-form-label">
+                      For Males:
                     </label>
-                    <div class="col-lg-1">
+                    <div class="col-md-2">
                       <label class="m-checkbox">
-                        <input type="checkbox" formControlName="IsFileAttachmentRequired">
+                        <input type="checkbox" formControlName="IsMale">
                         <span></span>
                       </label>
                     </div>
-           <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="FileAttachmentDaysLimit">
-            </div>
                   </div>
                 </div>
               </div>
-              <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Short Leave Allowed:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsShortLeaveAllowed">
-                      <span></span>
+              <div class="m--space-07"></div>
+  
+              <div class="row">
+                <div class="col-md-10">
+  
+                  <div class="form-group m-form__group row">
+                    <label class="col-md-4 col-form-label">
+                      For Females:
                     </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Allowed Only one in Service:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox"> 
-                      <input type="checkbox" formControlName="IsAllowedOnlyOnceInService">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Job Period Based:
-                  </label>
-                  <div class="col-lg-1">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsJobPeriodBased">
-                      <span></span>
-                    </label>
-                  </div>
-                  <div class="col-md-2">
-                      <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime">
+                    <div class="col-md-3">
+                      <label class="m-checkbox">
+                        <input type="checkbox" formControlName="IsFemale">
+                        <span></span>
+                      </label>
                     </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-            <div class="row">
-                <div class="col-md-10">
   
-                  <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                    Paid/UnPaid Qty /Half PAid:
+                    <label class="col-md-3 col-form-label">
+                      For Married Only:
                     </label>
-           <div class="col-md-2">
-              <input type="number" class="form-control m-input m-input--solid" placeholder="0" formControlName="PaidDaysQuantity">
-            </div>
-
-            <div class="col-md-2">
-                <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="HalfPaidDaysQuantity">
-              </div>
-
-              <div class="col-md-2">
-                  <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="UnPaidDaysQuantity">
-                </div>
-
+                    <div class="col-md-2">
+                      <label class="m-checkbox">
+                        <input type="checkbox" formControlName="IsMarried">
+                        <span></span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="m--space-10"></div>
-
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Eligibility Based on: </label>
-                  <div class="col-lg-8"> 
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="" id="">
-                      <option value="" disabled selected>-- Select Leave Eligibility --</option>
-                      <option *ngFor="let leveeligibility of leavesetupservice?.leaveeligibility" [value]="leveeligibility.leaveEligibilityId">{{leveeligibility.name}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="m--space-10"></div>
-
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Is Month Based:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsMonthBased">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-            <div class="row">
+  
+              <div class="row">
                 <div class="col-md-10">
   
                   <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                     Is Prorated:
+                    <label class="col-md-4 col-form-label">
+                      Short Leave Allowed:
                     </label>
-                    <div class="col-lg-8">
+                    <div class="col-md-3">
+                      <label class="m-checkbox">
+                        <input type="checkbox" formControlName="IsShortLeaveAllowed">
+                        <span></span>
+                      </label>
+                    </div>
+  
+                    <div class="m--space-10"></div>
+  
+                    <label class="col-md-3 col-form-label">
+                      Allowed Only one in Service:
+                    </label>
+                    <div class="col-lg-2">
+                      <label class="m-checkbox">
+                        <input type="checkbox" formControlName="IsAllowedOnlyOnceInService">
+                        <span></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m--space-10"></div>
+  
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="form-group m-form__group row">
+                    <label class="col-md-4 col-form-label">
+                      Is Prorated:
+                    </label>
+                    <div class="col-md-3">
                       <label class="m-checkbox">
                         <input type="checkbox" formControlName="IsProrated">
                         <span></span>
                       </label>
                     </div>
+  
+                    <!-- <label class="col-lg-3 col-form-label">
+                      Active:
+                    </label>
+                    <div class="col-lg-2">
+                      <label class="m-checkbox">
+                        <input type="checkbox" formControlName="IsActive">
+                        <span></span>
+                      </label>
+                    </div> -->
+  
                   </div>
                 </div>
               </div>
               <div class="m--space-10"></div>
-
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Allow Leave Request on Zero Balance: </label>
-                  <div class="col-lg-8">
-
-                      <label class="m-checkbox">
-                          <input type="checkbox" formControlName="AllowOnZeroBalance">
-                          <span></span>
-                        </label>
-                     
-
-                    <!-- <select class="form-control m-input m-input--solid" formControlName="AllowOnZeroBalance">
-                      <option value="disabled"> Allow Leave Request </option>
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select> -->
+  
+              <div class="m-portlet__foot m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions" style="padding:19px;">
+                  <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                      <button type="submit" (click)="addemployeeleavepolicy(EmployeeleavePolicyForm.value)" class="btn btn-success">
+                        Submit
+                      </button>
+                      <button type="reset" class="btn btn-secondary">
+                        Cancel
+                      </button>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="alert alert-success alert-dismissable alrt" *ngIf="message">
+                        <p>{{message?.message}}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="m--space-10"></div>
-
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Active:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="IsActive">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Employee Leave Policy Detail
+                </h3>
               </div>
             </div>
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Leave Application Limit: </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="ApplicationLimit" placeholder="3"
-                      type="number">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Print on PaySlip:
-                  </label>
-                  <div class="col-lg-8">
-                    <label class="m-checkbox">
-                      <input type="checkbox" formControlName="PrintOnPaySlip">
-                      <span></span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-            <div class="m-portlet__foot m-portlet__foot--fit">
-              <div class="m-form__actions m-form__actions" style="padding:19px;">
-                <div class="row">
-                  <div class="col-lg-3"></div>
-                  <div class="col-lg-6">
-                    <button type="submit" (click)="addemployeeleavepolicy(EmployeeleavePolicyForm.value)" class="btn btn-success">
-                      Submit
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </form>
-
-
-          <dx-data-grid id="gridContainer"
-          [dataSource]="empleavepolicy"
-          keyExpr="leavePolicyEmployeeWiseId"
-          (onRowInserted)="addleavepolicy($event)" 
-          (onRowUpdated)="updateleaveapproval($event)"
-           (onRowRemoved)="deleteleaveapproval($event)">
-           <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [useIcons]="true">
-             <dxo-popup title="Leave Policy" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-             </dxo-popup>
-           </dxo-editing>
-           <dxo-filter-row [visible]="true"></dxo-filter-row>
-           <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-           <dxo-paging [pageSize]="6"></dxo-paging>
-           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-           </dxo-pager> 
- 
-             <dxi-column dataField="leaveYearId" caption="Leave Year">
-               <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
-               </dxo-lookup> 
-         </dxi-column>
-             <dxi-column dataField="userId" caption="Employee">
-               <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userId">
-               </dxo-lookup> 
-         </dxi-column> 
-
-         <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
-         <dxi-column dataField="editedAt" caption="Update Date"></dxi-column> 
-         </dx-data-grid>
-
-
+          </div>
+          <div class="m-portlet__body">
+            <dx-data-grid id="gridContainer" [dataSource]="empleavepolicy" keyExpr="leavePolicyEmployeeWiseId" (onRowUpdating)="updatingEmpleavepolicy($event)"
+              (onRowUpdated)="updateEmpLeavePolicy()" (onRowRemoved)="deleteEmpleavePolicy($event)">
+              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                <dxo-popup title="Employee Leave Policy" [showTitle]="true" [width]="1200" [height]="545" [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter> 
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="6"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              </dxo-pager> 
+              <dxi-column dataField="userId" caption="Employee">
+                <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                </dxo-lookup>
+              </dxi-column>
+  
+              <dxi-column dataField="leaveYearId" caption="Leave Year">
+                <dxo-lookup [dataSource]="leaveyear" displayExpr="year" valueExpr="leaveYearId">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="leaveTypeId" caption="Leave">
+                <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
+                <dxo-lookup [dataSource]="leaveDayType" displayExpr="name" valueExpr="leaveDayTypeId">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
+                <dxo-lookup [dataSource]="leaveEligiblity" displayExpr="name" valueExpr="leaveEligibilityId">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
+  
+              <dxi-column dataType="boolean" dataField="isPeriodic" [visible]="false"></dxi-column>
+              <dxi-column dataType="date" dataField="periodicFrom" format="shortdate" [visible]="false"></dxi-column>
+              <dxi-column dataType="date" dataField="periodicTill" format="shortdate" [visible]="false"></dxi-column>
+  
+              <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false"></dxi-column>
+              <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false"></dxi-column>
+              <dxi-column dataField="maximumAtATime" [visible]="false" [visible]="false"></dxi-column>
+              <dxi-column dataField="minimumAtATime" [visible]="false" [visible]="false"></dxi-column>
+              <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
+              <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
+              <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
+              <dxi-column dataField="encashmentApplicationLimit" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
+              <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
+              <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
+              <dxi-column dataField="isFileAttachmentRequired" dataType="boolean" [visible]="false"></dxi-column>
+              <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isShortLeaveAllowed"></dxi-column>
+              <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
+              <dxi-column dataField="jobPeriodTime" [visible]="false"></dxi-column>
+              <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
+              <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
+              <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
+              <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column> 
+            </dx-data-grid>
+  
+  
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

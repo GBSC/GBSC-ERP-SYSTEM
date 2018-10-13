@@ -31,7 +31,7 @@
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 				
 							<dxi-column dataField="payrollTypeId" caption="Payroll Type">
-									<dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+									<dxo-lookup [dataSource]="PayrollType" displayExpr="name" valueExpr="payrollTypeId">
 									</dxo-lookup>
 								</dxi-column> 
 

@@ -11,13 +11,11 @@ export class LeaveyearsetupComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getAllleaveyear();
-        this.leveyear = this.leavesetupservice.leaveyear
-        console.log(this.leveyear);
-
+        this.leveyear = await this.leavesetupservice.getLeaveYears();
     }
 
     async addleaveyear(value) {
+<<<<<<< HEAD
         console.log(value.data);
         this.leavesetupservice.addleaveyear(value.data);
     }
@@ -32,7 +30,16 @@ export class LeaveyearsetupComponent implements OnInit {
         this.leavesetupservice.Deleteleavyear(value.key);
 
 
+=======
+        this.leavesetupservice.addLeaveYear(value.data);
+>>>>>>> master
     }
 
+    async updateleaveyear(value) {
+        this.leavesetupservice.updateLeaveYear(value);
+    }
 
+    async deleteleaveyear(value) {
+        this.leavesetupservice.DeleteLeaveYear(value.key);
+    }
 }

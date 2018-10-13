@@ -23,7 +23,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="PayrollyearId" id="">
                   <option value="" disabled selected>-- Select Payroll Year --</option>
-                  <option *ngFor="let payrollyear of payrollsetupservice?.payrollyear" [value]="payrollyear.payrollYearId">{{payrollyear.name}}</option>
+                  <option *ngFor="let payrollyear of payrollYears" [value]="payrollyear.payrollYearId">{{payrollyear.name}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -42,7 +42,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId" id="">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of employeeservice?.employeereg" [value]="user.userId">{{user.firstName}}</option>
+                  <option *ngFor="let user of employees" [value]="user.userId">{{user.firstName}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -51,7 +51,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="PayrollTypeId" id="">
                   <option value="" disabled selected>-- Select Payroll Type --</option>
-                  <option *ngFor="let payrollType of payrollsetupservice.payrolltype" [value]="payrollType.payrollTypeId">{{payrollType.name}}</option>
+                  <option *ngFor="let payrollType of payrollTypes" [value]="payrollType.payrollTypeId">{{payrollType.name}}</option>
                 </select>
               </div>
             </div>
@@ -63,7 +63,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="AllowanceId" id="">
                   <option value="" disabled selected>-- Select Allowance  --</option>
-                  <option *ngFor="let allowance of payrollsetupservice?.allowance" [value]="allowance.allowanceId">{{allowance.name}}</option>
+                  <option *ngFor="let allowance of allowances" [value]="allowance.allowanceId">{{allowance.name}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -152,19 +152,19 @@
             </dxo-pager>
   
             <dxi-column dataField="userId"caption="Employee">
-              <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+              <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
           </dxi-column>
           <dxi-column dataField="amount" caption="Amount"></dxi-column>
           <dxi-column dataField="month" caption="Month" dataType="date" format="month"></dxi-column>
 
             <dxi-column dataField="payrollyearId" caption="Payroll Year"  [visible]="false">
-              <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
+              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
           </dxi-column>
             <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-              <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
+              <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
           </dxi-column>
             <dxi-column dataField="allowanceId" caption="Allowance">
-              <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+              <dxo-lookup [dataSource]="allowances" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
           </dxi-column>
             <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
              <dxi-column dataField="isTaxableIncome" caption="Taxable Income" dataType="boolean"></dxi-column>

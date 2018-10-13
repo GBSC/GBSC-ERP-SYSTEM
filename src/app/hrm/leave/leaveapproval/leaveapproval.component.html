@@ -32,11 +32,11 @@
 
                 <dxi-column dataField="name" caption="Name"></dxi-column>
                   <dxi-column dataField="leaveRequestId" caption="Leave Request">
-                    <dxo-lookup [dataSource]="leaverequest" displayExpr="leaveRequestCode" valueExpr="leaveRequestId">
+                    <dxo-lookup [dataSource]="leaveRequest" displayExpr="leaveRequestCode" valueExpr="leaveRequestId">
                     </dxo-lookup> 
               </dxi-column>
                   <dxi-column dataField="leaveApproverId" caption="Approver">
-                    <dxo-lookup [dataSource]="leavesetupservice?.leaveapprover" displayExpr="name" valueExpr="leaveApproverId">
+                    <dxo-lookup [dataSource]="leaveApprover" displayExpr="name" valueExpr="leaveApproverId">
                     </dxo-lookup> 
               </dxi-column>
               <dxi-column dataType="boolean" dataField="isApproved"></dxi-column>

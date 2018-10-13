@@ -21,8 +21,7 @@ export class SkillLevelsComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllSkillLevels();
         this.skill = this.dataService.skilllevels;
-        // console.log(this.skill);
-        // this.dataService.getAllSkillLevels().subscribe((data)=>this.skilllevels=data);
+
     }
 
     addNewskill(slevel) {

@@ -13,10 +13,15 @@ export class BasicinformationComponent implements OnInit {
 
 
     public basic: any;
-    public Employee: Employee;
-    @Input('id') id: number;
+    public religion: any;
+    public language: any;
+    public city: any;
+    public Employee: any;
 
-    @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
+
+    @Output() updateMessage = new EventEmitter();
+
 
     public EmpbasicForm: FormGroup;
 
@@ -46,40 +51,54 @@ export class BasicinformationComponent implements OnInit {
 
     }
 
-    getbasicinfoFormValue() {
-        this.setBasicinfoFormValue.emit(this.EmpbasicForm.value);
-    }
+    update(value) {
 
+<<<<<<< HEAD
     async update(value) {
         console.log(value);
         await this.employeeService.updateUersById(value);
+=======
+        value.UserId = this.id;
+>>>>>>> master
 
-    }
+        this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
+            this.showSuccess("Basic Information Updated");
+        });
 
-    async updateUersById(value) {
-        console.log(value);
-        await this.employeeService.updateUersById(value);
     }
 
     async ngOnInit() {
+<<<<<<< HEAD
 
         this.employeeService.GetEmployee(this.id).subscribe(resp => {
+=======
+>>>>>>> master
 
-            this.Employee = resp;
+        this.religion = await this.SetupServiceobj.getAllReligions();
 
-            this.patchValues(resp);
+        this.language = await this.SetupServiceobj.getAllLanguages();
 
-        });
+        this.city = await this.SetupServiceobj.getAllCities();
 
+        if (this.id) {
+            this.employeeService.GetEmployee(this.id).subscribe(resp => {
 
-
+<<<<<<< HEAD
         //     await this.SetupServiceobj.getAllDesignations();
         //     let dsg = this.SetupServiceobj.designation;
 
         //     await this.SetupServiceobj.getAllLanguages();
         //     let lng = this.SetupServiceobj.language;
+=======
+                this.Employee = resp;
 
+                this.patchValues(resp);
+>>>>>>> master
 
+            });
+        }
+
+<<<<<<< HEAD
         //     await this.SetupServiceobj.getAllFunctions();
         //     let func = this.SetupServiceobj.function;
 
@@ -92,13 +111,27 @@ export class BasicinformationComponent implements OnInit {
 
         //     await this.SetupServiceobj.getAllCities();
         //     let cty = this.SetupServiceobj.city;
+=======
 
+    }
 
+    showSuccess(message) {
+
+        this.updateMessage.emit(message);
+    }
+>>>>>>> master
+
+    isUpdate(): boolean {
+
+        if (this.id > 0)
+            return true;
+        else
+            return false;
     }
 
     patchValues(employee: any) {
 
-        this.employeeService.EmpbasicForm.patchValue({
+        this.EmpbasicForm.patchValue({
             FirstName: employee.firstName,
             LastName: employee.lastName,
             FatherName: employee.fatherName,
@@ -119,7 +152,16 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
+<<<<<<< HEAD
     async Formsubmit() {
         await this.employeeService.addEmployee();
+=======
+    async Formsubmit(value) {
+
+        this.employeeService.addEmployee(value).subscribe(resp => {
+
+            this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
+        })
+>>>>>>> master
     }
 }

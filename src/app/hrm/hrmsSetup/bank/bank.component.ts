@@ -21,8 +21,6 @@ export class BankComponent implements OnInit {
 
         await this.dataService.getAllBanks();
         this.bank = this.dataService.bank;
-        console.log(this.bank);
-
     }
 
     addNewbank(bank) {

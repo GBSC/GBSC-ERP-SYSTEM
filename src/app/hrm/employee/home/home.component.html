@@ -1,131 +1,123 @@
-<div appunwraptag="" class="m-subheader">
-  <div class="d-flex align-items-center">
-    <div class="mr-auto">
-      <h3 class="m-subheader__title m-subheader__title--separator">
-        Employee Details
-      </h3>
-      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-        <li class="m-nav__item m-nav__item--home">
-          <a class="m-nav__link m-nav__link--icon" href="#" ng-reflect-href="#">
-            <i class="m-nav__link-icon la la-home"></i>
-          </a>
-        </li>
-        <li class="m-nav__separator">
-          -
-        </li>
-        <li class="m-nav__item">
-          <a class="m-nav__link" href="" ng-reflect-href="">
-            <span class="m-nav__link-text">
-              Home
-            </span>
-          </a>
-        </li>
-        <li class="m-nav__separator">
-          -
-        </li>
-        <li class="m-nav__item">
-          <a class="m-nav__link" href="" ng-reflect-href="">
-            <span class="m-nav__link-text">
-              Employee Details
-            </span>
-          </a>
-        </li>
-        <li class="m-nav__separator">
-          -
-        </li>
-
-      </ul>
-    </div>
-    <div>
-
+<div class="m-content">
+    <div class="row">
+  
+      <div class="col-lg-3">
+  
+  
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Employee Registration
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body" style="padding: 0px !important;">
+            <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+              <div class="m-demo__preview">
+                <ul class="m-nav nav nav-tabs">
+                  <li  class="m-nav__item">
+                    <a class="m-nav__link" href="#BInformation" data-toggle="tab">
+                      <i class="m-nav__link-icon flaticon-share"></i>
+                      <span class="m-nav__link-text">
+                        Basic Information</span>
+                    </a>
+                  </li>
+                  <!-- <li class="m-nav__item" *ngIf="id">
+                    <a class="m-nav__link" href="#PPicture" data-toggle="tab">
+                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                      <span class="m-nav__link-text">
+                        Profile Picture
+                      </span>
+                    </a>
+                  </li> -->
+                  <li class="m-nav__item" *ngIf="id">
+                    <a class="m-nav__link" href="#EmployeeCInfo" data-toggle="tab">
+                      <i class="m-nav__link-icon flaticon-info"></i>
+                      <span class="m-nav__link-text">
+                        Employee Company Information
+                      </span>
+                    </a>
+                  </li>
+                  <li class="m-nav__item" *ngIf="id">
+                    <a class="m-nav__link" href="#EDependants" data-toggle="tab">
+                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                      <span class="m-nav__link-text">
+                        Employee Dependants
+                      </span>
+                    </a>
+                  </li>
+                  <li class="m-nav__item" *ngIf="id">
+                      <a class="m-nav__link" href="#Social" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                            Social Networking
+                        </span>
+                      </a>
+                    </li>
+                    <li class="m-nav__item" *ngIf="id">
+                      <a class="m-nav__link" href="#EQualification" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                            Employee Qualification
+                        </span>
+                      </a>
+                    </li>
+                    <li class="m-nav__item" *ngIf="id">
+                        <a class="m-nav__link" href="#WExperience" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                            Work Experience
+                          </span>
+                        </a>
+                      </li>
+                      <li class="m-nav__item" *ngIf="id">
+                        <a class="m-nav__link" href="#EBankAc" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                            Employee Bank Account
+                          </span>
+                        </a>
+                      </li>
+                      <!-- <li class="m-nav__item" *ngIf="id">
+                        <a class="m-nav__link" href="#Documents" data-toggle="tab">
+                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                          <span class="m-nav__link-text">
+                            Documents
+                          </span>
+                        </a>
+                      </li> -->
+                </ul>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+  
+  
+  
+      <div class="col-lg-9">
+        <div class="m-portlet">
+          <div class="m-portlet__body">
+            <div class="tab-content">
+            <div class="tab-pane active" id="BInformation"><app-basicinformation [employeeId]="id" (updateMessage)='displayToast($event)'></app-basicinformation> </div>
+            <!-- <div class="tab-pane" id="PPicture" *ngIf="id"><app-profilepic [employeeId]="id"></app-profilepic></div> -->
+              <div class="tab-pane" id="EmployeeCInfo" *ngIf="id"><app-employeecompany [employeeId]="id" (updateMessage)='displayToast($event)'></app-employeecompany></div>
+              <div class="tab-pane" id="EDependants" *ngIf="id"><app-emergencycontact [employeeId]="id"></app-emergencycontact></div>
+              <div class="tab-pane" id="Social" *ngIf="id"><app-social [employeeId]="id" (updateMessage)='displayToast($event)'></app-social></div>
+              <div class="tab-pane" id="EQualification" *ngIf="id"><app-employeequalification [employeeId]="id"></app-employeequalification></div>
+              <div class="tab-pane" id="WExperience" *ngIf="id"><app-experience [employeeId]="id"></app-experience></div>
+              <div class="tab-pane" id="EBankAc" *ngIf="id"><app-employeebank [employeeId]="id"></app-employeebank></div>
+              <!-- <div class="tab-pane" id="Documents" *ngIf="id"><app-document [employeeId]="id"></app-document></div> -->
+            </div>
+          </div>
+         
+        </div>
+      </div>
+  
+  
     </div>
   </div>
-</div>
-
-<div class="m-content">
-  <div class="row">
-
-    <div class="col-lg-3">
-
-
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Registration Steps
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body" style="padding: 0px !important;">
-          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-            <div class="m-demo__preview">
-              <ul class="m-nav nav nav-tabs">
-                <li  *ngFor="let tab of tabs; let i = index"  class="m-nav__item" (click)="setTabItem(tab, i)">
-                  <a class="m-nav__link" data-toggle="tab">
-                    <i class="{{tab.icon}}"></i> 
-                    <!-- href="#home-r"  -->
-                    <span [ngClass]="tab.selected? selectedTabStyles : ''" class="m-nav__link-text tab">
-                        {{tab.name}}
-                    </span>
-                  </a>
-                </li>
-                
-                          <!-- <li class="m-nav__item">
-                              <a class="m-nav__link" href="#cPassword" data-toggle="tab">
-                                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                                <span class="m-nav__link-text">
-                                    Change Password
-                                </span>
-                              </a>
-                            </li> -->
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
- 
-      <!-- Nav tabs -->
-
-    </div>
-
-
-
-    <div class="col-lg-9">
-      <!-- Tab panes -->
-      <div class="m-portlet">
-        <div class="m-portlet__body">
-          <div [ngSwitch]="tabItem?.name" class="tab-content">
-             <div *ngSwitchCase="'Basic Information'" id="home-r">
-              <app-basicinformation (setBasicinfoFormValue)="getbasicinfoFormValue($event)" [id]="id"></app-basicinformation>
-            </div>
-            <div *ngSwitchCase="'Profile Picture'" id="profile-r"><app-profilepic (setpicFormValue)=getProfilepicFormValue($event)></app-profilepic></div>
-            <div *ngSwitchCase="'Employee Dependants'" id="Emergency"><app-emergencycontact (setDepndntFormValue)=getdepndntFormValue($event)></app-emergencycontact></div>
-            <div *ngSwitchCase="'Social Networking'"  id="Social"><app-social (setExpFormValue)=getexperienceFormValue($event)></app-social></div>
-            <div *ngSwitchCase="'Employee Qualification'"  id="Qualification"><app-employeequalification (setQualificationFormValue)=getQualificationFormValue($event)></app-employeequalification></div>
-            <div *ngSwitchCase="'Work Experience'"  id="Experience"><app-experience (setExpFormValue)=getexperienceFormValue($event)></app-experience></div>
-            <div *ngSwitchCase="'Employee Bank Account'"  id="Bank"><app-employeebank (setBankFormValue)=getBankFormValue($event)></app-employeebank></div>
-            <div *ngSwitchCase="'Employee Company Information'"  id="CompanyInfo"><app-employeecompany (setCompanyFormValue)=getCompanyFormValue($event)></app-employeecompany></div>
-            <div *ngSwitchCase="'Documents'" id="Document"><app-document (setdocumentsFormValue)=getDocumentsBankFormValue($event)></app-document></div> 
- 
-        <div class="m-portlet__foot m-portlet__foot--fit" *ngIf="router.url === '/hrm/employee/registration'">
-            <div class="m-form__actions">
-               
-            <!-- <button type="submit" (click)="next($event)" class="btn btn-primary" >
-                    {{text}}
-                  </button> |  -->
-                  <button type="submit" (click)="submit($event)" class="btn btn-primary" >
-                       Save
-                    </button>  
-            </div>
-          </div>
-      </div>
-    </div>
-
-
-  </div>  
-</div>
-
-  

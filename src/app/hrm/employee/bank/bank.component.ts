@@ -10,7 +10,9 @@ import { Employee } from '../../../core/Models/HRM/employee';
     styleUrls: ['./bank.component.css']
 })
 export class EmployeeBankComponent implements OnInit {
+
     public Employee: any;
+<<<<<<< HEAD
     @Input('id') id: number;
 
     @Output('setBankFormValue') setBankFormValue = new EventEmitter();
@@ -27,9 +29,13 @@ export class EmployeeBankComponent implements OnInit {
             BankBranch: ['']
         });
     }
+=======
+    public banks: any;
+>>>>>>> master
 
-    async ngOnInit() {
+    @Input('employeeId') id: number;
 
+<<<<<<< HEAD
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
 
@@ -46,22 +52,39 @@ export class EmployeeBankComponent implements OnInit {
     async update(value) {
         console.log(value);
         await this.employee.updateuserBank(value);
-
-    }
-    getBankFormValue() {
-        this.setBankFormValue.emit(this.EmpbankForm.value);
+=======
+    constructor(public employeeService: EmployeeService) {
     }
 
-    async adduserbank() {
-        let usrbnk = await this.employee.addBank();
-        console.log(usrbnk);
+    async ngOnInit() {
+
+        this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
+
 
     }
 
+    addBank(value) {
+        value.data.userId = this.id;
+>>>>>>> master
+
+        this.employeeService.addBank(value.data).subscribe(resp => console.log(resp));
+    }
+
+    updateBank(value) {
+
+        let bank = this.banks.find(x => x.bankId == value.key);
+
+<<<<<<< HEAD
     patchValues(employeeBank: any) {
+=======
+        bank = { ...bank, ...value.data };
 
-        this.EmpbankForm.patchValue({
+        this.employeeService.updateBank(bank).subscribe(resp => console.log(resp));
+    }
+>>>>>>> master
 
+
+<<<<<<< HEAD
             AccountNumber: employeeBank.accountNumber,
             AccountTitle: employeeBank.accountTitle,
             BankTitle: employeeBank.bankTitle,
@@ -69,4 +92,6 @@ export class EmployeeBankComponent implements OnInit {
             BankBranch: employeeBank.bankBranch,
         });
     }
+=======
+>>>>>>> master
 }

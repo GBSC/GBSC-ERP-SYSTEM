@@ -16,23 +16,8 @@ export class BranchComponent implements OnInit {
 
 
     async ngOnInit() {
-        // this.dataService.getAllbranches().subscribe((data)=>this.branch=data);
         await this.dataService.getAllbranches();
         this.branch = this.dataService.branch;
-        console.log(this.branch);
     }
 
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addNew() {
-    }
-
-    startEdit() {
-
-    }
-
-    deletebranch() {
-
-    }
 }

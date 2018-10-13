@@ -16,12 +16,8 @@ export class UniversityComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllUniversities();
         this.university = this.dataService.university;
-        // console.log(this.university);
-        // this.dataService.GetAllRelation().subscribe((data)=>this.Relation=data);
+
     }
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     adduniversity(uni) {
         this.dataService.adduniversity(uni.data);

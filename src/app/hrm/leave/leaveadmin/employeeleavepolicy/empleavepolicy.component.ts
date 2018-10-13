@@ -13,6 +13,17 @@ export class EmpleavepolicyComponent implements OnInit {
     public groups: any = [];
     EmployeeleavePolicyForm: FormGroup;
     public empleavepolicy: any;
+<<<<<<< HEAD
+=======
+    public employees: any;
+    public leaveyear: any;
+    public leaveTypes: any;
+    public leaveDayType: any;
+    public leaveEligiblity: any;
+    public updatingEmpleavePolicy: any;
+    public message: any = null;
+    public messagetext: "Add Successfully";
+>>>>>>> master
 
     constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
@@ -66,6 +77,7 @@ export class EmpleavepolicyComponent implements OnInit {
         });
 
 
+<<<<<<< HEAD
         this.empleavepolicy = await this.leaveservice.getleavepolicyemployee();
         //this.empleavepolicy = this.leaveservice.leavepolicyemployee 
 
@@ -92,5 +104,42 @@ export class EmpleavepolicyComponent implements OnInit {
         console.log(empleavepolicy);
         this.leaveservice.addleavepolicyemployee(empleavepolicy);
     }
+=======
+        this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
+
+        this.employees = await this.empservice.GetAllEmployees();
+
+        this.leaveyear = await this.leavesetupservice.getLeaveYears();
+
+        this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
+
+        this.leaveDayType = await this.leavesetupservice.getLeaveDayTypes();
+
+        this.leaveEligiblity = await this.leavesetupservice.getLeaveEligibilities();
+
+        this.groups = await this.hrsetupservice.getAllGroups();
+    }
+
+    async addemployeeleavepolicy(empleavepolicy) {
+        this.message = this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+        setTimeout(() => {
+            this.message = null;
+        }, 3000);
+    }
+
+
+    updatingEmpleavepolicy(value) {
+        this.updatingEmpleavePolicy = { ...value.oldData, ...value.newData };
+
+    }
+    async updateEmpLeavePolicy() {
+        await this.leaveservice.updateLeavePolicyEmployee(this.updatingEmpleavePolicy);
+    }
+
+    async deleteEmpleavePolicy(value) {
+        await this.leaveservice.DeleteLeavePolicyEmployee(value.key);
+    }
+
+>>>>>>> master
 
 }

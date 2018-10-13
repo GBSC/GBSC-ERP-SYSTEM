@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from '../../../core/Models/HRM/employee';
+import { EmployeeQualification } from '../../../core/Models/HRM/employeeQualification';
+import { DataGrid } from 'primeng/primeng';
 
 @Component({
     selector: 'app-employeequalification',
@@ -10,6 +12,7 @@ import { Employee } from '../../../core/Models/HRM/employee';
     styleUrls: ['./qualification.component.css']
 })
 export class EmployeeQualificationComponent implements OnInit {
+<<<<<<< HEAD
     public Employee: any;
     @Input('id') id: number;
     @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
@@ -65,14 +68,21 @@ export class EmployeeQualificationComponent implements OnInit {
 
             });
         });
+=======
 
-        await this.SetupServiceobj.getAllqualifications();
-        let qualifctn = this.SetupServiceobj.qualification;
-        console.log(qualifctn);
+    public degrees: any;
+    public qualifications: any;
 
-        await this.SetupServiceobj.getAllDegrees();
-        let dgree = this.SetupServiceobj.degree;
 
+    @Input('employeeId') id: number;
+
+>>>>>>> master
+
+    constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute) {
+    }
+
+<<<<<<< HEAD
         await this.SetupServiceobj.getAllUniversities();
         let uni = this.SetupServiceobj.university;
     }
@@ -80,10 +90,15 @@ export class EmployeeQualificationComponent implements OnInit {
     async update(value) {
         console.log(value);
         await this.employee.updateuserQualification(value);
+=======
+    async ngOnInit() {
+>>>>>>> master
 
-    }
+        this.SetupServiceobj.getAllDegrees().subscribe(resp => this.degrees = resp);
 
+        this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
 
+<<<<<<< HEAD
     p(e, u) {
         console.log(e, u);
         this.employee.selectedUni = { Name: '', Qualifications: [] }
@@ -98,20 +113,27 @@ export class EmployeeQualificationComponent implements OnInit {
         this.employee.selectedUni = this.employee.addedUniversities.find(u => u.Name === e.target.value)
         console.log(this.employee.selectedUni)
     }
-
-    getQualificationFormValue() {
-        this.setQualificationFormValue.emit(this.QualificationForm.value);
+=======
     }
 
-    async addqualification() {
-        let qualification = await this.employee.adduserUniversities();
-        console.log(qualification);
+    addQualification(value) {
+        value.data.userId = this.id;
+>>>>>>> master
+
+        this.employeeService.addQualification(value.data).subscribe(resp => console.log(resp));
     }
 
+    updateQualification(value) {
+
+<<<<<<< HEAD
     patchValues(qualification: any) {
+=======
+        let qualification = this.qualifications.find(x => x.universityId == value.key);
+>>>>>>> master
 
-        this.QualificationForm.patchValue({
+        qualification = { ...qualification, ...value.data };
 
+<<<<<<< HEAD
             Name: qualification.name,
             DegreeId: qualification.degreeId,
             Timefrom: qualification.timeFrom,
@@ -122,5 +144,10 @@ export class EmployeeQualificationComponent implements OnInit {
 
         });
     }
+=======
+        this.employeeService.updateQualification(qualification).subscribe(resp => console.log(resp));
+    }
+
+>>>>>>> master
 }
 

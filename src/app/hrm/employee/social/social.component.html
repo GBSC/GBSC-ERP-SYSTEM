@@ -2,7 +2,7 @@
   <h4>Social Networking</h4>
 
 </div>
-<form class="signup-form" [formGroup]="employeeService.SocialForm"> 
+<form class="signup-form" [formGroup]="SocialForm"> 
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
@@ -62,7 +62,7 @@
     </div>
   </div>
   <div *ngIf="router.url === '/hrm/employee/updateemployee/'+id">
-    <button (click)="update(employeeService.SocialForm.value)">
+    <button class="btn btn-primary" (click)="update(SocialForm.value)">
         update
       </button>        
 </div>  

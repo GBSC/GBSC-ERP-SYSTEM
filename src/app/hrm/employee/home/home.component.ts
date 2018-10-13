@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-employeehome',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
+
 export class EmployeeHomeComponent implements OnInit {
 
-
-    public currentUser: any;
     public id: number;
+<<<<<<< HEAD
     tabItem: any;
     public text = 'Next';
     public selectedTabStyles = '.m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item:hover:not(.m-nav__item--disabled) > .m-nav__link .m-nav__link-arrow, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text, .m-nav .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-arrow';
@@ -29,17 +30,19 @@ export class EmployeeHomeComponent implements OnInit {
         { name: "Employee Bank Account", icon: 'm-nav__link-icon fa fa-money', selected: false },
         { name: "Documents", icon: 'm-nav__link-icon fa fa-file', selected: false }
     ]
+=======
+>>>>>>> master
 
-    constructor(public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(private toastr: ToastrService, public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
-            this.id = params['id']; // --> Name must match wanted parameter
-            console.log(this.id);
+            this.id = params['id']; // --> Name must match wanted parameter 
         });
 
+<<<<<<< HEAD
         this.tabItem = this.tabs[this.showingCurrently];
         this.currentUser = await this.employeeService.getBasicInfoOfCurrentUser();
         this.employeeService.currentUser = this.currentUser;
@@ -117,34 +120,16 @@ export class EmployeeHomeComponent implements OnInit {
 
             case 'Employee Dependants':
                 // await this.employeeService.adduserRelation();
+=======
 
-                break;
-
-            case 'Social Networking':
-                await this.employeeService.adduserSocial();
-                break;
-
-            case 'Employee Qualification':
-                await this.employeeService.adduserUniversities();
-                break;
-
-            case 'Work Experience':
-                await this.employeeService.adduserexperience();
-                break;
-
-            case 'Employee Bank Account':
-                await this.employeeService.addBank();
-                break;
-
-            case 'Documents':
-                await this.employeeService.adduserDocuments();
-                break;
-
-            default:
-                break;
-        }
     }
 
+    displayToast(message) {
+>>>>>>> master
+
+        this.toastr.success(message);
+
+    }
 
 
 }

@@ -15,25 +15,21 @@ export class ModuleComponent implements OnInit {
 
         await this.SystemAdministrationServiceobj.getModules();
         let x = this.SystemAdministrationServiceobj.modules;
-        console.log(x);
 
 
 
     }
 
     async addModule(value) {
-        console.log(value);
         await this.SystemAdministrationServiceobj.addModule(value.key);
     }
 
     async updateModule(value) {
-        console.log(value.key);
         await this.SystemAdministrationServiceobj.updateModule(value.key);
 
     }
 
     async deleteModule(value) {
-        console.log(value.key.moduleId);
 
         await this.SystemAdministrationServiceobj.deletModule(value.key.moduleId);
     }

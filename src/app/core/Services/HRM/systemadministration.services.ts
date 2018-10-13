@@ -21,26 +21,20 @@ export class Product {
 @Injectable()
 export class SystemAdministrationService {
 
-    public companies: any;
-    public branches: any;
-    public departments: any;
-    public roles: any;
-    public features: any;
-    //public modules: any;
-    public data: any;
-
     private readonly API_URL = "systemadmin/api/setup/";
-    //private API_URL = "http://localhost:58090/api/Setup/";
     public modules: any = [];
 
 
+<<<<<<< HEAD
     constructor(private httpClient: HttpClient, private ApiService: ApiService) {
+=======
+    constructor(private ApiService: ApiService) {
+>>>>>>> master
     }
 
 
     async saveNewRoleData(data) {
-        let response = await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
-        //console.log(response);
+        return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
     async getData() {
@@ -48,7 +42,6 @@ export class SystemAdministrationService {
         let params = new HttpParams().set('companyId', '164');
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
-        //console.log(response[0]);
 
         for (let m of response) {
             this.modules.push({
@@ -71,209 +64,135 @@ export class SystemAdministrationService {
             });
         }
 
-        //console.log(this.modules);
     }
 
 
     async getPermissions() {
         let response = await this.ApiService.get(this.API_URL + 'getpermissions').toPromise();
-        //console.log(response);
     }
 
     async getCompanies() {
         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
+<<<<<<< HEAD
         //console.log(this.companies);
+=======
+>>>>>>> master
 
     }
 
 
     async addCompany(company: Company) {
-        let abc = await this.ApiService.post(this.API_URL + 'AddCompany', company).toPromise();
-        //console.log(abc);
-        return abc;
+        return await this.ApiService.post(this.API_URL + 'AddCompany', company).toPromise();
     }
 
     async updateCompany(company: Company) {
-        let xyz = await this.ApiService.put(this.API_URL + 'UpdateCompany', company).toPromise();
-        return xyz;
+        return await this.ApiService.put(this.API_URL + 'UpdateCompany', company).toPromise();
     }
 
     async deletCompany(id) {
-        let deleteCompany = await this.ApiService.delete(this.API_URL + 'DeleteCompany/' + id).toPromise();
-        return deleteCompany;
+        return await this.ApiService.delete(this.API_URL + 'DeleteCompany/' + id).toPromise();
     }
 
-    // for branches
 
     async getBranches() {
-        this.branches = await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
-        //console.log(this.branches);
-        return this.branches;
+        return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
     }
 
     async addBranches(branch: Branch) {
-        let a = await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
-        //console.log(a);
-        return a;
+        return await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
     }
 
     async updateBranch(branch: Branch) {
-        let xyz = await this.ApiService.put(this.API_URL + 'UpdateBranch', branch).toPromise();
-        return xyz;
+        return await this.ApiService.put(this.API_URL + 'UpdateBranch', branch).toPromise();
     }
 
     async deletBranch(id) {
-        let deleteBranch = await this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id).toPromise();
-        return deleteBranch;
+        return await this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id).toPromise();
     }
 
 
 
-    // for branches
 
-
-    // for department
     async getDepartments() {
-        this.departments = await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
-        //console.log(this.departments);
-        return this.departments;
+        return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
     }
 
     async addDepartment(department: Department) {
-        let d = await this.ApiService.post(this.API_URL + 'AddDepartment', department).toPromise();
-        //console.log(d);
-        return d;
+        return await this.ApiService.post(this.API_URL + 'AddDepartment', department).toPromise();
     }
 
     async updateDepartment(department: Department) {
-        let xyz = await this.ApiService.put(this.API_URL + 'UpdateDepartment', department).toPromise();
-        return xyz;
+        return await this.ApiService.put(this.API_URL + 'UpdateDepartment', department).toPromise();
     }
 
     async deletDepartment(id) {
-        let deleteDepartment = await this.ApiService.delete(this.API_URL + 'DeleteDepartment/' + id).toPromise();
-        return deleteDepartment;
+        return await this.ApiService.delete(this.API_URL + 'DeleteDepartment/' + id).toPromise();
     }
 
-    //for department
-
-
-    //for role
 
     async getRoles() {
-        this.roles = await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
-        //console.log(this.roles);
-        return this.roles;
+        return await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
     }
 
     async addRole(role: Role) {
-        let r = this.ApiService.post(this.API_URL + 'AddRole', role).toPromise();
-        console.log(r);
-        return r;
+        return this.ApiService.post(this.API_URL + 'AddRole', role).toPromise();
     }
 
 
     async updateRole(role: Role) {
-        let r = await this.ApiService.put(this.API_URL + 'UpdateRole', role).toPromise();
-        //console.log(r);
-        return r;
+        return await this.ApiService.put(this.API_URL + 'UpdateRole', role).toPromise();
 
     }
 
     async deletRole(id) {
-        let deleteRole = await this.ApiService.delete(this.API_URL + 'DeleteRole/' + id).toPromise();
-        return deleteRole;
+        return await this.ApiService.delete(this.API_URL + 'DeleteRole/' + id).toPromise();
     }
-    // for role
 
-    // for feature
     async getFeatures() {
-        this.features = await this.ApiService.get(this.API_URL + 'GetFeatures').toPromise();
-        //console.log(this.features);
-        return this.features;
+        return await this.ApiService.get(this.API_URL + 'GetFeatures').toPromise();
 
     }
 
     async addFeature(feature: Feature) {
-        let x = await this.ApiService.post(this.API_URL + 'AddFeature', feature).toPromise();
-        //console.log(x);
-        return x;
+        return await this.ApiService.post(this.API_URL + 'AddFeature', feature).toPromise();
 
     }
     async updateFeature(feature: Feature) {
-        let y = this.ApiService.put(this.API_URL + 'UpdateFeature', feature).toPromise();
-        // console.log(y);
-        return y;
+        return await this.ApiService.put(this.API_URL + 'UpdateFeature', feature).toPromise();
 
     }
 
     async deletFeature(id) {
-        let deleteFeature = await this.ApiService.delete(this.API_URL + 'DeleteFeature/' + id).toPromise();
-        return deleteFeature;
+        return await this.ApiService.delete(this.API_URL + 'DeleteFeature/' + id).toPromise();
     }
-    // for feature
 
-
-    // for module
 
     async getModules() {
-        this.modules = await this.ApiService.get(this.API_URL + 'GetModules').toPromise();
-        // console.log(this.modules);
-        return this.modules;
+        return await this.ApiService.get(this.API_URL + 'GetModules').toPromise();
     }
 
 
     async addModule(module: Module) {
-        let x = await this.ApiService.post(this.API_URL + 'AddModule', module).toPromise();
-        // console.log(x);
-        return x;
+        return await this.ApiService.post(this.API_URL + 'AddModule', module).toPromise();
     }
 
     async updateModule(module: Module) {
-        let y = await this.ApiService.put(this.API_URL + 'UpdateModule', module).toPromise();
-        // console.log(y);
-        return y;
+        return await this.ApiService.put(this.API_URL + 'UpdateModule', module).toPromise();
     }
 
     async deletModule(id) {
-        let deletemodule = await this.ApiService.delete(this.API_URL + 'DeleteModule/' + id).toPromise();
-        // console.log(deletemodule);
-        return deletemodule;
+        return await this.ApiService.delete(this.API_URL + 'DeleteModule/' + id).toPromise();
 
     }
     //for module
 
     async testCall() {
-        let data = await this.ApiService.get('https://jsonplaceholder.typicode.com/posts').toPromise();
-        // console.log(data);
-        return data;
+        return await this.ApiService.get('https://jsonplaceholder.typicode.com/posts').toPromise();
     }
-
-    // async GetModulesWithFeatures() {
-
-    //   var returnObj: any[];
-
-    //   this.data = await this.http.get(this.API_URL + '/GetModulesWithFeatures').subscribe((data: any) => {
-    //     data.forEach(res => {
-    //       returnObj.push({
-    //         moduleId: res.moduleId,
-    //         name: res.name,
-    //         roleId: res.roleId,
-    //         features: res.features
-    //       })
-    //     });
-    //   });
-
-    //   console.log(returnObj);
-
-    //   return this.data;
-    // }
 
 
     async GetmyModulesWithFeatures() {
-        this.data = await this.ApiService.get(this.API_URL + 'GetModulesWithFeatures').toPromise();
-        // console.log(this.data);
-        return this.data;
+        return await this.ApiService.get(this.API_URL + 'GetModulesWithFeatures').toPromise();
     }
 
 }

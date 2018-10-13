@@ -19,12 +19,9 @@ export class CostCenterComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllCostCenter();
         this.ccenter = this.dataService.costcenter;
-        console.log(this.ccenter);
-        // this.dataService.GetAllCostCenter().subscribe((data)=>this.CostCenter=data);
     }
 
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addNewCostCenter(cc) {
         this.dataService.addCostCenter(cc.data);

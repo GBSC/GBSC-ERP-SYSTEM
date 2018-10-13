@@ -9,29 +9,41 @@ import { AttendancesetupService, EmployeeService } from '../../../../core';
 export class AttendancerequestapproverComponent implements OnInit {
 
     public attendanceRequestapprover: any;
+<<<<<<< HEAD
+=======
+    public attendanceapprover: any;
+    public employee: any;
+
+>>>>>>> master
     constructor(public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getattendanceRequestapprover();
-        this.attendanceRequestapprover = this.attendancesetupservice.attendancerequestapprover
-        console.log(this.attendanceRequestapprover);
 
+<<<<<<< HEAD
         await this.employeeservice.GetAllEmployees();
         let employe = this.employeeservice.employeereg;
 
+=======
+        this.attendanceRequestapprover = await this.attendancesetupservice.getAttendanceRequestApprover();
+
+        this.employee = await this.employeeservice.GetAllEmployees();
+>>>>>>> master
     }
 
     async addRequestapprover(value) {
-        this.attendancesetupservice.addattendanceRequestapprover(value.data);
+        await this.attendancesetupservice.addAttendanceRequestApprover(value.data);
     }
 
-    async updateRequestapprover(value) {
-        console.log(value);
-        this.attendancesetupservice.updateattendanceRequestapprover(value);
+    updatingRequestapprover(value) {
+        this.attendanceapprover = { ...value.oldData, ...value.newData };
+    }
+
+    async updateRequestapprover() {
+        await this.attendancesetupservice.updateAttendanceRequestApprover(this.attendanceapprover);
     }
 
     async deleteRequestapprover(value) {
-        this.attendancesetupservice.DeleteattendanceRequestapprover(value.key);
+        await this.attendancesetupservice.DeleteAttendanceRequestApprover(value.key);
     }
 
 }

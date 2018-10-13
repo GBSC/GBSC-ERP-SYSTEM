@@ -1,4 +1,11 @@
 <div class="m-content">
+        <!-- <div class="row">
+            <div class="col-lg-4">
+                    <div class="m-portlet">
+                    <app-patientvitals></app-patientvitals>
+                    </div>              
+            </div>
+        </div> -->
     <div class="row">
         <div class="col-lg-12">
             <div class="m-portlet">
@@ -63,33 +70,15 @@
                                 Visit Test
                             </a>
                         </li>
-
-
-
-
-
                     </ul>
                     <div class="tab-content col-sm-4">
-
                         <div class="tab-pane active" id="m_tabs_1_2" role="tabpanel">
                             <div class="m-portlet__body">
 
                                 <div class="m-section">
-                                    <!-- <div  class="row">
-                                <div  class="col-lg-4">
-                                    <h3  class="m-section__heading">
-                                        Last Vitals
-                                    </h3>
-                                </div>
-                                <div  class="col-lg-8">
-                                    <h3  class="m-section__heading">
-                                        9/24/2018 07:58:22
-                                    </h3>
-                                </div>
-                              </div> -->
-
                                     <div class="m-section__content">
                                         <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+                                            <form [formGroup]="VisitVitalDetailForm">
                                             <div class="m-demo__preview">
                                                 <p class="row">
                                                     <span class="col-lg-8 m--font-boldest">
@@ -97,11 +86,23 @@
                                                     </span>
                                                     <span class="col-lg-4">
                                                         <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.height}}cm
-                                                        </h6>
+                                                                {{visit.patientVital?.height}}(cm)
+                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
+                                                         </h6>
                                                     </span>
                                                 </p>
                                                 <p class="row">
+                                                    <span class="col-lg-8 m--font-boldest">
+                                                        Weight(kg)
+                                                    </span>
+                                                    <span class="col-lg-4">
+                                                        <h6 class="m--font-brand">
+                                                                {{visit.patientVital?.weight}}(kg)
+                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
+                                                         </h6>
+                                                    </span>
+                                                </p>
+                                                <!-- <p class="row">
                                                     <span class="col-lg-8 m--font-boldest">
                                                         {{visit.patientVital?.weight}}(kg)
                                                     </span>
@@ -110,7 +111,7 @@
                                                             21 kg
                                                         </h6>
                                                     </span>
-                                                </p>
+                                                </p> -->
                                                 <p class="row">
                                                     <span class="col-lg-8 m--font-boldest">
                                                         Temperature (C)
@@ -163,17 +164,14 @@
                                                 </p>
 
 
-
+                                        <button type="button" (click)="editvitals()">edit</button>
 
                                             </div>
+                                            </form>
                                         </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
-
                         </div>
                         <div class="tab-pane" id="m_tabs_1_1" role="tabpanel">
                             <div class="m-widget4">
@@ -218,6 +216,9 @@
                                         </span>
                                     </span>
                                 </div>
+                                <button type="button"  class="btn btn-primary">
+                                    edit
+                                </button>
                             </div>
                         </div>
                         <div class="tab-pane" id="m_tabs_1_4" role="tabpanel">

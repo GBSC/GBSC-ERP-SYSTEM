@@ -33,7 +33,10 @@ export interface InventoryItem {
     inventoryItemCategoryId: number,
     InventoryItemCategoryId: InventoryItemCategory,
     packageTypeId: number,
+<<<<<<< HEAD
     PackageType: PackageType,
     inventoryId: number,
+=======
+>>>>>>> master
     inventory: Inventory
 }

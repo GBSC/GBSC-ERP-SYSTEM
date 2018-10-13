@@ -26,11 +26,11 @@
                 </dxo-pager>
 
                 <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="setupservice?.group" displayExpr="name" valueExpr="groupId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
                 </dxi-column>
  
                 <dxi-column dataField="title" caption="Title"></dxi-column>

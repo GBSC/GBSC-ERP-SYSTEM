@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { EmployeeService } from '../../../core';
@@ -16,18 +16,18 @@ export class ProfilepicComponent implements OnInit {
     constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, private route: ActivatedRoute) { }
 
     public selectedPic;
+<<<<<<< HEAD
     public id: any;
+=======
+>>>>>>> master
 
+    @Input('employeeId') id: number;
 
     async ngOnInit() {
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
         });
-        console.log(this.id);
 
-        // this.Profilepic = this.fb.group({
-        //   ProfileImg: ['', Validators.required]
-        // }); 
     }
 
     getProfilepicFormValue() {
@@ -35,7 +35,6 @@ export class ProfilepicComponent implements OnInit {
     }
 
     getProfilePic(e) {
-        this.employee.selectedPic = e.target.files[0];
     }
 
 
@@ -44,13 +43,13 @@ export class ProfilepicComponent implements OnInit {
 
     onfileselect(event) {
         this.forevent = <File>event.target.files[0];
-        console.log(this.forevent)
     }
 
 
     onupload() {
         const file = new FormData();
         file.append('file', this.forevent);
+<<<<<<< HEAD
 
         console.log(file);
         this.employee.addDocument(file);
@@ -60,12 +59,9 @@ export class ProfilepicComponent implements OnInit {
 
 
     // async addpic() {
+=======
+>>>>>>> master
 
-    //   let fomrData : any = new FormData();   
-    //   fomrData.append('myFile', this.selectedPic, this.selectedPic.name);
+    }
 
-    //   let usrdp = await this.employee.adduserProfilepic(FormData);
-    //   console.log(usrdp);
-
-    // }
 }

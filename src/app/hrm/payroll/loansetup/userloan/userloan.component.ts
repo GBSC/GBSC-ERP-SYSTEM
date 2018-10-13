@@ -9,11 +9,17 @@ import { PayrollSetupService, EmployeeService } from '../../../../core';
 export class UserloanComponent implements OnInit {
 
     public UserLoan: any;
+<<<<<<< HEAD
+=======
+    public users: any;
+    public loanType: any;
+>>>>>>> master
     public Updateloan: any;
 
     constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
+<<<<<<< HEAD
         await this.payrollsetupservice.getuserloans();
         this.UserLoan = this.payrollsetupservice.userloan;
 
@@ -39,5 +45,28 @@ export class UserloanComponent implements OnInit {
 
     async deleteUserLoan(value) {
         await this.payrollsetupservice.Deleteuserloan(value.key);
+=======
+        this.UserLoan = await this.payrollsetupservice.getUserLoans();
+
+        this.loanType = await this.payrollsetupservice.getLoanTypes();
+
+        this.users = await this.employeeservice.GetAllEmployees();
+    }
+
+    async addUserLoan(value) {
+        await this.payrollsetupservice.addUserLoan(value.data);
+    }
+
+    Updatingloan(value) {
+        this.Updateloan = { ...value.oldData, ...value.newData };
+    }
+
+    async updateUserLoan() {
+        await this.payrollsetupservice.updateUserLoan(this.Updateloan);
+    }
+
+    async deleteUserLoan(value) {
+        await this.payrollsetupservice.deleteUserLoan(value.key);
+>>>>>>> master
     }
 }

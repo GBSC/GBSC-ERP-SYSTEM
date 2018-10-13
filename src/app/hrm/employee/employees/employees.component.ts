@@ -19,7 +19,6 @@ export class EmployeesComponent implements OnInit {
 
         await this.employee.GetAllEmployees();
         this.emp = this.employee.employeereg;
-        console.log(this.emp);
     }
 
 
@@ -40,17 +39,8 @@ export class EmployeesComponent implements OnInit {
     }
 
 
-    //     onupdate(d) {
-    //     console.log(d.key);
-    //      this.employeeId  =  d.key 
-    //      this.router.navigate(['hrm/employee/employeeupdate/'+this.employeeId]);  
-
-    //    //     this.router.navigate(['hrm/employee/registration'])
-    //     }
     getCurrentRowData(d) {
-        console.log(d.key);
         this.userId = d.key;
-        this.employee.updateEmployeeBool = true
         this.router.navigate(['hrm/employee/updateemployee/' + this.userId]);
 
     }

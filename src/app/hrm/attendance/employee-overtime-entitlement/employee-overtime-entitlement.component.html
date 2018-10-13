@@ -23,7 +23,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId" id="">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor ="let employee of employeeservice?.employeereg" [value]="employee.userId" >{{employee.firstName}}</option>
+                  <option *ngFor ="let employee of employee" [value]="employee.userId" >{{employee.firstName}}</option>
          </select>
               </div> 
             </div>
@@ -47,7 +47,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                   <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
          </select>
               </div>
               <div class="col-lg-6">
@@ -86,7 +86,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                   <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
          </select>
               </div>
               <div class="col-lg-6">
@@ -126,7 +126,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                   <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
          </select>
               </div>
               <div class="col-lg-6">
@@ -166,7 +166,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                   <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of attendancesetupservice?.overtimetype" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
          </select>
               </div>
               <div class="col-lg-6">

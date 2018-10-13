@@ -18,8 +18,8 @@ import { AuthGuardService } from '../core';
 const routes: Routes = [
     {
         "path": "",
-        "redirectTo":"employee/dashboard",
-        "pathMatch":"full",
+        "redirectTo": "employee/dashboard",
+        "pathMatch": "full",
         "canActivate": [AuthGuardService]
     },
     {

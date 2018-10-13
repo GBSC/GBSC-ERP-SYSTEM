@@ -12,7 +12,7 @@ export class AttendanceRule {
     effectQuantity: number;
     effectType: number;
     attendanceFlagId: number;
-    groupId: number; 
-    attendanceRuleLeaveTypes : AttendanceRuleLeaveType[];
-    
+    groupId: number;
+    attendanceRuleLeaveTypes: AttendanceRuleLeaveType[];
+
 }

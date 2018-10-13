@@ -11,6 +11,5 @@ export interface SalesOrderItem {
     PackTypeId: number,
     SalesOrderId: number,
     InventoryItemId: number,
-    InventoryId: number,
-    ComissionId: number
+    InventoryId: number
 }

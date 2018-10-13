@@ -31,15 +31,15 @@
                 </dxo-pager> 
 
                 <dxi-column dataField="leaveYearId" caption="Leave Year">
-                  <dxo-lookup [dataSource]="leavesetupservice?.leaveyear" displayExpr="year" valueExpr="leaveYearId">
+                  <dxo-lookup [dataSource]="leaveYears" displayExpr="year" valueExpr="leaveYearId">
                   </dxo-lookup> 
                   </dxi-column>
                   <dxi-column dataField="departmentId" caption="Department">
-                    <dxo-lookup [dataSource]="systemadminservice?.departments" displayExpr="name" valueExpr="departmentId">
+                    <dxo-lookup [dataSource]="departments" displayExpr="name" valueExpr="departmentId">
                     </dxo-lookup> 
               </dxi-column>
                   <dxi-column dataField="groupId" caption="Group">
-                    <dxo-lookup [dataSource]="setupservice?.group" displayExpr="name" valueExpr="groupId">
+                    <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
                     </dxo-lookup> 
               </dxi-column>
 

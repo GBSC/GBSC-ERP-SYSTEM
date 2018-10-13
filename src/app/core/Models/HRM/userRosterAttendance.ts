@@ -13,6 +13,6 @@ export class UserRosterAttendance {
     assignRosterId: number;
     monthlyUserSalaryId: number;
     leavePolicyEmployeeId: number;
-   // OfficialVisitEntries: OfficialVisitEntry[];
+    // OfficialVisitEntries: OfficialVisitEntry[];
     userRosterAttendanceAttendanceFlags: UserRosterAttendanceAttendanceFlag[];
 }

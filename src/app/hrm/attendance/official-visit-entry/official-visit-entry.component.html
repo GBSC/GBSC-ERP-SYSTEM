@@ -16,7 +16,8 @@
                [dataSource]="officialVisitentry"
                keyExpr="officialVisitEntryId"
                 (onRowInserted)="addofficialVisitentry($event)" 
-                (onRowUpdated)="updateofficialVisitentry($event)"
+                (onRowUpdating)="updatingVisitentry($event)"
+                (onRowUpdated)="updateVisitentry()"
                 (onRowRemoved)="deleteofficialVisitentry($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Official Visit Entry" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
@@ -30,11 +31,11 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
                     <dxi-column dataField="branchId" caption="Branch">
-                      <dxo-lookup [dataSource]="companyservice?.branches" displayExpr="name" valueExpr="branchId">
+                      <dxo-lookup [dataSource]="branches" displayExpr="name" valueExpr="branchId">
                       </dxo-lookup>
                     </dxi-column>  
                             <dxi-column dataField="userId" caption="Employee">
-                              <dxo-lookup [dataSource]="empservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                              <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
                               </dxo-lookup>
                               </dxi-column>
                 <dxi-column dataField="fromDate" dataType="date" format="shortDate" ></dxi-column>

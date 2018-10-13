@@ -33,9 +33,6 @@ export class BanksComponent implements OnInit {
         this.banksAdvicetemplate = [{ value: "General", display: "General" }, { value: "General-With-NIC", display: "General With NIC" }, { value: "UBL", display: "UBL" }];
         this.Chequetemplate = [{ value: "", display: "--Select--" }, { value: "Bank-Al-Habib", display: "Bank Al Habib" }, { value: "UBL", display: "UBL" }];
 
-        console.log(this.banks);
-
-
     }
 
 }

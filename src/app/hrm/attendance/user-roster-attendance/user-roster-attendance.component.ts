@@ -12,23 +12,19 @@ export class UserRosterAttendanceComponent implements OnInit {
     constructor(public attendanceservice: AttendanceService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getuserRosterattendances();
-        this.userRosterattendance = this.attendanceservice.userRosterattendance
-        console.log(this.userRosterattendance);
-
+        this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
     }
 
     async adduserRosterattendance(value) {
-        this.attendanceservice.adduserRosterattendance(value.data);
+        this.attendanceservice.addUserRosterAttendance(value.data);
     }
 
     async updateuserRosterattendance(value) {
-        console.log(value);
-        this.attendanceservice.updateuserRosterattendance(value);
+        this.attendanceservice.updateUserRosterAttendance(value);
     }
 
     async deleteuserRosterattendance(value) {
-        this.attendanceservice.DeleteuserRosterattendance(value.key);
+        this.attendanceservice.DeleteUserRosterAttendance(value.key);
     }
 
 }

@@ -12,50 +12,31 @@ import { Patient } from '../../../core/Models/HIMS/patient';
 export class GeneralactionsComponent implements OnInit {
 
     public currentPatient: any;
-    public visitid : any;
+    public visitid: any;
     id: number;
-    Patient : Patient;
+    Patient: Patient;
 
 
-    constructor(private PatientServiceobj : PatientService , private router: Router ,  private route : ActivatedRoute) { }
+    constructor(private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-  
-    this.route.params.subscribe(params => {
 
-        this.id = +params['id'];
- 
-       this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient=> this.Patient = Patient);
-       
-     });
-     console.log(this.id);
+        this.route.params.subscribe(params => {
 
-     this.today = Date.now();
-      let   fixedTimezone = this.today;
-      
-      console.log(fixedTimezone)
-      console.log(this.today)
-        // let require;
-        // let dateFormat =   require('dateformat');
-        // let now = new Date();
-        // dateFormat(now, "dd, mm, yyyy, h:MM:ss TT"); 
-        // console.log('111',now);
-        // console.log('22222222',dateFormat);
-        // console.log('333333333333',require);
+            this.id = +params['id'];
 
+            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
 
+        });
+        console.log(this.id);
 
     }
 
-    public today : any;
+    async onSubmit() {
 
-async onSubmit()  {
-
-     await this.PatientServiceobj.AddVisits(this.id);
-        this.router.navigate(['/hims/patient/visits/'+this.id]);
+        await this.PatientServiceobj.AddVisits(this.id);
+        this.router.navigate(['/hims/patient/visits/' + this.id]);
         console.log(this.id);
-
-   
     }
 
 }

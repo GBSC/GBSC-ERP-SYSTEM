@@ -23,7 +23,7 @@
                 </label>
                 <select #s class="form-control m-input" (change)="GetUserloan(s.value)" formControlName="UserId" id="">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of Employeeservice?.employeereg" [value]="user.userId">{{user.firstName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}}</option>
                 </select>
               </div>
             </div>

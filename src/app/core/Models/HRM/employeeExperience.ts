@@ -5,5 +5,5 @@ export interface EmployeeExperience {
     Timefrom: Date,
     Timeto: Date,
     Description: Date,
-    userId : any
+    userId: any
 }

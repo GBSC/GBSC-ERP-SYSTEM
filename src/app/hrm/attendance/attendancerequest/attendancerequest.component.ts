@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService , AttendancesetupService , AttendanceService } from '../../../core';
+import { EmployeeService, AttendancesetupService, AttendanceService } from '../../../core';
 
 @Component({
     selector: 'app-attendancerequest',
@@ -7,47 +7,45 @@ import { EmployeeService , AttendancesetupService , AttendanceService } from '..
     styleUrls: ['./attendancerequest.component.scss']
 })
 export class AttendancerequestComponent implements OnInit {
- 
-    public attendancerequest: any; 
+
+    public attendancerequest: any;
+    public attendanceRequestTypes: any;
+    public attendanceRequestApprover: any;
+    public assignroster: any;
+    public employees: any;
     private UpdatingRequest;
-    
-    constructor(public attendanceservice: AttendanceService,public attendanceSetupservice: AttendancesetupService,
+
+    constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
         public Employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        
-        await this.attendanceservice.getattendancerequests();
-        this.attendancerequest = this.attendanceservice.attendancerequest
-        console.log(this.attendancerequest);
 
-        await this.Employeeservice.GetAllEmployees();
-        let requesttype = this.Employeeservice.employeereg;
-        
-        await this.attendanceSetupservice.getattendanceRequestTypes();
-        let employee = this.attendanceSetupservice.attendanceRequestType;
-       
-        await this.attendanceSetupservice.getasignrosters();
-        let assignrostr = this.attendanceSetupservice.asignroster;
-       
-        await this.attendanceSetupservice.getattendanceRequestapprover();
-        let requestApprovr = this.attendanceSetupservice.attendancerequestapprover;
+        this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
+
+        this.employees = await this.Employeeservice.GetAllEmployees();
+
+        this.attendanceRequestTypes = await this.attendanceSetupservice.getAttendanceRequestTypes();
+
+        this.assignroster = await this.attendanceSetupservice.getAsignRosters();
+
+        this.attendanceRequestApprover = await this.attendanceSetupservice.getAttendanceRequestApprover();
     }
 
 
     async addattendancerequest(value) {
-        this.attendanceservice.addattendancerequest(value.data);
+        this.attendanceservice.addAttendanceRequest(value.data);
     }
 
     async updatingrequest(value) {
-        this.UpdatingRequest = { ...value.oldData, ...value.newData};
+        this.UpdatingRequest = { ...value.oldData, ...value.newData };
     }
 
-    async updateattendancerequest() { 
-        this.attendanceservice.updateattendancerequest( this.UpdatingRequest);
+    async updateattendancerequest() {
+        this.attendanceservice.updateAttendanceRequest(this.UpdatingRequest);
     }
 
     async deleteattendancerequest(value) {
-        this.attendanceservice.Deleteattendancerequest(value.key);
+        this.attendanceservice.deleteAttendanceRequest(value.key);
     }
 
 }

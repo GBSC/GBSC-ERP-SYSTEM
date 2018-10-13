@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 @Injectable()
@@ -103,8 +102,6 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`).toPromise();
     }
 
-
-    /** CRUD METHODS LEAVE REQUEST*/
     async getLeaveRequestDetails() {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();
     }
@@ -154,7 +151,7 @@ export class LeaveService {
 
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveClosings`).toPromise();
     }
- 
+
     async addLeaveClosing(data) {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveClosing`, data).toPromise();
     }

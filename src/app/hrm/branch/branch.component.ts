@@ -9,6 +9,7 @@ import { SystemAdministrationService } from '../../core';
 export class BranchComponent implements OnInit {
 
     public com: any;
+    public branches: any;
 
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
@@ -16,8 +17,7 @@ export class BranchComponent implements OnInit {
 
         this.com = await this.SystemAdministrationServiceobj.getCompanies();
 
-        await this.SystemAdministrationServiceobj.getBranches();
-        this.SystemAdministrationServiceobj.branches;
+        this.branches = await this.SystemAdministrationServiceobj.getBranches();
     }
 
     async addBranches(value) { 

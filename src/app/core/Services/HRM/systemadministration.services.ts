@@ -21,18 +21,11 @@ export class Product {
 @Injectable()
 export class SystemAdministrationService {
 
-    public companies: any;
-    public branches: any;
-    public departments: any;
-    public roles: any;
-    public features: any;
-    public data: any;
-
     private readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
 
 
-    constructor(private httpClient: HttpClient, private ApiService: ApiService) {
+    constructor( private ApiService: ApiService) {
     }
 
 

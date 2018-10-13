@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 
@@ -7,13 +6,10 @@ import { ApiService } from '../../api.service';
 export class PayrollSetupService {
 
     private baseUrl: string = "SystemAdmin/api/PayrollSetup";
-    //private baseUrl: string = "http://localhost:58090/api/PayrollSetup";
-
 
     constructor(private ApiService: ApiService) { }
 
     async getAllowances() {
-
         return await this.ApiService.get(`${this.baseUrl}/GetAllowances`).toPromise();
     }
 
@@ -22,7 +18,6 @@ export class PayrollSetupService {
     }
 
     async addAllowance(data) {
-
         return await this.ApiService.post(`${this.baseUrl}/AddAllowance`, data).toPromise();
 
     }
@@ -612,15 +607,10 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteUserSalary/${usersalaryId}`).toPromise();
     }
 
-
-
-    /** Tax Setups */
-
     async getIncomeTaxRules() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRules`).toPromise();
     }
-
 
     async addIncomeTaxRule(data) {
 
@@ -759,9 +749,6 @@ export class PayrollSetupService {
 
         return await this.ApiService.delete(`${this.baseUrl}/DeleteTaxYear/${taxyearId}`).toPromise();
     }
-
-    /** Loan Setups */
-
 
     async getLoanTypes() {
 

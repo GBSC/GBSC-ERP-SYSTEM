@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 
@@ -11,17 +10,14 @@ export class PayrollService {
     constructor(private ApiService: ApiService) { }
 
     async getStopSalaries() {
-
         return await this.ApiService.get(`${this.baseUrl}/GetStopSalaries`).toPromise();
     }
 
     async addStopSalary(data) {
-
-        let newstopsalary = await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
+       return await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
     }
 
     async updateStopSalary(data) {
-
         return await this.ApiService.put(`${this.baseUrl}/UpdateStopSalary`, data).toPromise();
     }
 

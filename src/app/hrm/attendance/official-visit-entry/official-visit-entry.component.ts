@@ -11,26 +11,30 @@ export class OfficialVisitEntryComponent implements OnInit {
     public branches: any;
     public employee: any;
     public officialVisitentry: any;
+    public updatingOfficialEntry: any;
 
     constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
 
     async ngOnInit() {
-        
+
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
 
         this.employee = await this.empservice.GetAllEmployees();
 
         this.branches = await this.companyservice.getBranches();
-
     }
 
     async addofficialVisitentry(value) {
         this.attendanceservice.addOfficialVisitEntry(value.data);
     }
 
-    async updateofficialVisitentry(value) { 
-        this.attendanceservice.updateOfficialVisitEntry(value);
+    async updatingVisitentry(value) {
+        this.updatingOfficialEntry = { ...value.oldData, ...value.newData };
+    }
+
+    async updateVisitentry() {
+        this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
     }
 
     async deleteofficialVisitentry(value) {

@@ -31,7 +31,7 @@ export class UsersalaryComponent implements OnInit {
         await this.payrollsetupservice.addUserSalary(value.data);
     }
 
-    async updateUserSalary(value) { 
+    async updateUserSalary(value) {
         await this.payrollsetupservice.updateUserSalary(value);
     }
 

@@ -17,11 +17,11 @@ export class AttendanceflagComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags(); 
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
         this.flagcategory = await this.attendancesetupservice.getFlagCategories();
 
-        this.flagEffecttypes = await this.attendancesetupservice.getFlagEffectTypes(); 
+        this.flagEffecttypes = await this.attendancesetupservice.getFlagEffectTypes();
 
         this.flagvalue = await this.attendancesetupservice.getFlagValues();
     }
@@ -30,8 +30,8 @@ export class AttendanceflagComponent implements OnInit {
         await this.attendancesetupservice.addAttendanceFlag(value.data);
     }
 
-    async updateattendanceflag(value) { 
-       await  this.attendancesetupservice.updateAttendanceFlag(value);
+    async updateattendanceflag(value) {
+        await this.attendancesetupservice.updateAttendanceFlag(value);
     }
 
     async deleteattendanceflag(value) {

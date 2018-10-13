@@ -16,9 +16,9 @@ export class CountryComponent implements OnInit {
 
 
 
-    async ngOnInit() { 
+    async ngOnInit() {
         await this.dataService.getAllCountries();
-        this.countries = this.dataService.country; 
+        this.countries = this.dataService.country;
 
     }
 
@@ -29,7 +29,7 @@ export class CountryComponent implements OnInit {
 
     }
 
-    EditNewCountry(country) { 
+    EditNewCountry(country) {
 
         this.dataService.updateCountry(country);
 
@@ -40,7 +40,7 @@ export class CountryComponent implements OnInit {
     }
 
 
-    deleteCountry(countr) { 
+    deleteCountry(countr) {
         this.dataService.DeleteCountry(countr.key);
     }
 

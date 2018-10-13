@@ -28,7 +28,7 @@ export class LoantypeComponent implements OnInit {
     }
 
     async updateLoanType() {
-         await this.payrollsetupservice.updateLoanType(this.UpdatedModel);
+        await this.payrollsetupservice.updateLoanType(this.UpdatedModel);
     }
 
     async deleteLoanType(value) {

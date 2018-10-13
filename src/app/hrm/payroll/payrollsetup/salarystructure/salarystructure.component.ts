@@ -16,11 +16,11 @@ export class SalarystructureComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.salarystructure = await this.payrollsetupservice.getSalaryStructures(); 
+        this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
 
-        this.payrollTypes = await this.payrollsetupservice.getPayrollTypes(); 
+        this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
 
-        this.groups = await this.setupservice.getAllGroups(); 
+        this.groups = await this.setupservice.getAllGroups();
     }
 
     async addSalaryStructure(value) {

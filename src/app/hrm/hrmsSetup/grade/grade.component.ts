@@ -17,7 +17,7 @@ export class GradesComponent implements OnInit {
 
 
     async ngOnInit() {
-       
+
 
     }
 

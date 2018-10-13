@@ -19,10 +19,10 @@ export class DesignationComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllDesignations();
         this.designatn = this.dataService.designation;
-        
+
     }
 
- 
+
     addDesignation(desg) {
 
         this.dataService.addDesignation(desg.data);

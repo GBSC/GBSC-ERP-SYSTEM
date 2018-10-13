@@ -34,7 +34,7 @@ export class GratuityslabComponent implements OnInit {
 
         this.gratuities = await this.payrollservice.getGratuities();
     }
- 
+
 
     async addGratuityslab(value) {
         await this.payrollsetupservice.addGratuitySlab(value.data);

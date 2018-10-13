@@ -19,12 +19,12 @@ export class LeaveclosingComponent implements OnInit {
     async ngOnInit() {
 
         this.leaveclose = await this.leaveservice.getLeaveClosings();
-         
-        this.leaveYears = await this.leavesetupservice.getLeaveYears(); 
+
+        this.leaveYears = await this.leavesetupservice.getLeaveYears();
 
         this.groups = await this.setupservice.getAllGroups();
 
-        this.departments =await this.systemadminservice.getDepartments(); 
+        this.departments = await this.systemadminservice.getDepartments();
     }
 
     async addleaveclosing(value) {

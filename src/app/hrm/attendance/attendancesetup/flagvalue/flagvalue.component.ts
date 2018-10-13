@@ -14,7 +14,7 @@ export class FlagvalueComponent implements OnInit {
 
     async ngOnInit() {
         this.flagvalue = await this.attendancesetupservice.getFlagValues();
-        
+
     }
 
     async addflagvalue(value) {

@@ -46,17 +46,17 @@ export class LeaverequestComponent implements OnInit {
 
 
         this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
-         
-        await this.leaveservice.getAllleaverequest(); 
- 
+
+        await this.leaveservice.getAllleaverequest();
+
         this.employees = await this.empservice.GetAllEmployees();
 
         this.leaveApprovr = await this.leavesetupservice.getLeaveApprovers();
-       
+
         this.leaveYear = await this.leavesetupservice.getLeaveYears();
-   
-        this.leaveType =await this.leavesetupservice.getLeaveTypes();
-     }
+
+        this.leaveType = await this.leavesetupservice.getLeaveTypes();
+    }
 
     async addleaverequestordetail() {
         this.leaveRequestDetailForm.value.leaveRequestId = this.leaveRequestId.leaverequestID;
@@ -65,7 +65,7 @@ export class LeaverequestComponent implements OnInit {
 
     leaveRequestId;
 
-    async addleaverequest(e) { 
+    async addleaverequest(e) {
         this.leaveRequestId = await this.leaveservice.addLeaveRequest(this.leaveRequestForm.value);
     }
 

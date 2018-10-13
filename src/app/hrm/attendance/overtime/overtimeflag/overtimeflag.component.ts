@@ -19,7 +19,7 @@ export class OvertimeflagComponent implements OnInit {
         this.attendanceSetupservice.addOvertimeFlag(value.data);
     }
 
-    async updateovertimeflag(value) { 
+    async updateovertimeflag(value) {
         this.attendanceSetupservice.updateOvertimeFlag(value);
     }
 

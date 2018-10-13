@@ -15,7 +15,7 @@ export class QualificationComponent implements OnInit {
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
-    async ngOnInit() { 
+    async ngOnInit() {
         await this.dataService.getAllqualifications();
         this.qualification = this.dataService.qualification;
 

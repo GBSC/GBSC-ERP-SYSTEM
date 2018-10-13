@@ -8,25 +8,25 @@ import { SystemAdministrationService } from '../../core';
 export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
-    
+
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
-       this.branch =  await this.SystemAdministrationServiceobj.getBranches(); 
+        this.branch = await this.SystemAdministrationServiceobj.getBranches();
 
-       this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
+        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
 
     }
 
 
-    async addDepartment(value) { 
+    async addDepartment(value) {
         await this.SystemAdministrationServiceobj.addDepartment(value.key);
     }
 
-    async updateDepartment(value) { 
+    async updateDepartment(value) {
         await this.SystemAdministrationServiceobj.updateDepartment(value.key);
     }
-    async deletDepartment(value) { 
+    async deletDepartment(value) {
         await this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId);
     }
 

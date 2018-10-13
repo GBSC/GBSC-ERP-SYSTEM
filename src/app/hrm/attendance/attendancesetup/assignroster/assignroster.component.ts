@@ -15,7 +15,7 @@ export class AssignrosterComponent implements OnInit {
 
     async ngOnInit() {
         this.assignroster = await this.attendancesetupservice.getAsignRosters();
-  
+
         this.roster = await this.attendancesetupservice.getRosters();
     }
 

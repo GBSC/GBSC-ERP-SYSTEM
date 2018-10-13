@@ -17,7 +17,7 @@ export class GroupComponent implements OnInit {
     async ngOnInit() {
 
         await this.dataService.getAllGroups();
-        this.group = this.dataService.group; 
+        this.group = this.dataService.group;
     }
 
     addNewGroups(grp) {

@@ -20,7 +20,7 @@ export class DocumentComponent implements OnInit {
     async ngOnInit() {
 
     }
-    async addDocuments() { 
+    async addDocuments() {
     }
 
 
@@ -42,7 +42,7 @@ export class DocumentComponent implements OnInit {
                 y.append('models', this.forimg[i]);
             }
 
-        } 
+        }
     }
 
     async  deleteUserDocument(value) {

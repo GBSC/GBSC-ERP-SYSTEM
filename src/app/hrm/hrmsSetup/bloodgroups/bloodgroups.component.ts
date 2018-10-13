@@ -20,6 +20,6 @@ export class BloodGroupComponent implements OnInit {
     }
 
 
-   
-    
+
+
 }

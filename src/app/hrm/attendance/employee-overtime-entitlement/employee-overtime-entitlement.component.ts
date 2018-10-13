@@ -18,8 +18,8 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
     public Updatedincoming: any;
     public Updatedoffday: any;
     public Updatedoutgoing: any;
-    public OverTimeType : any;
-    public employee : any;
+    public OverTimeType: any;
+    public employee: any;
 
     public WorkingDayOTForm: FormGroup;
     public EmployeeEntitlementForm: FormGroup;
@@ -63,17 +63,17 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
 
         this.empoverTimeEntitlement = await this.attendanceservice.getEmpOvertimeEntitlements();
 
-         this.empworkingot = await this.attendanceservice.getEmployeeWorkingDayOts();
+        this.empworkingot = await this.attendanceservice.getEmployeeWorkingDayOts();
 
-         this.empoffdayot = await this.attendanceservice.getEmployeeOffdayOts();
-        
-         this.incomingot = await this.attendanceservice.getEmployeeIncomingOts();
+        this.empoffdayot = await this.attendanceservice.getEmployeeOffdayOts();
 
-         this.outgoingot = await this.attendanceservice.getEmployeeOutgoingOts();
+        this.incomingot = await this.attendanceservice.getEmployeeIncomingOts();
 
-        this.OverTimeType =await this.attendancesetupservice.getAllOvertimeType();
+        this.outgoingot = await this.attendanceservice.getEmployeeOutgoingOts();
 
-        this.employee = await this.employeeservice.GetAllEmployees(); 
+        this.OverTimeType = await this.attendancesetupservice.getAllOvertimeType();
+
+        this.employee = await this.employeeservice.GetAllEmployees();
     }
 
     async addEmployeeEntitlement() {

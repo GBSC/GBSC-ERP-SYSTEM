@@ -16,7 +16,7 @@ export class LeavesubtypeComponent implements OnInit {
     }
 
     async addsubleave(subtype) {
-       await this.leavesetupservice.addLeaveSubType(subtype.data);
+        await this.leavesetupservice.addLeaveSubType(subtype.data);
     }
 
     async updatesubleave(data) {
@@ -24,7 +24,7 @@ export class LeavesubtypeComponent implements OnInit {
     }
 
     async deletesubleave(data) {
-       await this.leavesetupservice.deleteLeaveSubType(data.key);
+        await this.leavesetupservice.deleteLeaveSubType(data.key);
 
 
     }

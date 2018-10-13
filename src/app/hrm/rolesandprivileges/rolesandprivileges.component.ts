@@ -28,7 +28,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
     createNewRole() {
         this.showPopup = true;
- 
+
     }
 
     getSelectedModules(e) {
@@ -109,11 +109,11 @@ export class RolesandprivilegesComponent implements OnInit {
                     return pr;
                 }
             });
- 
+
 
             if (!pAlready) {
                 this.role.permissions.push(p)
-                 
+
             } else {
             }
         });

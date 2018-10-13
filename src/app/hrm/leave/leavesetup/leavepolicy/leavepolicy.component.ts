@@ -66,13 +66,13 @@ export class LeavepolicyComponent implements OnInit {
 
 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
- 
+
         this.leaveYears = await this.leavesetupservice.getLeaveYears();
-       
+
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
         this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();
- 
+
         this.leaveEligibility = await this.leavesetupservice.getLeaveEligibilities();
 
         this.groups = await this.hrsetupservice.getAllGroups();
@@ -84,8 +84,8 @@ export class LeavepolicyComponent implements OnInit {
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
     }
 
-    updatingleavepolicy(value) { 
-        this.updatingleavePolicy = { ...value.oldData, ...value.newData }; 
+    updatingleavepolicy(value) {
+        this.updatingleavePolicy = { ...value.oldData, ...value.newData };
 
     }
     async updateLeavePolicy() {

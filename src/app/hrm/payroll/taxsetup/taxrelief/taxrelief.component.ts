@@ -15,7 +15,7 @@ export class TaxreliefComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        
+
         this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
 
         this.incometaxRule = await this.payrollsetupservice.getIncomeTaxRules();

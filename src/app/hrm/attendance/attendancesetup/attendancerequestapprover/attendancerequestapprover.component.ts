@@ -17,15 +17,15 @@ export class AttendancerequestapproverComponent implements OnInit {
     async ngOnInit() {
 
         this.attendanceRequestapprover = await this.attendancesetupservice.getAttendanceRequestApprover();
-        
-        this.employee = await this.employeeservice.GetAllEmployees(); 
+
+        this.employee = await this.employeeservice.GetAllEmployees();
     }
 
     async addRequestapprover(value) {
         await this.attendancesetupservice.addAttendanceRequestApprover(value.data);
     }
 
-    updatingRequestapprover(value) { 
+    updatingRequestapprover(value) {
         this.attendanceapprover = { ...value.oldData, ...value.newData };
     }
 

@@ -15,7 +15,7 @@ export class HrmSetupHomeComponent implements OnInit {
 
 
     ngOnInit() {
-         
-    } 
+
+    }
 
 }

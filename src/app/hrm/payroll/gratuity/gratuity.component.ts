@@ -47,9 +47,9 @@ export class GratuityComponent implements OnInit {
 
         this.gratuitySlabs = await this.payrollsetupservice.getGratuitySlabs();
 
-        this.gratuityTypes = await this.payrollsetupservice.getGratuityTypes(); 
+        this.gratuityTypes = await this.payrollsetupservice.getGratuityTypes();
 
-        this.fundSetups = await this.payrollsetupservice.getFundSetups(); 
+        this.fundSetups = await this.payrollsetupservice.getFundSetups();
 
         this.employees = await this.Employeeservice.GetAllEmployees();
     }

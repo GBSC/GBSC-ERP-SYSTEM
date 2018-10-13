@@ -21,12 +21,12 @@ export class AttendancerequestComponent implements OnInit {
     async ngOnInit() {
 
         this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
-         
+
         this.employees = await this.Employeeservice.GetAllEmployees();
 
         this.attendanceRequestTypes = await this.attendanceSetupservice.getAttendanceRequestTypes();
 
-        this.assignroster = await this.attendanceSetupservice.getAsignRosters(); 
+        this.assignroster = await this.attendanceSetupservice.getAsignRosters();
 
         this.attendanceRequestApprover = await this.attendanceSetupservice.getAttendanceRequestApprover();
     }

@@ -25,7 +25,7 @@ export class SystemAdministrationService {
     public modules: any = [];
 
 
-    constructor( private ApiService: ApiService) {
+    constructor(private ApiService: ApiService) {
     }
 
 

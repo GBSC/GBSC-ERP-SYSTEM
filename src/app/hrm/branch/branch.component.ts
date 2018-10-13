@@ -20,15 +20,15 @@ export class BranchComponent implements OnInit {
         this.branches = await this.SystemAdministrationServiceobj.getBranches();
     }
 
-    async addBranches(value) { 
+    async addBranches(value) {
         await this.SystemAdministrationServiceobj.addBranches(value.key);
     }
 
-    async updateBranch(value) { 
+    async updateBranch(value) {
         await this.SystemAdministrationServiceobj.updateBranch(value.key);
     }
 
-    async deletBranch(value) { 
+    async deletBranch(value) {
         await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
     }
 

@@ -9,19 +9,19 @@ import { PayrollSetupService } from '../../../../core';
 export class SalaryCalculationTypeComponent implements OnInit {
 
     public salaryCalculationType: any;
-    
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-    
+
         this.salaryCalculationType = await this.payrollsetupservice.getSalaryCalculationTypes();
-        }
+    }
 
     async addSalaryCalculationType(value) {
         await this.payrollsetupservice.addSalaryCalculationType(value.data);
     }
 
-    async updateSalaryCalculationType(value) { 
+    async updateSalaryCalculationType(value) {
         await this.payrollsetupservice.updateSalaryCalculationType(value);
     }
 

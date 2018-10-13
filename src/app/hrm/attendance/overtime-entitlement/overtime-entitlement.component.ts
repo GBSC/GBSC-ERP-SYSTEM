@@ -15,18 +15,18 @@ export class OvertimeEntitlementComponent implements OnInit {
     constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        this.overtimeEntitlement = await this.attendanceservice.getOvertimeEntitlements(); 
+        this.overtimeEntitlement = await this.attendanceservice.getOvertimeEntitlements();
 
         this.overTimetype = await this.attendancesetupservice.getAllOvertimeType();
 
-        this.employee = await this.employeeservice.GetAllEmployees(); 
+        this.employee = await this.employeeservice.GetAllEmployees();
     }
 
     async addovertimeEntitlement(value) {
         this.attendanceservice.addOvertimeEntitlement(value.data);
     }
 
-    async updateovertimeEntitlement(value) { 
+    async updateovertimeEntitlement(value) {
         this.attendanceservice.updateOvertimeEntitlement(value);
     }
 

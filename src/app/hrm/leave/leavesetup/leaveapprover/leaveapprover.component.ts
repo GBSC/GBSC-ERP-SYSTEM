@@ -14,7 +14,7 @@ export class LeaveapproverComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.leaveapprover = await this.leavesetupservice.getLeaveApprovers(); 
+        this.leaveapprover = await this.leavesetupservice.getLeaveApprovers();
 
         this.employees = await this.employeeservice.GetAllEmployees();
 

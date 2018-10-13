@@ -16,7 +16,7 @@ export class ProratematrixComponent implements OnInit {
 
     async ngOnInit() {
         this.proratematrix = await this.leavesetupservice.getProrateMatrixs();
-    
+
         this.leavepolicy = await this.leavesetupservice.getLeavePolicies();
 
         this.leaveemppolicy = await this.leaveservice.getLeavePolicyEmployee();

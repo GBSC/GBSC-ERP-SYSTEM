@@ -22,6 +22,6 @@ export class MaritalStatusComponent implements OnInit {
         await this.dataService.getAllMaritalStatus();
         this.mstatus = this.dataService.maritalstatus;
     }
-   
+
 
 }

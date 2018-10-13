@@ -12,9 +12,9 @@ export class LeaveapprovalComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-         
+
 
     }
 
-   
+
 }

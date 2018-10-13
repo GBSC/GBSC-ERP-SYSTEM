@@ -10,27 +10,27 @@ export class FeatureComponent implements OnInit {
 
     public mod: any;
     public features: any;
-    
+
     constructor(private SystemAdministrationServicebj: SystemAdministrationService) { }
 
     async  ngOnInit() {
 
         this.mod = await this.SystemAdministrationServicebj.getModules();
- 
+
         this.features = await this.SystemAdministrationServicebj.getFeatures();
 
     }
 
-    async addFeature(value) { 
+    async addFeature(value) {
         await this.SystemAdministrationServicebj.addFeature(value.key)
     }
 
-    async updateFeature(value) { 
+    async updateFeature(value) {
         await this.SystemAdministrationServicebj.updateFeature(value.key)
     }
 
 
-    async deletFeature(value) { 
+    async deletFeature(value) {
         await this.SystemAdministrationServicebj.deletFeature(value.key.featureId)
     }
 }

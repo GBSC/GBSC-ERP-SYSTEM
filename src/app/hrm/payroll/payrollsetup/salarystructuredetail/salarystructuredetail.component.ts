@@ -21,7 +21,7 @@ export class SalarystructuredetailComponent implements OnInit {
 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
-        this.benefit = await this.payrollsetupservice.getBenefits(); 
+        this.benefit = await this.payrollsetupservice.getBenefits();
 
         this.allowance = await this.payrollsetupservice.getAllowances();
 
@@ -32,7 +32,7 @@ export class SalarystructuredetailComponent implements OnInit {
         await this.payrollsetupservice.addSalaryStructureDetail(value.data);
     }
 
-    async updateSalaryStructureDetail(value) { 
+    async updateSalaryStructureDetail(value) {
         await this.payrollsetupservice.updateSalaryStructureDetail(value);
     }
 

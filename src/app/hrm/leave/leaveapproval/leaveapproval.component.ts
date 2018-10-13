@@ -7,9 +7,9 @@ import { LeaveService, LeaveSetupService } from '../../../core';
     styleUrls: ['./leaveapproval.component.scss']
 })
 export class LeaveapprovalComponent implements OnInit {
-    public leaveapproval : any;
-    public leaveApprover : any;
-    public leaveRequest : any;
+    public leaveapproval: any;
+    public leaveApprover: any;
+    public leaveRequest: any;
 
     constructor(public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService) { }
 
@@ -20,7 +20,7 @@ export class LeaveapprovalComponent implements OnInit {
         this.leaveApprover = await this.leavesetupservice.getLeaveApprovers();
 
         this.leaveRequest = await this.leaveservice.getAllleaverequest();
-        }
+    }
 
     async addleaveapproval(value) {
         this.leaveservice.addLeaveApproval(value.data);

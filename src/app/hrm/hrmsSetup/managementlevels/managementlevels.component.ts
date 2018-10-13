@@ -19,7 +19,7 @@ export class ManagementLevelsComponent implements OnInit {
 
     async ngOnInit() {
         await this.dataService.getAllManagementlevels();
-        this.managlevel = this.dataService.managementlevel; 
+        this.managlevel = this.dataService.managementlevel;
     }
 
 

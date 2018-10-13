@@ -7,7 +7,7 @@ import { AttendancesetupService } from '../../../../core';
     styleUrls: ['./flageffecttype.component.scss']
 })
 export class FlageffecttypeComponent implements OnInit {
- 
+
     public flageffecttype: any;
 
     constructor(public attendancesetupservice: AttendancesetupService) { }

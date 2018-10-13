@@ -10,7 +10,7 @@ export class RoleComponent implements OnInit {
     public role: any;
     public departments: any;
     public featuremodule: any;
-    
+
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
@@ -19,8 +19,8 @@ export class RoleComponent implements OnInit {
 
         this.departments = await this.SystemAdministrationServiceobj.getDepartments();
 
-        this.role = await this.SystemAdministrationServiceobj.getRoles(); 
- 
+        this.role = await this.SystemAdministrationServiceobj.getRoles();
+
         this.featuremodule = await this.SystemAdministrationServiceobj.GetmyModulesWithFeatures();
 
     }
@@ -34,7 +34,7 @@ export class RoleComponent implements OnInit {
         await this.SystemAdministrationServiceobj.updateRole(value.key);
     }
 
-    async deletRole(value) { 
+    async deletRole(value) {
         await this.SystemAdministrationServiceobj.deletRole(value.key.roleId);
     }
 }

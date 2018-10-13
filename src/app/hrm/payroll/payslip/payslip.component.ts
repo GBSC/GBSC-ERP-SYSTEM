@@ -54,7 +54,7 @@ export class PayslipComponent implements OnInit {
 
     async userLoan(value) {
         let data = value.data;
-        this.userloan.push(data); 
+        this.userloan.push(data);
     }
 
     async addPayslip(value) {
@@ -72,7 +72,7 @@ export class PayslipComponent implements OnInit {
     }
 
     Updatingloan(value) {
-        this.Updateloan = { ...value.oldData, ...value.newData }; 
+        this.Updateloan = { ...value.oldData, ...value.newData };
     }
 
     async updateUserLoan() {

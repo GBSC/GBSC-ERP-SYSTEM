@@ -18,7 +18,7 @@ export class TaxscheduleComponent implements OnInit {
         this.taxSchedule = await this.payrollsetupservice.getTaxSchedules();
 
         this.incomeTaxrule = await this.payrollsetupservice.getIncomeTaxRules();
-        }
+    }
 
 
     async addTaxSchedule(value) {

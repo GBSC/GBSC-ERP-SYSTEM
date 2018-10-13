@@ -23,7 +23,7 @@ export class ProfilepicComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
         });
- 
+
     }
 
     getProfilepicFormValue() {
@@ -38,7 +38,7 @@ export class ProfilepicComponent implements OnInit {
     private forevent: File = null;
 
     onfileselect(event) {
-        this.forevent = <File>event.target.files[0]; 
+        this.forevent = <File>event.target.files[0];
     }
 
 
@@ -47,5 +47,5 @@ export class ProfilepicComponent implements OnInit {
         file.append('file', this.forevent);
 
     }
- 
+
 }

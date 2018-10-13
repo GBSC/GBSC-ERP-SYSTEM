@@ -14,16 +14,16 @@ export class MasterPayrollDetailComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.masterPayrollDetail =  await this.payrollsetupservice.getMasterPayrollDetails();  
+        this.masterPayrollDetail = await this.payrollsetupservice.getMasterPayrollDetails();
     }
 
     async addMasterPayrolldetail(value) {
 
-         await this.payrollsetupservice.addMasterPayrollDetail(value.data);
+        await this.payrollsetupservice.addMasterPayrollDetail(value.data);
     }
 
     updatingMasterDetail(value) {
-        this.masterdetailupdating = { ...value.oldData, ...value.newData }; 
+        this.masterdetailupdating = { ...value.oldData, ...value.newData };
 
     }
     async updateMasterDetail() {

@@ -43,10 +43,10 @@ export class AttendanceruleComponent implements OnInit {
 
         this.attendancerule = await this.attendanceservice.getAttendanceRules();
 
-        this.groups = await this.hrsetupservice.getAllGroups(); 
+        this.groups = await this.hrsetupservice.getAllGroups();
 
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
-        
+
         this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
 
     }

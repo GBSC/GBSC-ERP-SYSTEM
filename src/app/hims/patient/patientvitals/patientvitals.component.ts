@@ -3,7 +3,6 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 
 import { Router } from '@angular/router';
-
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
@@ -21,8 +20,6 @@ export class PatientvitalsComponent implements OnInit {
     public PatientVitaLForm: FormGroup;
     public currentPatient: any;
     public visitid: any;
-    public PatientVitalsByVisitId : any;
-
     id: number;
     Patient: Patient;
     patientId: number;
@@ -35,15 +32,14 @@ export class PatientvitalsComponent implements OnInit {
             Temperature: ['', Validators.required],
             Pulse: ['', Validators.required],
             RespiratoryRate: ['', Validators.required],
-            BloodPressureUp: ['', Validators.required],
-            BloodPressureDown: ['', Validators.required],
+            BloodPressure: ['', Validators.required],
             BloodOxygenSaturation: ['', Validators.required],
             VisitId: ['', Validators.required]
         });
 
     }
 
-  async  ngOnInit() {
+    ngOnInit() {
 
         this.currentPatient = this.PatientServiceobj.currentPatient;
         console.log(this.currentPatient);
@@ -61,9 +57,6 @@ export class PatientvitalsComponent implements OnInit {
             });
             console.log(x);
         });
-        
-        let x = this.PatientServiceobj.Getvisit(this.visitid.visitID).subscribe(visit=>
-            this.visit = visit);
 
     }
 
@@ -71,9 +64,10 @@ export class PatientvitalsComponent implements OnInit {
 
         this.visitid = this.PatientServiceobj.visitid.visitID;
         // console.log(this.visitid.value);
+
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         this.PatientVitaLForm.value.VisitId = this.visitid;
-        console.log(value);
+
         let x = await this.PatientServiceobj.AddPatientVital(value);
         this.router.navigate(['/hims/patient/visits/' + this.patientId]);
         console.log(x);
@@ -81,10 +75,12 @@ export class PatientvitalsComponent implements OnInit {
         console.log(this.PatientVitaLForm.value);
         this.backClicked()
         return x;
+
     }
 
     backClicked() {
         this.Location.back();
     }
+
 
 }

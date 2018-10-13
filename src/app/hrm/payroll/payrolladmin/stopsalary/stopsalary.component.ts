@@ -17,7 +17,7 @@ export class StopsalaryComponent implements OnInit {
     async ngOnInit() {
         this.StopSalary = await this.payrollservice.getStopSalaries();
 
-        this.PayrollType = await this.payrollsetupservice.getPayrollTypes(); 
+        this.PayrollType = await this.payrollsetupservice.getPayrollTypes();
     }
 
     async addStopSalary(value) {

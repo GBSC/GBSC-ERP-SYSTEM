@@ -20,7 +20,7 @@ export class EmployeeTypes implements OnInit {
         this.emptype = this.dataService.employeetype;
     }
 
- 
+
     addemptype(emptype) {
         this.dataService.addEmployeeType(emptype.data)
     }

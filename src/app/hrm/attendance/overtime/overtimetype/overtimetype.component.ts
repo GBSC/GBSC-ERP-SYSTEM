@@ -16,7 +16,7 @@ export class OvertimetypeComponent implements OnInit {
     async ngOnInit() {
         this.overtimetype = await this.attendancesetupservice.getAllOvertimeType();
 
-        this.overtimeflag = await this.attendancesetupservice.getAllOvertimeFlag(); 
+        this.overtimeflag = await this.attendancesetupservice.getAllOvertimeFlag();
     }
 
     async addovertimetype(value) {

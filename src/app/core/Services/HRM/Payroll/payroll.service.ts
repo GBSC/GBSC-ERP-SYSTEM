@@ -14,7 +14,7 @@ export class PayrollService {
     }
 
     async addStopSalary(data) {
-       return await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
     }
 
     async updateStopSalary(data) {

@@ -38,7 +38,7 @@ export class ShiftComponent implements OnInit {
 
         this.shift = await this.attendancesetupservice.getShifts();
 
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags(); 
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
         this.AssignRosters = await this.attendancesetupservice.getAsignRosters();
 

@@ -55,8 +55,8 @@ export class SetupService {
     /** CRUD METHODS */
     async getAllCountries() {
 
-        
-        
+
+
 
         this.country = await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
         return this.country;
@@ -71,14 +71,14 @@ export class SetupService {
     // DEMO ONLY, you can find working methods below
     async addCountry(data) {
 
-        
-        
+
+
         let newcountry = await this.ApiService.post(this.hrUrl + '/AddCountry', data).toPromise();
 
     }
 
     async updateCountry(data) {
- 
+
         let country = await this.getdataToUpdate(data.key, 'GetCountry');
         country = { ...country, ...data.data }
 
@@ -96,8 +96,8 @@ export class SetupService {
     /** CRUD METHODS DEPARTMENTS */
     async getAllDepartments() {
 
-        
-        
+
+
 
         this.department = await this.ApiService.get(`${this.hrUrl}/GetAllDepartment`).toPromise();
         return this.department;
@@ -106,8 +106,8 @@ export class SetupService {
     // DEMO ONLY, you can find working methods below
     async addDepartment(data) {
 
-        
-        
+
+
         let newdepart = await this.ApiService.post(`${this.hrUrl}/addDepartment`, data).toPromise();
 
     }
@@ -117,16 +117,16 @@ export class SetupService {
 
     async updateDepartment(data) {
 
-        
-        
+
+
         return await this.ApiService.post(`${this.hrUrl}/addDepartment`, data.key).toPromise();
 
     }
 
     async DeleteDepartment(data) {
 
-        
-        
+
+
 
         return await this.ApiService.get(`${this.hrUrl}/DeleteDepartment` + data.key).toPromise();
     }
@@ -134,8 +134,8 @@ export class SetupService {
     /** CRUD METHODS BANK */
     async getAllBanks() {
 
-        
-        
+
+
         this.bank = await this.ApiService.get(`${this.hrUrl}/GetBanks`).toPromise();
         return this.bank;
     }
@@ -148,7 +148,7 @@ export class SetupService {
     }
 
 
-    async updateBank(data) { 
+    async updateBank(data) {
         let bank = await this.getdataToUpdate(data.key, 'GetBank');
         bank = { ...bank, ...data.data }
         return await this.ApiService.put(`${this.hrUrl}/UpdateBank`, bank).toPromise();
@@ -156,7 +156,7 @@ export class SetupService {
     }
 
     async DeleteBank(id) {
-         return await this.ApiService.delete(`${this.hrUrl}/DeleteBank/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteBank/${id}`).toPromise();
     }
 
     /** CRUD METHODS EmployeeTypes */
@@ -175,11 +175,11 @@ export class SetupService {
 
         let emptype = await this.getdataToUpdate(data.key, 'GetEmployeeType');
         emptype = { ...emptype, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, emptype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, emptype).toPromise();
     }
 
     async DeleteEmployeeType(id) {
-      
+
         return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeType/${id}`).toPromise();
     }
 
@@ -187,44 +187,44 @@ export class SetupService {
 
     async getAllbranches() {
 
-         this.branch = await this.ApiService.get(`${this.hrUrl}/GetAllBranches`).toPromise();
+        this.branch = await this.ApiService.get(`${this.hrUrl}/GetAllBranches`).toPromise();
         return this.branch;
     }
 
-     async addBranch(data) {
-      return await this.ApiService.post(`${this.hrUrl}/addBranch`, data).toPromise();
+    async addBranch(data) {
+        return await this.ApiService.post(`${this.hrUrl}/addBranch`, data).toPromise();
 
     }
 
     async updateBranch(data) {
 
-         return await this.ApiService.post(`${this.hrUrl}/addBranch`, data.key).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/addBranch`, data.key).toPromise();
     }
 
     async DeleteBranch(data) {
 
-         return await this.ApiService.get(`${this.hrUrl}/DeleteBranch` + data.key).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/DeleteBranch` + data.key).toPromise();
     }
 
-    
+
     async getAllFunctions() {
-     return await this.ApiService.get(`${this.hrUrl}/GetFunctions`).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/GetFunctions`).toPromise();
     }
 
-     async addFunction(data) {
-       let newfunction = await this.ApiService.post(`${this.hrUrl}/AddFunction`, data).toPromise();
+    async addFunction(data) {
+        let newfunction = await this.ApiService.post(`${this.hrUrl}/AddFunction`, data).toPromise();
     }
 
     async updatefunction(data) {
 
         let funct = await this.getdataToUpdate(data.key, 'GetFunction');
         funct = { ...funct, ...data.data }
-  
-         return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, funct).toPromise();
+
+        return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, funct).toPromise();
     }
 
     async Deletefunction(id) {
-     return await this.ApiService.delete(`${this.hrUrl}/DeleteFunction/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteFunction/${id}`).toPromise();
 
     }
 
@@ -245,21 +245,21 @@ export class SetupService {
 
         let qf = await this.getdataToUpdate(data.key, 'GetQualification');
         qf = { ...qf, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateQualification`, qf).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateQualification`, qf).toPromise();
     }
 
     async DeleteQualification(id) {
-         
+
         return await this.ApiService.delete(`${this.hrUrl}/DeleteQualification/${id}`).toPromise();
     }
- 
+
     async getAllEmployeeStatus() {
         this.employeestatus = await this.ApiService.get(`${this.hrUrl}/GetEmployeeStatuses`).toPromise();
         return this.employeestatus;
-     }
+    }
 
-     async addEmployeeStatus(data) {
-      this.employeestatus = await this.ApiService.post(`${this.hrUrl}/AddEmployeeStatus`, data).toPromise();
+    async addEmployeeStatus(data) {
+        this.employeestatus = await this.ApiService.post(`${this.hrUrl}/AddEmployeeStatus`, data).toPromise();
         return this.employeestatus;
     }
 
@@ -267,43 +267,43 @@ export class SetupService {
 
         let estatus = await this.getdataToUpdate(data.key, 'GetEmployeeStatus');
         estatus = { ...estatus, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, estatus).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, estatus).toPromise();
     }
 
     async DeleteEmployeeStatus(id) {
-      return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeStatus/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeStatus/${id}`).toPromise();
 
     }
 
- 
+
     async getAllMaritalStatus() {
         this.maritalstatus = await this.ApiService.get(`${this.hrUrl}/GetMaritialStatuses`).toPromise();
         return this.maritalstatus;
     }
 
-     async addMaritalStatus(data) {
-       this.maritalstatus = await this.ApiService.post(`${this.hrUrl}/AddMaritialStatus/`, data).toPromise();
+    async addMaritalStatus(data) {
+        this.maritalstatus = await this.ApiService.post(`${this.hrUrl}/AddMaritialStatus/`, data).toPromise();
         return this.maritalstatus;
     }
 
     async updateMaritalStatus(data) {
 
-         return await this.ApiService.put(`${this.hrUrl}/UpdateMaritialStatus/`, data.key).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateMaritialStatus/`, data.key).toPromise();
     }
 
     async DeleteMaritalStatus(data) {
-       return await this.ApiService.get(`${this.hrUrl}/DeleteMaritialStatus/` + data.key).toPromise();
-  
+        return await this.ApiService.get(`${this.hrUrl}/DeleteMaritialStatus/` + data.key).toPromise();
+
     }
 
-   
+
     async getAllReligions() {
-      return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
+        return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
 
     }
 
-     async addReligion(data) {
-       this.religion = await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
+    async addReligion(data) {
+        this.religion = await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
         return this.religion;
     }
 
@@ -314,16 +314,16 @@ export class SetupService {
         return await this.ApiService.put(`${this.hrUrl}/UpdateReligion`, rlg).toPromise();
     }
 
-    async DeleteReligion(id) { 
+    async DeleteReligion(id) {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteReligion/${id}`).toPromise();
     }
- 
+
     async getAllRosters() {
         this.roster = await this.ApiService.get(`${this.hrUrl}/GetRosters`).toPromise();
     }
 
-     async addRoster(data) {
-       this.roster = await this.ApiService.post(`${this.hrUrl}/AddRoster`, data).toPromise();
+    async addRoster(data) {
+        this.roster = await this.ApiService.post(`${this.hrUrl}/AddRoster`, data).toPromise();
         return this.roster;
     }
 
@@ -331,16 +331,16 @@ export class SetupService {
 
         let roster = await this.getdataToUpdate(data.key, 'GetRoster');
         roster = { ...roster, ...data.data }
-         
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateRoster`, roster).toPromise();
     }
 
     async DeleteRoster(id) {
-      return await this.ApiService.delete(`${this.hrUrl}/DeleteRoster/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteRoster/${id}`).toPromise();
 
     }
 
-  
+
     /** CRUD METHODS Degree */
 
     getAllDegrees(): Observable<any> {
@@ -351,7 +351,7 @@ export class SetupService {
 
     // DEMO ONLY, you can find working methods below
     async addDegree(data) {
-       this.degree = await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
+        this.degree = await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
         return this.degree;
     }
 
@@ -359,25 +359,25 @@ export class SetupService {
 
         let deg = await this.getdataToUpdate(data.key, 'GetDegree');
         deg = { ...deg, ...data.data }
-  
-          return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, deg).toPromise();
+
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, deg).toPromise();
 
     }
 
     async DeleteDegree(id) {
 
-         return await this.ApiService.delete(`${this.hrUrl}/DeleteDegree/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteDegree/${id}`).toPromise();
 
     }
 
- 
+
     async getAllAccounttypes() {
         this.accounttype = await this.ApiService.get(`${this.hrUrl}/GetAccountTypes`).toPromise();
         return this.accounttype;
-     }
+    }
 
-     async addAccounttype(data) {
-      this.accounttype = await this.ApiService.post(`${this.hrUrl}/AddAccountType`, data).toPromise();
+    async addAccounttype(data) {
+        this.accounttype = await this.ApiService.post(`${this.hrUrl}/AddAccountType`, data).toPromise();
         return this.accounttype;
     }
 
@@ -385,12 +385,12 @@ export class SetupService {
 
         let actype = await this.getdataToUpdate(data.key, 'GetAccountType');
         actype = { ...actype, ...data.data }
-         
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateAccountType`, actype).toPromise();
     }
 
     async DeleteAccounttype(id) {
-      return await this.ApiService.delete(`${this.hrUrl}/DeleteAccountType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAccountType/${id}`).toPromise();
 
     }
 
@@ -398,16 +398,16 @@ export class SetupService {
     /** CRUD METHODS  FOR DESIGNATIONS*/
 
     async getAllDesignations() {
-        
-        
-         let a = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
-         return a;
+
+
+        let a = await this.ApiService.get(`${this.hrUrl}/GetDesignations`).toPromise();
+        return a;
 
     }
 
     // DEMO ONLY, you can find working methods below
     async addDesignation(data) {
-      this.designation = await this.ApiService.post(`${this.hrUrl}/AddDesignation`, data).toPromise();
+        this.designation = await this.ApiService.post(`${this.hrUrl}/AddDesignation`, data).toPromise();
         return this.designation;
     }
 
@@ -416,24 +416,24 @@ export class SetupService {
 
         let desg = await this.getdataToUpdate(data.key, 'GetDesignation');
         desg = { ...desg, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateDesignation`, desg).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDesignation`, desg).toPromise();
     }
 
     async DeleteDesignation(id) {
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteDesignation/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteDesignation/${id}`).toPromise();
     }
 
 
     /** CRUD METHODS  FOR managementlevel*/
     async getAllManagementlevels() {
-         let a = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
-         return a;
+        let a = await this.ApiService.get(`${this.hrUrl}/GetManagementLevels`).toPromise();
+        return a;
 
     }
 
     // DEMO ONLY, you can find working methods below
     async addManagementLevel(data) {
-      this.managementlevel = await this.ApiService.post(`${this.hrUrl}/AddManagementLevel`, data).toPromise();
+        this.managementlevel = await this.ApiService.post(`${this.hrUrl}/AddManagementLevel`, data).toPromise();
         return this.managementlevel;
     }
 
@@ -443,11 +443,11 @@ export class SetupService {
 
         let mlevel = await this.getdataToUpdate(data.key, 'GetManagementLevel');
         mlevel = { ...mlevel, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, mlevel).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, mlevel).toPromise();
     }
 
     async DeleteManagementLevel(id) {
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteManagementLevel/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteManagementLevel/${id}`).toPromise();
     }
 
 
@@ -459,7 +459,7 @@ export class SetupService {
         return a;
     }
     async addGroup(data) {
-        
+
         this.group = await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
         return this.group;
     }
@@ -468,15 +468,15 @@ export class SetupService {
 
         let group = await this.getdataToUpdate(data.key, 'GetGroup');
         group = { ...group, ...data.data }
-         
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateGroup`, group).toPromise();
     }
 
     async DeleteGroup(id) {
 
 
-        
-        
+
+
 
         return await this.ApiService.delete(`${this.hrUrl}/DeleteGroup/${id}`).toPromise();
 
@@ -485,12 +485,12 @@ export class SetupService {
     /** CRUD METHODS  FOR CostCenter*/
 
     async getAllCostCenter() {
-        
-        
+
+
 
         this.costcenter = await this.ApiService.get(`${this.hrUrl}/GetCostCenters`).toPromise();
         return this.costcenter;
-         
+
     }
 
     async addCostCenter(data) {
@@ -501,24 +501,24 @@ export class SetupService {
     async updateCostCenter(data) {
 
         let cc = await this.getdataToUpdate(data.key, 'GetCostCenter');
-        cc = { ...cc, ...data.data }        
+        cc = { ...cc, ...data.data }
         return await this.ApiService.put(`${this.hrUrl}/UpdateCostCenter`, cc).toPromise();
     }
 
     async DeleteCostCenter(id) {
- 
+
         return await this.ApiService.delete(`${this.hrUrl}/DeleteCostCenter/${id}`).toPromise();
     }
 
 
     async getAllLanguages() {
- 
+
         return await this.ApiService.get(`${this.hrUrl}/GetLanguages`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
     async addLanguage(data) {
-  
+
         this.language = await this.ApiService.post(`${this.hrUrl}/AddLanguage`, data).toPromise();
         return this.language;
     }
@@ -527,7 +527,7 @@ export class SetupService {
 
         let lang = await this.getdataToUpdate(data.key, 'GetLanguage');
         lang = { ...lang, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateLanguage`, lang).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateLanguage`, lang).toPromise();
     }
 
     async DeleteLanguage(id) {
@@ -538,11 +538,11 @@ export class SetupService {
     async getAllGazettedHolidays() {
         this.gazetholidays = await this.ApiService.get(`${this.hrUrl}/GetHolidays`).toPromise();
         return this.gazetholidays;
-        
-     }
 
-     async addGazettedHolidays(data) {
-      this.gazetholidays = await this.ApiService.post(`${this.hrUrl}/AddHoliday`, data).toPromise();
+    }
+
+    async addGazettedHolidays(data) {
+        this.gazetholidays = await this.ApiService.post(`${this.hrUrl}/AddHoliday`, data).toPromise();
         return this.gazetholidays;
     }
 
@@ -550,20 +550,20 @@ export class SetupService {
 
         let hd = await this.getdataToUpdate(data.key, 'GetHoliday');
         hd = { ...hd, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateHoliday`, hd).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateHoliday`, hd).toPromise();
     }
 
     async DeleteGazettedHolidays(id) {
-      return await this.ApiService.delete(`${this.hrUrl}/DeleteHoliday/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteHoliday/${id}`).toPromise();
     }
 
- 
+
     async getAllSkillLevels() {
         this.skilllevels = await this.ApiService.get(`${this.hrUrl}/GetSkillLevels`).toPromise();
         return this.skilllevels;
-        
+
     }
-   async addSkillLevel(data) {
+    async addSkillLevel(data) {
         this.skilllevels = await this.ApiService.post(`${this.hrUrl}/AddSkillLevel`, data).toPromise();
         return this.skilllevels;
     }
@@ -571,22 +571,22 @@ export class SetupService {
     async updateSkillLevel(data) {
         let skl = await this.getdataToUpdate(data.key, 'GetSkillLevel');
         skl = { ...skl, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateSkillLevel`, skl).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateSkillLevel`, skl).toPromise();
     }
 
     async DeleteSkillLevel(id) {
-     return await this.ApiService.delete(`${this.hrUrl}/DeleteSkillLevel/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteSkillLevel/${id}`).toPromise();
     }
 
- 
-    async getAllBloodGroups() {
-        
-         this.bloodgroup = await this.ApiService.get(`${this.hrUrl}/GetBloodGroups`).toPromise();
-        return this.bloodgroup;
-     }
 
-     async addBloodGroups(data) {
-     this.bloodgroup = await this.ApiService.post(`${this.hrUrl}/AddBloodGroup`, data).toPromise();
+    async getAllBloodGroups() {
+
+        this.bloodgroup = await this.ApiService.get(`${this.hrUrl}/GetBloodGroups`).toPromise();
+        return this.bloodgroup;
+    }
+
+    async addBloodGroups(data) {
+        this.bloodgroup = await this.ApiService.post(`${this.hrUrl}/AddBloodGroup`, data).toPromise();
         return this.bloodgroup;
     }
 
@@ -596,10 +596,10 @@ export class SetupService {
 
     async DeleteBloodGroups(data) {
 
-         return await this.ApiService.delete(`${this.hrUrl}/DeleteBloodGroup` + data.key).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteBloodGroup` + data.key).toPromise();
     }
 
- 
+
     async getAllLeaveType() {
     }
 
@@ -612,12 +612,12 @@ export class SetupService {
 
         let ltype = await this.getdataToUpdate(data.key, 'GetLeaveType');
         ltype = { ...ltype, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateLeaveType`, ltype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateLeaveType`, ltype).toPromise();
     }
 
     async DeleteLeaveTypes(id) {
 
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteLeaveType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteLeaveType/${id}`).toPromise();
 
     }
 
@@ -626,8 +626,8 @@ export class SetupService {
         return this.allowancetype;
     }
 
-     async addAllowancesType(data) {
-       this.allowancetype = await this.ApiService.post(`${this.hrUrl}/AddAllowancesType`, data).toPromise();
+    async addAllowancesType(data) {
+        this.allowancetype = await this.ApiService.post(`${this.hrUrl}/AddAllowancesType`, data).toPromise();
         return this.allowancetype;
     }
 
@@ -635,54 +635,54 @@ export class SetupService {
 
         let alowncetype = await this.getdataToUpdate(data.key, 'GetAllowancesType');
         alowncetype = { ...alowncetype, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateAllowancesType`, alowncetype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateAllowancesType`, alowncetype).toPromise();
     }
 
     async DeleteAllowancesType(id) {
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteAllowancesType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAllowancesType/${id}`).toPromise();
 
     }
     async getAllAdvanceType() {
         this.advancetype = await this.ApiService.get(`${this.hrUrl}/GetAdvanceTypes`).toPromise();
         return this.advancetype;
-        
+
     }
-  
+
     async addAdvanceType(data) {
-       return await this.ApiService.post(`${this.hrUrl}/AddAdvanceType`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/AddAdvanceType`, data).toPromise();
     }
 
     async updateAdvanceType(data) {
 
         let advancetype = await this.getdataToUpdate(data.key, 'GetAdvanceType');
         advancetype = { ...advancetype, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateAdvanceType`, advancetype).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateAdvanceType`, advancetype).toPromise();
     }
 
     async DeleteAdvanceType(id) {
-      return await this.ApiService.delete(`${this.hrUrl}/DeleteAdvanceType/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteAdvanceType/${id}`).toPromise();
 
     }
- 
+
     async getAllRelation() {
         this.relation = await this.ApiService.get(`${this.hrUrl}/GetRelations`).toPromise();
         return this.relation;
-     }
+    }
 
     // DEMO ONLY, you can find working methods below
     async addRelation(data) {
-       return await this.ApiService.post(`${this.hrUrl}/AddRelation`, data).toPromise();
+        return await this.ApiService.post(`${this.hrUrl}/AddRelation`, data).toPromise();
     }
 
     async updateRelation(data) {
 
         let relation = await this.getdataToUpdate(data.key, 'GetRelation');
         relation = { ...relation, ...data.data }
-         return await this.ApiService.put(`${this.hrUrl}/UpdateRelation`, relation).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateRelation`, relation).toPromise();
     }
 
     async DeleteRelation(id) {
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
 
     }
     async getAllCities() {
@@ -699,45 +699,45 @@ export class SetupService {
 
         let cty = await this.getdataToUpdate(data.key, 'GetCity');
         cty = { ...cty, ...data.data }
-         return await this.ApiService.put(this.setupUrl + '/UpdateCity', cty).toPromise();
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', cty).toPromise();
     }
 
     async DeleteCity(id) {
-       return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${id}').toPromise();
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${id}').toPromise();
     }
-     async getAllUniversities() {
- 
+    async getAllUniversities() {
+
         this.university = await this.ApiService.get(`${this.hrUrl}/GetUniversities`).toPromise();
         return this.university;
-     }
+    }
 
-     async adduniversity(data) {
-      return await this.ApiService.post(`${this.hrUrl}/AddUniversity`, data).toPromise();
+    async adduniversity(data) {
+        return await this.ApiService.post(`${this.hrUrl}/AddUniversity`, data).toPromise();
     }
 
     async updateuniversity(data) {
 
         let uni = await this.getdataToUpdate(data.key, 'GetUniversity');
         uni = { ...uni, ...data.data }
-         
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateUniversity`, uni).toPromise();
     }
 
     async Deleteuniversity(id) {
-       return await this.ApiService.delete(`${this.hrUrl}/DeleteUniversity/${id}`).toPromise();
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteUniversity/${id}`).toPromise();
 
     }
 
 
 
 
-  
-    async getAllGender() {
-       return await this.ApiService.get(`${this.hrUrl}/`);
-     }
 
-     async addGenders(data) {
-      return await this.ApiService.post(`${this.hrUrl}/addGender`, data).toPromise();
+    async getAllGender() {
+        return await this.ApiService.get(`${this.hrUrl}/`);
+    }
+
+    async addGenders(data) {
+        return await this.ApiService.post(`${this.hrUrl}/addGender`, data).toPromise();
     }
 
     async updateGenders(data) {
@@ -748,8 +748,7 @@ export class SetupService {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteGender` + data.key).toPromise();
 
     }
- 
+
 }
 
 
- 

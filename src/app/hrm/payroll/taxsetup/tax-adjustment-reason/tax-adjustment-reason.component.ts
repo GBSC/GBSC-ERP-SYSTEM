@@ -16,7 +16,7 @@ export class TaxAdjustmentReasonComponent implements OnInit {
     async ngOnInit() {
 
         this.taxAdjustmentReason = await this.payrollsetupservice.getTaxAdjustmentReasons();
-  }
+    }
 
     async addTaxAdjustmentReason(value) {
         await this.payrollsetupservice.addTaxAdjustmentReason(value.data);

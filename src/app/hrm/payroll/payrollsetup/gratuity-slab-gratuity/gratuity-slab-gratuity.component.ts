@@ -14,7 +14,7 @@ export class GratuitySlabGratuityComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        this.gratuitySlabGratuity =  await this.payrollsetupservice.getGratuitySlabGratuities();
+        this.gratuitySlabGratuity = await this.payrollsetupservice.getGratuitySlabGratuities();
 
         this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
     }

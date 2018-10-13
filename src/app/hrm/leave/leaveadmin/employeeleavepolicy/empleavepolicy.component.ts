@@ -76,7 +76,7 @@ export class EmpleavepolicyComponent implements OnInit {
 
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
 
-        this.employees = await this.empservice.GetAllEmployees(); 
+        this.employees = await this.empservice.GetAllEmployees();
 
         this.leaveyear = await this.leavesetupservice.getLeaveYears();
 

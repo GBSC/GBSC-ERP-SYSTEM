@@ -16,7 +16,7 @@ export class UniversityComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllUniversities();
         this.university = this.dataService.university;
-       
+
     }
 
     adduniversity(uni) {

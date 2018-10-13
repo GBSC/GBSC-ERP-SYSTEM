@@ -20,10 +20,10 @@ export class EmployeeStatuscomponent implements OnInit {
 
         await this.dataService.getAllEmployeeStatus();
         this.empstatus = this.dataService.employeestatus;
- 
+
     }
 
- 
+
     addNewempstatus(empstatus) {
         this.dataService.addEmployeeStatus(empstatus.data);
     }

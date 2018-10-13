@@ -14,21 +14,21 @@ import { Visits } from '../../../core/Models/HIMS/visits';
 export class RecentvisitsComponent implements OnInit {
 
     public currentPatient: any = [];
-    id : number;
-    visits : Visits;
-    constructor(private PatientServiceobj: PatientService, public router: Router , private rout : ActivatedRoute) {
+    id: number;
+    visits: Visits;
+    constructor(private PatientServiceobj: PatientService, public router: Router, private rout: ActivatedRoute) {
 
     }
 
     ngOnInit() {
         this.rout.params.subscribe(params => {
-        this.id = +params['id'];    
-        let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(res => this.visits = res );
-        console.log(this.visits);
-    }); 
+            this.id = +params['id'];
+            let x = this.PatientServiceobj.GetPatientVisits(this.id).subscribe(res => this.visits = res);
+            console.log(this.visits);
+        });
 
 
-}
+    }
 
     async onclick(id) {
         this.router.navigate(['/hims/patient/visitdetail/' + id]);

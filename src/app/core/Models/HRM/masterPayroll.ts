@@ -6,5 +6,5 @@ export class MasterPayroll {
     bankTransferCode: number;
     currencyId: number;
     bankId: number;
-    MasterPayrollDetails : MasterPayrollDetail[];
+    MasterPayrollDetails: MasterPayrollDetail[];
 }

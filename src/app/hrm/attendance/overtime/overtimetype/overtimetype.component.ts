@@ -9,28 +9,26 @@ import { AttendancesetupService } from '../../../../core';
 export class OvertimetypeComponent implements OnInit {
 
     public overtimetype: any;
+    public overtimeflag: any;
+
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getAllovertimetype();
-        this.overtimetype = this.attendancesetupservice.overtimetype
-        console.log(this.overtimetype);
- 
-        await this.attendancesetupservice.getAllovertimeflag();
-        let overtimeflag = this.attendancesetupservice.overtimeflag
+        this.overtimetype = await this.attendancesetupservice.getAllOvertimeType();
+
+        this.overtimeflag = await this.attendancesetupservice.getAllOvertimeFlag(); 
     }
 
     async addovertimetype(value) {
-        this.attendancesetupservice.addovertimetype(value.data);
+        this.attendancesetupservice.addOvertimeType(value.data);
     }
 
     async updateovertimetype(value) {
-        console.log(value);
-        this.attendancesetupservice.updateovertimetype(value);
+        this.attendancesetupservice.updateOvertimeType(value);
     }
 
     async deleteovertimetype(value) {
-        this.attendancesetupservice.Deleteovertimetype(value.key);
+        this.attendancesetupservice.DeleteOvertimeType(value.key);
     }
 
 }

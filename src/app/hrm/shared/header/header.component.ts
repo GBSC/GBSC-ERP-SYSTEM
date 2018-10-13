@@ -9,13 +9,12 @@ import { AccountService } from '../../../core';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    constructor(private accountService : AccountService) { }
+    constructor(private accountService: AccountService) { }
 
     ngOnInit() {
     }
 
-    logout()
-    {
+    logout() {
         //this.accountService.logout();
     }
 

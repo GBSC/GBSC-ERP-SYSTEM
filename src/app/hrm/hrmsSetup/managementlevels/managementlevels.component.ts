@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-managementlevels',
@@ -19,9 +19,7 @@ export class ManagementLevelsComponent implements OnInit {
 
     async ngOnInit() {
         await this.dataService.getAllManagementlevels();
-        this.managlevel = this.dataService.managementlevel;
-        // console.log(this.managlevel);
-        // this.dataService.getAllManagementlevels().subscribe((data)=>this.managementlevels=data);
+        this.managlevel = this.dataService.managementlevel; 
     }
 
 

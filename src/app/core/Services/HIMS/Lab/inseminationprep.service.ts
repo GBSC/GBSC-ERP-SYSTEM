@@ -9,7 +9,7 @@ export class InseminationprepService {
 
     private readonly API_URL = 'hims/api/InseminationPrep/';
 
-    constructor(private http: HttpClient, private ApiService : ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
     getInseminationPrep(id): Observable<InseminationPrep> {
         return this.ApiService.get(this.API_URL + 'GetInesminationPrep/' + id);

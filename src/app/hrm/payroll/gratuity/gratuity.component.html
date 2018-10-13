@@ -55,7 +55,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="GratuityTypeId" id="">
                     <option value="" disabled selected>-- Select Gratuity Type --</option>
-                    <option *ngFor ="let gratutitytype of payrollsetupservice?.gratuitytype" [value]="gratutitytype.gratuityTypeId" >{{gratutitytype.name}}</option>
+                    <option *ngFor ="let gratutitytype of gratuityTypes" [value]="gratutitytype.gratuityTypeId" >{{gratutitytype.name}}</option>
            </select>
               </div>
               <div class="col-lg-6">
@@ -64,7 +64,7 @@
                 </label> 
                     <select class="form-control m-input" formControlName="LeavingReasonId" id="">
                         <option value="" disabled selected>-- Select Leaving Reason --</option>
-                        <option *ngFor ="let leavereason of payrollsetupservice?.leavingreason" [value]="leavereason.leavingReasonId" >{{leavereason.name}}</option>
+                        <option *ngFor ="let leavereason of leavingReasons" [value]="leavereason.leavingReasonId" >{{leavereason.name}}</option>
                </select>
               </div>
             </div>
@@ -77,7 +77,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId" id="">
                     <option value="" disabled selected>-- Select Employee --</option>
-                    <option *ngFor ="let user of Employeeservice?.employeereg" [value]="user.userId" >{{user.firstName}}</option>
+                    <option *ngFor ="let user of employees" [value]="user.userId" >{{user.firstName}}</option>
            </select>
               </div>
               <div class="col-lg-6">
@@ -86,7 +86,7 @@
                 </label> 
                     <select class="form-control m-input" formControlName="FundSetupId" id="">
                         <option value="" disabled selected>-- Select Minimum Service Period --</option>
-                        <option *ngFor ="let fundsetup of payrollsetupservice?.fundsetup" [value]="fundsetup.fundSetupId" >{{fundsetup.minServicePeriod}}</option>
+                        <option *ngFor ="let fundsetup of fundSetups" [value]="fundsetup.fundSetupId" >{{fundsetup.minServicePeriod}}</option>
                </select>
               </div>
             </div>
@@ -120,7 +120,7 @@
                             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                             </dxo-pager>  
                             <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
-                              <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
+                              <dxo-lookup [dataSource]="gratuitySlabs" displayExpr="title" valueExpr="gratuitySlabId">
                               </dxo-lookup> 
                             </dxi-column>
                             <dxi-column dataField="slabAmount" caption="Amount"></dxi-column>

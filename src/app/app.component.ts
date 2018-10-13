@@ -5,7 +5,7 @@ import { Helpers } from "./helpers";
 @Component({
     selector: 'body',
     templateUrl: './app.component.html',
-    styles:[`
+    styles: [`
     app-loginform {
         height: 100%;
     }

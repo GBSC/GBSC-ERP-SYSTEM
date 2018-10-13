@@ -66,7 +66,7 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         DevExtremeModule,
         DxDataGridModule,
         routing
-        ],
+    ],
     declarations: [
 
         RootComponent,

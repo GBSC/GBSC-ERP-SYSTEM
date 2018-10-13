@@ -9,34 +9,26 @@ import { SystemAdministrationService } from '../../core';
 export class BranchComponent implements OnInit {
 
     public com: any;
+    public branches: any;
 
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 
-        await this.SystemAdministrationServiceobj.getCompanies();
-        this.com = this.SystemAdministrationServiceobj.companies;
-        console.log(this.com);
+        this.com = await this.SystemAdministrationServiceobj.getCompanies();
 
-        await this.SystemAdministrationServiceobj.getBranches();
-        this.SystemAdministrationServiceobj.branches;
-        console.log(this.SystemAdministrationServiceobj.branches);
+        this.branches = await this.SystemAdministrationServiceobj.getBranches();
     }
 
-    async addBranches(value) {
-        console.log(value.key);
+    async addBranches(value) { 
         await this.SystemAdministrationServiceobj.addBranches(value.key);
     }
 
-    async updateBranch(value) {
-        console.log(value);
-        console.log(value.key);
+    async updateBranch(value) { 
         await this.SystemAdministrationServiceobj.updateBranch(value.key);
     }
 
-    async deletBranch(value) {
-        console.log(value);
-        console.log(value.key);
+    async deletBranch(value) { 
         await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
     }
 

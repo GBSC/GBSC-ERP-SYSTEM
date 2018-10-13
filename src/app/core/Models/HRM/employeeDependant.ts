@@ -10,5 +10,5 @@ export interface EmployeeDependant {
     Zip: string,
     HomePhone: string,
     PermanentAddress: string,
-    userId : any
+    userId: any
 }

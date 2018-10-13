@@ -5,7 +5,7 @@ import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
 
 
@@ -27,8 +27,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
-    public visit : any = {}; 
-    constructor(private Location : Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    constructor(private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],
@@ -58,9 +57,8 @@ export class PatientvitalsComponent implements OnInit {
             this.id = +params['id'];
 
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
-            this.Patient = Patient;});
-
-
+                this.Patient = Patient;
+            });
             console.log(x);
         });
         
@@ -77,12 +75,11 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm.value.VisitId = this.visitid;
         console.log(value);
         let x = await this.PatientServiceobj.AddPatientVital(value);
-        // this.router.navigate(['/hims/patient/visits/' + this.patientId]);
+        this.router.navigate(['/hims/patient/visits/' + this.patientId]);
         console.log(x);
-        // console.log(this.PatientVitaLForm.value);
-        //  this.backClicked()
-        // this.PatientVitalsByVisitId = await this.PatientServiceobj.getPatientVitalByVisitId(this.visitid.visitID);
-        // console.log(this.PatientVitalsByVisitId);
+
+        console.log(this.PatientVitaLForm.value);
+        this.backClicked()
         return x;
     }
 

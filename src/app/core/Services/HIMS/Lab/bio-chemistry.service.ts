@@ -18,7 +18,7 @@ export class BioChemistryService {
 
     private readonly API_URL = 'hims/api/';
 
-    constructor(private http: HttpClient, private ApiService : ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
 
     getTests(): Observable<BioChemistryTest> {

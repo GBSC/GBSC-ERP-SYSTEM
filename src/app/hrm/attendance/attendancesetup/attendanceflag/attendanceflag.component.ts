@@ -9,35 +9,33 @@ import { AttendancesetupService } from '../../../../core';
 export class AttendanceflagComponent implements OnInit {
 
     public attendanceflag: any;
+    public flagcategory: any;
+    public flagEffecttypes: any;
+    public flagvalue: any;
+
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getattendanceflag();
-        this.attendanceflag = this.attendancesetupservice.attendanceflag
-        console.log(this.attendanceflag);
 
-        await this.attendancesetupservice.getflagCategories();
-        let flagcategory = this.attendancesetupservice.flagCategory;
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags(); 
 
-        await this.attendancesetupservice.getflagEffecttypes();
-        let flageffect = this.attendancesetupservice.flagEffecttype;
+        this.flagcategory = await this.attendancesetupservice.getFlagCategories();
 
-        await this.attendancesetupservice.getflagvalues();
-        let flagvalue = this.attendancesetupservice.flagvalue;
+        this.flagEffecttypes = await this.attendancesetupservice.getFlagEffectTypes(); 
 
+        this.flagvalue = await this.attendancesetupservice.getFlagValues();
     }
 
     async addattendanceflag(value) {
-        this.attendancesetupservice.addattendanceflag(value.data);
+        await this.attendancesetupservice.addAttendanceFlag(value.data);
     }
 
-    async updateattendanceflag(value) {
-        console.log(value);
-        this.attendancesetupservice.updateattendanceflag(value);
+    async updateattendanceflag(value) { 
+       await  this.attendancesetupservice.updateAttendanceFlag(value);
     }
 
     async deleteattendanceflag(value) {
-        this.attendancesetupservice.Deleteattendanceflag(value.key);
+        await this.attendancesetupservice.DeleteAttendanceFlag(value.key);
     }
 
 }

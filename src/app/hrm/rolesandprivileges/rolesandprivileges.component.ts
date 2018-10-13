@@ -28,7 +28,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
     createNewRole() {
         this.showPopup = true;
-        console.log(this.showPopup);
+ 
     }
 
     getSelectedModules(e) {
@@ -109,14 +109,12 @@ export class RolesandprivilegesComponent implements OnInit {
                     return pr;
                 }
             });
-
-            // console.log(pAlready);
+ 
 
             if (!pAlready) {
                 this.role.permissions.push(p)
-                // console.log(this.role);
+                 
             } else {
-                // console.log(this.role);
             }
         });
         this.popup = false;
@@ -126,7 +124,6 @@ export class RolesandprivilegesComponent implements OnInit {
         if (!this.role.Name) {
             alert('Role cannot be saved without a name');
         } else {
-            console.log(this.role);
         }
         this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;

@@ -5,83 +5,77 @@ import { GratuitySlabGratuity } from '../../../core/Models/HRM/gratuitySlabGratu
 import { GratuitySlab } from '../../../core/Models/HRM/gratuitySlab';
 
 @Component({
-  selector: 'app-gratuity',
-  templateUrl: './gratuity.component.html',
-  styleUrls: ['./gratuity.component.scss']
+    selector: 'app-gratuity',
+    templateUrl: './gratuity.component.html',
+    styleUrls: ['./gratuity.component.scss']
 })
 export class GratuityComponent implements OnInit {
 
-  public Gratuity: any;
-  private updatingGratuity: any;
-  private gratuityslab : GratuitySlabGratuity[];
- 
-  public GratuityForm: any;
+    public gratuity: any;
+    public employees: any;
+    public gratuityTypes: any;
+    public leavingReasons: any;
+    public fundSetups: any;
+    public gratuitySlabs: any;
+    private updatingGratuity: any;
+    private gratuityslab: GratuitySlabGratuity[];
 
-  constructor(private fb: FormBuilder,public payrollservice: PayrollService, 
-    public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
+    public GratuityForm: any;
 
-  async ngOnInit() { 
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService,
+        public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
 
-    this.gratuityslab = []; 
+    async ngOnInit() {
 
-    this.GratuityForm = this.fb.group({
-      GratuityAmount: ['', Validators],
-      TotalSalary: ['', Validators],
-      From: ['', Validators],
-      To: ['', Validators],
-      GratuityTypeId: ['', Validators],
-      LeavingReasonId: ['', Validators],
-      UserId: ['', Validators],
-      FundSetupId: ['', Validators]
-  });
+        this.gratuityslab = [];
+
+        this.GratuityForm = this.fb.group({
+            GratuityAmount: ['', Validators],
+            TotalSalary: ['', Validators],
+            From: ['', Validators],
+            To: ['', Validators],
+            GratuityTypeId: ['', Validators],
+            LeavingReasonId: ['', Validators],
+            UserId: ['', Validators],
+            FundSetupId: ['', Validators]
+        });
 
 
-    await this.payrollservice.getgratuities();
-    this.Gratuity = this.payrollservice.getGratuity;
+        this.gratuity = await this.payrollservice.getGratuities();
 
-    await this.payrollsetupservice.getleavingreasons();
-    let leavingReason = this.payrollsetupservice.leavingreason;
-    
-    await this.payrollsetupservice.getgratuityslabs();
-    let gratuitySlaB = this.payrollsetupservice.gratuityslab;
-    
-    await this.payrollsetupservice.getgratuitytypes();
-    let gratuityType = this.payrollsetupservice.gratuitytype;
-   
-    await this.payrollsetupservice.getfundsetups();
-    let fundSetup = this.payrollsetupservice.fundsetup;
-   
-    await this.Employeeservice.GetAllEmployees();
-    let user = this.Employeeservice.employeereg;
-  }
+        this.leavingReasons = await this.payrollsetupservice.getLeavingReasons();
 
-  async gratuitySlab(value) {
-    let data = value.data;
-    this.gratuityslab.push(data);
-    console.log(this.gratuityslab);
-  }
+        this.gratuitySlabs = await this.payrollsetupservice.getGratuitySlabs();
 
-  async addGratuity(value) {
-    console.log(value);
-    let pushslab = new GratuitySlab();
-    pushslab = {...pushslab, ...value};
-    console.log(this.gratuityslab);
-    pushslab.gratuitySlabGratuities = this.gratuityslab;
-    console.log(pushslab); 
-   let x= await this.payrollservice.addgratuity(pushslab);
-   console.log(x);
-   this.GratuityForm.reset();
-   
-  }
+        this.gratuityTypes = await this.payrollsetupservice.getGratuityTypes(); 
 
-  GratuityUpdating(value) {
-    this.updatingGratuity = { ...value.oldData, ...value.newData};
-  }
-  async updateGratuity() {
-    await this.payrollservice.updategratuity(this.updatingGratuity);
-  }
+        this.fundSetups = await this.payrollsetupservice.getFundSetups(); 
 
-  async deleteGratuity(value) {
-    await this.payrollservice.Deletegratuity(value.key);
-  }
+        this.employees = await this.Employeeservice.GetAllEmployees();
+    }
+
+    async gratuitySlab(value) {
+        let data = value.data;
+        this.gratuityslab.push(data);
+    }
+
+    async addGratuity(value) {
+        let pushslab = new GratuitySlab();
+        pushslab = { ...pushslab, ...value };
+        pushslab.gratuitySlabGratuities = this.gratuityslab;
+        let x = await this.payrollservice.addGratuity(pushslab);
+        this.GratuityForm.reset();
+
+    }
+
+    GratuityUpdating(value) {
+        this.updatingGratuity = { ...value.oldData, ...value.newData };
+    }
+    async updateGratuity() {
+        await this.payrollservice.updateGratuity(this.updatingGratuity);
+    }
+
+    async deleteGratuity(value) {
+        await this.payrollservice.deleteGratuity(value.key);
+    }
 }

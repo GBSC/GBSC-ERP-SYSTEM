@@ -19409,7 +19409,7 @@ body.m-portlet--fullscreen {
     .m-demo-icon .m-demo-icon__preview i {
       line-height: 0;
       vertical-align: middle;
-      font-size: 2rem; }
+      font-size: 3rem; }
   .m-demo-icon .m-demo-icon__class {
     width: 100%;
     display: table-cell;
@@ -19426,7 +19426,7 @@ body.m-portlet--fullscreen {
   color: #7b7e8a; }
 
 .m-demo-icon:hover {
-  background-color: #f4f5f8; }
+  background-color: none; }
 
 .m-demo-icon.m-demo-icon--skin-dark .m-demo-icon__preview i {
   color: #bcbecd; }

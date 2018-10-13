@@ -44,5 +44,5 @@ export class RootComponent implements OnInit {
             }
         });
     }
-    
+
 }

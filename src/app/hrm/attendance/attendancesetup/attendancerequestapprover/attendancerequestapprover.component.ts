@@ -9,25 +9,16 @@ import { AttendancesetupService, EmployeeService } from '../../../../core';
 export class AttendancerequestapproverComponent implements OnInit {
 
     public attendanceRequestapprover: any;
-<<<<<<< HEAD
-=======
     public attendanceapprover: any;
     public employee: any;
 
->>>>>>> master
     constructor(public attendancesetupservice: AttendancesetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
 
-<<<<<<< HEAD
-        await this.employeeservice.GetAllEmployees();
-        let employe = this.employeeservice.employeereg;
-
-=======
         this.attendanceRequestapprover = await this.attendancesetupservice.getAttendanceRequestApprover();
 
         this.employee = await this.employeeservice.GetAllEmployees();
->>>>>>> master
     }
 
     async addRequestapprover(value) {

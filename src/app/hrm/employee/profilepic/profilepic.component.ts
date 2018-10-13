@@ -16,10 +16,6 @@ export class ProfilepicComponent implements OnInit {
     constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, private route: ActivatedRoute) { }
 
     public selectedPic;
-<<<<<<< HEAD
-    public id: any;
-=======
->>>>>>> master
 
     @Input('employeeId') id: number;
 
@@ -49,18 +45,6 @@ export class ProfilepicComponent implements OnInit {
     onupload() {
         const file = new FormData();
         file.append('file', this.forevent);
-<<<<<<< HEAD
-
-        console.log(file);
-        this.employee.addDocument(file);
-        console.log(file);
-
-    }
-
-
-    // async addpic() {
-=======
->>>>>>> master
 
     }
 

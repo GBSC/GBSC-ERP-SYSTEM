@@ -23,12 +23,6 @@ export class DocumentComponent implements OnInit {
     async addDocuments() {
     }
 
-<<<<<<< HEAD
-    getDocumentsBankFormValue() {
-        this.setdocumentsFormValue.emit(this.documentForm.value);
-    }
-=======
->>>>>>> master
 
     private forimg: File[] = [];
     public allDocs: File[] = [];
@@ -49,21 +43,9 @@ export class DocumentComponent implements OnInit {
             }
 
         }
-<<<<<<< HEAD
-        await this.employee.GetDocumentsByUserId();
-        this.employee.DocumentsByUserId;
-        await this.employee.addDocuments(y);
-        await this.employee.GetDocumentsByUserId();
-        this.employee.DocumentsByUserId;
     }
 
     async  deleteUserDocument(value) {
-        console.log(value);
-=======
-    }
-
-    async  deleteUserDocument(value) {
->>>>>>> master
         let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
     }
 

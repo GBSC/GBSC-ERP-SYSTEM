@@ -43,33 +43,11 @@ export class LeaverequestComponent implements OnInit {
             Value: ['', Validators],
             ApprovalId: ['']
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
 
         this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
 
         await this.leaveservice.getAllleaverequest();
-<<<<<<< HEAD
-        this.leaverequest = this.leaveservice.leaverequest;
-        this.combinedData = { ...this.leaverequestdetail, ...this.leaverequest }
-
-        console.log(this.combinedData);
-
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg;
-
-        await this.leavesetupservice.getleaveapprover();
-        let leaveapprovr = this.leavesetupservice.leaveapprover;
-
-        await this.leavesetupservice.getAllleaveyear();
-        let leaveyear = this.leavesetupservice.leaveyear;
-
-        await this.leavesetupservice.getAllleavetype();
-        let levetype = this.leavesetupservice.leavetype;
-=======
 
         this.employees = await this.empservice.GetAllEmployees();
 
@@ -78,7 +56,6 @@ export class LeaverequestComponent implements OnInit {
         this.leaveYear = await this.leavesetupservice.getLeaveYears();
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
->>>>>>> master
     }
 
     async addleaverequestordetail() {
@@ -89,13 +66,7 @@ export class LeaverequestComponent implements OnInit {
     leaveRequestId;
 
     async addleaverequest(e) {
-<<<<<<< HEAD
-        // console.log(this.leaveRequestForm.value);
-        this.leaveRequestId = await this.leaveservice.addleaverequest(this.leaveRequestForm.value);
-        console.log(this.leaveRequestDetailForm.value);
-=======
         this.leaveRequestId = await this.leaveservice.addLeaveRequest(this.leaveRequestForm.value);
->>>>>>> master
     }
 
 

@@ -45,15 +45,11 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
         DxDataGridModule,
     ],
     declarations: [
-<<<<<<< HEAD
         HomeComponent,
-=======
->>>>>>> master
         FooterComponent,
         HeaderComponent,
         MenuComponent,
         RootComponent,
-<<<<<<< HEAD
         GoodsreceiptComponent,
         IssuanceComponent,
         IssuanceDetailComponent,
@@ -77,23 +73,6 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
         GrnViewComponent,
         PurhcaseorderViewComponent,
         CurrencyComponent
-=======
-        AddnewsupplierComponent,
-        CategoryComponent,
-        GoodsreceiptComponent,
-        InventoryItemComponent,
-        IssuanceComponent,
-        ItemdetailComponent,
-        PurchaseOrderComponent,
-        ReturnmedicineComponent,
-        SupplierComponent,
-        RootComponent,
-        HomeComponent,
-        UnitComponent,
-        HeaderComponent,
-        FooterComponent,
-        MenuComponent
->>>>>>> master
     ],
     providers: [
         {

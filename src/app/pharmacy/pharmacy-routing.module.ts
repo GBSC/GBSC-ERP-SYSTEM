@@ -30,7 +30,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'pharmacy',
         component: RootComponent,
-<<<<<<< HEAD
         children: [
             { path: '', component: HomeComponent },
             { path: 'home', component: HomeComponent },
@@ -60,21 +59,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'currency', component: CurrencyComponent }
                 ]
             }
-=======
-
-        children: [
-            { path: '', component: HomeComponent },
-            { path: 'home', component: HomeComponent },
-            { path: 'supplier', component: AddnewsupplierComponent },
-            { path: 'category', component: CategoryComponent },
-            { path: 'grn', component: GoodsreceiptComponent },
-            { path: 'item', component: InventoryItemComponent },
-            { path: 'issuance', component: IssuanceComponent },
-            { path: 'itemdetail', component: ItemdetailComponent },
-            { path: 'purchaseorder', component: PurchaseOrderComponent },
-            { path: 'return', component: ReturnmedicineComponent },
-            { path: 'unit', component: UnitComponent }
->>>>>>> master
         ]
     }
 ]);

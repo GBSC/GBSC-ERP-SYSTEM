@@ -13,20 +13,7 @@ export class ExperienceComponent implements OnInit {
 
     @Input('employeeId') id: number;
 
-<<<<<<< HEAD
-    }
-
-    async ngOnInit() {
-
-        this.workExperience = await this.employeeService.GetExperienceByUserId();
-
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-
-            this.employeeService.GetEmployee(this.id).subscribe(resp => {
-=======
     public experiences: any;
->>>>>>> master
 
     constructor(public employeeService: EmployeeService) {
 
@@ -39,30 +26,10 @@ export class ExperienceComponent implements OnInit {
     }
 
 
-<<<<<<< HEAD
-    async addExperience(value) {
-        let a: EmployeeExperience = value.data;
-        a.userId = localStorage.getItem('id');
-        console.log(a);
-        await this.employeeService.adduserDependant(a);
-    }
-    private updatingExp: EmployeeExperience;
-
-    async updatingExperience(value) {
-        // let a: EmployeeDependant = value.data;
-        // a.userId = localStorage.getItem('id');
-        // console.log(a);
-        this.updatingExp = { ...value.oldData, ...value.newData }
-    }
-
-    async updateExperience() {
-        await this.employeeService.Updaterelation(this.updatingExp);
-=======
     addWorkExperience(value) {
         value.data.userId = this.id;
 
         this.employeeService.addWorkExperience(value.data).subscribe(resp => console.log(resp));
->>>>>>> master
     }
 
     updateWorkExperience(value) {

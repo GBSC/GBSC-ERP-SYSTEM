@@ -15,19 +15,7 @@ export class AttendanceFlagExemptionComponent implements OnInit {
     constructor(public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        await this.attendanceservice.getattendanceflagexemptions();
-        this.attendanceflagExemption = this.attendanceservice.attendanceflagexemption
-        console.log(this.attendanceflagExemption);
-
-        await this.attendancesetupservice.getattendanceflag();
-        let flag = this.attendancesetupservice.attendanceflag;
-
-        await this.attendancesetupservice.getflagtypes();
-        let flagtype = this.attendancesetupservice.flagtype;
-=======
         this.attendanceflagExemption = await this.attendanceservice.getAttendanceFlagExemptions();
->>>>>>> master
 
         this.attendanceFlag = await this.attendancesetupservice.getAttendanceFlags();
 

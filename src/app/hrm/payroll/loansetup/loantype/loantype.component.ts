@@ -14,21 +14,12 @@ export class LoantypeComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        await this.payrollsetupservice.getloantypes();
-        this.LoanType = this.payrollsetupservice.loantype;
-=======
         this.LoanType = await this.payrollsetupservice.getLoanTypes();
->>>>>>> master
 
     }
 
     async addLoanType(value) {
-<<<<<<< HEAD
-        await this.payrollsetupservice.addloantype(value.data);
-=======
         await this.payrollsetupservice.addLoanType(value.data);
->>>>>>> master
     }
 
 
@@ -37,18 +28,10 @@ export class LoantypeComponent implements OnInit {
     }
 
     async updateLoanType() {
-<<<<<<< HEAD
-        return await this.payrollsetupservice.updateloantype(this.UpdatedModel);
-    }
-
-    async deleteLoanType(value) {
-        await this.payrollsetupservice.Deleteloantype(value.key);
-=======
         await this.payrollsetupservice.updateLoanType(this.UpdatedModel);
     }
 
     async deleteLoanType(value) {
         await this.payrollsetupservice.deleteLoanType(value.key);
->>>>>>> master
     }
 }

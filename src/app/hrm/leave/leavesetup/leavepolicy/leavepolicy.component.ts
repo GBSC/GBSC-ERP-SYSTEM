@@ -65,37 +65,18 @@ export class LeavepolicyComponent implements OnInit {
         });
 
 
-<<<<<<< HEAD
-        this.LeavePolicies = await this.leavesetupservice.getAllleavepolicy();
-        console.log(this.LeavePolicies);
-
-        //this.leavepolicy = this.leavesetupservice.leavepolicy;
-=======
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
->>>>>>> master
 
         this.leaveYears = await this.leavesetupservice.getLeaveYears();
 
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
-<<<<<<< HEAD
-        await this.leavesetupservice.getAllleavedaytype();
-        let levedaytype = this.leavesetupservice.leavedaytype;
-
-        await this.leavesetupservice.getAllleaveeligibility();
-        let leaveEligibility = this.leavesetupservice.leaveeligibility;
-
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
-
-=======
         this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();
 
         this.leaveEligibility = await this.leavesetupservice.getLeaveEligibilities();
 
         this.groups = await this.hrsetupservice.getAllGroups();
 
->>>>>>> master
     }
 
     async addleavepolicy() {
@@ -105,10 +86,6 @@ export class LeavepolicyComponent implements OnInit {
 
     updatingleavepolicy(value) {
         this.updatingleavePolicy = { ...value.oldData, ...value.newData };
-<<<<<<< HEAD
-        console.log(this.updatingleavePolicy);
-=======
->>>>>>> master
 
     }
     async updateLeavePolicy() {
@@ -117,10 +94,6 @@ export class LeavepolicyComponent implements OnInit {
 
     async deleteleavePolicy(value) {
 
-<<<<<<< HEAD
-        await this.leavesetupservice.Deleteleavpolicy(value.key);
-=======
         await this.leavesetupservice.deleteLeavPolicy(value.key);
->>>>>>> master
     }
 }

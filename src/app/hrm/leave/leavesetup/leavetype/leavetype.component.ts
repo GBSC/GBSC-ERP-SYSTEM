@@ -13,13 +13,7 @@ export class LeavetypeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-<<<<<<< HEAD
-        this.levetype = await this.leavesetupservice.getAllleavetype();
-
-
-=======
         this.levetype = await this.leavesetupservice.getLeaveTypes();
->>>>>>> master
     }
 
     async addleavetype(value) {

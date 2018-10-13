@@ -28,26 +28,11 @@ export class EmergencycontactComponent implements OnInit {
         this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
 
     }
-<<<<<<< HEAD
-    private updatingModel: EmployeeDependant;
-
-    async updatingDependant(value) {
-        this.updatingModel = { ...value.oldData, ...value.newData }
-        console.log(value);
-
-    }
-
-    async updateDependant() {
-        await this.employeeService.Updaterelation(this.updatingModel);
-        console.log(this.updatingModel);
-
-=======
 
     addRelation(value) {
         value.data.userId = this.id;
 
         this.employeeService.addUserRelation(value.data).subscribe(resp => console.log(resp));
->>>>>>> master
     }
 
     updateRelation(value) {

@@ -17,13 +17,7 @@ export class ProratematrixComponent implements OnInit {
     async ngOnInit() {
         this.proratematrix = await this.leavesetupservice.getProrateMatrixs();
 
-<<<<<<< HEAD
-        this.leavepolicy = await this.leavesetupservice.getAllleavepolicy();
-
-        this.leaveemppolicy = await this.leaveservice.getleavepolicyemployee();
-=======
         this.leavepolicy = await this.leavesetupservice.getLeavePolicies();
->>>>>>> master
 
         this.leaveemppolicy = await this.leaveservice.getLeavePolicyEmployee();
     }
@@ -37,18 +31,10 @@ export class ProratematrixComponent implements OnInit {
     }
 
     updatepromatrix() {
-<<<<<<< HEAD
-        this.leavesetupservice.updateproratematrix(this.promatrix);
-    }
-
-    async deleteprmatrix(value) {
-        await this.leavesetupservice.Deleteproratematrix(value.key);
-=======
         this.leavesetupservice.updateProrateMatrix(this.promatrix);
     }
 
     async deleteprmatrix(value) {
         await this.leavesetupservice.deleteprorateMatrix(value.key);
->>>>>>> master
     }
 }

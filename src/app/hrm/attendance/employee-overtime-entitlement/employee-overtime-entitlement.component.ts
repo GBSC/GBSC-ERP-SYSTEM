@@ -63,17 +63,7 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
 
         this.empoverTimeEntitlement = await this.attendanceservice.getEmpOvertimeEntitlements();
 
-<<<<<<< HEAD
-        await this.attendanceservice.getemployeeWorkingDayOts();
-        this.empworkingot = this.attendanceservice.workingdayot
-        console.log(this.empworkingot);
-
-        await this.attendanceservice.getemployeeOffdayOts();
-        this.empoffdayot = this.attendanceservice.workingoffdayot
-        console.log(this.empoffdayot);
-=======
         this.empworkingot = await this.attendanceservice.getEmployeeWorkingDayOts();
->>>>>>> master
 
         this.empoffdayot = await this.attendanceservice.getEmployeeOffdayOts();
 
@@ -88,20 +78,11 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
 
     async addEmployeeEntitlement() {
 
-<<<<<<< HEAD
-        this.EmployeeEntitlementForm.value.employeeWorkingDayOtID = await this.attendanceservice.addemployeeWorkingDayOt(this.WorkingDayOTForm.value);
-        this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addemployeeOffdayOts(this.OffDayOTForm.value);
-        this.EmployeeEntitlementForm.value.employeeIncomingOtID = await this.attendanceservice.addemployeeIncomingOts(this.IncomingOTForm.value);
-        this.EmployeeEntitlementForm.value.employeeOutgoingOtID = await this.attendanceservice.addemployeeOutgoingOt(this.OutgoingOTForm.value);
-        console.log(this.EmployeeEntitlementForm.value);
-        await this.attendanceservice.addempOvertimeEntitlement(this.EmployeeEntitlementForm.value);
-=======
         this.EmployeeEntitlementForm.value.employeeWorkingDayOtID = await this.attendanceservice.addEmployeeWorkingDayOt(this.WorkingDayOTForm.value);
         this.EmployeeEntitlementForm.value.employeeOffDayOtID = await this.attendanceservice.addEmployeeOffdayOts(this.OffDayOTForm.value);
         this.EmployeeEntitlementForm.value.employeeIncomingOtID = await this.attendanceservice.addEmployeeIncomingOts(this.IncomingOTForm.value);
         this.EmployeeEntitlementForm.value.employeeOutgoingOtID = await this.attendanceservice.addEmployeeOutgoingOt(this.OutgoingOTForm.value);
         await this.attendanceservice.addEmpOvertimeEntitlement(this.EmployeeEntitlementForm.value);
->>>>>>> master
     }
 
     async updatingempEntitlement(value) {
@@ -112,19 +93,11 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         this.Updatedoutgoing = { ...value.oldData, ...value.newData };
     }
     async updateempoverTimeEntitlement() {
-<<<<<<< HEAD
-        this.attendanceservice.updateempOvertimeEntitlement(this.Updatedempovertimeentitlement);
-        this.attendanceservice.updateemployeeWorkingDayOt(this.Updatedworkingot);
-        this.attendanceservice.updateemployeeIncomingOts(this.Updatedincoming);
-        this.attendanceservice.updateemployeeOffdayOts(this.Updatedoffday);
-        this.attendanceservice.updateemployeeOutgoingOt(this.Updatedoutgoing);
-=======
         this.attendanceservice.updateEmpOvertimeEntitlement(this.Updatedempovertimeentitlement);
         this.attendanceservice.updateEmployeeWorkingDayOt(this.Updatedworkingot);
         this.attendanceservice.updateEmployeeIncomingOts(this.Updatedincoming);
         this.attendanceservice.updateEmployeeOffdayOts(this.Updatedoffday);
         this.attendanceservice.updateEmployeeOutgoingOt(this.Updatedoutgoing);
->>>>>>> master
     }
 
     async deleteempoverTimeEntitlement(value) {

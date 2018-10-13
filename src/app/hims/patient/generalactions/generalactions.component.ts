@@ -1,9 +1,11 @@
-import { Component, OnInit  ,VERSION} from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import date_box from 'devextreme/ui/date_box';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-generalactions',
@@ -17,78 +19,77 @@ export class GeneralactionsComponent implements OnInit {
     public currentPatient: any;
     public visitid: any;
     id: number;
-    Patient : Patient;
-    public lastpatientvisit : any;
-    public visits : any;
+    Patient: Patient;
+    public lastpatientvisit: any;
+    public visits: any;
 
-    public time : any;
+    public time: any;
 
-    constructor(private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
-  async  ngOnInit() {
+    async  ngOnInit() {
 
-    this.time = new Date();
-    console.log(this.time,'MM/dd/yyyy')
-     
+        this.time = new Date();
 
+        this.route.params.subscribe(params => {
 
-  
-    this.route.params.subscribe(params => {
-
-        this.id = +params['id'];
- 
-       this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient=> this.Patient = Patient);
-
-       this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) =>{ this.visits = res
-    //     if(this.visits[0].startTime ===  this.lastpatientvisit){
-    //         console.log('ok')
-    //     }
-    //     else{
-    //         console.log('not ok')
-
-    //     }
-    console.log(this.visits[0])
-    });
-      
-
-       
-     });
-     console.log(this.id);
- 
-
-
-        // let require;;
-        // let dateFormat =   require('dateformat');
-        // let now = new Date();
-        // dateFormat(now, "dd, mm, yyyy, h:MM:ss TT"); 
-        // console.log('111',now);
-        // console.log('22222222',dateFormat);
-        // console.log('333333333333',require);
-
-        this.lastpatientvisit =   await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
-
-        console.log(this.lastpatientvisit);
+            this.id = +params['id'];
 
             this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
 
+            this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) => {
+                this.visits = res
+                console.log(this.visits);
+            });
+
+
+
+        });
+
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
+
+
+        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
+
     }
-    async onSubmit()  {
-     console.log(this.id);
-     await this.PatientServiceobj.AddVisits(this.id);
-    this.router.navigate(['/hims/patient/visits/'+this.id]);
-    console.log(this.id);
+    async startVisit() {
+        if(this.lastpatientvisit === null){
+            await this.PatientServiceobj.AddVisits(this.id);
+            this.router.navigate(['/hims/patient/visits/' + this.id]);
+        }
+       else if (this.formatDate(new Date(this.lastpatientvisit.endTime)) == this.formatDate(new Date())) {
+            this.displayToastError("Cannot create more than 1 visit on the same day")
+        }
+        else {
+
+            await this.PatientServiceobj.AddVisits(this.id);
+            this.router.navigate(['/hims/patient/visits/' + this.id]);
+
+        }
+
+
     }
 
-    async Endvisit(){
-       let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId , this.visits[0]);
-        console.log(x)
-        this.lastpatientvisit =   await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
-        console.log(this.lastpatientvisit);
+    formatDate(date: Date) {
+
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
     }
 
-    already(){
-        alert('already started');
+
+    async Endvisit() {
+        let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
     }
 
+    displayToastSuccess(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    displayToastError(message) {
+        this.toastr.error(message);
+
+    }
 
 }

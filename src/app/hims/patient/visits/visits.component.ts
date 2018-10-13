@@ -14,8 +14,8 @@ import { Visits } from '../../../core/Models/HIMS/visits';
 })
 export class VisitsComponent implements OnInit {
 
-    public VisitNoteByVisitId : any;
-    public AppointmentByVisitId : any;
+    public VisitNoteByVisitId: any;
+    public AppointmentByVisitId: any;
 
     public VisitTests: any = [];
     public VisitDiagnoses: any = [];
@@ -129,7 +129,7 @@ export class VisitsComponent implements OnInit {
 
         // this.visitid = this.PatientServiceobj.visitid;
         // console.log(this.visitid);
- 
+
     }
 
     async addappointment(value) {
@@ -139,8 +139,8 @@ export class VisitsComponent implements OnInit {
         console.log(value);
         console.log(x)
         console.log(this.vistid);
-        
- 
+
+
 
 
     }

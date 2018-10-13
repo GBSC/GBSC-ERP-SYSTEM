@@ -515,10 +515,10 @@ export class PatientService {
         return this.vistnote;
     }
 
-    async GetLastestVisitByPatientId(id){
-     return   await this.ApiService.get(this.API_URL+'Visits/GetLastestVisitByPatientId/'+id).toPromise();
+    async GetLastestVisitByPatientId(id)  {
+        return await this.ApiService.get(this.API_URL + 'Visits/GetLastestVisitByPatientId/' + id).toPromise();
     }
-    
+
 
     async addVisitNote(VisitNote: VisitNote) {
         return await this.ApiService.post(this.API_URL + 'Visits/AddVisitNote', VisitNote).toPromise();

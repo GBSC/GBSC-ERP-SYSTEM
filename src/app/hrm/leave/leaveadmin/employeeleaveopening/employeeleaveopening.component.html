@@ -24,7 +24,7 @@
                   <div class="col-lg-8">
                     <select class="form-control m-input" formControlName="UserId" name="employee">
                       <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}}</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
                     </select>
                   </div>
                 </div>
@@ -161,7 +161,7 @@
             <div class="m-portlet__head-caption">
               <div class="m-portlet__head-title">
                 <h3 class="m-portlet__head-text">
-                  Leave Type
+                  Leave Opening Detail
                 </h3>
               </div>
             </div>
@@ -201,7 +201,7 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-                List:
+                Leave Opening:
               </h3>
             </div>
           </div>

@@ -16,9 +16,11 @@ export class LeaverequestComponent implements OnInit {
     public leaveYear: any;
     public employees: any;
     public leaveType: any;
+    public msg: any;
     public leaveApprovr: any;
     public combinedData = {};
     leaverequest: any;
+    public leaveRequestId;
 
     constructor(private fb: FormBuilder, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public leaveservice: LeaveService) { }
@@ -26,10 +28,7 @@ export class LeaverequestComponent implements OnInit {
     async ngOnInit() {
 
         this.leaveRequestForm = this.fb.group({
-            UserId: ['', Validators],
-            LeaveRequestCode: ['', Validators],
-            RequestDate: ['', Validators],
-            IsApproved: ['', Validators]
+            UserId: ['', Validators]
         });
 
         this.leaveRequestDetailForm = this.fb.group({
@@ -40,8 +39,7 @@ export class LeaverequestComponent implements OnInit {
             Description: ['', Validators],
             IsShortLeave: ['', Validators],
             FirstSecondHalf: ['', Validators],
-            Value: ['', Validators],
-            ApprovalId: ['']
+            TotalLeaveValue: ['', Validators]
         });
 
 
@@ -61,9 +59,12 @@ export class LeaverequestComponent implements OnInit {
     async addleaverequestordetail() {
         this.leaveRequestDetailForm.value.leaveRequestId = this.leaveRequestId.leaverequestID;
         await this.leaveservice.addLeaveRequestDetail(this.leaveRequestDetailForm.value);
+        this.msg = 'Success! Request Detail Save Successfully';
+        setTimeout(() => {
+            this.msg = null;
+          }, 3000);
     }
 
-    leaveRequestId;
 
     async addleaverequest(e) { 
         this.leaveRequestId = await this.leaveservice.addLeaveRequest(this.leaveRequestForm.value);

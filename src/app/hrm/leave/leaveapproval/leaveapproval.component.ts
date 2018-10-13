@@ -8,6 +8,7 @@ import { LeaveService, LeaveSetupService } from '../../../core';
 })
 export class LeaveapprovalComponent implements OnInit {
     public leaveapproval : any;
+    public leaveRequestDetail : any;
     public leaveApprover : any;
     public leaveRequest : any;
 
@@ -20,6 +21,8 @@ export class LeaveapprovalComponent implements OnInit {
         this.leaveApprover = await this.leavesetupservice.getLeaveApprovers();
 
         this.leaveRequest = await this.leaveservice.getAllleaverequest();
+
+        this.leaveRequestDetail = await this.leaveservice.getLeaveRequestDetails();
         }
 
     async addleaveapproval(value) {

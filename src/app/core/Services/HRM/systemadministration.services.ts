@@ -104,7 +104,7 @@ export class SystemAdministrationService {
 
 
 
-    
+
     async getDepartments() {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
     }
@@ -139,7 +139,7 @@ export class SystemAdministrationService {
     async deletRole(id) {
         return await this.ApiService.delete(this.API_URL + 'DeleteRole/' + id).toPromise();
     }
-    
+
     async getFeatures() {
         return await this.ApiService.get(this.API_URL + 'GetFeatures').toPromise();
 
@@ -157,7 +157,7 @@ export class SystemAdministrationService {
     async deletFeature(id) {
         return await this.ApiService.delete(this.API_URL + 'DeleteFeature/' + id).toPromise();
     }
-     
+
 
     async getModules() {
         return await this.ApiService.get(this.API_URL + 'GetModules').toPromise();
@@ -165,7 +165,7 @@ export class SystemAdministrationService {
 
 
     async addModule(module: Module) {
-       return await this.ApiService.post(this.API_URL + 'AddModule', module).toPromise();
+        return await this.ApiService.post(this.API_URL + 'AddModule', module).toPromise();
     }
 
     async updateModule(module: Module) {
@@ -181,8 +181,8 @@ export class SystemAdministrationService {
     async testCall() {
         return await this.ApiService.get('https://jsonplaceholder.typicode.com/posts').toPromise();
     }
- 
- 
+
+
     async GetmyModulesWithFeatures() {
         return await this.ApiService.get(this.API_URL + 'GetModulesWithFeatures').toPromise();
     }

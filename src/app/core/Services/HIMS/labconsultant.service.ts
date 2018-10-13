@@ -9,9 +9,9 @@ export class ConsultantService {
 
     private readonly API_URL = 'hims/api/HimsSetup/';
 
-    constructor(private http: HttpClient, private ApiService : ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-    getConsultants() : Observable<Consultant> {
+    getConsultants(): Observable<Consultant> {
         return this.ApiService.get(this.API_URL + 'GetConsultants');
         //return this.http.get<Consultant>(this.API_URL + '/HimsSetup/GetConsultants');
     }

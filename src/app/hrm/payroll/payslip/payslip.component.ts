@@ -5,84 +5,78 @@ import { UserLoanPayslip } from '../../../core/Models/HRM/userLoanPayslip';
 import { PaySlip } from '../../../core/Models/HRM/payslip';
 
 @Component({
-  selector: 'app-payslip',
-  templateUrl: './payslip.component.html',
-  styleUrls: ['./payslip.component.scss']
+    selector: 'app-payslip',
+    templateUrl: './payslip.component.html',
+    styleUrls: ['./payslip.component.scss']
 })
 export class PayslipComponent implements OnInit {
 
-  public PayslipForm: any;
-  public PaySlip;
-  private userloan: UserLoanPayslip[];
-  public currentUserLoan = [] ;
-  public userLoanId = {} ;
-  public Updateloan: any;
+    public PayslipForm: any;
+    public PaySlip;
+    public userloan: UserLoanPayslip[];
+    public currentUserLoan = [];
+    public userLoanId = {};
+    public Updateloan: any;
+    public monthlySalary: any;
+    public users: any;
+    public userLoans: any;
 
-  constructor(private fb: FormBuilder, public payrollservice: PayrollService,
-    public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService,
+        public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.userloan = [];
+        this.userloan = [];
 
-    this.PayslipForm = this.fb.group({
-      From: ['', Validators],
-      Till: ['', Validators],
-      PaymentDate: ['', Validators],
-      Hours: ['', Validators],
-      Days: ['', Validators],
-      GrossAmount: ['', Validators],
-      TaxAmount: ['', Validators],
-      PfDeductionAmount: ['', Validators],
-      LoanDeductionAmount: ['', Validators],
-      NetAmount: ['', Validators],
-      MonthlyUserSalaryId: ['', Validators],
-      UserId: ['', Validators]
-    });
+        this.PayslipForm = this.fb.group({
+            From: ['', Validators],
+            Till: ['', Validators],
+            PaymentDate: ['', Validators],
+            Hours: ['', Validators],
+            Days: ['', Validators],
+            GrossAmount: ['', Validators],
+            TaxAmount: ['', Validators],
+            PfDeductionAmount: ['', Validators],
+            LoanDeductionAmount: ['', Validators],
+            NetAmount: ['', Validators],
+            MonthlyUserSalaryId: ['', Validators],
+            UserId: ['', Validators]
+        });
 
-    await this.payrollservice.getpayslips();
-    this.PaySlip = this.payrollservice.Payslip;
+        this.PaySlip = await this.payrollservice.getPayslips();
 
-    await this.payrollservice.getMonthlySalaries();
-    let monthlySalary = this.payrollservice.monthlyUserSalary;
+        this.monthlySalary = await this.payrollservice.getMonthlySalaries();
 
-    await this.payrollsetupservice.getuserloans();
-    let userLoan = this.payrollsetupservice.userloan;
-    await this.Employeeservice.GetAllEmployees();
-    let User = this.Employeeservice.employeereg;
-  }
+        this.userLoans = await this.payrollsetupservice.getUserLoans();
 
-  async userLoan(value) {
-    let data = value.data;
-    this.userloan.push(data);
-    console.log(this.userloan);
-  }
+        this.users = await this.Employeeservice.GetAllEmployees();
+    }
 
-  async addPayslip(value) {
+    async userLoan(value) {
+        let data = value.data;
+        this.userloan.push(data);
+    }
 
-    let pushloanslip = new PaySlip();
-    pushloanslip = { ...pushloanslip, ...value }; 
-    pushloanslip.UserLoanPayslips = this.userloan; 
-    pushloanslip.UserLoanPayslips = this.currentUserLoan;
-    let x = await this.payrollservice.addpayslip(pushloanslip);
-    console.log(x);
-    // this.xx = this.currentUserLoan;
-    // console.log(this.xx.userLoanId)
-     this.PayslipForm.reset();
-  }
- 
-  GetUserloan(value){ 
-    this.currentUserLoan = this.payrollsetupservice.userloan.filter(ul => ul.userId == value)
-  }
-  
-  Updatingloan(value) { 
-    this.Updateloan = {...value.oldData, ...value.newData}; 
-    console.log(this.Updateloan);
-    
-  }
+    async addPayslip(value) {
 
-  async updateUserLoan() { 
-    await this.payrollsetupservice.updateuserloan(this.Updateloan);
-  }
-  
+        let pushloanslip = new PaySlip();
+        pushloanslip = { ...pushloanslip, ...value };
+        pushloanslip.UserLoanPayslips = this.userloan;
+        pushloanslip.UserLoanPayslips = this.currentUserLoan;
+        let x = await this.payrollservice.addPayslip(pushloanslip);
+        this.PayslipForm.reset();
+    }
+
+    GetUserloan(value) {
+        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)
+    }
+
+    Updatingloan(value) {
+        this.Updateloan = { ...value.oldData, ...value.newData };
+    }
+
+    async updateUserLoan() {
+        await this.payrollsetupservice.updateUserLoan(this.Updateloan);
+    }
+
 }

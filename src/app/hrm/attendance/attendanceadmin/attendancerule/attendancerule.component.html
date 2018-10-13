@@ -31,7 +31,7 @@
                 </label> 
                     <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                         <option value="" disabled selected>-- Select Attendance Flag --</option>
-                        <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
+                        <option *ngFor ="let flag of attendanceFlag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
                </select>
               </div>
             </div>

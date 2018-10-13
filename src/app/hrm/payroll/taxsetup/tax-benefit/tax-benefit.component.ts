@@ -2,45 +2,45 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-tax-benefit',
-  templateUrl: './tax-benefit.component.html',
-  styleUrls: ['./tax-benefit.component.scss']
+    selector: 'app-tax-benefit',
+    templateUrl: './tax-benefit.component.html',
+    styleUrls: ['./tax-benefit.component.scss']
 })
 export class TaxBenefitComponent implements OnInit {
 
-  public taxBenefit: any;
-    Updatingbenefit: any;
-  
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    public taxYear: any;
+    public benefit: any;
+    public taxBenefit: any;
+    public payrollType: any;
+    public Updatingbenefit: any;
 
-  async ngOnInit() {
-      await this.payrollsetupservice.gettaxbenefits();
-      this.taxBenefit = this.payrollsetupservice.taxbenefit;
-      
-      await this.payrollsetupservice.getpayrolltypes();
-      let Payrlltype = this.payrollsetupservice.payrolltype;
-      
-      await this.payrollsetupservice.gettaxyears();
-      let taxyear = this.payrollsetupservice.taxyear;
-      
-      await this.payrollsetupservice.getbenefits();
-      let benefit = this.payrollsetupservice.benefits;
-  }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async addTaxBenefit(value) {
-      await this.payrollsetupservice.addtaxbenefit(value.data);
-  }
+    async ngOnInit() {
 
-  updatingBenefit(value){
-    this.Updatingbenefit = {...value.oldData, ...value.newData}; 
-  }
+        this.taxBenefit = await this.payrollsetupservice.getTaxBenefits();
 
-  async updateTaxBenefit() { 
-      await this.payrollsetupservice.updatetaxbenefit( this.Updatingbenefit);
-  }
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
 
-  async deleteTaxBenefit(value) {
-      await this.payrollsetupservice.Deletetaxbenefit(value.key);
-  }
+        this.taxYear = await this.payrollsetupservice.gettTaxYears();
+
+        this.benefit = await this.payrollsetupservice.getBenefits();
+    }
+
+    async addTaxBenefit(value) {
+        await this.payrollsetupservice.addTaxBenefit(value.data);
+    }
+
+    updatingBenefit(value) {
+        this.Updatingbenefit = { ...value.oldData, ...value.newData };
+    }
+
+    async updateTaxBenefit() {
+        await this.payrollsetupservice.updateTaxBenefit(this.Updatingbenefit);
+    }
+
+    async deleteTaxBenefit(value) {
+        await this.payrollsetupservice.DeleteTaxBenefit(value.key);
+    }
 
 }

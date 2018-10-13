@@ -1,13 +1,13 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-visitdetail',
-  templateUrl: './visitdetail.component.html',
-  styleUrls: ['./visitdetail.component.scss']
+    selector: 'app-visitdetail',
+    templateUrl: './visitdetail.component.html',
+    styleUrls: ['./visitdetail.component.scss']
 })
 export class VisitdetailComponent implements OnInit {
 
@@ -100,11 +100,21 @@ export class VisitdetailComponent implements OnInit {
         this.visitdiag.forEach(element => {
           this.getvisitdiagnosesbyId.push(this.visitdiagnos.find(t => t.diagnosisId === element.diagnosisId));
         });
- 
-        this.visitTest = this.visit.visitTests;
-        console.log(this.visitTest);
-        this.visitTest.forEach(element => {
-          this.getvisitTestbyId.push(this.visittst.find(t=> t.testId === element.testId));
+
+        this.route.params.subscribe(params => {
+
+            this.id = +params['id'];
+
+            let x = this.PatientServiceobj.GetAppointmentByVisit(this.id).subscribe((appointment: any) => {
+                this.appointment = appointment;
+                // console.log(this.consultant);
+                this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
+                console.log(appointment);
+                console.log(this.getconsultantbyId.name);
+                console.log(this.consultant)
+            });
+            console.log(x);
+
         });
 
         console.log(this.getvisitTestbyId);

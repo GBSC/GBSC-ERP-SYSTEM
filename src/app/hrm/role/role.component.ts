@@ -8,46 +8,33 @@ import { SystemAdministrationService } from '../../core';
 })
 export class RoleComponent implements OnInit {
     public role: any;
+    public departments: any;
     public featuremodule: any;
+
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
-    async  ngOnInit() {
+    async ngOnInit() {
 
 
 
-        await this.SystemAdministrationServiceobj.getDepartments();
-        this.role = this.SystemAdministrationServiceobj.departments;
-        console.log(this.role);
+        this.departments = await this.SystemAdministrationServiceobj.getDepartments();
 
-        await this.SystemAdministrationServiceobj.getRoles();
-        let y = this.SystemAdministrationServiceobj.roles;
-        console.log(y);
+        this.role = await this.SystemAdministrationServiceobj.getRoles();
 
-
-
-
-        await this.SystemAdministrationServiceobj.GetmyModulesWithFeatures();
-        this.featuremodule = this.SystemAdministrationServiceobj.data
-        console.log(this.featuremodule);
-
+        this.featuremodule = await this.SystemAdministrationServiceobj.GetmyModulesWithFeatures();
 
     }
 
     async addRole(value) {
-        console.log(value);
         await this.SystemAdministrationServiceobj.addRole(value.key)
-
     }
 
 
     async updateRole(value) {
-        console.log(value.key);
         await this.SystemAdministrationServiceobj.updateRole(value.key);
     }
 
     async deletRole(value) {
-        console.log(value);
-        console.log(value.key);
         await this.SystemAdministrationServiceobj.deletRole(value.key.roleId);
     }
 }

@@ -6,36 +6,36 @@ import { AuthGuardService, ModuleGuardService, AccountService, DashboardService,
 import { ApiService } from './Services/api.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpModule,
-    HttpClientModule
-  ],
-  providers: [
-    ApiService,
-    AuthGuardService,
-    ModuleGuardService,
-    AccountService,
-    DashboardService,
-    //FinanceService,
-    BioChemistryService,
-    InseminationprepService,
-    ConsultantService,
-    PatientService,
-    AttendanceService,
-    AttendancesetupService,
-    EmployeeService,
-    LeaveService,
-    LeaveSetupService,
-    PayrollService,
-    PayrollSetupService,
-    HrmsService,
-    SetupService,
-    SystemAdministrationService,
-    InventorysystemService,
-    PharmacyService,
-    SuperadminserviceService
-  ],
-  declarations: []
+    imports: [
+        CommonModule,
+        HttpModule,
+        HttpClientModule
+    ],
+    providers: [
+        ApiService,
+        AuthGuardService,
+        ModuleGuardService,
+        AccountService,
+        DashboardService,
+        //FinanceService,
+        BioChemistryService,
+        InseminationprepService,
+        ConsultantService,
+        PatientService,
+        AttendanceService,
+        AttendancesetupService,
+        EmployeeService,
+        LeaveService,
+        LeaveSetupService,
+        PayrollService,
+        PayrollSetupService,
+        HrmsService,
+        SetupService,
+        SystemAdministrationService,
+        InventorysystemService,
+        PharmacyService,
+        SuperadminserviceService
+    ],
+    declarations: []
 })
 export class CoreModule { }

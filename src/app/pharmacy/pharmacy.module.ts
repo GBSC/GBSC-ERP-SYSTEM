@@ -22,41 +22,41 @@ import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule,
-  ],
-  declarations: [
-    FooterComponent,
-    HeaderComponent,
-    MenuComponent,
-    RootComponent,
-    AddnewsupplierComponent,
-    CategoryComponent,
-    GoodsreceiptComponent,
-    InventoryItemComponent,
-    IssuanceComponent,
-    ItemdetailComponent,
-    PurchaseOrderComponent,
-    ReturnmedicineComponent,
-    SupplierComponent,
-    RootComponent,
-    HomeComponent,
-    UnitComponent,
-    HeaderComponent,
-    FooterComponent,
-    MenuComponent
-  ],
-  providers: [
-    {
-      provide: UrlSerializer,
-      useClass: LowerCaseUrlSerializer
-  },
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
+    ],
+    declarations: [
+        FooterComponent,
+        HeaderComponent,
+        MenuComponent,
+        RootComponent,
+        AddnewsupplierComponent,
+        CategoryComponent,
+        GoodsreceiptComponent,
+        InventoryItemComponent,
+        IssuanceComponent,
+        ItemdetailComponent,
+        PurchaseOrderComponent,
+        ReturnmedicineComponent,
+        SupplierComponent,
+        RootComponent,
+        HomeComponent,
+        UnitComponent,
+        HeaderComponent,
+        FooterComponent,
+        MenuComponent
+    ],
+    providers: [
+        {
+            provide: UrlSerializer,
+            useClass: LowerCaseUrlSerializer
+        },
+    ]
 })
 export class PharmacyModule { }

@@ -12,26 +12,30 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="payRoll" (onRowInserted)="addPayroll($event)" (onRowUpdated)="updatePayroll($event)"
+              <dx-data-grid id="gridContainer"
+               [dataSource]="payRoll" 
+               keyExpr="payrollId"
+               (onRowInserted)="addPayroll($event)" 
+               (onRowUpdated)="updatePayroll($event)"
                 (onRowRemoved)="deletePayroll($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Payroll" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                
                 <dxi-column dataField="monthlySalary" caption="Monthly Salary"></dxi-column>
                 <dxi-column dataField="hourlySalary" caption="Hourly Salary"></dxi-column>
                 <dxi-column dataField="incrementInterval" caption="Increment Interval"></dxi-column>
                 <dxi-column dataField="incrementPercentage" caption="Increment Percentage"></dxi-column>
                 <dxi-column dataField="userId" caption="Employee">
-                  <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                  <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                   </dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="masterPayrollId" caption="Master Payroll">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.masterpayroll" displayExpr="masterPayrollId" valueExpr="masterPayrollId">
+                  <dxo-lookup [dataSource]="MasterpayRoll" displayExpr="bankTransferCode" valueExpr="masterPayrollId">
                   </dxo-lookup>
                 </dxi-column>
 

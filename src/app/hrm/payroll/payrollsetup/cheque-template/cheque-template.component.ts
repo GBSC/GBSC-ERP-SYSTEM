@@ -2,31 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-cheque-template',
-  templateUrl: './cheque-template.component.html',
-  styleUrls: ['./cheque-template.component.scss']
+    selector: 'app-cheque-template',
+    templateUrl: './cheque-template.component.html',
+    styleUrls: ['./cheque-template.component.scss']
 })
 export class ChequeTemplateComponent implements OnInit {
-  public chequeTemplate: any;
+    public chequeTemplate: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getchequetemplates();
-    this.chequeTemplate = this.payrollsetupservice.chequetemplate;
-  }
+    async ngOnInit() {
 
-  async addChequeTemplate(value) {
-    await this.payrollsetupservice.addchequetemplate(value.data);
-  }
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
+    }
 
-  async updateChequeTemplate(value) {
-    console.log(value);
-    await this.payrollsetupservice.updatechequetemplate(value);
-  }
+    async addChequeTemplate(value) {
+        await this.payrollsetupservice.addChequeTemplate(value.data);
+    }
 
-  async deleteChequeTemplate(value) {
-    await this.payrollsetupservice.Deletechequetemplate(value.key);
-  }
+    async updateChequeTemplate(value) {
+        await this.payrollsetupservice.updateChequeTemplate(value);
+    }
+
+    async deleteChequeTemplate(value) {
+        await this.payrollsetupservice.deleteChequeTemplate(value.key);
+    }
 
 }

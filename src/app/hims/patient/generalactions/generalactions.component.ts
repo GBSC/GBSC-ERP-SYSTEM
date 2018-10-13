@@ -15,7 +15,7 @@ export class GeneralactionsComponent implements OnInit {
     version = VERSION.full;
 
     public currentPatient: any;
-    public visitid : any;
+    public visitid: any;
     id: number;
     Patient : Patient;
     public lastpatientvisit : any;
@@ -23,7 +23,7 @@ export class GeneralactionsComponent implements OnInit {
 
     public time : any;
 
-    constructor(private PatientServiceobj : PatientService , private router: Router ,  private route : ActivatedRoute) { }
+    constructor(private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
   async  ngOnInit() {
 
@@ -69,10 +69,10 @@ export class GeneralactionsComponent implements OnInit {
 
         console.log(this.lastpatientvisit);
 
-    }
+            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
 
- 
-async onSubmit()  {
+    }
+    async onSubmit()  {
      console.log(this.id);
      await this.PatientServiceobj.AddVisits(this.id);
     this.router.navigate(['/hims/patient/visits/'+this.id]);
@@ -89,5 +89,6 @@ async onSubmit()  {
     already(){
         alert('already started');
     }
+
 
 }

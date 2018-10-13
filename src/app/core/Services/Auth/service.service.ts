@@ -10,7 +10,7 @@ export class AccountService {
     private readonly API_URL = 'authentication/api/auth/login';
     private loggedInUser: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService : ApiService) {
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService: ApiService) {
     }
 
     async login(credentials) {
@@ -34,8 +34,7 @@ export class AccountService {
         }
     }
 
-    logout()
-    {
+    logout() {
         localStorage.removeItem('user');
 
         this.router.navigate(['login']);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { SetupService } from '../../../core';
 
 @Component({
@@ -17,31 +17,9 @@ export class BloodGroupComponent implements OnInit {
 
 
     ngOnInit() {
-        // this.dataService.getAllBloodGroups().subscribe((data)=>this.bloodgroups=data);
     }
 
 
-    // GetAllCountries(){
-    //   this.dashboardService.getAllContries()
-    //   .subscribe((result : Country) => {
-    //      this.countries = result
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     //this.notificationService.printErrorMessage(error);
-    //   });
-    // }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
-    addbldgrops() {
-
-    }
-
-    Editbldgrops() {
-
-    }
-
-    deletebldgrops() {
-    }
 }

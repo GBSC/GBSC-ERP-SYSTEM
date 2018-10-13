@@ -70,7 +70,7 @@ import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.compone
 import { LeaveapprovalComponent } from './leave/leaveapproval/leaveapproval.component';
 import { RostercopyComponent } from './attendance/rostercopy/rostercopy.component';
 import { RostermappingComponent } from './attendance/rostermapping/rostermapping.component';
-import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component'; 
+import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component';
 import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
 import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
 import { AllowanceComponent } from './payroll/payrollsetup/allowance/allowance.component';
@@ -83,13 +83,13 @@ import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
 import { BenefitComponent } from './payroll/payrollsetup/benefit/benefit.component';
 import { ChequeTemplateComponent } from './payroll/payrollsetup/cheque-template/cheque-template.component';
 import { CompensationTransactionComponent } from './payroll/payrollsetup/compensation-transaction/compensation-transaction.component';
-import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component'; 
+import { CurrencyComponent } from './payroll/payrollsetup/currency/currency.component';
 import { FrequencyComponent } from './payroll/payrollsetup/frequency/frequency.component';
 import { FundsetupComponent } from './payroll/payrollsetup/fundsetup/fundsetup.component';
-import { GratuitySlabGratuityComponent } from './payroll/payrollsetup/gratuity-slab-gratuity/gratuity-slab-gratuity.component'; 
+import { GratuitySlabGratuityComponent } from './payroll/payrollsetup/gratuity-slab-gratuity/gratuity-slab-gratuity.component';
 import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratuityslab.component';
 import { GratuitytypeComponent } from './payroll/payrollsetup/gratuitytype/gratuitytype.component';
-import { LeavingreasonComponent } from './payroll/payrollsetup/leavingreason/leavingreason.component'; 
+import { LeavingreasonComponent } from './payroll/payrollsetup/leavingreason/leavingreason.component';
 import { MasterpayrollComponent } from './payroll/payrollsetup/masterpayroll/masterpayroll.component';
 import { MasterPayrollDetailComponent } from './payroll/payrollsetup/master-payroll-detail/master-payroll-detail.component';
 import { PayrollComponent } from './payroll/payrollsetup/payroll/payroll.component';
@@ -99,7 +99,7 @@ import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payroll
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { SalaryCalculationTypeComponent } from './payroll/payrollsetup/salary-calculation-type/salary-calculation-type.component';
 import { SalarystructureComponent } from './payroll/payrollsetup/salarystructure/salarystructure.component';
-import { SalarystructuredetailComponent } from './payroll/payrollsetup/salarystructuredetail/salarystructuredetail.component'; 
+import { SalarystructuredetailComponent } from './payroll/payrollsetup/salarystructuredetail/salarystructuredetail.component';
 import { UsersalaryComponent } from './payroll/payrollsetup/usersalary/usersalary.component';
 import { LoantypeComponent } from './payroll/loansetup/loantype/loantype.component';
 import { UserloanComponent } from './payroll/loansetup/userloan/userloan.component';
@@ -121,7 +121,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
     {
         path: 'hrm', component: RootComponent,
-        canActivate : [AuthGuardService],
+        canActivate: [AuthGuardService],
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
@@ -161,32 +161,36 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'leave',
                 children: [
-             { path: 'leavesetup',
-                    children: [
- 
-                        { path: 'leavepurpose', component: LeavepurposeComponent },
-                        { path: 'leaveapprover', component: LeaveapproverComponent },
-                        { path: 'leaveyear', component: LeaveyearsetupComponent },
-                        { path: 'leavepolicy', component: LeavepolicyComponent },
-                        { path: 'leavetype', component: LeavetypeComponent }, 
-                        { path: 'leavedaytype', component: LeavedaytypeComponent },
-                        { path: 'leaveeligibility', component: LeaveeligibilityComponent },
-                        { path: 'leavesubtype', component: LeavesubtypeComponent },
-                        { path: 'leavetypebalance', component: LeavetypebalanceComponent },
-                        { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
-                        { path: 'proratematrix', component: ProratematrixComponent }
-                    ]
-                },
-                { path: 'leaveadmin',
-                children: [
-                    {path: 'leaveopening', component: EmployeeleaveopeningComponent},
-                {path: 'employeeleavepolicy', component: EmpleavepolicyComponent},
-            ]}, 
-               {path: 'leaverequest', component: LeaverequestComponent},
-               {path: 'leaveclosing', component: LeaveclosingComponent},
-               {path: 'leaveapproval', component: LeaveapprovalComponent}
- 
-            ]},
+                    {
+                        path: 'leavesetup',
+                        children: [
+
+                            { path: 'leavepurpose', component: LeavepurposeComponent },
+                            { path: 'leaveapprover', component: LeaveapproverComponent },
+                            { path: 'leaveyear', component: LeaveyearsetupComponent },
+                            { path: 'leavepolicy', component: LeavepolicyComponent },
+                            { path: 'leavetype', component: LeavetypeComponent },
+                            { path: 'leavedaytype', component: LeavedaytypeComponent },
+                            { path: 'leaveeligibility', component: LeaveeligibilityComponent },
+                            { path: 'leavesubtype', component: LeavesubtypeComponent },
+                            { path: 'leavetypebalance', component: LeavetypebalanceComponent },
+                            { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
+                            { path: 'proratematrix', component: ProratematrixComponent }
+                        ]
+                    },
+                    {
+                        path: 'leaveadmin',
+                        children: [
+                            { path: 'leaveopening', component: EmployeeleaveopeningComponent },
+                            { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
+                        ]
+                    },
+                    { path: 'leaverequest', component: LeaverequestComponent },
+                    { path: 'leaveclosing', component: LeaveclosingComponent },
+                    { path: 'leaveapproval', component: LeaveapprovalComponent }
+
+                ]
+            },
 
             {
                 path: 'employee',
@@ -206,103 +210,117 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'attendance',
                 children: [
-             { path: 'attendancesetup',
-                    children: [
+                    {
+                        path: 'attendancesetup',
+                        children: [
 
-                        { path: 'assignroster', component: AssignrosterComponent },
-                        { path: 'attendanceflag', component: AttendanceflagComponent },
-                        { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
-                        { path: 'attendancerequesttype', component: AttendancerequesttypeComponent }, 
-                        { path: 'flagcategory', component: FlagcategoryComponent },
-                        { path: 'flageffecttype', component: FlageffecttypeComponent },
-                        { path: 'flagtype', component: FlagtypeComponent },
-                        { path: 'flagvalue', component: FlagvalueComponent },
-                        { path: 'roster', component: RosterComponent },
-                        { path: 'shift', component: ShiftComponent }
-                    ]
-                },
-                { path: 'attendanceadmin',
-                children: [
-                {path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent},
-                {path: 'attendancerule', component: AttendanceruleComponent},
-            ]},
-            { path: 'overtime',
-                children: [
-                {path: 'overtimeflag', component: OvertimeflagComponent},
-                {path: 'overtimetype', component: OvertimetypeComponent},
-            ]},
-            {path: 'attendancerequest', component: AttendancerequestComponent},
-            {path: 'official-visit-entry', component: OfficialVisitEntryComponent}, 
-            {path: 'overtime-entitlement', component: OvertimeEntitlementComponent},
-            {path: 'employee-overtime-entitlement', component: EmployeeOvertimeEntitlementComponent},
-            { path: 'rostercopy', component: RostercopyComponent },
-            { path: 'rostermapping', component: RostermappingComponent },
-        ]},
-            
-
-        {
-            path: 'payroll',
-            children: [
-         { path: 'payrollsetup',
-                children: [
-
-                    { path: 'allowance', component: AllowanceComponent },
-                    { path: 'allowancearrear', component: AllowancearrearComponent },
-                    { path: 'allowancededuction', component: AllowanceDeductionComponent },
-                    { path: 'allowancecalculationtype', component: AllowancecalculationtypeComponent },
-                    { path: 'allowancerate', component: AllowancerateComponent }, 
-                    { path: 'bankadvicetemplate', component: BankAdviceTemplateComponent },
-                    { path: 'benefit', component: BenefitComponent },
-                    { path: 'chequetemplate', component: ChequeTemplateComponent },
-                    { path: 'compensationtransaction', component: CompensationTransactionComponent },
-                    { path: 'currency', component: CurrencyComponent },
-                    { path: 'frequency', component: FrequencyComponent },
-                    { path: 'fundsetup', component: FundsetupComponent },
-                    { path: 'gratuityslabgratuity', component: GratuitySlabGratuityComponent }, 
-                    { path: 'gratuityslab', component: GratuityslabComponent },
-                    { path: 'gratuitytype', component: GratuitytypeComponent },
-                    { path: 'leavingreason', component: LeavingreasonComponent }, 
-                    { path: 'masterpayroll', component: MasterpayrollComponent },
-                    { path: 'masterpayrolldetail', component: MasterPayrollDetailComponent },
-                    { path: 'payroll', component: PayrollComponent },
-                    { path: 'payrollbank', component: PayrollbankComponent },
-                    { path: 'payrolltype', component: PayrolltypeComponent },
-                    { path: 'payrollyear', component: PayrollyearComponent },
-                    { path: 'pfpayment', component: PfPaymentComponent },
-                    { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
-                    { path: 'salarystructure', component: SalarystructureComponent },
-                    { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
-                    { path: 'usersalary', component: UsersalaryComponent }
-      
+                            { path: 'assignroster', component: AssignrosterComponent },
+                            { path: 'attendanceflag', component: AttendanceflagComponent },
+                            { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
+                            { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
+                            { path: 'flagcategory', component: FlagcategoryComponent },
+                            { path: 'flageffecttype', component: FlageffecttypeComponent },
+                            { path: 'flagtype', component: FlagtypeComponent },
+                            { path: 'flagvalue', component: FlagvalueComponent },
+                            { path: 'roster', component: RosterComponent },
+                            { path: 'shift', component: ShiftComponent }
+                        ]
+                    },
+                    {
+                        path: 'attendanceadmin',
+                        children: [
+                            { path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent },
+                            { path: 'attendancerule', component: AttendanceruleComponent },
+                        ]
+                    },
+                    {
+                        path: 'overtime',
+                        children: [
+                            { path: 'overtimeflag', component: OvertimeflagComponent },
+                            { path: 'overtimetype', component: OvertimetypeComponent },
+                        ]
+                    },
+                    { path: 'attendancerequest', component: AttendancerequestComponent },
+                    { path: 'official-visit-entry', component: OfficialVisitEntryComponent },
+                    { path: 'overtime-entitlement', component: OvertimeEntitlementComponent },
+                    { path: 'employee-overtime-entitlement', component: EmployeeOvertimeEntitlementComponent },
+                    { path: 'rostercopy', component: RostercopyComponent },
+                    { path: 'rostermapping', component: RostermappingComponent },
                 ]
             },
-            { path: 'taxsetup',
-            children: [
-                {path: 'incometaxrule', component: IncomeTaxRuleComponent},
-                {path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent},
-                {path: 'taxbenefit', component: TaxBenefitComponent},
-                {path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent},
-                {path: 'taxrelief', component: TaxreliefComponent},
-                {path: 'taxschedule', component: TaxscheduleComponent},
-                {path: 'taxyear', component: TaxyearComponent},
-        ]},
 
-            { path: 'loansetup',
-            children: [
-                {path: 'loantype', component: LoantypeComponent},
-                {path: 'userloan', component: UserloanComponent}
-        ]}, 
 
-        { path: 'payrolladmin',
-        children: [
-            {path: 'stopsalary', component: StopsalaryComponent} 
-    ]}, 
+            {
+                path: 'payroll',
+                children: [
+                    {
+                        path: 'payrollsetup',
+                        children: [
 
-           {path: 'gratuity', component: GratuityComponent},
-           {path: 'monthlyusersalary', component: MonthlyUserSalaryComponent},
-           {path: 'payslip', component: PayslipComponent}
+                            { path: 'allowance', component: AllowanceComponent },
+                            { path: 'allowancearrear', component: AllowancearrearComponent },
+                            { path: 'allowancededuction', component: AllowanceDeductionComponent },
+                            { path: 'allowancecalculationtype', component: AllowancecalculationtypeComponent },
+                            { path: 'allowancerate', component: AllowancerateComponent },
+                            { path: 'bankadvicetemplate', component: BankAdviceTemplateComponent },
+                            { path: 'benefit', component: BenefitComponent },
+                            { path: 'chequetemplate', component: ChequeTemplateComponent },
+                            { path: 'compensationtransaction', component: CompensationTransactionComponent },
+                            { path: 'currency', component: CurrencyComponent },
+                            { path: 'frequency', component: FrequencyComponent },
+                            { path: 'fundsetup', component: FundsetupComponent },
+                            { path: 'gratuityslabgratuity', component: GratuitySlabGratuityComponent },
+                            { path: 'gratuityslab', component: GratuityslabComponent },
+                            { path: 'gratuitytype', component: GratuitytypeComponent },
+                            { path: 'leavingreason', component: LeavingreasonComponent },
+                            { path: 'masterpayroll', component: MasterpayrollComponent },
+                            { path: 'masterpayrolldetail', component: MasterPayrollDetailComponent },
+                            { path: 'payroll', component: PayrollComponent },
+                            { path: 'payrollbank', component: PayrollbankComponent },
+                            { path: 'payrolltype', component: PayrolltypeComponent },
+                            { path: 'payrollyear', component: PayrollyearComponent },
+                            { path: 'pfpayment', component: PfPaymentComponent },
+                            { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
+                            { path: 'salarystructure', component: SalarystructureComponent },
+                            { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
+                            { path: 'usersalary', component: UsersalaryComponent }
 
-        ]}
+                        ]
+                    },
+                    {
+                        path: 'taxsetup',
+                        children: [
+                            { path: 'incometaxrule', component: IncomeTaxRuleComponent },
+                            { path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent },
+                            { path: 'taxbenefit', component: TaxBenefitComponent },
+                            { path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent },
+                            { path: 'taxrelief', component: TaxreliefComponent },
+                            { path: 'taxschedule', component: TaxscheduleComponent },
+                            { path: 'taxyear', component: TaxyearComponent },
+                        ]
+                    },
+
+                    {
+                        path: 'loansetup',
+                        children: [
+                            { path: 'loantype', component: LoantypeComponent },
+                            { path: 'userloan', component: UserloanComponent }
+                        ]
+                    },
+
+                    {
+                        path: 'payrolladmin',
+                        children: [
+                            { path: 'stopsalary', component: StopsalaryComponent }
+                        ]
+                    },
+
+                    { path: 'gratuity', component: GratuityComponent },
+                    { path: 'monthlyusersalary', component: MonthlyUserSalaryComponent },
+                    { path: 'payslip', component: PayslipComponent }
+
+                ]
+            }
 
 
         ]

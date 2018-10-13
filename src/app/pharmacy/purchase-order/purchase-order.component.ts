@@ -157,20 +157,20 @@ export class PurchaseOrderComponent implements OnInit {
         console.log(this.FilteredInventoryItems);
 
         var b = {
-            PackType: this.PurchaseOrderDetailsForm.value.packType.name,
-            PackSize: this.PurchaseOrderDetailsForm.value.packSize.name,
-            Quantity: this.OrderQuantity,
-            ExchangeRate: this.PurchaseOrderForm.value.ExchangeRate,
-            GrossAmount: this.PurchaseOrderDetailsForm.value.GrossAmount,
-            DiscountPercentage: this.PurchaseOrderDetailsForm.value.DiscountPercentage,
-            DiscountAmount: this.PurchaseOrderDetailsForm.value.DiscountAmount,
-            AfterDiscountAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount - this.PurchaseOrderDetailsForm.value.DiscountAmount,
-            GstPercentage: this.PurchaseOrderDetailsForm.value.SalesTaxPercentage,
-            GstAmount: this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
-            AfterGstAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
-            NetAmount: this.PurchaseOrderDetailsForm.value.NetAmount,
-            RetailPrice: this.PurchaseOrderDetailsForm.value.RetailPrice * this.OrderQuantity,
-            CostPrice: <number>this.SelectedInventoryItem.costPrice * this.OrderQuantity,
+            PackType: this.PurchaseOrderDetailsForm.value.packType.name || '',
+            PackSize: this.PurchaseOrderDetailsForm.value.packSize.name || '',
+            Quantity: <number>this.PurchaseOrderDetailsForm.value.BonusQuantity + this.PurchaseOrderDetailsForm.value.OrderQuantity,
+            ExchangeRate: <number>this.PurchaseOrderForm.value.ExchangeRate,
+            GrossAmount: this.GrossAmount,
+            DiscountPercentage: <number>this.PurchaseOrderDetailsForm.value.DiscountPercentage,
+            DiscountAmount: this.DiscountAmount,
+            AfterDiscountAmount: this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount,
+            GstPercentage: <number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage,
+            GstAmount: this.SalesTaxAmount,
+            AfterGstAmount: this.GrossAmount + this.SalesTaxAmount,
+            NetAmount: this.NetAmount,
+            RetailPrice: <number>this.PurchaseOrderDetailsForm.value.RetailPrice * this.OrderQuantity,
+            CostPrice: (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.OrderQuantity) + (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.BonusQuantity),
             InventoryItemId: this.SelectedInventoryItem.inventoryItemId,
             InventoryId: this.SelectedInventoryItem.InventoryId
         };
@@ -180,7 +180,6 @@ export class PurchaseOrderComponent implements OnInit {
         // //this.TotalOrderAmount += Number.parseInt(this.PurchaseOrderDetailsForm.value.NetAmount);
         this.PurchaseOrderDetailsArray.push(b);
         console.log(this.PurchaseOrderDetailsArray);
-
         this.PurchaseOrderDetailsForm.reset();
     }
 

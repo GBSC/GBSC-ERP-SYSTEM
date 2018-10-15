@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms'; 
+import { FinanceService } from '../../core/Services/Finance/finance.service';
+
 
 @Component({
     selector: 'app-financialyear',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancialyearComponent implements OnInit {
 
-    constructor() { }
+    public FinancialYearForm: any;
+    public financialYear: any;
+    public updateFinancalyear: any;
 
-    ngOnInit() {
+    constructor(private fb: FormBuilder,public financeService : FinanceService) { }
+
+   async ngOnInit() { 
+
+        this.FinancialYearForm = this.fb.group({
+            Name: [''],
+            IsActive: [''],
+            StartDate: [''],
+            EndDate: [''] 
+        });
+
+         this.financialYear = await this.financeService.getFinancialYears();
     }
 
+    async addFinancialyear(value){
+
+        await this.financeService.addFinancialYear(value.data);
+    }
+    
+    async updatingFinancialyear(value){
+
+        this.updateFinancalyear = {...value.oldData, ...value.newData};
+    }
+    async updateFinancialyear(){
+
+        await this.financeService.updateFinancialYear( this.updateFinancalyear);
+    }
+
+    async deleteFinancialyear(value){
+
+        await this.financeService.DeleteFinancialYear(value.data);
+    }
 }

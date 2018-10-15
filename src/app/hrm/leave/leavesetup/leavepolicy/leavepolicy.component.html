@@ -42,7 +42,7 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
                       <option value="" disabled selected>-- Select Leave Year --</option>
                       <option *ngFor="let leaveyear of leavesetupservice?.leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                     </select>

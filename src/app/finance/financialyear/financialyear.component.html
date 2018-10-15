@@ -12,14 +12,14 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                
+                <form [formGroup]="FinancialYearForm">
                 <div class="form-group row">
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                       New Year
+                      Name
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_1" readonly placeholder="Select date"/>                     
+                      <input type="text" class="form-control" id="m_datepicker_1" formControlName="Name" readonly placeholder="Select date"/>                     
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -27,41 +27,43 @@
                       <label for="exampleInputEmail1">
                         Start Date
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_2" readonly placeholder="Select date"/>                    </div>
+                      <input type="text" class="form-control" id="m_datepicker_2" formControlName="StartDate" readonly placeholder="Select date"/>                    </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         End Date
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_3" readonly placeholder="Select date"/>                    </div>
+                      <input type="text" class="form-control" id="m_datepicker_3" formControlName="EndDate" readonly placeholder="Select date"/>                    </div>
                   </div>
                   <div class="col-sm-2">
                       <div class="form-group m-form__group">
-                        <label for="exampleInputEmail1">
-                          Closed
-                        </label>
-                        <select class="form-control m-input" id="exampleSelect1">
-                            <option>
-                             Yes
-                            </option>
-                            <option>
-                              No
-                            </option>
-                           
-                          </select>                   </div>
+                        <label class="">
+                          Active:
+                          </label>
+                          <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="IsActive"> 
+                                <span></span>
+                              </label>
+                            </div>  
+                      </div>
                     </div>
                     <div class="col-sm-1" style="margin-top: 28px;">
-                        <button type="submit" class="btn btn-primary">
-                            Add New
+                        <button type="submit" (click)="addFinancialyear(FinancialYearForm.value)" class="btn btn-primary">
+                           Save
                           </button>
                     </div>
                 </div>
+              </form>
+
                 <div class="form-group row">
                     <div class="m--space-07"></div>
   
   
-                    <dx-data-grid id="gridContainer"  keyExpr="">
+                    <dx-data-grid id="gridContainer" 
+                    [dataSource]="financialYear"
+                     keyExpr="financialYearId">
         
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -71,13 +73,13 @@
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
         
-                    <dxi-column dataField="FinancialYear" caption="Financial Year"></dxi-column>
-                    <dxi-column dataField="StartDate" caption="Start Date"></dxi-column>
-                    <dxi-column dataField="EndDate" caption="End Date"></dxi-column>
-                    <dxi-column dataField="ClosedStatus" caption="Closed Status"></dxi-column>        
+                    <dxi-column dataField="name" caption="Financial Year"></dxi-column>
+                    <dxi-column dataField="startDate" dataType="date" format="shortdate" caption="Start Date"></dxi-column>
+                    <dxi-column dataField="endDate" dataType="date" format="shortdate" caption="End Date"></dxi-column>
+                    <dxi-column dataField="isActive" dataType="boolean" caption="Active"></dxi-column>        
                   </dx-data-grid>
                 </div>
-  
+   
                </div>
              </div>
            </div>

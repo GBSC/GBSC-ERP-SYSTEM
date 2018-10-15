@@ -20,6 +20,7 @@ import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
 import { ApiService } from './core/Services/api.service';
 import { CoreModule } from './core/core.module';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { FinanceService } from './core/Services/Finance/finance.service';
 
 
 
@@ -42,7 +43,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     ],
     providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-        ScriptLoaderService],
+        ScriptLoaderService,FinanceService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

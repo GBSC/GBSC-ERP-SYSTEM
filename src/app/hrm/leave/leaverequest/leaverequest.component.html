@@ -27,222 +27,122 @@
                   </div>
                 </div>
               </div>
-            </div>
- 
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Leave Detail
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-
-          <form [formGroup]="leaveRequestDetailForm">
-            <div class="row">
               <div class="col-md-6">
-                <div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Leave Year
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Leave Request Date:
                   </label>
-                  <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
-                    <option value="" disabled selected>-- Select Leave Year --</option>
-                    <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Leave Type
-                  </label>
-                  <select class="form-control m-input " formControlName="LeaveTypeId" name="leavetype" id="">
-                    <option value="" disabled selected>-- Select Leave Type --</option>
-                    <option *ngFor="let levetype of leaveType" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
-                  </select>
+                  <div class="col-lg-8">
+                    <dx-date-box formControlName="RequestDate" type="date">
+                    </dx-date-box> 
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Balance
-                  </label>
-                  <input type="number" formControlName="TotalLeaveValue" class="form-control m-input m-input--solid" id="" aria-describedby="emailHelp" placeholder="0">
-                </div>
-              </div>
+
             </div>
 
-
             <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group m-form__group">
-                    <label for="">
-                      Short Leave:
-                    </label>
-                    <!-- <input type="checkbox" class="form-control" formControlName="IsShortLeave"> -->
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Is Approved:
+                  </label>
+                  <div class="col-lg-8">
                     <div class="m-checkbox-list">
                       <label class="m-checkbox m-checkbox--state-success">
-                        <input type="checkbox" formControlName="IsShortLeave"> 
+                        <input type="checkbox" formControlName="IsApproved"> 
                         <span></span>
                       </label>
                     </div>
                   </div>
                 </div>
-  
-                <div class="col-md-2">
-                  <div class="form-group m-form__group">
-                    <label class="label_visiblity">
-                      Leave Date To:
-                    </label>
-                    <select class="form-control m-input " formControlName="Value" id="exampleSelect1">
-                        <option value="" disabled selected>-- Select Leave Value --</option>
-                        <option>0.25</option>
-                        <option>0.45</option>
-                      </select>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group m-form__group">
-                      <label class="label_visiblity">
-                        Leave Date To:
-                      </label>
-                      <select class="form-control m-input " formControlName="FirstSecondHalf" id="exampleSelect1">
-                          <option value="" disabled selected>-- Select Half --</option>
-                          <option>Full Day</option>
-                          <option>Half Day</option>
-                        </select>
-                    </div>
-                  </div>
-              </div>
-
-
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group m-form__group">
-                  <label for="exampleInputPassword1">
-                    Leave Date From:
-                  </label>
-                  <!-- <input type="date" class="form-control " formControlName="DateFrom" placeholder="Select date"> -->
-                  <dx-date-box formControlName="DateFrom" type="date">
-                  </dx-date-box> 
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-group m-form__group">
-                  <label for="exampleInputPassword1">
-                    Leave Date To:
-                  </label>
-                  <!-- <input type="date" class="form-control " formControlName="DateTill" placeholder="Select date"> -->
-                  <dx-date-box formControlName="DateTill" type="date">
-                  </dx-date-box> 
-                </div>
               </div>
             </div>
-
-            <div class="form-group m-form__group">
-              <label for="exampleTextarea">
-                Description
-              </label>
-              <textarea class="form-control m-input " formControlName="Description" id="exampleTextarea" rows="3"></textarea>
-            </div>
-            <div class="m--space-50"></div>
-            
-            <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show"
-             role="alert" *ngIf="msg">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-              <strong> {{ msg }}</strong>
-            </div> 
-            
-            <div class="row">
-              <div class="col-md-12">
-                <div class="m-portlet__foot m-portlet__foot--fit">
-                  <div class="m-form__actions m-form__actions" style="padding:19px;">
-                    <div class="row">
-                      <div class="col-lg-3"></div>
-                      <div class="col-lg-6">
-                        <button type="submit" (click)="addleaverequestordetail()" class="btn btn-success">
-                          Submit
-                        </button>
-                        <button type="reset" class="btn btn-secondary">
-                          Cancel
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Leave Details
-              </h3>
+          <div class="m--space-30"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">
+                        Leave Details
+                      </h3>
+                    </div>
+                  </div>
+                </div> 
+                
+                <div class="m-section">
+                  <div class="m-section__content">
+                  <dx-data-grid id="gridContainer" [dataSource]="[]" keyExpr="leaveRequestDetailId"
+                  (onRowInserted)="leaveRequestDetail($event)"
+                  (onRowUpdating)="updatingRequestDetail($event)"
+                  (onRowUpdated)="updateRequestDetail()">
+                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="8"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager>
+        
+                    <dxi-column dataField="leaveYearId" caption="Leave Year">
+                      <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                      </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                      <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
+                      </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
+                    <dxi-column dataField="description" caption="Description"></dxi-column>
+                    <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="value" caption="Leave Value"></dxi-column>
+                    <dxi-column dataField="totalLeaveDetailValue" caption="Total Leave Value"> </dxi-column>
+                  </dx-data-grid>
+         </div>
+         </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="leaverequestdetail" keyExpr="leaveRequestDetailId">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true">
-            </dxo-editing>
-            <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-            <dxo-paging [pageSize]="8"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-            </dxo-pager>
-
-            <dxi-column dataField="userId" caption="Employee">
-              <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveYearId" caption="Leave Year">
-              <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataField="leaveTypeId" caption="Leave Type">
-              <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
-              </dxo-lookup>
-            </dxi-column>
-            <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
-            <dxi-column dataField="totalLeaveValue" caption="Total Leave Value"> </dxi-column>
-            <dxi-column dataField="description" caption="Description"></dxi-column>
-            <dxi-column dataField="dateFrom" caption="From Date"></dxi-column>
-            <dxi-column dataField="dateTill" caption="To Date"></dxi-column>
-          </dx-data-grid>
+          <div class="m--space-50"></div>
+            
+          <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show"
+           role="alert" *ngIf="msg">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            <strong> {{ msg }}</strong>
+          </div> 
+          <div class="row">
+            <div class="col-md-12">
+              <div class="m-portlet__foot m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions" style="padding:19px;">
+                  <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                      <button type="submit" (click)="addLeaveRequest(leaveRequestForm.value)" class="btn btn-success">
+                        Submit
+                      </button>
+                      <button type="reset" class="btn btn-secondary">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
     </div>
   </div>
-
+ 
 </div>

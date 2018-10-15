@@ -19,7 +19,7 @@ export class InventoryItemComponent implements OnInit {
     }
 
     async ngOnInit() {
-        
+
         this.unit = await this.InventorysystemServiceobj.GetUnits();
         console.log(this.unit);
 

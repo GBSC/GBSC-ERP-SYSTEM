@@ -1,12 +1,12 @@
 export interface EmployeeCompany {
-    
+
     DesignationId: number,
     ManagementLevelId: number,
     FunctionId: number,
-    GroupId:number,
+    GroupId: number,
     EmployeeStatusId: number,
     EmployeeTypeId: number,
-    Shift: number,  
+    Shift: number,
     ContractStart: Date,
     ContractEnd: Date,
     AppointmentDate: Date,

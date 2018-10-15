@@ -39,8 +39,7 @@ export class EmployeeQualificationComponent implements OnInit {
     }
 
     constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute)
-     {
+        public router: Router, private route: ActivatedRoute) {
         this.QualificationForm = this.fb.group({
             Name: [''],
             DegreeId: [''],
@@ -51,21 +50,21 @@ export class EmployeeQualificationComponent implements OnInit {
             Description: [''],
             SkillLevel: []
         });
-      }
+    }
 
     async ngOnInit() {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-  console.log(this.id)
+            console.log(this.id)
 
-        this.employee.GetUniversity(this.id).subscribe(resp => {
+            this.employee.GetUniversity(this.id).subscribe(resp => {
 
-            this.Employee = resp;
-         this.patchValues(resp);
+                this.Employee = resp;
+                this.patchValues(resp);
 
+            });
         });
-    });
 
         await this.SetupServiceobj.getAllqualifications();
         let qualifctn = this.SetupServiceobj.qualification;
@@ -76,25 +75,25 @@ export class EmployeeQualificationComponent implements OnInit {
 
         await this.SetupServiceobj.getAllUniversities();
         let uni = this.SetupServiceobj.university;
-     }
- 
-     async update(value) {
+    }
+
+    async update(value) {
         console.log(value);
-      await this.employee.updateuserQualification(value);
+        await this.employee.updateuserQualification(value);
 
     }
 
 
-    p(e,u) {
-            console.log(e,u);
-            this.employee.selectedUni = {Name: '', Qualifications: []}
-            this.employee.university.Name = u;
-            this.employee.selectedUni.Name =u;
-            this.employee.addedUniversities.push(this.employee.selectedUni);
-            console.log(this.employee.university);
+    p(e, u) {
+        console.log(e, u);
+        this.employee.selectedUni = { Name: '', Qualifications: [] }
+        this.employee.university.Name = u;
+        this.employee.selectedUni.Name = u;
+        this.employee.addedUniversities.push(this.employee.selectedUni);
+        console.log(this.employee.university);
     }
 
-    setSelectedUniversity(e){
+    setSelectedUniversity(e) {
         console.log(this.employee.addedUniversities);
         this.employee.selectedUni = this.employee.addedUniversities.find(u => u.Name === e.target.value)
         console.log(this.employee.selectedUni)
@@ -109,19 +108,19 @@ export class EmployeeQualificationComponent implements OnInit {
         console.log(qualification);
     }
 
-    patchValues(qualification : any) {
+    patchValues(qualification: any) {
 
         this.QualificationForm.patchValue({
 
-            Name:  qualification.name,
+            Name: qualification.name,
             DegreeId: qualification.degreeId,
             Timefrom: qualification.timeFrom,
             Timeto: qualification.timeTo,
             Grade: qualification.grade,
             Courses: qualification.courses,
-            Description: qualification.description 
+            Description: qualification.description
 
         });
-      }
+    }
 }
 

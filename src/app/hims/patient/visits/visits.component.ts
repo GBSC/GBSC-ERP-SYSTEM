@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
- import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Visits } from '../../../core/Models/HIMS/visits';
 
@@ -14,8 +14,8 @@ import { Visits } from '../../../core/Models/HIMS/visits';
 })
 export class VisitsComponent implements OnInit {
 
-    public VisitNoteByVisitId : any;
-    public AppointmentByVisitId : any;
+    public VisitNoteByVisitId: any;
+    public AppointmentByVisitId: any;
 
     public VisitTests: any = [];
     public VisitDiagnoses: any = [];
@@ -23,68 +23,68 @@ export class VisitsComponent implements OnInit {
     public PatientVisitNoteForm: FormGroup;
     public PatientAppointmentForm: FormGroup;
 
-    public VisitDiagnosesForm : FormGroup;
-    public VisitTestForm : FormGroup;
+    public VisitDiagnosesForm: FormGroup;
+    public VisitTestForm: FormGroup;
 
     public currentPatient: any;
-    public consultant : any;
-    public visitNatures : any;
+    public consultant: any;
+    public visitNatures: any;
 
-    public diagnoses : any;
-    public test : any;
+    public diagnoses: any;
+    public test: any;
 
-    public visitid : any;
+    public visitid: any;
     public vist = '';
     id: number;
     vistid: number;
-    Patient : Patient;
-    Visits : Visits;
+    Patient: Patient;
+    Visits: Visits;
 
-    constructor( private formBuilder: FormBuilder,private PatientServiceobj : PatientService , private router: Router,  private route : ActivatedRoute) { 
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
-            'ClinicalNote' : ['',Validators.required],
-            'VisitId' :['',Validators.required],
+            'ClinicalNote': ['', Validators.required],
+            'VisitId': ['', Validators.required],
         });
 
         this.PatientAppointmentForm = this.formBuilder.group({
-            'PatientType':['pervious',Validators.required],
+            'PatientType': ['pervious', Validators.required],
             'ConsultantId': ['', Validators.required],
             'visitNatureId': ['', Validators.required],
             'PatientId': ['', Validators.required],
             'TentativeTime': ['', Validators.required],
-            'VisitId' :['',Validators.required]
+            'VisitId': ['', Validators.required]
         });
 
         this.VisitDiagnosesForm = this.formBuilder.group({
-        'DiagnosisId' : ['',Validators.required],
-        'VisitId':['']
+            'DiagnosisId': ['', Validators.required],
+            'VisitId': ['']
         });
 
         this.VisitTestForm = this.formBuilder.group({
-        'TestId':['',Validators.required],
-        'VisitId':['']
+            'TestId': ['', Validators.required],
+            'VisitId': ['']
         });
     }
 
-   async ngOnInit() {
+    async ngOnInit() {
 
         this.route.params.subscribe(params => {
             this.id = +params['id'];
-     
-           this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe((Patient)=> {
 
-            this.Patient = Patient;
-            //console.log(Patient.PatientId)
-         });
-           
-         });
-        
-          console.log(this.id);
+            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe((Patient) => {
+
+                this.Patient = Patient;
+                //console.log(Patient.PatientId)
+            });
+
+        });
+
+        console.log(this.id);
 
         this.vist = await this.PatientServiceobj.getVisitId(this.id);
-          console.log(this.vist)
-    
+        console.log(this.vist)
+
         this.vistid = await this.PatientServiceobj.visitid.visitID;
 
         await this.PatientServiceobj.getConsultant();
@@ -102,68 +102,68 @@ export class VisitsComponent implements OnInit {
         await this.PatientServiceobj.getDiagnoses();
         this.diagnoses = this.PatientServiceobj.diagnoses;
         console.log(this.diagnoses);
-        
+
 
         this.visitid = this.PatientServiceobj.visitid;
         console.log(this.visitid);
 
-    //    this.VisitNoteByVisitId = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
-    //    console.log(this.VisitNoteByVisitId);
-     }
+        //    this.VisitNoteByVisitId = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
+        //    console.log(this.VisitNoteByVisitId);
+    }
 
-    onSubmit()  {
-        
+    onSubmit() {
+
         //console.log(this.PatientServiceobj.currentPatient);
-       // console.log(this.id);
-        this.router.navigate(['/hims/patient/patientvitals/'+this.vistid]);
+        // console.log(this.id);
+        this.router.navigate(['/hims/patient/patientvitals/' + this.vistid]);
         console.log(this.visitid);
 
     }
 
- async onEndVisit(){
+    async onEndVisit() {
         let x = await this.PatientServiceobj.getVisitId(this.vistid);
-        await this.PatientServiceobj.endVisit(this.vistid , x);
+        await this.PatientServiceobj.endVisit(this.vistid, x);
         console.log(x)
-        this.router.navigate(['/hims/patient/profile/'+this.id]);
+        this.router.navigate(['/hims/patient/profile/' + this.id]);
         console.log(this.id);
     }
-//add visitnote
+    //add visitnote
 
-    async onsubmit(value){
+    async onsubmit(value) {
         let y = await this.PatientServiceobj.visitid.visitID;
         this.PatientVisitNoteForm.value.VisitId = y;
-        let x=  await this.PatientServiceobj.addVisitNote(value);
+        let x = await this.PatientServiceobj.addVisitNote(value);
         console.log(x)
 
         // this.visitid = this.PatientServiceobj.visitid;
         // console.log(this.visitid);
- 
+
     }
 
-    public VisitNoteByVisitIdForEdit : any;
+    public VisitNoteByVisitIdForEdit: any;
     //  async getVisitNoteByVisitIdForEdit(){
     //     this.VisitNoteByVisitIdForEdit = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
     //     console.log(this.VisitNoteByVisitIdForEdit);
     // }
 
-    async addappointment(value){
+    async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;
         this.PatientAppointmentForm.value.VisitId = this.vistid;
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(value);
         console.log(x)
         console.log(this.vistid);
-        
- 
+
+
 
 
     }
 
-    async addvisitdiagnosis(value){
-      console.log(value);
+    async addvisitdiagnosis(value) {
+        console.log(value);
     }
 
-    async addvisitTest(value){
+    async addvisitTest(value) {
         console.log(value)
     }
 
@@ -175,19 +175,19 @@ export class VisitsComponent implements OnInit {
         let doc = {
             TestId: value.TestId,
             TestName: test.testName,
-            VisitId : value.VisitId
+            VisitId: value.VisitId
         }
-            this.VisitTests.push(doc);
-            console.log(this.VisitTests);
-            console.log(this.test);
+        this.VisitTests.push(doc);
+        console.log(this.VisitTests);
+        console.log(this.test);
     }
 
-  async  onAddvisittest(){
+    async  onAddvisittest() {
         this.VisitTests = this.VisitTests.filter(t => {
             return delete t.TestName;
         });
-         let x = await this.PatientServiceobj.addvisitTest(this.VisitTests);
-         console.log(x);
+        let x = await this.PatientServiceobj.addvisitTest(this.VisitTests);
+        console.log(x);
         console.log(this.VisitTests);
         this.removealltest(this.VisitTests);
     }
@@ -205,19 +205,19 @@ export class VisitsComponent implements OnInit {
         let doc = {
             DiagnosisId: value.DiagnosisId,
             DiagnosName: diagnose.name,
-            VisitId : value.VisitId
+            VisitId: value.VisitId
 
         }
-            this.VisitDiagnoses.push(doc);
-            console.log(this.VisitDiagnoses);
+        this.VisitDiagnoses.push(doc);
+        console.log(this.VisitDiagnoses);
     }
 
-   async onAddvisitdiagnosis(){
-    this.VisitDiagnoses = this.VisitDiagnoses.filter(t => {
-        return delete t.DiagnosName;
-    });
-       let x = await this.PatientServiceobj.addvisitDiagnosis(this.VisitDiagnoses);
-       console.log(x);
+    async onAddvisitdiagnosis() {
+        this.VisitDiagnoses = this.VisitDiagnoses.filter(t => {
+            return delete t.DiagnosName;
+        });
+        let x = await this.PatientServiceobj.addvisitDiagnosis(this.VisitDiagnoses);
+        console.log(x);
         console.log(this.VisitDiagnoses);
         this.removealldiagnosis(this.VisitDiagnoses);
     }

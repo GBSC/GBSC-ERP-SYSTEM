@@ -4,5 +4,5 @@ export interface EmployeeBank {
     AccountNumber: number,
     BankTitle: string,
     BankCode: number,
-    BankBranch: string 
+    BankBranch: string
 }

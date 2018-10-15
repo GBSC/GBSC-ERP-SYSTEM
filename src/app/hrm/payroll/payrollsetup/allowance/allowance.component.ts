@@ -2,40 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-allowance',
-  templateUrl: './allowance.component.html',
-  styleUrls: ['./allowance.component.scss']
+    selector: 'app-allowance',
+    templateUrl: './allowance.component.html',
+    styleUrls: ['./allowance.component.scss']
 })
 export class AllowanceComponent implements OnInit {
-  public allowance: any;
-  Allowance: any;
+    public allowance: any;
+    Allowance: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getallowances();
-    this.allowance = this.payrollsetupservice.allowance;
+    async ngOnInit() {
+        await this.payrollsetupservice.getallowances();
+        this.allowance = this.payrollsetupservice.allowance;
 
-    await this.payrollsetupservice.getallowancedeductions();
-    let allowancededuction = this.payrollsetupservice.allowancededuction;
-   
-    await this.payrollsetupservice.getallowancecalculationtypes();
-    let allowancetype = this.payrollsetupservice.allowancecalculationtype;
-  }
+        await this.payrollsetupservice.getallowancedeductions();
+        let allowancededuction = this.payrollsetupservice.allowancededuction;
 
-  async addallowance(value) {
-    await this.payrollsetupservice.addallowance(value.data);
-  }
+        await this.payrollsetupservice.getallowancecalculationtypes();
+        let allowancetype = this.payrollsetupservice.allowancecalculationtype;
+    }
 
-  async updatingallowance(value) { 
-   this.Allowance = {...value.oldData, ...value.newData};
-  }
-  async updateallowance() { 
-    await this.payrollsetupservice.updateallowance(this.Allowance);
-  }
+    async addallowance(value) {
+        await this.payrollsetupservice.addallowance(value.data);
+    }
 
-  async deleteallowance(value) {
-    await this.payrollsetupservice.Deleteallowance(value.key);
-  }
+    async updatingallowance(value) {
+        this.Allowance = { ...value.oldData, ...value.newData };
+    }
+    async updateallowance() {
+        await this.payrollsetupservice.updateallowance(this.Allowance);
+    }
+
+    async deleteallowance(value) {
+        await this.payrollsetupservice.Deleteallowance(value.key);
+    }
 
 }

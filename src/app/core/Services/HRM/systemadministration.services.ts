@@ -34,7 +34,7 @@ export class SystemAdministrationService {
     public modules: any = [];
 
 
-    constructor(private httpClient: HttpClient, private ApiService : ApiService) {
+    constructor(private httpClient: HttpClient, private ApiService: ApiService) {
     }
 
 
@@ -44,7 +44,7 @@ export class SystemAdministrationService {
     }
 
     async getData() {
-        
+
         let params = new HttpParams().set('companyId', '164');
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
@@ -81,9 +81,9 @@ export class SystemAdministrationService {
     }
 
     async getCompanies() {
-         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
+        return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
         //console.log(this.companies);
-   
+
     }
 
 

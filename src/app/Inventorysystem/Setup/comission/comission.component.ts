@@ -8,10 +8,10 @@ import { Comission } from '../../../core/Models/Inventory/Setup/Comission';
     styleUrls: ['./comission.component.scss']
 })
 export class ComissionComponent implements OnInit {
-    private Comissions : any;
-    private updatedmodel : Comission;
+    private Comissions: any;
+    private updatedmodel: Comission;
 
-    constructor(private InventoryService : InventorysystemService) { }
+    constructor(private InventoryService: InventorysystemService) { }
 
     async ngOnInit() {
         this.Comissions = await this.InventoryService.GetComissions();

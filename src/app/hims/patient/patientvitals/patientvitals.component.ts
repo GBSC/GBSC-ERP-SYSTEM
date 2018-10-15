@@ -5,7 +5,7 @@ import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
 
 
@@ -21,14 +21,14 @@ export class PatientvitalsComponent implements OnInit {
     public PatientVitaLForm: FormGroup;
     public currentPatient: any;
     public visitid: any;
-    public PatientVitalsByVisitId : any;
+    public PatientVitalsByVisitId: any;
 
     id: number;
     Patient: Patient;
     patientId: number;
     visitId: number;
-    public visit : any = {}; 
-    constructor(private Location : Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    public visit: any = {};
+    constructor(private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],
@@ -44,7 +44,7 @@ export class PatientvitalsComponent implements OnInit {
 
     }
 
-  async  ngOnInit() {
+    async  ngOnInit() {
 
         this.currentPatient = this.PatientServiceobj.currentPatient;
         console.log(this.currentPatient);
@@ -58,13 +58,14 @@ export class PatientvitalsComponent implements OnInit {
             this.id = +params['id'];
 
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
-            this.Patient = Patient;});
+                this.Patient = Patient;
+            });
 
 
             console.log(x);
         });
-        
-        let x = this.PatientServiceobj.Getvisit(this.visitid.visitID).subscribe(visit=>
+
+        let x = this.PatientServiceobj.Getvisit(this.visitid.visitID).subscribe(visit =>
             this.visit = visit);
 
     }

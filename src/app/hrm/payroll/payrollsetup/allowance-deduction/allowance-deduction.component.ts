@@ -40,21 +40,21 @@ export class AllowanceDeductionComponent implements OnInit {
 
         await this.payrollSetupService.getallowancedeductions();
         this.allowancededuction = this.payrollSetupService.allowancededuction;
-    
+
         await this.payrollSetupService.getallowancecalculationtypes();
         let allowancecalculationtype = this.payrollSetupService.allowancecalculationtype;
     }
 
     async addAllowanceDeduction() {
-       await this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
+        await this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
         console.log(this.AllowanceorDeductionForm.value);
     }
 
-    updatingAllowanceDeduction(value){
-        this.updatingdeduction = {...value.oldData, ...value.newData};
+    updatingAllowanceDeduction(value) {
+        this.updatingdeduction = { ...value.oldData, ...value.newData };
     }
-    async updateAllowanceDeduction() { 
-       await this.payrollSetupService.updateallowancededuction(this.updatingdeduction);
+    async updateAllowanceDeduction() {
+        await this.payrollSetupService.updateallowancededuction(this.updatingdeduction);
     }
 
     async deleteAllowanceDeduction(value) {

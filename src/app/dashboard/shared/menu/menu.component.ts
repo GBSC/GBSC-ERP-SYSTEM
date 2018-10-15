@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
- 
+
 
 @Component({
     selector: 'app-menu',
@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
 
     ngOnInit() {
     }
-   
+
 
 
 }

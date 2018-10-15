@@ -16,11 +16,11 @@ export class RootComponent implements OnInit {
 
     ngOnInit() {
         this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js'], true)
-        .then(result => {
-            Helpers.setLoading(false);
-            // optional js to be loaded once
-            this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
-        });
+            .then(result => {
+                Helpers.setLoading(false);
+                // optional js to be loaded once
+                this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js'], true);
+            });
     }
 
 }

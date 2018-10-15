@@ -8,9 +8,14 @@ import { HeaderComponent } from '../finance/shared/header/header.component';
 import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompanysetupComponent } from './companysetup/companysetup.component';
-import { FinancialyearComponent } from './financialyear/financialyear.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { VouchertypeComponent } from './vouchertype/vouchertype.component';
+import { FinanceService } from '../core/Services/Finance/finance.service';
+import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
+import { FinancialyearComponent } from './financialSetups/financialyear/financialyear.component';
+import { VouchertypeComponent } from './financialSetups/vouchertype/vouchertype.component';
+import { SubAccountComponent } from './financialSetups/sub-account/sub-account.component';
+import { SecondSubAccountComponent } from './financialSetups/second-sub-account/second-sub-account.component';
+import { DetailAccountComponent } from './financialSetups/detail-account/detail-account.component';
 
 
 @NgModule({
@@ -33,7 +38,12 @@ import { VouchertypeComponent } from './vouchertype/vouchertype.component';
         MenuComponent,
         CompanysetupComponent,
         FinancialyearComponent,
-        VouchertypeComponent
-    ]
+        VouchertypeComponent,
+        MasterAccountComponent,
+        SubAccountComponent,
+        SecondSubAccountComponent,
+        DetailAccountComponent
+    ],
+    providers: [FinanceService]
 })
 export class FinanceModule { }

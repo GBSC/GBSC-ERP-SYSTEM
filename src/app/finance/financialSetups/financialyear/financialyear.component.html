@@ -19,7 +19,7 @@
                       <label for="exampleInputEmail1">
                       Name
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_1" formControlName="Name" readonly placeholder="Select date"/>                     
+                      <input type="text" class="form-control" formControlName="Name" placeholder="Name"/>                     
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -27,14 +27,14 @@
                       <label for="exampleInputEmail1">
                         Start Date
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_2" formControlName="StartDate" readonly placeholder="Select date"/>                    </div>
+                      <input type="date" class="form-control" formControlName="StartDate" placeholder="Select date"/>                    </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         End Date
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_3" formControlName="EndDate" readonly placeholder="Select date"/>                    </div>
+                      <input type="date" class="form-control" formControlName="EndDate" placeholder="Select date"/>                    </div>
                   </div>
                   <div class="col-sm-2">
                       <div class="form-group m-form__group">
@@ -50,7 +50,7 @@
                       </div>
                     </div>
                     <div class="col-sm-1" style="margin-top: 28px;">
-                        <button type="submit" (click)="addFinancialyear(FinancialYearForm.value)" class="btn btn-primary">
+                        <button type="submit" (click)="addFinancialyear()" class="btn btn-primary">
                            Save
                           </button>
                     </div>
@@ -64,7 +64,6 @@
                     <dx-data-grid id="gridContainer" 
                     [dataSource]="financialYear"
                      keyExpr="financialYearId">
-        
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
         

@@ -1,7 +1,7 @@
 export class SecondSubAccount {
-   
-    secondSubAccountCode : number;
-    name : string; 
-    subAccountId : number;
+
+    secondSubAccountCode: number;
+    name: string;
+    subAccountId: number;
 
 }

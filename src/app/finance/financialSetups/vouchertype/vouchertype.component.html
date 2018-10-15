@@ -12,48 +12,42 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                
+                <form [formGroup]="VoucherTypeForm">
                 <div class="form-group row">
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                           Voucher Code
                       </label>
-                      <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
+                      <input type="email" class="form-control m-input" formControlName="VoucherCode" placeholder="001">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Short Name
+                        Name
                       </label>
-                      <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="JV">
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Full Name
-                      </label>
-                      <input type="email" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Journal Voucher">
+                      <input type="email" class="form-control m-input" formControlName="Name" placeholder="Name">
                     </div>
                   </div>
                  
                     <div class="col-sm-3" style="margin-top: 28px;">
-                        <button type="submit" class="btn btn-primary">
-                            Add New
+                        <button type="submit" (click)="addVouchertype()" class="btn btn-primary">
+                            Save
                           </button>
                     </div>
                 </div>
+                </form>
+
                 <div class="form-group row">
                     <div class="m--space-07"></div>
   
   
-                    <dx-data-grid id="gridContainer"  keyExpr="" [dataSource]="" keyExpr="" (onRowInserted)="addLanguage($event)" (onRowUpdated)="EditLanguage($event)"
-                    (onRowRemoved)="deleteLanguage($event)">
-                    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="False" [useIcons]="true">
-                        <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                        </dxo-popup>
+                    <dx-data-grid id="gridContainer"  keyExpr="voucherTypeId" [dataSource]="voucherType" 
+                   (onRowUpdating)="updatingVouchertype($event)"
+                   (onRowUpdated)="updateVouchertype()"
+                    (onRowRemoved)="deleteVouchertype($event)">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                       </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -63,9 +57,8 @@
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
         
-                    <dxi-column dataField="Voucher Code" caption="Voucher Code"></dxi-column>
-                    <dxi-column dataField="Short Name" caption="Short Name"></dxi-column>        
-                    <dxi-column dataField="Full Name" caption="Full Name"></dxi-column>
+                    <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>
+                    <dxi-column dataField="name" caption="Name"></dxi-column>        
                   </dx-data-grid>
                 </div>
   

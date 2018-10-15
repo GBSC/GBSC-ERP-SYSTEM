@@ -1,6 +1,6 @@
 export class VoucherType {
-   
-    voucherCode : number;
-    name : string; 
+
+    voucherCode: number;
+    name: string;
 
 }

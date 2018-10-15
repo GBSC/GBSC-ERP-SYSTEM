@@ -1,6 +1,7 @@
 export class DetailAccount {
-   
-    detailAccountCode : number;
-    name : string; 
+
+    detailAccountCode: number;
+    name: string;
+    SecondSubAccountId : number;
 
 }

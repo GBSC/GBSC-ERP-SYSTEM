@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
-
+import { ActivatedRoute, Router } from '@angular/router';
+declare let mLayout: any;
 
 
 @Component({
@@ -10,11 +11,16 @@ import { Helpers } from '../../../helpers';
 })
 export class MenuComponent implements OnInit {
 
-    constructor() { }
+    constructor(private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
     }
 
+    ngAfterViewInit() {
+
+        mLayout.initAside();
+
+    }
 
 
 }

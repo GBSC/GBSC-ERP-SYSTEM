@@ -21,7 +21,7 @@ export class IssuanceViewComponent implements OnInit {
     }
 
     GetSalesOrderDetails(value) {
-        this.PharmacyService.GetSalesOrderDetailsByCode(value.data.salesOrderCode).subscribe((res: SalesOrder) => this.DetailSO = res);
+        //this.PharmacyService.GetSalesOrderDetailsByCode(value.data.salesOrderCode).subscribe((res: SalesOrder) => this.DetailSO = res);
     }
 
 }

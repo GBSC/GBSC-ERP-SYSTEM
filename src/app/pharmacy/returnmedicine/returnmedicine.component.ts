@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
+import { SalesOrderItem } from '../../core/Models/Pharmacy/SalesOrderItem';
+import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
+import { SalesReturnItem } from '../../core/Models/Pharmacy/SalesReturnItem';
 
 @Component({
     selector: 'app-returnmedicine',
@@ -9,118 +13,95 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ReturnmedicineComponent implements OnInit {
 
-    private ReturnReason: any;
-    private SalesReturn: any;
-    public issuance: any;
     private ReturnMedicineForm: FormGroup;
-    private AllCustomers: any;
-    private customerdata: any = {};
+    private ReturnMedicineDetailsForm : FormGroup;
 
+    private ReturnReasons: any;
+    private SelectedReturnReason : any;
+    private Customers: any;
+    private SelectedCustomer: any;
+    private SelectedSalesOrder : SalesOrder;
+    private SelectedSalesOrderDetails : SalesOrderItem[] = [];
+    private SalesReturnDetails : SalesReturnItem[] = [];
+    private SelectednventoryItemIDs : number[] = [];
+    private SelectedInventoryItems : InventoryItem[] = [];
 
+    private ReturnAmount : number = 0;
+    private TotalReturnAmount : number = 0;
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
-
-            CRN: [''],
+            MRN: [''],
             PatientName: [''],
             SpouseName: [''],
             Department: [''],
             Remarks: [''],
-
-            ReturnNo: [''],
+            ReturnNumber: [''],
             ReturnDate: [''],
-            SlipNo: [''],
-            // InventoryItems : ['']
+            SalesOrderNumber: [''],
+            TotalReturnAmount: [''],
+            ReturnReasonId: [''],
+            SalesOrderId : [''],
+            SalesReturnItems: this.FormBuilder.array([])
+        });
 
+        this.ReturnMedicineDetailsForm = this.FormBuilder.group({
+            ItemCode : [''],
+            Description : [''],
+            PackType : [''],
+            StockQuantity : [''],
+            PerUnit : [''],
+            Rate : [''],
+            PurchaseQuantity : [''],
+            ReturnQuantity : [''],
+            PurchaseAmount : [''],
+            ReturnAmount : ['']
         });
 
     }
 
-    async ngOnInit() {
-        this.ReturnReason = await this.PharmacyService.GetReturnReasons();
-        this.SalesReturn = await this.PharmacyService.GetSalesReturns().toPromise();
-
-        this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
-
-        this.PharmacyService.GetInventoryItems().subscribe(result => {
-            this.issuance = result;
-            console.log(this.issuance);
-        });
+    ngOnInit() {
+        this.PharmacyService.GetReturnReasons().subscribe(res => { this.ReturnReasons = res; console.log(this.ReturnReasons) });
+        this.PharmacyService.getCustomers().subscribe(result => { this.Customers = result; console.log(this.Customers); });
     }
 
-    getcellvalueForCustomer(value) {
+    GetSelectedCustomerDetails(value) {
+        console.log("CustomerValue", value);
+        this.SelectedCustomer = this.Customers.find(a => a.crn == value);
+        console.log("SelectedCustomer", this.SelectedCustomer);
+    }
+
+    GetSelectedReturnReasonDetails(value) {
+        console.log("ReasonValue", value);
+        this.SelectedReturnReason = this.ReturnReasons.find(a => a.returnReasonId == value);
+        console.log("SelectedReturnReason", this.SelectedReturnReason);
+    }
+
+    async GetSelectedSalesOrderDetails(value, event) {
         console.log(value);
-        this.customerdata = this.AllCustomers.find(x => x.crn == value);
-        console.log(this.customerdata);
-
-    }
-
-
-
-    async AddSalesReturn(value) {
-        return await this.PharmacyService.AddSalesReturn(value);
-    }
-
-    async UpdateSalesReturn(value) {
-        return await this.PharmacyService.UpdateSalesReturn(value.Key);
-    }
-
-    async DeleteSalesReturn(value) {
-        return await this.PharmacyService.DeleteSalesReturn(value.Key.SalesReturnId);
-    }
-
-
-    public vae: any;
-    onsubmit(value) {
-        this.vae = value;
-        console.log(value);
-    }
-
-    keyPress(event: any) {
-        console.log(event)
-    }
-
-    onKeydown(value, event) {
         if (event.key === "Enter") {
-            console.log(value);
-
+            this.SelectedSalesOrder = await this.PharmacyService.GetSalesOrderByCodeAsync(value);
+            console.log("SelectedSalesOrder", this.SelectedSalesOrder);
+            //this.SelectedSalesOrderDetails = this.SelectedSalesOrder.salesOrderItems;
+            //this.SelectedSalesOrderDetails = this.PharmacyService.GetSalesOrderItemsByCodeAsync(this.SelectedSalesOrder.salesOrderId);
+            this.PharmacyService.GetSalesOrderItemsByCode(this.SelectedSalesOrder.salesOrderId).subscribe((res : SalesOrderItem[]) => { this.SelectedSalesOrderDetails = res; console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails); });
+            //console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails);
         }
     }
 
-    public rr = [];
-    public rrrr = [];
-    AddIssuance(value) {
-        console.log(value);
-        let x = value.data;
-        this.rr.push(x);
-
-        console.log(this.rr)
-    }
-
-    addfinal() {
-        this.ReturnMedicineForm.value.InventoryItems = this.rr;
-        console.log(this.ReturnMedicineForm.value);
-    }
-
-
-    // public val : any;
-    // public currentSelected = {}
-    // setAreaValue(rowData: any,value : any) : void {
-    //     this.val = value;
-    //     console.log(value);
-
-    //   //  console.log(this.ovais);
-    //             // console.log(this.aaa);
-    //             // let dddd = this.ovais.find(t => t.itemCode === value);
-    //             // console.log(dddd)
-    //     // this.aaa = this.xcx.find(x=> x.itemCode == value)
-    //    //  console.log(this.aaa.find(a => a.itemCode === value));
-
+    // CalculateReturnAmount(rate, quantity) {
+    //     this.ReturnAmount = Number.parseInt(quantity) * Number.parseFloat(rate);
     // }
 
+    CreateSalesReturnDetails(SalesReturnDetail) {
+        console.log("FormValue", SalesReturnDetail);
+        console.log("ReturnMedicineDetailsForm", this.ReturnMedicineDetailsForm);
 
-    setAreaValue(rowData: any, value: any): void {
-        console.log(value);
     }
+
+    AddSalesReturn() {
+        console.log("ReturnMedicineForm", this.ReturnMedicineForm);
+    }
+
 }

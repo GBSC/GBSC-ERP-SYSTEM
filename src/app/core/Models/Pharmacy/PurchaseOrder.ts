@@ -15,7 +15,7 @@ export interface PurchaseOrder {
     VendorBillNumber: string,
     BillDate: Date,
     Origin: string,
-    Currency: string,
+    CurrencyId: number,
     ExchangeRate: number,
     Remarks: string,
     Status: boolean,

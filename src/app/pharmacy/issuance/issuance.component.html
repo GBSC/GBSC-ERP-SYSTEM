@@ -137,7 +137,7 @@
                                                     <td><input class="form-control m-input m-input--solid" formControlName="PackQuantity"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderUnitQuantity"></td>
+                                                            formControlName="OrderUnitQuantity" (keypress)="CalculatenetAmount()" ></td>
                                                     <td><input class="form-control m-input m-input--solid" formControlName="UnitPrice"
                                                             [value]="data?.unitPrice || ''" disabled></td>
                                                     <td><input class="form-control m-input m-input--solid" formControlName="ItemTotalAmount"

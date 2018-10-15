@@ -63,6 +63,7 @@ export class IssuanceComponent implements OnInit {
             OrderUnitQuantity: [''],
             ItemTotalAmount: [''],
             StockQuantity: [''],
+            BasicAmount: ['']
         });
 
     }
@@ -99,7 +100,9 @@ export class IssuanceComponent implements OnInit {
     async DeleteSalesOrder(value) {
         return await this.PharmacyService.DeleteSalesOrder(value.Key.SalesOrderId).toPromise();
     }
-    public issuanceformvalue: any
+
+    public issuanceformvalue: any;
+
     onsubmit(value) {
         this.IssuanceForm.value.CRN = this.customerdata.crn || '';
         this.IssuanceForm.value.PatientName = this.customerdata.name || '';
@@ -108,9 +111,8 @@ export class IssuanceComponent implements OnInit {
         console.log(value);
     }
 
-
-
     public finalstockquantity: any;
+
     onsubmitInventeryDetail(value) {
         console.log(this.data);
         let data = value;
@@ -131,6 +133,7 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.StockQuantity = this.data.inventory.stockQuantity;
         this.finalstockquantity = this.InventoryItemForm.value.StockQuantity - this.InventoryItemForm.value.OrderUnitQuantity;
         this.InventoryItemForm.value.StockQuantity = this.finalstockquantity;
+        this.InventoryItemForm.value.BasicAmount = this.data.inventoryItemId.costPrice * this.InventoryItemForm.value.OrderUnitQuantity;
         console.log(data);
 
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
@@ -164,16 +167,13 @@ export class IssuanceComponent implements OnInit {
         // this.StockQuantityarraydata.splice(index,1);
         //this.Invs = this.Invs.find(item.inventoryId);
         //this.Invs = this.Invs.splice(index, 1);
-        console.log(item)
+        console.log(item);
         console.log(value);
         this.total -= Number.parseInt(value);
     }
 
     addfinal() {
-
-
         console.log(this.finalstockquantity);
-
 
         this.arraydata.filter(t => {
             delete t.Description;
@@ -203,9 +203,6 @@ export class IssuanceComponent implements OnInit {
         this.IssuanceForm.reset();
         this.arraydata.length = 0;
         this.total = 0;
-
-
-
     }
 
 

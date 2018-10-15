@@ -61,6 +61,7 @@ export class InventoryComponent implements OnInit {
         console.log(this.InventoryItems);
         this.DataSource = this.InventoryItems;
         var a: any = this.InventoryItems;
+        console.log(a);
         this.UnassignedItems = a.filter(a => a.inventory === null);
         console.log(this.UnassignedItems);
     }

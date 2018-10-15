@@ -21,6 +21,10 @@ import { TvopuComponent } from './tvopu/tvopu.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { ProtocolComponent } from './protocol/protocol.component';
 import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
+import { EmbryologyComponent } from './embryology/embryology.component';
+import { InsemenationComponent } from './insemenation/insemenation.component';
+import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
+import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -49,6 +53,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'medicine', component: MedicineComponent },
             { path: 'treatment-type', component: TreatmenttypeComponent },
             { path: 'protocol', component: ProtocolComponent }
+            { path: 'embryology', component: EmbryologyComponent },
+            { path: 'insemenation', component: InsemenationComponent },
+            { path: 'embryologythawing', component: EmbryologyThawingComponent },
+            { path: 'embryofreeze', component: EmbryoFreezeComponent },
 
         ]
     }

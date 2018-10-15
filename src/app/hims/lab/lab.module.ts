@@ -31,6 +31,10 @@ import { TvopuComponent } from './tvopu/tvopu.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
 import { ProtocolComponent } from './protocol/protocol.component';
+import { EmbryologyComponent } from './embryology/embryology.component';
+import { InsemenationComponent } from './insemenation/insemenation.component';
+import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
+import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
 
 
 
@@ -69,6 +73,10 @@ import { ProtocolComponent } from './protocol/protocol.component';
         MedicineComponent,
         TreatmenttypeComponent,
         ProtocolComponent
+        EmbryologyComponent,
+        InsemenationComponent,
+        EmbryoFreezeComponent,
+        EmbryologyThawingComponent,
     ]
 })
 export class LabModule { }

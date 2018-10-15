@@ -21,6 +21,7 @@ export class DetailAccountComponent implements OnInit {
 
       this.DetailAccountForm = this.fb.group({
         DetailAccountCode: [''],
+        Name: [''], 
         OpeningBalance: [''], 
         SecondSubAccountId: [''] 
       });

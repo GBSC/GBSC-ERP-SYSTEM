@@ -12,14 +12,14 @@
          <div class="m-portlet__body">
            <div class="m-section">
              <div class="m-section__content">
-              <form [formGroup]="MasterAccountForm">
+              <form [formGroup]="SubAccountForm">
               <div class="form-group row">
                 <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
-                        Master Account Code
+                       Sub Account Code
                     </label>
-                    <input type="text" class="form-control m-input" formControlName="MasterAccountCode" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
+                    <input type="text" class="form-control m-input" formControlName="SubAccountCode" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
                   </div>
                 </div>
                 <div class="col-sm-3">
@@ -27,12 +27,24 @@
                     <label for="exampleInputEmail1">
                       Name
                     </label>
-                    <input type="email" class="form-control m-input" formControlName="Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="JV">
+                    <input type="email" class="form-control m-input" formControlName="Name" placeholder="Name">
                   </div>
                 </div>
                
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                        Master Account
+                    </label>
+                    <select class="form-control m-input" formControlName="MasterAccountId">
+                        <option value="" disabled selected>-- Select Master Account --</option>
+                        <option *ngFor="let subAccount of masterAccount" [value]="subAccount.masterAccountId">{{subAccount.name}}</option>
+                      </select>
+                  </div>
+                </div>
+
                   <div class="col-sm-3" style="margin-top: 28px;">
-                      <button type="submit" (click)="addMasteraccount(MasterAccountForm.value)" class="btn btn-primary">
+                      <button type="submit" (click)="addSubaccount()" class="btn btn-primary">
                           Save
                         </button>
                   </div>
@@ -43,11 +55,10 @@
                   <div class="m--space-07"></div>
 
 
-                  <dx-data-grid id="gridContainer"  keyExpr="voucherTypeId" [dataSource]="voucherType" 
-                  (onRowInserted)="addVouchertype($event)" 
-                  (onRowUpdating)="updatingVouchertype($event)"
-                  (onRowUpdated)="updateVouchertype()"
-                  (onRowRemoved)="deleteVouchertype($event)">
+                  <dx-data-grid id="gridContainer"  keyExpr="subAccountId" [dataSource]="subAccount" 
+                  (onRowUpdating)="updatingSubaccount($event)"
+                  (onRowUpdated)="updateSubaccount()"
+                  (onRowRemoved)="deleteSubaccount($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="False" [useIcons]="true">
                       <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                       </dxo-popup>
@@ -60,8 +71,12 @@
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager>
       
-                  <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>
-                  <dxi-column dataField="name" caption="Short Name"></dxi-column>        
+                  <dxi-column dataField="subAccountCode" caption="SubAccount Code"></dxi-column>
+                  <dxi-column dataField="name" caption="Name"></dxi-column>        
+                  <dxi-column dataField="masterAccountId" caption="Master Account">
+                    <dxo-lookup [dataSource]="masterAccount" displayExpr="name" valueExpr="masterAccountId">
+                    </dxo-lookup>
+                  </dxi-column>
                 </dx-data-grid>
               </div>
 

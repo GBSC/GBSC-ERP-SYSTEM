@@ -121,27 +121,27 @@ export class FinanceService {
 
     async getSubAccounts() {
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSubAccountss`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSubAccounts`).toPromise();
     }
 
-    async addSubAccounts(subAccount: SubAccount) {
+    async addSubAccount(subAccount: SubAccount) {
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddSubAccounts`, subAccount).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddSubAccount`, subAccount).toPromise();
     }
 
-    async updateSubAccounts(subAccount: SubAccount) {
+    async updateSubAccount(subAccount: SubAccount) {
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateSubAccounts`, subAccount).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateSubAccount`, subAccount).toPromise();
 
     }
 
-    async DeleteSubAccounts(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteSubAccounts/${id}`).toPromise();
+    async DeleteSubAccount(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteSubAccount/${id}`).toPromise();
     }
 
     async getSecondSubAccounts() {
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSecondSubAccountss`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSecondSubAccounts`).toPromise();
     }
 
     async addSecondSubAccount(secondSubAccount: SecondSubAccount) {

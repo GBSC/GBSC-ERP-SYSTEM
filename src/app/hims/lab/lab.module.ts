@@ -28,6 +28,9 @@ import { EmbryologysectionComponent } from './embryologysection/embryologysectio
 import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
 import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
 import { TvopuComponent } from './tvopu/tvopu.component';
+import { MedicineComponent } from './medicine/medicine.component';
+import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
+import { ProtocolComponent } from './protocol/protocol.component';
 
 
 
@@ -63,6 +66,9 @@ import { TvopuComponent } from './tvopu/tvopu.component';
         EmbryologycodesComponent,
         EmbryologistsComponent,
         TvopuComponent,
+        MedicineComponent,
+        TreatmenttypeComponent,
+        ProtocolComponent
     ]
 })
 export class LabModule { }

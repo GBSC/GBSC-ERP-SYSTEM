@@ -13,56 +13,16 @@
             <form [formGroup]="bioChemistryForm">
                 <div class="m-section">
                     <div class="m-section__content">
+                      
                       <div class="row">
-                        <div class="col-sm-2">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              MRN No.
-                            </label>
-                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{patient?.mrn}}">
-                          </div>
-                        </div>
-                        <div class="col-sm-2">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Date
-                            </label>
-                            <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
-                          </div>
-                        </div>
-                        <div class="col-sm-2">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              LMP
-                            </label>
-                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="LMP">
-                          </div>
-                        </div>
-                        <div class="col-sm-2">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Days
-                            </label>
-                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="Days">
-                          </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="m-form__group form-group">
-                            <div class="m-checkbox-list">
-                              <label>
-                                Select Rendom
-                              </label>
-                              <label class="m-checkbox m-checkbox--solid m-checkbox--state-brand">
-                                <input type="checkbox" formControlName="IsRandom"> Rendom
-                                <span></span>
-                              </label>
-        
+                          <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  MRN No.
+                                </label>
+                                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{patient?.mrn}}">
+                              </div>
                             </div>
-        
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
                         <div class="col-sm-4">
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
@@ -80,90 +40,222 @@
                             <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
                           </div>
                         </div>
-                        <div class="col-sm-4">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Age
-                            </label>
-                            <input type="text" class="form-control" placeholder="{{patient?.age}}" />
-                          </div>
-                        </div>
+                        
                       </div>
                       <div class="row">
-                        <div class="col-sm-4">
-                          <div class="form-group m-form__group">
-                            <label for="exampleSelect1">
-                              Doctor
+                          <div class="col-sm-2"><div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Cycle No.
                             </label>
-                            <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId">
-                            </dx-select-box>
-                            <!-- <select class="form-control m-input" id="exampleSelect1">
-                            <option *ngFor="let consultant of consultants" value="{{consultant.consultantId}}">
-                              {{consultant.name}}
-                            </option>
-                          </select> -->
-                          </div>
+                            <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MRN-00215">
+                          </div></div>
+                          <div class="col-sm-2"><div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                Treatment#
+                              </label>
+                              <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Days-19">
+                            </div></div>
+                            <div class="col-sm-2"><div class="form-group m-form__group">
+                                <label for="exampleSelect1">
+                                 Treatment Type
+                                </label>
+                                <select class="form-control m-input" id="exampleSelect1">
+                                  <option>
+                                    Ovulation Introduction
+                                  </option>
+                                  <option>
+                                   Option 2
+                                  </option>
+                                  <option>
+                                    Option 3
+                                  </option>
+                                </select>
+                              </div></div>
+                              <div class="col-sm-3">
+                                  <div class="form-group m-form__group">
+                                    <label for="exampleSelect1">
+                                     Consultant
+                                    </label>
+                                    <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId">
+                                    </dx-select-box>
+                                  </div>
+                                </div>
+                        
+                            
+                            <div class="col-sm-3"><div class="form-group m-form__group">
+                              <label for="exampleSelect1">
+                                  Embryologist
+                              </label>
+                              <select class="form-control m-input" id="exampleSelect1">
+                                <option>
+                                SA
+                                </option>
+                                <option>
+                                 PA
+                                </option>
+                              </select>
+                            </div></div>
                         </div>
-                        <div class="col-sm-4">
+
+
+
+                      <div class="row">
+                        
+                        <div class="col-sm-2">
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
-                              Other
+                              Start Time
+                            </label>
+                            <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Finish Time
+                            </label>
+                            <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
+                          </div>
+                        </div>
+                        <div class="col-sm-3"><div class="form-group m-form__group">
+                            <label for="exampleSelect1">
+                             Status
+                            </label>
+                            <select class="form-control m-input" id="exampleSelect1">
+                              <option>
+                               Active
+                              </option>
+                              <option>
+                               InActive
+                              </option>
+                            </select>
+                          </div></div>
+                          <div class="col-sm-5">
+                              <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  Remarks
+                                </label>
+                                <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
+                              </div>
+                            </div>
+                        
+                      </div>
+                      <div class="row">
+                       
+                        <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Pickup Count
                             </label>
                             <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
                           </div>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                           <div class="form-group m-form__group">
                             <label for="exampleSelect1">
-                              Gender
+                               Total Pickup Count
                             </label>
                             <input type="text" class="form-control m-input" placeholder="{{patient?.gender}}">
                           </div>
                         </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <h4>Biochemistry Details</h4>
-                          <dx-data-grid id="gridContainer" [dataSource]="[]" keyExpr="bioChemistryTestDetailId" [allowColumnReordering]="true" [showBorders]="true"
-                          (onRowInserted)="addBioChemistryTestDetail($event)"
-                          (onRowUpdated)="updateBioChemistryTestDetail($event)">
-        
-                            <dxo-paging [enabled]="true"></dxo-paging>
-                            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-                            </dxo-editing>
-        
-                            <dxi-column dataField="bioChemistryTestId" caption="Discription of Test">
-                              <dxo-lookup [dataSource]="tests" displayExpr="description" valueExpr="bioChemistryTestId">
-                              </dxo-lookup>
-                            </dxi-column>
-                            <dxi-column dataField="testUnitId" caption="Unit">
-                              <dxo-lookup [dataSource]="units" displayExpr="unit" valueExpr="testUnitId">
-                              </dxo-lookup>
-                            </dxi-column>
-                            <dxi-column dataField="logicalOperator" caption="Logical Operator" [width]="125">
-                            </dxi-column>
-                            <dxi-column dataField="result"></dxi-column>
-                            <dxi-column dataField="isRechecked" [width]="130" dataType="boolean"></dxi-column>
-                            <dxi-column dataField="remarks" [width]="220"></dxi-column>
-        
-                          </dx-data-grid>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-10">
-                          <div class="form-group m-form__group">
-                            <label for="exampleTextarea col-sm-3">
-                              Referance Range
-                            </label>
-                            <textarea class="form-control m-input col-sm-9" id="exampleTextarea" rows="3"></textarea>
+                        <div class="col-sm-3">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                  Pickup Date
+                              </label>
+                              <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
+                            </div>
                           </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <h4>Folicile Aspirated:</h4>
+                          <div class="row" style="margin-top: 20px;">
+                              <div class="col-sm-6">
+                              <div class="form-group m-form__group row">
+                                <label class="col-form-label col-lg-3">
+                                    Left:
+                                </label>
+                                <div class="col-sm-8">                               
+                                    <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group m-form__group row">
+                                    <label class="col-form-label col-lg-3">
+                                        Right:
+                                    </label>
+                                    <div class="col-sm-8">                               
+                                        <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                          <button type="button" (click)="submitForm(bioChemistryForm.value)" class="btn btn-primary">
-                            Submit
-                          </button>
+                        <div class="col-sm-6">
+                            <h4>Oocite Collected:</h4>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-sm-5">
+                                <div class="form-group m-form__group row">
+                                  <label class="col-form-label col-lg-3">
+                                      Left:
+                                  </label>
+                                  <div class="col-sm-8">                               
+                                      <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-5">
+                                  <div class="form-group m-form__group row">
+                                      <label class="col-form-label col-lg-3">
+                                          Right:
+                                      </label>
+                                      <div class="col-sm-8">                               
+                                          <input type="text" class="form-control m-input" aria-describedby="emailHelp" placeholder="Others">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" (click)="submitForm(bioChemistryForm.value)" class="btn btn-primary">
+                                      Submit
+                                    </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-7">
+                            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                                <div class="m-demo__preview m-demo__preview--btn">
+                                  <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                      Assesment
+                                    </button>
+                                  <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                                      Freezing
+                                  </button>
+                                  <button type="button" class="btn btn-success m-btn m-btn--custom">
+                                      Thaw
+                                  </button>
+                                  <button type="button" class="btn btn-info m-btn m-btn--custom">
+                                      PGS
+                                  </button>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                                <div class="m-demo__preview m-demo__preview--btn">
+                                  <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                                      Bio-Chemistry
+                                  </button>
+                                  <button type="button" class="btn btn-success m-btn m-btn--custom">
+                                      Insemination
+                                  </button>
+                                </div>
+                              </div>
                         </div>
                       </div>
                     </div>

@@ -8,34 +8,33 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class AllowanceComponent implements OnInit {
     public allowance: any;
-    Allowance: any;
+    public allowanceTypes: any;
+    public Allowance: any;
+    public allowanceDeductions: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getallowances();
-        this.allowance = this.payrollsetupservice.allowance;
+        this.allowance = await this.payrollsetupservice.getAllowances();
 
-        await this.payrollsetupservice.getallowancedeductions();
-        let allowancededuction = this.payrollsetupservice.allowancededuction;
+        this.allowanceDeductions = await this.payrollsetupservice.getAllowanceDeductions();
 
-        await this.payrollsetupservice.getallowancecalculationtypes();
-        let allowancetype = this.payrollsetupservice.allowancecalculationtype;
+        this.allowanceTypes = await this.payrollsetupservice.getAllowanceCalculationTypes();
     }
 
     async addallowance(value) {
-        await this.payrollsetupservice.addallowance(value.data);
+        await this.payrollsetupservice.addAllowance(value.data);
     }
 
-    async updatingallowance(value) {
+    updatingallowance(value) {
         this.Allowance = { ...value.oldData, ...value.newData };
     }
     async updateallowance() {
-        await this.payrollsetupservice.updateallowance(this.Allowance);
+        await this.payrollsetupservice.updateAllowance(this.Allowance);
     }
 
     async deleteallowance(value) {
-        await this.payrollsetupservice.Deleteallowance(value.key);
+        await this.payrollsetupservice.deleteAllowance(value.key);
     }
 
 }

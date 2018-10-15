@@ -9,24 +9,23 @@ import { PayrollSetupService } from '../../../../core';
 export class FrequencyComponent implements OnInit {
 
     public Frequency: any;
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getfrequencies();
-        this.Frequency = this.payrollsetupservice.frequency;
+        this.Frequency = await this.payrollsetupservice.getFrequencies();
     }
 
     async addFrequency(value) {
-        await this.payrollsetupservice.addfrequency(value.data);
+        await this.payrollsetupservice.addFrequency(value.data);
     }
 
     async updateFrequency(value) {
-        console.log(value);
-        await this.payrollsetupservice.updatefrequency(value);
+        await this.payrollsetupservice.updateFrequency(value);
     }
 
     async deleteFrequency(value) {
-        await this.payrollsetupservice.Deletefrequency(value.key);
+        await this.payrollsetupservice.deleteFrequency(value.key);
     }
 
 }

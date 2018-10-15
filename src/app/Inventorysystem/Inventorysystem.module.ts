@@ -56,6 +56,8 @@ import { SalesInvoiceComponent } from './Sales/sales-invoice/sales-invoice.compo
 import { SalesOrderItemComponent } from './Sales/sales-order-item/sales-order-item.component';
 import { AreaComponent } from './Setup/area/area.component';
 import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
     imports: [
@@ -121,6 +123,7 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent
-    ]
+    ],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
 })
 export class InventorysystemModule { }

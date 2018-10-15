@@ -7,32 +7,30 @@ import { LeaveSetupService, EmployeeService } from '../../../../core';
     styleUrls: ['./leaveapprover.component.scss']
 })
 export class LeaveapproverComponent implements OnInit {
+    public employees: any;
     public leaveapprover: any;
 
     constructor(public leavesetupservice: LeaveSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
 
-        await this.leavesetupservice.getleaveapprover();
-        this.leaveapprover = this.leavesetupservice.leaveapprover
-        console.log(this.leaveapprover);
+        this.leaveapprover = await this.leavesetupservice.getLeaveApprovers();
 
-        await this.employeeservice.GetAllEmployees();
-        let employe = this.employeeservice.employeereg;
+        this.employees = await this.employeeservice.GetAllEmployees();
 
     }
 
 
     async addapprover(value) {
-        this.leavesetupservice.addleaveapprover(value.data);
+        this.leavesetupservice.addLeaveApprover(value.data);
     }
 
     async updateapprover(value) {
-        this.leavesetupservice.updateleaveapprover(value);
+        this.leavesetupservice.updateLeaveApprover(value);
 
     }
 
     async deleteapprover(value) {
-        this.leavesetupservice.Deleteleaveapprover(value.key);
+        this.leavesetupservice.DeleteLeaveApprover(value.key);
     }
 }

@@ -8,27 +8,27 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class TaxBenefitComponent implements OnInit {
 
+    public taxYear: any;
+    public benefit: any;
     public taxBenefit: any;
-    Updatingbenefit: any;
+    public payrollType: any;
+    public Updatingbenefit: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.gettaxbenefits();
-        this.taxBenefit = this.payrollsetupservice.taxbenefit;
 
-        await this.payrollsetupservice.getpayrolltypes();
-        let Payrlltype = this.payrollsetupservice.payrolltype;
+        this.taxBenefit = await this.payrollsetupservice.getTaxBenefits();
 
-        await this.payrollsetupservice.gettaxyears();
-        let taxyear = this.payrollsetupservice.taxyear;
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
 
-        await this.payrollsetupservice.getbenefits();
-        let benefit = this.payrollsetupservice.benefits;
+        this.taxYear = await this.payrollsetupservice.gettTaxYears();
+
+        this.benefit = await this.payrollsetupservice.getBenefits();
     }
 
     async addTaxBenefit(value) {
-        await this.payrollsetupservice.addtaxbenefit(value.data);
+        await this.payrollsetupservice.addTaxBenefit(value.data);
     }
 
     updatingBenefit(value) {
@@ -36,11 +36,11 @@ export class TaxBenefitComponent implements OnInit {
     }
 
     async updateTaxBenefit() {
-        await this.payrollsetupservice.updatetaxbenefit(this.Updatingbenefit);
+        await this.payrollsetupservice.updateTaxBenefit(this.Updatingbenefit);
     }
 
     async deleteTaxBenefit(value) {
-        await this.payrollsetupservice.Deletetaxbenefit(value.key);
+        await this.payrollsetupservice.DeleteTaxBenefit(value.key);
     }
 
 }

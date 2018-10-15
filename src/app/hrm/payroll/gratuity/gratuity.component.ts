@@ -11,7 +11,12 @@ import { GratuitySlab } from '../../../core/Models/HRM/gratuitySlab';
 })
 export class GratuityComponent implements OnInit {
 
-    public Gratuity: any;
+    public gratuity: any;
+    public employees: any;
+    public gratuityTypes: any;
+    public leavingReasons: any;
+    public fundSetups: any;
+    public gratuitySlabs: any;
     private updatingGratuity: any;
     private gratuityslab: GratuitySlabGratuity[];
 
@@ -36,40 +41,29 @@ export class GratuityComponent implements OnInit {
         });
 
 
-        await this.payrollservice.getgratuities();
-        this.Gratuity = this.payrollservice.getGratuity;
+        this.gratuity = await this.payrollservice.getGratuities();
 
-        await this.payrollsetupservice.getleavingreasons();
-        let leavingReason = this.payrollsetupservice.leavingreason;
+        this.leavingReasons = await this.payrollsetupservice.getLeavingReasons();
 
-        await this.payrollsetupservice.getgratuityslabs();
-        let gratuitySlaB = this.payrollsetupservice.gratuityslab;
+        this.gratuitySlabs = await this.payrollsetupservice.getGratuitySlabs();
 
-        await this.payrollsetupservice.getgratuitytypes();
-        let gratuityType = this.payrollsetupservice.gratuitytype;
+        this.gratuityTypes = await this.payrollsetupservice.getGratuityTypes();
 
-        await this.payrollsetupservice.getfundsetups();
-        let fundSetup = this.payrollsetupservice.fundsetup;
+        this.fundSetups = await this.payrollsetupservice.getFundSetups();
 
-        await this.Employeeservice.GetAllEmployees();
-        let user = this.Employeeservice.employeereg;
+        this.employees = await this.Employeeservice.GetAllEmployees();
     }
 
     async gratuitySlab(value) {
         let data = value.data;
         this.gratuityslab.push(data);
-        console.log(this.gratuityslab);
     }
 
     async addGratuity(value) {
-        console.log(value);
         let pushslab = new GratuitySlab();
         pushslab = { ...pushslab, ...value };
-        console.log(this.gratuityslab);
         pushslab.gratuitySlabGratuities = this.gratuityslab;
-        console.log(pushslab);
-        let x = await this.payrollservice.addgratuity(pushslab);
-        console.log(x);
+        let x = await this.payrollservice.addGratuity(pushslab);
         this.GratuityForm.reset();
 
     }
@@ -78,10 +72,10 @@ export class GratuityComponent implements OnInit {
         this.updatingGratuity = { ...value.oldData, ...value.newData };
     }
     async updateGratuity() {
-        await this.payrollservice.updategratuity(this.updatingGratuity);
+        await this.payrollservice.updateGratuity(this.updatingGratuity);
     }
 
     async deleteGratuity(value) {
-        await this.payrollservice.Deletegratuity(value.key);
+        await this.payrollservice.deleteGratuity(value.key);
     }
 }

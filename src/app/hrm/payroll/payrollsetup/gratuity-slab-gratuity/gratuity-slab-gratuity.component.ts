@@ -8,31 +8,27 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class GratuitySlabGratuityComponent implements OnInit {
 
+    public gratuitySlab: any;
     public gratuitySlabGratuity: any;
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getgratuityslabGratuities();
-        this.gratuitySlabGratuity = this.payrollsetupservice.gratuityslabGratuity;
+        this.gratuitySlabGratuity = await this.payrollsetupservice.getGratuitySlabGratuities();
 
-        await this.payrollsetupservice.getgratuityslabs();
-        let gratuitySlab = this.payrollsetupservice.gratuityslab;
-
-        // await this.payrollsetupservice.getgratuities();
-        // let Gratuity = this.payrollsetupservice.gratuity;
+        this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
     }
 
     async addGratuitySlabGratuity(value) {
-        await this.payrollsetupservice.addgratuityslabGratuity(value.data);
+        await this.payrollsetupservice.addGratuitySlabGratuity(value.data);
     }
 
     async updateGratuitySlabGratuity(value) {
-        console.log(value);
-        await this.payrollsetupservice.updategratuityslabGratuity(value);
+        await this.payrollsetupservice.updateGratuitySlabGratuity(value);
     }
 
     async deleteGratuitySlabGratuity(value) {
-        await this.payrollsetupservice.DeletegratuityslabGratuity(value.key);
+        await this.payrollsetupservice.deleteGratuitySlabGratuity(value.key);
     }
 
 }

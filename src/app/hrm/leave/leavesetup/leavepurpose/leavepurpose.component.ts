@@ -12,27 +12,20 @@ export class LeavepurposeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getleavepurpose();
-        this.levepurpose = this.leavesetupservice.leavepurpose
+        this.levepurpose = await this.leavesetupservice.getLeavePurposes();
     }
 
     addleavepurpose(lpurpose) {
-        console.log(lpurpose.data);
-        this.leavesetupservice.addleavepurpose(lpurpose.data);
+        this.leavesetupservice.addLeavePurpose(lpurpose.data);
     }
 
     updateleavepurpose(levpurpose) {
-        console.log(levpurpose);
-        this.leavesetupservice.updatepurpose(levpurpose);
-        console.log('in updated purpose')
+        this.leavesetupservice.updateLeavePurpose(levpurpose);
 
     }
 
     deleteleavepurpose(lvpurpose) {
-        console.log(lvpurpose);
-        this.leavesetupservice.Deleteleavpurpose(lvpurpose.key);
-        console.log('in updated purpose')
-
+        this.leavesetupservice.DeleteLeavPurpose(lvpurpose.key);
     }
 
 }

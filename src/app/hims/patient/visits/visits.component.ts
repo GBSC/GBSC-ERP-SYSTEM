@@ -102,13 +102,6 @@ export class VisitsComponent implements OnInit {
         await this.PatientServiceobj.getDiagnoses();
         this.diagnoses = this.PatientServiceobj.diagnoses;
         console.log(this.diagnoses);
-
-
-        this.visitid = this.PatientServiceobj.visitid;
-        console.log(this.visitid);
-
-        //    this.VisitNoteByVisitId = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
-        //    console.log(this.VisitNoteByVisitId);
     }
 
     onSubmit() {
@@ -128,7 +121,6 @@ export class VisitsComponent implements OnInit {
         console.log(this.id);
     }
     //add visitnote
-
     async onsubmit(value) {
         let y = await this.PatientServiceobj.visitid.visitID;
         this.PatientVisitNoteForm.value.VisitId = y;
@@ -139,12 +131,6 @@ export class VisitsComponent implements OnInit {
         // console.log(this.visitid);
 
     }
-
-    public VisitNoteByVisitIdForEdit: any;
-    //  async getVisitNoteByVisitIdForEdit(){
-    //     this.VisitNoteByVisitIdForEdit = await this.PatientServiceobj.getVisitNoteByVisitId(this.visitid.visitID);
-    //     console.log(this.VisitNoteByVisitIdForEdit);
-    // }
 
     async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;

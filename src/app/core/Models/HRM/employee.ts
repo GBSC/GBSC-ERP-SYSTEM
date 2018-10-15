@@ -17,6 +17,8 @@ export interface Employee {
     PermanentAddress: string,
     ReligionId: number,
     CityId: number,
-    DateCreated: Date,
+    UserLanguages: Array<any>,
+    userId: any
+
 
 }

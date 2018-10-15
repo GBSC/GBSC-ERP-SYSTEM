@@ -347,18 +347,6 @@ export class PatientService {
         //return this.http1.get<Visits>(this.API_URL + '/Visits/GetVisit/' + id);
     }
 
-    async  getVisitNoteByVisitId(id) {
-        return await this.ApiService.get(this.API_URL + 'Visits/GetVisitNoteByVisitId/' + id).toPromise();
-    }
-
-    async getPatientVitalByVisitId(id) {
-        return await this.ApiService.get(this.API_URL + 'Visits/GetPatientVitalByVisitId/' + id).toPromise();
-    }
-
-    async GetAppointmentByVisitId(id) {
-        return await this.ApiService.get(this.API_URL + 'Visits/GetAppointmentByVisitId/' + id).toPromise();
-    }
-
     async getActiveVisits() {
         this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise());
         console.log(this.ActiveVisits);

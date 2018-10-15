@@ -146,7 +146,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="BankAdviceTemplateId" id="">
                   <option value="" disabled selected>-- Select Bank Advice Template --</option>
-                  <option *ngFor="let banktemplate of payrollsetupservice?.bankadvicetemplate" [value]="banktemplate.bankAdviceTemplateId">{{banktemplate.name}}</option>
+                  <option *ngFor="let banktemplate of bankAdviceTemplate" [value]="banktemplate.bankAdviceTemplateId">{{banktemplate.name}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -155,7 +155,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="ChequeTemplateId" id="">
                   <option value="" disabled selected>-- Select Cheque Template --</option>
-                  <option *ngFor="let chequetemplate of payrollsetupservice?.chequetemplate" [value]="chequetemplate.chequeTemplateId">{{chequetemplate.name}}</option>
+                  <option *ngFor="let chequetemplate of chequeTemplate" [value]="chequetemplate.chequeTemplateId">{{chequetemplate.name}}</option>
                 </select>
               </div>
             </div>
@@ -261,10 +261,10 @@
             <dxi-column dataField="secondApproverName"></dxi-column>
             <dxi-column dataField="secondApproverDesignation" [visible]="false"></dxi-column>
             <dxi-column dataField="bankAdviceTemplateId" caption="Bank Advice Template">
-              <dxo-lookup [dataSource]="payrollsetupservice?.bankadvicetemplate" displayExpr="name" valueExpr="bankAdviceTemplateId"></dxo-lookup>
+              <dxo-lookup [dataSource]="bankAdviceTemplate" displayExpr="name" valueExpr="bankAdviceTemplateId"></dxo-lookup>
             </dxi-column>
             <dxi-column dataField="chequeTemplateId" caption="Cheque Template">
-              <dxo-lookup [dataSource]="payrollsetupservice.chequetemplate" displayExpr="name" valueExpr="chequeTemplateId"></dxo-lookup>
+              <dxo-lookup [dataSource]="chequeTemplate" displayExpr="name" valueExpr="chequeTemplateId"></dxo-lookup>
             </dxi-column>
             <dxi-column dataField="costCentreCode" [visible]="false"></dxi-column>
             <dxi-column dataField="glCode" [visible]="false"></dxi-column>

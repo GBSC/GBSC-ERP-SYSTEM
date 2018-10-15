@@ -13,6 +13,14 @@ export class EmpleavepolicyComponent implements OnInit {
     public groups: any = [];
     EmployeeleavePolicyForm: FormGroup;
     public empleavepolicy: any;
+    public employees: any;
+    public leaveyear: any;
+    public leaveTypes: any;
+    public leaveDayType: any;
+    public leaveEligiblity: any;
+    public updatingEmpleavePolicy: any;
+    public message: any = null;
+    public messagetext: "Add Successfully";
 
     constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
@@ -66,31 +74,40 @@ export class EmpleavepolicyComponent implements OnInit {
         });
 
 
-        this.empleavepolicy = await this.leaveservice.getleavepolicyemployee();
-        //this.empleavepolicy = this.leaveservice.leavepolicyemployee 
+        this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
 
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg;
+        this.employees = await this.empservice.GetAllEmployees();
 
-        await this.leavesetupservice.getAllleaveyear();
-        let leaveyear = this.leavesetupservice.leaveyear;
+        this.leaveyear = await this.leavesetupservice.getLeaveYears();
 
-        await this.leavesetupservice.getAllleavetype();
-        let levetype = this.leavesetupservice.leavetype;
+        this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
-        await this.leavesetupservice.getAllleavedaytype();
-        let levedaytype = this.leavesetupservice.leavedaytype;
+        this.leaveDayType = await this.leavesetupservice.getLeaveDayTypes();
 
-        await this.leavesetupservice.getAllleaveeligibility();
-        let leaveeligiblity = this.leavesetupservice.leaveeligibility;
+        this.leaveEligiblity = await this.leavesetupservice.getLeaveEligibilities();
 
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
+        this.groups = await this.hrsetupservice.getAllGroups();
     }
 
     async addemployeeleavepolicy(empleavepolicy) {
-        console.log(empleavepolicy);
-        this.leaveservice.addleavepolicyemployee(empleavepolicy);
+        this.message = this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+        setTimeout(() => {
+            this.message = null;
+        }, 3000);
     }
+
+
+    updatingEmpleavepolicy(value) {
+        this.updatingEmpleavePolicy = { ...value.oldData, ...value.newData };
+
+    }
+    async updateEmpLeavePolicy() {
+        await this.leaveservice.updateLeavePolicyEmployee(this.updatingEmpleavePolicy);
+    }
+
+    async deleteEmpleavePolicy(value) {
+        await this.leaveservice.DeleteLeavePolicyEmployee(value.key);
+    }
+
 
 }

@@ -11,21 +11,20 @@ export class LeavingreasonComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getleavingreasons();
-        this.leavingReason = this.payrollsetupservice.leavingreason;
+
+        this.leavingReason = await this.payrollsetupservice.getLeavingReasons();
     }
 
     async addLeavingReason(value) {
-        await this.payrollsetupservice.addleavingreason(value.data);
+        await this.payrollsetupservice.addLeavingReason(value.data);
     }
 
     async updateLeavingReason(value) {
-        console.log(value);
-        await this.payrollsetupservice.updateleavingreason(value);
+        await this.payrollsetupservice.updateLeavingReason(value);
     }
 
     async deleteLeavingReason(value) {
-        await this.payrollsetupservice.Deleteleavingreason(value.key);
+        await this.payrollsetupservice.deleteLeavingReason(value.key);
     }
 
 }

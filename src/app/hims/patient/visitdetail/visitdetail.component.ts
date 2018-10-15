@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-visitdetail',
@@ -24,15 +23,9 @@ export class VisitdetailComponent implements OnInit {
     private getvisitTestbyId: any = [];
 
     private visitdiag: any = {};
-    private visitTest: any = {};
+    private visitTest: any = {}
 
-    private VisitVitalDetailForm: FormGroup;
-
-    constructor(private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
-
-        this.VisitVitalDetailForm = this.formBuilder.group({
-            Height: ['', Validators.required],
-        });
+    constructor(private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
 
     }
 
@@ -91,9 +84,6 @@ export class VisitdetailComponent implements OnInit {
 
     goback() {
         this.Location.back();
-    }
-    editvitals() {
-        this.VisitVitalDetailForm.controls['Height'].enable();
     }
 
 }

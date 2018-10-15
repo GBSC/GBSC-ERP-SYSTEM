@@ -9,24 +9,22 @@ import { PayrollSetupService, EmployeeService } from '../../../../core';
 export class UserloanComponent implements OnInit {
 
     public UserLoan: any;
+    public users: any;
+    public loanType: any;
     public Updateloan: any;
 
     constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getuserloans();
-        this.UserLoan = this.payrollsetupservice.userloan;
+        this.UserLoan = await this.payrollsetupservice.getUserLoans();
 
-        await this.payrollsetupservice.getloantypes();
-        let Loantype = this.payrollsetupservice.loantype;
+        this.loanType = await this.payrollsetupservice.getLoanTypes();
 
-
-        await this.employeeservice.GetAllEmployees();
-        let employee = this.employeeservice.employeereg;
+        this.users = await this.employeeservice.GetAllEmployees();
     }
 
     async addUserLoan(value) {
-        await this.payrollsetupservice.adduserloan(value.data);
+        await this.payrollsetupservice.addUserLoan(value.data);
     }
 
     Updatingloan(value) {
@@ -34,10 +32,10 @@ export class UserloanComponent implements OnInit {
     }
 
     async updateUserLoan() {
-        await this.payrollsetupservice.updateuserloan(this.Updateloan);
+        await this.payrollsetupservice.updateUserLoan(this.Updateloan);
     }
 
     async deleteUserLoan(value) {
-        await this.payrollsetupservice.Deleteuserloan(value.key);
+        await this.payrollsetupservice.deleteUserLoan(value.key);
     }
 }

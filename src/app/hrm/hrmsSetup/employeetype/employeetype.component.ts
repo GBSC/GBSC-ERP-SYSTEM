@@ -16,26 +16,10 @@ export class EmployeeTypes implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        // this.dataService.getAllEmployeeTypes().subscribe((data)=>this.employeetype=data);
         await this.dataService.getAllEmployeeTypes();
         this.emptype = this.dataService.employeetype;
-        console.log(this.emptype);
     }
 
-
-
-    // GetAllCountries(){
-    //   this.dashboardService.getAllContries()
-    //   .subscribe((result : Country) => {
-    //      this.countries = result
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     //this.notificationService.printErrorMessage(error);
-    //   });
-    // }
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addemptype(emptype) {
         this.dataService.addEmployeeType(emptype.data)

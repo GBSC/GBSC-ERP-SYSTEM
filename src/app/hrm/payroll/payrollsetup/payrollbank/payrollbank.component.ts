@@ -12,6 +12,9 @@ export class PayrollbankComponent implements OnInit {
     public payrollBank: any;
     public PayrollBankForm: FormGroup;
     private updatingbank: any;
+    public chequeTemplate: any;
+    public bankAdviceTemplate: any;
+
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
@@ -41,19 +44,15 @@ export class PayrollbankComponent implements OnInit {
             Active: ['', Validators]
         });
 
-        await this.payrollsetupservice.getpayrollbanks();
-        this.payrollBank = this.payrollsetupservice.payrollbank;
+        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();
 
-        await this.payrollsetupservice.getbankadvicetemplates();
-        let bankAdviceTemplate = this.payrollsetupservice.bankadvicetemplate;
+        this.bankAdviceTemplate = await this.payrollsetupservice.getBankAdviceTemplates();
 
-        await this.payrollsetupservice.getchequetemplates();
-        let chequeTemplate = this.payrollsetupservice.chequetemplate;
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
     }
 
     async addPayrollBank() {
-        await this.payrollsetupservice.addpayrollbank(this.PayrollBankForm.value);
-        console.log(this.PayrollBankForm.value);
+        await this.payrollsetupservice.addPayrollBank(this.PayrollBankForm.value);
         this.PayrollBankForm.reset();
     }
 
@@ -61,11 +60,11 @@ export class PayrollbankComponent implements OnInit {
         this.updatingbank = { ...value.oldData, ...value.newData };
     }
     async updatePayrollBank() {
-        await this.payrollsetupservice.updatepayrollbank(this.updatingbank);
+        await this.payrollsetupservice.updatePayrollBank(this.updatingbank);
     }
 
     async deletePayrollBank(value) {
-        await this.payrollsetupservice.Deletepayrollbank(value.key);
+        await this.payrollsetupservice.deletePayrollBank(value.key);
     }
 
 }

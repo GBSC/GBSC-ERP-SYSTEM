@@ -15,18 +15,15 @@ export class ProratematrixComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getproratematrix();
-        this.proratematrix = this.leavesetupservice.proratematrix
-        console.log(this.proratematrix);
+        this.proratematrix = await this.leavesetupservice.getProrateMatrixs();
 
-        this.leavepolicy = await this.leavesetupservice.getAllleavepolicy();
+        this.leavepolicy = await this.leavesetupservice.getLeavePolicies();
 
-        this.leaveemppolicy = await this.leaveservice.getleavepolicyemployee();
-
+        this.leaveemppolicy = await this.leaveservice.getLeavePolicyEmployee();
     }
 
     async addprmatrix(value) {
-        this.leavesetupservice.addproratematrix(value.data);
+        this.leavesetupservice.addProrateMatrix(value.data);
     }
 
     updatingpromatrix(value) {
@@ -34,10 +31,10 @@ export class ProratematrixComponent implements OnInit {
     }
 
     updatepromatrix() {
-        this.leavesetupservice.updateproratematrix(this.promatrix);
+        this.leavesetupservice.updateProrateMatrix(this.promatrix);
     }
 
     async deleteprmatrix(value) {
-        await this.leavesetupservice.Deleteproratematrix(value.key);
+        await this.leavesetupservice.deleteprorateMatrix(value.key);
     }
 }

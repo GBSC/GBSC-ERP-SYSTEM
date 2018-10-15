@@ -1,0 +1,51 @@
+<p>
+  issuance-view works!
+</p>
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Medicine Returns</h3>
+      </div>
+    </div>
+  </div>
+
+
+<div class="m-portlet__body">
+<div class="row">
+  <div class="col-md-12"> 
+      <dx-data-grid
+      [dataSource]="SalesReturns"  
+      [remoteOperations]="true"
+      height="600"
+      showBorders="true"
+      [masterDetail]="{ enabled: true, template: 'detail' }">
+  
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-editing
+          mode="row"
+          [allowAdding]="false"
+          [allowUpdating]="false"
+          [allowDeleting]="false">
+      </dxo-editing>
+      <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+  
+      <dxi-column dataField="returnNumber" caption="Return Code"></dxi-column>
+      <dxi-column dataField="returnDate" caption="Return Date" dataType="date"></dxi-column>
+      <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+      <dxi-column dataField="totalReturnAmount" caption="Return Amount"></dxi-column>
+      
+  
+      <div *dxTemplate="let order of 'detail'">
+          <dx-data-grid
+              [dataSource]="GetPurchaseOrderDetails(order.data)"
+              showBorders="true">            
+          </dx-data-grid>
+      </div>
+  </dx-data-grid> 
+   </div>
+</div>
+</div></div>

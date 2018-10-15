@@ -9,20 +9,20 @@ import { PayrollSetupService } from '../../../../core';
 export class TaxreliefComponent implements OnInit {
 
     public taxRelief: any;
+    public incometaxRule: any;
     public updatingtaxRelief: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.gettaxreliefs();
-        this.taxRelief = this.payrollsetupservice.taxrelief;
 
-        await this.payrollsetupservice.getincometaxrules();
-        let incomeTaxrule = this.payrollsetupservice.incometaxrule;
+        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
+
+        this.incometaxRule = await this.payrollsetupservice.getIncomeTaxRules();
     }
 
     async addTaxRelief(value) {
-        await this.payrollsetupservice.addtaxrelief(value.data);
+        await this.payrollsetupservice.addTaxRelief(value.data);
     }
 
     updatingTaxRelief(value) {
@@ -30,10 +30,10 @@ export class TaxreliefComponent implements OnInit {
     }
 
     async updateTaxRelief() {
-        await this.payrollsetupservice.updatetaxrelief(this.updatingtaxRelief);
+        await this.payrollsetupservice.updateTaxRelief(this.updatingtaxRelief);
     }
 
     async deleteTaxRelief(value) {
-        await this.payrollsetupservice.Deletetaxrelief(value.key);
+        await this.payrollsetupservice.deleteTaxRelief(value.key);
     }
 }

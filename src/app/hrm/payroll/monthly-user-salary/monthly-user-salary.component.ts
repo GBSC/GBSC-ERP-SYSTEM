@@ -14,7 +14,12 @@ export class MonthlyUserSalaryComponent implements OnInit {
     private MonthlyUserSalaryForm: any
     private rosterAttendance: UserRosterAttendance[];
     public stopSalary: any;
+    public paySlip: any;
+    public employees: any;
+    public userSalary: any;
     public monthlyUserSalary: any;
+    public pfPayment: any;
+    public payroll: any;
 
     constructor(private fb: FormBuilder, public payrollservice: PayrollService,
         public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -41,45 +46,30 @@ export class MonthlyUserSalaryComponent implements OnInit {
             PayrollId: ['', Validators]
         });
 
-        // await this.payrollservice.month();
-        // this.monthlyUserSalary = this.payrollservice.stopsalary;
+        this.stopSalary = await this.payrollservice.getStopSalaries();
 
-        await this.payrollservice.getstopsalaries();
-        this.stopSalary = this.payrollservice.stopsalary;
+        this.employees = await this.Employeeservice.GetAllEmployees();
 
-        await this.Employeeservice.GetAllEmployees();
-        let employee = this.Employeeservice.employeereg;
+        this.userSalary = await this.payrollsetupservice.getUserSalaries();
 
-        await this.payrollsetupservice.getusersalaries();
-        let userSalary = this.payrollsetupservice.usersalary;
+        this.pfPayment = await this.payrollsetupservice.getPfPayments();
 
-        await this.payrollsetupservice.getpfpayments();
-        let pfPayment = this.payrollsetupservice.pfpayment;
+        this.payroll = await this.payrollsetupservice.getPayrolls();
 
-        await this.payrollsetupservice.getpayrolls();
-        let payRoll = this.payrollsetupservice.payroll;
-        await this.payrollservice.getpayslips();
-        let paySlip = this.payrollservice.Payslip;
-
+        this.paySlip = await this.payrollservice.getPayslips();
     }
 
     async RosterAttendance(value) {
         let data = value.data;
         this.rosterAttendance.push(data);
-        console.log(this.rosterAttendance);
     }
 
     async addMonthlySalary(value) {
-        console.log(value);
         let monthlySalary = new MonthlyUserSalary();
         monthlySalary = { ...monthlySalary, ...value };
-        console.log(this.rosterAttendance);
         monthlySalary.UserRosterAttendances = this.rosterAttendance;
-        console.log(monthlySalary);
         let x = await this.payrollservice.addMonthlySalary(monthlySalary);
-        console.log(x);
         this.MonthlyUserSalaryForm.reset();
-
     }
 
 }

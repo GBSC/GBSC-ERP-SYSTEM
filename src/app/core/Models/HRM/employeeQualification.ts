@@ -1,9 +1,13 @@
 export interface EmployeeQualification {
 
     Name: string,
+    Code: string,
     DegreeId: number,
-    Timefrom: Date,
-    Timeto: Date,
+    TimeFrom: Date,
+    TimeTo: Date,
+    Grade: string,
     Courses: string,
-    Description: string
+    Description: string,
+    userId: any,
+    SkillLevels: Array<any>
 }

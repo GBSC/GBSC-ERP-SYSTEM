@@ -1,115 +1,133 @@
-
 <div class="m-content">
-
-    <div class="row">
-            <div class="col-xl-12">
-              <div class="m-portlet">
-                <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                      <h3 class="m-portlet__head-text">Return Medicine</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="m-portlet__body">
-                    <form  class="m-form ng-untouched ng-pristine ng-valid"  >
-                        <div  class="m-portlet__body">
-                          <div  class="form-group row">
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> MRN No </label>
-                              <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> Return No </label>
-                              <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleInputEmail1">Return  Date </label>
-                              <div  class="input-group date">
-                                <input  class="form-control m-input" id="m_datepicker_2" type="text">
-                                <div  class="input-group-append">
-                                  <span  class="input-group-text">
-                                    <i  class="la la-calendar"></i>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> Slip No </label>
-                              <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                            </div>
-
-
-                          </div>
-                          <div  class="form-group row">
-                              <div  class="form-group col-lg-3">
-                                <label  for="exampleSelect1"> P. Name </label>
-                                <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                              </div>
-                              <div  class="form-group col-lg-3">
-                                <label  for="exampleSelect1"> S. Name </label>
-                                <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                              </div>
-                              <div  class="form-group col-lg-3">
-                                  <label  for="exampleSelect1">Remarks</label>
-                                  <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                                </div>
-                              <div  class="form-group col-lg-3">
-                                <label  for="exampleSelect1"> Department</label>
-                                <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                              </div>
-                            </div>
-                          </div>
-                      </form>
-
-
-
-
-                  <!-- <div class="m-section">
-                    <div class="m-section__content" >
-                        <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="ID">
-                           <dxo-editing  mode="row" [allowUpdating]="true" [allowAdding]="true"></dxo-editing>
-                    
-                        <dxo-selection mode="single"></dxo-selection>
-                    
-                        <dxi-column dataField="ManualCode" caption="Manual Code"></dxi-column>
-                        <dxi-column dataField="DiscriptionOfItem" caption="Discription Of Item"></dxi-column>
-                        <dxi-column dataField="PackType" caption="Pack Type"></dxi-column>
-                        <dxi-column dataField="PackSize"  caption="Pack Size"></dxi-column>
-                        <dxi-column dataField="NoPackType"  caption="No. Pack Type"></dxi-column>
-                        <dxi-column dataField="Quantity"  caption="Quantity"></dxi-column>
-                        <dxi-column dataField="Rate"  caption="Rate"></dxi-column>
-                        <dxi-column dataField="NetAmount" caption="Net Amount" format="currency"></dxi-column>
-                    
-                        <dxo-summary>
-                            <dxi-total-item
-                                column="ManualCode"
-                                summaryType="count">
-                            </dxi-total-item>
- 
-                            <dxi-total-item
-                                column="NetAmount"
-                                summaryType="sum"
-                                valueFormat="currency">
-                            </dxi-total-item>
-                        </dxo-summary>
-                    
-                    </dx-data-grid>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+                <h3 class="m-portlet__head-text">
+                   Return Medicine
+                </h3>
             </div>
+          </div>
+        </div>
+          <!--begin::Form-->
+          <form class="m-form" [formGroup]="ReturnMedicineForm">
+              <div class="m-portlet__body">
+                
+                  <div class="form-group row">
+                      <div class="form-group col-lg-3">
+                          <label for="exampleInputEmail1">
+                              MRN No
+                          </label>
+                          <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(ReturnMedicineForm.value.CRN)"
+                          formControlName="CRN">
+                          <option *ngFor="let x of AllCustomers" [value]="x?.crn">{{x?.crn}} </option>
+                      </select>
+                      </div>
+                      <div class="form-group col-lg-3">
+                          <label for="exampleInputEmail1">
+                              Return No
+                          </label>
+                          <input type="text" class="form-control m-input m-input--solid" formControlName="ReturnNo" disabled>
+                      </div>
+                      <div class="form-group col-lg-3">
+                          <label for="exampleInputEmail1">
+                            Return Date
+                            </label>
+                          <div class="input-group date">
+                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" disabled>
+                           </div>
+                      </div>
+                      <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                  Slip No
+                              </label>
+                              <!-- (keydown)="onKeydown($event)" -->
+                              <input type="text" class="form-control m-input m-input--solid"  #box formControlName="SlipNo"  (keydown)="onKeydown(box.value, $event)">
+                          </div>
+                  </div>
+                  <div class="form-group row">
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                 P. Name
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="customerdata?.name || ''"
+                              disabled>
+                            </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                S. Name
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="customerdata?.shortName || ''"
+                              disabled>
+                          </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                 Remarks
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                          </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                  Department
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                          </div>
+                      </div>       
+              </div>
+              <div class="modal-footer">
+                  <button type="reset" class="btn btn-secondary">
+                      Reset
+                  </button>
+                  <button type="button" (click)="onsubmit(ReturnMedicineForm.value)"  class="btn btn-primary">
+                      Save
+                  </button>
+              </div>
+
+
+
+
+
+
+              
+          </form>
+          <!--end::Form-->
+     
+          <div class="row">
+              <div class="m-portlet__body">
+                  <div class="m-section">
+                      <div class="m-section__content">
+                          <dx-data-grid id="gridContainer" [dataSource]="issuance" (onRowInserted)="AddIssuance($event)" >
+                              <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+                              </dxo-editing>
+                              <dxo-filter-row [visible]="true"></dxo-filter-row>
+                              <dxo-header-filter [visible]="true"></dxo-header-filter>
+                              <dxo-paging [pageSize]="5"></dxo-paging>
+                              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 30]" [showInfo]="true"></dxo-pager>
+                              <!-- [setCellValue]="setAreaValue" -->
+                               <dxi-column dataField="itemCode" caption="Manual Code" [width]="125" [setCellValue]="setAreaValue">
+                                  <dxo-lookup [dataSource]="issuance" displayExpr="itemCode" valueExpr="itemCode" ></dxo-lookup>
+                              </dxi-column>
+                              <dxi-column dataField="description" value="issuance?.description" caption="Description"></dxi-column>
+                              <dxi-column dataField="packType" caption="Pack Type"></dxi-column>
+                              <dxi-column dataField="packSize" caption="Pack Size"></dxi-column>
+                              <dxi-column dataField="noOfPackType" caption="No of Pack Type"></dxi-column>
+                              <dxi-column dataField="qty" caption="Qty"></dxi-column>
+                              <dxi-column dataField="rate" caption="Rate"></dxi-column>
+                              <dxi-column dataField="netAmount" caption="Net Amount"></dxi-column>
+                          </dx-data-grid>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--end::Portlet-->
+      <button (click)="addfinal()">adasda</button>
     </div>
-
-
-
-
-
-    
   </div>
-
-  
-
-
-
+</div>

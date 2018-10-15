@@ -9,36 +9,35 @@ import { PayrollSetupService } from '../../../../core';
 export class SalarystructuredetailComponent implements OnInit {
 
     public salaryStructureDetail: any;
+    public salaryCalculationtype: any;
+    public benefit: any;
+    public allowance: any;
+    public salarystructure: any;
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getsalarystructuredetails();
-        this.salaryStructureDetail = this.payrollsetupservice.salarystructuredetail;
+        this.salaryStructureDetail = await this.payrollsetupservice.getSalaryStructureDetails();
 
-        await this.payrollsetupservice.getsalarycalculationtypes();
-        let salaryCalculationtype = this.payrollsetupservice.salarycalculationtype;
+        this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
-        await this.payrollsetupservice.getbenefits();
-        let benefit = this.payrollsetupservice.benefits;
+        this.benefit = await this.payrollsetupservice.getBenefits();
 
-        await this.payrollsetupservice.getallowances();
-        let allowance = this.payrollsetupservice.allowance;
+        this.allowance = await this.payrollsetupservice.getAllowances();
 
-        await this.payrollsetupservice.getsalarystructures();
-        let salarystructure = this.payrollsetupservice.salarystructure;
+        this.salarystructure = await this.payrollsetupservice.getSalaryStructures();
     }
 
     async addSalaryStructureDetail(value) {
-        await this.payrollsetupservice.addsalarystructuredetail(value.data);
+        await this.payrollsetupservice.addSalaryStructureDetail(value.data);
     }
 
     async updateSalaryStructureDetail(value) {
-        console.log(value);
-        await this.payrollsetupservice.updatesalarystructuredetail(value);
+        await this.payrollsetupservice.updateSalaryStructureDetail(value);
     }
 
     async deleteSalaryStructureDetail(value) {
-        await this.payrollsetupservice.Deletesalarystructuredetail(value.key);
+        await this.payrollsetupservice.deleteSalaryStructureDetail(value.key);
     }
 
 }

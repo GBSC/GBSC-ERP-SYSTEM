@@ -10,9 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LeavepolicyComponent implements OnInit {
     public leavePolicyForm: FormGroup;
-    public groups: any = [];
+    public groups: any;
     public leavepolicy: any;
-    public leavetype: any;
+    public leveDayTypes: any;
+    public leaveEligibility: any;
+    public leaveYears: any;
+    public leaveTypes: any;
     private updatingleavePolicy: any;
     private LeavePolicies: any;
 
@@ -62,45 +65,35 @@ export class LeavepolicyComponent implements OnInit {
         });
 
 
-        this.LeavePolicies = await this.leavesetupservice.getAllleavepolicy();
-        console.log(this.LeavePolicies);
+        this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
 
-        //this.leavepolicy = this.leavesetupservice.leavepolicy;
+        this.leaveYears = await this.leavesetupservice.getLeaveYears();
 
-        await this.leavesetupservice.getAllleaveyear();
-        let leaveyear = this.leavesetupservice.leaveyear;
+        this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
-        this.leavetype = await this.leavesetupservice.getAllleavetype();
-        //let levetype = this.leavesetupservice.leavetype;
+        this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();
 
-        await this.leavesetupservice.getAllleavedaytype();
-        let levedaytype = this.leavesetupservice.leavedaytype;
+        this.leaveEligibility = await this.leavesetupservice.getLeaveEligibilities();
 
-        await this.leavesetupservice.getAllleaveeligibility();
-        let leaveEligibility = this.leavesetupservice.leaveeligibility;
-
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
+        this.groups = await this.hrsetupservice.getAllGroups();
 
     }
 
     async addleavepolicy() {
-        await this.leavesetupservice.addleavepolicy(this.leavePolicyForm.value);
-        this.LeavePolicies = await this.leavesetupservice.getAllleavepolicy();
+        await this.leavesetupservice.addLeavePolicy(this.leavePolicyForm.value);
+        this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
     }
 
     updatingleavepolicy(value) {
-        // console.log(value);
         this.updatingleavePolicy = { ...value.oldData, ...value.newData };
-        console.log(this.updatingleavePolicy);
 
     }
     async updateLeavePolicy() {
-        await this.leavesetupservice.updateleavepolicy(this.updatingleavePolicy);
+        await this.leavesetupservice.updateLeavePolicy(this.updatingleavePolicy);
     }
 
     async deleteleavePolicy(value) {
 
-        await this.leavesetupservice.Deleteleavpolicy(value.key);
+        await this.leavesetupservice.deleteLeavPolicy(value.key);
     }
 }

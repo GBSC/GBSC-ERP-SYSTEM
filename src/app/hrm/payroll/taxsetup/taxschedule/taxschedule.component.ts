@@ -9,21 +9,20 @@ import { PayrollSetupService } from '../../../../core';
 export class TaxscheduleComponent implements OnInit {
 
     public taxSchedule: any;
+    public incomeTaxrule: any;
     private taxScheduling: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.gettaxschedules();
-        this.taxSchedule = this.payrollsetupservice.taxschedule;
+        this.taxSchedule = await this.payrollsetupservice.getTaxSchedules();
 
-        await this.payrollsetupservice.getincometaxrules();
-        let incomeTaxrule = this.payrollsetupservice.incometaxrule;
+        this.incomeTaxrule = await this.payrollsetupservice.getIncomeTaxRules();
     }
 
 
     async addTaxSchedule(value) {
-        await this.payrollsetupservice.addtaxschedule(value.data);
+        await this.payrollsetupservice.addTaxSchedule(value.data);
     }
 
     updatingTaxSchedule(value) {
@@ -31,10 +30,10 @@ export class TaxscheduleComponent implements OnInit {
     }
 
     async updateTaxSchedule() {
-        await this.payrollsetupservice.updatetaxschedule(this.taxScheduling);
+        await this.payrollsetupservice.updateTaxSchedule(this.taxScheduling);
     }
 
     async deleteTaxSchedule(value) {
-        await this.payrollsetupservice.Deletetaxschedule(value.key);
+        await this.payrollsetupservice.deleteTaxSchedule(value.key);
     }
 }

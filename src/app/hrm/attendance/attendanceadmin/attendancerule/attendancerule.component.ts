@@ -13,9 +13,11 @@ export class AttendanceruleComponent implements OnInit {
 
     public AttendanceRuleForm;
     public attendancerule: any;
-    private LeaveTypes: any;
+    public LeaveTypes: any;
     private leaves: AttendanceRuleLeaveType[];
     public attendanceRule: any;
+    public attendanceflag: any;
+    public groups: any;
 
     constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
         public attendancesetupservice: AttendancesetupService, public leavesetupservice: LeaveSetupService,
@@ -39,36 +41,26 @@ export class AttendanceruleComponent implements OnInit {
 
         });
 
-        await this.attendanceservice.getattendancerules();
-        this.attendancerule = this.attendanceservice.attendancerule
-        console.log(this.attendancerule);
+        this.attendancerule = await this.attendanceservice.getAttendanceRules();
 
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
+        this.groups = await this.hrsetupservice.getAllGroups();
 
-        await this.attendancesetupservice.getattendanceflag();
-        let attendanceflag = this.attendancesetupservice.attendanceflag;
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
-        this.LeaveTypes = await this.leavesetupservice.getAllleavetype();
-        let leavetype = this.leavesetupservice.leavetype;
+        this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
 
     }
 
     async attendanceRuleLeave(value) {
         let data = value.data;
         this.leaves.push(data);
-        console.log(this.leaves);
     }
 
     async addattendancerule(value) {
-        console.log(value);
         let attendanceRule = new AttendanceRule();
         attendanceRule = { ...attendanceRule, ...value };
-        console.log(this.leaves);
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
-        console.log(attendanceRule);
-        let r = await this.attendanceservice.addattendancerule(attendanceRule);
-        console.log(r);
+        let r = await this.attendanceservice.addAttendanceRule(attendanceRule);
     }
 
     AttendanceRuleUpdating(value) {
@@ -76,11 +68,11 @@ export class AttendanceruleComponent implements OnInit {
     }
 
     async updateattendancerule() {
-        this.attendanceservice.updateattendancerule(this.attendanceRule);
+        this.attendanceservice.updateAttendanceRule(this.attendanceRule);
     }
 
     async deleteattendancerule(value) {
-        this.attendanceservice.Deleteattendancerule(value.key);
+        this.attendanceservice.DeleteAttendanceRule(value.key);
     }
 
 }

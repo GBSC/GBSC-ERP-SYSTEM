@@ -9,24 +9,24 @@ import { PayrollSetupService } from '../../../../core';
 export class GratuitytypeComponent implements OnInit {
 
     public gratuityType: any;
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getgratuitytypes();
-        this.gratuityType = this.payrollsetupservice.gratuitytype;
+
+        this.gratuityType = await this.payrollsetupservice.getGratuityTypes();
     }
 
     async addGratuityType(value) {
-        await this.payrollsetupservice.addgratuitytype(value.data);
+        await this.payrollsetupservice.addGratuityType(value.data);
     }
 
     async updateGratuityType(value) {
-        console.log(value);
-        await this.payrollsetupservice.updategratuitytype(value);
+        await this.payrollsetupservice.updateGratuityType(value);
     }
 
     async deleteGratuityType(value) {
-        await this.payrollsetupservice.Deletegratuitytype(value.key);
+        await this.payrollsetupservice.deleteGratuityType(value.key);
     }
 
 }

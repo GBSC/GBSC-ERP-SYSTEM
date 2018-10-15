@@ -7,27 +7,26 @@ import { PayrollSetupService, EmployeeService } from '../../../../core';
     styleUrls: ['./pf-payment.component.css']
 })
 export class PfPaymentComponent implements OnInit {
-
     public pfPayment: any;
+    public leavingReason: any;
+    public employees: any;
+    public fundSetup: any;
     private updatingPF: any;
+
     constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getpfpayments();
-        this.pfPayment = this.payrollsetupservice.pfpayment;
+        this.pfPayment = await this.payrollsetupservice.getPfPayments();
 
-        await this.payrollsetupservice.getleavingreasons();
-        let leavingreason = this.payrollsetupservice.leavingreason;
+        this.leavingReason = await this.payrollsetupservice.getLeavingReasons();
 
-        await this.employeeservice.GetAllEmployees();
-        let user = this.employeeservice.employeereg;
+        this.employees = await this.employeeservice.GetAllEmployees();
 
-        await this.payrollsetupservice.getfundsetups();
-        let fundSetup = this.payrollsetupservice.fundsetup;
+        this.fundSetup = await this.payrollsetupservice.getFundSetups();
     }
 
     async addPFPayment(value) {
-        await this.payrollsetupservice.addpfpayment(value.data);
+        await this.payrollsetupservice.addPfPayment(value.data);
     }
 
     updatingPFPayment(value) {
@@ -35,11 +34,11 @@ export class PfPaymentComponent implements OnInit {
     }
 
     async updatePFPayment() {
-        await this.payrollsetupservice.updatepfpayment(this.updatingPF);
+        await this.payrollsetupservice.updatePfPayment(this.updatingPF);
     }
 
     async deletePFPayment(value) {
-        await this.payrollsetupservice.Deletepfpayment(value.key);
+        await this.payrollsetupservice.DeletePfPayment(value.key);
     }
 
 }

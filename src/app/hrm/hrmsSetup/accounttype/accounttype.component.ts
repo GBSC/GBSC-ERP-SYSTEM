@@ -19,9 +19,7 @@ export class AccountTypeComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllAccounttypes();
         this.accounttype = this.dataService.accounttype;
-        console.log(this.accounttype);
 
-        // this.dataService.getAllAccounttypes().subscribe((data)=>this.actype=data);
     }
 
 

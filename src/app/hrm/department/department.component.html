@@ -12,23 +12,23 @@
            <div class="m-portlet__body">
              <div class="m-section">
                <div class="m-section__content">
-                 <dx-data-grid id="gridContainer" [dataSource]="SystemAdministrationServiceobj.departments"  (onRowInserted)="addDepartment($event)"   (onRowUpdated)="updateDepartment($event)" (onRowRemoved)="deletDepartment($event)">
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
+                 <dx-data-grid id="gridContainer" [dataSource]="deprt" 
+                 (onRowInserted)="addDepartment($event)" 
+                 (onRowUpdated)="updateDepartment($event)" 
+                 (onRowRemoved)="deletDepartment($event)">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>
-                   <dxo-filter-row [visible]="true"></dxo-filter-row>
-                   <dxo-header-filter [visible]="true"></dxo-header-filter>
-                   <dxo-paging [pageSize]="5"></dxo-paging>
-                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="7"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                    <dxi-column dataField="name" caption="Name"></dxi-column>
                    <dxi-column
                    dataField="branchId"
                    caption="Branches"
-                   [width]="125">         
-                   <dxo-lookup
-                       [dataSource]="deprt"
-                       displayExpr="name"
-                       valueExpr="branchId">
-                   </dxo-lookup>
+                   [width]="225">         
+                   <dxo-lookup [dataSource]="branch" displayExpr="name" valueExpr="branchId"></dxo-lookup>
                </dxi-column>
                  </dx-data-grid>
                </div>

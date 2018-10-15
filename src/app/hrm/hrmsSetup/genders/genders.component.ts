@@ -17,32 +17,8 @@ export class GenderComponent implements OnInit {
 
 
     ngOnInit() {
-        //  this.dataService.GetAllGender().subscribe((data)=>this.Gender=data);
     }
 
 
-    // GetAllCountries(){
-    //   this.dashboardService.getAllContries()
-    //   .subscribe((result : Country) => {
-    //      this.countries = result
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     //this.notificationService.printErrorMessage(error);
-    //   });
-    // }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addgndr() {
-
-    }
-
-    Editgndr() {
-
-    }
-
-    deletegndr() {
-
-    }
 }

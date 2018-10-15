@@ -13,6 +13,7 @@ export class ShiftComponent implements OnInit {
 
     public ShiftForm: FormGroup;
     public shift: any;
+    public attendanceflag: any;
     private assignRoster: AssignRosterShift[];
     private AssignRosters: any;
     constructor(private fb: FormBuilder, public attendancesetupservice: AttendancesetupService) { }
@@ -35,41 +36,34 @@ export class ShiftComponent implements OnInit {
 
         });
 
-        await this.attendancesetupservice.getshifts();
-        this.shift = this.attendancesetupservice.shift
+        this.shift = await this.attendancesetupservice.getShifts();
 
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
-        await this.attendancesetupservice.getattendanceflag();
-        let attendanceflag = this.attendancesetupservice.attendanceflag
-
-        this.AssignRosters = await this.attendancesetupservice.getasignrosters();
+        this.AssignRosters = await this.attendancesetupservice.getAsignRosters();
 
     }
 
     async assignroster(value) {
         let data = value.data;
         this.assignRoster.push(data);
-        console.log(this.assignRoster);
     }
 
     async addshift(value) {
         let shifts = new Shift();
         shifts = { ...shifts, ...value };
-        console.log(this.assignRoster);
         shifts.AssignRosterShifts = this.assignRoster;
-        console.log(shifts);
-        let s = await this.attendancesetupservice.addshift(shifts);
+        let s = await this.attendancesetupservice.addShift(shifts);
         this.ShiftForm.reset();
 
     }
 
     async updateshift(value) {
-        console.log(value);
-        this.attendancesetupservice.updateshift(value);
+        this.attendancesetupservice.updateShift(value);
     }
 
     async deleteshift(value) {
-        this.attendancesetupservice.Deleteshift(value.key);
+        this.attendancesetupservice.DeleteShift(value.key);
     }
 
 }

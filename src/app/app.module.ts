@@ -12,15 +12,8 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
-import { SetupService } from './core/Services/HRM/Setup/setup.service';
-import { EmployeeService } from './core/Services/HRM/Employee/employee.service';
-import { LeaveSetupService } from './core/Services/HRM/Leave/leaveSetup.service';
-import { LeaveService } from './core/Services/HRM/Leave/leave.service';
-import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
-import { ApiService } from './core/Services/api.service';
-import { CoreModule } from './core/core.module';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { FinanceService } from './core/Services/Finance/finance.service';
+import { ToastrModule } from 'ngx-toastr';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 
 
 
@@ -31,6 +24,13 @@ import { FinanceService } from './core/Services/Finance/finance.service';
 
     ],
     imports: [
+        CommonModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }), // ToastrModule added
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -43,7 +43,7 @@ import { FinanceService } from './core/Services/Finance/finance.service';
     ],
     providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-        ScriptLoaderService,FinanceService],
+        ScriptLoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

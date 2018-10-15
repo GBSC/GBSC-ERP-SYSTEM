@@ -1,3 +1,5 @@
+import { InventoryItem } from "./InventoryItem";
+
 export interface SalesOrder {
     SalesOrderId: number,
     SalesOrderCode: string,
@@ -26,10 +28,5 @@ export interface SalesOrder {
     ExtraDiscountPercentage: number,
     ExtraDiscountAmount: number,
     UserId: number,
-    DeliveryOrderId: number,
-    SalesIndentId: number,
-    SalesPersonId: number,
-    ModeOfPaymentId: number,
-    CustomerId: number,
-    TaxId: number
+    InventoryItems: InventoryItem[]
 }

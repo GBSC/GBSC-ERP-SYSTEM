@@ -11,7 +11,11 @@ export class CompensationTransactionComponent implements OnInit {
 
     public compensationTransaction: any;
     public CompensationTransactionForm: FormGroup;
-    updatingTransaction: any;
+    public payrollYears: any;
+    public allowances: any;
+    public employees: any;
+    public payrollTypes: any;
+    public updatingTransaction: any;
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
@@ -28,37 +32,30 @@ export class CompensationTransactionComponent implements OnInit {
             IsTaxableIncome: ['', Validators]
         });
 
-        await this.payrollsetupservice.getcompensationtransactions();
-        this.compensationTransaction = this.payrollsetupservice.compensationtransaction;
+        this.compensationTransaction = await this.payrollsetupservice.getCompensationTransactions();
 
-        await this.payrollsetupservice.getpayrollyears();
-        let payrollYear = this.payrollsetupservice.payrollyear;
+        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
 
-        await this.employeeservice.GetAllEmployees();
-        let employee = this.employeeservice.employeereg;
+        this.employees = await this.employeeservice.GetAllEmployees();
 
-        await this.payrollsetupservice.getpayrolltypes();
-        let payrolltype = this.payrollsetupservice.payrolltype;
+        this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
 
-        await this.payrollsetupservice.getallowances();
-        let allowance = this.payrollsetupservice.allowance;
+        this.allowances = await this.payrollsetupservice.getAllowances();
     }
 
     async addCompensationTransaction() {
-        await this.payrollsetupservice.addcompensationtransaction(this.CompensationTransactionForm.value);
-        console.log(this.CompensationTransactionForm.value);
-
+        await this.payrollsetupservice.addCompensationTransaction(this.CompensationTransactionForm.value);
     }
 
     updatingCompensationTransaction(value) {
         this.updatingTransaction = { ...value.oldData, ...value.newData };
     }
     async updateCompensationTransact() {
-        await this.payrollsetupservice.updatecompensationtransaction(this.updatingTransaction);
+        await this.payrollsetupservice.updateCompensationTransaction(this.updatingTransaction);
     }
 
     async deleteCompensationTransaction(value) {
-        await this.payrollsetupservice.Deletecompensationtransaction(value.key);
+        await this.payrollsetupservice.deleteCompensationTransaction(value.key);
     }
 
 }

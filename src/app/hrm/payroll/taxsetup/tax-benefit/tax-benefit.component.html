@@ -21,7 +21,7 @@
 						 (onRowUpdating)="updatingBenefit($event)"
 							(onRowRemoved)="deleteTaxBenefit($event)"> 
 							<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-								<dxo-popup title="Tax on Benefit" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								<dxo-popup title="Tax on Benefit" [showTitle]="true" [width]="730" [height]="375" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
 							<dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -29,15 +29,15 @@
 							<dxo-paging [pageSize]="8"></dxo-paging>
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 							<dxi-column dataField="payrollTypeId" caption="Payroll Type">
-									<dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+									<dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="taxYearId" caption="Tax Year">
-									<dxo-lookup [dataSource]="payrollsetupservice?.taxyear" displayExpr="name" valueExpr="taxYearId">
+									<dxo-lookup [dataSource]="taxYear" displayExpr="name" valueExpr="taxYearId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="benefitId" caption="Benefit">
-									<dxo-lookup [dataSource]="payrollsetupservice?.benefits" displayExpr="name" valueExpr="benefitId">
+									<dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId">
 									</dxo-lookup> 
 									</dxi-column>
 							<dxi-column dataField="from" caption="From" dataType="date" format="shortdate"></dxi-column>

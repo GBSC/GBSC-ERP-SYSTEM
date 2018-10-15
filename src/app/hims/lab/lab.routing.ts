@@ -17,6 +17,7 @@ import { TestunitComponent } from '../lab/labsetup/testunit/testunit.component';
 import { EmbryologistsComponent } from '../lab/labsetup/embryologists/embryologists.component'
 import { EmbryologycodesComponent } from '../lab/labsetup/embryologycodes/embryologycodes.component'
 import { AuthGuardService, ModuleGuardService } from '../../core';
+import { TvopuComponent } from './tvopu/tvopu.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -41,6 +42,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'embryologysection', component: EmbryologysectionComponent },
             { path: 'embryologist', component: EmbryologistsComponent },
             { path: 'embryologycode', component: EmbryologycodesComponent },
+            { path: 'tvopu', component: TvopuComponent },
 
         ]
     }

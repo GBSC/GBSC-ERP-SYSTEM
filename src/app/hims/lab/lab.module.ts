@@ -27,6 +27,7 @@ import { ReferencerangeComponent } from './referencerange/referencerange.compone
 import { EmbryologysectionComponent } from './embryologysection/embryologysection.component';
 import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
 import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
+import { TvopuComponent } from './tvopu/tvopu.component';
 
 
 
@@ -61,6 +62,7 @@ import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.c
         EmbryologysectionComponent,
         EmbryologycodesComponent,
         EmbryologistsComponent,
+        TvopuComponent,
     ]
 })
 export class LabModule { }

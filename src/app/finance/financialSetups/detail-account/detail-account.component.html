@@ -53,18 +53,17 @@
                 </div>
               </div>
               <div class="form-group row">
-                  <div class="col-sm-4 pull-right" style="margin-top: 28px;">
+                  <div class="col-sm-8"></div>
+                  <div class="col-sm-4 m--align-right">
                       <button type="submit" (click)="addDetailaccount()" class="btn btn-primary">
                           Save
                         </button>
                   </div>
                 </div>
               </form>
-
+              <div class="m-separator m-separator--dashed m-separator--lg"></div>
               <div class="form-group row">
-                  <div class="m--space-07"></div>
-
-
+                  <div class="m--space-07"></div> 
                   <dx-data-grid id="gridContainer" keyExpr="detailAccountId" [dataSource]="detailAccount" 
                  (onRowUpdating)="updatingDetailaccount($event)"
                  (onRowUpdated)="updateDetailaccount()"

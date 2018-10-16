@@ -16,6 +16,7 @@ import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 export class FinanceService {
 
   private baseUrl: string = "Finance/api";
+
   constructor(private ApiService: ApiService) { }
 
   async getPurchaseInvoices() {

@@ -13,16 +13,16 @@ import { SetupService } from '../../core';
 })
 export class VoucherComponent implements OnInit {
 
-  public departments : any;
-  public financialYear : any;
-  public voucherType : any;
-  public voucher : any;
-  public detailAccount : any;
-  public VoucherForm : any;
-  public voucherDetail : VoucherDetail[];
+  public departments: any;
+  public financialYear: any;
+  public voucherType: any;
+  public voucher: any;
+  public detailAccount: any;
+  public VoucherForm: any;
+  public voucherDetail: VoucherDetail[];
 
   constructor(private fb: FormBuilder, public financeSetupService: FinanceSetupService,
-     public financeService: FinanceService, public SetupService: SetupService) { }
+    public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
 
@@ -31,42 +31,42 @@ export class VoucherComponent implements OnInit {
     this.VoucherForm = this.fb.group({
 
       VoucherCode: [''],
-      Date : [''],
-      Description : [''],
+      Date: [''],
+      Description: [''],
       ChequeNumber: [''],
       TotalCreditAmount: [''],
       TotalDebitAmount: [''],
-      IsFinal : [''],
-      VoucherTypeId : [''],
-      FinancialYearId : [''],
-      DepartmentId : ['']
+      IsFinal: [''],
+      VoucherTypeId: [''],
+      FinancialYearId: [''],
+      DepartmentId: ['']
 
     })
 
     this.voucher = await this.financeService.getVouchers();
-   
-    
+
+
     this.voucherDetail = await this.financeService.getVoucherDetails();
-    
+
     this.voucherType = await this.financeSetupService.getVoucherTypes();
-   
+
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
     this.financialYear = await this.financeSetupService.getFinancialYears();
-    
+
     this.departments = await this.SetupService.getAllDepartments();
   }
 
   async addVoucherDetail(value) {
     let data = value.data;
     this.voucherDetail.push(data);
-}
+  }
 
-async addVoucher(value) {
-  let v = new Voucher();
-  v = { ...v, ...value };
-  v.VoucherDetails = this.voucherDetail;
-  let r = await this.financeService.addVoucher(v);
-}
+  async addVoucher(value) {
+    let v = new Voucher();
+    v = { ...v, ...value };
+    v.VoucherDetails = this.voucherDetail;
+    let r = await this.financeService.addVoucher(v);
+  }
 
 }

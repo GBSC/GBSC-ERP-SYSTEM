@@ -95,12 +95,8 @@ export class SetupService {
 
     /** CRUD METHODS DEPARTMENTS */
     async getAllDepartments() {
-
-
-
-
-        this.department = await this.ApiService.get(`${this.hrUrl}/GetAllDepartment`).toPromise();
-        return this.department;
+ 
+        return await this.ApiService.get(`${this.hrUrl}/GetAllDepartment`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below

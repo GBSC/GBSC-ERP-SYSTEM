@@ -12,5 +12,4 @@ export class Voucher {
     FinancialYearId : number;
     DepartmentId : number;
     VoucherDetails : VoucherDetail[];
-
 }

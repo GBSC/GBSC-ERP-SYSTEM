@@ -76,67 +76,52 @@
                   </div> 
                 </div>
                 <div class="form-group row">
-                  <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          Date
-                      </label>
-                      <dx-date-box formControlName="Date" type="date">
-                        </dx-date-box>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          Total Credit Amount
-                      </label>
-                      <input type="number" class="form-control m-input" formControlName="TotalCreditAmount" placeholder="0">
-                    </div>
-                  </div> 
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                      <label for="">
-                          Department
-                      </label>
-                      <select class="form-control m-input" formControlName="DepartmentId">
-                          <option value="" disabled selected>-- Select Voucher Type --</option>
-                          <option *ngFor="let depart of departments" [value]="depart.departmentId">{{depart.name}}</option>
-                        </select> 
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                      <label for="">
-                          Final
-                      </label> 
-                      <div class="m-checkbox-list">
-                          <label class="m-checkbox m-checkbox--state-success">
-                            <input type="checkbox" formControlName="IsFinal"> 
-                            <span></span>
+                    <div class="col-sm-6">
+                        <div class="form-group m-form__group">
+                          <label for="">
+                              Department
                           </label>
-                        </div>                
-                          </div>
+                          <select class="form-control m-input" formControlName="DepartmentId">
+                              <option value="" disabled selected>-- Select Department --</option>
+                              <option *ngFor="let depart of departments" [value]="depart.departmentId">{{depart.name}}</option>
+                            </select> 
+                        </div>
+                      </div>
+                  <div class="col-sm-6">
+                      <div class="form-group m-form__group">
+                          <label for="">
+                              Final
+                          </label> 
+                          <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="IsFinal"> 
+                                <span></span>
+                              </label>
+                            </div>                
+                              </div>
                   </div> 
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-8"></div>
-                    <div class="col-sm-4 m--align-right">
-                        <button type="submit" (click)="addVoucher(voucherForm.value)" class="btn btn-primary">
-                            Save
-                          </button>
-                    </div>
-                  </div>
+                  <div class="col-sm-12">
+                      <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Description
+                          </label>
+                          <textarea type="number" class="form-control m-input" formControlName="Description"></textarea>
+                        </div>
+                  </div> 
+                </div>
                 </form>
 
                 <div class="m-separator m-separator--dashed m-separator--lg"></div>
               
                 <div class="form-group row">
                     <div class="m--space-07"></div> 
-                    <dx-data-grid id="gridContainer" keyExpr="voucherDetailId" [dataSource]="voucherDetail" 
+                    <dx-data-grid id="gridContainer" 
+                    keyExpr="voucherDetailId"
+                     [dataSource]="[]" 
                    (onRowInserted)="addVoucherDetail($event)">
-                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                    <dxo-editing mode="row" [allowAdding]="true"[allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                       </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -146,7 +131,7 @@
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
         
-                    <dxi-column dataField="creditAmount" caption="credit Amount"></dxi-column>
+                    <dxi-column dataField="creditAmount" caption="Credit Amount"></dxi-column>
                     <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>        
                     <dxi-column dataField="detailAccountId" caption="Detail Account">
                         <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
@@ -155,6 +140,15 @@
                   </dx-data-grid>
                 </div>
   
+                <div class="form-group row">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-4 m--align-right">
+                        <button (click)="addVoucher(VoucherForm.value)" class="btn btn-primary">
+                            Save
+                          </button>
+                    </div>
+                  </div>
+
                </div>
              </div>
            </div>

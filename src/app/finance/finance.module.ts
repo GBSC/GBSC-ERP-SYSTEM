@@ -21,6 +21,7 @@ import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.co
 import { PurchaseReturnComponent } from './purchase-return/purchase-return.component';
 import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
 import { SalesReturnComponent } from './sales-return/sales-return.component';
+import { FinanceService } from '../core/Services/Finance/finance.service';
 
 
 @NgModule({
@@ -54,6 +55,6 @@ import { SalesReturnComponent } from './sales-return/sales-return.component';
         SalesInvoiceComponent,
         SalesReturnComponent
     ],
-    providers: [FinanceSetupService]
+    providers: [FinanceSetupService,FinanceService]
 })
 export class FinanceModule { }

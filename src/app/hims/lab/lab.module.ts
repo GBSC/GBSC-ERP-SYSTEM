@@ -72,7 +72,7 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
         TvopuComponent,
         MedicineComponent,
         TreatmenttypeComponent,
-        ProtocolComponent
+        ProtocolComponent,
         EmbryologyComponent,
         InsemenationComponent,
         EmbryoFreezeComponent,

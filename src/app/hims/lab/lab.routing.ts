@@ -52,7 +52,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'tvopu', component: TvopuComponent },
             { path: 'medicine', component: MedicineComponent },
             { path: 'treatment-type', component: TreatmenttypeComponent },
-            { path: 'protocol', component: ProtocolComponent }
+            { path: 'protocol', component: ProtocolComponent },
             { path: 'embryology', component: EmbryologyComponent },
             { path: 'insemenation', component: InsemenationComponent },
             { path: 'embryologythawing', component: EmbryologyThawingComponent },

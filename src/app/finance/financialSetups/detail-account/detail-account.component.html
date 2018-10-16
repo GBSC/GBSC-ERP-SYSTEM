@@ -80,7 +80,11 @@
       
                   <dxi-column dataField="detailAccountCode" caption="Detail Account Code"></dxi-column>
                   <dxi-column dataField="name" caption="Name"></dxi-column>        
-                  <dxi-column dataField="openingBalance" caption="Opening Balance"></dxi-column>        
+                  <dxi-column dataField="openingBalance" caption="Opening Balance"></dxi-column>    
+                  <dxi-column dataField="secondSubAccountId" caption="Second SubAccount">
+                      <dxo-lookup [dataSource]="secondSubAccount" displayExpr="name" valueExpr="secondSubAccountId">
+                      </dxo-lookup>
+                    </dxi-column>    
                 </dx-data-grid>
               </div>
 

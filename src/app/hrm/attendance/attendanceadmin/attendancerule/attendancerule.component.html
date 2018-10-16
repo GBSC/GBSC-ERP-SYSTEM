@@ -22,7 +22,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="GroupId" id="">
                     <option value="" disabled selected>-- Select Group --</option>
-                    <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
+                    <option *ngFor ="let group of groups" [value]="group.groupId" >{{group.name}}</option>
            </select>
               </div>
               <div class="col-lg-6">
@@ -31,7 +31,7 @@
                 </label> 
                     <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                         <option value="" disabled selected>-- Select Attendance Flag --</option>
-                        <option *ngFor ="let flag of attendanceFlag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
+                        <option *ngFor ="let flag of attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
                </select>
               </div>
             </div>
@@ -155,9 +155,14 @@
                     </div>
                   </div>
                 </div>
-                  <div class="m--space-50"></div> 
+                  <div class="m--space-50"></div>
+                  <div class="m--space-50"></div>
+                  <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show" role="alert" *ngIf="mesage">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                    <strong> {{ message }}</strong>
+                  </div> 
                   <div class="m-separator m-separator"></div>
-      
+
                   <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions--solid">
                       <div class="row">

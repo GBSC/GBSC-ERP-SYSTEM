@@ -23,7 +23,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -77,7 +77,7 @@
                          (onRowUpdating)="updatingMasterDetail($event)"
                          (onRowUpdated)="updateMasterDetail()"
                           (onRowRemoved)="deleteleavetypebalance($event)">
-                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -150,7 +150,7 @@
         (onRowUpdated)="updateMasterPayroll()"
         (onRowUpdating)="updatingMasterPayroll($event)"
          (onRowRemoved)="deleteMasterPayroll($event)">
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
         </dxo-editing>
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter> 
@@ -164,10 +164,10 @@
         </dxi-column>
         <dxi-column dataField="bankTransferCode"></dxi-column> 
         <dxi-column dataField="currencyId" caption="Currency">
-          <dxo-lookup [dataSource]="payrollsetupservice?.Currency" displayExpr="name" valueExpr="currencyId"></dxo-lookup>
+          <dxo-lookup [dataSource]="currency" displayExpr="name" valueExpr="currencyId"></dxo-lookup>
         </dxi-column>
-        <dxi-column dataField="payrollBankId" caption="Payroll Bank">
-          <dxo-lookup [dataSource]="payrollsetupservice?.payrollbank" displayExpr="bankTitle" valueExpr="payrollBankId"></dxo-lookup>
+        <dxi-column dataField="bankId" caption="Bank">
+          <dxo-lookup [dataSource]="banksPayroll" displayExpr="bankTitle" valueExpr="bankId"></dxo-lookup>
         </dxi-column>
       </dx-data-grid>
 

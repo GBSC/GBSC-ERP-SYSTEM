@@ -10,7 +10,7 @@ import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
     styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
-
+ 
     public masterPayroll: any;
     public payrollMaster: any;
     public users: any;
@@ -18,13 +18,13 @@ export class MasterpayrollComponent implements OnInit {
     public masterdetailupdating: any;
     public masterPayrollDetail: any;
     private payrollDetail: MasterPayrollDetail[];
-
     public banksPayroll: any;
     public payrollType: any;
     public MasterPayrollForm: any;
     public Masterdetail = [];
     public allowance: any;
     public MasterDetailForm: any;
+    public fullName: any;
     public currency: any;
 
     constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
@@ -39,7 +39,6 @@ export class MasterpayrollComponent implements OnInit {
             CurrencyId: ['', Validators.required],
             PayrollBankId: ['', Validators.required]
         });
-
 
         this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
 

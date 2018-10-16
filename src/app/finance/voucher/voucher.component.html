@@ -1,0 +1,170 @@
+<div class="m-content">
+    <div class="row">
+       <div class="col-xl-12">
+         <div class="m-portlet">
+           <div class="m-portlet__head">
+             <div class="m-portlet__head-caption">
+               <div class="m-portlet__head-title">
+                 <h3 class="m-portlet__head-text">Voucher</h3>
+               </div>
+             </div>
+           </div>
+           <div class="m-portlet__body">
+             <div class="m-section">
+               <div class="m-section__content">
+                <form [formGroup]="VoucherForm">
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Voucher Type
+                            </label>
+                            <select class="form-control m-input" formControlName="VoucherTypeId">
+                                <option value="" disabled selected>-- Select Voucher Type --</option>
+                                <option *ngFor="let vt of voucherType" [value]="vt.voucherTypeId">{{vt.name}}</option>
+                              </select> 
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Financial Year
+                            </label>
+                            <select class="form-control m-input" formControlName="FinancialYearId">
+                                <option value="" disabled selected>-- Select Financial Year --</option>
+                                <option *ngFor="let Financeyear of financialYear" [value]="Financeyear.financialYearId">{{Financeyear.name}}</option>
+                              </select>                
+                                </div>
+                        </div> 
+                      </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Cheque Number
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="ChequeNumber" placeholder="001">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                  Date
+                              </label>
+                              <dx-date-box formControlName="Date" type="date">
+                                </dx-date-box>
+                            </div>
+                          </div>
+                        </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Total Credit Amount
+                          </label>
+                          <input type="number" class="form-control m-input" formControlName="TotalCreditAmount"  placeholder="0">
+                        </div>
+                      </div> 
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Total Debit Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="TotalDebitAmount" placeholder="0">
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Date
+                      </label>
+                      <dx-date-box formControlName="Date" type="date">
+                        </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Total Credit Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="TotalCreditAmount" placeholder="0">
+                    </div>
+                  </div> 
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="">
+                          Department
+                      </label>
+                      <select class="form-control m-input" formControlName="DepartmentId">
+                          <option value="" disabled selected>-- Select Voucher Type --</option>
+                          <option *ngFor="let depart of departments" [value]="depart.departmentId">{{depart.name}}</option>
+                        </select> 
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="">
+                          Final
+                      </label> 
+                      <div class="m-checkbox-list">
+                          <label class="m-checkbox m-checkbox--state-success">
+                            <input type="checkbox" formControlName="IsFinal"> 
+                            <span></span>
+                          </label>
+                        </div>                
+                          </div>
+                  </div> 
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-4 m--align-right">
+                        <button type="submit" (click)="addVoucher(voucherForm.value)" class="btn btn-primary">
+                            Save
+                          </button>
+                    </div>
+                  </div>
+                </form>
+
+                <div class="m-separator m-separator--dashed m-separator--lg"></div>
+              
+                <div class="form-group row">
+                    <div class="m--space-07"></div> 
+                    <dx-data-grid id="gridContainer" keyExpr="voucherDetailId" [dataSource]="voucherDetail" 
+                   (onRowInserted)="addVoucherDetail($event)">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                      </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="8"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager>
+        
+                    <dxi-column dataField="creditAmount" caption="credit Amount"></dxi-column>
+                    <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>        
+                    <dxi-column dataField="detailAccountId" caption="Detail Account">
+                        <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
+                        </dxo-lookup>
+                      </dxi-column>    
+                  </dx-data-grid>
+                </div>
+  
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   
+   
+   
+   
+   
+   
+   </div>

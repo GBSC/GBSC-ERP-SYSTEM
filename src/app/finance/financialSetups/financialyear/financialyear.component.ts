@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FinanceService } from '../../../core/Services/Finance/finance.service';
-import { FinancialYear } from '../../../core/Models/Finance/financialYear';
-
+import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
+ 
 
 @Component({
     selector: 'app-financialyear',
@@ -15,7 +14,7 @@ export class FinancialyearComponent implements OnInit {
     public financialYear: any;
     public updateFinancalyear: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceService) { }
+    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 

@@ -9,25 +9,38 @@ import { SubAccountComponent } from './financialSetups/sub-account/sub-account.c
 import { SecondSubAccountComponent } from './financialSetups/second-sub-account/second-sub-account.component';
 import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
 import { DetailAccountComponent } from './financialSetups/detail-account/detail-account.component';
+import { PurchaseInvoiceComponent } from '../Inventorysystem/Purchase/purchase-invoice/purchase-invoice.component';
+import { PurchaseReturnComponent } from '../Inventorysystem/Purchase/purchase-return/purchase-return.component';
+import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
+import { SalesReturnComponent } from './sales-return/sales-return.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
-
-
 
     {
         path: 'finance',
         component: RootComponent,
 
         children: [
+            {
+                path: 'setup',
+                children: [
 
-            { path: 'dashboard', component: DashboardComponent },
-            { path: 'companysetup', component: CompanysetupComponent },
-            { path: 'masteraccount', component: MasterAccountComponent },
-            { path: 'detailaccount', component: DetailAccountComponent },
-            { path: 'financialyear', component: FinancialyearComponent },
-            { path: 'vouchertype', component: VouchertypeComponent },
-            { path: 'subaccount', component: SubAccountComponent },
-            { path: 'secondsubaccount', component: SecondSubAccountComponent }
+                    { path: 'companysetup', component: CompanysetupComponent },
+                    { path: 'masteraccount', component: MasterAccountComponent },
+                    { path: 'detailaccount', component: DetailAccountComponent },
+                    { path: 'financialyear', component: FinancialyearComponent },
+                    { path: 'vouchertype', component: VouchertypeComponent },
+                    { path: 'controlaccount', component: SubAccountComponent },
+                    { path: 'secondsubaccount', component: SecondSubAccountComponent }
+
+                ]
+            },
+            { path: 'purchase-invoice', component: PurchaseInvoiceComponent },
+            { path: 'purchase-return', component: PurchaseReturnComponent },
+            { path: 'sales-invoice', component: SalesInvoiceComponent },
+            { path: 'sales-return', component: SalesReturnComponent },
+            { path: 'voucher', component: VoucherComponent }
 
         ]
     }

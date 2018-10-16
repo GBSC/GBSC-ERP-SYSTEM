@@ -9,13 +9,18 @@ import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompanysetupComponent } from './companysetup/companysetup.component';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { FinanceService } from '../core/Services/Finance/finance.service';
+import { FinanceSetupService } from '../core/Services/Finance/financeSetup.service';
 import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
 import { FinancialyearComponent } from './financialSetups/financialyear/financialyear.component';
 import { VouchertypeComponent } from './financialSetups/vouchertype/vouchertype.component';
 import { SubAccountComponent } from './financialSetups/sub-account/sub-account.component';
 import { SecondSubAccountComponent } from './financialSetups/second-sub-account/second-sub-account.component';
 import { DetailAccountComponent } from './financialSetups/detail-account/detail-account.component';
+import { VoucherComponent } from './voucher/voucher.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
+import { PurchaseReturnComponent } from './purchase-return/purchase-return.component';
+import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
+import { SalesReturnComponent } from './sales-return/sales-return.component';
 
 
 @NgModule({
@@ -42,8 +47,13 @@ import { DetailAccountComponent } from './financialSetups/detail-account/detail-
         MasterAccountComponent,
         SubAccountComponent,
         SecondSubAccountComponent,
-        DetailAccountComponent
+        DetailAccountComponent,
+        VoucherComponent,
+        PurchaseInvoiceComponent,
+        PurchaseReturnComponent,
+        SalesInvoiceComponent,
+        SalesReturnComponent
     ],
-    providers: [FinanceService]
+    providers: [FinanceSetupService]
 })
 export class FinanceModule { }

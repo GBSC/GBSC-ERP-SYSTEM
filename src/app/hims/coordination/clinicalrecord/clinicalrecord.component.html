@@ -14,6 +14,54 @@
         <div class="m-portlet__body">
           <div class="m-section">
           <div class="m-section__content" >
+              <h4>Clinical Master</h4>
+              <hr>
+              <div class="row">
+                  <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Doc No.
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="99082-1" disabled>
+                      </div>
+                    </div>
+                  <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          MRN No.
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{patient?.mrn}}">
+                      </div>
+                    </div>
+                   
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Patient Name
+                    </label>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" disabled>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Spouse
+                    </label>
+                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="col-sm-2" style="padding-top: 28px;">
+                    <button type="button" class="btn btn-primary btn-block">
+                        Add New Cycle
+                    </button>
+                  </div>
+                
+              </div>
+
+
+             
+              <h4 style="margin-top: 30px;">Clinical Details</h4>
+ <hr>
             <div class="row">
               <div class="col-sm-2"><div class="form-group m-form__group">
                 <label for="exampleInputEmail1">
@@ -256,9 +304,25 @@
               </div>
             </div>
 
+            
            
           </div>
           </div>
+          <div class="m-form__actions m-form__actions--solid">
+              <div class="row">
+                <div class="col-lg-6">
+                  
+                </div>
+                <div class="col-lg-6 m--align-right">
+                    <button type="reset" class="btn btn-primary">
+                        Update
+                      </button>
+                      <button type="reset" class="btn btn-secondary">
+                        Back
+                      </button>
+                </div>
+              </div>
+            </div>
         </div>
         </div>
       </div>

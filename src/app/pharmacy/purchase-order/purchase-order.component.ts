@@ -137,7 +137,7 @@ export class PurchaseOrderComponent implements OnInit {
             InventoryItemId: this.SelectedInventoryItem.inventoryItemId,
             InventoryId: this.SelectedInventoryItem.InventoryId
         };
-
+        console.log(b);
         // this.PurchaseOrderDetail = value;
         // //this.TotalOrderAmount += Number.parseInt(this.PurchaseOrderDetailsForm.value.NetAmount);
         this.PurchaseOrderDetailsArray.push(b);

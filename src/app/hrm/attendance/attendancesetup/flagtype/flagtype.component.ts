@@ -13,23 +13,20 @@ export class FlagtypeComponent implements OnInit {
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getflagtypes();
-        this.flagtype = this.attendancesetupservice.flagtype
-        console.log(this.flagtype);
 
+        this.flagtype = await this.attendancesetupservice.getFlagTypes();
     }
 
     async addflagtype(value) {
-        this.attendancesetupservice.addflagtype(value.data);
+        this.attendancesetupservice.addFlagType(value.data);
     }
 
     async updateflagtype(value) {
-        console.log(value);
-        this.attendancesetupservice.updateflagtype(value);
+        this.attendancesetupservice.updateFlagType(value);
     }
 
     async deleteflagtype(value) {
-        this.attendancesetupservice.Deleteflagtype(value.key);
+        this.attendancesetupservice.DeleteFlagType(value.key);
     }
 
 }

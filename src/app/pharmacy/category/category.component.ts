@@ -10,14 +10,14 @@ import { PharmacyService } from '../../core';
     styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
-    public catgory : any;
+    public catgory: any;
 
-    constructor(public InventorysystemServiceobj: PharmacyService, public httpClient: HttpClient,) { }
+    constructor(public InventorysystemServiceobj: PharmacyService, public httpClient: HttpClient, ) { }
 
     async ngOnInit() {
-        
+
         this.catgory = await this.InventorysystemServiceobj.GetInventoryItemCategories();
-        console.log(this.catgory );
+        console.log(this.catgory);
     }
 
 

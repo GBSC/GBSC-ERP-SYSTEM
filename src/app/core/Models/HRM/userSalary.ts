@@ -5,6 +5,6 @@ export class UserSalary {
     SalaryMonth: Date;
     SalaryYear: Date;
     IncomeTaxRuleId: number;
-    GroupId: number; 
-    userId: number; 
+    GroupId: number;
+    userId: number;
 }

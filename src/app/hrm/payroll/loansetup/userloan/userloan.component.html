@@ -31,11 +31,11 @@
 							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 				
 							<dxi-column dataField="userId" caption="Employee">
-									<dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+									<dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId">
 									</dxo-lookup>
 								</dxi-column>
 								<dxi-column dataField="loanTypeId" caption="Loan Type">
-										<dxo-lookup [dataSource]="payrollsetupservice?.loantype" displayExpr="name" valueExpr="loanTypeId">
+										<dxo-lookup [dataSource]="loanType" displayExpr="name" valueExpr="loanTypeId">
 										</dxo-lookup>
 									</dxi-column>
 

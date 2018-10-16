@@ -14,13 +14,11 @@
             <div class="m-section">
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
-                 [dataSource]="workExperience"
+                 [dataSource]="experiences"
                  keyExpr="workExperienceId" 
-                (onRowUpdated)="updateExperience()"
-                (onRowUpdating)="updatingExperience($event)"
-                (onRowInserted)="addExperience($event)"  
-                (onRowRemoved)="deleteleavetype($event)">
-                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                 (onRowInserted)="addWorkExperience($event)"
+                (onRowUpdated)="updateWorkExperience()">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                     <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>
                   </dxo-editing>
@@ -31,7 +29,7 @@
                   <dxo-paging [pageSize]="6"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager> 
-                  <dxi-column dataField="Company"></dxi-column>
+                  <dxi-column dataField="company"></dxi-column>
                   <dxi-column dataField="designation"></dxi-column>
                   <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
                   <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
@@ -42,13 +40,7 @@
           </div>
         </div>
       </div>
-    </div> 
-<!-- <div>
-<button (click)="update()">
-update
-</button>        
-</div>
-</form> -->
+    </div>  
 </div>
 
 

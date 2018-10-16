@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { SetupService } from '../../../core';
 
 @Component({
@@ -18,15 +18,11 @@ export class CityComponent implements OnInit {
 
         await this.dataService.getAllCountries();
         this.country = this.dataService.country;
-        console.log(this.country);
 
         await this.dataService.getAllCities();
         this.city = this.dataService.city;
-        console.log(this.city);
-        // this.dataService.GetAllCities().subscribe((data)=>this.City=data);
     }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addCity(cty) {
         this.dataService.addCity(cty.data);

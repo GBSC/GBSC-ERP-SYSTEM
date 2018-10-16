@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-skilllevels',
@@ -21,8 +21,7 @@ export class SkillLevelsComponent implements OnInit {
     async ngOnInit() {
         await this.dataService.getAllSkillLevels();
         this.skill = this.dataService.skilllevels;
-        // console.log(this.skill);
-        // this.dataService.getAllSkillLevels().subscribe((data)=>this.skilllevels=data);
+
     }
 
     addNewskill(slevel) {

@@ -2,37 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-gratuity-slab-gratuity',
-  templateUrl: './gratuity-slab-gratuity.component.html',
-  styleUrls: ['./gratuity-slab-gratuity.component.scss']
+    selector: 'app-gratuity-slab-gratuity',
+    templateUrl: './gratuity-slab-gratuity.component.html',
+    styleUrls: ['./gratuity-slab-gratuity.component.scss']
 })
 export class GratuitySlabGratuityComponent implements OnInit {
 
-  public gratuitySlabGratuity: any;
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    public gratuitySlab: any;
+    public gratuitySlabGratuity: any;
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getgratuityslabGratuities();
-    this.gratuitySlabGratuity = this.payrollsetupservice.gratuityslabGratuity;
-   
-    await this.payrollsetupservice.getgratuityslabs();
-    let gratuitySlab = this.payrollsetupservice.gratuityslab;
-   
-    // await this.payrollsetupservice.getgratuities();
-    // let Gratuity = this.payrollsetupservice.gratuity;
-  }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async addGratuitySlabGratuity(value) {
-    await this.payrollsetupservice.addgratuityslabGratuity(value.data);
-  }
+    async ngOnInit() {
+        this.gratuitySlabGratuity = await this.payrollsetupservice.getGratuitySlabGratuities();
 
-  async updateGratuitySlabGratuity(value) {
-    console.log(value);
-    await this.payrollsetupservice.updategratuityslabGratuity(value);
-  }
+        this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
+    }
 
-  async deleteGratuitySlabGratuity(value) {
-    await this.payrollsetupservice.DeletegratuityslabGratuity(value.key);
-  }
+    async addGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.addGratuitySlabGratuity(value.data);
+    }
+
+    async updateGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.updateGratuitySlabGratuity(value);
+    }
+
+    async deleteGratuitySlabGratuity(value) {
+        await this.payrollsetupservice.deleteGratuitySlabGratuity(value.key);
+    }
 
 }

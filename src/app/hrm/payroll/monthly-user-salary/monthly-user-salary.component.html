@@ -91,7 +91,7 @@
                     </label>
                     <select class="form-control m-input" formControlName="StopSalaryId" id="">
                       <option value="" disabled selected>-- Select Stop Salary --</option>
-                      <option *ngFor ="let stopSalary of payrollservice?.stopsalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
+                      <option *ngFor ="let stopSalary of stopSalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
                     </select>
                   </div>
                   <div class="col-lg-6">
@@ -100,7 +100,7 @@
                     </label>
                     <select class="form-control m-input" formControlName="UserSalaryId" id="">
                           <option value="" disabled selected>-- Select User Salary --</option>
-                          <option *ngFor ="let userSalary of payrollsetupservice?.usersalary" [value]="userSalary.userSalaryId" >{{userSalary.salary}}</option>
+                          <option *ngFor ="let userSalary of userSalary" [value]="userSalary.userSalaryId" >{{userSalary.salary}}</option>
                         </select>
                     </div>
                   </div>
@@ -112,16 +112,16 @@
                       </label>
                       <select class="form-control m-input" formControlName="PfPaymentId" id="">
                         <option value="" disabled selected>-- Select Pf Payment --</option>
-                        <option *ngFor ="let pfpayment of payrollsetupservice?.pfpayment" [value]="pfpayment.pfPaymentId" >{{pfpayment.lastestTotalPfAmount}}</option>
+                        <option *ngFor ="let pfpayment of pfPayment" [value]="pfpayment.pfPaymentId" >{{pfpayment.lastestTotalPfAmount}}</option>
                       </select>
                     </div>
                     <div class="col-lg-6">
                       <label class="">
                         Pay Roll:
                       </label>
-                      <select class="form-control m-input" formControlName="PayrollId" id="">
-                        <option value="" disabled selected>-- Select Monthly Salary --</option>
-                        <option *ngFor ="let payroll of payrollsetupservice?.payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
+                      <select class="form-control m-input" formControlName="PayslipId" id="">
+                        <option value="" disabled selected>-- Select Gross Amount --</option>
+                        <option *ngFor ="let Payslip of paySlip" [value]="Payslip.payslipId" >{{Payslip.grossAmount}}</option>
                       </select>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                       </label>
                       <select class="form-control m-input" formControlName="PayrollId" id="">
                         <option value="" disabled selected>-- Select Monthly Salary --</option>
-                        <option *ngFor ="let payroll of payrollsetupservice?.payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
+                        <option *ngFor ="let payroll of payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
                       </select>
                     </div>
                   </div>
@@ -176,7 +176,7 @@
                                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                 </dxo-pager>  
                                 <dxi-column dataField="userId" caption="Employee">
-                                  <dxo-lookup [dataSource]="Employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                                  <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                                   </dxo-lookup> 
                                 </dxi-column>
                                 <dxi-column dataField="attendanceDate" dataType="date" format="shortDate" caption="Attendance Date"></dxi-column>

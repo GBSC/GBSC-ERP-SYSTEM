@@ -7,6 +7,6 @@ export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
         // If you lower it in the optional step 
         // you don't need to use "toLowerCase" 
         // when you pass it down to the next function
-        return super.parse(url.toLowerCase()); 
+        return super.parse(url.toLowerCase());
     }
 }

@@ -5,81 +5,71 @@ import { UserRosterAttendance } from '../../../core/Models/HRM/userRosterAttenda
 import { MonthlyUserSalary } from '../../../core/Models/HRM/monthlyUserSalary';
 
 @Component({
-  selector: 'app-monthly-user-salary',
-  templateUrl: './monthly-user-salary.component.html',
-  styleUrls: ['./monthly-user-salary.component.scss']
+    selector: 'app-monthly-user-salary',
+    templateUrl: './monthly-user-salary.component.html',
+    styleUrls: ['./monthly-user-salary.component.scss']
 })
 export class MonthlyUserSalaryComponent implements OnInit {
 
-  private MonthlyUserSalaryForm: any
-  private rosterAttendance: UserRosterAttendance[];
-  public stopSalary: any;
-  public monthlyUserSalary: any;
+    private MonthlyUserSalaryForm: any
+    private rosterAttendance: UserRosterAttendance[];
+    public stopSalary: any;
+    public paySlip: any;
+    public employees: any;
+    public userSalary: any;
+    public monthlyUserSalary: any;
+    public pfPayment: any;
+    public payroll: any;
 
-  constructor(private fb: FormBuilder, public payrollservice: PayrollService,
-    public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService,
+        public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.rosterAttendance = [];
+        this.rosterAttendance = [];
 
-    this.MonthlyUserSalaryForm = this.fb.group({
-      MonthStartDate: ['', Validators],
-      MonthEndDate: ['', Validators],
-      TotalWorkingDaysInMonth: ['', Validators],
-      PresentDays: ['', Validators],
-      LeaveDays: ['', Validators],
-      AbsentDays: ['', Validators],
-      OvertimeHours: ['', Validators],
-      IsStopped: ['', Validators],
-      StopFrom: ['', Validators],
-      StopTill: ['', Validators],
-      StopSalaryId: ['', Validators],
-      UserSalaryId: ['', Validators],
-      PfPaymentId: ['', Validators],
-      PayslipId: ['', Validators],
-      PayrollId: ['', Validators]
-    });
+        this.MonthlyUserSalaryForm = this.fb.group({
+            MonthStartDate: ['', Validators],
+            MonthEndDate: ['', Validators],
+            TotalWorkingDaysInMonth: ['', Validators],
+            PresentDays: ['', Validators],
+            LeaveDays: ['', Validators],
+            AbsentDays: ['', Validators],
+            OvertimeHours: ['', Validators],
+            IsStopped: ['', Validators],
+            StopFrom: ['', Validators],
+            StopTill: ['', Validators],
+            StopSalaryId: ['', Validators],
+            UserSalaryId: ['', Validators],
+            PfPaymentId: ['', Validators],
+            PayslipId: ['', Validators],
+            PayrollId: ['', Validators]
+        });
 
-    // await this.payrollservice.month();
-    // this.monthlyUserSalary = this.payrollservice.stopsalary;
+        this.stopSalary = await this.payrollservice.getStopSalaries();
 
-    await this.payrollservice.getstopsalaries();
-    this.stopSalary = this.payrollservice.stopsalary;
+        this.employees = await this.Employeeservice.GetAllEmployees();
 
-    await this.Employeeservice.GetAllEmployees();
-    let employee = this.Employeeservice.employeereg;
-    
-    await this.payrollsetupservice.getusersalaries();
-    let userSalary = this.payrollsetupservice.usersalary;
+        this.userSalary = await this.payrollsetupservice.getUserSalaries();
 
-    await this.payrollsetupservice.getpfpayments();
-    let pfPayment = this.payrollsetupservice.pfpayment;
+        this.pfPayment = await this.payrollsetupservice.getPfPayments();
 
-    await this.payrollsetupservice.getpayrolls();
-    let payRoll = this.payrollsetupservice.payroll;
-    await this.payrollservice.getpayslips();
-    let paySlip = this.payrollservice.Payslip;
+        this.payroll = await this.payrollsetupservice.getPayrolls();
 
-  }
+        this.paySlip = await this.payrollservice.getPayslips();
+    }
 
-  async RosterAttendance(value) {
-    let data = value.data;
-    this.rosterAttendance.push(data);
-    console.log(this.rosterAttendance);
-  }
+    async RosterAttendance(value) {
+        let data = value.data;
+        this.rosterAttendance.push(data);
+    }
 
-  async addMonthlySalary(value) {
-    console.log(value);
-    let monthlySalary = new MonthlyUserSalary();
-    monthlySalary = { ...monthlySalary, ...value };
-    console.log(this.rosterAttendance);
-    monthlySalary.UserRosterAttendances = this.rosterAttendance;
-    console.log(monthlySalary);
-    let x = await this.payrollservice.addMonthlySalary(monthlySalary);
-    console.log(x);
-    this.MonthlyUserSalaryForm.reset();
-
-  }
+    async addMonthlySalary(value) {
+        let monthlySalary = new MonthlyUserSalary();
+        monthlySalary = { ...monthlySalary, ...value };
+        monthlySalary.UserRosterAttendances = this.rosterAttendance;
+        let x = await this.payrollservice.addMonthlySalary(monthlySalary);
+        this.MonthlyUserSalaryForm.reset();
+    }
 
 }

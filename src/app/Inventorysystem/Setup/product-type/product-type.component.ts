@@ -8,8 +8,8 @@ import { InventorysystemService } from '../../../core';
 })
 export class ProductTypeComponent implements OnInit {
     private ProductTypes: any;
-    private UpdatedModel : any;
-    
+    private UpdatedModel: any;
+
     constructor(private InventoryService: InventorysystemService) {
 
     }
@@ -24,7 +24,7 @@ export class ProductTypeComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateProductType() {

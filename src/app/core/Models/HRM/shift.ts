@@ -14,6 +14,6 @@ export class Shift {
     outTimeShiftThreshold: boolean;
     shiftHours: number;
     overTimeRate: number;
-    UserRosterAttendanceAttendanceFlags : UserRosterAttendanceAttendanceFlag[];
-    AssignRosterShifts : AssignRosterShift[];
+    UserRosterAttendanceAttendanceFlags: UserRosterAttendanceAttendanceFlag[];
+    AssignRosterShifts: AssignRosterShift[];
 }

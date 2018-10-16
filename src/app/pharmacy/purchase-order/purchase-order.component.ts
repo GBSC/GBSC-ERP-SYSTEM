@@ -19,26 +19,26 @@ export class PurchaseOrderComponent implements OnInit {
     private PurchaseOrders: PurchaseOrder;
     private NewPurchaseOrder: PurchaseOrder;
     private Suppliers: Supplier;
-    private SelectedSupplier : Supplier;
-    private UpdatedModel : any;
-    private PurchaseOrderForm : FormGroup;
-    private PurchaseOrderDetailsForm : FormGroup;
-    private InventoryItems : InventoryItem;
-    private SelectedInventoryItem : any;
-    private PurchaseOrderDetail : PurchaseOrderItem;
-    private PurchaseOrderDetailsArray : any[] = [];
-    private FilteredInventoryItems : any;
-    private Currencies : Currency[];
-    private SelectedCurrency : Currency;
-    private TotalOrderAmount : number;
-    private GrossAmount : number = 0;
-    private SalesTaxAmount : number = 0;
-    private DiscountAmount : number = 0;
-    private NetAmount : number = 0;
-    private OrderQuantity : number = 0;
+    private SelectedSupplier: Supplier;
+    private UpdatedModel: any;
+    private PurchaseOrderForm: FormGroup;
+    private PurchaseOrderDetailsForm: FormGroup;
+    private InventoryItems: InventoryItem;
+    private SelectedInventoryItem: any;
+    private PurchaseOrderDetail: PurchaseOrderItem;
+    private PurchaseOrderDetailsArray: any[] = [];
+    private FilteredInventoryItems: any;
+    private Currencies: Currency[];
+    private SelectedCurrency: Currency;
+    private TotalOrderAmount: number;
+    private GrossAmount: number = 0;
+    private SalesTaxAmount: number = 0;
+    private DiscountAmount: number = 0;
+    private NetAmount: number = 0;
+    private OrderQuantity: number = 0;
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
-        this.PurchaseOrderForm = this.FormBuilder.group( {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+        this.PurchaseOrderForm = this.FormBuilder.group({
             OrderNumber: [''],
             OrderDate: [''],
             Status: [''],

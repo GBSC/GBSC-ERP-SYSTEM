@@ -32,7 +32,7 @@ export class RecentvisitsComponent implements OnInit {
 
     async onclick(id) {
         this.router.navigate(['/hims/patient/visitdetail/' + id]);
-                console.log(this.visits);
+        console.log(this.visits);
 
     }
 }

@@ -14,14 +14,14 @@ import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
 import { ToastrModule } from 'ngx-toastr';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
+import { ClinicalrecordComponent } from './hims/coordination/clinicalrecord/clinicalrecord.component';
 
 
 
 @NgModule({
     declarations: [
         ThemeComponent,
-        AppComponent,
-
+        AppComponent
     ],
     imports: [
         CommonModule,

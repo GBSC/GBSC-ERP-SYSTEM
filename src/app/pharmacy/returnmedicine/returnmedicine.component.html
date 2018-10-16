@@ -48,7 +48,7 @@
                             Return Date
                             </label>
                           <div class="input-group date">
-                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" disabled>
+                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate">
                            </div>
                       </div>
                       <div class="form-group col-lg-3">
@@ -63,14 +63,14 @@
                               <label for="exampleInputEmail1">
                                  P. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="customerdata?.name || ''"
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="SelectedCustomer?.name || ''"
                               disabled>
                             </div>
                           <div class="form-group col-lg-3">
                               <label for="exampleInputEmail1">
                                 S. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="customerdata?.shortName || ''"
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="SelectedCustomer?.shortName || ''"
                               disabled>
                           </div>
                           <div class="form-group col-lg-3">
@@ -108,7 +108,7 @@
                                     <th>Purchase Amount</th>
                                     <th>Return Amount</th>
                                     <th>Save</th>
-                                    <tr *ngFor="let a of SelectedSalesOrderDetails, let i = index">
+                                    <tr *ngFor="let a of SelectedSalesOrderDetails, let y of UpdateInventories, let i = index">
                                         <td><input class="form-control m-input m-input--solid"
                                                 formControlName="ItemCode" [value]="a?.inventoryItem?.itemCode || ''" disabled></td>
                                         <td><input class="form-control m-input m-input--solid"
@@ -123,14 +123,14 @@
                                             formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseQuantity" [value]="a?.orderUnitQuantity || 0" disabled></td>
-                                        <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" value="Rate.value * ReturnQuantity.value || 0"
-                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity"></td>
+                                        <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" 
+                                                formControlName="ReturnQuantity" #ReturnQuantity min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseAmount" [value]="a?.itemTotalAmount" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
-                                                formControlName="ReturnAmount" [value]="ReturnAmount || 0" disabled></td>
+                                                formControlName="ReturnAmount" [value]="ReturnAmount[i] || 0" disabled></td>
                                         <td>
-                                            <button type="button" (click)="CreateSalesReturnDetails(a.value, i)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                            <button type="button" (click)="CreateSalesReturnDetails(i, ReturnQuantity.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                 <i class="la la-add"></i>
                                             </button>
                                         </td>
@@ -143,8 +143,8 @@
                             <div class="form-group m-form__group row">
                                 <div class="col-lg-10"></div>
                                     <div class="col-lg-2">
-                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalQuantity" disabled>
-                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalReturnAmount" disabled>
+                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalReturnQuantity || 0" disabled>
+                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalReturnAmount || 0" disabled>
                                     </div>
                                     <button (click)="AddSalesReturn()">Submit</button>
                                     <button (click)="ResetWholeForm()">Reset</button>

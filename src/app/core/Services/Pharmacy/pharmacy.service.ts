@@ -53,16 +53,16 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesOrder/' + id);
     }
 
-    GetSalesOrderItemsByCode(id: number): Observable<SalesOrderItem[]> {
-        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsByCode/' + id);
+    GetSalesOrderItemsBySalesOrderID(id: number): Observable<SalesOrderItem[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsBySalesOrderID/' + id);
     }
 
-    async GetSalesOrderByCodeAsync(code : string) {
+    async GetSalesOrderByCodeAsync(code: string) {
         return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderbyCode/' + code).toPromise();
     }
 
-    async GetSalesOrderItemsByCodeAsync(id: number) {
-        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsByCode/' + id).toPromise();
+    async GetSalesOrderItemsBySalesOrderIDAsync(id: number) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsBySalesOrderID/' + id).toPromise();
     }
 
     //SalesOrderItem

@@ -20,26 +20,26 @@ export class PurchaseOrderComponent implements OnInit {
     private PurchaseOrders: PurchaseOrder;
     private NewPurchaseOrder: PurchaseOrder;
     private Suppliers: Supplier;
-    private SelectedSupplier : Supplier;
-    private PurchaseOrderForm : FormGroup;
-    private PurchaseOrderDetailsForm : FormGroup;
-    private PurchaseOrderDetailsFormArray : any[] = [];
-    private InventoryItems : InventoryItem;
-    private SelectedInventoryItem : any;
-    private PurchaseOrderDetailsArray : any[] = [];
-    private FilteredInventoryItems : any;
-    private Currencies : Currency[];
-    private SelectedCurrency : Currency;
-    private TotalOrderAmount : number = 0;
-    private GrossAmount : number = 0;
-    private SalesTaxAmount : number = 0;
-    private DiscountAmount : number = 0;
-    private NetAmount : number = 0;
-    private TotalQuantity : number = 0;
-    private Inventories : Inventory[] = [];
+    private SelectedSupplier: Supplier;
+    private PurchaseOrderForm: FormGroup;
+    private PurchaseOrderDetailsForm: FormGroup;
+    private PurchaseOrderDetailsFormArray: any[] = [];
+    private InventoryItems: InventoryItem;
+    private SelectedInventoryItem: any;
+    private PurchaseOrderDetailsArray: any[] = [];
+    private FilteredInventoryItems: any;
+    private Currencies: Currency[];
+    private SelectedCurrency: Currency;
+    private TotalOrderAmount: number = 0;
+    private GrossAmount: number = 0;
+    private SalesTaxAmount: number = 0;
+    private DiscountAmount: number = 0;
+    private NetAmount: number = 0;
+    private TotalQuantity: number = 0;
+    private Inventories: Inventory[] = [];
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
-        this.PurchaseOrderForm = this.FormBuilder.group( {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+        this.PurchaseOrderForm = this.FormBuilder.group({
             OrderNumber: [''],
             OrderDate: [''],
             Status: [''],
@@ -183,16 +183,16 @@ export class PurchaseOrderComponent implements OnInit {
         this.PurchaseOrderDetailsForm.reset();
 
         //Stock
-        var a : any = {
-            inventoryId : this.SelectedInventoryItem.inventory.inventoryId,
-            inventoryItemId : this.SelectedInventoryItem.inventoryitemId,
-            stockQuantity : this.SelectedInventoryItem.inventory.stockQuantity + this.TotalQuantity,
+        var a: any = {
+            inventoryId: this.SelectedInventoryItem.inventory.inventoryId,
+            inventoryItemId: this.SelectedInventoryItem.inventoryitemId,
+            stockQuantity: this.SelectedInventoryItem.inventory.stockQuantity + this.TotalQuantity,
         };
         this.Inventories.push(a);
     }
 
     RemovePurchaseOrderDetails(index, NetAmount, quantity) {
-        
+
         this.PurchaseOrderDetailsFormArray.splice(index, 1);
         this.PurchaseOrderDetailsArray.splice(index, 1);
         this.Inventories.splice(index, 1);
@@ -215,16 +215,16 @@ export class PurchaseOrderComponent implements OnInit {
 
     SubmitPurchaseOrder() {
 
-        var a : any = {
-            OrderDate : this.PurchaseOrderForm.value.OrderDate,
-            Status : this.PurchaseOrderForm.value.Status,
-            SupplierId : this.PurchaseOrderForm.value.SupplierId,
-            Origin : this.PurchaseOrderForm.value.Origin,
-            CurrencyId : this.PurchaseOrderForm.value.CurrencyId,
-            Remarks : this.PurchaseOrderForm.value.Remarks,
-            PurchaseOrderDetails : this.PurchaseOrderDetailsArray
+        var a: any = {
+            OrderDate: this.PurchaseOrderForm.value.OrderDate,
+            Status: this.PurchaseOrderForm.value.Status,
+            SupplierId: this.PurchaseOrderForm.value.SupplierId,
+            Origin: this.PurchaseOrderForm.value.Origin,
+            CurrencyId: this.PurchaseOrderForm.value.CurrencyId,
+            Remarks: this.PurchaseOrderForm.value.Remarks,
+            PurchaseOrderDetails: this.PurchaseOrderDetailsArray
         };
-         
+
         console.log(a);
         this.NewPurchaseOrder = a;
         console.log(this.NewPurchaseOrder);

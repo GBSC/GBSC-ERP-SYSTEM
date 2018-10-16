@@ -31,7 +31,7 @@
                 </dxo-pager>
                 <dxi-column dataField="balanceValue" caption="Balance Value"></dxi-column>
                 <dxi-column dataField="leaveTypeId" caption="Leave Type">
-                  <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                  <dxo-lookup [dataSource]="LeaveType" displayExpr="title" valueExpr="leaveTypeId">
                   </dxo-lookup> 
                   </dxi-column>
                   <dxi-column dataField="userId" caption="Employee">

@@ -16,7 +16,8 @@
                [dataSource]="decimalrounding"
                keyExpr="decimalRoundingMatrixId"
                (onRowInserted)="adddrmatrix($event)" 
-              (onRowUpdated)="updatedrmatrix($event)"
+              (onRowUpdated)="updatedrmatrix()"
+              (onRowUpdating)="updatingrmatrix($event)"
                 (onRowRemoved)="deletedrmatrix($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Decimal Rounding Matrix" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
@@ -32,10 +33,14 @@
                 <dxi-column dataField="fromRange"></dxi-column> 
                 <dxi-column dataField="tillRange"></dxi-column> 
                 <dxi-column dataField="effect"></dxi-column> 
-                <!-- <dxi-column dataField="leavePolicyId" caption="Leave Policy" [width]="450">
-                  <dxo-lookup [dataSource]="data.leavepolicy" displayExpr="title" valueExpr="leavePolicyId">
+                <dxi-column dataField="leavePolicyId" caption="Encashment Days" [width]="450">
+                  <dxo-lookup [dataSource]="leavePolicy" displayExpr="encashmentDays" valueExpr="leavePolicyId">
                   </dxo-lookup> 
-                  </dxi-column> -->
+                  </dxi-column>
+                <dxi-column dataField="LeavePolicyEmployeeId" caption="Encashment Days" [width]="450">
+                  <dxo-lookup [dataSource]="Employeeleave" displayExpr="encashmentDays" valueExpr="LeavePolicyEmployeeId">
+                  </dxo-lookup> 
+                  </dxi-column>
               </dx-data-grid>
             </div>
             </div>

@@ -109,16 +109,12 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveOpeningDetail/${leaveOpeningdetailId}`).toPromise();
     }
 
-    /** CRUD METHODS LEAVE REQUEST*/
-    async getAllleavepolicyemployee() {
+     /** CRUD METHODS LEAVE REQUEST*/
+     async getleavepolicyemployee() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.leavepolicyemployee = await this.ApiService.get(`${this.baseUrl}/Leave/Getleavepolicyemployees`).toPromise();
-        //console.log(features);
-        console.log(this.leavepolicyemployee);
-        return this.leavepolicyemployee;
+        return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployees`).toPromise();
     }
 
 
@@ -155,19 +151,15 @@ export class LeaveService {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/UpdateLeavePolicyEmployee/${id}`).toPromise();
     }
 
-
-    //   Leave Admin Methods
+   //   Leave Admin Methods
 
     /** CRUD METHODS LEAVE REQUEST*/
     async getAllleaverequest() {
 
         let authToken = localStorage.getItem('auth_token');
         let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.leaverequest = await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequests`).toPromise();
-        //console.log(features);
-        console.log(this.leaverequest);
-        return this.leaverequest;
+        return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequests`).toPromise();
+     
     }
 
 

@@ -15,6 +15,8 @@ export interface  Employee {
     HomePhone : string,
     Address : string,
     PermanentAddress : string,
+    ReligionId : number,
+    CityId : number,  
     DateCreated : Date,
     
 }

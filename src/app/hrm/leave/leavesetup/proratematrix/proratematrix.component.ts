@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeaveSetupService } from '../../../../core';
+import { LeaveSetupService, LeaveService } from '../../../../core';
 
 @Component({
     selector: 'app-proratematrix',
@@ -8,15 +8,20 @@ import { LeaveSetupService } from '../../../../core';
 })
 export class ProratematrixComponent implements OnInit {
     public proratematrix: any;
-    constructor(public leavesetupservice: LeaveSetupService) { }
+    public leaveemppolicy: any;
+    public leavepolicy: any;
+    public promatrix: any;
+
+    constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
         await this.leavesetupservice.getproratematrix();
         this.proratematrix = this.leavesetupservice.proratematrix
         console.log(this.proratematrix);
 
-        await this.leavesetupservice.getAllleavepolicy();
-        let typeofleave = this.leavesetupservice.leavepolicy;
+        this.leavepolicy = await this.leavesetupservice.getAllleavepolicy();
+ 
+        this.leaveemppolicy = await this.leaveservice.getleavepolicyemployee();
 
     }
 
@@ -24,11 +29,15 @@ export class ProratematrixComponent implements OnInit {
         this.leavesetupservice.addproratematrix(value.data);
     }
 
-    async updateprmatrix(value) {
-        this.leavesetupservice.updateproratematrix(value);
+    updatingpromatrix(value) {
+        this.promatrix = {...value.oldData, ...value.newData};
+    }
+   
+     updatepromatrix() {
+         this.leavesetupservice.updateproratematrix( this.promatrix);
     }
 
     async deleteprmatrix(value) {
-        this.leavesetupservice.Deleteproratematrix(value.key);
+       await this.leavesetupservice.Deleteproratematrix(value.key);
     }
 }

@@ -12,9 +12,8 @@ export class LeavetypeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getAllleavetype();
-        this.levetype = this.leavesetupservice.leavetype
-        console.log(this.levetype);
+        this.levetype =  await this.leavesetupservice.getAllleavetype();
+
 
     }
 

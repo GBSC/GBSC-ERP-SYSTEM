@@ -1,284 +1,54 @@
-<div class="m-content">
 
+
+<div class="m-content">
   <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
+      <div class="col-xl-12">
+        <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-               Income Tax Rule
-              </h3>
-            </div>
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Income Tax Rule</h3>
+          </div>
           </div>
         </div>
         <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <dx-data-grid id="gridContainer" [dataSource]="incomeTax"
+            keyExpr="incomeTaxRuleId"
+             (onRowInserted)="addIncomeTaxRule($event)"
+              (onRowUpdated)="updateIncomeTaxRule()" 
+              (onRowUpdating)="UpdatingIncomeTaxRule($event)" 
+              (onRowRemoved)="deleteIncomeTaxRule($event)"> 
 
-          <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                 Payrol Year:
-                </label>
-                <select class="form-control m-input" formControlName="GroupId" id="">
-                    <option value="" disabled selected>-- Select Payrol Year --</option>
-                    <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
-           </select>
-              </div>
-              </div>
-          
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                    Tax Schedule
-                    </h3>
-                  </div>
-                </div>
-              </div> 
-
-<div class="form-group m-form__group row">
-  <div class="col-lg-12">
-
-    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-      <th>From</th>
-      <th>Till</th>
-      <th>Tax Type</th>
-      <th>Value</th>
-      <th>Fixed Value</th>
-      <th>Applicabale To</th> 
-      <th>Add</th>
-      <th>Delete</th>
-      <tr>
-        <td>
-          <input type="date" class="form-control m-input" formControlNameName="From" placeholder="0">
-        </td>
-        <td>
-          <input type="date" class="form-control m-input" formControlNameName="Till" placeholder="0">
-        </td>
-        
-        <td>
-          <select class="form-control m-input" formControlName="FrequencyId" id="">
-            <option value="" disabled selected>-- Select Tax Type --</option>
-            <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
-          </select>
-        </td>
-        <td>
-          <input type="text" class="form-control m-input" formControlNameName="Value" placeholder="0">
-        </td>
-        <td>
-          <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="0">
-        </td>
-        
-        <td>
-          <select class="form-control m-input" formControlName="ApplicabaleTo" id="">
-            <option value="" disabled selected>-- Select Applicable --</option>
-            <option value="">Male</option>
-            <option value="">Female</option>
-            </select>
-        </td>
- 
-
-        <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-        <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-      </tr>
-      <tr *ngFor="let field of fieldArray; let i = index">
-        <td>
-          <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="from">
-        </td>
-        <td>
-          <input type="date" class="form-control m-input" formControlNameName="EffectiveDate" placeholder="to">
-        </td>
-            <td>
-              <select class="form-control m-input" formControlName="FrequencyId" id="">
-                <option value="" disabled selected>-- Select Frequency --</option>
-                <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
-              </select>
-            </td>
-        <td>
-          <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
-        </td>
-        <td>
-          <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
-        </td>
-        <td>
-          <select class="form-control m-input" formControlName="PayrollTypeId" id="">
-            <option value="" disabled selected>-- Select Payroll Type --</option>
-            <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
-          </select>
-        </td>
-
-        <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-        <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-      </tr>
-    </table>
-  </div>
-</div>
-
-<div class="m--space-30"></div>
-
-<div class="m-portlet__head">
-  <div class="m-portlet__head-caption">
-    <div class="m-portlet__head-title">
-      <h3 class="m-portlet__head-text">
-        Tax Relief
-      </h3>
-    </div>
-  </div>
-</div> 
-                  <div class="form-group m-form__group row">
-                  <div class="col-lg-12">
-                  
-                  <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
-                  <th>From</th>
-                  <th>Till</th>
-                  <th>Tax Type</th>
-                  <th>Value</th>
-                  <th>Fixed Value</th>
-                  <th>Applicabale To</th> 
-                  <th>Add</th>
-                  <th>Delete</th>
-                  <tr>
-                    <td>
-                      <input type="date" class="form-control m-input" formControlNameName="From" placeholder="0">
-                    </td>
-                    <td>
-                      <input type="date" class="form-control m-input" formControlNameName="Till" placeholder="0">
-                    </td>
-                    
-                    <td>
-                      <select class="form-control m-input" formControlName="FrequencyId" id="">
-                        <option value="" disabled selected>-- Select Tax Type --</option>
-                        <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input type="text" class="form-control m-input" formControlNameName="Value" placeholder="0">
-                    </td>
-                    <td>
-                      <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="0">
-                    </td>
-                    
-                    <td>
-                      <select class="form-control m-input" formControlName="ApplicabaleTo" id="">
-                        <option value="" disabled selected>-- Select Applicable --</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                        </select>
-                    </td>
-                  
-                  
-                    <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                    <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                  </tr>
-                  <tr *ngFor="let field of fieldArray; let i = index">
-                    <td>
-                      <input type="number" class="form-control m-input" formControlNameName="Value" placeholder="from">
-                    </td>
-                    <td>
-                      <input type="date" class="form-control m-input" formControlNameName="EffectiveDate" placeholder="to">
-                    </td>
-                        <td>
-                          <select class="form-control m-input" formControlName="FrequencyId" id="">
-                            <option value="" disabled selected>-- Select Frequency --</option>
-                            <option *ngFor="let Frequency of payrollsetupservice?.frequency" [value]="Frequency.frequencyId">{{Frequency.name}}</option>
-                          </select>
-                        </td>
-                    <td>
-                      <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
-                    </td>
-                    <td>
-                      <input type="date" class="form-control m-input" formControlNameName="EndDate" placeholder="0">
-                    </td>
-                    <td>
-                      <select class="form-control m-input" formControlName="PayrollTypeId" id="">
-                        <option value="" disabled selected>-- Select Payroll Type --</option>
-                        <option *ngFor="let payrolltype of payrollsetupservice?.payrolltype" [value]="payrolltype.payrollTypeId">{{payrolltype.name}}</option>
-                      </select>
-                    </td>
-                  
-                    <td> <button class="btn btn-info" type="button" (click)="addFieldValue()">Add More</button></td>
-                    <td> <button class="btn btn-danger" type="button" (click)="deleteFieldValue(i)">Delete</button></td>
-                  </tr>
-                  </table>
-                </div>
-              </div>
-              
-              <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                      <h3 class="m-portlet__head-text">
-                       Tax Exempt Age Setup
-                      </h3>
-                    </div>
-                  </div>
-                </div> 
-              
-              <div class="form-group m-form__group row">
-                <div class="col-lg-6">
-                  <label>
-                    Personal Exemption:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlNameName="PersonalExemption" placeholder="0">
-      </div>
-      <div class="col-lg-6">
-        <label class="">
-            Tax Limit:
-        </label> 
-        <input type="text" class="form-control m-input" formControlNameName="TaxLimit" placeholder="0">
-      </div>
-    </div>
-
-    <div class="form-group m-form__group row">
-        <div class="col-lg-6">
-          <label>
-              Age Limit:
-          </label>
-          <input type="number" class="form-control m-input" formControlNameName="AgeLimit" placeholder="0">
-        </div>
-        <div class="col-lg-6">
-          <label class="">
-              Exempt Percentage:
-          </label> 
-          <input type="number" class="form-control m-input" formControlNameName="ExemptPercentage" placeholder="0">
-        </div>
-      </div>
-
-      <div class="form-group m-form__group row">
-          <div class="col-lg-6">
-            <label>
-                Tax Rebate Percentage:
-            </label>
-            <input type="number" class="form-control m-input" formControlNameName="TaxRebatePercentage" placeholder="0">
+              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+                <dxo-popup title="Income Tax Rule" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+         
+                <dxi-column dataField="payrollYearId" caption="Payroll Year">
+                    <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollYearId">
+                    </dxo-lookup>
+                  </dxi-column> 
+              <dxi-column dataField="personalExemption" caption="Personal Exemption"></dxi-column>
+              <dxi-column dataField="taxLimit" caption="Tax Limit"></dxi-column> 
+              <dxi-column dataField="ageLimit" caption="Age Limit"></dxi-column> 
+              <dxi-column dataField="exemptPercentage" caption="Exempt Percentage"></dxi-column> 
+              <dxi-column dataField="taxRebatePercentage" caption="Tax Rebate Percentage"></dxi-column> 
+              <dxi-column dataField="taxRebateAmount" caption="Tax Rebate Amount"></dxi-column> 
+            </dx-data-grid> 
           </div>
-          <div class="col-lg-6">
-            <label class="">
-                Tax Rebate Amount:
-            </label> 
-            <input type="number" class="form-control m-input" formControlNameName="TaxRebateAmount" placeholder="0">
           </div>
         </div>
-
-
-<div class="m--space-30"></div>
-
-
-<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-  <div class="m-form__actions m-form__actions--solid">
-    <div class="row">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-6">
-        <button type="reset" class="btn btn-brand" (click)="addAllowanceDeduction()">
-          Submit
-        </button>
-        <button type="reset" class="btn btn-secondary">
-          Cancel
-        </button>
+        </div>
       </div>
-    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
+
+
+

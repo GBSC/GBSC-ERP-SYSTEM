@@ -1005,10 +1005,10 @@ export class PayrollSetupService {
 
   async updateincometaxrule(data) {
 
-    let incometaxrule = await this.getdataToUpdate(data.key, 'GetIncomeTaxRule');
-    incometaxrule = { ...incometaxrule, ...data.data }
+    //let incometaxrule = await this.getdataToUpdate(data.key, 'GetIncomeTaxRule');
+    //incometaxrule = { ...incometaxrule, ...data.data }
     let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, incometaxrule).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data).toPromise();
   }
 
   async Deleteincometaxrule(incometaxruleId) {

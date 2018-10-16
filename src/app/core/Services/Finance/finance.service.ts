@@ -1,161 +1,221 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
-import { FinancialYear } from '../../Models/Finance/financialYear';
-import { VoucherType } from '../../Models/Finance/vouchertype';
-import { MasterAccount } from '../../Models/Finance/masterAccount';
-import { DetailAccount } from '../../Models/Finance/detailAccount';
-import { SubAccount } from '../../Models/Finance/subAccount';
-import { SecondSubAccount } from '../../Models/Finance/secondSubAccount';
-
-export class Company {
-    SNo: number;
-    Description: string;
-}
-
-let companies: Company[] = [{
-    "SNo": 1,
-    "Description": "HRMS"
-}, {
-    "SNo": 2,
-    "Description": "Inventory System"
-}, {
-    "SNo": 3,
-    "Description": "HIMS"
-}, {
-    "SNo": 4,
-    "Description": "Lab"
-}, {
-    "SNo": 5,
-    "Description": "Finance"
-}];
+import { PurchaseInvoice } from '../../Models/Finance/purchaseInvoice';
+import { PurchaseInvoiceDetail } from '../../Models/Finance/purchaseInvoiceDetail';
+import { PurchaseReturn } from '../../Models/Finance/purchaseReturn';
+import { PurchaseReturnDetail } from '../../Models/Finance/purchaseReturnDetail';
+import { Voucher } from '../../Models/Finance/voucher';
+import { VoucherDetail } from '../../Models/Finance/voucherDetail';
+import { SalesInvoice } from '../../Models/Finance/salesInvoice';
+import { SalesInvoiceDetail } from '../../Models/Finance/salesInvoiceDetail';
+import { SalesReturn } from '../../Models/Finance/salesReturn';
+import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 
 @Injectable()
+
 export class FinanceService {
-     private baseUrl: string = "Finance/api";
 
-    constructor(private ApiService: ApiService) { }
+  private baseUrl: string = "Finance/api";
+  constructor(private ApiService: ApiService) { }
 
-    getCompanies() {
-        return companies;
-    }
+  async getPurchaseInvoices() {
 
-    async getFinancialYears() {
+    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetPurchaseInvoices`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetFinancialYears`).toPromise();
-    }
+  async addPurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
 
-    async addFinancialYear(financialYear: FinancialYear) {
+    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddPurchaseInvoice`, PurchaseInvoice).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddFinancialYear`, financialYear).toPromise();
-    }
+  async updatePurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
 
-    async updateFinancialYear(financialYear: FinancialYear) {
+    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdatePurchaseInvoice`, PurchaseInvoice).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateFinancialYear`, financialYear).toPromise();
+  }
 
-    }
+  async DeletePurchaseInvoice(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeletePurchaseInvoice/${id}`).toPromise();
+  }
 
-    async DeleteFinancialYear(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteFinancialYear/${id}`).toPromise();
-    }
+  async getPurchaseInvoiceDetails() {
 
-    async getVoucherTypes() {
+    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetPurchaseInvoiceDetails`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`).toPromise();
-    }
+  async addPurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
 
-    async addVoucherType(vouchertype: VoucherType) {
+    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddPurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddVoucherType`, vouchertype).toPromise();
-    }
+  async updatePurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
 
-    async updateVoucherType(vouchertype: VoucherType) {
+    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdatePurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateVoucherType`, vouchertype).toPromise();
+  }
 
-    }
+  async DeletePurchaseInvoiceDetail(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeletePurchaseInvoiceDetail/${id}`).toPromise();
+  }
 
-    async DeleteVoucherType(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteVoucherType/${id}`).toPromise();
-    }
+  async getPurchaseReturns() {
 
-    async getMasterAccounts() {
+    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetPurchaseReturns`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetMasterAccounts`).toPromise();
-    }
+  async addPurchaseReturn(PurchaseReturn: PurchaseReturn) {
 
-    async addMasterAccount(masterAccount: MasterAccount) {
+    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddPurchaseReturn`, PurchaseReturn).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddMasterAccount`, masterAccount).toPromise();
-    }
+  async updatePurchaseReturn(PurchaseReturn: PurchaseReturn) {
 
-    async updateMasterAccount(masterAccount: MasterAccount) {
+    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdatePurchaseReturn`, PurchaseReturn).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateMasterAccount`, masterAccount).toPromise();
+  }
 
-    }
+  async DeletePurchaseReturn(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeletePurchaseReturn/${id}`).toPromise();
+  }
 
-    async DeleteMasterAccount(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteMasterAccount/${id}`).toPromise();
-    }
+  async getPurchaseReturnDetails() {
 
-    async getDetailAccounts() {
+    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetPurchaseReturnDetails`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetDetailAccounts`).toPromise();
-    }
+  async addPurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
 
-    async addDetailAccount(detailAccount: DetailAccount) {
+    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddPurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddDetailAccount`, detailAccount).toPromise();
-    }
+  async updatePurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
 
-    async updateDetailAccount(detailAccount: DetailAccount) {
+    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdatePurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateDetailAccount`, detailAccount).toPromise();
+  }
 
-    }
+  async DeletePurchaseReturnDetail(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeletePurchaseReturnDetail/${id}`).toPromise();
+  }
 
-    async DeleteDetailAccount(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteDetailAccount/${id}`).toPromise();
-    }
+  async getVouchers() {
 
-    async getSubAccounts() {
+    return await this.ApiService.get(`${this.baseUrl}/Finance/GetVouchers`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSubAccounts`).toPromise();
-    }
+  async addVoucher(Voucher: Voucher) {
 
-    async addSubAccount(subAccount: SubAccount) {
+    return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucher`, Voucher).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddSubAccount`, subAccount).toPromise();
-    }
+  async updateVoucher(Voucher: Voucher) {
 
-    async updateSubAccount(subAccount: SubAccount) {
+    return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucher`, Voucher).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateSubAccount`, subAccount).toPromise();
+  }
 
-    }
+  async DeleteVoucher(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucher/${id}`).toPromise();
+  }
 
-    async DeleteSubAccount(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteSubAccount/${id}`).toPromise();
-    }
+  async getVoucherDetails() {
 
-    async getSecondSubAccounts() {
+    return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
+  }
 
-        return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetSecondSubAccounts`).toPromise();
-    }
+  async addVoucherDetail(VoucherDetail: VoucherDetail) {
 
-    async addSecondSubAccount(secondSubAccount: SecondSubAccount) {
+    return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucherDetail`, VoucherDetail).toPromise();
+  }
 
-        return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddSecondSubAccount`, secondSubAccount).toPromise();
-    }
+  async updateVoucherDetail(VoucherDetail: VoucherDetail) {
 
-    async updateSecondSubAccount(secondSubAccount: SecondSubAccount) {
+    return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucherDetail`, VoucherDetail).toPromise();
 
-        return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateSecondSubAccount`, secondSubAccount).toPromise();
+  }
 
-    }
+  async DeleteVoucherDetail(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucherDetail/${id}`).toPromise();
+  }
 
-    async DeleteSecondSubAccount(id) {
-        return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteSecondSubAccount/${id}`).toPromise();
-    }
+  async getSalesInvoices() {
+
+    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoices`).toPromise();
+  }
+
+  async addSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
+
+    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
+  }
+
+  async updateSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
+
+    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
+
+  }
+
+  async DeleteSalesInvoice(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesInvoice/${id}`).toPromise();
+  }
+
+  async getSalesInvoiceDetails() {
+
+    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetSalesInvoiceDetails`).toPromise();
+  }
+
+  async addSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
+
+    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
+  }
+
+  async updateSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
+
+    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
+
+  }
+
+  async DeleteSalesInvoiceDetail(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteSalesInvoiceDetail/${id}`).toPromise();
+  }
+
+  async getSalesReturns() {
+
+    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetSalesReturns`).toPromise();
+  }
+
+  async addSalesReturn(SalesReturn: SalesReturn) {
+
+    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddSalesReturn`, SalesReturn).toPromise();
+  }
+
+  async updateSalesReturn(SalesReturn: SalesReturn) {
+
+    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateSalesReturn`, SalesReturn).toPromise();
+
+  }
+
+  async DeleteSalesReturn(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteSalesReturn/${id}`).toPromise();
+  }
+
+  async getSalesReturnDetails() {
+
+    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetSalesReturnDetails`).toPromise();
+  }
+
+  async addSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
+
+    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddSalesReturnDetail`, SalesReturnDetail).toPromise();
+  }
+
+  async updateSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
+
+    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateSalesReturnDetail`, SalesReturnDetail).toPromise();
+
+  }
+
+  async DeleteSalesReturnDetail(id) {
+    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteSalesReturnDetail/${id}`).toPromise();
+  }
+
 }

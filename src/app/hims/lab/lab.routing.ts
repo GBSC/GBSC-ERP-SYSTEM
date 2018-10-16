@@ -18,6 +18,9 @@ import { EmbryologistsComponent } from '../lab/labsetup/embryologists/embryologi
 import { EmbryologycodesComponent } from '../lab/labsetup/embryologycodes/embryologycodes.component'
 import { AuthGuardService, ModuleGuardService } from '../../core';
 import { TvopuComponent } from './tvopu/tvopu.component';
+import { MedicineComponent } from './medicine/medicine.component';
+import { ProtocolComponent } from './protocol/protocol.component';
+import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
 import { EmbryologyComponent } from './embryology/embryology.component';
 import { InsemenationComponent } from './insemenation/insemenation.component';
 import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
@@ -47,6 +50,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'embryologist', component: EmbryologistsComponent },
             { path: 'embryologycode', component: EmbryologycodesComponent },
             { path: 'tvopu', component: TvopuComponent },
+            { path: 'medicine', component: MedicineComponent },
+            { path: 'treatment-type', component: TreatmenttypeComponent },
+            { path: 'protocol', component: ProtocolComponent }
             { path: 'embryology', component: EmbryologyComponent },
             { path: 'insemenation', component: InsemenationComponent },
             { path: 'embryologythawing', component: EmbryologyThawingComponent },

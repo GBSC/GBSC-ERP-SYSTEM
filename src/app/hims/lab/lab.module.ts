@@ -28,6 +28,9 @@ import { EmbryologysectionComponent } from './embryologysection/embryologysectio
 import { EmbryologycodesComponent } from './labsetup/embryologycodes/embryologycodes.component';
 import { EmbryologistsComponent } from './labsetup/embryologists/embryologists.component';
 import { TvopuComponent } from './tvopu/tvopu.component';
+import { MedicineComponent } from './medicine/medicine.component';
+import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
+import { ProtocolComponent } from './protocol/protocol.component';
 import { EmbryologyComponent } from './embryology/embryology.component';
 import { InsemenationComponent } from './insemenation/insemenation.component';
 import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
@@ -67,6 +70,9 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
         EmbryologycodesComponent,
         EmbryologistsComponent,
         TvopuComponent,
+        MedicineComponent,
+        TreatmenttypeComponent,
+        ProtocolComponent
         EmbryologyComponent,
         InsemenationComponent,
         EmbryoFreezeComponent,

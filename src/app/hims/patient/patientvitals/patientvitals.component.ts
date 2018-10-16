@@ -32,7 +32,8 @@ export class PatientvitalsComponent implements OnInit {
             Temperature: ['', Validators.required],
             Pulse: ['', Validators.required],
             RespiratoryRate: ['', Validators.required],
-            BloodPressure: ['', Validators.required],
+            BloodPressureUp: ['', Validators.required],
+            BloodPressureDown:['',Validators.required],
             BloodOxygenSaturation: ['', Validators.required],
             VisitId: ['', Validators.required]
         });

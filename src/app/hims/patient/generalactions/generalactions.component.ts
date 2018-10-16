@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { PatientService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
+import date_box from 'devextreme/ui/date_box';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
     selector: 'app-generalactions',
@@ -11,15 +14,22 @@ import { Patient } from '../../../core/Models/HIMS/patient';
 })
 export class GeneralactionsComponent implements OnInit {
 
+    version = VERSION.full;
+
     public currentPatient: any;
     public visitid: any;
     id: number;
     Patient: Patient;
+    public lastpatientvisit: any;
+    public visits: any;
 
+    public time: any;
 
-    constructor(private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
-    ngOnInit() {
+    async  ngOnInit() {
+
+        this.time = new Date();
 
         this.route.params.subscribe(params => {
 
@@ -27,16 +37,59 @@ export class GeneralactionsComponent implements OnInit {
 
             this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
 
+            this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) => {
+                this.visits = res
+                console.log(this.visits);
+            });
+
+
+
         });
-        console.log(this.id);
+
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
+
+
+        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
+
+    }
+    async startVisit() {
+        if(this.lastpatientvisit === null){
+            await this.PatientServiceobj.AddVisits(this.id);
+            this.router.navigate(['/hims/patient/visits/' + this.id]);
+        }
+       else if (this.formatDate(new Date(this.lastpatientvisit.endTime)) == this.formatDate(new Date())) {
+            this.displayToastError("Cannot create more than 1 visit on the same day")
+        }
+        else {
+
+            await this.PatientServiceobj.AddVisits(this.id);
+            this.router.navigate(['/hims/patient/visits/' + this.id]);
+
+        }
+
 
     }
 
-    async onSubmit() {
+    formatDate(date: Date) {
 
-        await this.PatientServiceobj.AddVisits(this.id);
-        this.router.navigate(['/hims/patient/visits/' + this.id]);
-        console.log(this.id);
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    }
+
+
+    async Endvisit() {
+        let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
+    }
+
+    displayToastSuccess(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    displayToastError(message) {
+        this.toastr.error(message);
+
     }
 
 }

@@ -9,6 +9,7 @@ import popup from 'devextreme/ui/popup';
 import { find } from 'rxjs/operator/find';
 import { PatientService } from '../../../core';
 import { Patient } from '../../../core/Models/HIMS/patient';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -61,7 +62,11 @@ export class AppointmentscheduleComponent implements OnInit {
     public gettestName: any = [];
 
     submitted = false;
-    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
+
+    private tentativeAppointments: any[];
+    private finalizedAppointments: any[];
+
+    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
 
         // this.profileForm = new FormGroup({
         //   firstName: new FormControl('fajlksdjfas'),
@@ -93,6 +98,7 @@ export class AppointmentscheduleComponent implements OnInit {
                 'TimeIn': [''],
                 'TimeOut': [''],
                 'Remarks': [''],
+                'IsFinalAppointment': [false],
                 'TentativeTime': ['', Validators.required]
             });
 
@@ -104,6 +110,8 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async  ngOnInit() {
+        let lllsldflsldlfs = await this.Http.get('http://localhost:58788/api/appointments/getappointment/358').toPromise();
+        console.log(lllsldflsldlfs)
         console.log(this.appointmentForm);
 
 
@@ -251,38 +259,52 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async addApointment(value, cid) {
+      
+           console.log(value);
+            if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
+                console.log(this.PatientServiceobj.patientID.patientId);
+                this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
 
-        if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
-            this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
-        }
+            }
+            console.log(cid.value);
+            console.log(value);
 
-        console.log(cid.value);
-        console.log(value);
+            this.appointmentForm.value.ConsultantId = cid.value;
+            // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
+            // {
+            //     this.appointmentForm.value.IsFinalAppointment = false;
+            // }
+          ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+           ////////////// //console.log(this.appointmentForm.value);
+                console.log(value)
+             let x = await this.PatientServiceobj.addAppointment(value);
+            console.log(x);
+             await this.PatientServiceobj.getPatient();
+            this.par = this.PatientServiceobj.patients;
+            let dsdf = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
+            console.log(dsdf);
+            this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+            console.log(this.ConsultantIdTentiveTime);
+            this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
+            this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
 
-        this.appointmentForm.value.ConsultantId = cid.value;
-        // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
-        //console.log(this.appointmentForm.value);
+            this.deleteFieldValue();
 
-        let x = await this.PatientServiceobj.addAppointment(value);
-        console.log(x);
-        // await this.PatientServiceobj.getappointments();
-        await this.PatientServiceobj.getPatient();
-        this.par = this.PatientServiceobj.patients;
-        await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-        this.deleteFieldValue();
-
-        this.appointmentForm.reset();
-        this.patientForm.reset();
-        this.patientForm.value.FirstName = '';
-        this.patientForm.value.LastName = '';
-        return x;
+            this.appointmentForm.reset();
+            this.patientForm.reset();
+            this.patientForm.value.FirstName = '';
+            this.patientForm.value.LastName = '';
+            return x;
     }
 
     async updateAppointment(value) {
         console.log(value.key);
 
         let x = await this.PatientServiceobj.updateAppointment(value.key);
+        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
+        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
+
         console.log(x);
         return x;
     }
@@ -326,7 +348,11 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(cid.value, date.value);
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+        console.log(this.tentativeAppointments);
         console.log(this.ConsultantIdTentiveTime);
+
         console.log(this.ConsultantIdTentiveTime.visitNature);
     }
 

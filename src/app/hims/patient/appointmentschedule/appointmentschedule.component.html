@@ -100,6 +100,23 @@
                     <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="VisitNatureId">
                     </dx-select-box>
                   </div>
+                  <div class="form-group col-lg-4">
+                      <div class="m-form__group form-group">
+                          <label>
+                             Status
+                          </label>
+                          <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsFinalAppointment">
+                              For Final Appointment
+                              <span></span>
+                            </label>
+                            
+                            
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group col-lg-4"></div>
                 </div>
                 <div class="form-group row">
                   <div class="form-group col-lg-12">
@@ -130,14 +147,14 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active show" id="m_tabs_3_1" role="tabpanel">
-              <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
+              <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="tentativeAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 300]" [showInfo]="true"></dxo-pager>
-                <!-- <dxi-column dataField="appointmentId" caption="Id"></dxi-column> -->
+                 <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
                 <dxi-column dataField="patientType" caption="Type"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [width]="125">
                   <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
@@ -151,6 +168,7 @@
                 <dxi-column dataField="patientId" caption="Alternet No" [width]="125">
                   <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
+                <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment"></dxi-column>
                 <dxi-column dataField="tentativeTime" caption="Tentative Time"  dataType="date" [allowEditing]="false"
                 [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status"></dxi-column>
@@ -159,7 +177,7 @@
             <!-- <here we are using final appointment tag start work> -->
             <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
-              <dx-data-grid id="gridContiner" [dataSource]="ConsultantIdTentiveTime" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
+              <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
                   <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>
@@ -168,6 +186,7 @@
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
                  <dxi-column dataField="patientType" caption="Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>

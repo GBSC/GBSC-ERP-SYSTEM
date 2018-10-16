@@ -70,18 +70,18 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm.value.VisitId = this.visitid;
 
         let x = await this.PatientServiceobj.AddPatientVital(value);
-        this.router.navigate(['/hims/patient/visits/' + this.patientId]);
-        console.log(x);
+        // this.router.navigate(['/hims/patient/visits/' + this.patientId]);
+        // console.log(x);
 
         console.log(this.PatientVitaLForm.value);
-        this.backClicked()
+       // this.backClicked()
         return x;
 
     }
 
-    backClicked() {
-        this.Location.back();
-    }
+    // backClicked() {
+    //     this.Location.back();
+    // }
 
 
 }

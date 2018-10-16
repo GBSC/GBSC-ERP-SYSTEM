@@ -122,6 +122,7 @@ export class VisitsComponent implements OnInit {
     }
     //add visitnote
     async onsubmit(value) {
+        console.log(value);
         let y = await this.PatientServiceobj.visitid.visitID;
         this.PatientVisitNoteForm.value.VisitId = y;
         let x = await this.PatientServiceobj.addVisitNote(value);
@@ -172,7 +173,9 @@ export class VisitsComponent implements OnInit {
         this.VisitTests = this.VisitTests.filter(t => {
             return delete t.TestName;
         });
-        let x = await this.PatientServiceobj.addvisitTest(this.VisitTests);
+        console.log(this.VisitTests);
+        console.log(this.vistid);
+        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.vistid ,this.VisitTests);
         console.log(x);
         console.log(this.VisitTests);
         this.removealltest(this.VisitTests);

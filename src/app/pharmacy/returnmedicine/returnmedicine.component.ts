@@ -95,9 +95,8 @@ export class ReturnmedicineComponent implements OnInit {
     // }
 
     CreateSalesReturnDetails(SalesReturnDetail) {
-        console.log("FormValue", SalesReturnDetail);
+        console.log("SalesReturnDetailFormValue", SalesReturnDetail);
         console.log("ReturnMedicineDetailsForm", this.ReturnMedicineDetailsForm);
-
     }
 
     AddSalesReturn() {

@@ -15,6 +15,10 @@ const routes: Routes = [{
   component: RootComponent,
   canActivate: [AuthGuardService],
   children: [{
+    path: "clinical-record/:id",
+    component: ClinicalrecordComponent
+  },
+  {
     path: "clinical-record",
     component: ClinicalrecordComponent
   }]

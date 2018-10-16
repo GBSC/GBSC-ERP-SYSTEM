@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { SetupService } from '../../../core';
 
 @Component({
@@ -21,8 +21,6 @@ export class BankComponent implements OnInit {
 
         await this.dataService.getAllBanks();
         this.bank = this.dataService.bank;
-        console.log(this.bank);
-
     }
 
     addNewbank(bank) {

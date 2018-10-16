@@ -45,7 +45,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
-    public tests    : any;
+    public tests: any;
     public currentpatient: any;
     public e: any;
 
@@ -57,8 +57,8 @@ export class AppointmentscheduleComponent implements OnInit {
     public date: any;
     public visitNatures: any;
 
-    private getTestbyId : any= [] ; 
-    public gettestName : any = [] ; 
+    private getTestbyId: any = [];
+    public gettestName: any = [];
 
     submitted = false;
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder) {
@@ -79,8 +79,8 @@ export class AppointmentscheduleComponent implements OnInit {
                 Gender: ['', Validators.required],
                 LastName: ['', Validators.required],
                 DOB: ['', Validators.required],
-                PhoneNumber:['',  [Validators.required , Validators.minLength(11)]],
-                NIC: ['', [Validators.required , Validators.minLength(13)]],
+                PhoneNumber: ['', [Validators.required, Validators.minLength(11)]],
+                NIC: ['', [Validators.required, Validators.minLength(13)]],
 
             });
         this.appointmentForm = this.formBuilder.group(
@@ -137,10 +137,14 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
-        
+
 
 
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
+    }
+
+    calculateCellValue(data) {
+        return [data.firstName, data.lastName].join(" ");
     }
 
     showIt() {
@@ -150,16 +154,16 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
 
-    
+
     addrange() {
-       let { value } = this.appointmenttestForm;
-      let test = this.tests.find(t => t.testId == value.TestId);
+        let { value } = this.appointmenttestForm;
+        let test = this.tests.find(t => t.testId == value.TestId);
         let doc = {
             TestId: value.TestId,
-            TestName : test.testName
+            TestName: test.testName
 
         }
-         this.Tests.push(doc);
+        this.Tests.push(doc);
         console.log(this.Tests);
     }
 
@@ -181,20 +185,20 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async addappointmentTest(value) {
 
-         this.Tests.filter(t => {
+        this.Tests.filter(t => {
             return delete t.TestName;
         });
-        
- 
-        console.log(value);
-         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId,value);
-          console.log(x)
-          console.log(this.currentpatient.appointmentId,value);
 
-         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-          console.log(this.getaptbyid);
-            this.removeall(value);
-          return x;
+
+        console.log(value);
+        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
+        console.log(x)
+        console.log(this.currentpatient.appointmentId, value);
+
+        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+        console.log(this.getaptbyid);
+        this.removeall(value);
+        return x;
     }
 
     // refresh() {
@@ -228,7 +232,7 @@ export class AppointmentscheduleComponent implements OnInit {
         this.submitted = true;
 
         if (this.patientForm.invalid) {
-            return alert('Please Select All Required Fileds') ;
+            return alert('Please Select All Required Fileds');
         }
 
         console.log(this.patientForm)
@@ -237,9 +241,9 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(value);
         delete this.patientForm.value.patientId
         this.patientIdIs = await this.PatientServiceobj.addPatient(value);
-        popup.style.display = 'none'; 
+        popup.style.display = 'none';
         console.log(this.PatientServiceobj.patientID);
- 
+
         let x = this.PatientServiceobj.patientID;
         console.log(x)
         return this.patientIdIs;
@@ -248,14 +252,13 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async addApointment(value, cid) {
 
-        if(this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '')
-        {
-              this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId; 
+        if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
+            this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         }
-      
+
         console.log(cid.value);
         console.log(value);
-    
+
         this.appointmentForm.value.ConsultantId = cid.value;
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
         //console.log(this.appointmentForm.value);
@@ -271,8 +274,8 @@ export class AppointmentscheduleComponent implements OnInit {
 
         this.appointmentForm.reset();
         this.patientForm.reset();
-        this.patientForm.value.FirstName ='';
-        this.patientForm.value.LastName ='';
+        this.patientForm.value.FirstName = '';
+        this.patientForm.value.LastName = '';
         return x;
     }
 
@@ -284,9 +287,8 @@ export class AppointmentscheduleComponent implements OnInit {
         return x;
     }
 
-    public SetTime :any;
-    getCurrentRowDataForSetTime(d)
-    {
+    public SetTime: any;
+    getCurrentRowDataForSetTime(d) {
         // if (d.key.timeIn === '' || d.key.timeOut === '' || d.key.remarks === ''){
         //     this.SetTime = d.key;
         //     console.log(d.key);
@@ -297,10 +299,10 @@ export class AppointmentscheduleComponent implements OnInit {
 
         // }
         this.SetTime = d.key;
-       console.log(d.key);
+        console.log(d.key);
     }
 
-  async  SetTimeInOut(value){
+    async  SetTimeInOut(value) {
         console.log(value);
         this.SetTime.timeIn = <Date>value.TimeIn;
         this.SetTime.timeOut = <Date>value.TimeOut;
@@ -309,7 +311,7 @@ export class AppointmentscheduleComponent implements OnInit {
         let x = await this.PatientServiceobj.updateAppointment(this.SetTime);
         console.log(x);
         this.appointmentTimeForm.reset();
-        return x;   
+        return x;
     }
 
 
@@ -364,7 +366,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     hidepopup(popup) {
         console.log('popup')
-       popup.style.display = 'none'; 
+        popup.style.display = 'none';
     }
 
     keyPress(event: any) {

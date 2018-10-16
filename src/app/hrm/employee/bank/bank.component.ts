@@ -10,64 +10,36 @@ import { Employee } from '../../../core/Models/HRM/employee';
     styleUrls: ['./bank.component.css']
 })
 export class EmployeeBankComponent implements OnInit {
+
     public Employee: any;
-    @Input('id') id: number;
+    public banks: any;
 
-    @Output('setBankFormValue') setBankFormValue = new EventEmitter();
+    @Input('employeeId') id: number;
 
-    public EmpbankForm: FormGroup;
-    // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute)
-     {
-        this.EmpbankForm = this.fb.group({
-            AccountTitle: [''],
-            AccountNumber: [''],
-            BankTitle: [''],
-            BankCode: [''],
-            BankBranch: ['']
-        });
-      }
+    constructor(public employeeService: EmployeeService) {
+    }
 
     async ngOnInit() {
 
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-            
-        this.employee.GetEmployee(this.id).subscribe(resp => {
+        this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
 
-            this.Employee = resp;
-
-            this.patchValues(resp);
-
-        });
-              });
-    }
-
-    async update(value) {
-        console.log(value);
-      await this.employee.updateuserBank(value);
-
-    }
-    getBankFormValue() {
-        this.setBankFormValue.emit(this.EmpbankForm.value);
-    }
-
-    async adduserbank() {
-        let usrbnk = await this.employee.addBank();
-        console.log(usrbnk);
 
     }
 
-    patchValues(employeeBank : any) {
+    addBank(value) {
+        value.data.userId = this.id;
 
-        this.EmpbankForm.patchValue({
+        this.employeeService.addBank(value.data).subscribe(resp => console.log(resp));
+    }
 
-            AccountNumber:  employeeBank.accountNumber, 
-            AccountTitle:  employeeBank.accountTitle, 
-            BankTitle:  employeeBank.bankTitle, 
-            BankCode:  employeeBank.bankCode, 
-            BankBranch:  employeeBank.bankBranch, 
-        });
-      }
+    updateBank(value) {
+
+        let bank = this.banks.find(x => x.bankId == value.key);
+
+        bank = { ...bank, ...value.data };
+
+        this.employeeService.updateBank(bank).subscribe(resp => console.log(resp));
+    }
+
+
 }

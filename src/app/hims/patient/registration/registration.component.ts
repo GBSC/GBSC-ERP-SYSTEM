@@ -91,9 +91,9 @@ export class RegistrationComponent implements OnInit {
             'DOB': ['', Validators.required],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': ['', [Validators.required , Validators.minLength(13)]],
+            'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['',  [Validators.required , Validators.minLength(11)]],
+            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)]],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
@@ -111,7 +111,7 @@ export class RegistrationComponent implements OnInit {
         });
     }
 
- 
+
 
 
     addrange() {
@@ -148,46 +148,75 @@ export class RegistrationComponent implements OnInit {
     }
 
     get f() { return this.patientForm.controls; }
-    
+
     async onSubmit(value) {
         this.submitted = true;
-     
+
         if (this.patientForm.invalid) {
-            return alert('Please Select All Required Fileds') ;
+            return alert('Please Select All Required Fileds');
         }
         console.log(this.patientForm.invalid);
-    
-            value.partner = this.addpartnet;
-            value.patientReference = this.addReference;
-            this.patientId = await this.PatientServiceobj.addPatient(value);
-            this.upload(this.patientId.patientId);
-            this.router.navigate(['/hims/patient/findpatient']);
-            this.PatientServiceobj.getPatient();
+
+        // value.partner = this.addpartnet;
+        // value.patientReference = this.addReference;
+
+
+        this.patientId = await this.PatientServiceobj.addPatient(value);
+        console.log(this.patientId);
+        // this.upload(this.patientId);
+        // this.router.navigate(['/hims/patient/findpatient']);
+        // this.PatientServiceobj.getPatient();
     }
 
     get s() { return this.partnerForm.controls; }
-    onAddPartner(value) {
+
+    async   onAddPartner(value) {
         this.spousesubmitted = true;
 
         if (this.partnerForm.invalid) {
-            return alert('Please Select All Required Fileds') ;
+            return alert('Please Select All Required Fileds');
         }
-
-        delete this.partnerForm.value.PatientId;
+        // delete this.partnerForm.value.PatientId;
         delete this.partnerForm.value.PartnerId;
-        console.log(value);
-        this.addpartnet = value
-     }
+        if (this.patientId === undefined) {
+            return alert('First Add Patient Detail');
+        }
+        this.partnerForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+        // this.addpartnet = value
+        await this.PatientServiceobj.addSpouse(value);
+    }
+
+    get r() { return this.referenceForm.controls; }
+
+    async  onAddReference(value) {
+        this.referencesubmitted = true;
+
+        if (this.referenceForm.invalid) {
+            return alert('Please Select All Required Fields');
+        }
+        //delete this.referenceForm.value.PatientId;
+        delete this.referenceForm.value.patientReferenceId;
+        if (this.patientId === undefined) {
+            return alert('First Add Patient Detail');
+        }
+        this.referenceForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+        await this.PatientServiceobj.addPatientReference(value);
+
+        // console.log(value);
+        // this.addReference = value;
+    }
     public docs: File[] = [];
     onAddDocument() {
 
-        // this.docs = {
-        //     filePath: this.allDocs
-        // }
+        if (this.patientId === undefined) {
+            return alert('First Add Patient Detail');
+        }
 
-        this.docs = this.allDocs
+        // this.docs = this.allDocs
 
-        console.log(this.docs);
+        // console.log(this.docs);
+
+        this.upload(this.patientId);
 
 
 
@@ -210,7 +239,7 @@ export class RegistrationComponent implements OnInit {
             console.log(value);
             let updatepatientRefId = this.id;
             console.log(updatepatientRefId);
-            this.router.navigate(['/hims/patient/profile/'+updatepatientRefId]);  
+            this.router.navigate(['/hims/patient/profile/' + updatepatientRefId]);
         }
     }
 
@@ -233,7 +262,7 @@ export class RegistrationComponent implements OnInit {
             await this.PatientServiceobj.updatePatientSpouse(value)
             console.log(value);
             let updatedpatientId = this.id;
-            this.router.navigate(['/hims/patient/profile/'+updatedpatientId]);  
+            this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
         }
 
     }
@@ -242,20 +271,7 @@ export class RegistrationComponent implements OnInit {
 
 
 
-    get r() { return this.referenceForm.controls; }
 
-    onAddReference(value) {
-        this.referencesubmitted = true;
-
-        if (this.referenceForm.invalid) {
-            return alert('Please Select All Required Fileds') ;
-        }
-
-        delete this.referenceForm.value.PatientId;
-        delete this.referenceForm.value.patientReferenceId;
-        console.log(value);
-        this.addReference = value;
-     }
 
     async  updatePatient(value) {
         this.patientForm.value.patientId = this.id;
@@ -276,7 +292,7 @@ export class RegistrationComponent implements OnInit {
 
         console.log(value);
         let updatedpatientId = this.id;
-        this.router.navigate(['/hims/patient/profile/'+updatedpatientId]);  
+        this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
 
 
     }
@@ -288,22 +304,21 @@ export class RegistrationComponent implements OnInit {
         this.forevent = <File>event.target.files[0];
         console.log(this.forevent)
     }
-  async  onupload() {
-     
+    async  onupload() {
+
         const f = new FormData();
         f.append('f', this.forevent);
 
         await this.PatientServiceobj.addDocument(f, this.id).toPromise();
 
-        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe(resp=> this.documents = resp);
-        
+        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe(resp => this.documents = resp);
+
     }
     // <end work for image uploading
 
     public allDocs: File[] = [];
     public forevent2: any;
     public uploaded = 0;
- 
 
     fileselect(event) {
         console.log(event);
@@ -312,14 +327,15 @@ export class RegistrationComponent implements OnInit {
     }
     async upload(patientId) {
 
-        let fileCount: number = this.docs.length;
+        let fileCount: number = this.allDocs.length;
         let formData = new FormData();
         if (fileCount > 0) { // a file was selected
             for (let i = 0; i < fileCount; i++) {
-                formData.append('models', this.docs[i]);
+                formData.append('models', this.allDocs[i]);
             }
         }
         console.log(formData);
+
         await this.PatientServiceobj.addDocuments(formData, patientId);
     }
 

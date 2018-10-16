@@ -5,96 +5,93 @@ import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDe
 import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 
 @Component({
-  selector: 'app-masterpayroll',
-  templateUrl: './masterpayroll.component.html',
-  styleUrls: ['./masterpayroll.component.scss']
+    selector: 'app-masterpayroll',
+    templateUrl: './masterpayroll.component.html',
+    styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
 
-  public masterPayroll: any;
-  public masterPayrollDetail: any;
-  private payrollDetail: MasterPayrollDetail[];
+    public masterPayroll: any;
+    public payrollMaster: any;
+    public users: any;
+    public frequency: any;
+    public masterdetailupdating: any;
+    public masterPayrollDetail: any;
+    private payrollDetail: MasterPayrollDetail[];
 
-  private fieldArray: Array<any> = [];
-  private newAttribute: any = {};
-  public MasterPayrollForm: any;
-  public Masterdetail = [];
-  public MasterDetailForm: any;
+    public banksPayroll: any;
+    public payrollType: any;
+    public MasterPayrollForm: any;
+    public Masterdetail = [];
+    public allowance: any;
+    public MasterDetailForm: any;
+    public currency: any;
 
-  constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.payrollDetail = [];
+        this.payrollDetail = [];
 
-    this.MasterPayrollForm = this.fb.group({
-      UserId: ['', Validators.required],
-      BankTransferCode: ['', Validators.required],
-      CurrencyId: ['', Validators.required],
-      PayrollBankId: ['', Validators.required]
-    });
-
-    //   this.MasterDetailForm = this.fb.group({
-    //     Value: ['', Validators.required],
-    //     EffectiveDate: ['', Validators.required],
-    //     EndDate: ['', Validators.required],
-    //     AllowanceId: ['', Validators.required],
-    //     FrequencyId: ['', Validators.required],
-    //     PayrollTypeId: ['', Validators.required]
-
-    // });
+        this.MasterPayrollForm = this.fb.group({
+            UserId: ['', Validators.required],
+            BankTransferCode: ['', Validators.required],
+            CurrencyId: ['', Validators.required],
+            PayrollBankId: ['', Validators.required]
+        });
 
 
-    await this.payrollsetupservice.getmasterpayrolls();
-    this.masterPayroll = this.payrollsetupservice.masterpayroll;
+        this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
 
-    await this.payrollsetupservice.getmasterpayrolldetails();
-    this.masterPayrollDetail = this.payrollsetupservice.masterpayrolldetail;
+        this.masterPayrollDetail = await this.payrollsetupservice.getMasterPayrollDetails();
 
-    await this.empservice.GetAllEmployees();
-    let users = this.empservice.employeereg;
+        this.users = await this.empservice.GetAllEmployees();
 
-    await this.payrollsetupservice.getCurrencies();
-    let currency = this.payrollsetupservice.Currency;
+        this.currency = await this.payrollsetupservice.getCurrencies();
 
-    await this.payrollsetupservice.getallowances();
-    let allowance = this.payrollsetupservice.allowance;
+        this.allowance = await this.payrollsetupservice.getAllowances();
 
-    await this.payrollsetupservice.getfrequencies();
-    let frequency = this.payrollsetupservice.frequency;
+        this.banksPayroll = await this.payrollsetupservice.getPayrollBanks();
 
-    await this.payrollsetupservice.getpayrolltypes();
-    let payrolltype = this.payrollsetupservice.payrolltype;
-  }
+        this.frequency = await this.payrollsetupservice.getFrequencies();
+
+        this.payrollType = await this.payrollsetupservice.getPayrollTypes();
+    }
 
 
-  async addMasterPayrolldetail(value) {
-    let data = value.data;
-    this.payrollDetail.push(data);
-  }
+    async addMasterPayrolldetail(value) {
+        let data = value.data;
+        this.payrollDetail.push(data);
+    }
 
-  updateMasterDetail(value) {
-    let data = value.data;
+    updatingMasterDetail(value) {
+        this.masterdetailupdating = { ...value.oldData, ...value.newData };
 
-    console.log(this.payrollDetail);
-  }
-  async submitForm(value) {
+    }
+    async updateMasterDetail() {
+        await this.payrollsetupservice.updateMasterPayrollDetail(this.masterdetailupdating);
+    }
 
-    let masterPayroll = new MasterPayroll();
-    masterPayroll = { ...masterPayroll, ...value };
-    masterPayroll.MasterPayrollDetails = this.payrollDetail;
-    let x = await this.payrollsetupservice.addmasterpayroll(masterPayroll);
+    async submitForm(value) {
+        let masterPayroll = new MasterPayroll();
+        masterPayroll = { ...masterPayroll, ...value };
+        masterPayroll.MasterPayrollDetails = this.payrollDetail;
+        let x = await this.payrollsetupservice.addMasterPayroll(masterPayroll);
 
-  }
+    }
 
-  async updateMasterPayroll(value) {
-    console.log(value);
-    await this.payrollsetupservice.updatemasterpayroll(value);
-  }
+    updatingMasterPayroll(value) {
+        this.payrollMaster = { ...value.oldData, ...value.newData };
+    }
 
-  async deleteMasterPayroll(value) {
-    await this.payrollsetupservice.Deletemasterpayroll(value.key);
-  }
+    async updateMasterPayroll() {
+        await this.payrollsetupservice.updateMasterPayroll(this.payrollMaster);
+    }
 
+
+
+    async deleteMasterPayroll(value) {
+        await this.payrollsetupservice.deleteMasterPayroll(value.key);
+    }
 
 }

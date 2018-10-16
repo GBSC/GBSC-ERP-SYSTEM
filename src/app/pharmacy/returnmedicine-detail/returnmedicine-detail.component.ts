@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
 
 @Component({
-  selector: 'app-returnmedicine-detail',
-  templateUrl: './returnmedicine-detail.component.html',
-  styleUrls: ['./returnmedicine-detail.component.scss']
+    selector: 'app-returnmedicine-detail',
+    templateUrl: './returnmedicine-detail.component.html',
+    styleUrls: ['./returnmedicine-detail.component.scss']
 })
 export class ReturnmedicineDetailComponent implements OnInit {
 

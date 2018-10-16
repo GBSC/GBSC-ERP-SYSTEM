@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./territory.component.scss']
 })
 export class TerritoryComponent implements OnInit {
-    private Territories : any;
-    private Areas : any;
-    private UpdatedModel : any;
+    private Territories: any;
+    private Areas: any;
+    private UpdatedModel: any;
 
-    constructor(private InventoryService : InventorysystemService) {
+    constructor(private InventoryService: InventorysystemService) {
 
     }
 
@@ -26,7 +26,7 @@ export class TerritoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateTerritory() {

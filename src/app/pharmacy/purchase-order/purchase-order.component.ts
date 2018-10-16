@@ -6,6 +6,7 @@ import { Supplier } from '../../core/Models/Pharmacy/Supplier';
 import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { Currency } from '../../core/Models/Pharmacy/Currency';
 import { PurchaseOrderItem } from '../../core/Models/Inventory/Purchase/PurchaseOrderItem';
+import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
 
 
@@ -16,21 +17,26 @@ import { PurchaseOrderItem } from '../../core/Models/Inventory/Purchase/Purchase
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    private PurchaseOrders : PurchaseOrder;
-    private NewPurchaseOrder : PurchaseOrder;
+    private PurchaseOrders: PurchaseOrder;
+    private NewPurchaseOrder: PurchaseOrder;
     private Suppliers: Supplier;
     private SelectedSupplier : Supplier;
-    private UpdatedModel : any;
     private PurchaseOrderForm : FormGroup;
     private PurchaseOrderDetailsForm : FormGroup;
+    private PurchaseOrderDetailsFormArray : any[] = [];
     private InventoryItems : InventoryItem;
     private SelectedInventoryItem : any;
-    private PurchaseOrderDetail : PurchaseOrderItem;
     private PurchaseOrderDetailsArray : any[] = [];
-    private FilteredInventoryItems : InventoryItem;
+    private FilteredInventoryItems : any;
     private Currencies : Currency[];
     private SelectedCurrency : Currency;
-    private TotalOrderAmount : number;
+    private TotalOrderAmount : number = 0;
+    private GrossAmount : number = 0;
+    private SalesTaxAmount : number = 0;
+    private DiscountAmount : number = 0;
+    private NetAmount : number = 0;
+    private TotalQuantity : number = 0;
+    private Inventories : Inventory[] = [];
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group( {
@@ -40,33 +46,34 @@ export class PurchaseOrderComponent implements OnInit {
             Origin: [''],
             Remarks: [''],
             SupplierId: [''],
-            CurrencyId : [''],
-            ExchangeRate : [''],
+            CurrencyId: [''],
+            ExchangeRate: [''],
             PurchaseOrderItems: this.FormBuilder.array([])
-        } );
+        });
 
-        this.PurchaseOrderDetailsForm = this.FormBuilder.group( {
-            ManualCode : [''],
-            Description : [''],
-            PackType : [''],
+        this.PurchaseOrderDetailsForm = this.FormBuilder.group({
+            InventoryItemId: [''],
+            ManualCode: [''],
+            Description: [''],
+            PackType: [''],
             StockQuantity: [''],
-            OrderQuantity : [''],
-            BonusQuantity : [''],
-            PerUnit : [''],
-            Rate : [''],
-            GrossAmount : [''],
-            DiscountPercentage : [''],
-            DiscountAmount : [''],
-            SalesTaxPercentage : [''],
-            SalesTaxAmount : [''],
-            NetAmount : ['']
-        } );
+            OrderQuantity: [''],
+            BonusQuantity: [''],
+            PerUnit: [''],
+            Rate: [''],
+            GrossAmount: [''],
+            DiscountPercentage: [''],
+            DiscountAmount: [''],
+            SalesTaxPercentage: [''],
+            SalesTaxAmount: [''],
+            NetAmount: ['']
+        });
     }
 
     ngOnInit() {
-        this.PharmacyService.GetSuppliers().subscribe((res : Supplier ) => { this.Suppliers = res; });
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem ) => { this.InventoryItems = res; this.FilteredInventoryItems = res; console.log(this.FilteredInventoryItems); });
-        this.PharmacyService.GetCurrency().subscribe((res : Currency[]) => { this.Currencies = res; });
+        this.PharmacyService.GetSuppliers().subscribe((res: Supplier) => { this.Suppliers = res; });
+        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => { this.InventoryItems = res; this.FilteredInventoryItems = res; });
+        this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => { this.Currencies = res; });
     }
 
     // async AddPurchaseOrder(value) {
@@ -86,80 +93,146 @@ export class PurchaseOrderComponent implements OnInit {
     //     await this.PharmacyService.DeletePurchaseOrder(value.key.PurchaseOrderId).toPromise();
     // }
 
-    GetSupplierDetails(value){
+    GetSupplierDetails(value) {
         console.log(value);
-        var a : any = this.Suppliers;
+        var a: any = this.Suppliers;
         this.SelectedSupplier = a.find(a => a.inventoryCurrencyId == value);
     }
 
-    GetCurrencyDetails(value){
+    GetCurrencyDetails(value) {
         console.log(value);
         this.SelectedCurrency = this.Currencies.find(a => a.inventoryCurrencyId == value);
     }
 
     GetItemDetails(value) {
         console.log(value);
-        var a : any = this.InventoryItems;
-        this.SelectedInventoryItem = a.find(x => x.inventoryItemId == value);
+        var a: any = this.InventoryItems;
+        this.SelectedInventoryItem = a.find(x => x.itemCode == value);
+        console.log(this.SelectedInventoryItem);
+    }
+
+    CalculateGrossAmount(ordervalue, bonusvalue) {
+        this.GrossAmount = (<number>ordervalue * <number>this.SelectedInventoryItem.retailPrice) + (<number>bonusvalue * <number>this.SelectedInventoryItem.retailPrice);
+        console.log(this.GrossAmount);
+    }
+
+    CalculateSalesTaxAmount(value) {
+        console.log(value);
+        this.SalesTaxAmount = (<number>value * <number>this.GrossAmount) / 100;
+        console.log(this.SalesTaxAmount);
+        this.CalculateNetAmount();
+    }
+
+    CalculateDiscountAmount(value) {
+        console.log(value);
+        this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
+        console.log(this.DiscountAmount);
+        this.CalculateNetAmount();
+    }
+
+    CalculateNetAmount() {
+        this.NetAmount = this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount;
+        console.log(this.NetAmount);
     }
 
     AddPurchaseOrderDetails(value) {
         console.log(value);
-        this.PurchaseOrderDetailsForm.value.ManualCode = value.ManualCode;
-        this.PurchaseOrderDetailsForm.value.Description = value.Description;
-        this.PurchaseOrderDetailsForm.value.PackType = value.PackType;
-        this.PurchaseOrderDetailsForm.value.StockQuantity = value.StockQuantity;
-        this.PurchaseOrderDetailsForm.value.PerUnit = value.PerUnit;
-        this.PurchaseOrderDetailsForm.value.GrossAmount = <number>this.PurchaseOrderDetailsForm.value.OrderQuantity * <number> this.PurchaseOrderDetailsForm.value.PerUnit;
-        this.PurchaseOrderDetailsForm.value.SalesTaxAmount = (<number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage * <number>this.PurchaseOrderDetailsForm.value.GrossAmount) / 100;
-        this.PurchaseOrderDetailsForm.value.DiscountAmount = (<number>this.PurchaseOrderDetailsForm.value.DiscountPercentage * (<number>this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount)) / 100;
-        this.PurchaseOrderDetailsForm.value.NetAmount = this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount - this.PurchaseOrderDetailsForm.value.DiscountAmount;
+        this.PurchaseOrderDetailsForm.value.InventoryItemId = <number>this.SelectedInventoryItem.inventoryItemId;
+        this.PurchaseOrderDetailsForm.value.ManualCode = this.SelectedInventoryItem.itemCode;
+        this.PurchaseOrderDetailsForm.value.Description = this.SelectedInventoryItem.description;
+        this.PurchaseOrderDetailsForm.value.PackType = this.SelectedInventoryItem.packType.name;
+        this.PurchaseOrderDetailsForm.value.StockQuantity = <number>this.SelectedInventoryItem.inventory.stockQuantity;
+        this.PurchaseOrderDetailsForm.value.PerUnit = this.SelectedInventoryItem.unit.name;
+        this.PurchaseOrderDetailsForm.value.Rate = <number>this.SelectedInventoryItem.retailPrice;
+        this.PurchaseOrderDetailsForm.value.GrossAmount = this.GrossAmount;
+        this.PurchaseOrderDetailsForm.value.SalesTaxAmount = this.SalesTaxAmount;
+        this.PurchaseOrderDetailsForm.value.DiscountAmount = this.DiscountAmount;
+        this.PurchaseOrderDetailsForm.value.NetAmount = this.NetAmount;
         console.log(this.PurchaseOrderDetailsForm.value);
-        let a : any = this.FilteredInventoryItems;
-        this.FilteredInventoryItems = a.filter(b => b.InventoryItemId == this.SelectedInventoryItem.inventoryItemId);
+
+        this.FilteredInventoryItems = this.FilteredInventoryItems.filter(b => b.itemCode != value.ManualCode);
         console.log(this.FilteredInventoryItems);
 
-        var b : any = {
-            // PackType: this.PurchaseOrderDetailsForm.value.packType.name,
-            // PackSize: this.PurchaseOrderDetailsForm.value.packSize.name,
-            Quantity: this.PurchaseOrderDetailsForm.value.Quantity,
-            ExchangeRate: this.PurchaseOrderForm.value.ExchangeRate,
-            GrossAmount: this.PurchaseOrderDetailsForm.value.GrossAmount,
-            DiscountPercentage: this.PurchaseOrderDetailsForm.value.DiscountPercentage,
-            DiscountAmount: this.PurchaseOrderDetailsForm.value.DiscountAmount,
-            AfterDiscountAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount - this.PurchaseOrderDetailsForm.value.DiscountAmount,
-            GstPercentage: this.PurchaseOrderDetailsForm.value.GstPercentage,
-            GstAmount: this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
-            AfterGstAmount: this.PurchaseOrderDetailsForm.value.GrossAmount + this.PurchaseOrderDetailsForm.value.SalesTaxAmount,
-            NetAmount: this.PurchaseOrderDetailsForm.value.NetAmount,
-            RetailPrice: <number>this.PurchaseOrderDetailsForm.value.PerUnit * <number>this.PurchaseOrderDetailsForm.value.Quantity,
-            CostPrice: <number>this.SelectedInventoryItem.costPrice  * <number>this.PurchaseOrderDetailsForm.value.Quantity,
+        this.PurchaseOrderDetailsFormArray.push(this.PurchaseOrderDetailsForm.value);
+        console.log(this.PurchaseOrderDetailsFormArray);
+
+        var b = {
+            PackType: this.SelectedInventoryItem.packType.name,
+            PackSize: <number>this.SelectedInventoryItem.packSize.size,
+            Quantity: <number>this.PurchaseOrderDetailsForm.value.BonusQuantity + <number>this.PurchaseOrderDetailsForm.value.OrderQuantity,
+            ExchangeRate: <number>this.PurchaseOrderForm.value.ExchangeRate,
+            GrossAmount: this.GrossAmount,
+            DiscountPercentage: <number>this.PurchaseOrderDetailsForm.value.DiscountPercentage,
+            DiscountAmount: this.DiscountAmount,
+            AfterDiscountAmount: this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount,
+            GstPercentage: <number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage,
+            GstAmount: this.SalesTaxAmount,
+            AfterGstAmount: this.GrossAmount + this.SalesTaxAmount,
+            NetAmount: this.NetAmount,
+            RetailPrice: (<number>this.SelectedInventoryItem.retailPrice * <number>this.PurchaseOrderDetailsForm.value.OrderQuantity) + (<number>this.SelectedInventoryItem.retailPrice * <number>this.PurchaseOrderDetailsForm.value.BonusQuantity),
+            CostPrice: (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.OrderQuantity) + (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.BonusQuantity),
             InventoryItemId: this.SelectedInventoryItem.inventoryItemId,
-            InventoryId: this.SelectedInventoryItem.InventoryId
+            InventoryId: this.SelectedInventoryItem.inventory.inventoryId
         };
         console.log(b);
-        // this.PurchaseOrderDetail = value;
-        // //this.TotalOrderAmount += Number.parseInt(this.PurchaseOrderDetailsForm.value.NetAmount);
+
+        this.TotalOrderAmount += this.NetAmount;
+        this.TotalQuantity += <number>this.PurchaseOrderDetailsForm.value.BonusQuantity + <number>this.PurchaseOrderDetailsForm.value.OrderQuantity;
         this.PurchaseOrderDetailsArray.push(b);
         console.log(this.PurchaseOrderDetailsArray);
-        //this.PurchaseOrderDetailsForm.reset();
+        this.PurchaseOrderDetailsForm.reset();
+
+        //Stock
+        var a : any = {
+            inventoryId : this.SelectedInventoryItem.inventory.inventoryId,
+            inventoryItemId : this.SelectedInventoryItem.inventoryitemId,
+            stockQuantity : this.SelectedInventoryItem.inventory.stockQuantity + this.TotalQuantity,
+        };
+        this.Inventories.push(a);
     }
 
-    RemovePurchaseOrderDetails(index, value) {
+    RemovePurchaseOrderDetails(index, NetAmount, quantity) {
+        
+        this.PurchaseOrderDetailsFormArray.splice(index, 1);
         this.PurchaseOrderDetailsArray.splice(index, 1);
-        this.TotalOrderAmount -= Number.parseInt(value);
+        this.Inventories.splice(index, 1);
+        this.TotalOrderAmount -= Number.parseInt(NetAmount);
+        this.TotalQuantity -= Number.parseInt(quantity);
     }
 
     SavePurchaseOrderForm(value) {
+
         console.log(value);
     }
 
+    ResetWholeForm() {
+        this.PurchaseOrderForm.reset();
+        this.PurchaseOrderDetailsForm.reset();
+        this.PurchaseOrderDetailsFormArray = [];
+        this.Inventories = [];
+        this.PurchaseOrderDetailsArray = [];
+    }
+
     SubmitPurchaseOrder() {
-        console.log(this.PurchaseOrderDetailsArray);
-        // this.NewPurchaseOrder.PurchaseOrderDetails = this.PurchaseOrderDetailsArray;
-        // this.NewPurchaseOrder.OrderDate = this.PurchaseOrderForm.value.OrderDate;
-        // this.PharmacyService.AddSalesOrder().subscribe(r => console.log(r));
-        // this.UpdateStockPosition(this.Invs);
+
+        var a : any = {
+            OrderDate : this.PurchaseOrderForm.value.OrderDate,
+            Status : this.PurchaseOrderForm.value.Status,
+            SupplierId : this.PurchaseOrderForm.value.SupplierId,
+            Origin : this.PurchaseOrderForm.value.Origin,
+            CurrencyId : this.PurchaseOrderForm.value.CurrencyId,
+            Remarks : this.PurchaseOrderForm.value.Remarks,
+            PurchaseOrderDetails : this.PurchaseOrderDetailsArray
+        };
+         
+        console.log(a);
+        this.NewPurchaseOrder = a;
+        console.log(this.NewPurchaseOrder);
+
+        this.PharmacyService.AddPurchaseOrder(this.NewPurchaseOrder).subscribe(res => console.log(res));
+        this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => console.log(res));
+
+        this.ResetWholeForm()
     }
 
 }

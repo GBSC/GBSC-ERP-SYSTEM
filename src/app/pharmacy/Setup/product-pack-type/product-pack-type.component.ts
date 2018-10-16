@@ -8,20 +8,20 @@ import { PackType } from '../../../core/Models/Pharmacy/PackType';
     styleUrls: ['./product-pack-type.component.scss']
 })
 export class ProductPackTypeComponent implements OnInit {
-    private PackTypes : PackType;
-    private UpdatedModel : any;
+    private PackTypes: PackType;
+    private UpdatedModel: any;
 
-    constructor(private PharmacyService : PharmacyService) {
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-       this.PharmacyService.GetPackTypes().subscribe((res : PackType) => this.PackTypes = res);
+        this.PharmacyService.GetPackTypes().subscribe((res: PackType) => this.PackTypes = res);
     }
 
     async AddPackType(value) {
         await this.PharmacyService.AddPackType(value.data).toPromise();
-        this.PharmacyService.GetPackTypes().subscribe((res : PackType) => this.PackTypes = res);
+        this.PharmacyService.GetPackTypes().subscribe((res: PackType) => this.PackTypes = res);
     }
 
     UpdateModel(value) {

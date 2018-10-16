@@ -11,24 +11,24 @@ import { Supplier } from '../../../core/Models/Pharmacy/Supplier';
     styleUrls: ['./supplier.component.css']
 })
 export class SupplierComponent implements OnInit {
-    public Suppliers : any;
-    public UpdatedModel : any;
+    public Suppliers: any;
+    public UpdatedModel: any;
 
     constructor(private PharmacyService: PharmacyService) {
-       
+
     }
 
     ngOnInit() {
-        this.PharmacyService.GetSuppliers().subscribe((res : Supplier) => this.Suppliers = res);
+        this.PharmacyService.GetSuppliers().subscribe((res: Supplier) => this.Suppliers = res);
     }
 
     async AddSupplier(value) {
         await this.PharmacyService.AddSupplier(value.data).toPromise();
-        this.PharmacyService.GetSuppliers().subscribe((res : Supplier) => this.Suppliers = res);
+        this.PharmacyService.GetSuppliers().subscribe((res: Supplier) => this.Suppliers = res);
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateSupplier() {

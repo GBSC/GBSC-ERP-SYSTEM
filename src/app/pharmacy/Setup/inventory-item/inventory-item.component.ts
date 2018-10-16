@@ -18,40 +18,40 @@ import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
 })
 
 export class InventoryItemComponent implements OnInit {
-    
-    private InventoryItems : InventoryItem;
-    private Units : Unit;
-    private PackTypes : PackType;
-    private PackSizes : PackSize;
-    private PackCategories : PackCategory;
-    private ProductTypes : ProductType;
-    private InventoryItemCategories : InventoryItemCategory;
-    private PackageTypes : PackageType;
-    private UpdatedModel : InventoryItem;
-    
-    constructor(private PharmacyService : PharmacyService) {
+
+    private InventoryItems: InventoryItem;
+    private Units: Unit;
+    private PackTypes: PackType;
+    private PackSizes: PackSize;
+    private PackCategories: PackCategory;
+    private ProductTypes: ProductType;
+    private InventoryItemCategories: InventoryItemCategory;
+    private PackageTypes: PackageType;
+    private UpdatedModel: InventoryItem;
+
+    constructor(private PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem) => this.InventoryItems = res);
-        this.PharmacyService.GetUnits().subscribe((res : Unit) => this.Units = res);
-        this.PharmacyService.GetPackTypes().subscribe((res : PackType) => this.PackTypes = res);
-        this.PharmacyService.GetPackSizes().subscribe((res : PackSize) => this.PackSizes = res);
-        this.PharmacyService.GetPackCategories().subscribe((res : PackCategory) => this.PackCategories = res);
-        this.PharmacyService.GetProductTypes().subscribe((res : ProductType) => this.ProductTypes = res);
-        this.PharmacyService.GetInventoryItemCategories().subscribe((res : InventoryItemCategory) => this.InventoryItemCategories = res);
-        this.PharmacyService.GetPackageTypes().subscribe((res : PackageType) => this.PackageTypes = res);   
+        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => this.InventoryItems = res);
+        this.PharmacyService.GetUnits().subscribe((res: Unit) => this.Units = res);
+        this.PharmacyService.GetPackTypes().subscribe((res: PackType) => this.PackTypes = res);
+        this.PharmacyService.GetPackSizes().subscribe((res: PackSize) => this.PackSizes = res);
+        this.PharmacyService.GetPackCategories().subscribe((res: PackCategory) => this.PackCategories = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => this.InventoryItemCategories = res);
+        this.PharmacyService.GetPackageTypes().subscribe((res: PackageType) => this.PackageTypes = res);
     }
 
     async AddInventoryItem(value) {
         console.log(value);
         await this.PharmacyService.AddInventoryItem(value.data).toPromise();
-        this.PharmacyService.GetInventoryItems().subscribe((res : InventoryItem) => this.InventoryItems = res);
+        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => this.InventoryItems = res);
     }
 
     UpdateModel(value) {
-        this.UpdatedModel = {...value.oldData, ...value.newData};
+        this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     async UpdateInventoryItem() {

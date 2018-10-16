@@ -7,29 +7,23 @@ import { AttendancesetupService } from '../../../../core';
     styleUrls: ['./roster.component.scss']
 })
 export class RosterComponent implements OnInit {
-
-
     public roster: any;
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getrosters();
-        this.roster = this.attendancesetupservice.roster
-        console.log(this.roster);
-
+        this.roster = await this.attendancesetupservice.getRosters();
     }
 
     async addroster(value) {
-        this.attendancesetupservice.addroster(value.data);
+        this.attendancesetupservice.addRoster(value.data);
     }
 
     async updateroster(value) {
-        console.log(value);
-        this.attendancesetupservice.updateroster(value);
+        this.attendancesetupservice.updateRoster(value);
     }
 
     async deleteroster(value) {
-        this.attendancesetupservice.Deleteroster(value.key);
+        this.attendancesetupservice.DeleteRoster(value.key);
     }
 
 }

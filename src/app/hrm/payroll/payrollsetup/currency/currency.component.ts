@@ -17,8 +17,7 @@ export class CurrencyComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        await this.payrollsetupservice.getCurrencies();
-        this.currency = this.payrollsetupservice.Currency;
+        this.currency = await this.payrollsetupservice.getCurrencies();
 
     }
 
@@ -27,11 +26,10 @@ export class CurrencyComponent implements OnInit {
     }
 
     async updateCurrency(value) {
-        console.log(value);
         await this.payrollsetupservice.updateCurrency(value);
     }
 
     async deleteCurrency(value) {
-        await this.payrollsetupservice.DeleteCurrency(value.key);
+        await this.payrollsetupservice.deleteCurrency(value.key);
     }
 }

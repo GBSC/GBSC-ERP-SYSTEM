@@ -93,14 +93,27 @@
                             </div>
 
                         </div>
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-secondary">
+
+                        <div class="form-group row">
+                            <div class="form-group col-lg-3">
+                                <label for="exampleInputEmail1">
+                                    Remarks
+                                </label>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                            </div>
+                            <!-- <button type="button" (click)="SavePurchaseOrderForm(PurchaseOrderForm.value)" class="btn btn-primary">
+                                Save
+                            </button> -->
+                        </div>
+
+                        <!-- <div class="modal-footer">
+                            <button type="reset"  class="btn btn-secondary">
                                 Reset
                             </button>
                             <button type="button" (click)="SavePurchaseOrderForm(PurchaseOrderForm.value)" class="btn btn-primary">
                                 Save
                             </button>
-                        </div>
+                        </div>  -->
                         
                         <!-- <div class="modal-footer"></div>
                             <p>Date/Time: <span id="datetime"></span></p>
@@ -124,8 +137,8 @@
 
                                 <form [formGroup]="PurchaseOrderDetailsForm">
                                     <div class="form-group m-form__group row">
-                                        <div class="col-lg-12">
-                                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                        <div class="col-lg-12" style="/* overflow-x: scroll; */overflow-x: scroll;max-width: 1058px;">
+                                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand" style="width: 2000px;">
                                                 <th>Manual Code</th>
                                                 <th>Description</th>
                                                 <th>Pack Type</th>
@@ -140,12 +153,13 @@
                                                 <th>Sales Tax %</th>
                                                 <th>Sales Tax Amount</th>
                                                 <th>Net Amount</th>
+                                                <th>Add</th>
                                                 <tr>
                                                      <td>
                                                         <select class="form-control m-input ng-pristine ng-valid ng-touched"
                                                             style="width: 100px;" (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)"
                                                             formControlName="ManualCode">
-                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.inventoryItemId">
+                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
                                                                 {{x?.itemCode}}
                                                             </option>
                                                         </select>
@@ -154,32 +168,34 @@
                                                             formControlName="Description" [value]="SelectedInventoryItem?.description || ''"
                                                             disabled></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name"
+                                                            formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name || ''"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity"
+                                                            formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''"
                                                             disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderQuantity"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="BonusQuantity"></td>
+                                                    <td><input type="number" #OrderQuantity class="form-control m-input m-input--solid"
+                                                            formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)"></td>
+                                                    <td><input type="number" #BonusQuantity class="form-control m-input m-input--solid"
+                                                            formControlName="BonusQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)" ></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PerUnit" [value]="SelectedInventoryItem?.retailPrice || ''"
-                                                            disabled></td>
+                                                            formControlName="PerUnit" [value]="SelectedInventoryItem?.unit?.name || ''"
+                                                            disabled></td> 
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="Rate"></td>
+                                                        formControlName="Rate" [value]="SelectedInventoryItem?.retailPrice || ''"
+                                                        disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="GrossAmount"></td>
+                                                            formControlName="GrossAmount" [value]="GrossAmount" disabled>
+                                                        </td>
+                                                    <td><input type="number" #DiscountPercentage class="form-control m-input m-input--solid"
+                                                            formControlName="DiscountPercentage" (keyup)="CalculateDiscountAmount(DiscountPercentage.value || 0)"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="DiscountPercentage"></td>
+                                                            formControlName="DiscountAmount" [value]="DiscountAmount" disabled></td>
+                                                    <td><input type="number" #SalesTaxPercentage class="form-control m-input m-input--solid"
+                                                            formControlName="SalesTaxPercentage" (keyup)="CalculateSalesTaxAmount(SalesTaxPercentage.value || 0)"></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="DiscountAmount"></td>
+                                                            formControlName="SalesTaxAmount" [value]="SalesTaxAmount" disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="SalesTaxPercentage"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="SalesTaxAmount"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="NetAmount"></td>
+                                                            formControlName="NetAmount" [value]="NetAmount" disabled></td>
                                                     <td>
                                                         <button type="button" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)"
                                                             class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
@@ -194,8 +210,8 @@
                                     <div>
 
                                         <div class="form-group m-form__group row">
-                                            <div class="col-lg-12">
-                                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                            <div class="col-lg-12" style="/* overflow-x: scroll; */overflow-x: scroll;max-width: 1058px;">
+                                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand" style="width: 2000px;">
                                                     <thead>
                                                         <tr>
                                                             <th>Manual Code</th>
@@ -215,28 +231,25 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let x of PurchaseOrderDetailsArray ; let i = index">
+                                                        <tr *ngFor="let x of PurchaseOrderDetailsFormArray; let y of PurchaseOrderDetailsArray; let z of Inventories; let i = index">
                                                             <th scope="row">
-                                                                {{x?.InventoryItem.InventoryItemId}}
+                                                                {{x?.ManualCode}}
                                                             </th>
                                                             <td>
-                                                                {{x?.InventoryItem.ManualCode}}
+                                                                {{x?.Description}}
                                                             </td>
                                                             <td>
-                                                                {{x?.InventoryItem.Description}}
+                                                                {{x?.PackType}}
                                                             </td>
                                                             <td>
-                                                                {{x?.InventoryItem.PackType}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.InventoryItem.Inventory.StockQuantity}}
+                                                                {{x?.StockQuantity}}
                                                             </td>
                                                             <td>
                                                                 {{x?.OrderQuantity}}
                                                             </td>
-                                                            <!-- <td>
+                                                            <td>
                                                                 {{x?.BonusQuantity}}
-                                                            </td> -->
+                                                            </td>
                                                             <td>
                                                                 {{x?.PerUnit}}
                                                             </td>
@@ -262,7 +275,7 @@
                                                                 {{x?.NetAmount}}
                                                             </td>
                                                             <td>
-                                                                <button type="button" (click)="RemovePurchaseOrderDetails(i, x?.NetAmount)"
+                                                                <button type="button" (click)="RemovePurchaseOrderDetails(i, x?.NetAmount, x?.OrderQuantity + x?.BonusQuantity)"
                                                                     class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                                     <i class="la la-remove"></i>
                                                                 </button>
@@ -276,9 +289,11 @@
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <div class="col-lg-10"></div>
-                                            <div class="col-lg-2">
-                                                {{total}}
-                                             </div>
+                                                <div class="col-lg-2">
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalQuantity" disabled>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalOrderAmount" disabled>
+                                                </div>
+                                             <div class="col-lg-10"></div>
                                         </div>
                                     </div>
 
@@ -289,7 +304,12 @@
                 </div>
             </div>
             <!--end::Portlet-->
-            <button (click)="SubmitPurchaseOrder()">Submit</button>
+            <button (click)="SubmitPurchaseOrder()">
+                Submit
+            </button>
+            <button type="reset"  class="btn btn-secondary" (click)="ResetWholeForm()">
+                Reset
+            </button>
         </div>
     </div>
 </div>

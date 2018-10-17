@@ -1,5 +1,4 @@
 export interface EmployeeSocial {
-
     Fb: string,
     Twitter: string,
     Instagram: string,

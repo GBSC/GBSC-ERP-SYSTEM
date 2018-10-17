@@ -1,3 +1,5 @@
+import { PurchaseOrderItem } from "./PurchaseOrderItem";
+
 export interface PurchaseOrder {
     PurchaseOrderId: number,
     OrderNumber: string,
@@ -13,11 +15,11 @@ export interface PurchaseOrder {
     VendorBillNumber: string,
     BillDate: Date,
     Origin: string,
-    Currency: string,
+    CurrencyId: number,
     ExchangeRate: number,
     Remarks: string,
     Status: boolean,
     SupplierId: number,
-    PurchaseIndentId: number,
-    UserId: number
+    UserId: number,
+    PurchaseOrderDetails: PurchaseOrderItem[]
 }

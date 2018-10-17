@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
+import { SalesOrderItem } from '../../core/Models/Pharmacy/SalesOrderItem';
+import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
+import { SalesReturnItem } from '../../core/Models/Pharmacy/SalesReturnItem';
+import { SalesReturn } from '../../core/Models/Pharmacy/SalesReturn';
+import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
 @Component({
     selector: 'app-returnmedicine',
@@ -8,9 +15,198 @@ import { PharmacyService } from '../../core';
 })
 export class ReturnmedicineComponent implements OnInit {
 
-    constructor() { }
+    private ReturnMedicineForm: FormGroup;
+    private ReturnMedicineDetailsForm : FormGroup;
+
+    private ReturnReasons: any;
+    private SelectedReturnReason : any;
+    private Customers: any;
+    private SelectedCustomer: any;
+    private SelectedSalesOrder : SalesOrder;
+    private SelectedSalesOrderDetails : any[] = [];
+    private SalesReturnDetails : SalesReturnItem[] = [];
+    private SalesReturn : SalesReturn;
+    private UpdateInventories : Inventory[] = [];
+
+    private ReturnAmount : number[] = [];
+    private TotalReturnAmount : number = 0;
+    private ReturnQuantity : number[] = [];
+    private TotalReturnQuantity : number = 0;
+
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+
+        this.ReturnMedicineForm = this.FormBuilder.group({
+            MRN: [''],
+            PatientName: [''],
+            SpouseName: [''],
+            Department: [''],
+            Remarks: [''],
+            ReturnNumber: [''],
+            ReturnDate: [''],
+            SalesOrderNumber: [''],
+            TotalReturnAmount: [''],
+            ReturnReasonId: [''],
+            SalesOrderId : [''],
+            SalesReturnItems: this.FormBuilder.array([])
+        });
+
+        this.ReturnMedicineDetailsForm = this.FormBuilder.group({
+            ItemCode : [''],
+            Description : [''],
+            PackType : [''],
+            PackSize : [''],
+            StockQuantity : [''],
+            PerUnit : [''],
+            Rate : [''],
+            PurchaseQuantity : [''],
+            ReturnQuantity : [''],
+            PurchaseAmount : [''],
+            ReturnAmount : ['']
+        });
+
+    }
 
     ngOnInit() {
+        this.PharmacyService.GetReturnReasons().subscribe(res => { 
+            this.ReturnReasons = res; 
+            // console.log(this.ReturnReasons) 
+        });
+        this.PharmacyService.getCustomers().subscribe(result => { 
+            this.Customers = result;
+            // console.log(this.Customers); 
+        });
+    }
+
+    GetSelectedCustomerDetails(value) {
+        // console.log("CustomerValue", value);
+        this.SelectedCustomer = this.Customers.find(a => a.crn == value);
+        // console.log("SelectedCustomer", this.SelectedCustomer);
+    }
+
+    GetSelectedReturnReasonDetails(value) {
+        // console.log("ReasonValue", value);
+        this.SelectedReturnReason = this.ReturnReasons.find(a => a.returnReasonId == value);
+        // console.log("SelectedReturnReason", this.SelectedReturnReason);
+    }
+
+    async GetSelectedSalesOrderDetails(value, event) {
+        // console.log("SelectedSalesOrderDetailsValue", value);
+        if (event.key === "Enter") {
+            this.SelectedSalesOrder = await this.PharmacyService.GetSalesOrderByCodeAsync(value);
+            // console.log("SelectedSalesOrder", this.SelectedSalesOrder);
+            // this.SelectedSalesOrderDetails = this.SelectedSalesOrder.salesOrderItems;
+            // this.SelectedSalesOrderDetails = this.PharmacyService.GetSalesOrderItemsByCodeAsync(this.SelectedSalesOrder.salesOrderId);
+            this.PharmacyService.GetSalesOrderItemsBySalesOrderID(this.SelectedSalesOrder.salesOrderId).subscribe((res : SalesOrderItem[]) => { 
+                this.SelectedSalesOrderDetails = res; 
+                // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails); 
+            });
+            // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails);
+        }
+    }
+
+    // CalculateReturnAmount(rate, quantity) {
+    //     this.ReturnAmount = Number.parseInt(quantity) * Number.parseFloat(rate);
+    // }
+
+    CalculateReturnAmount(returnquantity, rate, index) {
+        // console.log("Return Quantity", returnquantity);
+        // console.log("Retail Price", rate);
+        this.ReturnAmount[index] = Number.parseFloat(rate) * Number.parseInt(returnquantity);
+        this.TotalReturnAmount = this.ReturnAmount.reduce(function(a, b) { return a + b; }, 0);
+        this.ReturnQuantity[index] = Number.parseInt(returnquantity);
+        this.TotalReturnQuantity = this.ReturnQuantity.reduce(function(a, b) { return a + b; }, 0);
+        // console.log("ReturnAmountIndex", this.ReturnAmount[index]);
+        // console.log("TotalReturnAmount", this.TotalReturnAmount);
+    }
+
+    CreateSalesReturnDetails(index, returnquantity) {
+        // console.log(index);
+        // console.log(this.SelectedSalesOrderDetails[index]);
+
+        this.ReturnMedicineDetailsForm.value.ItemCode = this.SelectedSalesOrderDetails[index].inventoryItem.itemCode;
+        this.ReturnMedicineDetailsForm.value.Description = this.SelectedSalesOrderDetails[index].inventoryItem.description;
+        this.ReturnMedicineDetailsForm.value.PackType = this.SelectedSalesOrderDetails[index].inventoryItem.packType.name;
+        this.ReturnMedicineDetailsForm.value.PackSize = this.SelectedSalesOrderDetails[index].inventoryItem.packSize.size;
+        this.ReturnMedicineDetailsForm.value.StockQuantity = this.SelectedSalesOrderDetails[index].inventory.stockQuantity;
+        this.ReturnMedicineDetailsForm.value.PerUnit = this.SelectedSalesOrderDetails[index].inventoryItem.unit.name;
+        this.ReturnMedicineDetailsForm.value.Rate = this.SelectedSalesOrderDetails[index].inventoryItem.retailPrice;
+        this.ReturnMedicineDetailsForm.value.PurchaseQuantity = this.SelectedSalesOrderDetails[index].orderUnitQuantity;
+        this.ReturnMedicineDetailsForm.value.ReturnQuantity = Number.parseInt(returnquantity);
+        this.ReturnMedicineDetailsForm.value.PurchaseAmount = this.SelectedSalesOrderDetails[index].itemTotalAmount;
+        this.ReturnMedicineDetailsForm.value.ReturnAmount = Number.parseFloat(this.SelectedSalesOrderDetails[index].inventoryItem.retailPrice) * Number.parseInt(returnquantity);
+        // console.log("ReturnMedicineDetailsForm", this.ReturnMedicineDetailsForm);
+
+        var salesreturnitem : any = {
+            ReturnQuantity : Number.parseInt(returnquantity),
+            ReturnAmount : this.ReturnMedicineDetailsForm.value.ReturnAmount,
+            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId
+        };
+        // console.log("salesreturnitem", salesreturnitem);
+        this.SalesReturnDetails.push(salesreturnitem);
+        // console.log("SalesReturnDetail", this.SalesReturnDetails);
+
+        var inventoryupdateobject : any = {
+            inventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId,
+            stockQuantity : this.SelectedSalesOrderDetails[index].inventory.stockQuantity + Number.parseInt(returnquantity),
+            inventoryItemId : this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
+        };
+        // console.log("inventoryupdateobject", inventoryupdateobject);
+        this.UpdateInventories.push(inventoryupdateobject);
+        // console.log("UpdateInventories", this.UpdateInventories);
+        // this.ReturnAmount[index] = Number.parseFloat(this.SelectedSalesOrderDetails[index].inventoryItem.retailPrice) * Number.parseInt(returnquantity);
+        // console.log("ReturnAmount", this.ReturnAmount);
+        // this.TotalReturnAmount += this.ReturnAmount[index];
+        // console.log("TotalReturnAmount", this.TotalReturnAmount);
+        // this.TotalReturnQuantity += Number.parseInt(returnquantity);
+        // console.log("TotalReturnQuantity", this.TotalReturnQuantity);
+
+        // this.SelectedSalesOrderDetails.splice(index, 1);
+        // this.ReturnMedicineDetailsForm.disable()
+    }
+
+    AddSalesReturn() {
+
+        this.ReturnMedicineForm.value.PatientName = this.SelectedCustomer.name;
+        this.ReturnMedicineForm.value.SpouseName = this.SelectedCustomer.contactName;
+        this.ReturnMedicineForm.value.TotalReturnAmount = this.ReturnAmount;
+        this.ReturnMedicineForm.value.SalesOrderId = this.SelectedSalesOrder.salesOrderId;
+        this.ReturnMedicineForm.value.SalesReturnItems = this.SalesReturnDetails;
+        // console.log("ReturnMedicineForm", this.ReturnMedicineForm);
+
+        var salesreturnsubmitobject : any = {
+            //SalesOrderId: this.SelectedSalesOrder.salesOrderId,
+            ReturnDate: this.ReturnMedicineForm.value.ReturnDate,
+            Remarks: this.ReturnMedicineForm.value.Remarks,
+            TotalReturnAmount: this.TotalReturnAmount,
+            ReturnReasonId: this.ReturnMedicineForm.value.ReturnReasonId,
+            SalesReturnItems: this.SalesReturnDetails
+        };
+        // console.log("salesreturnsubmitobject", salesreturnsubmitobject)
+        this.SalesReturn = salesreturnsubmitobject;
+        // console.log("SalesReturn", this.SalesReturn);
+        this.PharmacyService.AddSalesReturn(this.SalesReturn).subscribe( res => {
+            // console.log("SalesReturnPostRequestPostRequest", res);
+        });
+        this.PharmacyService.UpdateInventories(this.UpdateInventories).subscribe(res => {
+            // console.log("UpdateInventoriesPutRequest", res);
+        });
+        this.ResetWholeForm();
+    }
+
+    ResetWholeForm() {
+        this.ReturnMedicineForm.reset();
+        this.ReturnMedicineDetailsForm.reset();
+        this.SelectedReturnReason  = null;
+        this.SelectedCustomer = null;
+        this.SelectedSalesOrder = null;
+        this.SelectedSalesOrderDetails = null;
+        this.SalesReturn = null;
+        this.SalesReturnDetails = null;
+        this.UpdateInventories = null;
+        this.ReturnAmount = null;
+        this.TotalReturnAmount = 0;
+        this.ReturnQuantity = null;
+        this.TotalReturnQuantity = 0;
     }
 
 }

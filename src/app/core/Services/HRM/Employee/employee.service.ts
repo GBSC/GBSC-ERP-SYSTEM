@@ -12,6 +12,7 @@ import { EmployeeQualification } from '../../../Models/HRM/employeeQualification
 import { EmployeeBank } from '../../../Models/HRM/employeeBank';
 import { EmployeeExperience } from '../../../Models/HRM/employeeExperience';
 import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
+
 @Injectable()
 export class EmployeeService {
 

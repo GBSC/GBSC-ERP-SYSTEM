@@ -1,5 +1,4 @@
 export interface Employee {
-
     FirstName: string,
     LastName: string,
     Phone: string,

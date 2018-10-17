@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { GRN } from '../../core/Models/Pharmacy/GRN';
+import { Supplier } from '../../core/Models/Pharmacy/Supplier';
 
 @Component({
     selector: 'app-goodsreceipt',
@@ -9,10 +11,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class GoodsreceiptComponent implements OnInit {
 
-    private GRN: any;
+    private GRN: GRN;
     private GoodReceiptNoteForm: FormGroup;
-    public Suppliers: any;
-    public InventItems: any;
+    public Suppliers: Supplier;
 
     constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder) {
 
@@ -32,52 +33,16 @@ export class GoodsreceiptComponent implements OnInit {
 
     }
 
-    async ngOnInit() {
-        this.GRN = await this.PharmacyService.GetGRN();
+    ngOnInit() {
+        this.PharmacyService.GetGRN().subscribe ((res : GRN) => { 
+            this.GRN = res;
+            console.log(this.GRN);
+        });
 
-        this.PharmacyService.GetSuppliers().subscribe(result => {
+        this.PharmacyService.GetSuppliers().subscribe((result : Supplier) => {
             this.Suppliers = result
             console.log(this.Suppliers);
         })
-
-        this.PharmacyService.GetInventoryItems().subscribe(result => {
-            this.InventItems = result
-            console.log(this.InventItems);
-        });
-
-
     }
-
-    async AddGRN(value) {
-        await this.PharmacyService.AddGRN(value);
-    }
-
-    async UpdateGRN(value) {
-        await this.PharmacyService.UpdateGRN(value.Key);
-    }
-
-    async DeleteGRN(value) {
-        await this.PharmacyService.DeleteGRN(value.Key.GRNId);
-    }
-
-
-    public vae: any;
-    onsubmit(value) {
-        this.vae = value;
-        console.log(value);
-    }
-    public rr = [];
-    public rrrr = [];
-    AddIssuance(value) {
-        let x = value.data;
-        this.rr.push(x);
-
-        console.log(this.rr)
-    }
-
-    addfinal() {
-        this.GoodReceiptNoteForm.value.InventoryItems = this.rr;
-        console.log(this.GoodReceiptNoteForm.value);
-    }
-
+    
 }

@@ -22,60 +22,57 @@
                     <div class="form-group row">
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
-                                GRN No
+                                Purchase Order Number
                             </label>
-                            <input type="text" class="form-control m-input m-input--solid" formControlName="GRN">
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="PurchaseOrderNumber">
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label for="exampleInputEmail1">
+                                Purchase Order Date
+                                </label>
+                              <div class="input-group date">
+                                  <input type="date" class="form-control m-input m-input--solid" formControlName="PurchaseOrderDate">
+                               </div>
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
                                 GRN Date
                                 </label>
-                              <div class="input-group date">
-                                  <input type="date" class="form-control m-input m-input--solid" formControlName="GRNDate">
-                               </div>
+                                <div class="input-group date">
+                                    <input type="date" class="form-control m-input m-input--solid" formControlName="GrnDate">
+                                </div>
                         </div>
                         <div class="form-group col-lg-3">
-                            <label for="exampleSelect1"> Suppliers </label>
-                            <dx-select-box [items]="Suppliers" displayExpr="name" valueExpr="supplierId" [searchEnabled]="true"
-                             formControlName="SupplierId">
-                            </dx-select-box>
-                        </div>
-                        <div class="form-group col-lg-3">
-                            <div class="m-form__group form-group">
-                                <label for="">Select Type</label>
-                                <div class="m-radio-inline">
-                                    <label class="m-radio">
-                                        <input type="radio" name="example_3" formControlName="Type" value="Local">Local<span></span>
-                                    </label>
-                                    <label class="m-radio">
-                                        <input type="radio" name="example_3" formControlName="Type" value="Import">Import<span></span>
-                                    </label>
-                                </div>                        
+                            <label for="exampleInputEmail1">
+                                Origin
+                            </label>
+                            <div class="input-group date">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Origin">
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
-                                  Manual    
+                                  Remarks    
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Manual">
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
                             </div>
-                            <div class="form-group col-lg-3">
+                            <!-- <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Manual Date
                                     </label>
                                   <div class="input-group date">
                                       <input type="date" class="form-control m-input m-input--solid" formControlName="ManualDate">
                                    </div>
-                            </div>
-                            <div class="form-group col-lg-3">
+                            </div> -->
+                            <!-- <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                    PO NO
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="PoNo">
-                            </div>
-                            <div class="form-group col-lg-3 fromtopMargin">
+                            </div> -->
+                            <!-- <div class="form-group col-lg-3 fromtopMargin">
                                 <div class="m-form__group form-group">			
                                     <div class="m-checkbox-inline">
                                         <label class="m-checkbox">
@@ -88,8 +85,8 @@
                                         </button>
                                     </div>                                    
                                 </div>
-                            </div>
-                        </div>       
+                            </div> -->
+                        </div>
                 </div>     
             </form>
             <!--end::Form-->

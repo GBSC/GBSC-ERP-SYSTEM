@@ -108,7 +108,7 @@
                                     <th>Purchase Amount</th>
                                     <th>Return Amount</th>
                                     <th>Save</th>
-                                    <tr *ngFor="let a of SelectedSalesOrderDetails, let y of UpdateInventories, let i = index">
+                                    <tr *ngFor="let a of SelectedSalesOrderDetails; let y of UpdateInventories; let i = index">
                                         <td><input class="form-control m-input m-input--solid"
                                                 formControlName="ItemCode" [value]="a?.inventoryItem?.itemCode || ''" disabled></td>
                                         <td><input class="form-control m-input m-input--solid"

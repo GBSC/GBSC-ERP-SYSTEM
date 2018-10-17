@@ -222,7 +222,7 @@ export class PurchaseOrderComponent implements OnInit {
             Origin: this.PurchaseOrderForm.value.Origin,
             CurrencyId: this.PurchaseOrderForm.value.CurrencyId,
             Remarks: this.PurchaseOrderForm.value.Remarks,
-            PurchaseOrderDetails: this.PurchaseOrderDetailsArray
+            PurchaseOrderItems: this.PurchaseOrderDetailsArray
         };
 
         console.log(a);

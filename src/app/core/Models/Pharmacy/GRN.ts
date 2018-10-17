@@ -1,5 +1,6 @@
 export interface GRN {
     GrnId: number,
     GrnNumber: string,
-    GrnDate: Date
+    GrnDate: Date,
+    PurchaseOrderId : number
 }

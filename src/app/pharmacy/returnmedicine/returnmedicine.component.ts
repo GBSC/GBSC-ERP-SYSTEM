@@ -175,7 +175,7 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("ReturnMedicineForm", this.ReturnMedicineForm);
 
         var salesreturnsubmitobject : any = {
-            //SalesOrderId: this.SelectedSalesOrder.salesOrderId,
+            SalesOrderId: this.SelectedSalesOrder.salesOrderId,
             ReturnDate: this.ReturnMedicineForm.value.ReturnDate,
             Remarks: this.ReturnMedicineForm.value.Remarks,
             TotalReturnAmount: this.TotalReturnAmount,

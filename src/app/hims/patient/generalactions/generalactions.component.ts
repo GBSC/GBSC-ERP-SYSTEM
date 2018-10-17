@@ -55,6 +55,8 @@ export class GeneralactionsComponent implements OnInit {
          if(this.Patient.appointments.length){
                       if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date()) ) ){
                       if(this.lastpatientvisit === null){
+                          console.log(this.lastpatientvisit);
+                          console.log('1');
                                 await this.PatientServiceobj.AddVisits(this.id);
                                 this.router.navigate(['/hims/patient/visits/' + this.id]);
                            }
@@ -63,6 +65,7 @@ export class GeneralactionsComponent implements OnInit {
                                 }
                                 else {
                                         await this.PatientServiceobj.AddVisits(this.id);
+                                        console.log('2');
                                         this.router.navigate(['/hims/patient/visits/' + this.id]);
                                     }
                     

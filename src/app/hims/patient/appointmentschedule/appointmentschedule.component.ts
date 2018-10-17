@@ -110,9 +110,7 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async  ngOnInit() {
-        let lllsldflsldlfs = await this.Http.get('http://localhost:58788/api/appointments/getappointment/358').toPromise();
-        console.log(lllsldflsldlfs)
-        console.log(this.appointmentForm);
+      
 
 
         await this.PatientServiceobj.getPatient();

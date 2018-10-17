@@ -187,9 +187,9 @@
                                 </span>
                             </div>
                             <div class="m-widget4__ext">
-                                <span class="m-widget4__number m--font-accent">
+                                <span class="m-widget4__number m--font-accent"   >
                                         <a  (click)="removediagnosis(i)" class="m-widget4__icon m--font-brand">
-                                                <i class="la la-trash-o"></i>
+                                                <i class="la la-trash-o" ></i>
                                             </a>
                                  </span>
                             </div>
@@ -265,12 +265,13 @@
                     <div *ngFor="let visitTests of getvisitTestbyId; let i = index" class="m-widget4__item"> 
                         <div class="m-widget4__info">
                             <span class="m-widget4__text">
-                                    {{visitTests?.testName}}
+                                      {{visitTests?.testName}}  
+                                   <!-- <input type="text" [value]="visitTests?.testName" [disabled]="vitalUpdadddddteFieldsEnableds"> -->
                             </span>
                         </div>
-                        <div class="m-widget4__ext">
-                                <a  (click)="removeTest(i)" class="m-widget4__icon m--font-brand">
-                                        <i class="la la-trash-o"></i>
+                        <div class="m-widget4__ext" >
+                                        <a    (click)="removeTest(i)" class="m-widget4__icon m--font-brand">
+                                        <i class="la la-trash-o" ></i>
                                     </a>
                             <!-- <span class="m-widget4__number m--font-accent">
                                 <button  class="btn btn-primary m-btn m-btn--custom" ype="button">-</button>

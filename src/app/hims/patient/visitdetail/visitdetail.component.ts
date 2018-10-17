@@ -3,6 +3,7 @@ import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { DISABLED } from '@angular/forms/src/model';
 // import { VisitTest } from 'src/app/core/Models/HIMS/visittest';
 
 @Component({
@@ -371,9 +372,11 @@ export class VisitdetailComponent implements OnInit {
         console.log(this.VisitDiagnoses);
 
     }
+    public vitalUpdadddddteFieldsEnabled: boolean = false;
 
-    removeTest(index) {
-        this.getvisitTestbyId.splice(index, 1);
+    removeTest(index ) {
+       //   this.vitalUpdadddddteFieldsEnabled = false;
+           this.getvisitTestbyId.splice(index, 1);
     }
 
 

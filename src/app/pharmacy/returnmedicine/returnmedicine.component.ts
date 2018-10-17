@@ -162,7 +162,7 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("TotalReturnQuantity", this.TotalReturnQuantity);
 
         // this.SelectedSalesOrderDetails.splice(index, 1);
-        // this.ReturnMedicineDetailsForm.disable()
+        // this.ReturnMedicineDetailsForm.disable();
     }
 
     AddSalesReturn() {
@@ -182,7 +182,7 @@ export class ReturnmedicineComponent implements OnInit {
             ReturnReasonId: this.ReturnMedicineForm.value.ReturnReasonId,
             SalesReturnItems: this.SalesReturnDetails
         };
-        // console.log("salesreturnsubmitobject", salesreturnsubmitobject)
+        console.log("salesreturnsubmitobject", salesreturnsubmitobject)
         this.SalesReturn = salesreturnsubmitobject;
         // console.log("SalesReturn", this.SalesReturn);
         this.PharmacyService.AddSalesReturn(this.SalesReturn).subscribe( res => {

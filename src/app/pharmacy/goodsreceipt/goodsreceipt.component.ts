@@ -13,22 +13,39 @@ export class GoodsreceiptComponent implements OnInit {
 
     private GRN: GRN;
     private GoodReceiptNoteForm: FormGroup;
+    private GoodReceiptNoteItemsForm: FormGroup;
     public Suppliers: Supplier;
 
     constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
+            PurchaseOrderNumber: [''],
+            PurchaseOrderDate: [''],
+            Supplier: [''],
+            GrnDate: [''],
+            Origin: [''],
+            Remarks: [''],
+            TotalExpectedAmount: [''],
+            TotalPaymentAmount: [''],
+            TotalDifferenceAmount: [''],
+            TotalExpectedQuantity: [''],
+            TotalReceivedQuantity: [''],
+            TotalDifferenceQuantity: ['']
+        });
 
-            'GRN': [''],
-            'GRNDate': [''],
-            'SupplierId': [''],
-            'Type': [''],
-            'Manual': [''],
-            'ManualDate': [''],
-            'PoNo': [''],
-            'Post': [''],
-            'InventoryItems': ['']
-
+        this.GoodReceiptNoteItemsForm = this.formBuilder.group({
+            ManualCode : [''],
+            Description : [''],
+            PackType : [''],
+            PackSize : [''],
+            Unit : [''],
+            RateUnit : [''],
+            ExpectedTotalAmount : [''],
+            PaymentTotalAmount : [''],
+            DifferenceTotalAmount : [''],
+            ExpectedQuantity : [''],
+            ReceivedQuantity : [''],
+            DifferenceQuantity : ['']
         });
 
     }
@@ -40,9 +57,13 @@ export class GoodsreceiptComponent implements OnInit {
         });
 
         this.PharmacyService.GetSuppliers().subscribe((result : Supplier) => {
-            this.Suppliers = result
+            this.Suppliers = result;
             console.log(this.Suppliers);
         })
+    }
+
+    GetSelectedPurchaseOrderDetails(ponumber, keycode){
+        console.log()
     }
     
 }

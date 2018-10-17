@@ -124,7 +124,7 @@
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseQuantity" [value]="a?.orderUnitQuantity || 0" disabled></td>
                                         <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" 
-                                                formControlName="ReturnQuantity" #ReturnQuantity min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
+                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseAmount" [value]="a?.itemTotalAmount" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"

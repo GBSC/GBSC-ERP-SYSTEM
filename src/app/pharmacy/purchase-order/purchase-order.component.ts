@@ -165,6 +165,7 @@ export class PurchaseOrderComponent implements OnInit {
             DiscountPercentage: <number>this.PurchaseOrderDetailsForm.value.DiscountPercentage,
             DiscountAmount: this.DiscountAmount,
             AfterDiscountAmount: this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount,
+            GrandTotal: this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount,
             GstPercentage: <number>this.PurchaseOrderDetailsForm.value.SalesTaxPercentage,
             GstAmount: this.SalesTaxAmount,
             AfterGstAmount: this.GrossAmount + this.SalesTaxAmount,
@@ -172,7 +173,8 @@ export class PurchaseOrderComponent implements OnInit {
             RetailPrice: (<number>this.SelectedInventoryItem.retailPrice * <number>this.PurchaseOrderDetailsForm.value.OrderQuantity) + (<number>this.SelectedInventoryItem.retailPrice * <number>this.PurchaseOrderDetailsForm.value.BonusQuantity),
             CostPrice: (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.OrderQuantity) + (<number>this.SelectedInventoryItem.costPrice * <number>this.PurchaseOrderDetailsForm.value.BonusQuantity),
             InventoryItemId: this.SelectedInventoryItem.inventoryItemId,
-            InventoryId: this.SelectedInventoryItem.inventory.inventoryId
+            InventoryId: this.SelectedInventoryItem.inventory.inventoryId,
+            Rate: <number>this.SelectedInventoryItem.retailPrice,
         };
         console.log(b);
 

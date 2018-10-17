@@ -139,7 +139,8 @@ export class ReturnmedicineComponent implements OnInit {
         var salesreturnitem : any = {
             ReturnQuantity : Number.parseInt(returnquantity),
             ReturnAmount : this.ReturnMedicineDetailsForm.value.ReturnAmount,
-            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId
+            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId,
+            inventoryItemId : this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
         };
         // console.log("salesreturnitem", salesreturnitem);
         this.SalesReturnDetails.push(salesreturnitem);

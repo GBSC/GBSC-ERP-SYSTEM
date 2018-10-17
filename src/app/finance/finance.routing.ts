@@ -9,11 +9,11 @@ import { SubAccountComponent } from './financialSetups/sub-account/sub-account.c
 import { SecondSubAccountComponent } from './financialSetups/second-sub-account/second-sub-account.component';
 import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
 import { DetailAccountComponent } from './financialSetups/detail-account/detail-account.component';
-import { PurchaseInvoiceComponent } from '../Inventorysystem/Purchase/purchase-invoice/purchase-invoice.component';
-import { PurchaseReturnComponent } from '../Inventorysystem/Purchase/purchase-return/purchase-return.component';
 import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
 import { SalesReturnComponent } from './sales-return/sales-return.component';
 import { VoucherComponent } from './voucher/voucher.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
+import { PurchaseReturnComponent } from './purchase-return/purchase-return.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 

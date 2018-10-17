@@ -1,3 +1,230 @@
-<p>
-  sales-return works!
-</p>
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Sales Return</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <form [formGroup]="salesReturnForm">
+
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Invoice Number
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="InvoiceNumber" placeholder="001">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Bill Number
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="BillNumber" placeholder="001">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <dx-date-box formControlName="Date" type="date">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Credit Days
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="CreditDays" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Voucher Number
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="VoucherNumber" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Expenses
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Gst Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="GstAmount" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Gst Percentage
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="GstPercentage" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Discount Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="DiscountAmount" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Discount Percentage
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="DiscountPercentage" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Tax Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Tax Percentage
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="TaxPercentage" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Wihtholding Tax Amount
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="WihtholdingTaxAmount" placeholder="0">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Withholding Tax Percentage
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="WithholdingTaxPercentage" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="">
+                        Sales Invoice
+                      </label>
+                      <select class="form-control m-input" formControlName="FinanceSalesInvoiceId">
+                        <option value="" disabled selected>-- Select Sales Invoice --</option>
+                        <option *ngFor="let invoicesale of salesInvoice" [value]="invoicesale.FinanceSalesInvoiceId">{{invoicesale.totalAmount}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="">
+                        Detail Account
+                      </label>
+                      <select class="form-control m-input" formControlName="DetailAccountId">
+                        <option value="" disabled selected>-- Select Detail Account --</option>
+                        <option *ngFor="let detailAC of detailAccount" [value]="detailAC.detailAccountId">{{detailAC.name}}</option>
+                      </select> </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Description
+                      </label>
+                      <textarea class="form-control m-input" formControlName="Description"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-8"></div>
+                  <label class="col-form-label">
+                    Total Amount:
+                  </label>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group m--align-right">
+                      <input type="number" class="form-control m-input" formControlName="TotalAmount" placeholder="0">
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="m-separator m-separator--dashed m-separator--lg"></div>
+              <div class="form-group row">
+                <h3>Sales Return Detail</h3>
+                <dx-data-grid id="gridContainer" keyExpr="FinanceSalesReturnDetailId" [dataSource]="[]" (onRowInserted)="addsalesReturnDetail($event)">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                  </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager>
+
+                  <dxi-column dataField="amount" caption="Amount"></dxi-column>
+                  <dxi-column dataField="itemDescription" caption="Item Description"></dxi-column>
+                </dx-data-grid>
+              </div>
+
+              <div class="m-separator"></div>
+              <div class="form-group row">
+                <div class="col-sm-8"></div>
+                <div class="col-sm-4 m--align-right">
+                  <button (click)="addsalesReturn(salesReturnForm.value)" class="btn btn-primary">
+                    Save
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,5 +20,5 @@ export class PurchaseReturn {
     TotalAmount: number;
     FinancePurchaseInvoiceId : number;
     DetailAccountId : number;
-    PurchaseReturnDetails : PurchaseReturnDetail[]
+    FinancePurchaseReturnDetails : PurchaseReturnDetail[]
 }

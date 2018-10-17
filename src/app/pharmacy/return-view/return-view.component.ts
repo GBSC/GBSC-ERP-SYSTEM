@@ -18,13 +18,15 @@ export class ReturnViewComponent implements OnInit {
     ngOnInit() {
         this.PharmacyService.GetSalesReturns().subscribe(res => {
             console.log(res);
-
             this.SalesReturns = res;
             console.log(this.SalesReturns);
-
         });
+    
+    
+    
     }
 
 
 
 }
+

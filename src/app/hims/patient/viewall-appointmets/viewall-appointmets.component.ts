@@ -19,7 +19,7 @@ export class ViewallAppointmetsComponent implements OnInit {
   private tentativeAppointments : any;
   private finalizedAppointments : any;
 
-  constructor( formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
+  constructor( formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
     this.SearchAppointmentForm = formBuilder.group({
       TentativeTime :['']
     })
@@ -27,11 +27,26 @@ export class ViewallAppointmetsComponent implements OnInit {
   }
 
 async  ngOnInit() {
-    await this.PatientServiceobj.getPatient();
-    this.par = this.PatientServiceobj.patients;
-    console.log(this.par);
- 
+  
+//   var currentDate = new Date();
+//  console.log(currentDate);
+//  console.log( this.formatDate(new Date()));
+//     this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
+//     console.log(this.appointmentbydate);
+//    this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
+
+//  console.log(this.finalizedAppointments);
+
+ await this.PatientServiceobj.getPatient();
+ this.par = this.PatientServiceobj.patients;
+ console.log(this.par);
+
   }
+
+  formatDate(date: Date) {
+
+    return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+}
 
 
  async SearchAppointment(date) {
@@ -45,8 +60,7 @@ async  ngOnInit() {
 
 
  
-  async updateAppointment(value)
-  {
+  async updateAppointment(value){
     console.log(value)
     let x = await this.PatientServiceobj.updateAppointment(value.key);
     console.log(x);
@@ -58,6 +72,14 @@ async  ngOnInit() {
 
     console.log(x);
     return x;
+  }
+
+
+  getCurrentRowData(d){
+    let Patientid = d.key.patientId;
+
+    console.log(Patientid)
+    this.router.navigate(['/hims/patient/profile/' + Patientid]);
   }
 
 }

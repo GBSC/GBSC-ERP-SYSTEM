@@ -82,8 +82,14 @@
                           <dxi-column dataField="patientId" caption="No"[allowEditing]="false" [formItem]="{visible: false}">
                               <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                           </dxi-column>
-                          
                             <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment" ></dxi-column>
+                            <dxi-column caption="Visit" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                            <div *dxTemplate="let d of 'chartCellTemplate'">
+                              <div class="chart-cell">
+                                <dx-button (click)="getCurrentRowData(d)" icon="add"></dx-button>
+                                </div>
+                            </div>
+            
                           </dx-data-grid>  
                       </div>
                     </div>
@@ -111,14 +117,21 @@
                             <dxi-column dataField="patientId" caption="Patients" [width]="125">
                               <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
                             </dxi-column>
-                            <dxi-column dataField="patientId" caption="No" [width]="125">
+                            <dxi-column dataField="patientId" caption="Phone Number" [width]="125">
                               <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                             </dxi-column>
                           <dxi-column dataField="patientType" caption="patientType"></dxi-column>
-                          <dxi-column dataField="patientId" caption="No" >
-                              <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
-                            </dxi-column>
+                          <dxi-column dataField="" caption="Visits" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+
+                            <dxi-column caption="Profile" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                            <div *dxTemplate="let d of 'chartCellTemplate'">
+                              <div class="chart-cell">
+                                <dx-button (click)="getCurrentRowData(d)" icon="add"></dx-button>
+                                </div>
+                            </div>
                           </dx-data-grid>  
+
+
                       </div>
                     </div>
                   </div>

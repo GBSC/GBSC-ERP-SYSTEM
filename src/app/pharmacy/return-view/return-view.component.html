@@ -11,17 +11,14 @@
   <div class="m-portlet__body">
   <div class="row">
     <div class="col-md-12"> 
-        <dx-data-grid
-        [dataSource]="SalesReturns"  
-        [remoteOperations]="true"
-        height="600"
-        showBorders="true"
-        [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true"
-        [showBorders]="true">
-    
+        <dx-data-grid [dataSource]="SalesReturns"  [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-paging [pageSize]="5"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+    
+         <dxo-group-panel [visible]="true"></dxo-group-panel>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-editing
             mode="row"
@@ -31,7 +28,29 @@
         </dxo-editing>
         <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
         <dxo-selection mode="single"></dxo-selection>
-        <dxi-column dataField="totalReturnAmount" caption="Return Amount"></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount"         [width]="230"
+        [fixed]="true"></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
+        <dxi-column dataField="totalReturnAmount" caption="Return Amount" ></dxi-column>
 
         <div *dxTemplate="let order of 'detail'">
             <dx-data-grid

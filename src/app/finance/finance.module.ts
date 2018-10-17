@@ -23,7 +23,6 @@ import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
 import { SalesReturnComponent } from './sales-return/sales-return.component';
 import { FinanceService } from '../core/Services/Finance/finance.service';
 
-
 @NgModule({
     imports: [
         CommonModule,

@@ -3,6 +3,8 @@ import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
+import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
+import { PurchaseOrderItem } from 'src/app/core/Models/Pharmacy/PurchaseOrderItem';
 
 @Component({
     selector: 'app-goodsreceipt',
@@ -11,10 +13,19 @@ import { Supplier } from '../../core/Models/Pharmacy/Supplier';
 })
 export class GoodsreceiptComponent implements OnInit {
 
-    private GRN: GRN;
     private GoodReceiptNoteForm: FormGroup;
     private GoodReceiptNoteItemsForm: FormGroup;
-    public Suppliers: Supplier;
+
+    private Suppliers: Supplier;
+    private SelectedPurchaseOrder : PurchaseOrder;
+    private SelectedPurchaseOrderItems : PurchaseOrderItem[] = [];
+
+    private ExpectedAmount : number[] = [];
+    private PaymentAmount : number[] = [];
+    private DifferenceAmount : number[] = [];
+
+    private ExpectedQuantity : number[] = [];
+    private ReceivedQuantity : number[] = [];
 
     constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder) {
 
@@ -51,10 +62,6 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.PharmacyService.GetGRN().subscribe ((res : GRN) => { 
-            this.GRN = res;
-            console.log(this.GRN);
-        });
 
         this.PharmacyService.GetSuppliers().subscribe((result : Supplier) => {
             this.Suppliers = result;
@@ -62,8 +69,16 @@ export class GoodsreceiptComponent implements OnInit {
         })
     }
 
-    GetSelectedPurchaseOrderDetails(ponumber, keycode){
-        console.log()
+    async GetSelectedPurchaseOrderDetails(ponumber, keycode){
+        console.log(ponumber, keycode);
+        if(keycode.key == "Enter") {
+            this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
+                this.SelectedPurchaseOrder = res;
+                console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
+            })
+        }
+
+
     }
     
 }

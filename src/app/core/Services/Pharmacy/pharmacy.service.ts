@@ -104,7 +104,7 @@ export class PharmacyService {
     //     return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code).toPromise();
     // }
 
-    GetSalesReturnDetailsByCode(code): Observable<SalesReturnItem> {
+    GetSalesReturnDetailsByCode(code : string): Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code);
     }
 
@@ -143,7 +143,11 @@ export class PharmacyService {
     }
 
     GetPurchaseOrderDetailsByCode(code: string): Observable<PurchaseOrder> {
-        return this.ApiService.get(this.API_URL + 'Sales/GetPurchaseOrderDetailsByCode/' + code);
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderDetailsByCode/' + code);
+    }
+
+    async GetPurchaseOrderDetailsByCodeAsync(code: string) {
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrderDetailsByCode/' + code).toPromise();
     }
 
     //PurchaseOrderItem

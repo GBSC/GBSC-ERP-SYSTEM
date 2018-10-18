@@ -1,0 +1,65 @@
+<div class="m-content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                               Purchase Invoice Detail
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <dx-data-grid id="gridContainer"
+                    (onToolbarPreparing)="onToolbarPreparing($event)"
+                     keyExpr="financePurchaseInvoiceId" 
+                    [dataSource]="purchaseinvoice" 
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                     [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
+         
+                        <dxo-paging [pageSize]="7"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                        </dxo-pager>                
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+                        <dxo-selection mode="single"></dxo-selection>
+ 
+                        <dxi-column dataField="billNumber"></dxi-column>
+                        <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
+                        <dxi-column dataField="description"></dxi-column>
+                        <dxi-column dataField="creditDays"></dxi-column>
+                        <dxi-column dataField="voucherNumber"></dxi-column>
+                        <dxi-column dataField="invoiceNumber"></dxi-column>
+                        <dxi-column dataField="expenses"></dxi-column>
+                        <dxi-column dataField="gstAmount"></dxi-column>
+                        <dxi-column dataField="gstPercentage"></dxi-column>
+                        <dxi-column dataField="discountAmount"></dxi-column>
+                        <dxi-column dataField="discountPercentage"></dxi-column>
+                        <dxi-column dataField="taxAmount"></dxi-column>
+                        <dxi-column dataField="taxPercentage"></dxi-column>
+                        <dxi-column dataField="withholdingTaxPercentage"></dxi-column>
+                        <dxi-column dataField="wihtholdingTaxAmount"></dxi-column>
+                        <dxi-column dataField="totalAmount"></dxi-column>
+                        <dxi-column dataField="detailAccountId" caption="Detail Account">
+                            <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
+                            </dxo-lookup>
+                          </dxi-column>
+
+                        <div *dxTemplate="let invoiceDetail of 'detail'">
+                            <dx-data-grid [dataSource]="invoiceDetail.data.financePurchaseInvoiceDetails" [showBorders]="true" [columnAutoWidth]="true">
+                                <dxi-column dataField="amount" caption="Amount"> </dxi-column>
+                                  <dxi-column dataField="itemDescription" caption="Description"></dxi-column>
+                                </dx-data-grid>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

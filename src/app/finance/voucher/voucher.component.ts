@@ -54,7 +54,7 @@ export class VoucherComponent implements OnInit {
 
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.SetupService.getAllDepartments();
+    this.departments = await this.SetupService.getAllDepartments();    
   }
 
   async addVoucherDetail(value) {
@@ -67,6 +67,9 @@ export class VoucherComponent implements OnInit {
     v = { ...v, ...value };
     v.VoucherDetails = this.voucherDetail;
     let r = await this.financeService.addVoucher(v);
+    console.log(r);
+    console.log(v);
+    
   }
 
 }

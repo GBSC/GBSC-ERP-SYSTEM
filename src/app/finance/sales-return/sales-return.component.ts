@@ -67,9 +67,7 @@ export class SalesReturnComponent implements OnInit {
     let salesReturndetail = new SalesReturn();
     salesReturndetail = { ...salesReturndetail, ...value };
     salesReturndetail.FinanceSalesReturnDetails = this.salesReturnDetail;
-    await this.financeService.addSalesReturn(salesReturndetail);
-    console.log(salesReturndetail);
-    
+    await this.financeService.addSalesReturn(salesReturndetail);    
   }
 
 }

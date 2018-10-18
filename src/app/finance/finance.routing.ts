@@ -14,6 +14,11 @@ import { SalesReturnComponent } from './sales-return/sales-return.component';
 import { VoucherComponent } from './voucher/voucher.component';
 import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
 import { PurchaseReturnComponent } from './purchase-return/purchase-return.component';
+import { PurchaseinvoicedetailComponent } from './purchaseinvoicedetail/purchaseinvoicedetail.component';
+import { PurchasereturndetailComponent } from './purchasereturndetail/purchasereturndetail.component';
+import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
+import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
+import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -36,11 +41,15 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
                 ]
             },
-            { path: 'purchase-invoice', component: PurchaseInvoiceComponent },
+            { path: 'purchase-invoice-detail', component: PurchaseinvoicedetailComponent },
             { path: 'purchase-return', component: PurchaseReturnComponent },
+            { path: 'purchase-return-detail', component: PurchasereturndetailComponent },
             { path: 'sales-invoice', component: SalesInvoiceComponent },
+            { path: 'sales-invoice-detail', component: SalesInvoiceDetailComponent },
             { path: 'sales-return', component: SalesReturnComponent },
-            { path: 'voucher', component: VoucherComponent }
+            { path: 'sales-return-detail', component: SalesReturnDetailComponent },
+            { path: 'voucher', component: VoucherComponent },
+            { path: 'voucher-detail', component: VoucherDetailComponent }
 
         ]
     }

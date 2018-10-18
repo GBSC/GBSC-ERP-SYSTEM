@@ -22,6 +22,11 @@ import { PurchaseReturnComponent } from './purchase-return/purchase-return.compo
 import { SalesInvoiceComponent } from './sales-invoice/sales-invoice.component';
 import { SalesReturnComponent } from './sales-return/sales-return.component';
 import { FinanceService } from '../core/Services/Finance/finance.service';
+import { PurchaseinvoicedetailComponent } from './purchaseinvoicedetail/purchaseinvoicedetail.component';
+import { PurchasereturndetailComponent } from './purchasereturndetail/purchasereturndetail.component';
+import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
+import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
+import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 
 @NgModule({
     imports: [
@@ -52,7 +57,12 @@ import { FinanceService } from '../core/Services/Finance/finance.service';
         PurchaseInvoiceComponent,
         PurchaseReturnComponent,
         SalesInvoiceComponent,
-        SalesReturnComponent
+        SalesReturnComponent,
+        PurchaseinvoicedetailComponent,
+        PurchasereturndetailComponent,
+        SalesInvoiceDetailComponent,
+        SalesReturnDetailComponent,
+        VoucherDetailComponent
     ],
     providers: [FinanceSetupService,FinanceService]
 })

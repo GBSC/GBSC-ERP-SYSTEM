@@ -3,7 +3,9 @@
 
         <div class="m-portlet__head-tools">
 
-
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Link with href
+                      </a>
             <div class="container">
                 <div class="scroller scroller-left">
                     <i class="la la-angle-left"></i>
@@ -33,7 +35,7 @@
                             </a>
                         </li>
                         <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                            <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #d95531;">
+                            <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_4" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #d95531;">
                                 <i class="la la-shopping-cart" style="display: block; height: 33px;font-size: 46px;"></i>
                                 Inventory Management System
                             </a>
@@ -61,7 +63,7 @@
 
         </div>
     </div>
-    <div class="m-portlet__body">
+    <div class="m-portlet__body" class="collapse" id="collapseExample">
         <div class="tab-content">
             <div class="tab-pane active" id="m_tabs_6_1" role="tabpanel">
                 <div class="container">
@@ -778,6 +780,139 @@
                     </div>
                 </div>
             </div>
+            <div class="tab-pane" id="m_tabs_6_4" role="tabpanel">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <ul class="m-nav">
+                                    <li class="m-nav__section m-nav__section--first">
+                                        <span class="m-nav__section-text">
+                                            Inventory
+                                        </span>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/home" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                                Dashboard
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <ul class="m-nav">
+                                    <li class="m-nav__section m-nav__section--first">
+                                        <span class="m-nav__section-text">
+                                            Sales
+                                        </span>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/sales/dispatchnote" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                              Dispatch Note
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/sales/deliveryorder" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                               Delivery Order
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/sales/salesindent" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                               Sales Indent
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/sales/salesorder" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                              Sales Order
+                                            </span>
+                                        </a>
+                                    </li>
+    
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/sales/salesreturn" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                               Sales Return
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-3">
+                                <ul class="m-nav">
+                                    <li class="m-nav__section m-nav__section--first">
+                                        <span class="m-nav__section-text">
+                                            Purchase
+                                        </span>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/purchase/grn" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                            <span class="m-nav__link-text">
+                                                    Goods Receipt Note
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/purchase/PurchaseIndent" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                            <span class="m-nav__link-text">
+                                              PurchaseIndent
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/purchase/purchaseinvoice" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-info"></i>
+                                            <span class="m-nav__link-text">
+                                                Purchase Invoice
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                        <a routerLink="/inventorysystem/purchase/purchaseorder" class="m-nav__link">
+                                            <i class="m-nav__link-icon flaticon-info"></i>
+                                            <span class="m-nav__link-text">
+                                                Purchase Order
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-nav__item">
+                                            <a routerLink="/inventorysystem/purchase/PurchaseReturn" class="m-nav__link">
+                                                <i class="m-nav__link-icon flaticon-info"></i>
+                                                <span class="m-nav__link-text">
+                                                        Purchase Return
+                                                </span>
+                                            </a>
+                                        </li>
+    
+                                </ul>
+                            </div>
+    
+                            <div class="col-sm-3">
+                                <ul class="m-nav">
+                                    <li class="m-nav__section m-nav__section--first">
+                                        <span class="m-nav__section-text">
+                                            Reports
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

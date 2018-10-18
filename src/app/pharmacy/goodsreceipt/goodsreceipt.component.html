@@ -24,7 +24,7 @@
                             <label for="exampleInputEmail1">
                                 Purchase Order Number
                             </label>
-                            <input type="text" class="form-control m-input m-input--solid" formControlName="PurchaseOrderNumber">
+                            <input type="text" class="form-control m-input m-input--solid" #PurchaseOrderNumber (keyup)="GetSelectedPurchaseOrderDetails(box.value, $event)" formControlName="PurchaseOrderNumber">
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
@@ -33,6 +33,14 @@
                               <div class="input-group date">
                                   <input type="date" class="form-control m-input m-input--solid" formControlName="PurchaseOrderDate">
                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-lg-3">
+                                <label for="exampleInputEmail1">
+                                    Supplier    
+                                </label>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Supplier">
+                            </div>
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
@@ -52,67 +60,88 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                  Remarks    
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
-                            </div>
-                            <!-- <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Manual Date
-                                    </label>
-                                  <div class="input-group date">
-                                      <input type="date" class="form-control m-input m-input--solid" formControlName="ManualDate">
-                                   </div>
-                            </div> -->
-                            <!-- <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                   PO NO
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="PoNo">
-                            </div> -->
-                            <!-- <div class="form-group col-lg-3 fromtopMargin">
-                                <div class="m-form__group form-group">			
-                                    <div class="m-checkbox-inline">
-                                        <label class="m-checkbox">
-                                            <input type="checkbox" value="Post"  formControlName="Post">
-                                            Post
-                                            <span></span>
-                                        </label>
-                                        <button type="button" (click)="onsubmit(GoodReceiptNoteForm.value)" class="btn btn-secondary">
-                                            Post
-                                        </button>
-                                    </div>                                    
-                                </div>
-                            </div> -->
+                        <div class="form-group col-lg-3">
+                            <label for="exampleInputEmail1">
+                                Remarks    
+                            </label>
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
                         </div>
+                    </div>
                 </div>     
             </form>
-            <!--end::Form-->
-       
             <div class="row">
                 <div class="m-portlet__body">
                     <div class="m-section">
                         <div class="m-section__content">
-                            <dx-data-grid id="gridContainer" [dataSource]="InventItems" (onRowInserted)="AddIssuance($event)" >
-                                <dxo-editing mode="row" [allowAdding]="true">
-                                </dxo-editing>
-                                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                                <dxo-paging [pageSize]="5"></dxo-paging>
-                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 30]" [showInfo]="true"></dxo-pager>
-                                 <dxi-column dataField="itemCode" caption="Manual Code" [width]="125">
-                                    <dxo-lookup [dataSource]="InventItems" displayExpr="itemCode" valueExpr="itemCode"></dxo-lookup>
-                                </dxi-column>
-                                <dxi-column dataField="description" caption="Description Of Item" [width]="200"></dxi-column>
-                                <dxi-column dataField="packType" caption="Pack Type"></dxi-column>
-                                <dxi-column dataField="packSize" caption="Pack Size"></dxi-column>
-                                <dxi-column dataField="noOfPackType" caption="No of Pack Type"></dxi-column>
-                                <dxi-column dataField="qty" caption="Quantity"></dxi-column>
-                                <dxi-total-item column="qty" summaryType="sum">
-                            </dxi-total-item>
-                            </dx-data-grid>
+                                <form [formGroup]="GoodReceiptNoteItemsForm">
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-12" style="/* overflow-x: scroll; */overflow-x: scroll;max-width: 1058px;">
+                                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand" style="width: 2000px;">
+                                                    <th>Manual Code</th>
+                                                    <th>Description</th>
+                                                    <th>Pack Type</th>
+                                                    <th>Pack Size</th>
+                                                    <th>Unit</th>
+                                                    <th>Rate/Unit</th>
+                                                    <th>Expected Total Amount</th>
+                                                    <th>Payment Total Amount</th>
+                                                    <th>Difference Total Amount</th>
+                                                    <th>Expected Quantity</th>
+                                                    <th>Received Quantity</th>
+                                                    <th>Difference Quantity</th>
+                                                    <th>Save</th>
+                                                    <tr *ngFor="let a of SelectedPurchaseOrderItems; let y of UpdateInventories; let i = index">
+                                                        <td><input class="form-control m-input m-input--solid"
+                                                                formControlName="ItemCode" [value]="a?.inventoryItem?.itemCode || ''" disabled></td>
+                                                        <td><input class="form-control m-input m-input--solid"
+                                                                formControlName="Description" [value]="a?.inventoryItem?.description || ''" disabled></td>
+                                                        <td><input class="form-control m-input m-input--solid"
+                                                                formControlName="PackType" [value]="a?.inventoryItem?.packType?.name || ''" disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="StockQuantity" [value]="a?.inventoryItem?.packSize?.size || 0" disabled></td>
+                                                        <td><input class="form-control m-input m-input--solid"
+                                                                formControlName="PerUnit" [value]="a?.inventoryItem?.unit?.name || ''" disabled></td> 
+                                                        <td><input type="number" #Rate class="form-control m-input m-input--solid"
+                                                            formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0" disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="ExpectedAmount" disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid" 
+                                                                formControlName="PaymentAmount"></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="DifferenceAmount" disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="ExpectedQuantity"disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="ReceivedQuantity"disabled></td>
+                                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                                formControlName="DifferenceQuantity"disabled></td>
+                                                        <td>
+                                                            <button type="button" (click)="" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                                <i class="la la-add"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                
+                                        <div>
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-lg-10"></div>
+                                                    <div class="col-lg-2">
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedAmount || 0" disabled>
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalPaymentAmount || 0" disabled>
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceAmount || 0" disabled>
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedQuantity || 0" disabled>
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalReceivedQuantity || 0" disabled>
+                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceQuantity || 0" disabled>
+                                                    </div>
+                                                    <button (click)="AddGRN()">Submit</button>
+                                                    <button (click)="ResetWholeForm()">Reset</button>
+                                            </div>
+                                        </div>
+                
+                                    </form>
                         </div>
                     </div>
                 </div>

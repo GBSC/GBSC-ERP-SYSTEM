@@ -62,7 +62,7 @@ export class GoodsreceiptComponent implements OnInit {
             PackType : [''],
             PackSize : [''],
             Unit : [''],
-            RateUnit : [],
+            Rate : [],
             ExpectedAmount : [],
             PaymentAmount : [],
             DifferenceAmount : [],
@@ -82,13 +82,13 @@ export class GoodsreceiptComponent implements OnInit {
             this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
                 this.SelectedPurchaseOrder = res;
                 console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
+                this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
+                console.log("SelectedPurchaseOrderItems", this.SelectedPurchaseOrderItems);
             })
         }
     }
 
     CalculateGridData(receivedquantity, index) {
-        this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
-
         this.ReceivedQuantity[index] = Number.parseInt(receivedquantity);
         this.ExpectedQuantity[index] = <number>this.SelectedPurchaseOrderItems[index].quantity;
         this.DifferenceQuantity[index] = this.ExpectedQuantity[index] - this.ReceivedQuantity[index];
@@ -108,12 +108,12 @@ export class GoodsreceiptComponent implements OnInit {
     AddGrnItem(index) {
         
         var a : any = {
-            ReceivedQuantity: this.ReceivedQuantity,
-            ExpectedQuantity: this.ExpectedQuantity,
-            DifferenceQuantity: this.DifferenceQuantity,
-            ExpectedAmount: this.ExpectedAmount,
-            PaymentAmount: this.PaymentAmount,
-            DifferenceAmount: this.DifferenceAmount,
+            ReceivedQuantity: this.ReceivedQuantity[index],
+            ExpectedQuantity: this.ExpectedQuantity[index],
+            DifferenceQuantity: this.DifferenceQuantity[index],
+            ExpectedAmount: this.ExpectedAmount[index],
+            PaymentAmount: this.PaymentAmount[index],
+            DifferenceAmount: this.DifferenceAmount[index],
             InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
         console.log("GrnItem", a);
@@ -150,13 +150,13 @@ export class GoodsreceiptComponent implements OnInit {
         this.Grn = a;
         console.log("GRN", this.Grn);
 
-        // this.PharmacyService.AddGRN(this.Grn).subscribe(res => {
-        //     console.log(res);
-        // });
+        this.PharmacyService.AddGRN(this.Grn).subscribe(res => {
+            console.log(res);
+        });
 
-        // this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => {
-        //     console.log(res);
-        // });
+        this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => {
+            console.log(res);
+        });
 
         this.ResetWholeForm();
     }

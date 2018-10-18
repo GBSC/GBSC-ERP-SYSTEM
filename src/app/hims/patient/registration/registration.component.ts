@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../../core';
@@ -55,7 +56,7 @@ export class RegistrationComponent implements OnInit {
     referencesubmitted = false;
 
 
-    constructor(private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService,private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             'ReferredBy': [''],
@@ -159,10 +160,18 @@ export class RegistrationComponent implements OnInit {
 
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
+        if(!this.patientForm.invalid){
 
+            this.patientId = await this.PatientServiceobj.addPatient(value);
+            console.log(this.patientId);
+            this.displayToastSuccess("Patient Registered");
 
-        this.patientId = await this.PatientServiceobj.addPatient(value);
-        console.log(this.patientId);
+        }
+        else{
+            this.displayToastError("Patient Registration Failed");
+
+        }
+
         // this.upload(this.patientId);
         // this.router.navigate(['/hims/patient/findpatient']);
         // this.PatientServiceobj.getPatient();
@@ -183,7 +192,8 @@ export class RegistrationComponent implements OnInit {
         }
         this.partnerForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         // this.addpartnet = value
-        await this.PatientServiceobj.addSpouse(value);
+       
+         await this.PatientServiceobj.addSpouse(value);
     }
 
     get r() { return this.referenceForm.controls; }
@@ -437,6 +447,17 @@ export class RegistrationComponent implements OnInit {
         }
     }
 
+
+    displayToastSuccess(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    displayToastError(message) {
+        this.toastr.error(message);
+
+    }
 
 
 }

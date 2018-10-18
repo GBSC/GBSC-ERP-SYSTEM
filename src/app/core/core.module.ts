@@ -7,6 +7,7 @@ import { ApiService } from './Services/api.service';
 import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
 import { ProtocolService } from './Services/HIMS/protocol.service';
+import { PatientclinicalrecordService } from './Services/HIMS/patientclinicalrecord.service';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { ProtocolService } from './Services/HIMS/protocol.service';
         SuperadminserviceService,
         TreatmentService,
         MedicineService,
-        ProtocolService
+        ProtocolService,
+        PatientclinicalrecordService
     ]
 })
 export class CoreModule { }

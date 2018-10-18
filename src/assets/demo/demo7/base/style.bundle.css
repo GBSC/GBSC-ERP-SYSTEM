@@ -22243,7 +22243,7 @@ body.m-portlet--fullscreen {
     border-color: #22b9ff;
     color: #575962; }
   .form-control.m-input--solid[disabled] {
-    border-color: #f7f8fa;
+    border-color: #5f5f5f;
     color: #7b7e8a;
     background-color: #f7f8fa; }
 

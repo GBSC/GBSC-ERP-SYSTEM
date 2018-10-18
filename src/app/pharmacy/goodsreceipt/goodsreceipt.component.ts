@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
 import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
-import { PurchaseOrderItem } from 'src/app/core/Models/Pharmacy/PurchaseOrderItem';
+import { PurchaseOrderItem } from '../../core/Models/Pharmacy/PurchaseOrderItem';
 
 @Component({
     selector: 'app-goodsreceipt',

@@ -1,3 +1,10 @@
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+
+
+
 <div class="m-portlet">
     <div class="m-portlet__head">
       <div class="m-portlet__head-caption">
@@ -13,8 +20,8 @@
     <div class="col-md-12"> 
         <dx-data-grid [dataSource]="SalesReturns"  [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-filter-row [visible]="false"></dxo-filter-row>
+        <dxo-header-filter [visible]="false"></dxo-header-filter>
         <dxo-paging [pageSize]="5"></dxo-paging>
         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
     
@@ -55,3 +62,5 @@
      </div>
   </div>
   </div></div>
+
+</div></div></div>

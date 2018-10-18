@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { routing } from './pharmacy-routing.module';
+import { routing } from './pharmacy.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';

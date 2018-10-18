@@ -66,6 +66,8 @@ export class AppointmentscheduleComponent implements OnInit {
     private tentativeAppointments: any[];
     private finalizedAppointments: any[];
 
+    public appointmentbydate : any;
+
     constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
 
         // this.profileForm = new FormGroup({
@@ -143,11 +145,22 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
+        this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
 
 
-
+         this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+        this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+console.log(this.tentativeAppointments)
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
+
+    formatDate(date: Date) {
+        return date.getFullYear( ) + "-" +( date.getMonth()+ 1 )+"-" + date.getDate();
+    
+        //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
+    }
+
+
 
     calculateCellValue(data) {
         return [data.firstName, data.lastName].join(" ");

@@ -154,7 +154,7 @@
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 300]" [showInfo]="true"></dxo-pager>
-                 <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                 <!-- <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
                 <dxi-column dataField="patientType" caption="Type"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [width]="125">
                   <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>

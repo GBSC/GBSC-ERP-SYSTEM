@@ -67,12 +67,10 @@
                       <dxi-column caption="Profile" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                       <div *dxTemplate="let d of 'chartCellTemplate'">
                         <div class="chart-cell">
-                          <dx-button (click)="getCurrentRowData(d)" icon="add"></dx-button>
+                          <dx-button (click)="getCurrentRowData(d)" icon="repeat"></dx-button>
                           </div>
                       </div>
-                    </dx-data-grid>  
-
-
+                    </dx-data-grid>
                 </div>
               </div>
               </div>

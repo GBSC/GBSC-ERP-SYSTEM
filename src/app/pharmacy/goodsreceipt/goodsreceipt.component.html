@@ -24,14 +24,14 @@
                             <label for="exampleInputEmail1">
                                 Purchase Order Number
                             </label>
-                            <input type="text" class="form-control m-input m-input--solid" #PurchaseOrderNumber (keyup)="GetSelectedPurchaseOrderDetails(box.value, $event)" formControlName="PurchaseOrderNumber">
+                            <input type="text" class="form-control m-input m-input--solid" #PurchaseOrderNumber (keyup)="GetSelectedPurchaseOrderDetails(PurchaseOrderNumber.value, $event)" formControlName="PurchaseOrderNumber">
                         </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
                                 Purchase Order Date
                                 </label>
                               <div class="input-group date">
-                                  <input type="date" class="form-control m-input m-input--solid" formControlName="PurchaseOrderDate">
+                                  <input type="date" class="form-control m-input m-input--solid" disabled formControlName="PurchaseOrderDate" [value]="SelectedPurchaseOrder?.orderDate || ''">
                                </div>
                         </div>
                         <div class="form-group row">
@@ -39,7 +39,7 @@
                                 <label for="exampleInputEmail1">
                                     Supplier    
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Supplier">
+                                <input type="text" class="form-control m-input m-input--solid" disabled formControlName="Supplier" [value]="SelectedPurchaseOrder?.supplier?.name || ''">
                             </div>
                         </div>
                         <div class="form-group col-lg-3">
@@ -55,7 +55,7 @@
                                 Origin
                             </label>
                             <div class="input-group date">
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Origin">
+                                <input type="text" class="form-control m-input m-input--solid" disabled formControlName="Origin" [value]="SelectedPurchaseOrder?.origin || ''">
                             </div>
                         </div>
                     </div>
@@ -83,14 +83,14 @@
                                                     <th>Pack Size</th>
                                                     <th>Unit</th>
                                                     <th>Rate/Unit</th>
-                                                    <th>Expected Total Amount</th>
-                                                    <th>Payment Total Amount</th>
-                                                    <th>Difference Total Amount</th>
                                                     <th>Expected Quantity</th>
                                                     <th>Received Quantity</th>
                                                     <th>Difference Quantity</th>
+                                                    <th>Expected Amount</th>
+                                                    <th>Payment Amount</th>
+                                                    <th>Difference Amount</th>
                                                     <th>Save</th>
-                                                    <tr *ngFor="let a of SelectedPurchaseOrderItems; let y of UpdateInventories; let i = index">
+                                                    <tr *ngFor="let a of SelectedPurchaseOrderItems; let y of Inventories; let i = index">
                                                         <td><input class="form-control m-input m-input--solid"
                                                                 formControlName="ItemCode" [value]="a?.inventoryItem?.itemCode || ''" disabled></td>
                                                         <td><input class="form-control m-input m-input--solid"
@@ -103,20 +103,20 @@
                                                                 formControlName="PerUnit" [value]="a?.inventoryItem?.unit?.name || ''" disabled></td> 
                                                         <td><input type="number" #Rate class="form-control m-input m-input--solid"
                                                             formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0" disabled></td>
+                                                            <td><input type="number" class="form-control m-input m-input--solid"
+                                                                    formControlName="ExpectedQuantity" [value]="ExpectedQuantity[i] || 0" disabled></td>
+                                                            <td><input type="number" #ReceivedQuantity class="form-control m-input m-input--solid"
+                                                                    formControlName="ReceivedQuantity" (keyup)="CalculateGridData(ReceivedQuantity.value, i)"></td>
+                                                            <td><input type="number" class="form-control m-input m-input--solid"
+                                                                    formControlName="DifferenceQuantity" [value]="DifferenceQuantity[i] || 0" disabled></td>
                                                         <td><input type="number" class="form-control m-input m-input--solid"
-                                                                formControlName="ExpectedAmount" disabled></td>
+                                                                formControlName="ExpectedAmount" [value]="ExpectedAmount[i] || 0" disabled></td>
                                                         <td><input type="number" class="form-control m-input m-input--solid" 
-                                                                formControlName="PaymentAmount"></td>
+                                                                formControlName="PaymentAmount" [value]="PaymentAmount[i] || 0" disabled></td>
                                                         <td><input type="number" class="form-control m-input m-input--solid"
-                                                                formControlName="DifferenceAmount" disabled></td>
-                                                        <td><input type="number" class="form-control m-input m-input--solid"
-                                                                formControlName="ExpectedQuantity"disabled></td>
-                                                        <td><input type="number" class="form-control m-input m-input--solid"
-                                                                formControlName="ReceivedQuantity"disabled></td>
-                                                        <td><input type="number" class="form-control m-input m-input--solid"
-                                                                formControlName="DifferenceQuantity"disabled></td>
+                                                                formControlName="DifferenceAmount" [value]="DifferenceAmount[i] || 0" disabled></td>
                                                         <td>
-                                                            <button type="button" onclick="" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                            <button type="button" (click)="AddGrnItem(i)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                                 <i class="la la-add"></i>
                                                             </button>
                                                         </td>
@@ -129,14 +129,20 @@
                                             <div class="form-group m-form__group row">
                                                 <div class="col-lg-10"></div>
                                                     <div class="col-lg-2">
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedAmount || 0" disabled>
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalPaymentAmount || 0" disabled>
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceAmount || 0" disabled>
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedQuantity || 0" disabled>
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalReceivedQuantity || 0" disabled>
-                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceQuantity || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Expected Quantity</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedQuantity || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Received Quantity</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalReceivedQuantity || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Difference Quantity</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceQuantity || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Expected Amount</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalExpectedAmount || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Payment Amount</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalPaymentAmount || 0" disabled>
+                                                        <label for="exampleInputEmail1">Total Difference Amount</label>
+                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalDifferenceAmount || 0" disabled>
                                                     </div>
-                                                    <button (click)="AddGRN()">Submit</button>
+                                                    <button (click)="SubmitGRN()">Submit</button>
                                                     <button (click)="ResetWholeForm()">Reset</button>
                                             </div>
                                         </div>
@@ -148,7 +154,7 @@
             </div>
         </div>
         <!--end::Portlet-->
-        <button (click)="addfinal()">adasda</button>
+        <button (click)="SubmitGRN()">adasda</button>
       </div>
     </div>
   </div>

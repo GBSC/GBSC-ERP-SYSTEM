@@ -30,10 +30,10 @@ async  ngOnInit() {
   
 //   var currentDate = new Date();
 //  console.log(currentDate);
-//  console.log( this.formatDate(new Date()));
-//     this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
-//     console.log(this.appointmentbydate);
-//    this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
+  console.log( this.formatDate(new Date()));
+   this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
+   console.log(this.appointmentbydate);
+   this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
 
 //  console.log(this.finalizedAppointments);
 
@@ -44,15 +44,16 @@ async  ngOnInit() {
   }
 
   formatDate(date: Date) {
+    return date.getFullYear( ) + "-" +( date.getMonth()+ 1 )+"-" + date.getDate();
 
-    return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+    //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
 }
 
 
  async SearchAppointment(date) {
     console.log( date.value);
     this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate( date.value);
-    this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
+    // this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
     this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
     await this.PatientServiceobj.getPatient();
     this.par = this.PatientServiceobj.patients;
@@ -67,7 +68,7 @@ async  ngOnInit() {
   //  this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate( date.value);
    this.appointmentbydate;
      console.log(this.appointmentbydate);
-    this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
+    // this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
     this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
 
     console.log(x);

@@ -53,7 +53,7 @@ export class GeneralactionsComponent implements OnInit {
     }
     async startVisit() {
          if(this.Patient.appointments.length){
-                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date()) )  && this.Patient.appointments.isFinalAppointment == true  ){
+                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date()) )  ){
                       if(this.lastpatientvisit === null){
                           console.log(this.lastpatientvisit);
                           console.log('1');

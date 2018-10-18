@@ -8,6 +8,8 @@ import {
 import popup from 'devextreme/ui/popup';
 import { find } from 'rxjs/operator/find';
 import { PatientService } from '../../../core';
+import { ToastrService } from 'ngx-toastr';
+
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { HttpClient } from '@angular/common/http';
 
@@ -68,7 +70,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmentbydate : any;
 
-    constructor(private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
+    constructor(private toastr: ToastrService,private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
 
         // this.profileForm = new FormGroup({
         //   firstName: new FormControl('fajlksdjfas'),
@@ -266,6 +268,7 @@ console.log(this.tentativeAppointments)
         let x = this.PatientServiceobj.patientID;
         console.log(x)
         return this.patientIdIs;
+        
 
     }
 
@@ -305,6 +308,7 @@ console.log(this.tentativeAppointments)
             this.patientForm.reset();
             this.patientForm.value.FirstName = '';
             this.patientForm.value.LastName = '';
+            this.displayToastSuccess("Appointment Schedule");
             return x;
     }
 
@@ -414,7 +418,13 @@ console.log(this.tentativeAppointments)
             event.preventDefault();
         }
     }
+    displayToastSuccess(message) {
+        this.toastr.success(message);
+    }
 
+    displayToastError(message) {
+        this.toastr.error(message);
+    }
 
 }
 

@@ -96,7 +96,7 @@ export class SetupService {
     /** CRUD METHODS DEPARTMENTS */
     async getAllDepartments() {
  
-        return await this.ApiService.get(`${this.hrUrl}/GetAllDepartment`).toPromise();
+        return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
@@ -104,7 +104,7 @@ export class SetupService {
 
 
 
-        let newdepart = await this.ApiService.post(`${this.hrUrl}/addDepartment`, data).toPromise();
+        let newdepart = await this.ApiService.post(`${this.setupUrl}/addDepartment`, data).toPromise();
 
     }
 
@@ -115,7 +115,7 @@ export class SetupService {
 
 
 
-        return await this.ApiService.post(`${this.hrUrl}/addDepartment`, data.key).toPromise();
+        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data.key).toPromise();
 
     }
 
@@ -124,7 +124,7 @@ export class SetupService {
 
 
 
-        return await this.ApiService.get(`${this.hrUrl}/DeleteDepartment` + data.key).toPromise();
+        return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
     }
 
     /** CRUD METHODS BANK */

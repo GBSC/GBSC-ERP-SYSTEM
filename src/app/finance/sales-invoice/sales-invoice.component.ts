@@ -58,8 +58,12 @@ export class SalesInvoiceComponent implements OnInit {
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
   }
 
+  async getsalesInvoiceById(value) {
+ 
+    await this.financeService.getSalesInvoiceByID(value.key);
+  }
+
   async addsalesInvoiceDetail(value) {
-    
     let data = value.data;
     this.salesInvoiceDetail.push(data);
   }
@@ -69,7 +73,39 @@ export class SalesInvoiceComponent implements OnInit {
     let salesInvoicedetail = new SalesInvoice();
     salesInvoicedetail = { ...salesInvoicedetail, ...value };
     salesInvoicedetail.FinanceSalesInvoiceDetails = this.salesInvoiceDetail;
-    await this.financeService.addSalesInvoice(salesInvoicedetail);    
+    await this.financeService.addSalesInvoice(salesInvoicedetail);
+  }
+
+  async update(value) {
+    this.financeService.updateSalesInvoice(value);
+  }
+  
+  patchValues(salesinvoice: any) {
+
+    this.salesInvoiceForm.patchValue({
+
+      Date: salesinvoice.date,
+      Description: salesinvoice.description,
+      BillNumber: salesinvoice.billNumber,
+      CreditDays: salesinvoice.creditDays,
+      VoucherNumber: salesinvoice.voucherNumber,
+      InvoiceNumber: salesinvoice.invoiceNumber,
+      Expenses: salesinvoice.expenses,
+      GstAmount: salesinvoice.gstAmount,
+      GstPercentage: salesinvoice.gstPercentage,
+      DiscountAmount: salesinvoice.discountAmount,
+      DiscountPercentage: salesinvoice.discountPercentage,
+      TaxPercentage: salesinvoice.taxPercentage,
+      TaxAmount: salesinvoice.taxAmount,
+      WithholdingTaxPercentage: salesinvoice.withholdingTaxPercentage,
+      WihtholdingTaxAmount: salesinvoice.wihtholdingTaxAmount,
+      TotalAmount: salesinvoice.totalAmount,
+      FinanceSalesReturnId: salesinvoice.financeSalesReturnId,
+      DetailAccountId: salesinvoice.detailAccountId
+
+    })
+
   }
 
 }
+

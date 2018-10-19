@@ -18,7 +18,7 @@
                      keyExpr="financePurchaseReturnId" 
                     [dataSource]="purchasereturn" 
                     (onSelectionChanged)="selectionChanged($event)"
-                    (onContentReady)="contentReady($event)"
+                    (onContentReady)="contentReady($event)" [columnAutoWidth]="true"
                      [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
          
                         <dxo-paging [pageSize]="7"></dxo-paging>

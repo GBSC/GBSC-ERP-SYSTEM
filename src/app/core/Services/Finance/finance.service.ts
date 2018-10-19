@@ -144,14 +144,19 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoices`).toPromise();
   }
 
+  async getSalesInvoiceByID(id) {
+
+    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoice/${id}`).toPromise();
+  }
+
   async addSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
 
     return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
   }
 
-  async updateSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
+  async updateSalesInvoice(data : SalesInvoice) {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
+    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, data).toPromise();
 
   }
 

@@ -18,6 +18,7 @@
                      keyExpr="voucherId" 
                     [dataSource]="voucher" 
                     columnWidth="auto"
+                    [columnAutoWidth]="true"
                     [showBorders]="true"    
                     (onSelectionChanged)="selectionChanged($event)"
                     (onContentReady)="contentReady($event)"
@@ -46,13 +47,16 @@
 
                         <dxi-column dataField="voucherCode"></dxi-column>
                         <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
-                        <dxi-column dataField="ChequeNumber"></dxi-column>
-                        <dxi-column dataField="TotalCreditAmount"></dxi-column>
-                        <dxi-column dataField="TotalDebitAmount"></dxi-column>
+                        <dxi-column dataField="chequeNumber"></dxi-column>
+                        <dxi-column dataField="departmentName"></dxi-column>
+                        <dxi-column dataField="departmentCode"></dxi-column>
+                        <dxi-column dataField="totalCreditAmount"></dxi-column>
+                        <dxi-column dataField="totalDebitAmount"></dxi-column>
                         <dxi-column dataField="description"></dxi-column>
+                        <dxi-column dataField="IsFinal" dataType="boolean"></dxi-column>
 
                         <div *dxTemplate="let voucherDetail of 'detail'">
-                            <dx-data-grid [dataSource]="voucherDetail.data.VoucherDetails" [showBorders]="true" [columnAutoWidth]="true">
+                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true" [columnAutoWidth]="true">
                                 <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
                                 <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
                                 <dxi-column dataField="detailAccountId" caption="Detail Account">

@@ -11,8 +11,10 @@ import { FinanceService } from '../../core/Services/Finance/finance.service';
 export class SalesInvoiceDetailComponent implements OnInit {
 
   public InvoiceDetail: any;
+  public updatingSalesinvoiceDetail: any;
   public SalesReturn: any;
   public salesInvoice: any;
+  public updatingSalesinvoice: any;
   public detailAccount: any;
   
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
@@ -54,4 +56,39 @@ export class SalesInvoiceDetailComponent implements OnInit {
   addSalesInvoice() {
     this.router.navigate(['/finance/sales-invoice']);
   }
+  
+  updatingsalesInvoice(value){
+    console.log(value);
+    this.updatingSalesinvoice = { ...value.oldData, ...value.newData};
+    console.log(this.updatingSalesinvoice);
+    console.log(value); 
+  }
+
+  async fetchData(d){
+    console.log(d.key);
+    this.router.navigate(['/finance/sales-invoice/'+ d.key]);
+    }
+
+  async updatesalesInvoice(){
+   let x = await this.financeService.updateSalesInvoice(this.updatingSalesinvoice);
+   console.log(x);
+  }
+
+  async addsalesInvoiceDetail(value){
+    await this.financeService.addSalesInvoiceDetail(value.data);
+    
+   }
+
+  async updatingsalesInvoiceDetail(value){
+
+    this.updatingSalesinvoiceDetail = { ...value.newData, ...value.oldData};
+    console.log(this.updatingSalesinvoice);
+     
+  }
+
+  async updatesalesInvoiceDetail(){
+   await this.financeService.updateSalesInvoiceDetail(this.updatingSalesinvoiceDetail);
+   
+  }
+
 }

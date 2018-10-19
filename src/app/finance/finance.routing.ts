@@ -45,6 +45,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'purchase-return', component: PurchaseReturnComponent },
             { path: 'purchase-return-detail', component: PurchasereturndetailComponent },
             { path: 'sales-invoice', component: SalesInvoiceComponent },
+            { path: 'sales-invoice/:id', component: SalesInvoiceComponent },
             { path: 'sales-invoice-detail', component: SalesInvoiceDetailComponent },
             { path: 'sales-return', component: SalesReturnComponent },
             { path: 'sales-return-detail', component: SalesReturnDetailComponent },

@@ -20,7 +20,7 @@
                         <label>
                           Invoice Number
                         </label>
-                        <input type="text" class="form-control m-input" formControlName="InvoiceNumber" placeholder="0000">
+                        <input type="text" class="form-control m-input" [value]="SalesInvoice?.invoiceNumber" formControlName="InvoiceNumber" placeholder="0000">
                       </div>
                     </div>
                   </div>
@@ -30,7 +30,7 @@
                         <label>
                           Bill Number
                         </label>
-                        <input type="text" class="form-control m-input" formControlName="BillNumber" placeholder="001">
+                        <input type="text" class="form-control m-input" [value]="SalesInvoice?.billNumber" formControlName="BillNumber" placeholder="001">
                       </div>
                     </div>
                     <div class="col-sm-3">
@@ -47,7 +47,7 @@
                           <label>
                             Credit Days
                           </label>
-                          <input type="number" class="form-control m-input" formControlName="CreditDays" placeholder="0">
+                          <input type="number" class="form-control m-input" [value]="SalesInvoice?.creditDays" formControlName="CreditDays" placeholder="0">
                         </div>
                       </div>
                       <div class="col-sm-3">
@@ -55,7 +55,7 @@
                           <label>
                             Voucher Number
                           </label>
-                          <input type="number" class="form-control m-input" formControlName="VoucherNumber" placeholder="0">
+                          <input type="number" [value]="SalesInvoice?.voucherNumber" class="form-control m-input" formControlName="VoucherNumber" placeholder="0">
                         </div>
                       </div>
                   </div>
@@ -66,7 +66,7 @@
                         <label>
                           Gst Amount
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="GstAmount" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.gstAmount" formControlName="GstAmount" placeholder="0">
                       </div>
                     </div>
                     <div class="col-sm-3">
@@ -74,7 +74,7 @@
                         <label>
                           Gst Percentage
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="GstPercentage" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.gstPercentage" formControlName="GstPercentage" placeholder="0">
                       </div>
                     </div>
  
@@ -83,7 +83,7 @@
                         <label>
                           Discount Amount
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="DiscountAmount" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.discountAmount" formControlName="DiscountAmount" placeholder="0">
                       </div>
                     </div>
                     <div class="col-sm-3">
@@ -91,7 +91,7 @@
                         <label>
                           Discount Percentage
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="DiscountPercentage" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.discountPercentage" formControlName="DiscountPercentage" placeholder="0">
                       </div>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                         <label>
                           Tax Amount
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.taxAmount" formControlName="TaxAmount" placeholder="0">
                       </div>
                     </div>
                     <div class="col-sm-3">
@@ -110,7 +110,7 @@
                         <label>
                           Tax Percentage
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="TaxPercentage" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.taxPercentage" formControlName="TaxPercentage" placeholder="0">
                       </div>
                     </div>
      
@@ -119,7 +119,7 @@
                         <label>
                           Wihtholding Tax Amount
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="WihtholdingTaxAmount" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.wihtholdingTaxAmount" formControlName="WihtholdingTaxAmount" placeholder="0">
                       </div>
                     </div>
                     <div class="col-sm-3">
@@ -127,7 +127,7 @@
                         <label>
                           Withholding Tax Percentage
                         </label>
-                        <input type="number" class="form-control m-input" formControlName="WithholdingTaxPercentage" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.withholdingTaxPercentage" formControlName="WithholdingTaxPercentage" placeholder="0">
                       </div>
                     </div>
                   </div>
@@ -138,7 +138,7 @@
                             <label>
                               Expenses
                             </label>
-                            <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
+                            <input type="number" class="form-control m-input" [value]="SalesInvoice?.expenses" formControlName="Expenses" placeholder="0">
                           </div>
                         </div>
                     <div class="col-sm-4">
@@ -146,7 +146,7 @@
                         <label>
                           Sales Return
                         </label>
-                        <select class="form-control m-input" formControlName="FinanceSalesReturnId">
+                        <select class="form-control m-input" formControlName="FinanceSalesReturnId" [value]="SalesInvoice?.totalAmount">
                           <option value="" disabled selected>-- Select Sales Return --</option>
                           <option *ngFor="let returnsale of SalesReturn" [value]="returnsale.financeSalesReturnId">{{returnsale.totalAmount}}</option>
                         </select>
@@ -157,7 +157,7 @@
                         <label >
                           Detail Account
                         </label>
-                        <select class="form-control m-input" formControlName="DetailAccountId">
+                        <select class="form-control m-input" formControlName="DetailAccountId" [value]="SalesInvoice?.name">
                           <option value="" disabled selected>-- Select Detail Account --</option>
                           <option *ngFor="let detailAC of detailAccount" [value]="detailAC.detailAccountId">{{detailAC.name}}</option>
                         </select> </div>
@@ -170,7 +170,7 @@
                         <label>
                           Description
                         </label>
-                        <textarea class="form-control m-input" formControlName="Description"></textarea>
+                        <textarea class="form-control m-input" [value]="SalesInvoice?.description" formControlName="Description"></textarea>
                       </div>
                     </div>
                   </div>
@@ -182,7 +182,7 @@
                     </label>
                     <div class="col-sm-3">
                       <div class="form-group m-form__group m--align-right">
-                        <input type="number" class="form-control m-input" formControlName="TotalAmount" placeholder="0">
+                        <input type="number" class="form-control m-input" [value]="SalesInvoice?.totalAmount" formControlName="TotalAmount" placeholder="0">
                       </div>
                     </div>
                   </div>

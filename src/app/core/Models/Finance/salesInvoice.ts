@@ -2,6 +2,7 @@ import { SalesInvoiceDetail } from "./salesInvoiceDetail";
 
 export class SalesInvoice {
 
+    FinanceSalesInvoiceId : number;
     Date : Date;
     Description: string;
     BillNumber: string;

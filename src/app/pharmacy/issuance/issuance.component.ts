@@ -216,8 +216,10 @@ export class IssuanceComponent implements OnInit {
         // console.log(this.IssuanceForm.value);
         this.IssuanceForm.value.OrderAmount = this.total;
 
+        console.log("Issuance Date", this.IssuanceForm.value.IssuanceDate);
+
         var a : any = {
-            IssuanceDate : this.IssuanceForm.value.IssuanceDate,
+            IssueDate : this.IssuanceForm.value.IssuanceDate,
             Remarks : this.IssuanceForm.value.Remarks,
             SlipNumber : this.IssuanceForm.value.SlipNumber,
             Status : this.IssuanceForm.value.Status,

@@ -241,9 +241,8 @@ export class RegistrationComponent implements OnInit {
             this.patientId = await this.PatientServiceobj.addPatient(value);
             console.log(this.patientId);
             this.displayToastSuccess("Patient Registered");
- 
-    
-      
+               //    this.patientForm.reset();
+       
 
         // this.upload(this.patientId);
         // this.router.navigate(['/hims/patient/findpatient']);

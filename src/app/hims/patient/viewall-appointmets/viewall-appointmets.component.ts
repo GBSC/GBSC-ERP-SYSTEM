@@ -40,6 +40,9 @@ async  ngOnInit() {
  await this.PatientServiceobj.getPatient();
  this.par = this.PatientServiceobj.patients;
  console.log(this.par);
+ 
+
+
 
   }
 

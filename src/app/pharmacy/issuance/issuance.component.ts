@@ -123,7 +123,7 @@ export class IssuanceComponent implements OnInit {
     public finalstockquantity: any;
 
     onsubmitInventeryDetail(value) {
-        // console.log(this.data);
+        console.log(this.data);
         let data = value;
 
         if (!this.data.packType) {
@@ -245,7 +245,6 @@ export class IssuanceComponent implements OnInit {
             console.log(res)
         });
         this.IssuanceForm.reset();
-        this.arraydata.length = 0;
         this.total = 0;
     }
 

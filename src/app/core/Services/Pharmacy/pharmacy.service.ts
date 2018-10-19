@@ -41,6 +41,23 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrders');
     }
 
+
+   async  GetSalesOrdersByDate(date){
+       return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByDate/'+date).toPromise();
+    }
+
+    async  GetSalesReturnsForMonth(date){
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsForMonth/'+date).toPromise();
+    }
+
+    async  GetPurchaseOrdersByDate(date){
+    return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByDate/'+date).toPromise();
+    }
+
+    async  GetGRNsByDate(date){
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByDate/'+date).toPromise();
+        }
+
     AddSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesOrder", SalesOrder);
     }

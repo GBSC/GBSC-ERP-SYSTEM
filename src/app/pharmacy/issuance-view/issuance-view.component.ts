@@ -3,7 +3,9 @@ import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
 import { PharmacyService } from '../../core';
 
 import  { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
-    import { from } from 'rxjs/observable/from';
+import { from } from 'rxjs/observable/from';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-issuance-view',
@@ -16,23 +18,55 @@ export class IssuanceViewComponent implements OnInit {
     private DetailSO: SalesOrder;
     private issuanceForm : FormGroup;
 
-    constructor(private PharmacyService: PharmacyService , private formBuilder : FormBuilder) {
+    public date : any;
+
+    constructor(private PharmacyService: PharmacyService , private formBuilder : FormBuilder ,  public router: Router) {
             this.issuanceForm = this.formBuilder.group({
-                issuanceViewDate :['']
+                issueDate :['']
             });
     }
 
-    ngOnInit() {
-        this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => {
-            this.SalesOrders = res
-            console.log(this.SalesOrders);
-        });
+  async  ngOnInit() {
+
+
+        // this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => {
+        //     this.SalesOrders = res
+        //     console.log(this.SalesOrders);
+        // });
+
+        this.date = this.formatDate(new Date());
+    this.SalesOrders =    await this.PharmacyService.GetSalesOrdersByDate(this.formatDate(new Date()));
+    console.log(this.formatDate(new Date()));
+
+
+
     }
 
-    GetSalesOrderDetails(value) {
-        //this.PharmacyService.GetSalesOrderDetailsByCode(value.data.salesOrderCode).subscribe((res: SalesOrder) => this.DetailSO = res);
+  async GetSalesOrderDetails(value) {
+        this.SalesOrders =    await this.PharmacyService.GetSalesOrdersByDate(value.issueDate);
     }
-    onsubmit(value){
-        console.log(value);
+  
+    formatDate(date: Date) {
+        return date.getFullYear( ) + "-" +( date.getMonth() +1);
     }
+
+
+    onToolbarPreparing(e) {
+        e.toolbarOptions.items.unshift(
+          {
+            location: 'after',
+            widget: 'dxButton',
+            options: {
+              icon: 'add',
+              onClick: this.addvoucher.bind(this)
+            }
+          });
+      }
+
+      addvoucher() {
+        this.router.navigate(['/pharmacy/issuance']);
+      }
+
+
+  
 }

@@ -216,13 +216,13 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
     SubmitPurchaseOrder() {
-
+        
         var a: any = {
             OrderDate: this.PurchaseOrderForm.value.OrderDate,
             Status: this.PurchaseOrderForm.value.Status,
             SupplierId: this.PurchaseOrderForm.value.SupplierId,
             Origin: this.PurchaseOrderForm.value.Origin,
-            CurrencyId: this.PurchaseOrderForm.value.CurrencyId,
+            InventoryCurrencyId: this.PurchaseOrderForm.value.CurrencyId,
             Remarks: this.PurchaseOrderForm.value.Remarks,
             PurchaseOrderItems: this.PurchaseOrderDetailsArray
         };

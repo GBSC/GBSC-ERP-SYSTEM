@@ -138,14 +138,14 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.Description = this.data.description;
         this.InventoryItemForm.value.PackSize = this.data.packSize.size;
         this.InventoryItemForm.value.PackSizeId = this.data.packSize.packSizeId;
-        this.InventoryItemForm.value.PackQuantity = Number.parseFloat((Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(2));
+        this.InventoryItemForm.value.PackQuantity =(Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(1);
         this.InventoryItemForm.value.UnitPrice = this.data.unitPrice;
-        this.InventoryItemForm.value.ItemTotalAmount = Number.parseFloat((Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) * Number.parseFloat(this.InventoryItemForm.value.UnitPrice)).toFixed(4));
+        this.InventoryItemForm.value.ItemTotalAmount = (Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) * Number.parseFloat(this.InventoryItemForm.value.UnitPrice)).toFixed(1);
         this.InventoryItemForm.value.InventoryId = this.data.inventory.inventoryId;
         this.InventoryItemForm.value.StockQuantity = this.data.inventory.stockQuantity;
         this.finalstockquantity = Number.parseInt(this.InventoryItemForm.value.StockQuantity) - Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity);
         this.InventoryItemForm.value.StockQuantity = this.finalstockquantity;
-        this.InventoryItemForm.value.BasicAmount = Number.parseFloat(this.data.costPrice) * Number.parseFloat(this.InventoryItemForm.value.OrderUnitQuantity);
+        this.InventoryItemForm.value.BasicAmount = (Number.parseFloat(this.data.costPrice) * Number.parseFloat(this.InventoryItemForm.value.OrderUnitQuantity)).toFixed(1);
         data.ItemCode = this.data.itemCode;
         // console.log(data);
 

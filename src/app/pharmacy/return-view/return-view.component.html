@@ -18,7 +18,7 @@
                             <label for="exampleInputEmail1">
                              Date :
                             </label>
-                            <input type="month" formControlName="returnViewdate" class="form-control m-input">
+                            <input type="month" formControlName="returnViewdate" [value]="date || ''" class="form-control m-input">
                           </div>
                     </div>
                     <div class="col-md-7"></div>
@@ -33,7 +33,8 @@
      
           <div class="row">
             <div class="col-md-12">
-              <dx-data-grid [dataSource]="SalesReturns" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }"
+              <dx-data-grid [dataSource]="SalesReturns"  (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true" showBorders="true"
+               [masterDetail]="{ enabled: true, template: 'detail' }"
                 [columnAutoWidth]="true" [showBorders]="true">
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-filter-row [visible]="false"></dxo-filter-row>
@@ -41,8 +42,8 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                 <dxo-group-panel [visible]="true"></dxo-group-panel>
-                 <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
-                </dxo-editing>
+                 <!-- <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+                </dxo-editing> -->
                 <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                 <dxo-selection mode="single"></dxo-selection>
                 <dxi-column dataField="returnNumber" caption="Return Number" [width]="230" [fixed]="true"></dxi-column>
@@ -65,7 +66,7 @@
                     <dxi-column dataField="inventoryItem.unit.name" caption="PerUnit"></dxi-column>
                     <!-- <dxi-column dataField="inventoryItem.rate" caption="Rate" ></dxi-column> -->
                     <dxi-column dataField="returnQuantity" caption="ReturnQuantity"></dxi-column>
-                    <dxi-column dataField="inventoryItem.returnAmount" caption="ReturnAmount"></dxi-column>
+                    <dxi-column dataField="returnAmount" caption="ReturnAmount"></dxi-column>
                   </dx-data-grid>
                 </div>
               </dx-data-grid>

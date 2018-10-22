@@ -8,6 +8,9 @@ import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
 import { ProtocolService } from './Services/HIMS/protocol.service';
 import { PatientclinicalrecordService } from './Services/HIMS/patientclinicalrecord.service';
+import { EmbryologyService } from './Services/HIMS/Lab/embryology.service';
+import { TvopuService } from './Services/HIMS/Lab/tvopu.service';
+import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
 
 @NgModule({
     imports: [
@@ -42,7 +45,10 @@ import { PatientclinicalrecordService } from './Services/HIMS/patientclinicalrec
         TreatmentService,
         MedicineService,
         ProtocolService,
-        PatientclinicalrecordService
+        PatientclinicalrecordService,
+        EmbryologyService,
+        TvopuService,
+        EmbryologistService
     ]
 })
 export class CoreModule { }

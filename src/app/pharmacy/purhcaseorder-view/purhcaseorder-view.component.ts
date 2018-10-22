@@ -29,13 +29,15 @@ export class PurhcaseorderViewComponent implements OnInit {
 
     }
 
-  async  ngOnInit() {
+    ngOnInit() {
         // this.PharmacyService.GetPurchaseOrders().subscribe((res: PurchaseOrder) => this.PurchaseOrders = res);
         this.date = this.formatDate(new Date());
-        this.PurchaseOrder =    await this.PharmacyService.GetPurchaseOrdersByDate(this.formatDate(new Date()));
-        console.log( this.PurchaseOrder);
-        console.log(this.formatDate(new Date()));
-
+        this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res : PurchaseOrder) => {
+            this.PurchaseOrder = res;
+            // console.log(this.PurchaseOrder);
+            // console.log(this.formatDate(new Date()));
+        });
+        
     }
 
     // GetPurchaseOrderDetails(value) {
@@ -43,27 +45,29 @@ export class PurhcaseorderViewComponent implements OnInit {
     // }
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-          {
+        {
             location: 'after',
             widget: 'dxButton',
             options: {
               icon: 'add',
               onClick: this.addvoucher.bind(this)
             }
-          });
-      }
+        });
+    }
 
-      addvoucher() {
+    addvoucher() {
         this.router.navigate(['/pharmacy/purchaseorder']);
-      }
+    }
 
-      formatDate(date: Date) {
+    formatDate(date: Date) {
         return date.getFullYear( ) + "-" + (date.getMonth() +1);
     }
 
-   async onsubmit(value){
-       console.log(value)
-        this.PurchaseOrder =    await this.PharmacyService.GetPurchaseOrdersByDate(value.orderDate);
+    async onsubmit(value){
+        // console.log(value)
+        this.PharmacyService.GetPurchaseOrdersByMonth(value.orderDate).subscribe((res : PurchaseOrder) => {
+            this.PurchaseOrder = res;
+        });
      }
 
 }

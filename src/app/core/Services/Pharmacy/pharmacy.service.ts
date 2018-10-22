@@ -41,23 +41,6 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrders');
     }
 
-
-   async  GetSalesOrdersByDate(date){
-       return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByDate/'+date).toPromise();
-    }
-
-    async  GetSalesReturnsForMonth(date){
-        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsForMonth/'+date).toPromise();
-    }
-
-    async  GetPurchaseOrdersByDate(date){
-    return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByDate/'+date).toPromise();
-    }
-
-    async  GetGRNsByDate(date){
-        return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByDate/'+date).toPromise();
-        }
-
     AddSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
         return this.ApiService.post(this.API_URL + "Sales/AddSalesOrder", SalesOrder);
     }
@@ -72,6 +55,10 @@ export class PharmacyService {
 
     GetSalesOrderItemsBySalesOrderID(id: number): Observable<SalesOrderItem[]> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsBySalesOrderID/' + id);
+    }
+
+    GetSalesOrderDetailsByCode(code: string) : Observable<SalesOrder> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderDetailsByCode/' + code);
     }
 
     async GetSalesOrderByCodeAsync(code: string) {
@@ -424,5 +411,40 @@ export class PharmacyService {
 
     getCustomers(): Observable<Customer> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCustomers');
+    }
+
+
+    /******************************************************************************************************************/
+
+    async  GetSalesOrdersByDateAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/'+date).toPromise();
+    }
+ 
+    async  GetSalesReturnsForMonthAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsForMonth/'+date).toPromise();
+    }
+
+    async  GetPurchaseOrdersByDateAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/'+date).toPromise();
+    }
+ 
+    async  GetGRNsByDateAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date).toPromise();
+    }
+
+    GetSalesOrdersByMonth(date) : Observable<SalesOrder> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/'+date);
+    }
+ 
+    GetSalesReturnsByMonth(date) : Observable<SalesReturn> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsByMonth/'+date);
+    }
+
+    GetPurchaseOrdersByMonth(date) : Observable<PurchaseOrder> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/'+date);
+    }
+ 
+    GetGRNsByMonth(date) : Observable<GRN> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date);
     }
 }

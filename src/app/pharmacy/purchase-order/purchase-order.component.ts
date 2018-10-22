@@ -94,49 +94,49 @@ export class PurchaseOrderComponent implements OnInit {
     // }
 
     GetSupplierDetails(value) {
-        console.log(value);
+        // console.log(value);
         var a: any = this.Suppliers;
         this.SelectedSupplier = a.find(a => a.inventoryCurrencyId == value);
     }
 
     GetCurrencyDetails(value) {
-        console.log(value);
+        // console.log(value);
         this.SelectedCurrency = this.Currencies.find(a => a.inventoryCurrencyId == value);
     }
 
     GetItemDetails(value) {
-        console.log(value);
+        // console.log(value);
         var a: any = this.InventoryItems;
         this.SelectedInventoryItem = a.find(x => x.itemCode == value);
-        console.log(this.SelectedInventoryItem);
+        // console.log(this.SelectedInventoryItem);
     }
 
     CalculateGrossAmount(ordervalue, bonusvalue) {
         this.GrossAmount = (<number>ordervalue * <number>this.SelectedInventoryItem.retailPrice) + (<number>bonusvalue * <number>this.SelectedInventoryItem.retailPrice);
-        console.log(this.GrossAmount);
+        // console.log(this.GrossAmount);
     }
 
     CalculateSalesTaxAmount(value) {
-        console.log(value);
+        // console.log(value);
         this.SalesTaxAmount = (<number>value * <number>this.GrossAmount) / 100;
-        console.log(this.SalesTaxAmount);
+        // console.log(this.SalesTaxAmount);
         this.CalculateNetAmount();
     }
 
     CalculateDiscountAmount(value) {
-        console.log(value);
+        // console.log(value);
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
-        console.log(this.DiscountAmount);
+        // console.log(this.DiscountAmount);
         this.CalculateNetAmount();
     }
 
     CalculateNetAmount() {
         this.NetAmount = this.GrossAmount + this.SalesTaxAmount - this.DiscountAmount;
-        console.log(this.NetAmount);
+        // console.log(this.NetAmount);
     }
 
     AddPurchaseOrderDetails(value) {
-        console.log(value);
+        // console.log(value);
         this.PurchaseOrderDetailsForm.value.InventoryItemId = <number>this.SelectedInventoryItem.inventoryItemId;
         this.PurchaseOrderDetailsForm.value.ManualCode = this.SelectedInventoryItem.itemCode;
         this.PurchaseOrderDetailsForm.value.Description = this.SelectedInventoryItem.description;
@@ -148,13 +148,13 @@ export class PurchaseOrderComponent implements OnInit {
         this.PurchaseOrderDetailsForm.value.SalesTaxAmount = this.SalesTaxAmount;
         this.PurchaseOrderDetailsForm.value.DiscountAmount = this.DiscountAmount;
         this.PurchaseOrderDetailsForm.value.NetAmount = this.NetAmount;
-        console.log(this.PurchaseOrderDetailsForm.value);
+        // console.log(this.PurchaseOrderDetailsForm.value);
 
         this.FilteredInventoryItems = this.FilteredInventoryItems.filter(b => b.itemCode != value.ManualCode);
-        console.log(this.FilteredInventoryItems);
+        // console.log(this.FilteredInventoryItems);
 
         this.PurchaseOrderDetailsFormArray.push(this.PurchaseOrderDetailsForm.value);
-        console.log(this.PurchaseOrderDetailsFormArray);
+        // console.log(this.PurchaseOrderDetailsFormArray);
 
         var b = {
             PackType: this.SelectedInventoryItem.packType.name,
@@ -176,12 +176,12 @@ export class PurchaseOrderComponent implements OnInit {
             InventoryId: this.SelectedInventoryItem.inventory.inventoryId,
             Rate: <number>this.SelectedInventoryItem.retailPrice,
         };
-        console.log(b);
+        // console.log(b);
 
         this.TotalOrderAmount += this.NetAmount;
         this.TotalQuantity += <number>this.PurchaseOrderDetailsForm.value.BonusQuantity + <number>this.PurchaseOrderDetailsForm.value.OrderQuantity;
         this.PurchaseOrderDetailsArray.push(b);
-        console.log(this.PurchaseOrderDetailsArray);
+        // console.log(this.PurchaseOrderDetailsArray);
         this.PurchaseOrderDetailsForm.reset();
 
         //Stock
@@ -200,11 +200,6 @@ export class PurchaseOrderComponent implements OnInit {
         this.Inventories.splice(index, 1);
         this.TotalOrderAmount -= Number.parseInt(NetAmount);
         this.TotalQuantity -= Number.parseInt(quantity);
-    }
-
-    SavePurchaseOrderForm(value) {
-
-        console.log(value);
     }
 
     ResetWholeForm() {
@@ -227,9 +222,9 @@ export class PurchaseOrderComponent implements OnInit {
             PurchaseOrderItems: this.PurchaseOrderDetailsArray
         };
 
-        console.log(a);
+        // console.log(a);
         this.NewPurchaseOrder = a;
-        console.log(this.NewPurchaseOrder);
+        // console.log(this.NewPurchaseOrder);
 
         this.PharmacyService.AddPurchaseOrder(this.NewPurchaseOrder).subscribe(res => console.log(res));
         this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => console.log(res));

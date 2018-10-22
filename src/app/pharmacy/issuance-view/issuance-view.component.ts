@@ -26,24 +26,23 @@ export class IssuanceViewComponent implements OnInit {
             });
     }
 
-  async  ngOnInit() {
-
-
+    ngOnInit() {
         // this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => {
         //     this.SalesOrders = res
         //     console.log(this.SalesOrders);
         // });
 
         this.date = this.formatDate(new Date());
-    this.SalesOrders =    await this.PharmacyService.GetSalesOrdersByDate(this.formatDate(new Date()));
-    console.log(this.formatDate(new Date()));
-
-
-
+        this.PharmacyService.GetSalesOrdersByMonth(this.formatDate(new Date())).subscribe((res : SalesOrder) => {
+            this.SalesOrders = res;
+        });
+        // console.log(this.formatDate(new Date()));
     }
 
-  async GetSalesOrderDetails(value) {
-        this.SalesOrders =    await this.PharmacyService.GetSalesOrdersByDate(value.issueDate);
+    GetSalesOrderDetails(value) {
+        this.PharmacyService.GetSalesOrdersByMonth(value.issueDate).subscribe((res : SalesOrder) => {
+            this.SalesOrders = res;
+        });
     }
   
     formatDate(date: Date) {
@@ -53,19 +52,19 @@ export class IssuanceViewComponent implements OnInit {
 
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-          {
+        {
             location: 'after',
             widget: 'dxButton',
             options: {
               icon: 'add',
               onClick: this.addvoucher.bind(this)
             }
-          });
-      }
+        });
+    }
 
-      addvoucher() {
+    addvoucher() {
         this.router.navigate(['/pharmacy/issuance']);
-      }
+    }
 
 
   

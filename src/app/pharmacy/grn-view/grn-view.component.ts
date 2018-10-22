@@ -29,38 +29,42 @@ export class GrnViewComponent implements OnInit {
         });
     }
 
-  async  ngOnInit() {
-      this.date  = this.formatDate(new Date());
+    ngOnInit() {
+        this.date  = this.formatDate(new Date());
         // this.PharmacyService.GetGRN().subscribe((res: GRN) => this.GRNs = res);
-        this.grnview =    await this.PharmacyService.GetGRNsByDate(this.formatDate(new Date()));
-        console.log(this.formatDate(new Date()));
+        this.PharmacyService.GetGRNsByMonth(this.formatDate(new Date())).subscribe((res : GRN) => {
+            this.grnview = res;
+        });
+        // console.log(this.formatDate(new Date()));
     }
 
     // GetGrnDetails(value) {
     //     this.PharmacyService.GetGrnDetailsByCode(value.data.grnNumber).subscribe((res: GRN) => this.DetailGRN = res);
     // }
-    async   onsubmit(value){
-        this.grnview  =    await this.PharmacyService.GetGRNsByDate(value.grnDate);    
+    onsubmit(value){
+            this.PharmacyService.GetGRNsByMonth(value.grnDate).subscribe((res : GRN) => {
+                this.grnview = res;
+            });
+    }
+    
+    formatDate(date: Date) {
+        return date.getFullYear( ) + "-" + (date.getMonth() +1) ;
+    }
+    
+    onToolbarPreparing(e) {
+        e.toolbarOptions.items.unshift(
+        {
+        location: 'after',
+        widget: 'dxButton',
+        options: {
+            icon: 'add',
+            onClick: this.addvoucher.bind(this)
         }
+        });
+    }
     
-        formatDate(date: Date) {
-            return date.getFullYear( ) + "-" + (date.getMonth() +1) ;
-        }
-    
-        onToolbarPreparing(e) {
-            e.toolbarOptions.items.unshift(
-              {
-                location: 'after',
-                widget: 'dxButton',
-                options: {
-                  icon: 'add',
-                  onClick: this.addvoucher.bind(this)
-                }
-              });
-          }
-    
-          addvoucher() {
-            this.router.navigate(['/pharmacy/grn']);
-          }
+    addvoucher() {
+        this.router.navigate(['/pharmacy/grn']);
+    }
 
 }

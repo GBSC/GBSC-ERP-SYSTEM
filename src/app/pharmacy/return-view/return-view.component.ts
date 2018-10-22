@@ -27,7 +27,7 @@ export class ReturnViewComponent implements OnInit {
 
     }
     
- async   ngOnInit() {
+    ngOnInit() {
         // this.PharmacyService.GetSalesReturns().subscribe(res => {
         //     console.log(res);
         //     this.SalesReturns = res;
@@ -35,13 +35,16 @@ export class ReturnViewComponent implements OnInit {
         // });   
 
         this.date =  this.formatDate(new Date());
-        this.SalesReturns =  await this.PharmacyService.GetSalesReturnsForMonth(this.formatDate(new Date()));
-        console.log(this.formatDate(new Date()));
-
+        this.PharmacyService.GetSalesReturnsByMonth(this.formatDate(new Date())).subscribe((res : SalesReturn) => {
+            this.SalesReturns = res;
+        });
+        // console.log(this.formatDate(new Date()));
     }
 
- async   onsubmit(value){
-    this.SalesReturns =    await this.PharmacyService.GetSalesReturnsForMonth(value.returnViewdate);    
+    onsubmit(value){
+        this.PharmacyService.GetSalesReturnsByMonth(value.returnViewdate).subscribe((res : SalesReturn) => {
+            this.SalesReturns = res;
+        });
     }
 
     formatDate(date: Date) {
@@ -50,19 +53,19 @@ export class ReturnViewComponent implements OnInit {
 
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-          {
+        {
             location: 'after',
             widget: 'dxButton',
             options: {
               icon: 'add',
               onClick: this.addvoucher.bind(this)
             }
-          });
-      }
+        });
+    }
 
-      addvoucher() {
+    addvoucher() {
         this.router.navigate(['/pharmacy/return']);
-      }
+    }
 
 
 }

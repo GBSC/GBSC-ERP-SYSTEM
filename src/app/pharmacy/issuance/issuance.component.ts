@@ -123,7 +123,7 @@ export class IssuanceComponent implements OnInit {
     public finalstockquantity: any;
 
     onsubmitInventeryDetail(value) {
-        console.log(this.data);
+        // console.log(this.data);
         let data = value;
 
         if (!this.data.packType) {
@@ -152,9 +152,9 @@ export class IssuanceComponent implements OnInit {
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
         
         data.InventoryItemId = Number.parseInt(data.InventoryItemId);
-        console.log(data);
+        // console.log(data);
         this.arraydata.push(data);
-        console.log(this.arraydata);
+        // console.log(this.arraydata);
         // console.log(this.InventoryItemForm.value);
         // console.log(data.InventoryItemId);
 
@@ -216,7 +216,7 @@ export class IssuanceComponent implements OnInit {
         // console.log(this.IssuanceForm.value);
         this.IssuanceForm.value.OrderAmount = this.total;
 
-        console.log("Issuance Date", this.IssuanceForm.value.IssuanceDate);
+        // console.log("Issuance Date", this.IssuanceForm.value.IssuanceDate);
 
         var a : any = {
             IssueDate : this.IssuanceForm.value.IssuanceDate,
@@ -234,17 +234,17 @@ export class IssuanceComponent implements OnInit {
             AgainstLotNumber : this.IssuanceForm.value.CRN
         };
 
-        console.log(a);
+        // console.log(a);
 
         // console.log(this.IssuanceForm.value);
         // console.log(this.StockQuantityarraydata);
 
         this.PharmacyService.AddSalesOrder(a).subscribe(r => {
-            console.log(r)
+            // console.log(r);
         });
 
         this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => { 
-            console.log(res)
+            // console.log(res);
         });
         this.IssuanceForm.reset();
         this.total = 0;

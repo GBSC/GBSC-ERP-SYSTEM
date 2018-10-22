@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import {BrowserModule} from '@angular/platform-browser';
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
@@ -12,6 +14,7 @@ import { Inventory } from '../../core/Models/Pharmacy/Inventory';
     templateUrl: './goodsreceipt.component.html',
     styleUrls: ['./goodsreceipt.component.css']
 })
+
 export class GoodsreceiptComponent implements OnInit {
 
     private GoodReceiptNoteForm: FormGroup;
@@ -39,7 +42,7 @@ export class GoodsreceiptComponent implements OnInit {
     private Grn : GRN;
     private Inventories : Inventory[] = [];
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast : ToastrService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
@@ -77,14 +80,19 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     GetSelectedPurchaseOrderDetails(ponumber, keycode){
-        console.log(ponumber, keycode);
+        // console.log(ponumber, keycode);
         if(keycode.key == "Enter") {
             this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
-                this.SelectedPurchaseOrder = res;
-                console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
-                this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
-                console.log("SelectedPurchaseOrderItems", this.SelectedPurchaseOrderItems);
-            })
+                if(res != null) {
+                    this.SelectedPurchaseOrder = res;
+                    //console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
+                    this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
+                    //console.log("SelectedPurchaseOrderItems", this.SelectedPurchaseOrderItems);
+                }
+                else {
+                    this.Toast.error('GRN already exists for selected PO!', 'Error!');
+                }
+            });
         }
     }
 
@@ -116,18 +124,18 @@ export class GoodsreceiptComponent implements OnInit {
             DifferenceAmount: this.DifferenceAmount[index],
             InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
-        console.log("GrnItem", a);
+        // console.log("GrnItem", a);
         this.GrnItems.push(a);
-        console.log("GrnItems", this.GrnItems);
+        // console.log("GrnItems", this.GrnItems);
 
         var b : any = {
             InventoryId : this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
             StockQuantity : this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
             InventoryItemId : this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
-        console.log("Inventory", b);
+        // console.log("Inventory", b);
         this.Inventories.push(b);
-        console.log("Inventories", this.Inventories);
+        // console.log("Inventories", this.Inventories);
     }
 
     SubmitGRN() {
@@ -146,16 +154,16 @@ export class GoodsreceiptComponent implements OnInit {
             GrnItems : this.GrnItems
         };
 
-        console.log("VarGrn", a);
+        // console.log("VarGrn", a);
         this.Grn = a;
-        console.log("GRN", this.Grn);
+        // console.log("GRN", this.Grn);
 
         this.PharmacyService.AddGRN(this.Grn).subscribe(res => {
-            console.log(res);
+            // console.log(res);
         });
 
         this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => {
-            console.log(res);
+            // console.log(res);
         });
 
         this.ResetWholeForm();

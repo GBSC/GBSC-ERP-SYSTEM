@@ -61,11 +61,7 @@
                           <dxi-column caption="Action" [minWidth]="100" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                           <div *dxTemplate="let d of 'chartCellTemplate'">
                             <div class="chart-cell">
-                                <dx-button
-                                icon="edit"
-                                type="primary"
-                                text="Done"
-                                (onClick)="fetchData(d)">
+                                <dx-button (click)="getCurrentRowData(d)" icon="edit">
                             </dx-button>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
 import { PurchaseInvoice } from '../../Models/Finance/purchaseInvoice';
 import { PurchaseInvoiceDetail } from '../../Models/Finance/purchaseInvoiceDetail';
 import { PurchaseReturn } from '../../Models/Finance/purchaseReturn';
@@ -144,9 +145,9 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoices`).toPromise();
   }
 
-  async getSalesInvoiceByID(id) {
+   getSalesInvoiceByID(id): Observable<SalesInvoice> {
 
-    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoice/${id}`).toPromise();
+    return this.ApiService.get(this.baseUrl +'/FinanceSales/GetFinanceSalesInvoice/' + id);
   }
 
   async addSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
@@ -154,9 +155,9 @@ export class FinanceService {
     return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
   }
 
-  async updateSalesInvoice(data : SalesInvoice) {
+   updateSalesInvoice(data : SalesInvoice) : Observable<any> {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, data).toPromise();
+    return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, data);
 
   }
 

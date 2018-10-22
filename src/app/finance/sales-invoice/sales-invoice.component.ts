@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SalesInvoice } from '../../core/Models/Finance/salesInvoice';
 import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { SalesInvoiceDetail } from '../../core/Models/Finance/salesInvoiceDetail';
+import { ActivatedRoute } from '@angular/router';
+import { DataGrid } from 'primeng/primeng';
 
 @Component({
   selector: 'app-sales-invoice',
@@ -12,15 +14,37 @@ import { SalesInvoiceDetail } from '../../core/Models/Finance/salesInvoiceDetail
 })
 export class SalesInvoiceComponent implements OnInit {
 
-  public InvoiceDetail: any;
+  public InvoiceDetail: any[] = [];
   public SalesReturn: any;
-  public salesInvoice: any;
+  public salesInvoice: any[] = [];
   public detailAccount: any;
+  public detailarray: any;
+  public Invoice: any;
   public salesInvoiceForm: any;
+  public updatingdetail: any;
   public salesInvoiceDetail: SalesInvoiceDetail[];
+  private gridContainer = DataGrid;
 
-  constructor(private fb: FormBuilder, public financeSetupService: FinanceSetupService,
+  @Input('salesInvoiceId') id: number;
+
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService) { }
+
+  async updatesalesInvoiceDetail(value) {
+    //this.detailarray = await this.financeService.updateSalesInvoiceDetail(value.data);
+    console.log(this.detailarray);
+    console.log(value);
+
+  }
+
+  async update(value) { 
+    value.FinanceSalesInvoiceId = this.id;
+    value.FinanceSalesInvoiceDetails = this.InvoiceDetail;
+    console.log(value);
+    this.financeService.updateSalesInvoice(value).subscribe(resp => {
+      console.log(resp);
+    });
+  }
 
   async ngOnInit() {
 
@@ -49,18 +73,38 @@ export class SalesInvoiceComponent implements OnInit {
 
     })
 
-    this.salesInvoice = await this.financeService.getSalesInvoices();
-
-    this.InvoiceDetail = await this.financeService.getSalesInvoiceDetails();
-
-    this.SalesReturn = await this.financeService.getSalesReturns();
-
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
+
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+    });
+
+    if (this.isUpdate() === true) {
+
+      this.financeService.getSalesInvoiceByID(this.id).subscribe(resp => {
+
+        this.Invoice = resp;
+        let a = this.Invoice.financeSalesInvoiceDetails;
+        this.InvoiceDetail = a.map(b => {
+          delete b.financeSalesInvoiceDetailId;
+          delete b.financeSalesInvoiceId;
+          return b;
+        });
+        console.log(this.InvoiceDetail);
+        this.patchValues(this.Invoice);
+      });
+    }
+
   }
 
-  async getsalesInvoiceById(value) {
- 
-    await this.financeService.getSalesInvoiceByID(value.key);
+
+  isUpdate(): boolean {
+
+    if (this.id > 0) {
+      return true;
+    }
+    else
+      return false;
   }
 
   async addsalesInvoiceDetail(value) {
@@ -69,17 +113,12 @@ export class SalesInvoiceComponent implements OnInit {
   }
 
   async addsalesInvoice(value) {
-
     let salesInvoicedetail = new SalesInvoice();
     salesInvoicedetail = { ...salesInvoicedetail, ...value };
     salesInvoicedetail.FinanceSalesInvoiceDetails = this.salesInvoiceDetail;
     await this.financeService.addSalesInvoice(salesInvoicedetail);
   }
 
-  async update(value) {
-    this.financeService.updateSalesInvoice(value);
-  }
-  
   patchValues(salesinvoice: any) {
 
     this.salesInvoiceForm.patchValue({
@@ -106,6 +145,7 @@ export class SalesInvoiceComponent implements OnInit {
     })
 
   }
-
 }
+
+// salesInvioce this.salesInvoiceDetail
 

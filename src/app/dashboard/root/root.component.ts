@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Helpers } from '../../helpers';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { ScriptLoaderService } from '../../_services/script-loader.service';
-import { Helpers } from '../../helpers';
-
+declare let mLayout: any;
 declare let mApp: any;
 declare let mUtil: any;
-declare let mLayout: any;
+
 
 @Component({
     selector: 'app-root',
     templateUrl: './root.component.html',
-    styles: ['.m-grid__item.m-grid__item--fluid.m-grid.m-grid--ver-desktop.m-grid--desktop.m-body {padding-left: 0px;}'],
     styleUrls: ['./root.component.scss'],
+
 
 })
 export class RootComponent implements OnInit {
@@ -19,7 +19,7 @@ export class RootComponent implements OnInit {
     constructor(private _script: ScriptLoaderService, private _router: Router) { }
 
     ngOnInit() {
-        this._script.loadScripts('body', true)
+        this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/demo7/base/scripts.bundle.js'], true)
             .then(result => {
                 Helpers.setLoading(false);
                 // optional js to be loaded once

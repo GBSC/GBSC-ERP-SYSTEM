@@ -44,6 +44,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'biochemistryontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry', component: BiochemistryComponent },
             { path: 'biopsy', component: BiopsyComponent },
+            { path: 'biopsy/:id', component: BiopsyComponent },
             { path: 'inseminationprep', component: InseminationprepComponent },
             { path: 'inseminationprep/:id', component: InseminationprepComponent },
             { path: 'referencerange', component: ReferencerangeComponent },
@@ -60,6 +61,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'insemenation', component: InsemenationComponent },
             { path: 'embryologythawing', component: EmbryologyThawingComponent },
             { path: 'embryofreeze', component: EmbryoFreezeComponent },
+            { path: 'embryofreeze/:id', component: EmbryoFreezeComponent },
 
         ]
     }

@@ -11,6 +11,8 @@ import { PatientclinicalrecordService } from './Services/HIMS/patientclinicalrec
 import { EmbryologyService } from './Services/HIMS/Lab/embryology.service';
 import { TvopuService } from './Services/HIMS/Lab/tvopu.service';
 import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
+import { ThawAssessmentService } from './Services/HIMS/Lab/thawassessment.service';
+import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
 
 @NgModule({
     imports: [
@@ -48,7 +50,9 @@ import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
         PatientclinicalrecordService,
         EmbryologyService,
         TvopuService,
-        EmbryologistService
+        EmbryologistService,
+        ThawAssessmentService,
+        BiopsyService
     ]
 })
 export class CoreModule { }

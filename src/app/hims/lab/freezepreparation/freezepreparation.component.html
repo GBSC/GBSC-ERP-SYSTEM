@@ -240,15 +240,59 @@
                         <tbody>
                           <tr>
                             <td width="127">Straw Color</td>
-                            <td width="300"><input class="form-control m-input" type="text" id="example-text-input"
-                                [value]="freezePrepration?.plugColor" formControlName="PlugColor"></td>
+                            <td width="300">
+                              <select class="form-control m-input" id="exampleSelect1" [value]="freezePrepration?.strawColor"
+                                formControlName="StrawColor">
+                                <option>
+                                  Yellow
+                                </option>
+                                <option>
+                                  Green
+                                </option>
+                                <option>
+                                  Blue
+                                </option>
+                                <option>
+                                  Pink
+                                </option>
+                                <option>
+                                  Red
+                                </option>
+                              </select>
+                            </td>
                             <td width="150" align="left">Plug Color</td>
-                            <td width="220"><input class="form-control m-input" type="text" id="example-text-input5"
-                                [value]="freezePrepration?.survivalRange" formControlName="SurvivalRange"></td>
+                            <td width="220"> <select class="form-control m-input" id="exampleSelect1" [value]="freezePrepration?.plugColor"
+                                formControlName="PlugColor">
+                                <option>
+                                  Yellow
+                                </option>
+                                <option>
+                                  Green
+                                </option>
+                                <option>
+                                  Blue
+                                </option>
+                                <option>
+                                  Pink
+                                </option>
+                                <option>
+                                  Red
+                                </option>
+                              </select></td>
                           </tr>
                           <tr>
                             <td>Survival</td>
-                            <td><input class="form-control m-input" type="text" id="example-text-input3"></td>
+                            <td>
+                              <select class="form-control m-input" id="exampleSelect1" [value]="freezePrepration?.survivalRange"
+                                formControlName="SurvivalRange">
+                                <option>
+                                  Equals
+                                </option>
+                                <option>
+                                  Less Than
+                                </option>
+                              </select>
+                            </td>
                             <td align="center"><input class="form-control m-input" type="number" id="example-text-input4"
                                 [value]="freezePrepration?.survival" formControlName="Survival"></td>
                             <td>(mil./ml)</td>

@@ -244,8 +244,9 @@
                           </div>
                           <div class="col-4" style="padding: 0px;">
                             <div class="input-group">
-                              <input type="number" [(ngModel)]="motileCount" class="form-control m-input"
-                                aria-describedby="basic-addon2" [value]="insemenation?.motileCount" formControlName="MotileCount">
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2"
+                                (ngModelChange)="motileCount = $event" [value]="insemenation?.motileCount"
+                                formControlName="MotileCount">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
                                   (ML)
@@ -274,8 +275,8 @@
                           </div>
                           <div class="col-4" style="padding: 0px;">
                             <div class="input-group">
-                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2"
-                                [(ngModel)]="immotileCount" [value]="immotileCount?.immotileCountRange" formControlName="ImmotileCount">
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.immotileCountRange"
+                                (ngModelChange)="immotileCount = $event" formControlName="ImmotileCount">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
                                   (ML)
@@ -292,7 +293,7 @@
                             Total Count
                           </label>
                           <div class="col-4" style="padding: 0px 7px 0px 0px;">
-                            <select class="form-control m-input" id="exampleSelect1" [value]="immotileCount?.totalCountRange"
+                            <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.totalCountRange"
                               formControlName="TotalCountRange">
                               <option>
                                 Equals
@@ -305,8 +306,8 @@
                           <div class="col-4" style="padding: 0px;">
                             <div class="input-group">
 
-                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2"
-                                [(ngModel)]="totalCount" [value]="immotileCount?.totalCount" formControlName="TotalCount">
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.totalCount"
+                                (ngModelChange)="totalCount = $event" formControlName="TotalCount">
 
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
@@ -340,49 +341,50 @@
                               <td width="184">
                                 Rapid Linear</td>
                               <td width="168"><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style="background:#fec080;" [(ngModel)]="linear" [value]="immotileCount?.spermProgressionRapidLinear"
-                                  formControlName="SpermProgressionRapidLinear">
+                                  style="background:#fec080;" [value]="insemenation?.spermProgressionRapidLinear"
+                                  (ngModelChange)="calculateReportedLinear($event)" formControlName="SpermProgressionRapidLinear">
                               </td>
                               <td width="44">(%)
 
                               </td>
                               <td width="250"><input class="form-control m-input" type="text" id="example-text-input"
-                                  [value]="calculateReportedLinear()"></td>
+                                  [value]=reportedLiner></td>
                             </tr>
                             <tr>
                               <td>
 
                                 Slow / Non Linear</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style="background:#fee080;" [(ngModel)]="nonLinear" [value]="immotileCount?.spermProgressionNonLinear"
-                                  formControlName="SpermProgressionNonLinear"></td>
+                                  style="background:#fee080;" [value]="insemenation?.spermProgressionNonLinear"
+                                  (ngModelChange)="calculateReportedNonLinear($event)" formControlName="SpermProgressionNonLinear"></td>
                               <td>(%) </td>
-                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]="calculateReportedNonLinear()"></td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedNonLinear></td>
                             </tr>
                             <tr>
                               <td>
 
                                 Non - Progressive</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style="background:#fefe80;" [(ngModel)]="nonProgresive" [value]="immotileCount?.spermProgressionNonProgressive"
-                                  formControlName="SpermProgressionNonProgressive">></td>
+                                  style="background:#fefe80;" [value]="insemenation?.spermProgressionNonProgressive"
+                                  (ngModelChange)="calculateReportedNonProgressive($event)" formControlName="SpermProgressionNonProgressive">></td>
                               <td>(%) </td>
-                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]="calculateReportedNonProgressive()"></td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedNonProgressive></td>
                             </tr>
                             <tr>
                               <td>
 
                                 Immotile</td>
                               <td><input class="form-control m-input" type="number" id="example-text-input" style="background:#e0fe80;"
-                                  [(ngModel)]="immotile" [value]="immotileCount?.immotile" formControlName="Immotile"></td>
+                                  (ngModelChange)="calculateReportedImmotile($event)" [value]="insemenation?.immotile"
+                                  formControlName="Immotile"></td>
                               <td>(%) </td>
-                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]="calculateReportedImmotile()"></td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedImmotile></td>
                             </tr>
                             <tr>
                               <td align="right">=</td>
-                              <td><input class="form-control m-input" type="text" id="example-text-input"></td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" value={{totalProgression}}></td>
                               <td>&nbsp;</td>
-                              <td><input class="form-control m-input" type="text" id="example-text-input"></td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" value={{totalReportedProgression}}></td>
                             </tr>
                           </tbody>
                           <!--end::Tbody-->
@@ -401,14 +403,14 @@
                             <tr>
                               <td width="184">Normal Forms</td>
                               <td width="168"><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style=" background: #6ab4ff;" [value]="immotileCount?.normalForms" formControlName="NormalForms"></td>
+                                  style=" background: #6ab4ff;" [value]="insemenation?.normalForms" formControlName="NormalForms"></td>
                               <td width="40" align="center">(%) </td>
                               <td width="60">&nbsp;</td>
                             </tr>
                             <tr>
                               <td>Head Abnormalities</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style=" background: #48cde3;" [value]="immotileCount?.headAbnormalities"
+                                  style=" background: #48cde3;" [value]="insemenation?.headAbnormalities"
                                   formControlName="HeadAbnormalities"></td>
                               <td align="center">(%)</td>
                               <td>&nbsp;</td>
@@ -416,7 +418,7 @@
                             <tr>
                               <td>Midpiece Abnormalities</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  style=" background: #48cde3a8;" [value]="immotileCount?.midpieceAbnormalities"
+                                  style=" background: #48cde3a8;" [value]="insemenation?.midpieceAbnormalities"
                                   formControlName="MidpieceAbnormalities"></td>
                               <td align="center">(%) </td>
                               <td>&nbsp;</td>
@@ -424,19 +426,19 @@
                             <tr>
                               <td>Tail Abnormalities</td>
                               <td><input class="form-control m-input" type="number" id="example-text-input" style=" background: #00fff3;"
-                                  [value]="immotileCount?.tailAbnormalities" formControlName="TailAbnormalities"></td>
+                                  [value]="insemenation?.tailAbnormalities" formControlName="TailAbnormalities"></td>
                               <td align="center">=</td>
                               <td><input class="form-control m-input" type="text" id="example-text-input2"></td>
                             </tr>
                             <tr>
                               <td>Other Cells</td>
                               <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input"
-                                  [value]="immotileCount?.otherCells" formControlName="OtherCells"></td>
+                                  [value]="insemenation?.otherCells" formControlName="OtherCells"></td>
                             </tr>
                             <tr>
                               <td>Comments</td>
                               <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input3"
-                                  [value]="immotileCount?.comments" formControlName="Comments"></td>
+                                  [value]="insemenation?.comments" formControlName="Comments"></td>
                             </tr>
                           </tbody>
                           <!--end::Tbody-->
@@ -455,7 +457,7 @@
                           <tbody>
                             <tr>
                               <td width="239">Prepration Method</td>
-                              <td width="168"><select class="form-control m-input" id="exampleSelect1" [value]="immotileCount?.testPreprationMethod"
+                              <td width="168"><select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.testPreprationMethod"
                                   formControlName="TestPreprationMethod">
                                   <option>
                                     Spind
@@ -473,7 +475,7 @@
                             <tr>
                               <td>Volume Semen Used</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  [value]="immotileCount?.volumeSemenUsed" formControlName="VolumeSemenUsed"></td>
+                                  [value]="insemenation?.volumeSemenUsed" formControlName="VolumeSemenUsed"></td>
                               <td>(mls) </td>
                             </tr>
                             <tr>
@@ -482,7 +484,7 @@
                                   <tr>
                                     <td width="54%" style="padding: 0; border-top: none;">Total Count</td>
                                     <td width="46%" style="padding: 0; border-top: none;">
-                                      <select class="form-control m-input" id="exampleSelect1" [value]="immotileCount?.testPreprationTotalCountRange"
+                                      <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.testPreprationTotalCountRange"
                                         formControlName="TestPreprationTotalCountRange">
                                         <option>
                                           Equals
@@ -496,7 +498,7 @@
                                 </table>
                               </td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
-                                  [value]="immotileCount?.testPreprationTotalCount" formControlName="TestPreprationTotalCount"></td>
+                                  [value]="insemenation?.testPreprationTotalCount" formControlName="TestPreprationTotalCount"></td>
                               <td>(mil./ml)</td>
                             </tr>
                             <tr>
@@ -505,7 +507,7 @@
                                   <tr>
                                     <td width="54%" style="padding: 0; border-top: none;">Total Count</td>
                                     <td width="46%" style="padding: 0; border-top: none;"><select class="form-control m-input"
-                                        id="exampleSelect1" [value]="immotileCount?.testPreprationMotileCountRange"
+                                        id="exampleSelect1" [value]="insemenation?.testPreprationMotileCountRange"
                                         formControlName="TestPreprationMotileCountRange">
                                         <option>
                                           Equals
@@ -518,32 +520,32 @@
                                   </tr>
                                 </table>
                               </td>
-                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="immotileCount?.testPreprationMotileCount"
+                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="insemenation?.testPreprationMotileCount"
                                   formControlName="TestPreprationMotileCount"></td>
                               <td>(mil./ml) </td>
                             </tr>
                             <tr>
                               <td>Rapid Linear Progression</td>
-                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="immotileCount?.testPreprationRapidLinearProgression"
+                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="insemenation?.testPreprationRapidLinearProgression"
                                   formControlName="TestPreprationRapidLinearProgression"></td>
                               <td>(%) </td>
                             </tr>
                             <tr>
                               <td>Slow Non-Linear Progression</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input2"
-                                  [value]="immotileCount?.testPreprationRapidNonLinearProgression" formControlName="TestPreprationRapidNonLinearProgression"></td>
+                                  [value]="insemenation?.testPreprationRapidNonLinearProgression" formControlName="TestPreprationRapidNonLinearProgression"></td>
                               <td>(%) </td>
                             </tr>
                             <tr>
                               <td>Time Complete</td>
                               <td><input class="form-control m-input" type="text" value="0" id="example-text-input3"
-                                  [value]="immotileCount?.timeCompleted" formControlName="TimeCompleted"></td>
+                                  [value]="insemenation?.timeCompleted" formControlName="TimeCompleted"></td>
                               <td>&nbsp;</td>
                             </tr>
                             <tr>
                               <td>Final Volume</td>
                               <td><input class="form-control m-input" type="number" value="0" id="example-text-input4"
-                                  [value]="immotileCount?.finalVolume" formControlName="FinalVolume"></td>
+                                  [value]="insemenation?.finalVolume" formControlName="FinalVolume"></td>
                               <td>(mls)</td>
                             </tr>
                           </tbody>
@@ -552,7 +554,7 @@
                         <hr>
 
                         <div class="m-demo__preview m-demo__preview--btn">
-                          <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="insemenationForm">
+                          <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(insemenationForm.value)">
                             Submit
                           </button>
                           <button type="button" class="btn btn-brand m-btn m-btn--custom">

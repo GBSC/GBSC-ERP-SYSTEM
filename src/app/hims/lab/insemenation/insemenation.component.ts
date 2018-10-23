@@ -33,6 +33,12 @@ export class InsemenationComponent implements OnInit {
   private nonLinear: number;
   private nonProgresive: number;
   private immotile: number;
+  private reportedLiner: number;
+  private reportedNonLinear: number;
+  private reportedNonProgressive: number;
+  private reportedImmotile: number;
+  private totalProgression: number;
+  private totalReportedProgression: number;
 
 
   private insemenationForm: FormGroup;
@@ -143,24 +149,37 @@ export class InsemenationComponent implements OnInit {
     this.insemenationService.addPatientInsemenation(value).subscribe(resp => console.log(resp));
   }
 
-  calculateReportedLinear()
-  {
-    return Math.round((this.motileCount / this.totalCount) * this.linear);
+  calculateReportedLinear(value) {
+    this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
+    this.linear = value;
   }
 
-  calculateReportedNonLinear()
-  {
-    return Math.round((this.motileCount / this.totalCount) * this.nonLinear);
+  calculateReportedNonLinear(value) {
+    this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
+    this.nonLinear = value;
   }
 
-  calculateReportedNonProgressive()
-  {
-    return Math.round((this.motileCount / this.totalCount) * this.nonProgresive);
+  calculateReportedNonProgressive(value) {
+    this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
+    this.nonProgresive = value;
   }
 
-  calculateReportedImmotile()
-  {
-    return Math.round((this.immotileCount / this.totalCount) * 100);
+  calculateReportedImmotile(value) {
+    this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
+    this.immotile = value;
+
+    this.progression();
+
+    this.reportedProgression();
+
+  }
+
+  progression() {
+    this.totalProgression = this.linear + this.nonLinear + this.nonProgresive + this.immotile;
+  }
+
+  reportedProgression() {
+    this.totalReportedProgression = (Math.round(this.reportedImmotile + this.reportedNonProgressive + this.reportedNonLinear + this.reportedLiner));
   }
 
 }

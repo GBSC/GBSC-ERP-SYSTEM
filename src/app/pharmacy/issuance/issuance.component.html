@@ -15,6 +15,15 @@
                             </h3>
                         </div>
                     </div>
+                    <div class="m-portlet__head-tools">
+                            <div class="dropdown">
+                                <button routerLink="/pharmacy/issuanceview" class="btn btn-primary" type="button">
+                                <span >
+                                    <i class="fa fa-eye"></i>
+                                </span> View
+                                </button>
+                            </div>
+                            </div>
                 </div>
                 <!--begin::Form-->
                 <form class="m-form" [formGroup]="IssuanceForm">
@@ -25,23 +34,26 @@
                                 <label for="exampleInputEmail1">
                                     CRN No
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(IssuanceForm.value.CRN)"
+                                <select  class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalueForCustomer(IssuanceForm.value.CRN)"
                                     formControlName="CRN">
                                     <option *ngFor="let x of AllCustomers" [value]="x?.crn">{{x?.crn}} </option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Issue No
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="IssuanceNo" disabled>
+                                    <label for="exampleInputEmail1">
+                                            Status
+                                        </label>
+                                <select class="form-control m-input" formControlName="Status">
+                                    <option value="true"> Approved </option>
+                                    <option value="false"> Pending </option>
+                                </select>
                             </div>
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Issue Date
                                 </label>
                                 <div class="input-group date">
-                                    <input type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate" disabled>
+                                    <input  type="date" class="form-control m-input m-input--solid" formControlName="IssuanceDate">
                                 </div>
                             </div>
                             <div class="form-group col-lg-3">
@@ -79,15 +91,14 @@
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <!-- <div class="modal-footer">
                             <button type="reset" class="btn btn-secondary">
                                 Reset
                             </button>
-                            <!-- , rate.value -->
                             <button type="submit" (click)="onsubmit(IssuanceForm.value)" class="btn btn-primary">
                                 Save
                             </button>
-                        </div>
+                        </div> -->
 
 
 
@@ -129,22 +140,22 @@
                                                     <td><input class="form-control m-input m-input--solid" formControlName="Description"
                                                             [value]="data?.description || ''" disabled></td>
                                                     <td><input class="form-control m-input m-input--solid" formControlName="PackType"
-                                                            [value]="data.packType?.name" disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid" formControlName="PackSize"
-                                                            [value]="data.packSize?.size" disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid" formControlName="StockQuantity"
-                                                            [value]="data.inventory?.stockQuantity" disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid" formControlName="PackQuantity"
+                                                            [value]="data.packType?.name || ''" disabled></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid" formControlName="PackSize"
+                                                            [value]="data.packSize?.size || 0" disabled></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid" formControlName="StockQuantity"
+                                                            [value]="data.inventory?.stockQuantity || 0" disabled></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid" formControlName="PackQuantity" [value]="ItemPackQuantity" 
                                                             disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="OrderUnitQuantity"></td>
-                                                    <td><input class="form-control m-input m-input--solid" formControlName="UnitPrice"
-                                                            [value]="data?.unitPrice || ''" disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid" formControlName="ItemTotalAmount"
+                                                    <td><input type="number" #OrderUnitQuantity class="form-control m-input m-input--solid"
+                                                            formControlName="OrderUnitQuantity" (keyup)="CalculatenetAmount(OrderUnitQuantity.value)" ></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid" formControlName="UnitPrice"
+                                                            [value]="data?.unitPrice || 0" disabled></td>
+                                                    <td><input type="number" class="form-control m-input m-input--solid" formControlName="ItemTotalAmount" [value]="ItemTotal"
                                                             disabled></td>
-
+ 
                                                     <td>
-                                                        <button type="button" (click)="onsubmitInventeryDetail(InventoryItemForm.value )" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                        <button type="button" [disabled]="!InventoryItemForm.valid" (click)="onsubmitInventeryDetail(InventoryItemForm.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                             <i class="la la-add"></i>
                                                         </button>
                                                     </td>
@@ -192,7 +203,7 @@
                                                     <tbody>
                                                         <tr *ngFor="let x of arraydata; let y of Invs ; let i = index">
                                                             <th scope="row">
-                                                                {{x?.InventoryItemId}}
+                                                                {{x?.ItemCode}}
                                                             </th>
                                                             <td>
                                                                 {{x?.Description}}
@@ -216,7 +227,7 @@
                                                                 {{x?.ItemTotalAmount}}
                                                             </td>
                                                             <td>
-                                                                <button type="button" (click)="remove(i, x?.ItemTotalAmount)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                                <button type="button" (click)="remove(i, x?.ItemTotalAmount, x?.OrderUnitQuantity)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                                     <i class="la la-remove"></i>
                                                                 </button>
                                                             </td>
@@ -229,7 +240,6 @@
                                             <div class="col-lg-10"></div>
                                             <div class="col-lg-2">
                                                 <label> Total Amount</label>
-                                                <!-- {{total}} -->
                                                 <input class="form-control m-input m-input--solid" [value]="total" disabled>
                                             </div>
                                         </div>
@@ -237,7 +247,7 @@
 
                                 </form>
                                 <div class="modal-footer">
-                                        <button class="btn btn-success" (click)="addfinal()">Save</button>
+                                        <button class="btn btn-success" [disabled]="!IssuanceForm.valid" (click)="addfinal(IssuanceForm.value)">Save</button>
                                 </div>
                             </div>
                         </div>

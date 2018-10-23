@@ -25,6 +25,7 @@ import { EmbryologyComponent } from './embryology/embryology.component';
 import { InsemenationComponent } from './insemenation/insemenation.component';
 import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
 import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
+import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -62,6 +63,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'embryologythawing', component: EmbryologyThawingComponent },
             { path: 'embryofreeze', component: EmbryoFreezeComponent },
             { path: 'embryofreeze/:id', component: EmbryoFreezeComponent },
+            { path: 'freezepreparation', component: FreezepreparationComponent },
 
         ]
     }

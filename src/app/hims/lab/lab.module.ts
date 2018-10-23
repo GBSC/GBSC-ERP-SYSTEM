@@ -35,6 +35,7 @@ import { EmbryologyComponent } from './embryology/embryology.component';
 import { InsemenationComponent } from './insemenation/insemenation.component';
 import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
+import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 
 
 
@@ -77,6 +78,7 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
         InsemenationComponent,
         EmbryoFreezeComponent,
         EmbryologyThawingComponent,
+        FreezepreparationComponent,
     ]
 })
 export class LabModule { }

@@ -60,6 +60,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'embryology', component: EmbryologyComponent },
             { path: 'embryology/:id', component: EmbryologyComponent },
             { path: 'insemenation', component: InsemenationComponent },
+            { path: 'insemenation/:id', component: InsemenationComponent },
             { path: 'embryologythawing', component: EmbryologyThawingComponent },
             { path: 'embryofreeze', component: EmbryoFreezeComponent },
             { path: 'embryofreeze/:id', component: EmbryoFreezeComponent },

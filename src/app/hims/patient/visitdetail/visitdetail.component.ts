@@ -203,7 +203,7 @@ export class VisitdetailComponent implements OnInit {
 
                         console.log(this.getvisitnatureId);
                         console.log(appointment);
-                        console.log(this.getconsultantbyId.name);
+                        ///console.log(this.getconsultantbyId.name);
                         console.log(this.consultant);
 
                         this.VisitAppointmentForm.patchValue({

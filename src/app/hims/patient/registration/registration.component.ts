@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
     id: number;
 
-    public Patient: any = ' ';
+    public Patient: any = ''  ;
 
     private forevent: File = null;
 
@@ -122,10 +122,10 @@ export class RegistrationComponent implements OnInit {
             this.id = +params['id'];
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                console.log(Patient)
+                console.log(this.Patient)
 
                 this.patientForm.patchValue({
-                    RegCity: Patient.regCity,
+                    RegCity: this.Patient.regCity,
                     visitNatureId: Patient.visitNatureId,
                     FirstName: Patient.firstName,
                     MiddleName: Patient.middleName,

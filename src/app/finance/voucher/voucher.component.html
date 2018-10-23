@@ -6,15 +6,23 @@
              <div class="m-portlet__head-caption">
                <div class="m-portlet__head-title">
                  <h3 class="m-portlet__head-text">Voucher</h3>
-               </div>
-             </div>
-           </div>
-           <div class="m-portlet__body">
-             <div class="m-section">
-               <div class="m-section__content">
-                <form [formGroup]="VoucherForm">
-
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body">
+              <div class="m-section">
+                <div class="m-section__content">
+                  <form [formGroup]="VoucherForm"> 
                     <div class="form-group row">
+                        <div class="col-sm-3">
+                            <div class="form-group m-form__group">
+                              <label>
+                                Voucher Code
+                              </label>
+                              <input type="text" class="form-control m-input" formControlName="VoucherCode" placeholder="0007">
+                              
+                              </div>
+                            </div>
                         <div class="col-sm-3">
                           <div class="form-group m-form__group">
                             <label>
@@ -36,56 +44,63 @@
                                 <option *ngFor="let Financeyear of financialYear" [value]="Financeyear.financialYearId">{{Financeyear.name}}</option>
                               </select>                
                                 </div>
-                        </div> 
- 
-                        <div class="col-sm-3">
-                          <div class="form-group m-form__group">
-                            <label>
-                                Cheque Number
-                            </label>
-                            <input type="text" class="form-control m-input" formControlName="ChequeNumber" placeholder="001">
-                          </div>
-                        </div>
+                        </div>  
                         <div class="col-sm-3">
                             <div class="form-group m-form__group">
                               <label>
                                   Date
                               </label>
-                              <dx-date-box formControlName="Date" type="date">
+                              <dx-date-box formControlName="Date" width="100%" type="date">
                                 </dx-date-box>
                             </div>
                           </div>
                         </div>
                 <div class="form-group row">
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                          <label>
-                              Total Credit Amount
-                          </label>
-                          <input type="number" class="form-control m-input" formControlName="TotalCreditAmount"  placeholder="0">
-                        </div>
-                      </div> 
+ 
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
-                      <label>
-                          Total Debit Amount
+                      <label for="">
+                        Department Name
                       </label>
-                      <input type="number" class="form-control m-input" formControlName="TotalDebitAmount" placeholder="0">
-                    </div>
-                  </div> 
- 
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                          <label for="">
-                              Department
-                          </label>
-                          <select class="form-control m-input" formControlName="DepartmentId">
-                              <option value="" disabled selected>-- Select Department --</option>
-                              <option *ngFor="let depart of departments" [value]="depart.departmentId">{{depart.name}}</option>
-                            </select> 
+                      <input type="text" class="form-control m-input" formControlName="DepartmentName">
                         </div>
                       </div>
                   <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="">
+                        Department Code
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="DepartmentCode" placeholder="0">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label>
+                                Total Credit Amount
+                            </label>
+                            <input type="number" class="form-control m-input" formControlName="TotalCreditAmount"  placeholder="0">
+                          </div>
+                        </div> 
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label>
+                            Total Debit Amount
+                        </label>
+                        <input type="number" class="form-control m-input" formControlName="TotalDebitAmount" placeholder="0">
+                      </div>
+                    </div>  
+                </div>
+                <div class="form-group row">
+                    
+                  <div class="col-sm-10">
+                      <div class="form-group m-form__group">
+                          <label>
+                              Description
+                          </label>
+                          <textarea class="form-control m-input" formControlName="Description"></textarea>
+                        </div>
+                  </div> 
+                  <div class="col-sm-2">
                       <div class="form-group m-form__group">
                           <label for="">
                               Final
@@ -99,28 +114,17 @@
                               </div>
                   </div> 
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-12">
-                      <div class="form-group m-form__group">
-                          <label>
-                              Description
-                          </label>
-                          <textarea class="form-control m-input" formControlName="Description"></textarea>
-                        </div>
-                  </div> 
-                </div>
                 </form>
 
                 <div class="m-separator m-separator--dashed m-separator--lg"></div>
               
                 <div class="form-group row">
                     <div class="m--space-07"></div> 
-                    <dx-data-grid id="gridContainer" 
-                    keyExpr="voucherDetailId"
+                    <dx-data-grid id="gridContainer"  
                      [dataSource]="Detail" 
                    (onRowInserted)="addVoucherDetail($event)"
                    (onRowUpdated)="updatevoucherDetail($event)">
-                    <dxo-editing mode="row" [allowAdding]="true"[allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                       </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>

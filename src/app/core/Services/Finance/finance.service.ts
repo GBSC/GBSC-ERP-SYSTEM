@@ -205,7 +205,7 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturns`).toPromise();
   }
 
-  getSalesReturnByID(id): Observable<SalesReturn> {
+  getSalesReturn(id): Observable<SalesReturn> {
 
     return this.ApiService.get(this.baseUrl +'/FinanceSales/GetFinanceSalesReturn/' + id);
   }

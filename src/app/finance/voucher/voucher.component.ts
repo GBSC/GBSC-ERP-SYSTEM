@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { Voucher } from '../../core/Models/Finance/voucher';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { SetupService } from '../../core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-voucher',
@@ -25,8 +26,9 @@ export class VoucherComponent implements OnInit {
   public voucherDetail: VoucherDetail[];
 
   @Input('voucherId') id:number;
+  @Output() updateMessage = new EventEmitter();
 
-  constructor(private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+  constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
@@ -41,6 +43,8 @@ export class VoucherComponent implements OnInit {
       ChequeNumber: [''],
       TotalCreditAmount: [''],
       TotalDebitAmount: [''],
+      DepartmentName: [''],
+      DepartmentCode: [''],
       IsFinal: [''],
       VoucherTypeId: [''],
       FinancialYearId: [''],
@@ -65,7 +69,7 @@ export class VoucherComponent implements OnInit {
       this.financeService.getVoucher(this.id).subscribe(resp => {
 
         this.Voucher = resp;
-        this.Detail = this.Voucher.voucherDetail;
+        this.Detail = this.Voucher.voucherDetails;
         this.patchValues(this.Voucher);
       });
     }
@@ -103,26 +107,36 @@ export class VoucherComponent implements OnInit {
   async update(value){
 
     value.voucherId = this.id;
-    value.VoucherDetail = this.Detail;
+    value.VoucherDetails = this.Detail;
     console.log(value);
     this.financeService.updateVoucher(value).subscribe(resp=>{
+      this.showSuccess("Voucher Updated"); 
+      console.log(this.showSuccess);
       console.log(resp);
+      // this.router.navigate(['finance/voucher-detail']);
     })
   }
+
+  showSuccess(message) {
+
+    this.updateMessage.emit(message);
+}
+
   patchValues(voucher: any) {
 
     this.VoucherForm.patchValue({
 
       Date: voucher.date,
-      Description: voucher.description,
       VoucherCode: voucher.voucherCode,
+      DepartmentName: voucher.departmentName,
+      DepartmentCode: voucher.departmentCode,
+      Description: voucher.description,
       ChequeNumber: voucher.chequeNumber,
       TotalCreditAmount: voucher.totalCreditAmount,
       TotalDebitAmount: voucher.totalDebitAmount,
       IsFinal: voucher.isFinal,
       VoucherTypeId: voucher.voucherTypeId,
-      FinancialYearId: voucher.financialYearId,
-      DepartmentId: voucher.departmentId
+      FinancialYearId: voucher.financialYearId 
 
     })
 

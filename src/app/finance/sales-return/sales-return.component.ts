@@ -63,7 +63,7 @@ export class SalesReturnComponent implements OnInit {
 
     if (this.isUpdate() === true) {
 
-      this.financeService.getSalesReturnByID(this.id).subscribe(resp => {
+      this.financeService.getSalesReturn(this.id).subscribe(resp => {
 
         this.Return = resp;
         this.ReturnDetail = this.Return.financeSalesReturnDetails;

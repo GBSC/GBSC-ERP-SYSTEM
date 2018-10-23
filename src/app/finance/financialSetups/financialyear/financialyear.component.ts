@@ -18,19 +18,20 @@ export class FinancialyearComponent implements OnInit {
     async ngOnInit() {
 
         this.FinancialYearForm = this.fb.group({
-            Name: [''],
+            // Year: [''],
             IsActive: [''],
             StartDate: [''],
             EndDate: ['']
         });
  
         this.financialYear = await this.financeService.getFinancialYears();
+        console.log(this.financialYear);
     }
 
     async addFinancialyear() {
-        
        await this.financeService.addFinancialYear(this.FinancialYearForm.value); 
-       this.FinancialYearForm.reset();  
+       this.financialYear = await this.financialYear.getFinancialYears();
+       this.FinancialYearForm.reset();
     }
 
      updatingFinancialyear(value) {

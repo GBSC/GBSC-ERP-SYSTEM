@@ -14,31 +14,33 @@
             <div class="m-section__content">
               <form [formGroup]="FinancialYearForm">
                 <div class="form-group row">
-                  <div class="col-sm-3">
+                  <!-- <div class="col-sm-3">
                     <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Name
+                      <label>
+                        Year
                       </label>
-                      <input type="text" class="form-control" id="m_daterangepicker_1" formControlName="Name" placeholder="Select Year" />
-                      <!-- <dx-date-box formControlName="Name" type="date" format="year"></dx-date-box> -->
+                    <input type="text" class="form-control"  [displayFormat]="yyyy" formControlName="Year" placeholder="Select Year" /> 
+                      <dx-date-box type="date" displayFormat="yyyy" maxZoomLevel= "year" formControlName="Year"></dx-date-box>
                       
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
+                      <label>
                         Start Date
                       </label>
-                      <input type="date" class="form-control" formControlName="StartDate" placeholder="Select date" /> </div>
+                      <dx-date-box formControlName="StartDate" width="100%" type="date" displayFormat="DD/MM/yyyy"></dx-date-box>
+                  </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
+                      <label>
                         End Date
                       </label>
-                      <input type="date" class="form-control" formControlName="EndDate" placeholder="Select date" /> </div>
+                      <dx-date-box formControlName="EndDate" width="100%" type="date" displayFormat="DD/MM/yyyy"></dx-date-box>
                   </div>
-                  <div class="col-sm-2">
+                  </div>
+                  <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label class="">
                         Active:
@@ -51,12 +53,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-1" style="margin-top: 28px;">
+                  <div class="col-sm-3" style="margin-top: 28px;">
                     <button type="submit" (click)="addFinancialyear()" class="btn btn-primary">
                       Save
                     </button>
+                  </div> 
                   </div>
-                </div>
               </form>
 
               <div class="form-group row">
@@ -67,7 +69,7 @@
                   <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-paging [pageSize]="4"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager>
 

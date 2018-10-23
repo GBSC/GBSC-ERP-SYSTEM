@@ -35,16 +35,21 @@
 				</button>
 				<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light">
 					<ul class="m-menu__nav  m-menu__nav--submenu-arrow">
-
-
 						<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a routerLink="/employee/dashboard" class="m-menu__link m-menu__toggle" style="background:#ededed">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-dashboard" style="color: #003b77;margin: 0 9px 0px 9px; font-size: 22px;"></i>
+								
+							</a>
+						</li>
+						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a  href="#" class="m-menu__link m-menu__toggle" style="background:#4d65bf;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-user-circle" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									HRM Module
+									Human Resource
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;" >
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -275,13 +280,12 @@
 							</div>
 						</li>						
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="#" class="m-menu__link m-menu__toggle" style="background: #0070c4;">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									HIMS  Module
+									Hospital Managment
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -415,13 +419,12 @@
 							</div>
 						</li>	
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background:  #3173e9;">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-flask" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									LIS  Module
+									Laboratory
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -436,7 +439,7 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/fileRecord" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 														 File Record
@@ -444,7 +447,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/dailyProcedure" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
 																Daily Procedure
@@ -452,7 +455,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/tvopu" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
 																TVOPU 
@@ -460,7 +463,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/biochemistryontreatment" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
 																Biochemistry On Treatment 
@@ -468,7 +471,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/biochemistry" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
 																Biochemistry 
@@ -476,7 +479,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/inner" class="m-menu__link">
+														<a  routerLink="/lab/biopsy" class="m-menu__link">
 															<i class="m-menu__link-icon flaticon-graphic-2"></i>
 															<span class="m-menu__link-text">
 																	Biopsy 
@@ -494,7 +497,7 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryology" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -504,7 +507,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryofreeze" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -514,7 +517,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryologythawing" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -524,7 +527,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryologist" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -534,7 +537,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryologysection" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -544,7 +547,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/insemenation" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -554,7 +557,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/inner" class="m-menu__link">
+														<a  routerLink="/lab/inseminationprep" class="m-menu__link">
 															<i class="m-menu__link-bullet m-menu__link-bullet--line">
 																<span></span>
 															</i>
@@ -574,7 +577,7 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryologist" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -584,7 +587,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/embryologycode" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -594,7 +597,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/testunit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -604,7 +607,7 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/lab/biochemistry" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -630,13 +633,12 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #d95531;">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									Pharmacy  Module
+									Pharmacy
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -797,13 +799,12 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #3173e9;">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-money" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									Payroll  Module
+									Payroll
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -812,118 +813,122 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Finance Reports
+						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+												Payroll
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrolladmin/stopsalary" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-															Annual Reports
+															Stop Salary
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/gratuity" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
-															HR Reports
+															Gratuity
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/monthlyusersalary" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
-															IPO Reports
+															Monthly User Salary
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payslip" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
-															Finance Margins
+															PaySlip
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-graphic-2"></i>
-														<span class="m-menu__link-text">
-															Revenue Reports
-														</span>
-													</a>
-												</li>
+												
 											</ul>
 										</li>
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Project Reports
+													Tax Setup
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Coca Cola CRM
+															Income Tax Rule
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/taxadjustmentreason" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Delta Airlines Booking Site
+															Tax Adjustment Reason
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/taxbenefit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Malibu Accounting
+															Tax Benefit
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/taxableincomeadjustment" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Vineseed Website Rewamp
+															Taxable Income Adjustment
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/taxrelief" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Zircon Mobile App
+															Tax Relief
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/taxsetup/taxschedule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Mercury CMS
+															Tax Schedule
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/hrm/payroll/taxsetup/taxyear" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Tax Year
 														</span>
 													</a>
 												</li>
@@ -932,68 +937,68 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													HR Reports
+													Payroll Setup
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Staff Directory
+															Allowance
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/benefit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Client Directory
+															Benefit
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/Currency" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Salary Reports
+															Currency
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/fundsetup" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Staff Payslips
+															Fund Setup
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/gratuityslab" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Corporate Expenses
+															Gratuity Slab
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/hrm/payroll/payrollsetup/payrolltype" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Project Expenses
+															Payroll Type
 														</span>
 													</a>
 												</li>
@@ -1002,7 +1007,7 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Reporting Apps
+													Reports
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
@@ -1056,13 +1061,12 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #ac1f40;">
 								<span class="m-menu__item-here"></span>
+								<i class="fa fa-bank" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
-									Accounts  Module
+									Finance
 								</span>
-								<i class="m-menu__hor-arrow la la-angle-down"></i>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
@@ -1071,48 +1075,48 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Finance Reports
+													Accounts
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/purchase-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-															Annual Reports
+															Purchase Invoice
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/purchase-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
-															HR Reports
+															Purchase Return
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/sales-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
-															IPO Reports
+															Sales Invoice
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/sales-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
-															Finance Margins
+															Sales Return
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/voucher-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
-															Revenue Reports
+															Voucher
 														</span>
 													</a>
 												</li>
@@ -1121,68 +1125,78 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Project Reports
+												   Finance Setups
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/companysetup" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Coca Cola CRM
+															Company Setup
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/masteraccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Delta Airlines Booking Site
+															Master Account
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/detailaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Malibu Accounting
+															Detail Account
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/financialyear" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Vineseed Website Rewamp
+															Financial Year
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/vouchertype" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Zircon Mobile App
+															Voucher Type
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link">
+													<a  routerLink="/finance/setup/controlaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Mercury CMS
+															Control Account
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/finance/setup/secondsubaccount" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Second Sub Account
 														</span>
 													</a>
 												</li>
@@ -1191,7 +1205,7 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													HR Reports
+													Finance Reports
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
@@ -1261,7 +1275,7 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-													Reporting Apps
+													Finance Reports
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>

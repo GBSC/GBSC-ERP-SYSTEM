@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
-import { AccountService } from '../../../core';
 
 declare let mLayout: any;
 @Component({
@@ -8,15 +7,16 @@ declare let mLayout: any;
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-
-    constructor(private accountService: AccountService) { }
+export class HeaderComponent implements OnInit, AfterViewInit {
+    constructor() { }
 
     ngOnInit() {
     }
 
-    logout() {
-        this.accountService.logout();
+    ngAfterViewInit() {
+
+        mLayout.initHeader();
+
     }
 
 }

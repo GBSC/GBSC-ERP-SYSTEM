@@ -15,15 +15,14 @@ import { DataGrid } from 'primeng/primeng';
 export class SalesInvoiceComponent implements OnInit {
 
   public InvoiceDetail: any[] = [];
+  public detailarray: any;
   public SalesReturn: any;
   public salesInvoice: any[] = [];
   public detailAccount: any;
-  public detailarray: any;
   public Invoice: any;
   public salesInvoiceForm: any;
   public updatingdetail: any;
   public salesInvoiceDetail: SalesInvoiceDetail[];
-  private gridContainer = DataGrid;
 
   @Input('salesInvoiceId') id: number;
 
@@ -31,10 +30,7 @@ export class SalesInvoiceComponent implements OnInit {
     public financeService: FinanceService) { }
 
   async updatesalesInvoiceDetail(value) {
-    //this.detailarray = await this.financeService.updateSalesInvoiceDetail(value.data);
-    console.log(this.detailarray);
     console.log(value);
-
   }
 
   async update(value) { 
@@ -84,19 +80,18 @@ export class SalesInvoiceComponent implements OnInit {
       this.financeService.getSalesInvoiceByID(this.id).subscribe(resp => {
 
         this.Invoice = resp;
-        let a = this.Invoice.financeSalesInvoiceDetails;
-        this.InvoiceDetail = a.map(b => {
-          delete b.financeSalesInvoiceDetailId;
-          delete b.financeSalesInvoiceId;
-          return b;
-        });
-        console.log(this.InvoiceDetail);
+        this.InvoiceDetail = this.Invoice.financeSalesInvoiceDetails;
+        // this.InvoiceDetail = a.map(b => {
+        //   // delete b.financeSalesInvoiceDetailId;
+        //   // delete b.financeSalesInvoiceId;
+        //   return b;
+        // });
+        // console.log(this.InvoiceDetail);
         this.patchValues(this.Invoice);
       });
     }
 
   }
-
 
   isUpdate(): boolean {
 
@@ -146,6 +141,4 @@ export class SalesInvoiceComponent implements OnInit {
 
   }
 }
-
-// salesInvioce this.salesInvoiceDetail
 

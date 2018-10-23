@@ -191,7 +191,10 @@
               <div class="m-separator m-separator--dashed m-separator--lg"></div>
               <div class="form-group row">
                 <h3>Sales Return Detail</h3>
-                <dx-data-grid id="gridContainer" keyExpr="FinanceSalesReturnDetailId" [dataSource]="[]" (onRowInserted)="addsalesReturnDetail($event)">
+                <dx-data-grid id="gridContainer" [dataSource]="ReturnDetail"
+                 (onRowInserted)="addsalesReturnDetail($event)"
+                 (onRowUpdated)="updatesalesReturnDetail($event)">
+
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -208,14 +211,17 @@
               </div>
 
               <div class="m-separator"></div>
-              <div class="form-group row">
-                <div class="col-sm-8"></div>
-                <div class="col-sm-4 m--align-right">
-                  <button (click)="addsalesReturn(salesReturnForm.value)" class="btn btn-primary">
-                    Save
-                  </button>
-                </div>
-              </div>
+              
+              <div *ngIf="isUpdate(); else create" class="m--align-right">
+                <button class="btn btn-primary" (click)="update(salesReturnForm.value)">
+                    update
+                  </button>        
+            </div> 
+            <ng-template #create>
+              <button class="btn btn-primary" (click)="addsalesReturn(salesReturnForm.value)">
+                Submit
+              </button>  
+            </ng-template>  
 
             </div>
           </div>

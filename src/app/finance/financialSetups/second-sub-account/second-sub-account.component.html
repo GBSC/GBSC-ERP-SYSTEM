@@ -14,9 +14,9 @@
              <div class="m-section__content">
               <form [formGroup]="SecondSubAccountForm">
               <div class="form-group row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
+                    <label>
                       Second SubAccount Code
                     </label>
                     <input type="text" class="form-control m-input" formControlName="SecondSubAccountCode" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
@@ -24,14 +24,14 @@
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
+                    <label>
                       Name
                     </label>
                     <input type="text" class="form-control m-input" formControlName="Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="JV">
                   </div>
                 </div>
                
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="form-group m-form__group">
                     <label>
                         Sub Account
@@ -43,7 +43,7 @@
                   </div>
                 </div>
 
-                  <div class="col-sm-3" style="margin-top: 28px;">
+                  <div class="col-sm-2" style="margin-top: 28px;">
                       <button type="submit" (click)="addSecondSubaccount()" class="btn btn-primary">
                           Save
                         </button>

@@ -54,6 +54,13 @@
                             <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
                             </dxo-lookup>
                           </dxi-column>
+                          <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                          <div *dxTemplate="let d of 'chartCellTemplate'">
+                            <div class="chart-cell">
+                                <dx-button (click)="getCurrentRowData(d)" icon="edit">
+                            </dx-button>
+                            </div>
+                        </div>
 
                         <div *dxTemplate="let returnDetail of 'detail'">
                             <dx-data-grid [dataSource]="returnDetail.data.financePurchaseReturnDetails" [showBorders]="true" [columnAutoWidth]="true">

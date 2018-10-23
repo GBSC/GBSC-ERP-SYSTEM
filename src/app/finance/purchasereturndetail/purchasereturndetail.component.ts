@@ -14,19 +14,18 @@ export class PurchasereturndetailComponent implements OnInit {
   public PurchaseInvoice: any;
   public purchasereturn: any;
   public detailAccount: any;
+  public purchaseReturnId: any;
 
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
 
   async ngOnInit() {
 
-    this.purchasereturn = await this.financeService.getPurchaseReturns();
-
-    this.PurchaseDetail = await this.financeService.getPurchaseReturnDetails();
-
     this.PurchaseInvoice = await this.financeService.getPurchaseInvoices();
-
+   
+    this.purchasereturn = await this.financeService.getPurchaseReturns();
+   
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
-  }
+ }
 
   onToolbarPreparing(e) {
     e.toolbarOptions.items.unshift(
@@ -53,6 +52,12 @@ export class PurchasereturndetailComponent implements OnInit {
 
   addPurchaseReturn() {
     this.router.navigate(['/finance/purchase-return']);
+  }
+
+  getCurrentRowData(d) {
+    this.purchaseReturnId = d.key;
+    console.log(this.purchaseReturnId);
+    this.router.navigate(['finance/update-purchase-return/' + this.purchaseReturnId]);
   }
 
 }

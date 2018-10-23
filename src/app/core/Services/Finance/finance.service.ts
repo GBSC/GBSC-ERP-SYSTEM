@@ -25,14 +25,19 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseInvoices`).toPromise();
   }
 
+  getPurchaseInvoice(id): Observable<PurchaseInvoice> {
+    
+    return this.ApiService.get(this.baseUrl +'/FinancePurchase/GetFinancePurchaseInvoice/' + id);
+  }
+
   async addPurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
 
     return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseInvoice`, PurchaseInvoice).toPromise();
   }
 
-  async updatePurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
+   updatePurchaseInvoice(data: PurchaseInvoice) : Observable<any> {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoice`, PurchaseInvoice).toPromise();
+    return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoice`, data);
 
   }
 
@@ -65,14 +70,19 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseReturns`).toPromise();
   }
 
+  getPurchaseReturn(id): Observable<PurchaseReturn> {
+    
+    return this.ApiService.get(this.baseUrl +'/FinancePurchase/GetFinancePurchaseReturn/' + id);
+  }
+
   async addPurchaseReturn(PurchaseReturn: PurchaseReturn) {
 
     return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseReturn`, PurchaseReturn).toPromise();
   }
 
-  async updatePurchaseReturn(PurchaseReturn: PurchaseReturn) {
+   updatePurchaseReturn(data: PurchaseReturn) : Observable<any> {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturn`, PurchaseReturn).toPromise();
+    return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturn`, data);
 
   }
 
@@ -110,9 +120,9 @@ export class FinanceService {
     return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucher`, Voucher).toPromise();
   }
 
-  async updateVoucher(Voucher: Voucher) {
+   updateVoucher(data: Voucher) : Observable<any> {
 
-    return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucher`, Voucher).toPromise();
+    return this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucher`, data);
 
   }
 
@@ -123,6 +133,11 @@ export class FinanceService {
   async getVoucherDetails() {
 
     return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
+  }
+
+  getVoucher(id): Observable<Voucher> {
+
+    return this.ApiService.get(this.baseUrl +'/Finance/GetVoucher/' + id);
   }
 
   async addVoucherDetail(VoucherDetail: VoucherDetail) {
@@ -190,14 +205,19 @@ export class FinanceService {
     return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturns`).toPromise();
   }
 
+  getSalesReturnByID(id): Observable<SalesReturn> {
+
+    return this.ApiService.get(this.baseUrl +'/FinanceSales/GetFinanceSalesReturn/' + id);
+  }
+
   async addSalesReturn(SalesReturn: SalesReturn) {
 
     return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesReturn`, SalesReturn).toPromise();
   }
 
-  async updateSalesReturn(SalesReturn: SalesReturn) {
+   updateSalesReturn(data: SalesReturn) : Observable<any> {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturn`, SalesReturn).toPromise();
+    return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturn`, data);
 
   }
 

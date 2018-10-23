@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Expenses
@@ -139,7 +139,7 @@
                       <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <!-- <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="">
                         Purchase Return
@@ -149,8 +149,8 @@
                         <option *ngFor="let pr of purchasereturn" [value]="pr.financePurchaseReturnId">{{pr.totalAmount}}</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="col-sm-3">
+                  </div> -->
+                  <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="">
                         Detail Account
@@ -161,7 +161,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label>
                         Total Amount:
@@ -186,7 +186,10 @@
               <div class="m-separator m-separator--dashed m-separator--lg"></div>
               <div class="form-group row">
                 <h3>Purchase Invoice Detail</h3>
-                <dx-data-grid id="gridContainer" keyExpr="financePurchaseInvoiceDetailId" [dataSource]="[]" (onRowInserted)="addPurchaseInvoiceDetail($event)">
+                <dx-data-grid id="gridContainer" 
+                [dataSource]="InvoiceDetail" 
+                (onRowInserted)="addPurchaseInvoiceDetail($event)"
+                (onRowUpdated)="updatepurchaseInvoiceDetail($event)">
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -202,14 +205,17 @@
                 </dx-data-grid>
               </div>
               <div class="m-separator"></div>
-              <div class="form-group row">
-                <div class="col-sm-8"></div>
-                <div class="col-sm-4 m--align-right">
-                  <button (click)="addPurchaseInvoice(PurchaseInvoiceForm.value)" class="btn btn-primary">
-                    Save
-                  </button>
-                </div>
-              </div>
+
+              <div *ngIf="isUpdate(); else create" class="m--align-right">
+                <button class="btn btn-primary" (click)="update(PurchaseInvoiceForm.value)">
+                    update
+                  </button>        
+            </div> 
+            <ng-template #create>
+              <button class="btn btn-primary" (click)="addPurchaseInvoice(PurchaseInvoiceForm.value)">
+                Submit
+              </button>  
+            </ng-template> 
 
             </div>
           </div>

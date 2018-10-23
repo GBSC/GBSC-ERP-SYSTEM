@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { Voucher } from '../../core/Models/Finance/voucher';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { SetupService } from '../../core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-voucher',
@@ -15,13 +16,17 @@ export class VoucherComponent implements OnInit {
 
   public departments: any;
   public financialYear: any;
+  public Detail: any[] = [];
   public voucherType: any;
   public voucher: any;
   public detailAccount: any;
   public VoucherForm: any;
+  public Voucher: any;
   public voucherDetail: VoucherDetail[];
 
-  constructor(private fb: FormBuilder, public financeSetupService: FinanceSetupService,
+  @Input('voucherId') id:number;
+
+  constructor(private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
@@ -42,12 +47,7 @@ export class VoucherComponent implements OnInit {
       DepartmentId: ['']
 
     })
-
-    this.voucher = await this.financeService.getVouchers();
-
-
-    this.voucherDetail = await this.financeService.getVoucherDetails();
-
+ 
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
@@ -55,9 +55,33 @@ export class VoucherComponent implements OnInit {
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
     this.departments = await this.SetupService.getAllDepartments();    
+
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+    });
+
+    if (this.isUpdate() === true) {
+
+      this.financeService.getVoucher(this.id).subscribe(resp => {
+
+        this.Voucher = resp;
+        this.Detail = this.Voucher.voucherDetail;
+        this.patchValues(this.Voucher);
+      });
+    }
+
   }
 
-  async addVoucherDetail(value) {
+  isUpdate(): boolean {
+
+    if (this.id > 0) {
+      return true;
+    }
+    else
+      return false;
+  }
+
+   addVoucherDetail(value) {
     let data = value.data;
     this.voucherDetail.push(data);
   }
@@ -72,4 +96,35 @@ export class VoucherComponent implements OnInit {
     
   }
 
+  async updatevoucherDetail(value) {
+    console.log(value);
+  }
+
+  async update(value){
+
+    value.voucherId = this.id;
+    value.VoucherDetail = this.Detail;
+    console.log(value);
+    this.financeService.updateVoucher(value).subscribe(resp=>{
+      console.log(resp);
+    })
+  }
+  patchValues(voucher: any) {
+
+    this.VoucherForm.patchValue({
+
+      Date: voucher.date,
+      Description: voucher.description,
+      VoucherCode: voucher.voucherCode,
+      ChequeNumber: voucher.chequeNumber,
+      TotalCreditAmount: voucher.totalCreditAmount,
+      TotalDebitAmount: voucher.totalDebitAmount,
+      IsFinal: voucher.isFinal,
+      VoucherTypeId: voucher.voucherTypeId,
+      FinancialYearId: voucher.financialYearId,
+      DepartmentId: voucher.departmentId
+
+    })
+
+  }
 }

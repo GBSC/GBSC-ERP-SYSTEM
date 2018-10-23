@@ -15,17 +15,13 @@ export class VoucherDetailComponent implements OnInit {
   public financialYear: any;
   public voucherType: any;
   public voucher: any;
-  public voucherDetail: any;
   public detailAccount: any; 
+  public voucherId: any; 
 
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
- 
-
     this.voucher = await this.financeService.getVouchers();
-
-    this.voucherDetail = await this.financeService.getVoucherDetails();
 
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 
@@ -33,7 +29,7 @@ export class VoucherDetailComponent implements OnInit {
 
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.SetupService.getAllDepartments();
+    this.departments = await this.SetupService.getAllDepartments();    
   }
 
   onToolbarPreparing(e) {
@@ -62,4 +58,10 @@ export class VoucherDetailComponent implements OnInit {
   addvoucher() {
     this.router.navigate(['/finance/voucher']);
   }
+
+  getCurrentRowData(d) {
+    this.voucherId = d.key;
+    this.router.navigate(['finance/update-voucher/' + this.voucherId]);
+  }
+
 }

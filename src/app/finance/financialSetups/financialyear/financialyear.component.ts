@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
 
@@ -8,7 +8,7 @@ import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup
     styleUrls: ['./financialyear.component.scss']
 })
 export class FinancialyearComponent implements OnInit {
-
+   
     public FinancialYearForm: any;
     public financialYear: any;
     public updateFinancalyear: any;
@@ -29,7 +29,8 @@ export class FinancialyearComponent implements OnInit {
 
     async addFinancialyear() {
         
-       await this.financeService.addFinancialYear(this.FinancialYearForm.value);         
+       await this.financeService.addFinancialYear(this.FinancialYearForm.value); 
+       this.FinancialYearForm.reset();  
     }
 
      updatingFinancialyear(value) {
@@ -45,4 +46,5 @@ export class FinancialyearComponent implements OnInit {
 
         await this.financeService.DeleteFinancialYear(value.data);
     }
+ 
 }

@@ -14,6 +14,7 @@ export class PurchaseinvoicedetailComponent implements OnInit {
   public purchaseinvoice: any;
   public purchasereturn: any;
   public detailAccount: any;
+  public purchaseInvoiceId: any;
 
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
 
@@ -53,6 +54,12 @@ export class PurchaseinvoicedetailComponent implements OnInit {
 
   addPurchaseInvoice() {
     this.router.navigate(['/finance/purchase-invoice']);
+  }
+
+  getCurrentRowData(d) {
+    this.purchaseInvoiceId = d.key;
+    console.log(this.purchaseInvoiceId);
+    this.router.navigate(['finance/update-purchase-invoice/' + this.purchaseInvoiceId]);
   }
 
 }

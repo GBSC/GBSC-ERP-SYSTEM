@@ -18,7 +18,6 @@ export class SalesInvoiceDetailComponent implements OnInit {
   public salesInvoiceForm: any;
   public updatingSalesinvoice: any;
   public detailAccount: any;
-
   public salesInvoiceId: any;
 
   constructor(private fb: FormBuilder, public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }

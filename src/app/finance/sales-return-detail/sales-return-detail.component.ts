@@ -14,6 +14,7 @@ export class SalesReturnDetailComponent implements OnInit {
   public SalesInvoice: any;
   public salesReturn: any;
   public detailAccount: any;
+  public salesReturnId: any;
 
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
 
@@ -54,4 +55,11 @@ export class SalesReturnDetailComponent implements OnInit {
   addSalesReturn() {
     this.router.navigate(['/finance/sales-return']);
   }
+
+  getData(d) {
+    this.salesReturnId = d.key;
+    console.log(this.salesReturnId);
+    this.router.navigate(['finance/update-sales-return/' + this.salesReturnId]);
+  }
+
 }

@@ -1,0 +1,62 @@
+<div class="m-content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Leave Opening
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <dx-data-grid id="gridContainer"
+                    (onToolbarPreparing)="onToolbarPreparing($event)"
+                     keyExpr="leaveOpeningId" 
+                    [dataSource]="leaveopening" 
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                     [masterDetail]="{ enabled: false, template: 'detail' }" [showBorders]="true">
+                        
+                        <!-- <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
+                            </dxo-editing> -->
+                        <dxo-paging [pageSize]="7"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                        </dxo-pager>                
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+                        <dxo-selection mode="single"></dxo-selection>
+
+                        <dxi-column dataField="userId" caption="Employee" [width]="450">
+                            <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                            </dxo-lookup>
+                            <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
+                        </dxi-column>
+                        <dxi-column dataField="leaveYearId" caption="Leave Year" [width]="450">
+                            <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                            </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="remarks"></dxi-column>
+
+                        <div *dxTemplate="let leave of 'detail'">
+                            <dx-data-grid [dataSource]="leave.data.leaveOpeningDetails" [showBorders]="true" [columnAutoWidth]="true">
+
+                                <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                                    <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
+                                    </dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                                <dxi-column dataField="expiryDate" caption="Expiry Date" dataType="date" format="shortdate"></dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

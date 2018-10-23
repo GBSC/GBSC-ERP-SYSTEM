@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Visits } from '../../../core/Models/HIMS/visits';
 
+import { ToastrService } from 'ngx-toastr';
+
+
 @Component({
     selector: 'app-visits',
     templateUrl: './visits.component.html',
@@ -40,7 +43,7 @@ export class VisitsComponent implements OnInit {
     Patient: Patient;
     Visits: Visits;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote': ['', Validators.required],
@@ -104,14 +107,14 @@ export class VisitsComponent implements OnInit {
         console.log(this.diagnoses);
     }
 
-    onSubmit() {
+    // onSubmit() {
 
-        //console.log(this.PatientServiceobj.currentPatient);
-        // console.log(this.id);
-        this.router.navigate(['/hims/patient/patientvitals/' + this.vistid]);
-        console.log(this.visitid);
+    //     //console.log(this.PatientServiceobj.currentPatient);
+    //     // console.log(this.id);
+    //     this.router.navigate(['/hims/patient/patientvitals/' + this.vistid]);
+    //     console.log(this.visitid);
 
-    }
+    // }
 
     async onEndVisit() {
         let x = await this.PatientServiceobj.getVisitId(this.vistid);
@@ -121,11 +124,14 @@ export class VisitsComponent implements OnInit {
         console.log(this.id);
     }
     //add visitnote
-    async onsubmit(value) {
+    async addPatientVisitNote(value) {
+        console.log(value);
         let y = await this.PatientServiceobj.visitid.visitID;
         this.PatientVisitNoteForm.value.VisitId = y;
         let x = await this.PatientServiceobj.addVisitNote(value);
-        console.log(x)
+        console.log(x);
+        this.displayToastSuccess("Saved");
+
 
         // this.visitid = this.PatientServiceobj.visitid;
         // console.log(this.visitid);
@@ -139,6 +145,8 @@ export class VisitsComponent implements OnInit {
         console.log(value);
         console.log(x)
         console.log(this.vistid);
+        this.displayToastSuccess("Saved");
+
 
 
 
@@ -172,10 +180,14 @@ export class VisitsComponent implements OnInit {
         this.VisitTests = this.VisitTests.filter(t => {
             return delete t.TestName;
         });
-        let x = await this.PatientServiceobj.addvisitTest(this.VisitTests);
+        console.log(this.VisitTests);
+        console.log(this.vistid);
+        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.vistid ,this.VisitTests);
         console.log(x);
         console.log(this.VisitTests);
         this.removealltest(this.VisitTests);
+        this.displayToastSuccess("Saved");
+
     }
     removeTest(index) {
         this.VisitTests.splice(index, 1);
@@ -206,6 +218,8 @@ export class VisitsComponent implements OnInit {
         console.log(x);
         console.log(this.VisitDiagnoses);
         this.removealldiagnosis(this.VisitDiagnoses);
+        this.displayToastSuccess("Saved");
+
     }
 
     removediagnosis(index) {
@@ -213,6 +227,14 @@ export class VisitsComponent implements OnInit {
     }
     removealldiagnosis(index) {
         this.VisitDiagnoses.length = 0
+    }
+
+    displayToastSuccess(message) {
+        this.toastr.success(message);
+    }
+
+    displayToastError(message) {
+        this.toastr.error(message);
     }
 
 

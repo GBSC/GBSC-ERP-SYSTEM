@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Patient } from '../../../core/Models/HIMS/patient';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 
@@ -24,7 +26,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
-    constructor(private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService,private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],
@@ -70,18 +72,31 @@ export class PatientvitalsComponent implements OnInit {
         this.PatientVitaLForm.value.VisitId = this.visitid;
 
         let x = await this.PatientServiceobj.AddPatientVital(value);
-        this.router.navigate(['/hims/patient/visits/' + this.patientId]);
-        console.log(x);
+        // this.router.navigate(['/hims/patient/visits/' + this.patientId]);
+        // console.log(x);
 
         console.log(this.PatientVitaLForm.value);
-        this.backClicked()
+       // this.backClicked()
+
+       this.PatientVitaLForm.reset();   
+       this.displayToastSuccess("Saved");
+
         return x;
 
     }
 
-    backClicked() {
-        this.Location.back();
+
+    displayToastSuccess(message) {
+        this.toastr.success(message);
     }
+
+    displayToastError(message) {
+        this.toastr.error(message);
+    }
+
+    // backClicked() {
+    //     this.Location.back();
+    // }
 
 
 }

@@ -37,6 +37,7 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
 import { TestComponent } from './test/test.component';
+import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -86,6 +87,7 @@ import { TestComponent } from './test/test.component';
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
+        ViewallAppointmetsComponent,
     ]
 })
 export class PatientModule { }

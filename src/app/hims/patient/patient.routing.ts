@@ -18,6 +18,7 @@ import { PatientvitalsComponent } from '../patient/patientvitals/patientvitals.c
 import { AdmitinpatientComponent } from '../patient/admitinpatient/admitinpatient.component';
 import { GeneralactionsComponent } from '../patient/generalactions/generalactions.component';
 import { VisitnoteComponent } from '../patient/visitnote/visitnote.component';
+import { ViewallAppointmetsComponent } from '../patient/viewall-appointmets/viewall-appointmets.component';
 import { VisitsComponent } from '../patient/visits/visits.component';
 import { AppointmentsblockComponent } from '../patient/appointmentsblock/appointmentsblock.component';
 import { FindPatientComponent } from '../patient/find-patient/find-patient.component';
@@ -63,6 +64,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'visitdetail/:id', component: VisitdetailComponent },
             { path: 'diagnose', component: DiagnosisComponent },
             { path: 'reports', component: ReportsComponent },
+            { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
         ]
     }

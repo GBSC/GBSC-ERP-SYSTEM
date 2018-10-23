@@ -15,18 +15,18 @@ export class ReturnViewComponent implements OnInit {
     private SalesReturns: any;
     private DetailSR: any;
 
-    private  returnViewForm : FormGroup;
-    public date : any;
+    private returnViewForm: FormGroup;
+    public date: any;
 
 
-    constructor(private PharmacyService: PharmacyService , private formBuilder : FormBuilder, public router: Router) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
 
         this.returnViewForm = this.formBuilder.group({
-            returnViewdate :['']
+            returnViewdate: ['']
         });
 
     }
-    
+
     ngOnInit() {
         // this.PharmacyService.GetSalesReturns().subscribe(res => {
         //     console.log(res);
@@ -34,33 +34,36 @@ export class ReturnViewComponent implements OnInit {
         //     console.log(this.SalesReturns);
         // });   
 
-        this.date =  this.formatDate(new Date());
-        this.PharmacyService.GetSalesReturnsByMonth(this.formatDate(new Date())).subscribe((res : SalesReturn) => {
+        this.date = this.formatDate(new Date());
+        this.PharmacyService.GetSalesReturnsByMonth(this.formatDate(new Date())).subscribe((res: SalesReturn) => {
             this.SalesReturns = res;
         });
         // console.log(this.formatDate(new Date()));
     }
 
-    onsubmit(value){
-        this.PharmacyService.GetSalesReturnsByMonth(value.returnViewdate).subscribe((res : SalesReturn) => {
+    onsubmit(value) {
+        this.PharmacyService.GetSalesReturnsByMonth(value.returnViewdate).subscribe((res: SalesReturn) => {
             this.SalesReturns = res;
         });
     }
 
     formatDate(date: Date) {
-        return date.getFullYear( ) + "-" +( date.getMonth()+1);
+        return date.getFullYear() + "-" + (date.getMonth() + 1);
     }
 
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-        {
-            location: 'after',
-            widget: 'dxButton',
-            options: {
-              icon: 'add',
-              onClick: this.addvoucher.bind(this)
-            }
-        });
+            {
+                location: 'after',
+                widget: 'dxButton',
+                options: {
+                    icon: 'add',
+                    onClick: this.addvoucher.bind(this)
+                }
+            });
+
+
+
     }
 
     addvoucher() {

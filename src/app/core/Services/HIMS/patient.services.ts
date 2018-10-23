@@ -239,8 +239,12 @@ export class PatientService {
         return this.getApptbyId;
     }
 
+    async GetAppointmentByDate(date){
+         return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
+    }
 
-    async addAppointment(appointment: Appointment) {
+
+    async addAppointment(appointment: any) {
         return await this.ApiService.post(this.API_URL + 'Appointments/addappointment', appointment).toPromise();
         //let x = await this.http1.post(this.API_URL + '/Appointments/addappointment/', appointment).toPromise();
         //console.log(x);
@@ -251,6 +255,11 @@ export class PatientService {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
         //console.log(appointment);
         //return await this.http1.put(`${this.API_URL}/Appointments/UpdateAppointment/`, appointment).toPromise();
+    }
+
+    async updateAppointmentFromVisitDetail(appointment: Appointment){
+        console.log(appointment);
+        return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
     async deleteAppointment(id) {
@@ -265,8 +274,13 @@ export class PatientService {
         //this.ConsultantIdAndTentiveTime = await this.http1.get(`${this.API_URL}/Appointments/GetAppointmentByConsultantNameAndDate/${id}/${date}`).toPromise()
         //console.log(this.ConsultantIdAndTentiveTime);
         return this.ConsultantIdAndTentiveTime;
-
     }
+    public AppointmentByDate :any;
+    async getAppointmentByDate(date) {
+        return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
+            
+    }
+    
 
     async getConsultant() {
         this.consultant = await this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants').toPromise();
@@ -408,13 +422,25 @@ export class PatientService {
         //return x;
     }
 
-    async addvisitTest(visitTest: VisitTest) {
-        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests', visitTest).toPromise();
+    async addvisitTest(id ,visitTest: VisitTest) {
+        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests/'+id ,visitTest).toPromise();
         //let x = await this.http1.post(this.API_URL + '/visits/AddVisitTests/', visitTest).toPromise();
         //console.log(x);
         //return x;
     }
 
+    GetVisitTestsByVisitId(id : number) : Observable<VisitTest[]> {
+        return this.ApiService.get(this.API_URL + 'visits/GetVisitTestsByVisitId/' + id);
+    }
+
+    async AddVisitTestsByVisitId(id : number, VisitTests : VisitTest[]) {
+        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTestsByVisitId/' + id, VisitTests).toPromise();
+    }
+
+    async AddVisitDiagnosesByVisitId(id : number,   visitDiagnosis: VisitDiagnosis[]) {
+        return await this.ApiService.post(this.API_URL + 'visits/AddVisitDiagnosesByVisitId/' + id, visitDiagnosis).toPromise();
+    }
+ 
 
     async GetPatientVitals() {
         this.PatientVitals = await this.ApiService.get(this.API_URL + 'Visits/GetPatientVitals').toPromise();
@@ -422,6 +448,10 @@ export class PatientService {
         //console.log(this.PatientVitals);
         return this.PatientVitals
     }
+
+    // async UpdatePatientVital(){
+    //     return await this.ApiService.put(this.API_URL+'')
+    // }
 
     GetLastestPatientVital(id): Observable<PatientVital> {
         return this.ApiService.get(this.API_URL + 'patients/GetLastPatientVital/' + id);
@@ -515,6 +545,10 @@ export class PatientService {
         return this.vistnote;
     }
 
+
+    
+
+    
     async GetLastestVisitByPatientId(id)  {
         return await this.ApiService.get(this.API_URL + 'Visits/GetLastestVisitByPatientId/' + id).toPromise();
     }

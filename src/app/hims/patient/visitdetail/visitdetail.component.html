@@ -129,7 +129,7 @@
                                 Tentative Time
                             </label>
                             <div class="col-8">
-                                <input class="form-control m-input" formControlName="TentativeTime" [value]="appointment?.tentativeTime ||''"
+                                <input class="form-control m-input" formControlName="TentativeTime" [value]="appointment?.tentativeTime | date : 'yyyy-MM-dd' ||''"
                                     type="date">
                             </div>
                         </div>

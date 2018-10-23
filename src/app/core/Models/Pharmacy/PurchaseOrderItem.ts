@@ -1,10 +1,13 @@
+import { Inventory } from "./Inventory";
+import { InventoryItem } from "./InventoryItem";
+
 export interface PurchaseOrderItem {
     PurchaseOrderItemId: number,
     PackType: string,
     PackSize: string,
     NumberPackType: string,
     BatchNumber: string,
-    Quantity: string,
+    Quantity: number,
     ExpiryDate: Date,
     Rate: number,
     ExchangeRate: number,
@@ -26,6 +29,8 @@ export interface PurchaseOrderItem {
     RetailPrice: number,
     GrandTotal: number,
     InventoryItemId: number,
+    InventoryItem : InventoryItem,
     InventoryId: number,
+    Inventory : Inventory,
     PurchaseOrderId: number
 }

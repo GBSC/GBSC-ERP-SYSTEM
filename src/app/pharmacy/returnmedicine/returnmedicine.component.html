@@ -13,6 +13,15 @@
                 </h3>
             </div>
           </div>
+          <div class="m-portlet__head-tools">
+            <div class="dropdown">
+              <button routerLink="/pharmacy/returnview" class="btn btn-primary" type="button">
+                <span >
+                  <i class="fa fa-eye"></i>
+                </span> View
+              </button>
+            </div>
+          </div>
         </div>
           <!--begin::Form-->
           <form class="m-form" [formGroup]="ReturnMedicineForm">
@@ -124,7 +133,7 @@
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseQuantity" [value]="a?.orderUnitQuantity || 0" disabled></td>
                                         <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" 
-                                                formControlName="ReturnQuantity" #ReturnQuantity min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
+                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseAmount" [value]="a?.itemTotalAmount" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"

@@ -1,0 +1,120 @@
+<div class="m-content">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Embryology Freeze</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <form [formGroup]="bioChemistryForm">
+                <div class="m-section">
+                    <div class="m-section__content">
+                      
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group m-form__group">
+                                  <label for="exampleInputEmail1">
+                                    MRN No.
+                                  </label>
+                                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{patient?.mrn}}">
+                                </div>
+                              </div>
+                          <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                Patient Name
+                              </label>
+                              <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true" formControlName="PatientId">
+                              </dx-select-box>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                Spouse
+                              </label>
+                              <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  Date
+                                </label>
+                                <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
+                              </div>
+                            </div>
+                          
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"><div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                Asses Ref.#
+                              </label>
+                              <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MRN-00215">
+                            </div></div>
+                            <div class="col-sm-3"><div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  TVOPU Ref.#
+                                </label>
+                                <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Days-19">
+                              </div></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group m-form__group">
+                                      <label for="exampleSelect1">
+                                       Doctor
+                                      </label>
+                                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId">
+                                      </dx-select-box>
+                                    </div>
+                                  </div>
+  
+                          </div>
+                      <div class="m-separator m-separator--dashed"></div>
+                      <div class="row">
+
+                            <h4>Embryo Freeze Details:</h4>
+                            <dx-data-grid id="gridContainer" [dataSource]="[]" keyExpr="bioChemistryTestDetailId" [allowColumnReordering]="true" [showBorders]="true"
+                            (onRowInserted)="addBioChemistryTestDetail($event)"
+                            (onRowUpdated)="updateBioChemistryTestDetail($event)">
+          
+                              <dxo-paging [enabled]="true"></dxo-paging>
+                              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                              </dxo-editing>
+                              <dxi-column dataField="EmbryoNo" caption="Embryo#"></dxi-column>
+                              <dxi-column dataField="EmbryoFrzDate" caption="Embryo Frz. Date"></dxi-column>
+                              <dxi-column dataField="StrawId" caption="Straw Id"></dxi-column>
+                              <dxi-column dataField="Dewer" caption="Dewer"></dxi-column>
+                              <dxi-column dataField="Cann" caption="Cann."></dxi-column>
+                              <dxi-column dataField="bioChemistryTestId" caption="Free Freeze">
+                                  <dxo-lookup [dataSource]="tests" displayExpr="description" valueExpr="bioChemistryTestId">
+                                  </dxo-lookup>
+                                </dxi-column>
+                              <dxi-column dataField="Thawed" [width]="130" dataType="boolean"></dxi-column>  
+                              <dxi-column dataField="TopBot" caption="Date"></dxi-column>
+                              <dxi-column dataField="D3Check" caption="Time"></dxi-column>
+                              <dxi-column dataField="D4Check" caption="Cycle No"></dxi-column>
+                              <dxi-column dataField="D5Check" caption="D5 Check"></dxi-column>
+                              <dxi-column dataField="D6Check" caption="D6 Check"></dxi-column>
+                              <dxi-column dataField="bioChemistryTestId" caption="Fate">
+                                  <dxo-lookup [dataSource]="tests" displayExpr="description" valueExpr="bioChemistryTestId">
+                                  </dxo-lookup>
+                                </dxi-column>
+                              <dxi-column dataField="Check" [width]="130" dataType="boolean"></dxi-column>        
+                            </dx-data-grid>                        
+                      </div>
+                      <hr>
+                     
+                    </div>
+                  </div>
+            </form>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -19,7 +19,7 @@
                (onRowUpdated)="updatePayrollType($event)" 
                 (onRowRemoved)="deletePayrollType($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
 
                   <dxo-popup title="Payroll Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>

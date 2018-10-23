@@ -7,6 +7,10 @@ import { FooterComponent } from '../finance/shared/footer/footer.component';
 import { HeaderComponent } from '../finance/shared/header/header.component';
 import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CompanysetupComponent } from './companysetup/companysetup.component';
+import { FinancialyearComponent } from './financialyear/financialyear.component';
+import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { VouchertypeComponent } from './vouchertype/vouchertype.component';
 
 
 @NgModule({
@@ -14,6 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule,
         routing,
 
     ],
@@ -23,7 +30,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         DashboardComponent,
         FooterComponent,
         HeaderComponent,
-        MenuComponent
+        MenuComponent,
+        CompanysetupComponent,
+        FinancialyearComponent,
+        VouchertypeComponent
     ]
 })
 export class FinanceModule { }

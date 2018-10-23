@@ -13,13 +13,12 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="levepurpose" keyExpr="leavePurposeId" (onRowInserted)="addleavepurpose($event)"
-                (onRowUpdated)="updateleavepurpose($event)" (onRowRemoved)="deleteleavepurpose($event)">
+              <dx-data-grid id="gridContainer" [dataSource]="leavePurpose" keyExpr="leavePurposeId" (onRowInserted)="addleavepurpose($event)"
+                (onRowUpdating)="updatingleavepurpose($event)" 
+                (onRowUpdated)="updateleavepurpose()" 
+                (onRowRemoved)="deleteleavepurpose($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                  <dxo-popup title="Leave Purpose" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

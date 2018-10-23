@@ -138,23 +138,23 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.Description = this.data.description;
         this.InventoryItemForm.value.PackSize = this.data.packSize.size;
         this.InventoryItemForm.value.PackSizeId = this.data.packSize.packSizeId;
-        this.InventoryItemForm.value.PackQuantity = Number.parseFloat((Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(2));
+        this.InventoryItemForm.value.PackQuantity =(Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(1);
         this.InventoryItemForm.value.UnitPrice = this.data.unitPrice;
-        this.InventoryItemForm.value.ItemTotalAmount = Number.parseFloat((Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) * Number.parseFloat(this.InventoryItemForm.value.UnitPrice)).toFixed(4));
+        this.InventoryItemForm.value.ItemTotalAmount = (Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) * Number.parseFloat(this.InventoryItemForm.value.UnitPrice)).toFixed(1);
         this.InventoryItemForm.value.InventoryId = this.data.inventory.inventoryId;
         this.InventoryItemForm.value.StockQuantity = this.data.inventory.stockQuantity;
         this.finalstockquantity = Number.parseInt(this.InventoryItemForm.value.StockQuantity) - Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity);
         this.InventoryItemForm.value.StockQuantity = this.finalstockquantity;
-        this.InventoryItemForm.value.BasicAmount = Number.parseFloat(this.data.costPrice) * Number.parseFloat(this.InventoryItemForm.value.OrderUnitQuantity);
+        this.InventoryItemForm.value.BasicAmount = (Number.parseFloat(this.data.costPrice) * Number.parseFloat(this.InventoryItemForm.value.OrderUnitQuantity)).toFixed(1);
         data.ItemCode = this.data.itemCode;
         // console.log(data);
 
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
         
         data.InventoryItemId = Number.parseInt(data.InventoryItemId);
-        console.log(data);
+        // console.log(data);
         this.arraydata.push(data);
-        console.log(this.arraydata);
+        // console.log(this.arraydata);
         // console.log(this.InventoryItemForm.value);
         // console.log(data.InventoryItemId);
 
@@ -216,8 +216,10 @@ export class IssuanceComponent implements OnInit {
         // console.log(this.IssuanceForm.value);
         this.IssuanceForm.value.OrderAmount = this.total;
 
+        // console.log("Issuance Date", this.IssuanceForm.value.IssuanceDate);
+
         var a : any = {
-            IssuanceDate : this.IssuanceForm.value.IssuanceDate,
+            IssueDate : this.IssuanceForm.value.IssuanceDate,
             Remarks : this.IssuanceForm.value.Remarks,
             SlipNumber : this.IssuanceForm.value.SlipNumber,
             Status : this.IssuanceForm.value.Status,
@@ -232,20 +234,19 @@ export class IssuanceComponent implements OnInit {
             AgainstLotNumber : this.IssuanceForm.value.CRN
         };
 
-        console.log(a);
+        // console.log(a);
 
         // console.log(this.IssuanceForm.value);
         // console.log(this.StockQuantityarraydata);
 
         this.PharmacyService.AddSalesOrder(a).subscribe(r => {
-            console.log(r)
+            // console.log(r);
         });
 
         this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => { 
-            console.log(res)
+            // console.log(res);
         });
         this.IssuanceForm.reset();
-        this.arraydata.length = 0;
         this.total = 0;
     }
 

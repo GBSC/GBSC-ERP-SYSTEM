@@ -7,6 +7,7 @@ import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { SalesReturnItem } from '../../core/Models/Pharmacy/SalesReturnItem';
 import { SalesReturn } from '../../core/Models/Pharmacy/SalesReturn';
 import { Inventory } from '../../core/Models/Pharmacy/Inventory';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-returnmedicine',
@@ -33,7 +34,7 @@ export class ReturnmedicineComponent implements OnInit {
     private ReturnQuantity : number[] = [];
     private TotalReturnQuantity : number = 0;
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast : ToastrService) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
             MRN: [''],
@@ -92,14 +93,25 @@ export class ReturnmedicineComponent implements OnInit {
     async GetSelectedSalesOrderDetails(value, event) {
         // console.log("SelectedSalesOrderDetailsValue", value);
         if (event.key === "Enter") {
-            this.SelectedSalesOrder = await this.PharmacyService.GetSalesOrderByCodeAsync(value);
+            this.ResetGrid();
+            this.PharmacyService.GetSalesOrderDetailsByCode(value).subscribe((res : SalesOrder) => {
+                if(res != null) {
+                    this.SelectedSalesOrder = res;
+                    // console.log("SelectedSalesOrder", this.SelectedSalesOrder);
+                    this.SelectedSalesOrderDetails = this.SelectedSalesOrder.salesOrderItems;
+                    // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails);
+                }
+                else {
+                    this.Toast.error('Return already exists for selected SO!', 'Error!');
+                }
+            });
             // console.log("SelectedSalesOrder", this.SelectedSalesOrder);
             // this.SelectedSalesOrderDetails = this.SelectedSalesOrder.salesOrderItems;
             // this.SelectedSalesOrderDetails = this.PharmacyService.GetSalesOrderItemsByCodeAsync(this.SelectedSalesOrder.salesOrderId);
-            this.PharmacyService.GetSalesOrderItemsBySalesOrderID(this.SelectedSalesOrder.salesOrderId).subscribe((res : SalesOrderItem[]) => { 
-                this.SelectedSalesOrderDetails = res; 
-                // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails); 
-            });
+            // this.PharmacyService.GetSalesOrderItemsBySalesOrderID(this.SelectedSalesOrder.salesOrderId).subscribe((res : SalesOrderItem[]) => { 
+            //     this.SelectedSalesOrderDetails = res; 
+            //     // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails); 
+            // });
             // console.log("SelectedSalesOrderDetails", this.SelectedSalesOrderDetails);
         }
     }
@@ -122,7 +134,6 @@ export class ReturnmedicineComponent implements OnInit {
     CreateSalesReturnDetails(index, returnquantity) {
         // console.log(index);
         // console.log(this.SelectedSalesOrderDetails[index]);
-
         this.ReturnMedicineDetailsForm.value.ItemCode = this.SelectedSalesOrderDetails[index].inventoryItem.itemCode;
         this.ReturnMedicineDetailsForm.value.Description = this.SelectedSalesOrderDetails[index].inventoryItem.description;
         this.ReturnMedicineDetailsForm.value.PackType = this.SelectedSalesOrderDetails[index].inventoryItem.packType.name;
@@ -139,7 +150,8 @@ export class ReturnmedicineComponent implements OnInit {
         var salesreturnitem : any = {
             ReturnQuantity : Number.parseInt(returnquantity),
             ReturnAmount : this.ReturnMedicineDetailsForm.value.ReturnAmount,
-            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId
+            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId,
+            inventoryItemId : this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
         };
         // console.log("salesreturnitem", salesreturnitem);
         this.SalesReturnDetails.push(salesreturnitem);
@@ -161,7 +173,7 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("TotalReturnQuantity", this.TotalReturnQuantity);
 
         // this.SelectedSalesOrderDetails.splice(index, 1);
-        // this.ReturnMedicineDetailsForm.disable()
+        // this.ReturnMedicineDetailsForm.disable();
     }
 
     AddSalesReturn() {
@@ -174,14 +186,14 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("ReturnMedicineForm", this.ReturnMedicineForm);
 
         var salesreturnsubmitobject : any = {
-            //SalesOrderId: this.SelectedSalesOrder.salesOrderId,
+            SalesOrderId: this.SelectedSalesOrder.salesOrderId,
             ReturnDate: this.ReturnMedicineForm.value.ReturnDate,
             Remarks: this.ReturnMedicineForm.value.Remarks,
             TotalReturnAmount: this.TotalReturnAmount,
             ReturnReasonId: this.ReturnMedicineForm.value.ReturnReasonId,
             SalesReturnItems: this.SalesReturnDetails
         };
-        // console.log("salesreturnsubmitobject", salesreturnsubmitobject)
+        console.log("salesreturnsubmitobject", salesreturnsubmitobject)
         this.SalesReturn = salesreturnsubmitobject;
         // console.log("SalesReturn", this.SalesReturn);
         this.PharmacyService.AddSalesReturn(this.SalesReturn).subscribe( res => {
@@ -208,5 +220,20 @@ export class ReturnmedicineComponent implements OnInit {
         this.ReturnQuantity = null;
         this.TotalReturnQuantity = 0;
     }
+
+    ResetGrid() {
+        this.ReturnMedicineDetailsForm.reset();
+        this.SelectedSalesOrder = null;
+        this.SelectedSalesOrderDetails = null;
+        this.SalesReturn = null;
+        this.SalesReturnDetails = null;
+        this.UpdateInventories = null;
+        this.ReturnAmount = null;
+        this.TotalReturnAmount = 0;
+        this.ReturnQuantity = null;
+        this.TotalReturnQuantity = 0;
+    }
+
+
 
 }

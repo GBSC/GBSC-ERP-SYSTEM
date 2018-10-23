@@ -56,6 +56,6 @@ export class AllowanceDeductionComponent implements OnInit {
     }
 
     async deleteAllowanceDeduction(value) {
-        this.payrollSetupService.DeleteAllowanceDeduction(value.key);
+       await this.payrollSetupService.DeleteAllowanceDeduction(value.key);
     }
 }

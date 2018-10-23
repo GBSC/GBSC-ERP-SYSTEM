@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Helpers } from '../../../helpers';
+
+import { Helpers } from '../../../../helpers';
+
 
 @Component({
     selector: 'app-footer',

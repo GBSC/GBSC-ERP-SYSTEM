@@ -10,10 +10,12 @@ export class OvertimetypeComponent implements OnInit {
 
     public overtimetype: any;
     public overtimeflag: any;
+    public updatingOvertimeType: any;
 
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
+
         this.overtimetype = await this.attendancesetupservice.getAllOvertimeType();
 
         this.overtimeflag = await this.attendancesetupservice.getAllOvertimeFlag();
@@ -23,12 +25,16 @@ export class OvertimetypeComponent implements OnInit {
         this.attendancesetupservice.addOvertimeType(value.data);
     }
 
-    async updateovertimetype(value) {
-        this.attendancesetupservice.updateOvertimeType(value);
+     updatingOvertimetype(value) {
+        this.updatingOvertimeType = {...value.oldData, ...value.newData};
+    }
+   
+    async updateOvertimetype() {
+        await this.attendancesetupservice.updateOvertimeType(this.updatingOvertimeType);
     }
 
     async deleteovertimetype(value) {
-        this.attendancesetupservice.DeleteOvertimeType(value.key);
+       await this.attendancesetupservice.DeleteOvertimeType(value.key);
     }
 
 }

@@ -47,10 +47,8 @@ export class LeaveService {
     }
 
     async updateLeaveOpeningDetail(data) {
-
-        let levopendetail = await this.getdataToUpdate(data.key, 'GetleaveOpendetail');
-        levopendetail = { ...levopendetail, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, levopendetail).toPromise();
+ 
+        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, data).toPromise();
 
     }
 
@@ -112,10 +110,8 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
     }
 
-    async updateLeaveRequestDetail(data) {
-        let leaverqst = await this.getdataToUpdate(data.key, 'Getleaverequestdetail');
-        leaverqst = { ...leaverqst, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, leaverqst).toPromise();
+    async updateLeaveRequestDetail(data) { 
+        return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, data).toPromise();
 
     }
 

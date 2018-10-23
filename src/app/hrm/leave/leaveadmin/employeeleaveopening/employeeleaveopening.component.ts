@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SetupService, LeaveService, LeaveSetupService, EmployeeService } from '../../../../core';
+import { LeaveOpeningDetail } from '../../../../core/Models/HRM/leaveOpeningDetail';
+import { LeaveOpening } from '../../../../core/Models/HRM/leaveOpening';
 
 @Component({
     selector: 'app-employeeleaveopening',
@@ -9,10 +11,11 @@ import { SetupService, LeaveService, LeaveSetupService, EmployeeService } from '
     styleUrls: ['./employeeleaveopening.component.css']
 })
 export class EmployeeleaveopeningComponent implements OnInit {
-    public leaveOpeningForm: FormGroup;
-    public leaveOpenDetailForm: FormGroup;
+    public leaveOpeningForm: FormGroup; 
+    private openingDetail: LeaveOpeningDetail[];
     public employees: any;
     public leaveYear: any;
+    public msg: any;
     public leaveType: any;
     public leaveOpeningId;
     public leaveopening: any;
@@ -22,19 +25,15 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     async ngOnInit() {
 
+        this.openingDetail = [];
+
         this.leaveOpeningForm = this.fb.group({
             UserId: ['', Validators.required],
             LeaveYearId: ['', Validators.required],
             Remarks: ['', Validators.required]
 
         });
-
-
-        this.leaveOpenDetailForm = this.fb.group({
-            LeaveTypeId: ['', Validators.required],
-            Quantity: ['', Validators.required],
-            ExpiryDate: ['', Validators.required]
-        });
+ 
 
         this.leaveopening = await this.leaveservice.getLeaveOpening();
 
@@ -48,13 +47,30 @@ export class EmployeeleaveopeningComponent implements OnInit {
     }
 
 
-    async addLeaveopenDetail() {
-        this.leaveOpenDetailForm.value.leaveOpeningId = this.leaveOpeningId.leaveOpeningID;
-        await this.leaveservice.addLeaveOpeningDetail(this.leaveOpenDetailForm.value);
+    async addLeaveopenDetail(value) {
+        
+        let data = value.data;
+        this.openingDetail.push(data);
+    }
+    
+    async addleaveopening(value) {
+        let opening = new LeaveOpening();
+        opening = { ...opening, ...value };
+        opening.LeaveOpeningDetails = this.openingDetail;
+        let s = await this.leaveservice.addLeaveOpening(opening);
+        this.msg = 'Success! Leave Opening Submit Successfully';
+        setTimeout(() => {
+            this.msg = null;
+        }, 3000);
+        this.leaveOpeningForm.reset();
     }
 
-    async addleaveopening(e) {
-        this.leaveOpeningId = await this.leaveservice.addLeaveOpening(this.leaveOpeningForm.value);
+    async updatingLeaveOpeningDetail(value) {
+        this.updatingLeaveOpeningDetail = { ...value.oldData, ...value.newData };    }
+
+    async updateLeaveOpeningDetail() {
+         await this.leaveservice.updateLeaveOpeningDetail( this.updatingLeaveOpeningDetail);
     }
+
 
 }

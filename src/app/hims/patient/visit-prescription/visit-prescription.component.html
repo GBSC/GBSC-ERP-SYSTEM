@@ -6,14 +6,24 @@
         <div  class="m-portlet-body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="" (onRowInserted)="AddVisitNature($event)"   (onRowUpdated)="UpdateVisitNature($event)" (onRowRemoved)="DeleteVisitNature($event)"> 
+              <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdatingModel($event)" (onRowUpdated)="UpdatePrescription($event)" (onRowRemoved)="DeletePrescription($event)"> 
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
               </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                <dxi-column dataField="nature" caption="Nature"></dxi-column> 
+                
+                <dxi-column dataField="inventoryItemId" caption="Medicine" [visible]="true">
+                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="iventoryItemId" displayExpr="name"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
+                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
               </dx-data-grid>
             </div>
         </div>

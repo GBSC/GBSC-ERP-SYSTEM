@@ -133,6 +133,8 @@ import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratu
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
+import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
+import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
 
 
 @NgModule({
@@ -289,7 +291,9 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
         TaxyearComponent,
         GratuityComponent,
         MonthlyUserSalaryComponent,
-        PayslipComponent
+        PayslipComponent,
+        ViewemployeeleaveopeningComponent,
+        ViewleaverequestComponent
 
 
 

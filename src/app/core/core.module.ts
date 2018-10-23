@@ -7,6 +7,13 @@ import { ApiService } from './Services/api.service';
 import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
 import { ProtocolService } from './Services/HIMS/protocol.service';
+import { PatientclinicalrecordService } from './Services/HIMS/patientclinicalrecord.service';
+import { EmbryologyService } from './Services/HIMS/Lab/embryology.service';
+import { TvopuService } from './Services/HIMS/Lab/tvopu.service';
+import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
+import { ThawAssessmentService } from './Services/HIMS/Lab/thawassessment.service';
+import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
+import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.service';
 
 @NgModule({
     imports: [
@@ -40,7 +47,14 @@ import { ProtocolService } from './Services/HIMS/protocol.service';
         SuperadminserviceService,
         TreatmentService,
         MedicineService,
-        ProtocolService
+        ProtocolService,
+        PatientclinicalrecordService,
+        EmbryologyService,
+        TvopuService,
+        EmbryologistService,
+        ThawAssessmentService,
+        BiopsyService,
+        FreezepreprationService
     ]
 })
 export class CoreModule { }

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DxSelectBoxComponent } from 'devextreme-angular';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ConsultantService, PatientService } from '../../../../app/core';
+import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
+import { BiopsyService } from '../../../../app/core/Services/HIMS/Lab/biopsy.service';
+import { ActivatedRoute } from '@angular/router';
+import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 
 @Component({
     selector: 'app-biopsy',
@@ -7,9 +14,91 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BiopsyComponent implements OnInit {
 
-    constructor() { }
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+
+    private patient: any;
+    private spouse: any;
+    private patients: any;
+    private consultants: any;
+    private treatments: any;
+    private id: number;
+    private clinicalRecord: any;
+    private biopsy: any;
+
+    private biopsyForm: FormGroup;
+
+    constructor(private formBuilder: FormBuilder,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private treatmentService: TreatmentService,
+        private biopsyService: BiopsyService,
+        private route: ActivatedRoute,
+        private clinicalrecordservice: PatientclinicalrecordService) {
+
+        this.biopsyForm = formBuilder.group({
+
+            "BiopsyType": [''],
+            "CollectionNumber": [''],
+            "CollectionDate": [''],
+            "ProcedureNumber": [''],
+            "Remarks": [''],
+            "PesaTime": [''],
+            "PesaLeft": [''],
+            "PesaRight": [''],
+            "PesaResult": [''],
+            "TeseTime": [''],
+            "TeseLeft": [''],
+            "TeseRight": [''],
+            "TeseResult": ['']
+        });
+
+        this.biopsyForm.disable();
+    }
 
     ngOnInit() {
+
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+                this.biopsyService
+                    .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => this.biopsy = resp);
+
+            })
+
+        })
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+            this.biopsyForm.enable();
+
+        });
+
+
+        this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+        });
+    }
+
+    submitForm(value) {
+
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+
+        this.biopsyService.addPatientBiopsy(value).subscribe(resp => console.log(resp));
     }
 
 }

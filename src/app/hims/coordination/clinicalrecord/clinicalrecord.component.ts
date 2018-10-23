@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent, DxLookupComponent } from 'devextreme-angular';
 import { PatientService, ConsultantService } from '../../../../app/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
 import { ProtocolService } from '../../../../app/core/Services/HIMS/protocol.service';
+import { MedicineService } from '../../../../app/core/Services/HIMS/medicine.service';
+import { PatientclinicalrecordService } from '../../../core/Services/HIMS/patientclinicalrecord.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-clinicalrecord',
@@ -18,15 +21,24 @@ export class ClinicalrecordComponent implements OnInit {
   private spouse: any;
   private patients: any;
   private consultants: any;
-  private treatments : any;
-  private protocols : any;
+  private treatments: any;
+  private protocols: any;
+  private medicines: any;
+  private id: number;
+  private drugs: any[];
+  private clinicalRecord : any;
+
   private clinicalrecordform: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-     private consultantService: ConsultantService, 
-     private patientService: PatientService,
-     private treatmentService : TreatmentService,
-     private protocolService : ProtocolService) {
+    private consultantService: ConsultantService,
+    private patientService: PatientService,
+    private treatmentService: TreatmentService,
+    private medicineService: MedicineService,
+    private protocolService: ProtocolService,
+    public router: Router,
+    private route: ActivatedRoute,
+    private clinicalrecordservice: PatientclinicalrecordService) {
 
     this.clinicalrecordform = this.formBuilder.group({
       'CycleNumber': ['', Validators.required],
@@ -40,7 +52,6 @@ export class ClinicalrecordComponent implements OnInit {
       'SimulationDate': [''],
       'TriggerDate': [''],
       'EtDate': [''],
-      'PatientId': [''],
       'TreatmentTypeId': [''],
       'ConsultantId': [''],
       'ProtocolId': ['']
@@ -52,10 +63,28 @@ export class ClinicalrecordComponent implements OnInit {
 
   ngOnInit() {
 
-    this.patientcb.onValueChanged.subscribe(res =>{
+    this.route.params.subscribe((params) => {
+      this.id = +params['id'];
+
+      this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp=>{
+
+        console.log(resp);
+        
+        this.clinicalrecordform.enable();
+
+        this.clinicalRecord = resp;
+
+        this.drugs = resp.clinicalRecordDrugs;
+
+      })
+
+    })
+
+    this.patientcb.onValueChanged.subscribe(res => {
       this.populatePatientDate(res.component.option("value"))
       this.clinicalrecordform.enable();
     });
+
 
     this.consultantService.getConsultants()
       .subscribe(consultants => this.consultants = consultants)
@@ -63,9 +92,13 @@ export class ClinicalrecordComponent implements OnInit {
     this.patientService.getPatientObservable()
       .subscribe(patients => this.patients = patients);
 
-      this.protocolService.getProtocols().subscribe(resp=>this.protocols = resp);
+    this.protocolService.getProtocols().subscribe(resp => this.protocols = resp);
 
-      this.treatmentService.gettreatmenttypes().subscribe(resp=>this.treatments = resp);
+    this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+    this.medicineService.getMedicines().subscribe(resp => this.medicines = resp);
+
+    this.drugs = [];
 
   }
 
@@ -76,10 +109,17 @@ export class ClinicalrecordComponent implements OnInit {
     });
   }
 
-  submit(value)
-  {
-    value.patientId = this.patient.patientId;
-    console.log(value);
+  submit(value) {
+
+    if (this.patient) {
+
+      value.patientId = this.patient.patientId;
+      value.clinicalRecordDrugs = this.drugs;
+
+      this.clinicalrecordservice.addPatientClinicalRecord(value).subscribe(resp => console.log(resp));
+
+    }
+
   }
 
 }

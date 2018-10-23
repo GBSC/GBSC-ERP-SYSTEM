@@ -63,6 +63,8 @@ export class EmployeeleaveopeningComponent implements OnInit {
             this.msg = null;
         }, 3000);
         this.leaveOpeningForm.reset();
+        this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
+
     }
 
     async updatingLeaveOpeningDetail(value) {

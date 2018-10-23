@@ -13,6 +13,7 @@ import { TvopuService } from './Services/HIMS/Lab/tvopu.service';
 import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
 import { ThawAssessmentService } from './Services/HIMS/Lab/thawassessment.service';
 import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
+import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.service';
 
 @NgModule({
     imports: [
@@ -52,7 +53,8 @@ import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
         TvopuService,
         EmbryologistService,
         ThawAssessmentService,
-        BiopsyService
+        BiopsyService,
+        FreezepreprationService
     ]
 })
 export class CoreModule { }

@@ -1,102 +1,94 @@
-
-
 <div class="m-content">
-    <div class="row">
-        <div class="col-xl-12">
-          <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">Freeze Preparation</h3>
             </div>
-            </div>
           </div>
-          <div class="m-portlet__body">
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="freePreprationForm">
             <div class="m-section">
-            <div class="m-section__content" >
-              <div class="row">
-                <div class="col-sm-2"><div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    MRN No.
-                  </label>
-                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="MRN-00215">
-                </div></div>
-                <div class="col-sm-2"><div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Date
-                  </label>
-                  <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date"/>
-                </div></div>
-                <div class="col-sm-2"><div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Semen Ref.#
-                  </label>
-                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="LMP-00215">
-                </div></div>
-                <div class="col-sm-2"><div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                    Collection #
-                    </label>
-                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Days-19">
-                  </div></div>
-                  <div class="col-sm-2"><div class="form-group m-form__group">
-                    <label for="exampleSelect1">
-                      Type. #
-                    </label>
-                    <select class="form-control m-input" id="exampleSelect1">
-                      <option>
-                        Option 1
-                      </option>
-                      <option>
-                       Option 2
-                      </option>
-                      <option>
-                        Option 3
-                      </option>
-                    </select>
-                  </div></div>
-                  <div class="col-sm-2"><div class="form-group m-form__group">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                     PESA/TESE #
+                        MRN No.
                       </label>
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Days-19">
-                    </div></div>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled> </div>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Date
+                    </label>
+                    <dx-date-box [value]="freezePrepration?.freezeDate" formControlName="FreezeDate">
+                    </dx-date-box>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Semen Ref.#
+                    </label>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      [value]="freezePrepration?.semenRefNumber" formControlName="SemenRefNumber">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      PESA/TESE #
+                    </label>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      [value]="freezePrepration?.pesaTese" formControlName="PesaTese">
+                  </div>
+                </div>
               </div>
               <div class="row">
-                <div class="col-sm-3"><div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Patient Name
-                  </label>
-                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Manika">
-                </div></div>
-                <div class="col-sm-3"><div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                    Spouse
-                  </label>
-                  <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Imraan Khan">
-                </div></div>
-                <div class="col-sm-3"><div class="form-group m-form__group">
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Patient Name
+                    </label>
+                    <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                      [searchEnabled]="true">
+                    </dx-select-box>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Spouse
+                    </label>
+                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
                     <label for="exampleSelect1">
                       Doctor
                     </label>
-                    <select class="form-control m-input" id="exampleSelect1">
-                      <option>
-                        Dr. Shakeela
-                      </option>
-                      <option>
-                        Dr. Yasmeen
-                      </option>
-                      <option>
-                        Dr. Shahid
-                      </option>
-                    </select>
-                  </div></div>
-                  <div class="col-sm-3"><div class="form-group m-form__group">
+                    <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                      [searchEnabled]="true">
+                    </dx-select-box>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
                       Other
                     </label>
-                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Others">
-                  </div></div>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      [value]="freezePrepration?.other" formControlName="Other">
+                  </div>
+                </div>
 
               </div>
               <hr>
@@ -104,177 +96,197 @@
                 <div class="col-sm-12">
                   <h4>Freeze Preparation Details</h4>
                   <div class="row" style="margin-top: 30px;">
-                    <div class="col-sm-3"><div class="form-group m-form__group">
-                      <label for="exampleSelect1">
-                    Type
-                      </label>
-                      <select class="form-control m-input" id="exampleSelect3">
-                        <option>
-                          Option 1
-                        </option>
-                        <option>
-                          Option 2
-                        </option>
-                        <option>
-                          Option 3
-                        </option>
-                      </select>
-                    </div></div>
-                    <div class="col-sm-3"><div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Collection No.
-                      </label>
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Others">
-                    </div></div>
                     <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                            <label for="exampleTextarea col-sm-3">
-                                Collection Date
-                            </label>
-                        <input type="text" class="form-control" id="m_datepicker_1" readonly placeholder="Select date"/>
-                          </div>
+                      <div class="form-group m-form__group">
+                        <label for="exampleSelect1">
+                          Type
+                        </label>
+                        <select class="form-control m-input" id="exampleSelect1" [value]="freezePrepration?.type"
+                          formControlName="Type">
+                          <option>
+                            Semen
+                          </option>
+                          <option>
+                            Pesa
+                          </option>
+                          <option>
+                            Tese
+                          </option>
+                          <option>
+                            Default
+                          </option>
+                        </select>
                       </div>
-                      <div class="col-sm-3"><div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                              Procedure#
-                          </label>
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="pro-12546">
-                        </div></div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Collection No.
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          [value]="freezePrepration?.collectionNumber" formControlName="CollectionNumber">
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleTextarea col-sm-3">
+                          Collection Date
+                        </label>
+                        <dx-date-box [value]="freezePrepration?.collectionDate" formControlName="CollectionDate">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Procedure#
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          [value]="freezePrepration?.procedureNumber" formControlName="ProcedureNumber">
+                      </div>
+                    </div>
                   </div>
 
-    <hr>
+                  <hr>
 
-  <div class="row">
-  <div class="col-sm-4">
-     
-      <div class="form-group m-form__group row">
-          <label for="example-text-input" class="col-5 col-form-label">
-            No. Straw Frozen
-          </label>
-          <div class="col-md-7">
-              <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="pro-12546">
-          </div>
-         
-        </div>
-      <table class="table">
-          <!--begin::Thead-->
-          <thead>
-            <tr>
-              <td class="m-widget11__label"><strong>Location</strong> </td>
-             
-            </tr>
-          </thead>
-          <!--end::Thead-->
-<!--begin::Tbody-->
-          <tbody>
-            <tr>
-              <td width="184">Dewer</td>
-              <td width="168"><input class="form-control m-input" type="text" id="example-text-input"></td>
-            </tr>
-            <tr>
-              <td>Cannister</td>
-              <td><input class="form-control m-input" type="text" id="example-text-input3"></td>
-            </tr>
-            <tr>
-              <td>Position</td>
-              <td><select class="form-control m-input" id="exampleSelect1">
-                  <option>
-                    Top
-                  </option>
-                  <option>
-                    Equals
-                  </option>
-                </select></td>
-            </tr>
-          </tbody>
-          <!--end::Tbody-->
-        </table>
-  </div>
-  <div class="col-sm-8">
-      <table class="table">
-          <!--begin::Thead-->
-          <thead>
-            <tr>
-              <td class="m-widget11__label"><strong>Straw ID (S)</strong> </td>
-             
-            </tr>
-          </thead>
-          <!--end::Thead-->
-<!--begin::Tbody-->
-          <tbody>
-            <tr>
-              <td width="127">From</td>
-              <td width="168"><input class="form-control m-input" type="text" id="example-text-input"></td>
-              <td width="38" align="center">To</td>
-              <td width="176"><input class="form-control m-input" type="text" id="example-text-input2"></td>
-              <td width="66">Suffix</td>
-              <td width="233"><input class="form-control m-input" type="text" id="example-text-input4"></td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td colspan="5"><input class="form-control m-input" type="text" id="example-text-input5"></td>
-            </tr>
-          </tbody>
-          <!--end::Tbody-->
-        </table>
+                  <div class="row">
+                    <div class="col-sm-4">
 
-        <table width="656" class="table">
-            <!--begin::Thead-->
-            <thead>
-            </thead>
-            <!--end::Thead-->
-            <!--begin::Tbody-->
-            <tbody>
-              <tr>
-                <td width="127">Straw Color</td>
-                <td width="300"><input class="form-control m-input" type="text" id="example-text-input"></td>
-                <td width="150" align="left">Plug Color</td>
-                <td width="220"><input class="form-control m-input" type="text" id="example-text-input5"></td>
-              </tr>
-              <tr>
-                <td>Survival</td>
-                <td><input class="form-control m-input" type="text" id="example-text-input3"></td>
-                <td align="center"><input class="form-control m-input" type="text" id="example-text-input4"></td>
-                <td>(mil./ml)</td>
-              </tr>
-              <tr>
-                <td>Remarks</td>
-                <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input2"></td>
-              </tr>
-            </tbody>
-            <!--end::Tbody-->
-          </table>
-  </div>
-  
-  </div>
-                
-                  
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-5 col-form-label">
+                          No. Straw Frozen
+                        </label>
+                        <div class="col-md-7">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="freezePrepration?.noOfStrawFrozen" formControlName="NoOfStrawFrozen">
+                        </div>
+
+                      </div>
+                      <table class="table">
+                        <!--begin::Thead-->
+                        <thead>
+                          <tr>
+                            <td class="m-widget11__label"><strong>Location</strong> </td>
+
+                          </tr>
+                        </thead>
+                        <!--end::Thead-->
+                        <!--begin::Tbody-->
+                        <tbody>
+                          <tr>
+                            <td width="184">Drawer</td>
+                            <td width="168"><input class="form-control m-input" type="text" id="example-text-input"
+                                [value]="freezePrepration?.drawerNumber" formControlName="DrawerNumber"></td>
+                          </tr>
+                          <tr>
+                            <td>Cannister</td>
+                            <td><input class="form-control m-input" type="text" id="example-text-input3" [value]="freezePrepration?.cannisterNumber"
+                                formControlName="CannisterNumber"></td>
+                          </tr>
+                          <tr>
+                            <td>Position</td>
+                            <td><select class="form-control m-input" id="exampleSelect1" [value]="freezePrepration?.position"
+                                formControlName="Position">
+                                <option>
+                                  Top
+                                </option>
+                                <option>
+                                  Bottom
+                                </option>
+                              </select></td>
+                          </tr>
+                        </tbody>
+                        <!--end::Tbody-->
+                      </table>
+                    </div>
+                    <div class="col-sm-8">
+                      <table class="table">
+                        <!--begin::Thead-->
+                        <thead>
+                          <tr>
+                            <td class="m-widget11__label"><strong>Straw ID (S)</strong> </td>
+
+                          </tr>
+                        </thead>
+                        <!--end::Thead-->
+                        <!--begin::Tbody-->
+                        <tbody>
+                          <tr>
+                            <td width="127">From</td>
+                            <td width="168"><input class="form-control m-input" type="number" id="example-text-input"
+                                [value]="freezePrepration?.strawIdFrom" formControlName="StrawIdFrom"></td>
+                            <td width="38" align="center">To</td>
+                            <td width="176"><input class="form-control m-input" type="number" id="example-text-input2"
+                                [value]="freezePrepration?.strawIdTo" formControlName="StrawIdTo"></td>
+                            <td width="66">Suffix</td>
+                            <td width="233"><input class="form-control m-input" type="number" id="example-text-input4"
+                                [value]="freezePrepration?.suffix" formControlName="Suffix"></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="5"><input class="form-control m-input" type="text" id="example-text-input5"
+                                disabled></td>
+                          </tr>
+                        </tbody>
+                        <!--end::Tbody-->
+                      </table>
+
+                      <table width="656" class="table">
+                        <!--begin::Thead-->
+                        <thead>
+                        </thead>
+                        <!--end::Thead-->
+                        <!--begin::Tbody-->
+                        <tbody>
+                          <tr>
+                            <td width="127">Straw Color</td>
+                            <td width="300"><input class="form-control m-input" type="text" id="example-text-input"
+                                [value]="freezePrepration?.plugColor" formControlName="PlugColor"></td>
+                            <td width="150" align="left">Plug Color</td>
+                            <td width="220"><input class="form-control m-input" type="text" id="example-text-input5"
+                                [value]="freezePrepration?.survivalRange" formControlName="SurvivalRange"></td>
+                          </tr>
+                          <tr>
+                            <td>Survival</td>
+                            <td><input class="form-control m-input" type="text" id="example-text-input3"></td>
+                            <td align="center"><input class="form-control m-input" type="number" id="example-text-input4"
+                                [value]="freezePrepration?.survival" formControlName="Survival"></td>
+                            <td>(mil./ml)</td>
+                          </tr>
+                          <tr>
+                            <td>Remarks</td>
+                            <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input2"
+                                [value]="freezePrepration?.remarks" formControlName="Remarks"></td>
+                          </tr>
+                        </tbody>
+                        <!--end::Tbody-->
+                      </table>
+                    </div>
+
+                  </div>
+
+
                 </div>
               </div>
-  <hr>
+              <hr>
               <div class="row">
-                  <div class="m-demo__preview m-demo__preview--btn">
-                      <button type="button" class="btn btn-primary m-btn m-btn--custom">
-                        Submit
-                      </button>
-                      <button type="button" class="btn btn-brand m-btn m-btn--custom">
-                        Thaw Detail
-                      </button>
-                      <button type="button" class="btn btn-info m-btn m-btn--custom">
-                        Insem. Prep.
-                      </button>
-                    </div>
+                <div class="m-demo__preview m-demo__preview--btn">
+                  <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(freePreprationForm.value)">
+                    Submit
+                  </button>
+                  <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                    Thaw Detail
+                  </button>
+                  <button type="button" class="btn btn-info m-btn m-btn--custom">
+                    Insem. Prep.
+                  </button>
+                </div>
               </div>
             </div>
-            </div>
-          </div>
-          </div>
+          </form>
+
         </div>
+      </div>
     </div>
   </div>
-  
-  
-  
-  
-  
-  
+</div>

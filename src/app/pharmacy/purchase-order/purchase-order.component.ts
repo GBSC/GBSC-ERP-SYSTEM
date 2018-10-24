@@ -41,7 +41,7 @@ export class PurchaseOrderComponent implements OnInit {
     private TotalQuantity: number = 0;
     private Inventories: Inventory[] = [];
 
-    public Enabled: boolean = true;
+    public dataEnabled: boolean = false;
 
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
@@ -132,7 +132,7 @@ export class PurchaseOrderComponent implements OnInit {
     CalculateDiscountAmount(value) {
         // console.log(value);
 
-        this.Enabled = true; 
+        this.dataEnabled = true; 
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
         // console.log(this.DiscountAmount);
         this.CalculateNetAmount();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class VouchertypeComponent implements OnInit {
     VoucherTypeForm: any;
     updateVoucherType: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private toastr: ToastrService,private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
@@ -29,6 +30,9 @@ export class VouchertypeComponent implements OnInit {
     async addVouchertype() {
 
         await this.financeService.addVoucherType(this.VoucherTypeForm.value);
+        this.toastr.success("New Voucher Type Saved");
+        this.voucherType = await this.financeService.getVoucherTypes();
+        this.VoucherTypeForm.reset();
     }
 
     async updatingVouchertype(value) {

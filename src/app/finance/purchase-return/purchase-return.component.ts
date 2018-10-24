@@ -4,7 +4,8 @@ import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { PurchaseReturnDetail } from '../../core/Models/Finance/purchaseReturnDetail';
 import { PurchaseReturn } from '../../core/Models/Finance/purchaseReturn';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-purchase-return',
@@ -23,7 +24,7 @@ export class PurchaseReturnComponent implements OnInit {
 
   @Input('purchaseReturnId') id: number;
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+  constructor(public toastr:ToastrService, private fb: FormBuilder, public router: Router, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService) { }
 
   async ngOnInit() {
@@ -37,7 +38,7 @@ export class PurchaseReturnComponent implements OnInit {
       Description: [''],
       CreditDays: [''],
       VoucherNumber: [''],
-      InvoiceNumber: [''],
+      InvoceNumber: [''],
       Expenses: [''],
       GstAmount: [''],
       GstPercentage: [''],
@@ -66,7 +67,13 @@ export class PurchaseReturnComponent implements OnInit {
       this.financeService.getPurchaseReturn(this.id).subscribe(resp => {
 
         this.PurchaseReturn = resp;
-        this.PurchaseDetail = this.PurchaseReturn.financePurchaseReturnDetails; 
+        // this.PurchaseDetail = this.PurchaseReturn.financePurchaseReturnDetails;
+        let a = this.PurchaseReturn.financePurchaseReturnDetails;
+        this.PurchaseDetail = a.filter(b => {
+          delete b.financePurchaseReturnDetailId;
+          delete b.financePurchaseReturnId;
+          return b;
+        });  
         this.patchValues(this.PurchaseReturn);
       });
     }
@@ -82,7 +89,9 @@ export class PurchaseReturnComponent implements OnInit {
     let purchasereturndetail = new PurchaseReturn();
     purchasereturndetail= { ...purchasereturndetail, ...value };
     purchasereturndetail.FinancePurchaseReturnDetails = this.purchaseReturnDetail;
-     await this.financeService.addPurchaseReturn(purchasereturndetail);     
+     await this.financeService.addPurchaseReturn(purchasereturndetail);  
+     this.router.navigate(['/finance/purchase-return-detail']);
+   
   }
 
   isUpdate(): boolean {
@@ -102,9 +111,10 @@ export class PurchaseReturnComponent implements OnInit {
 
     value.FinancePurchaseReturnId = this.id;
     value.FinancePurchaseReturnDetails = this.PurchaseDetail;
-    console.log(value);
     this.financeService.updatePurchaseReturn(value).subscribe(resp=>{
-      console.log(resp);
+      this.toastr.success("Purchase Return Updated"); 
+      this.router.navigate(['/finance/purchase-return-detail']);
+
     })
   }
 

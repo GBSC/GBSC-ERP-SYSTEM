@@ -4,8 +4,9 @@ import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { SalesInvoiceDetail } from '../../core/Models/Finance/salesInvoiceDetail';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataGrid } from 'primeng/primeng';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sales-invoice',
@@ -26,7 +27,7 @@ export class SalesInvoiceComponent implements OnInit {
 
   @Input('salesInvoiceId') id: number;
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+  constructor(public toastr:ToastrService, private fb: FormBuilder, public router: Router, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService) { }
 
   async updatesalesInvoiceDetail(value) {
@@ -38,7 +39,9 @@ export class SalesInvoiceComponent implements OnInit {
     value.FinanceSalesInvoiceDetails = this.InvoiceDetail;
     console.log(value);
     this.financeService.updateSalesInvoice(value).subscribe(resp => {
-      console.log(resp);
+      this.toastr.success("Sales Invoice Updated"); 
+            this.router.navigate(['/finance/sales-invoice-detail']);
+
     });
   }
 
@@ -80,17 +83,16 @@ export class SalesInvoiceComponent implements OnInit {
       this.financeService.getSalesInvoiceByID(this.id).subscribe(resp => {
 
         this.Invoice = resp;
-        this.InvoiceDetail = this.Invoice.financeSalesInvoiceDetails;
-        // this.InvoiceDetail = a.map(b => {
-        //   // delete b.financeSalesInvoiceDetailId;
-        //   // delete b.financeSalesInvoiceId;
-        //   return b;
-        // });
-        // console.log(this.InvoiceDetail);
+        // this.InvoiceDetail = this.Invoice.financeSalesInvoiceDetails;
+        let a = this.Invoice.financeSalesInvoiceDetails;
+        this.InvoiceDetail = a.filter(b => {
+          delete b.financeSalesInvoiceDetailId;
+          delete b.financeSalesInvoiceId;
+          return b;
+        });
         this.patchValues(this.Invoice);
       });
     }
-
   }
 
   isUpdate(): boolean {
@@ -112,6 +114,8 @@ export class SalesInvoiceComponent implements OnInit {
     salesInvoicedetail = { ...salesInvoicedetail, ...value };
     salesInvoicedetail.FinanceSalesInvoiceDetails = this.salesInvoiceDetail;
     await this.financeService.addSalesInvoice(salesInvoicedetail);
+    this.router.navigate(['/finance/sales-invoice-detail']);
+
   }
 
   patchValues(salesinvoice: any) {

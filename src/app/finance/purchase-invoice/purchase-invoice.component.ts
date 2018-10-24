@@ -4,7 +4,8 @@ import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { PurchaseInvoiceDetail } from '../../core/Models/Finance/purchaseInvoiceDetail';
 import { PurchaseInvoice } from '../../core/Models/Finance/purchaseInvoice';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-purchase-invoice',
@@ -24,7 +25,7 @@ export class PurchaseInvoiceComponent implements OnInit {
 
   @Input('purchaseInvoiceId') id: number;
 
-  constructor(private fb: FormBuilder,public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+  constructor(public toastr:ToastrService, private fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService) { }
 
   async ngOnInit() {
@@ -65,7 +66,12 @@ export class PurchaseInvoiceComponent implements OnInit {
       this.financeService.getPurchaseInvoice(this.id).subscribe(resp => {
 
         this.PurchaseInvoice = resp;
-        this.InvoiceDetail  = this.PurchaseInvoice.financePurchaseInvoiceDetails; 
+        let a = this.PurchaseInvoice.financePurchaseInvoiceDetails;
+        this.InvoiceDetail = a.filter(b => {
+          delete b.financePurchaseInvoiceDetailId;
+          delete b.financePurchaseInvoiceId;
+          return b;
+        }); 
         this.patchValues(this.PurchaseInvoice);
       });
     }
@@ -81,7 +87,9 @@ export class PurchaseInvoiceComponent implements OnInit {
     let invoicedetail = new PurchaseInvoice();
     invoicedetail= { ...invoicedetail, ...value };
     invoicedetail.FinancePurchaseInvoiceDetails = this.purchaseInvoiceDetail;
-     await this.financeService.addPurchaseInvoice(invoicedetail);     
+     await this.financeService.addPurchaseInvoice(invoicedetail);    
+     this.router.navigate(['/finance/purchase-invoice-detail']);
+ 
   }
 
   isUpdate(): boolean {
@@ -103,7 +111,9 @@ export class PurchaseInvoiceComponent implements OnInit {
     value.financePurchaseInvoiceDetails = this.InvoiceDetail;
     console.log(value);
     this.financeService.updatePurchaseInvoice(value).subscribe(resp=>{
-      console.log(resp);
+      this.toastr.success("Purchase Invoice Updated"); 
+      this.router.navigate(['/finance/purchase-invoice-detail']);
+
     })
   }
 

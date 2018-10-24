@@ -4,7 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { SalesReturnDetail } from '../../core/Models/Finance/salesReturnDetail';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sales-return',
@@ -23,7 +24,7 @@ export class SalesReturnComponent implements OnInit {
 
   @Input('salesReturnId') id: number;
   
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+  constructor(public toastr: ToastrService, private fb: FormBuilder, public router: Router, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService) { }
 
   async ngOnInit() {
@@ -66,7 +67,13 @@ export class SalesReturnComponent implements OnInit {
       this.financeService.getSalesReturn(this.id).subscribe(resp => {
 
         this.Return = resp;
-        this.ReturnDetail = this.Return.financeSalesReturnDetails;
+        // this.ReturnDetail = this.Return.financeSalesReturnDetails;
+        let a = this.Return.financeSalesReturnDetails;
+        this.ReturnDetail = a.filter(b => {
+          delete b.financeSalesReturnDetailId;
+          delete b.financeSalesReturnId;
+          return b;
+        });
         this.patchValues(this.Return);
       });
     }
@@ -90,19 +97,22 @@ export class SalesReturnComponent implements OnInit {
     let salesReturndetail = new SalesReturn();
     salesReturndetail = { ...salesReturndetail, ...value };
     salesReturndetail.FinanceSalesReturnDetails = this.salesReturnDetail;
-    await this.financeService.addSalesReturn(salesReturndetail);    
+    await this.financeService.addSalesReturn(salesReturndetail); 
+    this.router.navigate(['/finance/sales-return-detail']);
+   
   }
 
-  async updatesalesReturnDetail(value) {
+   updatesalesReturnDetail(value) {
     console.log(value);
   }
 
   async update(value){
-    value.financeSalesReturnId = this.id;
-    value.financeSalesReturnDetails = this.ReturnDetail;
-    console.log(value);
+    value.FinanceSalesReturnId = this.id;
+    value.FinanceSalesReturnDetails = this.ReturnDetail;
     this.financeService.updateSalesReturn(value).subscribe(resp => {
-      console.log(resp);
+      this.toastr.success("Sales Return Updated");
+      this.router.navigate(['/finance/sales-return-detail']);
+
       
     })
     

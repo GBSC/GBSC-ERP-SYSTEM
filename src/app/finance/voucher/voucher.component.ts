@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { Voucher } from '../../core/Models/Finance/voucher';
@@ -26,7 +26,6 @@ export class VoucherComponent implements OnInit {
   public voucherDetail: VoucherDetail[];
 
   @Input('voucherId') id:number;
-  @Output() updateMessage = new EventEmitter();
 
   constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService, public SetupService: SetupService) { }
@@ -68,8 +67,13 @@ export class VoucherComponent implements OnInit {
 
       this.financeService.getVoucher(this.id).subscribe(resp => {
 
-        this.Voucher = resp;
-        this.Detail = this.Voucher.voucherDetails;
+        this.Voucher = resp; 
+        let a = this.Voucher.voucherDetails;
+        this.Detail = a.filter(b => {
+          delete b.voucherDetailId;
+          delete b.voucherId;
+          return b;
+        });
         this.patchValues(this.Voucher);
       });
     }
@@ -94,13 +98,12 @@ export class VoucherComponent implements OnInit {
     let v = new Voucher();
     v = { ...v, ...value };
     v.VoucherDetails = this.voucherDetail;
-    let r = await this.financeService.addVoucher(v);
-    console.log(r);
-    console.log(v);
-    
+     await this.financeService.addVoucher(v); 
+     this.router.navigate(['/finance/voucher-detail']);
+
   }
 
-  async updatevoucherDetail(value) {
+   updatevoucherDetail(value) {
     console.log(value);
   }
 
@@ -108,20 +111,12 @@ export class VoucherComponent implements OnInit {
 
     value.voucherId = this.id;
     value.VoucherDetails = this.Detail;
-    console.log(value);
     this.financeService.updateVoucher(value).subscribe(resp=>{
-      this.showSuccess("Voucher Updated"); 
-      console.log(this.showSuccess);
-      console.log(resp);
-      // this.router.navigate(['finance/voucher-detail']);
+      this.toastr.success("Voucher Updated"); 
+      this.router.navigate(['finance/voucher-detail']);
     })
   }
-
-  showSuccess(message) {
-
-    this.updateMessage.emit(message);
-}
-
+ 
   patchValues(voucher: any) {
 
     this.VoucherForm.patchValue({

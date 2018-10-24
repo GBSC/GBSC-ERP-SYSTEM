@@ -32,6 +32,9 @@ export class SubAccountComponent implements OnInit {
   async addSubaccount() {
 
       await this.financeService.addSubAccount(this.SubAccountForm.value);
+      this.subAccount = await this.financeService.getSubAccounts();
+      this.SubAccountForm.reset();
+
   }
 
   async updatingSubaccount(value) {

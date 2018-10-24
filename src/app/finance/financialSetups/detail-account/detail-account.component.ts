@@ -34,6 +34,8 @@ export class DetailAccountComponent implements OnInit {
   async addDetailaccount() {
 
       await this.financeService.addDetailAccount(this.DetailAccountForm.value);
+      this.detailAccount = await this.financeService.getDetailAccounts();
+      this.DetailAccountForm.reset();
   }
 
   async updatingDetailaccount(value) {

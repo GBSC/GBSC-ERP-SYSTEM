@@ -32,6 +32,8 @@ export class SecondSubAccountComponent implements OnInit {
   async addSecondSubaccount() {
 
       await this.financeService.addSecondSubAccount(this.SecondSubAccountForm.value);
+      this.secondSubAccount = await this.financeService.getSecondSubAccounts();
+      this.SecondSubAccountForm.reset();
   }
 
   async updatingSecondSubaccount(value) {

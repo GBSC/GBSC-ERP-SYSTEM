@@ -8,6 +8,9 @@ import { Currency } from '../../core/Models/Pharmacy/Currency';
 import { PurchaseOrderItem } from '../../core/Models/Inventory/Purchase/PurchaseOrderItem';
 import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
+import { DISABLED } from '@angular/forms/src/model';
+
+
 
 
 @Component({
@@ -37,6 +40,9 @@ export class PurchaseOrderComponent implements OnInit {
     private NetAmount: number = 0;
     private TotalQuantity: number = 0;
     private Inventories: Inventory[] = [];
+
+    public Enabled: boolean = true;
+
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group({
@@ -125,6 +131,8 @@ export class PurchaseOrderComponent implements OnInit {
 
     CalculateDiscountAmount(value) {
         // console.log(value);
+
+        this.Enabled = true; 
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
         // console.log(this.DiscountAmount);
         this.CalculateNetAmount();
@@ -193,13 +201,15 @@ export class PurchaseOrderComponent implements OnInit {
         this.Inventories.push(a);
     }
 
-    RemovePurchaseOrderDetails(index, NetAmount, quantity) {
+    RemovePurchaseOrderDetails(d) {
 
-        this.PurchaseOrderDetailsFormArray.splice(index, 1);
-        this.PurchaseOrderDetailsArray.splice(index, 1);
-        this.Inventories.splice(index, 1);
-        this.TotalOrderAmount -= Number.parseInt(NetAmount);
-        this.TotalQuantity -= Number.parseInt(quantity);
+        // this.PurchaseOrderDetailsFormArray.splice(index, 1);
+        // this.PurchaseOrderDetailsArray.splice(index, 1);
+        // this.Inventories.splice(index, 1);
+
+
+        this.TotalOrderAmount -= Number.parseInt(d.NetAmount);
+        this.TotalQuantity -= Number.parseInt(d.quantity);
     }
 
     ResetWholeForm() {

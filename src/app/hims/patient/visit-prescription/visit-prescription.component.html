@@ -6,11 +6,13 @@
         <div  class="m-portlet-body">
           <div class="m-section">
             <div class="m-section__content">
-                <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" keyExpr="salesIndentItemId" (onCellPrepared)="onCellPrepared($event)" (onEditingStart)="onEditingStart($event)" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdatePrescription()" (onRowRemoved)="DeletePrescription($event)"> 
-                    <dxo-editing  mode="row"[allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"> </dxo-editing>
-                    <dxo-filter-row [visible]="true"></dxo-filter-row>
-                    <dxo-header-filter [visible]="true"></dxo-header-filter>
-                    <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+               
+
+              <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" keyExpr="salesIndentItemId" (onEditingStart)="onEditingStart($event)" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)"  (onRowRemoved)="DeletePrescription($event)"> 
+                    <dxo-editing  mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"> </dxo-editing>
+                    <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+                    <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
+                    <!-- <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel> -->
                     <dxo-paging [pageSize]="5"></dxo-paging>
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
                     <!-- <dxi-column dataField="middleName" caption="Middle Name"></dxi-column>

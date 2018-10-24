@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 import { PharmacyService, PatientService } from '../../../core';
 import { SalesIndentItem } from '../../../core/Models/Pharmacy/SalesIndentItem';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { ActivatedRoute } from '@angular/router';
+import { DxDataGridComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-visit-prescription',
@@ -12,7 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class VisitPrescriptionComponent implements OnInit {
-
+	@ViewChild(DxDataGridComponent) gridContainer: DxDataGridComponent
+	
 	private InventoryItems : InventoryItem;
 	private InventoryItemDataSource : InventoryItem;
 	private FilteredInventoryItems : any;
@@ -21,7 +23,7 @@ export class VisitPrescriptionComponent implements OnInit {
 	private CurrentPatient : Patient;
 	private CurrentPatientID : number;
 	
-	private Prescriptions : any[]= [];
+	private Prescriptions : any[] = [];
 	private UpdatedModel : SalesIndentItem;
 
 	constructor(private PharmacyService : PharmacyService, private PatientService : PatientService, private Router: ActivatedRoute) {
@@ -54,10 +56,14 @@ export class VisitPrescriptionComponent implements OnInit {
 
 	onEditingStart(event) {
 		console.log(event);
-		console.log("EditingStart");
+		// console.log("EditingStart");
+		// let cached = this.InventoryItemDataSource;
 		this.InventoryItemDataSource = this.FilteredInventoryItems;
+ 
 		// if (event.cancel === true){
-		// 	console.log("b");
+		// 	console.log("aaaaaa");
+			
+		// 	this.InventoryItemDataSource = cached;
 		// }
 	}
 
@@ -84,27 +90,27 @@ export class VisitPrescriptionComponent implements OnInit {
 		// this.Prescriptions.push(value.data);
 	}
 
-	UpdateModel(value) {
-		// console.log(value);
-		let b : any = this.InventoryItems;
-		let a : InventoryItem = b.find( c => c.inventoryItemId == value.oldData.inventoryItemId );
-		this.FilteredInventoryItems.push(a);
-		console.log("FilteredInventoryItems", this.FilteredInventoryItems);
-		this.UpdatedModel = { ...value.oldData, ...value.newData };
-		this.FilteredInventoryItems = this.FilteredInventoryItems.filter(a => a.inventoryItemId != value.newData.inventoryItemId);
-		console.log("FilteredInventoryItems", this.FilteredInventoryItems);
-	}
+	// UpdateModel(value) {
+	// 	console.log(value);
+	// 	let b : any = this.InventoryItems;
+	// 	let a : InventoryItem = b.find( c => c.inventoryItemId == value.oldData.inventoryItemId );
+	// 	this.FilteredInventoryItems.push(a);
+	// 	// console.log("FilteredInventoryItems", this.FilteredInventoryItems);
+	// 	this.UpdatedModel = { ...value.oldData, ...value.newData };
+	// 	this.FilteredInventoryItems = this.FilteredInventoryItems.filter(a => a.inventoryItemId != value.newData.inventoryItemId);
+	// 	// console.log("FilteredInventoryItems", this.FilteredInventoryItems);
+	// }
 
-	UpdatePrescription() {
-		// console.log(this.Prescriptions);
-		this.InventoryItemDataSource = this.InventoryItems;
-	}
+	// UpdatePrescription() {
+	// 	// console.log(this.Prescriptions);
+	// 	this.InventoryItemDataSource = this.InventoryItems;
+	// }
 
 	DeletePrescription(value) {
 		let b : any = this.InventoryItems;
 		let a : InventoryItem = b.find( c => c.inventoryItemId == value.data.inventoryItemId );
 		this.FilteredInventoryItems.push(a);
-		console.log("FilteredInventoryItems", this.FilteredInventoryItems);
+		// console.log("FilteredInventoryItems", this.FilteredInventoryItems);
 		// console.log(value);
 		// console.log(this.Prescriptions);
 	}
@@ -151,33 +157,36 @@ export class VisitPrescriptionComponent implements OnInit {
 		(<any>this).defaultSetCellValue(rowData, value);
 	}
 
-	onCellPrepared(e) {
-		// console.log(this.InventoryItems);
-		// console.log(e);
-		if (e.rowType === 'data' && e.column.command === 'edit') {
-			console.log(e);
-			e.element.oncancel = function() {
-				console.log("a");
-				this.InventoryItemDataSource = this.InventoryItems;
-			};
+	// onCellPrepared(e) {
+	// 	// console.log(e);
+	// 	if (e.rowType === 'data' && e.column.command === 'edit') {
+	// 		console.log(e);
+	// 		//this.gridContainer.instance.refresh();
+	// 		// console.log("InventoryItemDataSource", this.InventoryItemDataSource);
+	// 		// this.InventoryItemDataSource = this.InventoryItems;
+	// 		e.element.oncancel = function() {
+	// 			console.log("a");
+	// 			this.InventoryItemDataSource = this.InventoryItems;
+	// 		};
 
-			// if(e.cellElement == 'click' || e.cellElement == '.dx-link-cancel') {
-			// 	console.log("a");
-			// 	this.InventoryItemDataSource = this.InventoryItems;
-			// }
-			// e.cellElement.oncancel('click', '.dx-link-cancel', function() { 
-			// 	alert('cancelled');
-			// 	this.InventoryItemDataSource = this.InventoryItems;
-			//  });
-		}
+	// 		// if(e.cellElement == 'click' || e.cellElement == '.dx-link-cancel') {
+	// 		// 	console.log("a");
+	// 		// 	this.InventoryItemDataSource = this.InventoryItems;
+	// 		// }
+	// 		// e.cellElement.oncancel('click', '.dx-link-cancel', function() { 
+	// 		// 	alert('cancelled');
+	// 		// 	this.InventoryItemDataSource = this.InventoryItems;
+	// 		//  });
+	// 	}
 		
-	}
+	// }
 
 	onEditorPreparing(e) {
-		// console.log(e);
+		console.log(e);
 		if (e.parentType === "dataRow" && e.value && e.dataField === "inventoryItemId") {
 			// console.log(e);
 			this.SelectedInventoryItem = this.FilteredInventoryItems.find(a => a.inventoryItemId == e.value);
+			this.InventoryItemDataSource = this.InventoryItems;
 			// console.log("this.SelectedInventoryItem", this.SelectedInventoryItem);
 		}
 		// if (e.parentType === "dataRow" && e.dataField === "distributorId") {

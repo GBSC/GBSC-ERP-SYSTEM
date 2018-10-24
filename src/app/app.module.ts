@@ -21,7 +21,6 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
     declarations: [
         ThemeComponent,
         AppComponent,
-
     ],
     imports: [
         CommonModule,

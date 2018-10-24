@@ -21,7 +21,7 @@
 							(onRowUpdating)="updatingrequest($event)" 
 							(onRowRemoved)="deleteattendancerequest($event)"> 
 
-							<dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
+							<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
 								<dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -39,7 +39,7 @@
 									</dxo-lookup>
 								</dxi-column> 
 							<dxi-column dataField="assignRosterId" caption="Assign Roster">
-									<dxo-lookup [dataSource]="assignroster" displayExpr="month" valueExpr="assignRosterId">
+									<dxo-lookup [dataSource]="assignroster" displayExpr="year" valueExpr="assignRosterId">
 									</dxo-lookup>
 								</dxi-column> 
 							<dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">

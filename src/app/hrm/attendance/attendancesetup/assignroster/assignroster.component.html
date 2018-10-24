@@ -16,7 +16,8 @@
                [dataSource]="assignroster"
                keyExpr="assignRosterId"
                (onRowInserted)="addassignroster($event)"
-               (onRowUpdated)="updateassignroster($event)"
+               (onRowUpdating)="updatingAssignroster($event)"
+               (onRowUpdated)="updateassignroster()"
                (onRowRemoved)="deleteassignroster($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Assign Roster" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
@@ -29,8 +30,7 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="year" dataType="date" format="year"></dxi-column> 
-                <dxi-column dataField="month" dataType="date" format="month"></dxi-column> 
+                <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
                 <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column> 
                 <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column> 
                 <dxi-column dataType="boolean" dataField="isDefaultRoster" caption ="Default Roster"></dxi-column> 

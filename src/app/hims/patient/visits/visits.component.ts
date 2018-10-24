@@ -88,7 +88,7 @@ export class VisitsComponent implements OnInit {
         this.vist = await this.PatientServiceobj.getVisitId(this.id);
         console.log(this.vist)
 
-        this.vistid = await this.PatientServiceobj.visitid.visitID;
+      //  this.vistid = await this.PatientServiceobj.visitid.visitID;
 
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
@@ -105,6 +105,15 @@ export class VisitsComponent implements OnInit {
         await this.PatientServiceobj.getDiagnoses();
         this.diagnoses = this.PatientServiceobj.diagnoses;
         console.log(this.diagnoses);
+
+
+
+        let visitID = JSON.parse(sessionStorage.getItem('visitId'));
+        console.log(visitID);
+        this.visitid =  visitID.visitID;
+
+
+        
     }
 
     // onSubmit() {
@@ -117,8 +126,8 @@ export class VisitsComponent implements OnInit {
     // }
 
     async onEndVisit() {
-        let x = await this.PatientServiceobj.getVisitId(this.vistid);
-        await this.PatientServiceobj.endVisit(this.vistid, x);
+        let x = await this.PatientServiceobj.getVisitId(this.visitid);
+        await this.PatientServiceobj.endVisit(this.visitid, x);
         console.log(x)
         this.router.navigate(['/hims/patient/profile/' + this.id]);
         console.log(this.id);
@@ -126,7 +135,7 @@ export class VisitsComponent implements OnInit {
     //add visitnote
     async addPatientVisitNote(value) {
         console.log(value);
-        let y = await this.PatientServiceobj.visitid.visitID;
+        let y = this.visitid;
         this.PatientVisitNoteForm.value.VisitId = y;
         let x = await this.PatientServiceobj.addVisitNote(value);
         console.log(x);
@@ -138,13 +147,15 @@ export class VisitsComponent implements OnInit {
 
     }
 
+    
+
     async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;
-        this.PatientAppointmentForm.value.VisitId = this.vistid;
+        this.PatientAppointmentForm.value.VisitId = this.visitid;
         let x = await this.PatientServiceobj.addAppointment(value);
         console.log(value);
         console.log(x)
-        console.log(this.vistid);
+        console.log(this.visitid);
         this.displayToastSuccess("Saved");
 
 
@@ -162,7 +173,7 @@ export class VisitsComponent implements OnInit {
     }
 
     addrangeForTest() {
-        this.VisitTestForm.value.VisitId = this.vistid;
+        this.VisitTestForm.value.VisitId = this.visitid;
 
         let { value } = this.VisitTestForm;
         let test = this.test.find(t => t.testId === value.TestId);
@@ -182,7 +193,7 @@ export class VisitsComponent implements OnInit {
         });
         console.log(this.VisitTests);
         console.log(this.vistid);
-        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.vistid ,this.VisitTests);
+        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.visitid ,this.VisitTests);
         console.log(x);
         console.log(this.VisitTests);
         this.removealltest(this.VisitTests);
@@ -197,7 +208,7 @@ export class VisitsComponent implements OnInit {
         this.VisitTests.length = 0
     }
     addrangeForDiagnosis() {
-        this.VisitDiagnosesForm.value.VisitId = this.vistid;
+        this.VisitDiagnosesForm.value.VisitId = this.visitid;
         let { value } = this.VisitDiagnosesForm;
         let diagnose = this.diagnoses.find(t => t.diagnosisId === value.DiagnosisId);
         let doc = {

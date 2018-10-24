@@ -40,14 +40,12 @@ async  ngOnInit() {
  await this.PatientServiceobj.getPatient();
  this.par = this.PatientServiceobj.patients;
  console.log(this.par);
- 
-
 
 
   }
 
   formatDate(date: Date) {
-    return date.getFullYear( ) + "-" +( date.getMonth()+ 1 )+"-" + date.getDate();
+    return date.getFullYear( ) + "-" +( date.getMonth()+ 1 ) +"-" + date.getDate();
 
     //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
 }

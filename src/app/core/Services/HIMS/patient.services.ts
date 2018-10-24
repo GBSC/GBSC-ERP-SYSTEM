@@ -388,6 +388,9 @@ export class PatientService {
 
     async AddVisits(id) {
         this.visitid = await this.ApiService.post(this.API_URL + 'Visits/AddVisit', { patientId: id }).toPromise();
+          sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
+          this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+          console.log(this.visitid)
         //this.visitid = await this.http1.post(this.API_URL + '/Visits/AddVisit/', { patientId: id }).toPromise()
         //console.log(this.visitid);
         return this.visitid;

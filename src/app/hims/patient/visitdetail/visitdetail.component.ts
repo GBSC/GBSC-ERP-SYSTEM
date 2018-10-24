@@ -91,36 +91,29 @@ export class VisitdetailComponent implements OnInit {
 
 
 
+ 
 
-    enableVitalsInputFields() {
+enableVitalsInputFields(){
+    console.log(this.formattime(new Date(this.visit.endTime)));
+    console.log(this.formatDate(new Date()));
+if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date())) {
+    console.log(true);
+   this.vitalUpdateFieldsEnabled = false; 
+}else {
+   this.vitalUpdateFieldsEnabled = true; 
+   console.log(false);
+}
+}
 
-        let visitStartDate = this.visit.startTime;
-        let date = new Date(visitStartDate);
-        date.setHours(date.getHours() - 5);
-        if(date.getTime() > new Date().getTime()) {
-            console.log(true);
-            this.vitalUpdateFieldsEnabled = false; 
-        }else {
-            this.vitalUpdateFieldsEnabled = true; 
-            console.log(false);
-        }
-        // console.log(date.getTime());
-        // console.log(new Date().getTime());
-        // console.log(date.getTime() > Date.now())
-        // console.log(visitStartDate);
 
-        // if(e.target.checked) {
-        //     this.updateTimeLimitExceeded = true;
-        //     this.vitalUpdateFieldsEnabled = true;
-        //     setTimeout(() => {
-        //        this.updateTimeLimitExceeded = false;
-        //        this.vitalUpdateFieldsEnabled = false; 
-        //     }, 5000);
-        // }
-    }
+    
+ 
+    
+
 
 
     async ngOnInit() {
+         
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
         console.log(this.consultant);
@@ -138,7 +131,7 @@ export class VisitdetailComponent implements OnInit {
         this.visitnatures = this.PatientServiceobj.visitNatures;
 
         console.log(this.visitnatures);
-        this.enableVitalsInputFields();
+       // this.enableVitalsInputFields();
 
         //  await this.PatientServiceobj.GetVisitNatures();
         //  this.visitnatures = this.PatientServiceobj.visitNatures;
@@ -152,7 +145,14 @@ export class VisitdetailComponent implements OnInit {
 
                 console.log(this.visit);
 
+                // work for disable time strat
+                
+                this.enableVitalsInputFields();
+               
+               
+                // work for disable time end
 
+ 
 
                 this.visitdiag = this.visit.visitDiagnoses
 
@@ -197,13 +197,13 @@ export class VisitdetailComponent implements OnInit {
 
                     let x = this.PatientServiceobj.GetAppointmentByVisit(this.id).subscribe((appointment: any) => {
                         this.appointment = appointment;
-                        // console.log(this.consultant);
-                        this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
-                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
+                        console.log(this.appointment);
 
-                        console.log(this.getvisitnatureId);
-                        console.log(appointment);
-                        ///console.log(this.getconsultantbyId.name);
+                         this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
+                        console.log(  this.getconsultantbyId)
+                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
+                         console.log(this.getvisitnatureId);
+                         ///console.log(this.getconsultantbyId.name);
                         console.log(this.consultant);
 
                         this.VisitAppointmentForm.patchValue({
@@ -241,8 +241,23 @@ export class VisitdetailComponent implements OnInit {
             });
         });
 
+ 
 
     }
+
+    formatDate(date: Date) {
+
+ 
+
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + ( date.getMinutes()+1)  ;
+    }
+    formattime(date: Date) {
+
+        //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+
+        return  (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + (date.getHours() +5)  + "/" +  (date.getMinutes()+16)  ;
+    }
+
 
     goback() {
         this.Location.back();

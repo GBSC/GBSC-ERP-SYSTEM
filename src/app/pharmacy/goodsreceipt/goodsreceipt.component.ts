@@ -80,14 +80,15 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     GetSelectedPurchaseOrderDetails(ponumber, keycode){
-        // console.log(ponumber, keycode);
+         console.log(ponumber);
+         console.log(  keycode);
         if(keycode.key == "Enter") {
             this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
                 if(res != null) {
                     this.SelectedPurchaseOrder = res;
                     //console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
                     this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
-                    //console.log("SelectedPurchaseOrderItems", this.SelectedPurchaseOrderItems);
+                    console.log("SelectedPurchaseOrderItems", this.SelectedPurchaseOrderItems);
                 }
                 else {
                     this.Toast.error('GRN already exists for selected PO!', 'Error!');

@@ -11,6 +11,6 @@ export interface SalesIndentItem {
     dosage : number,
     treatmentStart : Date,
     treatmentEnd : Date,
-    tratmentTime : number,
+    treatmentTimeInDays : number,
     isPaid : boolean
 }

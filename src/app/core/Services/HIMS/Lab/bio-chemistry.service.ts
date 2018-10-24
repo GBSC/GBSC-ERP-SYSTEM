@@ -16,109 +16,103 @@ export class BioChemistryService {
     public embryologist: any;
     public embryologycode: any;
 
-    private readonly API_URL = 'hims/api/';
+    private readonly API_URL = 'hims/api/biochemistry/';
 
     constructor(private http: HttpClient, private ApiService: ApiService) { }
 
 
-    getTests(): Observable<BioChemistryTest> {
-        return this.ApiService.get(this.API_URL + 'BioChemistry/GetBioChemistryTests');
-        //return this.http.get<BioChemistryTest>(this.API_URL + 'BioChemistry/GetBioChemistryTests');
+    getPatientBioChemistryTestByClinicalRecordId(id: number) {
+        return this.ApiService.get(this.API_URL + 'GetPatientBioChemistryTestByClinicalRecordId/' + id);
+    }
+
+    getPatientBioChemistryTests(): Observable<any> {
+        return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTests");
+    }
+
+    getPatientBioChemistryTest(id: number): Observable<any> {
+        return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTest/" + id);
+    }
+
+    addPatientBioChemistryTest(value): Observable<any> {
+        return this.ApiService.post(this.API_URL + "AddPatientBioChemistryTest", value);
+    }
+
+    updatePatientBioChemistryTest(value): Observable<any> {
+        return this.ApiService.put(this.API_URL + "UpdatePatientBioChemistryTest", value);
+    }
+
+    deletePatientBiopsy(id) {
+        this.ApiService.delete(this.API_URL + "DeleteBiopsy" + id);
+    }
+
+    getTests(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetBioChemistryTests');
     }
 
     getUnits(): Observable<TestUnit> {
-        return this.ApiService.get(this.API_URL + 'BioChemistry/GetTestUnits');
-        //return this.http.get<TestUnit>(this.API_URL + "BioChemistry/GetTestUnits");
+        return this.ApiService.get(this.API_URL + 'GetTestUnits');
     }
 
-    async addTest(test: BioChemistryTest) {
-        return await this.ApiService.post(this.API_URL + 'BioChemistry/AddBioChemistryTest', test).subscribe(resp => console.log(resp));
-        //this.http.post(this.API_URL + 'BioChemistry/AddBioChemistryTest', test).subscribe(resp => console.log(resp));
+    addTest(test: BioChemistryTest): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'AddBioChemistryTest', test);
     }
 
     async addUnit(test: TestUnit) {
-        return await this.ApiService.post(this.API_URL + 'BioChemistry/AddTestUnit', test).subscribe(resp => console.log(resp));
-        //this.http.post(this.API_URL + 'BioChemistry/AddTestUnit', test).subscribe(resp => console.log(resp));
+        return await this.ApiService.post(this.API_URL + 'AddTestUnit', test).subscribe(resp => console.log(resp));
     }
 
     async getReferenceRanges() {
-        this.referencerange = await this.ApiService.get(this.API_URL + 'BioChemistry/GetReferenceRanges').toPromise()
-        //this.referencerange = await this.http.get<referenceRange>(this.API_URL + 'BioChemistry/GetReferenceRanges').toPromise()
-        //console.log(this.referencerange);
+        this.referencerange = await this.ApiService.get(this.API_URL + 'GetReferenceRanges').toPromise()
         return this.referencerange;
     }
 
     async addReferenceRange(ReferenceRange: referenceRange) {
         return await this.ApiService.post(this.API_URL + '', ReferenceRange).toPromise();
-        //let x = this.http.post(this.API_URL + 'BioChemistry/AddReferenceRange/', ReferenceRange).toPromise();
-        //console.log(x);
-        //return x;
     }
 
     async updateReferenceRange(ReferenceRange: referenceRange) {
-        return await this.ApiService.put(this.API_URL + 'BioChemistry/UpdateReferenceRange', ReferenceRange).toPromise();
-        // let x = await this.http.put(`${this.API_URL}/BioChemistry/UpdateReferenceRange/`, ReferenceRange).toPromise();
-        // console.log(x);
-        // return x;
+        return await this.ApiService.put(this.API_URL + 'UpdateReferenceRange', ReferenceRange).toPromise();
 
     }
 
     async getEmbryologists() {
         this.embryologist = await this.ApiService.get(this.API_URL + 'HimsSetup/GetEmbryologists').toPromise();
-        // this.embryologist = await this.http.get<Embryologists>(this.API_URL + '/HimsSetup/GetEmbryologists/').toPromise()
-        // console.log(this.embryologist);
+
         return this.embryologist;
     }
 
     async addEmbryologist(embryologists: Embryologists) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddEmbryologist', embryologists).toPromise();
-        // let x = await this.http.post(this.API_URL + '/HimsSetup/AddEmbryologist/', embryologists).toPromise();
-        // console.log(x);
-        // return x;
     }
 
     async updateEmbryologist(embryologists: Embryologists) {
         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateEmbryologist', embryologists).toPromise();
-        // let x = await this.http.put(this.API_URL + '/HimsSetup/UpdateEmbryologist/', embryologists).toPromise();
-        // console.log(x);
-        // return x;
     }
 
     async deleteEmbryologist(id) {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteEmbryologist/' + id).toPromise();
-        // let x = await this.http.delete(this.API_URL + '/HimsSetup/' + id).toPromise();
-        // console.log(x);
-        // return x;
+
     }
 
 
     async getEmbryologyCodes() {
         this.embryologycode = await this.ApiService.get(this.API_URL + 'HimsSetup/GetEmbryologyCodes').toPromise();
-        // this.embryologycode = await this.http.get<EmbryologyCode>(this.API_URL + '/HimsSetup/GetEmbryologyCodes/').toPromise();
-        // console.log(this.embryologycode);
         return this.embryologycode;
     }
 
     async addEmbryologyCode(embryologyCode: EmbryologyCode) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddEmbryologyCode', this.embryologycode).toPromise();
-        // let x = await this.http.post(this.API_URL + '/HimsSetup/AddEmbryologyCode/', embryologyCode).toPromise();
-        // console.log(x);
-        // return x;
     }
 
     async updateEmbryologyCode(embryologyCode: EmbryologyCode) {
         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateEmbryologyCode', this.embryologycode).toPromise();
-        // let x = await this.http.put(this.API_URL + '/HimsSetup/UpdateEmbryologyCode/', embryologyCode).toPromise();
-        // console.log(x);
-        // return x;
+
 
     }
 
     async deleteEmbryologyCode(id) {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteEmbryologyCode/' + id).toPromise();
-        // let x = await this.http.delete(this.API_URL + '' + id).toPromise();
-        // console.log(x);
-        // return x;
+
     }
 
 }

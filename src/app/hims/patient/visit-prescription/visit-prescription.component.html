@@ -6,25 +6,65 @@
         <div  class="m-portlet-body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdatingModel($event)" (onRowUpdated)="UpdatePrescription($event)" (onRowRemoved)="DeletePrescription($event)"> 
+                <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" keyExpr="salesIndentItemId" (onCellPrepared)="onCellPrepared($event)" (onEditingStart)="onEditingStart($event)" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdatePrescription()" (onRowRemoved)="DeletePrescription($event)"> 
+                    <dxo-editing  mode="row"[allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"> </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="5"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+                    <!-- <dxi-column dataField="middleName" caption="Middle Name"></dxi-column>
+                    <dxi-column dataField="lastName" caption="Last Name" [visible]="false"></dxi-column>
+                    <dxi-column dataField="company" caption="Company" [visible]="false"></dxi-column>
+                    <dxi-column dataField="fullName" caption="Full Name" [visible]="false"></dxi-column>
+                    <dxi-column dataField="dOB" caption="DOB" [visible]="false" format="shortDate" dataType="date"></dxi-column>
+                    <dxi-column dataField="placeOfBirth" caption="Place Of Birth" [visible]="false"></dxi-column>
+                    <dxi-column dataField="occupation" caption="Occupation" [visible]="false"></dxi-column>
+                    <dxi-column dataField="nIC" caption="CNIC" [visible]="false"></dxi-column>
+                    <dxi-column dataField="gender" caption="Gender" [visible]="false"></dxi-column>
+                    <dxi-column dataField="phoneNumber" caption="Phone Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="remarks" caption="Remarks" [visible]="false"></dxi-column>
+                    <dxi-column dataField="residenceAddress" caption="Residential Address" [visible]="false"></dxi-column>
+                    <dxi-column dataField="officeAddress" caption="Office Address" [visible]="false"></dxi-column>
+                    <dxi-column dataField="officeTel" caption="Office Phone Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="foreignAddress" caption="Foreign Address" [visible]="false"></dxi-column>
+                    <dxi-column dataField="country"caption="Country" [visible]="true"></dxi-column>
+                    <dxi-column dataField="tratmentTime" caption="City" [visible]="false"></dxi-column>
+                    <dxi-column dataField="state" caption="State" [visible]="false"></dxi-column> -->
+                    <dxi-column dataField="inventoryItemId" caption="Medicine" [visible]="true" [setCellValue]="setItemValue">
+                      <dxo-lookup [dataSource]="InventoryItemDataSource" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="treatmentStart" dataType="date" format="longDate" caption="Start Date" [visible]="true"></dxi-column>
+                    <dxi-column dataField="treatmentTimeInDays" caption="Treatment Duration" [visible]="true"></dxi-column>
+                    <!-- <dxi-column dataField="treatmentEnd" dataType="date" format="longDate" caption="End Date" [visible]="true"></dxi-column> -->
+                    <dxi-column dataField="dosage" caption="Dosage/Day" [visible]="true"></dxi-column>
+                    <!-- <dxi-column dataField="description" caption="Description" [value]:"SelectedInventoryItem.description" [visible]="true"></dxi-column> -->
+                    <!-- <dxi-column dataField="territoryId" caption="Territory" [visible]="false" [setCellValue]="setTerritoryValue">
+                      <dxo-lookup [dataSource]="getFilteredTerritories" valueExpr="territoryId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="distributorId" caption="Distributor" [visible]="true">
+                      <dxo-lookup [dataSource]="getFilteredDistributors" valueExpr="distributorId" displayExpr="name"></dxo-lookup>
+                    </dxi-column> -->
+                </dx-data-grid> 
+              <!-- <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" keyExpr="salesIndentItemId" (onEditorPrepared)="onEditorPrepared($event)" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdatingModel($event)" (onRowUpdated)="UpdatePrescription()" (onRowRemoved)="DeletePrescription($event)">
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
               </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                
-                <dxi-column dataField="inventoryItemId" caption="Medicine" [visible]="true">
+                <dxi-column dataField="inventoryItemId" caption="Medicine" [setCellValue]="setItemValue($event)" [visible]="true">
                   <dxo-lookup [dataSource]="InventoryItems" valueExpr="iventoryItemId" displayExpr="name"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-                <dxi-column dataField="fisrtName" caption="FisrtName" [setCellValue]="setAreaValue" [visible]="true"></dxi-column>
-              </dx-data-grid>
+                <dxi-column dataField="description" caption="Description" [visible]="false"></dxi-column>
+                <dxi-column dataField="packType.name" caption="PackType" [visible]="false"></dxi-column>
+                <dxi-column dataField="packSize.size" caption="PackSize" [visible]="false"></dxi-column>
+                <dxi-column dataField="dose" caption="Recommended Doasge" [visible]="false"></dxi-column>
+                <dxi-column dataField="dosage" caption="Prescribed Doasge" [visible]="true"></dxi-column>
+                <dxi-column dataField="treatmentStart" caption="Start Date" [visible]="true"></dxi-column>
+                <dxi-column dataField="treatmentEnd" caption="End Date" [visible]="true"></dxi-column>
+                <dxi-column dataField="isPaid" caption="Paid" [visible]="false"></dxi-column>
+              </dx-data-grid> -->
             </div>
         </div>
         </div>

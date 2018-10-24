@@ -39,11 +39,13 @@ export class PatientvitalsComponent implements OnInit {
             BloodOxygenSaturation: ['', Validators.required],
             VisitId: ['', Validators.required]
         });
+            //    this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+
 
     }
 
     ngOnInit() {
-
+ 
         this.currentPatient = this.PatientServiceobj.currentPatient;
         console.log(this.currentPatient);
 
@@ -64,8 +66,10 @@ export class PatientvitalsComponent implements OnInit {
     }
 
     async  onsubmit(value) {
-
-        this.visitid = this.PatientServiceobj.visitid.visitID;
+        
+        let visitID = JSON.parse(sessionStorage.getItem('visitId'));
+        console.log(visitID);
+        this.visitid =  visitID.visitID;
         // console.log(this.visitid.value);
 
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;

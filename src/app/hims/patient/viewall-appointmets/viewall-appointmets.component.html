@@ -61,8 +61,12 @@
                       <dxi-column dataField="patientId" caption="Phone Number" [width]="125">
                         <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                       </dxi-column>
-                    <dxi-column dataField="patientType" caption="patientType"></dxi-column>
-                    <dxi-column dataField="totalVisitsToDate" caption="Visits" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                    <dxi-column dataField="patientType" caption="patientType"></dxi-column> 
+
+                    <dxi-column dataField="patientId" caption="Visits" [width]="125">
+                        <dxo-lookup [dataSource]="par" displayExpr="totalVisitsToDate" valueExpr="patientId"></dxo-lookup>
+                      </dxi-column>
+                    <!-- <dxi-column dataField="totalVisitsToDate" caption="Visits" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
 
                       <dxi-column caption="Profile" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                       <div *dxTemplate="let d of 'chartCellTemplate'">

@@ -39,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
     id: number;
 
-    public Patient: any = ''  ;
+    public Patient: any = '';
 
     private forevent: File = null;
 
@@ -58,7 +58,7 @@ export class RegistrationComponent implements OnInit {
     documentsumitted = false;
 
 
-    constructor(private toastr: ToastrService,private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             'ReferredBy': [''],
@@ -123,34 +123,34 @@ export class RegistrationComponent implements OnInit {
             this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
                 console.log(this.Patient)
-
-                this.patientForm.patchValue({
-                    RegCity: this.Patient.regCity,
-                    visitNatureId: Patient.visitNatureId,
-                    FirstName: Patient.firstName,
-                    MiddleName: Patient.middleName,
-                    LastName: Patient.lastName,
-                    DOB: Patient.dob,
-                    PlaceOfBirth: Patient.placeOfBirth,
-                    Occupation: Patient.occupation,
-                    NIC: Patient.nic,
-                    Gender: Patient.gender,
-                    PhoneNumber: Patient.phoneNumber,
-                    OfficeAddress: Patient.officeAddress,
-                    ResidenceAddress: Patient.residenceAddress,
-                    Remarks: Patient.remarks,
-                    OfficeTel: Patient.officeTel,
-                    ForeignAddress: Patient.foreignAddress,
-                    Country: Patient.country,
-                    City: Patient.city,
-                    State: Patient.state,
-                    PostalCode: Patient.postalCode,
-                    Initial: Patient.initial,
-                    PrivatePatientCons: Patient.privatePatientCons,
-                    PrivateHospital: Patient.privateHospital,
-                    AuthorizedPerson: Patient.authorizedPerson,
-                });
-
+                if (Patient) {
+                    this.patientForm.patchValue({
+                        RegCity: Patient.regCity,
+                        visitNatureId: Patient.visitNatureId,
+                        FirstName: Patient.firstName,
+                        MiddleName: Patient.middleName,
+                        LastName: Patient.lastName,
+                        DOB: Patient.dob,
+                        PlaceOfBirth: Patient.placeOfBirth,
+                        Occupation: Patient.occupation,
+                        NIC: Patient.nic,
+                        Gender: Patient.gender,
+                        PhoneNumber: Patient.phoneNumber,
+                        OfficeAddress: Patient.officeAddress,
+                        ResidenceAddress: Patient.residenceAddress,
+                        Remarks: Patient.remarks,
+                        OfficeTel: Patient.officeTel,
+                        ForeignAddress: Patient.foreignAddress,
+                        Country: Patient.country,
+                        City: Patient.city,
+                        State: Patient.state,
+                        PostalCode: Patient.postalCode,
+                        Initial: Patient.initial,
+                        PrivatePatientCons: Patient.privatePatientCons,
+                        PrivateHospital: Patient.privateHospital,
+                        AuthorizedPerson: Patient.authorizedPerson,
+                    });
+                
                 this.partnerForm.patchValue({
                     FirstName: Patient.partner.firstName,
                     MiddleName: Patient.partner.middleName,
@@ -168,6 +168,7 @@ export class RegistrationComponent implements OnInit {
                     RefAddress: Patient.patientReference.refAddress,
                     ReferenceTel: Patient.patientReference.referenceTel,
                 });
+            }
             });
         });
 
@@ -189,9 +190,9 @@ export class RegistrationComponent implements OnInit {
         this.visitnature = this.PatientServiceobj.visitNatures;
         console.log(this.visitnature);
     }
- 
+
     addrange() {
-     
+
 
 
         //   let { value } = this.documentForm;
@@ -237,12 +238,13 @@ export class RegistrationComponent implements OnInit {
 
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
- 
-            this.patientId = await this.PatientServiceobj.addPatient(value);
-            console.log(this.patientId);
-            this.displayToastSuccess("Patient Registered");
-               //    this.patientForm.reset();
-       
+
+        this.patientId = await this.PatientServiceobj.addPatient(value);
+        console.log(this.patientId);
+        this.displayToastSuccess("Patient Registered");
+         //  this.patientForm.reset();
+           console.log(this.patientForm);
+
 
         // this.upload(this.patientId);
         // this.router.navigate(['/hims/patient/findpatient']);
@@ -264,10 +266,10 @@ export class RegistrationComponent implements OnInit {
         }
         this.partnerForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         // this.addpartnet = value
-       
-         await this.PatientServiceobj.addSpouse(value);
-         this.displayToastSuccess("Saved");
- 
+
+        await this.PatientServiceobj.addSpouse(value);
+        this.displayToastSuccess("Saved");
+
     }
 
     get r() { return this.referenceForm.controls; }
@@ -286,14 +288,14 @@ export class RegistrationComponent implements OnInit {
         this.referenceForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         await this.PatientServiceobj.addPatientReference(value);
         this.displayToastSuccess("Saved");
-         // console.log(value);
+        // console.log(value);
         // this.addReference = value;
     }
     public docs: File[] = [];
 
- 
+
     onAddDocument() {
-        
+
 
         if (this.patientId === undefined) {
             return alert('First Add Patient Detail');

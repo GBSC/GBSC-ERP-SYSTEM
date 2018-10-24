@@ -255,7 +255,7 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
 
         //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
 
-        return  (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" +  (date.getMinutes()+19)  ;
+        return  (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + (date.getHours() +5)  + "/" +  (date.getMinutes()+16)  ;
     }
 
 

@@ -1,0 +1,44 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Patient Embryology Records</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+
+              <dx-data-grid id="gridContainer" [dataSource]="clinicalRecords">
+
+                <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxi-column dataField="patientName"></dxi-column>
+                <dxi-column dataField="spouse"></dxi-column>
+                <dxi-column dataField="mrn"></dxi-column>
+                <dxi-column dataField="treatmentType"></dxi-column>
+                <dxi-column dataField="consultant"></dxi-column>
+                <dxi-column dataField="cycleNumber"></dxi-column>
+                <dxi-column dataField="patientClinicalRecordId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                <div *dxTemplate="let data of 'cellTemplate'">
+                  <a class="btn btn-primary" [routerLink]="['/lab/embryology-section', data.value]">View</a>
+              </div>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

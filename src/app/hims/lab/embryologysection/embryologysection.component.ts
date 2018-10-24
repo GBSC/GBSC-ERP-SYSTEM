@@ -20,6 +20,14 @@ export class EmbryologysectionComponent implements OnInit {
     private id: number;
     private clinicalRecord: any;
 
+    private patientInsemenation: any;
+    private bioChemistryTestOnTreatment: any;
+    private thawAssessment: any;
+    private freezePrepration: any;
+    private insemenationPrep: any;
+    private biopsy: any;
+    private tvopu : any;
+
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
     constructor(private consultantService: ConsultantService,
@@ -33,9 +41,19 @@ export class EmbryologysectionComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
 
-            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+            this.clinicalrecordservice.getPatientClinicalRecordWithChildren(this.id).subscribe(resp => {
 
                 this.clinicalRecord = resp;
+
+                if (this.clinicalRecord != null) {
+                    this.bioChemistryTestOnTreatment = this.clinicalRecord.bioChemistryTestOnTreatment;
+                    this.biopsy = this.clinicalRecord.biopsy;
+                    this.insemenationPrep = this.clinicalRecord.insemenationPrep;
+                    this.freezePrepration = this.clinicalRecord.freezePrepration;
+                    this.thawAssessment = this.clinicalRecord.thawAssessment;
+                    this.patientInsemenation = this.clinicalRecord.patientInsemenation;
+                    this.tvopu = this.clinicalRecord.tvopu;
+                }
 
 
             })

@@ -118,12 +118,15 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="bioChemistryTestOnTreatment; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/biochemistry-ontreatment', id]" [class.disabled]="!bioChemistryTestOnTreatment">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -136,12 +139,15 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="tvopu; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/tvopu', id]" [class.disabled]="!tvopu">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -154,25 +160,31 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            <i *ngIf="patientInsemenation; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/insemenation', id]" [class.disabled]="!patientInsemenation">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>
                       <div class="col-3"></div>
                     </div>
-                    <div class="form-group m-form__group row">
+                    <!-- <div class="form-group m-form__group row">
                       <label for="example-text-input" class="col-5 col-form-label">
                         Embryo Freezing
                       </label>
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="bioChemistryTestOnTreatment; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
                             <button class="btn btn-primary" type="button">
@@ -182,15 +194,18 @@
                         </div>
                       </div>
                       <div class="col-3"></div>
-                    </div>
-                    <div class="form-group m-form__group row">
+                    </div> -->
+                    <!-- <div class="form-group m-form__group row">
                       <label for="example-text-input" class="col-5 col-form-label">
                         Embryo Thawing
                       </label>
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            <i *ngIf="bioChemistryTestOnTreatment; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
                             <button class="btn btn-primary" type="button">
@@ -200,7 +215,7 @@
                         </div>
                       </div>
                       <div class="col-3"></div>
-                    </div>
+                    </div> -->
                     <div class="form-group m-form__group row">
                       <label for="example-text-input" class="col-5 col-form-label">
                         Thaw Assesment
@@ -208,12 +223,15 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="thawAssessment; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/embryo-freeze', id]" [class.disabled]="!thawAssessment">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -226,12 +244,15 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="insemenationPrep; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/insemination-prep', id]" [class.disabled]="!insemenationPrep">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -244,12 +265,15 @@
                       <div class="col-md-2">
                         <div class="m-demo-icon">
                           <div class="m-demo-icon__preview">
-                            <i class="la la-check-circle" style="color: green;"></i>
+                            <i *ngIf="biopsy; else incomplete" class="la la-check-circle" style="color: green;"></i>
+                            <ng-template #incomplete>
+                              <i class="la la-times-circle" style="color: #9b001a;"></i>
+                            </ng-template>
                           </div>
                           <div class="m-demo-icon__class">
-                            <button class="btn btn-primary" type="button">
+                            <a class="btn btn-primary" type="button" [routerLink]="['/lab/biopsy', id]" [class.disabled]="!biopsy">
                               View
-                            </button>
+                            </a>
                           </div>
                         </div>
                       </div>

@@ -26,6 +26,7 @@ import { InsemenationComponent } from './insemenation/insemenation.component';
 import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
 import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
+import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -36,6 +37,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
+            { path: 'clinical-records', component: ClinicalrecordsComponent },
             { path: 'test-unit', component: TestunitComponent },
             { path: 'biochemistry-test', component: BiochemistrytestComponent },
             { path: 'daily-procedure', component: DailyProcedureComponent },

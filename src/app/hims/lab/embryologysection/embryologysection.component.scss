@@ -6,3 +6,8 @@
     display: table;
     padding: 0px !important;
 }
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+ }

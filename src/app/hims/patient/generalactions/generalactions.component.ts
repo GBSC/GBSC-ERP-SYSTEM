@@ -49,11 +49,14 @@ export class GeneralactionsComponent implements OnInit {
         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
         console.log( this.currentPatient);
         console.log(this.Patient);
+
+        console.log(this.Patient);
         
     }
     async startVisit() {
          if(this.Patient.appointments.length){
-                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date()) )  ){
+                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){
+                         
                       if(this.lastpatientvisit === null){
                           console.log(this.lastpatientvisit);
                           console.log('1');

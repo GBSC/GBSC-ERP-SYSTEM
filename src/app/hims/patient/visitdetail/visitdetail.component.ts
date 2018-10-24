@@ -94,11 +94,13 @@ export class VisitdetailComponent implements OnInit {
  
 
 enableVitalsInputFields(){
+    console.log(this.formattime(new Date(this.visit.endTime)));
+    console.log(this.formatDate(new Date()));
 if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date())) {
     console.log(true);
-   this.vitalUpdateFieldsEnabled = true; 
-}else {
    this.vitalUpdateFieldsEnabled = false; 
+}else {
+   this.vitalUpdateFieldsEnabled = true; 
    console.log(false);
 }
 }
@@ -245,15 +247,15 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
 
     formatDate(date: Date) {
 
-        //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+ 
 
-        return date.getHours() + "/" + ( date.getMinutes()+1)  ;
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + ( date.getMinutes()+1)  ;
     }
     formattime(date: Date) {
 
         //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
 
-        return date.getHours() + "/" +  (date.getMinutes()+19)  ;
+        return  (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" +  (date.getMinutes()+19)  ;
     }
 
 

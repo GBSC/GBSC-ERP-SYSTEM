@@ -23,7 +23,7 @@
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="{{patient?.mrn}}" disabled> </div>
                   </div>
-                </div>
+           
                 <div class="col-sm-2">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
@@ -72,8 +72,6 @@
                     <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group m-form__group">
                     <label for="exampleSelect1">
@@ -84,8 +82,8 @@
                     </dx-select-box>
                   </div>
                 </div>
-
               </div>
+             
               <hr>
               <div class="row">
                 <div class="col-sm-12">
@@ -121,6 +119,7 @@
                         <label for="exampleTextarea col-sm-3">
                           Collection Date
                         </label>
+                        
                         <dx-date-box [value]="biopsy?.collectionDate" formControlName="CollectionDate">
                         </dx-date-box>
                       </div>
@@ -256,6 +255,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </form>
 
         </div>

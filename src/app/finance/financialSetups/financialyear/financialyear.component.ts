@@ -28,10 +28,15 @@ export class FinancialyearComponent implements OnInit {
         console.log(this.financialYear);
     }
 
-    async addFinancialyear() {
-       await this.financeService.addFinancialYear(this.FinancialYearForm.value); 
-       this.financialYear = await this.financialYear.getFinancialYears();
+    async addFinancialyear() { 
+       await this.financeService.addFinancialYear(this.FinancialYearForm.value);  
+       this.financialYear = await this.financeService.getFinancialYears();
        this.FinancialYearForm.reset();
+    }
+
+    formatDate(date: Date) {
+
+        return (date.getDay() - 1) + "/" + date.getDate() + "/" + date.getFullYear();
     }
 
      updatingFinancialyear(value) {

@@ -433,16 +433,16 @@
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Biochemistry
+														Transections
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/fileRecord" class="m-menu__link">
+													<a  routerLink="/lab/clinical-records" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-														 File Record
+														 Clinical Record
 														</span>
 													</a>
 												</li>
@@ -632,6 +632,120 @@
 								</div>
 							</div>
 						</li>
+						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+								<a  href="#" class="m-menu__link m-menu__toggle" style="background: #0c7185;">
+									<span class="m-menu__item-here"></span>
+									<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 22px;"></i>
+									<span class="m-menu__link-text">
+										Coordinator
+									</span>
+								</a>
+								<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+									<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+									<div class="m-menu__subnav">
+										<ul class="m-menu__content">
+											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+															Clinic
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/coordination/clinical-record" class="m-menu__link">
+															<i class="m-menu__link-icon flaticon-map"></i>
+															<span class="m-menu__link-text">
+																	Clinical Records
+															</span>
+														</a>
+													</li>
+												</ul>
+											</li>
+											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+															Appointment
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/hims/patient/appointmentschedule" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--line">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																	Appointment Scheduling
+															</span>
+														</a>
+													</li>
+												</ul>
+											</li>
+											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+															Setup Configuration
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/hims/patient/visitnature" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																	visit Nature
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/hims/patient/himssetuptest" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																	Test
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/hims/patient/diagnose" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																	Diagnose
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+														<a  routerLink="/hims/patient/consultant" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																	Consultant
+															</span>
+														</a>
+													</li>
+												
+												</ul>
+											</li>
+											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+														Reports
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #057091;">
 								<span class="m-menu__item-here"></span>

@@ -35,7 +35,7 @@
 				</button>
 				<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light">
 					<ul class="m-menu__nav  m-menu__nav--submenu-arrow">
-						<li class="m-menu__item  m-menu__item--active m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 							<a routerLink="/employee/dashboard" class="m-menu__link m-menu__toggle" style="background:#ededed">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-dashboard" style="color: #003b77;margin: 0 9px 0px 9px; font-size: 22px;"></i>
@@ -280,7 +280,7 @@
 							</div>
 						</li>						
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle" style="background: #0070c4;">
+							<a  href="#" class="m-menu__link m-menu__toggle" style="background: #0c7185;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
@@ -419,7 +419,7 @@
 							</div>
 						</li>	
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background:  #3173e9;">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background:  #483698;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-flask" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
@@ -633,7 +633,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #d95531;">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #057091;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">
@@ -653,7 +653,7 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/home" class="m-menu__link">
+													<a  routerLink="/inventorysystem/home" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 																Dashboard
@@ -672,38 +672,58 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/issuanceview" class="m-menu__link">
+													<a  routerLink="/inventorysystem/sales/dispatchnote" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Issuance
+																Dispatch Note
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/returnview" class="m-menu__link">
+													<a  routerLink="/inventorysystem/sales/deliveryorder" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Return
+																Delivery Order 
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/#" class="m-menu__link">
+													<a  routerLink="/inventorysystem/sales/salesindent" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Sales Indent
+																Sales Indent 
 														</span>
 													</a>
 												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/inventorysystem/sales/salesorder" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+																Sales Order 
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/inventorysystem/sales/salesreturn" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+																Sales Return 
+														</span>
+													</a>
+												</li>
+											
 											</ul>
 										</li>
-									
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
@@ -713,7 +733,7 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/grn" class="m-menu__link">
+													<a  routerLink="/inventorysystem/purchase/grn" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -723,37 +743,56 @@
 													</a>
 												</li>
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/purchaseorderview" class="m-menu__link">
+													<a  routerLink="/inventorysystem/purchase/PurchaseIndent" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Purchase Order
+																PurchaseIndent 
 														</span>
 													</a>
 												</li>
-											</ul>
-										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-														Setup
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
-											<ul class="m-menu__inner">
 												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/setup/inventoryitem" class="m-menu__link">
+													<a  routerLink="/inventorysystem/purchase/purchaseinvoice" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Pharmacy Setup
+																Purchase Invoice 
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/inventorysystem/purchase/purchaseorder" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+																Purchase Order 
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+													<a  routerLink="/inventorysystem/purchase/PurchaseReturn" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+																Purchase Return 
 														</span>
 													</a>
 												</li>
 												
 											</ul>
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Reports
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+										
 										</li>
 									</ul>
 								</div>
@@ -1022,7 +1061,7 @@
 							</div>
 						</li>
 						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #ac1f40;">
+							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #033453;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-bank" style="color: white; margin-right: 9px; font-size: 22px;"></i>
 								<span class="m-menu__link-text">

@@ -10,6 +10,9 @@ import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
 import { TestUnit } from '../../../core/Models/HIMS/testunit';
 import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistrytestdetail';
 import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
+import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
+import { ActivatedRoute } from '@angular/router';
+import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -18,13 +21,17 @@ import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbioche
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
-    private consultants: Consultant;
+    private consultants: any;
+    private treatments: any;
+    private clinicalRecord: any;
     private patients: any;
     private spouse: Spouse;
     private patient: Patient;
     private bioChemistryontreatmentForm: FormGroup;
     private tests: BioChemistryTest;
     private units: TestUnit;
+    private id: any;
+    private bioChemistry: any;
     private testDetail: BioChemistryTestDetail[];
 
     public packg: any;
@@ -32,17 +39,22 @@ export class BiochemistryontreatmentComponent implements OnInit {
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
-    constructor(private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService: BioChemistryService) {
+    constructor(private formBuilder: FormBuilder,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private treatmentService: TreatmentService,
+        private route: ActivatedRoute,
+        private clinicalrecordservice: PatientclinicalrecordService,
+        private bioChemistryService: BioChemistryService) {
 
         this.bioChemistryontreatmentForm = formBuilder.group({
-            'PatientId': ['', Validators.required],
-            'ConsultantId': ['', Validators.required],
-            'LMP': [],
+            'CollectionDate': ['', Validators.required],
+            'LMP': ['', Validators.required],
             'IsRandom': [false],
-            'Treatment': ['', Validators.required],
-            'Cycle': ['', Validators.required],
-            'TreatmentType': ['', Validators.required]
+            'RefRange': ['']
         });
+
+        this.bioChemistryontreatmentForm.disable();
 
     }
 
@@ -50,16 +62,38 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
         this.testDetail = [];
 
-        this.patientcb.onValueChanged.subscribe(res => this.populatePatientDate(res.component.option("value")));
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
 
-        this.consultantService.getConsultants()
-            .subscribe(consultants => this.consultants = consultants)
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
-        this.patientService.getPatientObservable()
-            .subscribe(patients => this.patients = patients);
+                this.clinicalRecord = resp;
 
-        this.patientService.getPackage();
-        this.packg = this.patientService.package;
+                this.bioChemistryService
+                    .getPatientBioChemistryTestByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                    .subscribe(resp => {
+
+                        this.bioChemistry = resp;
+                        this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+
+                    });
+
+            })
+
+        })
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+            this.bioChemistryontreatmentForm.enable();
+
+        });
+
+
+        this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
         this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
 
@@ -71,16 +105,11 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     onsubmit(value) {
 
-        let patientBioChemistryTest = new PatientBiochemistryTest();
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.bioChemistryTestDetails = this.testDetail;
 
-        console.log(value);
+        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp=>console.log(resp));
 
-        // patientBioChemistryTest = {...patientBioChemistryTest, ...value};
-
-        // patientBioChemistryTest.IsOnTreatment = true;
-        // patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
-
-        // console.log(patientBioChemistryTest);
     }
 
     populatePatientDate(patientId) {
@@ -89,22 +118,6 @@ export class BiochemistryontreatmentComponent implements OnInit {
             console.log(patient.partner);
             this.spouse = patient.partner;
         });
-    }
-
-    addBioChemistryTestDetail(value) {
-        let data = value.data;
-
-        this.testDetail.push(data);
-
-        console.log(this.testDetail);
-    }
-
-    updateBioChemistryTestDetail(value) {
-        let data = value.data;
-
-        // this.testDetail.push(data);
-
-        console.log(this.testDetail);
     }
 
 

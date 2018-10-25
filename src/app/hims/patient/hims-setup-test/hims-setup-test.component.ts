@@ -28,17 +28,24 @@ export class HimsSetupTestComponent implements OnInit {
 
     async addtest(value) {
         let x = await this.PatientServiceobj.addTest(value.key);
+        await this.PatientServiceobj.getTests();
+        this.test = this.PatientServiceobj.testing;
       //  console.log(x);
     }
 
     async updateTest(value) {
         let x = await this.PatientServiceobj.updateTest(value.key);
+        await this.PatientServiceobj.getTests();
+        this.test = this.PatientServiceobj.testing;
      //   console.log(x);
     }
 
     async deleteTest(value) {
-        let x = await this.PatientServiceobj.deleteTest(value.key.testId);
-      //  console.log(x);
+   
+        await this.PatientServiceobj.deleteTest(value.key.testId);
+        await this.PatientServiceobj.getTests();
+        this.test = this.PatientServiceobj.testing;
+          
 
     }
 

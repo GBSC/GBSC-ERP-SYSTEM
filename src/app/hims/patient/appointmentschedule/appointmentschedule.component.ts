@@ -314,10 +314,12 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async updateAppointment(value) {
-    //    console.log(value.key);
+    console.log(value.key);
 
         let x = await this.PatientServiceobj.updateAppointment(value.key);
+        console.log(x);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+        console.log(this.ConsultantIdTentiveTime);
         this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
 

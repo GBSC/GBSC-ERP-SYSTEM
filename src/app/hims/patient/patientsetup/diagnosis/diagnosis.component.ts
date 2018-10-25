@@ -22,16 +22,22 @@ export class DiagnosisComponent implements OnInit {
 
     async AddDiagnoses(value) {
         let x = await this.PatientServiceobj.addDiagnoses(value.key);
+        await this.PatientServiceobj.getDiagnoses();
+        this.diagnos = this.PatientServiceobj.diagnoses;
     //    console.log(x);
     }
 
     async UpdateDiagnoses(value) {
         let x = await this.PatientServiceobj.updateDiagnoses(value.key);
+        await this.PatientServiceobj.getDiagnoses();
+        this.diagnos = this.PatientServiceobj.diagnoses;
      //   console.log(x);
     }
 
     async DeleteDiagnoses(value) {
         let x = await this.PatientServiceobj.deleteDiagnoses(value.key.diagnosisId);
+        await this.PatientServiceobj.getDiagnoses();
+        this.diagnos = this.PatientServiceobj.diagnoses;
     //    console.log(x);
 
     }

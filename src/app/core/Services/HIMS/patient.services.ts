@@ -327,14 +327,15 @@ export class PatientService {
 
 
     async updateTest(himssetuptest: himsSetupTest) {
-        return await this.ApiService.put(this.ApiService + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
+         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
         //let x = await this.http1.put(`${this.API_URL}/HimsSetup/UpdateTest/`, himssetuptest).toPromise();
         //console.log(x);
         //return x;
     }
 
     async deleteTest(id) {
-        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
+        console.log(id);
+         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
         //let x = await this.http1.delete(this.API_URL + '/HimsSetup/DeleteTest/' + id).toPromise();
         //console.log(x);
         //return x;

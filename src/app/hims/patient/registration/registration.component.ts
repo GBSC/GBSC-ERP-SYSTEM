@@ -228,7 +228,7 @@ export class RegistrationComponent implements OnInit {
         this.submitted = true;
 
         if (this.patientForm.invalid) {
-            return alert('Please Select All Required Fileds');
+            return alert('Please Select All Required Fields');
         }
       //  console.log(this.patientForm.invalid);
 
@@ -253,7 +253,7 @@ export class RegistrationComponent implements OnInit {
         this.spousesubmitted = true;
 
         if (this.partnerForm.invalid) {
-            return alert('Please Select All Required Fileds');
+            return alert('Please Select All Required Fields');
         }
         // delete this.partnerForm.value.PatientId;
         delete this.partnerForm.value.PartnerId;

@@ -39,7 +39,7 @@ export class GeneralactionsComponent implements OnInit {
 
             this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) => {
                 this.visits = res
-                console.log(this.visits);
+            //    console.log(this.visits);
             });
         });
 
@@ -47,10 +47,10 @@ export class GeneralactionsComponent implements OnInit {
 
 
         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
-        console.log( this.currentPatient);
-        console.log(this.Patient);
-
-        console.log(this.Patient);
+     //   console.log( this.currentPatient);
+    //    console.log(this.Patient);
+//
+    //    console.log(this.Patient);
         
     }
     async startVisit() {
@@ -58,8 +58,8 @@ export class GeneralactionsComponent implements OnInit {
                       if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){
                          
                       if(this.lastpatientvisit === null){
-                          console.log(this.lastpatientvisit);
-                          console.log('1');
+                        //  console.log(this.lastpatientvisit);
+                        //  console.log('1');
                                 await this.PatientServiceobj.AddVisits(this.id);
                                 this.router.navigate(['/hims/patient/visits/' + this.id]);
                            }
@@ -68,7 +68,7 @@ export class GeneralactionsComponent implements OnInit {
                                 }
                                 else {
                                         await this.PatientServiceobj.AddVisits(this.id);
-                                        console.log('2');
+                                    //    console.log('2');
                                         this.router.navigate(['/hims/patient/visits/' + this.id]);
                                     }
                     

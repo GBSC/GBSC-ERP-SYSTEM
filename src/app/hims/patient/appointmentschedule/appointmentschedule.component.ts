@@ -119,29 +119,29 @@ export class AppointmentscheduleComponent implements OnInit {
 
         await this.PatientServiceobj.getPatient();
         this.par = this.PatientServiceobj.patients;
-        console.log(this.par);
+      //  console.log(this.par);
 
         await this.PatientServiceobj.getappointments();
         this.appointment = this.PatientServiceobj.appointment;
-        console.log(this.appointment);
+     //   console.log(this.appointment);
 
         await this.PatientServiceobj.getAppointmentById(this.currentpatient);
         this.getaptbyid = this.PatientServiceobj.getApptbyId;
-        console.log(this.getaptbyid);
+     //   console.log(this.getaptbyid);
 
 
 
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
-        console.log(this.consultant);
+     //   console.log(this.consultant);
 
         await this.PatientServiceobj.getTests();
         this.tests = this.PatientServiceobj.testing;
-        console.log(this.tests);
+     //   console.log(this.tests);
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitNatures = this.PatientServiceobj.visitNatures;
-        console.log(this.visitNatures);
+      //  console.log(this.visitNatures);
 
         // await this.PatientServiceobj.GetAppointmentTests();
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
@@ -152,7 +152,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
          this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-console.log(this.tentativeAppointments)
+//console.log(this.tentativeAppointments)
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
 
@@ -170,7 +170,7 @@ console.log(this.tentativeAppointments)
 
     showIt() {
         if (this.profileForm.valid) {
-            console.log(this.profileForm);
+         //   console.log(this.profileForm);
         }
     }
 
@@ -185,7 +185,7 @@ console.log(this.tentativeAppointments)
 
         }
         this.Tests.push(doc);
-        console.log(this.Tests);
+     //   console.log(this.Tests);
     }
 
     remove(index) {
@@ -211,13 +211,13 @@ console.log(this.tentativeAppointments)
         });
 
 
-        console.log(value);
+      //  console.log(value);
         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-        console.log(x)
-        console.log(this.currentpatient.appointmentId, value);
+      //  console.log(x)
+     //   console.log(this.currentpatient.appointmentId, value);
 
         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        console.log(this.getaptbyid);
+       // console.log(this.getaptbyid);
         this.removeall(value);
         return x;
     }
@@ -235,7 +235,7 @@ console.log(this.tentativeAppointments)
 
     valueChanged(d) {
         if (this.PatientType.value = "new") {
-            console.log(d)
+         //   console.log(d)
         }
     }
 
@@ -256,17 +256,17 @@ console.log(this.tentativeAppointments)
             return alert('Please Select All Required Fileds');
         }
 
-        console.log(this.patientForm)
+    //    console.log(this.patientForm)
 
-        console.log(this.patientForm.value.FirstName);
-        console.log(value);
+     //   console.log(this.patientForm.value.FirstName);
+     //   console.log(value);
         delete this.patientForm.value.patientId
         this.patientIdIs = await this.PatientServiceobj.addPatient(value);
         popup.style.display = 'none';
-        console.log(this.PatientServiceobj.patientID);
+     //   console.log(this.PatientServiceobj.patientID);
 
         let x = this.PatientServiceobj.patientID;
-        console.log(x)
+     //   console.log(x)
         return this.patientIdIs;
         
 
@@ -274,14 +274,14 @@ console.log(this.tentativeAppointments)
 
     async addApointment(value, cid) {
       
-           console.log(value);
+       //    console.log(value);
             if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
-                console.log(this.PatientServiceobj.patientID.patientId);
+        //        console.log(this.PatientServiceobj.patientID.patientId);
                 this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
 
             }
-            console.log(cid.value);
-            console.log(value);
+         //   console.log(cid.value);
+         //   console.log(value);
 
             this.appointmentForm.value.ConsultantId = cid.value;
             // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
@@ -290,15 +290,16 @@ console.log(this.tentativeAppointments)
             // }
           ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
            ////////////// //console.log(this.appointmentForm.value);
-                console.log(value)
+
+           //     console.log(value)
              let x = await this.PatientServiceobj.addAppointment(value);
-            console.log(x);
+       //    console.log(x);
              await this.PatientServiceobj.getPatient();
             this.par = this.PatientServiceobj.patients;
             let dsdf = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-            console.log(dsdf);
+        //    console.log(dsdf);
             this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-            console.log(this.ConsultantIdTentiveTime);
+        //    console.log(this.ConsultantIdTentiveTime);
             this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
             this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
 
@@ -313,14 +314,14 @@ console.log(this.tentativeAppointments)
     }
 
     async updateAppointment(value) {
-        console.log(value.key);
+    //    console.log(value.key);
 
         let x = await this.PatientServiceobj.updateAppointment(value.key);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
 
-        console.log(x);
+    ///   console.log(x);
         return x;
     }
 
@@ -336,45 +337,45 @@ console.log(this.tentativeAppointments)
 
         // }
         this.SetTime = d.key;
-        console.log(d.key);
+    //    console.log(d.key);
     }
 
     async  SetTimeInOut(value) {
-        console.log(value);
+     //   console.log(value);
         this.SetTime.timeIn = <Date>value.TimeIn;
         this.SetTime.timeOut = <Date>value.TimeOut;
         this.SetTime.remarks = value.Remarks;
-        console.log(this.SetTime);
+    //    console.log(this.SetTime);
         let x = await this.PatientServiceobj.updateAppointment(this.SetTime);
-        console.log(x);
+    //    console.log(x);
         this.appointmentTimeForm.reset();
         return x;
     }
 
 
     async deleteAppointment(value) {
-        console.log(value.key.appointmentId);
+      //  console.log(value.key.appointmentId);
         let x = await this.PatientServiceobj.deleteAppointment(value.key.appointmentId);
-        console.log(x);
+      //  console.log(x);
         return x;
     }
 
     async getConsultantIdAndTentive(cid, date) {
-        console.log(cid.value, date.value);
+      //  console.log(cid.value, date.value);
         await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, date.value);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-        console.log(this.tentativeAppointments);
-        console.log(this.ConsultantIdTentiveTime);
+     //   console.log(this.tentativeAppointments);
+      //  console.log(this.ConsultantIdTentiveTime);
 
-        console.log(this.ConsultantIdTentiveTime.visitNature);
+     //   console.log(this.ConsultantIdTentiveTime.visitNature);
     }
 
     selectNewOrPrevious(e) {
-        console.log(e.target.value);
+     //   console.log(e.target.value);
         this.newOrPrevious = e.target.value;
-        console.log(this.newOrPrevious);
+       // console.log(this.newOrPrevious);
     }
 
     hidePopup(e, popup) {
@@ -386,27 +387,27 @@ console.log(this.tentativeAppointments)
     contentReady(e) {
         if (!e.component.getSelectedRowKeys().length)
             e.component.selectRowsByIndexes(0);
-        console.log(e)
+     //   console.log(e)
     }
     selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);
+     //   console.log(e);
 
     }
 
     async getCurrentRowData(d) {
         this.currentpatient = d.key;
-        console.log(d.key)
-        console.log(this.currentpatient)
-        console.log(this.currentpatient.appointmentId);
+      //  console.log(d.key)
+     //   console.log(this.currentpatient)
+      //  console.log(this.currentpatient.appointmentId);
         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        console.log(this.getaptbyid);
+      //  console.log(this.getaptbyid);
 
     }
 
     hidepopup(popup) {
-        console.log('popup')
+     //   console.log('popup')
         popup.style.display = 'none';
     }
 

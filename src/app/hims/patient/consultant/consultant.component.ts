@@ -15,23 +15,23 @@ export class ConsultantComponent implements OnInit {
 
         await this.PatientServiceobj.getConsultant();
         let x = this.PatientServiceobj.consultant;
-        console.log(x);
+    //    console.log(x);
     }
 
     async addConsultant(value) {
-        console.log(value.key);
+    //    console.log(value.key);
         await this.PatientServiceobj.addConsultant(value.key);
 
     }
 
     async updateConsultant(value) {
-        console.log(value);
+    //    console.log(value);
         await this.PatientServiceobj.updateConsultant(value.key)
         this.PatientServiceobj.getConsultant();
     }
 
     async deleteConsultant(value) {
-        console.log(value.key.consultantId);
+     //   console.log(value.key.consultantId);
         await this.PatientServiceobj.deleteConsultant(value.key.consultantId);
     }
 

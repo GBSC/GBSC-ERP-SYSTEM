@@ -18,27 +18,27 @@ export class HimsSetupTestComponent implements OnInit {
     async ngOnInit() {
         await this.PatientServiceobj.getTests();
         this.test = this.PatientServiceobj.testing;
-        console.log(this.test);
+    //    console.log(this.test);
 
         await this.PatientServiceobj.getPatient();
         this.patient = this.PatientServiceobj.patients;
-        console.log(this.patient);
+    //    console.log(this.patient);
 
     }
 
     async addtest(value) {
         let x = await this.PatientServiceobj.addTest(value.key);
-        console.log(x);
+      //  console.log(x);
     }
 
     async updateTest(value) {
         let x = await this.PatientServiceobj.updateTest(value.key);
-        console.log(x);
+     //   console.log(x);
     }
 
     async deleteTest(value) {
         let x = await this.PatientServiceobj.deleteTest(value.key.testId);
-        console.log(x);
+      //  console.log(x);
 
     }
 

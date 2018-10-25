@@ -185,10 +185,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         children: [
                             { path: 'leaveopenings', component: ViewemployeeleaveopeningComponent },
                             { path: 'createleaveopening', component: EmployeeleaveopeningComponent },
+                            { path: 'update-leaveopening/:id', component: EmployeeleaveopeningComponent },
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
                         ]
                     },
                     { path: 'leaverequests', component: ViewleaverequestComponent },
+                    { path: 'update-leave-request/:id', component: LeaverequestComponent },
                     { path: 'createleaverequest', component: LeaverequestComponent },
                     { path: 'leaveclosing', component: LeaveclosingComponent },
                     { path: 'leaveapproval', component: LeaveapprovalComponent }

@@ -343,8 +343,8 @@
            keyExpr="fundSetupId"
             (onRowUpdated)="updateFundSetup()"
             (onRowUpdating)="updatingFundSetup($event)"
-             (onRowRemoved)="deleteAllowanceDeduction($event)">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+             (onRowRemoved)="deleteFundSetup($event)">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -357,23 +357,23 @@
             <dxi-column dataField="payrollYearId" caption="Payroll Year">
               <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
             </dxi-column>
-            <dxi-column dataField="pfEmployerContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="pfEmployeeContribution"></dxi-column>
+            <dxi-column dataField="pfEmployerContribution"></dxi-column>
+            <dxi-column dataField="pfEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="taxableAmountLimit"></dxi-column>
-            <dxi-column dataField="minServicePeriod"></dxi-column>
+            <dxi-column dataField="minServicePeriod" [visible]="false"></dxi-column>
             <dxi-column dataField="applicableFrom"></dxi-column>
-            <dxi-column dataField="eobiMinimumSalary"></dxi-column>
-            <dxi-column dataField="eobiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiMinimumSalary" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiEmployerContribution"></dxi-column>
             <dxi-column dataField="eobiEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="maximumContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="exemptAge"></dxi-column>
-            <dxi-column dataField="sessiMinimumSalary"></dxi-column>
-            <dxi-column dataField="sessiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiMinimumSalary" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiEmployerContribution"></dxi-column>
             <dxi-column dataField="sessiEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiMinimumSalary" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiEmployerContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="iessiMinimumSalary"></dxi-column>
+            <dxi-column dataField="iessiMinimumSalary" [visible]="false"></dxi-column>
             <dxi-column dataField="iessiEmployerContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="iessiEmployeeContribution" [visible]="false"></dxi-column>
           </dx-data-grid>

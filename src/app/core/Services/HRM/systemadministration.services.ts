@@ -28,7 +28,6 @@ export class SystemAdministrationService {
     constructor(private ApiService: ApiService) {
     }
 
-
     async saveNewRoleData(data) {
         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
@@ -71,8 +70,7 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
 
     }
-
-
+ 
     async addCompany(company: Company) {
         return await this.ApiService.post(this.API_URL + 'AddCompany', company).toPromise();
     }
@@ -101,9 +99,6 @@ export class SystemAdministrationService {
     async deletBranch(id) {
         return await this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id).toPromise();
     }
-
-
-
 
     async getDepartments() {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();

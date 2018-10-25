@@ -114,9 +114,8 @@
                         <dx-data-grid id="gridContainer"
                         [dataSource]="[]"
                          keyExpr="assignRosterId"
-                         (onRowInserted)="addAssignroster($event)" 
-                         (onRowUpdated)="updateMasterDetail($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                         (onRowInserted)="addAssignroster($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                             </dxo-popup>
                           </dxo-editing>

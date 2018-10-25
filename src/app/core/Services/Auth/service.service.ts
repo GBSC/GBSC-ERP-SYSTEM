@@ -52,7 +52,6 @@ export class AccountService {
     }
 
     checkIfModuleIsAccessible(module) {
-        console.log(module);
         let isAccessible;
 
         this.getAvailableModules().forEach(m => {

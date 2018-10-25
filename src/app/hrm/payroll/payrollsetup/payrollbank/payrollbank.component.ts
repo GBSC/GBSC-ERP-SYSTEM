@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../../../core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { PayrollSetupService, SetupService } from '../../../../core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,14 +8,16 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     styleUrls: ['./payrollbank.component.scss']
 })
 export class PayrollbankComponent implements OnInit {
+ 
 
     public payrollBank: any;
     public PayrollBankForm: FormGroup;
     private updatingbank: any;
     public chequeTemplate: any;
+    public msg: any;
     public bankAdviceTemplate: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public setupservice: SetupService) { }
 
     async ngOnInit() {
 
@@ -54,13 +56,20 @@ export class PayrollbankComponent implements OnInit {
     async addPayrollBank() {
         await this.payrollsetupservice.addPayrollBank(this.PayrollBankForm.value);
         this.PayrollBankForm.reset();
+        //  alert('Bank Added Successfully');
+        this.msg = 'success';
+        setTimeout(() => {
+            this.msg = null;
+          }, 3000);
     }
+ 
 
     updatingPayrollBank(value) {
         this.updatingbank = { ...value.oldData, ...value.newData };
     }
     async updatePayrollBank() {
         await this.payrollsetupservice.updatePayrollBank(this.updatingbank);
+       
     }
 
     async deletePayrollBank(value) {

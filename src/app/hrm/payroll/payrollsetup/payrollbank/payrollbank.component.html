@@ -191,7 +191,11 @@
             </div>
 
             <div class="m--space-50"></div>
-
+            <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show"
+             role="alert" *ngIf="msg">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+              <strong> {{ msg }}</strong>
+            </div> 
             <div class="m-separator m-separator"></div>
 
             <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
@@ -233,7 +237,7 @@
         <div class="m-portlet__body">
           <dx-data-grid id="gridContainer" [dataSource]="payrollBank" keyExpr="payrollBankId" (onRowUpdated)="updatePayrollBank()"
             (onRowUpdating)="updatingPayrollBank($event)" (onRowRemoved)="deletePayrollBank($event)">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Payroll Bank" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>

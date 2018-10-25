@@ -1,246 +1,291 @@
 <div class="m-content">
-        <!-- <div class="row">
-            <div class="col-lg-4">
-                    <div class="m-portlet">
-                    <app-patientvitals></app-patientvitals>
-                    </div>              
-            </div>
-        </div> -->
     <div class="row">
-        <div class="col-lg-12">
-            <div class="m-portlet">
+        <div class="col-lg-4">
+            <div class="m-portlet m-portlet--unair">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
                             <h3 class="m-portlet__head-text">
-                                Visit detail
+                                Vitals
+                                <!-- <input (change)="enableVitalsInputFields($event)" type="checkbox">
+                                Update Vitals -->
                             </h3>
-                        </div>
-                    </div>
-                    <div class="m-portlet__head-tools">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span>
-                                    <i class="fa fa-cog"></i>
-                                </span> Actions
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                <button class="dropdown-item" (click)="goback()" type="button">
-                                    Go Back
-                                </button>
-                                <button class="dropdown-item" type="button">
-                                    Another action
-                                </button>
-                                <button class="dropdown-item" type="button">
-                                    Something else here
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <ul class="nav nav-tabs" role="tablist">
 
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#m_tabs_1_2">
-                                Vitals
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#m_tabs_1_1">
-                                Appointment
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link " data-toggle="tab" href="#m_tabs_1_4">
-                                Visit Note
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link " data-toggle="tab" href="#m_tabs_1_5">
-                                Visit Diagnoses
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " data-toggle="tab" href="#m_tabs_1_6">
-                                Visit Test
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content col-sm-4">
-                        <div class="tab-pane active" id="m_tabs_1_2" role="tabpanel">
-                            <div class="m-portlet__body">
-
-                                <div class="m-section">
-                                    <div class="m-section__content">
-                                        <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-                                            <form [formGroup]="VisitVitalDetailForm">
-                                            <div class="m-demo__preview">
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Height(cm)
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                                {{visit.patientVital?.height}}(cm)
-                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
-                                                         </h6>
-                                                    </span>
-                                                </p>
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Weight(kg)
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                                {{visit.patientVital?.weight}}(kg)
-                                                            <!-- <input type="text" [value]="visit.patientVital?.height" formControlName="Height"> -->
-                                                         </h6>
-                                                    </span>
-                                                </p>
-                                                <!-- <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        {{visit.patientVital?.weight}}(kg)
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            21 kg
-                                                        </h6>
-                                                    </span>
-                                                </p> -->
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Temperature (C)
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.temperature}} C
-                                                        </h6>
-                                                    </span>
-                                                </p>
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Respiratory Rate
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.respiratoryRate}} / min
-                                                        </h6>
-                                                    </span>
-                                                </p>
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Pulse
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.pulse}} / min
-                                                        </h6>
-                                                    </span>
-                                                </p>
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Blood Pressure
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.bloodPressure}}
-                                                        </h6>
-                                                    </span>
-                                                </p>
-                                                <p class="row">
-                                                    <span class="col-lg-8 m--font-boldest">
-                                                        Blood Oxygen Saturation
-                                                    </span>
-                                                    <span class="col-lg-4">
-                                                        <h6 class="m--font-brand">
-                                                            {{visit.patientVital?.bloodOxygenSaturation}}%
-                                                        </h6>
-                                                    </span>
-                                                </p>
-
-
-                                        <button type="button" (click)="editvitals()">edit</button>
-
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                    <form [formGroup]="VisitVitalDetailForm">
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Height
+                            </label>
+                            <div class="col-8">
+                                    <!--   -->
+                                <input class="form-control m-input" formControlName="Height" [value]="visit.patientVital?.height || ''" type="number">
                             </div>
                         </div>
-                        <div class="tab-pane" id="m_tabs_1_1" role="tabpanel">
-                            <div class="m-widget4">
-                                <div class="m-widget4__item">
 
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Patient Type
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{appointment?.patientType}}
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Tentative Time
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{appointment?.tentativeTime | date: 'dd/MM/yyyy'}}
-                                        </span>
-                                    </span>
-                                </div>
-                                <div class="m-widget4__item">
-                                    <div class="m-widget4__info">
-                                        <span class="m-widget4__title">
-                                            Consultant Name
-                                        </span>
-                                        <br>
-                                    </div>
-                                    <span class="m-widget4__ext">
-                                        <span class="m-widget4__number m--font-brand">
-                                            {{getconsultantbyId.name}}
-                                        </span>
-                                    </span>
-                                </div>
-                                <button type="button"  class="btn btn-primary">
-                                    edit
-                                </button>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Weight
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="Weight" [value]="visit.patientVital?.weight ||''" type="number">
                             </div>
                         </div>
-                        <div class="tab-pane" id="m_tabs_1_4" role="tabpanel">
-                            {{visit.visitNote?.clinicalNote}}
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Temperature
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="Temperature" [value]="visit.patientVital?.temperature || ''" type="number">
+                            </div>
                         </div>
-                        <div class="tab-pane" id="m_tabs_1_5" role="tabpanel">
-                            <ul>
-                                <li *ngFor="let visitDiagnoses of getvisitdiagnosesbyId">
-                                    {{visitDiagnoses?.name}}
-                                </li>
-                            </ul>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Respiratory Rate
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="RespiratoryRate" [value]="visit.patientVital?.respiratoryRate" type="number">
+                            </div>
                         </div>
-                        <div class="tab-pane" id="m_tabs_1_6" role="tabpanel">
-                            <ul>
-                                <li *ngFor="let visitTests of getvisitTestbyId">
-                                    {{visitTests?.testName}}
-                                </li>
-                            </ul>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Pulse
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="Pulse" [value]="visit.patientVital?.pulse || ''" type="number">
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Blood Pressure Up
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="BloodPressureUp" [value]="visit.patientVital?.bloodPressureUp || ''" type="number">
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                                <label for="example-text-input" class="col-4 col-form-label">
+                                    Blood Pressure Down
+                                </label>
+                                <div class="col-8">
+                                    <input class="form-control m-input" formControlName="BloodPressureDown" [value]="visit.patientVital?.bloodPressureDown || ''" type="number">
+                                </div>
+                            </div>                        
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Blood Oxygen Saturation
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="BloodOxygenSaturation" [value]="visit.patientVital?.bloodOxygenSaturation || ''"type="number">
+                            </div>
+                        </div>
+                        <div class="modal-footer"> 
+                                <button class="btn btn-primary m-btn m-btn--custom" [disabled]="vitalUpdateFieldsEnabled" (click)="editPatientVitals(VisitVitalDetailForm.value)" type="button"> Save</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Appointment
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body portlet_pad">
+                    <form [formGroup]="VisitAppointmentForm">
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Visit Nature
+                            </label>
+                            <div class="col-8">
+                                    <dx-select-box [items]="visitnatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="VisitNatureId">
+                                        </dx-select-box>
+                                <!-- <select class="form-control m-input" formControlName="PatientType" [value]="getvisitnatureId?.nature || ''">
+                                    <option value="New">New</option>
+                                    <option value="New">Previous</option>
+                                </select> -->
+                                <!-- <input class="form-control m-input" [value]="visit.patientVital?.bloodOxygenSaturation" type="number" value="Artisanal kale" id="example-text-input"> -->
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Tentative Time
+                            </label>
+                            <div class="col-8">
+                                <input class="form-control m-input" formControlName="TentativeTime" [value]="appointment?.tentativeTime | date : 'yyyy-MM-dd' ||''"
+                                    type="date">
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-4 col-form-label">
+                                Consultant Name
+                            </label>
+                            <div class="col-8">
+                                    <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId">
+                                    </dx-select-box>
+                             </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button class="btn btn-primary m-btn m-btn--custom" [disabled]="vitalUpdateFieldsEnabled"  (click)="editPatientAppointment(VisitAppointmentForm.value)" type="button"> Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Visit Diagnoses
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <form [formGroup]="VisitDiagnosesForm" >
+                    <div class="m-widget4 m-widget4--chart-bottom">
+                            <div class="row">
+                            <div class="form-group m-form__group col-lg-8">
+                                    <label for="exampleSelect1">
+                                        Select Visit Diagnoses
+                                    </label>
+                                     <dx-select-box [items]="visitdiagnos" displayExpr="name" valueExpr="diagnosisId" [searchEnabled]="true" formControlName="diagnosisId"></dx-select-box>  
+                                    <!-- <select class="form-control m-input" [value]="visitDiagnoses?.name">
+                                        <option *ngFor="let vd of visitDiagnoses" value="visitDiagnoses?.name">{{vd?.name}}</option>
+                                    </select> -->
+                                </div>
+                                <div class="form-group m-form__group  col-lg-4 margintop">
+                                        <button  class="btn btn-primary m-btn m-btn--custom" (click)="addrangeVisitdiagnis()" type="button">Add</button>
+                                    </div>
+                                </div>
+                        <div *ngFor="let visitDiagnoses of getvisitdiagnosesbyId ; let i = index" class="m-widget4__item"> 
+                            <div class="m-widget4__info">
+                                <span class="m-widget4__text">
+                                    {{visitDiagnoses?.name}}
+                                </span>
+                            </div>
+                            <div class="m-widget4__ext">
+                                <span class="m-widget4__number m--font-accent"   >
+                                        <a  (click)="removediagnosis(i)" class="m-widget4__icon m--font-brand">
+                                                <i class="la la-trash-o" ></i>
+                                            </a>
+                                 </span>
+                            </div>
+                        </div>
+                        <div class="model-footer">
+                            <button  class="btn btn-primary m-btn m-btn--custom" [disabled]="vitalUpdateFieldsEnabled" (click)="editvistDiagnos()" type="button">Save</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        
+    
+    <div class="col-lg-4">
+
+        <div class="m-portlet m-portlet--unair">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Visit Notes
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+            <form  [formGroup]="VisitNoteForm"> 
+                <div class="form-group m-form__group">
+                    <label for="exampleTextarea">
+                        Clinical Note
+                    </label>
+                    <textarea formControlName="ClinicalNote" [value]="visit.visitNote?.clinicalNote"  class="form-control m-input m-input--air m-input--pill" rows="6"></textarea>
+                </div>
+                <div class="modal-footer">
+                        <button class="btn btn-primary m-btn m-btn--custom" [disabled]="vitalUpdateFieldsEnabled" (click)="editPatientclicnicalnote(VisitNoteForm.value)" type="button"> Save</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <div class="m-portlet m-portlet--unair">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            Visit Test
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                    <form [formGroup]="VisitTestForm" > 
+
+                <div class="m-widget4 m-widget4--chart-bottom">
+                    <div class="row">
+                            <div class="form-group m-form__group  col-lg-8">
+                                    <label for="exampleSelect1">
+                                        Select Visit Tests
+                                    </label>
+                                    <dx-select-box [items]="visittst" displayExpr="testName" valueExpr="testId" [searchEnabled]="true" formControlName="testId"></dx-select-box>
+                                </div> 
+                                <div class="form-group m-form__group  col-lg-4 margintop">
+                                    <button  class="btn btn-primary m-btn m-btn--custom" (click)="addrangeVisittst()" type="button">Add</button>
+                                </div>
+                    </div>                       
+                    <div *ngFor="let visitTests of getvisitTestbyId; let i = index" class="m-widget4__item"> 
+                        <div class="m-widget4__info">
+                            <span class="m-widget4__text">
+                                      {{visitTests?.testName}}  
+                                   <!-- <input type="text" [value]="visitTests?.testName" [disabled]="vitalUpdadddddteFieldsEnableds"> -->
+                            </span>
+                        </div>
+                        <div class="m-widget4__ext" >
+                                        <a    (click)="removeTest(i)" class="m-widget4__icon m--font-brand">
+                                        <i class="la la-trash-o" ></i>
+                                    </a>
+                            <!-- <span class="m-widget4__number m--font-accent">
+                                <button  class="btn btn-primary m-btn m-btn--custom" ype="button">-</button>
+                            </span> -->
+                        </div>
+                    </div>
+                    <div class="model-footer">
+                        <button  class="btn btn-primary m-btn m-btn--custom" [disabled]="vitalUpdateFieldsEnabled" (click)="editviststest()" type="button">Save   </button>
+                    </div>
+                </div> 
+                </form>
+            </div>
+        </div>
     </div>
+ 
+
 </div>

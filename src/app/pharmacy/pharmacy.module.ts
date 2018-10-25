@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { routing } from './pharmacy-routing.module';
+import { routing } from './pharmacy.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
@@ -9,8 +9,6 @@ import { PurchaseOrderComponent } from './purchase-order/purchase-order.componen
 import { ReturnmedicineComponent } from './returnmedicine/returnmedicine.component';
 import { RootComponent } from './root/root.component';
 import { IssuanceComponent } from './issuance/issuance.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
@@ -46,8 +44,6 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
     ],
     declarations: [
         HomeComponent,
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         RootComponent,
         GoodsreceiptComponent,

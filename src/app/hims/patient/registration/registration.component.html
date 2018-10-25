@@ -42,7 +42,7 @@
 							<div class="form-group row">
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Reg City </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity  || ''" formControlName="RegCity">
+									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity || ''" formControlName="RegCity">
 										<option value="Karaci">Karachi</option>
 										<option value="Multan">Multan</option>
 									</select>
@@ -87,7 +87,7 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Date of Birth </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob" formControlName="DOB"
+									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob | date : 'yyyy-MM-dd' || ''" formControlName="DOB"
 									 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
 									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
 										<div *ngIf="f.DOB.errors.required">Date Of Birth is required</div>
@@ -117,7 +117,7 @@
 								<div class="form-group col-lg-3">
 									<label for="exampleInputEmail1"> Phone Number </label>
 									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" (keypress)="keyPress($event)"
-									 [value]="Patient?.phoneNumber || ''" formControlName="PhoneNumber" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
+									 [value]="Patient?.phoneNumber || ''" formControlName="PhoneNumber" maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
 									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
 										<div *ngIf="f.PhoneNumber.errors.required">Phone Number is required</div>
 										<div *ngIf="f.PhoneNumber.errors.minlength">Phone Number must be at least 11 characters</div>
@@ -253,7 +253,7 @@
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> First Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="FirstName" type="text"
-																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.FirstName.errors }">
+																				 [ngClass]="{ 'is-invalid': spousesubmitted && s.FirstName.errors }">
 																				<div *ngIf="spousesubmitted && s.FirstName.errors" class="invalid-feedback">
 																					<div *ngIf="s.FirstName.errors.required">First Name is required</div>
 																				</div>
@@ -265,7 +265,7 @@
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> Last Name </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="LastName" type="text"
-																				 [ngClass]="{ 'is-invalid': spousesubmitted && f.LastName.errors }">
+																				 [ngClass]="{ 'is-invalid': spousesubmitted && s.LastName.errors }">
 																				<div *ngIf="spousesubmitted && s.LastName.errors" class="invalid-feedback">
 																					<div *ngIf="s.LastName.errors.required">Last Name is required</div>
 																				</div>
@@ -297,7 +297,7 @@
 																		<div class="form-group m-form__group row">
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> Date of Birth </label>
-																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="DOB" type="date">
+																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.dob | date : 'yyyy-MM-dd'  || ''"  formControlName="DOB" type="date">
 																			</div>
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1"> Place of Birth </label>
@@ -344,7 +344,7 @@
 																			</div>
 																		</div>
 																		<div class="form-group m-form__group row">
-																			<div class="form-group col-lg-8">
+																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1">Reference Phone</label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="ReferenceTel">
 																			</div>
@@ -373,13 +373,15 @@
 																		<div class="form-group m-form__group row" *ngIf="router.url === '/hims/patient/registration'">
 																			<div class="form-group col-lg-4">
 																				<label for="exampleInputEmail1">File Path:</label>
-																				<input type="file" formControlName="FilePath" (change)="fileselect($event)" />
+																				<input type="file" formControlName="FilePath" (change)="fileselect($event)">
+																			 
+
 																			</div>
 																			<div class="form-group col-lg-2">
 																				<button *ngIf="router.url === '/hims/patient/registration'" (click)="addrange()" type="button" class="btn btn-primary m-btn m-btn--custom">
 																					Add
 																				</button>
-																				<button *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																				<button  *ngIf="router.url === '/hims/patient/updatepatient/'+id" (click)="onupload()" type="button" class="btn btn-primary m-btn m-btn--custom">
 																					Add
 																				</button>
 																				<br>
@@ -389,6 +391,11 @@
 																			<div class="form-group">
 																				<label for="exampleInputEmail1">Document:</label>
 																				<input type="file" (change)="onfileselect($event)" />
+																			</div>
+																			<div class="form-group">
+																					<button (click)="onupload()" type="button" class="btn btn-primary m-btn m-btn--custom">
+																						Upload
+																					</button>
 																			</div>
 																		</div>
 																	

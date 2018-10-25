@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
@@ -12,6 +11,7 @@ import { SuperadminModule } from '../superadmin/superadmin.module';
 import { CoreModule } from '../core/core.module';
 import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
 import { AuthGuardService } from '../core';
+import { CoordinationRoutingModule } from '../hims/coordination/coordination-routing.module';
 
 
 
@@ -41,6 +41,7 @@ const routes: Routes = [
         SuperadminModule,
         DashboardModule,
         HrmModule,
+        CoordinationRoutingModule
     ],
     exports: [
         RouterModule,

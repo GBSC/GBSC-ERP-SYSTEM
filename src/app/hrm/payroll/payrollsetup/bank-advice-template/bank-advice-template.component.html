@@ -13,7 +13,7 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="bankadvice"
+              <dx-data-grid id="gridContainer" [dataSource]="bankAdviceTemplates"
                keyExpr="bankAdviceTemplateId" 
                (onRowInserted)="addBankAdviceTemplate($event)" 
                (onRowUpdated)="updateBankAdviceTemplate($event)" 

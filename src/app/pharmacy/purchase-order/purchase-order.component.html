@@ -15,46 +15,46 @@
                             </h3>
                         </div>
                     </div>
+                    <div class="m-portlet__head-tools">
+                        <div class="dropdown">
+                            <button routerLink="/pharmacy/purchaseorderview" class="btn btn-primary" type="button">
+                                <span>
+                                    <i class="fa fa-eye"></i>
+                                </span> View
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <!--begin::Form-->
-                <form class="m-form" [formGroup]="PurchaseOrderForm">
-                    <div class="m-portlet__body">
+                <div class="m-portlet__body">
+                    <!--begin::Form-->
+                    <form class="m-form" [formGroup]="PurchaseOrderForm">
+
 
                         <div class="form-group row">
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">
                                     PO No
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderNumber" disabled>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="OrderNumber"
+                                    disabled>
                             </div>
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">
                                     PO Date
                                 </label>
                                 <div class="input-group date">
-                                    <input type="date" class="form-control m-input m-input--solid" formControlName="OrderDate" >
+                                    <input type="date" class="form-control m-input m-input--solid" formControlName="OrderDate">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">
                                     Status
                                 </label>
-                                <!-- <input type="text" class="form-control m-input m-input--solid" formControlName="Status"
-                                    disabled> -->
-                                    <select class="form-control m-input" formControlName="Status">
-                                        <option value="true"> Approved </option>
-                                        <option value="false"> Pending </option>
-                                    </select>
+                                <select class="form-control m-input" formControlName="Status">
+                                    <option value="true"> Approved </option>
+                                    <option value="false"> Pending </option>
+                                </select>
                             </div>
-                            <div class="form-group col-lg-3">
-                                <label for="exampleInputEmail1">
-                                    Tax
-                                </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <div class="form-group col-lg-3">
                                 <label for="exampleInputEmail1">
                                     Supplier
@@ -72,227 +72,324 @@
                                     <option value="Local"> Local </option>
                                     <option value="Imported"> Imported </option>
                                 </select>
-                                <!-- <input type="text" class="form-control m-input m-input--solid" formControlName="Origin"
-                                    disabled> -->
                             </div>
-                            <div class="form-group col-lg-3">
+
+                        </div>
+
+                        <div class="form-group row">
+
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">
                                     Currency
                                 </label>
                                 <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetCurrencyDetails(PurchaseOrderForm.value.CurrencyId)"
                                     formControlName="CurrencyId">
-                                    <option *ngFor="let x of Currencies" [value]="x?.inventoryCurrencyId">{{x?.name}} </option>
+                                    <option *ngFor="let x of Currencies" [value]="x?.inventoryCurrencyId">{{x?.name}}
+                                    </option>
                                 </select>
                             </div>
-                            <div class="form-group col-lg-3">
+                            <div class="form-group col-lg-2">
                                 <label for="exampleInputEmail1">
                                     Exchange Rate
                                 </label>
                                 <input type="text" class="form-control m-input m-input--solid" formControlName="ExchangeRate"
                                     [value]="SelectedCurrency?.exchangeRate || ''" disabled>
                             </div>
+                            <div class="form-group col-lg-8">
+                                <label for="exampleInputEmail1">
+                                    Remarks
+                                </label>
+                                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                            </div>
 
                         </div>
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-secondary">
-                                Reset
-                            </button>
-                            <button type="button" (click)="SavePurchaseOrderForm(PurchaseOrderForm.value)" class="btn btn-primary">
-                                Save
-                            </button>
-                        </div>
-                        
-                        <!-- <div class="modal-footer"></div>
-                            <p>Date/Time: <span id="datetime"></span></p>
-                            <script>
-                                var dt = new Date();
-                                document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
-                            </script>
-                        </div> -->
+                    </form>
+                    <!--end::Form-->
 
 
-                    </div>
+                    <div class="row">
+                            <div class="m-portlet__body">
+                                <div class="m-section">
+                                    <div class="m-section__content">
+        
+                                        <div>
+                                            <button type="button" data-toggle="modal" data-target="#m_modal_6" class="btn btn-success pull-right margin"><i
+                                                    class="fa fa-plus"></i>
+                                            </button>
+                                            <div class="form-group m-form__group row">
+                                                <div class="col-lg-12">
+                                                    <dx-data-grid id="gridContainer" [dataSource]="PurchaseOrderDetailsFormArray" (onRowRemoved)="RemovePurchaseOrderDetails($event)">
+                                                        <dxo-editing mode="popup" [allowDeleting]="true">
+                                                        </dxo-editing>
+                                                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                        <dxo-paging [pageSize]="5"></dxo-paging>
+                                                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]"
+                                                            [showInfo]="true"></dxo-pager>
+                                                        <dxi-column dataField="ManualCode" caption="Manual Code"></dxi-column>
+                                                        <dxi-column dataField="Description" caption="Description"></dxi-column>
+                                                        <dxi-column dataField="PackType" caption="Pack Type"></dxi-column>
+                                                        <dxi-column dataField="StockQuantity" caption="Stock Quantity"></dxi-column>
+                                                        <dxi-column dataField="OrderQuantity" caption="Order Quantity"></dxi-column>
+                                                        <dxi-column dataField="BonusQuantity" caption="Bonus Quantity"></dxi-column>
+                                                        <dxi-column dataField="PerUnit" caption="Per Unit"></dxi-column>
+                                                        <dxi-column dataField="Rate" caption="Rate"></dxi-column>
+                                                        <dxi-column dataField="GrossAmount" caption="Gross Amount"></dxi-column>
+                                                        <dxi-column dataField="DiscountPercentage" caption="Discount Percentage"></dxi-column>
+                                                        <dxi-column dataField="DiscountAmount" caption="Discount Amount"></dxi-column>
+                                                        <dxi-column dataField="SalesTaxPercentage" caption="Sales Tax Percentage"></dxi-column>
+                                                        <dxi-column dataField="SalesTaxAmount" caption="Sales Tax Amount"></dxi-column>
+                                                        <dxi-column dataField="NetAmount" caption="Net Amount"></dxi-column>
 
-                </form>
-                <!--end::Form-->
-
-
-                <div class="row">
-                    <div class="m-portlet__body">
-                        <div class="m-section">
-                            <div class="m-section__content">
-
-                                <form [formGroup]="PurchaseOrderDetailsForm">
-                                    <div class="form-group m-form__group row">
-                                        <div class="col-lg-12" style="/* overflow-x: scroll; */overflow-x: scroll;max-width: 1058px;">
-                                            <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand" style="width: 2000px;">
-                                                <th>Manual Code</th>
-                                                <th>Description</th>
-                                                <th>Pack Type</th>
-                                                <th>Current Stock</th>
-                                                <th>Order Quantity</th>
-                                                <th>Bonus Quantity</th>
-                                                <th>Per Unit</th>
-                                                <th>Rate</th>
-                                                <th>Gross Amount</th>
-                                                <th>Discount %</th>
-                                                <th>Discount Amount</th>
-                                                <th>Sales Tax %</th>
-                                                <th>Sales Tax Amount</th>
-                                                <th>Net Amount</th>
-                                                <th>Add</th>
-                                                <tr>
-                                                     <td>
-                                                        <select class="form-control m-input ng-pristine ng-valid ng-touched"
-                                                            style="width: 100px;" (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)"
-                                                            formControlName="ManualCode">
-                                                            <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
-                                                                {{x?.itemCode}}
-                                                            </option>
-                                                        </select>
-                                                    </td>
-                                                    <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="Description" [value]="SelectedInventoryItem?.description || ''"
-                                                            disabled></td>
-                                                    <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name || ''"
-                                                            disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="StockQuantity" [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''"
-                                                            disabled></td>
-                                                    <td><input type="number" #OrderQuantity class="form-control m-input m-input--solid"
-                                                            formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)"></td>
-                                                    <td><input type="number" #BonusQuantity class="form-control m-input m-input--solid"
-                                                            formControlName="BonusQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)" ></td>
-                                                    <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="PerUnit" [value]="SelectedInventoryItem?.unit?.name || ''"
-                                                            disabled></td> 
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                        formControlName="Rate" [value]="SelectedInventoryItem?.retailPrice || ''"
-                                                        disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="GrossAmount" [value]="GrossAmount" disabled>
-                                                        </td>
-                                                    <td><input type="number" #DiscountPercentage class="form-control m-input m-input--solid"
-                                                            formControlName="DiscountPercentage" (keyup)="CalculateDiscountAmount(DiscountPercentage.value || 0)"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="DiscountAmount" [value]="DiscountAmount" disabled></td>
-                                                    <td><input type="number" #SalesTaxPercentage class="form-control m-input m-input--solid"
-                                                            formControlName="SalesTaxPercentage" (keyup)="CalculateSalesTaxAmount(SalesTaxPercentage.value || 0)"></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="SalesTaxAmount" [value]="SalesTaxAmount" disabled></td>
-                                                    <td><input type="number" class="form-control m-input m-input--solid"
-                                                            formControlName="NetAmount" [value]="NetAmount" disabled></td>
-                                                    <td>
-                                                        <button type="button" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)"
-                                                            class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                                            <i class="la la-add"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                    <div>
-
-                                        <div class="form-group m-form__group row">
-                                            <div class="col-lg-12" style="/* overflow-x: scroll; */overflow-x: scroll;max-width: 1058px;">
-                                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand" style="width: 2000px;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Manual Code</th>
-                                                            <th>Description</th>
-                                                            <th>Pack Type</th>
-                                                            <th>Current Stock</th>
-                                                            <th>Order Quantity</th>
-                                                            <th>Bonus Quantity</th>
-                                                            <th>Per Unit</th>
-                                                            <th>Rate</th>
-                                                            <th>Gross Amount</th>
-                                                            <th>Discount %</th>
-                                                            <th>Discount Amount</th>
-                                                            <th>Sales Tax %</th>
-                                                            <th>Sales Tax Amount</th>
-                                                            <th>Net Amount</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let x of PurchaseOrderDetailsArray ; let i = index">
-                                                            <th scope="row">
-                                                                {{x?.InventoryItem.InventoryItemId}}
-                                                            </th>
-                                                            <td>
-                                                                {{x?.InventoryItem.ManualCode}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.InventoryItem.Description}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.InventoryItem.PackType}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.InventoryItem.Inventory.StockQuantity}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.OrderQuantity}}
-                                                            </td>
-                                                            <!-- <td>
-                                                                {{x?.BonusQuantity}}
-                                                            </td> -->
-                                                            <td>
-                                                                {{x?.PerUnit}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.Rate}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.GrossAmount}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.DiscountPercentage}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.DiscountAmount}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.SalesTaxPercentage}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.SalesTaxAmount}}
-                                                            </td>
-                                                            <td>
-                                                                {{x?.NetAmount}}
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" (click)="RemovePurchaseOrderDetails(i, x?.NetAmount)"
-                                                                    class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
-                                                                    <i class="la la-remove"></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-
-
-                                                    </tbody>
-                                                </table>
+                                                    </dx-data-grid>
+        
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group m-form__group row">
-                                            <div class="col-lg-10"></div>
-                                            <div class="col-lg-2">
-                                                {{total}}
-                                             </div>
-                                        </div>
-                                    </div>
+                                            <div class="row">
+                                                    <div class="col-lg-6"></div>
+                                                <div class="col-lg-6">
+                                                        <div class="form-group m-form__group row">
+                                                                <label for="example-text-input" class="col-4 col-form-label">
+                                                                        Pack Qty
+                                                                </label>
+                                                                <div class="col-6">
+                                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalQuantity"
+                                                                        disabled>                                                </div>
+                                                            </div>
+                
+                                                            <div class="form-group m-form__group row">
+                                                                    <label for="example-text-input" class="col-4 col-form-label">
+                                                                            Total Amount
+                                                                    </label>
+                                                                    <div class="col-6">
+                                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalOrderAmount"
+                                                                            disabled>                                                    </div>
+                                                                </div>
+                                                </div>
+                                            </div>
+                                           
 
-                                </form>
+
+                                    
+                                           <!--  <div class="form-group m-form__group row">
+                                                    <div class="col-lg-10"></div>
+                                                    <div class="col-lg-2">
+                                                        
+                                                       
+                                                    </div>
+                                                    <div class="col-lg-10"></div>
+                                                </div> -->
+                                        </div>
+        
+                                        <!-- </form> -->
+                                        <div class="modal-footer">
+                                                <button class="btn btn-success"  (click)="SubmitPurchaseOrder()">Save</button>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+
+
+
+
+
+                    <hr>
+
+                 
+
+                    <!--end::Portlet-->
+                
+                 
                 </div>
             </div>
-            <!--end::Portlet-->
-            <button (click)="SubmitPurchaseOrder()">Submit</button>
         </div>
     </div>
 </div>
+
+<!-- <model>-->
+
+<!-- strat model for send sms -->
+
+<div class="modal fade" id="m_modal_6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Modal title
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        ×
+                    </span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="PurchaseOrderDetailsForm">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Manual Code
+                                </label>
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" style="width: 100px;"
+                                    (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)" formControlName="ManualCode">
+                                    <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
+                                        {{x?.itemCode}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Description
+                                </label>
+                                <input class="form-control m-input m-input--solid" formControlName="Description"
+                                    [value]="SelectedInventoryItem?.description || ''" disabled>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Pack Type
+                                </label>
+                                <input class="form-control m-input m-input--solid" formControlName="PackType" [value]="SelectedInventoryItem?.packType?.name || ''"
+                                    disabled>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Current Stock
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="StockQuantity"
+                                    [value]="SelectedInventoryItem?.inventory?.stockQuantity || ''" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Order Quantity
+                                </label>
+                                <input type="number" #OrderQuantity class="form-control m-input m-input--solid"
+                                    formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Bonus Quantity
+                                </label>
+                                <input type="number" #BonusQuantity class="form-control m-input m-input--solid"
+                                    formControlName="BonusQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Per Unit
+                                </label>
+                                <input class="form-control m-input m-input--solid" formControlName="PerUnit" [value]="SelectedInventoryItem?.unit?.name || ''"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Rate
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="Rate"
+                                    [value]="SelectedInventoryItem?.retailPrice || ''" disabled>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group m-form__group">
+                                    <label for="exampleInputEmail1">
+                                        Sales Tax %
+                                    </label>
+                                    <input type="number" #SalesTaxPercentage class="form-control m-input m-input--solid"
+                                        formControlName="SalesTaxPercentage" (keyup)="CalculateSalesTaxAmount(SalesTaxPercentage.value || 0)">
+                                </div>
+                            </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Discount %
+                                </label>
+                                <input type="text" [disabled]="dataEnabled" #DiscountPercentage class="form-control m-input m-input--solid"
+                                    formControlName="DiscountPercentage" (keyup)="CalculateDiscountAmount(DiscountPercentage.value || 0)">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group m-form__group">
+                                    <label for="exampleInputEmail1">
+                                        Gross Amount
+                                    </label>
+                                    <input type="number" class="form-control m-input m-input--solid" formControlName="GrossAmount"
+                                        [value]="GrossAmount" disabled>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputEmail1">
+                                            Sales Tax Amount
+                                        </label>
+                                        <input type="number" class="form-control m-input m-input--solid" formControlName="SalesTaxAmount"
+                                            [value]="SalesTaxAmount" disabled>
+                                    </div>
+                                </div>
+                       
+
+                        
+
+                    </div>
+
+
+                    <div class="form-group row">
+                            <div class="col-sm-4">
+                                    <div class="form-group m-form__group">
+                                        <label for="exampleInputEmail1">
+                                            Discount Amount
+                                        </label>
+                                        <input type="number" class="form-control m-input m-input--solid" formControlName="DiscountAmount"
+                                            [value]="DiscountAmount" disabled>
+                                    </div>
+                                </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Net Amount
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="NetAmount"
+                                    [value]="NetAmount" disabled>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button class="btn btn-success" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <model>-->

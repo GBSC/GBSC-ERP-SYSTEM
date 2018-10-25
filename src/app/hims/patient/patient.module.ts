@@ -27,9 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FindPatientComponent } from './find-patient/find-patient.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { HimsSetupTestComponent } from './hims-setup-test/hims-setup-test.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
@@ -37,6 +35,8 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
 import { TestComponent } from './test/test.component';
+import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
+import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -77,15 +77,15 @@ import { TestComponent } from './test/test.component';
         HimsSetupTestComponent,
         HomeComponent,
         FindPatientComponent,
-        HeaderComponent,
         MenuComponent,
-        FooterComponent,
         AppointmentscheduleComponent,
         VisitnatureComponent,
         VisitdetailComponent,
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
+        ViewallAppointmetsComponent,
+        VisitPrescriptionComponent,
     ]
 })
 export class PatientModule { }

@@ -14,7 +14,7 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="qualification"
+               [dataSource]="qualifications"
                keyExpr="universityId" 
                (onRowInserted)="addQualification($event)"
                (onRowUpdated)="updateQualification()"
@@ -37,7 +37,7 @@
                 <dxi-column dataField="courses"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
                 <dxi-column dataField="degreeId" caption="Degree">
-                    <dxo-lookup [dataSource]="degree" displayExpr="name" valueExpr="degreeId">
+                    <dxo-lookup [dataSource]="degrees" displayExpr="name" valueExpr="degreeId">
                     </dxo-lookup> 
               </dxi-column> 
               </dx-data-grid>

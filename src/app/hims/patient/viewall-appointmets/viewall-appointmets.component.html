@@ -1,0 +1,198 @@
+ 
+
+  <div class="m-content">
+    <div class="row">
+      <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Appointments  
+
+                </h3>
+              </div>
+            </div>
+          </div>
+ 
+          <div class="m-portlet__body">
+            
+              <form [formGroup]="SearchAppointmentForm"> 
+                  <div class="row">
+                      <div class="form-group col-lg-3">
+                        <label for="exampleInputEmail1"> Appointment Date</label>
+                        <input #date class="form-control m-input m-input--solid" type="date" formControlName="TentativeTime">
+                      </div>
+                      <div class="form-group col-lg-4">
+                           <!--  -->
+                      </div>
+                      <div class="form-group col-lg-4">
+                              <!--  -->
+                      </div>
+                      <div class="form-group col-lg-1">
+                          <label for="exampleInputEmail1"> </label>
+                          <button type="button" (click)="SearchAppointment(date)" class="btn btn-primary margin">Search</button>
+                      </div>
+                  </div>
+              </form>
+              <div class="m-portlet__body">
+              <div class="m-section">
+                <div class="m-section__content" >
+                    <dx-data-grid id="" [dataSource]="finalizedAppointments"> 
+                   <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="8"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
+                    <dxo-selection mode="single"></dxo-selection>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-paging [pageSize]="5"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                    <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                    <dxi-column dataField="patientId" caption="MRN #" [width]="125">
+                        <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="patientId" caption="Patients" [width]="125">
+                        <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="patientId" caption="Phone Number" [width]="125">
+                        <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                      </dxi-column>
+                    <dxi-column dataField="patientType" caption="patientType"></dxi-column> 
+
+                    <dxi-column dataField="patientId" caption="Visits" [width]="125">
+                        <dxo-lookup [dataSource]="par" displayExpr="totalVisitsToDate" valueExpr="patientId"></dxo-lookup>
+                      </dxi-column>
+                    <!-- <dxi-column dataField="totalVisitsToDate" caption="Visits" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
+
+                      <dxi-column caption="Profile" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                      <div *dxTemplate="let d of 'chartCellTemplate'">
+                        <div class="chart-cell">
+                          <dx-button (click)="getCurrentRowData(d)" icon="repeat"></dx-button>
+                          </div>
+                      </div>
+                    </dx-data-grid>
+                </div>
+              </div>
+              </div>
+            <!-- <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link  active show" data-toggle="tab" href="#m_tabs_1_1">
+                  Tentative
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#m_tabs_1_3">
+                  Final
+                </a>
+              </li>
+              
+            </ul> -->
+           <!-- <div class="tab-content"> -->
+              <!-- <div class="tab-pane  active show" id="m_tabs_1_1" role="tabpanel">
+                  <div class="m-section">
+                      <div class="m-section__content" >
+                          <dx-data-grid id="" [dataSource]="tentativeAppointments" (onRowUpdated)="updateAppointment($event)" > 
+                              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                                </dxo-editing>
+                         <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="8"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
+                          <dxo-selection mode="single"></dxo-selection>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-paging [pageSize]="5"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                          <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                          <dxi-column dataField="patientId" caption="MRN #" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                              <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="patientId" caption="Patients" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                              <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId" ></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="patientId" caption="No" [width]="125" [allowEditing]="false" [formItem]="{visible: false}">
+                              <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"  ></dxo-lookup>
+                            </dxi-column>
+                          <dxi-column dataField="patientType" caption="patientType"[allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                          <dxi-column dataField="patientId" caption="No"[allowEditing]="false" [formItem]="{visible: false}">
+                              <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                          </dxi-column>
+                            <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment" ></dxi-column>
+                            <dxi-column caption="Visit" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                            <div *dxTemplate="let d of 'chartCellTemplate'">
+                              <div class="chart-cell">
+                                <dx-button (click)="getCurrentRowData(d)" icon="add"></dx-button>
+                                </div>
+                            </div>
+            
+                          </dx-data-grid>  
+                      </div>
+                    </div>
+                    </div> -->
+         
+              <!-- <div class="tab-pane" id="m_tabs_1_3" role="tabpanel"> -->
+                  <!-- <div class="m-section">
+                      <div class="m-section__content" >
+                          <dx-data-grid id="" [dataSource]="finalizedAppointments"> 
+                         <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="8"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
+                          <dxo-selection mode="single"></dxo-selection>
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-paging [pageSize]="5"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                          <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                          <dxi-column dataField="patientId" caption="MRN #" [width]="125">
+                              <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="patientId" caption="Patients" [width]="125">
+                              <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="patientId" caption="Phone Number" [width]="125">
+                              <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                            </dxi-column>
+                          <dxi-column dataField="patientType" caption="patientType"></dxi-column>
+                          <dxi-column dataField="" caption="Visits" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+
+                            <dxi-column caption="Profile" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                            <div *dxTemplate="let d of 'chartCellTemplate'">
+                              <div class="chart-cell">
+                                <dx-button (click)="getCurrentRowData(d)" icon="add"></dx-button>
+                                </div>
+                            </div>
+                          </dx-data-grid>  
+
+
+                      </div>
+                    </div> -->
+                  <!-- </div> -->
+               
+            <!-- </div> -->
+          </div>
+        </div>
+        <!--end::Portlet-->
+
+        
+        
+
+        
+        
+      </div>
+      
+    </div>
+  </div>
+
+
+
+

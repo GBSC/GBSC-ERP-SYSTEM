@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './finance.routing';
 import { RootComponent } from './root/root.component';
-import { FooterComponent } from '../finance/shared/footer/footer.component';
-import { HeaderComponent } from '../finance/shared/header/header.component';
 import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompanysetupComponent } from './companysetup/companysetup.component';
@@ -43,8 +41,6 @@ import { VoucherDetailComponent } from './voucher-detail/voucher-detail.componen
 
         RootComponent,
         DashboardComponent,
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         CompanysetupComponent,
         FinancialyearComponent,

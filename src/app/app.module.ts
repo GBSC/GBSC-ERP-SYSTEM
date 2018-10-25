@@ -14,6 +14,9 @@ import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
 import { ToastrModule } from 'ngx-toastr';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
+import { ClinicalrecordComponent } from './hims/coordination/clinicalrecord/clinicalrecord.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -21,7 +24,8 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
     declarations: [
         ThemeComponent,
         AppComponent,
-
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         CommonModule,

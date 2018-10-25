@@ -17,6 +17,16 @@ import { TestunitComponent } from '../lab/labsetup/testunit/testunit.component';
 import { EmbryologistsComponent } from '../lab/labsetup/embryologists/embryologists.component'
 import { EmbryologycodesComponent } from '../lab/labsetup/embryologycodes/embryologycodes.component'
 import { AuthGuardService, ModuleGuardService } from '../../core';
+import { TvopuComponent } from './tvopu/tvopu.component';
+import { MedicineComponent } from './medicine/medicine.component';
+import { ProtocolComponent } from './protocol/protocol.component';
+import { TreatmenttypeComponent } from './treatmenttype/treatmenttype.component';
+import { EmbryologyComponent } from './embryology/embryology.component';
+import { InsemenationComponent } from './insemenation/insemenation.component';
+import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
+import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
+import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
+import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -27,20 +37,39 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
-            { path: 'testunit', component: TestunitComponent },
-            { path: 'biochemistrytest', component: BiochemistrytestComponent },
-            { path: 'dailyProcedure', component: DailyProcedureComponent },
-            { path: 'fileRecord', component: FileRecordComponent },
-            { path: 'Proceduresortest', component: ProceduresortestComponent },
-            { path: 'semensanalysislist', component: SemensanalysislistComponent },
-            { path: 'biochemistryontreatment', component: BiochemistryontreatmentComponent },
+            { path: 'clinical-records', component: ClinicalrecordsComponent },
+            { path: 'test-unit', component: TestunitComponent },
+            { path: 'biochemistry-test', component: BiochemistrytestComponent },
+            { path: 'daily-procedure', component: DailyProcedureComponent },
+            { path: 'file-record', component: FileRecordComponent },
+            { path: 'proceduresortest', component: ProceduresortestComponent },
+            { path: 'semen-analysis-list', component: SemensanalysislistComponent },
+            { path: 'biochemistry-ontreatment', component: BiochemistryontreatmentComponent },
+            { path: 'biochemistry-ontreatment/:id', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry', component: BiochemistryComponent },
             { path: 'biopsy', component: BiopsyComponent },
-            { path: 'inseminationprep', component: InseminationprepComponent },
+            { path: 'biopsy/:id', component: BiopsyComponent },
+            { path: 'insemination-prep', component: InseminationprepComponent },
+            { path: 'insemination-prep/:id', component: InseminationprepComponent },
             { path: 'referencerange', component: ReferencerangeComponent },
-            { path: 'embryologysection', component: EmbryologysectionComponent },
+            { path: 'embryology-section', component: EmbryologysectionComponent },
+            { path: 'embryology-section/:id', component: EmbryologysectionComponent },
             { path: 'embryologist', component: EmbryologistsComponent },
-            { path: 'embryologycode', component: EmbryologycodesComponent },
+            { path: 'embryology-code', component: EmbryologycodesComponent },
+            { path: 'tvopu', component: TvopuComponent },
+            { path: 'tvopu/:id', component: TvopuComponent },
+            { path: 'medicine', component: MedicineComponent },
+            { path: 'treatment-type', component: TreatmenttypeComponent },
+            { path: 'protocol', component: ProtocolComponent },
+            { path: 'embryology', component: EmbryologyComponent },
+            { path: 'embryology/:id', component: EmbryologyComponent },
+            { path: 'insemenation', component: InsemenationComponent },
+            { path: 'insemenation/:id', component: InsemenationComponent },
+            { path: 'embryology-thawing', component: EmbryologyThawingComponent },
+            { path: 'embryo-freeze', component: EmbryoFreezeComponent },
+            { path: 'embryo-freeze/:id', component: EmbryoFreezeComponent },
+            { path: 'freeze-prepration', component: FreezepreparationComponent },
+            { path: 'freeze-prepration/:id', component: FreezepreparationComponent },
 
         ]
     }

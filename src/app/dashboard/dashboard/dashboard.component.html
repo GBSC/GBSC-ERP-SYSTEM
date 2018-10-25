@@ -1,397 +1,177 @@
-<div class="m-portlet m-portlet--tabs">
-        <div class="m-portlet__head" style="padding: 0px 0px 0px 0px;background:#dee1e7;">
-         
-            <div class="m-portlet__head-tools">
-
-
-                <div class="container">
-                    <div class="scroller scroller-left"><i class="la la-angle-left"></i></div>
-                    <div class="scroller scroller-right"><i class="la la-angle-right"></i></div>
-                    <div class="wrapper">
-
-                <ul  class="nav nav-tabs m-tabs-line m-tabs-line--primary m-tabs-line--2x list" role="tablist">
-                    <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_tabs_6_1" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #4d65bf;">
-                            <i class="la la-users" style="display: block; height: 33px;font-size: 46px;"></i>
-                            Human Resource Management
-                        </a>
-                    </li>
-                    <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                      <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_2" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #0070c4;">
-                          <i class="la la-hospital-o" style="display: block; height: 33px;font-size: 46px;"></i>
-                          Hospital Management System
-                      </a>
-                  </li>
-                  <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                      <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_6" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #3173e9;">
-                          <i class="la la-user-md" style="display: block; height: 33px;font-size: 46px;"></i>
-                          Lab Information System
-                      </a>
-                  </li>
-                  <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_3" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #d95531;">
-                        <i class="la la-shopping-cart" style="display: block; height: 33px;font-size: 46px;"></i>
-                        Inventory Management System
-                    </a>
-                </li>
-                <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                  <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_4" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #3173e9;">
-                      <i class="la 	la-usd" style="display: block; height: 33px;font-size: 46px;"></i>
-                      Payroll Management System
-                  </a>
-              </li>
-              <li class="nav-item m-tabs__item" style="text-align: center; padding: 0px; margin-right: 0px;">
-                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_tabs_6_5" role="tab" style="padding: 40px 15px 8px 15px;font-size: 14px;background: #ac1f40;">
-                    <i class="la la-credit-card" style="display: block; height: 33px;font-size: 46px;"></i>
-                    Accounting System
-                </a>
-            </li>
-            
-                 
-        
-                </ul>
-
-              </div>
-            </div>
-
-
-            </div>
-        </div>
-        <div class="m-portlet__body">
-            <div class="tab-content">
-                <div class="tab-pane active" id="m_tabs_6_1" role="tabpanel">
-                   <div class="container">
-                     <div class="row">
-                        <div class="col-sm-3">
-                            <ul class="m-nav">
-                                <li class="m-nav__section m-nav__section--first">
-                                  <span class="m-nav__section-text">
-                                      Attendance
-                                  </span>
-                                </li>
-                                <li class="m-nav__item">
-                                  <a routerLink="/attendanceadmin/attendanceflagexemption" class="m-nav__link">
-                                    <i class="m-nav__link-icon flaticon-share"></i>
-                                    <span class="m-nav__link-text">
-                                        Attendance Admin
-                                    </span>
-                                  </a>
-                                </li>
-                                <li class="m-nav__item">
-                                  <a routerLink="/hrm/attendance/attendancerequest" class="m-nav__link">
-                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                    <span class="m-nav__link-text">
-                                        Attendance Request
-                                        
-                                    </span>
-                                  </a>
-                                </li>
-                                <li class="m-nav__item">
-                                  <a routerLink="/hrm/attendance/official-visit-entry" class="m-nav__link">
-                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                    <span class="m-nav__link-text">
-                                        Official Visit Entry
-                                       
-                                    </span>
-                                  </a>
-                                </li>
-                                <li class="m-nav__item">
-                                    <a routerLink="/hrm/attendance/overtime-entitlement" class="m-nav__link">
-                                      <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                      <span class="m-nav__link-text">
-                                          OverTime Entitlement
-                                         
-                                      </span>
-                                    </a>
-                                  </li>
-                                  <li class="m-nav__item">
-                                    <a routerLink="/hrm/attendance/employee-overtime-entitlement" class="m-nav__link">
-                                      <i class="m-nav__link-icon flaticon-info"></i>
-                                      <span class="m-nav__link-text">
-                                          Employee OverTime Entitlemen
-                                      </span>
-                                    </a>
-                                  </li>
-                            
-                              </ul>
-                         </div>
-                       <div class="col-sm-3">
-                          <ul class="m-nav">
-															<li class="m-nav__section m-nav__section--first">
-																<span class="m-nav__section-text">
-                                    Employees
-																</span>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/employee/employees" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-share"></i>
-																	<span class="m-nav__link-text">
-                                      Employees
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/employee/registration" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-chat-1"></i>
-																	<span class="m-nav__link-text">
-                                      Employee Registration
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/rolesandprivileges" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-                                      Roles & Priviliges
-																	</span>
-																</a>
-															</li>
-													
-														</ul>
-                       </div>
-                       <div class="col-sm-3">
-                          <ul class="m-nav">
-															<li class="m-nav__section m-nav__section--first">
-																<span class="m-nav__section-text">
-                                   Leave
-																</span>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/leave/leaverequest" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-share"></i>
-																	<span class="m-nav__link-text">
-                                      Leave Request
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/leave/leaveapproval" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-chat-1"></i>
-																	<span class="m-nav__link-text">
-                                      Leave Approval
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/leave/leaveclosing" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-                                      Leave Closing
-																	</span>
-																</a>
-															</li>
-                              
-														</ul>
-                       </div>
-                    
-                       <div class="col-sm-3">
-                          <ul class="m-nav">
-															<li class="m-nav__section m-nav__section--first">
-																<span class="m-nav__section-text">
-																	Setup Configuration
-																</span>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/company" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-share"></i>
-																	<span class="m-nav__link-text">
-                                      Company Setup
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/leave/leavesetup/leavetype" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-chat-1"></i>
-																	<span class="m-nav__link-text">
-                                      Leave Setup 
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a routerLink="/hrm/attendance/attendancesetup/roster" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-                                      Attendance Setup
-																	</span>
-																</a>
-                              </li>
-                              <li class="m-nav__item">
-                                  <a routerLink="/hrm/attendance/overtime/overtimeflag" class="m-nav__link">
-                                    <i class="m-nav__link-icon flaticon-info"></i>
-                                    <span class="m-nav__link-text">
-                                        Overtime Setup 
-                                    </span>
-                                  </a>
-                                </li>
-                                <li class="m-nav__item">
-                                    <a routerLink="/hrm/payroll/payrollsetup/allowance" class="m-nav__link">
-                                      <i class="m-nav__link-icon flaticon-info"></i>
-                                      <span class="m-nav__link-text">
-                                          Payroll Setup
-                                      </span>
-                                    </a>
-                                  </li>
-                                  <li class="m-nav__item">
-                                      <a routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-nav__link">
-                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                        <span class="m-nav__link-text">
-                                            Tax Setup
-                                        </span>
-                                      </a>
-                                    </li>
-                                    <li class="m-nav__item">
-                                        <a routerLink="/hrm/payroll/loansetup/loantype" class="m-nav__link">
-                                          <i class="m-nav__link-icon flaticon-info"></i>
-                                          <span class="m-nav__link-text">
-                                              Loan Setup
-                                          </span>
-                                        </a>
-                                      </li>
-													
-														</ul>
-                       </div>
-                     </div>
-                   </div>
+<div class="m-subheader-search">
+        <h2 class="m-subheader-search__title">
+            Recent Bookings
+            <span class="m-subheader-search__desc">
+                Onling Bookings Management
+            </span>
+        </h2>
+        <form class="m-form">
+            <div class="m-grid m-grid--ver-desktop m-grid--desktop">
+                <div class="m-grid__item m-grid__item--middle">
+                    <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
+                        <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Booking Number">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-puzzle-piece"></i>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
+                        <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="From">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-calendar-check-o"></i>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
+                        <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="To">
+                        <span class="m-input-icon__icon m-input-icon__icon--right">
+                            <span>
+                                <i class="la la-calendar-check-o"></i>
+                            </span>
+                        </span>
+                    </div>
                 </div>
-                <div class="tab-pane" id="m_tabs_6_2" role="tabpanel">
-                        <div class="container">
-                                <div class="row">
-                                   <div class="col-sm-3">
-                                       <ul class="m-nav">
-                                           <li class="m-nav__section m-nav__section--first">
-                                             <span class="m-nav__section-text">
-                                                 Patient
-                                             </span>
-                                           </li>
-                                           <li class="m-nav__item">
-                                             <a routerLink="/hims/patient/findpatient" class="m-nav__link">
-                                               <i class="m-nav__link-icon flaticon-share"></i>
-                                               <span class="m-nav__link-text">
-                                                    Find Patient Records
-                                               </span>
-                                             </a>
-                                           </li>
-                                           <li class="m-nav__item">
-                                             <a routerLink="/hims/patient/registration" class="m-nav__link">
-                                               <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                               <span class="m-nav__link-text">
-                                                    Register Patient
-                                                   
-                                               </span>
-                                             </a>
-                                           </li>
-                                           <li class="m-nav__item">
-                                             <a routerLink="/hims/patient/activevisits" class="m-nav__link">
-                                               <i class="m-nav__link-icon flaticon-info"></i>
-                                               <span class="m-nav__link-text">
-                                                    Active Visit
-                                                  
-                                               </span>
-                                             </a>
-                                           </li>
-                                          
-                                       
-                                         </ul>
-                                    </div>
-                                  <div class="col-sm-3">
-                                     <ul class="m-nav">
-                                                                       <li class="m-nav__section m-nav__section--first">
-                                                                           <span class="m-nav__section-text">
-                                                                                Appointment 
-                                                                           </span>
-                                                                       </li>
-                                                                       <li class="m-nav__item">
-                                                                           <a routerLink="/hims/patient/appointmentschedule" class="m-nav__link">
-                                                                               <i class="m-nav__link-icon flaticon-share"></i>
-                                                                               <span class="m-nav__link-text">
-                                                                                    Appointment Scheduling
-                                                                               </span>
-                                                                           </a>
-                                                                       </li>
-                                                                    
-                                                               
-                                                                   </ul>
-                                  </div>
-                                  <div class="col-sm-3">
-                                     <ul class="m-nav">
-                                                                       <li class="m-nav__section m-nav__section--first">
-                                                                           <span class="m-nav__section-text">
-                                              Setup Configuration
-                                                                           </span>
-                                                                       </li>
-                                                                       <li class="m-nav__item">
-                                                                           <a routerLink="/hims/patient/visitnature" class="m-nav__link">
-                                                                               <i class="m-nav__link-icon flaticon-share"></i>
-                                                                               <span class="m-nav__link-text">
-                                                                                    visit Nature
-                                                                               </span>
-                                                                           </a>
-                                                                       </li>
-                                                                       <li class="m-nav__item">
-                                                                           <a routerLink="hims/patient/himssetuptest" class="m-nav__link">
-                                                                               <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                               <span class="m-nav__link-text">
-                                                                                    Test
-                                                                               </span>
-                                                                           </a>
-                                                                       </li>
-                                                                       <li class="m-nav__item">
-                                                                           <a routerLink="/hims/patient/diagnose" class="m-nav__link">
-                                                                               <i class="m-nav__link-icon flaticon-info"></i>
-                                                                               <span class="m-nav__link-text">
-                                                                                    Diagnose
-                                                                               </span>
-                                                                           </a>
-                                                                       </li>
-                                                                       <li class="m-nav__item">
-                                                                            <a routerLink="/hims/patient/consultant" class="m-nav__link">
-                                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                                <span class="m-nav__link-text">
-                                                                                     Consultant
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                         
-                                                                   </ul>
-                                  </div>
-                               
-                                  <div class="col-sm-3">
-                                     <ul class="m-nav">
-                                                                       <li class="m-nav__section m-nav__section--first">
-                                                                           <span class="m-nav__section-text">
-                                                                               Reports
-                                                                           </span>
-                                                                       </li>
-                                                                   </ul>
-                                  </div>
-                                </div>
-                              </div>
+                <div class="m-grid__item m-grid__item--middle">
+                    <div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
+                    <button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
+                        Search Bookings
+                    </button>
+                   
                 </div>
-                <div class="tab-pane" id="m_tabs_6_3" role="tabpanel">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                </div>
+    
+    
             </div>
-        </div>
+        </form>
     </div>
 
 
+    <div class="m-portlet">
+            <div class="m-portlet__body  m-portlet__body--no-padding">
+                <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <div class="col-xl-4">
+                        <!--begin:: Widgets/Stats2-1 -->
+                        <div class="m-widget1">
+                            <div class="m-widget1__item">
+                                <div class="row m-row--no-padding align-items-center">
+                                    <div class="col">
+                                        <h3 class="m-widget1__title">
+                                            Member Profit
+                                        </h3>
+                                        <span class="m-widget1__desc">
+                                            Awerage Weekly Profit
+                                        </span>
+                                    </div>
+                                    <div class="col m--align-right">
+                                        <span class="m-widget1__number m--font-brand">
+                                            +$17,800
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-widget1__item">
+                                <div class="row m-row--no-padding align-items-center">
+                                    <div class="col">
+                                        <h3 class="m-widget1__title">
+                                            Orders
+                                        </h3>
+                                        <span class="m-widget1__desc">
+                                            Weekly Customer Orders
+                                        </span>
+                                    </div>
+                                    <div class="col m--align-right">
+                                        <span class="m-widget1__number m--font-danger">
+                                            +1,800
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-widget1__item">
+                                <div class="row m-row--no-padding align-items-center">
+                                    <div class="col">
+                                        <h3 class="m-widget1__title">
+                                            Issue Reports
+                                        </h3>
+                                        <span class="m-widget1__desc">
+                                            System bugs and issues
+                                        </span>
+                                    </div>
+                                    <div class="col m--align-right">
+                                        <span class="m-widget1__number m--font-success">
+                                            -27,49%
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end:: Widgets/Stats2-1 -->
+                    </div>
+                    <div class="col-xl-4">
+                        <!--begin:: Widgets/Daily Sales-->
+                        <div class="m-widget14">
+                            <div class="m-widget14__header m--margin-bottom-30">
+                                <h3 class="m-widget14__title">
+                                    Daily Sales
+                                </h3>
+                                <span class="m-widget14__desc">
+                                    Check out each collumn for more details
+                                </span>
+                            </div>
+                            <div class="m-widget14__chart" style="height:120px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                                <canvas id="m_chart_daily_sales" width="487" height="150" class="chartjs-render-monitor" style="display: block; height: 120px; width: 390px;"></canvas>
+                            </div>
+                        </div>
+                        <!--end:: Widgets/Daily Sales-->
+                    </div>
+                    <div class="col-xl-4">
+                        <!--begin:: Widgets/Profit Share-->
+                        <div class="m-widget14">
+                            <div class="m-widget14__header">
+                                <h3 class="m-widget14__title">
+                                    Profit Share
+                                </h3>
+                                <span class="m-widget14__desc">
+                                    Profit Share between customers
+                                </span>
+                            </div>
+                            <div class="row  align-items-center">
+                                <div class="col">
+                                    <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
+                                        <div class="m-widget14__stat">
+                                            45
+                                        </div>
+                                    <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-donut" style="width: 100%; height: 100%;"><g class="ct-series custom"><path d="M150.54,108.314A66.5,66.5,0,0,0,90.369,13.5" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#716aca&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="133.70704650878906px 133.70704650878906px" stroke-dashoffset="-133.70704650878906px" stroke="#716aca"><animate attributeName="stroke-dashoffset" id="anim0" dur="1000ms" from="-133.70704650878906px" to="0px" fill="freeze" stroke="#716aca" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M39.13,122.389A66.5,66.5,0,0,0,150.638,108.104" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#00c5dc&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="133.93869018554688px 133.93869018554688px" stroke-dashoffset="-133.93869018554688px" stroke="#00c5dc"><animate attributeName="stroke-dashoffset" id="anim1" dur="1000ms" from="-133.93869018554688px" to="0px" fill="freeze" stroke="#00c5dc" begin="anim0.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M90.369,13.5A66.5,66.5,0,0,0,39.278,122.567" class="ct-slice-donut" ct:value="36" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#ffb822&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="150.65415954589844px 150.65415954589844px" stroke-dashoffset="-150.65415954589844px" stroke="#ffb822"><animate attributeName="stroke-dashoffset" id="anim2" dur="1000ms" from="-150.65415954589844px" to="0px" fill="freeze" stroke="#ffb822" begin="anim1.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g></svg></div>
+                                </div>
+                                <div class="col">
+                                    <div class="m-widget14__legends">
+                                        <div class="m-widget14__legend">
+                                            <span class="m-widget14__legend-bullet m--bg-accent"></span>
+                                            <span class="m-widget14__legend-text">
+                                                37% Sport Tickets
+                                            </span>
+                                        </div>
+                                        <div class="m-widget14__legend">
+                                            <span class="m-widget14__legend-bullet m--bg-warning"></span>
+                                            <span class="m-widget14__legend-text">
+                                                47% Business Events
+                                            </span>
+                                        </div>
+                                        <div class="m-widget14__legend">
+                                            <span class="m-widget14__legend-bullet m--bg-brand"></span>
+                                            <span class="m-widget14__legend-text">
+                                                19% Others
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end:: Widgets/Profit Share-->
+                    </div>
+                </div>
+            </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
+        </div>
 

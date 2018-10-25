@@ -38,9 +38,7 @@ export class LeaveSetupService {
     }
 
     async updateLeavePurpose(data) {
-        let leavpurpose = await this.getdataToUpdate(data.key, 'GetLeavePurpose');
-        leavpurpose = { ...leavpurpose, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePurpose`, leavpurpose).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeavePurpose`, data).toPromise();
     }
 
 

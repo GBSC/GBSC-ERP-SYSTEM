@@ -4,7 +4,7 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class AttendancesetupService {
 
-    private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
+    private baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
     constructor(private ApiService: ApiService) { }
 
@@ -244,10 +244,8 @@ export class AttendancesetupService {
     }
 
     async updateOvertimeType(data) {
-
-        let overtimetype = await this.getdataToUpdate(data.key, 'GetOverTimeType');
-        overtimetype = { ...overtimetype, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, overtimetype).toPromise();
+ 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, data).toPromise();
 
     }
 

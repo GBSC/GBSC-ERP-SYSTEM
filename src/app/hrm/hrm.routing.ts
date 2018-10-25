@@ -115,6 +115,8 @@ import { GratuityComponent } from './payroll/gratuity/gratuity.component';
 import { MonthlyUserSalaryComponent } from './payroll/monthly-user-salary/monthly-user-salary.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
+import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
+import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -181,11 +183,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     {
                         path: 'leaveadmin',
                         children: [
-                            { path: 'leaveopening', component: EmployeeleaveopeningComponent },
+                            { path: 'leaveopenings', component: ViewemployeeleaveopeningComponent },
+                            { path: 'createleaveopening', component: EmployeeleaveopeningComponent },
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
                         ]
                     },
-                    { path: 'leaverequest', component: LeaverequestComponent },
+                    { path: 'leaverequests', component: ViewleaverequestComponent },
+                    { path: 'createleaverequest', component: LeaverequestComponent },
                     { path: 'leaveclosing', component: LeaveclosingComponent },
                     { path: 'leaveapproval', component: LeaveapprovalComponent }
 

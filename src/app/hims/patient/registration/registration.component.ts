@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../../core';
@@ -38,7 +39,7 @@ export class RegistrationComponent implements OnInit {
 
     id: number;
 
-    public Patient: any = ' ';
+    public Patient: any = '';
 
     private forevent: File = null;
 
@@ -54,8 +55,10 @@ export class RegistrationComponent implements OnInit {
 
     referencesubmitted = false;
 
+    documentsumitted = false;
 
-    constructor(private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+
+    constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             'ReferredBy': [''],
@@ -111,10 +114,86 @@ export class RegistrationComponent implements OnInit {
         });
     }
 
+    async ngOnInit() {
 
+        console.log(this.router.url);
 
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+            this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
+                this.Patient = Patient;
+                console.log(this.Patient)
+                if (Patient) {
+                    this.patientForm.patchValue({
+                        RegCity: Patient.regCity,
+                        visitNatureId: Patient.visitNatureId,
+                        FirstName: Patient.firstName,
+                        MiddleName: Patient.middleName,
+                        LastName: Patient.lastName,
+                        DOB: Patient.dob,
+                        PlaceOfBirth: Patient.placeOfBirth,
+                        Occupation: Patient.occupation,
+                        NIC: Patient.nic,
+                        Gender: Patient.gender,
+                        PhoneNumber: Patient.phoneNumber,
+                        OfficeAddress: Patient.officeAddress,
+                        ResidenceAddress: Patient.residenceAddress,
+                        Remarks: Patient.remarks,
+                        OfficeTel: Patient.officeTel,
+                        ForeignAddress: Patient.foreignAddress,
+                        Country: Patient.country,
+                        City: Patient.city,
+                        State: Patient.state,
+                        PostalCode: Patient.postalCode,
+                        Initial: Patient.initial,
+                        PrivatePatientCons: Patient.privatePatientCons,
+                        PrivateHospital: Patient.privateHospital,
+                        AuthorizedPerson: Patient.authorizedPerson,
+                    });
+                
+                this.partnerForm.patchValue({
+                    FirstName: Patient.partner.firstName,
+                    MiddleName: Patient.partner.middleName,
+                    LastName: Patient.partner.lastName,
+                    DOB: Patient.partner.dob,
+                    PlaceOfBirth: Patient.partner.placeOfBirth,
+                    Occupation: Patient.partner.occupation,
+                    NIC: Patient.partner.nic,
+                    PhoneNumber: Patient.partner.phoneNumber,
+                });
+
+                this.referenceForm.patchValue({
+                    ReferredBy: Patient.patientReference.referredBy,
+                    PersonName: Patient.patientReference.personName,
+                    RefAddress: Patient.patientReference.refAddress,
+                    ReferenceTel: Patient.patientReference.referenceTel,
+                });
+            }
+            });
+        });
+
+        await this.PatientServiceobj.getPatient();
+        let x = this.PatientServiceobj.patients;
+        console.log(x);
+        console.log(this.PatientServiceobj.patients);
+
+        await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
+        let y = this.PatientServiceobj.patientData;
+        console.log(y);
+
+        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
+            this.documents = document;
+            console.log(document);
+        });
+
+        await this.PatientServiceobj.GetVisitNatures();
+        this.visitnature = this.PatientServiceobj.visitNatures;
+        console.log(this.visitnature);
+    }
 
     addrange() {
+
+
 
         //   let { value } = this.documentForm;
 
@@ -160,9 +239,13 @@ export class RegistrationComponent implements OnInit {
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
-
         this.patientId = await this.PatientServiceobj.addPatient(value);
         console.log(this.patientId);
+        this.displayToastSuccess("Patient Registered");
+         //  this.patientForm.reset();
+           console.log(this.patientForm);
+
+
         // this.upload(this.patientId);
         // this.router.navigate(['/hims/patient/findpatient']);
         // this.PatientServiceobj.getPatient();
@@ -183,7 +266,10 @@ export class RegistrationComponent implements OnInit {
         }
         this.partnerForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         // this.addpartnet = value
+
         await this.PatientServiceobj.addSpouse(value);
+        this.displayToastSuccess("Saved");
+
     }
 
     get r() { return this.referenceForm.controls; }
@@ -201,12 +287,15 @@ export class RegistrationComponent implements OnInit {
         }
         this.referenceForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         await this.PatientServiceobj.addPatientReference(value);
-
+        this.displayToastSuccess("Saved");
         // console.log(value);
         // this.addReference = value;
     }
     public docs: File[] = [];
+
+
     onAddDocument() {
+
 
         if (this.patientId === undefined) {
             return alert('First Add Patient Detail');
@@ -217,6 +306,8 @@ export class RegistrationComponent implements OnInit {
         // console.log(this.docs);
 
         this.upload(this.patientId);
+        this.displayToastSuccess("Saved");
+
 
 
 
@@ -229,6 +320,7 @@ export class RegistrationComponent implements OnInit {
         if (this.Patient.patientReference === null) {
             delete this.referenceForm.value.patientReferenceId
             await this.PatientServiceobj.addPatientRef(value)
+            this.displayToastSuccess("Saved");
             console.log(value)
         }
 
@@ -240,6 +332,7 @@ export class RegistrationComponent implements OnInit {
             let updatepatientRefId = this.id;
             console.log(updatepatientRefId);
             this.router.navigate(['/hims/patient/profile/' + updatepatientRefId]);
+            this.displayToastSuccess("Updated");
         }
     }
 
@@ -252,7 +345,9 @@ export class RegistrationComponent implements OnInit {
 
         if (this.Patient.partner === null) {
             delete this.partnerForm.value.PartnerId
-            await this.PatientServiceobj.addPatientSpouse(value)
+            await this.PatientServiceobj.addPatientSpouse(value);
+            this.displayToastSuccess("Saved");
+
             console.log(value)
         }
 
@@ -263,6 +358,8 @@ export class RegistrationComponent implements OnInit {
             console.log(value);
             let updatedpatientId = this.id;
             this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
+            this.displayToastSuccess("Updated");
+
         }
 
     }
@@ -293,6 +390,8 @@ export class RegistrationComponent implements OnInit {
         console.log(value);
         let updatedpatientId = this.id;
         this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
+        this.displayToastSuccess("Updated");
+
 
 
     }
@@ -305,7 +404,7 @@ export class RegistrationComponent implements OnInit {
         console.log(this.forevent)
     }
     async  onupload() {
-
+        console.log('d');
         const f = new FormData();
         f.append('f', this.forevent);
 
@@ -347,81 +446,7 @@ export class RegistrationComponent implements OnInit {
     }
 
 
-    async ngOnInit() {
 
-        console.log(this.router.url);
-
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
-            this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
-                this.Patient = Patient;
-                console.log(Patient)
-
-                this.patientForm.patchValue({
-                    RegCity: Patient.regCity,
-                    visitNatureId: Patient.visitNatureId,
-                    FirstName: Patient.firstName,
-                    MiddleName: Patient.middleName,
-                    LastName: Patient.lastName,
-                    DOB: Patient.dob,
-                    PlaceOfBirth: Patient.placeOfBirth,
-                    Occupation: Patient.occupation,
-                    NIC: Patient.nic,
-                    Gender: Patient.gender,
-                    PhoneNumber: Patient.phoneNumber,
-                    OfficeAddress: Patient.officeAddress,
-                    ResidenceAddress: Patient.residenceAddress,
-                    Remarks: Patient.remarks,
-                    OfficeTel: Patient.officeTel,
-                    ForeignAddress: Patient.foreignAddress,
-                    Country: Patient.country,
-                    City: Patient.city,
-                    State: Patient.state,
-                    PostalCode: Patient.postalCode,
-                    Initial: Patient.initial,
-                    PrivatePatientCons: Patient.privatePatientCons,
-                    PrivateHospital: Patient.privateHospital,
-                    AuthorizedPerson: Patient.authorizedPerson,
-                });
-
-                this.partnerForm.patchValue({
-                    FirstName: Patient.partner.firstName,
-                    MiddleName: Patient.partner.middleName,
-                    LastName: Patient.partner.lastName,
-                    DOB: Patient.partner.dob,
-                    PlaceOfBirth: Patient.partner.placeOfBirth,
-                    Occupation: Patient.partner.occupation,
-                    NIC: Patient.partner.nic,
-                    PhoneNumber: Patient.partner.phoneNumber,
-                });
-
-                this.referenceForm.patchValue({
-                    ReferredBy: Patient.patientReference.referredBy,
-                    PersonName: Patient.patientReference.personName,
-                    RefAddress: Patient.patientReference.refAddress,
-                    ReferenceTel: Patient.patientReference.referenceTel,
-                });
-            });
-        });
-
-        await this.PatientServiceobj.getPatient();
-        let x = this.PatientServiceobj.patients;
-        console.log(x);
-        console.log(this.PatientServiceobj.patients);
-
-        await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
-        let y = this.PatientServiceobj.patientData;
-        console.log(y);
-
-        this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
-            this.documents = document;
-            console.log(document);
-        });
-
-        await this.PatientServiceobj.GetVisitNatures();
-        this.visitnature = this.PatientServiceobj.visitNatures;
-        console.log(this.visitnature);
-    }
 
 
     goback() {
@@ -437,6 +462,14 @@ export class RegistrationComponent implements OnInit {
         }
     }
 
+
+    displayToastSuccess(message) {
+        this.toastr.success(message);
+    }
+
+    displayToastError(message) {
+        this.toastr.error(message);
+    }
 
 
 }

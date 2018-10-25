@@ -23,170 +23,213 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId" id="">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor ="let employee of employee" [value]="employee.userId" >{{employee.firstName}}</option>
+                  <option *ngFor ="let employee of employee" [value]="employee.userId" >{{employee.firstName}} {{employee.lastName}}</option>
          </select>
               </div> 
             </div>
 
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">
-                      Employee Working Day Ot
-                  </h3>
+            <div class="m-accordion m-accordion--default" id="m_accordion_1" role="tablist">
+              <!--begin::Item-->
+              <div class="m-accordion__item">
+                <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_1_item_1_head" data-toggle="collapse" href="#m_accordion_1_item_1_body" aria-expanded="false">
+                  <span class="m-accordion__item-icon">
+                    <i class="fa flaticon-user-ok"></i>
+                  </span>
+                  <span class="m-accordion__item-title">
+                    Employee Working Day/Off Day Ot
+                  </span>
+                  <span class="m-accordion__item-mode"></span>
                 </div>
-              </div>
-            </div>
-            <div class="m--space-50"></div>
+                <div class="m-accordion__item-body collapse" id="m_accordion_1_item_1_body" role="tabpanel" aria-labelledby="m_accordion_1_item_1_head" data-parent="#m_accordion_1">
+                  <div class="m-accordion__item-content">
+                    <div class="m--space-5"></div> 
+                    <div class="m-form__heading">
+                      <h4 class="m-form__heading-title">
+                        Working Day Over Time
+                      </h4>
+                    </div>
+                    <div class="m--space-20"></div> 
 
-            <form [formGroup]="WorkingDayOTForm">
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  OverTime Type:
-                </label>
-                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                  <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-         </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Include Ot Working:
-                </label>
-                <input type="checkbox" formControlName="IsIncludeOtWorking">
-              </div>
-            </div>  
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Woking Ot Hours:
-                </label>
-                <input type="text" class="form-control m-input" formControlName="WokingOtHours" placeholder="">
-              </div> 
-            </div>
-            </form>
+                    <form [formGroup]="WorkingDayOTForm">
+                      <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                            OverTime Type:
+                          </label>
+                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                            <option value="" disabled selected>-- Select Type --</option>
+                            <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                   </select>
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="">
+                            Include Ot Working:
+                          </label> 
+                          <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsIncludeOtWorking"> 
+                              <span></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>  
+                      <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                            Woking Ot Hours:
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="WokingOtHours" placeholder="">
+                        </div> 
+                      </div>
+                      </form>
+                      <div class="m--space-5"></div> 
+                      <div class="m-form__heading">
+                        <h4 class="m-form__heading-title">
+                          Off Day Over Time
+                        </h4>
+                      </div>
+                      <div class="m--space-20"></div> 
 
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">
-                      Employee Off Day Ot
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-50"></div>
-
-            <form [formGroup]="OffDayOTForm">
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  OverTime Type:
-                </label>
-                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                  <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-         </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Include Ot Working:
-                </label>
-                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOff">
-              </div>
-            </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Off Ot Hours:
-                </label>
-                <input type="text" class="form-control m-input" formControlName="OffOtHours" placeholder="">
-              </div> 
-            </div> 
-            </form>
-
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">
-                      Employee Incoming Ot
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-50"></div>
-
-            <form [formGroup]="IncomingOTForm">
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  OverTime Type:
-                </label>
-                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                  <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-         </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Include Ot Working:
-                </label>
-                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtIncoming">
-              </div>
-            </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Incoming Ot Hours:
-                </label>
-                <input type="text" class="form-control m-input" formControlName="IncomingOtHours" placeholder="">
-              </div> 
-            </div>
-            </form>
-
-            <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                  <h3 class="m-portlet__head-text">
-                      Employee Outgoing Ot
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-50"></div>
-
-            <form [formGroup]="OutgoingOTForm">
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  OverTime Type:
-                </label>
-                <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                  <option value="" disabled selected>-- Select Type --</option>
-                  <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
-         </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Include Ot Working:
-                </label>
-                <input type="checkbox" class="form-control m-input" formControlName="IsIncludeOtOutgoing">
-              </div>
-            </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  OverTimeTypeId:
-                </label>
-                <input type="text" class="form-control m-input" formControlName="OutgoingOtHours" placeholder="">
-              </div> 
-            </div>
-            </form>
  
+                      <form [formGroup]="OffDayOTForm">
+                        <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                              OverTime Type:
+                            </label>
+                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                              <option value="" disabled selected>-- Select Type --</option>
+                              <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                     </select>
+                          </div>
+                          <div class="col-lg-6">
+                            <label class="">
+                              Include Ot Off:
+                            </label>
+                            <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="IsIncludeOtOff"> 
+                                <span></span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+            
+                        <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                              Off Ot Hours:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="OffOtHours" placeholder="">
+                          </div> 
+                        </div> 
+                        </form>
+
+                  </div>
+                </div>
+              </div>
+              <!--end::Item--> 
+            <!--begin::Item-->
+              <div class="m-accordion__item">
+                <div class="m-accordion__item-head collapsed" role="tab" id="m_accordion_1_item_2_head" data-toggle="collapse" href="#m_accordion_1_item_2_body" aria-expanded="    false">
+                  <span class="m-accordion__item-icon">
+                    <i class="fa  flaticon-user-ok"></i>
+                  </span>
+                  <span class="m-accordion__item-title">
+                    Employee Outcoming / Outgoing Overtime
+                  </span>
+                  <span class="m-accordion__item-mode"></span>
+                </div>
+                <div class="m-accordion__item-body collapse" id="m_accordion_1_item_2_body" role="tabpanel" aria-labelledby="m_accordion_1_item_2_head" data-parent="#m_accordion_1">
+                  <div class="m-accordion__item-content">
+                
+                    <div class="m-form__heading">
+                      <h4 class="m-form__heading-title">
+                       Incoming Over Time
+                      </h4>
+                    </div>
+                    <div class="m--space-50"></div> 
+                    <form [formGroup]="IncomingOTForm">
+                      <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                            OverTime Type:
+                          </label>
+                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                            <option value="" disabled selected>-- Select Type --</option>
+                            <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                   </select>
+                        </div>
+                        <div class="col-lg-6">
+                          <label class="">
+                            Include Ot Incoming:
+                          </label>
+                          <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsIncludeOtIncoming"> 
+                              <span></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+          
+                      <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                          <label>
+                            Incoming Ot Hours:
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="IncomingOtHours" placeholder="">
+                        </div> 
+                      </div>
+                      </form>
+                      <div class="m--space-50"></div> 
+                      <div class="m-form__heading">
+                        <h4 class="m-form__heading-title">
+                         Outgoing Over Time
+                        </h4>
+                      </div>
+                      <div class="m--space-50"></div> 
+
+                      <form [formGroup]="OutgoingOTForm">
+                        <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                              OverTime Type:
+                            </label>
+                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
+                              <option value="" disabled selected>-- Select Type --</option>
+                              <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                     </select>
+                          </div>
+                          <div class="col-lg-6">
+                            <label class="">
+                              Include Ot Outgoing:
+                            </label>
+                            <div class="m-checkbox-list">
+                              <label class="m-checkbox m-checkbox--state-success">
+                                <input type="checkbox" formControlName="IsIncludeOtOutgoing"> 
+                                <span></span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+            
+                        <div class="form-group m-form__group row">
+                          <div class="col-lg-6">
+                            <label>
+                              OverTimeTypeId:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="OutgoingOtHours" placeholder="">
+                          </div> 
+                        </div>
+                        </form>
+
+                  </div>
+                </div>
+              </div>
+              <!--end::Item-->  
+            </div>
+        
             <div class="m--space-50"></div> 
             <div class="m-separator m-separator"></div>
 

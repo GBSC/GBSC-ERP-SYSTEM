@@ -49,7 +49,7 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5,10, 20]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="patient.mrn"  caption="MRN No"></dxi-column>
-                <dxi-column dataField="patient.firstName"  caption="Patient Name"></dxi-column>
+                <dxi-column dataField="patient.fullName"  caption="Patient Name"></dxi-column>
                 <dxi-column dataField="startTime" dataType="datetime" format="shortTime" caption="Check IN"></dxi-column>
                 <dxi-column dataField="patient.visitNatureId" caption="Type Of Visit">
                   <dxo-lookup [dataSource]="visitType" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>

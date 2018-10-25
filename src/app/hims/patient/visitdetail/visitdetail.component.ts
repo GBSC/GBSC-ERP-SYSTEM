@@ -411,8 +411,4 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
         this.getvisitdiagnosesbyId.splice(index, 1);
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> finance

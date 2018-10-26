@@ -26,6 +26,8 @@ import { SalesReturnItem } from '../../Models/Pharmacy/SalesReturnItem';
 import { SalesReturn } from '../../Models/Pharmacy/SalesReturn';
 import { Customer } from '../../Models/Pharmacy/Customer';
 import { Currency } from '../../Models/Pharmacy/Currency';
+import { SalesIndent } from '../../Models/Pharmacy/SalesIndent';
+import { SalesIndentItem } from '../../Models/Pharmacy/SalesIndentItem';
 
 
 @Injectable()
@@ -34,6 +36,49 @@ export class PharmacyService {
     private readonly API_URL = 'inventory/api/';
     constructor(private http: HttpClient, private ApiService: ApiService) {
 
+    }
+
+    //SalesIndent
+    GetSalesIndents(): Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndents');
+    }
+
+    AddSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+        return this.ApiService.post(this.API_URL + "Sales/AddSalesIndent", SalesIndent);
+    }
+
+    UpdateSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndent', SalesIndent);
+    }
+
+    DeleteSalesIndent(id: number): Observable<SalesIndent> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesIndent/' + id);
+    }
+
+    GetSalesIndentDetailsByCode(code: string) : Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByCode/' + code);
+    }
+
+    async GetSalesIndentDetailsByCodeAsync(code: string) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByCode/' + code).toPromise();
+    }
+
+    //SalesIndentItem
+
+    GetSalesIndentItems(): Observable<SalesIndentItem> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentItems');
+    }
+
+    AddSalesIndentItem(SalesIndentItem: SalesIndentItem): Observable<SalesIndentItem> {
+        return this.ApiService.post(this.API_URL + "Sales/AddSalesIndentItem", SalesIndentItem);
+    }
+
+    UpdateSalesIndentItem(SalesIndentItem: SalesIndentItem): Observable<SalesIndentItem> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndentItem', SalesIndentItem);
+    }
+
+    DeleteSalesIndentItem(id: number): Observable<SalesIndentItem> {
+        return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesIndentItem/' + id);
     }
 
     //SalesOrder
@@ -416,6 +461,10 @@ export class PharmacyService {
 
     /******************************************************************************************************************/
 
+    async  GetSalesIndentsByDateAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByMonth/'+date).toPromise();
+    }
+
     async  GetSalesOrdersByDateAsync(date) {
         return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/'+date).toPromise();
     }
@@ -430,6 +479,10 @@ export class PharmacyService {
  
     async  GetGRNsByDateAsync(date) {
         return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date).toPromise();
+    }
+
+    GetSalesIndentsByMonth(date) : Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByMonth/'+date);
     }
 
     GetSalesOrdersByMonth(date) : Observable<SalesOrder> {

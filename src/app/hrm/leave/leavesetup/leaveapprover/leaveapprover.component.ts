@@ -22,15 +22,16 @@ export class LeaveapproverComponent implements OnInit {
 
 
     async addapprover(value) {
-        this.leavesetupservice.addLeaveApprover(value.data);
+        console.log(value);
+        await this.leavesetupservice.addLeaveApprover(value.data);
     }
 
     async updateapprover(value) {
-        this.leavesetupservice.updateLeaveApprover(value);
+        await this.leavesetupservice.updateLeaveApprover(value);
 
     }
 
     async deleteapprover(value) {
-        this.leavesetupservice.DeleteLeaveApprover(value.key);
+        await this.leavesetupservice.DeleteLeaveApprover(value.key);
     }
 }

@@ -135,6 +135,7 @@ import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
 
 
 @NgModule({
@@ -293,7 +294,8 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         MonthlyUserSalaryComponent,
         PayslipComponent,
         ViewemployeeleaveopeningComponent,
-        ViewleaverequestComponent
+        ViewleaverequestComponent,
+        ViewCompensationTransactionComponent
 
 
 

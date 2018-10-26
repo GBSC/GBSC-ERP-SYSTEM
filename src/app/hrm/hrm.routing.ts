@@ -117,6 +117,7 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -272,6 +273,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'benefit', component: BenefitComponent },
                             { path: 'chequetemplate', component: ChequeTemplateComponent },
                             { path: 'compensationtransaction', component: CompensationTransactionComponent },
+                            { path: 'viewcompensationtransaction', component: ViewCompensationTransactionComponent },
                             { path: 'currency', component: CurrencyComponent },
                             { path: 'frequency', component: FrequencyComponent },
                             { path: 'fundsetup', component: FundsetupComponent },

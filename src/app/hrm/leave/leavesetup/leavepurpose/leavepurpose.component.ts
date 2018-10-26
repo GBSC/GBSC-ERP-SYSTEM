@@ -21,7 +21,7 @@ export class LeavepurposeComponent implements OnInit {
     }
 
     updatingleavepurpose(value) { 
-        this.updatingPurpose = {...value.newData, ...value.oldData}; 
+        this.updatingPurpose = {...value.oldData, ...value.newData}; 
 
     }
 

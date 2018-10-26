@@ -98,6 +98,7 @@ export class LeaverequestComponent implements OnInit {
 
     }
  
+ 
     isUpdate(): boolean {
 
         if (this.id > 0) {

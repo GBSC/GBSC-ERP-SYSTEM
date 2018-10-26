@@ -39,6 +39,8 @@ import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component
 import { TestComponent } from './test/test.component';
 import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
+import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
+
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -57,6 +59,7 @@ import { VisitPrescriptionComponent } from './visit-prescription/visit-prescript
 
         RootComponent,
         RegistrationComponent,
+        PaymentreceiptComponent,
         ActiveVisitsComponent,
         ReportsComponent,
         ProfileComponent,

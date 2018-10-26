@@ -625,6 +625,12 @@ export class PatientService {
         //return this.SearchPatientbyname;
     }
 
+    
+    SearchPatientByMrn(mrn) : Observable  <Patient>  {
+      return  this.ApiService.post(this.API_URL + 'patients/SearchPatient', mrn);
+  }
+
+
     async getDiagnoses() {
         this.diagnoses = await this.ApiService.get(this.API_URL + 'HimsSetup/GetDiagnoses').toPromise();
         //this.diagnoses = await this.http1.get<Diagnoses>(this.API_URL + '/HimsSetup/GetDiagnoses/').toPromise();

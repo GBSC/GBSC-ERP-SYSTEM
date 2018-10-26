@@ -30,6 +30,7 @@ import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitn
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
+import {  PaymentreceiptComponent } from '../patient/paymentreceipt/paymentreceipt.component';
 import { ReportsComponent } from '../patient/Reports/reports/reports.component';
 import { AuthGuardService, ModuleGuardService } from '../../core';
 
@@ -65,6 +66,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'diagnose', component: DiagnosisComponent },
             { path: 'reports', component: ReportsComponent },
             { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
+            { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
         ]
     }

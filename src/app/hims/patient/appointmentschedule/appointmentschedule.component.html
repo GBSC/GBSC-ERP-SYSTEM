@@ -169,8 +169,7 @@
                   <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment"></dxi-column>
-                <dxi-column dataField="tentativeTime" caption="Tentative Time"  dataType="date" [allowEditing]="false"
-                [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="tentativeTime" caption="Tentative Time"  dataType="date"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status"></dxi-column>
               </dx-data-grid>
             </div>

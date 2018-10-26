@@ -108,20 +108,20 @@ export class PatientService {
     async addPatient(patient: Patient) {
         this.patientID = await this.ApiService.post(this.API_URL + 'patients/AddPatient', patient).toPromise();
         //this.patientID = await this.http1.post(this.API_URL + '/patients/AddPatient', patient).toPromise();
-        console.log(this.patientID);
-        console.log(this.patientID.patientId);
+      //  console.log(this.patientID);
+     //   console.log(this.patientID.patientId);
         return this.patientID.patientId;
     }
 
     async addSpouse(Spouse: Spouse) {
         let x = await this.ApiService.post(this.API_URL + 'patients/AddPartner', Spouse).toPromise();
-        console.log(x);
+    //    console.log(x);
         return x;
     }
 
     async addPatientReference(Reference: Reference) {
         let x = await this.ApiService.post(this.API_URL + 'patients/AddPatientReference', Reference).toPromise();
-        console.log(x);
+     //  console.log(x);
         return x;
     }
 
@@ -168,7 +168,7 @@ export class PatientService {
     addDocuments(models: FormData, id) {
 
         this.ApiService.post(this.API_URL + '/patients/AddPatientDocuments/' + id, models).subscribe(res => {
-            console.log(res);
+        //    console.log(res);
         });
 
         //return x;
@@ -258,7 +258,7 @@ export class PatientService {
     }
 
     async updateAppointmentFromVisitDetail(appointment: Appointment){
-        console.log(appointment);
+      //  console.log(appointment);
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
@@ -327,14 +327,15 @@ export class PatientService {
 
 
     async updateTest(himssetuptest: himsSetupTest) {
-        return await this.ApiService.put(this.ApiService + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
+         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
         //let x = await this.http1.put(`${this.API_URL}/HimsSetup/UpdateTest/`, himssetuptest).toPromise();
         //console.log(x);
         //return x;
     }
 
     async deleteTest(id) {
-        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
+        console.log(id);
+         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
         //let x = await this.http1.delete(this.API_URL + '/HimsSetup/DeleteTest/' + id).toPromise();
         //console.log(x);
         //return x;
@@ -363,13 +364,13 @@ export class PatientService {
 
     async getActiveVisits() {
         this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise());
-        console.log(this.ActiveVisits);
+      //  console.log(this.ActiveVisits);
         return this.ActiveVisits;
     }
 
     async getActiveVisitsTesting() {
         this.ActiveVisits = await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise();
-        console.log(this.ActiveVisits);
+     //   console.log(this.ActiveVisits);
         return this.ActiveVisits;
     }
 
@@ -388,6 +389,9 @@ export class PatientService {
 
     async AddVisits(id) {
         this.visitid = await this.ApiService.post(this.API_URL + 'Visits/AddVisit', { patientId: id }).toPromise();
+          sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
+          this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+     //     console.log(this.visitid)
         //this.visitid = await this.http1.post(this.API_URL + '/Visits/AddVisit/', { patientId: id }).toPromise()
         //console.log(this.visitid);
         return this.visitid;

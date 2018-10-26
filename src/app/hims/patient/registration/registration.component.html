@@ -43,14 +43,15 @@
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Reg City </label>
 									<select class="form-control m-input ng-pristine ng-valid ng-touched" [value]="Patient?.regCity || ''" formControlName="RegCity">
-										<option value="Karaci">Karachi</option>
+										<option value="Karachi">Karachi</option>
 										<option value="Multan">Multan</option>
 									</select>
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Visit Nature </label>
-									<dx-select-box [items]="visitnature" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId">
+									<dx-select-box [items]="visitnature" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId" > 
 									</dx-select-box>
+									 
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1"> Gender </label>
@@ -69,7 +70,7 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.firstName  || ''" formControlName="FirstName"
 									 name="FirstName" type="text" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
 									<div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-										<div *ngIf="f.FirstName.errors.required">First Named is required</div>
+										<div *ngIf="f.FirstName.errors.required">First Name is required</div>
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
@@ -110,8 +111,8 @@
 									<input type="text" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.nic || ''"
 									 formControlName="NIC" (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
 									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
-										<div *ngIf="f.NIC.errors.required">NIC is required</div>
-										<div *ngIf="f.NIC.errors.minlength">NIC must be at least 13 characters</div>
+										<div *ngIf="f.NIC.errors.required">CNIC is required</div>
+										<div *ngIf="f.NIC.errors.minlength">CNIC must be at least 13 characters</div>
 									</div>
 								</div>
 								<div class="form-group col-lg-3">
@@ -277,11 +278,11 @@
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="Occupation" type="text">
 																			</div>
 																			<div class="form-group col-lg-4">
-																				<label for="exampleInputEmail1"> N.I.C </label>
+																				<label for="exampleInputEmail1"> CNIC </label>
 																				<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
 																				<div *ngIf="spousesubmitted && s.NIC.errors" class="invalid-feedback">
-																					<div *ngIf="s.NIC.errors.required">NIC is required</div>
-																					<div *ngIf="s.NIC.errors.minlength">NIC must be at least 13 characters</div>
+																					<div *ngIf="s.NIC.errors.required">CNIC is required</div>
+																					<div *ngIf="s.NIC.errors.minlength">CNIC must be at least 13 characters</div>
 																				</div>
 																			</div>
 																			<div class="form-group col-lg-4">
@@ -443,8 +444,8 @@
 																					<tr *ngFor=" let t of allDocs; let i = index">
 																						<td>{{t.name}}</td>
 																						<td>
-																							<button type="button" (click)="remove(i)" class="btn btn-primary m-btn m-btn--custom">
-																								<i class="la la-archive"></i>
+																							<button type="button" (click)="remove(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+																								<i class="la la-trash-o"></i>
 																							</button>
 																						</td>
 																					</tr>

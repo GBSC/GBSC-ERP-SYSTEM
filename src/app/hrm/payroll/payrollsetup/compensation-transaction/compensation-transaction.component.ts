@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService, EmployeeService } from '../../../../core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-compensation-transaction',
@@ -17,7 +18,7 @@ export class CompensationTransactionComponent implements OnInit {
     public payrollTypes: any;
     public updatingTransaction: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
+    constructor(private fb: FormBuilder, public router: Router, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
 

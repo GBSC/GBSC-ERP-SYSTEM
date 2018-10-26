@@ -29,6 +29,7 @@ export class AllowanceDeductionComponent implements OnInit {
             CalculationSequenceNumber: ['', Validators],
             RemitKey: ['', Validators],
             GlCodeAllowance: ['', Validators],
+            RepostNumber: ['', Validators],
             GlCodeDeduction: ['', Validators],
             GlCode: ['', Validators],
             DefaultCostCenter: ['', Validators],

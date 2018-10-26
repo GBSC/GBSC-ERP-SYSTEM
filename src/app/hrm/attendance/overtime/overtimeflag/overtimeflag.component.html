@@ -1,41 +1,94 @@
 <div class="m-content">
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Overtime Flag</h3>
-              </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Overtime Setups
+              </h3>
             </div>
           </div>
-          <div class="m-portlet__body">
-            <div class="m-section">
-              <div class="m-section__content">
-                <dx-data-grid id="gridContainer"
-                 [dataSource]="overtimeflag"
-                 keyExpr="overtimeFlagId"
-                 (onRowInserted)="addovertimeflag($event)" 
-                 (onRowUpdated)="updateovertimeflag($event)"
-                 (onRowRemoved)="deleteovertimeflag($event)">
-                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Overtime Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                    </dxo-popup>
-                  </dxo-editing>
-                  <dxo-filter-row [visible]="true"></dxo-filter-row>
-                  <dxo-header-filter [visible]="true"></dxo-header-filter>
-  
-                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                  <dxo-paging [pageSize]="6"></dxo-paging>
-                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                  </dxo-pager> 
-                  <dxi-column dataField="name" caption="Name"></dxi-column> 
-                  <dxi-column dataField="description" caption ="Description"></dxi-column> 
-                </dx-data-grid>
-              </div>
-              </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#overtimeflag" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-share"></i>
+                    <span class="m-nav__link-text">
+                      Overtime Flag
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#overtimetype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Overtime Type
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+        <div class="tab-content">
+          <div class="tab-pane active" id="overtimeflag">
+
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">Overtime Flag</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="m-portlet__body">
+                <div class="m-section">
+                  <div class="m-section__content">
+                    <dx-data-grid id="gridContainer" [dataSource]="overtimeflag" keyExpr="overtimeFlagId" (onRowInserted)="addovertimeflag($event)"
+                      (onRowUpdated)="updateovertimeflag($event)" (onRowRemoved)="deleteovertimeflag($event)">
+                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                        <dxo-popup title="Overtime Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                        </dxo-popup>
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="6"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                      </dxo-pager>
+                      <dxi-column dataField="name" caption="Name"></dxi-column>
+                      <dxi-column dataField="description" caption="Description"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="tab-pane" id="overtimetype">
+            <app-overtimetype></app-overtimetype>
+          </div>
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

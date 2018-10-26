@@ -1,4 +1,4 @@
-<div class="m-content">
+<!-- <div class="m-content">
   <div class="row">
     <div class="col-xl-12">
       <div class="m-portlet">
@@ -13,7 +13,7 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid #clientGrid id="gridContainer" [dataSource]="allowance"
+              <dx-data-grid id="gridContainer" [dataSource]="allowance"
                keyExpr="allowanceId" 
                (onRowInserted)="addallowance($event)" 
                (onRowUpdated)="updateallowance()" 
@@ -46,4 +46,353 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Payroll Setups
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#allowance" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-share"></i>
+                    <span class="m-nav__link-text">
+                      Allowance
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#allowancearrear" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Allowance Arrear
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#allowancededuction" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Allowance Deduction
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#allowancecalculationtype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Allowance Calculationtype
+                    </span>
+                  </a>
+                </li>
+
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#allowancerate" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Allowance Rate
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#bankadvicetemplate" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Bank Advice Template
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#benefit" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Benefit
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#chequetemplate" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Cheque Template
+                    </span>
+                  </a>
+                </li>
+
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#compensationtransaction" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Compensation Transaction
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#currency" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Currency
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#frequency" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Frequency
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#gratuityslab" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Gratuity Slab
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#gratuitytype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Gratuity Type
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#leavingreason" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leaving Reason
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#masterpayroll" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Master Payroll
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#payroll" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Payroll
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#payrollbank" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Payroll Bank
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#payrolltype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Payroll Type
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#pfpayment" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Pf Payment
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#salarycalculationtype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Salary Calculation Type
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#salarystructure" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Salary Structure
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#salarystructuredetail" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Salary Structure Detail
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#usersalary" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      User Salary
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+        <div class="tab-content">
+          <div class="tab-pane active" id="allowance">
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">Allowance</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="m-portlet__body">
+                <div class="m-section">
+                  <div class="m-section__content">
+
+                    <dx-data-grid id="gridContainer" [dataSource]="allowance" keyExpr="allowanceId" (onRowInserted)="addallowance($event)" (onRowUpdated)="updateallowance()"
+                      (onRowUpdating)="updatingallowance($event)" (onRowRemoved)="deleteallowance($event)">
+
+                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+
+                        <dxo-popup title="Allowance" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                        </dxo-popup>
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                      </dxo-pager>
+                      <dxi-column dataField="name" caption="Name"></dxi-column>
+                      <dxi-column dataField="description" caption="Description"></dxi-column>
+                      <dxi-column dataField="allowanceDeductionId" caption="Allowance Deduction" [width]="300">
+                        <dxo-lookup [dataSource]="allowanceDeductions" displayExpr="title" valueExpr="allowanceDeductionId">
+                        </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="isDefaultAllowance" dataType="boolean" caption="Default Allowance"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="allowancearrear">
+            <app-allowancearrear></app-allowancearrear>
+          </div>
+          <div class="tab-pane" id="allowancerate">
+            <app-allowancerate></app-allowancerate>
+          </div>
+          <div class="tab-pane" id="allowancededuction">
+            <app-allowance-deduction></app-allowance-deduction>
+          </div>
+          <div class="tab-pane" id="allowancecalculationtype">
+            <app-allowancecalculationtype></app-allowancecalculationtype>
+          </div>
+
+          <div class="tab-pane" id="bankadvicetemplate">
+            <app-bank-advice-template></app-bank-advice-template>
+          </div>
+          <div class="tab-pane" id="benefit">
+            <app-benefit></app-benefit>
+          </div>
+          <div class="tab-pane" id="chequetemplate">
+            <app-cheque-template></app-cheque-template>
+          </div>
+          <div class="tab-pane" id="compensationtransaction">
+            <app-view-compensation-transaction></app-view-compensation-transaction>
+          </div>
+          <div class="tab-pane" id="currency">
+            <app-currency></app-currency>
+          </div>
+          <div class="tab-pane" id="frequency">
+            <app-frequency></app-frequency>
+          </div>
+
+          <div class="tab-pane" id="gratuitytype">
+            <app-gratuitytype></app-gratuitytype>
+          </div>
+          <div class="tab-pane" id="gratuityslab">
+            <app-gratuityslab></app-gratuityslab>
+          </div>
+          <div class="tab-pane" id="gratuity-slab-gratuity">
+            <app-gratuity-slab-gratuity></app-gratuity-slab-gratuity>
+          </div>
+          <div class="tab-pane" id="leavingreason">
+            <app-leavingreason></app-leavingreason>
+          </div>
+          <div class="tab-pane" id="payroll">
+            <app-payroll></app-payroll>
+          </div>
+          <div class="tab-pane" id="payrolltype">
+            <app-payrolltype></app-payrolltype>
+          </div>
+          <div class="tab-pane" id="payrollyear">
+            <app-payrollyear></app-payrollyear>
+          </div>
+          <div class="tab-pane" id="payrollbank">
+            <app-payrollbank></app-payrollbank>
+          </div>
+          <div class="tab-pane" id="masterpayroll">
+            <app-masterpayroll></app-masterpayroll>
+          </div>
+          <div class="tab-pane" id="pfpayment">
+            <app-pf-payment></app-pf-payment>
+          </div>
+          <div class="tab-pane" id="salarystructure">
+            <app-salarystructure></app-salarystructure>
+          </div>
+          <div class="tab-pane" id="salarystructuredetail">
+            <app-salarystructuredetail></app-salarystructuredetail>
+          </div>
+          <div class="tab-pane" id="salarycalculationtype">
+            <app-salary-calculation-type></app-salary-calculation-type>
+          </div>
+          <div class="tab-pane" id="usersalary">
+            <app-usersalary></app-usersalary>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>

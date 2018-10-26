@@ -31,8 +31,8 @@
                 </dxo-pager> 
 
                 <dxi-column dataField="name" caption="Name"></dxi-column>
-                  <dxi-column dataField="leaveRequestDetailId" caption="Leave Request">
-                    <dxo-lookup [dataSource]="leaverequestdetail" displayExpr="totalLeaveValue" valueExpr="leaveRequestDetailId">
+                  <dxi-column dataField="leaveRequestId" caption="Request Date">
+                    <dxo-lookup [dataSource]="leaveRequest" displayExpr="requestDate" valueExpr="leaveRequest">
                     </dxo-lookup> 
               </dxi-column>
                   <dxi-column dataField="leaveApproverId" caption="Approver">

@@ -27,6 +27,7 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
 import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
+import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -43,6 +44,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'daily-procedure', component: DailyProcedureComponent },
             { path: 'file-record', component: FileRecordComponent },
             { path: 'proceduresortest', component: ProceduresortestComponent },
+            {path: 'semen-analysis', component : SemenanalysisComponent},
+            {path: 'semen-analysis/:id', component : SemenanalysisComponent},
             { path: 'semen-analysis-list', component: SemensanalysislistComponent },
             { path: 'biochemistry-ontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry-ontreatment/:id', component: BiochemistryontreatmentComponent },

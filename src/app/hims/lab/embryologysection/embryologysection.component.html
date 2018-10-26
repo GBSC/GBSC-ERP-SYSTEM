@@ -27,7 +27,8 @@
                     <label for="exampleInputEmail1">
                       Date
                     </label>
-                    <input type="text" class="form-control" id="m_datepicker_1" placeholder="Select date" />
+                    <dx-date-box [value]="clinicalRecord?.collectionDate" formControlName="CollectionDate">
+                    </dx-date-box>
                   </div>
                 </div>
                 <div class="col-sm-2">

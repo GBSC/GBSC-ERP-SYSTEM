@@ -160,8 +160,6 @@ export class VisitPrescriptionComponent implements OnInit {
 		this.PharmacyService.AddSalesIndent(this.SalesIndent).subscribe(res => {
 			console.log(res);
 		});
-		
-		this.onReset();
 	}
 
 	onReset() {

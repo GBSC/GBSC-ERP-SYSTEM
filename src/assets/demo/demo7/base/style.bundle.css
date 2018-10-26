@@ -16510,7 +16510,7 @@ code {
     padding: 0;
     width: 100%;
     padding: 0 2.2rem;
-    height: 5.1rem; }
+    height: 4rem; }
     .m-portlet .m-portlet__head .m-portlet__head-caption {
       display: table-cell;
       vertical-align: middle;
@@ -34532,7 +34532,8 @@ body.m-content--skin-light2 {
     transition: none;
     margin-left: 0px; 
     position: fixed;
-    bottom: 0px;}
+    bottom: 0px;
+    z-index: 100;}
   .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed) .m-aside-right,
   .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed) .m-wrapper {
     margin-bottom: 60px; } }

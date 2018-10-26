@@ -5,8 +5,6 @@ import { routing } from './Inventorysystem.routing';
 import { RootComponent } from './root/root.component';
 
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from '../Inventorysystem/shared/footer/footer.component';
-import { HeaderComponent } from '../Inventorysystem/shared/header/header.component';
 import { MenuComponent } from '../Inventorysystem/shared/menu/menu.component';
 
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
@@ -73,8 +71,6 @@ import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
         RootComponent,
         HomeComponent,
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         GoodsreceiptComponent,
         PurchaseIndentComponent,

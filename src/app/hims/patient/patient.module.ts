@@ -27,9 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FindPatientComponent } from './find-patient/find-patient.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { HimsSetupTestComponent } from './hims-setup-test/hims-setup-test.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
@@ -82,9 +80,7 @@ import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.compone
         HimsSetupTestComponent,
         HomeComponent,
         FindPatientComponent,
-        HeaderComponent,
         MenuComponent,
-        FooterComponent,
         AppointmentscheduleComponent,
         VisitnatureComponent,
         VisitdetailComponent,

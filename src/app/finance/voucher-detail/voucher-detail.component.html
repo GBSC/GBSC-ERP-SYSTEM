@@ -1,0 +1,76 @@
+<div class="m-content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                               Voucher Detail
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <dx-data-grid id="gridContainer"
+                    (onToolbarPreparing)="onToolbarPreparing($event)"
+                     keyExpr="voucherId" 
+                    [dataSource]="voucher" 
+                    columnWidth="auto"
+                    [columnAutoWidth]="true"
+                    [showBorders]="true"    
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                     [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
+
+                     <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                        <dxo-paging [pageSize]="7"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                        </dxo-pager>                
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                        
+                        <dxi-column dataField="voucherCode"></dxi-column>
+                        <dxi-column dataField="financialYearId" caption="Financial Year">
+                          <dxo-lookup [dataSource]="financialYear" displayExpr="name" valueExpr="financialYearId">
+                          </dxo-lookup>
+                          </dxi-column>
+                          <dxi-column dataField="voucherTypeId" caption="Voucher Type">
+                            <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
+                            </dxo-lookup>
+                          </dxi-column>
+
+                        <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
+                        <dxi-column dataField="chequeNumber"></dxi-column>
+                        <dxi-column dataField="departmentName"></dxi-column>
+                        <dxi-column dataField="departmentCode"></dxi-column>
+                        <dxi-column dataField="totalCreditAmount"></dxi-column>
+                        <dxi-column dataField="totalDebitAmount"></dxi-column>
+                        <dxi-column dataField="description"></dxi-column>
+                        <dxi-column dataField="isFinal" dataType="boolean"></dxi-column>
+                        <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                        <div *dxTemplate="let d of 'chartCellTemplate'">
+                          <div class="chart-cell">
+                              <dx-button (click)="getCurrentRowData(d)" icon="edit">
+                          </dx-button>
+                          </div>
+                      </div>
+
+                        <div *dxTemplate="let voucherDetail of 'detail'">
+                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true" [columnAutoWidth]="true">
+                                <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                <dxi-column dataField="detailAccountId" caption="Detail Account">
+                                    <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
+                                    </dxo-lookup>
+                                  </dxi-column>
+                                </dx-data-grid>
+                        </div>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

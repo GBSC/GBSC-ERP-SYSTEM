@@ -33,6 +33,7 @@ import { ReturnViewComponent } from './return-view/return-view.component';
 import { GrnViewComponent } from './grn-view/grn-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { CurrencyComponent } from './Setup/currency/currency.component';
+import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
         ReturnViewComponent,
         GrnViewComponent,
         PurhcaseorderViewComponent,
-        CurrencyComponent
+        CurrencyComponent,
+        PrescriptionViewComponent
     ],
     providers: [
         {

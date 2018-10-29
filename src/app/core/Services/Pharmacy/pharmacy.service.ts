@@ -28,6 +28,7 @@ import { Customer } from '../../Models/Pharmacy/Customer';
 import { Currency } from '../../Models/Pharmacy/Currency';
 import { SalesIndent } from '../../Models/Pharmacy/SalesIndent';
 import { SalesIndentItem } from '../../Models/Pharmacy/SalesIndentItem';
+import { SalesIndentViewModel } from '../../Models/Pharmacy/IndentViewModel';
 
 
 @Injectable()
@@ -461,8 +462,20 @@ export class PharmacyService {
 
     /******************************************************************************************************************/
 
-    async  GetSalesIndentsByDateAsync(date) {
+    async  GetSalesIndentsByDayAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByDay/'+date).toPromise();
+    }
+
+    async GetSalesIndentDetailsByDayAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByDay/'+date).toPromise();
+    }
+
+    async  GetSalesIndentsByMonthAsync(date) {
         return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByMonth/'+date).toPromise();
+    }
+
+    async GetSalesIndentDetailsByMonthAsync(date) {
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByMonth/'+date).toPromise();
     }
 
     async  GetSalesOrdersByDateAsync(date) {
@@ -481,8 +494,20 @@ export class PharmacyService {
         return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date).toPromise();
     }
 
-    GetSalesIndentsByMonth(date) : Observable<SalesIndent> {
+    GetSalesIndentsByMonth(date) : Observable<SalesIndent[]> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByMonth/'+date);
+    }
+
+    GetSalesIndentDetailsByMonth(date) : Observable<SalesIndentViewModel[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByMonth/'+date);
+    }
+
+    GetSalesIndentsByDay(date) : Observable<SalesIndent[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByDay/'+date);
+    }
+
+    GetSalesIndentDetailsByDay(date) : Observable<SalesIndentViewModel[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentDetailsByDay/'+date);
     }
 
     GetSalesOrdersByMonth(date) : Observable<SalesOrder> {

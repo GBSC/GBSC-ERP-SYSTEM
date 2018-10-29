@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService } from '../../core';
+import { SetupService, HrmsService } from '../../core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,8 @@ export class VoucherDetailComponent implements OnInit {
   public detailAccount: any; 
   public voucherId: any; 
 
-  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
+  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService,
+     public SetupService: SetupService,public hrmService: HrmsService) { }
 
   async ngOnInit() {
     this.voucher = await this.financeService.getVouchers();
@@ -29,7 +30,7 @@ export class VoucherDetailComponent implements OnInit {
 
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.SetupService.getAllDepartments();    
+    this.departments = await this.hrmService.getAllDepartments();    
   }
 
   onToolbarPreparing(e) {

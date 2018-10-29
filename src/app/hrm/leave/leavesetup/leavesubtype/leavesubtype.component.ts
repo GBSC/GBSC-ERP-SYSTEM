@@ -12,11 +12,14 @@ export class LeavesubtypeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
+
         this.subleave = await this.leavesetupservice.getLeaveSubTypes();
     }
 
     async addsubleave(subtype) {
+
         await this.leavesetupservice.addLeaveSubType(subtype.data);
+        this.subleave = await this.leavesetupservice.getLeaveSubTypes();
     }
 
     async updatesubleave(data) {

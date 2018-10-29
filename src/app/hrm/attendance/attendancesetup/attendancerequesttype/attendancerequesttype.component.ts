@@ -18,6 +18,7 @@ export class AttendancerequesttypeComponent implements OnInit {
 
     async addRequesttype(value) {
         this.attendancesetupservice.addAttendanceRequestType(value.data);
+        this.attendanceRequesttype = await this.attendancesetupservice.getAttendanceRequestTypes();
     }
 
     async updateRequesttype(value) {

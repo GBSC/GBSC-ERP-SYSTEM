@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { MasterPayroll } from '../../../Models/HRM/masterPayroll';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -369,15 +371,20 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetMasterPayrolls`).toPromise();
     }
+   
+     getMasterPayroll(id) : Observable<MasterPayroll>{
+
+        return this.ApiService.get(this.baseUrl +'/GetMasterPayroll');
+    }
 
     async addMasterPayroll(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddMasterPayroll`, data).toPromise();
     }
 
-    async updateMasterPayroll(data) {
+     updateMasterPayroll(data: MasterPayroll) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateMasterPayroll`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateMasterPayroll`, data);
     }
 
     async deleteMasterPayroll(masterpayrollId) {

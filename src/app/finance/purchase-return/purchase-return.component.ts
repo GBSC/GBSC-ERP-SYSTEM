@@ -127,7 +127,7 @@ export class PurchaseReturnComponent implements OnInit {
       BillNumber: purchasereturn.billNumber,
       CreditDays: purchasereturn.creditDays,
       VoucherNumber: purchasereturn.voucherNumber,
-      InvoiceNumber: purchasereturn.invoiceNumber,
+      InvoceNumber: purchasereturn.invoceNumber,
       Expenses: purchasereturn.expenses,
       GstAmount: purchasereturn.gstAmount,
       GstPercentage: purchasereturn.gstPercentage,

@@ -6,11 +6,8 @@ import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
-import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
-import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
-import { MaritalStatusComponent } from './hrmsSetup/maritalstatus/maritalstatus.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
@@ -170,16 +167,12 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent,
         EmployeeTypes,
         FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
-        MaritalStatusComponent,
         ReligionComponent,
         BankComponent,
-        CityComponent,
-        AccountTypeComponent,
         UniversityComponent,
 
 
@@ -292,9 +285,6 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
         ViewemployeeleaveopeningComponent,
         ViewleaverequestComponent,
         ViewCompensationTransactionComponent
-
-
-
     ],
     exports: []
 

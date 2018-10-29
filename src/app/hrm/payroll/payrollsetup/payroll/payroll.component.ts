@@ -25,6 +25,7 @@ export class PayrollComponent implements OnInit {
 
     async addPayroll(value) {
         await this.payrollsetupservice.addPayroll(value.data);
+        this.payRoll = await this.payrollsetupservice.getPayrolls();
     }
 
     async updatePayroll(value) {

@@ -20,6 +20,7 @@ export class TaxAdjustmentReasonComponent implements OnInit {
 
     async addTaxAdjustmentReason(value) {
         await this.payrollsetupservice.addTaxAdjustmentReason(value.data);
+        this.taxAdjustmentReason = await this.payrollsetupservice.getTaxAdjustmentReasons();
     }
 
     updatingAdjustmentReason(value) {

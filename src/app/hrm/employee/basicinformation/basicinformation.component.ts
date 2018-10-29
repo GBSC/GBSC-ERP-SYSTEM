@@ -67,8 +67,6 @@ export class BasicinformationComponent implements OnInit {
 
         this.language = await this.SetupServiceobj.getAllLanguages();
 
-        this.city = await this.SetupServiceobj.getAllCities();
-
         if (this.id) {
             this.employeeService.GetEmployee(this.id).subscribe(resp => {
 

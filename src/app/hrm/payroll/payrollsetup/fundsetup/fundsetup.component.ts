@@ -47,8 +47,9 @@ export class FundsetupComponent implements OnInit {
     }
 
     async addFundSetup() {
-
+        
         await this.payrollsetupservice.addFundSetup(this.FundSetupForm.value);
+        this.fundSetup = await this.payrollsetupservice.getFundSetups();
     }
 
     updatingFundSetup(value) {

@@ -90,16 +90,12 @@ export class EmpleavepolicyComponent implements OnInit {
     }
 
     async addemployeeleavepolicy(empleavepolicy) {
-        this.message = this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
-        setTimeout(() => {
-            this.message = null;
-        }, 3000);
+        this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
     }
 
 
     updatingEmpleavepolicy(value) {
         this.updatingEmpleavePolicy = { ...value.oldData, ...value.newData };
-
     }
     async updateEmpLeavePolicy() {
         await this.leaveservice.updateLeavePolicyEmployee(this.updatingEmpleavePolicy);

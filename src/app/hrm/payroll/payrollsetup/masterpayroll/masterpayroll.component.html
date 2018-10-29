@@ -68,11 +68,9 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="[]"
-                         keyExpr="masterPayrollDetailsId"
+                        [dataSource]="masterDetail"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
-                         (onRowUpdating)="updatingMasterDetail($event)"
-                         (onRowUpdated)="updateMasterDetail()"
+                         (onRowUpdated)="updateMasterpayrollDetail()"
                           (onRowRemoved)="deleteleavetypebalance($event)">
                           <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
@@ -115,58 +113,25 @@
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
                   <div class="col-lg-2"></div>
-                  <div class="col-lg-6">
-                    <button type="reset" class="btn btn-brand" (click)="submitForm(MasterPayrollForm.value)">
+                <div class="col-lg-6">
+                    <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(submitForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="submitForm(submitForm.value)">
                       Submit
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
+                    </button>  
+                  </ng-template> 
+                  <button type="reset" class="btn btn-secondary">
+                      Reset
                     </button>
                   </div>
-                </div>
               </div>
             </div>  
         </div>
       </div>
   
-
-  <div class="m-portlet">
-    <div class="m-portlet__head">
-      <div class="m-portlet__head-caption">
-        <div class="m-portlet__head-title">
-          <h3 class="m-portlet__head-text">
-           Master Payroll 
-          </h3>
-        </div>
-      </div>
-    </div>
-    <div class="m-portlet__body">
-      <dx-data-grid id="gridContainer" [dataSource]="masterPayroll"
-       keyExpr="masterPayrollId"
-        (onRowUpdated)="updateMasterPayroll()"
-        (onRowUpdating)="updatingMasterPayroll($event)"
-         (onRowRemoved)="deleteMasterPayroll($event)">
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
-        </dxo-editing>
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter> 
-        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-paging [pageSize]="4"></dxo-paging>
-        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-        </dxo-pager>
-
-        <dxi-column dataField="userId" caption="Employee">
-          <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="bankTransferCode"></dxi-column> 
-        <dxi-column dataField="currencyId" caption="Currency">
-          <dxo-lookup [dataSource]="currency" displayExpr="name" valueExpr="currencyId"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="bankId" caption="Bank">
-          <dxo-lookup [dataSource]="banksPayroll" displayExpr="bankTitle" valueExpr="bankId"></dxo-lookup>
-        </dxi-column>
-      </dx-data-grid>
-
-    </div>
-  </div>
+ 
  

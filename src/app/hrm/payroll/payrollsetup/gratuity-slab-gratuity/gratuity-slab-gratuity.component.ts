@@ -21,6 +21,7 @@ export class GratuitySlabGratuityComponent implements OnInit {
 
     async addGratuitySlabGratuity(value) {
         await this.payrollsetupservice.addGratuitySlabGratuity(value.data);
+        this.gratuitySlabGratuity = await this.payrollsetupservice.getGratuitySlabGratuities();
     }
 
     async updateGratuitySlabGratuity(value) {

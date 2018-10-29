@@ -24,6 +24,7 @@ export class OvertimeEntitlementComponent implements OnInit {
 
     async addovertimeEntitlement(value) {
         this.attendanceservice.addOvertimeEntitlement(value.data);
+        this.overtimeEntitlement = await this.attendanceservice.getOvertimeEntitlements();
     }
 
     async updateovertimeEntitlement(value) {

@@ -25,7 +25,9 @@ export class LeavetypebalanceComponent implements OnInit {
 
 
     async addleavetypebalance(value) {
+
         this.leavesetupservice.addLeaveTypeBalance(value.data);
+        this.leavetypebalance = await this.leavesetupservice.getLeaveTypeBalances();
     }
 
     async updateleavetypebalance(value) {

@@ -20,8 +20,7 @@ export class GazettedHolidaysComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllGazettedHolidays();
-        this.holiday = this.dataService.gazetholidays;
+        this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
 

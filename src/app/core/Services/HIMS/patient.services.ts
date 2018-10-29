@@ -21,6 +21,8 @@ import { Package } from '../../Models/HIMS/packages';
 import { VisitNote } from '../../Models/HIMS/visitnote';
 import { VisitNature } from '../../Models/HIMS/visitnature';
 import { Diagnoses } from '../../Models/HIMS/diagnoses';
+import { TestType } from '../../Models/HIMS/TestType';
+import { TestCategory } from '../../Models/HIMS/TestCategory';
  
 
 
@@ -691,5 +693,73 @@ export class PatientService {
 
     deleteReference(id) : Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id);
+    }
+
+    //Test Type
+
+    async getTestTypesAsync() {
+        return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes').toPromise();
+    }
+
+    getTestTypes() : Observable<TestType> {
+        return this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes');
+    }
+
+    async addTestTypeAsync(TestType : TestType) {
+        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddTestType', TestType).toPromise();
+    }
+
+    addTestType(TestType : TestType) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'HimsSetup/AddTestType', TestType);
+    }
+
+    async updateTestTypeAsync(TestType : TestType) {
+        return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestType', TestType).toPromise();
+    }
+
+    updateTestType(TestType : TestType) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestType', TestType);
+    }
+
+    async deleteTestTypeAsync(id) {
+        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestType/' + id).toPromise();
+    }
+
+    deleteTestType(id) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestType/' + id);
+    }
+
+    //Test Category
+
+    async getTestCategoriesAsync() {
+        return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories').toPromise();
+    }
+
+    getTestCategories() : Observable<TestCategory> {
+        return this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories');
+    }
+
+    async addTestCategoryAsync(TestCategory : TestCategory) {
+        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddTestCategory', TestCategory).toPromise();
+    }
+
+    addTestCategory(TestCategory : TestCategory) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'HimsSetup/AddTestCategory', TestCategory);
+    }
+
+    async updateTestCategoryAsync(TestCategory : TestCategory) {
+        return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestCategory', TestCategory).toPromise();
+    }
+
+    updateTestCategory(TestCategory : TestCategory) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestCategory', TestCategory);
+    }
+
+    async deleteTestCategoryAsync(id) {
+        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestCategory/' + id).toPromise();
+    }
+
+    deleteTestCategory(id) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestCategory/' + id);
     }
 }

@@ -39,6 +39,8 @@ import { VisitPrescriptionComponent } from './visit-prescription/visit-prescript
 import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
 import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
 import { ReportsComponent } from './Reports/reports/reports.component';
+import { TestTypeComponent } from './test-type/test-type.component';
+import { TestCategoryComponent } from './test-category/test-category.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -91,6 +93,8 @@ import { ReportsComponent } from './Reports/reports/reports.component';
         ViewallAppointmetsComponent,
         VisitPrescriptionComponent,
         PatientReferenceComponent,
+        TestTypeComponent,
+        TestCategoryComponent,
     ]
 })
 export class PatientModule { }

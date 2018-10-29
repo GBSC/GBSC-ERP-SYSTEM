@@ -57,14 +57,16 @@ export class RegistrationComponent implements OnInit {
 
     documentsumitted = false;
 
+    public getreferncdata : any;
+
 
     constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
-            'ReferredBy': [''],
-            'PersonName': ['', Validators.required],
-            'RefAddress': [''],
-            'ReferenceTel': [''],
+          //  'ReferredBy': [''],
+              'PersonName': ['' ],
+            // 'RefAddress': [''],
+            // 'ReferenceTel': [''],
             'PatientId': [''],
             'patientReferenceId': ['']
         });
@@ -110,6 +112,7 @@ export class RegistrationComponent implements OnInit {
             'PrivatePatientCons': [''],
             'PrivateHospital': [''],
             'AuthorizedPerson': [''],
+            'patientReferenceId':['']
             //'patientId' :['',Validators.required]
         });
     }
@@ -149,6 +152,7 @@ export class RegistrationComponent implements OnInit {
                         PrivatePatientCons: Patient.privatePatientCons,
                         PrivateHospital: Patient.privateHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
+                        patientReferenceId :Patient.patientReferenceId,
                     });
                 
                 this.partnerForm.patchValue({
@@ -162,12 +166,12 @@ export class RegistrationComponent implements OnInit {
                     PhoneNumber: Patient.partner.phoneNumber,
                 });
 
-                this.referenceForm.patchValue({
-                    ReferredBy: Patient.patientReference.referredBy,
-                    PersonName: Patient.patientReference.personName,
-                    RefAddress: Patient.patientReference.refAddress,
-                    ReferenceTel: Patient.patientReference.referenceTel,
-                });
+                // this.referenceForm.patchValue({
+                //     ReferredBy: Patient.patientReference.referredBy,
+                //     PersonName: Patient.patientReference.personName,
+                //     RefAddress: Patient.patientReference.refAddress,
+                //     ReferenceTel: Patient.patientReference.referenceTel,
+                // });
             }
             });
         });
@@ -183,8 +187,14 @@ export class RegistrationComponent implements OnInit {
             this.documents = document;
          });
 
+         this.getreferncdata  = await this.PatientServiceobj.getRefference();
+         console.log(this.getreferncdata);
+
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
+
+       
+    
      }
 
     addrange() {
@@ -225,6 +235,7 @@ export class RegistrationComponent implements OnInit {
     get f() { return this.patientForm.controls; }
 
     async onSubmit(value) {
+        console.log(value);
         this.submitted = true;
 
         if (this.patientForm.invalid) {
@@ -272,7 +283,7 @@ export class RegistrationComponent implements OnInit {
 
     async  onAddReference(value) {
         this.referencesubmitted = true;
-
+         
         if (this.referenceForm.invalid) {
             return alert('Please Select All Required Fields');
         }
@@ -284,8 +295,7 @@ export class RegistrationComponent implements OnInit {
         this.referenceForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         await this.PatientServiceobj.addPatientReference(value);
         this.displayToastSuccess("Saved");
-        // console.log(value);
-        // this.addReference = value;
+ 
     }
     public docs: File[] = [];
 
@@ -466,6 +476,15 @@ export class RegistrationComponent implements OnInit {
     displayToastError(message) {
         this.toastr.error(message);
     }
+
+    private Other: string = 'NoOther';
+    private disable : boolean = true;
+
+    // valueChanged(e){
+    //     console.log(e);
+    //     e.value == 
+ 
+    // }
 
 
 }

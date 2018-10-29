@@ -21,6 +21,7 @@ import { Package } from '../../Models/HIMS/packages';
 import { VisitNote } from '../../Models/HIMS/visitnote';
 import { VisitNature } from '../../Models/HIMS/visitnature';
 import { Diagnoses } from '../../Models/HIMS/diagnoses';
+ 
 
 
 @Injectable()
@@ -657,5 +658,22 @@ export class PatientService {
         //let x = await this.http1.delete(this.API_URL + '/HimsSetup/DeleteDiagnosis/' + id).toPromise();
         //console.log(x);
         //return x;
+    }
+
+
+    async getRefference (){
+        return await this.ApiService.get(this.API_URL+'Patients/GetPatientReferences').toPromise()
+    }
+
+    async addRefference(reference : Reference){
+        return await this.ApiService.post(this.API_URL + 'Patients/AddPatientReference', reference).toPromise();
+    }
+
+    async updateRefference(reference : Reference){
+        return await this.ApiService.put(this.API_URL + 'Patients/UpdatePatientReference', reference).toPromise();
+    }
+
+    async deleteRefference(id){
+        return await this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id).toPromise();
     }
 }

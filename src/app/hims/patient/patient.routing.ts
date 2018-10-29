@@ -13,6 +13,7 @@ import { FamilyComponent } from '../patient/family/family.component';
 import { HealthTrendSummaryComponent } from '../patient/health-trend-summary/health-trend-summary.component';
 import { WeightGraphComponent } from '../patient/weight-graph/weight-graph.component';
 import { VitalsComponent } from '../patient/vitals/vitals.component';
+import { PatientReferenceComponent } from '../patient/hims-setup-test/patient-reference/patient-reference.component';
 import { AppointmentsComponent } from '../patient/appointments/appointments.component';
 import { PatientvitalsComponent } from '../patient/patientvitals/patientvitals.component';
 import { AdmitinpatientComponent } from '../patient/admitinpatient/admitinpatient.component';
@@ -32,6 +33,7 @@ import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import {  PaymentreceiptComponent } from '../patient/paymentreceipt/paymentreceipt.component';
 import { ReportsComponent } from '../patient/Reports/reports/reports.component';
+
 import { AuthGuardService, ModuleGuardService } from '../../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -68,6 +70,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
+            { path: 'reference', component: PatientReferenceComponent },
         ]
     }
 ]);

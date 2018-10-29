@@ -38,6 +38,7 @@ import { TestComponent } from './test/test.component';
 import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
 import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
+import { PatientReferenceComponent } from './hims-setup-test/patient-reference/patient-reference.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -89,6 +90,7 @@ import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.compone
         TestComponent,
         ViewallAppointmetsComponent,
         VisitPrescriptionComponent,
+        PatientReferenceComponent,
     ]
 })
 export class PatientModule { }

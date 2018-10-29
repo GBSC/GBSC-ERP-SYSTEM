@@ -27,8 +27,6 @@ import { DesignationComponent } from './hrmsSetup/designations/designations.comp
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { LeavepolicyComponent } from './leave/leavesetup/leavepolicy/leavepolicy.component';
 import { LeavetypeComponent } from './leave/leavesetup/leavetype/leavetype.component';
 import { LeavedaytypeComponent } from './leave/leavesetup/leavedaytype/leavedaytype.component';
@@ -135,6 +133,7 @@ import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
 
 
 @NgModule({
@@ -147,8 +146,6 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         routing
     ],
     declarations: [
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         RootComponent,
 
@@ -293,7 +290,8 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         MonthlyUserSalaryComponent,
         PayslipComponent,
         ViewemployeeleaveopeningComponent,
-        ViewleaverequestComponent
+        ViewleaverequestComponent,
+        ViewCompensationTransactionComponent
 
 
 

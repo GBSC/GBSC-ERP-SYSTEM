@@ -41,9 +41,9 @@ export class IssuanceComponent implements OnInit {
     private StockQuantityarraydata: any[] = [];
     private total: number = 0;
     private desc: any;
-    private TotalQuantity : number = 0;
-    private ItemTotal : number = 0;
-    private ItemPackQuantity : number = 0;
+    private TotalQuantity: number = 0;
+    private ItemTotal: number = 0;
+    private ItemPackQuantity: number = 0;
 
     private Inv: Inventory;
     private Invs: Inventory[];
@@ -55,7 +55,7 @@ export class IssuanceComponent implements OnInit {
             Remarks: [''],
             OrderAmount: [''],
             SlipNumber: ['', Validators.required],
-            Status:['', Validators.required],
+            Status: ['', Validators.required],
             IssuanceNo: [''],
             CRN: ['', Validators.required],
             IssuanceDate: ['', Validators.required],
@@ -77,12 +77,13 @@ export class IssuanceComponent implements OnInit {
             ItemCode: [''],
             OrderUnitQuantity: ['', Validators.required],
             ItemTotalAmount: [''],
-            InventoryId : [''],
+            InventoryId: [''],
             StockQuantity: [''],
             BasicAmount: ['']
         });
 
     }
+
 
     async  ngOnInit() {
         // this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
@@ -161,7 +162,7 @@ export class IssuanceComponent implements OnInit {
         this.InventoryItemForm.value.Description = this.data.description;
         this.InventoryItemForm.value.PackSize = this.data.packSize.size;
         this.InventoryItemForm.value.PackSizeId = this.data.packSize.packSizeId;
-        this.InventoryItemForm.value.PackQuantity =(Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(1);
+        this.InventoryItemForm.value.PackQuantity = (Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) / Number.parseFloat(this.InventoryItemForm.value.PackSize)).toFixed(1);
         this.InventoryItemForm.value.UnitPrice = this.data.unitPrice;
         this.InventoryItemForm.value.ItemTotalAmount = (Number.parseInt(this.InventoryItemForm.value.OrderUnitQuantity) * Number.parseFloat(this.InventoryItemForm.value.UnitPrice)).toFixed(1);
         this.InventoryItemForm.value.InventoryId = this.data.inventory.inventoryId;
@@ -173,7 +174,7 @@ export class IssuanceComponent implements OnInit {
         // console.log(data);
 
         this.filterItems = this.filterItems.filter(a => a.itemCode != this.data.itemCode);
-        
+
         data.InventoryItemId = Number.parseInt(data.InventoryItemId);
         // console.log(data);
         this.arraydata.push(data);
@@ -182,7 +183,7 @@ export class IssuanceComponent implements OnInit {
         // console.log(data.InventoryItemId);
 
         // console.log(Number.parseInt(data.InventoryItemId));
-        
+
         let x = {
             StockQuantity: Number.parseInt(data.StockQuantity),
             InventoryItemId: Number.parseInt(data.InventoryItemId),
@@ -202,7 +203,12 @@ export class IssuanceComponent implements OnInit {
         var a: any = this.FilteredItems;
         this.FilteredItems = a.filter(a => a.itemCode != value.data.itemCode);
     }
-
+    removed(d) {
+        this.total -= Number.parseInt(d.UnitPrice);
+        console.log(d.key)
+        this.TotalQuantity -= Number.parseInt(d.OrderUnitQuantity);
+        console.log(d.key)
+    }
     remove(index, amount, quantity) {
         let item = this.arraydata.splice(index, 1);
         // this.StockQuantityarraydata.splice(index,1);
@@ -219,10 +225,8 @@ export class IssuanceComponent implements OnInit {
     }
 
     addfinal(value) {
-        
+
         this.onsubmit(value);
-        // console.log(this.finalstockquantity);
-        // console.log(this.arraydata);
 
         this.arraydata.filter(t => {
             delete t.Description;
@@ -236,41 +240,43 @@ export class IssuanceComponent implements OnInit {
         });
 
         this.IssuanceForm.value.SalesOrderItems = this.arraydata;
-        // console.log(this.IssuanceForm.value);
         this.IssuanceForm.value.OrderAmount = this.total;
 
-        // console.log("Issuance Date", this.IssuanceForm.value.IssuanceDate);
 
-        var a : any = {
-            IssueDate : this.IssuanceForm.value.IssuanceDate,
-            Remarks : this.IssuanceForm.value.Remarks,
-            SlipNumber : this.IssuanceForm.value.SlipNumber,
-            Status : this.IssuanceForm.value.Status,
+        var a: any = {
+            IssueDate: this.IssuanceForm.value.IssuanceDate,
+            Remarks: this.IssuanceForm.value.Remarks,
+            SlipNumber: this.IssuanceForm.value.SlipNumber,
+            Status: this.IssuanceForm.value.Status,
             // ContactPerson = Patient Name
-            ContactPerson : this.IssuanceForm.value.PatientName,
+            ContactPerson: this.IssuanceForm.value.PatientName,
             // ContactPersonNumber = Spouse Name
-            ContactPersonNumber : this.IssuanceForm.value.SpouseName,
-            TotalQuantity : this.TotalQuantity,
-            SalesOrderItems : this.arraydata,
-            OrderAmount : this.total,
+            ContactPersonNumber: this.IssuanceForm.value.SpouseName,
+            TotalQuantity: this.TotalQuantity,
+            SalesOrderItems: value,
+            OrderAmount: this.total,
             // AgainstLotNumber = MRN/CRN
-            AgainstLotNumber : this.IssuanceForm.value.CRN
+            AgainstLotNumber: this.IssuanceForm.value.CRN
         };
 
-        // console.log(a);
 
-        // console.log(this.IssuanceForm.value);
-        // console.log(this.StockQuantityarraydata);
-
+        console.log(a)
         this.PharmacyService.AddSalesOrder(a).subscribe(r => {
-            // console.log(r);
         });
 
-        this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => { 
-            // console.log(res);
+        this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
         });
-        this.IssuanceForm.reset();
+    //    this.IssuanceForm.reset();
         this.total = 0;
+
+ 
+        console.log(value);
+ 
+    }
+
+    valueChanged(data) {
+        let x = data.value;
+        console.log(x);
     }
 
 

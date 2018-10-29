@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -18,15 +16,13 @@
                (onRowInserted)="addflagcategory($event)" 
               (onRowUpdated)="updateflagcategory($event)"
                 (onRowRemoved)="deleteflagcategory($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Flag Cateegory" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-paging [pageSize]="7"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
                 <dxi-column dataField="name" caption="Name"></dxi-column>
@@ -36,6 +32,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

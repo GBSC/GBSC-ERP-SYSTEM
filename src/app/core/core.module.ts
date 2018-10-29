@@ -14,6 +14,8 @@ import { EmbryologistService } from './Services/HIMS/Lab/embryologist.service';
 import { ThawAssessmentService } from './Services/HIMS/Lab/thawassessment.service';
 import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
 import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.service';
+import { InsemenationService } from './Services/HIMS/Lab/insemenation.service';
+import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service';
 
 @NgModule({
     imports: [
@@ -54,7 +56,9 @@ import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.se
         EmbryologistService,
         ThawAssessmentService,
         BiopsyService,
-        FreezepreprationService
+        FreezepreprationService,
+        InsemenationService,
+        SemenanalysisService
     ]
 })
 export class CoreModule { }

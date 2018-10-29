@@ -1,6 +1,5 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-md-12">
+<div class="row">
+  <div class="col-md-12">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -42,7 +41,7 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input " formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
                       <option value="" disabled selected>-- Select Leave Year --</option>
                       <option *ngFor="let leaveyear of leaveYears" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
                     </select>
@@ -573,6 +572,6 @@
 
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      </div>
+      </div>
+ 

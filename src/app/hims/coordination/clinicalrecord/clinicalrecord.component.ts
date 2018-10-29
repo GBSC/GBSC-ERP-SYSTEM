@@ -26,7 +26,7 @@ export class ClinicalrecordComponent implements OnInit {
   private medicines: any;
   private id: number;
   private drugs: any[];
-  private clinicalRecord : any;
+  private clinicalRecord: any;
 
   private clinicalrecordform: FormGroup;
 
@@ -66,15 +66,15 @@ export class ClinicalrecordComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.id = +params['id'];
 
-      this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp=>{
-
-        console.log(resp);
-        
-        this.clinicalrecordform.enable();
+      this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
         this.clinicalRecord = resp;
 
-        this.drugs = resp.clinicalRecordDrugs;
+        if (resp != null) {
+          this.drugs = resp.clinicalRecordDrugs;
+
+        }
+
 
       })
 
@@ -102,14 +102,7 @@ export class ClinicalrecordComponent implements OnInit {
 
   }
 
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-    });
-  }
-
-  submit(value) {
+  submitForm(value) {
 
     if (this.patient) {
 
@@ -121,5 +114,14 @@ export class ClinicalrecordComponent implements OnInit {
     }
 
   }
+
+  populatePatientDate(patientId) {
+    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+      this.patient = patient;
+      this.spouse = patient.partner;
+    });
+  }
+
+
 
 }

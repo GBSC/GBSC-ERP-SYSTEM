@@ -18,18 +18,22 @@ export class PatientReferenceComponent implements OnInit {
 
     this.PatientServiceobj.getReference().subscribe((res : Reference) => {
       this.reference = res;
+      // console.log(this.reference);
     });
-    console.log(this.reference);
+    // 
 
   }
 
- addreference(value){
-  this.PatientServiceobj.addReference(value.key).subscribe(res => {
-    // console.log(res);
-  });
+ async addreference(value){
+   console.log(value)
+     await this.PatientServiceobj.addReferenceAsync(value.key);
+  // this.PatientServiceobj.addReference(value.key).subscribe(res => {
+  //   console.log(res);
+  // });
   this.PatientServiceobj.getReference().subscribe((res : Reference) => {
     this.reference = res;
-  });
+          // console.log(this.reference);
+   });
 
   }
 

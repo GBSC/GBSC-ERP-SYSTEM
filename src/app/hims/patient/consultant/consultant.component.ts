@@ -15,6 +15,7 @@ export class ConsultantComponent implements OnInit {
 
         await this.PatientServiceobj.getConsultant();
           this.PatientServiceobj.consultant;
+          console.log(this.PatientServiceobj.consultant);
     //    console.log(x);
     }
 

@@ -8,14 +8,11 @@ import { PatientService } from '../../../core';
 import { Loginform } from '../../../core/Models/Auth/loginform';
 import { Reference } from '../../../core/Models/HIMS/reference';
 
-
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.css'],
-
 })
-
 
 export class RegistrationComponent implements OnInit {
 
@@ -35,31 +32,17 @@ export class RegistrationComponent implements OnInit {
 
     public partnerDetails: any;
     public currentUser = new Loginform();
-
     public visitnature: any;
-
     id: number;
-
     public Patient: any = '';
-
     private forevent: File = null;
-
-
     private Documentupload: File;
-
     private patientId: any;
-
-
     submitted = false;
-
     spousesubmitted = false;
-
     referencesubmitted = false;
-
     documentsumitted = false;
-
     public getreferncdata : any;
-
 
     constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 

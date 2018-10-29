@@ -50,17 +50,16 @@ export class PaymentreceiptComponent implements OnInit {
         console.log(mrn);
         console.log(  keycode);
        if(keycode.key == "Enter") {
-           this.PatientServiceobj.SearchPatientByMrn(mrn).subscribe((res : any) => {
-            console.log(res);
-
-               if(res != null) {
-                   this.patients = res;
-                   console.log( this.patients)
-                  }
-               else {
-                   this.Toast.error('MRN error');
-               }
-           });
+            this.PatientServiceobj.SearchPatientByMrn(mrn).subscribe((res : any) => {
+                console.log(res);
+                if(res != null) {
+                    this.patients = res;
+                    console.log( this.patients)
+                    }
+                else {
+                    this.Toast.error('MRN error');
+            }
+        });
        }
     }
 

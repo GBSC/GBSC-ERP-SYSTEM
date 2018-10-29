@@ -20,7 +20,7 @@ export class PrescriptionViewComponent implements OnInit {
 	async ngOnInit() {
 
 		let date = (new Date().getDate() + '-' + new Date().getMonth()+1) + '-' + (new Date().getFullYear());
-		console.log("Date", date);
+		// console.log("Date", date);
 
 		// this.PharmacyService.GetSalesIndentsByDay(date).subscribe((res : SalesIndent[]) => {
 		// 	this.Prescriptions = res;
@@ -33,9 +33,9 @@ export class PrescriptionViewComponent implements OnInit {
 		// });
 
 		this.Prescriptions = await this.PharmacyService.GetSalesIndentsByDayAsync(date);
-		console.log("Prescriptions", this.Prescriptions);
+		// console.log("Prescriptions", this.Prescriptions);
 		this.PrescriptionsDetails = await this.PharmacyService.GetSalesIndentDetailsByDayAsync(date);
-		console.log("PrescriptionsDetails", this.PrescriptionsDetails);
+		// console.log("PrescriptionsDetails", this.PrescriptionsDetails);
 
 		this.Prescriptions.forEach(element => {
 			var a : any = {
@@ -52,10 +52,10 @@ export class PrescriptionViewComponent implements OnInit {
 				salesIndentItems : this.PrescriptionsDetails.filter(a => a.salesIndentId === element.salesIndentId)
 			};
 
-			console.log("a", a);
+			// console.log("a", a);
 			this.PrescriptionsViews.push(a);
 		});
-		console.log("PrescriptionsViews", this.PrescriptionsViews);
+		// console.log("PrescriptionsViews", this.PrescriptionsViews);
 	}
 
 	async onsubmit(value) {
@@ -63,9 +63,9 @@ export class PrescriptionViewComponent implements OnInit {
 		this.PrescriptionsViews = [];
 
 		this.Prescriptions = await this.PharmacyService.GetSalesIndentsByDayAsync(value);
-		console.log("Prescriptions", this.Prescriptions);
+		// console.log("Prescriptions", this.Prescriptions);
 		this.PrescriptionsDetails = await this.PharmacyService.GetSalesIndentDetailsByDayAsync(value);
-		console.log("PrescriptionsDetails", this.PrescriptionsDetails);
+		// console.log("PrescriptionsDetails", this.PrescriptionsDetails);
 
 		this.Prescriptions.forEach(element => {
 			var a : any = {
@@ -82,10 +82,10 @@ export class PrescriptionViewComponent implements OnInit {
 				salesIndentItems : this.PrescriptionsDetails.filter(a => a.salesIndentId === element.salesIndentId)
 			};
 
-			console.log("a", a);
+			// console.log("a", a);
 			this.PrescriptionsViews.push(a);
 		});
-		console.log("PrescriptionsViews", this.PrescriptionsViews);
+		// console.log("PrescriptionsViews", this.PrescriptionsViews);
 	}
 
 }

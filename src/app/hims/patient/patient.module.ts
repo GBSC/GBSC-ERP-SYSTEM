@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
-import { ReportsComponent } from '../patient/Reports/reports/reports.component';
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DiagnosesComponent } from './diagnoses/diagnoses.component';
@@ -38,7 +37,8 @@ import { TestComponent } from './test/test.component';
 import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
 import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
-import { PatientReferenceComponent } from './hims-setup-test/patient-reference/patient-reference.component';
+import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
+import { ReportsComponent } from './Reports/reports/reports.component';
 
 // import { SharedModule } from './shared/shared.module';
 

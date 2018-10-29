@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PatientService } from '../../../core';
 import { Loginform } from '../../../core/Models/Auth/loginform';
+import { Reference } from '../../../core/Models/HIMS/reference';
 
 
 @Component({
@@ -187,14 +188,13 @@ export class RegistrationComponent implements OnInit {
             this.documents = document;
          });
 
-         this.getreferncdata  = await this.PatientServiceobj.getRefference();
-         console.log(this.getreferncdata);
+        this.PatientServiceobj.getReference().subscribe((res : Reference) => {
+             this.getreferncdata = res;
+             console.log(this.getreferncdata);
+         });
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
-
-       
-    
      }
 
     addrange() {

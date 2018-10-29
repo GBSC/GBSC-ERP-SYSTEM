@@ -1,5 +1,5 @@
 
-export class Reference {
+export interface Reference {
     PatientReferenceId: number;
     ReferredBy: string;
     Initial: string;

@@ -661,19 +661,35 @@ export class PatientService {
     }
 
 
-    async getRefference (){
-        return await this.ApiService.get(this.API_URL+'Patients/GetPatientReferences').toPromise()
+    async getReferenceAsync() {
+        return await this.ApiService.get(this.API_URL+'Patients/GetPatientReferences').toPromise();
     }
 
-    async addRefference(reference : Reference){
+    getReference() : Observable<Reference> {
+        return this.ApiService.get(this.API_URL+'Patients/GetPatientReferences');
+    }
+
+    async addReferenceAsync(reference : Reference) {
         return await this.ApiService.post(this.API_URL + 'Patients/AddPatientReference', reference).toPromise();
     }
 
-    async updateRefference(reference : Reference){
+    addReference(reference : Reference) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Patients/AddPatientReference', reference);
+    }
+
+    async updateReferenceAsync(reference : Reference) {
         return await this.ApiService.put(this.API_URL + 'Patients/UpdatePatientReference', reference).toPromise();
     }
 
-    async deleteRefference(id){
+    updateReference(reference : Reference) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Patients/UpdatePatientReference', reference);
+    }
+
+    async deleteReferenceAsync(id) {
         return await this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id).toPromise();
+    }
+
+    deleteReference(id) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id);
     }
 }

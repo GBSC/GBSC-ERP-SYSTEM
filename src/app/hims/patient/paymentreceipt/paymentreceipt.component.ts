@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { Appointment } from '../../../core/Models/HIMS/appointment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-paymentreceipt',
@@ -11,56 +13,46 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PaymentreceiptComponent implements OnInit {
 
-    public visitnature : any;
+    private SelectedPatient : any;
+    private Appointments : Appointment[] = [];
+    private SelectedAppointment : Appointment;
+    private paymentForm : FormGroup;
 
-    paymentReceiptForm : FormGroup;
 
-    public patients : any;
-
-    private nature: any[] = ['Select Nature', 'Package', 'Lab Tests', 'Medicines', 'Others'];
-    constructor(private PatientServiceobj: PatientService , private formBuilder : FormBuilder , private Toast : ToastrService) { 
-
-        this.paymentReceiptForm = this.formBuilder.group({
-            MRN : ['',Validators.required]
+    constructor(private PatientService : PatientService, private FormBuilder : FormBuilder, private Toastr : ToastrService, private route : ActivatedRoute) {
+        this.paymentForm = this.FormBuilder.group({
+            MRN : ['']
         });
-
-
     }
 
     async  ngOnInit() {
-        await this.PatientServiceobj.getPatient();
-        let par = this.PatientServiceobj.patients;
-        console.log(par);
 
-        this.nature = this.nature.map((item, index) => {
-            return { ID: index, Name: item }
+        this.route.params.subscribe(params => {
+            this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
+                this.SelectedAppointment = res;
+            });
         });
 
-        console.log(this.nature);
-
-
-
-       this.visitnature=  await this.PatientServiceobj.GetVisitNatures();
-        console.log(this.visitnature); 
-    
     }
 
+    GetPatientByMrn(mrn : string, keycode){
+       if(keycode.key === "Enter") {
+           console.log(mrn);
+           
+            this.PatientService.SearchPatientByMrn(mrn).subscribe((res : any) => {
+                if(res === null)
+                    this.Toastr.error("Incorrect MRN");
+                else
+                    this.SelectedPatient = res;
+            });
+        }
+    }
 
-    GetPatientByMrn(mrn ,keycode){
-        console.log(mrn);
-        console.log(  keycode);
-       if(keycode.key == "Enter") {
-            this.PatientServiceobj.SearchPatientByMrn(mrn).subscribe((res : any) => {
-                console.log(res);
-                if(res != null) {
-                    this.patients = res;
-                    console.log( this.patients)
-                    }
-                else {
-                    this.Toast.error('MRN error');
-            }
+    GetAppointmentByDateAndPatientID(date : Date) {
+        // console.log(date);
+        this.PatientService.GetAppointmentsByDateAndPatientID(date, this.SelectedPatient.patientId).subscribe((res : Appointment[]) => {
+            this.Appointments = res;
         });
-       }
     }
 
 

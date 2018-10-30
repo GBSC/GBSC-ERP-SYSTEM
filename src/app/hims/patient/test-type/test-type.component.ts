@@ -9,37 +9,43 @@ import { PatientService } from '../../../core';
 })
 export class TestTypeComponent implements OnInit {
   
-  private TestTypes : TestType;
+  private TestTypes : TestType[]= [];
+  private UpdatedModel : TestType;
 
   constructor(private PatientService : PatientService) {
 
   }
 
   ngOnInit() {
-    this.PatientService.getTestTypes().subscribe((res : TestType) => {
+    this.PatientService.getTestTypes().subscribe((res : TestType[]) => {
       this.TestTypes = res;
     });
   }
 
   AddTestType(value) {
-    console.log(value);
-    this.PatientService.addTestTypeAsync(value.data);
-    this.PatientService.getTestTypes().subscribe((res : TestType) => {
-      this.TestTypes = res;
-    });
+    // console.log(value);
+    this.PatientService.addTestType(value.data).subscribe((res : any) => {
+		  this.PatientService.getTestTypes().subscribe((res : TestType[]) => {
+			  this.TestTypes = res;
+		  });
+	  });
   }
 
-  UpdateTestType(value) {
-    console.log(value);
-    this.PatientService.updateTestType(value.key).subscribe(res => {
-      console.log(res);
+  UpdateModel(value) {
+    this.UpdatedModel = {...value.oldData, ...value.newData};
+  }
+
+  UpdateTestType() {
+    // console.log(this.UpdatedModel);
+    this.PatientService.updateTestType(this.UpdatedModel).subscribe(res => {
+      // console.log(res);
     });
   }
 
   DeleteTestType(value) {
-    console.log(value);
-    this.PatientService.deleteTestType(value.key.testTypeId).subscribe(res => {
-      console.log(res);
+    // console.log(value);
+    this.PatientService.deleteTestType(value.data.testTypeId).subscribe(res => {
+      // console.log(res);
     });
   }
 

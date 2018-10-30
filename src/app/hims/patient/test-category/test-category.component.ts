@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TestTypeComponent } from '../test-type/test-type.component';
-import { TestType } from '../../../core/Models/HIMS/TestType';
 import { PatientService } from '../../../core';
+import { TestCategory } from '../../../core/Models/HIMS/TestCategory';
 
 @Component({
   selector: 'app-test-category',
@@ -10,28 +9,41 @@ import { PatientService } from '../../../core';
 })
 export class TestCategoryComponent implements OnInit {
   
-  private TestTypes : TestType;
+  private TestCategories : TestCategory[];
+  private UpdatedModel : TestCategory;
 
   constructor(private PatientService : PatientService) {
 
   }
 
   ngOnInit() {
-    this.PatientService.getTestTypes().subscribe((res : TestType) => {
-      this.TestTypes = res;
-    })
+    this.PatientService.getTestCategories().subscribe((res : TestCategory[]) => {
+      this.TestCategories = res;
+    });
   }
 
-  AddTestType(value) {
-
+  AddTestCategory(value) {
+    this.PatientService.addTestCategory(value.data).subscribe((res : any) => {
+		  this.PatientService.getTestCategories().subscribe((res : TestCategory[]) => {
+			  this.TestCategories = res;
+		  });
+	  });
   }
 
-  UpdateTestType(value) {
-
+  UpdateModel(value) {
+    this.UpdatedModel = {...value.oldData, ...value.newData};
   }
 
-  DeleteTestType(value) {
-    
+  UpdateTestCategory() {
+    this.PatientService.updateTestCategory(this.UpdatedModel).subscribe(res => {
+      // console.log(res);
+    });
+  }
+
+  DeleteTestCategory(value) {
+    this.PatientService.deleteTestCategory(value.data.testCategoryId).subscribe(res => {
+      // console.log(res);
+    });
   }
 
 }

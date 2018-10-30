@@ -37,6 +37,7 @@ import { PatientReferenceComponent } from './patient-reference/patient-reference
 import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
 import { TestComponent } from './test/test.component';
+import { TestCategoryComponent } from './test-category/test-category.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
@@ -63,18 +64,23 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
-            { path: 'consultant', component: ConsultantComponent },
-            { path: 'visitnature', component: VisitnatureComponent },
-            { path: 'himssetuptest', component: HimsSetupTestComponent },
             { path: 'visitdetail/:id', component: VisitdetailComponent },
-            { path: 'diagnose', component: DiagnosisComponent },
             { path: 'reports', component: ReportsComponent },
             { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
-            { path: 'reference', component: PatientReferenceComponent },
-            { path: 'testtype', component: TestTypeComponent},
-            { path: 'testcategory', component: TestComponent}
+            {
+                path: "setup",
+                children: [
+                    { path: 'testcategory', component: TestCategoryComponent },
+                    { path: 'testtype', component: TestTypeComponent },
+                    { path: 'test', component: HimsSetupTestComponent },
+                    { path: 'diagnose', component: DiagnosisComponent },
+                    { path: 'reference', component: PatientReferenceComponent },
+                    { path: 'consultant', component: ConsultantComponent },
+                    { path: 'visitnature', component: VisitnatureComponent }
+                ]
+            }
         ]
     }
 ]);

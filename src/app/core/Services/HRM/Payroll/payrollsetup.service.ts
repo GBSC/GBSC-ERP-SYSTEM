@@ -374,7 +374,7 @@ export class PayrollSetupService {
    
      getMasterPayroll(id) : Observable<MasterPayroll>{
 
-        return this.ApiService.get(this.baseUrl +'/GetMasterPayroll');
+        return this.ApiService.get(this.baseUrl +'/GetMasterPayroll' + id);
     }
 
     async addMasterPayroll(data) {
@@ -595,7 +595,6 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetUserSalaries`).toPromise();
     }
-
 
     async addUserSalary(data) {
 

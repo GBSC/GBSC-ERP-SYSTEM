@@ -55,11 +55,14 @@
               <div class="m-portlet__body">
                 <div class="m-section">
                   <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="overtimeflag" keyExpr="overtimeFlagId" (onRowInserted)="addovertimeflag($event)"
-                      (onRowUpdated)="updateovertimeflag($event)" (onRowRemoved)="deleteovertimeflag($event)">
-                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                        <dxo-popup title="Overtime Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                        </dxo-popup>
+                    <dx-data-grid id="gridContainer"
+                     [dataSource]="overtimeflag" 
+                     keyExpr="overtimeFlagId"
+                      (onRowInserted)="addovertimeflag($event)"
+                      (onRowUpdating)="updatingModel($event)"
+                      (onRowUpdated)="updateovertimeflag()"
+                       (onRowRemoved)="deleteovertimeflag($event)">
+                      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                       </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>

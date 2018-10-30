@@ -131,6 +131,8 @@ import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
 import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 
 
 @NgModule({
@@ -284,7 +286,9 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
         PayslipComponent,
         ViewemployeeleaveopeningComponent,
         ViewleaverequestComponent,
-        ViewCompensationTransactionComponent
+        ViewCompensationTransactionComponent,
+        MonthlyUserSalaryDetailComponent,
+        GratuitydetailComponent
     ],
     exports: []
 

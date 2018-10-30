@@ -113,6 +113,8 @@ import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
 import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -319,9 +321,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     },
 
                     { path: 'gratuity', component: GratuityComponent },
+                    { path: 'updategratuity/:id', component: GratuityComponent },
+                    { path: 'gratuitydetail', component: GratuitydetailComponent },
                     { path: 'monthlyusersalary', component: MonthlyUserSalaryComponent },
+                    { path: 'monthly-usersalary-detail', component: MonthlyUserSalaryDetailComponent },
+                    { path: 'updatemonthlysalary/:id', component: MonthlyUserSalaryComponent },
                     { path: 'payslip', component: PayslipComponent }
-
                 ]
             }
 

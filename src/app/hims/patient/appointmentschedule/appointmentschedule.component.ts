@@ -41,7 +41,7 @@ export class AppointmentscheduleComponent implements OnInit {
     private appointmentTimeForm: FormGroup;
     public appointtime: any;
 
-    public par: any;
+    public allpatients: any;
 
     public profileForm: FormGroup;
 
@@ -118,7 +118,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
         await this.PatientServiceobj.getPatient();
-        this.par = this.PatientServiceobj.patients;
+        this.allpatients = this.PatientServiceobj.patients;
       //  console.log(this.par);
 
         await this.PatientServiceobj.getappointments();
@@ -274,43 +274,47 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async addApointment(value, cid) {
       
-       //    console.log(value);
+            console.log(value);
+            console.log(cid);
             if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
-        //        console.log(this.PatientServiceobj.patientID.patientId);
-                this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+                //        console.log(this.PatientServiceobj.patientID.patientId);
+                        this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+                    }
+          
+                    this.appointmentForm.value.ConsultantId = cid.value;
 
-            }
-         //   console.log(cid.value);
-         //   console.log(value);
-
-            this.appointmentForm.value.ConsultantId = cid.value;
-            // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
-            // {
-            //     this.appointmentForm.value.IsFinalAppointment = false;
-            // }
-          ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
-           ////////////// //console.log(this.appointmentForm.value);
-
-           //     console.log(value)
-             let x = await this.PatientServiceobj.addAppointment(value);
-       //    console.log(x);
-             await this.PatientServiceobj.getPatient();
-            this.par = this.PatientServiceobj.patients;
-            let dsdf = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-        //    console.log(dsdf);
-            this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-        //    console.log(this.ConsultantIdTentiveTime);
-            this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
-            this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
-
-            this.deleteFieldValue();
-
-            this.appointmentForm.reset();
-            this.patientForm.reset();
-            this.patientForm.value.FirstName = '';
-            this.patientForm.value.LastName = '';
-            this.displayToastSuccess("Appointment Schedule");
-            return x;
+                    // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
+                    // {
+                    //     this.appointmentForm.value.IsFinalAppointment = false;
+                    // }
+                  ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+                   ////////////// //console.log(this.appointmentForm.value);
+        
+                   console.log(value)
+                     let x = await this.PatientServiceobj.addAppointment(value);
+                    console.log(x);
+        
+        
+                     await this.PatientServiceobj.getPatient();
+                    this.allpatients = this.PatientServiceobj.patients;
+        
+                     await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
+                //  
+                    this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+                //    console.log(this.ConsultantIdTentiveTime);
+                    this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a =>
+                         a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
+                   console.log(this.tentativeAppointments);
+                    this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
+        
+                    this.deleteFieldValue();
+        
+                    this.appointmentForm.reset();
+                    this.patientForm.reset();
+                    this.patientForm.value.FirstName = '';
+                    this.patientForm.value.LastName = '';
+                    this.displayToastSuccess("Appointment Schedule");
+                    return x;
     }
 
     async updateAppointment(value) {
@@ -320,8 +324,8 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(x);
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         console.log(this.ConsultantIdTentiveTime);
-        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === false).map((a, i) => { a.index = i + 1; return a });
-        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment === true).map((a, i) => { a.index = i + 1; return a });
+        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
 
     ///   console.log(x);
         return x;

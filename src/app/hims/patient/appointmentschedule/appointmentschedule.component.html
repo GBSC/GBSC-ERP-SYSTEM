@@ -83,7 +83,7 @@
                       </div>
                   </dx-lookup>   -->
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
-                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder=" ">
+                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="">
                     </dx-select-box> 
                     <!-- [value]="patientForm.FirstName + ' ' +patientForm.LastName"  [value]="patientForm.value.PhoneNumber"  -->
                     <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
@@ -157,16 +157,16 @@
                  <!-- <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
                 <dxi-column dataField="patientType" caption="Type"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [width]="125">
-                  <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Patients" [width]="125">
-                  <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="No" [width]="125">
-                  <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Alternet No" [width]="125">
-                  <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment"></dxi-column>
                 <dxi-column dataField="tentativeTime" caption="Tentative Time"  dataType="date"></dxi-column>
@@ -186,20 +186,23 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
-                 <dxi-column dataField="patientType" caption="Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [allowEditing]="false" [formItem]="{visible: false}">
-                  <dxo-lookup [dataSource]="par" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Patients" [allowEditing]="false" [formItem]="{visible: false}" >
-                  <dxo-lookup [dataSource]="par" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="patientId" caption="Phone Number" [allowEditing]="false" [formItem]="{visible: false}">
-                  <dxo-lookup [dataSource]="par" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                <dxi-column dataField="consultantId" caption="Consultant" [allowEditing]="false" [formItem]="{visible: false}" >
+                    <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                  </dxi-column>
+                <dxi-column dataField="patientType" caption="P-Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="patientId" caption="Number" [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Alternet No" [allowEditing]="false" [formItem]="{visible: false}">
-                  <dxo-lookup [dataSource]="par" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="tentativeTime" caption="Tentative Time"dataType="datetime" format="shortTime"[allowEditing]="false"
+                <dxi-column dataField="tentativeTime" caption="Appointment Time"dataType="datetime" format="shortTime"[allowEditing]="false"
                   [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="visitNatureId" caption="Visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">

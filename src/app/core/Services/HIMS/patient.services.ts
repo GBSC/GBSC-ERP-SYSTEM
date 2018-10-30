@@ -472,7 +472,7 @@ export class PatientService {
     }
 
     getpatientLatestTest(id): Observable<VisitTest> {
-        return this.ApiService.get(this.API_URL + 'patients/GetPatientLastestTest/' + id);
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientLatestTest/' + id);
         //return this.http1.get<VisitTest>(this.API_URL + '/patients/GetPatientLastestTest/' + id);
     }
 
@@ -701,7 +701,7 @@ export class PatientService {
         return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes').toPromise();
     }
 
-    getTestTypes() : Observable<TestType> {
+    getTestTypes() : Observable<TestType[]> {
         return this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes');
     }
 
@@ -735,7 +735,7 @@ export class PatientService {
         return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories').toPromise();
     }
 
-    getTestCategories() : Observable<TestCategory> {
+    getTestCategories() : Observable<TestCategory[]> {
         return this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories');
     }
 

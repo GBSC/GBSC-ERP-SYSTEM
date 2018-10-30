@@ -2,16 +2,14 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
-        <h3 class="m-portlet__head-text">Test Type</h3>
+        <h3 class="m-portlet__head-text">Test Category</h3>
       </div>
     </div>
   </div>
-
-
 <div class="m-portlet__body">
 <div class="row">
   <div class="col-md-12"> 
-    <dx-data-grid id="gridContainer" [dataSource]="TestTypes" keyExpr="testTypeId" (onRowInserted)="AddTestType($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateTestType($event)" (onRowRemoved)="DeleteTestType($event)"> 
+    <dx-data-grid id="gridContainer" [dataSource]="TestCategories" keyExpr="testCategoryId" (onRowInserted)="AddTestCategory($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateTestCategory()" (onRowRemoved)="DeleteTestCategory($event)"> 
       <dxo-editing  mode="row" [allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
       </dxo-editing>
       <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -22,7 +20,5 @@
       <dxi-column dataField="description" caption="Description"></dxi-column>
       </dx-data-grid> 
    </div>
-
-   
 </div>
 </div></div>

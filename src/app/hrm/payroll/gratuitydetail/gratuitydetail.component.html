@@ -1,0 +1,72 @@
+<div class="m-content">
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Gratuity Detail
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+      <dx-data-grid id="gridContainer" keyExpr="userGratuityId"
+      [dataSource]="gratuity" 
+      (onSelectionChanged)="selectionChanged($event)"
+      (onContentReady)="contentReady($event)"
+      (onToolbarPreparing)="onToolbarPreparing($event)" 
+      [masterDetail]="{ enabled: true, template: 'detail' }"
+      [columnAutoWidth]="true" 
+      [showBorders]="true">
+
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-paging [pageSize]="6"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+        </dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+
+        <dxi-column dataField="from" dataType="date" format="shortdate"></dxi-column>
+        <dxi-column dataField="to" dataType="date" format="shortdate"></dxi-column>
+        <dxi-column dataField="gratuityAmount"></dxi-column>
+
+        <dxi-column dataField="gratuityTypeId" caption="Gratuity Type" [width]="300">
+          <dxo-lookup [dataSource]="gratuityTypes" displayExpr="name" valueExpr="gratuityTypeId">
+          </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="leavingReasonId" caption="Leaving Reason" [width]="300" [visible]="false">
+          <dxo-lookup [dataSource]="leavingReasons" displayExpr="name" valueExpr="leavingReasonId">
+          </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="userId" caption="Employee" [width]="300">
+          <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+          </dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="fundSetupId" caption="Fund Setup" [width]="300" [visible]="false">
+          <dxo-lookup [dataSource]="paySlip" displayExpr="minServicePeriod" valueExpr="fundSetupId">
+          </dxo-lookup>
+        </dxi-column>
+
+        <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+        <div *dxTemplate="let d of 'chartCellTemplate'">
+          <div class="chart-cell">
+            <dx-button (click)="getData(d)" icon="edit"></dx-button>
+          </div>
+        </div>
+
+        <div *dxTemplate="let gratuitySlab of 'detail'">
+          <dx-data-grid [dataSource]="gratuitySlab.data.gratuitySlabGratuities" [showBorders]="true" [columnAutoWidth]="true">
+
+            <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
+              <dxo-lookup [dataSource]="gratuitySlabs" displayExpr="title" valueExpr="gratuitySlabId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="slabAmount" caption="Slab Amount"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>

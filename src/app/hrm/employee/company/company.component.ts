@@ -17,6 +17,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public functions: any;
     public groups: any;
     public managementlevel: any;
+    public employeestatus: any;
 
     @Input('employeeId') id: number;
 
@@ -59,6 +60,8 @@ export class EmployeeCompanyComponent implements OnInit {
         this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
+
+        this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
 
         await this.SetupServiceobj.getEmployeeStatus(); 
 

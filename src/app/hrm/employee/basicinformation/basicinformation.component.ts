@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EmployeeService, SetupService } from '../../../core';
+import { EmployeeService, SetupService, HrmsService } from '../../../core';
 import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
@@ -25,7 +25,8 @@ export class BasicinformationComponent implements OnInit {
 
     public EmpbasicForm: FormGroup;
 
-    constructor(public employeeService: EmployeeService, public fb: FormBuilder, private SetupServiceobj: SetupService, public router: Router, private route: ActivatedRoute) {
+    constructor(public employeeService: EmployeeService, public fb: FormBuilder,private hrmService: HrmsService,
+        private SetupServiceobj: SetupService, public router: Router, private route: ActivatedRoute) {
 
         this.EmpbasicForm = this.fb.group({
             FirstName: [''],
@@ -66,6 +67,8 @@ export class BasicinformationComponent implements OnInit {
         this.religion = await this.SetupServiceobj.getAllReligions();
 
         this.language = await this.SetupServiceobj.getAllLanguages();
+
+        this.city = await this.hrmService.getAllCities();
 
         if (this.id) {
             this.employeeService.GetEmployee(this.id).subscribe(resp => {

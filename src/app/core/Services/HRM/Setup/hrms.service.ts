@@ -38,6 +38,27 @@ export class HrmsService {
     async DeleteCountry(countryId) {
         return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
     }
+
+    async getAllCities() {
+ 
+        return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
+    }
+
+     async addCity(data) {
+        return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
+
+    }
+
+    async updateCity(data) {
+
+        let city = await this.getdataToUpdate(data.key, 'GetCity');
+        city = { ...city, ...data.data }
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', city).toPromise();
+    }
+
+    async DeleteCity(cityId) {
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
+    }
     
 
     async getAllDepartments() {

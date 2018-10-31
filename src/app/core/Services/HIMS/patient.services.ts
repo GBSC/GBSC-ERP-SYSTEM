@@ -246,6 +246,14 @@ export class PatientService {
         return this.getApptbyId;
     }
 
+    GetAppointmentById(id : number) : Observable<Appointment> {
+        return this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + id);
+    }
+
+    GetAppointmentsByDateAndPatientID(date : Date, PatientId : number) : Observable<Appointment[]> {
+        return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDateAndPatientID/' + date + '/' + PatientId);
+    }
+
     async GetAppointmentByDate(date){
          return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
     }
@@ -637,11 +645,9 @@ export class PatientService {
         //return this.SearchPatientbyname;
     }
 
-    
-    SearchPatientByMrn(mrn) : Observable  <Patient>  {
-      return  this.ApiService.post(this.API_URL + 'patients/SearchPatient', mrn);
-  }
-
+    SearchPatientByMrn(mrn) : Observable<Patient> {
+      return  this.ApiService.get(this.API_URL + 'Patients/GetPatientbymrn/' + mrn);
+    }
 
     async getDiagnoses() {
         this.diagnoses = await this.ApiService.get(this.API_URL + 'HimsSetup/GetDiagnoses').toPromise();

@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {
-    DxDataGridModule, DxLoadPanelModule,
-    DxDataGridComponent,
-    DxTemplateModule
-} from 'devextreme-angular';
+import { DxDataGridModule, DxLoadPanelModule, DxDataGridComponent,DxTemplateModule} from 'devextreme-angular';
 import popup from 'devextreme/ui/popup';
 import { find } from 'rxjs/operator/find';
 import { PatientService } from '../../../core';
@@ -12,6 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ArrayType } from '@angular/compiler/src/output/output_ast';
+ 
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -39,12 +38,14 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
     private appointmentTimeForm: FormGroup;
+    private InvoiceForm : FormGroup;
     public appointtime: any;
 
     public allpatients: any;
 
     public profileForm: FormGroup;
 
+    private  PatientInvoiceItemsdata : any [] = [];
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
@@ -70,7 +71,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public appointmentbydate : any;
 
-    constructor(private toastr: ToastrService,private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
+    public currentdate : any;
+
+    constructor(private toastr: ToastrService,private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient,private router: Router) {
 
         // this.profileForm = new FormGroup({
         //   firstName: new FormControl('fajlksdjfas'),
@@ -111,11 +114,17 @@ export class AppointmentscheduleComponent implements OnInit {
             'TimeOut': ['', Validators.required],
             'Remarks': ['', Validators.required]
         });
+
+         this.InvoiceForm = this.formBuilder.group({
+            appointmentId :[''],
+            patientInvoiceItems :  this.formBuilder.array([])
+        });
     }
 
     async  ngOnInit() {
       
-
+     this.currentdate =   this.formatDate(new Date());    
+     console.log(this.formatDate(new Date()));
 
         await this.PatientServiceobj.getPatient();
         this.allpatients = this.PatientServiceobj.patients;
@@ -274,13 +283,14 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async addApointment(value, cid) {
       
-            console.log(value);
-            console.log(cid);
+          
             if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
                 //        console.log(this.PatientServiceobj.patientID.patientId);
                         this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+                        await this.PatientServiceobj.addAppointment(value);
                     }
-          
+
+           
                     this.appointmentForm.value.ConsultantId = cid.value;
 
                     // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
@@ -290,20 +300,20 @@ export class AppointmentscheduleComponent implements OnInit {
                   ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
                    ////////////// //console.log(this.appointmentForm.value);
         
-                   console.log(value)
-                     let x = await this.PatientServiceobj.addAppointment(value);
-                    console.log(x);
+                      let x = await this.PatientServiceobj.addAppointment(value);
+
+                  //   this.allpatients = await this.PatientServiceobj.GetPatientById();
         
-        
-                     await this.PatientServiceobj.getPatient();
-                    this.allpatients = this.PatientServiceobj.patients;
+                    //  await this.PatientServiceobj.getPatient();
+                    // this.allpatients = this.PatientServiceobj.patients;
+                    console.log(cid.value, value.TentativeTime);
         
                      await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
                 //  
                     this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
                 //    console.log(this.ConsultantIdTentiveTime);
                     this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a =>
-                         a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
+                         a.isFinalAppointment == false);
                    console.log(this.tentativeAppointments);
                     this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
         
@@ -316,19 +326,58 @@ export class AppointmentscheduleComponent implements OnInit {
                     this.displayToastSuccess("Appointment Schedule");
                     return x;
     }
+    private consultantfee: any = {};
 
     async updateAppointment(value) {
-    console.log(value.key);
 
-        let x = await this.PatientServiceobj.updateAppointment(value.key);
-        console.log(x);
+      console.log(value.key);
+      if(value.key.isFinalAppointment === true){
+        this.InvoiceForm.value.appointmentId = value.key.appointmentId;
+      this.consultantfee =   this.consultant.find(t=> t.consultantId ==  value.key.consultantId);
+        let x = [{
+            name: "Appointment Fee",
+            quantity: "1",
+            grossAmount : this.consultantfee.charges
+          }];
+         this.PatientInvoiceItemsdata =  x ;
+         this.InvoiceForm.value.patientInvoiceItems = this.PatientInvoiceItemsdata;
+          console.log(this.InvoiceForm.value);
+          await this.PatientServiceobj.AddPatientInvoice(this.InvoiceForm.value);
+
+          await this.PatientServiceobj.updateAppointment(value.key);
+
+          
+        //  this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
+        //   if(value.key.)
+        if( this.ConsultantIdTentiveTime == null        ){ 
+            this.ConsultantIdTentiveTime = this.appointmentbydate;
+        console.log(this.ConsultantIdTentiveTime);
+        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+    }
+    else{
         this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
         console.log(this.ConsultantIdTentiveTime);
         this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+    }   
+     
+    }
 
-    ///   console.log(x);
-        return x;
+    await this.PatientServiceobj.updateAppointment(value.key);
+    if( this.ConsultantIdTentiveTime == null        ){ 
+        this.ConsultantIdTentiveTime = this.appointmentbydate;
+    console.log(this.ConsultantIdTentiveTime);
+    this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+    this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+}
+else{
+    this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+    console.log(this.ConsultantIdTentiveTime);
+    this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+    this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+}   
+             
     }
 
     public SetTime: any;
@@ -409,6 +458,16 @@ export class AppointmentscheduleComponent implements OnInit {
       //  console.log(this.currentpatient.appointmentId);
         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
       //  console.log(this.getaptbyid);
+
+    }
+
+
+    ViewInvoice(d){
+        console.log(d);
+    let appointmentID =     d.data.appointmentId ;
+    this.router.navigate(['/hims/patient/paymentreceipt/' + appointmentID]);
+
+
 
     }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatientService } from '../../../core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import {Route , ActivatedRoute} from '@angular/router'
 
 
 @Component({
@@ -17,8 +18,11 @@ export class PaymentreceiptComponent implements OnInit {
 
     public patients : any;
 
+    id: number;
+
+
     private nature: any[] = ['Select Nature', 'Package', 'Lab Tests', 'Medicines', 'Others'];
-    constructor(private PatientServiceobj: PatientService , private formBuilder : FormBuilder , private Toast : ToastrService) { 
+    constructor(private PatientServiceobj: PatientService , private formBuilder : FormBuilder , private Toast : ToastrService ,private route : ActivatedRoute) { 
 
         this.paymentReceiptForm = this.formBuilder.group({
             MRN : ['',Validators.required]
@@ -28,6 +32,18 @@ export class PaymentreceiptComponent implements OnInit {
     }
 
     async  ngOnInit() {
+
+
+        this.route.params.subscribe(params => {
+            this.id = +params['id'];
+            
+            console.log(this.id);
+
+
+        });
+
+
+
         await this.PatientServiceobj.getPatient();
         let par = this.PatientServiceobj.patients;
         console.log(par);

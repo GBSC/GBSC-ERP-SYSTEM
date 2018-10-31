@@ -137,6 +137,10 @@ export class PatientService {
 
     }
 
+  async  GetPatientById(id) {
+    return await this.ApiService.get(this.API_URL+'patients/GetPatient/'+id).toPromise();
+    }
+
     // async getPatientbyid() {
     //   console.log(this.patientId);
     //   if (this.patientId) {
@@ -270,6 +274,11 @@ export class PatientService {
         //let x = await this.http1.delete(this.API_URL + '/Appointments/DeleteAppointment/' + id).toPromise();
         //console.log(x);
         //return x
+    }
+
+
+    async AddPatientInvoice (value){
+        return await this.ApiService.post(this.API_URL+'PatientInvoices/AddPatientInvoice',value).toPromise();
     }
 
     async getConsultantIdAndTentiveTime(id, date) {

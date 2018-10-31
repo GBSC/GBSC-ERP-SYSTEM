@@ -17,12 +17,18 @@
           </div>
           <div class="m-portlet__head-tools">
             <div class="dropdown">
-              <button aria-expanded="false" [disabled]="!appointmentForm.valid" aria-haspopup="true" class="btn btn-primary dropdown-toggle"
+                <button  [disabled]="!appointmentForm.valid" class="btn btn-success" type="button" (click)="addFieldValue()">
+                    New Appointment
+                  </button> | 
+                  <button  [disabled]="!appointmentForm.valid" class="btn btn-success" type="button" data-toggle="modal" data-target="#m_modal_1">
+                    Send SMS +
+                  </button>
+              <!-- <button aria-expanded="false" [disabled]="!appointmentForm.valid" aria-haspopup="true" class="btn btn-primary dropdown-toggle"
                 data-toggle="dropdown" id="dropdownMenu2" type="button">
                 <span _ngcontent-c21="">
                   <i class="fa fa-cog"></i>
                 </span> Actions
-              </button>
+              </button> -->
               <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
                 <button class="dropdown-item" type="button" (click)="addFieldValue()">
                   New Appointment
@@ -39,7 +45,7 @@
             [formGroup]="appointmentForm">
             <div class="m-portlet__body">
               <div class="form-group row">
-                <div class="form-group col-lg-3">
+                <div   class="form-group col-lg-3">
                   <label for="exampleSelect1"> Consultant </label>
                   <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
@@ -47,7 +53,7 @@
                 </div>
                 <div class="form-group col-lg-3">
                   <label for="exampleInputEmail1">Tentative Time</label>
-                  <input #date class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime"
+                  <input #date class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" [value]="currentdate || ''" formControlName="TentativeTime"
                     type="date" required>
                 </div>
                 <div class="form-group col-lg-5"></div>
@@ -155,20 +161,23 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 300]" [showInfo]="true"></dxo-pager>
                  <!-- <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
-                <dxi-column dataField="patientType" caption="Type"></dxi-column>
+                <dxi-column dataField="patientType" caption="Type" [width]="60"></dxi-column>
                 <dxi-column dataField="patientId" caption="MRN #" [width]="125">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Patients" [width]="125">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
+                <dxi-column dataField="consultantId" caption="Consultant" [allowEditing]="false" [formItem]="{visible: false}" >
+                    <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                  </dxi-column>
                 <dxi-column dataField="patientId" caption="No" [width]="125">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
                 <dxi-column dataField="patientId" caption="Alternet No" [width]="125">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="For Final Appointment"></dxi-column>
+                <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized"></dxi-column>
                 <dxi-column dataField="tentativeTime" caption="Tentative Time"  dataType="date"></dxi-column>
                 <dxi-column dataField="visitStatus" caption="Status"></dxi-column>
               </dx-data-grid>
@@ -216,6 +225,7 @@
                 <div *dxTemplate="let d of 'chartCellTemplate'">
                   <div class="chart-cell">
                     <dx-button (click)="getCurrentRowData(d)" data-toggle="modal" data-target="#m_modal_3" icon="add"></dx-button>
+                    <dx-button (click)="ViewInvoice(d)"  icon="repeat"></dx-button>
                     <!-- button for custom visit detail form -->
                     <!-- <dx-button (click)="getCurrentRowDataForSetTime(d)" data-toggle="modal" data-target="#m_modal_4" icon="time"></dx-button> -->
                   </div>

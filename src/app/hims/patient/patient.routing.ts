@@ -68,6 +68,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'reports', component: ReportsComponent },
             { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
+
+            { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
             {
                 path: "setup",

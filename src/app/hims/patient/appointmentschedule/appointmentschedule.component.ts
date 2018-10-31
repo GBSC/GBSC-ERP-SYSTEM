@@ -10,7 +10,7 @@ import { Patient } from '../../../core/Models/HIMS/patient';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ArrayType } from '@angular/compiler/src/output/output_ast';
- 
+  
 
 @Component({
     selector: 'app-appointmentschedule',
@@ -73,6 +73,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public currentdate : any;
 
+
     constructor(private toastr: ToastrService,private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient,private router: Router) {
 
         // this.profileForm = new FormGroup({
@@ -123,8 +124,10 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async  ngOnInit() {
       
-     this.currentdate =   this.formatDate(new Date());    
-     console.log(this.formatDate(new Date()));
+     this.currentdate =  this.formatDate(new Date());    
+                          
+     console.log(this.formateDateTime(new Date()));
+    //  this.currentdate =   this.formateDateTime(new Date()) ;
 
         await this.PatientServiceobj.getPatient();
         this.allpatients = this.PatientServiceobj.patients;
@@ -157,6 +160,7 @@ export class AppointmentscheduleComponent implements OnInit {
         // console.log(this.appointmenttest)
 
         this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
+        console.log(this.appointmentbydate);
 
 
          this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
@@ -171,6 +175,11 @@ export class AppointmentscheduleComponent implements OnInit {
         //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
     }
 
+    formateDateTime(date: Date) {
+        return date.getFullYear( ) + "-" +( date.getMonth()+ 1 )+"-" + date.getDate()+"T" +date.getHours()+":" + date.getMinutes() ;
+    
+        //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
+    }
 
 
     calculateCellValue(data) {
@@ -282,56 +291,48 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async addApointment(value, cid) {
-      
-          
-            if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
-                //        console.log(this.PatientServiceobj.patientID.patientId);
-                        this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
-                        await this.PatientServiceobj.addAppointment(value);
-                    }
+        if(value.TentativeTime == null || value.TentativeTime == ''){
+            value.TentativeTime = this.currentdate
+       }    
+        if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
+                     this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
+                    console.log(value);
+                    await this.PatientServiceobj.addAppointment(value);
+                }               
+                this.appointmentForm.value.ConsultantId = cid.value;
+                console.log(value)
+                let x = await this.PatientServiceobj.addAppointment(value);
+                await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
+                this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+                this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a =>
+                a.isFinalAppointment == false);
+                console.log(this.tentativeAppointments);
+                this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
+                this.deleteFieldValue();
+                this.appointmentForm.reset();
+                this.patientForm.reset();
+                this.patientForm.value.FirstName = '';
+                this.patientForm.value.LastName = '';
+                this.displayToastSuccess("Appointment Schedule");
+                return x;
+            
+               
 
+                
            
-                    this.appointmentForm.value.ConsultantId = cid.value;
-
-                    // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
-                    // {
-                    //     this.appointmentForm.value.IsFinalAppointment = false;
-                    // }
-                  ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
-                   ////////////// //console.log(this.appointmentForm.value);
-        
-                      let x = await this.PatientServiceobj.addAppointment(value);
-
-                  //   this.allpatients = await this.PatientServiceobj.GetPatientById();
-        
-                    //  await this.PatientServiceobj.getPatient();
-                    // this.allpatients = this.PatientServiceobj.patients;
-                    console.log(cid.value, value.TentativeTime);
-        
-                     await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-                //  
-                    this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-                //    console.log(this.ConsultantIdTentiveTime);
-                    this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a =>
-                         a.isFinalAppointment == false);
-                   console.log(this.tentativeAppointments);
-                    this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
-        
-                    this.deleteFieldValue();
-        
-                    this.appointmentForm.reset();
-                    this.patientForm.reset();
-                    this.patientForm.value.FirstName = '';
-                    this.patientForm.value.LastName = '';
-                    this.displayToastSuccess("Appointment Schedule");
-                    return x;
+                    
     }
     private consultantfee: any = {};
 
     async updateAppointment(value) {
-
+       
       console.log(value.key);
-      if(value.key.isFinalAppointment === true){
+      if(value.key.isFinalAppointment == true){
+        if(value.key.finalTime == null || value.key.finalTime == ''){
+           value.key.finalTime = value.key.tentativeTime 
+            console.log(value.key);
+        }
+        console.log(value.key);
         this.InvoiceForm.value.appointmentId = value.key.appointmentId;
       this.consultantfee =   this.consultant.find(t=> t.consultantId ==  value.key.consultantId);
         let x = [{
@@ -343,30 +344,30 @@ export class AppointmentscheduleComponent implements OnInit {
          this.InvoiceForm.value.patientInvoiceItems = this.PatientInvoiceItemsdata;
           console.log(this.InvoiceForm.value);
           await this.PatientServiceobj.AddPatientInvoice(this.InvoiceForm.value);
+          console.log('AddPatientInvoice');
 
           await this.PatientServiceobj.updateAppointment(value.key);
+          console.log('updateAppointment');
 
-          
-        //  this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
-        //   if(value.key.)
-        if( this.ConsultantIdTentiveTime == null        ){ 
-            this.ConsultantIdTentiveTime = this.appointmentbydate;
-        console.log(this.ConsultantIdTentiveTime);
-        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
-        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-    }
-    else{
-        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-        console.log(this.ConsultantIdTentiveTime);
-        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
-        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-    }   
+           
+    //     if( this.ConsultantIdTentiveTime == null        ){ 
+    //         this.ConsultantIdTentiveTime = this.appointmentbydate;
+    //     console.log(this.ConsultantIdTentiveTime);
+    //     this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+    //     this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+    // }
+    // else{
+    //     this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+    //     console.log(this.ConsultantIdTentiveTime);
+    //     this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+    //     this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+    // }   
      
     }
-
+     
     await this.PatientServiceobj.updateAppointment(value.key);
     if( this.ConsultantIdTentiveTime == null        ){ 
-        this.ConsultantIdTentiveTime = this.appointmentbydate;
+         this.ConsultantIdTentiveTime = this.appointmentbydate;
     console.log(this.ConsultantIdTentiveTime);
     this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
     this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });

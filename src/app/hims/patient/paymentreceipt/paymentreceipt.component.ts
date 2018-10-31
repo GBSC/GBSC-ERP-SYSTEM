@@ -3,6 +3,7 @@ import { PatientService } from '../../../core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import {Route , ActivatedRoute} from '@angular/router'
+//import { Appointment } from 'src/app/core/Models/HIMS/appointment';
 
 
 @Component({
@@ -13,8 +14,8 @@ import {Route , ActivatedRoute} from '@angular/router'
 export class PaymentreceiptComponent implements OnInit {
 
     private SelectedPatient : any;
-    private Appointments : Appointment[] = [];
-    private SelectedAppointment : Appointment;
+    // private Appointments : Appointment[] = [];
+    // private SelectedAppointment : Appointment;
     private paymentForm : FormGroup;
 
     id: number;
@@ -47,9 +48,9 @@ export class PaymentreceiptComponent implements OnInit {
         // console.log(par);
 
         this.route.params.subscribe(params => {
-            this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
-                this.SelectedAppointment = res;
-            });
+            // this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
+            //   //  this.SelectedAppointment = res;
+            // });
         });
 
     }
@@ -69,9 +70,9 @@ export class PaymentreceiptComponent implements OnInit {
 
     GetAppointmentByDateAndPatientID(date : Date) {
         // console.log(date);
-        this.PatientService.GetAppointmentsByDateAndPatientID(date, this.SelectedPatient.patientId).subscribe((res : Appointment[]) => {
-            this.Appointments = res;
-        });
+        // this.PatientService.GetAppointmentsByDateAndPatientID(date, this.SelectedPatient.patientId).subscribe((res : Appointment[]) => {
+        //     this.Appointments = res;
+        // });
     }
 
 

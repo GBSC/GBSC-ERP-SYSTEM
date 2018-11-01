@@ -12,7 +12,8 @@
               <div class="m-portlet__body">
                   <dx-data-grid id="gridContainer"
                   keyExpr="masterPayrollId" 
-                  [dataSource]="masterPayroll" 
+                  [dataSource]="masterPayroll"
+                  [columnAutoWidth]="true" 
                   (onSelectionChanged)="selectionChanged($event)"
                   (onContentReady)="contentReady($event)"
                   (onToolbarPreparing)="onToolbarPreparing($event)"

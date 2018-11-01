@@ -40,16 +40,20 @@ export class VoucherComponent implements OnInit {
       Date: [''],
       Description: [''],
       ChequeNumber: [''],
-      TotalCreditAmount: [''],
-      TotalDebitAmount: [''],
-      DepartmentName: [''],
-      DepartmentCode: [''],
+      Total: [''],
       IsFinal: [''],
-      VoucherTypeId: [''],
-      FinancialYearId: [''],
-      DepartmentId: ['']
-
+      VoucherTypeId: ['']
     })
+
+    // this.VoucherDetailForm = this.fb.group({
+
+    //   DetailAccountId: [''],
+    //   DebitAmount: [''],
+    //   CreditAmount: [''],
+    //   DepartmentName: [''],
+    //   UniqueName: [''],
+    //   Description: [''],
+    // })
  
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 
@@ -90,10 +94,63 @@ export class VoucherComponent implements OnInit {
   }
 
    addVoucherDetail(value) {
+     console.log(value);
     let data = value.data;
     this.voucherDetail.push(data);
   }
 
+  onEditorPreapring(e) {
+    console.log(e);
+  }
+ 
+
+  onContentReady(e) {
+    
+    if (!e.component.rowAdded) {
+      e.component.rowAdded = true;
+      e.component.addRow();
+    }
+
+    // if(!e.component.hasEditdata()) {
+    //   console.log('aa');
+    // }
+    // if(e.component.hasEditdata()) {
+    //   console.log('bb');
+    // }
+  }
+ 
+  closeEditCell(e){
+    console.log(e);
+  }
+
+  editorPrepared(e) {
+    console.log(e);
+    // e.editorElement.dxTextBox('instance').option('onValueChanged', args => {
+    //     e.setValue(args.value);
+    //     console.log(args);
+    //     console.log("asdf");
+        
+    // });
+      if (e.parentType == 'dataRow' && e.dataField == 'creditAmount') {
+
+          e.editorOptions.onValueChanged( args => {
+            console.log("args");
+          });
+        }
+    }
+
+    // e.editorOptions.onValueChanged(), args => {
+    //   console.log("args");
+    // }
+
+  onValueChanged(e) {
+    console.log("e");
+  }
+
+  getCellElement(rowIndex, visibleColumnIndex){
+    console.log(rowIndex,visibleColumnIndex);
+    
+  }
   async addVoucher(value) {
     let v = new Voucher();
     v = { ...v, ...value };

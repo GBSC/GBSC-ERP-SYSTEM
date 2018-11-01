@@ -23,7 +23,7 @@ import { VisitNature } from '../../Models/HIMS/visitnature';
 import { Diagnoses } from '../../Models/HIMS/diagnoses';
 import { TestType } from '../../Models/HIMS/TestType';
 import { TestCategory } from '../../Models/HIMS/TestCategory';
- 
+  
 
 
 @Injectable()
@@ -84,7 +84,7 @@ export class PatientService {
 
     dialogData: any;
 
-    constructor(private ApiService: ApiService) {
+    constructor(private http1: HttpClient,private ApiService: ApiService) {
     }
 
     // getPatient() : Observable<Patient> {
@@ -289,11 +289,11 @@ export class PatientService {
         return await this.ApiService.post(this.API_URL+'PatientInvoices/AddPatientInvoice',value).toPromise();
     }
 
-    async getConsultantIdAndTentiveTime(id, date) {
-        this.ConsultantIdAndTentiveTime = await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
-        //this.ConsultantIdAndTentiveTime = await this.http1.get(`${this.API_URL}/Appointments/GetAppointmentByConsultantNameAndDate/${id}/${date}`).toPromise()
-        //console.log(this.ConsultantIdAndTentiveTime);
-        return this.ConsultantIdAndTentiveTime;
+
+    private readonly API_URL2 = 'http://localhost:58788/api/';
+     async GetAppointmentByConsultantNameAndDate(id, date) {
+       //  return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+       return await this.http1.get(this.API_URL2 + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
     public AppointmentByDate :any;
     async getAppointmentByDate(date) {

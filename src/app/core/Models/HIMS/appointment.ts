@@ -25,5 +25,7 @@ export interface Appointment {
     Visit : Visits,
     PatientInvoiceId : number,
     PatientInvoice : PatientInvoice,
-    IsFinalAppointment : boolean
+    IsFinalAppointment : boolean,
+    IsCancelled :boolean
+
 };

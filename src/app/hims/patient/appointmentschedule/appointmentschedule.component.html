@@ -192,11 +192,12 @@
                 <!-- <dxi-column dataField="patientId" caption="Alternet No" [width]="125"  [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column> -->
+              
                 <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized" [visible]="false"></dxi-column>
                 <dxi-column dataField="appointmentDate" caption="Appointment Date"  dataType="date"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="tentativeTime" caption="Tentative Time"   dataType="datetime" format="shortTime" type="time" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="finalTime" dataType="datetime" format="shortTime"  caption="Final Time"  [visible]="false"></dxi-column>
-                <dxi-column dataField="isCancelled" caption="Cancel"  [visible]="false"></dxi-column>
+                <dxi-column dataField="isCancelled" caption="Cancel" ></dxi-column>
                
                 <!-- <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> -->
               </dx-data-grid>
@@ -224,14 +225,10 @@
                     <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
                   </dxi-column>
                 <dxi-column dataField="patientType" caption="P-Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-                <dxi-column dataField="patientId" caption="Number" [allowEditing]="false" [formItem]="{visible: false}">
+                <dxi-column dataField="patientId" caption="Phone No" [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="patientId" caption="Alternet No" [allowEditing]="false" [formItem]="{visible: false}">
-                  <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
-                </dxi-column>
-                <dxi-column dataField="tentativeTime" caption="Appointment Date"dataType="datetime" format="date"[allowEditing]="false"
-                  [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="appointmentDate" caption="Appointment Date"  dataType="date"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                   <dxi-column dataField="finalTime" dataType="datetime" format="shortTime" caption="Final Time" [allowEditing]="false"
                   [formItem]="{visible: false}"></dxi-column>
 

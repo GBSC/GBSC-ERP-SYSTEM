@@ -24,6 +24,7 @@ export class IncomeTaxRuleComponent implements OnInit {
 
     async addIncomeTaxRule(value) {
         await this.payrollsetupservice.addIncomeTaxRule(value.data);
+        this.incomeTax = await this.payrollsetupservice.getIncomeTaxRules();
     }
 
     UpdatingIncomeTaxRule(value) {

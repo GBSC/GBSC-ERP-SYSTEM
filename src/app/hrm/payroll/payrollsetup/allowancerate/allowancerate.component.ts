@@ -22,6 +22,7 @@ export class AllowancerateComponent implements OnInit {
 
     async addAllowanceRate(value) {
         await this.payrollsetupservice.addAllowanceRate(value.data);
+        this.allowancerate = await this.payrollsetupservice.getAllowanceRates();
     }
 
     async updateAllowanceRate(value) {

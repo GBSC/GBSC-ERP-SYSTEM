@@ -1,4 +1,6 @@
- 
+
+<div class="m-content">
+
             <div class="m-portlet">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -16,7 +18,9 @@
                     (onSelectionChanged)="selectionChanged($event)"
                     (onContentReady)="contentReady($event)"
                     (onToolbarPreparing)="onToolbarPreparing($event)"
-                    [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
+                    [masterDetail]="{ enabled: true, template: 'detail' }"
+                    [columnAutoWidth]="true" 
+                     [showBorders]="true">
                         
                     <dxo-selection mode="single"></dxo-selection>
                         <!-- <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
@@ -65,4 +69,4 @@
                     </dx-data-grid>
                 </div>
             </div>
-       
+       </div>

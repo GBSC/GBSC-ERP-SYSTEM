@@ -16,6 +16,7 @@ export class LeaveyearsetupComponent implements OnInit {
 
     async addleaveyear(value) {
         this.leavesetupservice.addLeaveYear(value.data);
+        this.leveyear = await this.leavesetupservice.getLeaveYears();
     }
 
     async updateleaveyear(value) {

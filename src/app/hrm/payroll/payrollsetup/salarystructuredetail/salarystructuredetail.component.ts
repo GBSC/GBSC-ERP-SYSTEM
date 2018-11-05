@@ -30,6 +30,7 @@ export class SalarystructuredetailComponent implements OnInit {
 
     async addSalaryStructureDetail(value) {
         await this.payrollsetupservice.addSalaryStructureDetail(value.data);
+        this.salaryStructureDetail = await this.payrollsetupservice.getSalaryStructureDetails();
     }
 
     async updateSalaryStructureDetail(value) {

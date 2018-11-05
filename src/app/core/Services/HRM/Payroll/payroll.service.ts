@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
+import { MonthlyUserSalary } from '../../../Models/HRM/monthlyUserSalary';
+import { Gratuity } from '../../../Models/HRM/gratuity';
 
 
 @Injectable()
@@ -32,23 +35,30 @@ export class PayrollService {
         return await this.ApiService.get(`${this.baseUrl}/GetGratuities`).toPromise();
     }
 
+    getGratuity(id) : Observable<Gratuity> {
+        return this.ApiService.get(this.baseUrl + '/GetGratuity/' + id);
+    }
+
     async addGratuity(data) {
         return await this.ApiService.post(`${this.baseUrl}/AddGratuity`, data).toPromise();
     }
 
-    async updateGratuity(data) {
+     updateGratuity(data : Gratuity) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateGratuity`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateGratuity`, data);
     }
 
     async deleteGratuity(Id) {
-
         return await this.ApiService.delete(`${this.baseUrl}/DeleteGratuity/${Id}`).toPromise();
     }
 
     async getMonthlySalaries() {
-
         return await this.ApiService.get(`${this.baseUrl}/GetMonthlyUserSalaries`).toPromise();
+    }
+
+    getmonthlyUserSalary(id) : Observable<MonthlyUserSalary> {
+
+        return this.ApiService.get(this.baseUrl + '/GetMonthlyUserSalary/' + id);
     }
 
     async addMonthlySalary(data) {
@@ -56,9 +66,9 @@ export class PayrollService {
         return await this.ApiService.post(`${this.baseUrl}/AddMonthlyUserSalary`, data).toPromise();
     }
 
-    async updateMonthlySalary(data) {
+     updateMonthlySalary(data : MonthlyUserSalary) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateMonthlyUserSalary`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateMonthlyUserSalary`, data);
     }
 
     async DeleteMonthlySalary(Id) {

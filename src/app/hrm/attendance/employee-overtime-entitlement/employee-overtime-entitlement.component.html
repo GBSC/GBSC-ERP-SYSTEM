@@ -56,9 +56,9 @@
                           <label>
                             Overtime Type:
                           </label>
-                          <select class="form-control m-input" formControlName="OvertimeTypeId" id="">
+                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                             <option value="" disabled selected>-- Select Type --</option>
-                            <option *ngFor ="let ot of OvertimeType" [value]="ot.OvertimeTypeId" >{{ot.title}}</option>
+                            <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                    </select>
                         </div>
                         <div class="col-lg-6">
@@ -97,9 +97,9 @@
                             <label>
                               Overtime Type:
                             </label>
-                            <select class="form-control m-input" formControlName="OvertimeTypeId" id="">
+                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                               <option value="" disabled selected>-- Select Type --</option>
-                              <option *ngFor ="let ot of OvertimeType" [value]="ot.OvertimeTypeId" >{{ot.title}}</option>
+                              <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                      </select>
                           </div>
                           <div class="col-lg-6">
@@ -155,9 +155,9 @@
                           <label>
                             Overtime Type:
                           </label>
-                          <select class="form-control m-input" formControlName="OvertimeTypeId" id="">
+                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                             <option value="" disabled selected>-- Select Type --</option>
-                            <option *ngFor ="let ot of OvertimeType" [value]="ot.OvertimeTypeId" >{{ot.title}}</option>
+                            <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                    </select>
                         </div>
                         <div class="col-lg-6">
@@ -196,9 +196,9 @@
                             <label>
                               Overtime Type:
                             </label>
-                            <select class="form-control m-input" formControlName="OvertimeTypeId" id="">
+                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
                               <option value="" disabled selected>-- Select Type --</option>
-                              <option *ngFor ="let ot of OvertimeType" [value]="ot.OvertimeTypeId" >{{ot.title}}</option>
+                              <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                      </select>
                           </div>
                           <div class="col-lg-6">
@@ -217,7 +217,7 @@
                         <div class="form-group m-form__group row">
                           <div class="col-lg-6">
                             <label>
-                              OvertimeTypeId:
+                              overTimeTypeId:
                             </label>
                             <input type="text" class="form-control m-input" formControlName="OutgoingOtHours" placeholder="">
                           </div> 
@@ -321,8 +321,8 @@
                           <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
                           </dxi-column>
                         
-                          <dxi-column dataField="OvertimeTypeId" caption="Type">
-                              <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="OvertimeTypeId">
+                          <dxi-column dataField="overTimeTypeId" caption="Type">
+                              <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
                               </dxo-lookup>
                           </dxi-column>
 
@@ -335,8 +335,8 @@
                               <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking" dataType="boolean">
                                   </dxi-column>
                                 
-                                  <dxi-column dataField="OvertimeTypeId" caption="Type">
-                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="OvertimeTypeId">
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
                                       </dxo-lookup>
                                   </dxi-column>
       
@@ -349,8 +349,8 @@
                               <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
                                   </dxi-column>
                                 
-                                  <dxi-column dataField="OvertimeTypeId" caption="Type">
-                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="OvertimeTypeId">
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
                                       </dxo-lookup>
                                   </dxi-column>
       
@@ -363,8 +363,8 @@
                               <dxi-column caption="Include" dataType="boolean" dataField="isIncludeOtWorking">
                                   </dxi-column>
                                 
-                                  <dxi-column dataField="OvertimeTypeId" caption="Type">
-                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="OvertimeTypeId">
+                                  <dxi-column dataField="overTimeTypeId" caption="Type">
+                                      <dxo-lookup [dataSource]="attendancesetupservice?.Overtimetype" displayExpr="title" valueExpr="overTimeTypeId">
                                       </dxo-lookup>
                                   </dxi-column>
       

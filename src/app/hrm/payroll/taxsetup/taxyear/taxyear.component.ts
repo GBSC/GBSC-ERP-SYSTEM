@@ -14,11 +14,14 @@ export class TaxyearComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
+
         this.TaxYear = await this.payrollsetupservice.gettTaxYears();
     }
 
     async addTaxYear(value) {
+        
         await this.payrollsetupservice.addtTaxYear(value.data);
+        this.TaxYear = await this.payrollsetupservice.gettTaxYears();
     }
 
     updatingTaxYear(value) {

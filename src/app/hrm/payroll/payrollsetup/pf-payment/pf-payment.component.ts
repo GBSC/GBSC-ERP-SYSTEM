@@ -27,6 +27,7 @@ export class PfPaymentComponent implements OnInit {
 
     async addPFPayment(value) {
         await this.payrollsetupservice.addPfPayment(value.data);
+        this.pfPayment = await this.payrollsetupservice.getPfPayments();
     }
 
     updatingPFPayment(value) {

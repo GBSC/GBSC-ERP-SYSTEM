@@ -27,6 +27,7 @@ export class LeaveapprovalComponent implements OnInit {
 
     async addleaveapproval(value) {
         this.leaveservice.addLeaveApproval(value.data);
+        this.leaveapproval = await this.leaveservice.getLeaveApprovals();
     }
 
     async updateleaveapproval(value) {

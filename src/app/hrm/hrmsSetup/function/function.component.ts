@@ -17,8 +17,7 @@ export class FunctionComponent implements OnInit {
     async ngOnInit() {
         // this.dataService.getAllFunctions().subscribe((data)=>this.funct=data);
 
-        await this.dataService.getAllFunctions();
-        this.func = this.dataService.function;
+        this.func = await this.dataService.getAllFunctions();
     }
 
 

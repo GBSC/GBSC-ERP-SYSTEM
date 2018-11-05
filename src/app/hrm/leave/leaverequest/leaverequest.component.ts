@@ -115,7 +115,6 @@ export class LeaverequestComponent implements OnInit {
       async update(value) { 
         value.leaveRequestId = this.id;
         value.LeaveRequestDetails = this.leaveDetail;
-        console.log(value);
         this.leaveservice.updateLeaveRequest(value).subscribe(resp => {
           this.toastr.success("Leave Request Updated"); 
                 this.router.navigate(['/hrm/leave/leaverequests']);

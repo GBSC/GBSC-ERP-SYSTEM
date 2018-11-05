@@ -29,6 +29,7 @@ export class TaxBenefitComponent implements OnInit {
 
     async addTaxBenefit(value) {
         await this.payrollsetupservice.addTaxBenefit(value.data);
+        this.taxBenefit = await this.payrollsetupservice.getTaxBenefits();
     }
 
     updatingBenefit(value) {

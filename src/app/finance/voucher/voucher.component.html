@@ -174,7 +174,7 @@
                               </div> 
                           </div>
                     </form> -->
-
+                    <form [formGroup]="VoucherDetailForm">
 
                 <table id="example" class="table table-striped table-bordered">
                   <thead>
@@ -188,32 +188,32 @@
                     </tr>
                   </thead>
                   <tbody>
-
                     <tr *ngFor="let field of fieldArray; let i = index">
-                      <td>
-                        <input type="text" class="form-control m-input" formControlName="DebitAmount" placeholder="0007">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control m-input" formControlName="CreditAmount" placeholder="0007">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="0007">
-                      </td>
-                      <td>
-                        <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="0007">
-                      </td>
-                      <td>
-                        <select class="form-control m-input" formControlName="DetailAccountId">
-                          <option value="" disabled selected>-- Select Detail Account --</option>
-                          <option *ngFor="let vt of detailAccount" [value]="vt.detailAccountId">{{vt.name}}</option>
-                        </select>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control m-input" (keydown)="addFieldValue($event)" formControlName="Description" placeholder="0007">
-                      </td>
-                    </tr>
+                        <td>
+                          <input type="text" class="form-control m-input" formControlName="DebitAmount" placeholder="000">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control m-input" formControlName="CreditAmount" placeholder="000">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="Department Name">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="Unique Name">
+                        </td>
+                        <td>
+                          <select class="form-control m-input" formControlName="DetailAccountId">
+                            <option value="" disabled selected>-- Select Detail Account --</option>
+                            <option *ngFor="let account of detailAccount" [value]="account.detailAccountId">{{account.name}}</option>
+                          </select>
+                        </td>
+                        <td>
+                          <input type="text" class="form-control m-input" (keydown)="addFieldValue($event,i)" formControlName="Description" placeholder="0007">
+                        </td> 
+                    </tr> 
                   </tbody>
-                </table>
+                </table> 
+              </form>
               </div>
 
               <div class="m-separator"></div>

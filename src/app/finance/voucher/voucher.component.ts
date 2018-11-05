@@ -15,28 +15,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./voucher.component.scss']
 })
 export class VoucherComponent implements OnInit {
-
-      // pager object
-      pager: any = {};
-
-      // paged items
-      pagedItems: any[];
-
   private fieldArray: Array<any> = [];
   private newAttribute: any = {};
-
-  addFieldValue(e) {
-    console.log(e);
-    if(e.keyCode === 13 && e.target.value){
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
-  }
-}
-
-addrow(){}
-deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
-}
 
   public departments: any;
   public financialYear: any;
@@ -44,21 +24,22 @@ deleteFieldValue(index) {
   public voucherType: any;
   public voucher: any;
   public detailAccount: any;
+  public VoucherDetailForm: any;
   public VoucherForm: any;
   public Voucher: any;
+  public VoucherDetail: any;
   public voucherDetail: VoucherDetail[];
 
-  @Input('voucherId') id:number;
+  @Input('voucherId') id: number;
 
   constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
     public financeService: FinanceService, public SetupService: SetupService) { }
 
-  async ngOnInit() {
-
-    this.fieldArray.push(this.newAttribute)
+  async ngOnInit() { 
+    this.fieldArray.push(this.newAttribute);
     this.newAttribute = {};
 
-    this.voucherDetail = [];
+    this.VoucherDetail = [];
 
     this.VoucherForm = this.fb.group({
 
@@ -71,23 +52,23 @@ deleteFieldValue(index) {
       VoucherTypeId: ['']
     })
 
-    // this.VoucherDetailForm = this.fb.group({
+    this.VoucherDetailForm = this.fb.group({
 
-    //   DetailAccountId: [''],
-    //   DebitAmount: [''],
-    //   CreditAmount: [''],
-    //   DepartmentName: [''],
-    //   UniqueName: [''],
-    //   Description: [''],
-    // })
- 
+      DetailAccountId: [''],
+      DebitAmount: [''],
+      CreditAmount: [''],
+      DepartmentName: [''],
+      UniqueName: [''],
+      Description: [''],
+    })
+
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.SetupService.getAllDepartments();    
+    this.departments = await this.SetupService.getAllDepartments();
 
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
@@ -97,7 +78,9 @@ deleteFieldValue(index) {
 
       this.financeService.getVoucher(this.id).subscribe(resp => {
 
-        this.Voucher = resp; 
+        this.Voucher = resp;
+        console.log(this.Voucher);
+        
         let a = this.Voucher.voucherDetails;
         this.Detail = a.filter(b => {
           delete b.voucherDetailId;
@@ -107,7 +90,20 @@ deleteFieldValue(index) {
         this.patchValues(this.Voucher);
       });
     }
- 
+
+  }
+
+  addFieldValue(e, i) {
+    if ((e.keyCode === 9 || e.keyCode === 13) 
+      && e.target.value && (i == this.fieldArray.length - 1)) {
+      
+        this.fieldArray.push(this.newAttribute)
+      this.newAttribute = {}; 
+    }
+  }
+
+  deleteFieldValue(index) {
+    this.fieldArray.splice(index, 1);
   }
 
   isUpdate(): boolean {
@@ -119,96 +115,38 @@ deleteFieldValue(index) {
       return false;
   }
 
-   addVoucherDetail(value) {
-     console.log(value);
+  addVoucherDetail(value) {
+    console.log(value);
     let data = value.data;
-    this.voucherDetail.push(data);
+    this.VoucherDetail.push(data);
   }
 
-  onEditorPreapring(e) {
-    console.log(e);
-  }
- 
-  onCellPrepared(e){
 
-    if (!e.component.hasEditData())
-    e.component.addRow();
-    console.log(e.component.hasEditData());
-  }
-
-  onContentReady(e) {
-    if (!e.component.hasEditData()) {
-      e.component.rowAdded = true;
-      e.component.addRow(); 
-    }
-  //   if (!e.component.hasEditData())
-  //   e.component.addRow();
-  //   console.log(e.component.hasEditData());
-    
-
-  //   // if(!e.component.hasEditdata()) {
-  //   //   console.log('aa');
-  //   // }
-  //   // if(e.component.hasEditdata()) {
-  //   //   console.log('bb');
-  //   // }
-  }
-
-  closeEditCell(e){
-    console.log(e);
-  }
-
-  editorPrepared(e) {
-    console.log(e);
-    // e.editorElement.dxTextBox('instance').option('onValueChanged', args => {
-    //     e.setValue(args.value);
-    //     console.log(args);
-    //     console.log("asdf");
-        
-    // });
-      if (e.parentType == 'dataRow' && e.dataField == 'detailAccountId') {
-
-          e.editorOptions.onValueChanged( args => {
-            console.log("args");
-          });
-        }
-    }
-
-    // e.editorOptions.onValueChanged(), args => {
-    //   console.log("args");
-    // }
-
-  onValueChanged(e) {
-    console.log("e");
-  }
-
-  getCellElement(rowIndex, visibleColumnIndex){
-    console.log(rowIndex,visibleColumnIndex);
-    
-  }
-  async addVoucher(value) {
-    let v = new Voucher();
-    v = { ...v, ...value };
-    v.VoucherDetails = this.voucherDetail;
-     await this.financeService.addVoucher(v); 
-     this.router.navigate(['/finance/voucher-detail']);
+  async addVoucher(value) {  
+    let vouchrDetail= new Voucher();
+    vouchrDetail={...vouchrDetail, ...value};
+    vouchrDetail.VoucherDetails= this.VoucherDetail; 
+    console.log(value); 
+  //  let s = await this.financeService.addVoucher(vouchrDetail); 
+    console.log(value);  
+    // this.router.navigate(['/finance/voucher-detail']);
 
   }
 
-   updatevoucherDetail(value) {
+  updatevoucherDetail(value) {
     console.log(value);
   }
 
-  async update(value){
+  async update(value) {
 
     value.voucherId = this.id;
     value.VoucherDetails = this.Detail;
-    this.financeService.updateVoucher(value).subscribe(resp=>{
-      this.toastr.success("Voucher Updated"); 
+    this.financeService.updateVoucher(value).subscribe(resp => {
+      this.toastr.success("Voucher Updated");
       this.router.navigate(['finance/voucher-detail']);
     })
   }
- 
+
   patchValues(voucher: any) {
 
     this.VoucherForm.patchValue({
@@ -223,10 +161,10 @@ deleteFieldValue(index) {
       TotalDebitAmount: voucher.totalDebitAmount,
       IsFinal: voucher.isFinal,
       VoucherTypeId: voucher.voucherTypeId,
-      FinancialYearId: voucher.financialYearId 
+      FinancialYearId: voucher.financialYearId
 
     })
 
   }
- 
+
 }

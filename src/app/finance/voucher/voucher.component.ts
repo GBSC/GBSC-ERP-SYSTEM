@@ -8,12 +8,35 @@ import { SetupService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-voucher',
   templateUrl: './voucher.component.html',
   styleUrls: ['./voucher.component.scss']
 })
 export class VoucherComponent implements OnInit {
+
+      // pager object
+      pager: any = {};
+
+      // paged items
+      pagedItems: any[];
+
+  private fieldArray: Array<any> = [];
+  private newAttribute: any = {};
+
+  addFieldValue(e) {
+    console.log(e);
+    if(e.keyCode === 13 && e.target.value){
+    this.fieldArray.push(this.newAttribute)
+    this.newAttribute = {};
+  }
+}
+
+addrow(){}
+deleteFieldValue(index) {
+    this.fieldArray.splice(index, 1);
+}
 
   public departments: any;
   public financialYear: any;
@@ -31,6 +54,9 @@ export class VoucherComponent implements OnInit {
     public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
+
+    this.fieldArray.push(this.newAttribute)
+    this.newAttribute = {};
 
     this.voucherDetail = [];
 
@@ -81,7 +107,7 @@ export class VoucherComponent implements OnInit {
         this.patchValues(this.Voucher);
       });
     }
-
+ 
   }
 
   isUpdate(): boolean {
@@ -103,22 +129,31 @@ export class VoucherComponent implements OnInit {
     console.log(e);
   }
  
+  onCellPrepared(e){
+
+    if (!e.component.hasEditData())
+    e.component.addRow();
+    console.log(e.component.hasEditData());
+  }
 
   onContentReady(e) {
-    
-    if (!e.component.rowAdded) {
+    if (!e.component.hasEditData()) {
       e.component.rowAdded = true;
-      e.component.addRow();
+      e.component.addRow(); 
     }
+  //   if (!e.component.hasEditData())
+  //   e.component.addRow();
+  //   console.log(e.component.hasEditData());
+    
 
-    // if(!e.component.hasEditdata()) {
-    //   console.log('aa');
-    // }
-    // if(e.component.hasEditdata()) {
-    //   console.log('bb');
-    // }
+  //   // if(!e.component.hasEditdata()) {
+  //   //   console.log('aa');
+  //   // }
+  //   // if(e.component.hasEditdata()) {
+  //   //   console.log('bb');
+  //   // }
   }
- 
+
   closeEditCell(e){
     console.log(e);
   }
@@ -131,7 +166,7 @@ export class VoucherComponent implements OnInit {
     //     console.log("asdf");
         
     // });
-      if (e.parentType == 'dataRow' && e.dataField == 'creditAmount') {
+      if (e.parentType == 'dataRow' && e.dataField == 'detailAccountId') {
 
           e.editorOptions.onValueChanged( args => {
             console.log("args");
@@ -193,4 +228,5 @@ export class VoucherComponent implements OnInit {
     })
 
   }
+ 
 }

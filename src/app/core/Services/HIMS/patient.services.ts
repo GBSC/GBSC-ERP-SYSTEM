@@ -79,7 +79,7 @@ export class PatientService {
 
     dialogData: any;
 
-    constructor(private ApiService: ApiService) {
+    constructor(private http1: HttpClient,private ApiService: ApiService) {
     }
 
     async getPatient() {
@@ -116,6 +116,10 @@ export class PatientService {
         this.patientData = await value
         return this.patientData
 
+    }
+
+  async  GetPatientById(id) {
+    return await this.ApiService.get(this.API_URL+'patients/GetPatient/'+id).toPromise();
     }
 
     async updatePatient(patient: Patient) {
@@ -219,6 +223,12 @@ export class PatientService {
         this.ConsultantIdAndTentiveTime = await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
         return this.ConsultantIdAndTentiveTime;
     }
+
+    private readonly API_URL2 = 'http://localhost:58788/api/';
+     async GetAppointmentByConsultantNameAndDate(id, date) {
+       return await this.http1.get(this.API_URL2 + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+    }
+
     public AppointmentByDate :any;
     async getAppointmentByDate(date) {
         return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
@@ -229,7 +239,6 @@ export class PatientService {
     async getConsultant() {
         this.consultant = await this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants').toPromise();
         return this.consultant;
-
     }
 
     async addConsultant(consultant: Consultant) {
@@ -397,15 +406,10 @@ export class PatientService {
         this.vistnote = await this.ApiService.get(this.API_URL + 'Visits/GetVisitNotes').toPromise();
         return this.vistnote;
     }
-
-
-    
-
     
     async GetLastestVisitByPatientId(id)  {
         return await this.ApiService.get(this.API_URL + 'Visits/GetLastestVisitByPatientId/' + id).toPromise();
     }
-
 
     async addVisitNote(VisitNote: VisitNote) {
         return await this.ApiService.post(this.API_URL + 'Visits/AddVisitNote', VisitNote).toPromise();

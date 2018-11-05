@@ -17,6 +17,11 @@ export class PaymentreceiptComponent implements OnInit {
     private Appointments : Appointment[] = [];
     // private SelectedAppointment : Appointment;
 
+    id: number;
+
+
+    private nature: any[] = ['Select Nature', 'Package', 'Lab Tests', 'Medicines', 'Others'];
+    //constructor(private PatientServiceobj: PatientService , private formBuilder : FormBuilder , private Toast : ToastrService ,private route : ActivatedRoute) { 
 
     constructor(private PatientService : PatientService, private Toastr : ToastrService, private ActivatedRoute : ActivatedRoute , private Router : Router) {
     }

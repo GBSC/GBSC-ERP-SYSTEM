@@ -224,9 +224,8 @@ export class PatientService {
         return this.ConsultantIdAndTentiveTime;
     }
 
-    private readonly API_URL2 = 'http://localhost:58788/api/';
      async GetAppointmentByConsultantNameAndDate(id, date) {
-       return await this.http1.get(this.API_URL2 + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+       return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
 
     public AppointmentByDate :any;

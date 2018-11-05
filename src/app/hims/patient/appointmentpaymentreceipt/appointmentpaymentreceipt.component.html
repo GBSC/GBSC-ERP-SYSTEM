@@ -22,7 +22,7 @@
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Date </label>
-							<input class="form-control m-input m-input--solid " type="date" formControlName="Date">
+							<input class="form-control m-input m-input--solid" format="yyyy-MM-dd" type="date" formControlName="Date">
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Visit Nature </label>
@@ -182,18 +182,17 @@
 			</form>
 			<div class="m-section">
 				<div class="m-section__content">
-					<!-- <dx-data-grid id="gridContainer" [dataSource]="">
-						<dxo-editing mode="cell" [allowUpdating]="true">
+					<dx-data-grid id="gridContainer" [dataSource]="InvoiceDetails">
+						<dxo-editing mode="row" [allowUpdating]="true">
 						</dxo-editing>
 						<dxo-paging [pageSize]="5"></dxo-paging>
 						<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-						<dxi-column dataField="" caption="Nature"></dxi-column>
-						<dxi-column dataField="" caption="Name"></dxi-column>
-						<dxi-column dataField="" caption="Discription"></dxi-column>
-						<dxi-column dataField="" caption="Quantity"></dxi-column>
-						<dxi-column dataField="" caption="Gross Amount"></dxi-column>
-						<dxi-column dataField="" caption="Net Amount"></dxi-column>
-					</dx-data-grid> -->
+						<dxi-column dataField="name" caption="Nature"></dxi-column>
+						<dxi-column dataField="quantity" caption="Name"></dxi-column>
+						<dxi-column dataField="grossAmount" caption="Discription"></dxi-column>
+						<dxi-column dataField="discountAmount" caption="Quantity"></dxi-column>
+						<dxi-column dataField="netAmount" caption="Gross Amount"></dxi-column>
+					</dx-data-grid>
 				</div>
 			</div>
 		</div>

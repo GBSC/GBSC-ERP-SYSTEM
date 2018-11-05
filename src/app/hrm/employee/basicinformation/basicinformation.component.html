@@ -35,7 +35,8 @@
     <div class="col-md-4">
         <div class="form-group m-form__group">
           <label for="employee_id">Date of Birth</label>
-          <input class="form-control m-input m-input--solid" formControlName="DOB" [value]="Employee?.dob" id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="date">
+          <dx-date-box formControlName="DOB" [value]="Employee?.dob" class="form-control m-input m-input--solid" type="date" width="100%"></dx-date-box>
+          <!-- <input class="form-control m-input m-input--solid" formControlName="DOB"  id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="date"> -->
         </div>
       </div>
       <div class="col-md-4">
@@ -52,13 +53,14 @@
   <div class="col-md-4">
     <div class="form-group m-form__group">
       <label for="username">Cnic</label>
-      <input class="form-control m-input m-input--solid" id="cnic" formControlName="Cnic" name="cnic" [value]="Employee?.cnic" placeholder="42401-5486552-6" aria-describedby="cnic" type="number">
+      <input class="form-control m-input m-input--solid" id="cnic" maxlength="13" formControlName="Cnic" name="cnic" [value]="Employee?.cnic" placeholder="42401-5486552-6" aria-describedby="cnic" type="text">
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group m-form__group">
       <label for="" class="control-label">Cnic Expiry</label>
-      <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23">
+      <dx-date-box formControlName="CnicExpiry" class="form-control m-input m-input--solid" [value]="Employee?.cnicExpiry" type="date" width="100%"></dx-date-box>
+      <!-- <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23"> -->
     </div>
   </div>
   <div class="col-md-4">
@@ -110,12 +112,12 @@
                       <option>A</option>
                       <option>B</option>
                       <option>O</option>
-                      <option>O+</option>
-                      <option>O-</option>
                       <option>A+</option>
                       <option>A-</option>
                       <option>B+</option>
                       <option>B-</option>
+                      <option>O+</option>
+                      <option>O-</option>
                 
                   </select>
             </div>
@@ -125,8 +127,8 @@
               <label for="gender">Gender</label>
               <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender" id="Gender">
                   <option value="" disabled selected>-- Select Gender --</option>
+                  <option>  Female </option>
                       <option>Male</option>
-                      <option>  Female </option>
                       
                   </select>
             </div>
@@ -136,9 +138,8 @@
               <label for="Designation" class="control-label">Marital Status</label>
               <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''" name="MaritalStatus" id="MaritalStatus">
                   <option value="" disabled selected>-- Select Marital Status --</option>
-                  <option>Single</option>
                   <option>Married</option>
-                  
+                  <option>Single</option>
                   </select>
             </div>
           </div>
@@ -151,14 +152,14 @@
               <div class="col-md-6">
                       <div class="form-group m-form__group">
                         <label for="Contact-Number">Contact Number</label>
-                        <input class="form-control m-input m-input--solid" formControlName="Phone" [value]="Employee?.phone || ''" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
+                        <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone" [value]="Employee?.phone || ''" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
                       </div>
                     </div>
 
                     <div class="col-md-6">
                           <div class="form-group m-form__group">
                             <label for="Contact-Number">Home</label>
-                            <input class="form-control m-input m-input--solid" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
+                            <input class="form-control m-input m-input--solid" maxlength="12" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
                           </div>
                         </div>
         </div>

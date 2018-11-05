@@ -48,14 +48,21 @@
 						</div>
 						</div>
 						<dx-data-grid id="gridContainer" [dataSource]="Appointments">
-								<dxo-editing mode="cell" [allowUpdating]="false">
-								</dxo-editing>
 								<dxo-paging [pageSize]="5"></dxo-paging>
-								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 15, 30]" [showInfo]="true"></dxo-pager>
-								<dxi-column dataField="finalTime" caption="Time"></dxi-column>
+								<dxo-pager [showPageSizeSelector]="false" [allowedPageSizes]="[5, 15, 30]" [showInfo]="true"></dxo-pager>
+								<dxi-column dataField="tentativeTime" caption="Tentative"></dxi-column>
+								<dxi-column dataField="finalTime" caption="Final"></dxi-column>
 								<dxi-column dataField="remarks" caption="Remarks"></dxi-column>
-								<dxi-column dataField="consultant.consultantName" caption="Consultant"></dxi-column>
+								<dxi-column dataField="consultant.name" caption="Consultant"></dxi-column>
 								<dxi-column dataField="patient.firstName" caption="Patient"></dxi-column>
+								<dxi-column dataField="visitStatus" caption="Visit Status"></dxi-column>
+								<dxi-column dataField="isFinalAppointment" caption="Finalized"></dxi-column>
+								<dxi-column caption="View Invoice" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <div *dxTemplate="let d of 'chartCellTemplate'">
+                  <div class="chart-cell">
+                    <dx-button (click)="ViewInvoice(d)"  icon="repeat"></dx-button>
+                  </div>
+                </div>
 							  </dx-data-grid>
             		</div>
 
@@ -76,12 +83,12 @@
 									</div>
 								  </div>
 								  <div class="m-portlet__body">
-									<form class="m-form ng-untouched ng-pristine ng-valid" formGroup="paymentForm">
+									<form class="m-form ng-untouched ng-pristine ng-valid">
 									  <div class="m-portlet__body">
 										<div class="form-group row">
 										  <div class="form-group col-lg-3">
 											<label for="exampleSelect1"> MRN No </label>
-											<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" formControlName="MRN" #InvMRN (keyup)="GetPatientByMrnInvoice(InvMRN.value, $event)">
+											<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" #InvMRN (keyup)="GetPatientByMrnInvoice(InvMRN.value, $event)">
 										  </div>
 										  <div class="form-group col-lg-3">
 											<label for="exampleInputEmail1"> Date </label>

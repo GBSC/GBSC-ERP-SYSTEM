@@ -38,7 +38,7 @@ export class EmployeeService {
 
     updateEmployeeBasicInfo(Employee: Employee): Observable<any> {
 
-        return this.ApiService.post(this.baseUrl + '/Users/UpdateUserDetail', Employee);
+        return this.ApiService.put(this.baseUrl + '/Users/UpdateUser', Employee);
     }
 
 

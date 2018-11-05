@@ -31,13 +31,11 @@ import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.compone
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import {  PaymentreceiptComponent } from '../patient/paymentreceipt/paymentreceipt.component';
-
-import { AuthGuardService, ModuleGuardService } from '../../core';
 import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
 import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
-import { TestComponent } from './test/test.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
+import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
@@ -68,9 +66,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'reports', component: ReportsComponent },
             { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
-
             { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
+            { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
                 path: "setup",
                 children: [

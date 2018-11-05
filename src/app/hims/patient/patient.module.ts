@@ -41,6 +41,7 @@ import { PatientReferenceComponent } from './patient-reference/patient-reference
 import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
+import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -95,6 +96,7 @@ import { TestCategoryComponent } from './test-category/test-category.component';
         PatientReferenceComponent,
         TestTypeComponent,
         TestCategoryComponent,
+        AppointmentpaymentreceiptComponent,
     ]
 })
 export class PatientModule { }

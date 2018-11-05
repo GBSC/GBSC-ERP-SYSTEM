@@ -1,0 +1,201 @@
+<div class="col-xl-12">
+	<div class="m-portlet">
+		<div class="m-portlet__head">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text">Payment Receipt</h3>
+				</div>
+			</div>
+			<div class="m-portlet__head-tools">
+				<div class="col-lg-12">
+					<button class="btn btn-primary" type="button">Submit</button>
+				</div>
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<form class="m-form ng-untouched" [formGroup]="InvoiceForm">
+				<div class="m-portlet__body">
+					<div class="form-group row">
+						<div class="form-group col-lg-3">
+							<label for="exampleSelect1"> MRN No </label>
+							<input class="form-control m-input m-input--solid " type="text" formControlName="MRN">
+						</div>
+						<div class="form-group col-lg-3">
+							<label for="exampleSelect1"> Date </label>
+							<input class="form-control m-input m-input--solid " type="date" formControlName="Date">
+						</div>
+						<div class="form-group col-lg-3">
+							<label for="exampleSelect1"> Visit Nature </label>
+							<input class="form-control m-input m-input--solid " type="text" formControlName="VisitNature">
+						</div>
+						<div class="form-group col-lg-3">
+							<label for="exampleSelect1"> Slip Number </label>
+							<input class="form-control m-input m-input--solid " type="text" formControlName="SlipNumber">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<h5>Patient Information</h5>
+
+						</div>
+						<div class="form-group col-lg-6">
+							<h5>Account Information</h5>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="form-group col-lg-6">
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Patient Name </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="PatientName">
+								</div>
+								<!-- <div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Spouse Name </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="SpouseName">
+								</div> -->
+							</div>
+							<div class="form-group row">
+								<!-- <div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Spouse Name </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="MRN">
+								</div> -->
+								<div class="form-group col-lg-2">
+          <label for="exampleSelect1"> Package </label>
+          <input class="form-control m-input m-input--solid " type="text" ormControlName="Package">
+          </div>
+          <!-- <div class="form-group col-lg-4">
+          <input class="form-control m-input m-input--solid  blankinput"
+            type="text">
+          </div>
+          <div class="form-group col-lg-2">
+          <input class="form-control m-input m-input--solid  blankinput"
+            type="text">
+          </div>
+          <div class="form-group col-lg-4">
+          <label class="m-checkbox blankinput">
+            <input type="checkbox">
+            Payment Flag
+            <span></span>
+          </label>
+          </div> -->
+							</div>
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Current Amount </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="CurrentAmount">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Previous Balance </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="PreviousBalance">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Amount To Pay </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="AmountToPay">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Paid Amount </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="PaidAmount">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> New Balance </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="NewBalance">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Remarks </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="Remarks">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Consultant </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="Consultant">
+								</div>
+								<!-- <div class="form-group col-lg-6">
+          <label for="exampleSelect1"> Consultant </label>
+          <input class="form-control m-input m-input--solid " type="text">
+          <label for="exampleSelect1"> Others </label>
+          <input class="form-control m-input m-input--solid " type="text">
+          </div> -->
+							</div>
+						</div>
+						<div class="form-group col-lg-6">
+							<div class="form-group row">
+								<div class="form-group col-lg-12">
+									<div class="m-checkbox-inline blankinput">
+										<label class="m-checkbox">
+											<input type="checkbox">
+											Pay Order
+											<span></span>
+										</label>
+										<label class="m-checkbox">
+											<input type="checkbox">
+											Cash
+											<span></span>
+										</label>
+										<label class="m-checkbox">
+											<input type="checkbox">
+											Credit Card
+											<span></span>
+										</label>
+										<label class="m-checkbox">
+											<input type="checkbox">
+											Cheque
+											<span></span>
+										</label>
+										<label class="m-checkbox">
+											<input type="checkbox">
+											Online
+											<span></span>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Cheque # </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="ChequeNumber">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Bank </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="Bank">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Credit Card Charges (%) </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="CreditCardChargesPercentage">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Gross Amount </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="GrossAmount">
+								</div>
+								<div class="form-group col-lg-3">
+									<label for="exampleSelect1"> Net Amount </label>
+									<input class="form-control m-input m-input--solid " type="text" formControlName="NetAMount">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="m-section">
+				<div class="m-section__content">
+					<!-- <dx-data-grid id="gridContainer" [dataSource]="">
+						<dxo-editing mode="cell" [allowUpdating]="true">
+						</dxo-editing>
+						<dxo-paging [pageSize]="5"></dxo-paging>
+						<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+						<dxi-column dataField="" caption="Nature"></dxi-column>
+						<dxi-column dataField="" caption="Name"></dxi-column>
+						<dxi-column dataField="" caption="Discription"></dxi-column>
+						<dxi-column dataField="" caption="Quantity"></dxi-column>
+						<dxi-column dataField="" caption="Gross Amount"></dxi-column>
+						<dxi-column dataField="" caption="Net Amount"></dxi-column>
+					</dx-data-grid> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

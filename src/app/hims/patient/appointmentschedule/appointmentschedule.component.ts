@@ -129,11 +129,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async  ngOnInit() {
       
-    this.currentdate =  this.formatDate(new Date());   
-  //  console.log(this.formatDate); 
-    this.currenttime = this.formateDateTime(new Date());
-  //   console.log(this.formateDateTime(new Date()));
-    //  this.currentdate =   this.formateDateTime(new Date()) ;
+        this.currentdate = new Date().toISOString();
+        console.log(this.currentdate);
+        this.currenttime = new Date();
 
         await this.PatientServiceobj.getPatient();
         this.allpatients = this.PatientServiceobj.patients;
@@ -165,30 +163,24 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.appointmenttest = this.PatientServiceobj.appointmenttesting;
         // console.log(this.appointmenttest)
 
-        this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
-        console.log(this.appointmentbydate);
+        
+            // let aa = this.formateDateAndTime(new Date());
+            // console.log(aa);
 
+            // console.log(new Date().toUTCString());
+            // console.log(new Date().toISOString());
+            // console.log(new Date().toTimeString());
+            // console.log(new Date().toString());
+            console.log(new Date().toDateString());
+
+
+        this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(new Date().toDateString());
+        console.log(this.appointmentbydate);
 
          this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false  && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
 //console.log(this.tentativeAppointments)
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
-    }
-
-    formatDate(date: Date) {
-        return  date.getFullYear() + "-" + ( date.getMonth()+ 1 )+"-" + date.getDate();
-    
-        //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
-    }
-
-    formateDateTime(date: Date) {
-        return  date.getHours()+":" + date.getMinutes() ;
-    
-        //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
-    }
-
-    formateDateAndTime(date : Date){
-        return  date.getFullYear() + "-" + ( date.getMonth()+ 1 )+"-" + date.getDate() +"T" +  date.getHours()+":" + date.getMinutes();
     }
 
     calculateCellValue(data) {
@@ -312,9 +304,21 @@ export class AppointmentscheduleComponent implements OnInit {
                 this.appointmentForm.value.TentativeTime = this.currenttime;
                 console.log(value);
             }
-
-            this.appointmentForm.value.TentativeTime = value.AppointmentDate +'T' +value.TentativeTime;
-
+            console.log(value.AppointmentDate);
+            let a = new Date(this.appointmentForm.value.TentativeTime);
+            console.log(a);
+            let b = new Date(value.AppointmentDate);
+            console.log(b);
+            a.setFullYear(b.getFullYear());
+            a.setMonth(b.getMonth());
+            a.setDate(b.getDate());
+            console.log(a);
+            console.log(value.AppointmentDate);
+            this.appointmentForm.value.TentativeTime = new Date(a).toLocaleString();
+            // console.log("this.appointmentForm.value.TentativeTime", this.appointmentForm.value.TentativeTime);
+            // console.log("new Date(value.AppointmentDate).toDateString()", new Date(value.AppointmentDate).toDateString());
+            // console.log("new Date(value.TentativeTime).toTimeString()", new Date(this.appointmentForm.value.TentativeTime).toTimeString());
+            console.log("this.appointmentForm.value.TentativeTime", this.appointmentForm.value.TentativeTime);
             if(cid.value == null || cid.value == ''){
                 this.toastr.error('please select Consultant');
             }
@@ -461,8 +465,8 @@ export class AppointmentscheduleComponent implements OnInit {
              console.log(value.key.finalTime);
                 console.log('1',value.key);
           }
-
-            let finaltime =   this.formateDateAndTime(new Date(value.key.finalTime));
+          let finaltime =   new Date(value.key.finalTime).toISOString();
+            // let finaltime =   this.formateDateAndTime(new Date(value.key.finalTime));
             console.log(finaltime)
             value.key.finalTime = finaltime;
             value.key.appointmentDate = value.key.finalTime;
@@ -545,6 +549,8 @@ export class AppointmentscheduleComponent implements OnInit {
          console.log(value.ConsultantId);
          console.log(value);
          console.log(value.AppointmentDate);
+        //  value.AppointmentDate = new Date(value.appointmentDate).toISOString();
+        //  console.log(value.AppointmentDate);
          if(value.AppointmentDate == null || value.AppointmentDate == ''){
             value.AppointmentDate = this.currentdate;
          }   

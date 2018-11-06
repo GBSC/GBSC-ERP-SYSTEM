@@ -23,6 +23,7 @@ export class OvertimetypeComponent implements OnInit {
 
     async addovertimetype(value) {
         this.attendancesetupservice.addOvertimeType(value.data);
+        this.overtimetype = await this.attendancesetupservice.getAllOvertimeType();
     }
 
      updatingOvertimetype(value) {

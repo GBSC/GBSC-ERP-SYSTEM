@@ -19,6 +19,7 @@ export class FlagcategoryComponent implements OnInit {
 
     async addflagcategory(value) {
         await this.attendancesetupservice.addFlagCategory(value.data);
+        this.flagcategory = await this.attendancesetupservice.getFlagCategories();
     }
 
     async updateflagcategory(value) {

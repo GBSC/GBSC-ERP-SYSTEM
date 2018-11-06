@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import date_box from 'devextreme/ui/date_box';
 import { ToastrService } from 'ngx-toastr';
+import { forEach } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -24,12 +25,15 @@ export class GeneralactionsComponent implements OnInit {
     public visits: any;
 
     public time: any;
+    public patinetappointment : any=[];
+    public visitStatus = 'start';
 
     constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
     async  ngOnInit() {
 
         this.time = new Date();
+         console.log(this.formatDate(new Date ()));
 
         this.route.params.subscribe(params => {
 
@@ -46,30 +50,38 @@ export class GeneralactionsComponent implements OnInit {
         this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
 
 
-        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
-     //   console.log( this.currentPatient);
-    //    console.log(this.Patient);
-//
-    //    console.log(this.Patient);
+        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+            this.Patient = Patient
+            console.log(this.Patient);
+
+            this.patinetappointment  = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+            console.log(this.patinetappointment);
+        });
+  
+        console.log(this.patinetappointment);
+         
+       // await this.PatientServiceobj.updateAppointment(this.patinetappointment);
+
         
     }
     async startVisit() {
          if(this.Patient.appointments.length){
-                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){
-                         
+             
+             if(this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){            
                       if(this.lastpatientvisit === null){
                         //  console.log(this.lastpatientvisit);
                         //  console.log('1');
                                 await this.PatientServiceobj.AddVisits(this.id);
-                                this.router.navigate(['/hims/patient/visits/' + this.id]);
+                                 this.router.navigate(['/hims/patient/visits/' + this.id]);
+
                            }
-                           else  if (this.formatDate(new Date(this.lastpatientvisit.endTime)) == this.formatDate(new Date())) {
+                           else  if (this.formatDate(new Date(this.lastpatientvisit.endTime)) === this.formatDate(new Date())) {
                                      this.displayToastError("Cannot create more than 1 visit on the same day")
                                 }
-                                else {
+                                else   {
                                         await this.PatientServiceobj.AddVisits(this.id);
-                                    //    console.log('2');
-                                        this.router.navigate(['/hims/patient/visits/' + this.id]);
+                                        
+                                      //  this.router.navigate(['/hims/patient/visits/' + this.id]);
                                     }
                     
                  }
@@ -85,9 +97,12 @@ export class GeneralactionsComponent implements OnInit {
     }
 
     formatDate(date: Date) {
-
         return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
     }
+
+    // formatAppointmentDate(date: Date) {
+    //     return  date.getFullYear() + "-" + ( date.getMonth()+ 1 )+"-" + date.getDate();
+    // }
 
 
     async Endvisit() {

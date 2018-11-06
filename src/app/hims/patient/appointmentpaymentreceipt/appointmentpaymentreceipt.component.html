@@ -22,7 +22,7 @@
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Date </label>
-							<input class="form-control m-input m-input--solid" format="yyyy-MM-dd" type="date" formControlName="Date">
+							<input class="form-control m-input m-input--solid" [value]="DateTest | date : 'yyyy-MM-dd'" type="date" formControlName="Date">
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Visit Nature </label>

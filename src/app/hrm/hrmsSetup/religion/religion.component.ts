@@ -22,6 +22,7 @@ export class ReligionComponent implements OnInit {
 
     addNewreligion(religon) {
         this.dataService.addReligion(religon.data);
+        this.religion = this.dataService.getAllReligions();
     }
 
     updatereligion(religon) {

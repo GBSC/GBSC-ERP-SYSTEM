@@ -115,6 +115,7 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
 import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
+import { CityComponent } from './hrmsSetup/city/city.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -127,6 +128,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
             { path: 'branch', component: BranchComponent },
             { path: 'company', component: CompanyComponent },
+            { path: 'country', component: CountryComponent },
+            { path: 'city', component: CityComponent },
             { path: 'department', component: DepartmentComponent },
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },

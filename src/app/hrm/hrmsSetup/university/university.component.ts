@@ -19,6 +19,7 @@ export class UniversityComponent implements OnInit {
 
     adduniversity(uni) {
         this.dataService.adduniversity(uni.data);
+        this.university = this.dataService.getAllUniversities();
     }
 
     Edituniversity(university) {

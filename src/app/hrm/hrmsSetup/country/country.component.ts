@@ -8,11 +8,11 @@ import { SetupService, HrmsService } from '../../../core';
 })
 export class CountryComponent implements OnInit {
 
-    currentCountry: any;
+    updatingModel: any;
     public countries: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService, public hrmService: HrmsService) { }
- 
+
     async ngOnInit() {
 
         this.countries = await this.hrmService.getAllCountries();
@@ -20,20 +20,18 @@ export class CountryComponent implements OnInit {
 
 
     addNewCountry(Country) {
-
         this.hrmService.addCountry(Country.data)
-
+        this.countries = this.hrmService.getAllCountries();
     }
 
-    EditNewCountry(country) {
+    UpdatingCountry(value) {
 
-        this.hrmService.updateCountry(country);
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    getCountryToUpdate(country) {
-        this.currentCountry = country;
+    UpdateCountry() {
+        this.hrmService.updateCountry(this.updatingModel);
     }
-
 
     deleteCountry(countr) {
         this.hrmService.DeleteCountry(countr.key);

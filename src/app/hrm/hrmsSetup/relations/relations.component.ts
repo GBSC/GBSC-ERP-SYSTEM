@@ -22,6 +22,7 @@ export class RelationComponent implements OnInit {
 
     addrelation(relation) {
         this.dataService.addRelation(relation.data);
+        this.relation = this.dataService.getAllRelation();
     }
 
     Editrelation(reltion) {

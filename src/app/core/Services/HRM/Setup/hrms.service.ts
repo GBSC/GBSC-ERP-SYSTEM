@@ -17,22 +17,14 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
 
-    async getdataToUpdate(countryId, countryUrl) {
-        return await this.ApiService.get(`${this.setupUrl}/${countryUrl}/${countryId}`).toPromise();
-    }
-
-
     // DEMO ONLY, you can find working methods below
     async addCountry(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
 
     }
 
-    async updateCountry(data) {
-
-        let country = await this.getdataToUpdate(data.key, 'GetCountry');
-        country = { ...country, ...data.data }
-        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', country).toPromise();
+    async updateCountry(data) { 
+        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
     }
 
     async DeleteCountry(countryId) {
@@ -49,14 +41,11 @@ export class HrmsService {
 
     }
 
-    async updateCity(data) {
-
-        let city = await this.getdataToUpdate(data.key, 'GetCity');
-        city = { ...city, ...data.data }
-        return await this.ApiService.put(this.setupUrl + '/UpdateCity', city).toPromise();
+    async updateCity(data) { 
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
     }
 
-    async DeleteCity(cityId) {
+    async deleteCity(cityId) {
         return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
     }
     

@@ -26,6 +26,7 @@ export class DecimalroundingmatrixComponent implements OnInit {
 
     async adddrmatrix(value) {
         this.leavesetupservice.addRoundingMatrix(value.data);
+        this.decimalrounding = await this.leavesetupservice.getDecimalRoundingMatrixs();
     }
 
     async updatingrmatrix(value) {

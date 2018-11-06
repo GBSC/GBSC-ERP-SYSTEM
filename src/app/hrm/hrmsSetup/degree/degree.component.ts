@@ -16,9 +16,7 @@ export class DegreeComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.dataService.getAllDegrees();
-        this.degree = this.dataService.degree;
-        // this.dataService.getAllDegrees().subscribe((data)=>this.degree=data);
+        this.degree = await this.dataService.getAllDegrees();
     }
 
 
@@ -26,7 +24,6 @@ export class DegreeComponent implements OnInit {
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addNewDegree(dgree) {
-
         this.dataService.addDegree(dgree.data);
     }
 

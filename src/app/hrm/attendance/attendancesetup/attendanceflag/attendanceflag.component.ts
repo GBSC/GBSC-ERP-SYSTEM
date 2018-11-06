@@ -28,6 +28,7 @@ export class AttendanceflagComponent implements OnInit {
 
     async addattendanceflag(value) {
         await this.attendancesetupservice.addAttendanceFlag(value.data);
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
     }
 
     async updateattendanceflag(value) {

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService, PayrollService } from '../../../../core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { GratuitySlabGratuity } from '../../../../core/Models/HRM/gratuitySlabGratuity';
-import { GratuitySlab } from '../../../../core/Models/HRM/gratuitySlab';
 
 @Component({
     selector: 'app-gratuityslab',
@@ -38,6 +37,7 @@ export class GratuityslabComponent implements OnInit {
 
     async addGratuityslab(value) {
         await this.payrollsetupservice.addGratuitySlab(value.data);
+        this.gratuitySlab = await this.payrollsetupservice.getGratuitySlabs();
     }
 
     async updatingGratuitySlab(value) {

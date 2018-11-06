@@ -34,6 +34,7 @@ export class AttendancerequestComponent implements OnInit {
 
     async addattendancerequest(value) {
         this.attendanceservice.addAttendanceRequest(value.data);
+        this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
     }
 
     async updatingrequest(value) {

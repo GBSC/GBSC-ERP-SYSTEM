@@ -17,12 +17,14 @@ export class EmployeeCompanyComponent implements OnInit {
     public functions: any;
     public groups: any;
     public managementlevel: any;
+    public employeestatus: any;
 
     @Input('employeeId') id: number;
 
     @Output() updateMessage = new EventEmitter();
 
     public EmployeeCompany: any;
+    public cempstatus : any;
 
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
 
@@ -59,10 +61,9 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
 
-        await this.SetupServiceobj.getAllEmployeeStatus();
+        this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
 
-        let cempstatus = this.SetupServiceobj.employeestatus;
-
+        await this.SetupServiceobj.getEmployeeStatus(); 
 
         this.route.params.subscribe((params) => {
 

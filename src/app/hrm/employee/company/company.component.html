@@ -60,7 +60,7 @@
         <label for="Empstatus">Employee Status</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId">
           <!-- <option value="" disabled selected>-- Select Employee Status --</option> -->
-          <option *ngFor="let cempstatus of SetupServiceobj?.employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
+          <option *ngFor="let cempstatus of employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
       </div>
     </div>

@@ -17,13 +17,13 @@ export class LeaveapproverComponent implements OnInit {
         this.leaveapprover = await this.leavesetupservice.getLeaveApprovers();
 
         this.employees = await this.employeeservice.GetAllEmployees();
-
     }
 
 
     async addapprover(value) {
-        console.log(value);
+
         await this.leavesetupservice.addLeaveApprover(value.data);
+        this.leaveapprover = await this.leavesetupservice.getLeaveApprovers();
     }
 
     async updateapprover(value) {

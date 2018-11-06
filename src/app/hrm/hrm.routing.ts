@@ -14,18 +14,14 @@ import { LeavesubtypeComponent } from './leave/leavesetup/leavesubtype/leavesubt
 import { DecimalroundingmatrixComponent } from './leave/leavesetup/decimalroundingmatrix/decimalroundingmatrix.component';
 import { ProratematrixComponent } from './leave/leavesetup/proratematrix/proratematrix.component';
 import { EmployeeleaveopeningComponent } from './leave/leaveadmin/employeeleaveopening/employeeleaveopening.component';
-import { UploadleaverequestComponent } from './leave/leaveadmin/uploadleaverequest/uploadleaverequest.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
 import { EmployeeTypes } from './hrmsSetup/employeetype/employeetype.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
-import { GradesComponent } from './hrmsSetup/grade/grade.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
 import { ShiftComponent } from './attendance/attendancesetup/shift/shift.component';
-//import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { DegreeComponent } from './hrmsSetup/degree/degree.component';
-import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
 import { ManagementLevelsComponent } from './hrmsSetup/managementlevels/managementlevels.component';
 import { DesignationComponent } from './hrmsSetup/designations/designations.component';
 import { GroupComponent } from './hrmsSetup/groups/groups.component';
@@ -34,7 +30,6 @@ import { CostCenterComponent } from './hrmsSetup/costcenters/costcenters.compone
 import { LanguageComponent } from './hrmsSetup/languages/languages.component';
 import { SkillLevelsComponent } from './hrmsSetup/skilllevels/skilllevels.component';
 import { RelationComponent } from './hrmsSetup/relations/relations.component';
-import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { RootComponent } from './root/root.component';
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
@@ -118,6 +113,8 @@ import { AuthGuardService } from '../core/Services/Auth/auth-guard.service';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
 import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -156,7 +153,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'languages', component: LanguageComponent },
                     { path: 'skilllevel', component: SkillLevelsComponent },
                     { path: 'relation', component: RelationComponent },
-                    { path: 'cities', component: CityComponent },
                     { path: 'university', component: UniversityComponent }
                 ]
             },
@@ -282,6 +278,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'gratuitytype', component: GratuitytypeComponent },
                             { path: 'leavingreason', component: LeavingreasonComponent },
                             { path: 'masterpayroll', component: MasterpayrollComponent },
+                            { path: 'updatemasterpayroll/:id', component: MasterpayrollComponent },
                             { path: 'masterpayrolldetail', component: MasterPayrollDetailComponent },
                             { path: 'payroll', component: PayrollComponent },
                             { path: 'payrollbank', component: PayrollbankComponent },
@@ -324,9 +321,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     },
 
                     { path: 'gratuity', component: GratuityComponent },
+                    { path: 'updategratuity/:id', component: GratuityComponent },
+                    { path: 'gratuitydetail', component: GratuitydetailComponent },
                     { path: 'monthlyusersalary', component: MonthlyUserSalaryComponent },
+                    { path: 'monthly-usersalary-detail', component: MonthlyUserSalaryDetailComponent },
+                    { path: 'updatemonthlysalary/:id', component: MonthlyUserSalaryComponent },
                     { path: 'payslip', component: PayslipComponent }
-
                 ]
             }
 

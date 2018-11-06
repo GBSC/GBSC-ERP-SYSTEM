@@ -3,6 +3,8 @@ import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from '../../../core/Models/HIMS/appointment';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { PatientInvoice } from '../../../core/Models/HIMS/patientinvoice';
+import { PatientInvoiceItem } from '../../../core/Models/HIMS/patientinvoiceitem';
 
 @Component({
   selector: 'app-appointmentpaymentreceipt',
@@ -12,6 +14,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AppointmentpaymentreceiptComponent implements OnInit {
 	private SelectedAppointment : any;
 	private InvoiceForm : FormGroup;
+	private Invoice : PatientInvoice;
+	private InvoiceDetails : PatientInvoiceItem[] = [];
 
 	constructor(private PatientService : PatientService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
@@ -53,6 +57,9 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 					else
 						a = this.SelectedAppointment.patient.partner.firstName;
 
+					this.Invoice = this.SelectedAppointment.patientInvoice;
+					this.InvoiceDetails = this.SelectedAppointment.patientInvoice.patientInvoiceItems;
+
 					this.InvoiceForm.patchValue({
 						MRN : this.SelectedAppointment.patient.mrn || '',
 						Date : this.SelectedAppointment.appointmentDate || '',
@@ -72,6 +79,17 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
         });
 		
 		
+	}
+
+	GetDetails() {
+		this.PatientService.GetPatientInvoice(this.SelectedAppointment.patientInvoiceId).subscribe((res : PatientInvoice) => {
+			this.Invoice = res;
+			console.log(this.Invoice);
+			
+			this.InvoiceDetails = this.Invoice.PatientInvoiceItems;
+			console.log(this.InvoiceDetails);
+			
+		});
 	}
 
 }

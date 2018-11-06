@@ -47,6 +47,7 @@ export class AllowanceDeductionComponent implements OnInit {
 
     async addAllowanceDeduction() {
         await this.payrollSetupService.addAllowanceDeduction(this.AllowanceorDeductionForm.value);
+        this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
     }
 
     updatingAllowanceDeduction(value) {

@@ -21,6 +21,7 @@ export class VoucherDetailComponent implements OnInit {
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
+    
     this.voucher = await this.financeService.getVouchers();
 
     this.voucherType = await this.financeSetupService.getVoucherTypes();

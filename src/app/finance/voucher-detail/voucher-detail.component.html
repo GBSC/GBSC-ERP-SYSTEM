@@ -31,25 +31,14 @@
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                        
-                        <dxi-column dataField="voucherCode"></dxi-column>
-                        <dxi-column dataField="financialYearId" caption="Financial Year">
-                          <dxo-lookup [dataSource]="financialYear" displayExpr="name" valueExpr="financialYearId">
-                          </dxo-lookup>
-                          </dxi-column>
-                          <dxi-column dataField="voucherTypeId" caption="Voucher Type">
+                             <dxi-column dataField="voucherTypeId" caption="Voucher Type">
                             <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
                             </dxo-lookup>
                           </dxi-column>
 
                         <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
                         <dxi-column dataField="chequeNumber"></dxi-column>
-                        <dxi-column dataField="departmentName"></dxi-column>
-                        <dxi-column dataField="departmentCode"></dxi-column>
-                        <dxi-column dataField="totalCreditAmount"></dxi-column>
-                        <dxi-column dataField="totalDebitAmount"></dxi-column>
                         <dxi-column dataField="description"></dxi-column>
-                        <dxi-column dataField="isFinal" dataType="boolean"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                           <div class="chart-cell">
@@ -60,12 +49,16 @@
 
                         <div *dxTemplate="let voucherDetail of 'detail'">
                             <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true" [columnAutoWidth]="true">
-                                <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
-                                <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+
                                 <dxi-column dataField="detailAccountId" caption="Detail Account">
                                     <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
                                     </dxo-lookup>
                                   </dxi-column>
+                                <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                <dxi-column dataField="departmentName" caption="Department"></dxi-column>
+                                <dxi-column dataField="uniqueName" caption="Refrence"></dxi-column>
+                                <dxi-column dataField="description" caption="Description"></dxi-column>
                                 </dx-data-grid>
                         </div>
                     </dx-data-grid>

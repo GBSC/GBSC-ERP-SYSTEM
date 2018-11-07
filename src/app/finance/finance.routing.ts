@@ -19,6 +19,7 @@ import { PurchasereturndetailComponent } from './purchasereturndetail/purchasere
 import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
+import { DemoComponent } from './demo/demo.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -41,6 +42,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
                 ]
             },
+            { path: 'demo', component: DemoComponent },
             { path: 'purchase-invoice', component: PurchaseInvoiceComponent },
             { path: 'update-purchase-invoice/:id', component: PurchaseInvoiceComponent },
             { path: 'purchase-invoice-detail', component: PurchaseinvoicedetailComponent },

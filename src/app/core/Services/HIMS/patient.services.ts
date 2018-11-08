@@ -217,6 +217,10 @@ export class PatientService {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
+      updateappointmentbygeneralactinForvisitstrat(value) :Observable <Appointment>{
+        return this.ApiService.put(this.API_URL+'Appointments/UpdateAppointment',value)
+    }
+
     async updateAppointmentFromVisitDetail(appointment: Appointment){
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }

@@ -1,18 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
-import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService } from '../../core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
+import { FinanceService } from '../../core/Services/Finance/finance.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SetupService } from '../../core';
+import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 
 @Component({
-  selector: 'app-voucher',
-  templateUrl: './voucher.component.html',
-  styleUrls: ['./voucher.component.scss']
+  selector: 'app-update-voucher',
+  templateUrl: './update-voucher.component.html',
+  styleUrls: ['./update-voucher.component.scss']
 })
-export class VoucherComponent implements OnInit {
+export class UpdateVoucherComponent implements OnInit {
 
   public debitTotal = 0;
   public creditTotal = 0;
@@ -26,7 +25,6 @@ export class VoucherComponent implements OnInit {
   public voucherType: any;
   public Vouchers: any;
   public Voucher: any;
-  public PatchDetail: any;
   public isDisabled: any;
   @Input('voucherId') id: number;
 
@@ -71,20 +69,17 @@ export class VoucherComponent implements OnInit {
     if (this.isUpdate() === true) {
 
       this.financeService.getVoucher(this.id).subscribe(resp => {
-
-        this.Voucher = resp;
-        this.PatchDetail = resp;
+        this.Voucher = resp; 
         console.log(this.Voucher);
 
-        this.Detail = this.Voucher.voucherDetails;
+        // this.Detail =this.Voucher.voucherDetails;
         console.log(this.Detail);
-
-        // let a = this.Voucher.voucherDetails;
-        // this.Detail = a.filter(b => {
-        //   delete b.voucherDetailId;
-        //   delete b.voucherId;
-        //   return b;
-        // });
+        let a = this.Voucher.voucherDetails;
+        this.Detail = a.filter(b => {
+          delete b.voucherDetailId;
+          delete b.voucherId;
+          return b;
+        });
         this.patchValues(this.Voucher);
       });
     }
@@ -124,6 +119,7 @@ export class VoucherComponent implements OnInit {
 
     }
   }
+ 
 
   addNewRow(e, i) {
     const control: any = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
@@ -167,12 +163,12 @@ export class VoucherComponent implements OnInit {
 
     value.voucherId = this.id;
     value.VoucherDetails = this.Detail;
-    console.log(value);
-
-    // this.financeService.updateVoucher(value).subscribe(resp => {
-    //   this.toastr.success("Voucher Updated");
-    //   this.router.navigate(['finance/voucher-detail']);
-    // })
+    console.log(value);    
+    this.financeService.updateVoucher(value).subscribe(resp => {
+      console.log(value);
+      this.toastr.success("Voucher Updated");
+      this.router.navigate(['finance/voucher-detail']);
+    })
   }
 
   patchValues(voucher: any) {
@@ -184,11 +180,20 @@ export class VoucherComponent implements OnInit {
       Description: voucher.description,
       ChequeNumber: voucher.chequeNumber,
       VoucherTypeId: voucher.voucherTypeId,
-      // DetailAccountId: voucher.detailAccountId,
-      // DebitAmount: voucher.debitAmount,
-      // CreditAmount: voucher.creditAmount,
-      // DepartmentName: voucher.departmentName,
-      // UniqueName: voucher.uniqueName 
+      DetailAccountId: voucher.detailAccountId,
+      DebitAmount: voucher.debitAmount,
+      CreditAmount: voucher.creditAmount,
+      DepartmentName: voucher.departmentName,
+      UniqueName: voucher.uniqueName 
+    })
+  
+    this.VoucherDetailForm.patchValue({
+ 
+      DetailAccountId: voucher.detailAccountId,
+      DebitAmount: voucher.debitAmount,
+      CreditAmount: voucher.creditAmount,
+      DepartmentName: voucher.departmentName,
+      UniqueName: voucher.uniqueName 
     })
   }
 }

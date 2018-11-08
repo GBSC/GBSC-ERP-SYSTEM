@@ -41,8 +41,8 @@ export class PurchaseOrderComponent implements OnInit {
     private TotalQuantity: number = 0;
     private Inventories: Inventory[] = [];
 
-    public dataEnabled: boolean = false;
-
+    public  fieldsenabled: boolean = true;
+ 
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group({
@@ -124,6 +124,8 @@ export class PurchaseOrderComponent implements OnInit {
 
     CalculateSalesTaxAmount(value) {
         // console.log(value);
+        this.fieldsenabled = false; 
+
         this.SalesTaxAmount = (<number>value * <number>this.GrossAmount) / 100;
         // console.log(this.SalesTaxAmount);
         this.CalculateNetAmount();
@@ -132,9 +134,8 @@ export class PurchaseOrderComponent implements OnInit {
     CalculateDiscountAmount(value) {
         // console.log(value);
 
-        this.dataEnabled = true; 
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
-        // console.log(this.DiscountAmount);
+         console.log(this.DiscountAmount);
         this.CalculateNetAmount();
     }
 

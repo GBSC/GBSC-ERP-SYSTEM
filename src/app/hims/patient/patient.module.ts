@@ -33,6 +33,7 @@ import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.com
 import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
+import { PackageComponent } from './package/package.component';
 import { TestComponent } from './test/test.component';
 import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
@@ -42,6 +43,7 @@ import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
+import { DxDateBoxModule } from 'devextreme-angular';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -55,6 +57,8 @@ import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/
         ReactiveFormsModule,
         routing,
         //SharedModule,
+        DxDateBoxModule,
+
         HttpClientModule
     ],
     declarations: [
@@ -72,6 +76,7 @@ import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/
         AllergiesComponent,
         WeightGraphComponent,
         ConsultantComponent,
+        PackageComponent,
         VitalsComponent,
         AppointmentsComponent,
         LatestobservationComponent,

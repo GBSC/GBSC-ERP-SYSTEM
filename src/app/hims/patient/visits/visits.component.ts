@@ -21,7 +21,7 @@ export class VisitsComponent implements OnInit {
     public AppointmentByVisitId: any;
 
     public VisitTests: any = [];
-    public VisitTestsForInvoice: any = [];
+   // public VisitTestsForInvoice: any = [];
     public VisitDiagnoses: any = [];
 
     public PatientVisitNoteForm: FormGroup;
@@ -40,10 +40,14 @@ export class VisitsComponent implements OnInit {
 
     public visitid: any;
     public vist = '';
+    public visitstatusend ='end';
+    public patinetappointment : any=[];
     id: number;
     vistid: number;
     Patient: Patient;
     Visits: Visits;
+
+    public Patientappointment: any;
 
     constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
 
@@ -132,6 +136,23 @@ export class VisitsComponent implements OnInit {
         console.log(x)
         this.router.navigate(['/hims/patient/profile/' + this.id]);
         console.log(this.id);
+
+        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+            this.Patientappointment = Patient
+            console.log(this.Patient);
+            this.patinetappointment  = this.Patientappointment.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+            console.log(this.patinetappointment);
+            this.patinetappointment.forEach(element => {
+                 element. visitStatus = this.visitstatusend;
+                 console.log(element);
+                        let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
+
+                        } );
+                         console.log(x);
+                });
+        });
+
+
 	}
 	
     async addPatientVisitNote(value) {
@@ -175,22 +196,22 @@ export class VisitsComponent implements OnInit {
             VisitId: value.VisitId
         } 
         this.VisitTests.push(doc); 
-        this.addVisitTestInvoice()
+      //  this.addVisitTestInvoice()
     }
 
-    addVisitTestInvoice(){
-        let { value } = this.VisitTestForm;
-		let test = this.test.find(t => t.testId === value.TestId);
+    // addVisitTestInvoice(){
+    //     let { value } = this.VisitTestForm;
+	// 	let test = this.test.find(t => t.testId === value.TestId);
 		
-        let x = {
-            TestName: test.testName,
-            Charges : test.charges,
-            Quantity : '1'
-		};
+    //     let x = {
+    //         TestName: test.testName,
+    //         Charges : test.charges,
+    //         Quantity : '1'
+	// 	};
 		
-        this.VisitTestsForInvoice.push(x);
-        console.log(this.VisitTestsForInvoice);
-    }
+    //     this.VisitTestsForInvoice.push(x);
+    //     console.log(this.VisitTestsForInvoice);
+    // }
 
     async  onAddvisittest() {
         this.VisitTests = this.VisitTests.filter(t => {
@@ -204,7 +225,7 @@ export class VisitsComponent implements OnInit {
 	
     removeTest(index) {
         this.VisitTests.splice(index, 1);
-        this.VisitTestsForInvoice.splice(index, 1);
+      //  this.VisitTestsForInvoice.splice(index, 1);
 	}
 	
     removealltest(index) {
@@ -255,6 +276,11 @@ export class VisitsComponent implements OnInit {
 
     displayToastError(message) {
         this.toastr.error(message);
+    }
+
+    
+    formatDate(date: Date) {
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
     }
 
 }

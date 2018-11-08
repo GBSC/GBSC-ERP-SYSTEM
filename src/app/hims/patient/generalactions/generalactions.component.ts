@@ -27,6 +27,7 @@ export class GeneralactionsComponent implements OnInit {
     public time: any;
     public patinetappointment : any=[];
     public visitStatus = 'start';
+    public visitstatusend = 'end';
 
     constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
 
@@ -52,10 +53,7 @@ export class GeneralactionsComponent implements OnInit {
 
         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
             this.Patient = Patient
-            console.log(this.Patient);
-
-            this.patinetappointment  = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
-            console.log(this.patinetappointment);
+            console.log(this.Patient);            
         });
   
         console.log(this.patinetappointment);
@@ -69,31 +67,53 @@ export class GeneralactionsComponent implements OnInit {
              
              if(this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){            
                       if(this.lastpatientvisit === null){
-                        //  console.log(this.lastpatientvisit);
-                        //  console.log('1');
                                 await this.PatientServiceobj.AddVisits(this.id);
                                  this.router.navigate(['/hims/patient/visits/' + this.id]);
+                                 this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+                                    this.Patient = Patient
+                                    console.log(this.Patient);
+                                    this.patinetappointment  = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+                                    console.log(this.patinetappointment);
+                                    this.patinetappointment.forEach(element => {
+                                         element. visitStatus = this.visitStatus;
+                                         console.log(element);
+                                                let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
 
+                                                } );
+                                                 console.log(x);
+                                        });
+                                });
                            }
                            else  if (this.formatDate(new Date(this.lastpatientvisit.endTime)) === this.formatDate(new Date())) {
                                      this.displayToastError("Cannot create more than 1 visit on the same day")
                                 }
                                 else   {
                                         await this.PatientServiceobj.AddVisits(this.id);
-                                        
-                                      //  this.router.navigate(['/hims/patient/visits/' + this.id]);
+                                         this.router.navigate(['/hims/patient/visits/' + this.id]);
+                                         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+                                            this.Patient = Patient
+                                            console.log(this.Patient);
+                                            this.patinetappointment  = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+                                            console.log(this.patinetappointment);
+                                            this.patinetappointment.forEach(element => {
+                                                 element. visitStatus = this.visitStatus;
+                                                 console.log(element);
+                                                        let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe(
+                                                              element=>{
+                                                    
+                                                });
+                                                         console.log(x);
+                                                });
+                                        });
                                     }
-                    
                  }
                   else{
                     this.displayToastError("Current Date Appointment Not Schedule")
                   }
         }
-
         else{
             this.displayToastError("Appointment Not Schedule");
         }
-
     }
 
     formatDate(date: Date) {
@@ -107,7 +127,22 @@ export class GeneralactionsComponent implements OnInit {
 
     async Endvisit() {
         let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
-        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id);
+        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+            this.Patient = Patient
+            console.log(this.Patient);
+            this.patinetappointment  = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+            console.log(this.patinetappointment);
+            this.patinetappointment.forEach(element => {
+                 element. visitStatus = this.visitstatusend;
+                 console.log(element);
+                        let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
+
+                        } );
+                         console.log(x);
+                });
+        });
+
     }
 
     displayToastSuccess(message) {

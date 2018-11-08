@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group col-lg-3">
                   <label for="exampleInputEmail1">Appointment Date</label>
-                  <input #date class="form-control m-input m-input--solid" [value]="currentdate || ''" formControlName="AppointmentDate"
+                  <input #date class="form-control m-input m-input--solid" [value]="currentdate  | date : 'yyyy-MM-dd'   || ''" formControlName="AppointmentDate"
                     type="date" required>{{currentdate | json}}
                 </div>
                 <div class="form-group col-lg-5"></div>
@@ -62,7 +62,7 @@
                     <!-- <a href="#" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
                         <i class="fa fa-search"></i>
                     </a> -->
-                  <button type="button"  class="btn btn-primary blankinput" (click)="GetAppointmentByConsultantNameAndDate(cid, appointmentForm.value)">Show</button>
+                  <button type="button"  class="btn btn-primary blankinput" (click)="GetAppointmentByConsultantNameAndDate(cid, date.value,appointmentForm.value)">Show</button>
                 </div>
               </div>
               <div *ngIf="showAddNewPatientRow">
@@ -104,7 +104,7 @@
 
                     <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1"> Tentative Time </label>
-                      <input type="time" class="form-control m-input m-input--solid" [value]="currenttime || ''" formControlName="TentativeTime">
+                      <input type="time" class="form-control m-input m-input--solid" #time [value]="currenttime | date : 'hh:mm:ss' || ''" formControlName="TentativeTime">
                     </div>
                   <!-- <div class="form-group col-lg-4">
                     <label for="exampleInputEmail1"> Visit Status </label>
@@ -140,7 +140,7 @@
                     <button type="submit" (click)="deleteFieldValue()" class="btn btn-primary">
                       Cancle
                     </button> |
-                    <button type="submit" (click)="addApointment(appointmentForm.value , cid)" class="btn btn-primary">
+                    <button type="submit" (click)="addApointment(appointmentForm.value , cid , date.value , time.value)" class="btn btn-primary">
                       Submit
                     </button>
                   </div>

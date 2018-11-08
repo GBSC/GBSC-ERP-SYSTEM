@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PatientService } from '../../../core';
+import { PatientService, PharmacyService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from '../../../core/Models/HIMS/appointment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PatientInvoice } from '../../../core/Models/HIMS/patientinvoice';
 import { PatientInvoiceItem } from '../../../core/Models/HIMS/patientinvoiceitem';
+import { Test } from '../../../core/Models/HIMS/Test';
+import { Package } from '../../../core/Models/HIMS/packages';
+import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
+import { PatientPackage } from '../../../core/Models/HIMS/PatientPackage';
 
 @Component({
   	selector: 'app-appointmentpaymentreceipt',
@@ -12,14 +16,33 @@ import { PatientInvoiceItem } from '../../../core/Models/HIMS/patientinvoiceitem
   	styleUrls: ['./appointmentpaymentreceipt.component.scss']
 })
 export class AppointmentpaymentreceiptComponent implements OnInit {
+	private Tests : Test[] = [];
+	private Packages : Package[] = [];
+	private InventoryItems : InventoryItem[] = [];
+
 	private SelectedAppointment : any;
 	private InvoiceForm : FormGroup;
 	private Invoice : PatientInvoice;
 	private InvoiceDetails : PatientInvoiceItem[] = [];
 
-	private DateTest : Date;
+	private SelectedPatientPackage : any = {};
 
-	constructor(private PatientService : PatientService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
+	private ChequeBank : boolean = true;
+	private ChequeNumber : boolean = true;
+	private CreditCardCharges : boolean = true;
+	private PackagePayment : boolean = true;
+
+	private AppointmentDate : Date;
+
+	private InvoiceItemNature : any[] = [
+		{id : 1, Name : "Consultation"},
+		{id : 2, Name : "Lab Test"},
+		{id : 3, Name : "Medicine"},
+		{id : 4, Name : "Package"},
+		{id : 5, Name : "Other"}
+	];
+
+	constructor(private PatientService : PatientService, private PharmacyService : PharmacyService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
 			MRN : [''],
 			Date : [],
@@ -29,74 +52,121 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			Consultant : [''],
 			SpouseName : [''],
 			Package : [''],
-			CurrentAmount : [''],
-			PreviousBalance : [''],
-			AmountToPay : [''],
+			TotalPrice : [''],
+			TotalAmountPaid : [''],
+			TotalBalance : [''],
 			PaidAmount : [''],
 			NewBalance : [''],
 			Remarks : [''],
-			ChequeNumber : [''],
-			Bank : [''],
+			PaymentMethod : [''],
+			// ChequeNumber : [''],
+			ChequeNumber : [{value: 0, disabled: this.ChequeNumber}],
+			// Bank : [''],
+			Bank : [{value: 0, disabled: this.ChequeBank}],
 			Total : [''],
-			CreditCardChargesPercentage : [''],
+			CreditCardChargesPercentage : [{value: 0, disabled: this.CreditCardCharges}],
+			// CreditCardChargesPercentage : [''],
 			GrossAmount : [''],
-			NetAMount : [''],
+			NetAmount : [''],
 		});
 	}
 
 	ngOnInit() {
 
 		this.ActivatedRoute.params.subscribe(params => {
+
+			this.PatientService.GetTests().subscribe((res : Test[]) => {
+				this.Tests = res;
+				// console.log(this.Tests);
+			});
+
+			this.PatientService.GetPackages().subscribe((res : Package[]) => {
+				this.Packages = res;
+				// console.log(this.Packages);
+			});
+
+			this.PharmacyService.GetInventoryItemsArray().subscribe((res : InventoryItem[]) => {
+				this.InventoryItems = res;
+				// console.log(this.InventoryItems);
+			});
+
             if(params['id']) {
                 this.PatientService.GetAppointmentDetails(params['id']).subscribe((res : Appointment) => {
 					this.SelectedAppointment = res;
 					console.log(this.SelectedAppointment);
 					
-					let a : string = '';
-
-					if(this.SelectedAppointment.patient.partner == null)
-						a = '';
+					let partner : string = '';
+					if(this.SelectedAppointment.patient.partner === null)
+						partner = '';
 					else
-						a = this.SelectedAppointment.patient.partner.firstName;
+						partner = this.SelectedAppointment.patient.partner.firstName;
 
 					this.Invoice = this.SelectedAppointment.patientInvoice;
 					this.InvoiceDetails = this.SelectedAppointment.patientInvoice.patientInvoiceItems;
 
-					// var datePipe = new DatePipe('d/M/y');
-					// console.log(datePipe);
-					// var r = datePipe.transform(new Date(), 'dd/MM/yyyy');
-					// console.log(r);
+					this.AppointmentDate = new Date(this.SelectedAppointment.appointmentDate);
 
-					this.DateTest = new Date(this.SelectedAppointment.appointmentDate);
+					let packagename : string = '';
+					if(this.SelectedAppointment.patient.patientPackage) {
+						this.SelectedPatientPackage = this.Packages.find(a => a.PackageId === this.SelectedAppointment.patient.patientPackage.packageId);
+						packagename = this.SelectedAppointment.packageName;
+					}
+					else {
+						packagename = '';
+					}
+
+					if(this.SelectedPatientPackage != null) {
+						this.PackagePayment = true;
+					}
+
+					let patientpackage : any = {
+						totalPrice : 0,
+						totalAmountPaid : 0,
+						totalBalance : 0,
+						// lastPaidAmount : 0
+					};
+
+					if(this.SelectedAppointment.patient.patientPackage) {
+						patientpackage = this.SelectedAppointment.patient.patientPackage;
+					}
 
 					this.InvoiceForm.patchValue({
 						MRN : this.SelectedAppointment.patient.mrn || '',
-						// Date : this.SelectedAppointment.appointmentDate || '',
-						// Date : new Date(this.SelectedAppointment.appointmentDate).toString(),
 						VisitNature : this.SelectedAppointment.visitNature.nature || '',
 						SlipNumber : this.SelectedAppointment.patientInvoice.slipNumber || '',
 						PatientName : this.SelectedAppointment.patient.firstName || '',
 						Consultant : this.SelectedAppointment.consultant.name || '',
-						SpouseName : a,
-						Package : "XYZ" || '',
-						CurrentAmount : this.SelectedAppointment.patientInvoice.amountToPay || '',
-						PreviousBalance : this.SelectedAppointment.patientInvoice.balanceAmount || '',
-						AmountToPay : this.SelectedAppointment.patientInvoice.amountToPay || '',
+						SpouseName : partner,
+						Package : packagename,
+						TotalPrice : patientpackage.totalPrice,
+						TotalAmountPaid : patientpackage.totalAmountPaid,
+						TotalBalance : patientpackage.totalBalance,
+						// PaidAmount : patientpackage.lastPaidAmount,
 						Remarks : this.SelectedAppointment.patientInvoice.invoiceRemarks || ''
 					});
-					// console.log("InvoiceForm", this.InvoiceForm);
                 });
             }
-        });
+		});
+		
+		return;
 	}
 
-	GetDetails() {
-		this.PatientService.GetPatientInvoice(this.SelectedAppointment.patientInvoiceId).subscribe((res : PatientInvoice) => {
-			this.Invoice = res;
-			console.log(this.Invoice);
-			
-			this.InvoiceDetails = this.Invoice.PatientInvoiceItems;
-			console.log(this.InvoiceDetails);		
-		});
+	onChange(value) {
+		console.log(value);
+		if(value === "Cheque") {
+			this.ChequeBank = false;
+			this.ChequeNumber = false;
+			return;
+		}
+		else if(value === "CreditCard") {
+			this.CreditCardCharges = false;
+			return;
+		}
+		else {
+			this.ChequeBank = true;
+			this.ChequeNumber = true;
+			this.CreditCardCharges = true;
+			return;
+		}
 	}
 }

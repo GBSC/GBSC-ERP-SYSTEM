@@ -7,9 +7,9 @@ import { PatientInvoice } from '../../../core/Models/HIMS/patientinvoice';
 import { PatientInvoiceItem } from '../../../core/Models/HIMS/patientinvoiceitem';
 
 @Component({
-  selector: 'app-appointmentpaymentreceipt',
-  templateUrl: './appointmentpaymentreceipt.component.html',
-  styleUrls: ['./appointmentpaymentreceipt.component.scss']
+  	selector: 'app-appointmentpaymentreceipt',
+  	templateUrl: './appointmentpaymentreceipt.component.html',
+  	styleUrls: ['./appointmentpaymentreceipt.component.scss']
 })
 export class AppointmentpaymentreceiptComponent implements OnInit {
 	private SelectedAppointment : any;
@@ -17,10 +17,12 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	private Invoice : PatientInvoice;
 	private InvoiceDetails : PatientInvoiceItem[] = [];
 
+	private DateTest : Date;
+
 	constructor(private PatientService : PatientService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
 			MRN : [''],
-			Date : Date,
+			Date : [],
 			VisitNature : [''],
 			SlipNumber : [''],
 			PatientName : [''],
@@ -60,9 +62,17 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 					this.Invoice = this.SelectedAppointment.patientInvoice;
 					this.InvoiceDetails = this.SelectedAppointment.patientInvoice.patientInvoiceItems;
 
+					// var datePipe = new DatePipe('d/M/y');
+					// console.log(datePipe);
+					// var r = datePipe.transform(new Date(), 'dd/MM/yyyy');
+					// console.log(r);
+
+					this.DateTest = new Date(this.SelectedAppointment.appointmentDate);
+
 					this.InvoiceForm.patchValue({
 						MRN : this.SelectedAppointment.patient.mrn || '',
-						Date : this.SelectedAppointment.appointmentDate || '',
+						// Date : this.SelectedAppointment.appointmentDate || '',
+						// Date : new Date(this.SelectedAppointment.appointmentDate).toString(),
 						VisitNature : this.SelectedAppointment.visitNature.nature || '',
 						SlipNumber : this.SelectedAppointment.patientInvoice.slipNumber || '',
 						PatientName : this.SelectedAppointment.patient.firstName || '',
@@ -74,11 +84,10 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 						AmountToPay : this.SelectedAppointment.patientInvoice.amountToPay || '',
 						Remarks : this.SelectedAppointment.patientInvoice.invoiceRemarks || ''
 					});
+					// console.log("InvoiceForm", this.InvoiceForm);
                 });
             }
         });
-		
-		
 	}
 
 	GetDetails() {
@@ -87,9 +96,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			console.log(this.Invoice);
 			
 			this.InvoiceDetails = this.Invoice.PatientInvoiceItems;
-			console.log(this.InvoiceDetails);
-			
+			console.log(this.InvoiceDetails);		
 		});
 	}
-
 }

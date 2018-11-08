@@ -1,0 +1,96 @@
+<div class="m-content">
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Second SubAccount</h3>
+             </div>
+           </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+              <form [formGroup]="SecondSubAccountForm">
+              <div class="form-group row">
+                <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                    <label>
+                      Second SubAccount Code
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="SecondSubAccountCode" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label>
+                      Name
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="Name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="JV">
+                  </div>
+                </div>
+               
+                <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                    <label>
+                        Sub Account
+                    </label>
+                    <select class="form-control m-input" formControlName="SubAccountId">
+                        <option value="" disabled selected>-- Select Second SubAccount --</option>
+                        <option *ngFor="let SecondsubAccount of subAccount" [value]="SecondsubAccount.subAccountId">{{SecondsubAccount.name}}</option>
+                      </select>
+                  </div>
+                </div>
+
+                  <div class="col-sm-2" style="margin-top: 28px;">
+                      <button type="submit" (click)="addSecondSubaccount()" class="btn btn-primary">
+                          Save
+                        </button>
+                  </div>
+              </div>
+              </form>
+
+              <div class="form-group row">
+                  <div class="m--space-07"></div>
+
+
+                  <dx-data-grid id="gridContainer" keyExpr="secondSubAccountId" [dataSource]="secondSubAccount" 
+                  (onRowInserted)="addSecondSubaccount($event)" 
+                  (onRowUpdating)="updatingSecondSubaccount($event)"
+                  (onRowUpdated)="updateSecondSubaccount()"
+                  (onRowRemoved)="deleteSecondSubaccount($event)">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="False" [useIcons]="true">
+                      <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                      </dxo-popup>
+                    </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+      
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager>
+      
+                  <dxi-column dataField="secondSubAccountCode" caption="Second SubAccount Code"></dxi-column>
+                  <dxi-column dataField="name" caption="Name"></dxi-column>
+                  <dxi-column dataField="subAccountId" caption="Master Account">
+                    <dxo-lookup [dataSource]="subAccount" displayExpr="name" valueExpr="subAccountId">
+                    </dxo-lookup>
+                  </dxi-column>        
+                </dx-data-grid>
+              </div>
+
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>

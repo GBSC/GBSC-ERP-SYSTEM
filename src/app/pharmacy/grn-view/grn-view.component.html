@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-md-12">
               <dx-data-grid [dataSource]="grnview"  (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true" showBorders="true"
-               [masterDetail]="{ enabled: true, template: 'detail' }"
+                [masterDetail]="{ enabled: true, template: 'detail' }"
                 [columnAutoWidth]="true" [showBorders]="true">
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-filter-row [visible]="false"></dxo-filter-row>

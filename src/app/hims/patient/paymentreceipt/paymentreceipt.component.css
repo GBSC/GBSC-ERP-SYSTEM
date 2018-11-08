@@ -8,4 +8,10 @@
     font-size: 12px
 }
 
+
+.btn-primary {
+    color: #fff;
+    background-color: #45d0b6;
+    border-color: #45d0b6;
+}
  

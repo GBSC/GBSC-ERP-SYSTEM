@@ -14,7 +14,7 @@
             <div class="m-section">
               <div class="m-section__content">
                 <div class="row">
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         MRN No.
@@ -22,8 +22,8 @@
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="{{patient?.mrn}}" disabled> </div>
                   </div>
-                </div>
-                <div class="col-sm-2">
+               
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
                       Treatment#
@@ -31,7 +31,7 @@
                     <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                       [value]="clinicalRecord?.typewiseTreatmentNumber"> </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleSelect1">
                       Treatment Type
@@ -41,7 +41,7 @@
                     </dx-select-box>
                   </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
                       Cycle#
@@ -52,7 +52,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
                       Patient Name
@@ -62,7 +62,7 @@
                     </dx-select-box>
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleInputEmail1">
                       Spouse
@@ -70,9 +70,7 @@
                     <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleSelect1">
                       Doctor
@@ -82,7 +80,7 @@
                     </dx-select-box>
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <div class="form-group m-form__group">
                     <label for="exampleSelect1">
                       Prep For
@@ -154,6 +152,7 @@
                       <label for="example-text-input" class="col-3 col-form-label">
                         Method
                       </label>
+                      <div class="col-6">
                       <dx-select-box [items]="methods" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.method"
                         formControlName="Method" [searchEnabled]="true" disabled>
                       </dx-select-box>
@@ -332,6 +331,8 @@
 
               </div>
             </div>
+          </div>
+        </div>
           </form>
 
 

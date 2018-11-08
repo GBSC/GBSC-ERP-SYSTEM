@@ -18,6 +18,7 @@ export class BenefitComponent implements OnInit {
 
     async addBenefit(value) {
         await this.payrollsetupservice.addBenefit(value.data);
+        this.benefit = await this.payrollsetupservice.getBenefits();
     }
 
     updatingBenefit(value) {

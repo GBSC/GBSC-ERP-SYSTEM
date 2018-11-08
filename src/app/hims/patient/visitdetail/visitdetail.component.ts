@@ -91,68 +91,64 @@ export class VisitdetailComponent implements OnInit {
 
 
 
+ 
 
-    enableVitalsInputFields() {
+enableVitalsInputFields(){
+ //   console.log(this.formattime(new Date(this.visit.endTime)));
+  //  console.log(this.formatDate(new Date()));
+if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date())) {
+ //   console.log(true);
+   this.vitalUpdateFieldsEnabled = false; 
+}else {
+   this.vitalUpdateFieldsEnabled = true; 
+  // console.log(false);
+}
+}
 
-        let visitStartDate = this.visit.startTime;
-        let date = new Date(visitStartDate);
-        date.setHours(date.getHours() - 5);
-        if(date.getTime() > new Date().getTime()) {
-            console.log(true);
-            this.vitalUpdateFieldsEnabled = false; 
-        }else {
-            this.vitalUpdateFieldsEnabled = true; 
-            console.log(false);
-        }
-        // console.log(date.getTime());
-        // console.log(new Date().getTime());
-        // console.log(date.getTime() > Date.now())
-        // console.log(visitStartDate);
 
-        // if(e.target.checked) {
-        //     this.updateTimeLimitExceeded = true;
-        //     this.vitalUpdateFieldsEnabled = true;
-        //     setTimeout(() => {
-        //        this.updateTimeLimitExceeded = false;
-        //        this.vitalUpdateFieldsEnabled = false; 
-        //     }, 5000);
-        // }
-    }
+    
+ 
+    
+
 
 
     async ngOnInit() {
+         
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
-        console.log(this.consultant);
+      //  console.log(this.consultant);
 
         await this.PatientServiceobj.getDiagnoses();
         this.visitdiagnos = this.PatientServiceobj.diagnoses;
-        console.log(this.visitdiagnos)
+      //  console.log(this.visitdiagnos)
 
         await this.PatientServiceobj.getTests();
         this.visittst = this.PatientServiceobj.testing;
 
-        console.log(this.visittst);
+     //   console.log(this.visittst);
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnatures = this.PatientServiceobj.visitNatures;
 
-        console.log(this.visitnatures);
-        this.enableVitalsInputFields();
-
-        //  await this.PatientServiceobj.GetVisitNatures();
-        //  this.visitnatures = this.PatientServiceobj.visitNatures;
-        //  console.log( '  this.visitnatures   this.visitnatures   this.visitnatures ', this.visitnatures );
-
+     //   console.log(this.visitnatures);
+ 
+   
 
         this.route.params.subscribe(params => {
             this.id = +params['id'];
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-                console.log(this.visit);
+              //  console.log(this.visit);
 
+                // work for disable time strat
+                
+                this.enableVitalsInputFields();
+               
+               
+                // work for disable time end
 
+ 
 
                 this.visitdiag = this.visit.visitDiagnoses
 
@@ -165,11 +161,11 @@ export class VisitdetailComponent implements OnInit {
                     this.getvisitdiagnosesbyId.push(this.visitdiagnos.find(t => {
                         if (t.diagnosisId === e.diagnosisId) {
                             t.visitId = this.id;
-                            console.log(t);
+                          //  console.log(t);
                             return t;
                         };
                     }));
-                    console.log(this.getvisitdiagnosesbyId);
+                 //   console.log(this.getvisitdiagnosesbyId);
                 });
 
                 // this.PatientServiceobj.GetVisitTestsByVisitId(this.id).subscribe((res : VisitTest[]) =>{
@@ -183,13 +179,13 @@ export class VisitdetailComponent implements OnInit {
                     this.getvisitTestbyId.push(this.visittst.find(t => {
                         if (t.testId === e.testId) {
                             t.visitId = this.id;
-                            console.log(t);
+                          //  console.log(t);
                             return t;
                         };
                     }));
-                    console.log(this.getvisitTestbyId);
+                  //  console.log(this.getvisitTestbyId);
                 });
-                console.log(this.getvisitTestbyId);
+              //  console.log(this.getvisitTestbyId);
 
                 this.route.params.subscribe(params => {
 
@@ -197,14 +193,13 @@ export class VisitdetailComponent implements OnInit {
 
                     let x = this.PatientServiceobj.GetAppointmentByVisit(this.id).subscribe((appointment: any) => {
                         this.appointment = appointment;
-                        // console.log(this.consultant);
-                        this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
-                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
+                      //  console.log(this.appointment);
 
-                        console.log(this.getvisitnatureId);
-                        console.log(appointment);
-                        ///console.log(this.getconsultantbyId.name);
-                        console.log(this.consultant);
+                         this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
+                      //  console.log(  this.getconsultantbyId)
+                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
+                      //   console.log(this.getvisitnatureId);
+                       //  console.log(this.consultant);
 
                         this.VisitAppointmentForm.patchValue({
                             VisitNatureId: this.getvisitnatureId.visitNatureId,
@@ -214,11 +209,11 @@ export class VisitdetailComponent implements OnInit {
 
 
                     });
-                    console.log(x);
+                 //   console.log(x);
 
                 });
 
-                console.log(this.getvisitTestbyId);
+             //   console.log(this.getvisitTestbyId);
 
 
                 this.VisitVitalDetailForm.patchValue({
@@ -241,8 +236,23 @@ export class VisitdetailComponent implements OnInit {
             });
         });
 
+ 
 
     }
+
+    formatDate(date: Date) {
+
+ 
+
+        return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + date.getHours() + "/" + ( date.getMinutes()+1)  ;
+    }
+    formattime(date: Date) {
+
+        //(date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+
+        return  (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + "/" + (date.getHours() +5)  + "/" +  (date.getMinutes()+16)  ;
+    }
+
 
     goback() {
         this.Location.back();
@@ -254,7 +264,7 @@ export class VisitdetailComponent implements OnInit {
     async  editPatientVitals(value) {
         this.VisitVitalDetailForm.value.VisitId = this.id;
         if (this.visit.patientVitalId === null) {
-            console.log(value);
+         //   console.log(value);
             delete this.VisitVitalDetailForm.value.PatientVitalId;
             await this.PatientServiceobj.AddPatientVital(value);
         }
@@ -262,7 +272,7 @@ export class VisitdetailComponent implements OnInit {
             this.VisitVitalDetailForm.value.PatientVitalId = this.visit.patientVitalId;
 
             await this.PatientServiceobj.UpdatePatientVital(value);
-            console.log(value);
+         //   console.log(value);
         }
     }
 
@@ -275,9 +285,9 @@ export class VisitdetailComponent implements OnInit {
         }
         else {
             this.VisitAppointmentForm.value.AppointmentId = this.appointment.appointmentId;
-            console.log(this.VisitAppointmentForm.value.visitNatureId);
+         //   console.log(this.VisitAppointmentForm.value.visitNatureId);
             await this.PatientServiceobj.updateAppointmentFromVisitDetail(value);
-            console.log(value);
+         //   console.log(value);
         }
     }
 
@@ -293,7 +303,7 @@ export class VisitdetailComponent implements OnInit {
         else {
             this.VisitNoteForm.value.VisitNoteId = this.visit.visitNote.visitNoteId;
             await this.PatientServiceobj.updateVisitNote(value);
-            console.log(value);
+          //  console.log(value);
         }
     }
 
@@ -308,15 +318,15 @@ export class VisitdetailComponent implements OnInit {
         });
         let visitsNTests = this.getvisitTestbyId.map(t => ({testId: t.testId, visitId: t.visitId}));
           if(this.visit.visitTests.length > 0){
-              console.log(visitsNTests);
+            //  console.log(visitsNTests);
                 await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
            }
          else{
-            console.log(visitsNTests);
+          //  console.log(visitsNTests);
              await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
           }
        
-          console.log(visitsNTests);
+        //  console.log(visitsNTests);
      }
 
     async editvistDiagnos() {
@@ -337,7 +347,7 @@ export class VisitdetailComponent implements OnInit {
               await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
           }
        
-          console.log(visitsNDiagnos);
+        //  console.log(visitsNDiagnos);
 
         // this.getvisitdiagnosesbyId = this.getvisitdiagnosesbyId.map(t => {
         //     let diagnosisId = {

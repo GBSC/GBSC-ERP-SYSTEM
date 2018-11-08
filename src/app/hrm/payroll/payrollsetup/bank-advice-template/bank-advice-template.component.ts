@@ -19,6 +19,7 @@ export class BankAdviceTemplateComponent implements OnInit {
 
     async addBankAdviceTemplate(value) {
         await this.payrollsetupservice.addBankAdviceTemplate(value.data);
+        this.bankAdviceTemplates = await this.payrollsetupservice.getBankAdviceTemplates();
     }
 
     async updateBankAdviceTemplate(value) {

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
 import { UserRosterAttendance } from '../../../core/Models/HRM/userRosterAttendance';
 import { MonthlyUserSalary } from '../../../core/Models/HRM/monthlyUserSalary';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-monthly-user-salary',
@@ -13,16 +15,21 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     private MonthlyUserSalaryForm: any
     private rosterAttendance: UserRosterAttendance[];
+    public rosterattendance: any[] = [];
     public stopSalary: any;
     public paySlip: any;
+    public monthlysalary: any;
     public employees: any;
     public userSalary: any;
+    public monthlySalary: any;
     public monthlyUserSalary: any;
     public pfPayment: any;
     public payroll: any;
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService,
-        public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
+    @Input('monthlyUserSalaryId') id: number;
+
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService,public Employeeservice: EmployeeService,
+         public payrollsetupservice: PayrollSetupService,public toastr:ToastrService,  public router: Router, private activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 
@@ -42,7 +49,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
             StopSalaryId: ['', Validators],
             UserSalaryId: ['', Validators],
             PfPaymentId: ['', Validators],
-            PayslipId: ['', Validators],
+            PaySlipId: ['', Validators],
             PayrollId: ['', Validators]
         });
 
@@ -50,6 +57,8 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
         this.employees = await this.Employeeservice.GetAllEmployees();
 
+        this.monthlySalary = await this.payrollservice.getMonthlySalaries();
+       
         this.userSalary = await this.payrollsetupservice.getUserSalaries();
 
         this.pfPayment = await this.payrollsetupservice.getPfPayments();
@@ -57,6 +66,23 @@ export class MonthlyUserSalaryComponent implements OnInit {
         this.payroll = await this.payrollsetupservice.getPayrolls();
 
         this.paySlip = await this.payrollservice.getPayslips();
+        
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+          });
+
+          if (this.isUpdate() === true) {
+            this.payrollservice.getmonthlyUserSalary(this.id).subscribe(resp => {
+              this.monthlysalary = resp;
+                let a = this.monthlysalary.userRosterAttendances;
+              this.rosterattendance= a.filter(b => {
+                delete b.userRosterAttendanceId;
+                delete b.monthlyUserSalaryId;
+                return b;
+              }); 
+                 this.patchValues(this.monthlysalary);
+            });
+          }
     }
 
     async RosterAttendance(value) {
@@ -70,6 +96,54 @@ export class MonthlyUserSalaryComponent implements OnInit {
         monthlySalary.UserRosterAttendances = this.rosterAttendance;
         let x = await this.payrollservice.addMonthlySalary(monthlySalary);
         this.MonthlyUserSalaryForm.reset();
+        this.toastr.success("Monthly Salary Updated"); 
+        this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
     }
+
+    isUpdate(): boolean {
+
+        if (this.id > 0) {
+          return true;
+        }
+        else
+          return false;
+      }
+
+      async updateRosterAttendance(value) {
+        console.log(value);
+      }
+    
+      async update(value) { 
+        value.monthlyUserSalaryId = this.id;
+        value.userRosterAttendances = this.rosterattendance;
+        this.payrollservice.updateMonthlySalary(value).subscribe(resp => {
+          this.toastr.success("Monthly Salary Updated"); 
+                this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
+    
+        });
+      }
+
+      patchValues(monthlysalary: any) {
+
+        this.MonthlyUserSalaryForm.patchValue({
+    
+            MonthStartDate: monthlysalary.monthStartDate,
+            MonthEndDate: monthlysalary.monthEndDate,
+            TotalWorkingDaysInMonth: monthlysalary.totalWorkingDaysInMonth,
+            PresentDays: monthlysalary.presentDays,
+            LeaveDays: monthlysalary.leaveDays,
+            AbsentDays: monthlysalary.absentDays,
+            OvertimeHours: monthlysalary.overtimeHours,
+            IsStopped: monthlysalary.isStopped,
+            StopFrom: monthlysalary.stopFrom,
+            StopTill: monthlysalary.stopTill,
+            StopSalaryId: monthlysalary.stopSalaryId,
+            UserSalaryId: monthlysalary.userSalaryId,
+            PfPaymentId: monthlysalary.pfPaymentId,
+            PaySlipId: monthlysalary.paySlipId,
+            PayrollId: monthlysalary.payrollId
+        })
+    
+      }
 
 }

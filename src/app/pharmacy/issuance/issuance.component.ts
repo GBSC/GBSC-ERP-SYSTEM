@@ -6,6 +6,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
 import { Inventory } from '../../core/Models/Pharmacy/Inventory';
+import { SalesIndent } from '../../core/Models/Pharmacy/SalesIndent';
+import { SalesIndentItem } from '../../core/Models/Pharmacy/SalesIndentItem';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-issuance',
@@ -16,6 +19,10 @@ export class IssuanceComponent implements OnInit {
 
     private IssuanceForm: FormGroup;
     private InventoryItemForm: FormGroup;
+
+    private SelectedSalesIndent : SalesIndent;
+    private SelectedSalesIndentDetails : SalesIndentItem[] = [];
+
     private SalesOrders: SalesOrder;
     private InventoryItems: InventoryItem;
     private Items: InventoryItem[] = [];
@@ -41,12 +48,7 @@ export class IssuanceComponent implements OnInit {
     private Inv: Inventory;
     private Invs: Inventory[];
 
-    
-    
-    submitted = false;
-
-
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast : ToastrService) {
 
         this.IssuanceForm = this.FormBuilder.group({
             Department: [''],
@@ -84,7 +86,7 @@ export class IssuanceComponent implements OnInit {
 
 
     async  ngOnInit() {
-        this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
+        // this.PharmacyService.GetSalesOrders().subscribe((res: SalesOrder) => this.SalesOrders = res);
         // this.PharmacyService.GetInventoryItems().subscribe((result: InventoryItem) => { this.InventoryItems = result; console.log(this.InventoryItems); this.FilteredItems = result; this.aaa.push(result); console.log(this.aaa); });
         this.AllItems = await this.PharmacyService.GetInventoryItemstest();
         this.filterItems = this.AllItems;
@@ -124,6 +126,22 @@ export class IssuanceComponent implements OnInit {
         this.IssuanceForm.value.SpouseName = this.customerdata.contactName || '';
 
         // console.log(value);
+    }
+
+    async GetSelectedSalesIndentDetails(value, event) {
+        if (event.key === "Enter") {
+            this.InventoryItemForm.reset();
+            this.IssuanceForm.reset();
+            this.PharmacyService.GetSalesIndentDetailsByCode(value).subscribe((res : SalesIndent) => {
+                if(res != null) {
+                    this.SelectedSalesIndent = res;
+                    this.SelectedSalesIndentDetails = this.SelectedSalesIndent.salesIndentItems;
+                }
+                else {
+                    this.Toast.error('Order already exists for selected Prescription!', 'Error!');
+                }
+            });
+        }
     }
 
     public finalstockquantity: any;

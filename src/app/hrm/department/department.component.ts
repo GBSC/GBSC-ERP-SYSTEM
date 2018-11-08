@@ -12,15 +12,16 @@ export class DepartmentComponent implements OnInit {
     constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
-        this.branch = await this.SystemAdministrationServiceobj.getBranches();
 
         this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
 
+        this.branch = await this.SystemAdministrationServiceobj.getBranches();
     }
 
 
     async addDepartment(value) {
         await this.SystemAdministrationServiceobj.addDepartment(value.key);
+        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
     }
 
     async updateDepartment(value) {

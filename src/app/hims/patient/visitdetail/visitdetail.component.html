@@ -63,7 +63,7 @@
                         </div>
                         <div class="form-group m-form__group row">
                             <label for="example-text-input" class="col-4 col-form-label">
-                                Blood Pressure Up
+                                Blood Pressure Systolic
                             </label>
                             <div class="col-8">
                                 <input class="form-control m-input" formControlName="BloodPressureUp" [value]="visit.patientVital?.bloodPressureUp || ''" type="number">
@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group m-form__group row">
                                 <label for="example-text-input" class="col-4 col-form-label">
-                                    Blood Pressure Down
+                                    Blood Pressure Diastolic
                                 </label>
                                 <div class="col-8">
                                     <input class="form-control m-input" formControlName="BloodPressureDown" [value]="visit.patientVital?.bloodPressureDown || ''" type="number">
@@ -129,7 +129,7 @@
                                 Tentative Time
                             </label>
                             <div class="col-8">
-                                <input class="form-control m-input" formControlName="TentativeTime" [value]="appointment?.tentativeTime ||''"
+                                <input class="form-control m-input" formControlName="TentativeTime" [value]="appointment?.tentativeTime | date : 'yyyy-MM-dd' ||''"
                                     type="date">
                             </div>
                         </div>

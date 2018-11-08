@@ -6,11 +6,8 @@ import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
-import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
-import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
-import { MaritalStatusComponent } from './hrmsSetup/maritalstatus/maritalstatus.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
@@ -27,8 +24,6 @@ import { DesignationComponent } from './hrmsSetup/designations/designations.comp
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { LeavepolicyComponent } from './leave/leavesetup/leavepolicy/leavepolicy.component';
 import { LeavetypeComponent } from './leave/leavesetup/leavetype/leavetype.component';
 import { LeavedaytypeComponent } from './leave/leavesetup/leavedaytype/leavedaytype.component';
@@ -135,6 +130,9 @@ import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 
 
 @NgModule({
@@ -147,8 +145,6 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         routing
     ],
     declarations: [
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         RootComponent,
 
@@ -173,16 +169,12 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         GroupComponent,
         RelationComponent,
         GenderComponent,
-        CityComponent,
         EmployeeTypes,
         FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
-        MaritalStatusComponent,
         ReligionComponent,
         BankComponent,
-        CityComponent,
-        AccountTypeComponent,
         UniversityComponent,
 
 
@@ -293,10 +285,10 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         MonthlyUserSalaryComponent,
         PayslipComponent,
         ViewemployeeleaveopeningComponent,
-        ViewleaverequestComponent
-
-
-
+        ViewleaverequestComponent,
+        ViewCompensationTransactionComponent,
+        MonthlyUserSalaryDetailComponent,
+        GratuitydetailComponent
     ],
     exports: []
 

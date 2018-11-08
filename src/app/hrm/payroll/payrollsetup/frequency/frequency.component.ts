@@ -18,6 +18,7 @@ export class FrequencyComponent implements OnInit {
 
     async addFrequency(value) {
         await this.payrollsetupservice.addFrequency(value.data);
+        this.Frequency = await this.payrollsetupservice.getFrequencies();
     }
 
     async updateFrequency(value) {

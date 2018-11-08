@@ -16,13 +16,13 @@ export class CompanyComponent implements OnInit {
     }
 
     async ngOnInit() {
+
         this.companies = await this.SystemAdministrationServiceobj.getCompanies();
-
-
     }
 
     async addCompany(value) {
         await this.SystemAdministrationServiceobj.addCompany(value.data);
+        this.companies = await this.SystemAdministrationServiceobj.getCompanies();
     }
 
 

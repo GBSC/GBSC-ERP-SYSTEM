@@ -16,11 +16,9 @@ export class BankComponent implements OnInit {
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
-
     async ngOnInit() {
 
-        await this.dataService.getAllBanks();
-        this.bank = this.dataService.bank;
+        this.bank = await this.dataService.getAllBanks();
     }
 
     addNewbank(bank) {

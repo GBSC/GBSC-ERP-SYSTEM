@@ -103,7 +103,7 @@
                                 <i class="fa fa-calendar"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                Patient Appointments
+                             Next  Appointments
                             </h3>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                     <form [formGroup]="PatientAppointmentForm">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="Timeframe"> consultant </label>
+                                <label for="Timeframe"> Consultant </label>
                                 <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
                                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                                 </select>
@@ -126,6 +126,22 @@
                                 <label for="Clear"> Tentative Time </label>
                                 <input class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime" type="date"
                                     required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <div class="m-form__group form-group">
+                                    <label>
+                                       Status
+                                    </label>
+                                    <div class="m-checkbox-list">
+                                      <label class="m-checkbox m-checkbox--state-success">
+                                        <input type="checkbox" formControlName="IsFinalAppointment">
+                                        For Final Appointment
+                                        <span></span>
+                                      </label>                                      
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                         <div class="m--space-20"></div>
@@ -146,6 +162,26 @@
 
         </div>
     </div>
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Prescription
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <app-visit-prescription></app-visit-prescription>
+            </div>
+        </div>
+    </div>
+     
 
     <div class="row">
         <div class="col-md-6">
@@ -191,8 +227,8 @@
                                         <tr *ngFor=" let t of VisitDiagnoses; let i = index">
                                             <td>{{t.DiagnosName}}</td>
                                             <td>
-                                                <button type="button" (click)="removediagnosis(i)" class="btn btn-primary">
-                                                    <i class="la la-archive"></i>
+                                                <button type="button" (click)="removediagnosis(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                                                    <i class="la la-trash-o"></i>
                                                 </button>
                                             </td>
                                         </tr>
@@ -258,8 +294,8 @@
                                         <tr *ngFor=" let t of VisitTests; let i = index">
                                             <td>{{t.TestName}}</td>
                                             <td>
-                                                <button type="button" (click)="removeTest(i)" class="btn btn-primary">
-                                                    <i class="la la-archive"></i>
+                                                <button type="button" (click)="removeTest(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                                                    <i class="la la-trash-o"></i>
                                                 </button>
                                             </td>
                                         </tr>

@@ -8,8 +8,8 @@ import { PayrollSetupService } from '../../../../core';
     styleUrls: ['./allowancearrear.component.scss']
 })
 export class AllowancearrearComponent implements OnInit {
+    
     public allowancearrear: any;
-    @ViewChild('clientGrid') clientGrid: DxDataGridComponent;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
@@ -20,7 +20,7 @@ export class AllowancearrearComponent implements OnInit {
 
     async addallowancearrear(value) {
         await this.payrollsetupservice.addAllowanceArrear(value.data);
-        this.clientGrid.instance.refresh();
+        this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
     }
 
     async updateallowancearrear(value) {

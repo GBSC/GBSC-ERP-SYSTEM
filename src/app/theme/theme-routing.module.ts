@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ThemeComponent } from './theme.component';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientModule } from '../../app/hims/patient/patient.module'
 import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';

@@ -35,6 +35,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
 
     async addTaxableincomeAdjustment(value) {
         await this.payrollsetupservice.addTaxableIncomeAdjustment(value.data);
+        this.taxableIncomeAdjustment = await this.payrollsetupservice.getTaxableIncomeAdjustments();
     }
 
     updatingTaxableincomeAdjustment(value) {

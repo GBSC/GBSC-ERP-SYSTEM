@@ -8,7 +8,7 @@
 			</div>
 			<div class="m-portlet__head-tools">
 				<div class="col-lg-12">
-					<button class="btn btn-primary" type="button">Submit</button>
+					<button class="btn btn-primary" type="button" (click)="SubmitPatientInvoice(InvoiceForm)">Submit</button>
 				</div>
 			</div>
 		</div>
@@ -22,7 +22,8 @@
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Date </label>
-							<input class="form-control m-input m-input--solid" disabled [value]="AppointmentDate | date : 'yyyy-MM-dd'" type="date" formControlName="Date">
+							<input class="form-control m-input m-input--solid" disabled [value]="AppointmentDate | date : 'yyyy-MM-dd'" type="date"
+							 formControlName="Date">
 						</div>
 						<div class="form-group col-lg-3">
 							<label for="exampleSelect1"> Visit Nature </label>
@@ -71,15 +72,16 @@
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1">Total Balance</label>
-									<input class="form-control m-input m-input--solid" disabled type="number" formControlName="TotalBalance">
+									<input class="form-control m-input m-input--solid" #TotalBalance disabled type="number" formControlName="TotalBalance">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1">Current Payment</label>
-									<input class="form-control m-input m-input--solid" [disabled]="PackagePayment" type="number" formControlName="PaidAmount">
+									<input class="form-control m-input m-input--solid" #CurrentPayment [disabled]="PackagePayment" type="number"
+									 formControlName="PaidAmount" (keyup)="CalculateNewBalance(CurrentPayment.value, TotalBalance.value)">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1">New Balance</label>
-									<input class="form-control m-input m-input--solid" disabled type="number" formControlName="NewBalance">
+									<input class="form-control m-input m-input--solid" disabled type="number" formControlName="NewBalance" [value]="NewBalance">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -96,11 +98,15 @@
 						<div class="form-group col-lg-6">
 							<div class="form-group row">
 								<div class="form-group col-lg-12">
-									<input type="radio" name="PaymentMethod" #PaymentMethodPayOrder (change)="onChange(PaymentMethodPayOrder.value)" value="PayOrder">Pay Order<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCash (change)="onChange(PaymentMethodCash.value)" value="Cash">Cash<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCreditCard (change)="onChange(PaymentMethodCreditCard.value)" value="CreditCard">Credit Card<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCheque (change)="onChange(PaymentMethodCheque.value)" value="Cheque">Cheque<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodOnline (change)="onChange(PaymentMethodOnline.value)" value="Online">Online<br>
+									<input type="radio" name="PaymentMethod" #PaymentMethodPayOrder (change)="onChange(PaymentMethodPayOrder.value)"
+									 value="PayOrder" />Pay Order<br>
+									<input type="radio" name="PaymentMethod" #PaymentMethodCash (change)="onChange(PaymentMethodCash.value)" value="Cash" />Cash<br>
+									<input type="radio" name="PaymentMethod" #PaymentMethodCreditCard (change)="onChange(PaymentMethodCreditCard.value)"
+									 value="CreditCard" />Credit Card<br>
+									<input type="radio" name="PaymentMethod" #PaymentMethodCheque (change)="onChange(PaymentMethodCheque.value)"
+									 value="Cheque" />Cheque<br>
+									<input type="radio" name="PaymentMethod" #PaymentMethodOnline (change)="onChange(PaymentMethodOnline.value)"
+									 value="Online" />Online<br>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -114,7 +120,8 @@
 								</div>
 								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Credit Card Charges (%) </label>
-									<input class="form-control m-input m-input--solid " type="number" [disabled]="CreditCardCahrges" formControlName="CreditCardChargesPercentage">
+									<input class="form-control m-input m-input--solid " type="number" [disabled]="CreditCardCahrges"
+									 formControlName="CreditCardChargesPercentage">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -133,23 +140,34 @@
 			</form>
 			<div class="m-section">
 				<div class="m-section__content">
-					<dx-data-grid id="gridContainer" [dataSource]="InvoiceDetails">
+					<dx-data-grid id="gridContainer" [dataSource]="PatientInvoiceItem" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddInvoiceDetail($event)">
 						<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
 						</dxo-editing>
 						<dxo-paging [pageSize]="5"></dxo-paging>
 						<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-						<dxi-column dataField="id" caption="Nature" [visible]="true" [setCellValue]="setItemValue">
-							<dxo-lookup [dataSource]="InvoiceItemNature" valueExpr="id" displayExpr="Name"></dxo-lookup>
+						<dxi-column dataField="id" caption="Nature" [visible]="true" [setCellValue]="setNature">
+							<dxo-lookup [dataSource]="InvoiceItemNature" valueExpr="Name" displayExpr="Name"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="inventoryItemId" caption="Item" [visible]="true" [setCellValue]="setItemValue">
-							<dxo-lookup [dataSource]="InvoiceItemNature" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+						<dxi-column dataField="consultantId" caption="Select Consultant" [visible]="true">
+							<dxo-lookup [dataSource]="Consultants" valueExpr="consultantId" displayExpr="name"></dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="testId" caption="Select Test" [visible]="true">
+							<dxo-lookup [dataSource]="Tests" valueExpr="testId" displayExpr="testName"></dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="packageId" caption="Select Package" [visible]="true">
+							<dxo-lookup [dataSource]="Packages" valueExpr="packageId" displayExpr="packageName"></dxo-lookup>
+						</dxi-column>
+						<dxi-column dataField="inventoryItemId" caption="Select Medicine" [visible]="true">
+							<dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
 						</dxi-column>
 						<dxi-column dataField="description" caption="Description"></dxi-column>
-						<dxi-column dataField="quantity" caption="Quantity"></dxi-column>
-						<dxi-column dataField="grossAmount" caption="Gross Amount"></dxi-column>
+						<dxi-column dataField="quantity" caption="Quantity" ></dxi-column>
+						<dxi-column dataField="unitPrice" caption="Unit Price" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="grossAmount" caption="Gross Amount" [allowEditing]="false"></dxi-column>
 						<dxi-column dataField="discountPercentage" caption="Discount Percentage"></dxi-column>
-						<dxi-column dataField="netAmount" caption="Net Amount"></dxi-column>
-						<dxi-column dataField="isPaid"  caption="Paid"></dxi-column>
+						<dxi-column dataField="discountAmount" caption="Discount Amount" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="netAmount" caption="Net Amount" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="isPaid" caption="Paid"></dxi-column>
 					</dx-data-grid>
 				</div>
 			</div>

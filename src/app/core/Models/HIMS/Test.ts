@@ -1,14 +1,14 @@
 import { AppointmentTest } from "./appointmentTest";
 
 export interface Test {
-	TestId : number,
-	TestCode : string,
-	TestName : string,
-	Charges : number,
-	Days : number,
-	IsLMP : boolean,
-	IsLabTest : boolean,
-	TestTypeId : number,
-	TestCategoryId : number,
-	AppointmentTests : AppointmentTest[]
+	testId : number,
+	testCode : string,
+	testName : string,
+	charges : number,
+	days : number,
+	isLMP : boolean,
+	isLabTest : boolean,
+	testTypeId : number,
+	testCategoryId : number,
+	appointmentTests : AppointmentTest[]
 }

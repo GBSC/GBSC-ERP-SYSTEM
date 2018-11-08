@@ -240,10 +240,17 @@ export class PatientService {
             
     }
     
+    GetConsultants() : Observable<Consultant[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants');
+    }
 
     async getConsultant() {
         this.consultant = await this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants').toPromise();
         return this.consultant;
+    }
+
+    GetConsultantById(id : number) : Observable<Consultant> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultant/' + id);
     }
 
     async addConsultant(consultant: Consultant) {

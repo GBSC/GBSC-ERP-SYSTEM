@@ -268,6 +268,10 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
     }
 
+    GetInventoryItemsArray(): Observable<InventoryItem[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
+    }
+
     async GetInventoryItemstest() {
         return await this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems').toPromise();
     }

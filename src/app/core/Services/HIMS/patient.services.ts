@@ -25,6 +25,8 @@ import { TestType } from '../../Models/HIMS/TestType';
 import { TestCategory } from '../../Models/HIMS/TestCategory';
 import { PatientInvoice } from '../../Models/HIMS/patientinvoice';
 import { PatientInvoiceItem } from '../../Models/HIMS/patientinvoiceitem';
+import { Test } from '../../Models/HIMS/Test';
+import { PatientPackage } from '../../Models/HIMS/PatientPackage';
 
 @Injectable()
 export class PatientService {
@@ -194,6 +196,10 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentsByDateAndPatientID/' + date + '/' + PatientId);
     }
 
+    GetFinalizedAppointmentsByMrnAndMonthYear(mrn : string, date : Date) : Observable<Appointment[]> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetFinalizedAppointmentsByMrnAndMonthYear/' + mrn + '/' + date);
+    }
+
     GetFinalizedAppointmentsByDateAndPatientID(date : Date, PatientId : number) : Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByDateAndPatientID/' + date + '/' + PatientId);
     }
@@ -238,10 +244,17 @@ export class PatientService {
             
     }
     
+    GetConsultants() : Observable<Consultant[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants');
+    }
 
     async getConsultant() {
         this.consultant = await this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants').toPromise();
         return this.consultant;
+    }
+
+    GetConsultantById(id : number) : Observable<Consultant> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultant/' + id);
     }
 
     async addConsultant(consultant: Consultant) {
@@ -259,6 +272,10 @@ export class PatientService {
     async getTests() {
         this.testing = await this.ApiService.get(this.API_URL + 'HimsSetup/GetTests').toPromise();
         return this.testing;
+    }
+
+    GetTests() : Observable<Test[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetTests');
     }
 
     async addTest(himssetuptest: himsSetupTest) {
@@ -380,6 +397,10 @@ export class PatientService {
         return this.package;
     }
 
+    GetPackages() : Observable<Package[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPackages');
+    }
+
     async addPackage(packge: Package) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddPackage', packge).toPromise();
     }
@@ -390,6 +411,30 @@ export class PatientService {
 
     async daletePackage(id) {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePackage/' + id).toPromise();
+    }
+
+    GetPatientPackages() : Observable<PatientPackage[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackages');
+    }
+
+    GetPatientPackage(id : number) : Observable<PatientPackage> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackage/' + id);
+    }
+
+    GetPatientPackageByPatientId(patientid : number) : Observable<PatientPackage> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/' + patientid);
+    }
+
+    AddPatientPackage(packge: Package) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'HimsSetup/AddPatientPackage', packge);
+    }
+
+    UpdatePatientPackage(packge: Package) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'HimsSetup/UpdatePatientPackage', packge);
+    }
+
+    DeletePatientPackage(id : number) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePatientPackage/' + id);
     }
 
 

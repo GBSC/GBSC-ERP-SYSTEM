@@ -1,7 +1,8 @@
 
 export interface Consultant {
-    ConsultantId: number,
-    ConsultantName: string,
-    ConsultantTitle: string,
-    Charges : number
+    consultantId: number,
+    name: string,
+    title : string,
+    charges : number,
+    specialization : string
 }

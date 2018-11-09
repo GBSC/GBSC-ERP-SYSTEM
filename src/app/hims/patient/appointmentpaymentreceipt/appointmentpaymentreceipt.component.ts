@@ -31,14 +31,13 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 	private SelectedPatientPackage : any = {};
 
-	private ChequeBank : boolean = true;
-	private ChequeNumber : boolean = true;
-	private CreditCardCharges : boolean = true;
-	private PackagePayment : boolean = true;
-
 	private SelectedInvoiceItemUnitPrice : number;
 	private SelectedInvoiceItemNameId : number;
 	private SelectedInvoiceItemName : string;
+
+	private TotalGrossAmount : number = 0;
+	private TotalDiscountAmount : number = 0;
+	private TotalNetAmount : number = 0;
 
 	private Index : number = 0;
 
@@ -55,7 +54,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	constructor(private PatientService : PatientService, private PharmacyService : PharmacyService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
 			MRN : [''],
-			Date : [],
+			Date : [new Date()],
 			VisitNature : [''],
 			SlipNumber : [''],
 			PatientName : [''],
@@ -65,18 +64,15 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			TotalPrice : [''],
 			TotalAmountPaid : [''],
 			TotalBalance : [''],
-			PaidAmount : [''],
+			CurrentPayment : [''],
 			NewBalance : [this.NewBalance],
 			Remarks : [''],
 			PaymentMethod : [''],
-			// ChequeNumber : [''],
-			ChequeNumber : [{value: 0, disabled: this.ChequeNumber}],
-			// Bank : [''],
-			Bank : [{value: 0, disabled: this.ChequeBank}],
-			Total : [''],
-			CreditCardChargesPercentage : [{value: 0, disabled: this.CreditCardCharges}],
-			// CreditCardChargesPercentage : [''],
+			ChequeNumber : [''],
+			Bank : [''],
+			CreditCardChargesPercentage : [],
 			GrossAmount : [''],
+			DiscountAmount : [''],
 			NetAmount : [''],
 		});
 	}
@@ -101,10 +97,11 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 		this.PatientService.GetConsultants().subscribe((res : Consultant[]) => {
 			this.Consultants = res;
 			// console.log(this.Consultants);
-		})
+		});
 
 		this.ActivatedRoute.params.subscribe(params => {
             if(params['id']) {
+				console.log("ID");
                 this.PatientService.GetAppointmentDetails(params['id']).subscribe((res : Appointment) => {
 					this.SelectedAppointment = res;
 					// console.log(this.SelectedAppointment);
@@ -113,7 +110,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 					if(this.SelectedAppointment.patient.partner === null)
 						partner = '';
 					else
-						partner = this.SelectedAppointment.patient.partner.firstName;
+						partner = this.SelectedAppointment.patient.partner.firstName || '';
 					
 					this.AppointmentDate = new Date(this.SelectedAppointment.appointmentDate);
 
@@ -121,14 +118,14 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 					if(this.SelectedAppointment.patient.patientPackage) {
 						this.SelectedPatientPackage = this.Packages.find(a => a.packageId === this.SelectedAppointment.patient.patientPackage.packageId);
-						packagename = this.SelectedPatientPackage.packageName;
+						packagename = this.SelectedPatientPackage.packageName || '';
 					}
 					else {
 						packagename = '';
 					}
 
 					if(this.SelectedPatientPackage != null) {
-						this.PackagePayment = true;
+						this.InvoiceForm.get('CurrentPayment').enable();
 					}
 
 					let patientpackage : any = {
@@ -155,28 +152,53 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 						Remarks : this.SelectedAppointment.patientInvoice.invoiceRemarks || ''
 					});
 				});
-            }
+			}
+			else {
+				console.log("No ID");
+				this.InvoiceForm.get('MRN').enable();
+				this.InvoiceForm.get('Date').enable();
+				this.InvoiceForm.get('VisitNature').enable();
+				this.InvoiceForm.get('SlipNumber').enable();
+			}
 		});
 	}
 
 	onChange(value) {
 		// console.log(value);
 		if(value === "Cheque") {
-			this.ChequeBank = false;
-			this.ChequeNumber = false;
+			this.InvoiceForm.get('Bank').enable();
+			this.InvoiceForm.get('ChequeNumber').enable();
+			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
 		}
 		else if(value === "CreditCard") {
-			this.CreditCardCharges = false;
+			this.InvoiceForm.get('CreditCardChargesPercentage').enable();
 		}
 		else {
-			this.ChequeBank = true;
-			this.ChequeNumber = true;
-			this.CreditCardCharges = true;
+			this.InvoiceForm.get('Bank').disable();
+			this.InvoiceForm.get('ChequeNumber').disable();
+			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
 		}
 	}
 
-	CalculateNewBalance(CurrentPayment, TotalBalance) {
-		this.NewBalance = TotalBalance - CurrentPayment;
+	CalculateNewBalance(event, CurrentPayment, TotalBalance) {
+		// console.log(event);
+		this.NewBalance = Number.parseFloat(TotalBalance) - Number.parseFloat(CurrentPayment);
+		if(event.key === "Enter")
+		{
+			// console.log(event.code === "Enter");
+			this.TotalGrossAmount += Number.parseFloat(CurrentPayment);
+			this.TotalNetAmount += Number.parseFloat(CurrentPayment);
+			this.InvoiceForm.get('CurrentPayment').disable();
+		}
+	}
+
+	CalculateNetAmount(event, CreditCardChargesPercentage) {
+		if(event.key === "Enter")
+		{
+			this.TotalNetAmount += this.TotalNetAmount * (Number.parseFloat(CreditCardChargesPercentage) / 100);
+			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
+			this.InvoiceForm.get('PaymentMethod').disable();
+		}
 	}
 
 	setNature(rowData: any, value: any): void {
@@ -299,36 +321,87 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			}
 
 			let a : any = {
-				Nature : value.data.id,
-				Description : value.data.description,
+				Nature : <string>(value.data.id),
+				Description : <string>(value.data.description),
 				UnitPrice : this.SelectedInvoiceItemUnitPrice,
 				NameId : this.SelectedInvoiceItemNameId,
 				Name : this.SelectedInvoiceItemName,
-				Quantity : value.data.quantity,
-				GrossAmount : this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity),
-				DiscountPercentage : value.data.discountPercentage,
-				DiscountAmount : Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100,
-				NetAmount : (this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity)) - (Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100),
-				IsPaid : value.data.isPaid
+				Quantity : <Number>(value.data.quantity),
+				GrossAmount : <Number>(this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity)),
+				DiscountPercentage : <Number>(value.data.discountPercentage),
+				DiscountAmount : <Number>(Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100),
+				NetAmount : <Number>((this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity)) - (Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100)),
+				IsPaid : <boolean>(value.data.isPaid)
 			};
 
+			// value.data.nameId = this.SelectedInvoiceItemNameId;
+			value.data.__KEY__ = this.Index;
+			value.data.nature = value.data.id;
+			value.data.name = this.SelectedInvoiceItemName;
 			value.data.unitPrice = this.SelectedInvoiceItemUnitPrice;
 			value.data.grossAmount = this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity);
 			value.data.discountAmount = Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100;
 			value.data.netAmount = (this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity)) - (Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100);
 
-			// console.log(a);
+			// console.log(value.data);
+
 			this.PatientInvoiceItem.push(value.data);
 			this.PatientInvoiceItem.splice(this.Index, 1);
+
+			if(value.data.isPaid === "true")
+			{
+				this.TotalGrossAmount += value.data.grossAmount;
+				this.TotalDiscountAmount += value.data.discountAmount;
+				this.TotalNetAmount += value.data.netAmount;
+			}
+
+			// console.log(this.TotalGrossAmount, this.TotalDiscountAmount, this.TotalNetAmount);
+
+			this.PatientInvoiceItemsArrayForPost[this.Index] = a;
 			this.Index += 1;
-			this.PatientInvoiceItemsArrayForPost.push(a);
 			// console.log(this.PatientInvoiceItem);
 			// console.log(this.PatientInvoiceItemsArrayForPost);
 		}
 	}
 
+	DeleteInvoiceDetail(value) {
+		// console.log(value);
+		if(value.data.isPaid === "true")
+		{
+			this.TotalGrossAmount -= Number.parseFloat(value.data.grossAmount);
+			this.TotalDiscountAmount -= Number.parseFloat(value.data.discountAmount);
+			this.TotalNetAmount -= Number.parseFloat(value.data.netAmount);
+		}
+		this.PatientInvoiceItemsArrayForPost.splice(value.data.__KEY__ , 1);
+		// console.log(this.PatientInvoiceItemsArrayForPost);
+	}
+
 	SubmitPatientInvoice(value) {
 		console.log(value);
-		
+		// this.TotalGrossAmount += Number.parseFloat(value.value.CurrentPayment);
+		// this.TotalNetAmount += Number.parseFloat(value.value.CurrentPayment);
+
+		let a : any = {
+			SlipNumber : <number>value.SlipNumber,
+			DateCreated : <Date>value.Date,
+			InvoiceType : "PatientInvoice",
+			TotalPrice : Number.parseFloat(value.TotalPrice),
+			TotalAmountPaid : Number.parseFloat(value.TotalAmountPaid) + Number.parseFloat(value.CurrentPayment),
+			TotalBalance : Number.parseFloat(value.NewBalance),
+			LastPaidAmount : Number.parseFloat(value.CurrentPayment),
+			InvoiceRemarks : <string>value.Remarks,
+			Consultant : <string>value.Consultant,
+			PaymentMethod : <string>value.PaymentMethod,
+			ChequeNumber : <string>value.ChequeNumber,
+			Bank : <string>value.Bank,
+			CreditCardChargesPercentage : <number>value.CreditCardChargesPercentage,
+			CreditCardChargesAmount : <number>((Number.parseFloat(value.CreditCardChargesPercentage) / 100) * this.TotalNetAmount),
+			TotalGrossAmount : this.TotalGrossAmount,
+			TotalDiscountAmount : this.TotalDiscountAmount,
+			TotalNetAmount : this.TotalNetAmount,
+			PatientId : this.SelectedAppointment.patient.patientId,
+			AppointmentId : this.SelectedAppointment.appointmentId,
+			PatientInvoiceItems : this.PatientInvoiceItemsArrayForPost
+		}
 	}
 }

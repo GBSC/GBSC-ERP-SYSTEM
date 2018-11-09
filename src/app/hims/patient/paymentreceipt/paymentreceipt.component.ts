@@ -30,7 +30,8 @@ export class PaymentreceiptComponent implements OnInit {
         
         this.ActivatedRoute.params.subscribe(params => {
             if(params['id']) {
-                this.Router.navigate(['hims/patient/appointmentpaymentreceipt/' + params['id']]);
+                this.id = params['id'];
+                this.Router.navigate(['hims/patient/paymentreceipt/' + params['id']]);
                 // this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
                 //     this.SelectedAppointment = res;
                 // });
@@ -66,7 +67,7 @@ export class PaymentreceiptComponent implements OnInit {
         // this.SelectedAppointment = this.Appointments.find(a => a.AppointmentId === value.data.appointmentId);
         // console.log("SelectedAppointment", this.SelectedAppointment);
         // this.Router.navigate(['/appointmentpaymentreceipt/' + this.SelectedAppointment.AppointmentId]);
-        this.Router.navigate(['hims/patient/appointmentpaymentreceipt/' + value.data.appointmentId]);
+        this.Router.navigate(['hims/patient/paymentreceipt/' + value.data.appointmentId]);
     }
 
 

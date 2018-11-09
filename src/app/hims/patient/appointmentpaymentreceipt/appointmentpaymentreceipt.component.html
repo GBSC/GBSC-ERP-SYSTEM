@@ -1,6 +1,5 @@
-<div class="col-xl-12">
-	<div class="m-portlet">
-		<div class="m-portlet__head">
+
+		<!-- <div class="m-portlet__head">
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">Payment Receipt</h3>
@@ -8,11 +7,11 @@
 			</div>
 			<div class="m-portlet__head-tools">
 				<div class="col-lg-12">
-					<button class="btn btn-primary" type="button" (click)="SubmitPatientInvoice(InvoiceForm)">Submit</button>
+					<button class="btn btn-primary" type="button" (click)="SubmitPatientInvoice(InvoiceForm.value)">Submit</button>
 				</div>
 			</div>
-		</div>
-		<div class="m-portlet__body">
+		</div> -->
+		
 			<form class="m-form ng-untouched" [formGroup]="InvoiceForm">
 				<div class="m-portlet__body">
 					<div class="form-group row">
@@ -54,30 +53,29 @@
 									<label for="exampleSelect1"> Spouse Name </label>
 									<input class="form-control m-input m-input--solid " disabled type="text" formControlName="SpouseName">
 								</div>
-							</div>
-							<div class="form-group row">
-								<div class="form-group col-lg-4">
+							<!-- </div> -->
+							<!-- <div class="form-group row"> -->
+								<div class="form-group col-lg-6">
 									<label for="exampleSelect1"> Package </label>
 									<input class="form-control m-input m-input--solid" disabled type="text" formControlName="Package">
 								</div>
 							</div>
 							<div class="form-group row">
-								<div class="form-group col-lg-3">
-									<label for="exampleSelect1">Total Price</label>
+								<div class="form-group col-lg-2">
+									<label for="exampleSelect1">Price</label>
 									<input class="form-control m-input m-input--solid" disabled type="number" formControlName="TotalPrice">
 								</div>
-								<div class="form-group col-lg-3">
-									<label for="exampleSelect1">Total Paid</label>
+								<div class="form-group col-lg-2">
+									<label for="exampleSelect1">Paid</label>
 									<input class="form-control m-input m-input--solid" disabled type="number" formControlName="TotalAmountPaid">
 								</div>
-								<div class="form-group col-lg-3">
-									<label for="exampleSelect1">Total Balance</label>
+								<div class="form-group col-lg-2">
+									<label for="exampleSelect1">Balance</label>
 									<input class="form-control m-input m-input--solid" #TotalBalance disabled type="number" formControlName="TotalBalance">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1">Current Payment</label>
-									<input class="form-control m-input m-input--solid" #CurrentPayment [disabled]="PackagePayment" type="number"
-									 formControlName="PaidAmount" (keyup)="CalculateNewBalance(CurrentPayment.value, TotalBalance.value)">
+									<input class="form-control m-input m-input--solid" #CurrentPayment disabled type="number" formControlName="CurrentPayment" (keyup)="CalculateNewBalance($event, CurrentPayment.value, TotalBalance.value)">
 								</div>
 								<div class="form-group col-lg-3">
 									<label for="exampleSelect1">New Balance</label>
@@ -85,7 +83,7 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<div class="form-group col-lg-3">
+								<div class="form-group col-lg-9">
 									<label for="exampleSelect1"> Remarks </label>
 									<input class="form-control m-input m-input--solid" type="text" formControlName="Remarks">
 								</div>
@@ -98,40 +96,49 @@
 						<div class="form-group col-lg-6">
 							<div class="form-group row">
 								<div class="form-group col-lg-12">
-									<input type="radio" name="PaymentMethod" #PaymentMethodPayOrder (change)="onChange(PaymentMethodPayOrder.value)"
-									 value="PayOrder" />Pay Order<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCash (change)="onChange(PaymentMethodCash.value)" value="Cash" />Cash<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCreditCard (change)="onChange(PaymentMethodCreditCard.value)"
-									 value="CreditCard" />Credit Card<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodCheque (change)="onChange(PaymentMethodCheque.value)"
-									 value="Cheque" />Cheque<br>
-									<input type="radio" name="PaymentMethod" #PaymentMethodOnline (change)="onChange(PaymentMethodOnline.value)"
-									 value="Online" />Online<br>
+									<label class="radio-inline2">
+										<input type="radio" formControlName="PaymentMethod" #PaymentMethodCash (change)="onChange(PaymentMethodCash.value)" value="Cash" checked/>Cash<br>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" formControlName="PaymentMethod" #PaymentMethodPayOrder (change)="onChange(PaymentMethodPayOrder.value)" value="PayOrder" />Pay Order<br>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" formControlName="PaymentMethod" #PaymentMethodCreditCard (change)="onChange(PaymentMethodCreditCard.value)" value="CreditCard" />Credit Card<br>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" formControlName="PaymentMethod" #PaymentMethodCheque (change)="onChange(PaymentMethodCheque.value)" value="Cheque" />Cheque<br>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" formControlName="PaymentMethod" #PaymentMethodOnline (change)="onChange(PaymentMethodOnline.value)" value="Online"/>Online<br>
+									</label>
 								</div>
 							</div>
 							<div class="form-group row">
 								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Cheque # </label>
-									<input class="form-control m-input m-input--solid " [disabled]="ChequeNumber" type="text" formControlName="ChequeNumber">
+									<input class="form-control m-input m-input--solid " disabled type="text" formControlName="ChequeNumber">
 								</div>
 								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Bank </label>
-									<input class="form-control m-input m-input--solid " [disabled]="ChequeBank" type="text" formControlName="Bank">
+									<input class="form-control m-input m-input--solid " disabled type="text" formControlName="Bank">
 								</div>
 								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Credit Card Charges (%) </label>
-									<input class="form-control m-input m-input--solid " type="number" [disabled]="CreditCardCahrges"
-									 formControlName="CreditCardChargesPercentage">
+									<input class="form-control m-input m-input--solid " disabled type="number" #CreditCardChargesPercentage formControlName="CreditCardChargesPercentage" (keyup)="CalculateNetAmount($event, CreditCardChargesPercentage.value)">
 								</div>
 							</div>
 							<div class="form-group row">
-								<div class="form-group col-lg-3">
+								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Gross Amount </label>
-									<input class="form-control m-input m-input--solid " type="number" formControlName="GrossAmount">
+									<input class="form-control m-input m-input--solid " disabled type="number" [value]="TotalGrossAmount" formControlName="GrossAmount">
 								</div>
-								<div class="form-group col-lg-3">
+								<div class="form-group col-lg-4">
+									<label for="exampleSelect1"> Discount Amount </label>
+									<input class="form-control m-input m-input--solid " disabled type="number" [value]="TotalDiscountAmount" formControlName="DiscountAmount">
+								</div>
+								<div class="form-group col-lg-4">
 									<label for="exampleSelect1"> Net Amount </label>
-									<input class="form-control m-input m-input--solid " type="number" formControlName="NetAmount">
+									<input class="form-control m-input m-input--solid " disabled type="number" [value]="TotalNetAmount" formControlName="NetAmount">
 								</div>
 							</div>
 						</div>
@@ -140,37 +147,36 @@
 			</form>
 			<div class="m-section">
 				<div class="m-section__content">
-					<dx-data-grid id="gridContainer" [dataSource]="PatientInvoiceItem" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddInvoiceDetail($event)">
-						<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+					<dx-data-grid id="gridContainer" [dataSource]="PatientInvoiceItem" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddInvoiceDetail($event)" (onRowRemoved)="DeleteInvoiceDetail($event)">
+						<dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
 						</dxo-editing>
 						<dxo-paging [pageSize]="5"></dxo-paging>
 						<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-						<dxi-column dataField="id" caption="Nature" [visible]="true" [setCellValue]="setNature">
+						<dxi-column dataField="id" caption="Nature" [visible]="false" [setCellValue]="setNature">
 							<dxo-lookup [dataSource]="InvoiceItemNature" valueExpr="Name" displayExpr="Name"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="consultantId" caption="Select Consultant" [visible]="true">
+						<dxi-column dataField="consultantId" caption="Select Consultant" [visible]="false">
 							<dxo-lookup [dataSource]="Consultants" valueExpr="consultantId" displayExpr="name"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="testId" caption="Select Test" [visible]="true">
+						<dxi-column dataField="testId" caption="Select Test" [visible]="false">
 							<dxo-lookup [dataSource]="Tests" valueExpr="testId" displayExpr="testName"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="packageId" caption="Select Package" [visible]="true">
+						<dxi-column dataField="packageId" caption="Select Package" [visible]="false">
 							<dxo-lookup [dataSource]="Packages" valueExpr="packageId" displayExpr="packageName"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="inventoryItemId" caption="Select Medicine" [visible]="true">
+						<dxi-column dataField="inventoryItemId" caption="Select Medicine" [visible]="false">
 							<dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
 						</dxi-column>
-						<dxi-column dataField="description" caption="Description"></dxi-column>
-						<dxi-column dataField="quantity" caption="Quantity" ></dxi-column>
-						<dxi-column dataField="unitPrice" caption="Unit Price" [allowEditing]="false"></dxi-column>
-						<dxi-column dataField="grossAmount" caption="Gross Amount" [allowEditing]="false"></dxi-column>
-						<dxi-column dataField="discountPercentage" caption="Discount Percentage"></dxi-column>
-						<dxi-column dataField="discountAmount" caption="Discount Amount" [allowEditing]="false"></dxi-column>
-						<dxi-column dataField="netAmount" caption="Net Amount" [allowEditing]="false"></dxi-column>
-						<dxi-column dataField="isPaid" caption="Paid"></dxi-column>
+						<dxi-column dataField="nature" dataType="text" caption="Nature" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="name" dataType="text" caption="Name" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="description" dataType="text" caption="Description"></dxi-column>
+						<dxi-column dataField="quantity" dataType="number" caption="Quantity" ></dxi-column>
+						<dxi-column dataField="unitPrice" dataType="number" caption="Unit Price" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="grossAmount" dataType="number" caption="Gross Amount" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="discountPercentage" dataType="number" caption="Discount Percentage"></dxi-column>
+						<dxi-column dataField="discountAmount" dataType="number" caption="Discount Amount" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="netAmount" dataType="number" caption="Net Amount" [allowEditing]="false"></dxi-column>
+						<dxi-column dataField="isPaid" dataType="boolean" caption="Paid"></dxi-column>
 					</dx-data-grid>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>

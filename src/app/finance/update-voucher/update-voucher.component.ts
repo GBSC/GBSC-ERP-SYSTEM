@@ -18,7 +18,7 @@ export class UpdateVoucherComponent implements OnInit {
 
   public departments: any;
   public financialYear: any;
-  public Detail: any[] =[];
+  public Detail: any[] = [];
   public detailAccount: any;
   public VoucherDetailForm: any;
   public VoucherForm: any;
@@ -51,7 +51,14 @@ export class UpdateVoucherComponent implements OnInit {
 
     })
 
-    // this.Vouchers = await this.financeService.getVouchers();
+    // this.VoucherDetailForm = this.fb.group({
+    //   DetailAccountId: [''],
+    //   DebitAmount: [''],
+    //   CreditAmount: [''],
+    //   DepartmentName: [''],
+    //   UniqueName: [''],
+    //   Description: ['']
+    // })
 
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 
@@ -66,11 +73,15 @@ export class UpdateVoucherComponent implements OnInit {
 
     });
 
-    if (this.isUpdate() === true) {
 
+    if (this.isUpdate() === true) {
+      let myArray = this.Detail;
+      localStorage.setItem('userCache', JSON.stringify(myArray));
+  
       this.financeService.getVoucher(this.id).subscribe(resp => {
-        this.Voucher = resp; 
+        this.Voucher = resp;
         console.log(this.Voucher);
+
 
         // this.Detail =this.Voucher.voucherDetails;
         console.log(this.Detail);
@@ -116,23 +127,20 @@ export class UpdateVoucherComponent implements OnInit {
     const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
     for (let c of control) {
       this.creditTotal += (+c.value.CreditAmount);
-
     }
   }
- 
 
   addNewRow(e, i) {
     const control: any = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
     if ((e.keyCode === 9 || e.keyCode === 13)
       && e.target.value && (i == this.VoucherDetailForm.controls.VoucherDetails.controls.length - 1)) {
-      console.log(this.VoucherDetailForm.controls.VoucherDetails.controls)
       control.push(this.initItemRows());
-      console.log(control)
     }
   }
 
   deleteRow(index: number) {
     const control = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
+    // this.financeService.DeleteVoucher(value.key);
     control.removeAt(index);
   }
 
@@ -159,16 +167,26 @@ export class UpdateVoucherComponent implements OnInit {
       return false;
   }
 
-  async update(value) {
+  async updatevoucherDetail(value) {
+    console.log(value);
 
+  }
+
+  async update(value) {
     value.voucherId = this.id;
-    value.VoucherDetails = this.Detail;
-    console.log(value);    
+    value.VoucherDetails = this.Detail; 
+    if (this.creditTotal === this.debitTotal) {
+
+      this.VoucherForm.value.voucherDetails = this.VoucherDetailForm.value.VoucherDetails;
     this.financeService.updateVoucher(value).subscribe(resp => {
       console.log(value);
       this.toastr.success("Voucher Updated");
       this.router.navigate(['finance/voucher-detail']);
     })
+  }
+    else {
+      this.toastr.error("Credit Debit Amount not equal");
+    }
   }
 
   patchValues(voucher: any) {
@@ -179,21 +197,7 @@ export class UpdateVoucherComponent implements OnInit {
       VoucherCode: voucher.voucherCode,
       Description: voucher.description,
       ChequeNumber: voucher.chequeNumber,
-      VoucherTypeId: voucher.voucherTypeId,
-      DetailAccountId: voucher.detailAccountId,
-      DebitAmount: voucher.debitAmount,
-      CreditAmount: voucher.creditAmount,
-      DepartmentName: voucher.departmentName,
-      UniqueName: voucher.uniqueName 
-    })
-  
-    this.VoucherDetailForm.patchValue({
- 
-      DetailAccountId: voucher.detailAccountId,
-      DebitAmount: voucher.debitAmount,
-      CreditAmount: voucher.creditAmount,
-      DepartmentName: voucher.departmentName,
-      UniqueName: voucher.uniqueName 
+      VoucherTypeId: voucher.voucherTypeId
     })
   }
 }

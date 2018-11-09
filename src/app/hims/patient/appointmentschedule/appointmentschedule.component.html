@@ -55,7 +55,7 @@
                 <div class="form-group col-lg-3">
                   <label for="exampleInputEmail1">Appointment Date</label>
                   <input #date class="form-control m-input m-input--solid" [value]="currentdate | date : 'yyyy-MM-dd' || ''" formControlName="AppointmentDate"
-                    type="date" required>{{currentdate}}
+                    type="date" required>
                 </div> 
                 <div class="form-group col-lg-5"></div>
                 <div class="form-group  col-lg-1 ">
@@ -92,9 +92,18 @@
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
                       *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="">
                     </dx-select-box> 
-                    <!-- [value]="patientForm.FirstName + ' ' +patientForm.LastName"  [value]="patientForm.value.PhoneNumber"  -->
-                    <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
-                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>
+
+
+                 <input [value]="patientById?.fullName  || ''"  *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>  
+
+
+                    <!-- <select  *ngIf="newOrPrevious === 'new'? true : false" class="form-control m-input m-input--solid" formControlName="PatientId">
+                      <option  [value]="patientById?.patientId" selected disabled >{{patientById?.fullName  || ''}}</option>
+                    </select>
+  -->
+                    <!-- <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled> -->
                   </div>
                   <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1"> Visit Nature </label>

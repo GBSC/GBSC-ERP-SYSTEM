@@ -37,6 +37,7 @@ import { ReportsComponent } from './Reports/reports/reports.component';
 import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
+import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
@@ -69,6 +70,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
+            { path: 'patientinvoiceview/:id', component: PatientInvoiceViewComponent },
             { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
                 path: "setup",

@@ -13,7 +13,6 @@ import { ActivatedRoute ,Router } from '@angular/router';
 })
 export class PaymentreceiptComponent implements OnInit {
 
-    private SelectedPatient : any;
     private Appointments : Appointment[] = [];
     // private SelectedAppointment : Appointment;
 
@@ -32,42 +31,24 @@ export class PaymentreceiptComponent implements OnInit {
             if(params['id']) {
                 this.id = params['id'];
                 this.Router.navigate(['hims/patient/paymentreceipt/' + params['id']]);
-                // this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
-                //     this.SelectedAppointment = res;
-                // });
             }
         });
 
     }
 
-    GetPatientByMrn(mrn : string, keycode){
-       if(keycode.key === "Enter") {
-        //    console.log(mrn);
-            this.PatientService.SearchPatientByMrn(mrn).subscribe((res : any) => {
-                if(res === null) {
-                    this.Toastr.error("Incorrect MRN");
-                }
-                else {
-                    this.SelectedPatient = res;
-                    this.Toastr.success("Patient Selected");
-                }
-            });
-        }
-    }
-
-    GetAppointmentByDateAndPatientID(date : Date) {
-        // console.log(date);
-        this.PatientService.GetFinalizedAppointmentsByDateAndPatientID(date, this.SelectedPatient.patientId).subscribe((res : Appointment[]) => {
+    GetAppointmentsByMRN(mrn : string) {
+        this.PatientService.GetFinalizedAppointmentsByMRN(mrn).subscribe((res : Appointment[]) => {
             this.Appointments = res;
-            this.Toastr.success("Appointments Updated");
+            // console.log(this.Appointments);
         });
     }
 
-    ViewInvoice(value) {
-        // this.SelectedAppointment = this.Appointments.find(a => a.AppointmentId === value.data.appointmentId);
-        // console.log("SelectedAppointment", this.SelectedAppointment);
-        // this.Router.navigate(['/appointmentpaymentreceipt/' + this.SelectedAppointment.AppointmentId]);
+    GenerateInvoice(value) {
         this.Router.navigate(['hims/patient/paymentreceipt/' + value.data.appointmentId]);
+    }
+
+    ViewInvoice(value) {
+        console.log(value.data);
     }
 
 

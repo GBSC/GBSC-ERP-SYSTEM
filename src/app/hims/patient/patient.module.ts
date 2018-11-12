@@ -44,6 +44,7 @@ import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 import { DxDateBoxModule } from 'devextreme-angular';
+import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -102,6 +103,7 @@ import { DxDateBoxModule } from 'devextreme-angular';
         TestTypeComponent,
         TestCategoryComponent,
         AppointmentpaymentreceiptComponent,
+        PatientInvoiceViewComponent,
     ]
 })
 export class PatientModule { }

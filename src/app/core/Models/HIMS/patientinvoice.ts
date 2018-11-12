@@ -5,7 +5,7 @@ import { PatientInvoiceItem } from "./patientinvoiceitem";
 export interface PatientInvoice {
 	PatientInvoiceId : number,
 	SlipNumber : number,
-	DateCreated : number,
+	DateCreated : Date,
 	InvoiceType : number,
 	TotalPrice : number,
 	TotalAmountPaid : number,

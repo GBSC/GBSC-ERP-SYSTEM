@@ -204,6 +204,14 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByDateAndPatientID/' + date + '/' + PatientId);
     }
 
+    GetFinalizedAppointmentsByDateAndMRN(date : Date, mrn : string) : Observable<Appointment[]> {
+        return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByDateAndMRN/' + date + '/' + mrn);
+    }
+
+    GetFinalizedAppointmentsByMRN(mrn : string) : Observable<Appointment[]> {
+        return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByMRN/' + mrn);
+    }
+
     async GetAppointmentByDate(date){
          return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
     }
@@ -217,7 +225,11 @@ export class PatientService {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
-      updateappointmentbygeneralactinForvisitstrat(value) :Observable <Appointment>{
+    UpdateAppointment(appointment: Appointment) : Observable<Appointment>{
+        return this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment);
+    }
+
+    updateappointmentbygeneralactinForvisitstrat(value) :Observable <Appointment>{
         return this.ApiService.put(this.API_URL+'Appointments/UpdateAppointment',value)
     }
 
@@ -425,11 +437,11 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/' + patientid);
     }
 
-    AddPatientPackage(packge: Package) : Observable<any> {
+    AddPatientPackage(packge: PatientPackage) : Observable<any> {
         return this.ApiService.post(this.API_URL + 'HimsSetup/AddPatientPackage', packge);
     }
 
-    UpdatePatientPackage(packge: Package) : Observable<any> {
+    UpdatePatientPackage(packge: PatientPackage) : Observable<any> {
         return this.ApiService.put(this.API_URL + 'HimsSetup/UpdatePatientPackage', packge);
     }
 
@@ -616,6 +628,10 @@ export class PatientService {
 
     GetPatientInvoices() : Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoices');
+    }
+
+    GetPatientInvoicesWithDetailsByPatientId(patientid : number) : Observable<PatientInvoice[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoicesWithDetailsByPatientId/' + patientid);
     }
 
     GetPatientInvoice(id : number) : Observable<PatientInvoice> {

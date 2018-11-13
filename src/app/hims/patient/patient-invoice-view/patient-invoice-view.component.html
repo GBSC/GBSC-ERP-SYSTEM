@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
-      <dx-data-grid [dataSource]="PatientInvoices"  (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
-        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dx-data-grid [dataSource]="PatientInvoices" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+        <dxo-search-panel [visible]="true" [width]="auto" placeholder="Search..."></dxo-search-panel>
         <dxo-filter-row [visible]="false"></dxo-filter-row>
         <dxo-header-filter [visible]="false"></dxo-header-filter>
         <dxo-paging [pageSize]="5"></dxo-paging>
@@ -12,6 +12,7 @@
         <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
         <dxo-selection mode="single"></dxo-selection>
         <dxi-column dataField="slipNumber" dataType="text" caption="Slip No." [fixed]="true"></dxi-column>
+        <dxi-column dataField="dateCreated" dataType="date" caption="Invoice Date"></dxi-column>
         <dxi-column dataField="invoiceType" dataType="text" caption="Type"></dxi-column>
         <dxi-column dataField="totalPrice" dataType="number" caption="Package Price"></dxi-column>
         <dxi-column dataField="totalAmountPaid" dataType="number" caption="Package Paid"></dxi-column>
@@ -27,7 +28,6 @@
         <dxi-column dataField="totalGrossAmount" dataType="number" caption="Gross Amount"></dxi-column>
         <dxi-column dataField="totalDiscountAmount" dataType="number" caption="Discount Amount"></dxi-column>
         <dxi-column dataField="totalNetAmount" dataType="number" caption="Net Amount"></dxi-column>
-        <dxi-column dataField="dateCreated" dataType="date" caption="Invoice Date"></dxi-column>
          <div *dxTemplate="let order of 'detail'">
           <dx-data-grid [dataSource]="order.data.patientInvoiceItems" showBorders="true">
               <dxi-column dataField="nature" dataType="text" caption="Nature"></dxi-column>

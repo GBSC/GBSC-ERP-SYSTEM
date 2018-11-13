@@ -112,7 +112,13 @@ export class PatientService {
         return x;
     }
 
+    GetPatientWithPackageAndPartnerByMRN(mrn : string) : Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientWithPackageAndPartnerByMRN/' + mrn);
+    }
 
+    GetPatientInvoicesWithDetailsByMRN(mrn : string) : Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRN/' + mrn);
+    }
 
     async getpatientForupdating(value) {
         this.patientData = await value

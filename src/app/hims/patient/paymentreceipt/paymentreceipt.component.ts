@@ -39,7 +39,7 @@ export class PaymentreceiptComponent implements OnInit {
     GetAppointmentsByMRN(mrn : string) {
         this.PatientService.GetFinalizedAppointmentsByMRN(mrn).subscribe((res : Appointment[]) => {
             this.Appointments = res;
-            // console.log(this.Appointments);
+            console.log(this.Appointments);
         });
     }
 

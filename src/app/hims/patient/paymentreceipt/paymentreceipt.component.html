@@ -57,15 +57,16 @@
 								<dxi-column dataField="patient.firstName" caption="Patient"></dxi-column>
 								<dxi-column dataField="visitStatus" caption="Visit Status"></dxi-column>
 								<dxi-column dataField="isFinalAppointment" caption="Finalized"></dxi-column>
-								<dxi-column caption="Invoice" cellTemplate="chartCellTemplate" [width]="90" [allowEditing]="false"
-								 [formItem]="{visible: false}"></dxi-column>
+								<dxi-column dataField="isPaid" caption="Paid"></dxi-column>
+								<dxi-column caption="Invoice" cellTemplate="chartCellTemplate" [width]="auto" [formItem]="{visible: false}"></dxi-column>
 								<div *dxTemplate="let d of 'chartCellTemplate'">
-									<div class="chart-cell" *ngIf="isPaid == 'true'">
-										<dx-button caption="Add Invoice" (click)="ViewInvoice(d)" icon="view"></dx-button>
-									</div>
-									<div class="chart-cell" *ngIf="isPaid == 'false' || 'null'">
-										<dx-button caption="Generate Invoice" (click)="GenerateInvoice(d)" icon="add"></dx-button>
-									</div>
+									<div class="chart-cell">
+										<dx-button *ngIf="isPaid; else Generate" caption="Add Invoice" (click)="ViewInvoice(d)" icon="back"></dx-button>
+									<!-- </div> -->
+									<ng-template class="chart-cell" #Generate>
+										<dx-button caption="Generate Invoice" (click)="GenerateInvoice(d)" icon="plus"></dx-button>
+									</ng-template>
+								</div>
 								</div>	
 							</dx-data-grid>
 						</div>

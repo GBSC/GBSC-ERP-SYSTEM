@@ -17,8 +17,10 @@
                                 <dx-data-grid id="gridContainer"
                                  [dataSource]="relations"
                                  keyExpr="relationId" 
+                                 [columnAutoWidth]="true"
                                  (onRowInserted)="addRelation($event)" (onRowUpdated)="updateRelation($event)" >
-                                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                    <dxo-popup title="User Dependants" [showTitle]="true" [width]="850" [height]="600" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                                   </dxo-editing>
                                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                                   <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -27,16 +29,24 @@
                                   <dxo-paging [pageSize]="6"></dxo-paging>
                                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                   </dxo-pager> 
-                                  <dxi-column dataField="name"></dxi-column>
+                                  <dxi-column dataField="name">
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                  </dxi-column>
                                   <dxi-column dataField="email"></dxi-column>
                                   <dxi-column dataField="address"></dxi-column>
-                                  <dxi-column dataField="permanentAddress"></dxi-column>
-                                  <dxi-column dataField="phone"></dxi-column>
+                                  <dxi-column dataField="permanentAddress" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="phone">
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                    <dxi-validation-rule 
+                                        type="pattern"
+                                        [pattern]="pattern" message="Your phone must have &#34;0311-5545645&#34; format!"
+                                        ></dxi-validation-rule>
+                                  </dxi-column>
                                   <dxi-column dataField="country"></dxi-column>
-                                  <dxi-column dataField="city"></dxi-column>
-                                  <dxi-column dataField="province"></dxi-column>
-                                  <dxi-column dataField="zipCode"></dxi-column>
-                                  <dxi-column dataField="description"></dxi-column>
+                                  <dxi-column dataField="city" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="province" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="zipCode" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="description" [visible]="false"></dxi-column>
                                 </dx-data-grid>
                               </div>
                             </div>

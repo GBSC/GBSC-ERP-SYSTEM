@@ -159,6 +159,12 @@ export class AppointmentscheduleComponent implements OnInit {
          this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false  && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
+   
+   
+        // var diff = Math.abs(this.date.getTime() - this.date.getTime());
+        // var diffDays = Math.ceil(diff / (1000 * 3600 * 24));    
+       
+   
     }
 
     formatDate(date: Date) {
@@ -284,6 +290,8 @@ export class AppointmentscheduleComponent implements OnInit {
             value.PatientId = this.patid;
             this.patid = null;
         }
+
+
         if(value.PatientId == null || value.PatientId == ''){
             this.toastr.error('Please Select Patient');
         }
@@ -293,7 +301,7 @@ export class AppointmentscheduleComponent implements OnInit {
             console.log(x);
             if(x.appointments.length){
                 if( x.appointments.find(t => 
-                    this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)) && t.isCancelled == 'true' && t.consultantId == value.ConsultantId  && t.visitStatus == 'pendding' ||  t.visitStatus == 'start' ) ){   
+                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)))  && (t.consultantId == value.ConsultantId) && (!t.isCancelled) && (t.visitStatus == 'pendding' ||  t.visitStatus == 'start')) ){   
                     this.toastr.error('Appointment Already Started');
                  }
                 else{
@@ -355,7 +363,6 @@ export class AppointmentscheduleComponent implements OnInit {
                 }
             
                 await this.PatientServiceobj.addAppointment(value);
-                 
                 // let tr = await this.PatientServiceobj.addAppointment(value);
                 // console.log(tr);
                 // value.AppointmentId = tr.appointmentID;
@@ -363,9 +370,6 @@ export class AppointmentscheduleComponent implements OnInit {
                 // console.log("Before", x.appointments);
                 // x.appointments.push(value);
                 // console.log("After", x.appointments);
-
-
-
                 this.ConsultantIdAppointmentDate =   await this.PatientServiceobj.GetAppointmentByConsultantNameAndDate(value.ConsultantId, value.AppointmentDate);
                 this.tentativeAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == false && a.isCancelled == false   ).map((a, i) => { a.index = i + 1; return a });
                 this.finalizedAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == true ).map((a, i) => { a.index = i + 1; return a });

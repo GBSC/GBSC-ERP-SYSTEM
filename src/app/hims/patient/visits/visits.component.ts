@@ -131,26 +131,26 @@ export class VisitsComponent implements OnInit {
     // }
 
     async onEndVisit() {
-        let x = await this.PatientServiceobj.getVisitId(this.visitid);
-        await this.PatientServiceobj.endVisit(this.visitid, x);
-        console.log(x)
-        this.router.navigate(['/hims/patient/profile/' + this.id]);
-        console.log(this.id);
+        // let x = await this.PatientServiceobj.getVisitId(this.visitid);
+        // await this.PatientServiceobj.endVisit(this.visitid, x);
+        // console.log(x)
+        // this.router.navigate(['/hims/patient/profile/' + this.id]);
+        // console.log(this.id);
 
-        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
-            this.Patientappointment = Patient
-            console.log(this.Patient);
-            this.patinetappointment  = this.Patientappointment.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
-            console.log(this.patinetappointment);
-            this.patinetappointment.forEach(element => {
-                 element. visitStatus = this.visitstatusend;
-                 console.log(element);
-                        let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
+        // this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+        //     this.Patientappointment = Patient
+        //     console.log(this.Patient);
+        //     this.patinetappointment  = this.Patientappointment.appointments.filter(t => this.formatDate(new Date(t.appointmentDate))  ===  this.formatDate(new Date())  ) 
+        //     console.log(this.patinetappointment);
+        //     this.patinetappointment.forEach(element => {
+        //          element. visitStatus = this.visitstatusend;
+        //          console.log(element);
+        //                 let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
 
-                        } );
-                         console.log(x);
-                });
-        });
+        //                 } );
+        //                  console.log(x);
+        //         });
+        // });
 
 
 	}

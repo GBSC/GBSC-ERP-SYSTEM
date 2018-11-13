@@ -187,34 +187,15 @@
                           </tr>
                         </thead>
                         <tbody formArrayName="VoucherDetails">
-                          <tr *ngFor="let a of Detail">
+                          <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
                             <td>
-                                
-                                <!-- <dx-lookup
-                                class="field-customization"
-                                [items]="detailAccount"
-                                [displayExpr]="detailAccountCode"
-                                valueExpr="detailAccountId"
-                                [value]="detailAccount[0].detailAccountId"
-                                fieldTemplate="field">
-                                <div *dxTemplate="let item of 'field'">
-                                    <div class="custom-field">
-                                    {{item.detailAccountCode }}</div>
-                                    </div> 
-                            </dx-lookup> -->
+ 
 
-                            <dx-lookup
-                            [items]="detailAccount"
-                            [value]="detailAccount[0]"
-                             valueExpr="detailAccountId"
-                            [showPopupTitle]="false">
-                        </dx-lookup>
-
-                              <!-- <select class="form-control m-input" data-live-search="true" formControlName="DetailAccountId" [value]="a?.name">
+                              <select class="form-control m-input" data-live-search="true" formControlName="DetailAccountId" [value]="a?.name">
                                 <option value="" disabled selected>-- Select Detail A/C --</option>
                                 <option *ngFor="let account of detailAccount" [value]="account.detailAccountId">{{account.detailAccountCode}}
                                   | {{account.name}}</option>
-                              </select> -->
+                              </select>
                               <!-- <select class="selectpicker" data-live-search="true" formControlName="DetailAccountId" [value]="a?.name">
                                 <option *ngFor="let account of detailAccount" [value]="account.detailAccountId">{{account.detailAccountCode}}
                                   | {{account.name}}</option> 
@@ -237,9 +218,8 @@
                                 <i class="la la-trash-o"></i>
                               </a> 
                             </td>
-                          </tr>
-                       
-                          <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
+                          </tr>                      
+                          <!-- <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
                               <td>
                                 <select class="form-control m-input" formControlName="DetailAccountId">
                                   <option value="" disabled selected>-- Select Detail A/C --</option>
@@ -264,8 +244,7 @@
                                   <i class="la la-trash-o"></i>
                                 </a>
                               </td>
-                            </tr>
-                             
+                            </tr>                            -->
                         </tbody>
                       </table>
                     </form>

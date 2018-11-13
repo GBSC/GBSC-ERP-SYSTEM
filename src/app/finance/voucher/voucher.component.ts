@@ -62,33 +62,7 @@ export class VoucherComponent implements OnInit {
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
     this.departments = await this.SetupService.getAllDepartments();
-
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-
-    });
-
-    if (this.isUpdate() === true) {
-
-      this.financeService.getVoucher(this.id).subscribe(resp => {
-
-        this.Voucher = resp;
-        this.PatchDetail = resp;
-        console.log(this.Voucher);
-
-        this.Detail = this.Voucher.voucherDetails;
-        console.log(this.Detail);
-
-        // let a = this.Voucher.voucherDetails;
-        // this.Detail = a.filter(b => {
-        //   delete b.voucherDetailId;
-        //   delete b.voucherId;
-        //   return b;
-        // });
-        this.patchValues(this.Voucher);
-      });
-    }
-
+ 
   }
 
   initItemRows() {
@@ -152,43 +126,5 @@ export class VoucherComponent implements OnInit {
       this.toastr.error("Credit Debit Amount not equal");
     }
 
-  }
-
-  isUpdate(): boolean {
-
-    if (this.id > 0) {
-      return true;
-    }
-    else
-      return false;
-  }
-
-  async update(value) {
-
-    value.voucherId = this.id;
-    value.VoucherDetails = this.Detail;
-    console.log(value);
-
-    // this.financeService.updateVoucher(value).subscribe(resp => {
-    //   this.toastr.success("Voucher Updated");
-    //   this.router.navigate(['finance/voucher-detail']);
-    // })
-  }
-
-  patchValues(voucher: any) {
-
-    this.VoucherForm.patchValue({
-
-      Date: voucher.date,
-      VoucherCode: voucher.voucherCode,
-      Description: voucher.description,
-      ChequeNumber: voucher.chequeNumber,
-      VoucherTypeId: voucher.voucherTypeId,
-      // DetailAccountId: voucher.detailAccountId,
-      // DebitAmount: voucher.debitAmount,
-      // CreditAmount: voucher.creditAmount,
-      // DepartmentName: voucher.departmentName,
-      // UniqueName: voucher.uniqueName 
-    })
   }
 }

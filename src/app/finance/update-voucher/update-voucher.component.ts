@@ -16,6 +16,9 @@ export class UpdateVoucherComponent implements OnInit {
   public debitTotal = 0;
   public creditTotal = 0;
 
+  public disableDebit;
+  public disableCredit;
+
   public departments: any;
   public financialYear: any;
   public Detail: any[] = [];
@@ -75,35 +78,33 @@ export class UpdateVoucherComponent implements OnInit {
 
 
     if (this.isUpdate() === true) {
-      let myArray = this.Detail;
-      localStorage.setItem('userCache', JSON.stringify(myArray));
-  
       this.financeService.getVoucher(this.id).subscribe(resp => {
         this.Voucher = resp;
         console.log(this.Voucher);
-
-
-        // this.Detail =this.Voucher.voucherDetails;
-        console.log(this.Detail);
+        this.Detail = this.Voucher.voucherDetails;
+        let control = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
+        control.push(this.initItemRows());
+        setTimeout(() => {
+          console.log(this.Detail);
+          console.log(resp);
+        }, 10000);
+        console.log(this.VoucherDetailForm)
         let a = this.Voucher.voucherDetails;
-        this.Detail = a.filter(b => {
+        this.Detail = a.map(b => {
           delete b.voucherDetailId;
           delete b.voucherId;
           return b;
         });
         this.patchValues(this.Voucher);
       });
+      console.log(this.Detail)
     }
 
   }
 
   initItemRows() {
-    // let disCre = this.disableCredit;
-    // let disDec = this.disableDebit;
     return this.fb.group({
       DetailAccountId: [''],
-      // DebitAmount: [{value: '', disabled: disDec}],
-      // CreditAmount: [{value: '', disabled: disCre}],
       DebitAmount: [''],
       CreditAmount: [''],
       DepartmentName: [''],
@@ -111,8 +112,7 @@ export class UpdateVoucherComponent implements OnInit {
       Description: ['']
     });
   }
-  public disableDebit;
-  public disableCredit;
+
   sumDebit() {
     this.debitTotal = 0;
     const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
@@ -174,16 +174,18 @@ export class UpdateVoucherComponent implements OnInit {
 
   async update(value) {
     value.voucherId = this.id;
-    value.VoucherDetails = this.Detail; 
+    // value.VoucherDetails.push() = this.Detail; 
     if (this.creditTotal === this.debitTotal) {
+      console.log(this.VoucherDetailForm.value.VoucherDetails);
+      console.log(value);
 
       this.VoucherForm.value.voucherDetails = this.VoucherDetailForm.value.VoucherDetails;
-    this.financeService.updateVoucher(value).subscribe(resp => {
-      console.log(value);
-      this.toastr.success("Voucher Updated");
-      this.router.navigate(['finance/voucher-detail']);
-    })
-  }
+      this.financeService.updateVoucher(value).subscribe(resp => {
+        console.log(value);
+        this.toastr.success("Voucher Updated");
+        this.router.navigate(['finance/voucher-detail']);
+      })
+    }
     else {
       this.toastr.error("Credit Debit Amount not equal");
     }

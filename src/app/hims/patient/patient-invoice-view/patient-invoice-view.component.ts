@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatientInvoice } from '../../../core/Models/HIMS/patientinvoice';
 import { PatientService } from '../../../core';
 import { ActivatedRoute } from '@angular/router';
+import { Patient } from '../../../core/Models/HIMS/patient';
 
 @Component({
 	selector: 'app-patient-invoice-view',
@@ -18,9 +19,9 @@ export class PatientInvoiceViewComponent implements OnInit {
   ngOnInit() {
     this.ActivatedRoute.params.subscribe(params => {
       if(params['id']) {
-        this.PatientService.GetPatientInvoicesWithDetailsByPatientId(params['id']).subscribe((res : PatientInvoice[]) => {
-			console.log(res);
-			this.PatientInvoices = res;
+        this.PatientService.GetPatientInvoicesWithDetailsByMRN(params['id']).subscribe((res : Patient) => {
+            console.log(res);
+            this.PatientInvoices = res.patientInvoices;
         });
       }
     });

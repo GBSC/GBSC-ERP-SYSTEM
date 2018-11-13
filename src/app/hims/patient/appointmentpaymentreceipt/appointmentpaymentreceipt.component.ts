@@ -11,6 +11,7 @@ import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 import { PatientPackage } from '../../../core/Models/HIMS/PatientPackage';
 import { Consultant } from '../../../core/Models/HIMS/consultant';
 import { ToastrService } from 'ngx-toastr';
+import { Patient } from '../../../core/Models/HIMS/patient';
 
 @Component({
   	selector: 'app-appointmentpaymentreceipt',
@@ -49,6 +50,13 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 	private AppointmentDate : Date;
 	private NewBalance : number = 0;
+	private CurrentDate : Date = new Date();
+
+	private TempCreditCardPercentage : number = 0;
+	private TempBank : string = '';
+	private TempChequeNumber : string = '';
+	private TempCurrentPayment : number = 0;
+	private TempPaymentMethod : string = '';
 	
 	private InvoiceItemNatureWithoutPackage : any[] = [
 		{id : 1, Name : "Consultation"},
@@ -67,10 +75,14 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 	private InvoiceItemNatureDataSource : any[] = this.InvoiceItemNature;
 
+	//Update
+
+	private SelectedPatient : Patient;
+
 	constructor(private PatientService : PatientService,  private Toastr : ToastrService, private PharmacyService : PharmacyService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
 			MRN : [''],
-			Date : [new Date()],
+			Date : [],
 			VisitNature : [''],
 			SlipNumber : [''],
 			PatientName : [''],
@@ -149,10 +161,6 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 						packagename = '';
 					}
 
-					// if(this.SelectedAppointment.patientInvoice != null) {
-					// 	this.InvoiceForm.get('CurrentPayment').enable();
-					// }
-
 					let patientpackage : any = {
 						totalPrice : 0,
 						totalAmountPaid : 0,
@@ -179,22 +187,66 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			else {
 				// console.log("No ID");
 				this.InvoiceForm.get('MRN').enable();
-				this.InvoiceForm.get('Date').enable();
+				// this.InvoiceForm.get('Date').enable();
 				this.InvoiceForm.get('VisitNature').enable();
-				this.InvoiceForm.get('SlipNumber').enable();
+				// this.InvoiceForm.get('SlipNumber').enable();
 				this.InvoiceForm.get('PatientName').enable();
+				this.InvoiceItemNatureDataSource = this.InvoiceItemNatureWithoutPackage;
 			}
 		});
 	}
 
+	GetPatientByMRN(value, mrn : string) {
+		if(value.key === "Enter")
+		{
+			this.PatientService.GetPatientWithPackageAndPartnerByMRN(mrn).subscribe((res : Patient) => {
+				this.SelectedPatient = res;
+				console.log(this.SelectedPatient);
+
+				let packagename : Package = this.Packages.find(a => a.packageId === this.SelectedPatient.patientPackage.packageId);
+				
+				if(packagename) {
+					this.InvoiceForm.get('CurrentPayment').enable();
+				}
+				else {
+					this.InvoiceForm.get('CurrentPayment').disable();
+				}
+
+				this.InvoiceForm.patchValue({
+					MRN : this.SelectedPatient.mrn || '',
+					Date : new Date(),
+					PatientName : this.SelectedPatient.fullName || '',
+					SpouseName : this.SelectedPatient.partner.FirstName || '',
+					Package : packagename.packageName || '',
+					TotalPrice : this.SelectedPatient.patientPackage.totalPrice || 0,
+					TotalAmountPaid : this.SelectedPatient.patientPackage.totalAmountPaid || 0,
+					TotalBalance : this.SelectedPatient.patientPackage.totalBalance || 0,
+				});
+				
+				this.Toastr.success("Patient Information Received");
+			});
+
+			this.InvoiceItemNatureDataSource = this.InvoiceItemNature;
+			this.InvoiceForm.get('MRN').disable();
+			// this.InvoiceForm.get('SpouseName').disable();
+			this.InvoiceForm.get('PatientName').disable();
+		}
+		else {
+			this.Toastr.info("Press Enter to get Patient details");
+		}
+	}
+
 	onChange(value) {
 		// console.log(value);
+		this.TempPaymentMethod = value;
 		if(value === "Cheque") {
 			this.InvoiceForm.get('Bank').enable();
 			this.InvoiceForm.get('ChequeNumber').enable();
 			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
 		}
 		else if(value === "CreditCard") {
+			this.InvoiceForm.get('Bank').disable();
+			this.InvoiceForm.get('ChequeNumber').disable();
 			this.InvoiceForm.get('CreditCardChargesPercentage').enable();
 		}
 		else {
@@ -210,6 +262,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 		if(event.key === "Enter")
 		{
 			// console.log(event.code === "Enter");
+			this.TempCurrentPayment = Number.parseFloat(CurrentPayment);
 			this.TotalGrossAmount += Number.parseFloat(CurrentPayment);
 			this.TotalNetAmount += Number.parseFloat(CurrentPayment);
 			this.InvoiceForm.get('CurrentPayment').disable();
@@ -222,6 +275,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	CalculateNetAmount(event, CreditCardChargesPercentage) {
 		if(event.key === "Enter")
 		{
+			this.TempCreditCardPercentage = Number.parseFloat(CreditCardChargesPercentage);
 			let a : number = this.TotalNetAmount;
 			this.TotalNetAmount += this.TotalNetAmount * (Number.parseFloat(CreditCardChargesPercentage) / 100);
 			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
@@ -232,17 +286,11 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			this.Toastr.info("Press Enter to add Credit Card Charges");
 	}
 
-	EnableBank(event) {
-		if(event.key)
-		{
-			this.InvoiceForm.get('Bank').enable();
-			this.InvoiceForm.get('CreditCardChargesPercentage').disable();
-		}
-	}
-
-	DisablePaymentMethod(event) {
+	DisablePaymentMethod(event, ChequeNumber, Bank) {
 		if(event.key === "Enter")
 		{
+			this.TempChequeNumber = ChequeNumber;
+			this.TempBank = Bank;
 			this.InvoiceForm.get('Bank').disable();
 			this.InvoiceForm.get('ChequeNumber').disable();
 			this.InvoiceForm.get('PaymentMethod').disable();
@@ -378,10 +426,8 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 						Package : d.packageName || '',
 						TotalPrice : <number>d.charges || 0,
 						TotalAmountPaid : 0,
-						TotalBalance : <number>d.charges || 0
 					});
 
-					
 					this.InvoiceForm.get('CurrentPayment').enable();
 
 					break;
@@ -418,6 +464,11 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			value.data.netAmount = (this.SelectedInvoiceItemUnitPrice * Number.parseFloat(value.data.quantity)) - (Number.parseFloat(value.data.grossAmount) * Number.parseFloat(value.data.discountPercentage) / 100);
 
 			// console.log(value.data);
+			if(this.ContainsPackage === true && value.data.id === "Package") {
+				this.InvoiceForm.patchValue({
+					TotalBalance : Number.parseFloat(value.data.netAmount) || 0
+				});
+			}
 
 			this.PatientInvoiceItem.push(value.data);
 			this.PatientInvoiceItem.splice(this.Index, 1);
@@ -452,6 +503,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			this.ContainsPackage = false;
 			this.PatientPackage = null;
 			this.InvoiceItemNatureDataSource = this.InvoiceItemNature;
+			this.TempCurrentPayment  = 0;
 
 			this.InvoiceForm.patchValue({
 				Package : '',
@@ -465,58 +517,64 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	}
 
 	SubmitPatientInvoice(value) {
-		console.log(value);
 
+		// console.log(value);
 		let a : any = {
-			// SlipNumber : <number>value.SlipNumber,
-			DateCreated : new Date(value.Date) || this.AppointmentDate || new Date(),
+			DateCreated : this.AppointmentDate.toDateString() || new Date(value.Date).toDateString() || new Date().toDateString(),
 			InvoiceType : "Patient Invoice",
 			TotalPrice : Number.parseFloat(value.TotalPrice) || 0,
-			TotalAmountPaid : (Number.parseFloat(value.TotalAmountPaid) || 0) + (Number.parseFloat(value.CurrentPayment) || 0),
-			TotalBalance : Number.parseFloat(value.NewBalance) || 0,
-			LastPaidAmount : Number.parseFloat(value.CurrentPayment) || 0,
+			TotalAmountPaid : Number.parseFloat(value.TotalAmountPaid) + this.TempCurrentPayment,
+			TotalBalance : this.NewBalance || 0,
+			LastPaidAmount : this.TempCurrentPayment,
 			InvoiceRemarks : <string>value.Remarks || '',
 			Consultant : <string>value.Consultant || '',
-			PaymentMethod : <string>value.PaymentMethod || '',
-			ChequeNumber : <string>value.ChequeNumber || '',
-			Bank : <string>value.Bank || '',
-			CreditCardChargesPercentage : Number.parseFloat(value.CreditCardChargesPercentage) || 0,
-			CreditCardChargesAmount : <number>((Number.parseFloat(value.CreditCardChargesPercentage) / 100) * this.TotalNetAmount) || 0,
+			PaymentMethod : this.TempPaymentMethod,
+			ChequeNumber : this.TempChequeNumber,
+			Bank : this.TempBank,
+			CreditCardChargesPercentage : this.TempCreditCardPercentage,
+			CreditCardChargesAmount : <number>((this.TempCreditCardPercentage / 100) * this.TotalNetAmount) || 0,
 			TotalGrossAmount : this.TotalGrossAmount,
 			TotalDiscountAmount : this.TotalDiscountAmount,
 			TotalNetAmount : this.TotalNetAmount,
-			PatientId : this.SelectedAppointment.patientId,
-			AppointmentId : this.SelectedAppointment.appointmentId,
+			PatientId : this.SelectedAppointment.patientId || this.SelectedPatient.PatientId || null,
+			AppointmentId : this.SelectedAppointment.appointmentId || null,
 			PatientInvoiceItems : this.PatientInvoiceItemsArrayForPost
 		}
 
 		this.PatientInvoice = a;
 		console.log("Patient Invoice ", this.PatientInvoice);
 		
-		// this.PatientService.AddPatientInvoice(this.PatientInvoice).subscribe((res : any) => {
-		// 	console.log(res);
-		// 	this.Toastr.success("Patient Invoice Added");
-		// });
+		this.PatientService.AddPatientInvoice(this.PatientInvoice).subscribe((res : any) => {
+			console.log(res);
+			this.Toastr.success("Patient Invoice Added");
+		});
 
 		if(this.ContainsPackage === true) {
-			this.PatientPackage.LastPaidAmount = this.PatientInvoice.LastPaidAmount;
-			this.PatientPackage.LastPaymentDate = this.PatientInvoice.DateCreated;
-			this.PatientPackage.TotalAmountPaid = this.PatientInvoice.TotalAmountPaid;
-			this.PatientPackage.TotalBalance = this.PatientInvoice.TotalBalance;
+			this.PatientPackage.lastPaidAmount = this.PatientInvoice.LastPaidAmount;
+			this.PatientPackage.lastPaymentDate = this.PatientInvoice.DateCreated;
+			this.PatientPackage.totalAmountPaid = this.PatientInvoice.TotalAmountPaid;
+			this.PatientPackage.totalBalance = this.PatientInvoice.TotalBalance;
 			console.log("Patient Package ", this.PatientPackage);
 			
-			// this.PatientService.AddPatientPackage(this.PatientPackage).subscribe((res : any) => {
-			// 	console.log(res);
-			// 	this.Toastr.success("Patient Package Added");
-			// });
+			this.PatientService.AddPatientPackage(this.PatientPackage).subscribe((res : any) => {
+				console.log(res);
+				this.Toastr.success("Patient Package Added");
+			});
 		}
 
-		this.PatientService.GetAppointmentById(this.SelectedAppointment.appointmentId).subscribe((res : Appointment) => {
+		// this.PatientService.GetAppointmentById(this.SelectedAppointment.appointmentId).subscribe((res : Appointment) => {
+		// 	console.log(res);
+		// 	res.IsPaid = true;
+		// 	this.PatientService.UpdateAppointment(res).subscribe((res : any) => {
+		// 		console.log(res);
+		// 	});
+		// });
+
+		// console.log(this.SelectedAppointment);
+		this.SelectedAppointment.isPaid = true;
+		// console.log(this.SelectedAppointment);
+		this.PatientService.UpdateAppointment(this.SelectedAppointment).subscribe((res : any) => {
 			console.log(res);
-			res.IsPaid = true;
-			this.PatientService.UpdateAppointment(res).subscribe((res : any) => {
-				console.log(res);
-			});
 		});
 	}
 }

@@ -21,7 +21,13 @@
                    <dxi-column dataField="name" caption="Branch Name"></dxi-column>
                    <dxi-column dataField="branchCode" caption="Branch Code"></dxi-column>
                    <dxi-column dataField="address" caption="Address"></dxi-column>
-                   <dxi-column dataField="phone" caption="Phone"></dxi-column>
+                   <dxi-column dataField="phone" caption="Phone">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <dxi-validation-rule 
+                        type="pattern"
+                        [pattern]="pattern" message="Your phone must have &#34;021-36551480&#34; format!"
+                        ></dxi-validation-rule>
+                   </dxi-column>
                    <dxi-column
                    dataField="companyId"
                    caption="Companies"

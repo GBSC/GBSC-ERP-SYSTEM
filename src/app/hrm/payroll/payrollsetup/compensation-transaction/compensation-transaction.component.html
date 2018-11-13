@@ -10,9 +10,9 @@
             <label>
               Payroll Year:
             </label>
-            <select class="form-control m-input" formControlName="PayrollyearId" id="">
+            <select class="form-control m-input" formControlName="PayrollyearId">
               <option value="" disabled selected>-- Select Payroll Year --</option>
-              <option *ngFor="let payrollyear of payrollYears" [value]="payrollyear.payrollYearId">{{payrollyear.name}}</option>
+              <option *ngFor="let payrollyear of payrollYears" [value]="payrollyear.payrollYearId">{{payrollyear.year}}</option>
             </select>
           </div>
           <div class="col-lg-6">

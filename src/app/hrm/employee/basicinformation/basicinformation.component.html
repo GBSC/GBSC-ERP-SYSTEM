@@ -3,20 +3,21 @@
 
 </div>
 
-<form class="signup-form" [formGroup]="EmpbasicForm"> 
+<form class="signup-form" [formGroup]="EmpbasicForm" data-toggle="validator" role="form"> 
 <div class="row">
       <div class="col-md-6">
       <div class="form-group m-form__group">
             <label for="">
-                First Name
+                First Name *
             </label>
-            <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" placeholder="First Name">
+            <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" placeholder="First Name" required>
+            <div class="help-block with-errors"></div>
         </div> 
       </div>
       <div class="col-md-6">
       <div class="form-group m-form__group">
             <label for="">
-                Last Name
+                Last Name *
             </label>
             <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" placeholder="Last Name">
         </div> 

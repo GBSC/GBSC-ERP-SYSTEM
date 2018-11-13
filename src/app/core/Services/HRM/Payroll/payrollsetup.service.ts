@@ -468,10 +468,7 @@ export class PayrollSetupService {
     }
 
     async updatePayrollType(data) {
-
-        let payrolltype = await this.getdataToUpdate(data.key, 'GetPayrollType');
-        payrolltype = { ...payrolltype, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollType`, payrolltype).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollType`, data).toPromise();
     }
 
     async deletePayrollType(id) {

@@ -44,7 +44,7 @@ export class VisitsComponent implements OnInit {
     public patinetappointment : any=[];
     id: number;
     vistid: number;
-    Patient: Patient;
+   private Patient: any;
     Visits: Visits;
 
     public Patientappointment: any;
@@ -65,7 +65,8 @@ export class VisitsComponent implements OnInit {
             'IsFinalAppointment': [false],
             'IsCancelled' :[false],
             'VisitStatus': ['Pending'],
-            'VisitId': ['', Validators.required]
+            'VisitId': ['', Validators.required],
+            'AppointmentDate':['']
         });
 
         this.VisitDiagnosesForm = this.formBuilder.group({
@@ -131,12 +132,15 @@ export class VisitsComponent implements OnInit {
     // }
 
     async onEndVisit() {
-        // let x = await this.PatientServiceobj.getVisitId(this.visitid);
-        // await this.PatientServiceobj.endVisit(this.visitid, x);
-        // console.log(x)
-        // this.router.navigate(['/hims/patient/profile/' + this.id]);
+          let x = await this.PatientServiceobj.getVisitId(this.visitid);
+          await this.PatientServiceobj.endVisit(this.visitid, x);
+         console.log(x)
+         let y = this.Patient.appointments.find( t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
+         y.visitStatus = 'end';
+         await this.PatientServiceobj.updateAppointment(y);
+         console.log(y);
+          this.router.navigate(['/hims/patient/profile/' + this.id]);
         // console.log(this.id);
-
         // this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
         //     this.Patientappointment = Patient
         //     console.log(this.Patient);
@@ -146,7 +150,6 @@ export class VisitsComponent implements OnInit {
         //          element. visitStatus = this.visitstatusend;
         //          console.log(element);
         //                 let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe( element=>{
-
         //                 } );
         //                  console.log(x);
         //         });
@@ -169,10 +172,11 @@ export class VisitsComponent implements OnInit {
     async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;
         this.PatientAppointmentForm.value.VisitId = this.visitid;
+        this.PatientAppointmentForm.value.AppointmentDate = value.TentativeTime;
         console.log(value);
-   		await this.PatientServiceobj.addAppointment(value);
+   		 await this.PatientServiceobj.addAppointment(value);
        
-     	// console.log(x)
+            console.log(value);
     	// console.log(this.visitid);
         this.displayToastSuccess("Saved");
     }

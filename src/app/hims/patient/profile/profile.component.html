@@ -402,16 +402,16 @@
                                   </span>
                                 </div>
                               </div>
-                              <div class="form-group m-form__group m-form__group--sm row">
+                              <!-- <div class="form-group m-form__group m-form__group--sm row">
                                 <label class="col-xl-4 col-lg-4 col-form-label">
                                   Person Name:
                                 </label>
                                 <div class="col-xl-8 col-lg-8">
                                   <span class="m-form__control-static">
-                                    {{Patient.patientReference?.personName}}
+                                    {{patientreferenc}}
                                   </span>
                                 </div>
-                              </div>
+                              </div> -->
                               <div class="form-group m-form__group m-form__group--sm row">
                                 <label class="col-xl-4 col-lg-4 col-form-label">
                                   Reference Address:
@@ -549,6 +549,40 @@
     <!--begin::Portlet-->
     <div class="col-lg-4 abc2">
       <app-generalactions class="abc2"></app-generalactions>
+
+      <div class="m-portlet m-portlet--mobile">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <span class="m-portlet__head-icon">
+               <i class="fa fa-calendar-check-o"></i>
+                    </span>
+                <h3 class="m-portlet__head-text">
+                   Patient Package
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+             <div class="">
+ {{PatientPackage.packageId}}               
+                <!-- <ul *ngFor="let Patient of visits">
+                    <li   (click)="onclick(Patient.visitId)">
+                  <a class="m-link m-link--state m-link--success">
+                      {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
+                  </a>
+                </li>
+              </ul> -->
+              </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
     </div>
     <!--end::Portlet-->
   </div>

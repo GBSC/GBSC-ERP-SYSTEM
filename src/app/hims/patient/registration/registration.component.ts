@@ -107,7 +107,7 @@ export class RegistrationComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
-            this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
+            this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
              //   console.log(this.Patient)
                 if (Patient) {

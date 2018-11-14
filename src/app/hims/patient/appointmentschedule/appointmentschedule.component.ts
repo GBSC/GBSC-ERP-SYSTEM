@@ -301,7 +301,7 @@ export class AppointmentscheduleComponent implements OnInit {
             console.log(x);
             if(x.appointments.length){
                 if( x.appointments.find(t => 
-                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)))  && (t.consultantId == value.ConsultantId) && (!t.isCancelled) && (t.visitStatus == 'pendding' ||  t.visitStatus == 'start')) ){   
+                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)))  && (t.consultantId == value.ConsultantId)   && (t.visitStatus == 'pendding' ||  t.visitStatus == 'start')) ){   
                     this.toastr.error('Appointment Already Started');
                  }
                 else{
@@ -320,7 +320,7 @@ export class AppointmentscheduleComponent implements OnInit {
                                             this.appointmentForm.value.VisitStatus = 'pendding';
                                             this.appointmentForm.value.IsCancelled = 'false';
                                         }
-                                      
+                                        console.log(value);
                                           await this.PatientServiceobj.addAppointment(value);
                                                   
                          
@@ -361,7 +361,7 @@ export class AppointmentscheduleComponent implements OnInit {
                     this.appointmentForm.value.VisitStatus = 'pendding';
                     this.appointmentForm.value.IsCancelled = 'false';
                 }
-            
+                console.log(value);
                 await this.PatientServiceobj.addAppointment(value);
                 // let tr = await this.PatientServiceobj.addAppointment(value);
                 // console.log(tr);
@@ -454,20 +454,25 @@ export class AppointmentscheduleComponent implements OnInit {
       console.log(value.key);
        if(value.key.isFinalAppointment == true ){
           if(value.key.finalTime == null || value.key.finalTime == ''){
-            value.key.finalTime = value.key.tentativeTime;
+              console.log(value.key.tentativeTime);
+            value.key.finalTime =  value.key.tentativeTime ;
+            console.log(value.key.tentativeTime);
              value.key.appointmentDate = value.key.finalTime;
              console.log(value.key.finalTime);
-                console.log('1',value.key);
+             value.key.isCancelled = 'false';
+            console.log('1',value.key);
           }
 
+          else{console.log(value);
             let finaltime =   this.formateDateAndTime(new Date(value.key.finalTime));
+            console.log(value);
             console.log(finaltime)
             value.key.finalTime = finaltime;
             value.key.appointmentDate = value.key.finalTime;
             value.key.isCancelled = 'false';
             console.log(value.key.finalTime);
             console.log('2',value.key);
-
+          }
 
         // this.InvoiceForm.value.appointmentId = value.key.appointmentId;
         // this.consultantfee =   this.consultant.find(t=> t.consultantId ==  value.key.consultantId);

@@ -19,12 +19,15 @@ export class PatientInvoiceViewComponent implements OnInit {
   ngOnInit() {
     this.ActivatedRoute.params.subscribe(params => {
       if(params['id']) {
-        this.PatientService.GetPatientInvoicesWithDetailsByMRN(params['id']).subscribe((res : Patient) => {
-            console.log(res);
-            this.PatientInvoices = res.patientInvoices;
-        });
+        // console.log("View = ", (params.id.includes('mrn') === true));
+        if(params.id.includes('mrn') === true || params.id.includes('MRN') === true) {
+          // console.log("View");
+          this.PatientService.GetPatientInvoicesWithDetailsByMRN(params['id']).subscribe((res : Patient) => {
+              // console.log(res);
+              this.PatientInvoices = res.patientInvoices;
+          });
+        }
       }
     });
   }
-
 }

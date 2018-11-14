@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-12">
+      <dx-data-grid [dataSource]="PatientInvoices" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+        <dxo-search-panel [visible]="true" [width]="auto" placeholder="Search..."></dxo-search-panel>
+        <dxo-filter-row [visible]="false"></dxo-filter-row>
+        <dxo-header-filter [visible]="false"></dxo-header-filter>
+        <dxo-paging [pageSize]="5"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showInfo]="true"></dxo-pager>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+         <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+        </dxo-editing>
+        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column dataField="slipNumber" dataType="text" caption="Slip No." [fixed]="true"></dxi-column>
+        <dxi-column dataField="dateCreated" dataType="date" caption="Invoice Date"></dxi-column>
+        <dxi-column dataField="invoiceType" dataType="text" caption="Type"></dxi-column>
+        <dxi-column dataField="totalPrice" dataType="number" caption="Package Price"></dxi-column>
+        <dxi-column dataField="totalAmountPaid" dataType="number" caption="Package Paid"></dxi-column>
+        <dxi-column dataField="totalBalance" dataType="number" caption="Package Balance"></dxi-column>
+        <dxi-column dataField="lastPaidAmount" dataType="number" caption=" Package Last Paid"></dxi-column>
+        <dxi-column dataField="invoiceRemarks" dataType="text" caption="Remarks"></dxi-column>
+        <dxi-column dataField="consultant" dataType="text" caption="Consultant"></dxi-column>
+        <dxi-column dataField="paymentMethod" dataType="text" caption="Payment Method"></dxi-column>
+        <dxi-column dataField="chequeNumber" dataType="text" caption="Cheque Number"></dxi-column>
+        <dxi-column dataField="bank" dataType="text" caption="Bank"></dxi-column>
+        <dxi-column dataField="creditCardChargesAmount" dataType="number" caption="Credit Card Charges"></dxi-column>
+        <dxi-column dataField="creditCardChargesPercentage" dataType="number" caption="Credit Card Charges (%)"></dxi-column>
+        <dxi-column dataField="totalGrossAmount" dataType="number" caption="Gross Amount"></dxi-column>
+        <dxi-column dataField="totalDiscountAmount" dataType="number" caption="Discount Amount"></dxi-column>
+        <dxi-column dataField="totalNetAmount" dataType="number" caption="Net Amount"></dxi-column>
+         <div *dxTemplate="let order of 'detail'">
+          <dx-data-grid [dataSource]="order.data.patientInvoiceItems" showBorders="true">
+              <dxi-column dataField="nature" dataType="text" caption="Nature"></dxi-column>
+            <dxi-column dataField="name" dataType="text" caption="Name"></dxi-column>
+            <dxi-column dataField="description" dataType="text" caption="Description"></dxi-column>
+            <dxi-column dataField="quantity" dataType="number" caption="Quantity"></dxi-column>
+            <dxi-column dataField="unitPrice" dataType="number" caption="Unit Price"></dxi-column>
+            <dxi-column dataField="grossAmount" dataType="number" caption="Gross Amount"></dxi-column>
+            <dxi-column dataField="discountPercentage" dataType="number" caption="Discount Percentage"></dxi-column>
+            <dxi-column dataField="discountAmount" dataType="number" caption="Discount Amount"></dxi-column>
+            <dxi-column dataField="netAmount" dataType="number" caption="Net Amount"></dxi-column>
+            <dxi-column dataField="isPaid" dataType="boolean" caption="Paid"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>

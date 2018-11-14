@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService, PharmacyService } from '../../../core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from '../../../core/Models/HIMS/appointment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PatientInvoice } from '../../../core/Models/HIMS/patientinvoice';
@@ -79,7 +79,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 	private SelectedPatient : Patient;
 
-	constructor(private PatientService : PatientService,  private Toastr : ToastrService, private PharmacyService : PharmacyService, private ActivatedRoute : ActivatedRoute, private FormBuilder : FormBuilder) {
+	constructor(private PatientService : PatientService,  private Toastr : ToastrService, private PharmacyService : PharmacyService, private ActivatedRoute : ActivatedRoute, private Router : Router, private FormBuilder : FormBuilder) {
 		this.InvoiceForm = this.FormBuilder.group({
 			MRN : [''],
 			Date : [],
@@ -129,60 +129,70 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 		this.ActivatedRoute.params.subscribe(params => {
             if(params['id']) {
-				// console.log("ID");
-				this.InvoiceForm.get('MRN').disable();
-				this.InvoiceForm.get('Date').disable();
-				this.InvoiceForm.get('VisitNature').disable();
-				this.InvoiceForm.get('SlipNumber').disable();
-				this.InvoiceForm.get('PatientName').disable();
+				// console.log("Add = ", (params.id.includes('mrn') === false));
+				if(params.id.includes('mrn') === false) {
+					// console.log("Add");
+					this.InvoiceForm.get('MRN').disable();
+					this.InvoiceForm.get('Date').disable();
+					this.InvoiceForm.get('VisitNature').disable();
+					this.InvoiceForm.get('SlipNumber').disable();
+					this.InvoiceForm.get('PatientName').disable();
 
-                this.PatientService.GetAppointmentDetails(params['id']).subscribe((res : Appointment) => {
-					this.SelectedAppointment = res;
-					// console.log(this.SelectedAppointment);
-					
-					this.PatientIdForPackage = this.SelectedAppointment.patientId;
+					this.PatientService.GetAppointmentDetails(params['id']).subscribe((res : Appointment) => {
+						console.log("Invoice = ", (res.PatientInvoice === null && res.PatientInvoiceId === null));
+						if(res.PatientInvoice === null && res.PatientInvoiceId === null) {
+							this.SelectedAppointment = res;
+							// console.log(this.SelectedAppointment);
+							
+							this.PatientIdForPackage = this.SelectedAppointment.patientId;
 
-					let partner : string = '';
-					if(this.SelectedAppointment.patient.partner === null)
-						partner = '';
-					else
-						partner = this.SelectedAppointment.patient.partner.firstName || '';
-					
-					this.AppointmentDate = new Date(this.SelectedAppointment.appointmentDate);
+							let partner : string = '';
+							if(this.SelectedAppointment.patient.partner === null)
+								partner = '';
+							else
+								partner = this.SelectedAppointment.patient.partner.firstName || '';
+							
+							this.AppointmentDate = new Date(this.SelectedAppointment.appointmentDate);
 
-					let packagename : string = '';
+							let packagename : string = '';
 
-					if(this.SelectedAppointment.patient.patientPackage) {
-						this.InvoiceForm.get('CurrentPayment').enable();
-						this.SelectedPatientPackage = this.Packages.find(a => a.packageId === this.SelectedAppointment.patient.patientPackage.packageId);
-						packagename = this.SelectedPatientPackage.packageName || '';
-					}
-					else {
-						packagename = '';
-					}
+							if(this.SelectedAppointment.patient.patientPackage) {
+								this.InvoiceForm.get('CurrentPayment').enable();
+								this.SelectedPatientPackage = this.Packages.find(a => a.packageId === this.SelectedAppointment.patient.patientPackage.packageId);
+								packagename = this.SelectedPatientPackage.packageName || '';
+							}
+							else {
+								packagename = '';
+							}
 
-					let patientpackage : any = {
-						totalPrice : 0,
-						totalAmountPaid : 0,
-						totalBalance : 0,
-					};
+							let patientpackage : any = {
+								totalPrice : 0,
+								totalAmountPaid : 0,
+								totalBalance : 0,
+							};
 
-					if(this.SelectedAppointment.patient.patientPackage) {
-						patientpackage = this.SelectedAppointment.patient.patientPackage;
-					}
+							if(this.SelectedAppointment.patient.patientPackage) {
+								patientpackage = this.SelectedAppointment.patient.patientPackage;
+							}
 
-					this.InvoiceForm.patchValue({
-						MRN : this.SelectedAppointment.patient.mrn || '',
-						VisitNature : this.SelectedAppointment.visitNature.nature || '',
-						PatientName : this.SelectedAppointment.patient.firstName || '',
-						Consultant : this.SelectedAppointment.consultant.name || '',
-						SpouseName : partner,
-						Package : packagename,
-						TotalPrice : patientpackage.totalPrice,
-						TotalAmountPaid : patientpackage.totalAmountPaid,
-						TotalBalance : patientpackage.totalBalance,
+							this.InvoiceForm.patchValue({
+								MRN : this.SelectedAppointment.patient.mrn || '',
+								VisitNature : this.SelectedAppointment.visitNature.nature || '',
+								PatientName : this.SelectedAppointment.patient.firstName || '',
+								Consultant : this.SelectedAppointment.consultant.name || '',
+								SpouseName : partner,
+								Package : packagename,
+								TotalPrice : patientpackage.totalPrice,
+								TotalAmountPaid : patientpackage.totalAmountPaid,
+								TotalBalance : patientpackage.totalBalance,
+							});
+						}
+						else {
+							this.Toastr.error("Invoice already exists for selected appointment");
+							this.Router.navigate(['hims/patient/paymentreceipt']);
+						}
 					});
-				});
+				}
 			}
 			else {
 				// console.log("No ID");
@@ -200,36 +210,61 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 		if(value.key === "Enter")
 		{
 			this.PatientService.GetPatientWithPackageAndPartnerByMRN(mrn).subscribe((res : Patient) => {
-				this.SelectedPatient = res;
-				console.log(this.SelectedPatient);
+				if(res.PatientId) {
+					this.SelectedPatient = res;
+					console.log(this.SelectedPatient);
 
-				let packagename : Package = this.Packages.find(a => a.packageId === this.SelectedPatient.patientPackage.packageId);
-				
-				if(packagename) {
-					this.InvoiceForm.get('CurrentPayment').enable();
+					let packageName : string = '';
+					let totalPrice : number = 0;
+					let totalAmountPaid : number = 0;
+					let totalBalance : number = 0;
+
+					if(this.SelectedPatient.patientPackage) {
+						let selpackage : Package = this.Packages.find(a => a.packageId === this.SelectedPatient.patientPackage.packageId);
+						packageName = selpackage.packageName || '';
+						this.InvoiceForm.get('CurrentPayment').enable();
+
+						totalPrice = this.SelectedPatient.patientPackage.totalPrice;
+						totalAmountPaid = this.SelectedPatient.patientPackage.totalAmountPaid;
+						totalBalance = this.SelectedPatient.patientPackage.totalBalance;
+					}
+					else {
+						this.InvoiceForm.get('CurrentPayment').disable();
+						packageName = '';
+						totalPrice = 0;
+						totalAmountPaid = 0;
+						totalBalance = 0;
+					}
+
+					let partnerName : string = '';
+
+					if(this.SelectedPatient.partner)
+						partnerName = this.SelectedPatient.partner.FirstName;
+					else
+						partnerName = '';
+
+					this.InvoiceForm.patchValue({
+						MRN : this.SelectedPatient.mrn || '',
+						Date : (new Date()).toDateString(),
+						PatientName : this.SelectedPatient.fullName || '',
+						SpouseName : partnerName || '',
+						Package : packageName || '',
+						TotalPrice : totalPrice || 0,
+						TotalAmountPaid : totalAmountPaid || 0,
+						TotalBalance : totalBalance || 0,
+					});
+					this.Toastr.success("Patient Information Received");
+
+					this.InvoiceItemNatureDataSource = this.InvoiceItemNature;
+					this.InvoiceForm.get('MRN').disable();
+					// this.InvoiceForm.get('SpouseName').disable();
+					this.InvoiceForm.get('PatientName').disable();
 				}
 				else {
-					this.InvoiceForm.get('CurrentPayment').disable();
+					this.Toastr.error("Incorrect MRN");
+					this.SelectedPatient = null;
 				}
-
-				this.InvoiceForm.patchValue({
-					MRN : this.SelectedPatient.mrn || '',
-					Date : new Date(),
-					PatientName : this.SelectedPatient.fullName || '',
-					SpouseName : this.SelectedPatient.partner.FirstName || '',
-					Package : packagename.packageName || '',
-					TotalPrice : this.SelectedPatient.patientPackage.totalPrice || 0,
-					TotalAmountPaid : this.SelectedPatient.patientPackage.totalAmountPaid || 0,
-					TotalBalance : this.SelectedPatient.patientPackage.totalBalance || 0,
-				});
-				
-				this.Toastr.success("Patient Information Received");
 			});
-
-			this.InvoiceItemNatureDataSource = this.InvoiceItemNature;
-			this.InvoiceForm.get('MRN').disable();
-			// this.InvoiceForm.get('SpouseName').disable();
-			this.InvoiceForm.get('PatientName').disable();
 		}
 		else {
 			this.Toastr.info("Press Enter to get Patient details");

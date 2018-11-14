@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <form [formGroup]="thawAssessmentForm">
+          <form>
             <div class="m-section">
               <div class="m-section__content">
 
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-sm-2" style="margin-top: 28px;">
                   
-                    <button type="button" (click)="submitForm(thawAssessmentForm.value)" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary">
                      Assessment
                     </button>
                   
@@ -55,10 +55,10 @@
               <div class="row">
 
                 <h4>Embryo Freeze Details (Unthawed):</h4>
-                <dx-data-grid id="gridContainer">
+                <dx-data-grid id="gridContainer"  [dataSource]="unthawedSamples">
 
                   <dxo-paging [enabled]="true"></dxo-paging>
-                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                  <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false">
                   </dxo-editing>
 
                   <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
@@ -81,7 +81,7 @@
               <div class="row">
 
                 <h4>Embryo Freeze Details (Thawed):</h4>
-                <dx-data-grid id="gridContainer">
+                <dx-data-grid id="gridContainer" [dataSource]="thawedSamples">
 
                   <dxo-paging [enabled]="true"></dxo-paging>
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
@@ -108,7 +108,7 @@
             </div>
 
             <div class="col-sm-2">
-              <button type="button" (click)="submitForm(thawAssessmentForm.value)" class="btn btn-primary">
+              <button type="button" (click)="updateThawAssessment()" class="btn btn-primary">
                 Submit
               </button>
             </div></div>

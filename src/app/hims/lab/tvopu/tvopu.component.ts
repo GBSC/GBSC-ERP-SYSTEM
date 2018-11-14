@@ -28,7 +28,6 @@ export class TvopuComponent implements OnInit {
     private id: number;
     private clinicalRecord: any;
     private tvopu: any;
-    private tvopuId : any;
 
     private tvopuform: FormGroup;
 
@@ -77,7 +76,6 @@ export class TvopuComponent implements OnInit {
                 this.tvopuService
                     .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp =>{
                         this.tvopu = resp;
-                        this.tvopuId = this.tvopu.tvopuId;
                     });
 
             })
@@ -120,7 +118,6 @@ export class TvopuComponent implements OnInit {
         this.tvopuService.addTvopu(value).subscribe(resp =>{
 
             this.displayToast("TVOPU saved");
-            this.tvopuId = resp.tvopuId;
         });
     }
 

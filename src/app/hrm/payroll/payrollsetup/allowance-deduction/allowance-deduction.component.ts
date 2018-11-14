@@ -29,6 +29,7 @@ export class AllowanceDeductionComponent implements OnInit {
             CalculationSequenceNumber: ['', Validators],
             RemitKey: ['', Validators],
             GlCodeAllowance: ['', Validators],
+            RepostNumber: ['', Validators],
             GlCodeDeduction: ['', Validators],
             GlCode: ['', Validators],
             DefaultCostCenter: ['', Validators],
@@ -46,6 +47,7 @@ export class AllowanceDeductionComponent implements OnInit {
 
     async addAllowanceDeduction() {
         await this.payrollSetupService.addAllowanceDeduction(this.AllowanceorDeductionForm.value);
+        this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
     }
 
     updatingAllowanceDeduction(value) {

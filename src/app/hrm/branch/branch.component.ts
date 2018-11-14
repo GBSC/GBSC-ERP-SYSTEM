@@ -15,13 +15,14 @@ export class BranchComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.com = await this.SystemAdministrationServiceobj.getCompanies();
-
         this.branches = await this.SystemAdministrationServiceobj.getBranches();
+
+        this.com = await this.SystemAdministrationServiceobj.getCompanies();
     }
 
     async addBranches(value) {
         await this.SystemAdministrationServiceobj.addBranches(value.key);
+        this.branches = await this.SystemAdministrationServiceobj.getBranches();
     }
 
     async updateBranch(value) {

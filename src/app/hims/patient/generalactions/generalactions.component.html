@@ -8,23 +8,32 @@
   </div>
   <div class="m-portlet__body">
     <div class="m-list-search"> 
+      <div class="col-lg-6">
+          <label for="exampleSelect1"> </label>
+          Consultant Name
+            <dx-select-box [items]="currentconsultant" displayExpr="consultantId" #consultantId valueExpr="consultantId" [searchEnabled]="true">
+          </dx-select-box>   
+      </div>
       <!-- || visits[0].startTime  | date: 'MM/dd/yyyy' !==  time | date: 'dd/MM/yyyy' lastpatientvisit !== null -->
-      <div class="m-list-search__results" *ngIf="!this.lastpatientvisit?.isActive">
-        <a (click)="startVisit()" class="m-list-search__result-item">
-          <span class="m-list-search__result-item-icon">
-            <i class="fa fa-map-marker	m--font-white"></i>
-          </span>
-          <span class="m-list-search__result-item-text"> Start Visit </span>
-        </a>
-      </div>
-       <div class="m-list-search__results" *ngIf="this.lastpatientvisit?.isActive">
-        <a (click)="Endvisit()" class="m-list-search__result-item">
-          <span class="m-list-search__result-item-icon">
-            <i class="fa fa-map-marker	m--font-white"></i>
-          </span>
-          <span class="m-list-search__result-item-text"> End Visit </span>
-        </a>
-      </div>
+      <div class="col-lg-6">
+          <div class="m-list-search__results" *ngIf="!this.lastpatientvisit?.isActive">
+              <a (click)="startVisit(consultantId.value)" class="m-list-search__result-item">
+                <span class="m-list-search__result-item-icon">
+                  <i class="fa fa-map-marker	m--font-white"></i>
+                </span>
+                <span class="m-list-search__result-item-text"> Start Visit </span>
+              </a>
+            </div>
+             <div class="m-list-search__results" *ngIf="this.lastpatientvisit?.isActive">
+              <a (click)="Endvisit()" class="m-list-search__result-item">
+                <span class="m-list-search__result-item-icon">
+                  <i class="fa fa-map-marker	m--font-white"></i>
+                </span>
+                <span class="m-list-search__result-item-text"> End Visit </span>
+              </a>
+            </div>
+        </div>
+    
     </div>
   </div>
 </div>

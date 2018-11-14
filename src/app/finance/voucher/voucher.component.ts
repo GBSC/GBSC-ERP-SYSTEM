@@ -4,7 +4,7 @@ import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.se
 import { Voucher } from '../../core/Models/Finance/voucher';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService } from '../../core';
+import { SetupService, HrmsService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -28,7 +28,7 @@ export class VoucherComponent implements OnInit {
     @Input('voucherId') id: number;
 
     constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
-        public financeService: FinanceService, public SetupService: SetupService) { }
+        public financeService: FinanceService, public SetupService: SetupService, public hrmService: HrmsService) { }
 
     async ngOnInit() {
 
@@ -55,9 +55,7 @@ export class VoucherComponent implements OnInit {
 
         this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
-        this.financialYear = await this.financeSetupService.getFinancialYears();
-
-        this.departments = await this.SetupService.getAllDepartments();
+        this.departments = await this.hrmService.getAllDepartments();
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];

@@ -17,9 +17,7 @@ export class DesignationComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllDesignations();
-        this.designatn = this.dataService.designation;
-
+        this.designatn = await this.dataService.getAllDesignations();
     }
 
 

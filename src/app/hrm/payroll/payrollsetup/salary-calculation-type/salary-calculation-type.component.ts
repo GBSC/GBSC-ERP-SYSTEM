@@ -19,6 +19,7 @@ export class SalaryCalculationTypeComponent implements OnInit {
 
     async addSalaryCalculationType(value) {
         await this.payrollsetupservice.addSalaryCalculationType(value.data);
+        this.salaryCalculationType = await this.payrollsetupservice.getSalaryCalculationTypes();
     }
 
     async updateSalaryCalculationType(value) {

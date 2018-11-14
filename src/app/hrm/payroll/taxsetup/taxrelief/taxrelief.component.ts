@@ -23,6 +23,7 @@ export class TaxreliefComponent implements OnInit {
 
     async addTaxRelief(value) {
         await this.payrollsetupservice.addTaxRelief(value.data);
+        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
     }
 
     updatingTaxRelief(value) {

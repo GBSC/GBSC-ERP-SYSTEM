@@ -5,7 +5,7 @@ import { SalesIndentItem } from '../../../core/Models/Pharmacy/SalesIndentItem';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { ActivatedRoute } from '@angular/router';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { SalesIndent } from '../../../core/Models/Inventory/Sales/SalesIndent';
+import { SalesIndent } from '../../../core/Models/Pharmacy/SalesIndent';
 
 @Component({
     selector: 'app-visit-prescription',
@@ -14,111 +14,157 @@ import { SalesIndent } from '../../../core/Models/Inventory/Sales/SalesIndent';
 })
 
 export class VisitPrescriptionComponent implements OnInit {
-    @ViewChild(DxDataGridComponent) gridContainer: DxDataGridComponent
+	@ViewChild(DxDataGridComponent) gridContainer: DxDataGridComponent
+	
+	private InventoryItems : InventoryItem;
+	private InventoryItemDataSource : InventoryItem;
+	private FilteredInventoryItems : any;
+	private SelectedInventoryItem : InventoryItem;
 
-    private InventoryItems: InventoryItem;
-    private InventoryItemDataSource: InventoryItem;
-    private FilteredInventoryItems: any;
-    private SelectedInventoryItem: InventoryItem;
+	private CurrentPatient : any;
+	// private CurrentPatientID : number;
+	
+	private Prescriptions : any[] = [];
+	private SalesIndentItems : SalesIndentItem[] = [];
+	private SalesIndent : SalesIndent;
+	
+	private TotalQuantity : number = 0;
+	private TotalCostPrice : number = 0;
+	private TotoalRetailPrice : number = 0;
 
-    private CurrentPatient: Patient;
-    private CurrentPatientID: number;
+	private Index : number = 0;
 
-    private Prescriptions: any[] = [];
-    private SalesIndentItems: SalesIndentItem[] = [];
+	constructor(private PharmacyService : PharmacyService, private PatientService : PatientService, private Router: ActivatedRoute) {
+	}
 
-    private TotalQuantity: number = 0;
-    private TotalCostPrice: number = 0;
-    private TotoalRetailPrice: number = 0;
+	async ngOnInit() {
+		this.PharmacyService.GetInventoryItems().subscribe((res : any) => {
+			this.InventoryItems = res;
+			this.FilteredInventoryItems = this.InventoryItems;
+			this.InventoryItemDataSource = this.InventoryItems;
+		});
+		
+		this.Router.params.subscribe(params => {
+			// this.CurrentPatientID = params['id'];
+			this.PatientService.getpatient(params['id']).subscribe((res : Patient) => {
+				this.CurrentPatient = res;
+				// console.log(this.CurrentPatient);
+			});
+		});
+	}
 
-    private Index: number = 0;
+	onEditorPreparing(e) {
+		this.InventoryItemDataSource = this.FilteredInventoryItems;
+	}
 
-    constructor(private PharmacyService: PharmacyService, private PatientService: PatientService, private Router: ActivatedRoute) {
-    }
+	addDays(date : Date, days : string) : Date {
+		// console.log("Before : ", date);
+		date.setDate(date.getDate() + Number.parseInt(days));
+		// console.log("After : ", date);
+		return date;
+	}
 
-    async ngOnInit() {
-        this.PharmacyService.GetInventoryItems().subscribe((res: any) => {
-            this.InventoryItems = res;
-            this.FilteredInventoryItems = this.InventoryItems;
-            this.InventoryItemDataSource = this.InventoryItems;
-        });
+	AddPrescription(value) {
+		// var startDate : Date = new Date(value.data.treatmentStart);
+		var endDate : Date = new Date(value.data.treatmentStart);
+		// var daysAdded = value.data.treatmentTimeInDays;
+		endDate = this.addDays(endDate, value.data.treatmentTimeInDays);
+		// startDate = value.data.treatmentStart;
+		
+		this.SelectedInventoryItem = this.FilteredInventoryItems.find(a => a.inventoryItemId == value.data.inventoryItemId);
+		// console.log("SelectedInventoryItem", this.SelectedInventoryItem);
 
-        this.Router.params.subscribe(params => {
-            this.CurrentPatientID = params['id'];
-            this.PatientService.getpatient(this.CurrentPatientID).subscribe((Patient: Patient) => {
-                this.CurrentPatient = Patient;
-            });
-        });
-    }
+		var a : any = {
+			inventoryItemId : <number>value.data.inventoryItemId,
+			treatmentStart : value.data.treatmentStart,
+			treatmentTimeInDays : value.data.treatmentTimeInDays,
+			treatmentEnd : endDate,
+			dosage : <number>value.data.dosage,
+			index : this.Index
+		};
 
-    onEditorPreparing(e) {
-        this.InventoryItemDataSource = this.FilteredInventoryItems;
-    }
+		// console.log(a);
+		this.Prescriptions.push(a);
+		// console.log(this.Prescriptions);
+		this.Prescriptions.splice(this.Index, 1);
+		// console.log(this.Prescriptions);
+		// this.SalesIndentItems.push(a);
+		this.TotalQuantity += Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays);
+		this.TotalCostPrice += Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.costPrice);
+		this.TotoalRetailPrice += Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.retailPrice);
+		this.Index += 1;
+		
+		this.FilteredInventoryItems = this.FilteredInventoryItems.filter(a => a.inventoryItemId != value.data.inventoryItemId);
+		this.InventoryItemDataSource = this.InventoryItems;
 
-    addDays(date: Date, days: string): Date {
-        console.log("Before : ", date);
-        date.setDate(date.getDate() + Number.parseInt(days));
-        console.log("After : ", date);
+		var b : any = {
+			quantity : Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays),
+			tradeOfferPricePerUnit : Number.parseFloat(this.SelectedInventoryItem.retailPrice),
+			totalTradeOfferPerItem : Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.costPrice),
+			totalTradePricePerItem : Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.retailPrice),
+			inventoryItemId : <number>value.data.inventoryItemId,
+			treatmentStart : value.data.treatmentStart,
+			treatmentTimeInDays : <number>value.data.treatmentTimeInDays,
+			treatmentEnd : endDate,
+			dosage : <number>value.data.dosage
+		};
+		// console.log("b", b);
+		this.SalesIndentItems.push(b);
+		// console.log("SalesIndentItems", this.SalesIndentItems);
+	}
 
-        return date;
-    }
+	DeletePrescription(value) {
+		// console.log(value);
+		let b : any = this.InventoryItems;
+		let a : InventoryItem = b.find( c => c.inventoryItemId == value.data.inventoryItemId );
+		this.FilteredInventoryItems.push(a);
+		let c : SalesIndentItem[] = this.SalesIndentItems.splice(value.data.index, 1);
+		this.TotalQuantity -= c[0].quantity;
+		this.TotalCostPrice -= c[0].totalTradeOfferPerItem;
+		this.TotoalRetailPrice -= c[0].totalTradePricePerItem;
+	}
 
-    AddPrescription(value) {
-        // console.log(value);
-        // value.data.treatmentEnd = this.addDays(<Date>value.data.treatmentStart, value.data.treatmentTimeInDays);
-        // console.log(value);
-        // console.log(this.Prescriptions);
+	setItemValue(rowData: any, value: any): void {
+		rowData.inventoryItemId = null;
+		(<any>this).defaultSetCellValue(rowData, value);
+	}
 
-        console.log(value.data.treatmentStart);
+	onSubmit() {
+		// 
+		// console.log("SalesIndentItems", this.SalesIndentItems);
+		// console.log(this.CurrentPatient);
+		var partner : string = '';
+		if(this.CurrentPatient.partner == null || this.CurrentPatient.partner.firstName == null) {
+			partner = '';
+		}
+		else {
+			partner = this.CurrentPatient.partner.firstName;
+		}
 
-        this.SelectedInventoryItem = this.FilteredInventoryItems.find(a => a.inventoryItemId == value.data.inventoryItemId);
-        console.log("SelectedInventoryItem", this.SelectedInventoryItem);
+		var a : any = {
+			date : new Date(),
+			totalTradePrice : this.TotoalRetailPrice,
+			totalTradeOffer : this.TotalCostPrice,
+			totalQuantity : this.TotalQuantity,
+			issueDate : new Date(),
+			salesIndentItems : this.SalesIndentItems,
+			customerName : this.CurrentPatient.fullName || '',
+			customerSecondName : partner || '',
+			consultantName : '',
+			customerCode : this.CurrentPatient.mrn
+		}
 
-        var a: any = {
-            inventoryItemId: <number>value.data.inventoryItemId,
-            treatmentStart: value.data.treatmentStart,
-            treatmentTimeInDays: <number>value.data.treatmentTimeInDays,
-            treatmentEnd: this.addDays(value.data.treatmentStart, value.data.treatmentTimeInDays),
-            dosage: <number>value.data.dosage
-        };
+		this.SalesIndent = a;
+		console.log("Sales Indent", this.SalesIndent);
 
-        console.log(a);
-        this.Prescriptions.push(a);
-        console.log(this.Prescriptions);
-        this.Prescriptions.splice(this.Index, 1);
-        console.log(this.Prescriptions);
-        // this.SalesIndentItems.push(a);
-        this.TotalQuantity += Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays);
-        this.TotalCostPrice += this.TotalQuantity * Number.parseFloat(this.SelectedInventoryItem.costPrice);
-        this.TotoalRetailPrice += this.TotalQuantity * Number.parseFloat(this.SelectedInventoryItem.retailPrice);
-        this.Index += 1;
+		this.PharmacyService.AddSalesIndent(this.SalesIndent).subscribe(res => {
+			console.log(res);
+		});
+	}
 
-        this.FilteredInventoryItems = this.FilteredInventoryItems.filter(a => a.inventoryItemId != value.data.inventoryItemId);
-        this.InventoryItemDataSource = this.InventoryItems;
-
-    }
-
-    DeletePrescription(value) {
-        console.log(value);
-        let b: any = this.InventoryItems;
-        let a: InventoryItem = b.find(c => c.inventoryItemId == value.data.inventoryItemId);
-        this.FilteredInventoryItems.push(a);
-    }
-
-    setItemValue(rowData: any, value: any): void {
-        rowData.inventoryItemId = null;
-        (<any>this).defaultSetCellValue(rowData, value);
-    }
-
-    onSubmit() {
-        var a: any = {
-            date: new Date(),
-            // totalTradePrice : 
-        };
-
-    }
-
-    onReset() {
-
-    }
+	onReset() {
+		this.SalesIndentItems = [];
+		this.Prescriptions = [];
+		this.SalesIndent = null;
+	}
 }

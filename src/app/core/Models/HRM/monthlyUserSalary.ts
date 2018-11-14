@@ -2,7 +2,6 @@ import { UserRosterAttendance } from "./userRosterAttendance";
 
 export class MonthlyUserSalary {
 
-    monthlyUserSalaryId: number;
     MonthStartDate: Date;
     MonthEndDate: Date;
     TotalWorkingDaysInMonth: number;

@@ -53,10 +53,6 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
             OutgoingOtHours: ['', Validators]
         });
         this.EmployeeEntitlementForm = this.fb.group({
-            // EmployeeWorkingDayOtId: ['', Validators],
-            // EmployeeOffDayOtId: ['', Validators],
-            // EmployeeIncomingOtId: ['', Validators],
-            // EmployeeOutgoingOtId: ['', Validators] ,
             UserId: ['', Validators]
         });
 

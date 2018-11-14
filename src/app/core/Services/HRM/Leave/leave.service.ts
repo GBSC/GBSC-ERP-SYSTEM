@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { LeaveRequest } from '../../../Models/HRM/leaveRequest';
+import { Observable } from 'rxjs';
+import { LeaveOpening } from '../../../Models/HRM/leaveOpening';
 
 @Injectable()
 export class LeaveService {
@@ -12,6 +15,10 @@ export class LeaveService {
 
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveOpenings`).toPromise();
     }
+   
+     getLeaveOpeningById(id) : Observable<LeaveOpening> {
+        return this.ApiService.get(this.baseUrl + '/Leave/GetLeaveOpening/' + id);
+    }
 
     async getdataToUpdate(leaveId, leaveUrl) {
         return await this.ApiService.get(`${this.baseUrl}/${leaveUrl}/${leaveId}`).toPromise();
@@ -22,12 +29,9 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data).toPromise();
     }
 
-    async updateLeaveOpening(data) {
-
-        let leaveopen = await this.getdataToUpdate(data.key, 'GetLeaveOpening');
-        leaveopen = { ...leaveopen, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, leaveopen).toPromise();
-
+     updateLeaveOpening(data : LeaveOpening) {
+ 
+        return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, data);
     }
 
     async deleteLeaveOpening(leaveOpeningId) {
@@ -46,9 +50,9 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
     }
 
-    async updateLeaveOpeningDetail(data) {
-
-        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, data).toPromise();
+     updateLeaveOpeningDetail(data : LeaveOpening): Observable<any>{
+ 
+        return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, data);
 
     }
 
@@ -83,15 +87,19 @@ export class LeaveService {
 
     }
 
+     getleaverequest(id) : Observable<LeaveRequest>{
+
+        return this.ApiService.get(this.baseUrl +'/Leave/GetLeaveRequest/' + id);
+
+    }
+
     async addLeaveRequest(data) {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data).toPromise();
     }
 
-    async updateLeaveRequest(data) {
-
-        let leaverqst = await this.getdataToUpdate(data.key, 'GetLeaveRequest');
-        leaverqst = { ...leaverqst, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, leaverqst).toPromise();
+     updateLeaveRequest(data : LeaveRequest) : Observable<any> {
+ 
+        return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
     }
 
 

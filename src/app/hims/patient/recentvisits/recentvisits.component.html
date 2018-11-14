@@ -22,7 +22,7 @@
           <ul *ngFor="let Patient of visits">
               <li   (click)="onclick(Patient.visitId)">
             <a class="m-link m-link--state m-link--success">
-                {{Patient.startTime | date: 'dd/MM/yyyy'}}
+                {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
             </a>
           </li>
         </ul>

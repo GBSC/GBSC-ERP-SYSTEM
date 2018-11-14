@@ -9,8 +9,6 @@ import { EmployeeStatuscomponent } from '../hrmsSetup/employeestatus/employeesta
 import { ReligionComponent } from '../hrmsSetup/religion/religion.component';
 import { BankComponent } from '../hrmsSetup/bank/bank.component';
 import { DegreeComponent } from '../hrmsSetup/degree/degree.component';
-import { AccountTypeComponent } from '../hrmsSetup/accounttype/accounttype.component';
-import { RosterComponent } from '../hrmsSetup/roster/roster.component';
 import { ManagementLevelsComponent } from '../hrmsSetup/managementlevels/managementlevels.component';
 import { DesignationComponent } from '../hrmsSetup/designations/designations.component';
 import { GroupComponent } from '../hrmsSetup/groups/groups.component';
@@ -18,11 +16,7 @@ import { GazettedHolidaysComponent } from '../hrmsSetup/gazettedholidays/gazette
 import { CostCenterComponent } from '../hrmsSetup/costcenters/costcenters.component';
 import { LanguageComponent } from '../hrmsSetup/languages/languages.component';
 import { SkillLevelsComponent } from '../hrmsSetup/skilllevels/skilllevels.component';
-import { LeaveTypeComponent } from '../hrmsSetup/leavetypes/leavetypes.component';
-import { AdvanceTypeComponent } from '../hrmsSetup/advancetypes/advancetypes.component';
-import { AllowancesTypeComponent } from '../hrmsSetup/allowancestypes/allowancestypes.component';
 import { RelationComponent } from '../hrmsSetup/relations/relations.component';
-import { CityComponent } from '../hrmsSetup/cities/cities.component';
 import { UniversityComponent } from '../hrmsSetup/university/university.component';
 import { RootComponent } from '../root/root.component';
 import { ShiftComponent } from '../attendance/attendancesetup/shift/shift.component';
@@ -52,8 +46,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'shift', component: ShiftComponent },
                     { path: 'bank', component: BankComponent },
                     { path: 'degree', component: DegreeComponent },
-                    { path: 'accounttype', component: AccountTypeComponent },
-                    { path: 'roster', component: RosterComponent },
                     { path: 'managementlevels', component: ManagementLevelsComponent },
                     { path: 'designations', component: DesignationComponent },
                     { path: 'groups', component: GroupComponent },
@@ -61,12 +53,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'costcenters', component: CostCenterComponent },
                     { path: 'languages', component: LanguageComponent },
                     { path: 'skilllevels', component: SkillLevelsComponent },
-                    { path: 'leavetypes', component: LeaveTypeComponent },
                     { path: 'grade', component: GradesComponent },
-                    { path: 'advancetypes', component: AdvanceTypeComponent },
-                    { path: 'allowancestypes', component: AllowancesTypeComponent },
                     { path: 'relations', component: RelationComponent },
-                    { path: 'cities', component: CityComponent },
                     { path: 'university', component: UniversityComponent }
                 ]
             }

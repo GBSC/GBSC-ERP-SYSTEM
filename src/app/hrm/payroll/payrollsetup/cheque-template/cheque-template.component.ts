@@ -18,6 +18,7 @@ export class ChequeTemplateComponent implements OnInit {
 
     async addChequeTemplate(value) {
         await this.payrollsetupservice.addChequeTemplate(value.data);
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
     }
 
     async updateChequeTemplate(value) {

@@ -23,10 +23,8 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
-
-        let rosterassign = await this.getdataToUpdate(data.key, 'GetAssignRoster');
-        rosterassign = { ...rosterassign, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, rosterassign).toPromise();
+ 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
 
     }
 

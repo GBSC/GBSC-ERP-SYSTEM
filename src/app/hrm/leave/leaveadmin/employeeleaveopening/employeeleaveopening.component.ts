@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SetupService, LeaveService, LeaveSetupService, EmployeeService } from '../../../../core';
 import { LeaveOpeningDetail } from '../../../../core/Models/HRM/leaveOpeningDetail';
 import { LeaveOpening } from '../../../../core/Models/HRM/leaveOpening';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-employeeleaveopening',
@@ -14,14 +15,19 @@ export class EmployeeleaveopeningComponent implements OnInit {
     public leaveOpeningForm: FormGroup;
     private openingDetail: LeaveOpeningDetail[];
     public employees: any;
+    public leaveOpeningDetail: any[] = [];
     public leaveYear: any;
-    public msg: any;
     public leaveType: any;
     public leaveOpeningId;
     public leaveopening: any;
     public leveopeningdetail: any;
+    public leaveOpening: any;
+    
+    @Input('leaveRequestId') id: number;
 
-    constructor(public fb: FormBuilder, public setup: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService, public router: Router) { }
+    constructor(public toastr:ToastrService, private activatedRoute: ActivatedRoute, 
+        public fb: FormBuilder, public setup: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService, 
+        public empservice: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
 
@@ -44,8 +50,23 @@ export class EmployeeleaveopeningComponent implements OnInit {
         this.leaveYear = await this.leavesetupservice.getLeaveYears();
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
-    }
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+          });
 
+          if (this.isUpdate() === true) {
+            this.leaveservice.getLeaveOpeningById(this.id).subscribe(resp => {
+              this.leaveOpening = resp;
+                let a = this.leaveOpening.leaveOpeningDetails;
+              this.leaveOpeningDetail= a.filter(b => {
+                delete b.leaveOpeningDetailId;
+                delete b.leaveOpeningId;
+                return b;
+              }); 
+                 this.patchValues(this.leaveOpening);
+            });
+          }
+    }
 
     async addLeaveopenDetail(value) {
 
@@ -58,22 +79,45 @@ export class EmployeeleaveopeningComponent implements OnInit {
         opening = { ...opening, ...value };
         opening.LeaveOpeningDetails = this.openingDetail;
         let s = await this.leaveservice.addLeaveOpening(opening);
-        this.msg = 'Success! Leave Opening Submit Successfully';
-        setTimeout(() => {
-            this.msg = null;
-        }, 3000);
+        this.toastr.success('Employee Leave Opening Added');
         this.leaveOpeningForm.reset();
         this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
 
     }
+ 
 
-    async updatingLeaveOpeningDetail(value) {
-        this.updatingLeaveOpeningDetail = { ...value.oldData, ...value.newData };
-    }
+    isUpdate(): boolean {
 
-    async updateLeaveOpeningDetail() {
-        await this.leaveservice.updateLeaveOpeningDetail(this.updatingLeaveOpeningDetail);
-    }
+        if (this.id > 0) {
+          return true;
+        }
+        else
+          return false;
+      }
 
+      async updateLeaveopenDetail(value) {
+        console.log(value);
+      }
+    
+      async update(value) { 
+        value.leaveOpeningId = this.id;
+        value.LeaveOpeningDetails = this.leaveOpeningDetail;
+        console.log(value);
+        this.leaveservice.updateLeaveOpening(value).subscribe(resp => {
+          this.toastr.success("Leave Opening Updated"); 
+          this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
+    
+        });
+      }
+
+      patchValues(opening: any) {
+        this.leaveOpeningForm.patchValue({
+           
+            UserId: opening.userId,
+            LeaveYearId: opening.leaveYearId,
+            Remarks: opening.remarks
+        })
+    
+      }
 
 }

@@ -4,6 +4,7 @@ export interface SalesIndent {
     salesIndentId: number,
     date: Date,
     salesIndentNumber: string,
+    totalQuantity: number,
     totalTradePrice: number,
     totalTradeOfferDiscount: number,
     totalTradeOffer: number,

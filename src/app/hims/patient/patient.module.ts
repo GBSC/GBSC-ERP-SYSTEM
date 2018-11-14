@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
-import { ReportsComponent } from '../patient/Reports/reports/reports.component';
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DiagnosesComponent } from './diagnoses/diagnoses.component';
@@ -34,9 +33,19 @@ import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.com
 import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
+import { PackageComponent } from './package/package.component';
 import { TestComponent } from './test/test.component';
 import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
 import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
+import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
+import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
+import { ReportsComponent } from './Reports/reports/reports.component';
+import { TestTypeComponent } from './test-type/test-type.component';
+import { TestCategoryComponent } from './test-category/test-category.component';
+import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
+import { DxDateBoxModule } from 'devextreme-angular';
+import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
+
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -49,12 +58,15 @@ import { VisitPrescriptionComponent } from './visit-prescription/visit-prescript
         ReactiveFormsModule,
         routing,
         //SharedModule,
+        DxDateBoxModule,
+
         HttpClientModule
     ],
     declarations: [
 
         RootComponent,
         RegistrationComponent,
+        PaymentreceiptComponent,
         ActiveVisitsComponent,
         ReportsComponent,
         ProfileComponent,
@@ -65,6 +77,7 @@ import { VisitPrescriptionComponent } from './visit-prescription/visit-prescript
         AllergiesComponent,
         WeightGraphComponent,
         ConsultantComponent,
+        PackageComponent,
         VitalsComponent,
         AppointmentsComponent,
         LatestobservationComponent,
@@ -86,6 +99,11 @@ import { VisitPrescriptionComponent } from './visit-prescription/visit-prescript
         TestComponent,
         ViewallAppointmetsComponent,
         VisitPrescriptionComponent,
+        PatientReferenceComponent,
+        TestTypeComponent,
+        TestCategoryComponent,
+        AppointmentpaymentreceiptComponent,
+        PatientInvoiceViewComponent,
     ]
 })
 export class PatientModule { }

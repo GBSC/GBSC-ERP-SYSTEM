@@ -20,13 +20,13 @@
                 <label>
                     Month Start Date:
                 </label> 
-                <input type="date" class="form-control m-input" formControlName="MonthStartDate" placeholder="0">
+                <dx-date-box formControlName="MonthStartDate" type="date" width="100%"></dx-date-box>
                 </div>
                 <div class="col-lg-6">
                   <label class="">
                       Month End Date:
                   </label> 
-                  <input type="date" class="form-control m-input" formControlName="MonthEndDate" placeholder="0">
+                  <dx-date-box formControlName="MonthEndDate" type="date" width="100%"></dx-date-box>
               </div>
             </div>
             <div class="form-group m-form__group row">
@@ -74,13 +74,13 @@
                 <label>
                   Stop From:
                     </label>
-                    <input type="date" class="form-control m-input" formControlName="StopFrom" placeholder="0">
+                    <dx-date-box formControlName="StopFrom" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
                   </div>
                   <div class="col-lg-6">
                     <label class="">
                       Stop Till:
                     </label>
-                    <input type="date" class="form-control m-input" formControlName="StopTill" placeholder="0">
+                    <dx-date-box formControlName="StopTill" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
                   </div>
                 </div>
                 
@@ -117,11 +117,11 @@
                     </div>
                     <div class="col-lg-6">
                       <label class="">
-                        Pay Roll:
+                        Payslip:
                       </label>
-                      <select class="form-control m-input" formControlName="PayslipId" id="">
+                      <select class="form-control m-input" formControlName="PaySlipId" id="">
                         <option value="" disabled selected>-- Select Gross Amount --</option>
-                        <option *ngFor ="let Payslip of paySlip" [value]="Payslip.payslipId" >{{Payslip.grossAmount}}</option>
+                        <option *ngFor ="let Payslip of paySlip" [value]="Payslip.paySlipid" >{{Payslip.grossAmount}}</option>
                       </select>
                     </div>
                   </div>
@@ -132,7 +132,7 @@
                         Pay Roll:
                       </label>
                       <select class="form-control m-input" formControlName="PayrollId" id="">
-                        <option value="" disabled selected>-- Select Monthly Salary --</option>
+                        <option value="" disabled selected>-- Select Payroll --</option>
                         <option *ngFor ="let payroll of payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
                       </select>
                     </div>
@@ -153,12 +153,10 @@
                           <div class="m-section">
                             <div class="m-section__content">
                               <dx-data-grid id="gridContainer"
-                              [dataSource]="[]"
-                               keyExpr="userRosterAttendanceId"
-                               (onRowInserted)="RosterAttendance($event)" >
-                                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                  <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                                  </dxo-popup>
+                              [dataSource]="rosterattendance"
+                               (onRowInserted)="RosterAttendance($event)" 
+                               (onRowUpdated)="updateRosterAttendance($event)" >
+                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                 </dxo-editing>
                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -191,11 +189,18 @@
                       <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4">
-                          <button type="submit" class="btn btn-brand" (click)="addMonthlySalary(MonthlyUserSalaryForm.value)">
+                            <div *ngIf="isUpdate(); else create">
+                                <button class="btn btn-primary" (click)="update(MonthlyUserSalaryForm.value)">
+                                    Update
+                                  </button>        
+                            </div> 
+                            <ng-template #create>
+                          <button type="submit" class="btn btn-Success" (click)="addMonthlySalary(MonthlyUserSalaryForm.value)">
                             Submit
                           </button>
+                          </ng-template>
                           <button type="reset" class="btn btn-secondary">
-                            Cancel
+                            Reset
                           </button>
                         </div>
                         <div class="col-lg-4"></div>

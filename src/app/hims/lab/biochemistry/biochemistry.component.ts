@@ -10,6 +10,8 @@ import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistryte
 import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
 import { TestUnit } from '../../../core/Models/HIMS/testunit';
 import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
+import { BiochemistryoutsiderService } from '../../../../app/core/Services/HIMS/Lab/biochemistryoutsider.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-biochemistry',
@@ -24,18 +26,27 @@ export class BiochemistryComponent implements OnInit {
     private patient: Patient;
     private testDetail: BioChemistryTestDetail[];
     private tests: BioChemistryTest;
+    private bioChemistry: any;
     private units: TestUnit;
-    private bioChemistryForm: FormGroup;
+    private bioChemistryOutsiderForm: FormGroup;
+    private id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService: BioChemistryService) {
+    constructor(private formBuilder: FormBuilder,
+        private bioChemistryOutsiderService: BiochemistryoutsiderService,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private bioChemistryService: BioChemistryService,
+        private route: ActivatedRoute, ) {
 
-        this.bioChemistryForm = formBuilder.group({
+        this.bioChemistryOutsiderForm = formBuilder.group({
             'PatientId': ['', Validators.required],
             'ConsultantId': ['', Validators.required],
+            'CollectionDate': [],
             'LMP': [],
             'Days': [],
+            'Others': [],
             'IsRandom': [false]
         });
 
@@ -44,6 +55,22 @@ export class BiochemistryComponent implements OnInit {
     ngOnInit() {
 
         this.testDetail = [];
+
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+
+            this.bioChemistryOutsiderService.getBioChemistryTestOutsider(this.id).subscribe(resp => {
+
+                this.bioChemistry = resp;
+
+                if (this.bioChemistry) {
+                    this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+
+                }
+
+            })
+
+        })
 
         this.patientcb.onValueChanged.subscribe(res => this.populatePatientDate(res.component.option("value")));
 
@@ -60,16 +87,11 @@ export class BiochemistryComponent implements OnInit {
 
     }
 
-    submitForm(value: PatientBiochemistryTest) {
+    submitForm(value: any) {
 
-        let patientBioChemistryTest = new PatientBiochemistryTest();
+        value.bioChemistryTestDetails = this.testDetail;
 
-        patientBioChemistryTest = { ...patientBioChemistryTest, ...value };
-
-        patientBioChemistryTest.IsOnTreatment = false;
-        patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
-
-        console.log(patientBioChemistryTest);
+        this.bioChemistryOutsiderService.addBioChemistryTestOutsider(value).subscribe(resp => console.log(resp));
     }
 
     populatePatientDate(patientId) {
@@ -77,20 +99,6 @@ export class BiochemistryComponent implements OnInit {
             this.patient = patient;
             this.spouse = patient.partner;
         });
-    }
-
-    addBioChemistryTestDetail(value) {
-        let data = value.data;
-
-        this.testDetail.push(data);
-
-        console.log(this.testDetail);
-    }
-
-    updateBioChemistryTestDetail(value) {
-        let data = value.data;
-
-        console.log(this.testDetail);
     }
 
 

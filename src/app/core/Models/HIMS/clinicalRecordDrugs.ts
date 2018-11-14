@@ -1,16 +1,16 @@
-class ClinicalRecordDrugs{
+class ClinicalRecordDrugs {
 
-    clinicalRecordDrugsId : number;
+    clinicalRecordDrugsId: number;
 
-    fromDate : Date;
+    fromDate: Date;
 
-    toDate : Date;
+    toDate: Date;
 
-    days : number;
+    days: number;
 
-    quanitity : number;
+    quanitity: number;
 
-    totalDosage : string;
+    totalDosage: string;
 
-    medicineId : number;
+    medicineId: number;
 }

@@ -244,7 +244,7 @@ export class AttendancesetupService {
     }
 
     async updateOvertimeType(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, data).toPromise();
 
     }

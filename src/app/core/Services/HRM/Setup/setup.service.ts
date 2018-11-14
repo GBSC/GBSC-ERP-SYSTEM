@@ -95,7 +95,7 @@ export class SetupService {
 
     /** CRUD METHODS DEPARTMENTS */
     async getAllDepartments() {
- 
+
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
 

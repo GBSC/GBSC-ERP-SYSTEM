@@ -239,8 +239,8 @@ export class PatientService {
         return this.getApptbyId;
     }
 
-    async GetAppointmentByDate(date){
-         return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
+    async GetAppointmentByDate(date) {
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
     }
 
 
@@ -257,7 +257,7 @@ export class PatientService {
         //return await this.http1.put(`${this.API_URL}/Appointments/UpdateAppointment/`, appointment).toPromise();
     }
 
-    async updateAppointmentFromVisitDetail(appointment: Appointment){
+    async updateAppointmentFromVisitDetail(appointment: Appointment) {
         console.log(appointment);
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
@@ -275,12 +275,12 @@ export class PatientService {
         //console.log(this.ConsultantIdAndTentiveTime);
         return this.ConsultantIdAndTentiveTime;
     }
-    public AppointmentByDate :any;
+    public AppointmentByDate: any;
     async getAppointmentByDate(date) {
-        return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
-            
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
+
     }
-    
+
 
     async getConsultant() {
         this.consultant = await this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants').toPromise();
@@ -388,9 +388,9 @@ export class PatientService {
 
     async AddVisits(id) {
         this.visitid = await this.ApiService.post(this.API_URL + 'Visits/AddVisit', { patientId: id }).toPromise();
-          sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
-          this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
-          console.log(this.visitid)
+        sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
+        this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+        console.log(this.visitid)
         //this.visitid = await this.http1.post(this.API_URL + '/Visits/AddVisit/', { patientId: id }).toPromise()
         //console.log(this.visitid);
         return this.visitid;
@@ -425,25 +425,25 @@ export class PatientService {
         //return x;
     }
 
-    async addvisitTest(id ,visitTest: VisitTest) {
-        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests/'+id ,visitTest).toPromise();
+    async addvisitTest(id, visitTest: VisitTest) {
+        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests/' + id, visitTest).toPromise();
         //let x = await this.http1.post(this.API_URL + '/visits/AddVisitTests/', visitTest).toPromise();
         //console.log(x);
         //return x;
     }
 
-    GetVisitTestsByVisitId(id : number) : Observable<VisitTest[]> {
+    GetVisitTestsByVisitId(id: number): Observable<VisitTest[]> {
         return this.ApiService.get(this.API_URL + 'visits/GetVisitTestsByVisitId/' + id);
     }
 
-    async AddVisitTestsByVisitId(id : number, VisitTests : VisitTest[]) {
+    async AddVisitTestsByVisitId(id: number, VisitTests: VisitTest[]) {
         return await this.ApiService.post(this.API_URL + 'visits/AddVisitTestsByVisitId/' + id, VisitTests).toPromise();
     }
 
-    async AddVisitDiagnosesByVisitId(id : number,   visitDiagnosis: VisitDiagnosis[]) {
+    async AddVisitDiagnosesByVisitId(id: number, visitDiagnosis: VisitDiagnosis[]) {
         return await this.ApiService.post(this.API_URL + 'visits/AddVisitDiagnosesByVisitId/' + id, visitDiagnosis).toPromise();
     }
- 
+
 
     async GetPatientVitals() {
         this.PatientVitals = await this.ApiService.get(this.API_URL + 'Visits/GetPatientVitals').toPromise();
@@ -549,10 +549,10 @@ export class PatientService {
     }
 
 
-    
 
-    
-    async GetLastestVisitByPatientId(id)  {
+
+
+    async GetLastestVisitByPatientId(id) {
         return await this.ApiService.get(this.API_URL + 'Visits/GetLastestVisitByPatientId/' + id).toPromise();
     }
 

@@ -557,15 +557,12 @@
                           <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(insemenationForm.value)">
                             Submit
                           </button>
-                          <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                          <a [routerLink]="['/lab/freeze-prep', id]" class="btn btn-brand m-btn m-btn--custom">
                             Freeze Prep.
-                          </button>
-                          <button type="button" class="btn btn-success m-btn m-btn--custom">
-                            Questionnaire
-                          </button>
-                          <button type="button" class="btn btn-info m-btn m-btn--custom">
+                          </a>
+                          <a [routerLink]="['/lab/insemenation-prep', id]" class="btn btn-info m-btn m-btn--custom">
                             Insem. Prep.
-                          </button>
+                          </a>
                         </div>
                       </div>
 

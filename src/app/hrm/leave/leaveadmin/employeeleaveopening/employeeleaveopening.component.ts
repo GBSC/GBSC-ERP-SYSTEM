@@ -11,7 +11,7 @@ import { LeaveOpening } from '../../../../core/Models/HRM/leaveOpening';
     styleUrls: ['./employeeleaveopening.component.css']
 })
 export class EmployeeleaveopeningComponent implements OnInit {
-    public leaveOpeningForm: FormGroup; 
+    public leaveOpeningForm: FormGroup;
     private openingDetail: LeaveOpeningDetail[];
     public employees: any;
     public leaveYear: any;
@@ -33,7 +33,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
             Remarks: ['', Validators.required]
 
         });
- 
+
 
         this.leaveopening = await this.leaveservice.getLeaveOpening();
 
@@ -48,11 +48,11 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
 
     async addLeaveopenDetail(value) {
-        
+
         let data = value.data;
         this.openingDetail.push(data);
     }
-    
+
     async addleaveopening(value) {
         let opening = new LeaveOpening();
         opening = { ...opening, ...value };
@@ -68,10 +68,11 @@ export class EmployeeleaveopeningComponent implements OnInit {
     }
 
     async updatingLeaveOpeningDetail(value) {
-        this.updatingLeaveOpeningDetail = { ...value.oldData, ...value.newData };    }
+        this.updatingLeaveOpeningDetail = { ...value.oldData, ...value.newData };
+    }
 
     async updateLeaveOpeningDetail() {
-         await this.leaveservice.updateLeaveOpeningDetail( this.updatingLeaveOpeningDetail);
+        await this.leaveservice.updateLeaveOpeningDetail(this.updatingLeaveOpeningDetail);
     }
 
 

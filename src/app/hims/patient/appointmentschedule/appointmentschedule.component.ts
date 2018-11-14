@@ -68,9 +68,9 @@ export class AppointmentscheduleComponent implements OnInit {
     private tentativeAppointments: any[];
     private finalizedAppointments: any[];
 
-    public appointmentbydate : any;
+    public appointmentbydate: any;
 
-    constructor(private toastr: ToastrService,private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http : HttpClient) {
+    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http: HttpClient) {
 
         // this.profileForm = new FormGroup({
         //   firstName: new FormControl('fajlksdjfas'),
@@ -114,7 +114,7 @@ export class AppointmentscheduleComponent implements OnInit {
     }
 
     async  ngOnInit() {
-      
+
 
 
         await this.PatientServiceobj.getPatient();
@@ -150,15 +150,15 @@ export class AppointmentscheduleComponent implements OnInit {
         this.appointmentbydate = await this.PatientServiceobj.getAppointmentByDate(this.formatDate(new Date()));
 
 
-         this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
+        this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-console.log(this.tentativeAppointments)
+        console.log(this.tentativeAppointments)
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
     }
 
     formatDate(date: Date) {
-        return date.getFullYear( ) + "-" +( date.getMonth()+ 1 )+"-" + date.getDate();
-    
+        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+
         //return (date.getMonth() + 1) + "/" + date.getDate() + "/" +date.getFullYear() ;
     }
 
@@ -268,48 +268,48 @@ console.log(this.tentativeAppointments)
         let x = this.PatientServiceobj.patientID;
         console.log(x)
         return this.patientIdIs;
-        
+
 
     }
 
     async addApointment(value, cid) {
-      
-           console.log(value);
-            if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
-                console.log(this.PatientServiceobj.patientID.patientId);
-                this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
 
-            }
-            console.log(cid.value);
-            console.log(value);
+        console.log(value);
+        if (this.appointmentForm.value.PatientId === null || this.appointmentForm.value.PatientId === '') {
+            console.log(this.PatientServiceobj.patientID.patientId);
+            this.appointmentForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
 
-            this.appointmentForm.value.ConsultantId = cid.value;
-            // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
-            // {
-            //     this.appointmentForm.value.IsFinalAppointment = false;
-            // }
-          ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
-           ////////////// //console.log(this.appointmentForm.value);
-                console.log(value)
-             let x = await this.PatientServiceobj.addAppointment(value);
-            console.log(x);
-             await this.PatientServiceobj.getPatient();
-            this.par = this.PatientServiceobj.patients;
-            let dsdf = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
-            console.log(dsdf);
-            this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
-            console.log(this.ConsultantIdTentiveTime);
-            this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
-            this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
+        }
+        console.log(cid.value);
+        console.log(value);
 
-            this.deleteFieldValue();
+        this.appointmentForm.value.ConsultantId = cid.value;
+        // if(this.appointmentForm.value.IsFinalAppointment === null || this.appointmentForm.value.IsFinalAppointment === '')
+        // {
+        //     this.appointmentForm.value.IsFinalAppointment = false;
+        // }
+        ///////////////  this.appointmentForm.value.patientId = this.patientIdIs.patientId;
+        ////////////// //console.log(this.appointmentForm.value);
+        console.log(value)
+        let x = await this.PatientServiceobj.addAppointment(value);
+        console.log(x);
+        await this.PatientServiceobj.getPatient();
+        this.par = this.PatientServiceobj.patients;
+        let dsdf = await this.PatientServiceobj.getConsultantIdAndTentiveTime(cid.value, value.TentativeTime);
+        console.log(dsdf);
+        this.ConsultantIdTentiveTime = this.PatientServiceobj.ConsultantIdAndTentiveTime;
+        console.log(this.ConsultantIdTentiveTime);
+        this.tentativeAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == false).map((a, i) => { a.index = i + 1; return a });;
+        this.finalizedAppointments = this.ConsultantIdTentiveTime.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });;
 
-            this.appointmentForm.reset();
-            this.patientForm.reset();
-            this.patientForm.value.FirstName = '';
-            this.patientForm.value.LastName = '';
-            this.displayToastSuccess("Appointment Schedule");
-            return x;
+        this.deleteFieldValue();
+
+        this.appointmentForm.reset();
+        this.patientForm.reset();
+        this.patientForm.value.FirstName = '';
+        this.patientForm.value.LastName = '';
+        this.displayToastSuccess("Appointment Schedule");
+        return x;
     }
 
     async updateAppointment(value) {

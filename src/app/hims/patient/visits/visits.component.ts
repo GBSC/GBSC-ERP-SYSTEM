@@ -43,7 +43,7 @@ export class VisitsComponent implements OnInit {
     Patient: Patient;
     Visits: Visits;
 
-    constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote': ['', Validators.required],
@@ -88,7 +88,7 @@ export class VisitsComponent implements OnInit {
         this.vist = await this.PatientServiceobj.getVisitId(this.id);
         console.log(this.vist)
 
-      //  this.vistid = await this.PatientServiceobj.visitid.visitID;
+        //  this.vistid = await this.PatientServiceobj.visitid.visitID;
 
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
@@ -110,10 +110,10 @@ export class VisitsComponent implements OnInit {
 
         let visitID = JSON.parse(sessionStorage.getItem('visitId'));
         console.log(visitID);
-        this.visitid =  visitID.visitID;
+        this.visitid = visitID.visitID;
 
 
-        
+
     }
 
     // onSubmit() {
@@ -147,7 +147,7 @@ export class VisitsComponent implements OnInit {
 
     }
 
-    
+
 
     async addappointment(value) {
         this.PatientAppointmentForm.value.PatientId = this.id;
@@ -193,7 +193,7 @@ export class VisitsComponent implements OnInit {
         });
         console.log(this.VisitTests);
         console.log(this.vistid);
-        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.visitid ,this.VisitTests);
+        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.visitid, this.VisitTests);
         console.log(x);
         console.log(this.VisitTests);
         this.removealltest(this.VisitTests);

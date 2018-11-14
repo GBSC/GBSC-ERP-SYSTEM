@@ -47,38 +47,38 @@ export class GeneralactionsComponent implements OnInit {
 
 
         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
-        console.log( this.currentPatient);
+        console.log(this.currentPatient);
         console.log(this.Patient);
 
         console.log(this.Patient);
-        
+
     }
     async startVisit() {
-         if(this.Patient.appointments.length){
-                      if(this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){
-                         
-                      if(this.lastpatientvisit === null){
-                          console.log(this.lastpatientvisit);
-                          console.log('1');
-                                await this.PatientServiceobj.AddVisits(this.id);
-                                this.router.navigate(['/hims/patient/visits/' + this.id]);
-                           }
-                           else  if (this.formatDate(new Date(this.lastpatientvisit.endTime)) == this.formatDate(new Date())) {
-                                     this.displayToastError("Cannot create more than 1 visit on the same day")
-                                }
-                                else {
-                                        await this.PatientServiceobj.AddVisits(this.id);
-                                        console.log('2');
-                                        this.router.navigate(['/hims/patient/visits/' + this.id]);
-                                    }
-                    
-                 }
-                  else{
-                    this.displayToastError("Current Date Appointment Not Schedule")
-                  }
+        if (this.Patient.appointments.length) {
+            if (this.Patient.appointments.find(t => t.appointmentDate === this.formatDate(new Date()) && t.isFinalAppointment == true)) {
+
+                if (this.lastpatientvisit === null) {
+                    console.log(this.lastpatientvisit);
+                    console.log('1');
+                    await this.PatientServiceobj.AddVisits(this.id);
+                    this.router.navigate(['/hims/patient/visits/' + this.id]);
+                }
+                else if (this.formatDate(new Date(this.lastpatientvisit.endTime)) == this.formatDate(new Date())) {
+                    this.displayToastError("Cannot create more than 1 visit on the same day")
+                }
+                else {
+                    await this.PatientServiceobj.AddVisits(this.id);
+                    console.log('2');
+                    this.router.navigate(['/hims/patient/visits/' + this.id]);
+                }
+
+            }
+            else {
+                this.displayToastError("Current Date Appointment Not Schedule")
+            }
         }
 
-        else{
+        else {
             this.displayToastError("Appointment Not Schedule");
         }
 

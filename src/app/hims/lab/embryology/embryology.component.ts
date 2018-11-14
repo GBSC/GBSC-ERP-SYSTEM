@@ -8,127 +8,141 @@ import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS
 import { EmbryologyService } from '../../../../app/core/Services/HIMS/Lab/embryology.service';
 import { TvopuService } from '../../../../app/core/Services/HIMS/Lab/tvopu.service';
 import { EmbryologistService } from '../../../../app/core/Services/HIMS/Lab/embryologist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-embryology',
-  templateUrl: './embryology.component.html',
-  styleUrls: ['./embryology.component.scss']
+    selector: 'app-embryology',
+    templateUrl: './embryology.component.html',
+    styleUrls: ['./embryology.component.scss']
 })
 export class EmbryologyComponent implements OnInit {
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  private patient: any;
-  private spouse: any;
-  private patients: any;
-  private consultants: any;
-  private treatments: any;
-  private id: number;
-  private clinicalRecord: any;
-  private embryology: any;
-  private tvopu: any;
-  private embryologists: any;
-  private embryologydetails: any;
+    private patient: any;
+    private spouse: any;
+    private patients: any;
+    private consultants: any;
+    private treatments: any;
+    private id: number;
+    private clinicalRecord: any;
+    private embryology: any;
+    private tvopu: any;
+    private embryologists: any;
+    private embryologydetails: any;
 
-  private embryologyForm: FormGroup;
+    private embryologyForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-    private consultantService: ConsultantService,
-    private patientService: PatientService,
-    private treatmentService: TreatmentService,
-    private route: ActivatedRoute,
-    private tvopuService: TvopuService,
-    private embryologyService: EmbryologyService,
-    private embryologistService: EmbryologistService,
-    private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(private formBuilder: FormBuilder,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private treatmentService: TreatmentService,
+        private route: ActivatedRoute,
+        private tvopuService: TvopuService,
+        private embryologyService: EmbryologyService,
+        private embryologistService: EmbryologistService,
+        private toastr: ToastrService,
+        private clinicalrecordservice: PatientclinicalrecordService) {
 
-    this.embryologyForm = formBuilder.group({
-      "EggNumber": [''],
-      "CreateDate": [''],
-      "FreshEmbryoTransferDate": [''],
-      "FreshEmbryoTransferTime": [''],
-      "EmbryoDate": [''],
-      "Time": [''],
-      "Staff": [''],
-      "Status": [''],
-      "Verify": [''],
-      "Remarks": [''],
-      "EggStatusNumber": [''],
+        this.embryologyForm = formBuilder.group({
+            "EggNumber": [''],
+            "CreateDate": [''],
+            "FreshEmbryoTransferDate": [''],
+            "FreshEmbryoTransferTime": [''],
+            "EmbryoDate": [''],
+            "Time": [''],
+            "Staff": [''],
+            "Status": [''],
+            "Verify": [''],
+            "Remarks": [''],
+            "EggStatusNumber": [''],
+            "ConsultantId": [''],
+            "EmbryologistId": ['']
 
-    })
+        })
 
-    this.embryologyForm.disable();
+        this.embryologyForm.disable();
 
-  }
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.embryologydetails = [];
+        this.embryologydetails = [];
 
-    this.route.params.subscribe((params) => {
-      this.id = +params['id'];
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
 
-      this.tvopuService.getTvopu(this.id).subscribe(resp => {
+            this.tvopuService.getTvopu(this.id).subscribe(resp => {
 
-        this.tvopu = resp;
+                this.tvopu = resp;
 
-        if (this.tvopu != null) {
-          this.clinicalrecordservice.getPatientClinicalRecord(this.tvopu.patientClinicalRecordId).subscribe(cresp => {
+                if (this.tvopu != null) {
+                    this.clinicalrecordservice.getPatientClinicalRecord(this.tvopu.patientClinicalRecordId).subscribe(cresp => {
 
-            this.clinicalRecord = cresp;
+                        this.clinicalRecord = cresp;
 
-            this.embryologyForm.enable();
+                        this.embryologyForm.enable();
 
-          })
+                    })
 
-          this.embryologyService.getPatientEmbryology(this.tvopu.tvopuId).subscribe(emb => {
+                    this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
 
-            this.embryology = emb;
+                        this.embryology = emb;
+                        this.embryologydetails = emb.patientEmbryologyDetails;
 
-          })
-        }
+                    })
+                }
 
-      });
+            });
 
-      this.patientcb.onValueChanged.subscribe(res => {
-        this.populatePatientDate(res.component.option("value"))
-  
-      });
+            this.patientcb.onValueChanged.subscribe(res => {
+                this.populatePatientDate(res.component.option("value"))
 
-      this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+            });
 
-      this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+            this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-      this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+            this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
 
-      this.embryologistService.getEmbryologists().subscribe(resp => this.embryologists = resp);
+            this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
-
-    });
-  }
-
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-    });
-  }
+            this.embryologistService.getEmbryologists().subscribe(resp => this.embryologists = resp);
 
 
-  submitForm(value) {
+        });
+    }
 
-    value.tvopuId = this.tvopu.tvopuId;
-    value.patientEmbryologyDetails = this.embryologydetails;
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+        });
+    }
 
-    this.embryologyService.addPatientEmbryology(value).subscribe(resp => console.log(resp));
 
-  }
+    submitForm(value) {
 
-  update(value)
-  {
-    value.tvopuId = this.tvopu.tvopuId;
-    this.embryologyService.updatePatientEmbryology(value).subscribe(resp => console.log(resp));
-  }
+        value.tvopuId = this.tvopu.tvopuId;
+        value.patientEmbryologyDetails = this.embryologydetails;
+
+        this.embryologyService.addPatientEmbryology(value).subscribe(resp => this.displayToast("Patient Embryology Saved"));
+
+    }
+
+    update(value) {
+        value.tvopuId = this.tvopu.tvopuId;
+        this.embryologyService.updatePatientEmbryology(value).subscribe(resp =>{
+            
+            this.displayToast("Patient Embryology Saved");
+
+        });
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
 
 
 }

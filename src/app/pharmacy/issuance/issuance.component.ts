@@ -243,12 +243,12 @@ export class IssuanceComponent implements OnInit {
 
         this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
         });
-    //    this.IssuanceForm.reset();
+        //    this.IssuanceForm.reset();
         this.total = 0;
 
- 
+
         console.log(value);
- 
+
     }
 
     valueChanged(data) {

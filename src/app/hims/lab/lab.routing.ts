@@ -28,6 +28,7 @@ import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -38,22 +39,24 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         component: RootComponent,
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [
+            { path: 'report-viewer', component: ReportViewerComponent },
             { path: 'clinical-records', component: ClinicalrecordsComponent },
             { path: 'test-unit', component: TestunitComponent },
             { path: 'biochemistry-test', component: BiochemistrytestComponent },
             { path: 'daily-procedure', component: DailyProcedureComponent },
             { path: 'file-record', component: FileRecordComponent },
             { path: 'proceduresortest', component: ProceduresortestComponent },
-            {path: 'semen-analysis', component : SemenanalysisComponent},
-            {path: 'semen-analysis/:id', component : SemenanalysisComponent},
+            { path: 'semen-analysis', component: SemenanalysisComponent },
+            { path: 'semen-analysis/:id', component: SemenanalysisComponent },
             { path: 'semen-analysis-list', component: SemensanalysislistComponent },
             { path: 'biochemistry-ontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry-ontreatment/:id', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry', component: BiochemistryComponent },
+            { path: 'biochemistry/:id', component: BiochemistryComponent },
             { path: 'biopsy', component: BiopsyComponent },
             { path: 'biopsy/:id', component: BiopsyComponent },
-            { path: 'insemination-prep', component: InseminationprepComponent },
-            { path: 'insemination-prep/:id', component: InseminationprepComponent },
+            { path: 'insemenation-prep', component: InseminationprepComponent },
+            { path: 'insemenation-prep/:id', component: InseminationprepComponent },
             { path: 'referencerange', component: ReferencerangeComponent },
             { path: 'embryology-section', component: EmbryologysectionComponent },
             { path: 'embryology-section/:id', component: EmbryologysectionComponent },
@@ -71,8 +74,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'embryology-thawing', component: EmbryologyThawingComponent },
             { path: 'embryo-freeze', component: EmbryoFreezeComponent },
             { path: 'embryo-freeze/:id', component: EmbryoFreezeComponent },
-            { path: 'freeze-prepration', component: FreezepreparationComponent },
-            { path: 'freeze-prepration/:id', component: FreezepreparationComponent },
+            { path: 'freeze-prep', component: FreezepreparationComponent },
+            { path: 'freeze-prep/:id', component: FreezepreparationComponent },
 
         ]
     }

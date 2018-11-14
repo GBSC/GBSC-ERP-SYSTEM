@@ -8,7 +8,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     styleUrls: ['./payrollbank.component.scss']
 })
 export class PayrollbankComponent implements OnInit {
- 
+
 
     public payrollBank: any;
     public PayrollBankForm: FormGroup;
@@ -60,16 +60,16 @@ export class PayrollbankComponent implements OnInit {
         this.msg = 'success';
         setTimeout(() => {
             this.msg = null;
-          }, 3000);
+        }, 3000);
     }
- 
+
 
     updatingPayrollBank(value) {
         this.updatingbank = { ...value.oldData, ...value.newData };
     }
     async updatePayrollBank() {
         await this.payrollsetupservice.updatePayrollBank(this.updatingbank);
-       
+
     }
 
     async deletePayrollBank(value) {

@@ -150,25 +150,25 @@ export class RegistrationComponent implements OnInit {
                         PrivateHospital: Patient.privateHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                     });
-                
-                this.partnerForm.patchValue({
-                    FirstName: Patient.partner.firstName,
-                    MiddleName: Patient.partner.middleName,
-                    LastName: Patient.partner.lastName,
-                    DOB: Patient.partner.dob,
-                    PlaceOfBirth: Patient.partner.placeOfBirth,
-                    Occupation: Patient.partner.occupation,
-                    NIC: Patient.partner.nic,
-                    PhoneNumber: Patient.partner.phoneNumber,
-                });
 
-                this.referenceForm.patchValue({
-                    ReferredBy: Patient.patientReference.referredBy,
-                    PersonName: Patient.patientReference.personName,
-                    RefAddress: Patient.patientReference.refAddress,
-                    ReferenceTel: Patient.patientReference.referenceTel,
-                });
-            }
+                    this.partnerForm.patchValue({
+                        FirstName: Patient.partner.firstName,
+                        MiddleName: Patient.partner.middleName,
+                        LastName: Patient.partner.lastName,
+                        DOB: Patient.partner.dob,
+                        PlaceOfBirth: Patient.partner.placeOfBirth,
+                        Occupation: Patient.partner.occupation,
+                        NIC: Patient.partner.nic,
+                        PhoneNumber: Patient.partner.phoneNumber,
+                    });
+
+                    this.referenceForm.patchValue({
+                        ReferredBy: Patient.patientReference.referredBy,
+                        PersonName: Patient.patientReference.personName,
+                        RefAddress: Patient.patientReference.refAddress,
+                        ReferenceTel: Patient.patientReference.referenceTel,
+                    });
+                }
             });
         });
 
@@ -242,8 +242,8 @@ export class RegistrationComponent implements OnInit {
         this.patientId = await this.PatientServiceobj.addPatient(value);
         console.log(this.patientId);
         this.displayToastSuccess("Patient Registered");
-         //  this.patientForm.reset();
-           console.log(this.patientForm);
+        //  this.patientForm.reset();
+        console.log(this.patientForm);
 
 
         // this.upload(this.patientId);

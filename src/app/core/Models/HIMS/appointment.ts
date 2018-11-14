@@ -12,5 +12,5 @@ export interface Appointment {
     Remarks: string,
     ConsultantId: number,
     VisitId: number,
-    IsFinalAppointment : boolean
+    IsFinalAppointment: boolean
 };

@@ -59,7 +59,7 @@
                     <label for="exampleInputEmail1">
                       Patient Name
                     </label>
-                    <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                    <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" fromControlName="PatientId" [value]="biopsy?.patientId"
                       [searchEnabled]="true">
                     </dx-select-box>
                   </div>
@@ -120,7 +120,7 @@
                           Collection Date
                         </label>
                         
-                        <dx-date-box [value]="biopsy?.collectionDate" formControlName="CollectionDate">
+                        <dx-date-box [value]="biopsy?.collectionDate" [ngModel]="collectionDate" (ngModelChange)="searchBiopsyByCollectionDate($event)" formControlName="CollectionDate">
                         </dx-date-box>
                       </div>
                     </div>
@@ -249,7 +249,7 @@
                   </div>
                 </div>
                 <div class="col-sm-2">
-                  <button type="reset" class="btn btn-primary" (click)="submitForm(biopsyForm.value)">
+                  <button type="button" class="btn btn-primary" (click)="submitForm(biopsyForm.value)">
                     Submit
                   </button>
                 </div>

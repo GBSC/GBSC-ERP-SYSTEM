@@ -10,7 +10,7 @@ import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
     styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
- 
+
     public masterPayroll: any;
     public payrollMaster: any;
     public users: any;

@@ -11,6 +11,7 @@ import { Spouse } from '../../../core/Models/HIMS/spouse';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { ActivatedRoute } from '@angular/router';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-inseminationprep',
@@ -41,6 +42,7 @@ export class InseminationprepComponent implements OnInit {
         private clinicalrecordservice: PatientclinicalrecordService,
         private route: ActivatedRoute,
         private treatmentService: TreatmentService,
+        private toastr: ToastrService,
         private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService) {
 
         this.inseminationPrepForm = formBuilder.group({
@@ -124,7 +126,13 @@ export class InseminationprepComponent implements OnInit {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => console.log(resp));
+        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Saved"));
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
     }
 
 }

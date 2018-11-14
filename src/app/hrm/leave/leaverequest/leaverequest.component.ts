@@ -65,7 +65,7 @@ export class LeaverequestComponent implements OnInit {
     }
 
     async updateRequestDetail() {
-        await this.leaveservice.updateLeaveRequestDetail( this.updatingRequest);
+        await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
 
 
@@ -80,5 +80,5 @@ export class LeaverequestComponent implements OnInit {
         }, 3000);
         this.leaveRequestForm.reset();
     }
- 
+
 }

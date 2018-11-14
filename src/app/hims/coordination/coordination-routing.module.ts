@@ -9,34 +9,34 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { AuthGuardService } from '../../core';
 
 const routes: Routes = [{
-  path: "coordination",
-  component: RootComponent,
-  canActivate: [AuthGuardService],
-  children: [{
-    path: "clinical-record/:id",
-    component: ClinicalrecordComponent
-  },
-  {
-    path: "clinical-record",
-    component: ClinicalrecordComponent
-  }]
+    path: "coordination",
+    component: RootComponent,
+    canActivate: [AuthGuardService],
+    children: [{
+        path: "clinical-record/:id",
+        component: ClinicalrecordComponent
+    },
+    {
+        path: "clinical-record",
+        component: ClinicalrecordComponent
+    }]
 }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule
-  ],
+    imports: [RouterModule.forChild(routes),
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule
+    ],
 
-  declarations: [
-    RootComponent,
-    MenuComponent,
-    ClinicalrecordComponent
-  ],
-  exports: [RouterModule]
+    declarations: [
+        RootComponent,
+        MenuComponent,
+        ClinicalrecordComponent
+    ],
+    exports: [RouterModule]
 })
 export class CoordinationRoutingModule { }

@@ -70,7 +70,7 @@ export class AppointmentscheduleComponent implements OnInit {
     private tentativeAppointments: any[];
     private finalizedAppointments: any[];
 
-    public appointmentbydate : any;
+    public appointmentbydate: any;
 
     public currentdate : any;
 

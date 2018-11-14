@@ -318,12 +318,12 @@
                   <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(freePreprationForm.value)">
                     Submit
                   </button>
-                  <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                  <!-- <button type="button" class="btn btn-brand m-btn m-btn--custom">
                     Thaw Detail
-                  </button>
-                  <button type="button" class="btn btn-info m-btn m-btn--custom">
+                  </button> -->
+                  <a [routerLink]="['/lab/insemenation-prep', id]" class="btn btn-info m-btn m-btn--custom">
                     Insem. Prep.
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

@@ -6,29 +6,29 @@ import { ApiService } from '../api.service';
 @Injectable()
 export class TreatmentService {
 
-  private Url = "Hims/api/TreatmentType/"
+    private Url = "Hims/api/TreatmentType/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  gettreatmenttypes(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAlltreatmenttypes");
-  }
+    gettreatmenttypes(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAlltreatmenttypes");
+    }
 
-  gettreatmenttype(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "Gettreatmenttype/" + id);
-  }
+    gettreatmenttype(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "Gettreatmenttype/" + id);
+    }
 
-  addtreatmenttype(value): Observable<any> {
-    return this.ApiService.post(this.Url + "Addtreatmenttype", value);
-  }
+    addtreatmenttype(value): Observable<any> {
+        return this.ApiService.post(this.Url + "Addtreatmenttype", value);
+    }
 
-  updatetreatmenttype(value): Observable<any> {
-    return this.ApiService.put(this.Url + "Updatetreatmenttype", value);
-  }
+    updatetreatmenttype(value): Observable<any> {
+        return this.ApiService.put(this.Url + "Updatetreatmenttype", value);
+    }
 
-  deletetreatmenttype(id) {
-    this.ApiService.delete(this.Url + "Deletetreatmenttype" + id);
-  }
+    deletetreatmenttype(id) {
+        this.ApiService.delete(this.Url + "Deletetreatmenttype" + id);
+    }
 
 }

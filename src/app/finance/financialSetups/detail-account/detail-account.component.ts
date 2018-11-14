@@ -4,52 +4,52 @@ import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup
 
 
 @Component({
-  selector: 'app-detail-account',
-  templateUrl: './detail-account.component.html',
-  styleUrls: ['./detail-account.component.scss']
+    selector: 'app-detail-account',
+    templateUrl: './detail-account.component.html',
+    styleUrls: ['./detail-account.component.scss']
 })
 export class DetailAccountComponent implements OnInit {
 
-  detailAccount: any;
-  DetailAccountForm: any;
-  secondSubAccount: any;
-  UpdatingdetailAccount: any;
+    detailAccount: any;
+    DetailAccountForm: any;
+    secondSubAccount: any;
+    UpdatingdetailAccount: any;
 
-  constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-      this.DetailAccountForm = this.fb.group({
-        DetailAccountCode: [''],
-        Name: [''], 
-        OpeningBalance: [''], 
-        SecondSubAccountId: [''] 
-      });
+        this.DetailAccountForm = this.fb.group({
+            DetailAccountCode: [''],
+            Name: [''],
+            OpeningBalance: [''],
+            SecondSubAccountId: ['']
+        });
 
-      this.detailAccount = await this.financeService.getDetailAccounts();
-      
-      this.secondSubAccount = await this.financeService.getSecondSubAccounts();
-  }
+        this.detailAccount = await this.financeService.getDetailAccounts();
 
-  async addDetailaccount() {
+        this.secondSubAccount = await this.financeService.getSecondSubAccounts();
+    }
 
-      await this.financeService.addDetailAccount(this.DetailAccountForm.value);
-      this.detailAccount = await this.financeService.getDetailAccounts();
-      this.DetailAccountForm.reset();
-  }
+    async addDetailaccount() {
 
-  async updatingDetailaccount(value) {
+        await this.financeService.addDetailAccount(this.DetailAccountForm.value);
+        this.detailAccount = await this.financeService.getDetailAccounts();
+        this.DetailAccountForm.reset();
+    }
 
-      this.UpdatingdetailAccount = { ...value.oldData, ...value.newData };
-  }
-  async updateDetailaccount() {
+    async updatingDetailaccount(value) {
 
-      await this.financeService.updateDetailAccount(this.UpdatingdetailAccount);
-  }
+        this.UpdatingdetailAccount = { ...value.oldData, ...value.newData };
+    }
+    async updateDetailaccount() {
 
-  async deleteDetailaccount(value) {
+        await this.financeService.updateDetailAccount(this.UpdatingdetailAccount);
+    }
 
-      await this.financeService.DeleteDetailAccount(value.data);
-  }
+    async deleteDetailaccount(value) {
+
+        await this.financeService.DeleteDetailAccount(value.data);
+    }
 
 }

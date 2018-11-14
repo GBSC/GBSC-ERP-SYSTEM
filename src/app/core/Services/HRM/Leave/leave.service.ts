@@ -118,7 +118,7 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
     }
 
-    async updateLeaveRequestDetail(data) { 
+    async updateLeaveRequestDetail(data) {
         return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, data).toPromise();
 
     }

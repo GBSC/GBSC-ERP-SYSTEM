@@ -27,16 +27,16 @@ export class OvertimetypeComponent implements OnInit {
         this.overtimetype = await this.attendancesetupservice.getAllOvertimeType();
     }
 
-     updatingOvertimetype(value) {
-        this.updatingOvertimeType = {...value.oldData, ...value.newData};
+    updatingOvertimetype(value) {
+        this.updatingOvertimeType = { ...value.oldData, ...value.newData };
     }
-   
+
     async updateOvertimetype() {
         await this.attendancesetupservice.updateOvertimeType(this.updatingOvertimeType);
     }
 
     async deleteovertimetype(value) {
-       await this.attendancesetupservice.DeleteOvertimeType(value.key);
+        await this.attendancesetupservice.DeleteOvertimeType(value.key);
     }
 
 }

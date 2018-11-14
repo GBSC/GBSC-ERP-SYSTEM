@@ -26,7 +26,7 @@ export class EmbryologysectionComponent implements OnInit {
     private freezePrepration: any;
     private insemenationPrep: any;
     private biopsy: any;
-    private tvopu : any;
+    private tvopu: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 

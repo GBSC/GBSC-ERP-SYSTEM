@@ -21,7 +21,7 @@ export class VisitsComponent implements OnInit {
     public AppointmentByVisitId: any;
 
     public VisitTests: any = [];
-    // public VisitTestsForInvoice: any = [];
+   // public VisitTestsForInvoice: any = [];
     public VisitDiagnoses: any = [];
 
     public PatientVisitNoteForm: FormGroup;
@@ -29,7 +29,7 @@ export class VisitsComponent implements OnInit {
 
     public VisitDiagnosesForm: FormGroup;
     public VisitTestForm: FormGroup;
-    public InvoiceForm: FormGroup;
+    public InvoiceForm  : FormGroup;
 
     public currentPatient: any;
     public consultant: any;
@@ -40,8 +40,8 @@ export class VisitsComponent implements OnInit {
 
     public visitid: any;
     public vist = '';
-    public visitstatusend = 'end';
-    public patinetappointment: any = [];
+    public visitstatusend ='end';
+    public patinetappointment : any=[];
     id: number;
     vistid: number;
     Patient: Patient;
@@ -49,7 +49,7 @@ export class VisitsComponent implements OnInit {
 
     public Patientappointment: any;
 
-    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote': ['', Validators.required],
@@ -63,7 +63,7 @@ export class VisitsComponent implements OnInit {
             'PatientId': ['', Validators.required],
             'TentativeTime': ['', Validators.required],
             'IsFinalAppointment': [false],
-            'IsCancelled': [false],
+            'IsCancelled' :[false],
             'VisitStatus': ['Pending'],
             'VisitId': ['', Validators.required]
         });
@@ -78,8 +78,8 @@ export class VisitsComponent implements OnInit {
             'VisitId': ['']
         });
         this.InvoiceForm = this.formBuilder.group({
-
-            patientInvoiceItems: this.formBuilder.array([])
+ 
+            patientInvoiceItems :  this.formBuilder.array([])
         });
     }
 
@@ -93,32 +93,32 @@ export class VisitsComponent implements OnInit {
             });
         });
 
-        // console.log(this.id);
+    	// console.log(this.id);
 
         this.vist = await this.PatientServiceobj.getVisitId(this.id);
-        console.log(this.vist)
+         console.log(this.vist)
 
-        // this.vistid = await this.PatientServiceobj.visitid.visitID;
+      	// this.vistid = await this.PatientServiceobj.visitid.visitID;
 
         await this.PatientServiceobj.getConsultant();
         this.consultant = this.PatientServiceobj.consultant;
-        // console.log(this.consultant);
+      	// console.log(this.consultant);
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitNatures = this.PatientServiceobj.visitNatures;
-        // console.log(this.visitNatures);
+    	// console.log(this.visitNatures);
 
         await this.PatientServiceobj.getTests()
         this.test = this.PatientServiceobj.testing;
-        // console.log(this.test)
+     	// console.log(this.test)
 
         await this.PatientServiceobj.getDiagnoses();
         this.diagnoses = this.PatientServiceobj.diagnoses;
-        // console.log(this.diagnoses);
+     	// console.log(this.diagnoses);
 
         let visitID = JSON.parse(sessionStorage.getItem('visitId'));
-        // console.log(visitID);
-        this.visitid = visitID.visitID;
+      	// console.log(visitID);
+        this.visitid =  visitID.visitID;
     }
 
     // onSubmit() {
@@ -153,14 +153,14 @@ export class VisitsComponent implements OnInit {
         // });
 
 
-    }
-
+	}
+	
     async addPatientVisitNote(value) {
-        // console.log(value);
+      	// console.log(value);
         let y = this.visitid;
         this.PatientVisitNoteForm.value.VisitId = y;
         let x = await this.PatientServiceobj.addVisitNote(value);
-        // console.log(x);
+    	// console.log(x);
         this.displayToastSuccess("Saved");
         // this.visitid = this.PatientServiceobj.visitid;
         // console.log(this.visitid);
@@ -170,19 +170,19 @@ export class VisitsComponent implements OnInit {
         this.PatientAppointmentForm.value.PatientId = this.id;
         this.PatientAppointmentForm.value.VisitId = this.visitid;
         console.log(value);
-        await this.PatientServiceobj.addAppointment(value);
-
-        // console.log(x)
-        // console.log(this.visitid);
+   		await this.PatientServiceobj.addAppointment(value);
+       
+     	// console.log(x)
+    	// console.log(this.visitid);
         this.displayToastSuccess("Saved");
     }
 
     async addvisitdiagnosis(value) {
-        // console.log(value);
+     	// console.log(value);
     }
 
     async addvisitTest(value) {
-        // console.log(value)
+     	// console.log(value)
     }
 
     addrangeForTest() {
@@ -194,21 +194,21 @@ export class VisitsComponent implements OnInit {
             TestId: value.TestId,
             TestName: test.testName,
             VisitId: value.VisitId
-        }
-        this.VisitTests.push(doc);
-        //  this.addVisitTestInvoice()
+        } 
+        this.VisitTests.push(doc); 
+      //  this.addVisitTestInvoice()
     }
 
     // addVisitTestInvoice(){
     //     let { value } = this.VisitTestForm;
-    // 	let test = this.test.find(t => t.testId === value.TestId);
-
+	// 	let test = this.test.find(t => t.testId === value.TestId);
+		
     //     let x = {
     //         TestName: test.testName,
     //         Charges : test.charges,
     //         Quantity : '1'
-    // 	};
-
+	// 	};
+		
     //     this.VisitTestsForInvoice.push(x);
     //     console.log(this.VisitTestsForInvoice);
     // }
@@ -217,48 +217,48 @@ export class VisitsComponent implements OnInit {
         this.VisitTests = this.VisitTests.filter(t => {
             return delete t.TestName;
         });
-        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.visitid, this.VisitTests);
+        let x = await this.PatientServiceobj.AddVisitTestsByVisitId(this.visitid ,this.VisitTests);
         console.log(x);
         this.removealltest(this.VisitTests);
         this.displayToastSuccess("Saved");
-    }
-
+	}
+	
     removeTest(index) {
         this.VisitTests.splice(index, 1);
-        //  this.VisitTestsForInvoice.splice(index, 1);
-    }
-
+      //  this.VisitTestsForInvoice.splice(index, 1);
+	}
+	
     removealltest(index) {
         // this.Tests.splice(index,10000000000);
         this.VisitTests.length = 0
-    }
-
+	}
+	
     addrangeForDiagnosis() {
         this.VisitDiagnosesForm.value.VisitId = this.visitid;
         let { value } = this.VisitDiagnosesForm;
-        let diagnose = this.diagnoses.find(t => t.diagnosisId === value.DiagnosisId);
-
+		let diagnose = this.diagnoses.find(t => t.diagnosisId === value.DiagnosisId);
+		
         let doc = {
             DiagnosisId: value.DiagnosisId,
             DiagnosName: diagnose.name,
             VisitId: value.VisitId
-        };
-
+		};
+		
         this.VisitDiagnoses.push(doc);
-        // console.log(this.VisitDiagnoses);
+    	// console.log(this.VisitDiagnoses);
     }
 
     async onAddvisitdiagnosis() {
 
         this.VisitDiagnoses = this.VisitDiagnoses.filter(t => {
             return delete t.DiagnosName;
-        });
-
-        let x = await this.PatientServiceobj.addvisitDiagnosis(this.VisitDiagnoses);
-
-        //   console.log(x);
-        //  console.log(this.VisitDiagnoses);
-
+		});
+		
+		let x = await this.PatientServiceobj.addvisitDiagnosis(this.VisitDiagnoses);
+		
+    	//   console.log(x);
+		//  console.log(this.VisitDiagnoses);
+		
         this.removealldiagnosis(this.VisitDiagnoses);
         this.displayToastSuccess("Saved");
     }
@@ -278,7 +278,7 @@ export class VisitsComponent implements OnInit {
         this.toastr.error(message);
     }
 
-
+    
     formatDate(date: Date) {
         return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
     }

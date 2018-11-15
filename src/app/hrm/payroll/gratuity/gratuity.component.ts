@@ -28,8 +28,8 @@ export class GratuityComponent implements OnInit {
     @Input('userGratuityId') id: number;
 
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService, private activatedRoute: ActivatedRoute,
-        public Employeeservice: EmployeeService, public toastr: ToastrService, public payrollsetupservice: PayrollSetupService, public router: Router, ) { }
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService,private activatedRoute: ActivatedRoute,
+        public Employeeservice: EmployeeService,public toastr:ToastrService, public payrollsetupservice: PayrollSetupService,  public router: Router,) { }
 
     async ngOnInit() {
 
@@ -61,20 +61,20 @@ export class GratuityComponent implements OnInit {
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-        });
+          });
 
-        if (this.isUpdate() === true) {
-            this.payrollservice.getGratuity(this.id).subscribe((resp: Gratuity) => {
-                this.GratuitySlab = resp;
-                let a = this.GratuitySlab.gratuitySlabGratuities;
-                this.Gratuity = a.filter(b => {
-                    delete b.gratuitySlabGratuityId;
-                    delete b.userGratuityId;
-                    return b;
-                });
-                this.patchValues(this.GratuitySlab);
+          if (this.isUpdate() === true) {
+            this.payrollservice.getGratuity(this.id).subscribe((resp : Gratuity) => {
+              this.GratuitySlab = resp;              
+                let a = this.GratuitySlab.gratuitySlabGratuities;                
+              this.Gratuity = a.filter(b => {
+                delete b.gratuitySlabGratuityId;
+                delete b.userGratuityId;
+                return b;
+              });              
+                 this.patchValues(this.GratuitySlab);
             });
-        }
+          }
 
     }
 
@@ -97,30 +97,30 @@ export class GratuityComponent implements OnInit {
     isUpdate(): boolean {
 
         if (this.id > 0) {
-            return true;
+          return true;
         }
         else
-            return false;
-    }
+          return false;
+      }
 
-    async updateGratuitySlabGratuity(value) {
+      async updateGratuitySlabGratuity(value) {
         console.log(value);
-    }
-
-    async update(value) {
+      }
+    
+      async update(value) { 
         value.userGratuityId = this.id;
         value.gratuitySlabGratuities = this.Gratuity;
         this.payrollservice.updateGratuity(value).subscribe(resp => {
-            this.toastr.success("Gratuity Updated");
-            this.router.navigate(['/hrm/payroll/gratuitydetail']);
-
+          this.toastr.success("Gratuity Updated"); 
+                this.router.navigate(['/hrm/payroll/gratuitydetail']);
+    
         });
-    }
+      }
 
-    patchValues(gratuity: any) {
+      patchValues(gratuity: any) {
 
         this.GratuityForm.patchValue({
-
+    
             GratuityAmount: gratuity.gratuityAmount,
             TotalSalary: gratuity.totalSalary,
             From: gratuity.from,
@@ -128,10 +128,10 @@ export class GratuityComponent implements OnInit {
             GratuityTypeId: gratuity.gratuityTypeId,
             LeavingReasonId: gratuity.leavingReasonId,
             UserId: gratuity.userId,
-            FundSetupId: gratuity.fundSetupId
+            FundSetupId: gratuity.fundSetupId 
         })
-
-    }
+    
+      }
 
     async deleteGratuity(value) {
         await this.payrollservice.deleteGratuity(value.key);

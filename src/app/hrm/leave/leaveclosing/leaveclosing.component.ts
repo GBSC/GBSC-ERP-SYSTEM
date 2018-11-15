@@ -29,8 +29,8 @@ export class LeaveclosingComponent implements OnInit {
 
     async addleaveclosing(value) {
 
-        await this.leaveservice.addLeaveClosing(value.data);
-        this.leaveclose = await this.leaveservice.getLeaveClosings();
+      await this.leaveservice.addLeaveClosing(value.data);
+      this.leaveclose = await this.leaveservice.getLeaveClosings();
     }
 
     async updateleaveclosing(value) {

@@ -68,7 +68,8 @@ export class BiopsyComponent implements OnInit {
 
                     this.clinicalRecord = resp;
 
-                    this.setupValues();
+                    this.biopsyService
+                        .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => this.biopsy = resp);
 
                 })
             }
@@ -92,17 +93,6 @@ export class BiopsyComponent implements OnInit {
 
     }
 
-    setupValues() {
-
-        this.biopsyService
-            .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
-                this.biopsy = resp;
-
-                if (this.biopsy)
-                    this.patchValues(this.biopsy);
-            });
-    }
-
     searchBiopsyByCollectionDate(value) {
 
         let date = new Date(value).toLocaleDateString();
@@ -124,52 +114,13 @@ export class BiopsyComponent implements OnInit {
 
         }
 
-        this.biopsyService.addPatientBiopsy(value).subscribe(resp => {
-            this.displayToast("Biopsy Saved");
-            this.setupValues();
-        });
-    }
-
-    updateForm(value) {
-
-        if (this.clinicalRecord) {
-            value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-
-        }
-
-        value.biopsyId = this.biopsy.biopsyId;
-
-        this.biopsyService.updatePatientBiopsy(value).subscribe(resp => {
-            this.displayToast("Biopsy Saved");
-        });
-
+        this.biopsyService.addPatientBiopsy(value).subscribe(resp => this.displayToast("Biopsy Saved"));
     }
 
     displayToast(message) {
 
         this.toastr.success(message);
 
-    }
-
-    patchValues(biopsy) {
-
-        this.biopsyForm.patchValue({
-
-            "BiopsyType": biopsy.biopsyType,
-            "CollectionNumber": biopsy.collectionNumber,
-            "CollectionDate": biopsy.collectionDate,
-            "ProcedureNumber": biopsy.procedureNumber,
-            "Remarks": biopsy.remarks,
-            "PesaTime": biopsy.pesaTime,
-            "PesaLeft": biopsy.pesaLeft,
-            "PesaRight": biopsy.pesaRight,
-            "PesaResult": biopsy.pesaResult,
-            "TeseTime": biopsy.teseTime,
-            "TeseLeft": biopsy.teseLeft,
-            "TeseRight": biopsy.teseRight,
-            "TeseResult": biopsy.teseResult,
-            "PatientId": biopsy.patientId
-        })
     }
 
 }

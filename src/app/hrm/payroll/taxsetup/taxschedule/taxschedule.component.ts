@@ -22,10 +22,9 @@ export class TaxscheduleComponent implements OnInit {
 
 
     async addTaxSchedule(value) {
-
+        
         await this.payrollsetupservice.addTaxSchedule(value.data);
-        this.taxSchedule = await this.payrollsetupservice.getTaxSchedules();
-    }
+        this.taxSchedule = await this.payrollsetupservice.getTaxSchedules();    }
 
     updatingTaxSchedule(value) {
         this.taxScheduling = { ...value.oldData, ...value.newData };

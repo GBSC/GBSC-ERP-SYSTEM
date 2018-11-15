@@ -94,7 +94,12 @@ export class InseminationprepComponent implements OnInit {
             });
 
 
-            this.setupValues();
+            this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
+                .subscribe(resp =>{ 
+
+                    this.insemenationPrep = resp
+                    this.patchValues(this.insemenationPrep);
+                });
 
         });
 
@@ -114,18 +119,6 @@ export class InseminationprepComponent implements OnInit {
 
     }
 
-    setupValues() {
-
-        this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
-            .subscribe(resp => {
-
-                this.insemenationPrep = resp
-
-                if (this.insemenationPrep)
-                    this.patchValues(this.insemenationPrep);
-            });
-    }
-
     populatePatient(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -137,10 +130,7 @@ export class InseminationprepComponent implements OnInit {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => {
-            this.displayToast("Insemenation Prep Saved");
-            this.setupValues();
-        });
+        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Saved"));
     }
 
     onUpdate(value) {

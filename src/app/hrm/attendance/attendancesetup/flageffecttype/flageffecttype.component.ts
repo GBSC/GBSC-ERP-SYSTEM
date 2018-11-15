@@ -18,7 +18,7 @@ export class FlageffecttypeComponent implements OnInit {
     }
 
     async addflageffecttype(value) {
-
+        
         this.attendancesetupservice.addFlagEffectType(value.data);
         this.flageffecttype = await this.attendancesetupservice.getFlagEffectTypes();
     }

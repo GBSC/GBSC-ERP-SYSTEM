@@ -15,7 +15,7 @@ export class ReligionComponent implements OnInit {
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-
+        
         this.religion = await this.dataService.getAllReligions();
     }
 

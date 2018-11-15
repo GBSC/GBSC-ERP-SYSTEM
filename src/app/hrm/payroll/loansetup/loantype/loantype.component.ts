@@ -19,7 +19,7 @@ export class LoantypeComponent implements OnInit {
     }
 
     async addLoanType(value) {
-
+        
         await this.payrollsetupservice.addLoanType(value.data);
         this.LoanType = await this.payrollsetupservice.getLoanTypes();
     }

@@ -73,7 +73,11 @@ export class TvopuComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.setupValues();
+                this.tvopuService
+                    .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp =>{
+                        this.tvopu = resp;
+                        this.patchValues(this.tvopu);
+                    });
 
             })
 
@@ -96,17 +100,6 @@ export class TvopuComponent implements OnInit {
 
     }
 
-    setupValues() {
-
-        this.tvopuService
-            .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
-                this.tvopu = resp;
-
-                if (this.tvopu)
-                    this.patchValues(this.tvopu);
-            });
-    }
-
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -123,30 +116,29 @@ export class TvopuComponent implements OnInit {
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-        this.tvopuService.addTvopu(value).subscribe(resp => {
+        this.tvopuService.addTvopu(value).subscribe(resp =>{
 
             this.displayToast("TVOPU saved");
 
-            this.setupValues();
-
+            this.router.navigate(['lab/tvopu/' + this.clinicalRecord.patientClinicalRecordId]);
         });
     }
 
     updateForm(value) {
         value.tvopuId = this.tvopu.tvopuId;
         value.patientClinicalRecordId = this.id;
-        this.tvopuService.updateTvopu(value).subscribe(resp => {
+        this.tvopuService.updateTvopu(value).subscribe(resp =>{
 
             this.displayToast("TVOPU updated");
-
         });
     }
 
-    patchValues(tvopu) {
+    patchValues(tvopu)
+    {
         this.tvopuform.patchValue({
             'TimeStart': tvopu.timeStart,
             'TimeFinish': tvopu.timeFinish,
-            'ActiveInactive': tvopu.activeInactive,
+            'ActiveInactive':tvopu.activeInactive,
             'Remarks': tvopu.remarks,
             'PickupCount': tvopu.pickupCount,
             'TotalPickupCount': tvopu.totalPickupCount,

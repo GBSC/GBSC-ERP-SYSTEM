@@ -84,9 +84,19 @@ export class EmbryologyComponent implements OnInit {
 
                         this.embryologyForm.enable();
 
-                    });
+                    })
 
-                    this.setupValues();
+                    this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
+
+                        this.embryology = emb;
+                        if (this.embryology) {
+                            console.log("Patching values..")
+                            this.patchValues(this.embryology);
+                            this.embryologydetails = emb.patientEmbryologyDetails;
+
+                        }
+
+                    })
                 }
 
             });
@@ -108,21 +118,6 @@ export class EmbryologyComponent implements OnInit {
         });
     }
 
-    setupValues(){
-
-        this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
-
-            this.embryology = emb;
-            if (this.embryology) {
-                this.patchValues(this.embryology);
-                this.embryologydetails = emb.patientEmbryologyDetails;
-
-            }
-
-        });
-
-    }
-
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -138,8 +133,7 @@ export class EmbryologyComponent implements OnInit {
 
         this.embryologyService.addPatientEmbryology(value).subscribe(resp => {
             this.displayToast("Patient Embryology Saved");
-            
-            this.setupValues();
+            this.router.navigate(["/lab/embryology/" + this.tvopu.tvopuId]);
         });
     }
 
@@ -155,6 +149,7 @@ export class EmbryologyComponent implements OnInit {
 
         });
 
+        console.log(value);
     }
 
     patchValues(embryology) {

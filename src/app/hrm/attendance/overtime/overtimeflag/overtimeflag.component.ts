@@ -23,7 +23,7 @@ export class OvertimeflagComponent implements OnInit {
     }
 
     async updatingModel(value) {
-        this.modelUpdate = { ...value.oldData, ...value.newData };
+       this.modelUpdate = {...value.oldData, ...value.newData};
     }
 
     async updateovertimeflag() {

@@ -18,8 +18,8 @@ export class VoucherDetailComponent implements OnInit {
     public detailAccount: any;
     public voucherId: any;
 
-    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService,
-        public SetupService: SetupService, public hrmService: HrmsService) { }
+  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService,
+     public SetupService: SetupService,public hrmService: HrmsService) { }
 
     async ngOnInit() {
         this.voucher = await this.financeService.getVouchers();
@@ -30,8 +30,8 @@ export class VoucherDetailComponent implements OnInit {
 
         this.financialYear = await this.financeSetupService.getFinancialYears();
 
-        this.departments = await this.hrmService.getAllDepartments();
-    }
+    this.departments = await this.hrmService.getAllDepartments();    
+  }
 
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(

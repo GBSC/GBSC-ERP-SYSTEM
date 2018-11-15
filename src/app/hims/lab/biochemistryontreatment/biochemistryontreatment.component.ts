@@ -70,7 +70,17 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.setupValues();
+                this.bioChemistryService
+                    .getPatientBioChemistryTestByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                    .subscribe(resp => {
+
+                        this.bioChemistry = resp;
+                        this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+
+                        this.patchValues(this.bioChemistry);
+
+                    });
+
             })
 
         })
@@ -96,31 +106,12 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     }
 
-    setupValues() {
-
-        this.bioChemistryService
-            .getPatientBioChemistryTestByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-            .subscribe(resp => {
-
-                this.bioChemistry = resp;
-                this.testDetail = this.bioChemistry.bioChemistryTestDetails;
-
-                if (this.bioChemistry)
-                    this.patchValues(this.bioChemistry);
-
-            });
-
-    }
-
     onsubmit(value) {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.bioChemistryTestDetails = this.testDetail;
 
-        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp => {
-            this.displayToast("Biochemistry test saved!");
-            this.setupValues();
-        });
+        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test saved!"));
 
     }
 
@@ -148,10 +139,11 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     }
 
-    patchValues(biochemistry) {
+    patchValues(biochemistry)
+    {
         this.bioChemistryontreatmentForm.patchValue({
             'CollectionDate': biochemistry.collectionDate,
-            'LMP': biochemistry.lmp,
+            'LMP':  biochemistry.lmp,
             'IsRandom': biochemistry.isRandom
         })
     }

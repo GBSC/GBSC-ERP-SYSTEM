@@ -54,8 +54,8 @@ export class PayrollbankComponent implements OnInit {
     }
 
     async addPayrollBank(value) {
-        let c = await this.payrollsetupservice.addPayrollBank(value.data);
-        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();
+       let c= await this.payrollsetupservice.addPayrollBank(value.data);
+        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();        
     }
 
 

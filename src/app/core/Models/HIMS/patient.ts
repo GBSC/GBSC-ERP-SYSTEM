@@ -34,8 +34,8 @@ export interface Patient {
     display: string,
     Document: Document,
     partner: Spouse,
-    patientPackage: PatientPackage,
-    patientInvoices: PatientInvoice[]
+    patientPackage : PatientPackage,
+    patientInvoices : PatientInvoice[]
 }
 
 

@@ -4,7 +4,6 @@ import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS
 import { ThawAssessmentService } from '../../../../app/core/Services/HIMS/Lab/thawassessment.service';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { PatientService } from '../../../../app/core';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-embryology-thawing',
@@ -32,7 +31,6 @@ export class EmbryologyThawingComponent implements OnInit {
     constructor(private route: ActivatedRoute,
         private patientService: PatientService,
         private clinicalRecordService: PatientclinicalrecordService,
-        private toastr : ToastrService,
         private thawassessmentService: ThawAssessmentService) {
 
         this.freeFreezeOptions = [{ name: "Vitrification" }, { name: "Slow Freeze" }, { name: "Default" }];
@@ -53,8 +51,13 @@ export class EmbryologyThawingComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.setupValues();
+                this.thawassessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(thaw => {
 
+                    this.unthawedSamples = thaw.embryoFreezeUnthaweds;
+                    this.thawedSamples = thaw.embryoFreezeThaweds;
+                    this.thawassessment = thaw;
+
+                })
             })
         });
 
@@ -66,18 +69,6 @@ export class EmbryologyThawingComponent implements OnInit {
             this.populatePatientDate(res.component.option("value"))
 
         });
-    }
-
-    setupValues(){
-
-        this.thawassessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(thaw => {
-
-            this.unthawedSamples = thaw.embryoFreezeUnthaweds;
-            this.thawedSamples = thaw.embryoFreezeThaweds;
-            this.thawassessment = thaw;
-
-        });
-
     }
 
     populatePatientDate(patientId) {
@@ -95,15 +86,8 @@ export class EmbryologyThawingComponent implements OnInit {
         this.thawassessment.embryoFreezeUnthaweds = this.unthawedSamples;
         this.thawassessmentService.updateThawAssessment(this.thawassessment).subscribe(resp=>{
 
-            this.displayToast("Emryo Thawing Saved");
-            
-            this.setupValues();
+            console.log(resp)
         })
-    }
-
-    displayToast(message){
-
-        this.toastr.success(message);
     }
 
 }

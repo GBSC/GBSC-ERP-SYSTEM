@@ -11,7 +11,7 @@ import { SetupService } from '../../../core';
 export class CostCenterComponent implements OnInit {
     public ccenter: any;
 
-    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient,public dataService: SetupService) { }
 
 
 

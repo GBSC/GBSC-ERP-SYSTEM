@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
     public visitnature: any;
     public vistnatr = [];
     public PatientPackage : any = {};
+    public patientpackagebypatientid :any;
 
     public patientref : any;
     public patientreferenc : any; 
@@ -48,6 +49,14 @@ export class ProfileComponent implements OnInit {
                 if(this.Patient.patientPackage){
                   this.PatientPackage =  this.Patient.patientPackage
                 }
+
+              
+                    console.log(this.Patient.patientId);
+                     this.PatientServiceobj.getPatientPackageByPatientId(this.Patient.patientId).subscribe(res => {
+                        this.patientpackagebypatientid = res
+                        console.log(this.patientpackagebypatientid)
+                     } )
+               
 
                 // this.patientreferenc = this.patientref.find(t=> t.patientReferenceId == this.Patient.patientReferenceId);
                 // console.log(this.patientreferenc);

@@ -409,10 +409,17 @@ export class PatientService {
     GetPatientDetailPatientId(id): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientDetailPatientId/' + id);
     }
-
+    
     GetPatientAppointmentsByPatientId(id): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
     }
+
+   async GetPatientAppointmentsByPatientIdAsync(id)  {
+    console.log(id);
+    console.log(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
+        return await this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id).toPromise();
+    }
+
 
     GetPatientVisits(id): Observable<Visits> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientVisits/' + id);
@@ -425,6 +432,10 @@ export class PatientService {
 
     GetPackages() : Observable<Package[]> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPackages');
+    }
+
+    getPatientPackageByPatientId(id) : Observable<Package>{
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/'+id);
     }
 
     async addPackage(packge: Package) {

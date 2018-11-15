@@ -120,14 +120,22 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRN/' + mrn);
     }
 
-    async getpatientForupdating(value) {
-        this.patientData = await value
-        return this.patientData
-
+    
+    GetPatientInvoicesWithDetailsByMRNandDate(mrn : string, date : Date) : Observable<PatientInvoice[]> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRNandDate/' + mrn + '/' + date);
     }
 
-  async  GetPatientById(id) {
-    return await this.ApiService.get(this.API_URL+'patients/GetPatient/'+id).toPromise();
+    GetPatientInvoicesWithDetailsByDate(date : Date) : Observable<PatientInvoice[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoicesWithDetailsByDate/' + date);
+    }
+
+    async getpatientForupdating(value) {
+        this.patientData = await value;
+        return this.patientData;
+    }
+
+    async  GetPatientById(id) {
+        return await this.ApiService.get(this.API_URL+'patients/GetPatient/'+id).toPromise();
     }
 
     async updatePatient(patient: Patient) {
@@ -229,6 +237,10 @@ export class PatientService {
 
     async updateAppointment(appointment: Appointment) {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
+    }
+
+    GetAppointmentForInvoiceUpdate(appointmentid : number) : Observable<Appointment> {
+        return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentForInvoiceUpdate/' + appointmentid);
     }
 
     UpdateAppointment(appointment: Appointment) : Observable<Appointment>{
@@ -462,7 +474,6 @@ export class PatientService {
     DeletePatientPackage(id : number) : Observable<any> {
         return this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePatientPackage/' + id);
     }
-
 
     async AddPatientVital(patientVital: PatientVital) {
         return await this.ApiService.post(this.API_URL + 'Visits/AddPatientVitals', patientVital).toPromise();

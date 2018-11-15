@@ -1,18 +1,17 @@
 <div class="row">
   <div class="col-md-12">
-    <form class="m-form ng-untouched" [formGroup]="InvoiceForm">
+    <form class="m-form ng-untouched" [formGroup]="ViewForm">
       <div class="form-group row">
         <div class="form-group col-sm-3">
           <label for="exampleSelect1"> MRN No </label>
-          <input class="form-control m-input m-input--solid " type="text" #MRN formControlName="MRN" (keyup)="GetPatientByMRN($event, MRN.value)">
+          <input class="form-control m-input m-input--solid " type="text" #MRN formControlName="MRN" (keyup)="GetAllInvoicesByMRN($event, MRN.value)">
         </div>
         <div class="form-group col-sm-3">
           <label for="exampleSelect1"> Date </label>
-          <input class="form-control m-input m-input--solid" disabled [value]="AppointmentDate | date : 'yyyy-MM-dd' || CurrentDate | date : 'yyyy-MM-dd'"
-            type="date" formControlName="Date">
+          <input class="form-control m-input m-input--solid" #Date type="date" [value]="CurrentDate | date : 'yyyy-MM-dd'" formControlName="Date">
         </div>
         <div class="form-group col-sm-2">
-          <button class="btn btn-primary" type="button" (click)="SubmitPatientInvoice(InvoiceForm.value)">Submit</button>
+          <button class="btn btn-primary" type="button" (click)="ViewInvoices(Date.value, MRN.value)">Search</button>
         </div>
       </div>
     </form>
@@ -20,9 +19,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <dx-data-grid [dataSource]="PatientInvoices" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }"
-      [columnAutoWidth]="true" [showBorders]="true">
-      <dxo-search-panel [visible]="true" [width]="auto" placeholder="Search..."></dxo-search-panel>
+    <dx-data-grid [dataSource]="PatientInvoices" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+      <dxo-search-panel [visible]="false" [width]="auto" placeholder="Search..."></dxo-search-panel>
       <dxo-filter-row [visible]="false"></dxo-filter-row>
       <dxo-header-filter [visible]="false"></dxo-header-filter>
       <dxo-paging [pageSize]="5"></dxo-paging>

@@ -19,7 +19,10 @@ export class ProfileComponent implements OnInit {
 
     public visitnature: any;
     public vistnatr = [];
+    public PatientPackage : any = {};
 
+    public patientref : any;
+    public patientreferenc : any; 
 
     constructor(private PatientServiceobj: PatientService, private Router: Router, private route: ActivatedRoute) { }
 
@@ -29,15 +32,27 @@ export class ProfileComponent implements OnInit {
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
 
+     this.patientref =   await this.PatientServiceobj.getReferenceAsync();
+     console.log(this.patientref)
+
+
+
+
         this.route.params.subscribe(params => {
             this.id = +params['id'];
-            let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
+            let x = this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
                // console.log(this.visitnature)
 
                 this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);
+                if(this.Patient.patientPackage){
+                  this.PatientPackage =  this.Patient.patientPackage
+                }
 
-              //  console.log(Patient)
+                // this.patientreferenc = this.patientref.find(t=> t.patientReferenceId == this.Patient.patientReferenceId);
+                // console.log(this.patientreferenc);
+                
+                 console.log(Patient)
             });
 
         });

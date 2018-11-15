@@ -6,7 +6,7 @@ import { Patient } from '../../../core/Models/HIMS/patient';
 import date_box from 'devextreme/ui/date_box';
 import { ToastrService } from 'ngx-toastr';
 import { forEach } from '@angular/router/src/utils/collection';
-
+ 
 
 @Component({
     selector: 'app-generalactions',
@@ -48,7 +48,7 @@ export class GeneralactionsComponent implements OnInit {
 
             this.id = +params['id'];
 
-            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
+          //  this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => this.Patient = Patient);
 
             this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) => {
                 this.visits = res
@@ -59,7 +59,7 @@ export class GeneralactionsComponent implements OnInit {
         this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id)
 
 
-        this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
+        this.currentPatient = this.PatientServiceobj.GetPatientAppointmentsByPatientId(this.id).subscribe(Patient => {
             this.Patient = Patient
             if(this.Patient.appointments.length){
               this.currentconsultant  =  this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date())  && t.isFinalAppointment == true && t.visitStatus == 'pendding' );
@@ -170,22 +170,36 @@ export class GeneralactionsComponent implements OnInit {
     //     return  date.getFullYear() + "-" + ( date.getMonth()+ 1 )+"-" + date.getDate();
     // }
 
-
+     
     async Endvisit() {
-     //   let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
-      if(this.Patient.appointments.length){
-
-      //  this.appointmentId = JSON.parse(sessionStorage.getItem('appointmentId'));
-            let y = this.Patient.appointments.find(t => t.appointmentId == this.appointmentId  && t.visitStatus == 'start');
        
-            console.log(y);
+        let x =  this.visits.find(t=> this.formatDate(new Date(t.startTime)) === this.formatDate(new Date()) && (t.endTime == null)  )
+        console.log(x)
+        await this.PatientServiceobj.endVisit(x.visitId, x);
+        let y = this.Patient.appointments.find( t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
+        y.visitStatus = 'end';
+        await this.PatientServiceobj.updateAppointment(y);
+        console.log(y);
+        this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id);
+     
+        
+    //      let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
+    //      console.log(x);
+    //   if(this.Patient.appointments.length){
+
+    //   //  this.appointmentId = JSON.parse(sessionStorage.getItem('appointmentId'));
+    //         // let y = this.Patient.appointments.find(t => {
+    //         //     (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date())) && (t.visitStatus == 'start')
+    //         // });
+       
+    //         // console.log(y);
          
          
      
-     }
-     else{
-        this.displayToastError("Please Patient appointments length")
-     }
+    //  }
+    //  else{
+    //     this.displayToastError("Please Patient appointments length")
+    //  }
        
     //    y.visitStatus = 'end';
      

@@ -406,6 +406,14 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatient/' + id);
     }
 
+    GetPatientDetailPatientId(id): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientDetailPatientId/' + id);
+    }
+
+    GetPatientAppointmentsByPatientId(id): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
+    }
+
     GetPatientVisits(id): Observable<Visits> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientVisits/' + id);
     }

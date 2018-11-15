@@ -63,9 +63,9 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
 
-                console.log(cresp);
-
                 this.thawAssessment = cresp;
+
+                this.patchValues(this.thawAssessment);
 
                 if (this.thawAssessment) {
                     this.embryoFreezeDetails = [];
@@ -147,6 +147,22 @@ export class EmbryoFreezeComponent implements OnInit {
 
         this.thawAssessmentService.addThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Saved"));
 
+    }
+
+    updateForm(value) {
+        if (this.tvopu)
+            value.tvopuId = this.tvopu.tvopuId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
+        value.thawAssessmentId = this.thawAssessment.thawAssessmentId;
+
+        this.thawAssessmentService.updateThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Updated"));
+    }
+
+    patchValues(thawAssessment) {
+        this.thawAssessmentForm.patchValue({
+            "CreateDate": thawAssessment.createDate
+        });
     }
 
 

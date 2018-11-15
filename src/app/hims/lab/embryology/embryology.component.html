@@ -268,11 +268,16 @@
                         <input type="text" class="form-control m-input" aria-describedby="emailHelp" [value]="embryology?.remarks"
                           formControlName="Remarks">
                       </div>
-                      <div class="col-sm-2">
+                      <div *ngIf="!embryology" class="col-sm-2">
                         <button type="button" (click)="submitForm(embryologyForm.value)" class="btn btn-primary">
                           Submit
                         </button>
                       </div>
+                      <div *ngIf="embryology" class="col-sm-2">
+                          <button type="button" (click)="update(embryologyForm.value)" class="btn btn-primary">
+                            Update
+                          </button>
+                        </div>
 
                     </div>
 

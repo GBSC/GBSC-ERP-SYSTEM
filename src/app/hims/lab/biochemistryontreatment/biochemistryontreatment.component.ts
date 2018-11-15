@@ -77,6 +77,8 @@ export class BiochemistryontreatmentComponent implements OnInit {
                         this.bioChemistry = resp;
                         this.testDetail = this.bioChemistry.bioChemistryTestDetails;
 
+                        this.patchValues(this.bioChemistry);
+
                     });
 
             })
@@ -113,6 +115,16 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     }
 
+    onUpdate(value) {
+
+        value.bioChemistryTestOnTreatmentId = this.bioChemistry.bioChemistryTestOnTreatmentId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.bioChemistryTestDetails = this.testDetail;
+
+        this.bioChemistryService.updatePatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test updated!"));
+
+    }
+
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -125,6 +137,15 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
         this.toastr.success(message);
 
+    }
+
+    patchValues(biochemistry)
+    {
+        this.bioChemistryontreatmentForm.patchValue({
+            'CollectionDate': biochemistry.collectionDate,
+            'LMP':  biochemistry.lmp,
+            'IsRandom': biochemistry.isRandom
+        })
     }
 
 

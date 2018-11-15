@@ -20,16 +20,16 @@ export class ReportViewerComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
-        const reportUrl = ko["observable"]("DevextremeReporting.Reports.XtraReport.repx"),
+        const reportUrl = ko["observable"]("Products"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = "http://localhost:49850/";
+        var host = "http://localhost:57581/";
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,
             requestOptions: {
                 host,
-                invokeAction: "/DXXRDV"
+                invokeAction: 'WebDocumentViewer/Invoke'
             }
         }, this.control.nativeElement);
     }

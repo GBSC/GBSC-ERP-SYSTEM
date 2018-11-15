@@ -105,9 +105,12 @@
               </div>
 
               <div class="col-sm-2">
-                <button type="button" (click)="submitForm(thawAssessmentForm.value)" class="btn btn-primary">
-                  Submit
+                <button *ngIf="thawAssessment" type="button" (click)="updateForm(thawAssessmentForm.value)" class="btn btn-primary">
+                  Update
                 </button>
+                <button *ngIf="!thawAssessment" type="button" (click)="submitForm(thawAssessmentForm.value)" class="btn btn-primary">
+                    Submit
+                  </button>
               </div>
             </div>
           </form>

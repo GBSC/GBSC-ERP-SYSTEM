@@ -14,28 +14,28 @@ export class VisitnatureComponent implements OnInit {
     async ngOnInit() {
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnatr = this.PatientServiceobj.visitNatures;
-      //  console.log(this.visitnatr);
+        //  console.log(this.visitnatr);
     }
 
     async AddVisitNature(value) {
         let x = await this.PatientServiceobj.AddVisitNature(value.key);
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnatr = this.PatientServiceobj.visitNatures;
-    //    console.log(x);
+        //    console.log(x);
     }
 
     async UpdateVisitNature(value) {
         let x = await this.PatientServiceobj.UpdateVisitNature(value.key);
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnatr = this.PatientServiceobj.visitNatures;
-   //     console.log(x);
+        //     console.log(x);
     }
 
     async DeleteVisitNature(value) {
         let x = await this.PatientServiceobj.DeleteVisitNature(value.key.visitNatureId);
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnatr = this.PatientServiceobj.visitNatures;
-    //   console.log(x);
+        //   console.log(x);
 
     }
 }

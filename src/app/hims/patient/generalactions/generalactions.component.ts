@@ -23,11 +23,11 @@ export class GeneralactionsComponent implements OnInit {
     public Patient: any;
     public lastpatientvisit: any;
     public visits: any;
-    public currentconsultant : any;
-    public consultants : any;
-    public consultant : any;
+    public currentconsultant: any;
+    public consultants: any;
+    public consultant: any;
     public time: any;
-    public patinetappointment : any=[];
+    public patinetappointment: any = [];
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
@@ -36,13 +36,13 @@ export class GeneralactionsComponent implements OnInit {
     async  ngOnInit() {
 
 
-        this. consultants =   await this.PatientServiceobj.getConsultant();
- 
-        console.log(this. consultants );
+        this.consultants = await this.PatientServiceobj.getConsultant();
+
+        console.log(this.consultants);
 
 
         this.time = new Date();
-         console.log(this.formatDate(new Date ()));
+        console.log(this.formatDate(new Date()));
 
         this.route.params.subscribe(params => {
 
@@ -52,7 +52,7 @@ export class GeneralactionsComponent implements OnInit {
 
             this.PatientServiceobj.GetPatientVisits(this.id).subscribe((res) => {
                 this.visits = res
-                 console.log(this.visits[0]);
+                console.log(this.visits[0]);
             });
         });
 
@@ -61,52 +61,51 @@ export class GeneralactionsComponent implements OnInit {
 
         this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
             this.Patient = Patient
-            if(this.Patient.appointments.length){
-              this.currentconsultant  =  this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date())  && t.isFinalAppointment == true && t.visitStatus == 'pendding' );
-              console.log(this.currentconsultant);
-            //   this.consultant =  this. consultants.map(t => t.consultantId == this.currentconsultant.consultantId);
-            //      console.log(this.consultant);
+            if (this.Patient.appointments.length) {
+                this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'pendding');
+                console.log(this.currentconsultant);
+                //   this.consultant =  this. consultants.map(t => t.consultantId == this.currentconsultant.consultantId);
+                //      console.log(this.consultant);
             }
-            console.log(this.Patient);            
+            console.log(this.Patient);
         });
-  
+
         console.log(this.patinetappointment);
-         
-       // await this.PatientServiceobj.updateAppointment(this.patinetappointment);
 
-        
+        // await this.PatientServiceobj.updateAppointment(this.patinetappointment);
+
+
     }
-    public appointmentId : any;
+    public appointmentId: any;
     async startVisit(value) {
-     if(this.currentconsultant.length ){
-         if(value.length == 0 || value == null || value == '')
-         {
-            this.displayToastError("Please Select Consultant")
-         }
-         else{
-            await this.PatientServiceobj.AddVisits(this.id);
-            let x = this.currentconsultant.find(t => t.consultantId == value)
-            x.visitStatus = 'start';
-            this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
-          //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-            
-            this.router.navigate(['/hims/patient/visits/' + this.id]);
-            console.log(x);
-         }
+        if (this.currentconsultant.length) {
+            if (value.length == 0 || value == null || value == '') {
+                this.displayToastError("Please Select Consultant")
+            }
+            else {
+                await this.PatientServiceobj.AddVisits(this.id);
+                let x = this.currentconsultant.find(t => t.consultantId == value)
+                x.visitStatus = 'start';
+                this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
+                //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
 
-     }
-     else{
-        this.displayToastError("Current Date Appointment Not Schedule")
-     }
-          
-     
+                this.router.navigate(['/hims/patient/visits/' + this.id]);
+                console.log(x);
+            }
 
-       
+        }
+        else {
+            this.displayToastError("Current Date Appointment Not Schedule")
+        }
+
+
+
+
 
 
 
         //  if(this.Patient.appointments.length){
-             
+
         //      if(this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date())  && t.isFinalAppointment == true )  ){            
         //               if(this.lastpatientvisit === null){
         //                         await this.PatientServiceobj.AddVisits(this.id);
@@ -142,7 +141,7 @@ export class GeneralactionsComponent implements OnInit {
         //                                          console.log(element);
         //                                                 let x =  this.PatientServiceobj.updateappointmentbygeneralactinForvisitstrat(element).subscribe(
         //                                                       element=>{
-                                                    
+
         //                                         });
         //                                                  console.log(x);
         //                                         });
@@ -172,23 +171,23 @@ export class GeneralactionsComponent implements OnInit {
 
 
     async Endvisit() {
-     //   let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
-      if(this.Patient.appointments.length){
+        //   let x = await this.PatientServiceobj.endVisit(this.visits[0].visitId, this.visits[0]);
+        if (this.Patient.appointments.length) {
 
-      //  this.appointmentId = JSON.parse(sessionStorage.getItem('appointmentId'));
-            let y = this.Patient.appointments.find(t => t.appointmentId == this.appointmentId  && t.visitStatus == 'start');
-       
+            //  this.appointmentId = JSON.parse(sessionStorage.getItem('appointmentId'));
+            let y = this.Patient.appointments.find(t => t.appointmentId == this.appointmentId && t.visitStatus == 'start');
+
             console.log(y);
-         
-         
-     
-     }
-     else{
-        this.displayToastError("Please Patient appointments length")
-     }
-       
-    //    y.visitStatus = 'end';
-     
+
+
+
+        }
+        else {
+            this.displayToastError("Please Patient appointments length")
+        }
+
+        //    y.visitStatus = 'end';
+
         // this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id);
         // this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
         //     this.Patient = Patient

@@ -131,8 +131,8 @@ export class EmbryologyComponent implements OnInit {
 
     update(value) {
         value.tvopuId = this.tvopu.tvopuId;
-        this.embryologyService.updatePatientEmbryology(value).subscribe(resp =>{
-            
+        this.embryologyService.updatePatientEmbryology(value).subscribe(resp => {
+
             this.displayToast("Patient Embryology Saved");
 
         });

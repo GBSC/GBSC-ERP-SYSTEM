@@ -33,11 +33,11 @@ export class ProfileComponent implements OnInit {
             this.id = +params['id'];
             let x = this.PatientServiceobj.getpatient(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-               // console.log(this.visitnature)
+                // console.log(this.visitnature)
 
                 this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);
 
-              //  console.log(Patient)
+                //  console.log(Patient)
             });
 
         });
@@ -46,10 +46,10 @@ export class ProfileComponent implements OnInit {
 
 
     async editPatient(value) {
-       // console.log(value)
+        // console.log(value)
         this.Router.navigate(['/hims/patient/updatepatient/' + this.id]);
         await this.PatientServiceobj.getpatientForupdating(value)
-    //    console.log(value)
+        //    console.log(value)
     }
     downloadimage(index) {
 

@@ -28,7 +28,6 @@ export class TvopuComponent implements OnInit {
     private id: number;
     private clinicalRecord: any;
     private tvopu: any;
-    private tvopuId: any;
 
     private tvopuform: FormGroup;
 
@@ -77,7 +76,7 @@ export class TvopuComponent implements OnInit {
                 this.tvopuService
                     .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
                         this.tvopu = resp;
-                        this.tvopuId = this.tvopu.tvopuId;
+                        this.patchValues(this.tvopu);
                     });
 
             })
@@ -120,8 +119,37 @@ export class TvopuComponent implements OnInit {
         this.tvopuService.addTvopu(value).subscribe(resp => {
 
             this.displayToast("TVOPU saved");
-            this.tvopuId = resp.tvopuId;
+
+            this.router.navigate(['lab/tvopu/' + this.clinicalRecord.patientClinicalRecordId]);
         });
+    }
+
+    updateForm(value) {
+        value.tvopuId = this.tvopu.tvopuId;
+        value.patientClinicalRecordId = this.id;
+        this.tvopuService.updateTvopu(value).subscribe(resp =>{
+
+            this.displayToast("TVOPU updated");
+        });
+    }
+
+    patchValues(tvopu)
+    {
+        this.tvopuform.patchValue({
+            'TimeStart': tvopu.timeStart,
+            'TimeFinish': tvopu.timeFinish,
+            'ActiveInactive':tvopu.activeInactive,
+            'Remarks': tvopu.remarks,
+            'PickupCount': tvopu.pickupCount,
+            'TotalPickupCount': tvopu.totalPickupCount,
+            'PickupDate': tvopu.pickupDate,
+            'FollicileAspiratedLeft': tvopu.follicileAspiratedLeft,
+            'FollicileAspiratedRight': tvopu.follicileAspiratedRight,
+            'OociteCollectedLeft': tvopu.oociteCollectedLeft,
+            'OociteCollectedRight': tvopu.oociteCollectedRight,
+            'EmbryologistId': tvopu.embryologistId,
+            'PatientClinicalRecordId': tvopu.patientClinicalRecordId
+        })
     }
 
 }

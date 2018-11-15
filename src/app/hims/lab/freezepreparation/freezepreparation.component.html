@@ -315,12 +315,15 @@
               <hr>
               <div class="row">
                 <div class="m-demo__preview m-demo__preview--btn">
-                  <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(freePreprationForm.value)">
+                  <button *ngIf="freezePrepration" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="updateForm(freePreprationForm.value)">
+                    Update
+                  </button>
+                  <button *ngIf="!freezePrepration" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(freePreprationForm.value)">
                     Submit
                   </button>
-                  <!-- <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                  <button [routerLink]="['/lab/embryology-thawing', id]" type="button" class="btn btn-brand m-btn m-btn--custom">
                     Thaw Detail
-                  </button> -->
+                  </button>
                   <a [routerLink]="['/lab/insemenation-prep', id]" class="btn btn-info m-btn m-btn--custom">
                     Insem. Prep.
                   </a>

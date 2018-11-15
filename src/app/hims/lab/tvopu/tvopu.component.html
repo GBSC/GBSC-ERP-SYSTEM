@@ -226,9 +226,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-2">
-                        <button type="button" (click)="submitForm(tvopuform.value)" class="btn btn-primary">
-                          Submit
+                      <div *ngIf="!tvopu" class="col-sm-2">
+                          <button type="button" (click)="submitForm(tvopuform.value)" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </div>
+                      <div *ngIf="tvopu" class="col-sm-2">
+                        <button type="button" (click)="updateForm(tvopuform.value)" class="btn btn-primary">
+                          Update
                         </button>
                       </div>
                     </div>
@@ -239,10 +244,10 @@
                   <div class="col-sm-7">
                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                       <div class="m-demo__preview m-demo__preview--btn">
-                        <a [routerLink]="['/lab/embryology', tvopuId]" class="btn btn-primary m-btn m-btn--custom">
+                        <a *ngIf="tvopu" [routerLink]="['/lab/embryology', tvopu?.tvopuId]" class="btn btn-primary m-btn m-btn--custom">
                           Assesment
                         </a>
-                        <a [routerLink]="['/lab/embryo-freeze', tvopu?.tvopuId]" class="btn btn-success m-btn m-btn--custom">
+                        <a *ngIf="tvopu" [routerLink]="['/lab/embryo-freeze', id]" class="btn btn-success m-btn m-btn--custom">
                           Freezing
                         </a>
                         <!-- <button type="button" class="btn btn-success m-btn m-btn--custom">
@@ -257,10 +262,10 @@
                   <div class="col-sm-5">
                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                       <div class="m-demo__preview m-demo__preview--btn">
-                        <button [routerLink]="['/lab/biochemistry-ontreatment', id]" class="btn btn-primary m-btn m-btn--custom">
+                        <button *ngIf="tvopu" [routerLink]="['/lab/biochemistry-ontreatment', id]" class="btn btn-primary m-btn m-btn--custom">
                           Bio-Chemistry
                         </button>
-                        <button [routerLink]="['/lab/insemenation', id]" class="btn btn-success m-btn m-btn--custom">
+                        <button *ngIf="tvopu" [routerLink]="['/lab/insemenation', id]" class="btn btn-success m-btn m-btn--custom">
                           Insemination
                         </button>
                       </div>

@@ -95,7 +95,11 @@ export class InseminationprepComponent implements OnInit {
 
 
             this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
-                .subscribe(resp => this.insemenationPrep = resp);
+                .subscribe(resp =>{ 
+
+                    this.insemenationPrep = resp
+                    this.patchValues(this.insemenationPrep);
+                });
 
         });
 
@@ -129,9 +133,44 @@ export class InseminationprepComponent implements OnInit {
         this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Saved"));
     }
 
+    onUpdate(value) {
+
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.inseminationPrepId = this.insemenationPrep.inseminationPrepId;
+
+        this.inseminationPrepService.updateInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Updated"));
+    }
+
     displayToast(message) {
 
         this.toastr.success(message);
+
+    }
+
+    patchValues(insemenationPrep) {
+
+        this.inseminationPrepForm.patchValue({
+
+            'InsemenationDate': insemenationPrep.insemenationDate,
+            'PrepFor': insemenationPrep.prepFor,
+            'CollectionNumber': insemenationPrep.collectionNumber,
+            'CollectionDate': insemenationPrep.collectionDate,
+            'SampleType': insemenationPrep.sampleType,
+            'ProcedureNumber': insemenationPrep.procedureNumber,
+            'Method': insemenationPrep.method,
+            'Volume': insemenationPrep.volume,
+            'TotalCount': insemenationPrep.totalCount,
+            'TotalCountRange': insemenationPrep.totalCountRange,
+            'MotileCount': insemenationPrep.motileCount,
+            'NonLinearProgression': insemenationPrep.nonLinearProgression,
+            'RapidLinearProgression': insemenationPrep.rapidLinearProgression,
+            'MotileCountRange': insemenationPrep.motileCountRange,
+            'TimeCompleted': insemenationPrep.timeCompleted,
+            'FinalVolume': insemenationPrep.finalVolume,
+            'Comments': insemenationPrep.comments,
+            'SpecialComment': insemenationPrep.specialComment
+
+        })
 
     }
 

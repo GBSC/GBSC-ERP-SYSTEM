@@ -114,7 +114,12 @@ export class InsemenationComponent implements OnInit {
                 if (this.clinicalRecord != null) {
                     this.insemenationService
                         .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-                        .subscribe(resp => this.insemenation = resp);
+                        .subscribe(resp =>{ 
+                            console.log(resp);
+                            this.insemenation = resp;
+                            this.patchForm(this.insemenation);
+                            this.calculateOnLoad(this.insemenation);
+                        });
                 }
 
 
@@ -151,24 +156,83 @@ export class InsemenationComponent implements OnInit {
         this.insemenationService.addPatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Saved"));
     }
 
+    updateForm(value)
+    {
+        value.patientInsemenationId = this.insemenation.patientInsemenationId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
+    }
+
+    patchForm(insemenation)
+    {
+        this.insemenationForm.patchValue({
+            'CollectionDate': insemenation.collectionDate,
+            'CollectionNumber': insemenation.collectionNumber,
+            'ProcedureNumber': insemenation.procedureNumber,
+            'ActiveInactive': insemenation.activeInactive,
+            'Abstinence': insemenation.abstinence,
+            'EjaculationTime': insemenation.ejaculationTime,
+            'Location': insemenation.location,
+            'AssayTime': insemenation.assayTime,
+            'Volume': insemenation.volume,
+            'Consistency': insemenation.consistency,
+            'Appearance': insemenation.appearance,
+            'Ph': insemenation.ph,
+            'MotileCountRange': insemenation.motileCountRange,
+            'MotileCount': insemenation.motileCount,
+            'ImmotileCountRange': insemenation.immotileCountRange,
+            'ImmotileCount': insemenation.immotileCount,
+            'TotalCountRange': insemenation.totalCountRange,
+            'TotalCount': insemenation.totalCount,
+            'SpermProgressionRapidLinear': insemenation.spermProgressionRapidLinear,
+            'SpermProgressionNonLinear': insemenation.spermProgressionNonLinear,
+            'SpermProgressionNonProgressive':insemenation.spermProgressionNonProgressive,
+            'Immotile': insemenation.immotile,
+            'TestPreprationMethod': insemenation.testPreprationMethod,
+            'VolumeSemenUsed': insemenation.volumeSemenUsed,
+            'TestPreprationTotalCountRange':insemenation.testPreprationTotalCountRange,
+            'TestPreprationTotalCount': insemenation.testPreprationTotalCount,
+            'TestPreprationMotileCountRange':insemenation.testPreprationMotileCountRange,
+            'TestPreprationMotileCount': insemenation.testPreprationMotileCount,
+            'TestPreprationRapidLinearProgression': insemenation.testPreprationRapidLinearProgression,
+            'TestPreprationRapidNonLinearProgression': insemenation.testPreprationRapidNonLinearProgression,
+            'TimeCompleted': insemenation.timeCompleted,
+            'FinalVolume': insemenation.finalVolume,
+            'NormalForms': insemenation.normalForms,
+            'HeadAbnormalities': insemenation.headAbnormalities,
+            'MidpieceAbnormalities': insemenation.midpieceAbnormalities,
+            'TailAbnormalities': insemenation.tailAbnormalities,
+            'OtherCells': insemenation.otherCells,
+            'Comments': insemenation.comments,
+        })
+    }
+
     calculateReportedLinear(value) {
         this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
         this.linear = value;
+
+        console.log("1", this.reportedLiner);
     }
 
     calculateReportedNonLinear(value) {
         this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
         this.nonLinear = value;
+
+        console.log("2", this.reportedNonLinear);
     }
 
     calculateReportedNonProgressive(value) {
         this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
         this.nonProgresive = value;
+
+        console.log("3", this.reportedNonProgressive);
     }
 
     calculateReportedImmotile(value) {
         this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
         this.immotile = value;
+
+        console.log("4", this.reportedImmotile);
 
         this.progression();
 
@@ -188,6 +252,13 @@ export class InsemenationComponent implements OnInit {
 
         this.toastr.success(message);
 
+    }
+
+    calculateOnLoad(insemenation)
+    {
+        this.motileCount = insemenation.motileCount;
+        this.immotileCount = insemenation.immotileCountRange;
+        this.totalCount = insemenation.totalCount;
     }
 
 }

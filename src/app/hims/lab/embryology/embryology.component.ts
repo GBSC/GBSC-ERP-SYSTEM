@@ -38,6 +38,7 @@ export class EmbryologyComponent implements OnInit {
         private patientService: PatientService,
         private treatmentService: TreatmentService,
         private route: ActivatedRoute,
+        private router: Router,
         private tvopuService: TvopuService,
         private embryologyService: EmbryologyService,
         private embryologistService: EmbryologistService,
@@ -45,19 +46,19 @@ export class EmbryologyComponent implements OnInit {
         private clinicalrecordservice: PatientclinicalrecordService) {
 
         this.embryologyForm = formBuilder.group({
-            "EggNumber": [''],
-            "CreateDate": [''],
-            "FreshEmbryoTransferDate": [''],
-            "FreshEmbryoTransferTime": [''],
-            "EmbryoDate": [''],
-            "Time": [''],
-            "Staff": [''],
-            "Status": [''],
-            "Verify": [''],
-            "Remarks": [''],
-            "EggStatusNumber": [''],
-            "ConsultantId": [''],
-            "EmbryologistId": ['']
+            EggNumber: [''],
+            CreateDate: [''],
+            FreshEmbryoTransferDate: [''],
+            FreshEmbryoTransferTime: [''],
+            EmbryoDate: [''],
+            Time: [''],
+            Staff: [''],
+            Status: [''],
+            Verify: [''],
+            Remarks: [''],
+            EggStatusNumber: [''],
+            ConsultantId: [''],
+            EmbryologistId: ['']
 
         })
 
@@ -88,7 +89,12 @@ export class EmbryologyComponent implements OnInit {
                     this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
 
                         this.embryology = emb;
-                        this.embryologydetails = emb.patientEmbryologyDetails;
+                        if (this.embryology) {
+                            console.log("Patching values..")
+                            this.patchValues(this.embryology);
+                            this.embryologydetails = emb.patientEmbryologyDetails;
+
+                        }
 
                     })
                 }
@@ -125,17 +131,44 @@ export class EmbryologyComponent implements OnInit {
         value.tvopuId = this.tvopu.tvopuId;
         value.patientEmbryologyDetails = this.embryologydetails;
 
-        this.embryologyService.addPatientEmbryology(value).subscribe(resp => this.displayToast("Patient Embryology Saved"));
-
+        this.embryologyService.addPatientEmbryology(value).subscribe(resp => {
+            this.displayToast("Patient Embryology Saved");
+            this.router.navigate(["/lab/embryology/" + this.tvopu.tvopuId]);
+        });
     }
 
+
+
     update(value) {
-        value.tvopuId = this.tvopu.tvopuId;
+        value.tvopuId = this.id;
+        value.patientEmbryologyId = this.embryology.patientEmbryologyId;
+        value.patientEmbryologyDetails = this.embryologydetails;
         this.embryologyService.updatePatientEmbryology(value).subscribe(resp => {
 
             this.displayToast("Patient Embryology Saved");
 
         });
+
+        console.log(value);
+    }
+
+    patchValues(embryology) {
+        
+        this.embryologyForm.patchValue({
+            EggNumber: embryology.eggNumber,
+            CreateDate: embryology.createDate,
+            FreshEmbryoTransferDate: embryology.freshEmbryoTransferDate,
+            FreshEmbryoTransferTime: embryology.freshEmbryoTransferTime,
+            EmbryoDate: embryology.embryoDate,
+            Time: embryology.time,
+            Staff: embryology.staff,
+            Status: embryology.status,
+            Verify: embryology.verify,
+            Remarks: embryology.remarks,
+            EggStatusNumber: embryology.eggStatusNumber,
+            ConsultantId: embryology.consultantId,
+            EmbryologistId: embryology.embryologistId
+        })
     }
 
     displayToast(message) {

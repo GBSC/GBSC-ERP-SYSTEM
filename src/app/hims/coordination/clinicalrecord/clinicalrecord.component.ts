@@ -112,8 +112,6 @@ export class ClinicalrecordComponent implements OnInit {
             value.clinicalRecordDrugs = this.drugs;
 
             this.clinicalrecordservice.addPatientClinicalRecord(value).subscribe(resp => {
-
-                console.log(resp);
                 this.displayToast("Patient Clinical Record Saved");
                 this.router.navigate(['coordination/clinical-record/' + resp.patientClinicalRecordId]);
             });

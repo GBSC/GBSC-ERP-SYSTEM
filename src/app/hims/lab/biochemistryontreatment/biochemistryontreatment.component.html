@@ -185,11 +185,18 @@
                         formControlName="RefRange"></textarea>
                     </div>
                   </div> -->
-                  <div class="col-sm-2">
-                    <button (click)="onsubmit(bioChemistryontreatmentForm.value)" class="btn btn-primary">
-                      Submit
+                  <div *ngIf="bioChemistry; else update" class="col-sm-2">
+                    <button (click)="onUpdate(bioChemistryontreatmentForm.value)" class="btn btn-primary">
+                      Update
                     </button>
                   </div>
+                  <ng-template #update>
+                    <div class="col-sm-2">
+                      <button (click)="onsubmit(bioChemistryontreatmentForm.value)" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div>

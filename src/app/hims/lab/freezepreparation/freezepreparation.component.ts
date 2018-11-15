@@ -73,7 +73,11 @@ export class FreezepreparationComponent implements OnInit {
                 this.clinicalRecord = resp;
 
                 this.freezePreprationService
-                    .getFreezePreprationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => this.freezePrepration = resp);
+                    .getFreezePreprationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp =>{ 
+                        
+                        this.freezePrepration = resp;
+                        this.patchValues(this.freezePrepration);
+                    });
 
             })
 
@@ -103,13 +107,51 @@ export class FreezepreparationComponent implements OnInit {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        this.freezePreprationService.addFreezePrepration(value).subscribe(resp => this.displayToast("Freeze prep saved"));
+        this.freezePreprationService.addFreezePrepration(value).subscribe(resp =>{ 
+            this.displayToast("Freeze prep saved");
+        });
+    }
+
+    updateForm(value)
+    {
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.freezePreprationId = this.freezePrepration.freezePreprationId;
+
+        this.freezePreprationService.updateFreezePrepration(value).subscribe(resp =>{ 
+            this.displayToast("Freeze prep updated");
+        });
     }
 
     displayToast(message) {
 
         this.toastr.success(message);
 
+    }
+
+    patchValues(freezePrepration)
+    {
+        this.freePreprationForm.patchValue({
+            "FreezeDate": freezePrepration.freezeDate,
+            "SemenRefNumber": freezePrepration.semenRefNumber,
+            "CollectionNumber": freezePrepration.collectionNumber,
+            "Other": freezePrepration.other,
+            "Type": freezePrepration.type,
+            "PesaTese": freezePrepration.pesaTese,
+            "CollectionDate": freezePrepration.collectionDate,
+            "ProcedureNumber": freezePrepration.procedureNumber,
+            "NoOfStrawFrozen": freezePrepration.noOfStrawFrozen,
+            "DrawerNumber": freezePrepration.drawerNumber,
+            "CannisterNumber": freezePrepration.cannisterNumber,
+            "Position": freezePrepration.position,
+            "StrawIdFrom": freezePrepration.strawIdFrom,
+            "StrawIdTo": freezePrepration.strawIdTo,
+            "Suffix": freezePrepration.suffix,
+            "StrawColor": freezePrepration.strawColor,
+            "PlugColor": freezePrepration.plugColor,
+            "SurvivalRange":freezePrepration.survivalRange,
+            "Survival": freezePrepration.survival,
+            "Remarks": freezePrepration.remarks,
+        })
     }
 
 }

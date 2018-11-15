@@ -61,48 +61,55 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.id = +params['id'];
 
-            this.tvopuService.getTvopu(this.id).subscribe(resp => {
+            this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
 
-                this.tvopu = resp;
+                this.thawAssessment = cresp;
 
-                if (this.tvopu != null) {
+                this.patchValues(this.thawAssessment);
 
-                    this.clinicalrecordservice.getPatientClinicalRecord(this.tvopu.patientClinicalRecordId).subscribe(cresp => {
-
-                        this.clinicalRecord = cresp;
-                    });
-
-                    if (!(this.embryoFreezeDetails.length > 0)) {
-
-                        this.embryologyService.getPatientEmbryologyDetailsByTvopuId(this.tvopu.tvopuId).subscribe(det => {
-
-                            for (let embryo of det) {
-
-                                if (!(this.embryoFreezeDetails.length > 0)) {
-
-                                    this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
-
-                                }
-                            }
-
-                        });
-                    }
-
-                    this.thawAssessmentService.getThawAssessmentByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
-
-                        this.thawAssessment = emb;
-
-                        if (this.thawAssessment) {
-                            this.embryoFreezeDetails = [];
-                            this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
-                        }
-
-
-                    });
-
+                if (this.thawAssessment) {
+                    this.embryoFreezeDetails = [];
+                    this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
                 }
 
             });
+
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+                this.tvopuService.getTvopuByClinicalRecordId(this.id).subscribe(tvop => {
+
+                    this.tvopu = tvop;
+
+                    if (this.tvopu) {
+
+                        console.log(this.embryoFreezeDetails.length);
+
+                        if (!(this.embryoFreezeDetails.length > 0)) {
+
+                            this.embryologyService.getPatientEmbryologyDetailsByTvopuId(this.tvopu.tvopuId).subscribe(det => {
+
+                                for (let embryo of det) {
+
+                                    if (!(this.embryoFreezeDetails.length > 0)) {
+
+                                        this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
+
+                                    }
+                                }
+
+                            });
+                        }
+                    }
+                });
+
+
+
+            })
+
+
+
 
             this.patientcb.onValueChanged.subscribe(res => {
                 this.populatePatientDate(res.component.option("value"))
@@ -132,13 +139,30 @@ export class EmbryoFreezeComponent implements OnInit {
 
     submitForm(value) {
 
-        value.tvopuId = this.tvopu.tvopuId;
+        if (this.tvopu)
+            value.tvopuId = this.tvopu.tvopuId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
 
 
         this.thawAssessmentService.addThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Saved"));
 
+    }
+
+    updateForm(value) {
+        if (this.tvopu)
+            value.tvopuId = this.tvopu.tvopuId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
+        value.thawAssessmentId = this.thawAssessment.thawAssessmentId;
+
+        this.thawAssessmentService.updateThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Updated"));
+    }
+
+    patchValues(thawAssessment) {
+        this.thawAssessmentForm.patchValue({
+            "CreateDate": thawAssessment.createDate
+        });
     }
 
 

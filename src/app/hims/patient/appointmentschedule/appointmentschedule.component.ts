@@ -272,7 +272,16 @@ export class AppointmentscheduleComponent implements OnInit {
 
         let x = this.PatientServiceobj.patientID;
          console.log(x)
-        this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
+         
+     this.patientById = await this.PatientServiceobj.GetPatientAppointmentsByPatientIdAsync(x.patientId);
+ 
+    //   let g =   this.PatientServiceobj.GetPatientAppointmentsByPatientId(x.patientId).subscribe(
+    //         res =>{
+    //             this.patientById = res
+    //             console.log(this.patientById);
+
+    //         });
+ 
         if(this.patientById) {
             this.patid = this.patientById.patientId;
         }
@@ -297,12 +306,16 @@ export class AppointmentscheduleComponent implements OnInit {
         }
         else{
             console.log(this.allpatients);
-            let x = this.allpatients.find(t => t.patientId == value.PatientId)
+            //  let x = this.allpatients.find(t => t.patientId == value.PatientId)
+            // console.log(x);
+            let x= await this.PatientServiceobj.GetPatientAppointmentsByPatientIdAsync(value.PatientId);
             console.log(x);
             if(x.appointments.length){
+                console.log('lenght');
                 if( x.appointments.find(t => 
-                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)))  && (t.consultantId == value.ConsultantId)   && (t.visitStatus == 'pendding' ||  t.visitStatus == 'start')) ){   
-                    this.toastr.error('Appointment Already Started');
+                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate)))  && (t.consultantId == value.ConsultantId) && (t.isCancelled == false) && (t.visitStatus == 'pendding' ||  t.visitStatus == 'start')) ){   
+                        console.log('find');
+                        this.toastr.error('Appointment Already Started');
                  }
                 else{
                     if( date == null ||  date == '' || date.length == 0 && time == null ||  time == '' || time.length == 0  && cid.value == null ||  cid.value == '' || cid.value.length == 0 ) {

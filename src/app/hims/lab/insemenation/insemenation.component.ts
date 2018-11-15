@@ -111,16 +111,7 @@ export class InsemenationComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                if (this.clinicalRecord != null) {
-                    this.insemenationService
-                        .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-                        .subscribe(resp =>{ 
-                            console.log(resp);
-                            this.insemenation = resp;
-                            this.patchForm(this.insemenation);
-                            this.calculateOnLoad(this.insemenation);
-                        });
-                }
+                this.setupValues();
 
 
             })
@@ -143,6 +134,24 @@ export class InsemenationComponent implements OnInit {
 
     }
 
+    setupValues() {
+
+
+        if (this.clinicalRecord != null) {
+            this.insemenationService
+                .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                .subscribe(resp => {
+                    console.log(resp);
+                    this.insemenation = resp;
+
+                    if (this.insemenation) {
+                        this.patchForm(this.insemenation);
+                        this.calculateOnLoad(this.insemenation);
+                    }
+                });
+        }
+    }
+
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -153,18 +162,19 @@ export class InsemenationComponent implements OnInit {
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-        this.insemenationService.addPatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Saved"));
+        this.insemenationService.addPatientInsemenation(value).subscribe(resp => {
+            this.displayToast("Insemenation Saved");
+            this.setupValues();
+        });
     }
 
-    updateForm(value)
-    {
+    updateForm(value) {
         value.patientInsemenationId = this.insemenation.patientInsemenationId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
     }
 
-    patchForm(insemenation)
-    {
+    patchForm(insemenation) {
         this.insemenationForm.patchValue({
             'CollectionDate': insemenation.collectionDate,
             'CollectionNumber': insemenation.collectionNumber,
@@ -186,13 +196,13 @@ export class InsemenationComponent implements OnInit {
             'TotalCount': insemenation.totalCount,
             'SpermProgressionRapidLinear': insemenation.spermProgressionRapidLinear,
             'SpermProgressionNonLinear': insemenation.spermProgressionNonLinear,
-            'SpermProgressionNonProgressive':insemenation.spermProgressionNonProgressive,
+            'SpermProgressionNonProgressive': insemenation.spermProgressionNonProgressive,
             'Immotile': insemenation.immotile,
             'TestPreprationMethod': insemenation.testPreprationMethod,
             'VolumeSemenUsed': insemenation.volumeSemenUsed,
-            'TestPreprationTotalCountRange':insemenation.testPreprationTotalCountRange,
+            'TestPreprationTotalCountRange': insemenation.testPreprationTotalCountRange,
             'TestPreprationTotalCount': insemenation.testPreprationTotalCount,
-            'TestPreprationMotileCountRange':insemenation.testPreprationMotileCountRange,
+            'TestPreprationMotileCountRange': insemenation.testPreprationMotileCountRange,
             'TestPreprationMotileCount': insemenation.testPreprationMotileCount,
             'TestPreprationRapidLinearProgression': insemenation.testPreprationRapidLinearProgression,
             'TestPreprationRapidNonLinearProgression': insemenation.testPreprationRapidNonLinearProgression,
@@ -254,8 +264,7 @@ export class InsemenationComponent implements OnInit {
 
     }
 
-    calculateOnLoad(insemenation)
-    {
+    calculateOnLoad(insemenation) {
         this.motileCount = insemenation.motileCount;
         this.immotileCount = insemenation.immotileCountRange;
         this.totalCount = insemenation.totalCount;

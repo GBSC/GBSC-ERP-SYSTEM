@@ -68,17 +68,7 @@ export class ClinicalrecordComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
 
-            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
-
-                this.clinicalRecord = resp;
-
-                if (resp != null) {
-                    this.drugs = resp.clinicalRecordDrugs;
-
-                }
-
-
-            })
+            this.setupValues();
 
         })
 
@@ -104,6 +94,22 @@ export class ClinicalrecordComponent implements OnInit {
 
     }
 
+    setupValues() {
+
+        this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+            this.clinicalRecord = resp;
+
+            if (this.clinicalRecord)
+                this.patchValues(this.clinicalRecord);
+
+            if (resp != null) {
+                this.drugs = resp.clinicalRecordDrugs;
+
+            }
+        });
+    }
+
     submitForm(value) {
 
         if (this.patient) {
@@ -113,7 +119,7 @@ export class ClinicalrecordComponent implements OnInit {
 
             this.clinicalrecordservice.addPatientClinicalRecord(value).subscribe(resp => {
                 this.displayToast("Patient Clinical Record Saved");
-                this.router.navigate(['coordination/clinical-record/' + resp.patientClinicalRecordId]);
+                this.setupValues();
             });
 
         }
@@ -131,6 +137,27 @@ export class ClinicalrecordComponent implements OnInit {
             this.patient = patient;
             this.spouse = patient.partner;
         });
+    }
+
+    patchValues(clinicalRecord) {
+
+        this.clinicalrecordform.patchValue({
+
+            'CycleNumber': clinicalRecord.cycleNumber,
+            'Lmp1': clinicalRecord.lmp1,
+            'Lmp2': clinicalRecord.lmp2,
+            'TypewiseTreatmentNumber': clinicalRecord.typewiseTreatmentNumber,
+            'ActiveInactive': clinicalRecord.activeInactive,
+            'Outcome': clinicalRecord.outcome,
+            'Reason': clinicalRecord.reason,
+            'SupressionDate': clinicalRecord.supressionDate,
+            'SimulationDate': clinicalRecord.simulationDate,
+            'TriggerDate': clinicalRecord.triggerDate,
+            'EtDate': clinicalRecord.etDate,
+            'TreatmentTypeId': clinicalRecord.treatmentTypeId,
+            'ConsultantId': clinicalRecord.consultantId,
+            'ProtocolId': clinicalRecord.protocolId
+        })
     }
 
 

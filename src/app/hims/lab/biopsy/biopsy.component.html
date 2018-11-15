@@ -249,7 +249,10 @@
                   </div>
                 </div>
                 <div class="col-sm-2">
-                  <button type="button" class="btn btn-primary" (click)="submitForm(biopsyForm.value)">
+                  <button *ngIf="biopsy" type="button" class="btn btn-primary" (click)="updateForm(biopsyForm.value)">
+                    Update
+                  </button>
+                  <button *ngIf="!biopsy" type="button" class="btn btn-primary" (click)="submitForm(biopsyForm.value)">
                     Submit
                   </button>
                 </div>

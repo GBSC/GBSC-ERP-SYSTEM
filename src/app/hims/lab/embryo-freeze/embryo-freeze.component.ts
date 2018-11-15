@@ -61,18 +61,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.id = +params['id'];
 
-            this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
-
-                this.thawAssessment = cresp;
-
-                this.patchValues(this.thawAssessment);
-
-                if (this.thawAssessment) {
-                    this.embryoFreezeDetails = [];
-                    this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
-                }
-
-            });
+            this.setupValues();
 
             this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
@@ -83,8 +72,6 @@ export class EmbryoFreezeComponent implements OnInit {
                     this.tvopu = tvop;
 
                     if (this.tvopu) {
-
-                        console.log(this.embryoFreezeDetails.length);
 
                         if (!(this.embryoFreezeDetails.length > 0)) {
 
@@ -124,6 +111,24 @@ export class EmbryoFreezeComponent implements OnInit {
         });
     }
 
+    setupValues() {
+
+        this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
+
+            this.thawAssessment = cresp;
+
+            if (this.thawAssessment)
+                this.patchValues(this.thawAssessment);
+
+            if (this.thawAssessment) {
+                this.embryoFreezeDetails = [];
+                this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
+            }
+
+        });
+
+    }
+
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -145,7 +150,10 @@ export class EmbryoFreezeComponent implements OnInit {
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
 
 
-        this.thawAssessmentService.addThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Saved"));
+        this.thawAssessmentService.addThawAssessment(value).subscribe(resp => {
+            this.displayToast("Embryo Freeze Saved");
+            this.setupValues();
+        });
 
     }
 

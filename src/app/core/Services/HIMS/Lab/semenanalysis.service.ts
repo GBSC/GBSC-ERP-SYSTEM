@@ -6,31 +6,31 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SemenanalysisService {
 
-  private Url = "Hims/api/SemenAnalysis/"
+    private Url = "Hims/api/SemenAnalysis/"
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  GetAllSemenAnalyses(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
-  }
+    GetAllSemenAnalyses(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
+    }
 
-  getSemenAnalysis(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetSemenAnalysis/" + id);
-  }
+    getSemenAnalysis(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetSemenAnalysis/" + id);
+    }
 
-  getSemenAnalysisByPatientId(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "getSemenAnalysisByPatientId/" + id);
-  }
+    getSemenAnalysisByPatientId(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "getSemenAnalysisByPatientId/" + id);
+    }
 
-  addSemenAnalysis(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddSemenAnalysis", value);
-  }
+    addSemenAnalysis(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddSemenAnalysis", value);
+    }
 
-  updateSemenAnalysis(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateSemenAnalysis", value);
-  }
+    updateSemenAnalysis(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateSemenAnalysis", value);
+    }
 
-  deleteSemenAnalysis(id) {
-    this.ApiService.delete(this.Url + "DeleteSemenAnalysis" + id);
-  }
+    deleteSemenAnalysis(id) {
+        this.ApiService.delete(this.Url + "DeleteSemenAnalysis" + id);
+    }
 }

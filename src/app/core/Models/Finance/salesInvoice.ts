@@ -2,8 +2,8 @@ import { SalesInvoiceDetail } from "./salesInvoiceDetail";
 
 export class SalesInvoice {
 
-    FinanceSalesInvoiceId : number;
-    Date : Date;
+    FinanceSalesInvoiceId: number;
+    Date: Date;
     Description: string;
     BillNumber: string;
     CreditDays: number;
@@ -19,7 +19,7 @@ export class SalesInvoice {
     WithholdingTaxPercentage: number;
     WihtholdingTaxAmount: number;
     TotalAmount: number;
-    FinanceSalesReturnId : number;
-    DetailAccountId : number;
-    FinanceSalesInvoiceDetails : SalesInvoiceDetail[]
+    FinanceSalesReturnId: number;
+    DetailAccountId: number;
+    FinanceSalesInvoiceDetails: SalesInvoiceDetail[]
 }

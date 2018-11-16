@@ -6,32 +6,32 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class InsemenationService {
 
-  private Url = "Hims/api/PatientInsemenation/"
+    private Url = "Hims/api/PatientInsemenation/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getPatientInsemenationByClinicalRecordId(id: number) {
-    return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
-  }
+    getPatientInsemenationByClinicalRecordId(id: number) {
+        return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
+    }
 
-  getPatientInsemenations(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientInsemenations");
-  }
+    getPatientInsemenations(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientInsemenations");
+    }
 
-  getPatientInsemenation(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientInsemenation/" + id);
-  }
+    getPatientInsemenation(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientInsemenation/" + id);
+    }
 
-  addPatientInsemenation(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddPatientInsemenation", value);
-  }
+    addPatientInsemenation(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddPatientInsemenation", value);
+    }
 
-  updatePatientInsemenation(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdatePatientInsemenation", value);
-  }
+    updatePatientInsemenation(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdatePatientInsemenation", value);
+    }
 
-  deletePatientInsemenation(id) {
-    this.ApiService.delete(this.Url + "DeletePatientInsemenation" + id);
-  }
+    deletePatientInsemenation(id) {
+        this.ApiService.delete(this.Url + "DeletePatientInsemenation" + id);
+    }
 }

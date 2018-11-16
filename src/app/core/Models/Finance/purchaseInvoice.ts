@@ -20,5 +20,5 @@ export class PurchaseInvoice {
     TotalAmount: number;
     FinancePurchaseReturnId: number;
     DetailAccountId: number;
-    FinancePurchaseInvoiceDetails : PurchaseInvoiceDetail[];
+    FinancePurchaseInvoiceDetails: PurchaseInvoiceDetail[];
 }

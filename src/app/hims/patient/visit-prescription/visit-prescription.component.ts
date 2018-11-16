@@ -8,9 +8,9 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { SalesIndent } from '../../../core/Models/Pharmacy/SalesIndent';
 
 @Component({
-  selector: 'app-visit-prescription',
-  templateUrl: './visit-prescription.component.html',
-  styleUrls: ['./visit-prescription.component.scss']
+    selector: 'app-visit-prescription',
+    templateUrl: './visit-prescription.component.html',
+    styleUrls: ['./visit-prescription.component.scss']
 })
 
 export class VisitPrescriptionComponent implements OnInit {

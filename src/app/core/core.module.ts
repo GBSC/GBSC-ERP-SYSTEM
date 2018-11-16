@@ -16,6 +16,7 @@ import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
 import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.service';
 import { InsemenationService } from './Services/HIMS/Lab/insemenation.service';
 import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service';
+import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryoutsider.service';
 
 @NgModule({
     imports: [
@@ -58,7 +59,8 @@ import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service'
         BiopsyService,
         FreezepreprationService,
         InsemenationService,
-        SemenanalysisService
+        SemenanalysisService,
+        BiochemistryoutsiderService
     ]
 })
 export class CoreModule { }

@@ -60,6 +60,6 @@ import { VoucherDetailComponent } from './voucher-detail/voucher-detail.componen
         SalesReturnDetailComponent,
         VoucherDetailComponent
     ],
-    providers: [FinanceSetupService,FinanceService]
+    providers: [FinanceSetupService, FinanceService]
 })
 export class FinanceModule { }

@@ -45,13 +45,8 @@ export class VisitdetailComponent implements OnInit {
     public updateTimeLimitExceeded: boolean = false;
     public vitalUpdateFieldsEnabled: boolean = false;
 
-<<<<<<< HEAD
     
     constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
-=======
-
-    constructor(private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
 
         this.VisitVitalDetailForm = this.formBuilder.group({
             Height: ['', Validators.required],
@@ -200,7 +195,6 @@ export class VisitdetailComponent implements OnInit {
 
                     let x = this.PatientServiceobj.GetAppointmentByVisit(this.id).subscribe((appointment: any) => {
                         this.appointment = appointment;
-<<<<<<< HEAD
                        
                         console.log(this.appointment);
                         if(this.appointment == null || this.appointment == ''){
@@ -219,21 +213,6 @@ export class VisitdetailComponent implements OnInit {
                         }
 
                          
-=======
-                        //  console.log(this.appointment);
-
-                        this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
-                        //  console.log(  this.getconsultantbyId)
-                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
-                        //   console.log(this.getvisitnatureId);
-                        //  console.log(this.consultant);
-
-                        this.VisitAppointmentForm.patchValue({
-                            VisitNatureId: this.getvisitnatureId.visitNatureId,
-                            TentativeTime: this.appointment.tentativeTime,
-                            ConsultantId: this.getconsultantbyId.consultantId,
-                        });
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
 
 
                     });
@@ -305,12 +284,8 @@ export class VisitdetailComponent implements OnInit {
             this.VisitVitalDetailForm.value.PatientVitalId = this.visit.patientVitalId;
 
             await this.PatientServiceobj.UpdatePatientVital(value);
-<<<<<<< HEAD
             this.toastr.success('Saved');
          //   console.log(value);
-=======
-            //   console.log(value);
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
         }
     }
 
@@ -322,7 +297,6 @@ export class VisitdetailComponent implements OnInit {
         {
             this.toastr.error('Please Select Consultant');
         }
-<<<<<<< HEAD
         else if(this.VisitAppointmentForm.value.TentativeTime == null || this.VisitAppointmentForm.value.TentativeTime == ''){
             this.toastr.error('Please Select Tentative Time');
         }
@@ -342,13 +316,6 @@ export class VisitdetailComponent implements OnInit {
                 this.toastr.success('Saved');
              //   console.log(value);
             }
-=======
-        else {
-            this.VisitAppointmentForm.value.AppointmentId = this.appointment.appointmentId;
-            //   console.log(this.VisitAppointmentForm.value.visitNatureId);
-            await this.PatientServiceobj.updateAppointmentFromVisitDetail(value);
-            //   console.log(value);
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
         }
        
        
@@ -359,7 +326,6 @@ export class VisitdetailComponent implements OnInit {
     async  editPatientclicnicalnote(value) {
         this.VisitNoteForm.value.VisitId = this.id;
 
-<<<<<<< HEAD
         if(this.VisitNoteForm.value.ClinicalNote == null || this.VisitNoteForm.value.ClinicalNote == '')
         {
             this.toastr.error('Please Add Clinical Note');
@@ -378,13 +344,6 @@ export class VisitdetailComponent implements OnInit {
                  console.log(value);
                  this.toastr.success('Saved');
             }
-=======
-
-        else {
-            this.VisitNoteForm.value.VisitNoteId = this.visit.visitNote.visitNoteId;
-            await this.PatientServiceobj.updateVisitNote(value);
-            //  console.log(value);
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
         }
       
     }
@@ -401,7 +360,6 @@ export class VisitdetailComponent implements OnInit {
         let visitsNTests = this.getvisitTestbyId.map(t => ({ testId: t.testId, visitId: t.visitId }));
         if (this.visit.visitTests.length > 0) {
             //  console.log(visitsNTests);
-<<<<<<< HEAD
                 await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
                 this.toastr.success('Saved');
            }
@@ -411,15 +369,6 @@ export class VisitdetailComponent implements OnInit {
              this.toastr.success('Saved');
           }
        
-=======
-            await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
-        }
-        else {
-            //  console.log(visitsNTests);
-            await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
-        }
-
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
         //  console.log(visitsNTests);
     }
 
@@ -433,7 +382,6 @@ export class VisitdetailComponent implements OnInit {
             }
             return diagnosisId;
         });
-<<<<<<< HEAD
         let visitsNDiagnos = this.getvisitdiagnosesbyId.map(t => ({diagnosisId: t.diagnosisId, visitId: t.visitId}));
           if(this.visit.visitTests.length > 0){
                await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
@@ -444,16 +392,6 @@ export class VisitdetailComponent implements OnInit {
               this.toastr.success('Saved');
           }
        
-=======
-        let visitsNDiagnos = this.getvisitdiagnosesbyId.map(t => ({ diagnosisId: t.diagnosisId, visitId: t.visitId }));
-        if (this.visit.visitTests.length > 0) {
-            await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
-        }
-        else {
-            await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
-        }
-
->>>>>>> d50ae79311e1587c440ae26f410a070b3e4a1d83
         //  console.log(visitsNDiagnos);
 
         // this.getvisitdiagnosesbyId = this.getvisitdiagnosesbyId.map(t => {

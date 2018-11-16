@@ -33,17 +33,17 @@ export class PatientInvoiceViewComponent implements OnInit {
               // console.log(res);
               this.PatientInvoices = res.patientInvoices;
           });
-        }
+		}
       }
     });
   }
 
   GetAllInvoicesByMRN(event, mrn : string) {
-    console.log(event);
+    // console.log(event);
     if(event.key === 'Enter') {
       this.PatientService.GetPatientInvoicesWithDetailsByMRN(mrn).subscribe((res : Patient) => {
-        console.log(res);
-        if(res) {
+        // console.log(res);
+        if(res != null) {
           this.PatientInvoices = res.patientInvoices;
           this.Toastr.success("Invoices for patient with MRN : " + mrn);
         } else {
@@ -56,13 +56,12 @@ export class PatientInvoiceViewComponent implements OnInit {
   }
 
   ViewInvoices(date : Date, mrn : string) {
-    console.log(date, mrn);
-    
+    // console.log(date, mrn);
     if(mrn != null && mrn != '' && date != null) {
-      console.log(date, mrn);
+      // console.log(date, mrn);
       this.PatientService.GetPatientInvoicesWithDetailsByMRNandDate(mrn, date).subscribe((res : PatientInvoice[]) => {
-        console.log(res);
-        if(res) {
+        // console.log(res);
+        if(res != null) {
           this.PatientInvoices = res;
           this.Toastr.success("Invoices for patient with MRN : " + mrn + " on Date : " + date);
         } else {
@@ -70,10 +69,10 @@ export class PatientInvoiceViewComponent implements OnInit {
         }
       })
     } else if(date === null){
-      console.log(mrn);
+      // console.log(mrn);
       this.PatientService.GetPatientInvoicesWithDetailsByMRN(mrn).subscribe((res : Patient) => {
-        console.log(res);
-        if(res) {
+        // console.log(res);
+        if(res != null) {
           this.PatientInvoices = res.patientInvoices;
           this.Toastr.success("Invoices for patient with MRN : " + mrn);
         } else {
@@ -81,10 +80,10 @@ export class PatientInvoiceViewComponent implements OnInit {
         }
       });
     } else if(mrn === null || mrn === '') {
-      console.log(date);
+      // console.log(date);
       this.PatientService.GetPatientInvoicesWithDetailsByDate(date).subscribe((res : PatientInvoice[]) => {
-        console.log(res);
-        if(res) {
+        // console.log(res);
+        if(res != null) {
           this.PatientInvoices = res;
           this.Toastr.success("Invoices for the date : " + date);
         } else {

@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { DISABLED } from '@angular/forms/src/model';
+import { ToastrService } from 'ngx-toastr';
+
 // import { VisitTest } from 'src/app/core/Models/HIMS/visittest';
 
 @Component({
@@ -44,7 +46,7 @@ export class VisitdetailComponent implements OnInit {
     public vitalUpdateFieldsEnabled: boolean = false;
 
     
-    constructor(private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService,private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
 
         this.VisitVitalDetailForm = this.formBuilder.group({
             Height: ['', Validators.required],
@@ -197,19 +199,24 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
 
                     let x = this.PatientServiceobj.GetAppointmentByVisit(this.id).subscribe((appointment: any) => {
                         this.appointment = appointment;
-                      //  console.log(this.appointment);
+                       
+                        console.log(this.appointment);
+                        if(this.appointment == null || this.appointment == ''){
+                            this.VisitAppointmentForm.value.VisitNatureId = '';
+                            this.VisitAppointmentForm.value.TentativeTime = '';
+                            this.VisitAppointmentForm.value.ConsultantId = '';
+                        }
+                        else{
+                            this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
+                            this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
+                            this.VisitAppointmentForm.patchValue({
+                                VisitNatureId: this.getvisitnatureId.visitNatureId,
+                                TentativeTime: this.appointment.tentativeTime,
+                                ConsultantId: this.getconsultantbyId.consultantId,
+                            });
+                        }
 
-                         this.getconsultantbyId = this.consultant.find(t => t.consultantId === appointment.consultantId);
-                      //  console.log(  this.getconsultantbyId)
-                        this.getvisitnatureId = this.visitnatures.find(t => t.visitNatureId == appointment.visitNatureId);
-                      //   console.log(this.getvisitnatureId);
-                       //  console.log(this.consultant);
-
-                        this.VisitAppointmentForm.patchValue({
-                            VisitNatureId: this.getvisitnatureId.visitNatureId,
-                            TentativeTime: this.appointment.tentativeTime,
-                            ConsultantId: this.getconsultantbyId.consultantId,
-                        });
+                         
 
 
                     });
@@ -275,44 +282,74 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
          //   console.log(value);
             delete this.VisitVitalDetailForm.value.PatientVitalId;
             await this.PatientServiceobj.AddPatientVital(value);
+            this.toastr.success('Saved');
         }
         else {
             this.VisitVitalDetailForm.value.PatientVitalId = this.visit.patientVitalId;
 
             await this.PatientServiceobj.UpdatePatientVital(value);
+            this.toastr.success('Saved');
          //   console.log(value);
         }
     }
 
     async editPatientAppointment(value) {
+
         this.VisitAppointmentForm.value.PatientId = this.visit.patientId;
         this.VisitAppointmentForm.value.VisitId = this.id;
-        if (this.appointment === null) {
-            delete this.VisitAppointmentForm.value.AppointmentId;
-            await this.PatientServiceobj.addAppointment(value);
+        if(this.VisitAppointmentForm.value.ConsultantId == null || this.VisitAppointmentForm.value.ConsultantId == '')
+        {
+            this.toastr.error('Please Select Consultant');
         }
-        else {
-            this.VisitAppointmentForm.value.AppointmentId = this.appointment.appointmentId;
-         //   console.log(this.VisitAppointmentForm.value.visitNatureId);
-            await this.PatientServiceobj.updateAppointmentFromVisitDetail(value);
-         //   console.log(value);
+        else if(this.VisitAppointmentForm.value.TentativeTime == null || this.VisitAppointmentForm.value.TentativeTime == ''){
+            this.toastr.error('Please Select Tentative Time');
         }
+        else if(this.VisitAppointmentForm.value.VisitNatureId == null || this.VisitAppointmentForm.value.VisitNatureId == ''){
+            this.toastr.error('Please Select VisitNatur');
+        }
+        else{
+            if (this.appointment === null) {
+                delete this.VisitAppointmentForm.value.AppointmentId;
+                await this.PatientServiceobj.addAppointment(value);
+                this.toastr.success('Saved');
+            }
+            else {
+                this.VisitAppointmentForm.value.AppointmentId = this.appointment.appointmentId;
+             //   console.log(this.VisitAppointmentForm.value.visitNatureId);
+                await this.PatientServiceobj.updateAppointmentFromVisitDetail(value);
+                this.toastr.success('Saved');
+             //   console.log(value);
+            }
+        }
+       
+       
+
+
     }
 
     async  editPatientclicnicalnote(value) {
         this.VisitNoteForm.value.VisitId = this.id;
-        if (this.visit.visitNote === null) {
 
-            delete this.VisitNoteForm.value.VisitNoteId;
-            await this.PatientServiceobj.addVisitNote(value);
+        if(this.VisitNoteForm.value.ClinicalNote == null || this.VisitNoteForm.value.ClinicalNote == '')
+        {
+            this.toastr.error('Please Add Clinical Note');
+        } 
+        else{
+            if (this.visit.visitNote === null) {
+
+                delete this.VisitNoteForm.value.VisitNoteId;
+                await this.PatientServiceobj.addVisitNote(value);
+                console.log(value);
+                this.toastr.success('Saved');
+            }
+            else {
+                this.VisitNoteForm.value.VisitNoteId = this.visit.visitNote.visitNoteId;
+                await this.PatientServiceobj.updateVisitNote(value);
+                 console.log(value);
+                 this.toastr.success('Saved');
+            }
         }
-
-
-        else {
-            this.VisitNoteForm.value.VisitNoteId = this.visit.visitNote.visitNoteId;
-            await this.PatientServiceobj.updateVisitNote(value);
-          //  console.log(value);
-        }
+      
     }
 
     async  editviststest() {
@@ -328,10 +365,12 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
           if(this.visit.visitTests.length > 0){
             //  console.log(visitsNTests);
                 await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
+                this.toastr.success('Saved');
            }
          else{
           //  console.log(visitsNTests);
              await this.PatientServiceobj.AddVisitTestsByVisitId(this.id, visitsNTests);
+             this.toastr.success('Saved');
           }
        
         //  console.log(visitsNTests);
@@ -350,9 +389,11 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
         let visitsNDiagnos = this.getvisitdiagnosesbyId.map(t => ({diagnosisId: t.diagnosisId, visitId: t.visitId}));
           if(this.visit.visitTests.length > 0){
                await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
+               this.toastr.success('Saved');
            }
          else{
               await this.PatientServiceobj.AddVisitDiagnosesByVisitId(this.id, visitsNDiagnos);
+              this.toastr.success('Saved');
           }
        
         //  console.log(visitsNDiagnos);
@@ -375,19 +416,27 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
     public VisitTst: any = [];
 
     addrangeVisittst() {
-        this.VisitTestForm.value.visitId = this.id;
-        console.log(this.VisitTestForm.value.visitId);
-        let { value } = this.VisitTestForm;
-
-        let tst = this.visittst.find(t => t.testId === value.testId);
-        let doc = {
-            testId: value.testId,
-            testName: tst.testName,
-            visitId: this.id,
+        if(this.VisitTestForm.value.testId == null || this.VisitTestForm.value.testId  == '' )
+        {
+            this.toastr.error('Please Select Test')
+        }
+        else{
+            this.VisitTestForm.value.visitId = this.id;
+            console.log(this.VisitTestForm.value.visitId);
+            let { value } = this.VisitTestForm;
+    
+            let tst = this.visittst.find(t => t.testId === value.testId);
+            let doc = {
+                testId: value.testId,
+                testName: tst.testName,
+                visitId: this.id,
+    
+            }
+            this.getvisitTestbyId.push(doc);
+            console.log(this.VisitDiagnoses);
 
         }
-        this.getvisitTestbyId.push(doc);
-        console.log(this.VisitDiagnoses);
+
 
     }
     public vitalUpdadddddteFieldsEnabled: boolean = false;
@@ -401,17 +450,26 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
     public VisitDiagnoses: any = [];
 
     addrangeVisitdiagnis() {
-        this.VisitDiagnosesForm.value.visitId = this.id;
-        let { value } = this.VisitDiagnosesForm;
 
-        let diagnose = this.visitdiagnos.find(t => t.diagnosisId === value.diagnosisId);
-        let doc = {
-            diagnosisId: value.diagnosisId,
-            name: diagnose.name,
-            visitId: this.id,
+        if(this.VisitDiagnosesForm.value.diagnosisId == null || this.VisitDiagnosesForm.value.diagnosisId == '' )
+        {
+            this.toastr.error('Please select Diagnose')
         }
-        this.getvisitdiagnosesbyId.push(doc);
-        console.log(this.getvisitdiagnosesbyId);
+        else{
+            this.VisitDiagnosesForm.value.visitId = this.id;
+
+            let { value } = this.VisitDiagnosesForm;
+    
+            let diagnose = this.visitdiagnos.find(t => t.diagnosisId === value.diagnosisId);
+            let doc = {
+                diagnosisId: value.diagnosisId,
+                name: diagnose.name,
+                visitId: this.id,
+            }
+            this.getvisitdiagnosesbyId.push(doc);
+            console.log(this.getvisitdiagnosesbyId);
+        }
+        
 
     }
 

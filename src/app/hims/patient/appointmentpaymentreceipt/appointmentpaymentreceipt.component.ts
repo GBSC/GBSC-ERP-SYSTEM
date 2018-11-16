@@ -60,6 +60,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	private TempPaymentMethod : string = '';
 
 	private InvoiceType : string = '';
+	private DeletedKeyIndex : number = null;
 	
 	private InvoiceItemNatureWithoutPackage : any[] = [
 		{id : 1, Name : "Consultation"},
@@ -143,22 +144,17 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 
 					this.PatientService.GetAppointmentDetails(params['id']).subscribe((res : Appointment) => {
 						// console.log("Appointment Details = ", res);
+						// console.log((res.IsPaid == null || res.IsPaid == false) && (res.PatientInvoice == null && res.PatientInvoiceId == null));
 						// console.log("Invoice = ", (res.PatientInvoice == null && res.PatientInvoiceId == null));
 						// console.log("Invoie IsPaid === ", (res.IsPaid === null || res.IsPaid === false));
 						// console.log("Invoie IsPaid == ", (res.IsPaid == null || res.IsPaid == false));
-						if(res.IsPaid == null || res.IsPaid == false && (res.PatientInvoice == null && res.PatientInvoiceId == null)) {
+						if((res.IsPaid == null || res.IsPaid == false) && (res.PatientInvoice == null && res.PatientInvoiceId == null)) {
 							this.SelectedAppointment = res;
 							// console.log(this.SelectedAppointment);
 							this.InvoiceType = "Appointment Invoice"
 							this.PatientIdForPackage = this.SelectedAppointment.patientId;
 							// this.CurrentDate = this.AppointmentDate;
 
-							let partner : string = '';
-							if(this.SelectedAppointment.patient.partner === null)
-								partner = '';
-							else
-								partner = this.SelectedAppointment.patient.partner.firstName || '';
-							
 							this.AppointmentDate = new Date(this.SelectedAppointment.appointmentDate);
 
 							let packagename : string = '';
@@ -189,11 +185,29 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 								totalBalance = 0;
 							}
 
+							let partner : string = '';
+							if(this.SelectedAppointment.patient.partner === null)
+								partner = '';
+							else
+								partner = this.SelectedAppointment.patient.partner.firstName || '';
+
+							let nature : string = '';
+							if(this.SelectedAppointment.visitNature)
+								nature = this.SelectedAppointment.visitNature.nature;
+							else
+								nature = '';
+
+							let consultant : string = '';
+							if(this.SelectedAppointment.consultant)
+								consultant = this.SelectedAppointment.consultant.name;
+							else
+								consultant = '';
+
 							this.InvoiceForm.patchValue({
 								MRN : this.SelectedAppointment.patient.mrn || '',
-								VisitNature : this.SelectedAppointment.visitNature.nature || '',
-								PatientName : this.SelectedAppointment.patient.firstName || '',
-								Consultant : this.SelectedAppointment.consultant.name || '',
+								VisitNature : nature || '',
+								PatientName : this.SelectedAppointment.patient.fullName || '',
+								Consultant : consultant || '',
 								SpouseName : partner || '',
 								Package : packagename || '',
 								TotalPrice : totalPrice || 0,
@@ -508,7 +522,7 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 				IsPaid : <boolean>(value.data.isPaid || false)
 			};
 
-			value.data.__KEY__ = this.Index;
+			value.data.__KEY__ = this.DeletedKeyIndex || this.Index;
 			value.data.nature = value.data.id;
 			value.data.name = this.SelectedInvoiceItemName;
 			value.data.discountPercentage = value.data.discountPercentage || 0;
@@ -536,13 +550,17 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 			// console.log(this.TotalGrossAmount, this.TotalDiscountAmount, this.TotalNetAmount);
 			this.PatientInvoiceItemsArrayForPost[this.Index] = a;
 			this.Index += 1;
-			// console.log(this.PatientInvoiceItem);
-			// console.log(this.PatientInvoiceItemsArrayForPost);
+			// console.log("Add Display = ", this.PatientInvoiceItem);
+			// console.log("Add Post = ", this.PatientInvoiceItemsArrayForPost);
+
+			if(this.DeletedKeyIndex != null) {
+				this.DeletedKeyIndex = null;
+			}
 		}
 	}
 
 	DeleteInvoiceDetail(value) {
-		console.log(value);
+		// console.log(value);
 		if(value.data.isPaid === true) {
 			this.TotalGrossAmount -= Number.parseFloat(value.data.grossAmount);
 			this.TotalDiscountAmount -= Number.parseFloat(value.data.discountAmount);
@@ -550,12 +568,16 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 		}
 
 		this.PatientInvoiceItemsArrayForPost.splice(value.data.__KEY__ , 1);
+		// console.log("Delete Display = ", this.PatientInvoiceItem);
+		// console.log("Delete Post = ", this.PatientInvoiceItemsArrayForPost);
+		this.DeletedKeyIndex = Number.parseInt(value.data.__KEY__);
 		this.Index -= 1;
 
 		if(this.ContainsPackage === true && value.data.__KEY__ === this.PatientPackageInvoiceItemIndexNumber) {
 			this.ContainsPackage = false;
 			this.PatientPackage = null;
 			this.InvoiceItemNatureDataSource = this.InvoiceItemNature;
+			this.TotalGrossAmount -= this.TempCurrentPayment;
 			this.TempCurrentPayment  = 0;
 
 			this.InvoiceForm.patchValue({
@@ -572,22 +594,21 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
 	SubmitPatientInvoice(value) {
 		
 		let patid : number = null;
-
-		if(this.SelectedAppointment) {
-			patid = this.SelectedAppointment.patientId;
-		} else if (this.SelectedPatient) {
-			patid = this.SelectedPatient.patientId;
-		} else {
-			patid = null;
-		}
-
 		let appid : number = null;
 
 		if(this.SelectedAppointment) {
+			patid = this.SelectedAppointment.patientId;
 			appid = this.SelectedAppointment.appointmentId;
+		} else if (this.SelectedPatient) {
+			patid = this.SelectedPatient.patientId;
+			appid = null;
 		} else {
+			patid = null;
 			appid = null;
 		}
+
+		// console.log("Post = ", this.PatientInvoiceItemsArrayForPost);
+		// console.log("Display = ", this.PatientInvoiceItem);
 
 		// console.log(value);
 		let a : any = {

@@ -209,27 +209,31 @@ export class VisitdetailComponent implements OnInit {
 
 
                     });
-                    //   console.log(x);
+ 
 
                 });
 
-                //   console.log(this.getvisitTestbyId);
+ 
 
-
-                this.VisitVitalDetailForm.patchValue({
-                    Height: visit.patientVital.height,
-                    Weight: visit.patientVital.weight,
-                    Temperature: visit.patientVital.temperature,
-                    RespiratoryRate: visit.patientVital.respiratoryRate,
-                    Pulse: visit.patientVital.pulse,
-                    BloodPressureUp: visit.patientVital.bloodPressureUp,
-                    BloodPressureDown: visit.patientVital.bloodPressureDown,
-                    BloodOxygenSaturation: visit.patientVital.bloodOxygenSaturation,
-                });
-
-                this.VisitNoteForm.patchValue({
-                    ClinicalNote: visit.visitNote.clinicalNote
-                });
+                if(this.visit.patientVital){
+                    this.VisitVitalDetailForm.patchValue({
+                        Height: visit.patientVital.height,
+                        Weight: visit.patientVital.weight,
+                        Temperature: visit.patientVital.temperature,
+                        RespiratoryRate: visit.patientVital.respiratoryRate,
+                        Pulse: visit.patientVital.pulse,
+                        BloodPressureUp: visit.patientVital.bloodPressureUp,
+                        BloodPressureDown: visit.patientVital.bloodPressureDown,
+                        BloodOxygenSaturation: visit.patientVital.bloodOxygenSaturation,
+                    });
+                }
+             
+                if(this.visit.visitNote){
+                    this.VisitNoteForm.patchValue({
+                        ClinicalNote: visit.visitNote.clinicalNote
+                    });
+                }
+               
 
 
 

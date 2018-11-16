@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
     public visitnature: any;
     public vistnatr = [];
     public PatientPackage : any = {};
-    public patientpackagebypatientid :any;
+    public patientpackagebypatientid :any = {};
+    public patientpackagedetail : any;
 
     public patientref : any;
     public patientreferenc : any; 
@@ -46,20 +47,39 @@ export class ProfileComponent implements OnInit {
                // console.log(this.visitnature)
 
                 this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);
-                if(this.Patient.patientPackage){
-                  this.PatientPackage =  this.Patient.patientPackage
-                }
+                // if(this.Patient.patientPackage){
+                //   this.PatientPackage =  this.Patient.patientPackage
+                // }
+
+                //console.log( this.PatientPackage );
+
 
               
                     console.log(this.Patient.patientId);
                      this.PatientServiceobj.getPatientPackageByPatientId(this.Patient.patientId).subscribe(res => {
                         this.patientpackagebypatientid = res
-                        console.log(this.patientpackagebypatientid)
+                        if(this.patientpackagebypatientid != null){
+                            if(this.patientpackagebypatientid.package){
+                                    this.PatientPackage = this.patientpackagebypatientid.package;
+                                    console.log(this.PatientPackage);
+                                }
+                        }
+                        // if()
+                        // if(this.patientpackagebypatientid.package){
+
+                        //     this.PatientPackage = this.patientpackagebypatientid.package;
+                        //     console.log(this.PatientPackage);
+
+                        // }
+                            console.log(this.patientpackagebypatientid)
                      } )
                
 
                 // this.patientreferenc = this.patientref.find(t=> t.patientReferenceId == this.Patient.patientReferenceId);
                 // console.log(this.patientreferenc);
+                if(this.Patient.patientPackage){
+                    this.patientpackagedetail = this.Patient.patientPackage
+                }
                 
                  console.log(Patient)
             });

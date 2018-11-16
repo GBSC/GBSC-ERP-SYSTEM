@@ -139,7 +139,11 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-              //  console.log(this.visit);
+                
+
+                 console.log(this.visit);
+
+             
 
                 // work for disable time strat
                 
@@ -209,27 +213,31 @@ if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date()))
 
 
                     });
-                 //   console.log(x);
+ 
 
                 });
 
-             //   console.log(this.getvisitTestbyId);
+ 
 
-
-                this.VisitVitalDetailForm.patchValue({
-                    Height: visit.patientVital.height,
-                    Weight: visit.patientVital.weight,
-                    Temperature: visit.patientVital.temperature,
-                    RespiratoryRate: visit.patientVital.respiratoryRate,
-                    Pulse: visit.patientVital.pulse,
-                    BloodPressureUp: visit.patientVital.bloodPressureUp,
-                    BloodPressureDown: visit.patientVital.bloodPressureDown,
-                    BloodOxygenSaturation: visit.patientVital.bloodOxygenSaturation,
-                });
-
-                this.VisitNoteForm.patchValue({
-                    ClinicalNote: visit.visitNote.clinicalNote
-                });
+                if(this.visit.patientVital){
+                    this.VisitVitalDetailForm.patchValue({
+                        Height: visit.patientVital.height,
+                        Weight: visit.patientVital.weight,
+                        Temperature: visit.patientVital.temperature,
+                        RespiratoryRate: visit.patientVital.respiratoryRate,
+                        Pulse: visit.patientVital.pulse,
+                        BloodPressureUp: visit.patientVital.bloodPressureUp,
+                        BloodPressureDown: visit.patientVital.bloodPressureDown,
+                        BloodOxygenSaturation: visit.patientVital.bloodOxygenSaturation,
+                    });
+                }
+             
+                if(this.visit.visitNote){
+                    this.VisitNoteForm.patchValue({
+                        ClinicalNote: visit.visitNote.clinicalNote
+                    });
+                }
+               
 
 
 

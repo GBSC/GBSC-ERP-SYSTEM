@@ -260,7 +260,7 @@
                       <div class="col-sm-4">
                         <div class="form-group m-form__group row">
                           <label for="example-text-input" class="col-4 col-form-label" style="padding: 12px 0px 0px 25px;">
-                            Immotile Cnt
+                            Immotile Count
                           </label>
                           <div class="col-4" style="padding: 0px 7px 0px 0px;">
                             <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.immotileCountRange"
@@ -275,7 +275,7 @@
                           </div>
                           <div class="col-4" style="padding: 0px;">
                             <div class="input-group">
-                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.immotileCountRange"
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.immotileCount"
                                 (ngModelChange)="immotileCount = $event" formControlName="ImmotileCount">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
@@ -554,18 +554,18 @@
                         <hr>
 
                         <div class="m-demo__preview m-demo__preview--btn">
-                          <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(insemenationForm.value)">
-                            Submit
+                          <button *ngIf="insemenation" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="updateForm(insemenationForm.value)">
+                            Update
                           </button>
-                          <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                          <button *ngIf="!insemenation" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(insemenationForm.value)">
+                              Submit
+                            </button>
+                          <a [routerLink]="['/lab/freeze-prep', id]" class="btn btn-brand m-btn m-btn--custom">
                             Freeze Prep.
-                          </button>
-                          <button type="button" class="btn btn-success m-btn m-btn--custom">
-                            Questionnaire
-                          </button>
-                          <button type="button" class="btn btn-info m-btn m-btn--custom">
+                          </a>
+                          <a [routerLink]="['/lab/insemenation-prep', id]" class="btn btn-info m-btn m-btn--custom">
                             Insem. Prep.
-                          </button>
+                          </a>
                         </div>
                       </div>
 

@@ -5,5 +5,5 @@ export class VoucherDetail {
     DebitAmount: number;
     DetailAccountId: number;
     VoucherId: number;
-    
-    }
+
+}

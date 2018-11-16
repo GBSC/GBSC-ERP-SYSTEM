@@ -84,7 +84,7 @@ export class LeaverequestComponent implements OnInit {
     }
 
     async updateRequestDetail() {
-        await this.leaveservice.updateLeaveRequestDetail( this.updatingRequest);
+        await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
 
     async addLeaveRequest(value) {

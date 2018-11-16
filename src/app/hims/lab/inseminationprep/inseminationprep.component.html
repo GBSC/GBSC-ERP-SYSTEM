@@ -22,317 +22,320 @@
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="{{patient?.mrn}}" disabled> </div>
                   </div>
-               
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Treatment#
-                    </label>
-                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      [value]="clinicalRecord?.typewiseTreatmentNumber"> </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleSelect1">
-                      Treatment Type
-                    </label>
-                    <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
-                      [searchEnabled]="true" disabled>
-                    </dx-select-box>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Cycle#
-                    </label>
-                    <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
-                      aria-describedby="emailHelp" disabled>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Patient Name
-                    </label>
-                    <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                      [searchEnabled]="true">
-                    </dx-select-box>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Spouse
-                    </label>
-                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleSelect1">
-                      Doctor
-                    </label>
-                    <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                      [searchEnabled]="true">
-                    </dx-select-box>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleSelect1">
-                      Prep For
-                    </label>
-                    <dx-select-box [items]="prepForOptions" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.prepFor"
-                      formControlName="PrepFor" [searchEnabled]="true" disabled>
-                    </dx-select-box>
-                  </div>
-                </div>
 
-              </div>
-              <div class="row">
-
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Collection No.
-                    </label>
-                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      [value]="insemenationPrep?.collectionNumber" formControlName="CollectionNumber">
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleTextarea col-sm-3">
-                      Collection Date
-                    </label>
-                    <dx-date-box [value]="insemenationPrep?.collectionDate" formControlName="CollectionDate">
-                    </dx-date-box>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleSelect5">
-                      Sample Type
-                    </label>
-                    <dx-select-box [items]="sampleTypeOptions" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.sampleType"
-                      formControlName="SampleType" [searchEnabled]="true" disabled>
-                    </dx-select-box>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group m-form__group">
-                    <label for="exampleInputEmail1">
-                      Procedure#
-                    </label>
-                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      [value]="insemenationPrep?.procedureNumber" formControlName="ProcedureNumber">
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-12">
-                  <h4>Insemination Prep Details</h4>
-                  <div class="m-form m-form--fit m-form--label-align-right" style="margin-top: 30px;">
-                    <div class="form-group m-form__group row">
-                      <label for="example-text-input" class="col-3 col-form-label">
-                        Insemination Date
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Treatment#
                       </label>
-                      <div class="col-6">
-                        <dx-date-box [value]="insemenationPrep?.insemenationDate" formControlName="InsemenationDate">
-                        </dx-date-box>
-                      </div>
-                      <div class="col-3"></div>
-                    </div>
-
-                    <div class="form-group m-form__group row">
-                      <label for="example-text-input" class="col-3 col-form-label">
-                        Method
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="clinicalRecord?.typewiseTreatmentNumber"> </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Treatment Type
                       </label>
-                      <div class="col-6">
-                      <dx-select-box [items]="methods" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.method"
-                        formControlName="Method" [searchEnabled]="true" disabled>
+                      <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
+                        [searchEnabled]="true" disabled>
                       </dx-select-box>
                     </div>
-                    <div class="col-3"></div>
                   </div>
-
-
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Volume
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <input type="text" class="form-control m-input" [value]="insemenationPrep?.volume"
-                          aria-describedby="basic-addon2" formControlName="Volume">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (mls)
-                          </span>
-                        </div>
-                      </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Cycle#
+                      </label>
+                      <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" disabled>
                     </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Total Count
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <select class="btn btn-secondary dropdown-toggle" [value]="insemenationPrep?.totalCountRange"
-                            formControlName="TotalCountRange" id="exampleSelect1">
-                            <option>
-                              equal
-                            </option>
-                            <option>
-                              less then
-                            </option>
-                          </select>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" [value]="insemenationPrep?.totalCount"
-                          formControlName="TotalCount">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (mil./ml)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Motile Count
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <select class="btn btn-secondary dropdown-toggle" [value]="insemenationPrep?.motileCountRange"
-                            formControlName="MotileCountRange">
-                            <option>
-                              equal
-                            </option>
-                            <option>
-                              less then
-                            </option>
-                          </select>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button" [value]="insemenationPrep?.motileCount"
-                          formControlName="MotileCount">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (mil./ml)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Rapid Linear Progression
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
-                          [value]="insemenationPrep?.rapidLinearProgression" formControlName="RapidLinearProgression">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (%)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Show Non-Linear Progression
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
-                          [value]="insemenationPrep?.nonLinearProgression" formControlName="NonLinearProgression">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (%)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Time Completed
-                    </label>
-                    <div class="col-6">
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="test" [value]="insemenationPrep?.timecompleted" formControlName="TimeCompleted">
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Final Volume
-                    </label>
-                    <div class="col-6">
-                      <div class="input-group">
-                        <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
-                          [value]="insemenationPrep?.finalVolume" formControlName="FinalVolume">
-                        <div class="input-group-append">
-                          <span class="input-group-text" id="basic-addon2" style="color:#000">
-                            (mls)
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Special Comments
-                    </label>
-                    <div class="col-6">
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="test" [value]="insemenationPrep?.specialComment" formControlName="SpecialComment">
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-                      Comments
-                    </label>
-                    <div class="col-6">
-                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" [value]="insemenationPrep?.comments"
-                        formControlName="Comments"></textarea>
-                    </div>
-                    <div class="col-3"></div>
-                  </div>
-                  <div class="form-group m-form__group row">
-                    <label for="example-text-input" class="col-3 col-form-label">
-
-                    </label>
-                    <div class="col-6">
-                      <button (click)="onSubmit(inseminationPrepForm.value)" class="btn btn-primary">
-                        Submit
-                      </button>
-                    </div>
-                    <div class="col-3"></div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Prep For
+                      </label>
+                      <dx-select-box [items]="prepForOptions" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.prepFor"
+                        formControlName="PrepFor" [searchEnabled]="true" disabled>
+                      </dx-select-box>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Collection No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="insemenationPrep?.collectionNumber" formControlName="CollectionNumber">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleTextarea col-sm-3">
+                        Collection Date
+                      </label>
+                      <dx-date-box [value]="insemenationPrep?.collectionDate" formControlName="CollectionDate">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect5">
+                        Sample Type
+                      </label>
+                      <dx-select-box [items]="sampleTypeOptions" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.sampleType"
+                        formControlName="SampleType" [searchEnabled]="true" disabled>
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Procedure#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="insemenationPrep?.procedureNumber" formControlName="ProcedureNumber">
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Insemination Prep Details</h4>
+                    <div class="m-form m-form--fit m-form--label-align-right" style="margin-top: 30px;">
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Insemination Date
+                        </label>
+                        <div class="col-6">
+                          <dx-date-box [value]="insemenationPrep?.insemenationDate" formControlName="InsemenationDate">
+                          </dx-date-box>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Method
+                        </label>
+                        <div class="col-6">
+                          <dx-select-box [items]="methods" displayExpr="name" valueExpr="name" [value]="insemenationPrep?.method"
+                            formControlName="Method" [searchEnabled]="true" disabled>
+                          </dx-select-box>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
 
 
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Volume
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" [value]="insemenationPrep?.volume"
+                              aria-describedby="basic-addon2" formControlName="Volume">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mls)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Total Count
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="btn btn-secondary dropdown-toggle" [value]="insemenationPrep?.totalCountRange"
+                                formControlName="TotalCountRange" id="exampleSelect1">
+                                <option>
+                                  equal
+                                </option>
+                                <option>
+                                  less then
+                                </option>
+                              </select>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                              [value]="insemenationPrep?.totalCount" formControlName="TotalCount">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mil./ml)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Motile Count
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <select class="btn btn-secondary dropdown-toggle" [value]="insemenationPrep?.motileCountRange"
+                                formControlName="MotileCountRange">
+                                <option>
+                                  equal
+                                </option>
+                                <option>
+                                  less then
+                                </option>
+                              </select>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                              [value]="insemenationPrep?.motileCount" formControlName="MotileCount">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mil./ml)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Rapid Linear Progression
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
+                              [value]="insemenationPrep?.rapidLinearProgression" formControlName="RapidLinearProgression">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (%)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Show Non-Linear Progression
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
+                              [value]="insemenationPrep?.nonLinearProgression" formControlName="NonLinearProgression">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (%)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Time Completed
+                        </label>
+                        <div class="col-6">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="test" [value]="insemenationPrep?.timecompleted" formControlName="TimeCompleted">
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Final Volume
+                        </label>
+                        <div class="col-6">
+                          <div class="input-group">
+                            <input type="text" class="form-control m-input" placeholder="Volume" aria-describedby="basic-addon2"
+                              [value]="insemenationPrep?.finalVolume" formControlName="FinalVolume">
+                            <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2" style="color:#000">
+                                (mls)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Special Comments
+                        </label>
+                        <div class="col-6">
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="test" [value]="insemenationPrep?.specialComment" formControlName="SpecialComment">
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+                          Comments
+                        </label>
+                        <div class="col-6">
+                          <textarea class="form-control m-input" id="exampleTextarea" rows="3" [value]="insemenationPrep?.comments"
+                            formControlName="Comments"></textarea>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                      <div class="form-group m-form__group row">
+                        <label for="example-text-input" class="col-3 col-form-label">
+
+                        </label>
+                        <div class="col-6">
+                          <button *ngIf="insemenationPrep" (click)="onUpdate(inseminationPrepForm.value)" class="btn btn-primary">
+                            Update
+                          </button>
+                          <button *ngIf="!insemenationPrep" (click)="onSubmit(inseminationPrepForm.value)" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </div>
+                        <div class="col-3"></div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
           </form>
 
 

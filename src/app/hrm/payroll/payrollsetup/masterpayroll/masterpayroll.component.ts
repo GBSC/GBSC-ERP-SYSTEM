@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
- 
+
     public masterPayroll: any;
     public payrollMaster: any;
     public masterDetail: any[] = [];

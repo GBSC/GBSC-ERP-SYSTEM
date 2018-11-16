@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { DxSelectBoxComponent } from 'devextreme-angular';
+import { PatientService } from '../../../../app/core';
 
 @Component({
     selector: 'app-clinicalrecords',
@@ -9,10 +11,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ClinicalrecordsComponent implements OnInit {
 
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+
+    private patient: any;
+    private spouse: any;
+    private patients: any;
+
     private clinicalRecords: any;
     private searchForm: FormGroup;
 
-    constructor(private clinicalRecordService: PatientclinicalrecordService, private formBuilder: FormBuilder) {
+    constructor(private clinicalRecordService: PatientclinicalrecordService,
+        private patientService: PatientService,
+        private formBuilder: FormBuilder) {
 
         this.searchForm = this.formBuilder.group({
             'Mrn': [''],
@@ -26,14 +36,26 @@ export class ClinicalrecordsComponent implements OnInit {
 
     ngOnInit() {
 
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+
+        });
+
+        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
 
     }
 
-    submitForm(value) {
-        this.clinicalRecordService.searchClinicalRecords(value.Patient, value.Spouse, value.Mrn, value.CycleNumber, value.TreatmentNumber)
-            .subscribe(resp => {
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+
+            this.clinicalRecordService.getClinicalRecordsByPatientId(this.patient.patientId).subscribe(resp => {
+                console.log(resp)
                 this.clinicalRecords = resp;
-            })
+            });
+
+        });
     }
 
 }

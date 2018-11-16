@@ -14,58 +14,34 @@
             <div class="m-section">
               <div class="m-section__content">
 
+
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Patient Name
                       </label>
-                      <input type="text" class="form-control m-input" formControlName="Patient">
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Spouse
                       </label>
-                      <input type="text" class="form-control m-input" formControlName="Spouse">
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
                     </div>
                   </div>
-                  <div class="col-sm-2">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        MRN#
-                      </label>
-                      <input type="text" class="form-control m-input" formControlName="Mrn">
-                    </div>
-                  </div>
-
-                  <div class="col-sm-2">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Treatment#
-                      </label>
-                      <input type="number" class="form-control m-input" formControlName="TreatmentNumber">
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Cycle#
-                      </label>
-                      <input type="number" class="form-control m-input" formControlName="CycleNumber">
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-12 m--align-right">
-                    <button type="reset" class="btn btn-primary" (click)="submitForm(searchForm.value)">
-                      Search
-                    </button>
-                  </div>
-
                 </div>
 
                 <hr>
@@ -84,12 +60,9 @@
                       <dxo-paging [pageSize]="8"></dxo-paging>
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                       </dxo-pager>
-                      <dxi-column dataField="patientName"></dxi-column>
-                      <dxi-column dataField="spouse"></dxi-column>
-                      <dxi-column dataField="mrn"></dxi-column>
-                      <dxi-column dataField="treatmentType"></dxi-column>
-                      <dxi-column dataField="consultant"></dxi-column>
                       <dxi-column dataField="cycleNumber"></dxi-column>
+                      <dxi-column dataField="activeInactive" caption="status"></dxi-column>
+                      <dxi-column dataField="typewiseTreatmentNumber" caption="Treatment Number"></dxi-column>
                       <dxi-column dataField="patientClinicalRecordId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
                       <div *dxTemplate="let data of 'cellTemplate'">
                         <a class="btn btn-primary" [routerLink]="['/lab/embryology-section', data.value]">View</a>

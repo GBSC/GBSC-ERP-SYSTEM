@@ -15,6 +15,10 @@ export class PatientclinicalrecordService {
         return this.ApiService.get(this.Url + "GetAllPatientClinicalRecords");
     }
 
+    getClinicalRecordsByPatientId(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "getClinicalRecordsByPatientId/" + id);
+    }
+
     searchClinicalRecords(patientname, spousename, mrn, cyclenumber, treatmentnumber) {
 
         let params = "patientname=" + patientname + "&spousename=" + spousename + "&mrn=" + mrn + "&cyclenumber=" + cyclenumber + "&treatmentnumber=" + TreatmentService;

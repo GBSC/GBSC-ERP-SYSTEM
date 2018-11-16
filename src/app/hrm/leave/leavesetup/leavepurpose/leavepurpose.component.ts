@@ -28,13 +28,13 @@ export class LeavepurposeComponent implements OnInit {
 
     }
 
-   async updateleavepurpose() { 
-        await this.leavesetupservice.updateLeavePurpose(this.updatingPurpose); 
+    async updateleavepurpose() {
+        await this.leavesetupservice.updateLeavePurpose(this.updatingPurpose);
 
     }
 
-    async deleteleavepurpose(value) { 
-        await this.leavesetupservice.DeleteLeavPurpose(value.key); 
+    async deleteleavepurpose(value) {
+        await this.leavesetupservice.DeleteLeavPurpose(value.key);
     }
 
 }

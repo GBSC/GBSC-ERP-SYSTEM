@@ -15,13 +15,13 @@ export class VouchertypeComponent implements OnInit {
     VoucherTypeForm: any;
     updateVoucherType: any;
 
-    constructor(private toastr: ToastrService,private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
         this.VoucherTypeForm = this.fb.group({
             VoucherCode: [''],
-            Name: [''] 
+            Name: ['']
         });
 
         this.voucherType = await this.financeService.getVoucherTypes();

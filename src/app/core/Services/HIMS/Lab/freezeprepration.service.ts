@@ -6,32 +6,32 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class FreezepreprationService {
 
-  private Url = "Hims/api/FreezePrepration/"
+    private Url = "Hims/api/FreezePrepration/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getFreezePreprationByClinicalRecordId(id: number) {
-    return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);
-  }
+    getFreezePreprationByClinicalRecordId(id: number) {
+        return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);
+    }
 
-  getPatientEmbryologies(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
-  }
+    getPatientEmbryologies(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
+    }
 
-  getFreezePrepration(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetFreezePrepration/" + id);
-  }
+    getFreezePrepration(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetFreezePrepration/" + id);
+    }
 
-  addFreezePrepration(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddFreezePrepration", value);
-  }
+    addFreezePrepration(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddFreezePrepration", value);
+    }
 
-  updateFreezePrepration(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateFreezePrepration", value);
-  }
+    updateFreezePrepration(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateFreezePrepration", value);
+    }
 
-  deleteFreezePrepration(id) {
-    this.ApiService.delete(this.Url + "DeleteFreezePrepration" + id);
-  }
+    deleteFreezePrepration(id) {
+        this.ApiService.delete(this.Url + "DeleteFreezePrepration" + id);
+    }
 }

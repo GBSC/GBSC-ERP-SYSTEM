@@ -4,6 +4,6 @@ export class LeaveRequest {
 
     leaveRequestId: number;
     requestDate: Date;
-    isApproved: boolean; 
+    isApproved: boolean;
     LeaveRequestDetails: LeaveRequestDetail[];
 }

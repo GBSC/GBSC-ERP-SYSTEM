@@ -30,6 +30,7 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 
 
 
@@ -73,6 +74,7 @@ import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component'
         FreezepreparationComponent,
         ClinicalrecordsComponent,
         SemenanalysisComponent,
+        ReportViewerComponent,
     ]
 })
 export class LabModule { }

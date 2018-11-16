@@ -3,9 +3,9 @@ import { LeaveSetupService, LeaveService, EmployeeService } from '../../../core'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-viewleaverequest',
-  templateUrl: './viewleaverequest.component.html',
-  styleUrls: ['./viewleaverequest.component.scss']
+    selector: 'app-viewleaverequest',
+    templateUrl: './viewleaverequest.component.html',
+    styleUrls: ['./viewleaverequest.component.scss']
 })
 export class ViewleaverequestComponent implements OnInit {
 
@@ -22,22 +22,22 @@ export class ViewleaverequestComponent implements OnInit {
     public router: Router, public leaveservice: LeaveService) { }
 
 
-  async ngOnInit() {
-    this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
+    async ngOnInit() {
+        this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
 
-    this.leaverequest = await this.leaveservice.getAllleaverequest();
+        this.leaverequest = await this.leaveservice.getAllleaverequest();
 
-    this.leaveOpening = await this.leaveservice.getLeaveOpening();
+        this.leaveOpening = await this.leaveservice.getLeaveOpening();
 
-    this.employees = await this.empservice.GetAllEmployees();
+        this.employees = await this.empservice.GetAllEmployees();
 
-    this.leaveApprovr = await this.leavesetupservice.getLeaveApprovers();
+        this.leaveApprovr = await this.leavesetupservice.getLeaveApprovers();
 
-    this.leaveYear = await this.leavesetupservice.getLeaveYears();
+        this.leaveYear = await this.leavesetupservice.getLeaveYears();
 
-    this.leaveType = await this.leavesetupservice.getLeaveTypes();
+        this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
-  }
+    }
 
   onToolbarPreparing(e) {
     e.toolbarOptions.items.unshift(

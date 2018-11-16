@@ -103,7 +103,7 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderItemsBySalesOrderID/' + id);
     }
 
-    GetSalesOrderDetailsByCode(code: string) : Observable<SalesOrder> {
+    GetSalesOrderDetailsByCode(code: string): Observable<SalesOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrderDetailsByCode/' + code);
     }
 
@@ -154,7 +154,7 @@ export class PharmacyService {
     //     return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code).toPromise();
     // }
 
-    GetSalesReturnDetailsByCode(code : string): Observable<SalesReturnItem> {
+    GetSalesReturnDetailsByCode(code: string): Observable<SalesReturnItem> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnDetailsByCode/' + code);
     }
 
@@ -483,19 +483,19 @@ export class PharmacyService {
     }
 
     async  GetSalesOrdersByDateAsync(date) {
-        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/'+date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/' + date).toPromise();
     }
- 
+
     async  GetSalesReturnsForMonthAsync(date) {
-        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsForMonth/'+date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsForMonth/' + date).toPromise();
     }
 
     async  GetPurchaseOrdersByDateAsync(date) {
-        return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/'+date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/' + date).toPromise();
     }
- 
+
     async  GetGRNsByDateAsync(date) {
-        return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date).toPromise();
+        return await this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/' + date).toPromise();
     }
 
     GetSalesIndentsByMonth(date) : Observable<SalesIndent[]> {
@@ -517,16 +517,16 @@ export class PharmacyService {
     GetSalesOrdersByMonth(date) : Observable<SalesOrder> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesOrdersByMonth/'+date);
     }
- 
-    GetSalesReturnsByMonth(date) : Observable<SalesReturn> {
-        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsByMonth/'+date);
+
+    GetSalesReturnsByMonth(date): Observable<SalesReturn> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesReturnsByMonth/' + date);
     }
 
-    GetPurchaseOrdersByMonth(date) : Observable<PurchaseOrder> {
-        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/'+date);
+    GetPurchaseOrdersByMonth(date): Observable<PurchaseOrder> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseOrdersByMonth/' + date);
     }
- 
-    GetGRNsByMonth(date) : Observable<GRN> {
-        return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/'+date);
+
+    GetGRNsByMonth(date): Observable<GRN> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/' + date);
     }
 }

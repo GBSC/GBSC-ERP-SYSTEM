@@ -4,49 +4,49 @@ import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-master-account',
-  templateUrl: './master-account.component.html',
-  styleUrls: ['./master-account.component.scss']
+    selector: 'app-master-account',
+    templateUrl: './master-account.component.html',
+    styleUrls: ['./master-account.component.scss']
 })
 export class MasterAccountComponent implements OnInit {
 
-  public MasterAccountForm: any;
-  public masterAccount: any;
-  public updatingMasterAccount: any;
+    public MasterAccountForm: any;
+    public masterAccount: any;
+    public updatingMasterAccount: any;
 
-  constructor(private toastr: ToastrService,private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-      this.MasterAccountForm = this.fb.group({
-          Name: [''],
-          MasterAccountCode: [''] 
-      });
+        this.MasterAccountForm = this.fb.group({
+            Name: [''],
+            MasterAccountCode: ['']
+        });
 
-      this.masterAccount = await this.financeService.getMasterAccounts();
-  }
+        this.masterAccount = await this.financeService.getMasterAccounts();
+    }
 
-  async addMasteraccount() {
+    async addMasteraccount() {
 
-      await this.financeService.addMasterAccount(this.MasterAccountForm.value);
-      this.masterAccount = await this.financeService.getMasterAccounts();
-      this.toastr.success("New Master Account Added")
-      this.MasterAccountForm.reset();
-  }
+        await this.financeService.addMasterAccount(this.MasterAccountForm.value);
+        this.masterAccount = await this.financeService.getMasterAccounts();
+        this.toastr.success("New Master Account Added")
+        this.MasterAccountForm.reset();
+    }
 
-   updatingMasteraccount(value) {
+    updatingMasteraccount(value) {
 
-      this.updatingMasterAccount = { ...value.oldData, ...value.newData };
-  }
-  
-  async updateMasteraccount() {
+        this.updatingMasterAccount = { ...value.oldData, ...value.newData };
+    }
 
-      await this.financeService.updateMasterAccount(this.updatingMasterAccount);
-      this.toastr.success("Master Updated")
-  }
+    async updateMasteraccount() {
 
-  async deleteMasteraccount(value) {
+        await this.financeService.updateMasterAccount(this.updatingMasterAccount);
+        this.toastr.success("Master Updated")
+    }
 
-      await this.financeService.DeleteMasterAccount(value.data);
-  }
+    async deleteMasteraccount(value) {
+
+        await this.financeService.DeleteMasterAccount(value.data);
+    }
 }

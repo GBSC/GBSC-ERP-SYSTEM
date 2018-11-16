@@ -25,7 +25,7 @@ export class InseminationprepService {
         return this.ApiService.get(this.API_URL + 'GetInseminationPreps').toPromise();
     }
 
-     addInseminationPrep(inseminationPrep: InseminationPrep) : Observable<any> {
+    addInseminationPrep(inseminationPrep: InseminationPrep): Observable<any> {
         return this.ApiService.post(this.API_URL + 'AddInseminationPrep', inseminationPrep);
     }
 

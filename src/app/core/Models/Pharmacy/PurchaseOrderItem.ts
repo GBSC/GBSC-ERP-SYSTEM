@@ -29,8 +29,8 @@ export interface PurchaseOrderItem {
     RetailPrice: number,
     GrandTotal: number,
     InventoryItemId: number,
-    InventoryItem : InventoryItem,
+    InventoryItem: InventoryItem,
     InventoryId: number,
-    Inventory : Inventory,
+    Inventory: Inventory,
     PurchaseOrderId: number
 }

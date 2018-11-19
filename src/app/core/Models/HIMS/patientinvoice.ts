@@ -1,6 +1,7 @@
 import { Patient } from "./patient";
 import { Appointment } from "./appointment";
 import { PatientInvoiceItem } from "./patientinvoiceitem";
+import { PatientInvoiceReturn } from "./PatientInvoiceReturn";
 
 export interface PatientInvoice {
     PatientInvoiceId: number,
@@ -25,5 +26,7 @@ export interface PatientInvoice {
     Patient: Patient,
     AppointmentId: number,
     Appointment: Appointment,
+    PatientInvoiceReturnId : number,
+    PatientInvoiceReturn : PatientInvoiceReturn,
     PatientInvoiceItems: PatientInvoiceItem[]
 };

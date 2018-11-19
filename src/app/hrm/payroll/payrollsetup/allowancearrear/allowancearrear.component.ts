@@ -8,7 +8,7 @@ import { PayrollSetupService } from '../../../../core';
     styleUrls: ['./allowancearrear.component.scss']
 })
 export class AllowancearrearComponent implements OnInit {
-    
+
     public allowancearrear: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }

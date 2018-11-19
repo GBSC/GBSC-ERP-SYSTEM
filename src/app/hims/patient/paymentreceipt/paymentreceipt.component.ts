@@ -18,30 +18,30 @@ export class PaymentreceiptComponent implements OnInit {
     constructor(private PatientService: PatientService, private Toastr: ToastrService, private ActivatedRoute: ActivatedRoute, private Router: Router) {
 
     }
-    
-    private showApp = { 'active show' : 'app' };
-    private showMRN = { 'active show' : '' };
-    private showID = { 'active show' : '' };
+
+    private showApp = { 'active show': 'app' };
+    private showMRN = { 'active show': '' };
+    private showID = { 'active show': '' };
 
     async  ngOnInit() {
 
         this.ActivatedRoute.params.subscribe(params => {
-            if(params['id']) {
+            if (params['id']) {
                 let idOrMrn = params;
-                if(idOrMrn.id.includes('MRN') || idOrMrn.id.includes('mrn')) {
-                    this.showMRN = { 'active show' : 'mrn' };
-                    this.showApp = { 'active show' : '' };
-                    this.showID = { 'active show' : '' };
-                }else if(idOrMrn.id) {
-                    this.showID = { 'active show' : 'id' };
-                    this.showMRN = { 'active show' : '' };
-                    this.showApp = { 'active show' : '' };
+                if (idOrMrn.id.includes('MRN') || idOrMrn.id.includes('mrn')) {
+                    this.showMRN = { 'active show': 'mrn' };
+                    this.showApp = { 'active show': '' };
+                    this.showID = { 'active show': '' };
+                } else if (idOrMrn.id) {
+                    this.showID = { 'active show': 'id' };
+                    this.showMRN = { 'active show': '' };
+                    this.showApp = { 'active show': '' };
                 } else {
-                    this.showID = { 'active show' : '' };
-                    this.showMRN = { 'active show' : '' };
-                    this.showApp = { 'active show' : 'app' };
-                } 
-            } else{
+                    this.showID = { 'active show': '' };
+                    this.showMRN = { 'active show': '' };
+                    this.showApp = { 'active show': 'app' };
+                }
+            } else {
                 this.Router.navigate(['hims/patient/paymentreceipt']);
             }
         });
@@ -59,7 +59,7 @@ export class PaymentreceiptComponent implements OnInit {
         // console.log(what);
         // console.log(row);
         // console.log(mrn);
-        
+
         if (what === 'id') {
             this.Router.navigate(['hims/patient/paymentreceipt/' + row.data.appointmentId]);
             // console.log('In Add Invoice')

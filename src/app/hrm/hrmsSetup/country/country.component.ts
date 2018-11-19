@@ -12,7 +12,7 @@ export class CountryComponent implements OnInit {
     public countries: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService, public hrmService: HrmsService) { }
- 
+
     async ngOnInit() {
 
         this.countries = await this.hrmService.getAllCountries();

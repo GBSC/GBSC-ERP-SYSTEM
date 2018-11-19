@@ -84,7 +84,7 @@ export class EmbryologyThawingComponent implements OnInit {
 
         this.thawassessment.embryoFreezeThaweds = this.thawedSamples;
         this.thawassessment.embryoFreezeUnthaweds = this.unthawedSamples;
-        this.thawassessmentService.updateThawAssessment(this.thawassessment).subscribe(resp=>{
+        this.thawassessmentService.updateThawAssessment(this.thawassessment).subscribe(resp => {
 
             console.log(resp)
         })

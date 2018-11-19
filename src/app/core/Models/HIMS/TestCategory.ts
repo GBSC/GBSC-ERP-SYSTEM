@@ -1,4 +1,4 @@
 export interface TestCategory {
- name : string,
- decription : string
+    name: string,
+    decription: string
 }

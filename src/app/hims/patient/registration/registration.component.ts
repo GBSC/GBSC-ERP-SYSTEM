@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
+    public patientReferenceForm : FormGroup;
 
     public editdocumentForm: FormGroup;
     public documents: any = [];
@@ -42,18 +43,21 @@ export class RegistrationComponent implements OnInit {
     spousesubmitted = false;
     referencesubmitted = false;
     documentsumitted = false;
-    public getreferncdata : any;
+    public getreferncdata: any;
 
     constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
-          //  'ReferredBy': [''],
-              'PersonName': ['' ],
+            //  'ReferredBy': [''],
+            'PersonName': [''],
             // 'RefAddress': [''],
             // 'ReferenceTel': [''],
             'PatientId': [''],
             'patientReferenceId': ['']
         });
+
+
+
         this.documentForm = this.formBuilder.group({
             'DocumentName': ['', Validators.required],
             'Remarks': ['', Validators.required],
@@ -96,20 +100,27 @@ export class RegistrationComponent implements OnInit {
             'PrivatePatientCons': [''],
             'PrivateHospital': [''],
             'AuthorizedPerson': [''],
-            'patientReferenceId':['']
+            'patientReferenceId': ['']
             //'patientId' :['',Validators.required]
         });
+
+        this.patientReferenceForm = this.formBuilder.group({
+            'referredBy' : [''],
+            'initial' :[''],
+            'refAddress':[''],
+            'referenceTel':['']
+        })
     }
 
     async ngOnInit() {
 
-      //  console.log(this.router.url);
+        //  console.log(this.router.url);
 
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
             this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-             //   console.log(this.Patient)
+                //   console.log(this.Patient)
                 if (Patient) {
                     this.patientForm.patchValue({
                         RegCity: Patient.regCity,
@@ -136,49 +147,69 @@ export class RegistrationComponent implements OnInit {
                         PrivatePatientCons: Patient.privatePatientCons,
                         PrivateHospital: Patient.privateHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
-                        patientReferenceId :Patient.patientReferenceId,
+                        patientReferenceId: Patient.patientReferenceId,
                     });
-                
-                this.partnerForm.patchValue({
-                    FirstName: Patient.partner.firstName,
-                    MiddleName: Patient.partner.middleName,
-                    LastName: Patient.partner.lastName,
-                    DOB: Patient.partner.dob,
-                    PlaceOfBirth: Patient.partner.placeOfBirth,
-                    Occupation: Patient.partner.occupation,
-                    NIC: Patient.partner.nic,
-                    PhoneNumber: Patient.partner.phoneNumber,
-                });
 
-                // this.referenceForm.patchValue({
-                //     ReferredBy: Patient.patientReference.referredBy,
-                //     PersonName: Patient.patientReference.personName,
-                //     RefAddress: Patient.patientReference.refAddress,
-                //     ReferenceTel: Patient.patientReference.referenceTel,
-                // });
-            }
+                    this.partnerForm.patchValue({
+                        FirstName: Patient.partner.firstName,
+                        MiddleName: Patient.partner.middleName,
+                        LastName: Patient.partner.lastName,
+                        DOB: Patient.partner.dob,
+                        PlaceOfBirth: Patient.partner.placeOfBirth,
+                        Occupation: Patient.partner.occupation,
+                        NIC: Patient.partner.nic,
+                        PhoneNumber: Patient.partner.phoneNumber,
+                    });
+
+                    // this.referenceForm.patchValue({
+                    //     ReferredBy: Patient.patientReference.referredBy,
+                    //     PersonName: Patient.patientReference.personName,
+                    //     RefAddress: Patient.patientReference.refAddress,
+                    //     ReferenceTel: Patient.patientReference.referenceTel,
+                    // });
+                }
             });
         });
 
         await this.PatientServiceobj.getPatient();
         let x = this.PatientServiceobj.patients;
- 
+
 
         await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
         let y = this.PatientServiceobj.patientData;
- 
+
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
             this.documents = document;
-         });
+        });
 
-        this.PatientServiceobj.getReference().subscribe((res : Reference) => {
-             this.getreferncdata = res;
-             console.log(this.getreferncdata);
-         });
+        this.PatientServiceobj.getReference().subscribe((res: Reference) => {
+            this.getreferncdata = res;
+            console.log(this.getreferncdata);
+        });
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
-     }
+    }
+
+    async addreference(value) {
+        console.log(value)
+        if( (value.initial == null || value.initial == '' )  && ( value.refAddress == null || value.refAddress == '' )  && ( value.referenceTel == null || value.referenceTel == '' ) && (  value.referredBy == null || value.referredBy == '') ){
+            this.toastr.error('Please Fill All Fields');
+        }
+        else{
+            await this.PatientServiceobj.addReferenceAsync(value);
+
+        // // // this.PatientServiceobj.addReference(value.key).subscribe(res => {
+        // // //   console.log(res);
+        // // // });
+        this.PatientServiceobj.getReference().subscribe((res: Reference) => {
+            this.getreferncdata = res;
+              console.log(this.getreferncdata);
+        });
+        this.patientReferenceForm.reset();
+    }
+
+    }
 
     addrange() {
 
@@ -195,7 +226,7 @@ export class RegistrationComponent implements OnInit {
         //this.allDocs.push(this.forevent2);
         this.allDocs.push(this.forevent2);
 
-       // console.log(this.allDocs)
+        // console.log(this.allDocs)
         //          this.documentss.push(doc);
         // console.log(this.documentss);
         this.documentForm.reset();
@@ -212,7 +243,7 @@ export class RegistrationComponent implements OnInit {
 
     remove(index) {
         this.allDocs.splice(index, 1);
-     //   console.log(index)
+        //   console.log(index)
     }
 
     get f() { return this.patientForm.controls; }
@@ -224,16 +255,16 @@ export class RegistrationComponent implements OnInit {
         if (this.patientForm.invalid) {
             return alert('Please Select All Required Fields');
         }
-      //  console.log(this.patientForm.invalid);
+        //  console.log(this.patientForm.invalid);
 
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
         this.patientId = await this.PatientServiceobj.addPatient(value);
-      //  console.log(this.patientId);
+        //  console.log(this.patientId);
         this.displayToastSuccess("Patient Registered");
-         //  this.patientForm.reset();
-       //    console.log(this.patientForm);
+        //  this.patientForm.reset();
+        //    console.log(this.patientForm);
 
 
         // this.upload(this.patientId);
@@ -266,7 +297,7 @@ export class RegistrationComponent implements OnInit {
 
     async  onAddReference(value) {
         this.referencesubmitted = true;
-         
+
         if (this.referenceForm.invalid) {
             return alert('Please Select All Required Fields');
         }
@@ -278,7 +309,7 @@ export class RegistrationComponent implements OnInit {
         this.referenceForm.value.PatientId = this.PatientServiceobj.patientID.patientId;
         await this.PatientServiceobj.addPatientReference(value);
         this.displayToastSuccess("Saved");
- 
+
     }
     public docs: File[] = [];
 
@@ -304,22 +335,22 @@ export class RegistrationComponent implements OnInit {
 
     async updatepatientRef(value) {
         this.referenceForm.value.PatientId = this.id;
-      //  console.log(this.referenceForm.value.PatientId);
+        //  console.log(this.referenceForm.value.PatientId);
 
         if (this.Patient.patientReference === null) {
             delete this.referenceForm.value.patientReferenceId
             await this.PatientServiceobj.addPatientRef(value)
             this.displayToastSuccess("Saved");
-          //  console.log(value)
+            //  console.log(value)
         }
 
         else if (this.Patient.patientReference.patientReferenceId !== null) {
-         //   console.log(this.Patient.patientReference.patientReferenceId);
+            //   console.log(this.Patient.patientReference.patientReferenceId);
             this.referenceForm.value.patientReferenceId = this.Patient.patientReference.patientReferenceId
             await this.PatientServiceobj.updatePatientRef(value)
-         //   console.log(value);
+            //   console.log(value);
             let updatepatientRefId = this.id;
-          //  console.log(updatepatientRefId);
+            //  console.log(updatepatientRefId);
             this.router.navigate(['/hims/patient/profile/' + updatepatientRefId]);
             this.displayToastSuccess("Updated");
         }
@@ -330,21 +361,21 @@ export class RegistrationComponent implements OnInit {
     async  updatePatientSpouse(value) {
 
         this.partnerForm.value.PatientId = this.id;
-    //    console.log(this.partnerForm.value.PatientId);
+        //    console.log(this.partnerForm.value.PatientId);
 
         if (this.Patient.partner === null) {
             delete this.partnerForm.value.PartnerId
             await this.PatientServiceobj.addPatientSpouse(value);
             this.displayToastSuccess("Saved");
 
-       //     console.log(value)
+            //     console.log(value)
         }
 
         else if (this.Patient.partner.partnerId !== null) {
-         //   console.log(this.Patient.partner.partnerId);
+            //   console.log(this.Patient.partner.partnerId);
             this.partnerForm.value.PartnerId = this.Patient.partner.partnerId;
             await this.PatientServiceobj.updatePatientSpouse(value)
-          //  console.log(value);
+            //  console.log(value);
             let updatedpatientId = this.id;
             this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
             this.displayToastSuccess("Updated");
@@ -374,9 +405,9 @@ export class RegistrationComponent implements OnInit {
         // value.patientReference = this.addReference;
         // value.partner = this.addpartnet;
         let x = await this.PatientServiceobj.updatePatient(value);
-      //  console.log(x);
+        //  console.log(x);
 
-     //   console.log(value);
+        //   console.log(value);
         let updatedpatientId = this.id;
         this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
         this.displayToastSuccess("Updated");
@@ -390,10 +421,10 @@ export class RegistrationComponent implements OnInit {
     // <start work for image uploading .......... update record
     onfileselect(event) {
         this.forevent = <File>event.target.files[0];
-    //    console.log(this.forevent)
+        //    console.log(this.forevent)
     }
     async  onupload() {
-     //   console.log('d');
+        //   console.log('d');
         const f = new FormData();
         f.append('f', this.forevent);
 
@@ -409,9 +440,9 @@ export class RegistrationComponent implements OnInit {
     public uploaded = 0;
 
     fileselect(event) {
-      //  console.log(event);
+        //  console.log(event);
         this.forevent2 = <File>event.target.files[0];
-     //   console.log(this.forevent2);
+        //   console.log(this.forevent2);
     }
     async upload(patientId) {
 
@@ -422,14 +453,14 @@ export class RegistrationComponent implements OnInit {
                 formData.append('models', this.allDocs[i]);
             }
         }
-     //   console.log(formData);
+        //   console.log(formData);
 
         await this.PatientServiceobj.addDocuments(formData, patientId);
     }
 
 
     async deleteDocument(id, i) {
-    //    console.log(i)
+        //    console.log(i)
         await this.PatientServiceobj.deleteDocument(id);
         this.documents.splice(i, 1)
     }
@@ -461,12 +492,12 @@ export class RegistrationComponent implements OnInit {
     }
 
     private Other: string = 'NoOther';
-    private disable : boolean = true;
+    private disable: boolean = true;
 
     // valueChanged(e){
     //     console.log(e);
     //     e.value == 
- 
+
     // }
 
 

@@ -22,11 +22,11 @@ export class EmployeeleaveopeningComponent implements OnInit {
     public leaveopening: any;
     public leveopeningdetail: any;
     public leaveOpening: any;
-    
+
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr:ToastrService, private activatedRoute: ActivatedRoute, 
-        public fb: FormBuilder, public setup: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService, 
+    constructor(public toastr: ToastrService, private activatedRoute: ActivatedRoute,
+        public fb: FormBuilder, public setup: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
@@ -52,20 +52,20 @@ export class EmployeeleaveopeningComponent implements OnInit {
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-          });
+        });
 
-          if (this.isUpdate() === true) {
+        if (this.isUpdate() === true) {
             this.leaveservice.getLeaveOpeningById(this.id).subscribe(resp => {
-              this.leaveOpening = resp;
+                this.leaveOpening = resp;
                 let a = this.leaveOpening.leaveOpeningDetails;
-              this.leaveOpeningDetail= a.filter(b => {
-                delete b.leaveOpeningDetailId;
-                delete b.leaveOpeningId;
-                return b;
-              }); 
-                 this.patchValues(this.leaveOpening);
+                this.leaveOpeningDetail = a.filter(b => {
+                    delete b.leaveOpeningDetailId;
+                    delete b.leaveOpeningId;
+                    return b;
+                });
+                this.patchValues(this.leaveOpening);
             });
-          }
+        }
     }
 
     async addLeaveopenDetail(value) {
@@ -84,40 +84,40 @@ export class EmployeeleaveopeningComponent implements OnInit {
         this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
 
     }
- 
+
 
     isUpdate(): boolean {
 
         if (this.id > 0) {
-          return true;
+            return true;
         }
         else
-          return false;
-      }
+            return false;
+    }
 
-      async updateLeaveopenDetail(value) {
+    async updateLeaveopenDetail(value) {
         console.log(value);
-      }
-    
-      async update(value) { 
+    }
+
+    async update(value) {
         value.leaveOpeningId = this.id;
         value.LeaveOpeningDetails = this.leaveOpeningDetail;
         console.log(value);
         this.leaveservice.updateLeaveOpening(value).subscribe(resp => {
-          this.toastr.success("Leave Opening Updated"); 
-          this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
-    
-        });
-      }
+            this.toastr.success("Leave Opening Updated");
+            this.router.navigate(['/hrm/leave/leaveadmin/leaveopenings']);
 
-      patchValues(opening: any) {
+        });
+    }
+
+    patchValues(opening: any) {
         this.leaveOpeningForm.patchValue({
-           
+
             UserId: opening.userId,
             LeaveYearId: opening.leaveYearId,
             Remarks: opening.remarks
         })
-    
-      }
+
+    }
 
 }

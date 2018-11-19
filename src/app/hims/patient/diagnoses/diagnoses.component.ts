@@ -24,10 +24,10 @@ export class DiagnosesComponent implements OnInit {
 
             let x = this.PatientServiceobj.GetPatientLastestDiagnosis(this.id).subscribe((patientVisitDiagnoses: any) => {
                 this.patientVisitDiagnoses = patientVisitDiagnoses;
-             //   console.log(patientVisitDiagnoses);
-            //    console.log(this.patientVisitDiagnoses)
+                //   console.log(patientVisitDiagnoses);
+                //    console.log(this.patientVisitDiagnoses)
             });
-          //  console.log(x);
+            //  console.log(x);
 
         });
 

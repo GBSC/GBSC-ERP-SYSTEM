@@ -19,7 +19,7 @@ export class TaxyearComponent implements OnInit {
     }
 
     async addTaxYear(value) {
-        
+
         await this.payrollsetupservice.addtTaxYear(value.data);
         this.TaxYear = await this.payrollsetupservice.gettTaxYears();
     }

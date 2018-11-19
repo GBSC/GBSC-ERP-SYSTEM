@@ -24,7 +24,7 @@ export class EmployeeCompanyComponent implements OnInit {
     @Output() updateMessage = new EventEmitter();
 
     public EmployeeCompany: any;
-    public cempstatus : any;
+    public cempstatus: any;
 
     constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
 
@@ -63,7 +63,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
 
-        await this.SetupServiceobj.getEmployeeStatus(); 
+        await this.SetupServiceobj.getEmployeeStatus();
 
         this.route.params.subscribe((params) => {
 

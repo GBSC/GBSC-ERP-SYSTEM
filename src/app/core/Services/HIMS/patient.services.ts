@@ -83,7 +83,7 @@ export class PatientService {
 
     dialogData: any;
 
-    constructor(private http1: HttpClient,private ApiService: ApiService) {
+    constructor(private http1: HttpClient, private ApiService: ApiService) {
     }
 
     async getPatient() {
@@ -114,19 +114,19 @@ export class PatientService {
         return x;
     }
 
-    GetPatientWithPackageAndPartnerByMRN(mrn : string) : Observable<Patient> {
+    GetPatientWithPackageAndPartnerByMRN(mrn: string): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientWithPackageAndPartnerByMRN/' + mrn);
     }
 
-    GetPatientInvoicesWithDetailsByMRN(mrn : string) : Observable<Patient> {
+    GetPatientInvoicesWithDetailsByMRN(mrn: string): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRN/' + mrn);
     }
-    
-    GetPatientInvoicesWithDetailsByMRNandDate(mrn : string, date : Date) : Observable<PatientInvoice[]> {
+
+    GetPatientInvoicesWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRNandDate/' + mrn + '/' + date);
     }
 
-    GetPatientInvoicesWithDetailsByDate(date : Date) : Observable<PatientInvoice[]> {
+    GetPatientInvoicesWithDetailsByDate(date: Date): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoicesWithDetailsByDate/' + date);
     }
 
@@ -136,7 +136,7 @@ export class PatientService {
     }
 
     async  GetPatientById(id) {
-        return await this.ApiService.get(this.API_URL+'patients/GetPatient/'+id).toPromise();
+        return await this.ApiService.get(this.API_URL + 'patients/GetPatient/' + id).toPromise();
     }
 
     async updatePatient(patient: Patient) {
@@ -156,7 +156,7 @@ export class PatientService {
     addDocuments(models: FormData, id) {
 
         this.ApiService.post(this.API_URL + '/patients/AddPatientDocuments/' + id, models).subscribe(res => {
-        //    console.log(res);
+            //    console.log(res);
         });
     }
 
@@ -199,36 +199,36 @@ export class PatientService {
         return this.getApptbyId;
     }
 
-    GetAppointmentById(id : number) : Observable<Appointment> {
+    GetAppointmentById(id: number): Observable<Appointment> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + id);
     }
 
-    GetAppointmentDetails(id : number) : Observable<Appointment> {
+    GetAppointmentDetails(id: number): Observable<Appointment> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentDetails/' + id);
     }
 
-    GetAppointmentsByDateAndPatientID(date : Date, PatientId : number) : Observable<Appointment[]> {
+    GetAppointmentsByDateAndPatientID(date: Date, PatientId: number): Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentsByDateAndPatientID/' + date + '/' + PatientId);
     }
 
-    GetFinalizedAppointmentsByMrnAndMonthYear(mrn : string, date : Date) : Observable<Appointment[]> {
+    GetFinalizedAppointmentsByMrnAndMonthYear(mrn: string, date: Date): Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Patients/GetFinalizedAppointmentsByMrnAndMonthYear/' + mrn + '/' + date);
     }
 
-    GetFinalizedAppointmentsByDateAndPatientID(date : Date, PatientId : number) : Observable<Appointment[]> {
+    GetFinalizedAppointmentsByDateAndPatientID(date: Date, PatientId: number): Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByDateAndPatientID/' + date + '/' + PatientId);
     }
 
-    GetFinalizedAppointmentsByDateAndMRN(date : Date, mrn : string) : Observable<Appointment[]> {
+    GetFinalizedAppointmentsByDateAndMRN(date: Date, mrn: string): Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByDateAndMRN/' + date + '/' + mrn);
     }
 
-    GetFinalizedAppointmentsByMRN(mrn : string) : Observable<Appointment[]> {
+    GetFinalizedAppointmentsByMRN(mrn: string): Observable<Appointment[]> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetFinalizedAppointmentsByMRN/' + mrn);
     }
 
-    async GetAppointmentByDate(date){
-         return  await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
+    async GetAppointmentByDate(date) {
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + date).toPromise();
     }
 
 
@@ -240,19 +240,19 @@ export class PatientService {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
-    GetAppointmentForInvoiceUpdate(appointmentid : number) : Observable<Appointment> {
+    GetAppointmentForInvoiceUpdate(appointmentid: number): Observable<Appointment> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentForInvoiceUpdate/' + appointmentid);
     }
 
-    UpdateAppointment(appointment: Appointment) : Observable<Appointment>{
+    UpdateAppointment(appointment: Appointment): Observable<Appointment> {
         return this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment);
     }
 
-    updateappointmentbygeneralactinForvisitstrat(value) :Observable <Appointment>{
-        return this.ApiService.put(this.API_URL+'Appointments/UpdateAppointment',value)
+    updateappointmentbygeneralactinForvisitstrat(value): Observable<Appointment> {
+        return this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', value)
     }
 
-    async updateAppointmentFromVisitDetail(appointment: Appointment){
+    async updateAppointmentFromVisitDetail(appointment: Appointment) {
         return await this.ApiService.put(this.API_URL + 'Appointments/UpdateAppointment', appointment).toPromise();
     }
 
@@ -265,17 +265,17 @@ export class PatientService {
         return this.ConsultantIdAndTentiveTime;
     }
 
-     async GetAppointmentByConsultantNameAndDate(id, date) {
-       return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+    async GetAppointmentByConsultantNameAndDate(id, date) {
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
 
-    public AppointmentByDate :any;
+    public AppointmentByDate: any;
     async getAppointmentByDate(date) {
         return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
 
     }
-    
-    GetConsultants() : Observable<Consultant[]> {
+
+    GetConsultants(): Observable<Consultant[]> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultants');
     }
 
@@ -284,7 +284,7 @@ export class PatientService {
         return this.consultant;
     }
 
-    GetConsultantById(id : number) : Observable<Consultant> {
+    GetConsultantById(id: number): Observable<Consultant> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultant/' + id);
     }
 
@@ -305,7 +305,7 @@ export class PatientService {
         return this.testing;
     }
 
-    GetTests() : Observable<Test[]> {
+    GetTests(): Observable<Test[]> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetTests');
     }
 
@@ -315,12 +315,12 @@ export class PatientService {
 
 
     async updateTest(himssetuptest: himsSetupTest) {
-         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
+        return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTest', himssetuptest).toPromise();
     }
 
     async deleteTest(id) {
         console.log(id);
-         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
+        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTest/' + id).toPromise();
     }
 
     async UpdateAppointmentTests(id, appointmentTest: AppointmentTest) {
@@ -359,8 +359,8 @@ export class PatientService {
 
     async AddVisits(id) {
         this.visitid = await this.ApiService.post(this.API_URL + 'Visits/AddVisit', { patientId: id }).toPromise();
-          sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
-          this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+        sessionStorage.setItem('visitId', JSON.stringify(this.visitid));
+        this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
         return this.visitid;
     }
 
@@ -381,8 +381,8 @@ export class PatientService {
         return await this.ApiService.post(this.API_URL + 'visits/AddVisitDiagnoses', visitDiagnosis).toPromise();
     }
 
-    async addvisitTest(id ,visitTest: VisitTest) {
-        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests/'+id ,visitTest).toPromise();
+    async addvisitTest(id, visitTest: VisitTest) {
+        return await this.ApiService.post(this.API_URL + 'visits/AddVisitTests/' + id, visitTest).toPromise();
     }
 
     GetVisitTestsByVisitId(id: number): Observable<VisitTest[]> {
@@ -422,14 +422,14 @@ export class PatientService {
     GetPatientDetailPatientId(id): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientDetailPatientId/' + id);
     }
-    
+
     GetPatientAppointmentsByPatientId(id): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
     }
 
-   async GetPatientAppointmentsByPatientIdAsync(id)  {
-    console.log(id);
-    console.log(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
+    async GetPatientAppointmentsByPatientIdAsync(id) {
+        console.log(id);
+        console.log(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id);
         return await this.ApiService.get(this.API_URL + 'Patients/GetPatientAppointmentsByPatientId/' + id).toPromise();
     }
 
@@ -443,12 +443,12 @@ export class PatientService {
         return this.package;
     }
 
-    GetPackages() : Observable<Package[]> {
+    GetPackages(): Observable<Package[]> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPackages');
     }
 
-    getPatientPackageByPatientId(id) : Observable<Package>{
-        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/'+id);
+    getPatientPackageByPatientId(id): Observable<Package> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/' + id);
     }
 
     async addPackage(packge: Package) {
@@ -463,27 +463,27 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePackage/' + id).toPromise();
     }
 
-    GetPatientPackages() : Observable<PatientPackage[]> {
+    GetPatientPackages(): Observable<PatientPackage[]> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackages');
     }
 
-    GetPatientPackage(id : number) : Observable<PatientPackage> {
+    GetPatientPackage(id: number): Observable<PatientPackage> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackage/' + id);
     }
 
-    GetPatientPackageByPatientId(patientid : number) : Observable<PatientPackage> {
+    GetPatientPackageByPatientId(patientid: number): Observable<PatientPackage> {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetPatientPackageByPatientId/' + patientid);
     }
 
-    AddPatientPackage(packge: PatientPackage) : Observable<any> {
+    AddPatientPackage(packge: PatientPackage): Observable<any> {
         return this.ApiService.post(this.API_URL + 'HimsSetup/AddPatientPackage', packge);
     }
 
-    UpdatePatientPackage(packge: PatientPackage) : Observable<any> {
+    UpdatePatientPackage(packge: PatientPackage): Observable<any> {
         return this.ApiService.put(this.API_URL + 'HimsSetup/UpdatePatientPackage', packge);
     }
 
-    DeletePatientPackage(id : number) : Observable<any> {
+    DeletePatientPackage(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'HimsSetup/DeletePatientPackage/' + id);
     }
 
@@ -503,8 +503,8 @@ export class PatientService {
         this.vistnote = await this.ApiService.get(this.API_URL + 'Visits/GetVisitNotes').toPromise();
         return this.vistnote;
     }
-    
-    async GetLastestVisitByPatientId(id)  {
+
+    async GetLastestVisitByPatientId(id) {
         return await this.ApiService.get(this.API_URL + 'Visits/GetLastestVisitByPatientId/' + id).toPromise();
     }
 
@@ -542,8 +542,8 @@ export class PatientService {
         this.SearchPatientbyname = await this.ApiService.post(this.API_URL + 'patients/SearchPatient', patient).toPromise();
     }
 
-    SearchPatientByMrn(mrn) : Observable<Patient> {
-      return  this.ApiService.get(this.API_URL + 'Patients/GetPatientbymrn/' + mrn);
+    SearchPatientByMrn(mrn): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientbymrn/' + mrn);
     }
 
     async getDiagnoses() {
@@ -564,26 +564,26 @@ export class PatientService {
 
 
     async getReferenceAsync() {
-        return await this.ApiService.get(this.API_URL+'Patients/GetPatientReferences').toPromise();
+        return await this.ApiService.get(this.API_URL + 'Patients/GetPatientReferences').toPromise();
     }
 
-    getReference() : Observable<Reference> {
-        return this.ApiService.get(this.API_URL+'Patients/GetPatientReferences');
+    getReference(): Observable<Reference> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientReferences');
     }
 
-    async addReferenceAsync(reference : Reference) {
+    async addReferenceAsync(reference: Reference) {
         return await this.ApiService.post(this.API_URL + 'Patients/AddPatientReference', reference).toPromise();
     }
 
-    addReference(reference : Reference) : Observable<any> {
+    addReference(reference: Reference): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Patients/AddPatientReference', reference);
     }
 
-    async updateReferenceAsync(reference : Reference) {
+    async updateReferenceAsync(reference: Reference) {
         return await this.ApiService.put(this.API_URL + 'Patients/UpdatePatientReference', reference).toPromise();
     }
 
-    updateReference(reference : Reference) : Observable<any> {
+    updateReference(reference: Reference): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Patients/UpdatePatientReference', reference);
     }
 
@@ -591,33 +591,33 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id).toPromise();
     }
 
-    deleteReference(id) : Observable<any> {
+    deleteReference(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Patients/DeletePatientReference/' + id);
     }
 
     //Test Type
 
     async getTestTypesAsync() {
-        return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes').toPromise();
+        return await this.ApiService.get(this.API_URL + 'HimsSetup/GetTestTypes').toPromise();
     }
 
-    getTestTypes() : Observable<TestType[]> {
-        return this.ApiService.get(this.API_URL+'HimsSetup/GetTestTypes');
+    getTestTypes(): Observable<TestType[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetTestTypes');
     }
 
-    async addTestTypeAsync(TestType : TestType) {
+    async addTestTypeAsync(TestType: TestType) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddTestType', TestType).toPromise();
     }
 
-    addTestType(TestType : TestType) : Observable<any> {
+    addTestType(TestType: TestType): Observable<any> {
         return this.ApiService.post(this.API_URL + 'HimsSetup/AddTestType', TestType);
     }
 
-    async updateTestTypeAsync(TestType : TestType) {
+    async updateTestTypeAsync(TestType: TestType) {
         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestType', TestType).toPromise();
     }
 
-    updateTestType(TestType : TestType) : Observable<any> {
+    updateTestType(TestType: TestType): Observable<any> {
         return this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestType', TestType);
     }
 
@@ -625,33 +625,33 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestType/' + id).toPromise();
     }
 
-    deleteTestType(id) : Observable<any> {
+    deleteTestType(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestType/' + id);
     }
 
     //Test Category
 
     async getTestCategoriesAsync() {
-        return await this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories').toPromise();
+        return await this.ApiService.get(this.API_URL + 'HimsSetup/GetTestCategories').toPromise();
     }
 
-    getTestCategories() : Observable<TestCategory[]> {
-        return this.ApiService.get(this.API_URL+'HimsSetup/GetTestCategories');
+    getTestCategories(): Observable<TestCategory[]> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetTestCategories');
     }
 
-    async addTestCategoryAsync(TestCategory : TestCategory) {
+    async addTestCategoryAsync(TestCategory: TestCategory) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddTestCategory', TestCategory).toPromise();
     }
 
-    addTestCategory(TestCategory : TestCategory) : Observable<any> {
+    addTestCategory(TestCategory: TestCategory): Observable<any> {
         return this.ApiService.post(this.API_URL + 'HimsSetup/AddTestCategory', TestCategory);
     }
 
-    async updateTestCategoryAsync(TestCategory : TestCategory) {
+    async updateTestCategoryAsync(TestCategory: TestCategory) {
         return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestCategory', TestCategory).toPromise();
     }
 
-    updateTestCategory(TestCategory : TestCategory) : Observable<any> {
+    updateTestCategory(TestCategory: TestCategory): Observable<any> {
         return this.ApiService.put(this.API_URL + 'HimsSetup/UpdateTestCategory', TestCategory);
     }
 
@@ -659,115 +659,115 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestCategory/' + id).toPromise();
     }
 
-    deleteTestCategory(id) : Observable<any> {
+    deleteTestCategory(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestCategory/' + id);
     }
 
     /***********************************Patient Invoice **********************************/
 
-    GetPatientInvoices() : Observable<PatientInvoice[]> {
+    GetPatientInvoices(): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoices');
     }
 
-    GetPatientInvoicesWithDetailsByPatientId(patientid : number) : Observable<PatientInvoice[]> {
+    GetPatientInvoicesWithDetailsByPatientId(patientid: number): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoicesWithDetailsByPatientId/' + patientid);
     }
 
-    GetPatientInvoice(id : number) : Observable<PatientInvoice> {
+    GetPatientInvoice(id: number): Observable<PatientInvoice> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoice/' + id);
     }
 
-    AddPatientInvoice(PatientInvoice : PatientInvoice) : Observable<any> {
+    AddPatientInvoice(PatientInvoice: PatientInvoice): Observable<any> {
         return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoice', PatientInvoice);
     }
 
-    UpdatePatientInvoice(PatientInvoice : PatientInvoice) : Observable<any> {
+    UpdatePatientInvoice(PatientInvoice: PatientInvoice): Observable<any> {
         return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoice', PatientInvoice);
     }
 
-    DeletePatientInvoice(id : number) : Observable<any> {
+    DeletePatientInvoice(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoice/' + id);
     }
 
     //************************** Patient Invoice Return *************************************//
 
-    GetPatientInvoiceReturns() : Observable<PatientInvoiceReturn[]> {
+    GetPatientInvoiceReturns(): Observable<PatientInvoiceReturn[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturns');
     }
 
-    GetPatientInvoiceReturnsWithDetailsByPatientId(patientid : number) : Observable<PatientInvoiceReturn[]> {
+    GetPatientInvoiceReturnsWithDetailsByPatientId(patientid: number): Observable<PatientInvoiceReturn[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByPatientId/' + patientid);
     }
 
-    GetPatientInvoiceReturnsWithDetailsByDate(date : Date) : Observable<PatientInvoiceReturn[]> {
+    GetPatientInvoiceReturnsWithDetailsByDate(date: Date): Observable<PatientInvoiceReturn[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByDate/' + date);
     }
 
-    GetPatientInvoiceReturn(id : number) : Observable<PatientInvoiceReturn> {
+    GetPatientInvoiceReturn(id: number): Observable<PatientInvoiceReturn> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturn/' + id);
     }
 
-    AddPatientInvoiceReturn(PatientInvoiceReturn : PatientInvoiceReturn) : Observable<any> {
+    AddPatientInvoiceReturn(PatientInvoiceReturn: PatientInvoiceReturn): Observable<any> {
         return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceReturn', PatientInvoiceReturn);
     }
 
-    UpdatePatientInvoiceReturn(PatientInvoiceReturn : PatientInvoiceReturn) : Observable<any> {
+    UpdatePatientInvoiceReturn(PatientInvoiceReturn: PatientInvoiceReturn): Observable<any> {
         return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoiceReturn', PatientInvoiceReturn);
     }
 
-    DeletePatientInvoiceReturn(id : number) : Observable<any> {
+    DeletePatientInvoiceReturn(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceReturn/' + id);
     }
 
-    GetPatientInvoiceReturnsWithDetailsByMRN(mrn : string) : Observable<Patient> {
+    GetPatientInvoiceReturnsWithDetailsByMRN(mrn: string): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoiceReturnsWithDetailsByMRN/' + mrn);
     }
-    
-    GetPatientInvoiceReturnsWithDetailsByMRNandDate(mrn : string, date : Date) : Observable<PatientInvoiceReturn[]> {
+
+    GetPatientInvoiceReturnsWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoiceReturn[]> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoiceReturnsWithDetailsByMRNandDate/' + mrn + '/' + date);
     }
 
     /***************************************Patient Invoice Item **********************************/
 
-    GetPatientInvoiceItems() : Observable<PatientInvoiceItem[]> {
+    GetPatientInvoiceItems(): Observable<PatientInvoiceItem[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceItems');
     }
 
-    GetPatientInvoiceItem(id : number) : Observable<PatientInvoiceItem> {
+    GetPatientInvoiceItem(id: number): Observable<PatientInvoiceItem> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceItem/' + id);
     }
 
-    AddPatientInvoiceItem(PatientInvoiceItem : PatientInvoiceItem) : Observable<any> {
+    AddPatientInvoiceItem(PatientInvoiceItem: PatientInvoiceItem): Observable<any> {
         return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceItem', PatientInvoiceItem);
     }
 
-    UpdatePatientInvoiceItem(PatientInvoiceItem : PatientInvoiceItem) : Observable<any> {
+    UpdatePatientInvoiceItem(PatientInvoiceItem: PatientInvoiceItem): Observable<any> {
         return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoiceItem', PatientInvoiceItem);
     }
 
-    DeletePatientInvoiceItem(id : number) : Observable<any> {
+    DeletePatientInvoiceItem(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceItem/' + id);
     }
 
     /*********************************Patient Invoice Return Item **********************************/
 
-    GetPatientInvoiceReturnItems() : Observable<PatientInvoiceReturnItem[]> {
+    GetPatientInvoiceReturnItems(): Observable<PatientInvoiceReturnItem[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnItems');
     }
 
-    GetPatientInvoiceReturnItem(id : number) : Observable<PatientInvoiceReturnItem> {
+    GetPatientInvoiceReturnItem(id: number): Observable<PatientInvoiceReturnItem> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnItem/' + id);
     }
 
-    AddPatientInvoiceReturnItem(PatientInvoiceReturnItem : PatientInvoiceReturnItem) : Observable<any> {
+    AddPatientInvoiceReturnItem(PatientInvoiceReturnItem: PatientInvoiceReturnItem): Observable<any> {
         return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceReturnItem', PatientInvoiceReturnItem);
     }
 
-    UpdatePatientInvoiceReturnItem(PatientInvoiceReturnItem : PatientInvoiceReturnItem) : Observable<any> {
+    UpdatePatientInvoiceReturnItem(PatientInvoiceReturnItem: PatientInvoiceReturnItem): Observable<any> {
         return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoiceReturnItem', PatientInvoiceReturnItem);
     }
 
-    DeletePatientInvoiceReturnItem(id : number) : Observable<any> {
+    DeletePatientInvoiceReturnItem(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceReturnItem/' + id);
     }
 }

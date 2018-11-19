@@ -28,8 +28,8 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     @Input('monthlyUserSalaryId') id: number;
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService,public Employeeservice: EmployeeService,
-         public payrollsetupservice: PayrollSetupService,public toastr:ToastrService,  public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(private fb: FormBuilder, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
+        public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 
@@ -58,7 +58,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
         this.employees = await this.Employeeservice.GetAllEmployees();
 
         this.monthlySalary = await this.payrollservice.getMonthlySalaries();
-       
+
         this.userSalary = await this.payrollsetupservice.getUserSalaries();
 
         this.pfPayment = await this.payrollsetupservice.getPfPayments();
@@ -66,23 +66,23 @@ export class MonthlyUserSalaryComponent implements OnInit {
         this.payroll = await this.payrollsetupservice.getPayrolls();
 
         this.paySlip = await this.payrollservice.getPayslips();
-        
+
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-          });
+        });
 
-          if (this.isUpdate() === true) {
+        if (this.isUpdate() === true) {
             this.payrollservice.getmonthlyUserSalary(this.id).subscribe(resp => {
-              this.monthlysalary = resp;
+                this.monthlysalary = resp;
                 let a = this.monthlysalary.userRosterAttendances;
-              this.rosterattendance= a.filter(b => {
-                delete b.userRosterAttendanceId;
-                delete b.monthlyUserSalaryId;
-                return b;
-              }); 
-                 this.patchValues(this.monthlysalary);
+                this.rosterattendance = a.filter(b => {
+                    delete b.userRosterAttendanceId;
+                    delete b.monthlyUserSalaryId;
+                    return b;
+                });
+                this.patchValues(this.monthlysalary);
             });
-          }
+        }
     }
 
     async RosterAttendance(value) {
@@ -96,37 +96,37 @@ export class MonthlyUserSalaryComponent implements OnInit {
         monthlySalary.UserRosterAttendances = this.rosterAttendance;
         let x = await this.payrollservice.addMonthlySalary(monthlySalary);
         this.MonthlyUserSalaryForm.reset();
-        this.toastr.success("Monthly Salary Updated"); 
+        this.toastr.success("Monthly Salary Updated");
         this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
     }
 
     isUpdate(): boolean {
 
         if (this.id > 0) {
-          return true;
+            return true;
         }
         else
-          return false;
-      }
+            return false;
+    }
 
-      async updateRosterAttendance(value) {
+    async updateRosterAttendance(value) {
         console.log(value);
-      }
-    
-      async update(value) { 
+    }
+
+    async update(value) {
         value.monthlyUserSalaryId = this.id;
         value.userRosterAttendances = this.rosterattendance;
         this.payrollservice.updateMonthlySalary(value).subscribe(resp => {
-          this.toastr.success("Monthly Salary Updated"); 
-                this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
-    
-        });
-      }
+            this.toastr.success("Monthly Salary Updated");
+            this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
 
-      patchValues(monthlysalary: any) {
+        });
+    }
+
+    patchValues(monthlysalary: any) {
 
         this.MonthlyUserSalaryForm.patchValue({
-    
+
             MonthStartDate: monthlysalary.monthStartDate,
             MonthEndDate: monthlysalary.monthEndDate,
             TotalWorkingDaysInMonth: monthlysalary.totalWorkingDaysInMonth,
@@ -143,7 +143,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
             PaySlipId: monthlysalary.paySlipId,
             PayrollId: monthlysalary.payrollId
         })
-    
-      }
+
+    }
 
 }

@@ -25,7 +25,7 @@ export class BasicinformationComponent implements OnInit {
 
     public EmpbasicForm: FormGroup;
 
-    constructor(public employeeService: EmployeeService, public fb: FormBuilder,private hrmService: HrmsService,
+    constructor(public employeeService: EmployeeService, public fb: FormBuilder, private hrmService: HrmsService,
         private SetupServiceobj: SetupService, public router: Router, private route: ActivatedRoute) {
 
         this.EmpbasicForm = this.fb.group({

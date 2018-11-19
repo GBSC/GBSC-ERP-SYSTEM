@@ -22,7 +22,7 @@ export class StopsalaryComponent implements OnInit {
     }
 
     async addStopSalary(value) {
-        
+
         this.StopSalary = await this.payrollservice.getStopSalaries();
         await this.payrollservice.addStopSalary(value.data);
     }

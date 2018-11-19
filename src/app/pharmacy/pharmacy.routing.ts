@@ -42,7 +42,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'purchaseorderview', component: PurhcaseorderViewComponent },
             { path: 'return', component: ReturnmedicineComponent },
             { path: 'returnview', component: ReturnViewComponent },
-            { path: 'prescriptionview', component: PrescriptionViewComponent},
+            { path: 'prescriptionview', component: PrescriptionViewComponent },
 
             {
                 path: "setup",

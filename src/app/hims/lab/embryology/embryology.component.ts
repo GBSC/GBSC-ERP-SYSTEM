@@ -153,7 +153,7 @@ export class EmbryologyComponent implements OnInit {
     }
 
     patchValues(embryology) {
-        
+
         this.embryologyForm.patchValue({
             EggNumber: embryology.eggNumber,
             CreateDate: embryology.createDate,

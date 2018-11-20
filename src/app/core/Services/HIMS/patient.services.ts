@@ -723,8 +723,8 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByDate/' + date);
     }
 
-    GetPatientInvoiceReturnsWithDetailsByMRN(mrn: string): Observable<Patient> {
-        return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoiceReturnsWithDetailsByMRN/' + mrn);
+    GetPatientInvoiceReturnsWithDetailsByMRN(mrn: string): Observable<PatientInvoiceReturn[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByPatientMRN/' + mrn);
     }
 
     GetPatientInvoiceReturnsWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoiceReturn[]> {

@@ -1,65 +1,86 @@
+<div class="m-content">
+    <div class="row">
+     <div class="col-xl-12">
+      <div class="m-portlet">
+       <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+               <div class="m-portlet__head-title">
+                 <h3 class="m-portlet__head-text">Patient Invoice Return</h3>
+               </div>
+             </div>
+           </div>
+           <div class="m-portlet__body">
+             <div class="m-section">
+               <div class="m-section__content">
+
+
+
 <div class="row">
-  <div class="col-md-12">
-    <form class="m-form ng-untouched">
-      <div class="form-group row">
+    <div class="col-md-12">
+      <form class="m-form ng-untouched" [formGroup]="ReturnViewForm">
+        <div class="form-group row">
+            <div class="form-group col-sm-3">
+                <label for="exampleSelect1"> MRN </label>
+                <input class="form-control m-input m-input--solid " type="text" #MRN formControlName="MRN" (keyup)="GetAllInvoiceReturnsByMRN($event, MRN.value)">
+              </div>
           <div class="form-group col-sm-3">
-              <label for="exampleSelect1"> MRN </label>
-              <input class="form-control m-input m-input--solid " type="text" #MRN (keyup)="GetAllInvoiceReturnsByMRN($event, MRN.value)">
-            </div>
-        <div class="form-group col-sm-3">
-          <label for="exampleSelect1"> Return Number </label>
-          <input class="form-control m-input m-input--solid " type="text" #ReturnNumber (keyup)="GetAllInvoiceReturnByReturnNumber($event, ReturnNumber.value)">
-        </div>
-        <div class="form-group col-sm-3">
-            <label for="exampleSelect1"> Invoice Slip Number </label>
-            <input class="form-control m-input m-input--solid " type="text" #InvoiceNumber (keyup)="GetAllInvoiceReturnByInvoiceNumber($event, InvoiceNumber.value)">
+            <label for="exampleSelect1"> Return Number </label>
+            <input class="form-control m-input m-input--solid " type="text" #ReturnNumber formControlName="ReturnNumber" (keyup)="GetAllInvoiceReturnByReturnNumber($event, ReturnNumber.value)">
           </div>
-        <div class="form-group col-sm-3">
-          <label for="exampleSelect1"> Date </label>
-          <input class="form-control m-input m-input--solid" #Date type="date" [value]="CurrentDate | date : 'yyyy-MM-dd'" #Date (change)="GetAllInvoiceReturnsByDate(Date.value)">
+          <div class="form-group col-sm-3">
+              <label for="exampleSelect1"> Invoice Slip Number </label>
+              <input class="form-control m-input m-input--solid " type="text" #InvoiceNumber formControlName="InvoiceNumber" (keyup)="GetAllInvoiceReturnByInvoiceNumber($event, InvoiceNumber.value)">
+            </div>
+          <div class="form-group col-sm-3">
+            <label for="exampleSelect1"> Date </label>
+            <input class="form-control m-input m-input--solid" #Date type="date" [value]="CurrentDate | date : 'yyyy-MM-dd'" formControlName="Date" #Date (change)="GetAllInvoiceReturnsByDate(Date.value)">
+          </div>
+          <!-- <div class="form-group col-sm-2">
+            <button class="btn btn-primary" type="button" (click)="ViewInvoiceReturns(Date.value, ReturnNumber.value, MRN.value, InvoiceNumber.value)">Search</button>
+          </div> -->
         </div>
-        <!-- <div class="form-group col-sm-2">
-          <button class="btn btn-primary" type="button" (click)="ViewInvoiceReturns(Date.value, ReturnNumber.value, MRN.value, InvoiceNumber.value)">Search</button>
-        </div> -->
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <dx-data-grid [dataSource]="InvoiceReturns" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
-      <dxo-search-panel [visible]="false" [width]="auto" placeholder="Search..."></dxo-search-panel>
-      <dxo-filter-row [visible]="false"></dxo-filter-row>
-      <dxo-header-filter [visible]="false"></dxo-header-filter>
-      <dxo-paging [pageSize]="10"></dxo-paging>
-      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showInfo]="true"></dxo-pager>
-      <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
-      </dxo-editing>
-      <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
-      <dxo-selection mode="single"></dxo-selection>
-      <dxi-column dataField="invoiceReturnNumber" dataType="text" caption="Return No." [fixed]="false"></dxi-column>
-      <dxi-column dataField="patient.mrn" dataType="text" caption="MRN"></dxi-column>
-      <dxi-column dataField="patient.fullName" dataType="text" caption="Patient"></dxi-column>
-      <dxi-column dataField="patientInvoice.invoiceType" dataType="text" caption="Type"></dxi-column>
-      <dxi-column dataField="patientInvoice.slipNumber" dataType="text" caption="Invoice No."></dxi-column>
-      <dxi-column dataField="patientInvoice.dateCreated" dataType="text" caption="Purchase Date"></dxi-column>
-      <dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
-      <dxi-column dataField="returnDate" dataType="date" caption="Return Date"></dxi-column>
-      <div *dxTemplate="let order of 'detail'">
-        <dx-data-grid [dataSource]="order.data.patientInvoiceReturnItems" showBorders="true">
-          <dxi-column dataField="nature" dataType="text" caption="Nature"></dxi-column>
-          <dxi-column dataField="name" dataType="text" caption="Name"></dxi-column>
-          <dxi-column dataField="saleQuantity" dataType="number" caption="Sale Qty."></dxi-column>
-          <dxi-column dataField="saleGrossAmount" dataType="number" caption="Sale Gross Amt."></dxi-column>
-          <dxi-column dataField="saleDiscountAmount" dataType="number" caption="Sale Discount Amt."></dxi-column>
-          <dxi-column dataField="saleNetAmount" dataType="number" caption="Sale Net Amt."></dxi-column>
-          <dxi-column dataField="unitPrice" dataType="number" caption="Unit Price"></dxi-column>
-          <dxi-column dataField="returnQuantity" dataType="number" caption="Return Qty."></dxi-column>
-          <dxi-column dataField="discountDeductionAmount" dataType="number" caption="Discount Deduction Amt."></dxi-column>
-          <dxi-column dataField="returnNetAmount" dataType="number" caption="Return Net Amt."></dxi-column>
-          <dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
-        </dx-data-grid>
-      </div>
-    </dx-data-grid>
+  <div class="row">
+    <div class="col-md-12">
+      <dx-data-grid [dataSource]="InvoiceReturns" [remoteOperations]="true" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+        <dxo-search-panel [visible]="false" [width]="auto" placeholder="Search..."></dxo-search-panel>
+        <dxo-filter-row [visible]="false"></dxo-filter-row>
+        <dxo-header-filter [visible]="false"></dxo-header-filter>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showInfo]="true"></dxo-pager>
+        <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+        </dxo-editing>
+        <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+        <dxo-selection mode="single"></dxo-selection>
+        <dxi-column dataField="invoiceReturnNumber" dataType="text" caption="Return No." [fixed]="false"></dxi-column>
+        <dxi-column dataField="patient.mrn" dataType="text" caption="MRN"></dxi-column>
+        <dxi-column dataField="patient.fullName" dataType="text" caption="Patient"></dxi-column>
+        <dxi-column dataField="patientInvoice.invoiceType" dataType="text" caption="Type"></dxi-column>
+        <dxi-column dataField="patientInvoice.slipNumber" dataType="text" caption="Invoice No."></dxi-column>
+        <dxi-column dataField="patientInvoice.dateCreated" dataType="date" caption="Purchase Date"></dxi-column>
+        <dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
+        <dxi-column dataField="returnDate" dataType="date" caption="Return Date"></dxi-column>
+        <div *dxTemplate="let order of 'detail'">
+          <dx-data-grid [dataSource]="order.data.patientInvoiceReturnItems" showBorders="true">
+            <dxi-column dataField="nature" dataType="text" caption="Nature"></dxi-column>
+            <dxi-column dataField="name" dataType="text" caption="Name"></dxi-column>
+            <dxi-column dataField="saleQuantity" dataType="number" caption="Sale Qty."></dxi-column>
+            <dxi-column dataField="saleGrossAmount" dataType="number" caption="Sale Gross Amt."></dxi-column>
+            <dxi-column dataField="saleDiscountAmount" dataType="number" caption="Sale Discount Amt."></dxi-column>
+            <dxi-column dataField="saleNetAmount" dataType="number" caption="Sale Net Amt."></dxi-column>
+            <dxi-column dataField="unitPrice" dataType="number" caption="Unit Price"></dxi-column>
+            <dxi-column dataField="returnQuantity" dataType="number" caption="Return Qty."></dxi-column>
+            <dxi-column dataField="discountDeductionAmount" dataType="number" caption="Discount Deduction Amt."></dxi-column>
+            <dxi-column dataField="returnNetAmount" dataType="number" caption="Return Net Amt."></dxi-column>
+            <dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </dx-data-grid>
+    </div>
   </div>
-</div>
+
+  </div></div>
+  </div>
+  </div></div>

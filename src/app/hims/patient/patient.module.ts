@@ -47,6 +47,7 @@ import { DxDateBoxModule } from 'devextreme-angular';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 import { PatientpackageComponent } from './patientpackage/patientpackage.component';
 import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-invoice-return.component';
+import { InvoiceReturnViewComponent } from './invoice-return-view/invoice-return-view.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -108,6 +109,7 @@ import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-
         PatientInvoiceViewComponent,
         PatientpackageComponent,
         PatientInvoiceReturnComponent,
+        InvoiceReturnViewComponent,
     ]
 })
 export class PatientModule { }

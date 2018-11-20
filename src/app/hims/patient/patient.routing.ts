@@ -39,6 +39,7 @@ import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 import {  PatientInvoiceReturnComponent} from './patient-invoice-return/patient-invoice-return.component';
+import { InvoiceReturnViewComponent } from './invoice-return-view/invoice-return-view.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -73,6 +74,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
             { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
+            { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
             
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},

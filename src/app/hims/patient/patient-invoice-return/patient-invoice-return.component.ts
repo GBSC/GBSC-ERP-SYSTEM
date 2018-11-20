@@ -70,8 +70,12 @@ export class PatientInvoiceReturnComponent implements OnInit {
             this.PatientService.GetPatientInvoiceWithDetailsBySlipNumberForReturn(SlipNumber).subscribe((res: any) => {
                 console.log(res);
                 this.PatientInvoiceReturnItems = [];
+                this.TotalDiscountDeduction = 0;
+                this.TotalGrossReturn = 0;
+                this.TotalNetReturn = 0;
                 if (res != null) {
-                    if(res.patientInvoiceReturnId != null && res.patientInvoiceReturn != null) {
+                    if(res.patientInvoiceReturnId != null || res.patientInvoiceReturn != null) {
+                        this.ReturnForm.reset();
                         this.Toastr.error("Return for selected invoice already exists");
                     } else {
                         this.InvoiceId = res.patientInvoiceId;
@@ -166,10 +170,22 @@ export class PatientInvoiceReturnComponent implements OnInit {
         if(this.PatientId) {
             returninvoice.PatientId = this.PatientId;
         }
-        console.log(returninvoice);
+        // console.log(returninvoice);
 
-        this.PatientService.AddPatientInvoiceReturn(returninvoice).subscribe((res : any) => {
-            console.log(res);
+        this.PatientService.AddPatientInvoiceReturn(returninvoice).subscribe((resReturn : any) => {
+            console.log(resReturn);
+            this.ReturnForm.reset();
+            this.PatientInvoiceReturnItems = [];
+            this.TotalDiscountDeduction = 0;
+            this.TotalGrossReturn = 0;
+            this.TotalNetReturn = 0;
+            this.PatientService.GetPatientInvoice(this.InvoiceId).subscribe((resGetInvoice : PatientInvoice) => {
+                console.log(resGetInvoice);
+                resGetInvoice.PatientInvoiceReturnId = resReturn.patientInvoiceReturnID;
+                this.PatientService.UpdatePatientInvoice(resGetInvoice).subscribe((resUpdateInvoice : any) => {
+                    console.log(resUpdateInvoice);
+                });
+            });
         });
     }
 

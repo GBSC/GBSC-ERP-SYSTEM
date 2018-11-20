@@ -29,6 +29,8 @@ import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thawing.component';
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
+import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 
 
 
@@ -71,6 +73,8 @@ import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.comp
         EmbryologyThawingComponent,
         FreezepreparationComponent,
         ClinicalrecordsComponent,
+        SemenanalysisComponent,
+        ReportViewerComponent,
     ]
 })
 export class LabModule { }

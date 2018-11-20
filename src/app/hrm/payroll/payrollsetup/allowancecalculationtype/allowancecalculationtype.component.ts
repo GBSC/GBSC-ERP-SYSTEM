@@ -19,6 +19,7 @@ export class AllowancecalculationtypeComponent implements OnInit {
 
     async addAllowanceCalculationType(value) {
         await this.payrollsetupservice.addAllowanceCalculationType(value.data);
+        this.allowanceCalculationtype = await this.payrollsetupservice.getAllowanceCalculationTypes();
     }
 
     async updateAllowanceCalculationType(value) {

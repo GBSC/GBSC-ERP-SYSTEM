@@ -73,7 +73,7 @@
 						   </li>
 						   <li class="m-menu__section">
 							   <h4 class="m-menu__section-text">
-								   HRMS Setup Forms
+								   HIMS Setup Forms
 							   </h4>
 							   <i class="m-menu__section-icon flaticon-more-v3"></i>
 						   </li>
@@ -91,17 +91,17 @@
 								   <span class="m-menu__arrow"></span>
 								   <ul class="m-menu__subnav">
 									    <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-										   <a routerLink="/hims/patient/visitnature" class="m-menu__link">
+										   <a routerLink="/hims/patient/setup/visitnature" class="m-menu__link">
 											   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												   <span></span>
 											   </i>
 											   <span class="m-menu__link-text">
-												visit Nature
+												Visit Nature
 											   </span>
 										   </a>
 									   </li>
 									   <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-										<a routerLink="/hims/patient/himssetuptest" class="m-menu__link">
+										<a routerLink="/hims/patient/setup/test" class="m-menu__link">
 											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												<span></span>
 											</i>
@@ -111,7 +111,7 @@
 										</a>
 										</li>
 										<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-											<a routerLink="/hims/patient/diagnose" class="m-menu__link">
+											<a routerLink="/hims/patient/setup/diagnose" class="m-menu__link">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
 												</i>
@@ -121,7 +121,7 @@
 											</a>
 											</li>
 									    <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-										   <a routerLink="/hims/patient/consultant" class="m-menu__link">
+										   <a routerLink="/hims/patient/setup/consultant" class="m-menu__link">
 											   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
 												   <span></span>
 											   </i>
@@ -130,6 +130,26 @@
 											   </span>
 										   </a>
 									   </li>
+									   <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+										<a routerLink="/hims/patient/setup/reference" class="m-menu__link">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Reference
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+										<a routerLink="/hims/patient/setup/package" class="m-menu__link">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Package
+											</span>
+										</a>
+									</li>
 								   </ul>
 							   </div>
 						   </li>
@@ -159,15 +179,25 @@
 				
 			</li>
 			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
-					<a routerLink="/hims/patient/reports" class="m-menu__link m-menu__toggle">
+					<a routerLink="/hims/patient/paymentreceipt" class="m-menu__link m-menu__toggle">
 						<i class="m-menu__link-icon flaticon-file"></i>
 						<span class="m-menu__link-text">
-								Reports
+								Payment Receipt
 						</span>
 						<i class="m-menu__ver-arrow la la-angle-right"></i>
 					</a>
 					
 				</li>
+				<!-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+						<a routerLink="/hims/patient/reports" class="m-menu__link m-menu__toggle">
+							<i class="m-menu__link-icon flaticon-file"></i>
+							<span class="m-menu__link-text">
+									Reports
+							</span>
+							<i class="m-menu__ver-arrow la la-angle-right"></i>
+						</a>
+						
+					</li> -->
 			
 		</ul>
 	</div>

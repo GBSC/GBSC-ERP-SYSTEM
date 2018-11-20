@@ -1,40 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { DxSelectBoxComponent } from 'devextreme-angular';
+import { PatientService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-clinicalrecords',
-  templateUrl: './clinicalrecords.component.html',
-  styleUrls: ['./clinicalrecords.component.scss']
+    selector: 'app-clinicalrecords',
+    templateUrl: './clinicalrecords.component.html',
+    styleUrls: ['./clinicalrecords.component.scss']
 })
 export class ClinicalrecordsComponent implements OnInit {
 
-  private clinicalRecords : any;
-  private searchForm : FormGroup;
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  constructor(private clinicalRecordService : PatientclinicalrecordService, private formBuilder : FormBuilder) {
+    private patient: any;
+    private spouse: any;
+    private patients: any;
 
-    this.searchForm = this.formBuilder.group({
-      'Mrn' : [''],
-      'Patient' : [''],
-      'Spouse' : [''],
-      'TreatmentNumber':[''],
-      'CycleNumber':['']
-    });
+    private clinicalRecords: any;
+    private searchForm: FormGroup;
 
-   }
+    constructor(private clinicalRecordService: PatientclinicalrecordService,
+        private patientService: PatientService,
+        private formBuilder: FormBuilder) {
 
-  ngOnInit() {
+        this.searchForm = this.formBuilder.group({
+            'Mrn': [''],
+            'Patient': [''],
+            'Spouse': [''],
+            'TreatmentNumber': [''],
+            'CycleNumber': ['']
+        });
 
+    }
 
-  }
+    ngOnInit() {
 
-  submitForm(value)
-  {
-    this.clinicalRecordService.searchClinicalRecords(value.Patient,value.Spouse,value.Mrn,value.CycleNumber,value.TreatmentNumber)
-    .subscribe(resp=>{
-      this.clinicalRecords = resp;
-    })
-  }
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+
+        });
+
+        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+
+            this.clinicalRecordService.getClinicalRecordsByPatientId(this.patient.patientId).subscribe(resp => {
+                console.log(resp)
+                this.clinicalRecords = resp;
+            });
+
+        });
+    }
 
 }

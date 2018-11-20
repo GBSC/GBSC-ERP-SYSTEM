@@ -23,6 +23,7 @@ export class AttendancerequestapproverComponent implements OnInit {
 
     async addRequestapprover(value) {
         await this.attendancesetupservice.addAttendanceRequestApprover(value.data);
+        this.attendanceRequestapprover = await this.attendancesetupservice.getAttendanceRequestApprover();
     }
 
     updatingRequestapprover(value) {

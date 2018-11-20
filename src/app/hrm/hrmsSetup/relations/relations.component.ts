@@ -16,8 +16,7 @@ export class RelationComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllRelation();
-        this.relation = this.dataService.relation;
+        this.relation = await this.dataService.getAllRelation();
     }
 
 

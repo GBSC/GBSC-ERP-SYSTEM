@@ -26,7 +26,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
-    constructor(private toastr: ToastrService,private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    constructor(private toastr: ToastrService, private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],
@@ -35,20 +35,22 @@ export class PatientvitalsComponent implements OnInit {
             Pulse: ['', Validators.required],
             RespiratoryRate: ['', Validators.required],
             BloodPressureUp: ['', Validators.required],
-            BloodPressureDown:['',Validators.required],
+            BloodPressureDown: ['', Validators.required],
             BloodOxygenSaturation: ['', Validators.required],
             VisitId: ['', Validators.required]
         });
+        //    this.visitid = JSON.parse(sessionStorage.getItem('visitId'));
+
 
     }
 
     ngOnInit() {
 
         this.currentPatient = this.PatientServiceobj.currentPatient;
-        console.log(this.currentPatient);
+        //  console.log(this.currentPatient);
 
         this.visitid = this.PatientServiceobj.visitid;
-        console.log(this.visitid);
+        // console.log(this.visitid);
 
 
         this.route.params.subscribe(params => {
@@ -58,14 +60,16 @@ export class PatientvitalsComponent implements OnInit {
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
                 this.Patient = Patient;
             });
-            console.log(x);
+            //  console.log(x);
         });
 
     }
 
     async  onsubmit(value) {
 
-        this.visitid = this.PatientServiceobj.visitid.visitID;
+        let visitID = JSON.parse(sessionStorage.getItem('visitId'));
+        //  console.log(visitID);
+        this.visitid = visitID.visitID;
         // console.log(this.visitid.value);
 
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;
@@ -76,10 +80,10 @@ export class PatientvitalsComponent implements OnInit {
         // console.log(x);
 
         console.log(this.PatientVitaLForm.value);
-       // this.backClicked()
+        // this.backClicked()
 
-       this.PatientVitaLForm.reset();   
-       this.displayToastSuccess("Saved");
+        this.PatientVitaLForm.reset();
+        this.displayToastSuccess("Saved");
 
         return x;
 

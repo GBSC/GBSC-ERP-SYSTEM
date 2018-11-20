@@ -18,10 +18,10 @@ export class TestComponent implements OnInit {
 
             let x = this.PatientServiceobj.getpatientLatestTest(this.id).subscribe((patientVisitTest: any) => {
                 this.patientVisitTest = patientVisitTest;
-                console.log(patientVisitTest);
-                console.log(this.patientVisitTest)
+                //    console.log(patientVisitTest);
+                //   console.log(this.patientVisitTest)
             });
-            console.log(x);
+            //  console.log(x);
 
         });
 

@@ -19,11 +19,10 @@ export class LanguageComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.dataService.getAllLanguages();
-        this.language = this.dataService.language;
+        this.language = await this.dataService.getAllLanguages();
 
         // this.dataService.getAllLanguages().subscribe((data)=>this.languages=data);
-    } S
+    }
 
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PayrollSetupService, EmployeeService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
 import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-masterpayroll',
@@ -10,9 +12,10 @@ import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
     styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
- 
+
     public masterPayroll: any;
     public payrollMaster: any;
+    public masterDetail: any[] = [];
     public users: any;
     public frequency: any;
     public masterdetailupdating: any;
@@ -21,13 +24,15 @@ export class MasterpayrollComponent implements OnInit {
     public banksPayroll: any;
     public payrollType: any;
     public MasterPayrollForm: any;
-    public Masterdetail = [];
     public allowance: any;
     public MasterDetailForm: any;
-    public fullName: any;
+    public masterpayroll: any;
     public currency: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
+    @Input('masterPayrollId') id: number;
+
+    constructor(private fb: FormBuilder, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute,
+        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
     async ngOnInit() {
 
@@ -55,20 +60,28 @@ export class MasterpayrollComponent implements OnInit {
         this.frequency = await this.payrollsetupservice.getFrequencies();
 
         this.payrollType = await this.payrollsetupservice.getPayrollTypes();
+
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+        });
+        if (this.isUpdate() === true) {
+            this.payrollsetupservice.getMasterPayroll(this.id).subscribe(resp => {
+                this.masterpayroll = resp;
+                let a = this.masterpayroll.masterPayrollDetails;
+                this.masterDetail = a.filter(b => {
+                    delete b.masterPayrollDetailId;
+                    delete b.masterPayrollId;
+                    return b;
+                });
+                this.patchValues(this.masterpayroll);
+            });
+        }
     }
 
 
     async addMasterPayrolldetail(value) {
         let data = value.data;
         this.payrollDetail.push(data);
-    }
-
-    updatingMasterDetail(value) {
-        this.masterdetailupdating = { ...value.oldData, ...value.newData };
-
-    }
-    async updateMasterDetail() {
-        await this.payrollsetupservice.updateMasterPayrollDetail(this.masterdetailupdating);
     }
 
     async submitForm(value) {
@@ -79,18 +92,41 @@ export class MasterpayrollComponent implements OnInit {
 
     }
 
-    updatingMasterPayroll(value) {
-        this.payrollMaster = { ...value.oldData, ...value.newData };
+    isUpdate(): boolean {
+
+        if (this.id > 0) {
+            return true;
+        }
+        else
+            return false;
     }
 
-    async updateMasterPayroll() {
-        await this.payrollsetupservice.updateMasterPayroll(this.payrollMaster);
+    async updateMasterpayrollDetail(value) {
+        console.log(value);
     }
 
+    async update(value) {
+        value.masterPayrollId = this.id;
+        value.MasterPayrollDetails = this.masterDetail;
+        console.log(value);
+        this.payrollsetupservice.updateMasterPayroll(value).subscribe(resp => {
+            this.toastr.success("Master Payroll Updated");
+            this.router.navigate(['/hrm/payroll/payrollsetup/masterpayrolldetail']);
 
-
-    async deleteMasterPayroll(value) {
-        await this.payrollsetupservice.deleteMasterPayroll(value.key);
+        });
     }
+
+    patchValues(masterpayroll: any) {
+
+        this.MasterPayrollForm.patchValue({
+
+            UserId: masterpayroll.userId,
+            BankTransferCode: masterpayroll.bankTransferCode,
+            CurrencyId: masterpayroll.currencyId,
+            PayrollBankId: masterpayroll.payrollBankId
+        })
+
+    }
+
 
 }

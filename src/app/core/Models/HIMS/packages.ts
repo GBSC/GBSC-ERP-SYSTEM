@@ -1,6 +1,8 @@
 export interface Package {
 
-    PackageId: number,
-    PackageCode: string,
-    PackageName: string
+    packageId: number,
+    packageCode: string,
+    packageName: string,
+    charges: number,
+    effectiveDate: Date
 }

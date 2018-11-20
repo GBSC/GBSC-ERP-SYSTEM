@@ -4,8 +4,8 @@ export class LeaveRequestDetail {
     value: string;
     dateFrom: Date;
     dateTill: Date;
-    firstSecondHalf: string;  
-    totalLeaveDetailValue: string;  
-    isShortLeave: boolean;  
-    description: string;  
+    firstSecondHalf: string;
+    totalLeaveDetailValue: string;
+    isShortLeave: boolean;
+    description: string;
 }

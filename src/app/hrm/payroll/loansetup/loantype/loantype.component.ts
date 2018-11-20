@@ -14,12 +14,14 @@ export class LoantypeComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        this.LoanType = await this.payrollsetupservice.getLoanTypes();
 
+        this.LoanType = await this.payrollsetupservice.getLoanTypes();
     }
 
     async addLoanType(value) {
+
         await this.payrollsetupservice.addLoanType(value.data);
+        this.LoanType = await this.payrollsetupservice.getLoanTypes();
     }
 
 

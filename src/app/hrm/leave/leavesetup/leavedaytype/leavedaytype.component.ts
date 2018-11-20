@@ -12,11 +12,14 @@ export class LeavedaytypeComponent implements OnInit {
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
+
         this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
     async addleavedaytype(ldaytype) {
+
         this.leavesetupservice.addLeaveDayType(ldaytype.data);
+        this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
     async updateleavedaytype(levdaytype) {

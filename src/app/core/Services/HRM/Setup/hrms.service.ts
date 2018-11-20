@@ -7,60 +7,77 @@ import { ApiService } from '../../api.service';
 
 export class HrmsService {
 
+    private setupUrl: string = "SystemAdmin/api/Setup";
 
-    baseUrl: string = '';
-
-    public get: any;
     constructor(private ApiService: ApiService) {
-
-        // this.baseUrl = configService.getApiURI();
     }
 
-    // getAllContries(): Observable<Country> {
+    async getAllCountries() {
 
-    //   let headers = new Headers();
-    //   headers.append('Content-Type', 'application/json');
-    //   let authToken = localStorage.getItem('auth_token');
-    //   headers.append('Authorization', `bearer ${authToken}`);
-
-    //   return this.http.get(this.baseUrl + "api/setup/getallcountries", { headers })
-    //     .map(res => {
-    //       return res.json()
-    //     })
-    //     .catch(this.handleError);
-    // }
-
-    // DeleteCountry(id) {
-
-    //       return this
-    //           .http
-    //           .get(this.baseUrl + 'api/setup/getallcountries/' + id)
-    //           .map(res => {
-    //             return res;
-    //           });
-    //         }
-
-    EditCountry(Id) {
-
-        return this
-            .ApiService
-            .get(this.baseUrl + 'api/setup/getallcountries/' + Id)
-            .map(res => {
-                return res;
-            });
+        return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
 
-    UpdateCountry(Name, Code, Id) {
-        //const uri = 'http://localhost:4000/coins/update/' + Id;
-
-        const obj = {
-            Name: Name,
-            Code: Code
-        };
-        this
-            .ApiService
-            .post(this.baseUrl + 'api/setup/getallcountries/' + Id, obj)
-            .subscribe(res => console.log('Done'));
+    async getdataToUpdate(countryId, countryUrl) {
+        return await this.ApiService.get(`${this.setupUrl}/${countryUrl}/${countryId}`).toPromise();
     }
 
+
+    // DEMO ONLY, you can find working methods below
+    async addCountry(data) {
+        return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
+
+    }
+
+    async updateCountry(data) {
+
+        let country = await this.getdataToUpdate(data.key, 'GetCountry');
+        country = { ...country, ...data.data }
+        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', country).toPromise();
+    }
+
+    async DeleteCountry(countryId) {
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
+    }
+
+    async getAllCities() {
+
+        return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
+    }
+
+    async addCity(data) {
+        return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
+
+    }
+
+    async updateCity(data) {
+
+        let city = await this.getdataToUpdate(data.key, 'GetCity');
+        city = { ...city, ...data.data }
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', city).toPromise();
+    }
+
+    async DeleteCity(cityId) {
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
+    }
+
+
+    async getAllDepartments() {
+
+        return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
+    }
+
+    // DEMO ONLY, you can find working methods below
+    async addDepartment(data) {
+
+        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data).toPromise();
+    }
+
+    async updateDepartment(data) {
+        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data.key).toPromise();
+    }
+
+    async DeleteDepartment(data) {
+
+        return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
+    }
 }

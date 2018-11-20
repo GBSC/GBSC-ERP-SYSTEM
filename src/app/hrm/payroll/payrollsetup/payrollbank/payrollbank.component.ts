@@ -8,7 +8,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     styleUrls: ['./payrollbank.component.scss']
 })
 export class PayrollbankComponent implements OnInit {
- 
+
 
     public payrollBank: any;
     public PayrollBankForm: FormGroup;
@@ -53,23 +53,18 @@ export class PayrollbankComponent implements OnInit {
         this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
     }
 
-    async addPayrollBank() {
-        await this.payrollsetupservice.addPayrollBank(this.PayrollBankForm.value);
-        this.PayrollBankForm.reset();
-        //  alert('Bank Added Successfully');
-        this.msg = 'success';
-        setTimeout(() => {
-            this.msg = null;
-          }, 3000);
+    async addPayrollBank(value) {
+        let c = await this.payrollsetupservice.addPayrollBank(value.data);
+        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();
     }
- 
+
 
     updatingPayrollBank(value) {
         this.updatingbank = { ...value.oldData, ...value.newData };
     }
     async updatePayrollBank() {
         await this.payrollsetupservice.updatePayrollBank(this.updatingbank);
-       
+
     }
 
     async deletePayrollBank(value) {

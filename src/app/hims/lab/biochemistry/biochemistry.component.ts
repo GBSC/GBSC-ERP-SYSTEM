@@ -10,6 +10,9 @@ import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistryte
 import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
 import { TestUnit } from '../../../core/Models/HIMS/testunit';
 import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
+import { BiochemistryoutsiderService } from '../../../../app/core/Services/HIMS/Lab/biochemistryoutsider.service';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-biochemistry',
@@ -24,18 +27,28 @@ export class BiochemistryComponent implements OnInit {
     private patient: Patient;
     private testDetail: BioChemistryTestDetail[];
     private tests: BioChemistryTest;
+    private bioChemistry: any;
     private units: TestUnit;
-    private bioChemistryForm: FormGroup;
+    private bioChemistryOutsiderForm: FormGroup;
+    private id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService: BioChemistryService) {
+    constructor(private formBuilder: FormBuilder,
+        private bioChemistryOutsiderService: BiochemistryoutsiderService,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private bioChemistryService: BioChemistryService,
+        private toastr: ToastrService,
+        private route: ActivatedRoute, ) {
 
-        this.bioChemistryForm = formBuilder.group({
+        this.bioChemistryOutsiderForm = formBuilder.group({
             'PatientId': ['', Validators.required],
             'ConsultantId': ['', Validators.required],
+            'CollectionDate': [],
             'LMP': [],
             'Days': [],
+            'Others': [],
             'IsRandom': [false]
         });
 
@@ -44,6 +57,13 @@ export class BiochemistryComponent implements OnInit {
     ngOnInit() {
 
         this.testDetail = [];
+
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+
+            this.setValues();
+
+        })
 
         this.patientcb.onValueChanged.subscribe(res => this.populatePatientDate(res.component.option("value")));
 
@@ -60,16 +80,41 @@ export class BiochemistryComponent implements OnInit {
 
     }
 
-    submitForm(value: PatientBiochemistryTest) {
+    setValues() {
 
-        let patientBioChemistryTest = new PatientBiochemistryTest();
+        this.bioChemistryOutsiderService.getBioChemistryTestOutsider(this.id).subscribe(resp => {
 
-        patientBioChemistryTest = { ...patientBioChemistryTest, ...value };
+            this.bioChemistry = resp;
 
-        patientBioChemistryTest.IsOnTreatment = false;
-        patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
+            if (this.bioChemistry) {
+                this.patchValues(this.bioChemistry);
+                this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+            }
 
-        console.log(patientBioChemistryTest);
+        });
+    }
+
+    submitForm(value: any) {
+
+        value.bioChemistryTestDetails = this.testDetail;
+
+        this.bioChemistryOutsiderService.addBioChemistryTestOutsider(value).subscribe(resp => {
+            this.displayToast("Biochemistry Test Saved!");
+            this.id = resp.bioChemistryTestOutsiderId;
+            this.setValues();
+
+        });
+    }
+
+    updateForm(value: any) {
+
+        value.bioChemistryTestDetails = this.testDetail;
+        value.bioChemistryTestOutsiderId = this.id;
+
+        this.bioChemistryOutsiderService.updateBioChemistryTestOutsider(value).subscribe(resp => {
+            this.displayToast("Biochemistry Test Updated!");
+
+        });
     }
 
     populatePatientDate(patientId) {
@@ -79,18 +124,22 @@ export class BiochemistryComponent implements OnInit {
         });
     }
 
-    addBioChemistryTestDetail(value) {
-        let data = value.data;
+    patchValues(biochesmitry) {
 
-        this.testDetail.push(data);
+        this.bioChemistryOutsiderForm.patchValue({
 
-        console.log(this.testDetail);
+            'PatientId': biochesmitry.patientId,
+            'ConsultantId': biochesmitry.consultantId,
+            'CollectionDate': biochesmitry.collectionDate,
+            'LMP': biochesmitry.lMP,
+            'Days': biochesmitry.days,
+            'Others': biochesmitry.others,
+            'IsRandom': biochesmitry.isRandom
+        });
     }
 
-    updateBioChemistryTestDetail(value) {
-        let data = value.data;
-
-        console.log(this.testDetail);
+    public displayToast(message) {
+        this.toastr.success(message);
     }
 
 

@@ -11,16 +11,13 @@ export class EmployeeStatuscomponent implements OnInit {
 
     public empstatus: any;
 
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
 
-        await this.dataService.getAllEmployeeStatus();
-        this.empstatus = this.dataService.employeestatus;
-
+        this.empstatus = await this.dataService.getEmployeeStatus();
     }
 
 

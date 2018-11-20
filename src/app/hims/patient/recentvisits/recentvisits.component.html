@@ -17,12 +17,11 @@
            <a >{{Patient.startTime | date: 'dd/MM/yyyy'}}</a>
           </li>
        </ul> -->
-
        <div class="">
-          <ul *ngFor="let Patient of visits">
+          <ul *ngFor="let Patient of visits" class="nobull">
               <li   (click)="onclick(Patient.visitId)">
-            <a class="m-link m-link--state m-link--success">
-                {{Patient.startTime | date: 'dd/MM/yyyy'}}
+            <a class="m-link m-link--state m-link--success btn btn-success">
+                {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
             </a>
           </li>
         </ul>

@@ -20,6 +20,7 @@ export class PayrollyearComponent implements OnInit {
 
     async addpayrollyear(value) {
         await this.payrollsetupservice.addPayrollYear(value.data);
+        this.payrollYear = await this.payrollsetupservice.getPayrollYears();
     }
 
     updatingpayrollyear(value) {

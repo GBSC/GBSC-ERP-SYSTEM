@@ -70,7 +70,7 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetCompanies').toPromise();
 
     }
- 
+
     async addCompany(company: Company) {
         return await this.ApiService.post(this.API_URL + 'AddCompany', company).toPromise();
     }

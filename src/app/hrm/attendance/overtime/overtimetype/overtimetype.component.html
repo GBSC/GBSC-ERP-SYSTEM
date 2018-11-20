@@ -1,6 +1,4 @@
-<div class="m-content">
-    <div class="row">
-      <div class="col-xl-12">
+ 
         <div class="m-portlet">
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -30,17 +28,15 @@
                   <dxo-paging [pageSize]="6"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager> 
-                  <dxi-column dataField="title"></dxi-column> 
                   <dxi-column dataField="overtimeFlagId" caption="Overtime Flag">
                     <dxo-lookup [dataSource]="overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
                     </dxo-lookup> 
                   </dxi-column>
-                  <dxi-column dataType="boolean" dataField="active" caption ="Is Active"></dxi-column> 
+                  <dxi-column dataField="title"></dxi-column> 
+                  <dxi-column dataType="boolean" dataField="active" caption="Active"></dxi-column> 
                 </dx-data-grid>
               </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div> 
+ 

@@ -13,6 +13,7 @@ import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbioche
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
 import { ActivatedRoute } from '@angular/router';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -44,14 +45,14 @@ export class BiochemistryontreatmentComponent implements OnInit {
         private patientService: PatientService,
         private treatmentService: TreatmentService,
         private route: ActivatedRoute,
+        private toastr: ToastrService,
         private clinicalrecordservice: PatientclinicalrecordService,
         private bioChemistryService: BioChemistryService) {
 
         this.bioChemistryontreatmentForm = formBuilder.group({
             'CollectionDate': ['', Validators.required],
             'LMP': ['', Validators.required],
-            'IsRandom': [false],
-            'RefRange': ['']
+            'IsRandom': [false]
         });
 
         this.bioChemistryontreatmentForm.disable();
@@ -75,6 +76,8 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
                         this.bioChemistry = resp;
                         this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+
+                        this.patchValues(this.bioChemistry);
 
                     });
 
@@ -108,7 +111,17 @@ export class BiochemistryontreatmentComponent implements OnInit {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.bioChemistryTestDetails = this.testDetail;
 
-        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp=>console.log(resp));
+        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test saved!"));
+
+    }
+
+    onUpdate(value) {
+
+        value.bioChemistryTestOnTreatmentId = this.bioChemistry.bioChemistryTestOnTreatmentId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.bioChemistryTestDetails = this.testDetail;
+
+        this.bioChemistryService.updatePatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test updated!"));
 
     }
 
@@ -118,6 +131,20 @@ export class BiochemistryontreatmentComponent implements OnInit {
             console.log(patient.partner);
             this.spouse = patient.partner;
         });
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    patchValues(biochemistry) {
+        this.bioChemistryontreatmentForm.patchValue({
+            'CollectionDate': biochemistry.collectionDate,
+            'LMP': biochemistry.lmp,
+            'IsRandom': biochemistry.isRandom
+        })
     }
 
 

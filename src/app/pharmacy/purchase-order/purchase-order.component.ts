@@ -134,6 +134,10 @@ export class PurchaseOrderComponent implements OnInit {
     CalculateDiscountAmount(value) {
         // console.log(value);
 
+<<<<<<< HEAD
+=======
+        this.dataEnabled = true;
+>>>>>>> master
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
          console.log(this.DiscountAmount);
         this.CalculateNetAmount();
@@ -222,7 +226,7 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
     SubmitPurchaseOrder() {
-        
+
         var a: any = {
             OrderDate: this.PurchaseOrderForm.value.OrderDate,
             Status: this.PurchaseOrderForm.value.Status,
@@ -244,7 +248,6 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
 }
-
 
 
 

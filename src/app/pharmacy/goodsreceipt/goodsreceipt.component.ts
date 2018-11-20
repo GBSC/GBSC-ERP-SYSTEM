@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import {BrowserModule} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { PharmacyService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
@@ -20,16 +20,16 @@ export class GoodsreceiptComponent implements OnInit {
     private GoodReceiptNoteForm: FormGroup;
     private GoodReceiptNoteItemsForm: FormGroup;
 
-    private SelectedPurchaseOrder : PurchaseOrder;
-    private SelectedPurchaseOrderItems : any[] = [];
+    private SelectedPurchaseOrder: PurchaseOrder;
+    private SelectedPurchaseOrderItems: any[] = [];
 
-    private ExpectedAmount : number[] = [];
-    private PaymentAmount : number[] = [];
-    private DifferenceAmount : number[] = [];
+    private ExpectedAmount: number[] = [];
+    private PaymentAmount: number[] = [];
+    private DifferenceAmount: number[] = [];
 
-    private ExpectedQuantity : number[] = [];
-    private ReceivedQuantity : number[] = [];
-    private DifferenceQuantity : number[] = [];
+    private ExpectedQuantity: number[] = [];
+    private ReceivedQuantity: number[] = [];
+    private DifferenceQuantity: number[] = [];
 
     private TotalExpectedQuantity: number = 0;
     private TotalReceivedQuantity: number = 0;
@@ -38,11 +38,11 @@ export class GoodsreceiptComponent implements OnInit {
     private TotalPaymentAmount: number = 0;
     private TotalDifferenceAmount: number = 0;
 
-    private GrnItems : GRNItem[] = [];
-    private Grn : GRN;
-    private Inventories : Inventory[] = [];
+    private GrnItems: GRNItem[] = [];
+    private Grn: GRN;
+    private Inventories: Inventory[] = [];
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast : ToastrService) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
@@ -60,18 +60,18 @@ export class GoodsreceiptComponent implements OnInit {
         });
 
         this.GoodReceiptNoteItemsForm = this.formBuilder.group({
-            ManualCode : [''],
-            Description : [''],
-            PackType : [''],
-            PackSize : [''],
-            Unit : [''],
-            Rate : [],
-            ExpectedAmount : [],
-            PaymentAmount : [],
-            DifferenceAmount : [],
-            ExpectedQuantity : [],
-            ReceivedQuantity : [],
-            DifferenceQuantity : []
+            ManualCode: [''],
+            Description: [''],
+            PackType: [''],
+            PackSize: [''],
+            Unit: [''],
+            Rate: [],
+            ExpectedAmount: [],
+            PaymentAmount: [],
+            DifferenceAmount: [],
+            ExpectedQuantity: [],
+            ReceivedQuantity: [],
+            DifferenceQuantity: []
         });
 
     }
@@ -79,12 +79,12 @@ export class GoodsreceiptComponent implements OnInit {
     ngOnInit() {
     }
 
-    GetSelectedPurchaseOrderDetails(ponumber, keycode){
-         console.log(ponumber);
-         console.log(  keycode);
-        if(keycode.key == "Enter") {
-            this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
-                if(res != null) {
+    GetSelectedPurchaseOrderDetails(ponumber, keycode) {
+        console.log(ponumber);
+        console.log(keycode);
+        if (keycode.key == "Enter") {
+            this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res: PurchaseOrder) => {
+                if (res != null) {
                     this.SelectedPurchaseOrder = res;
                     //console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
                     this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
@@ -115,8 +115,8 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     AddGrnItem(index) {
-        
-        var a : any = {
+
+        var a: any = {
             ReceivedQuantity: this.ReceivedQuantity[index],
             ExpectedQuantity: this.ExpectedQuantity[index],
             DifferenceQuantity: this.DifferenceQuantity[index],
@@ -129,10 +129,10 @@ export class GoodsreceiptComponent implements OnInit {
         this.GrnItems.push(a);
         // console.log("GrnItems", this.GrnItems);
 
-        var b : any = {
-            InventoryId : this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
-            StockQuantity : this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
-            InventoryItemId : this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
+        var b: any = {
+            InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
+            StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
+            InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
         // console.log("Inventory", b);
         this.Inventories.push(b);
@@ -141,18 +141,18 @@ export class GoodsreceiptComponent implements OnInit {
 
     SubmitGRN() {
 
-        var a : any = {
-            GrnDate : this.GoodReceiptNoteForm.value.GrnDate,
-            PurchaseOrderId : this.SelectedPurchaseOrder.purchaseOrderId,
-            Remarks : this.GoodReceiptNoteForm.value.Remarks,
-            TotalExpectedAmount : this.TotalExpectedAmount,
-            TotalPaymentAmount : this.TotalPaymentAmount,
-            TotalDifferenceAmount : this.TotalDifferenceAmount,
-            TotalExpectedQUantity : this.TotalExpectedQuantity,
-            TotalReceivedQuantity : this.TotalReceivedQuantity,
-            TotalDifferenceQuantity : this.TotalDifferenceQuantity,
-            Supplier : this.SelectedPurchaseOrder.supplier.name,
-            GrnItems : this.GrnItems
+        var a: any = {
+            GrnDate: this.GoodReceiptNoteForm.value.GrnDate,
+            PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
+            Remarks: this.GoodReceiptNoteForm.value.Remarks,
+            TotalExpectedAmount: this.TotalExpectedAmount,
+            TotalPaymentAmount: this.TotalPaymentAmount,
+            TotalDifferenceAmount: this.TotalDifferenceAmount,
+            TotalExpectedQUantity: this.TotalExpectedQuantity,
+            TotalReceivedQuantity: this.TotalReceivedQuantity,
+            TotalDifferenceQuantity: this.TotalDifferenceQuantity,
+            Supplier: this.SelectedPurchaseOrder.supplier.name,
+            GrnItems: this.GrnItems
         };
 
         // console.log("VarGrn", a);
@@ -173,7 +173,7 @@ export class GoodsreceiptComponent implements OnInit {
     ResetWholeForm() {
         this.GoodReceiptNoteForm.reset();
         this.GoodReceiptNoteItemsForm.reset();
-        
+
         this.SelectedPurchaseOrder = null;
         this.SelectedPurchaseOrderItems = null;
 
@@ -196,5 +196,5 @@ export class GoodsreceiptComponent implements OnInit {
         this.Grn = null;
         this.Inventories = null;
     }
-    
+
 }

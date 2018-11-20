@@ -19,6 +19,10 @@ export class RootComponent implements OnInit {
     constructor(private _script: ScriptLoaderService, private _router: Router) { }
 
     ngOnInit() {
+        // let visitID = JSON.parse(sessionStorage.getItem('visitId'));
+        // console.log(visitID);
+        //  this.patientService.visitid = visitID;
+
         this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/demo7/base/scripts.bundle.js'], true)
             .then(result => {
                 Helpers.setLoading(false);

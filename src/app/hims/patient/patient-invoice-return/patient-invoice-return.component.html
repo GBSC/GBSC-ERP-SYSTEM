@@ -10,159 +10,105 @@
                 <i class="la la-gear"></i>
               </span>
               <h3 class="m-portlet__head-text">
-                Patient Invoice Return Item
+                Patient Invoice Return
               </h3>
             </div>
           </div>
-        </div>
+        </div><div class="m-portlet__body">
         <!--begin::Form-->
-        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="PatientInvoiceReturnForm">
-          <div class="m-portlet__body">
+        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="ReturnForm">
+          
             <div class="form-group row">
               <div class="form-group col-lg-3">
-                <label for="exampleInputEmail1">Nature</label>
-                <input class="form-control m-input m-input--solid" formControlName="Nature" type="text">
+                <label for="exampleInputEmail1">Slip Number</label>
+                <input class="form-control m-input m-input--solid" formControlName="SlipNumber" #SlipNumber type="text"
+                  (keyup)="GetInvoiceBySlipNumber($event, SlipNumber.value)">
               </div>
               <div class="form-group col-lg-3">
-                <label for="exampleInputEmail1">Unit Price</label>
-                <input class="form-control m-input m-input--solid" formControlName="UnitPrice" type="text">
+                <label for="exampleInputEmail1">Return Date</label>
+                <input class="form-control m-input m-input--solid" formControlName="ReturnDate" type="date" [value]="CurrentDate | date : 'yyyy-MM-dd'">
               </div>
               <div class="form-group col-lg-3">
-              <label for="exampleInputEmail1">Name</label>
-                <input class="form-control m-input m-input--solid" formControlName="Name" type="text">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Sale Quantity</label>
-                  <input class="form-control m-input m-input--solid" formControlName="SaleQuantity" type="text">
-                </div>
+                <label for="exampleInputEmail1">Remarks</label>
+                <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
               </div>
-              <div class="form-group row">
-               
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Discount Percentage</label>
-                  <input class="form-control m-input m-input--solid" formControlName="DiscountPercentage" type="text">
-                </div>
-                <div class="form-group col-lg-3">
-                <label for="exampleInputEmail1">Sale Gross Amount</label>
-                  <input class="form-control m-input m-input--solid" formControlName="SaleGrossAmount" type="text">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Sale Discount Amount</label>
-                  <input class="form-control m-input m-input--solid" formControlName="SaleDiscountAmount" type="text">
-                </div>
-
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Sale Net Amount</label>
-                  <input class="form-control m-input m-input--solid" formControlName="SaleNetAmount" type="text">
-                </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Invoice Type</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="InvoiceType" type="text">
               </div>
-
-                <div class="form-group row">
-                  
-                
-                  <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Return Quantity</label>
-                    <input class="form-control m-input m-input--solid" formControlName="ReturnQuantity" type="text">
-                  </div>
-                  <div class="form-group col-lg-3">
-                    <label for="exampleInputEmail1">Discount Deduction Amount</label>
-                    <input class="form-control m-input m-input--solid" formControlName="DiscountDeductionAmount" type="text">
-                  </div>
-                  <div class="form-group col-lg-3">
-                    <label for="exampleInputEmail1">Return Net Amount</label>
-                    <input class="form-control m-input m-input--solid" formControlName="ReturnNetAmount" type="text">
-                  </div>
-                  <div class="form-group col-lg-3">
-                    <label for="exampleInputEmail1">Remarks</label>
-                      <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
-                    </div>
-                </div>
-               
-                    <div class="form-group row" style="background-color: cadetblue;">
-                      <div class="m-form__seperator m-form__seperator--dashed" ></div>
-                    </div>
-
-                  <div class="form-group row">
-                    <div class="m-form__heading">
-                        <h3 class="m-form__heading-title">
-														Patient Invoice Item
-													</h3>
-                    </div>        
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="form-group col-lg-3">
-                    <label for="exampleInputEmail1">Slip Number</label>
-                      <input class="form-control m-input m-input--solid" formControlName="SlipNumber" type="text">
-                    </div>
-                    <div class="form-group col-lg-3">
-                      <label for="exampleInputEmail1">Date Created</label>
-                        <input class="form-control m-input m-input--solid" formControlName="DateCreated" type="text">
-                      </div>
-                      <div class="form-group col-lg-3">
-                        <label for="exampleInputEmail1">Total Gross Amount</label>
-                          <input class="form-control m-input m-input--solid" formControlName="TotalGrossAmount" type="text">
-                        </div>
-                        <div class="form-group col-lg-3">
-                          <label for="exampleInputEmail1">Total Discount Amount</label>
-                            <input class="form-control m-input m-input--solid" formControlName="TotalDiscountAmount" type="text">
-                          </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="form-group col-lg-3">
-                    <label for="exampleInputEmail1">Total Net Amount</label>
-                      <input class="form-control m-input m-input--solid" formControlName="TotalNetAmount" type="text">
-                    </div>
-                  </div>
-
-
-  
-
-             
-           
-
-
-           
-          </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Purchase Date</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="PurchaseDate" type="date"
+                  [value]="PurchaseDate | date : 'yyyy-MM-dd'" [value]="CurrentDate | date : 'yyyy-MM-dd'">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">MRN</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="MRN" type="text">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Patient Name</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="PatientName" type="text">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Spouse Name</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="SpouseName" type="text">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Net Sale</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="NetSale" type="number">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Gross Return</label>
+                <input class="form-control m-input m-input--solid" disabled [value]="TotalGrossReturn" formControlName="GrossReturn" type="number">
+              </div>
+              <div class=" form-group col-lg-3">
+                <label for="exampleInputEmail1">Deducted Discount</label>
+                <input class="form-control m-input m-input--solid" disabled [value]="TotalDiscountDeduction" formControlName="DeductedDiscount" type="number">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">Net Return</label>
+                <input class="form-control m-input m-input--solid" disabled [value]="TotalNetReturn" formControlName="NetReturn" type="number">
+              </div>
+            </div>
+         
         </form>
+
+        <div class="form-group row">
+        <div class="form-group col-md-12">
+          <dx-data-grid id="gridContainer" [dataSource]="PatientInvoiceReturnItems" [columnAutoWidth]="true"
+            [showBorders]="true" (onRowUpdating)="UpdatingModel($event)">
+            <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false"></dxo-editing>
+            <dxo-paging [pageSize]="10"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 15]" [showInfo]="true"></dxo-pager>
+            <dxi-column dataField="Name" caption="Name" dataType="text" [allowEditing]="false" [visible]="true"></dxi-column>
+            <dxi-column dataField="Description" caption="Description" dataType="text" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="UnitPrice" caption="Unit Price" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="SaleQuantity" dataType="date" caption="Sale Quantity" dataType="number"
+              [allowEditing]="false" [visible]="true"></dxi-column>
+            <dxi-column dataField="SaleGrossAmount" caption="Sale Gross Amount" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="SaleDiscountPercentage" caption="Sale Discount %" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="SaleDiscountAmount" caption="Sale Discount Amount" dataType="number" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="SaleNetAmount" caption="Sale Net Amount" dataType="number" [allowEditing]="false" [visible]="true"></dxi-column>
+            <dxi-column dataField="IsPaid" dataType="date" caption="Paid" dataType="boolean" [allowEditing]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="ReturnQuantity" caption="Return Quantity" dataType="number" [allowEditing]="true" [visible]="true"></dxi-column>
+            <dxi-column dataField="DiscountDeductionAmount" caption="Discount Deduction" dataType="number"
+              [allowEditing]="false" [visible]="true"></dxi-column>
+            <dxi-column dataField="ReturnNetAmount" caption="Return Net Amount" dataType="number" [allowEditing]="false" [visible]="true"></dxi-column>
+            <dxi-column dataField="Remarks" caption="Remarks" dataType="text" [allowEditing]="true" [visible]="true"></dxi-column>
+          </dx-data-grid>
+        </div>
+        </div>
+        <div class="form-group row">
+          <div class="form-group col-md-12">
+            <button class="btn btn-success pull-right" type="button" (click)="SubmitReturn(ReturnForm.value)">Submit</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Patient Invoice</h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-                <div class="m-section">
-            <div class="m-section__content" >
-                <dx-data-grid id="" [dataSource]="PatientServiceobj?.SearchPatientbyname" (onSelectionChanged)="selectionChanged($event)"> 
-               <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
-                <dxo-selection mode="single"></dxo-selection>
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-paging [pageSize]="5"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                <dxi-column dataField="mrn" caption="MRN #"></dxi-column>
-                <dxi-column dataField="fullName" caption="Patient Name"></dxi-column>  
-                <dxi-column dataField="phoneNumber" caption="Contact Number"></dxi-column>
-                <dxi-column dataField="date" dataType="date" caption="Registration Date"></dxi-column>
-                <dxi-column dataField="gender" caption="Gender"></dxi-column>  
-                </dx-data-grid>  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 </div>
 </div>

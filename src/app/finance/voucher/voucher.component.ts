@@ -120,7 +120,7 @@ export class VoucherComponent implements OnInit {
       this.VoucherForm.value.voucherDetails = this.VoucherDetailForm.value.VoucherDetails;
       await this.financeService.addVoucher(value);
       this.toastr.success("Successfuly! Voucher Added")
-      console.log(value);
+      this.router.navigate(['finance/voucher-detail']);
     }
     else {
       this.toastr.error("Credit Debit Amount not equal");

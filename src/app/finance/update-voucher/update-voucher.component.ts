@@ -78,7 +78,7 @@ export class UpdateVoucherComponent implements OnInit {
 
 
     if (this.isUpdate() === true) {
-      this.financeService.getVoucher(this.id).subscribe(resp => {
+      this.financeService.getVoucher(this.id).subscribe((resp : any) => {
         this.Voucher = resp;
         console.log(this.Voucher);
         this.Detail = this.Voucher.voucherDetails;
@@ -87,8 +87,22 @@ export class UpdateVoucherComponent implements OnInit {
         setTimeout(() => {
           console.log(this.Detail);
           console.log(resp);
-        }, 10000);
-        console.log(this.VoucherDetailForm)
+          console.log(this.VoucherDetailForm);
+          for(let c of this.VoucherDetailForm.controls.VoucherDetails.controls) {
+            for(let key in c.controls) {
+              for(let v in resp.voucherDetails) {
+                // console.log(resp.voucherDetails[v])
+                for(let vv in resp.voucherDetails[v]) {
+                  console.log(resp.voucherDetails[v][vv])
+                  console.log(c.controls[key].value = resp.voucherDetails[v][vv]);
+                  c.controls[key].value = resp.voucherDetails[v][vv]
+                }
+              }
+
+            }
+            console.log(c.controls);
+          }
+        }, 1000);
         let a = this.Voucher.voucherDetails;
         this.Detail = a.map(b => {
           delete b.voucherDetailId;

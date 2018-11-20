@@ -189,8 +189,6 @@
                         <tbody formArrayName="VoucherDetails">
                           <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
                             <td>
- 
-
                               <select class="form-control m-input" data-live-search="true" formControlName="DetailAccountId" [value]="a?.name">
                                 <option value="" disabled selected>-- Select Detail A/C --</option>
                                 <option *ngFor="let account of detailAccount" [value]="account.detailAccountId">{{account.detailAccountCode}}

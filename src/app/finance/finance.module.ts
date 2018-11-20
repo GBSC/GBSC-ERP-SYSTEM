@@ -27,6 +27,7 @@ import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-d
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 
 @NgModule({
     imports: [
@@ -62,7 +63,8 @@ import { UpdateVoucherComponent } from './update-voucher/update-voucher.componen
         SalesReturnDetailComponent,
         VoucherDetailComponent,
         DemoComponent,
-        UpdateVoucherComponent
+        UpdateVoucherComponent,
+        ReportViewerComponent
     ],
     providers: [FinanceSetupService,FinanceService]
 })

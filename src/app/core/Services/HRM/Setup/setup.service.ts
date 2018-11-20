@@ -54,10 +54,6 @@ export class SetupService {
     /** CRUD METHODS  Country*/
     /** CRUD METHODS */
     async getAllCountries() {
-
-
-
-
         this.country = await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
         return this.country;
 
@@ -70,10 +66,8 @@ export class SetupService {
 
     // DEMO ONLY, you can find working methods below
     async addCountry(data) {
-
-
-
-        let newcountry = await this.ApiService.post(this.hrUrl + '/AddCountry', data).toPromise();
+      
+      return await this.ApiService.post(this.hrUrl + '/AddCountry', data).toPromise();
 
     }
 

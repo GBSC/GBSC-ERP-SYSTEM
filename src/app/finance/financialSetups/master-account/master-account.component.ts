@@ -47,6 +47,6 @@ export class MasterAccountComponent implements OnInit {
 
   async deleteMasteraccount(value) {
 
-      await this.financeService.DeleteMasterAccount(value.data);
+      await this.financeService.DeleteMasterAccount(value.key);
   }
 }

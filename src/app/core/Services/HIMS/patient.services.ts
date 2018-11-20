@@ -122,10 +122,6 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRN/' + mrn);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 89ef0cfe9c79d8b65c5b0107310fffea107cc83c
     GetPatientInvoicesWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRNandDate/' + mrn + '/' + date);
     }

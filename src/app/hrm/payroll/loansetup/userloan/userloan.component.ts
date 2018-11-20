@@ -41,7 +41,7 @@ export class UserloanComponent implements OnInit {
     }
 
     async deleteUserLoan(value) {
-        
+
         await this.payrollsetupservice.deleteUserLoan(value.key);
     }
 }

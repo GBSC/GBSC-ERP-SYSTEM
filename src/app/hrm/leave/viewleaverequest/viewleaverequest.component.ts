@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
 })
 export class ViewleaverequestComponent implements OnInit {
 
-  public leaveRequestId : any;
-  public leaverequestdetail: any;
-  public leaveYear: any;
-  public employees: any;
-  public leaveType: any;
-  public leaveApprovr: any;
-  public leaverequest: any;
-  public leaveOpening: any;
+    public leaveRequestId: any;
+    public leaverequestdetail: any;
+    public leaveYear: any;
+    public employees: any;
+    public leaveType: any;
+    public leaveApprovr: any;
+    public leaverequest: any;
+    public leaveOpening: any;
 
-  constructor(public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
-    public router: Router, public leaveservice: LeaveService) { }
+    constructor(public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+        public router: Router, public leaveservice: LeaveService) { }
 
 
     async ngOnInit() {
@@ -39,35 +39,35 @@ export class ViewleaverequestComponent implements OnInit {
 
     }
 
-  onToolbarPreparing(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          icon: 'add',
-          onClick: this.addleaveRequest.bind(this)
-        }
-      });
-  }
+    onToolbarPreparing(e) {
+        e.toolbarOptions.items.unshift(
+            {
+                location: 'after',
+                widget: 'dxButton',
+                options: {
+                    icon: 'add',
+                    onClick: this.addleaveRequest.bind(this)
+                }
+            });
+    }
 
 
-  contentReady(e) {
-    if (!e.component.getSelectedRowKeys().length)
-      e.component.selectRowsByIndexes(-1);
-  }
+    contentReady(e) {
+        if (!e.component.getSelectedRowKeys().length)
+            e.component.selectRowsByIndexes(-1);
+    }
 
-  selectionChanged(e) {
-    e.component.collapseAll(-0);
-    e.component.expandRow(e.currentSelectedRowKeys[0]);
-  }
+    selectionChanged(e) {
+        e.component.collapseAll(-0);
+        e.component.expandRow(e.currentSelectedRowKeys[0]);
+    }
 
-  addleaveRequest() {
-    this.router.navigate(['/hrm/leave/createleaverequest']);
-  }
+    addleaveRequest() {
+        this.router.navigate(['/hrm/leave/createleaverequest']);
+    }
 
-  getSingleRowData(d) {
-    this.leaveRequestId = d.key;
-    this.router.navigate(['hrm/leave/update-leave-request/' + this.leaveRequestId]);
-  }
+    getSingleRowData(d) {
+        this.leaveRequestId = d.key;
+        this.router.navigate(['hrm/leave/update-leave-request/' + this.leaveRequestId]);
+    }
 }

@@ -47,10 +47,10 @@ export class PatientvitalsComponent implements OnInit {
     ngOnInit() {
 
         this.currentPatient = this.PatientServiceobj.currentPatient;
-      //  console.log(this.currentPatient);
+        //  console.log(this.currentPatient);
 
         this.visitid = this.PatientServiceobj.visitid;
-       // console.log(this.visitid);
+        // console.log(this.visitid);
 
 
         this.route.params.subscribe(params => {
@@ -60,7 +60,7 @@ export class PatientvitalsComponent implements OnInit {
             let x = this.PatientServiceobj.getpatient(this.id).subscribe(Patient => {
                 this.Patient = Patient;
             });
-          //  console.log(x);
+            //  console.log(x);
         });
 
     }
@@ -68,8 +68,8 @@ export class PatientvitalsComponent implements OnInit {
     async  onsubmit(value) {
 
         let visitID = JSON.parse(sessionStorage.getItem('visitId'));
-      //  console.log(visitID);
-        this.visitid =  visitID.visitID;
+        //  console.log(visitID);
+        this.visitid = visitID.visitID;
         // console.log(this.visitid.value);
 
         // this.appointmentForm.value.patientId = this.patientIdIs.patientId;

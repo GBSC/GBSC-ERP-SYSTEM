@@ -15,13 +15,18 @@
 				<div class="m-portlet__body">
 					<ul class="nav nav-pills" role="tablist">
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_1" [ngClass]="{'active show': !id}">
-								Select Appointment
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_1" [ngClass]="showApp">
+								Appointment
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_3" [ngClass]="{'active show': id}">
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_2" [ngClass]="showID">
 								Invoice
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_3" [ngClass]="showMRN">
+								View
 							</a>
 						</li>
 					</ul>
@@ -31,7 +36,7 @@
 
 
 					<div class="tab-content">
-						<div class="tab-pane" id="m_tabs_3_1" role="tabpanel" [ngClass]="{'active show': !id}">
+						<div class="tab-pane" id="m_tabs_3_1" role="tabpanel" [ngClass]="showApp">
 							<div class="form-group col-lg-3">
 								<label> MRN No </label>
 								<input class="form-control m-input" #MRN type="text" (change)="GetAppointmentsByMRN(MRN.value)">
@@ -49,32 +54,31 @@
 							</div> -->
 							<dx-data-grid id="gridContainer" [dataSource]="Appointments">
 								<dxo-paging [pageSize]="5"></dxo-paging>
-								<dxo-pager [showPageSizeSelector]="false" [allowedPageSizes]="[5, 15, 30]" [showInfo]="true"></dxo-pager>
-								<dxi-column dataField="tentativeTime" caption="Tentative"></dxi-column>
-								<dxi-column dataField="finalTime" caption="Final"></dxi-column>
-								<dxi-column dataField="remarks" caption="Remarks"></dxi-column>
-								<dxi-column dataField="consultant.name" caption="Consultant"></dxi-column>
-								<dxi-column dataField="patient.firstName" caption="Patient"></dxi-column>
-								<dxi-column dataField="visitStatus" caption="Visit Status"></dxi-column>
-								<dxi-column dataField="isFinalAppointment" caption="Finalized"></dxi-column>
-								<dxi-column dataField="isPaid" caption="Paid"></dxi-column>
-								<dxi-column caption="Invoice" cellTemplate="chartCellTemplate" [width]="auto" [formItem]="{visible: false}"></dxi-column>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 15, 30]" [showInfo]="true"></dxo-pager>
+								<dxi-column dataField="appointmentDate" dataType="date" caption="Date"></dxi-column>
+								<dxi-column dataField="tentativeTime" dataType="date" format="hh:mm:ss" caption="Tentative"></dxi-column>
+								<dxi-column dataField="finalTime" dataType="date" format="hh:mm:ss" caption="Final"></dxi-column>
+								<dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
+								<dxi-column dataField="consultant.name" dataType="text" caption="Consultant"></dxi-column>
+								<dxi-column dataField="patient.firstName" dataType="text" caption="Patient"></dxi-column>
+								<dxi-column dataField="visitStatus" dataType="text" caption="Visit Status"></dxi-column>
+								<dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized"></dxi-column>
+								<dxi-column dataField="isPaid" dataType="boolean" caption="Paid"  ></dxi-column>
+								<dxi-column dataField="isPaid" caption="Invoice" cellTemplate="chartCellTemplate" [width]="auto" ></dxi-column>
 								<div *dxTemplate="let d of 'chartCellTemplate'">
-									<div class="chart-cell">
-										<dx-button *ngIf="isPaid; else Generate" caption="Add Invoice" (click)="ViewInvoice(d)" icon="back"></dx-button>
-									<!-- </div> -->
-									<ng-template class="chart-cell" #Generate>
-										<dx-button caption="Generate Invoice" (click)="GenerateInvoice(d)" icon="plus"></dx-button>
-									</ng-template>
+										<dx-button *ngIf="d.value == null || d.value == false" (click)="SwitchTab('id', d, MRN.value)" icon="plus"></dx-button>
+										<dx-button *ngIf="d.value == true"  (click)="SwitchTab('mrn', d, MRN.value)"icon="back"></dx-button>
 								</div>
-								</div>	
 							</dx-data-grid>
 						</div>
 
 
-						<div class="tab-pane" id="m_tabs_3_3" role="tabpanel" [ngClass]="{'active show': id}">
+						<div class="tab-pane" id="m_tabs_3_2" role="tabpanel" [ngClass]="showID">
 							<app-appointmentpaymentreceipt></app-appointmentpaymentreceipt>
+						</div>
 
+						<div class="tab-pane" id="m_tabs_3_3" role="tabpanel" [ngClass]="showMRN">
+							<app-patient-invoice-view></app-patient-invoice-view>
 						</div>
 					</div>
 

@@ -35,7 +35,7 @@ export class PayrollService {
         return await this.ApiService.get(`${this.baseUrl}/GetGratuities`).toPromise();
     }
 
-    getGratuity(id) : Observable<Gratuity> {
+    getGratuity(id): Observable<Gratuity> {
         return this.ApiService.get(this.baseUrl + '/GetGratuity/' + id);
     }
 
@@ -43,7 +43,7 @@ export class PayrollService {
         return await this.ApiService.post(`${this.baseUrl}/AddGratuity`, data).toPromise();
     }
 
-     updateGratuity(data : Gratuity) : Observable<any> {
+    updateGratuity(data: Gratuity): Observable<any> {
 
         return this.ApiService.put(`${this.baseUrl}/UpdateGratuity`, data);
     }
@@ -56,7 +56,7 @@ export class PayrollService {
         return await this.ApiService.get(`${this.baseUrl}/GetMonthlyUserSalaries`).toPromise();
     }
 
-    getmonthlyUserSalary(id) : Observable<MonthlyUserSalary> {
+    getmonthlyUserSalary(id): Observable<MonthlyUserSalary> {
 
         return this.ApiService.get(this.baseUrl + '/GetMonthlyUserSalary/' + id);
     }
@@ -66,7 +66,7 @@ export class PayrollService {
         return await this.ApiService.post(`${this.baseUrl}/AddMonthlyUserSalary`, data).toPromise();
     }
 
-     updateMonthlySalary(data : MonthlyUserSalary) : Observable<any> {
+    updateMonthlySalary(data: MonthlyUserSalary): Observable<any> {
 
         return this.ApiService.put(`${this.baseUrl}/UpdateMonthlyUserSalary`, data);
     }

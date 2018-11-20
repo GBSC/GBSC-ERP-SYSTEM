@@ -40,9 +40,9 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input" formControlName="LeaveYearId">
                       <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                     Remarks:
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control m-input" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control m-input" formControlName="Remarks" rows="3"></textarea>
                   </div>
                 </div>
               </div>

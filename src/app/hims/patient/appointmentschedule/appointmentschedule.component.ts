@@ -311,7 +311,7 @@ export class AppointmentscheduleComponent implements OnInit {
         }
 
         else{ 
- 
+             console.log(value.PatientId );
             if (value.PatientId == null || value.PatientId == '') {
                 this.toastr.error('Please Select Patient');
             }

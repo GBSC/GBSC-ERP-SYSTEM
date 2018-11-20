@@ -156,17 +156,20 @@
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-sm-10">
+                  <!-- <div class="col-sm-10">
                     <div class="form-group m-form__group">
                       <label for="exampleTextarea col-sm-3">
                         Referance Range
                       </label>
                       <textarea class="form-control m-input col-sm-9" id="exampleTextarea" rows="3"></textarea>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="col-sm-2">
-                    <button (click)="submitForm(bioChemistryOutsiderForm.value)" class="btn btn-primary">
+                    <button *ngIf="!bioChemistry" (click)="submitForm(bioChemistryOutsiderForm.value)" class="btn btn-primary">
                       Submit
+                    </button>
+                    <button *ngIf="bioChemistry" (click)="updateForm(bioChemistryOutsiderForm.value)" class="btn btn-primary">
+                      Update
                     </button>
                   </div>
                 </div>

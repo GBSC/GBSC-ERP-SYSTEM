@@ -12,6 +12,7 @@ import { TestUnit } from '../../../core/Models/HIMS/testunit';
 import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
 import { BiochemistryoutsiderService } from '../../../../app/core/Services/HIMS/Lab/biochemistryoutsider.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-biochemistry',
@@ -38,6 +39,7 @@ export class BiochemistryComponent implements OnInit {
         private consultantService: ConsultantService,
         private patientService: PatientService,
         private bioChemistryService: BioChemistryService,
+        private toastr: ToastrService,
         private route: ActivatedRoute, ) {
 
         this.bioChemistryOutsiderForm = formBuilder.group({
@@ -59,16 +61,7 @@ export class BiochemistryComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.id = +params['id'];
 
-            this.bioChemistryOutsiderService.getBioChemistryTestOutsider(this.id).subscribe(resp => {
-
-                this.bioChemistry = resp;
-
-                if (this.bioChemistry) {
-                    this.testDetail = this.bioChemistry.bioChemistryTestDetails;
-
-                }
-
-            })
+            this.setValues();
 
         })
 
@@ -87,11 +80,41 @@ export class BiochemistryComponent implements OnInit {
 
     }
 
+    setValues() {
+
+        this.bioChemistryOutsiderService.getBioChemistryTestOutsider(this.id).subscribe(resp => {
+
+            this.bioChemistry = resp;
+
+            if (this.bioChemistry) {
+                this.patchValues(this.bioChemistry);
+                this.testDetail = this.bioChemistry.bioChemistryTestDetails;
+            }
+
+        });
+    }
+
     submitForm(value: any) {
 
         value.bioChemistryTestDetails = this.testDetail;
 
-        this.bioChemistryOutsiderService.addBioChemistryTestOutsider(value).subscribe(resp => console.log(resp));
+        this.bioChemistryOutsiderService.addBioChemistryTestOutsider(value).subscribe(resp => {
+            this.displayToast("Biochemistry Test Saved!");
+            this.id = resp.bioChemistryTestOutsiderId;
+            this.setValues();
+
+        });
+    }
+
+    updateForm(value: any) {
+
+        value.bioChemistryTestDetails = this.testDetail;
+        value.bioChemistryTestOutsiderId = this.id;
+
+        this.bioChemistryOutsiderService.updateBioChemistryTestOutsider(value).subscribe(resp => {
+            this.displayToast("Biochemistry Test Updated!");
+
+        });
     }
 
     populatePatientDate(patientId) {
@@ -99,6 +122,24 @@ export class BiochemistryComponent implements OnInit {
             this.patient = patient;
             this.spouse = patient.partner;
         });
+    }
+
+    patchValues(biochesmitry) {
+
+        this.bioChemistryOutsiderForm.patchValue({
+
+            'PatientId': biochesmitry.patientId,
+            'ConsultantId': biochesmitry.consultantId,
+            'CollectionDate': biochesmitry.collectionDate,
+            'LMP': biochesmitry.lMP,
+            'Days': biochesmitry.days,
+            'Others': biochesmitry.others,
+            'IsRandom': biochesmitry.isRandom
+        });
+    }
+
+    public displayToast(message) {
+        this.toastr.success(message);
     }
 
 

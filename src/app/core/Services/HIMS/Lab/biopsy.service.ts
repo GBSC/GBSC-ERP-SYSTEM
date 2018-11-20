@@ -20,13 +20,13 @@ export class BiopsyService {
     }
 
     getPatientBiopsy(id: number): Observable<any> {
-        return this.ApiService.get(this.Url + "GetBiopsy/" + id);
+        return this.ApiService.get(this.Url + "GetBiopsyById/" + id);
     }
 
-    getPatientBiopsyByCollectionDate(date: string): Observable<any> {
+    getPatientBiopsyByCollectionDate(date: string, patientid: string): Observable<any> {
 
-        let httpParams = new HttpParams().set("date", date);
-        return this.ApiService.get(this.Url + "GetBiopsyByCollectionDate", httpParams);
+        let params = `date=${date}&patientid=${patientid}`;
+        return this.ApiService.get(this.Url + "GetBiopsyByCollectionDate?" + params);
 
     }
 
@@ -35,7 +35,7 @@ export class BiopsyService {
     }
 
     updatePatientBiopsy(value): Observable<any> {
-        return this.ApiService.put(this.Url + "UpdatetBiopsy", value);
+        return this.ApiService.put(this.Url + "UpdateBiopsy", value);
     }
 
     deletePatientBiopsy(id) {

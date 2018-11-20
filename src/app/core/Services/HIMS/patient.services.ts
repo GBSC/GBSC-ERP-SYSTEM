@@ -745,11 +745,7 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceItems');
     }
 
-    GetPatientInvoiceItem(id: number): Observable<PatientInvoiceItem> {
-        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceItem/' + id);
-    }
-
-    AddPatientInvoiceItem(PatientInvoiceItem: PatientInvoiceItem): Observable<any> {
+    AddPatientINvoiceItem(PatientInvoiceItem: PatientInvoiceItem): Observable<any> {
         return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceItem', PatientInvoiceItem);
     }
 

@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
+    public patientReferenceForm : FormGroup;
 
     public editdocumentForm: FormGroup;
     public documents: any = [];
@@ -54,6 +55,9 @@ export class RegistrationComponent implements OnInit {
             'PatientId': [''],
             'patientReferenceId': ['']
         });
+
+
+
         this.documentForm = this.formBuilder.group({
             'DocumentName': ['', Validators.required],
             'Remarks': ['', Validators.required],
@@ -99,6 +103,13 @@ export class RegistrationComponent implements OnInit {
             'patientReferenceId': ['']
             //'patientId' :['',Validators.required]
         });
+
+        this.patientReferenceForm = this.formBuilder.group({
+            'referredBy' : [''],
+            'initial' :[''],
+            'refAddress':[''],
+            'referenceTel':['']
+        })
     }
 
     async ngOnInit() {
@@ -178,6 +189,26 @@ export class RegistrationComponent implements OnInit {
 
         await this.PatientServiceobj.GetVisitNatures();
         this.visitnature = this.PatientServiceobj.visitNatures;
+    }
+
+    async addreference(value) {
+        console.log(value)
+        if( (value.initial == null || value.initial == '' )  && ( value.refAddress == null || value.refAddress == '' )  && ( value.referenceTel == null || value.referenceTel == '' ) && (  value.referredBy == null || value.referredBy == '') ){
+            this.toastr.error('Please Fill All Fields');
+        }
+        else{
+            await this.PatientServiceobj.addReferenceAsync(value);
+
+        // // // this.PatientServiceobj.addReference(value.key).subscribe(res => {
+        // // //   console.log(res);
+        // // // });
+        this.PatientServiceobj.getReference().subscribe((res: Reference) => {
+            this.getreferncdata = res;
+              console.log(this.getreferncdata);
+        });
+        this.patientReferenceForm.reset();
+    }
+
     }
 
     addrange() {

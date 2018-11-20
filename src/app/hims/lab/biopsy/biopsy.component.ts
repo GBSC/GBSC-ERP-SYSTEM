@@ -23,6 +23,8 @@ export class BiopsyComponent implements OnInit {
     private consultants: any;
     private treatments: any;
     private id: number;
+    private patientid: number;
+    private biopsyid: number;
     private clinicalRecord: any;
     private biopsy: any;
 
@@ -61,18 +63,12 @@ export class BiopsyComponent implements OnInit {
     ngOnInit() {
 
         this.route.params.subscribe((params) => {
+
             this.id = +params['id'];
 
-            if (this.id) {
-                this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+            this.biopsyid = +params['biopsyid'];
 
-                    this.clinicalRecord = resp;
-
-                    this.biopsyService
-                        .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => this.biopsy = resp);
-
-                })
-            }
+            this.setValues();
 
 
         })
@@ -93,11 +89,52 @@ export class BiopsyComponent implements OnInit {
 
     }
 
+    setValues() {
+
+        if (this.id) {
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+                this.patientid = this.clinicalRecord.patientId;
+
+                this.biopsyService
+                    .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
+                        this.biopsy = resp;
+                        this.patchValues(this.biopsy);
+                    });
+
+            })
+        }
+        else if (this.biopsyid) {
+
+            this.biopsyService.getPatientBiopsy(this.biopsyid).subscribe(resp => {
+
+                this.biopsy = resp;
+
+                this.patientid = this.biopsy.patientId;
+
+                this.patchValues(this.biopsy);
+
+            })
+        }
+    }
+
     searchBiopsyByCollectionDate(value) {
 
-        let date = new Date(value).toLocaleDateString();
+        if (value) {
 
-        this.biopsyService.getPatientBiopsyByCollectionDate(date).subscribe(resp => console.log(resp));
+            let date = new Date(value).toLocaleDateString();
+
+            let patientid = this.patient != null ? this.patient.patientId : 0;
+
+            if (patientid > 0)
+                this.biopsyService.getPatientBiopsyByCollectionDate(date, patientid)
+                    .subscribe(resp => this.biopsy = resp);
+
+        }
+
+
     }
 
     populatePatientDate(patientId) {
@@ -109,18 +146,56 @@ export class BiopsyComponent implements OnInit {
 
     submitForm(value) {
 
+        value.patientId = this.patient.patientId;
+
         if (this.clinicalRecord) {
             value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
         }
 
-        this.biopsyService.addPatientBiopsy(value).subscribe(resp => this.displayToast("Biopsy Saved"));
+        this.biopsyService.addPatientBiopsy(value).subscribe(resp => {
+            this.displayToast("Biopsy Saved");
+            this.setValues();
+        });
+    }
+
+    updateForm(value) {
+        value.patientId = this.patient.patientId;
+        value.biopsyId = this.biopsy.biopsyId;
+
+        if (this.clinicalRecord) {
+            value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+
+        }
+
+        this.biopsyService.updatePatientBiopsy(value).subscribe(resp => this.displayToast("Biopsy Updated"));
     }
 
     displayToast(message) {
 
         this.toastr.success(message);
 
+    }
+
+
+    patchValues(biopsy) {
+        this.biopsyForm.patchValue({
+            "BiopsyType": biopsy.biopsyType,
+            "CollectionNumber": biopsy.collectionNumber,
+            "CollectionDate": biopsy.collectionDate,
+            "ProcedureNumber": biopsy.procedureNumber,
+            "Remarks": biopsy.remarks,
+            "PesaTime": biopsy.pesaTime,
+            "PesaLeft": biopsy.pesaLeft,
+            "PesaRight": biopsy.pesaRight,
+            "PesaResult": biopsy.pesaResult,
+            "TeseTime": biopsy.teseTime,
+            "TeseLeft": biopsy.teseLeft,
+            "TeseRight": biopsy.teseRight,
+            "TeseResult": biopsy.teseResult,
+            "PatientId": biopsy.patientId
+
+        })
     }
 
 }

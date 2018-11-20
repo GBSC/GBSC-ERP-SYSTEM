@@ -299,106 +299,119 @@ export class AppointmentscheduleComponent implements OnInit {
             value.PatientId = this.patid;
             this.patid = null;
         }
-
-
-        if (value.PatientId == null || value.PatientId == '') {
-            this.toastr.error('Please Select Patient');
+        if (date == null || date == '' || date.length == 0   ) {
+            this.toastr.error('Please Select AppointmentDate  ');
         }
-        else {
-            console.log(this.allpatients);
-            //  let x = this.allpatients.find(t => t.patientId == value.PatientId)
-            // console.log(x);
-            let x = await this.PatientServiceobj.GetPatientAppointmentsByPatientIdAsync(value.PatientId);
-            console.log(x);
-            if (x.appointments.length) {
-                console.log('lenght');
-                if (x.appointments.find(t =>
-                    (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate))) && (t.consultantId == value.ConsultantId) && (t.isCancelled == false) && (t.visitStatus == 'pendding' || t.visitStatus == 'start'))) {
-                    console.log('find');
-                    this.toastr.error('Appointment Already Started');
-                }
-                else {
-                    if (date == null || date == '' || date.length == 0 && time == null || time == '' || time.length == 0 && cid.value == null || cid.value == '' || cid.value.length == 0) {
-                        this.toastr.error('Please Select AppointmentDate or Tentative Time Or Consultant');
-                    }
-                    else {
-                        if (this.appointmentForm.value.IsFinalAppointment == true) {
-                            this.appointmentForm.value.FinalTime = this.appointmentForm.value.TentativeTime;
-                            this.appointmentForm.value.VisitStatus = 'pendding';
-                            this.appointmentForm.value.IsCancelled = 'false';
-                            this.appointmentForm.value.AppointmentDate = this.appointmentForm.value.FinalTime;
-                        }
-                        else {
-                            this.appointmentForm.value.IsFinalAppointment = 'false';
-                            this.appointmentForm.value.VisitStatus = 'pendding';
-                            this.appointmentForm.value.IsCancelled = 'false';
-                        }
-                        console.log(value);
-                        await this.PatientServiceobj.addAppointment(value);
+       else if ( time == null || time == '' || time.length == 0 ) {
+            this.toastr.error('Please Select Tentative Time O');
+        }
 
+      else  if (cid.value == null || cid.value == '' || cid.value.length == 0) {
+            this.toastr.error('Please Select Consultant');
+        }
 
-                        //let tr = await this.PatientServiceobj.addAppointment(value);
-                        // console.log(tr);
-                        // value.AppointmentId = tr.appointmentID;
-                        // console.log("New Appointment", value);
-                        // console.log("Before", x.appointments);
-                        // x.appointments.push(value);
-                        // console.log("After", x.appointments);
-
-                        this.ConsultantIdAppointmentDate = await this.PatientServiceobj.GetAppointmentByConsultantNameAndDate(value.ConsultantId, value.AppointmentDate);
-                        this.tentativeAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
-                        this.finalizedAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-                        this.deleteFieldValue();
-                        this.appointmentForm.reset();
-                        this.patientForm.reset();
-                        this.patientForm.value.FirstName = '';
-                        this.patientForm.value.LastName = '';
-                        this.patientById = '';
-                        console.log('1');
-                        // this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
-                        // this.allpatients.push(this.patientById);
-                        // console.log(this.allpatients);  
-                        this.toastr.success('Appointment  Started');
-                    }
-                }
+        else{ 
+             console.log(value.PatientId );
+            if (value.PatientId == null || value.PatientId == '') {
+                this.toastr.error('Please Select Patient');
             }
             else {
-                if (this.appointmentForm.value.IsFinalAppointment == true) {
-                    this.appointmentForm.value.FinalTime = this.appointmentForm.value.TentativeTime;
-                    this.appointmentForm.value.VisitStatus = 'pendding';
-                    this.appointmentForm.value.IsCancelled = 'false';
-                    this.appointmentForm.value.AppointmentDate = this.appointmentForm.value.FinalTime;
+                console.log(this.allpatients);
+                //  let x = this.allpatients.find(t => t.patientId == value.PatientId)
+                // console.log(x);
+                let x = await this.PatientServiceobj.GetPatientAppointmentsByPatientIdAsync(value.PatientId);
+                console.log(x);
+                if (x.appointments.length) {
+                    console.log('lenght');
+                    if (x.appointments.find(t =>
+                        (this.formatDate(new Date(t.appointmentDate)) == this.formatDate(new Date(value.AppointmentDate))) && (t.consultantId == value.ConsultantId) && (t.isCancelled == false) && (t.visitStatus == 'pendding' || t.visitStatus == 'start'))) {
+                        console.log('find');
+                        this.toastr.error('Appointment Already Started');
+                    }
+                    else {
+                        // if (date == null || date == '' || date.length == 0 && time == null || time == '' || time.length == 0 && cid.value == null || cid.value == '' || cid.value.length == 0) {
+                        //     this.toastr.error('Please Select AppointmentDate or Tentative Time Or Consultant');
+                        // }
+                       // else {
+                            if (this.appointmentForm.value.IsFinalAppointment == true) {
+                                this.appointmentForm.value.FinalTime = this.appointmentForm.value.TentativeTime;
+                                this.appointmentForm.value.VisitStatus = 'pendding';
+                                this.appointmentForm.value.IsCancelled = 'false';
+                                this.appointmentForm.value.AppointmentDate = this.appointmentForm.value.FinalTime;
+                            }
+                            else {
+                                this.appointmentForm.value.IsFinalAppointment = 'false';
+                                this.appointmentForm.value.VisitStatus = 'pendding';
+                                this.appointmentForm.value.IsCancelled = 'false';
+                            }
+                            console.log(value);
+                            await this.PatientServiceobj.addAppointment(value);
+    
+    
+                            //let tr = await this.PatientServiceobj.addAppointment(value);
+                            // console.log(tr);
+                            // value.AppointmentId = tr.appointmentID;
+                            // console.log("New Appointment", value);
+                            // console.log("Before", x.appointments);
+                            // x.appointments.push(value);
+                            // console.log("After", x.appointments);
+    
+                            this.ConsultantIdAppointmentDate = await this.PatientServiceobj.GetAppointmentByConsultantNameAndDate(value.ConsultantId, value.AppointmentDate);
+                            this.tentativeAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
+                            this.finalizedAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+                            this.deleteFieldValue();
+                            this.appointmentForm.reset();
+                            this.patientForm.reset();
+                            this.patientForm.value.FirstName = '';
+                            this.patientForm.value.LastName = '';
+                            this.patientById = '';
+                            console.log('1');
+                            // this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
+                            // this.allpatients.push(this.patientById);
+                            // console.log(this.allpatients);  
+                            this.toastr.success('Appointment  Started');
+                        //}
+                    }
                 }
                 else {
-                    this.appointmentForm.value.IsFinalAppointment = 'false';
-                    this.appointmentForm.value.VisitStatus = 'pendding';
-                    this.appointmentForm.value.IsCancelled = 'false';
+                    if (this.appointmentForm.value.IsFinalAppointment == true) {
+                        this.appointmentForm.value.FinalTime = this.appointmentForm.value.TentativeTime;
+                        this.appointmentForm.value.VisitStatus = 'pendding';
+                        this.appointmentForm.value.IsCancelled = 'false';
+                        this.appointmentForm.value.AppointmentDate = this.appointmentForm.value.FinalTime;
+                    }
+                    else {
+                        this.appointmentForm.value.IsFinalAppointment = 'false';
+                        this.appointmentForm.value.VisitStatus = 'pendding';
+                        this.appointmentForm.value.IsCancelled = 'false';
+                    }
+                    console.log(value);
+                    await this.PatientServiceobj.addAppointment(value);
+                    // let tr = await this.PatientServiceobj.addAppointment(value);
+                    // console.log(tr);
+                    // value.AppointmentId = tr.appointmentID;
+                    // console.log("New Appointment", value);
+                    // console.log("Before", x.appointments);
+                    // x.appointments.push(value);
+                    // console.log("After", x.appointments);
+                    this.ConsultantIdAppointmentDate = await this.PatientServiceobj.GetAppointmentByConsultantNameAndDate(value.ConsultantId, value.AppointmentDate);
+                    this.tentativeAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
+                    this.finalizedAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+                    this.deleteFieldValue();
+                    this.appointmentForm.reset();
+                    this.patientForm.reset();
+                    this.patientForm.value.FirstName = '';
+                    this.patientForm.value.LastName = '';
+                    this.patientById = '';
+                    console.log('2');
+                    // this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
+                    // this.allpatients.push(this.patientById);
+                    // console.log(this.allpatients);
+                    this.toastr.success('Appointment  Started');
                 }
-                console.log(value);
-                await this.PatientServiceobj.addAppointment(value);
-                // let tr = await this.PatientServiceobj.addAppointment(value);
-                // console.log(tr);
-                // value.AppointmentId = tr.appointmentID;
-                // console.log("New Appointment", value);
-                // console.log("Before", x.appointments);
-                // x.appointments.push(value);
-                // console.log("After", x.appointments);
-                this.ConsultantIdAppointmentDate = await this.PatientServiceobj.GetAppointmentByConsultantNameAndDate(value.ConsultantId, value.AppointmentDate);
-                this.tentativeAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
-                this.finalizedAppointments = this.ConsultantIdAppointmentDate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
-                this.deleteFieldValue();
-                this.appointmentForm.reset();
-                this.patientForm.reset();
-                this.patientForm.value.FirstName = '';
-                this.patientForm.value.LastName = '';
-                this.patientById = '';
-                console.log('2');
-                // this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
-                // this.allpatients.push(this.patientById);
-                // console.log(this.allpatients);
-                this.toastr.success('Appointment  Started');
-            }
-        }
+            }}
+
+       
 
 
 

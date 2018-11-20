@@ -46,6 +46,7 @@ import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/
 import { DxDateBoxModule } from 'devextreme-angular';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 import { PatientpackageComponent } from './patientpackage/patientpackage.component';
+import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-invoice-return.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -106,6 +107,7 @@ import { PatientpackageComponent } from './patientpackage/patientpackage.compone
         AppointmentpaymentreceiptComponent,
         PatientInvoiceViewComponent,
         PatientpackageComponent,
+        PatientInvoiceReturnComponent,
     ]
 })
 export class PatientModule { }

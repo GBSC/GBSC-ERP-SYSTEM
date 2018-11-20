@@ -27,6 +27,8 @@ import { PatientInvoice } from '../../Models/HIMS/patientinvoice';
 import { PatientInvoiceItem } from '../../Models/HIMS/patientinvoiceitem';
 import { Test } from '../../Models/HIMS/Test';
 import { PatientPackage } from '../../Models/HIMS/PatientPackage';
+import { PatientInvoiceReturn } from '../../Models/HIMS/PatientInvoiceReturn';
+import { PatientInvoiceReturnItem } from '../../Models/HIMS/PatientInvoiceReturnItem';
 
 @Injectable()
 export class PatientService {
@@ -120,7 +122,10 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRN/' + mrn);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89ef0cfe9c79d8b65c5b0107310fffea107cc83c
     GetPatientInvoicesWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoicesWithDetailsByMRNandDate/' + mrn + '/' + date);
     }
@@ -662,6 +667,8 @@ export class PatientService {
         return this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteTestCategory/' + id);
     }
 
+    /***********************************Patient Invoice **********************************/
+
     GetPatientInvoices(): Observable<PatientInvoice[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoices');
     }
@@ -686,6 +693,46 @@ export class PatientService {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoice/' + id);
     }
 
+    //************************** Patient Invoice Return *************************************//
+
+    GetPatientInvoiceReturns(): Observable<PatientInvoiceReturn[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturns');
+    }
+
+    GetPatientInvoiceReturnsWithDetailsByPatientId(patientid: number): Observable<PatientInvoiceReturn[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByPatientId/' + patientid);
+    }
+
+    GetPatientInvoiceReturnsWithDetailsByDate(date: Date): Observable<PatientInvoiceReturn[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnsWithDetailsByDate/' + date);
+    }
+
+    GetPatientInvoiceReturn(id: number): Observable<PatientInvoiceReturn> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturn/' + id);
+    }
+
+    AddPatientInvoiceReturn(PatientInvoiceReturn: PatientInvoiceReturn): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceReturn', PatientInvoiceReturn);
+    }
+
+    UpdatePatientInvoiceReturn(PatientInvoiceReturn: PatientInvoiceReturn): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoiceReturn', PatientInvoiceReturn);
+    }
+
+    DeletePatientInvoiceReturn(id: number): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceReturn/' + id);
+    }
+
+    GetPatientInvoiceReturnsWithDetailsByMRN(mrn: string): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoiceReturnsWithDetailsByMRN/' + mrn);
+    }
+
+    GetPatientInvoiceReturnsWithDetailsByMRNandDate(mrn: string, date: Date): Observable<PatientInvoiceReturn[]> {
+        return this.ApiService.get(this.API_URL + 'Patients/GetPatientInvoiceReturnsWithDetailsByMRNandDate/' + mrn + '/' + date);
+    }
+
+    /***************************************Patient Invoice Item **********************************/
+
     GetPatientInvoiceItems(): Observable<PatientInvoiceItem[]> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceItems');
     }
@@ -700,5 +747,27 @@ export class PatientService {
 
     DeletePatientInvoiceItem(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceItem/' + id);
+    }
+
+    /*********************************Patient Invoice Return Item **********************************/
+
+    GetPatientInvoiceReturnItems(): Observable<PatientInvoiceReturnItem[]> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnItems');
+    }
+
+    GetPatientInvoiceReturnItem(id: number): Observable<PatientInvoiceReturnItem> {
+        return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceReturnItem/' + id);
+    }
+
+    AddPatientInvoiceReturnItem(PatientInvoiceReturnItem: PatientInvoiceReturnItem): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'PatientInvoices/AddPatientInvoiceReturnItem', PatientInvoiceReturnItem);
+    }
+
+    UpdatePatientInvoiceReturnItem(PatientInvoiceReturnItem: PatientInvoiceReturnItem): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'PatientInvoices/UpdatePatientInvoiceReturnItem', PatientInvoiceReturnItem);
+    }
+
+    DeletePatientInvoiceReturnItem(id: number): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceReturnItem/' + id);
     }
 }

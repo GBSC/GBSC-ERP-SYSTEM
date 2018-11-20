@@ -22,7 +22,7 @@
                         <div class="m-list-timeline__item" *ngFor="let Patient of visits">
                             <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
                             <span class="m-list-timeline__text" (click)="onclick(Patient.visitId)">
-                              <span class="m-badge m-badge--success m-badge--wide btn btn-sccuss">
+                              <span class="m-badge m-badge--success m-badge--wide btn btn-sccuss" style="width: 125px;height: 25px;position: relative;">
                                   {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
                               </span>
                             </span>

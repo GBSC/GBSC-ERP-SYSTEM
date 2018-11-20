@@ -98,6 +98,7 @@ export class VisitdetailComponent implements OnInit {
     enableVitalsInputFields() {
         //   console.log(this.formattime(new Date(this.visit.endTime)));
         //  console.log(this.formatDate(new Date()));
+        console.log(this.formattime(new Date(this.visit.endTime)));
         if (this.formattime(new Date(this.visit.endTime)) > this.formatDate(new Date())) {
             //   console.log(true);
             this.vitalUpdateFieldsEnabled = false;
@@ -141,7 +142,7 @@ export class VisitdetailComponent implements OnInit {
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-                //  console.log(this.visit);
+                   console.log(this.visit);
 
                 // work for disable time strat
 

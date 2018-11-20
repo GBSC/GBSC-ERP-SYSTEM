@@ -134,10 +134,6 @@ export class PurchaseOrderComponent implements OnInit {
     CalculateDiscountAmount(value) {
         // console.log(value);
 
-<<<<<<< HEAD
-=======
-        this.dataEnabled = true;
->>>>>>> master
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
          console.log(this.DiscountAmount);
         this.CalculateNetAmount();

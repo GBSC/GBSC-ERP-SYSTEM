@@ -31,6 +31,7 @@ import { FreezepreparationComponent } from './freezepreparation/freezepreparatio
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
 import { ReportViewerComponent } from './report-viewer/report-viewer.component';
+import { BiochemistryOutsiderComponent } from './biochemistry-outsider/biochemistry-outsider.component';
 
 
 
@@ -75,6 +76,7 @@ import { ReportViewerComponent } from './report-viewer/report-viewer.component';
         ClinicalrecordsComponent,
         SemenanalysisComponent,
         ReportViewerComponent,
+        BiochemistryOutsiderComponent,
     ]
 })
 export class LabModule { }

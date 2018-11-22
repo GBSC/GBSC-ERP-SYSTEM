@@ -32,6 +32,7 @@ import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryout
         DashboardService,
         //FinanceService,
         BioChemistryService,
+        BiochemistryoutsiderService,
         InseminationprepService,
         ConsultantService,
         PatientService,

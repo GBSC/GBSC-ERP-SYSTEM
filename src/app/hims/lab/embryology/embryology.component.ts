@@ -30,6 +30,8 @@ export class EmbryologyComponent implements OnInit {
     private tvopu: any;
     private embryologists: any;
     private embryologydetails: any;
+    private eggNumber: any = "";
+    private fateOptions: any;
 
     private embryologyForm: FormGroup;
 
@@ -44,6 +46,8 @@ export class EmbryologyComponent implements OnInit {
         private embryologistService: EmbryologistService,
         private toastr: ToastrService,
         private clinicalrecordservice: PatientclinicalrecordService) {
+
+        this.fateOptions = [{ name: "Stored" }, { name: "Replaced" }, { name: "Discarded" }, { name: "None" }];
 
         this.embryologyForm = formBuilder.group({
             EggNumber: [''],
@@ -86,17 +90,7 @@ export class EmbryologyComponent implements OnInit {
 
                     })
 
-                    this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
-
-                        this.embryology = emb;
-                        if (this.embryology) {
-                            console.log("Patching values..")
-                            this.patchValues(this.embryology);
-                            this.embryologydetails = emb.patientEmbryologyDetails;
-
-                        }
-
-                    })
+                    this.setValues();
                 }
 
             });
@@ -108,13 +102,25 @@ export class EmbryologyComponent implements OnInit {
 
             this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-            this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+            this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
             this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
             this.embryologistService.getEmbryologists().subscribe(resp => this.embryologists = resp);
 
 
+        });
+    }
+
+    setValues() {
+
+        this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
+
+            this.embryology = emb;
+            if (this.embryology) {
+                this.patchValues(this.embryology);
+                this.embryologydetails = emb.patientEmbryologyDetails;
+            }
         });
     }
 
@@ -125,6 +131,24 @@ export class EmbryologyComponent implements OnInit {
         });
     }
 
+    rowInserted(value) {
+        if (value.data.fate == "Discarded") {
+            if (this.eggNumber != "")
+                this.eggNumber = this.eggNumber + "," + value.data.eggNumber;
+            else
+                this.eggNumber = value.data.eggNumber;
+        }
+    }
+
+    rowUpdated(value) {
+        if (value.data.fate == "Discarded") {
+            if (this.eggNumber != "")
+                this.eggNumber = this.eggNumber + "," + value.data.eggNumber;
+            else
+                this.eggNumber = value.data.eggNumber;
+        }
+    }
+
 
     submitForm(value) {
 
@@ -133,11 +157,9 @@ export class EmbryologyComponent implements OnInit {
 
         this.embryologyService.addPatientEmbryology(value).subscribe(resp => {
             this.displayToast("Patient Embryology Saved");
-            this.router.navigate(["/lab/embryology/" + this.tvopu.tvopuId]);
+            this.setValues();
         });
     }
-
-
 
     update(value) {
         value.tvopuId = this.id;
@@ -145,7 +167,7 @@ export class EmbryologyComponent implements OnInit {
         value.patientEmbryologyDetails = this.embryologydetails;
         this.embryologyService.updatePatientEmbryology(value).subscribe(resp => {
 
-            this.displayToast("Patient Embryology Saved");
+            this.displayToast("Patient Embryology Updated");
 
         });
 
@@ -153,7 +175,7 @@ export class EmbryologyComponent implements OnInit {
     }
 
     patchValues(embryology) {
-        
+
         this.embryologyForm.patchValue({
             EggNumber: embryology.eggNumber,
             CreateDate: embryology.createDate,

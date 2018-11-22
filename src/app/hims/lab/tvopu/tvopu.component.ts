@@ -73,11 +73,7 @@ export class TvopuComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.tvopuService
-                    .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp =>{
-                        this.tvopu = resp;
-                        this.patchValues(this.tvopu);
-                    });
+                this.setValues();
 
             })
 
@@ -92,11 +88,20 @@ export class TvopuComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
         this.embryologyService.getEmbryologists().subscribe(resp => this.embryologists = resp);
+
+    }
+
+    setValues() {
+        this.tvopuService
+            .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
+                this.tvopu = resp;
+                this.patchValues(this.tvopu);
+            });
 
     }
 
@@ -108,37 +113,34 @@ export class TvopuComponent implements OnInit {
     }
 
     displayToast(message) {
-
         this.toastr.success(message);
-
     }
 
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-        this.tvopuService.addTvopu(value).subscribe(resp =>{
+        this.tvopuService.addTvopu(value).subscribe(resp => {
 
             this.displayToast("TVOPU saved");
 
-            this.router.navigate(['lab/tvopu/' + this.clinicalRecord.patientClinicalRecordId]);
+            this.setValues();
         });
     }
 
     updateForm(value) {
         value.tvopuId = this.tvopu.tvopuId;
         value.patientClinicalRecordId = this.id;
-        this.tvopuService.updateTvopu(value).subscribe(resp =>{
+        this.tvopuService.updateTvopu(value).subscribe(resp => {
 
             this.displayToast("TVOPU updated");
         });
     }
 
-    patchValues(tvopu)
-    {
+    patchValues(tvopu) {
         this.tvopuform.patchValue({
             'TimeStart': tvopu.timeStart,
             'TimeFinish': tvopu.timeFinish,
-            'ActiveInactive':tvopu.activeInactive,
+            'ActiveInactive': tvopu.activeInactive,
             'Remarks': tvopu.remarks,
             'PickupCount': tvopu.pickupCount,
             'TotalPickupCount': tvopu.totalPickupCount,

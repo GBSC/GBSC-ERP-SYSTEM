@@ -21,7 +21,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled> </div>
+                        [value]="patient?.mrn" disabled> </div>
                   </div>
 
                   <div class="col-sm-2">
@@ -30,7 +30,7 @@
                         Treatment#
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="clinicalRecord?.typewiseTreatmentNumber">
+                        [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -48,7 +48,7 @@
                         Treatment Type
                       </label>
                       <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
-                        [searchEnabled]="true" disabled>
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -60,7 +60,7 @@
                         Patient Name
                       </label>
                       <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId"
-                        fromControlName="PatientId" [value]="patientid" [searchEnabled]="true">
+                        fromControlName="PatientId" [value]="patientid" [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -69,7 +69,7 @@
                       <label for="exampleInputEmail1">
                         Spouse
                       </label>
-                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                      <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -78,7 +78,7 @@
                         Doctor
                       </label>
                       <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>

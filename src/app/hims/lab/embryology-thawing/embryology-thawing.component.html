@@ -21,7 +21,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled> </div>
+                        [value]="patient?.mrn" disabled> </div>
                   </div>
                 <div class="col-sm-4">
                   <div class="form-group m-form__group">
@@ -29,7 +29,7 @@
                       Patient Name
                     </label>
                     <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                      [searchEnabled]="true">
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                     <label for="exampleInputEmail1">
                       Spouse
                     </label>
-                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
                   </div>
                 </div>
                 <div class="col-sm-2" style="margin-top: 28px;">

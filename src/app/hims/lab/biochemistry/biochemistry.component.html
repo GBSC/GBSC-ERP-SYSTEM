@@ -5,7 +5,7 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Biochemistry (On Treatment)</h3>
+              <h3 class="m-portlet__head-text">Biochemistry (Outsider)</h3>
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled>
+                        [value]="patient?.mrn" disabled>
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -38,8 +38,8 @@
                       <label for="exampleInputEmail1">
                         LMP
                       </label>
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="bioChemistry?.lmp" formControlName="LMP">
+                      <dx-date-box type="date" [value]="bioChemistry?.lmp" formControlName="LMP">
+                      </dx-date-box>
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -72,9 +72,8 @@
                       <label for="exampleInputEmail1">
                         Patient Name
                       </label>
-                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" 
-                      [value]="bioChemistry?.patientId" formControlName="PatientId"
-                        [searchEnabled]="true">
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="bioChemistry?.patientId"
+                        formControlName="PatientId" [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -84,15 +83,16 @@
                         Spouse
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{spouse?.display}}" disabled="disabled">
+                        [value]="spouse?.display" disabled="disabled">
                     </div>
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Age
+                        DOB
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_1" placeholder="{{patient?.age}}" />
+                      <dx-date-box type="date" [value]="patient?.dob" [disabled]="true">
+                      </dx-date-box>
                     </div>
                   </div>
                 </div>
@@ -102,9 +102,8 @@
                       <label for="exampleSelect1">
                         Doctor
                       </label>
-                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" 
-                      [value]="bioChemistry?.consultantId" formControlName="ConsultantId"
-                        [searchEnabled]="true">
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="bioChemistry?.consultantId"
+                        formControlName="ConsultantId" [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -114,8 +113,7 @@
                         Other
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      [value]="bioChemistry?.others" formControlName="Others"
-                        placeholder="Others">
+                        [value]="bioChemistry?.others" formControlName="Others">
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -123,7 +121,7 @@
                       <label for="exampleSelect1">
                         Gender
                       </label>
-                      <input type="text" class="form-control m-input" placeholder="{{patient?.gender}}">
+                      <input type="text" class="form-control m-input" [value]="patient?.gender" disabled>
                     </div>
                   </div>
                 </div>

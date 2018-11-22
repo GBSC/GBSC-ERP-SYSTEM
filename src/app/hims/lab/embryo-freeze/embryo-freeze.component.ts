@@ -92,11 +92,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
                                 for (let embryo of det) {
 
-                                    if (!(this.embryoFreezeDetails.length > 0)) {
-
-                                        this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
-
-                                    }
+                                    this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
                                 }
 
                             });
@@ -118,7 +114,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-            this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+            this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
 
         });

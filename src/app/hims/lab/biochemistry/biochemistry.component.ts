@@ -70,7 +70,7 @@ export class BiochemistryComponent implements OnInit {
         this.consultantService.getConsultants()
             .subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable()
+        this.patientService.getPatientCb()
             .subscribe(patients => this.patients = patients);
 
         this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);

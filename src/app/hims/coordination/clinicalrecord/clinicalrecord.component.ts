@@ -91,7 +91,7 @@ export class ClinicalrecordComponent implements OnInit {
         this.consultantService.getConsultants()
             .subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable()
+        this.patientService.getPatientCb()
             .subscribe(patients => this.patients = patients);
 
         this.protocolService.getProtocols().subscribe(resp => this.protocols = resp);

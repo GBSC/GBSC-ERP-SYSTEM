@@ -111,17 +111,7 @@ export class InsemenationComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                if (this.clinicalRecord != null) {
-                    this.insemenationService
-                        .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-                        .subscribe(resp =>{ 
-                            console.log(resp);
-                            this.insemenation = resp;
-                            this.patchForm(this.insemenation);
-                            this.calculateOnLoad(this.insemenation);
-                        });
-                }
-
+                this.setValues();
 
             })
 
@@ -136,10 +126,24 @@ export class InsemenationComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
+
+    }
+
+    setValues() {
+
+        if (this.clinicalRecord != null) {
+            this.insemenationService
+                .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                .subscribe(resp => {
+                    this.insemenation = resp;
+                    this.patchForm(this.insemenation);
+                    this.calculateOnLoad(this.insemenation);
+                });
+        }
 
     }
 
@@ -153,18 +157,19 @@ export class InsemenationComponent implements OnInit {
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-        this.insemenationService.addPatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Saved"));
+        this.insemenationService.addPatientInsemenation(value).subscribe(resp => {
+            this.displayToast("Insemenation Saved");
+            this.setValues();
+        });
     }
 
-    updateForm(value)
-    {
+    updateForm(value) {
         value.patientInsemenationId = this.insemenation.patientInsemenationId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
     }
 
-    patchForm(insemenation)
-    {
+    patchForm(insemenation) {
         this.insemenationForm.patchValue({
             'CollectionDate': insemenation.collectionDate,
             'CollectionNumber': insemenation.collectionNumber,
@@ -186,13 +191,13 @@ export class InsemenationComponent implements OnInit {
             'TotalCount': insemenation.totalCount,
             'SpermProgressionRapidLinear': insemenation.spermProgressionRapidLinear,
             'SpermProgressionNonLinear': insemenation.spermProgressionNonLinear,
-            'SpermProgressionNonProgressive':insemenation.spermProgressionNonProgressive,
+            'SpermProgressionNonProgressive': insemenation.spermProgressionNonProgressive,
             'Immotile': insemenation.immotile,
             'TestPreprationMethod': insemenation.testPreprationMethod,
             'VolumeSemenUsed': insemenation.volumeSemenUsed,
-            'TestPreprationTotalCountRange':insemenation.testPreprationTotalCountRange,
+            'TestPreprationTotalCountRange': insemenation.testPreprationTotalCountRange,
             'TestPreprationTotalCount': insemenation.testPreprationTotalCount,
-            'TestPreprationMotileCountRange':insemenation.testPreprationMotileCountRange,
+            'TestPreprationMotileCountRange': insemenation.testPreprationMotileCountRange,
             'TestPreprationMotileCount': insemenation.testPreprationMotileCount,
             'TestPreprationRapidLinearProgression': insemenation.testPreprationRapidLinearProgression,
             'TestPreprationRapidNonLinearProgression': insemenation.testPreprationRapidNonLinearProgression,
@@ -211,28 +216,22 @@ export class InsemenationComponent implements OnInit {
         this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
         this.linear = value;
 
-        console.log("1", this.reportedLiner);
     }
 
     calculateReportedNonLinear(value) {
         this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
         this.nonLinear = value;
 
-        console.log("2", this.reportedNonLinear);
     }
 
     calculateReportedNonProgressive(value) {
         this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
         this.nonProgresive = value;
-
-        console.log("3", this.reportedNonProgressive);
     }
 
     calculateReportedImmotile(value) {
         this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
         this.immotile = value;
-
-        console.log("4", this.reportedImmotile);
 
         this.progression();
 
@@ -254,8 +253,7 @@ export class InsemenationComponent implements OnInit {
 
     }
 
-    calculateOnLoad(insemenation)
-    {
+    calculateOnLoad(insemenation) {
         this.motileCount = insemenation.motileCount;
         this.immotileCount = insemenation.immotileCountRange;
         this.totalCount = insemenation.totalCount;

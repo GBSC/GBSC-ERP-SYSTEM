@@ -89,6 +89,10 @@ export class PatientService {
         return this.patients;
     }
 
+    getPatientCb(): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientCB');
+    }
+
     getPatientObservable(): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'patients/getpatients');
     }

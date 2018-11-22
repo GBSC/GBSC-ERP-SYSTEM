@@ -19,7 +19,7 @@
                       MRN No.
                     </label>
                     <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      placeholder="{{patient?.mrn}}" disabled>
+                      [value]="patient?.mrn" disabled>
                   </div>
                 </div>
                 <div class="col-sm-2">
@@ -27,7 +27,7 @@
                     <label for="exampleInputEmail1">
                       Date
                     </label>
-                    <dx-date-box [value]="clinicalRecord?.collectionDate" formControlName="CollectionDate">
+                    <dx-date-box [value]="clinicalRecord?.collectionDate">
                     </dx-date-box>
                   </div>
                 </div>
@@ -37,7 +37,7 @@
                       Treatment#
                     </label>
                     <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                      placeholder="LMP-00215">
+                      [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
                   </div>
                 </div>
                 <div class="col-sm-2">
@@ -55,7 +55,7 @@
                       Treatment Type
                     </label>
                     <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
-                      [searchEnabled]="true" disabled>
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                       Patient Name
                     </label>
                     <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                      [searchEnabled]="true">
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -76,7 +76,7 @@
                     <label for="exampleInputEmail1">
                       Spouse
                     </label>
-                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -85,7 +85,7 @@
                       Consultant
                     </label>
                     <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                      [searchEnabled]="true">
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -104,9 +104,6 @@
                   </div>
                 </div>
               </div>
-
-
-
               <hr>
               <div class="row">
                 <div class="col-sm-12">

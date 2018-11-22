@@ -52,6 +52,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
         this.bioChemistryontreatmentForm = formBuilder.group({
             'CollectionDate': ['', Validators.required],
             'LMP': ['', Validators.required],
+            'Other': [''],
             'IsRandom': [false]
         });
 
@@ -94,7 +95,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
@@ -139,11 +140,11 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     }
 
-    patchValues(biochemistry)
-    {
+    patchValues(biochemistry) {
         this.bioChemistryontreatmentForm.patchValue({
             'CollectionDate': biochemistry.collectionDate,
-            'LMP':  biochemistry.lmp,
+            'LMP': biochemistry.lmp,
+            'Other': biochemistry.other,
             'IsRandom': biochemistry.isRandom
         })
     }

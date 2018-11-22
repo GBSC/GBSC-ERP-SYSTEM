@@ -29,6 +29,7 @@ import { FreezepreparationComponent } from './freezepreparation/freezepreparatio
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
 import { ReportViewerComponent } from './report-viewer/report-viewer.component';
+import { BiochemistryOutsiderComponent } from './biochemistry-outsider/biochemistry-outsider.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -51,8 +52,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'semen-analysis-list', component: SemensanalysislistComponent },
             { path: 'biochemistry-ontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry-ontreatment/:id', component: BiochemistryontreatmentComponent },
-            { path: 'biochemistry', component: BiochemistryComponent },
+            { path: 'biochemistry-outsider', component: BiochemistryOutsiderComponent },
             { path: 'biochemistry/:id', component: BiochemistryComponent },
+            { path: 'biochemistry', component: BiochemistryComponent },
             { path: 'biopsy', component: BiopsyComponent },
             { path: 'biopsy/:id', component: BiopsyComponent },
             { path: 'biopsy/outside/:biopsyid', component: BiopsyComponent },

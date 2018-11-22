@@ -18,19 +18,9 @@ export class ClinicalrecordsComponent implements OnInit {
     private patients: any;
 
     private clinicalRecords: any;
-    private searchForm: FormGroup;
 
     constructor(private clinicalRecordService: PatientclinicalrecordService,
-        private patientService: PatientService,
-        private formBuilder: FormBuilder) {
-
-        this.searchForm = this.formBuilder.group({
-            'Mrn': [''],
-            'Patient': [''],
-            'Spouse': [''],
-            'TreatmentNumber': [''],
-            'CycleNumber': ['']
-        });
+        private patientService: PatientService) {
 
     }
 
@@ -41,7 +31,7 @@ export class ClinicalrecordsComponent implements OnInit {
 
         });
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
     }
 

@@ -61,7 +61,7 @@ export class EmbryologyThawingComponent implements OnInit {
             })
         });
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.patientcb.onValueChanged.subscribe(res => {
 

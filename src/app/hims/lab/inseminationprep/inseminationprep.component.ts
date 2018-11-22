@@ -95,7 +95,7 @@ export class InseminationprepComponent implements OnInit {
 
 
             this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
-                .subscribe(resp =>{ 
+                .subscribe(resp => {
 
                     this.insemenationPrep = resp
                     this.patchValues(this.insemenationPrep);

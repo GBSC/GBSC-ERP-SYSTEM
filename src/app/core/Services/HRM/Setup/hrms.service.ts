@@ -7,13 +7,13 @@ import { ApiService } from '../../api.service';
 
 export class HrmsService {
 
-    private setupUrl: string = "SystemAdmin/api/Setup"; 
+    private setupUrl: string = "SystemAdmin/api/Setup";
 
     constructor(private ApiService: ApiService) {
     }
 
     async getAllCountries() {
- 
+
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
 
@@ -40,11 +40,11 @@ export class HrmsService {
     }
 
     async getAllCities() {
- 
+
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
-     async addCity(data) {
+    async addCity(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
 
     }
@@ -59,10 +59,10 @@ export class HrmsService {
     async DeleteCity(cityId) {
         return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
     }
-    
+
 
     async getAllDepartments() {
- 
+
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
 
@@ -72,7 +72,7 @@ export class HrmsService {
         return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data).toPromise();
     }
 
-    async updateDepartment(data) { 
+    async updateDepartment(data) {
         return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data.key).toPromise();
     }
 

@@ -73,8 +73,8 @@ export class FreezepreparationComponent implements OnInit {
                 this.clinicalRecord = resp;
 
                 this.freezePreprationService
-                    .getFreezePreprationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp =>{ 
-                        
+                    .getFreezePreprationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
+
                         this.freezePrepration = resp;
                         this.patchValues(this.freezePrepration);
                     });
@@ -107,17 +107,16 @@ export class FreezepreparationComponent implements OnInit {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        this.freezePreprationService.addFreezePrepration(value).subscribe(resp =>{ 
+        this.freezePreprationService.addFreezePrepration(value).subscribe(resp => {
             this.displayToast("Freeze prep saved");
         });
     }
 
-    updateForm(value)
-    {
+    updateForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.freezePreprationId = this.freezePrepration.freezePreprationId;
 
-        this.freezePreprationService.updateFreezePrepration(value).subscribe(resp =>{ 
+        this.freezePreprationService.updateFreezePrepration(value).subscribe(resp => {
             this.displayToast("Freeze prep updated");
         });
     }
@@ -128,8 +127,7 @@ export class FreezepreparationComponent implements OnInit {
 
     }
 
-    patchValues(freezePrepration)
-    {
+    patchValues(freezePrepration) {
         this.freePreprationForm.patchValue({
             "FreezeDate": freezePrepration.freezeDate,
             "SemenRefNumber": freezePrepration.semenRefNumber,
@@ -148,7 +146,7 @@ export class FreezepreparationComponent implements OnInit {
             "Suffix": freezePrepration.suffix,
             "StrawColor": freezePrepration.strawColor,
             "PlugColor": freezePrepration.plugColor,
-            "SurvivalRange":freezePrepration.survivalRange,
+            "SurvivalRange": freezePrepration.survivalRange,
             "Survival": freezePrepration.survival,
             "Remarks": freezePrepration.remarks,
         })

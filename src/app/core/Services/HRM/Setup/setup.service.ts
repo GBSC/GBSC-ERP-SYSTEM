@@ -13,24 +13,24 @@ export class SetupService {
     }
 
     private hrUrl: string = "SystemAdmin/api/HrSetup";
- 
+
     constructor(private ApiService: ApiService) { }
- 
+
     async getdataToUpdate(countryId, countryUrl) {
         return await this.ApiService.get(`${this.hrUrl}/${countryUrl}/${countryId}`).toPromise();
     }
-  
+
 
     /** CRUD METHODS BANK */
     async getAllBanks() {
- 
+
         return await this.ApiService.get(`${this.hrUrl}/GetBanks`).toPromise();
-        }
+    }
 
     // DEMO ONLY, you can find working methods below
     async addbank(data) {
 
-         await this.ApiService.post(`${this.hrUrl}/AddBank`, data).toPromise();
+        await this.ApiService.post(`${this.hrUrl}/AddBank`, data).toPromise();
     }
 
 
@@ -131,7 +131,7 @@ export class SetupService {
     async DeleteEmployeeStatus(id) {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeStatus/${id}`).toPromise();
     }
- 
+
     async getAllReligions() {
         return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
     }
@@ -238,8 +238,8 @@ export class SetupService {
     }
     async addGroup(data) {
 
-         return await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
-        }
+        return await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
+    }
 
     async updateGroup(data) {
 
@@ -250,21 +250,21 @@ export class SetupService {
     }
 
     async DeleteGroup(id) {
- 
+
         return await this.ApiService.delete(`${this.hrUrl}/DeleteGroup/${id}`).toPromise();
     }
 
     /** CRUD METHODS  FOR CostCenter*/
 
     async getAllCostCenter() {
- 
-       return await this.ApiService.get(`${this.hrUrl}/GetCostCenters`).toPromise();
+
+        return await this.ApiService.get(`${this.hrUrl}/GetCostCenters`).toPromise();
 
     }
 
     async addCostCenter(data) {
         return await this.ApiService.post(`${this.hrUrl}/AddCostCenter`, data).toPromise();
-        }
+    }
 
     async updateCostCenter(data) {
 
@@ -288,7 +288,7 @@ export class SetupService {
     async addLanguage(data) {
 
         return await this.ApiService.post(`${this.hrUrl}/AddLanguage`, data).toPromise();
-        }
+    }
 
     async updateLanguage(data) {
 
@@ -361,7 +361,7 @@ export class SetupService {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
 
     }
- 
+
     async getAllUniversities() {
 
         return await this.ApiService.get(`${this.hrUrl}/GetUniversities`).toPromise();

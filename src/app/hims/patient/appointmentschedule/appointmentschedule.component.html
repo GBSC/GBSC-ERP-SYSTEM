@@ -89,12 +89,12 @@
                           </div>
                       </div>
                   </dx-lookup>   -->
-                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
+                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
                       *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="">
                     </dx-select-box> 
 
 
-                 <input [value]="patientById?.fullName  || ''"  *ngIf="newOrPrevious === 'new'? true : false"
+                 <input [value]="patientById?.fullName  || ''"  style="margin-top: 2%;" *ngIf="newOrPrevious === 'new'? true : false"
                       class="form-control m-input m-input--solid" formControlName="PatientId" disabled>  
 
 

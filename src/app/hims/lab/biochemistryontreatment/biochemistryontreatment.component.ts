@@ -144,7 +144,6 @@ export class BiochemistryontreatmentComponent implements OnInit {
         this.bioChemistryontreatmentForm.patchValue({
             'CollectionDate': biochemistry.collectionDate,
             'LMP': biochemistry.lmp,
-            'Other': biochemistry.other,
             'IsRandom': biochemistry.isRandom
         })
     }

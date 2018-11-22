@@ -1,6 +1,7 @@
 import { Spouse } from "./spouse";
 import { PatientPackage } from "./PatientPackage";
 import { PatientInvoice } from "./patientinvoice";
+import { PatientInvoiceReturn } from "./PatientInvoiceReturn";
 export interface Patient {
 
     PatientId: number,
@@ -35,7 +36,8 @@ export interface Patient {
     Document: Document,
     partner: Spouse,
     patientPackage: PatientPackage,
-    patientInvoices: PatientInvoice[]
+    patientInvoices: PatientInvoice[],
+    patientInvoiceReturns : PatientInvoiceReturn[]
 }
 
 

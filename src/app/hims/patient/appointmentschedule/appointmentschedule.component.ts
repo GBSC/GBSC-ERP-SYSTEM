@@ -364,7 +364,7 @@ export class AppointmentscheduleComponent implements OnInit {
                             this.patientForm.reset();
                             this.patientForm.value.FirstName = '';
                             this.patientForm.value.LastName = '';
-                            this.patientById = '';
+                             this.patientById = '';
                             console.log('1');
                             // this.patientById =   await this.PatientServiceobj.GetPatientById(x.patientId);
                             // this.allpatients.push(this.patientById);

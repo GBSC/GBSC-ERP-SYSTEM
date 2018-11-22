@@ -88,7 +88,7 @@ export class VisitsComponent implements OnInit {
 
         this.route.params.subscribe(params => {
             this.id = +params['id'];
-            this.currentPatient = this.PatientServiceobj.getpatient(this.id).subscribe((Patient) => {
+            this.currentPatient = this.PatientServiceobj.GetPatientAppointmentsByPatientId(this.id).subscribe((Patient) => {
                 this.Patient = Patient;
                 console.log(Patient);
             });
@@ -134,9 +134,12 @@ export class VisitsComponent implements OnInit {
     async onEndVisit() {
         let x = await this.PatientServiceobj.getVisitId(this.visitid);
         await this.PatientServiceobj.endVisit(this.visitid, x);
-        console.log(x)
+        console.log(x);
+        console.log(this.Patient.appointments)
         let y = this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
+       
         y.visitStatus = 'end';
+        console.log(y);
         await this.PatientServiceobj.updateAppointment(y);
         console.log(y);
         this.router.navigate(['/hims/patient/profile/' + this.id]);

@@ -6,6 +6,7 @@ import { Patient } from '../../../core/Models/HIMS/patient';
 import date_box from 'devextreme/ui/date_box';
 import { ToastrService } from 'ngx-toastr';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Consultant } from '../../../core/Models/HIMS/consultant';
 
 
 @Component({
@@ -24,8 +25,8 @@ export class GeneralactionsComponent implements OnInit {
     public lastpatientvisit: any;
     public visits: any;
     public currentconsultant: any;
-    public consultants: any;
-    public consultant: any;
+    public consultants: any[] = [];
+    public consultant: any[] = [];
     public time: any;
     public patinetappointment: any = [];
     public visitStatus = 'start';
@@ -37,7 +38,6 @@ export class GeneralactionsComponent implements OnInit {
 
 
         this.consultants = await this.PatientServiceobj.getConsultant();
-
         console.log(this.consultants);
 
 
@@ -63,11 +63,26 @@ export class GeneralactionsComponent implements OnInit {
             this.Patient = Patient
             if (this.Patient.appointments.length) {
                 this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'pendding');
-                console.log(this.currentconsultant);
-                //   this.consultant =  this. consultants.map(t => t.consultantId == this.currentconsultant.consultantId);
-                //      console.log(this.consultant);
+               console.log('if')
+                // console.log(this.currentconsultant);
+                // console.log(this.consultants);
+                
+                // console.log(this.consultants.find(t =>  
+                //     t.consultantId == this.currentconsultant.consultantId));
+                    this.currentconsultant.forEach((consultant : Consultant ) => {
+                        let a : Consultant = this.consultants.find(t =>  
+                            t.consultantId == consultant.consultantId);
+                            this.consultant.push(a);
+                            console.log(a);
+                    });
+                    console.log(this.consultant);
+                    
+                    // this.consultant =  this.consultants.find(t =>  
+                    //     t.consultantId == this.currentconsultant.consultantId);
+                    //    console.log(this.consultant);
             }
             console.log(this.Patient);
+            console.log('else')
         });
 
         console.log(this.patinetappointment);
@@ -177,6 +192,7 @@ export class GeneralactionsComponent implements OnInit {
         await this.PatientServiceobj.endVisit(x.visitId, x);
         let y = this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
         y.visitStatus = 'end';
+        console.log(y);
         await this.PatientServiceobj.updateAppointment(y);
         console.log(y);
         this.lastpatientvisit = await this.PatientServiceobj.GetLastestVisitByPatientId(this.id);

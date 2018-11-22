@@ -14,8 +14,14 @@
               <div class="col-lg-6">
               <label for="exampleSelect1"> </label>
               Consultants
-                <dx-select-box [items]="currentconsultant" displayExpr="consultantId" #consultantId valueExpr="consultantId" [searchEnabled]="true">
-              </dx-select-box>   
+                <!-- <dx-select-box [items]="consultant" displayExpr="name" #consultantId valueExpr="consultantId" [searchEnabled]="true">
+              </dx-select-box>    -->
+
+              <select class="form-control m-input ng-pristine ng-invalid ng-touched"#consultantId >
+                <option class="active" *ngFor="let x of consultant" [value]="x.consultantId">{{x.name}}</option>
+              </select>
+
+
               </div>
               <div class="col-lg-6  margin">
               <a (click)="startVisit(consultantId.value)" class="m-list-search__result-item">
@@ -26,12 +32,12 @@
               </a>
             </div>
             </div>
-             <div class="m-list-search__results" *ngIf="this.lastpatientvisit?.isActive">
+             <div class="m-list-search__results col-lg-6" *ngIf="this.lastpatientvisit?.isActive">
               <a (click)="Endvisit()" class="m-list-search__result-item">
-                <span class="m-list-search__result-item-icon">
+                <!-- <span class="m-list-search__result-item-icon">
                   <i class="fa fa-map-marker	m--font-white"></i>
-                </span>
-                <span class="m-list-search__result-item-text"> End Visit </span>
+                </span> -->
+                <span class="m-list-search__result-item-text btn btn-primary"> End Visit </span>
               </a>
             </div>
         </div>

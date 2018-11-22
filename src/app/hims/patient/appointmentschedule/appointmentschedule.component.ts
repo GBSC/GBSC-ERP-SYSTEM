@@ -274,7 +274,7 @@ export class AppointmentscheduleComponent implements OnInit {
         console.log(x)
 
         this.patientById = await this.PatientServiceobj.GetPatientAppointmentsByPatientIdAsync(x.patientId);
-
+        console.log(this.patientById);
         //   let g =   this.PatientServiceobj.GetPatientAppointmentsByPatientId(x.patientId).subscribe(
         //         res =>{
         //             this.patientById = res
@@ -635,7 +635,8 @@ console.log(value);
     async getCurrentRowData(d) {
         this.currentpatient = d.key;
         this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-    }
+        console.log( this.getaptbyid);
+        }
 
 
     ViewInvoice(d) {

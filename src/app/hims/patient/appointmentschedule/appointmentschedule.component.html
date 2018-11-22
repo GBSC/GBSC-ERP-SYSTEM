@@ -90,7 +90,7 @@
                       </div>
                   </dx-lookup>   -->
                     <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
-                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="">
+                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="" style="margin-top: 7px;">
                     </dx-select-box> 
 
 
@@ -246,9 +246,9 @@
                   <dxi-column dataField="visitNatureId" caption="Visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">
                   <dxo-lookup [dataSource]="PatientServiceobj?.visitNatures" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" type="time" [visible]="false">
+                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" [visible]="false">
                  </dxi-column>
-                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime" type="time" [visible]="false"></dxi-column>
+                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime"  [visible]="false"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"  [visible]="false"></dxi-column>
                 <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">

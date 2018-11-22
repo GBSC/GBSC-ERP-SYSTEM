@@ -17,11 +17,10 @@ export class FinancialyearComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.FinancialYearForm = this.fb.group({
-            // Year: [''],
-            IsActive: [''],
+        this.FinancialYearForm = this.fb.group({ 
             StartDate: [''],
-            EndDate: ['']
+            EndDate: [''],
+            IsActive: ['']
         });
 
         this.financialYear = await this.financeService.getFinancialYears();
@@ -45,7 +44,7 @@ export class FinancialyearComponent implements OnInit {
     }
 
     async deleteFinancialyear(value) {
-        await this.financeService.DeleteFinancialYear(value.data);
+        await this.financeService.DeleteFinancialYear(value.key);
     }
 
 }

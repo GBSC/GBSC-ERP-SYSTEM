@@ -11,7 +11,7 @@
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
-            <div class="m-section__content">
+            <div class="m-section__content"> 
               <form [formGroup]="VoucherForm">
                 <div class="form-group row">
                   <div class="col-sm-3">
@@ -40,7 +40,6 @@
                         Cheque Number
                       </label>
                       <input type="text" class="form-control m-input" formControlName="ChequeNumber" placeholder="0007">
-
                     </div>
                   </div>
                 </div>
@@ -79,8 +78,8 @@
                       </div>
                     </div>  
                 </div> -->
+              
                 <div class="form-group row">
-
                   <div class="col-sm-12">
                     <div class="form-group m-form__group">
                       <label>
@@ -179,18 +178,15 @@
                       <thead>
                         <tr>
                           <th>Detail A/C</th>
-                          <th>Refrence</th>
                           <th>DepartmentName</th>
+                          <th>Refrence</th>
                           <th>DebitAmount</th>
                           <th>CreditAmount</th>
-                          <th>Description</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody formArrayName="VoucherDetails">
-
                         <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
-
                           <td>
                             <select class="form-control m-input" formControlName="DetailAccountId">
                               <option value="" disabled selected>-- Select Detail A/C --</option>
@@ -199,23 +195,20 @@
                             </select>
                           </td>
                           <td>
-                            <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="Refrence">
+                            <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="Department Name">
                           </td>
                           <td>
-                            <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="Department Name">
+                              <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="Refrence">
                           </td>
                           <td>
                             <input type="text" class="form-control m-input" (change)="sumDebit($event)" formControlName="DebitAmount" placeholder="000">
                           </td>
                           <td>
-                            <input type="text" class="form-control m-input" (change)="sumCredit($event)" formControlName="CreditAmount" placeholder="000">
-                          </td>
-                          <td>
-                            <input type="text" class="form-control m-input" (keydown)="addNewRow($event,i)" formControlName="Description" placeholder="0007">
-                          </td>
+                            <input type="text" class="form-control m-input" (change)="sumCredit($event)" (keydown)="addNewRow($event,i)" formControlName="CreditAmount" placeholder="000">
+                          </td> 
                           <td>
                             <a class="m-widget4__icon" (click)="deleteRow(i)">
-                              <i class="la la-edit"></i>
+                              <i class="la la-trash-o"></i>
                             </a>
                           </td>
                         </tr>
@@ -240,29 +233,19 @@
               <div class="form-group row">
                 <div class="col-md-4"></div>
                 <div class="col-md-8">
-                  <div *ngIf="isUpdate(); else create" class="m--align-right">
+                  <!-- <div *ngIf="isUpdate(); else create" class="m--align-right">
                     <button class="btn btn-primary" (click)="update(VoucherForm.value)">
                       Update
                     </button>
-                  </div>
-                  <ng-template #create class="m--align-left">
+                  </div> -->
+                  
                     <button class="btn btn-primary" (click)="addVoucher(VoucherForm.value)">
                       Submit
-                    </button>
-                    <button class="btn btn-default" type="reset">
-                      Reset
-                    </button>
-                  </ng-template>
+                    </button> 
                 </div>
               </div>
-
             </div>
-          </div>
-
-          <!-- table -->
-
-
-          <!--! table -->
+          </div> 
         </div>
       </div>
     </div>

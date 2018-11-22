@@ -1,18 +1,20 @@
 <div class="m-portlet">
     <div class="m-portlet__head">
-      <div class="m-portlet__head-caption">
-        <div class="m-portlet__head-title">
-          <h3 class="m-portlet__head-text">Supplier</h3>
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Supplier</h3>
+            </div>
         </div>
-      </div>
     </div>
-  
     <div class="m-portlet__body">
         <div class="row">
-            <div class="col-md-12"> 
-                <dx-data-grid id="gridContainer" [dataSource]="Suppliers" keyExpr="supplierId" (onRowInserted)="AddSupplier($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateSupplier($event)" (onRowRemoved)="DeleteSupplier($event)">
-                    <dxo-editing mode="row" [allowAdding]="true"  [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-                        <dxo-popup title="Add Supplier" [showTitle]="true" [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+            <div class="col-md-12">
+                <dx-data-grid id="gridContainer" [dataSource]="Suppliers" keyExpr="supplierId" (onRowInserted)="AddSupplier($event)"
+                    (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateSupplier($event)" (onRowRemoved)="DeleteSupplier($event)">
+                    <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true"
+                        [useIcons]="true">
+                        <dxo-popup title="Add Supplier" [showTitle]="true" [width]="'auto'" [height]="'auto'"
+                            [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -27,13 +29,13 @@
                     <dxi-column dataField="status" caption="Status">
                         <dxi-validation-rule type="required" message="Status required"></dxi-validation-rule>
                     </dxi-column>
-                    <dxi-column dataField="address" caption="Address">
+                    <dxi-column dataField="address" caption="Address" [visible]="false">
                         <dxi-validation-rule type="required" message="Address required"></dxi-validation-rule>
                     </dxi-column>
                     <dxi-column dataField="city" caption="City">
                         <dxi-validation-rule type="required" message="City required"></dxi-validation-rule>
                     </dxi-column>
-                    <dxi-column dataField="country" caption="Country">
+                    <dxi-column dataField="country" caption="Country" [visible]="false">
                         <dxi-validation-rule type="required" message="Country required"></dxi-validation-rule>
                     </dxi-column>
                     <dxi-column dataField="contactName" caption="Contact Name">
@@ -42,13 +44,13 @@
                     <dxi-column dataField="contactNumber" caption="Contact Number">
                         <dxi-validation-rule type="required" message="Contact Number required"></dxi-validation-rule>
                     </dxi-column>
-                    <dxi-column dataField="faxNumber" caption="Fax Number"></dxi-column>
-                    <dxi-column dataField="email" caption="Email"></dxi-column>
-                    <dxi-column dataField="glAccount" caption="Gl Account">
+                    <dxi-column dataField="faxNumber" caption="Fax Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="email" caption="Email" [visible]="false"></dxi-column>
+                    <dxi-column dataField="glAccount" caption="Gl Account" [visible]="false">
                         <dxi-validation-rule type="required" message="Gl Account required"></dxi-validation-rule>
                     </dxi-column>
-                    <dxi-column dataField="landlineNumber" caption="Landline Number"></dxi-column>
-                    <dxi-column dataField="mobilerNumber" caption="Cell Number">
+                    <dxi-column dataField="landlineNumber" caption="Landline Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="mobilerNumber" caption="Cell Number" [visible]="false">
                         <dxi-validation-rule type="required" message="Cell Number required"></dxi-validation-rule>
                     </dxi-column>
                     <dxi-column dataField="nature" caption="Nature">

@@ -6,33 +6,35 @@
       </div>
     </div>
   </div>
-
-
-<div class="m-portlet__body">
-<div class="row">
-  <div class="col-md-12"> 
-    <dx-data-grid id="gridContainer" [dataSource]="Inventories" keyExpr="inventoryId" (onRowInserted)="AddInventory($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventory()" (onRowRemoved)="DeleteInventory($event)"> 
-      <dxo-editing  mode="row"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-        <dxo-popup [onHiding]="onPopupHide" [onShown]="onPopupShown" title="Add Inventory Stock" [showTitle]="true" [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-      </dxo-editing>
-      <dxo-filter-row [visible]="true"></dxo-filter-row>
-      <dxo-header-filter [visible]="true"></dxo-header-filter>
-      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-      <dxo-paging [pageSize]="8"></dxo-paging>
-      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-      <dxi-column dataField="stockQuantity" caption="Quantity">
-        <dxi-validation-rule type="required" message="Quantity required"></dxi-validation-rule>
-
-      </dxi-column> 
-      <dxi-column dataField="inventoryItemId" caption="Inventory Item" [visible]="true">
-        <dxo-lookup [dataSource]="DataSource" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
-
-        <dxi-validation-rule type="required" message="Inventory Item required"></dxi-validation-rule>
-
-      </dxi-column>
-      </dx-data-grid> 
-   </div>
-
-   
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-md-12">
+        <dx-data-grid id="gridContainer" [dataSource]="Inventories" keyExpr="inventoryId" (onRowInserted)="AddInventory($event)"
+          (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventory()" (onRowRemoved)="DeleteInventory($event)">
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+            <dxo-popup [onHiding]="onPopupHide" [onShown]="onPopupShown" title="Add Inventory Stock" [showTitle]="true"
+              [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="10"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+          <dxi-column dataField="stockQuantity" caption="Quantity">
+            <dxi-validation-rule type="required" message="Quantity required"></dxi-validation-rule>
+          </dxi-column>
+          <dxi-column dataField="inventoryItem.name" caption="Inventory Item" [allowEditing]="false" [formItem]="{visible: false}">
+            <dxi-validation-rule type="required" message="Quantity required"></dxi-validation-rule>
+          </dxi-column>
+          <dxi-column dataField="inventoryItem.itemCode" caption="Item Code" [allowEditing]="false" [formItem]="{visible: false}">
+            <dxi-validation-rule type="required" message="Quantity required"></dxi-validation-rule>
+          </dxi-column>
+          <dxi-column dataField="inventoryItemId" caption="Inventory Item" [visible]="false">
+            <dxo-lookup [dataSource]="DataSource" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+            <dxi-validation-rule type="required" message="Inventory Item required"></dxi-validation-rule>
+          </dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
 </div>
-</div></div>

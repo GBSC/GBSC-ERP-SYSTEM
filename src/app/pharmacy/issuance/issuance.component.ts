@@ -48,7 +48,7 @@ export class IssuanceComponent implements OnInit {
     private Inv: Inventory;
     private Invs: Inventory[];
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast: ToastrService) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast : ToastrService) {
 
         this.IssuanceForm = this.FormBuilder.group({
             Department: [''],

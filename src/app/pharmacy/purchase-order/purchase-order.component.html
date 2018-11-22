@@ -324,7 +324,7 @@
                                 <label for="exampleInputEmail1">
                                     Discount %
                                 </label>
-                                <input type="text" disabled="fieldsenabled" #DiscountPercentage class="form-control m-input m-input--solid"
+                                <input type="text" [disabled]="fieldsenabled" #DiscountPercentage class="form-control m-input m-input--solid"
                                     formControlName="DiscountPercentage" (keyup)="CalculateDiscountAmount(DiscountPercentage.value || 0)">
                             </div>
                         </div>

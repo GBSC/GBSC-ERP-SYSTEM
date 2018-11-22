@@ -103,7 +103,7 @@
                                                 <th>Payment Amount</th>
                                                 <th>Difference Amount</th>
                                                 <th>Save</th>
-                                                <tr *ngFor="let a of SelectedPurchaseOrderItems; let y of Inventories; let i = index">
+                                                <tr [ngClass]="{'disabled': isDisable}" *ngFor="let a of SelectedPurchaseOrderItems; let y of Inventories; let i = index">
                                                     <td><input class="form-control m-input m-input--solid"
                                                             formControlName="ManualCode" [value]="a?.inventoryItem?.itemCode || ''"
                                                             disabled></td>

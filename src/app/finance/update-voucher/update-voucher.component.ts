@@ -54,22 +54,11 @@ export class UpdateVoucherComponent implements OnInit {
 
     })
 
-    // this.VoucherDetailForm = this.fb.group({
-    //   DetailAccountId: [''],
-    //   DebitAmount: [''],
-    //   CreditAmount: [''],
-    //   DepartmentName: [''],
-    //   UniqueName: [''],
-    //   Description: ['']
-    // })
-
     this.voucherType = await this.financeSetupService.getVoucherTypes();
-
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
-
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.SetupService.getAllDepartments();
+    // this.departments = await this.HrmService.getAllDepartments();
 
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];

@@ -3,9 +3,9 @@
 
 </div>
 
-<form class="signup-form" [formGroup]="EmpbasicForm">
-  <div class="row">
-    <div class="col-md-6">
+<form class="signup-form" [formGroup]="EmpbasicForm"> 
+<div class="row">
+      <div class="col-md-6">
       <div class="form-group m-form__group">
             <label class="control-label">
                 First Name <em class="required_label">*</em> 
@@ -14,8 +14,7 @@
           
         </div> 
       </div>
-    </div>
-    <div class="col-md-6">
+      <div class="col-md-6">
       <div class="form-group m-form__group">
             <label class="control-label">
                 Last Name <em class="required_label">*</em> 
@@ -23,12 +22,11 @@
             <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" placeholder="Last Name">
         </div> 
       </div>
-    </div>
-  </div>
-  <div class="m--space-10"></div>
-  <div class="row">
+</div>
+<div class="m--space-10"></div>
+<div class="row">
 
-    <div class="col-md-4">
+  <div class="col-md-4">
       <div class="form-group m-form__group">
         <label class="control-label">Father Name</label>
         <input type="text" formControlName="FatherName" [value]="Employee?.fatherName" class="form-control m-input m-input--solid" id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
@@ -66,28 +64,10 @@
       <!-- <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23"> -->
     </div>
   </div>
-  <div class="m--space-10"></div>
-
-  <div class="row">
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label for="username">Cnic</label>
-        <input class="form-control m-input m-input--solid" id="cnic" formControlName="Cnic" name="cnic" [value]="Employee?.cnic"
-          placeholder="42401-5486552-6" aria-describedby="cnic" type="number">
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label for="" class="control-label">Cnic Expiry</label>
-        <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry"
-          name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23">
-      </div>
-    </div>
-    <div class="col-md-4">
+  <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="email" class="control-label">Email</label>
-        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email"
-          name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
       </div>
     </div>
 </div>
@@ -211,17 +191,18 @@
 <div *ngIf="isUpdate(); else create">
     <button class="btn btn-primary" (click)="update(EmpbasicForm.value)">
         update
-      </button>
-    </div>
-    <ng-template #create>
-      <button class="btn btn-primary" (click)="Formsubmit(EmpbasicForm.value)">
-        Submit
-      </button>
-    </ng-template>
-    <!-- <div *ngIf="router.url === '/hrm/employee/registration'">
+      </button>        
+</div> 
+<ng-template #create>
+  <button class="btn btn-primary" (click)="Formsubmit(EmpbasicForm.value)">
+    Submit
+  </button>  
+</ng-template> 
+<!-- <div *ngIf="router.url === '/hrm/employee/registration'">
     <button type="button">
        Save
       </button>        
 </div>  -->
-  </div>
-</form>
+</div>
+    </form>
+   

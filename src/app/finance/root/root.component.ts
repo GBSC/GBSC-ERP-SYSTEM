@@ -20,9 +20,10 @@ export class RootComponent implements OnInit {
             .then(result => {
                 Helpers.setLoading(false);
                 // optional js to be loaded once
-                this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js',
-                    'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js',
-                    'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js']);
+                this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js', 
+                'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js',
+            'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js',
+            '/assets/demo/default/custom/components/forms/widgets/bootstrap-timepicker.js']);
             });
         this._router.events.subscribe((route) => {
             if (route instanceof NavigationStart) {

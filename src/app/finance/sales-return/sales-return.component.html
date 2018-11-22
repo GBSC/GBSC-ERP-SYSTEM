@@ -42,7 +42,7 @@
                       </dx-date-box>
                     </div>
                   </div>
-  
+
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label>
@@ -113,7 +113,7 @@
                       <input type="number" class="form-control m-input" formControlName="TaxPercentage" placeholder="0">
                     </div>
                   </div>
- 
+
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label>
@@ -133,14 +133,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-4">
-                        <div class="form-group m-form__group">
-                          <label>
-                            Expenses
-                          </label>
-                          <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
-                        </div>
-                      </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Expenses
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
+                    </div>
+                  </div>
                   <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="">
@@ -191,9 +191,7 @@
               <div class="m-separator m-separator--dashed m-separator--lg"></div>
               <div class="form-group row">
                 <h3>Sales Return Detail</h3>
-                <dx-data-grid id="gridContainer" [dataSource]="ReturnDetail"
-                 (onRowInserted)="addsalesReturnDetail($event)"
-                 (onRowUpdated)="updatesalesReturnDetail($event)">
+                <dx-data-grid id="gridContainer" [dataSource]="ReturnDetail" (onRowInserted)="addsalesReturnDetail($event)" (onRowUpdated)="updatesalesReturnDetail($event)">
 
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>
@@ -211,22 +209,27 @@
               </div>
 
               <div class="m-separator"></div>
-              
-              <div *ngIf="isUpdate(); else create" class="m--align-right">
-                <button class="btn btn-primary" (click)="update(salesReturnForm.value)">
-                    update
-                  </button>        
-            </div> 
-            <ng-template #create>
-              <button class="btn btn-primary" (click)="addsalesReturn(salesReturnForm.value)">
-                Submit
-              </button>  
-            </ng-template>  
-
+              <div class="form-group row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                  <div *ngIf="isUpdate(); else create" class="m--align-right">
+                    <button class="btn btn-primary" (click)="update(salesReturnForm.value)">
+                      Update
+                    </button>
+                  </div>
+                  <ng-template #create class="m--align-left">
+                    <button class="btn btn-primary" (click)="addsalesReturn(salesReturnForm.value)">
+                      Submit
+                    </button>
+                    <button class="btn btn-default" type="reset">
+                      Reset
+                    </button>
+                  </ng-template>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

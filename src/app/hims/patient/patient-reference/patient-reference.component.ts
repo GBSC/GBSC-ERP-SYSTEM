@@ -9,7 +9,7 @@ import { Reference } from '../../../core/Models/HIMS/reference';
     styleUrls: ['./patient-reference.component.scss']
 })
 export class PatientReferenceComponent implements OnInit {
-
+    pattern: any = /^\d{4}-\d{7}$/i;
     public reference: any;
 
     constructor(private PatientServiceobj: PatientService) { }

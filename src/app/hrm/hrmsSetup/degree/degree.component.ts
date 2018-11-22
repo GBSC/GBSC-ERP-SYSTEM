@@ -19,12 +19,9 @@ export class DegreeComponent implements OnInit {
         this.degree = await this.dataService.getAllDegrees();
     }
 
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
     addNewDegree(dgree) {
         this.dataService.addDegree(dgree.data);
+        this.degree = this.dataService.getAllDegrees();
     }
 
     Editdegree(deg) {

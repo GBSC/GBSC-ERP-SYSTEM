@@ -26,7 +26,7 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
                 <dxi-column dataField="name" caption="Name"></dxi-column>
-                <dxi-column dataField="leaveRequestId" caption="Request Date">
+                <dxi-column dataField="leaveRequestId" caption="Request Date" type="date" format="dd/MM/yyyy">
                   <dxo-lookup [dataSource]="leaveRequest" displayExpr="requestDate" valueExpr="leaveRequestId">
                   </dxo-lookup>
                 </dxi-column>

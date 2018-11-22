@@ -22,6 +22,7 @@ export class QualificationComponent implements OnInit {
 
     addNewqualification(qfc) {
         this.dataService.addQualification(qfc.data);
+        this.qualification = this.dataService.getAllqualifications();
 
     }
 

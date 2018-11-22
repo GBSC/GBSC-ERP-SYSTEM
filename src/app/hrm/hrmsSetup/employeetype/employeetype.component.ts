@@ -21,7 +21,8 @@ export class EmployeeTypes implements OnInit {
 
 
     addemptype(emptype) {
-        this.dataService.addEmployeeType(emptype.data)
+        this.dataService.addEmployeeType(emptype.data);
+        this.emptype = this.dataService.getAllEmployeeTypes();
     }
 
     Updateemptype(emptype) {

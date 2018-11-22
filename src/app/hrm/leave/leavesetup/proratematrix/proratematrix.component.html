@@ -26,9 +26,9 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="from"></dxi-column> 
-                <dxi-column dataField="till"></dxi-column> 
-                <dxi-column dataField="percentage"></dxi-column> 
+                <dxi-column dataField="from" caption="From"></dxi-column> 
+                <dxi-column dataField="till" caption="Till"></dxi-column> 
+                <dxi-column dataField="percentage" caption="Percentage"></dxi-column> 
                 <dxi-column dataField="leavePolicyId" caption="Encashment Days" [width]="450">
                   <dxo-lookup [dataSource]="leavepolicy" displayExpr="encashmentDays" valueExpr="leavePolicyId">
                   </dxo-lookup> 

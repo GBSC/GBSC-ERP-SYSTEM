@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-
+    private isDisabled = true;
     public EmpCompanyForm: any;
     public designation: any;
     public employeetype: any;
@@ -78,9 +78,12 @@ export class EmployeeCompanyComponent implements OnInit {
 
 
         });
+ 
+    }
 
-
-
+    check() {
+        this.isDisabled = !this.isDisabled;
+        return;
     }
 
     showSuccess(message) {

@@ -26,6 +26,7 @@ export class GazettedHolidaysComponent implements OnInit {
 
     addHolidays(holiday) {
         this.dataService.addGazettedHolidays(holiday.data);
+        this.holiday = this.dataService.getAllGazettedHolidays();
     }
 
     Editholiday(hday) {

@@ -34,7 +34,7 @@
                     Leave Request Date:
                   </label>
                   <div class="col-lg-8">
-                    <dx-date-box formControlName="RequestDate" type="date" format="dd/MM/yyyy">
+                    <dx-date-box formControlName="RequestDate" type="date" format="dd/MM/yyyy" width="100%">
                     </dx-date-box> 
                   </div>
                 </div>
@@ -43,8 +43,7 @@
 
             </div>
 
-            <div class="row">
-
+            <div class="row"> 
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -92,7 +91,7 @@
                     </dxo-pager>
         
                     <dxi-column dataField="leaveYearId" caption="Leave Year">
-                      <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                      <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                       </dxo-lookup>
                     </dxi-column>
                     <dxi-column dataField="leaveTypeId" caption="Leave Type">
@@ -130,10 +129,10 @@
                       <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
                         Submit
                       </button>  
+                      <button type="reset" class="btn btn-secondary">
+                          Reset
+                        </button>
                     </ng-template> 
-                    <button type="reset" class="btn btn-secondary">
-                        Reset
-                      </button>
                     </div>
                     <div class="col-lg-3"></div>
                   </div>

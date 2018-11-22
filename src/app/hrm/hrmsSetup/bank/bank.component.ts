@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { SetupService } from '../../../core';
+import { SetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-bank',
@@ -12,17 +12,21 @@ import { SetupService } from '../../../core';
 export class BankComponent implements OnInit {
 
     public bank: any;
+    public employee: any;
 
     constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+        public dataService: SetupService,public empService: EmployeeService) { }
 
     async ngOnInit() {
 
         this.bank = await this.dataService.getAllBanks();
+       
+        this.employee = await this.empService.GetAllEmployees();
     }
 
     addNewbank(bank) {
         this.dataService.addbank(bank.data);
+        this.bank = this.dataService.getAllBanks();
     }
 
     UpdateBank(bank) {

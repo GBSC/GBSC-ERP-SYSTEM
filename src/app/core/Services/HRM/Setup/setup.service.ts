@@ -1,6 +1,4 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core'; 
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
 
@@ -153,7 +151,7 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-    getAllDegrees(): Observable<any> {
+    getAllDegrees(){
 
         return this.ApiService.get(`${this.hrUrl}/GetDegrees`);
     }

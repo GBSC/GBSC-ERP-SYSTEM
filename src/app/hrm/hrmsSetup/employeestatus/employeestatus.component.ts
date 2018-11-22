@@ -23,6 +23,7 @@ export class EmployeeStatuscomponent implements OnInit {
 
     addNewempstatus(empstatus) {
         this.dataService.addEmployeeStatus(empstatus.data);
+        this.empstatus = this.dataService.getEmployeeStatus();
     }
 
     EmpstatusEdit(estatus) {

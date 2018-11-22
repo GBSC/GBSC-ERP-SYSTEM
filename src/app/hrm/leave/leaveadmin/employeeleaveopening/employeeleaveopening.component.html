@@ -40,9 +40,9 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input" formControlName="LeaveYearId">
                       <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                     Remarks:
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control m-input" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control m-input" formControlName="Remarks" rows="3"></textarea>
                   </div>
                 </div>
               </div>
@@ -107,8 +107,8 @@
           <div class="m-portlet__foot m-portlet__foot--fit">
             <div class="m-form__actions m-form__actions" style="padding:19px;">
               <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
            
                   <div *ngIf="isUpdate(); else create">
                       <button class="btn btn-primary" (click)="update(leaveOpeningForm.value)">
@@ -119,12 +119,12 @@
                     <button class="btn btn-Success" (click)="addleaveopening(leaveOpeningForm.value)">
                       Submit
                     </button>  
+                    <button type="reset" class="btn btn-secondary">
+                      Reset
+                    </button>
                   </ng-template> 
-                  <button type="reset" class="btn btn-secondary">
-                    Reset
-                  </button>
                 </div>
-                  <div class="col-lg-3"></div>
+                  <div class="col-lg-4"></div>
               </div>
             </div>
           </div>

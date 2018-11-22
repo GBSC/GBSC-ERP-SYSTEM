@@ -81,7 +81,7 @@
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="ContractStartDate" [value]="EmployeeCompany?.contractStartDate" type="date">
+          <dx-date-box formControlName="ContractStartDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractStartDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -101,7 +101,7 @@
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="ContractEndDate" [value]="EmployeeCompany?.contractEndDate" type="date">
+          <dx-date-box formControlName="ContractEndDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractEndDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -122,7 +122,7 @@
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="AppointmentDate" [value]="EmployeeCompany?.appointmentDate" type="date">
+          <dx-date-box formControlName="AppointmentDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.appointmentDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -136,7 +136,7 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="employee_id">Next Appraisal Date</label>
-        <dx-date-box formControlName="NextAppraisalDate" [value]="EmployeeCompany?.nextAppraisalDate" type="date">
+        <dx-date-box formControlName="NextAppraisalDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.nextAppraisalDate" type="date">
         </dx-date-box>
       </div>
     </div>
@@ -155,7 +155,7 @@
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="ConfirmationDueDate" [value]="EmployeeCompany?.confirmationDueDate" type="date">
+          <dx-date-box formControlName="ConfirmationDueDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDueDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -175,7 +175,7 @@
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="ConfirmationDate" [value]="EmployeeCompany?.confirmationDate" type="date">
+          <dx-date-box formControlName="ConfirmationDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -196,12 +196,12 @@
           <div class="input-group-prepend">
             <span class="input-group-text">
               <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input id="chL" #chL (change)="enableInput($event)" type="checkbox" checked="">
+                <input type="checkbox" (change)="check()">
                 <span></span>
               </label>
             </span>
           </div>
-          <dx-date-box formControlName="LeavingDate" [value]="EmployeeCompany?.leavingDate" type="date">
+          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.leavingDate" type="date">
           </dx-date-box>
         </div>
       </div>
@@ -210,14 +210,14 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="username"> Resign Date</label>
-        <dx-date-box formControlName="ResignDate" [value]="EmployeeCompany?.resignDate" type="date">
+        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.resignDate" type="date">
         </dx-date-box>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" [value]="Employee?.approver" class="form-control m-input m-input--solid"
+        <input type="text" formControlName="Approver" displayFormat="dd/MM/yyyy" [value]="Employee?.approver" class="form-control m-input m-input--solid"
           placeholder="Approved By">
       </div>
     </div>

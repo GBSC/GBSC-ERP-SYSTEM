@@ -24,6 +24,7 @@ export class SkillLevelsComponent implements OnInit {
 
     addNewskill(slevel) {
         this.dataService.addSkillLevel(slevel.data);
+        this.skill = this.dataService.getAllSkillLevels();
     }
 
     Editskill(skill) {

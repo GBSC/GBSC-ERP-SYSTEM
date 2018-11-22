@@ -21,6 +21,8 @@ export class CostCenterComponent implements OnInit {
 
     addNewCostCenter(cc) {
         this.dataService.addCostCenter(cc.data);
+        this.ccenter = this.dataService.getAllCostCenter();
+
     }
 
     EditCost(costcntr) {

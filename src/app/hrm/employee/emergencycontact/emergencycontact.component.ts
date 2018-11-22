@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
 import { EmployeeService, SetupService } from '../../../core';
-import { Employee } from '../../../core/Models/HRM/employee';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 
@@ -11,12 +9,11 @@ import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
     styleUrls: ['./emergencycontact.component.css']
 })
 export class EmergencycontactComponent implements OnInit {
-
-
     public relations: any;
+    pattern: any = /^\d{4}-\d{7}$/i;
 
+    
     @Input('employeeId') id: number;
-
 
     constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
         public router: Router, private route: ActivatedRoute) {

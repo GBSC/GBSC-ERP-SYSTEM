@@ -12,7 +12,6 @@ export class EmergencycontactComponent implements OnInit {
     public relations: any;
     pattern: any = /^\d{4}-\d{7}$/i;
 
-    
     @Input('employeeId') id: number;
 
     constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,

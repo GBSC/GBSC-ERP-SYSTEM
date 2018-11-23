@@ -148,18 +148,21 @@ export class RegistrationComponent implements OnInit {
                         PrivateHospital: Patient.privateHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                         patientReferenceId: Patient.patientReferenceId,
+                        
                     });
-
-                    this.partnerForm.patchValue({
-                        FirstName: Patient.partner.firstName,
-                        MiddleName: Patient.partner.middleName,
-                        LastName: Patient.partner.lastName,
-                        DOB: Patient.partner.dob,
-                        PlaceOfBirth: Patient.partner.placeOfBirth,
-                        Occupation: Patient.partner.occupation,
-                        NIC: Patient.partner.nic,
-                        PhoneNumber: Patient.partner.phoneNumber,
-                    });
+                    if(Patient.partner){
+                        this.partnerForm.patchValue({
+                            FirstName: Patient.partner.firstName,
+                            MiddleName: Patient.partner.middleName,
+                            LastName: Patient.partner.lastName,
+                            DOB: Patient.partner.dob,
+                            PlaceOfBirth: Patient.partner.placeOfBirth,
+                            Occupation: Patient.partner.occupation,
+                            NIC: Patient.partner.nic,
+                            PhoneNumber: Patient.partner.phoneNumber,
+                        });
+                    }
+                    
 
                     // this.referenceForm.patchValue({
                     //     ReferredBy: Patient.patientReference.referredBy,
@@ -397,23 +400,19 @@ export class RegistrationComponent implements OnInit {
         if (this.patientForm.value.dob === '') {
             this.patientForm.value.dob = this.Patient.dob;
         }
-
-
         //value.partner = this.Patient.partner;
         //value.patientDocuments = this.document;
-
         // value.patientReference = this.addReference;
         // value.partner = this.addpartnet;
-        let x = await this.PatientServiceobj.updatePatient(value);
+        value.display = value.FirstName +' '+ value.LastName +' '+ value.mrn
+        value.fullName =  value.FirstName +' '+ value.LastName 
+        console.log(value)
+          let x = await this.PatientServiceobj.updatePatient(value);
         //  console.log(x);
-
         //   console.log(value);
         let updatedpatientId = this.id;
         this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
         this.displayToastSuccess("Updated");
-
-
-
     }
 
 

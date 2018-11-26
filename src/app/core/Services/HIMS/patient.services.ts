@@ -199,6 +199,10 @@ export class PatientService {
         return this.getApptbyId;
     }
 
+    async GetAppointmentTestByAppointmentId(id){
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentTestByAppointmentId/' + id).toPromise();
+    }
+
     GetAppointmentById(id: number): Observable<Appointment> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + id);
     }

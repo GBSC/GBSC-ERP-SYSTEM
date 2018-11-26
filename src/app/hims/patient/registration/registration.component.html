@@ -91,7 +91,7 @@
 									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.dob | date : 'yyyy-MM-dd' || ''" formControlName="DOB"
 									 type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
 									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-										<div *ngIf="f.DOB.errors.required">Date Of Birth is required</div>
+										<div *ngIf="f.DOB.errors.required">Date of Birth is required</div>
 									</div>
 								</div>
 							</div>

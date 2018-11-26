@@ -134,10 +134,14 @@ export class AppointmentscheduleComponent implements OnInit {
         await this.PatientServiceobj.getappointments();
         this.appointment = this.PatientServiceobj.appointment;
         console.log(this.appointment);
+        /////current day/////
+        // await this.PatientServiceobj.getAppointmentById(this.currentpatient);
+        // this.getaptbyid = this.PatientServiceobj.getApptbyId;
+        // console.log(this.getaptbyid);
+        /////current day/////
+// console.log(this.currentpatient);
+//         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
 
-        await this.PatientServiceobj.getAppointmentById(this.currentpatient);
-        this.getaptbyid = this.PatientServiceobj.getApptbyId;
-        console.log(this.getaptbyid);
 
 
 
@@ -228,11 +232,15 @@ export class AppointmentscheduleComponent implements OnInit {
             return delete t.TestName;
         });
             console.log(value);
-        // let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-
-          this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-          this.removeall( );
-        // return x;
+          let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
+          console.log(value);
+          this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+          console.log(value);
+          console.log(this.getaptbyid);
+          this.removeall();
+          console.log(value);
+          console.log(x);
+          return x;
     }
 
     // refresh() {
@@ -318,7 +326,7 @@ export class AppointmentscheduleComponent implements OnInit {
             this.toastr.error('Please Select Consultant');
         }
         else {
-            console.log("ELSE");
+            console.log("   ");
             // console.log('else', value);
             console.log(value.PatientId);
             if (value.PatientId == null || value.PatientId == '') {
@@ -644,7 +652,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async getCurrentRowData(d) {
         this.currentpatient = d.key;
-        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+        this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
         console.log(this.getaptbyid);
     }
 

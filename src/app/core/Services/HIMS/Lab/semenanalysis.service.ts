@@ -14,6 +14,10 @@ export class SemenanalysisService {
         return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
     }
 
+    getAllSemenAnalysisByPatientId(patientId: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllSemenAnalysisByPatientId/" + patientId);
+    }
+
     getSemenAnalysis(id: number): Observable<any> {
         return this.ApiService.get(this.Url + "GetSemenAnalysis/" + id);
     }

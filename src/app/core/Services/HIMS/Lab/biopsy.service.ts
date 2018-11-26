@@ -19,6 +19,10 @@ export class BiopsyService {
         return this.ApiService.get(this.Url + "GetAllBiopsies");
     }
 
+    getPatientBiopsiesbyPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.Url + "GetBiopsiesByPatientId/" + patientId);
+    }
+
     getPatientBiopsy(id: number): Observable<any> {
         return this.ApiService.get(this.Url + "GetBiopsyById/" + id);
     }

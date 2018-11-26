@@ -16,6 +16,10 @@ export class InseminationprepService {
         //return this.http.get<InseminationPrep>(this.API_URL + '/InseminationPrep/' + id);
     }
 
+    getInseminationPrepsByPatientId(patientId): Observable<InseminationPrep> {
+        return this.ApiService.get(this.API_URL + 'GetInseminationPrepsByPatientId/' + patientId);
+    }
+
     getInsemenationPrepByClinicalRecordId(id): Observable<any> {
 
         return this.ApiService.get(this.API_URL + 'GetInsemenationPrepByClinicalRecordId/' + id);

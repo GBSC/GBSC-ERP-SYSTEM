@@ -108,7 +108,7 @@
                             Ejaculation Time
                           </label>
                           <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            [value]="semenAnalysis?.EjaculationTime" formControlName="EjaculationTime">
+                            [value]="semenAnalysis?.ejaculationTime" formControlName="EjaculationTime">
                         </div>
                       </div>
                       <div class="col-sm-3">
@@ -247,7 +247,7 @@
                           </div>
                           <div class="col-4" style="padding: 0px;">
                             <div class="input-group">
-                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="semenAnalysis?.immotileCountRange"
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="semenAnalysis?.immotileCount"
                                 (ngModelChange)="immotileCount = $event" formControlName="ImmotileCount">
                               <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
@@ -526,10 +526,13 @@
                         <hr>
 
                         <div class="m-demo__preview m-demo__preview--btn">
-                          <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(semenAnalysisForm.value)">
+                          <button *ngIf="semenAnalysis" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="updateForm(semenAnalysisForm.value)">
+                            Update
+                          </button>
+                          <button *ngIf="!semenAnalysis" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(semenAnalysisForm.value)">
                             Submit
                           </button>
-                          <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                          <!-- <button type="button" class="btn btn-brand m-btn m-btn--custom">
                             Freeze Prep.
                           </button>
                           <button type="button" class="btn btn-success m-btn m-btn--custom">
@@ -537,7 +540,7 @@
                           </button>
                           <button type="button" class="btn btn-info m-btn m-btn--custom">
                             Insem. Prep.
-                          </button>
+                          </button> -->
                         </div>
                       </div>
 

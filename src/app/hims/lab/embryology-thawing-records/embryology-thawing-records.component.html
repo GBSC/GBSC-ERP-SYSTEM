@@ -5,7 +5,7 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Semen Analysis Records</h3>
+              <h3 class="m-portlet__head-text">Embryology Thawing Records</h3>
             </div>
           </div>
         </div>
@@ -13,6 +13,8 @@
           <form>
             <div class="m-section">
               <div class="m-section__content">
+
+
                 <div class="row">
                   <div class="col-sm-2">
                     <div class="form-group m-form__group">
@@ -55,14 +57,12 @@
                       <dxo-paging [pageSize]="8"></dxo-paging>
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                       </dxo-pager>
-                      <dxi-column dataField="collectionDate"></dxi-column>
-                      <dxi-column dataField="collectionNumber"></dxi-column>
-                      <dxi-column dataField="procedureNumber"></dxi-column>
-                      <dxi-column dataField="consultant.name" caption="Consultant"></dxi-column>
-                      <dxi-column dataField="semenAnalysisId" caption="Action"
-                        cellTemplate="cellTemplate"></dxi-column>
+                      <dxi-column dataField="createDate"></dxi-column>
+                      <dxi-column dataField="tvopuId"></dxi-column>
+                      <dxi-column dataField="patientClinicalRecord.cycleNumber" caption="Cycle #"></dxi-column>
+                      <dxi-column dataField="patientClinicalRecord.patientClinicalRecordId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
                       <div *dxTemplate="let data of 'cellTemplate'">
-                        <a class="btn btn-primary" [routerLink]="['/lab/semen-analysis', data.value]">View</a>
+                        <a class="btn btn-primary" [routerLink]="['/lab/embryology-thawing', data.value]">View</a>
                       </div>
                     </dx-data-grid>
 

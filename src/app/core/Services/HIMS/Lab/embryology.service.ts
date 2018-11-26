@@ -15,6 +15,10 @@ export class EmbryologyService {
         return this.ApiService.get(this.Url + 'GetPatientEmbryologyByTvopuId/' + id);
     }
 
+    getAllPatientEmbryologiesByPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetAllPatientEmbryologiesByPatientId/' + patientId);
+    }
+
     getPatientEmbryologyDetailsByTvopuId(id: number) {
         return this.ApiService.get(this.Url + 'GetPatientEmbryologyDetailsByTvopuId/' + id);
     }

@@ -15,6 +15,10 @@ export class FreezepreprationService {
         return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);
     }
 
+    getAllFreezePreprationsByPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetAllFreezePreprationsByPatientId/' + patientId);
+    }
+
     getPatientEmbryologies(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
     }

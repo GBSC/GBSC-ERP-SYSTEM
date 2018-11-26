@@ -14,6 +14,10 @@ export class ThawAssessmentService {
         return this.ApiService.get(this.API_URL + 'GetThawAssessment/' + id);
     }
 
+    getThawAssessmentsByPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetThawAssessmentsByPatientId/' + patientId);
+    }
+
     getThawAssessmentByClinicalRecordId(id): Observable<any> {
 
         return this.ApiService.get(this.API_URL + 'GetThawAssessmentByClinicalRecordId/' + id);

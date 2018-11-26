@@ -15,6 +15,10 @@ export class InsemenationService {
         return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
     }
 
+    getPatientInsemenationsPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetPatientInsemenationsPatientId/' + patientId);
+    }
+
     getPatientInsemenations(): Observable<any> {
         return this.ApiService.get(this.Url + "GetPatientInsemenations");
     }

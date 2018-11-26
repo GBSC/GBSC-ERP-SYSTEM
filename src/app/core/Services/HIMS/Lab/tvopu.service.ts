@@ -15,6 +15,10 @@ export class TvopuService {
         return this.ApiService.get(this.Url + "GetAllTvopus");
     }
 
+    getTvopusByPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.Url + "GetTvopusByPatientId/" + patientId);
+    }
+
     getTvopuByClinicalRecordId(id: number): Observable<any> {
         return this.ApiService.get(this.Url + "getTvopuByClinicalRecordId/" + id);
     }

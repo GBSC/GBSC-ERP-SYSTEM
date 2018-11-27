@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { MenuComponent } from './shared/menu/menu.component';
 import { AuthGuardService } from '../../core';
+import { ClinicalRecordsListComponent } from './clinical-records-list/clinical-records-list.component';
 
 const routes: Routes = [{
     path: "coordination",
@@ -19,6 +20,10 @@ const routes: Routes = [{
     {
         path: "clinical-record",
         component: ClinicalrecordComponent
+    },
+    {
+        path: "clinical-records-list",
+        component: ClinicalRecordsListComponent
     }]
 }];
 

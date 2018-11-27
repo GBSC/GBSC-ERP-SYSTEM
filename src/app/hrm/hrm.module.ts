@@ -132,6 +132,7 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
+import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
 
 
 @NgModule({
@@ -286,7 +287,8 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         ViewleaverequestComponent,
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
-        GratuitydetailComponent,
+        GratuitydetailComponent, 
+        AttendanceRuleDetailComponent,
         
     ],
     exports: []

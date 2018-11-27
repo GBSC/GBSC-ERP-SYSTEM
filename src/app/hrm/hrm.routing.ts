@@ -116,6 +116,7 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
+import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -237,6 +238,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         children: [
                             { path: 'attendanceflagexemption', component: AttendanceFlagExemptionComponent },
                             { path: 'attendancerule', component: AttendanceruleComponent },
+                            { path: 'updateattendancerule/:id', component: AttendanceruleComponent },
+                            { path: 'attendanceruledetail', component: AttendanceRuleDetailComponent },
                         ]
                     },
                     {

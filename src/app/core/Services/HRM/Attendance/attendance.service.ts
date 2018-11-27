@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { AttendanceRule } from '../../../Models/HRM/attendanceRule';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AttendanceService {
@@ -137,15 +139,17 @@ export class AttendanceService {
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRules`).toPromise();
     }
 
+     getAttendanceRule(id) : Observable<AttendanceRule> {
+        return this.ApiService.get(this.baseUrl + '/GetAttendanceRule/' + id);
+    }
+
     async addAttendanceRule(data) {
         return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRule`, data).toPromise();
     }
 
-    async updateAttendanceRule(data) {
+     updateAttendanceRule(data: AttendanceRule) {
 
-        let attendancerule = await this.getdataToUpdate(data.key, 'GetAttendanceRule');
-        attendancerule = { ...attendancerule, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRule`, attendancerule).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRule`, data);
 
     }
 

@@ -129,12 +129,11 @@
                           <div class="m-section">
                             <div class="m-section__content">
                               <dx-data-grid id="gridContainer"
-                              [dataSource]="[]"
+                              [dataSource]="RuleDetail"
                                keyExpr="attendanceRuleId"
-                               (onRowInserted)="attendanceRuleLeave($event)" >
+                               (onRowInserted)="attendanceRuleLeave($event)"
+                               (onRowUpdated)="updateattendancerule($event)" >
                                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                  <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                                  </dxo-popup>
                                 </dxo-editing>
                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -155,27 +154,29 @@
                     </div>
                   </div>
                 </div>
-                  <div class="m--space-50"></div>
-                  <div class="m--space-50"></div>
-                  <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show" role="alert" *ngIf="mesage">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-                    <strong> {{ message }}</strong>
-                  </div> 
                   <div class="m-separator m-separator"></div>
 
-                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                    <div class="m-form__actions m-form__actions--solid">
-                      <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
-                          <button type="submit" class="btn btn-brand" (click)="addattendancerule(AttendanceRuleForm.value)">
-                            Submit
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                            Cancel
-                          </button>
+                  <div class="row" >
+                    <div class="col-md-12">
+                      <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions" style="padding:19px;">
+                          <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                              <div *ngIf="isUpdate(); else create">
+                                <button class="btn btn-primary" (click)="update(AttendanceRuleForm.value)">
+                                    Update
+                                  </button>        
+                            </div> 
+                            <ng-template #create>
+                              <button class="btn btn-Success" (click)="addattendancerule(AttendanceRuleForm.value)">
+                                Submit
+                              </button>  
+                            </ng-template> 
+                            </div>
+                            <div class="col-lg-3"></div>
+                          </div>
                         </div>
-                        <div class="col-lg-4"></div>
                       </div>
                     </div>
                   </div>

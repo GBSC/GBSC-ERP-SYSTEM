@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AttendanceService, AttendancesetupService, LeaveSetupService, SetupService } from '../../../../core';
 import { AttendanceRuleLeaveType } from '../../../../core/Models/HRM/AttendanceRuleLeaveType';
 import { AttendanceRule } from '../../../../core/Models/HRM/attendanceRule';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-attendancerule',
@@ -14,20 +16,21 @@ export class AttendanceruleComponent implements OnInit {
     public AttendanceRuleForm;
     public attendancerule: any;
     public LeaveTypes: any;
-    public message: any;
+    public ruleofAttendannce: any;
     private leaves: AttendanceRuleLeaveType[];
+    public RuleDetail: any[] = [];
     public attendanceRule: any;
     public attendanceflag: any;
     public groups: any;
+    @Input('attendanceRuleId') id: number;
 
-    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
-        public attendancesetupservice: AttendancesetupService, public leavesetupservice: LeaveSetupService,
-        public hrsetupservice: SetupService, ) { }
+    constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public attendanceservice: AttendanceService,
+        public attendancesetupservice: AttendancesetupService,public router : Router, public leavesetupservice: LeaveSetupService,
+        public hrsetupservice: SetupService,public toastr:ToastrService, ) { }
 
     async ngOnInit() {
 
         this.leaves = [];
-
         this.AttendanceRuleForm = this.fb.group({
             GroupId: ['', Validators.required],
             AttendanceFlagId: ['', Validators.required],
@@ -39,7 +42,6 @@ export class AttendanceruleComponent implements OnInit {
             EffectType: ['', Validators.required],
             EffectFrequency: ['', Validators.required],
             Action: ['', Validators.required]
-
         });
 
         this.attendancerule = await this.attendanceservice.getAttendanceRules();
@@ -49,7 +51,17 @@ export class AttendanceruleComponent implements OnInit {
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
         this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
-
+       
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+          });
+          if (this.isUpdate() === true) {
+            this.attendanceservice.getAttendanceRule(this.id).subscribe(resp => {
+              this.ruleofAttendannce = resp;
+                this.RuleDetail = this.ruleofAttendannce.AttendanceRuleLeaveTypes;
+                 this.patchValues(this.ruleofAttendannce);
+            });
+          }
     }
 
     async attendanceRuleLeave(value) {
@@ -61,24 +73,56 @@ export class AttendanceruleComponent implements OnInit {
         let attendanceRule = new AttendanceRule();
         attendanceRule = { ...attendanceRule, ...value };
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
-        let r = await this.attendanceservice.addAttendanceRule(attendanceRule);
-        this.message = 'Success! Attendance Rule Submit Successfully';
-        setTimeout(() => {
-            this.message = null;
-        }, 3000);
+        await this.attendanceservice.addAttendanceRule(attendanceRule);
+        this.toastr.success("Attendance Rule Submit Successfully");
         this.AttendanceRuleForm.reset();
+        this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
     }
 
-    AttendanceRuleUpdating(value) {
-        this.attendanceRule = { ...value.oldData, ...value.newData };
-    }
 
-    async updateattendancerule() {
-        this.attendanceservice.updateAttendanceRule(this.attendanceRule);
-    }
+    isUpdate(): boolean {
 
+        if (this.id > 0) {
+          return true;
+        }
+        else
+          return false;
+      }
+
+       updateattendancerule(value) {
+        console.log(value);
+      }
+    
+      async update(value) { 
+          console.log(value); 
+        value.attendanceRuleId = this.id;
+        value.attendanceRuleLeaveTypes = this.RuleDetail;
+        await this.attendanceservice.updateAttendanceRule(value).subscribe(resp => {
+          this.toastr.success("Attendance Rule Detail Updated"); 
+                this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
+    
+        });
+      }  
     async deleteattendancerule(value) {
-        this.attendanceservice.DeleteAttendanceRule(value.key);
+        await this.attendanceservice.DeleteAttendanceRule(value.key);
     }
+
+    patchValues(rule: any) {
+
+        this.AttendanceRuleForm.patchValue({
+    
+            GroupId: rule.groupId,
+            AttendanceFlagId: rule.attendanceFlagId,
+            FlagCount: rule.flagCount,
+            ExemptFlagCount: rule.exemptFlagCount,
+            ExemptMinutes: rule.exemptMinutes,
+            ConditionalExemption: rule.conditionalExemption,
+            EffectQuantity: rule.effectQuantity,
+            EffectType: rule.effectType,
+            EffectFrequency: rule.effectFrequency,
+            Action: rule.action
+        })
+    
+      }
 
 }

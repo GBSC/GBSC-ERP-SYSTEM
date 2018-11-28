@@ -11,22 +11,77 @@
         </div>
       </div>
     </div>
-    <div class="m-portlet__body">
-       <!-- <ul *ngFor="let Patient of visits">
-         <li   (click)="onclick(Patient.visitId)">
-           <a >{{Patient.startTime | date: 'dd/MM/yyyy'}}</a>
-          </li>
-       </ul> -->
+ 
+        <div class="m-portlet__body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="m_widget4_tab1_content">
+                <div class="m-scrollable mCustomScrollbar _mCS_3 mCS-autoHide" data-scrollable="true" data-max-height="400" style="height: 400px; overflow: visible; max-height: 400px; position: relative;"><div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_3_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+                  <div class="m-list-timeline m-list-timeline--skin-light">
+                    <div class="m-list-timeline__items">
 
-       <div class="">
-          <ul *ngFor="let Patient of visits">
-              <li   (click)="onclick(Patient.visitId)">
-            <a class="m-link m-link--state m-link--success">
-                {{Patient.startTime | date: 'dd/MM/yyyy'}}
-            </a>
-          </li>
-        </ul>
-        </div>
+                        <div class="m-list-timeline__item" *ngFor="let Patient of visits">
+                            <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
+                            <span class="m-list-timeline__text" (click)="onclick(Patient.visitId)">
+                              <span class="m-badge m-badge--success m-badge--wide btn btn-sccuss" style="width: 125px;height: 25px;position: relative;">
+                                  {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
+                              </span>
+                            </span>
+                            
+                          </div>
+                      
+                    </div>
+                  </div>
+                </div></div>
+                <div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical"
+                 style="display: block;">
+                  <div class="mCSB_draggerContainer">
+                    <div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 247px; max-height: 380px; top: 0px;">
+                      <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+                    </div>
+                    <div class="mCSB_draggerRail"></div>
+                  </div>
+                </div>
+                </div>	</div>
+              <div class="tab-pane" id="m_widget4_tab2_content"></div>
+              <div class="tab-pane" id="m_widget4_tab3_content"></div>
+            </div>
+          </div>
 
-     </div>
+    
   </div>
+
+
+  
+
+
+
+
+
+    <!-- extra  -->
+    <!-- <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <span class="m-portlet__head-icon">
+             <i class="fa fa-calendar-check-o"></i>
+                  </span>
+              <h3 class="m-portlet__head-text">
+                  Recent Visits 
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+           <div class="">
+              <ul *ngFor="let Patient of visits" class="nobull">
+                  <li   (click)="onclick(Patient.visitId)">
+                <a class="m-link m-link--state m-link--success btn btn-success">
+                    {{Patient.startTime | date: 'dd/MM/yyyy h:mm '}}
+                </a>
+              </li>
+            </ul>
+            </div>
+    
+         </div>
+      </div> -->
+        <!-- extra  -->

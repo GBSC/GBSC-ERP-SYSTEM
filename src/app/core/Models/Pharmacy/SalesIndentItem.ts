@@ -8,9 +8,9 @@ export interface SalesIndentItem {
     iventoryItemId: number,
     inventoryId: number,
 
-    dosage : number,
-    treatmentStart : Date,
-    treatmentEnd : Date,
-    treatmentTimeInDays : number,
-    isPaid : boolean
+    dosage: number,
+    treatmentStart: Date,
+    treatmentEnd: Date,
+    treatmentTimeInDays: number,
+    isPaid: boolean
 }

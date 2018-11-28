@@ -4,8 +4,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Appointment } from '../../../core/Models/HIMS/appointment';
-import { ActivatedRoute ,Router } from '@angular/router';
- 
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
     selector: 'app-paymentreceipt',
     templateUrl: './paymentreceipt.component.html',
@@ -13,63 +13,62 @@ import { ActivatedRoute ,Router } from '@angular/router';
 })
 export class PaymentreceiptComponent implements OnInit {
 
-    private SelectedPatient : any;
-    private Appointments : Appointment[] = [];
-    // private SelectedAppointment : Appointment;
+    private Appointments: Appointment[] = [];
 
-    id: number;
+    constructor(private PatientService: PatientService, private Toastr: ToastrService, private ActivatedRoute: ActivatedRoute, private Router: Router) {
 
-
-    private nature: any[] = ['Select Nature', 'Package', 'Lab Tests', 'Medicines', 'Others'];
-    //constructor(private PatientServiceobj: PatientService , private formBuilder : FormBuilder , private Toast : ToastrService ,private route : ActivatedRoute) { 
-
-    constructor(private PatientService : PatientService, private Toastr : ToastrService, private ActivatedRoute : ActivatedRoute , private Router : Router) {
     }
 
+    private showApp = { 'active show': 'app' };
+    private showMRN = { 'active show': '' };
+    private showID = { 'active show': '' };
+
     async  ngOnInit() {
-        
+
         this.ActivatedRoute.params.subscribe(params => {
-            if(params['id']) {
-                this.Router.navigate(['hims/patient/appointmentpaymentreceipt/' + params['id']]);
-                // this.PatientService.GetAppointmentById(params['id']).subscribe((res : Appointment) => {
-                //     this.SelectedAppointment = res;
-                // });
+            if (params['id']) {
+                let idOrMrn = params;
+                if (idOrMrn.id.includes('MRN') || idOrMrn.id.includes('mrn')) {
+                    this.showMRN = { 'active show': 'mrn' };
+                    this.showApp = { 'active show': '' };
+                    this.showID = { 'active show': '' };
+                } else if (idOrMrn.id) {
+                    this.showID = { 'active show': 'id' };
+                    this.showMRN = { 'active show': '' };
+                    this.showApp = { 'active show': '' };
+                } else {
+                    this.showID = { 'active show': '' };
+                    this.showMRN = { 'active show': '' };
+                    this.showApp = { 'active show': 'app' };
+                }
+            } else {
+                this.Router.navigate(['hims/patient/paymentreceipt']);
             }
         });
 
     }
 
-    GetPatientByMrn(mrn : string, keycode){
-       if(keycode.key === "Enter") {
-        //    console.log(mrn);
-            this.PatientService.SearchPatientByMrn(mrn).subscribe((res : any) => {
-                if(res === null) {
-                    this.Toastr.error("Incorrect MRN");
-                }
-                else {
-                    this.SelectedPatient = res;
-                    this.Toastr.success("Patient Selected");
-                }
-            });
-        }
-    }
-
-    GetAppointmentByDateAndPatientID(date : Date) {
-        // console.log(date);
-        this.PatientService.GetFinalizedAppointmentsByDateAndPatientID(date, this.SelectedPatient.patientId).subscribe((res : Appointment[]) => {
+    GetAppointmentsByMRN(mrn: string) {
+        this.PatientService.GetFinalizedAppointmentsByMRN(mrn).subscribe((res: Appointment[]) => {
             this.Appointments = res;
-            this.Toastr.success("Appointments Updated");
+            console.log(this.Appointments);
         });
     }
 
-    ViewInvoice(value) {
-        // this.SelectedAppointment = this.Appointments.find(a => a.AppointmentId === value.data.appointmentId);
-        // console.log("SelectedAppointment", this.SelectedAppointment);
-        // this.Router.navigate(['/appointmentpaymentreceipt/' + this.SelectedAppointment.AppointmentId]);
-        this.Router.navigate(['hims/patient/appointmentpaymentreceipt/' + value.data.appointmentId]);
+    SwitchTab(what, row, mrn) {
+        // console.log(what);
+        // console.log(row);
+        // console.log(mrn);
+
+        if (what === 'id') {
+            this.Router.navigate(['hims/patient/paymentreceipt/' + row.data.appointmentId]);
+            // console.log('In Add Invoice')
+        } else if (what === 'mrn') {
+            // console.log('In View Invoice')
+            this.Router.navigate(['hims/patient/paymentreceipt/' + mrn]);
+        }
     }
 
 
 
 }
- 

@@ -22,9 +22,10 @@ export class RootComponent implements OnInit {
                 // optional js to be loaded once
                 this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js', 
                 'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js',
-            'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js']);
+            'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js',
+            '/assets/demo/default/custom/components/forms/widgets/bootstrap-timepicker.js']);
             });
-        this._router.events.subscribe((route) => { 
+        this._router.events.subscribe((route) => {
             if (route instanceof NavigationStart) {
                 (<any>mLayout).closeMobileAsideMenuOffcanvas();
                 (<any>mLayout).closeMobileHorMenuOffcanvas();

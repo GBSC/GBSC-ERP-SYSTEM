@@ -14,18 +14,18 @@ export interface Appointment {
     NextAppointment: string,
     VisitStatus: string,
     visitNatureId: number,
-    VisitNature : VisitNature,
+    VisitNature: VisitNature,
     AppointmentDay: string,
     Remarks: string,
     ConsultantId: number,
-    Consultant : Consultant,
-    PatientId : number,
-    Patient : Patient,
+    Consultant: Consultant,
+    PatientId: number,
+    Patient: Patient,
     VisitId: number,
-    Visit : Visits,
-    PatientInvoiceId : number,
-    PatientInvoice : PatientInvoice,
-    IsFinalAppointment : boolean,
-    IsCancelled :boolean
-
+    Visit: Visits,
+    PatientInvoiceId: number,
+    PatientInvoice: PatientInvoice,
+    IsFinalAppointment: boolean,
+    IsCancelled: boolean,
+    IsPaid: boolean
 };

@@ -17,7 +17,8 @@
                [dataSource]="qualifications"
                keyExpr="universityId" 
                (onRowInserted)="addQualification($event)"
-               (onRowUpdated)="updateQualification($event)">
+               (onRowUpdated)="updateQualification()"
+               (onRowUpdating)="updatingQualification($event)">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Education Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>

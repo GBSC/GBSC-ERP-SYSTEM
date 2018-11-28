@@ -41,8 +41,8 @@ export class PurchaseOrderComponent implements OnInit {
     private TotalQuantity: number = 0;
     private Inventories: Inventory[] = [];
 
-    public dataEnabled: boolean = false;
-
+    public  fieldsenabled: boolean = true;
+ 
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group({
@@ -124,6 +124,8 @@ export class PurchaseOrderComponent implements OnInit {
 
     CalculateSalesTaxAmount(value) {
         // console.log(value);
+        this.fieldsenabled = false; 
+
         this.SalesTaxAmount = (<number>value * <number>this.GrossAmount) / 100;
         // console.log(this.SalesTaxAmount);
         this.CalculateNetAmount();
@@ -132,9 +134,8 @@ export class PurchaseOrderComponent implements OnInit {
     CalculateDiscountAmount(value) {
         // console.log(value);
 
-        this.dataEnabled = true; 
         this.DiscountAmount = (<number>value * (<number>this.GrossAmount + this.SalesTaxAmount)) / 100;
-        // console.log(this.DiscountAmount);
+         console.log(this.DiscountAmount);
         this.CalculateNetAmount();
     }
 
@@ -202,7 +203,7 @@ export class PurchaseOrderComponent implements OnInit {
     }
 
     RemovePurchaseOrderDetails(d) {
-
+        console.log("Remove event", d);
         // this.PurchaseOrderDetailsFormArray.splice(index, 1);
         // this.PurchaseOrderDetailsArray.splice(index, 1);
         // this.Inventories.splice(index, 1);
@@ -218,12 +219,14 @@ export class PurchaseOrderComponent implements OnInit {
         this.PurchaseOrderDetailsFormArray = [];
         this.Inventories = [];
         this.PurchaseOrderDetailsArray = [];
+        this.TotalQuantity = 0;
+        this.TotalOrderAmount = 0;
     }
 
     SubmitPurchaseOrder() {
-        
+
         var a: any = {
-            OrderDate: this.PurchaseOrderForm.value.OrderDate,
+            OrderDate: this.PurchaseOrderForm.value.OrderDate || new Date().toISOString(),
             Status: this.PurchaseOrderForm.value.Status,
             SupplierId: this.PurchaseOrderForm.value.SupplierId,
             Origin: this.PurchaseOrderForm.value.Origin,
@@ -234,8 +237,8 @@ export class PurchaseOrderComponent implements OnInit {
 
         // console.log(a);
         this.NewPurchaseOrder = a;
-        // console.log(this.NewPurchaseOrder);
-
+        console.log("NewPurchaseOrder", this.NewPurchaseOrder);
+        console.log("Inventories", this.Inventories);
         this.PharmacyService.AddPurchaseOrder(this.NewPurchaseOrder).subscribe(res => console.log(res));
         this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => console.log(res));
 

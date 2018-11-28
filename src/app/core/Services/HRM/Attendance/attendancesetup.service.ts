@@ -23,7 +23,7 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
 
     }
@@ -242,7 +242,7 @@ export class AttendancesetupService {
     }
 
     async updateOvertimeType(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, data).toPromise();
 
     }

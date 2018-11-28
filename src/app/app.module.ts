@@ -17,6 +17,7 @@ import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/c
 import { ClinicalrecordComponent } from './hims/coordination/clinicalrecord/clinicalrecord.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { ClinicalRecordsListComponent } from './hims/coordination/clinical-records-list/clinical-records-list.component';
 
 
 
@@ -25,7 +26,8 @@ import { FooterComponent } from './shared/footer/footer.component';
         ThemeComponent,
         AppComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        ClinicalRecordsListComponent
     ],
     imports: [
         CommonModule,

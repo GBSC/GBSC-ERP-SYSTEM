@@ -7,36 +7,41 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { MenuComponent } from './shared/menu/menu.component';
 import { AuthGuardService } from '../../core';
+import { ClinicalRecordsListComponent } from './clinical-records-list/clinical-records-list.component';
 
 const routes: Routes = [{
-  path: "coordination",
-  component: RootComponent,
-  canActivate: [AuthGuardService],
-  children: [{
-    path: "clinical-record/:id",
-    component: ClinicalrecordComponent
-  },
-  {
-    path: "clinical-record",
-    component: ClinicalrecordComponent
-  }]
+    path: "coordination",
+    component: RootComponent,
+    canActivate: [AuthGuardService],
+    children: [{
+        path: "clinical-record/:id",
+        component: ClinicalrecordComponent
+    },
+    {
+        path: "clinical-record",
+        component: ClinicalrecordComponent
+    },
+    {
+        path: "clinical-records-list",
+        component: ClinicalRecordsListComponent
+    }]
 }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule
-  ],
+    imports: [RouterModule.forChild(routes),
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule
+    ],
 
-  declarations: [
-    RootComponent,
-    MenuComponent,
-    ClinicalrecordComponent
-  ],
-  exports: [RouterModule]
+    declarations: [
+        RootComponent,
+        MenuComponent,
+        ClinicalrecordComponent
+    ],
+    exports: [RouterModule]
 })
 export class CoordinationRoutingModule { }

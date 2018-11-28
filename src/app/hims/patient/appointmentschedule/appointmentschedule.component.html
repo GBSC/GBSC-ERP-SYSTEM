@@ -47,22 +47,22 @@
               <div class="form-group row">
                 <div   class="form-group col-lg-3">
                   <label for="exampleSelect1"> Consultant </label>
-                  <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
-                    <option disabled selected (click)="log($event)">All</option>
+                  <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" placeholder="All" formControlName="ConsultantId" required>
+                    <!-- <option disabled selected (click)="log($event)">All</option> -->
                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                   </select>
                 </div>
                 <div class="form-group col-lg-3">
                   <label for="exampleInputEmail1">Appointment Date</label>
-                  <input #date class="form-control m-input m-input--solid" [value]="currentdate || ''" formControlName="AppointmentDate"
-                    type="date" required>{{currentdate | json}}
-                </div>
+                  <input #date class="form-control m-input m-input--solid" [value]="currentdate | date : 'yyyy-MM-dd' || ''" formControlName="AppointmentDate"
+                    type="date" required>
+                </div> 
                 <div class="form-group col-lg-5"></div>
                 <div class="form-group  col-lg-1 ">
                     <!-- <a href="#" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
                         <i class="fa fa-search"></i>
                     </a> -->
-                  <button type="button"  class="btn btn-primary blankinput" (click)="GetAppointmentByConsultantNameAndDate(cid, appointmentForm.value)">Show</button>
+                  <button type="button"  class="btn btn-primary blankinput" (click)="GetAppointmentByConsultantNameAndDate(cid, date.value,appointmentForm.value)">Show</button>
                 </div>
               </div>
               <div *ngIf="showAddNewPatientRow">
@@ -89,12 +89,21 @@
                           </div>
                       </div>
                   </dx-lookup>   -->
-                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="firstName" valueExpr="patientId" [searchEnabled]="true"
-                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="">
+                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
+                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="" style="margin-top: 7px;">
                     </dx-select-box> 
-                    <!-- [value]="patientForm.FirstName + ' ' +patientForm.LastName"  [value]="patientForm.value.PhoneNumber"  -->
-                    <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
-                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>
+
+
+                 <input [value]="patientById?.fullName  || ''"  style="margin-top: 2%;" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>  
+
+
+                    <!-- <select  *ngIf="newOrPrevious === 'new'? true : false" class="form-control m-input m-input--solid" formControlName="PatientId">
+                      <option  [value]="patientById?.patientId" selected disabled >{{patientById?.fullName  || ''}}</option>
+                    </select>
+  -->
+                    <!-- <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled> -->
                   </div>
                   <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1"> Visit Nature </label>
@@ -104,7 +113,7 @@
 
                     <div class="form-group col-lg-4">
                       <label for="exampleInputEmail1"> Tentative Time </label>
-                      <input type="time" class="form-control m-input m-input--solid" [value]="currenttime || ''" formControlName="TentativeTime">
+                      <input type="time" class="form-control m-input m-input--solid" #time [value]="currenttime | date : 'hh:mm:ss' || ''" formControlName="TentativeTime">
                     </div>
                   <!-- <div class="form-group col-lg-4">
                     <label for="exampleInputEmail1"> Visit Status </label>
@@ -140,7 +149,7 @@
                     <button type="submit" (click)="deleteFieldValue()" class="btn btn-primary">
                       Cancle
                     </button> |
-                    <button type="submit" (click)="addApointment(appointmentForm.value , cid)" class="btn btn-primary">
+                    <button type="submit" (click)="addApointment(appointmentForm.value , cid , date.value , time.value)" class="btn btn-primary">
                       Submit
                     </button>
                   </div>
@@ -237,9 +246,9 @@
                   <dxi-column dataField="visitNatureId" caption="Visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">
                   <dxo-lookup [dataSource]="PatientServiceobj?.visitNatures" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" type="time" [visible]="false">
+                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" [visible]="false">
                  </dxi-column>
-                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime" type="time" [visible]="false"></dxi-column>
+                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime"  [visible]="false"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"  [visible]="false"></dxi-column>
                 <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">

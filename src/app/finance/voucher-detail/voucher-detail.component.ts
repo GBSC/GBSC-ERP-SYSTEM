@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService, HrmsService } from '../../core';
+import { SetupService } from '../../core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,19 +18,16 @@ export class VoucherDetailComponent implements OnInit {
   public detailAccount: any; 
   public voucherId: any; 
 
-  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService,
-     public SetupService: SetupService,public hrmService: HrmsService) { }
+  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
+    
     this.voucher = await this.financeService.getVouchers();
-
     this.voucherType = await this.financeSetupService.getVoucherTypes();
-
     this.detailAccount = await this.financeSetupService.getDetailAccounts();
-
     this.financialYear = await this.financeSetupService.getFinancialYears();
 
-    this.departments = await this.hrmService.getAllDepartments();    
+    // this.departments = await this.SetupService.getAllDepartments();    
   }
 
   onToolbarPreparing(e) {
@@ -39,12 +36,11 @@ export class VoucherDetailComponent implements OnInit {
         location: 'after',
         widget: 'dxButton',
         options: {
-          icon: 'add',
-          onClick: this.addvoucher.bind(this)
+        icon: 'add',
+        onClick: this.addvoucher.bind(this)
         }
       });
   }
-
 
   contentReady(e) {
     if (!e.component.getSelectedRowKeys().length)

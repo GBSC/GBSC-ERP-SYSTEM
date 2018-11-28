@@ -29,7 +29,7 @@ export class LeaverequestComponent implements OnInit {
 
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr:ToastrService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+    constructor(public toastr: ToastrService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public leaveservice: LeaveService) { }
 
     async ngOnInit() {
@@ -59,19 +59,19 @@ export class LeaverequestComponent implements OnInit {
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-          });
-          if (this.isUpdate() === true) {
+        });
+        if (this.isUpdate() === true) {
             this.leaveservice.getleaverequest(this.id).subscribe(resp => {
-              this.leaveRequest = resp;
+                this.leaveRequest = resp;
                 let a = this.leaveRequest.leaveRequestDetails;
-              this.leaveDetail= a.filter(b => {
-                delete b.leaveRequestDetailId;
-                delete b.leaveRequestId;
-                return b;
-              }); 
-                 this.patchValues(this.leaveRequest);
+                this.leaveDetail = a.filter(b => {
+                    delete b.leaveRequestDetailId;
+                    delete b.leaveRequestId;
+                    return b;
+                });
+                this.patchValues(this.leaveRequest);
             });
-          }
+        }
     }
 
     async leaveRequestDetail(value) {
@@ -84,7 +84,7 @@ export class LeaverequestComponent implements OnInit {
     }
 
     async updateRequestDetail() {
-        await this.leaveservice.updateLeaveRequestDetail( this.updatingRequest);
+        await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
 
     async addLeaveRequest(value) {
@@ -93,43 +93,43 @@ export class LeaverequestComponent implements OnInit {
         request.LeaveRequestDetails = this.requestDetail;
         let s = await this.leaveservice.addLeaveRequest(request);
         this.leaveRequestForm.reset();
-        this.toastr.success("Leave Request Added"); 
+        this.toastr.success("Leave Request Added");
         this.router.navigate(['/hrm/leave/leaverequests']);
 
     }
- 
- 
+
+
     isUpdate(): boolean {
 
         if (this.id > 0) {
-          return true;
+            return true;
         }
         else
-          return false;
-      }
+            return false;
+    }
 
-      async updateLeaverequestDetail(value) {
+    async updateLeaverequestDetail(value) {
         console.log(value);
-      }
-    
-      async update(value) { 
+    }
+
+    async update(value) {
         value.leaveRequestId = this.id;
         value.LeaveRequestDetails = this.leaveDetail;
         this.leaveservice.updateLeaveRequest(value).subscribe(resp => {
-          this.toastr.success("Leave Request Updated"); 
-                this.router.navigate(['/hrm/leave/leaverequests']);
-    
-        });
-      }
+            this.toastr.success("Leave Request Updated");
+            this.router.navigate(['/hrm/leave/leaverequests']);
 
-      patchValues(request: any) {
+        });
+    }
+
+    patchValues(request: any) {
 
         this.leaveRequestForm.patchValue({
-    
+
             UserId: request.userId,
             IsApproved: request.isApproved,
             RequestDate: request.requestDate
         })
-    
-      }
+
+    }
 }

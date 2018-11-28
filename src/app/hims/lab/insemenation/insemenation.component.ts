@@ -6,180 +6,257 @@ import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.s
 import { Router, ActivatedRoute } from '@angular/router';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { InsemenationService } from '../../../../app/core/Services/HIMS/Lab/insemenation.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
-  selector: 'app-insemenation',
-  templateUrl: './insemenation.component.html',
-  styleUrls: ['./insemenation.component.scss']
+    selector: 'app-insemenation',
+    templateUrl: './insemenation.component.html',
+    styleUrls: ['./insemenation.component.scss']
 })
 export class InsemenationComponent implements OnInit {
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  private patient: any;
-  private spouse: any;
-  private patients: any;
-  private consultants: any;
-  private treatments: any;
-  private id: number;
-  private clinicalRecord: any;
-  private insemenation: any;
+    private patient: any;
+    private spouse: any;
+    private patients: any;
+    private consultants: any;
+    private treatments: any;
+    private id: number;
+    private clinicalRecord: any;
+    private insemenation: any;
 
-  private motileCount: number;
-  private immotileCount: number;
-  private totalCount: number;
-  private linear: number;
-  private nonLinear: number;
-  private nonProgresive: number;
-  private immotile: number;
-  private reportedLiner: number;
-  private reportedNonLinear: number;
-  private reportedNonProgressive: number;
-  private reportedImmotile: number;
-  private totalProgression: number;
-  private totalReportedProgression: number;
-
-
-  private insemenationForm: FormGroup;
+    private motileCount: number;
+    private immotileCount: number;
+    private totalCount: number;
+    private linear: number;
+    private nonLinear: number;
+    private nonProgresive: number;
+    private immotile: number;
+    private reportedLiner: number;
+    private reportedNonLinear: number;
+    private reportedNonProgressive: number;
+    private reportedImmotile: number;
+    private totalProgression: number;
+    private totalReportedProgression: number;
 
 
-  constructor(private formBuilder: FormBuilder,
-    private consultantService: ConsultantService,
-    private patientService: PatientService,
-    private treatmentService: TreatmentService,
-    private insemenationService: InsemenationService,
-    public router: Router,
-    private route: ActivatedRoute,
-    private clinicalrecordservice: PatientclinicalrecordService) {
+    private insemenationForm: FormGroup;
 
-    this.insemenationForm = this.formBuilder.group({
-      'CollectionDate': [''],
-      'CollectionNumber': [''],
-      'ProcedureNumber': [''],
-      'ActiveInactive': [''],
-      'Abstinence': [''],
-      'EjaculationTime': [''],
-      'Location': [''],
-      'AssayTime': [''],
-      'Volume': [''],
-      'Consistency': [''],
-      'Appearance': [''],
-      'Ph': [''],
-      'MotileCountRange': [''],
-      'MotileCount': [''],
-      'ImmotileCountRange': [''],
-      'ImmotileCount': [''],
-      'TotalCountRange': [''],
-      'TotalCount': [''],
-      'SpermProgressionRapidLinear': [''],
-      'SpermProgressionNonLinear': [''],
-      'SpermProgressionNonProgressive': [''],
-      'Immotile': [''],
-      'TestPreprationMethod': [''],
-      'VolumeSemenUsed': [''],
-      'TestPreprationTotalCountRange': [''],
-      'TestPreprationTotalCount': [''],
-      'TestPreprationMotileCountRange': [''],
-      'TestPreprationMotileCount': [''],
-      'TestPreprationRapidLinearProgression': [''],
-      'TestPreprationRapidNonLinearProgression': [''],
-      'TimeCompleted': [''],
-      'FinalVolume': [''],
-      'NormalForms': [''],
-      'HeadAbnormalities': [''],
-      'MidpieceAbnormalities': [''],
-      'TailAbnormalities': [''],
-      'OtherCells': [''],
-      'Comments': ['']
-    })
 
-    this.insemenationForm.disable();
+    constructor(private formBuilder: FormBuilder,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private treatmentService: TreatmentService,
+        private insemenationService: InsemenationService,
+        public router: Router,
+        private route: ActivatedRoute,
+        private toastr: ToastrService,
+        private clinicalrecordservice: PatientclinicalrecordService) {
 
-  }
+        this.insemenationForm = this.formBuilder.group({
+            'CollectionDate': [''],
+            'CollectionNumber': [''],
+            'ProcedureNumber': [''],
+            'ActiveInactive': [''],
+            'Abstinence': [''],
+            'EjaculationTime': [''],
+            'Location': [''],
+            'AssayTime': [''],
+            'Volume': [''],
+            'Consistency': [''],
+            'Appearance': [''],
+            'Ph': [''],
+            'MotileCountRange': [''],
+            'MotileCount': [''],
+            'ImmotileCountRange': [''],
+            'ImmotileCount': [''],
+            'TotalCountRange': [''],
+            'TotalCount': [''],
+            'SpermProgressionRapidLinear': [''],
+            'SpermProgressionNonLinear': [''],
+            'SpermProgressionNonProgressive': [''],
+            'Immotile': [''],
+            'TestPreprationMethod': [''],
+            'VolumeSemenUsed': [''],
+            'TestPreprationTotalCountRange': [''],
+            'TestPreprationTotalCount': [''],
+            'TestPreprationMotileCountRange': [''],
+            'TestPreprationMotileCount': [''],
+            'TestPreprationRapidLinearProgression': [''],
+            'TestPreprationRapidNonLinearProgression': [''],
+            'TimeCompleted': [''],
+            'FinalVolume': [''],
+            'NormalForms': [''],
+            'HeadAbnormalities': [''],
+            'MidpieceAbnormalities': [''],
+            'TailAbnormalities': [''],
+            'OtherCells': [''],
+            'Comments': ['']
+        })
 
-  ngOnInit() {
+        this.insemenationForm.disable();
 
-    this.route.params.subscribe((params) => {
-      this.id = +params['id'];
+    }
 
-      this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+    ngOnInit() {
 
-        this.insemenationForm.enable();
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
 
-        this.clinicalRecord = resp;
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.insemenationForm.enable();
+
+                this.clinicalRecord = resp;
+
+                this.setValues();
+
+            })
+
+        })
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+            this.insemenationForm.enable();
+
+        });
+
+
+        this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+
+    }
+
+    setValues() {
 
         if (this.clinicalRecord != null) {
-          this.insemenationService
-            .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-            .subscribe(resp => this.insemenation = resp);
+            this.insemenationService
+                .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                .subscribe(resp => {
+                    this.insemenation = resp;
+                    this.patchForm(this.insemenation);
+                    this.calculateOnLoad(this.insemenation);
+                });
         }
 
+    }
 
-      })
-
-    })
-
-    this.patientcb.onValueChanged.subscribe(res => {
-      this.populatePatientDate(res.component.option("value"))
-      this.insemenationForm.enable();
-
-    });
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+        });
+    }
 
 
-    this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+    submitForm(value) {
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        this.insemenationService.addPatientInsemenation(value).subscribe(resp => {
+            this.displayToast("Insemenation Saved");
+            this.setValues();
+        });
+    }
 
-    this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+    updateForm(value) {
+        value.patientInsemenationId = this.insemenation.patientInsemenationId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
+    }
 
-    this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+    patchForm(insemenation) {
+        this.insemenationForm.patchValue({
+            'CollectionDate': insemenation.collectionDate,
+            'CollectionNumber': insemenation.collectionNumber,
+            'ProcedureNumber': insemenation.procedureNumber,
+            'ActiveInactive': insemenation.activeInactive,
+            'Abstinence': insemenation.abstinence,
+            'EjaculationTime': insemenation.ejaculationTime,
+            'Location': insemenation.location,
+            'AssayTime': insemenation.assayTime,
+            'Volume': insemenation.volume,
+            'Consistency': insemenation.consistency,
+            'Appearance': insemenation.appearance,
+            'Ph': insemenation.ph,
+            'MotileCountRange': insemenation.motileCountRange,
+            'MotileCount': insemenation.motileCount,
+            'ImmotileCountRange': insemenation.immotileCountRange,
+            'ImmotileCount': insemenation.immotileCount,
+            'TotalCountRange': insemenation.totalCountRange,
+            'TotalCount': insemenation.totalCount,
+            'SpermProgressionRapidLinear': insemenation.spermProgressionRapidLinear,
+            'SpermProgressionNonLinear': insemenation.spermProgressionNonLinear,
+            'SpermProgressionNonProgressive': insemenation.spermProgressionNonProgressive,
+            'Immotile': insemenation.immotile,
+            'TestPreprationMethod': insemenation.testPreprationMethod,
+            'VolumeSemenUsed': insemenation.volumeSemenUsed,
+            'TestPreprationTotalCountRange': insemenation.testPreprationTotalCountRange,
+            'TestPreprationTotalCount': insemenation.testPreprationTotalCount,
+            'TestPreprationMotileCountRange': insemenation.testPreprationMotileCountRange,
+            'TestPreprationMotileCount': insemenation.testPreprationMotileCount,
+            'TestPreprationRapidLinearProgression': insemenation.testPreprationRapidLinearProgression,
+            'TestPreprationRapidNonLinearProgression': insemenation.testPreprationRapidNonLinearProgression,
+            'TimeCompleted': insemenation.timeCompleted,
+            'FinalVolume': insemenation.finalVolume,
+            'NormalForms': insemenation.normalForms,
+            'HeadAbnormalities': insemenation.headAbnormalities,
+            'MidpieceAbnormalities': insemenation.midpieceAbnormalities,
+            'TailAbnormalities': insemenation.tailAbnormalities,
+            'OtherCells': insemenation.otherCells,
+            'Comments': insemenation.comments,
+        })
+    }
 
+    calculateReportedLinear(value) {
+        this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
+        this.linear = value;
 
-  }
+    }
 
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-    });
-  }
+    calculateReportedNonLinear(value) {
+        this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
+        this.nonLinear = value;
 
+    }
 
-  submitForm(value) {
-    value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-    this.insemenationService.addPatientInsemenation(value).subscribe(resp => console.log(resp));
-  }
+    calculateReportedNonProgressive(value) {
+        this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
+        this.nonProgresive = value;
+    }
 
-  calculateReportedLinear(value) {
-    this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
-    this.linear = value;
-  }
+    calculateReportedImmotile(value) {
+        this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
+        this.immotile = value;
 
-  calculateReportedNonLinear(value) {
-    this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
-    this.nonLinear = value;
-  }
+        this.progression();
 
-  calculateReportedNonProgressive(value) {
-    this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
-    this.nonProgresive = value;
-  }
+        this.reportedProgression();
 
-  calculateReportedImmotile(value) {
-    this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
-    this.immotile = value;
+    }
 
-    this.progression();
+    progression() {
+        this.totalProgression = this.linear + this.nonLinear + this.nonProgresive + this.immotile;
+    }
 
-    this.reportedProgression();
+    reportedProgression() {
+        this.totalReportedProgression = (Math.round(this.reportedImmotile + this.reportedNonProgressive + this.reportedNonLinear + this.reportedLiner));
+    }
 
-  }
+    displayToast(message) {
 
-  progression() {
-    this.totalProgression = this.linear + this.nonLinear + this.nonProgresive + this.immotile;
-  }
+        this.toastr.success(message);
 
-  reportedProgression() {
-    this.totalReportedProgression = (Math.round(this.reportedImmotile + this.reportedNonProgressive + this.reportedNonLinear + this.reportedLiner));
-  }
+    }
+
+    calculateOnLoad(insemenation) {
+        this.motileCount = insemenation.motileCount;
+        this.immotileCount = insemenation.immotileCountRange;
+        this.totalCount = insemenation.totalCount;
+    }
 
 }

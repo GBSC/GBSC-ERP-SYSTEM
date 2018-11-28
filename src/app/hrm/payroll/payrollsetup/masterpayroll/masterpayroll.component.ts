@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./masterpayroll.component.scss']
 })
 export class MasterpayrollComponent implements OnInit {
- 
+
     public masterPayroll: any;
     public payrollMaster: any;
     public masterDetail: any[] = [];
@@ -31,8 +31,8 @@ export class MasterpayrollComponent implements OnInit {
 
     @Input('masterPayrollId') id: number;
 
-    constructor(private fb: FormBuilder,public toastr:ToastrService,  public router: Router, private activatedRoute: ActivatedRoute,
-         public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
+    constructor(private fb: FormBuilder, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute,
+        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
     async ngOnInit() {
 
@@ -63,19 +63,19 @@ export class MasterpayrollComponent implements OnInit {
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-          });
-          if (this.isUpdate() === true) {
+        });
+        if (this.isUpdate() === true) {
             this.payrollsetupservice.getMasterPayroll(this.id).subscribe(resp => {
-              this.masterpayroll = resp;
+                this.masterpayroll = resp;
                 let a = this.masterpayroll.masterPayrollDetails;
-              this.masterDetail= a.filter(b => {
-                delete b.masterPayrollDetailId;
-                delete b.masterPayrollId;
-                return b;
-              }); 
-                 this.patchValues(this.masterpayroll);
+                this.masterDetail = a.filter(b => {
+                    delete b.masterPayrollDetailId;
+                    delete b.masterPayrollId;
+                    return b;
+                });
+                this.patchValues(this.masterpayroll);
             });
-          }
+        }
     }
 
 
@@ -95,38 +95,38 @@ export class MasterpayrollComponent implements OnInit {
     isUpdate(): boolean {
 
         if (this.id > 0) {
-          return true;
+            return true;
         }
         else
-          return false;
-      }
+            return false;
+    }
 
-      async updateMasterpayrollDetail(value) {
+    async updateMasterpayrollDetail(value) {
         console.log(value);
-      }
-    
-      async update(value) { 
+    }
+
+    async update(value) {
         value.masterPayrollId = this.id;
         value.MasterPayrollDetails = this.masterDetail;
         console.log(value);
         this.payrollsetupservice.updateMasterPayroll(value).subscribe(resp => {
-          this.toastr.success("Master Payroll Updated"); 
-                this.router.navigate(['/hrm/payroll/payrollsetup/masterpayrolldetail']);
-    
-        });
-      }
+            this.toastr.success("Master Payroll Updated");
+            this.router.navigate(['/hrm/payroll/payrollsetup/masterpayrolldetail']);
 
-      patchValues(masterpayroll: any) {
+        });
+    }
+
+    patchValues(masterpayroll: any) {
 
         this.MasterPayrollForm.patchValue({
-    
+
             UserId: masterpayroll.userId,
             BankTransferCode: masterpayroll.bankTransferCode,
             CurrencyId: masterpayroll.currencyId,
             PayrollBankId: masterpayroll.payrollBankId
         })
-    
-      }
+
+    }
 
 
 }

@@ -20,8 +20,8 @@ export class IssuanceComponent implements OnInit {
     private IssuanceForm: FormGroup;
     private InventoryItemForm: FormGroup;
 
-    private SelectedSalesIndent : SalesIndent;
-    private SelectedSalesIndentDetails : SalesIndentItem[] = [];
+    private SelectedSalesIndent: SalesIndent;
+    private SelectedSalesIndentDetails: SalesIndentItem[] = [];
 
     private SalesOrders: SalesOrder;
     private InventoryItems: InventoryItem;
@@ -132,8 +132,8 @@ export class IssuanceComponent implements OnInit {
         if (event.key === "Enter") {
             this.InventoryItemForm.reset();
             this.IssuanceForm.reset();
-            this.PharmacyService.GetSalesIndentDetailsByCode(value).subscribe((res : SalesIndent) => {
-                if(res != null) {
+            this.PharmacyService.GetSalesIndentDetailsByCode(value).subscribe((res: SalesIndent) => {
+                if (res != null) {
                     this.SelectedSalesIndent = res;
                     this.SelectedSalesIndentDetails = this.SelectedSalesIndent.salesIndentItems;
                 }
@@ -266,12 +266,12 @@ export class IssuanceComponent implements OnInit {
 
         this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
         });
-    //    this.IssuanceForm.reset();
+        //    this.IssuanceForm.reset();
         this.total = 0;
 
- 
+
         console.log(value);
- 
+
     }
 
     valueChanged(data) {

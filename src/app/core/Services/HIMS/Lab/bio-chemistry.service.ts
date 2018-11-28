@@ -29,6 +29,10 @@ export class BioChemistryService {
         return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTests");
     }
 
+    getPatientBioChemistryTestsByPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTestsByPatientId/" + patientId);
+    }
+
     getPatientBioChemistryTest(id: number): Observable<any> {
         return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTest/" + id);
     }

@@ -6,31 +6,35 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SemenanalysisService {
 
-  private Url = "Hims/api/SemenAnalysis/"
+    private Url = "Hims/api/SemenAnalysis/"
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  GetAllSemenAnalyses(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
-  }
+    GetAllSemenAnalyses(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
+    }
 
-  getSemenAnalysis(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetSemenAnalysis/" + id);
-  }
+    getAllSemenAnalysisByPatientId(patientId: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllSemenAnalysisByPatientId/" + patientId);
+    }
 
-  getSemenAnalysisByPatientId(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "getSemenAnalysisByPatientId/" + id);
-  }
+    getSemenAnalysis(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetSemenAnalysis/" + id);
+    }
 
-  addSemenAnalysis(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddSemenAnalysis", value);
-  }
+    getSemenAnalysisByPatientId(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "getSemenAnalysisByPatientId/" + id);
+    }
 
-  updateSemenAnalysis(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateSemenAnalysis", value);
-  }
+    addSemenAnalysis(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddSemenAnalysis", value);
+    }
 
-  deleteSemenAnalysis(id) {
-    this.ApiService.delete(this.Url + "DeleteSemenAnalysis" + id);
-  }
+    updateSemenAnalysis(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateSemenAnalysis", value);
+    }
+
+    deleteSemenAnalysis(id) {
+        this.ApiService.delete(this.Url + "DeleteSemenAnalysis" + id);
+    }
 }

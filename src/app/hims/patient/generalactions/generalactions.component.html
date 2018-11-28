@@ -9,22 +9,39 @@
   <div class="m-portlet__body">
     <div class="m-list-search"> 
       <!-- || visits[0].startTime  | date: 'MM/dd/yyyy' !==  time | date: 'dd/MM/yyyy' lastpatientvisit !== null -->
-      <div class="m-list-search__results" *ngIf="!this.lastpatientvisit?.isActive">
-        <a (click)="startVisit()" class="m-list-search__result-item">
-          <span class="m-list-search__result-item-icon">
-            <i class="fa fa-map-marker	m--font-white"></i>
-          </span>
-          <span class="m-list-search__result-item-text"> Start Visit </span>
-        </a>
-      </div>
-       <div class="m-list-search__results" *ngIf="this.lastpatientvisit?.isActive">
-        <a (click)="Endvisit()" class="m-list-search__result-item">
-          <span class="m-list-search__result-item-icon">
-            <i class="fa fa-map-marker	m--font-white"></i>
-          </span>
-          <span class="m-list-search__result-item-text"> End Visit </span>
-        </a>
-      </div>
+      <div class="col-lg-12">
+          <div class="m-list-search__results row" *ngIf="!this.lastpatientvisit?.isActive">
+              <div class="col-lg-6">
+              <label for="exampleSelect1"> </label>
+              Consultants
+                <!-- <dx-select-box [items]="consultant" displayExpr="name" #consultantId valueExpr="consultantId" [searchEnabled]="true">
+              </dx-select-box>    -->
+
+              <select class="form-control m-input ng-pristine ng-invalid ng-touched"#consultantId >
+                <option class="active" *ngFor="let x of consultant" [value]="x.consultantId">{{x.name}}</option>
+              </select>
+
+
+              </div>
+              <div class="col-lg-6  margin">
+              <a (click)="startVisit(consultantId.value)" class="m-list-search__result-item">
+                <!-- <span class="m-list-search__result-item-icon">
+                  <i class="fa fa-map-marker	m--font-white"></i>
+                </span> -->
+                <span class="m-list-search__result-item-text btn btn-primary"> Start Visit </span>
+              </a>
+            </div>
+            </div>
+             <div class="m-list-search__results col-lg-6" *ngIf="this.lastpatientvisit?.isActive">
+              <a (click)="Endvisit()" class="m-list-search__result-item">
+                <!-- <span class="m-list-search__result-item-icon">
+                  <i class="fa fa-map-marker	m--font-white"></i>
+                </span> -->
+                <span class="m-list-search__result-item-text btn btn-primary"> End Visit </span>
+              </a>
+            </div>
+        </div>
+    
     </div>
   </div>
 </div>

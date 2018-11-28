@@ -26,7 +26,7 @@ export class EmbryologysectionComponent implements OnInit {
     private freezePrepration: any;
     private insemenationPrep: any;
     private biopsy: any;
-    private tvopu : any;
+    private tvopu: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
@@ -68,7 +68,7 @@ export class EmbryologysectionComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
     }

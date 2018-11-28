@@ -14,28 +14,29 @@ export class ConsultantComponent implements OnInit {
     async  ngOnInit() {
 
         await this.PatientServiceobj.getConsultant();
-          this.PatientServiceobj.consultant;
-          console.log(this.PatientServiceobj.consultant);
-    //    console.log(x);
+        this.PatientServiceobj.consultant;
+        console.log(this.PatientServiceobj.consultant);
+        //    console.log(x);
     }
 
     async addConsultant(value) {
-    //    console.log(value.key);
+        //    console.log(value.key);
         await this.PatientServiceobj.addConsultant(value.key);
-         this.PatientServiceobj.consultant;
+        await this.PatientServiceobj.getConsultant();
+        this.PatientServiceobj.consultant;
 
     }
 
     async updateConsultant(value) {
-    //    console.log(value);
+        //    console.log(value);
         await this.PatientServiceobj.updateConsultant(value.key)
-         this.PatientServiceobj.consultant;   
-         }
+        this.PatientServiceobj.consultant;
+    }
 
     async deleteConsultant(value) {
-     //   console.log(value.key.consultantId);
+        //   console.log(value.key.consultantId);
         await this.PatientServiceobj.deleteConsultant(value.key.consultantId);
-         this.PatientServiceobj.consultant;
+        this.PatientServiceobj.consultant;
     }
 
 }

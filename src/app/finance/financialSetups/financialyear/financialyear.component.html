@@ -54,7 +54,14 @@
               <div class="form-group row">
                 <div class="m--space-07"></div>
 
-                <dx-data-grid id="gridContainer" [dataSource]="financialYear" keyExpr="financialYearId">
+                <dx-data-grid id="gridContainer"
+                 [dataSource]="financialYear"
+                  keyExpr="financialYearId"
+                  (onRowUpdating)="updatingFinancialyear($event)"
+                  (onRowUpdated)="updateFinancialyear()"
+                  (onRowRemoved)="deleteFinancialyear($event)">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="False" [useIcons]="true">
+                    </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                   <dxo-header-filter [visible]="true"></dxo-header-filter>
 
@@ -63,7 +70,7 @@
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager>
 
-                  <dxi-column dataField="name" caption="Financial Year"></dxi-column>
+                  <dxi-column dataField="name" caption="Financial Year" [allowEditing]="false"></dxi-column>
                   <dxi-column dataField="startDate" dataType="date" format="shortdate" caption="Start Date"></dxi-column>
                   <dxi-column dataField="endDate" dataType="date" format="shortdate" caption="End Date"></dxi-column>
                   <dxi-column dataField="isActive" dataType="boolean" caption="Active"></dxi-column>

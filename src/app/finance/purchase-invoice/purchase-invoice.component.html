@@ -205,18 +205,24 @@
                 </dx-data-grid>
               </div>
               <div class="m-separator"></div>
-
+              <div class="form-group row">
+              <div class="col-md-4"></div>
+              <div class="col-md-8">
               <div *ngIf="isUpdate(); else create" class="m--align-right">
                 <button class="btn btn-primary" (click)="update(PurchaseInvoiceForm.value)">
-                    update
+                    Update
                   </button>        
             </div> 
-            <ng-template #create>
+            <ng-template #create class="m--align-left">
               <button class="btn btn-primary" (click)="addPurchaseInvoice(PurchaseInvoiceForm.value)">
                 Submit
               </button>  
+              <button class="btn btn-default" type="reset">
+                Reset
+              </button> 
             </ng-template> 
-
+          </div>
+          </div>
             </div>
           </div>
         </div>

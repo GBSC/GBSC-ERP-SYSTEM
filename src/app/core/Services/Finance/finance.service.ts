@@ -16,233 +16,233 @@ import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 
 export class FinanceService {
 
-  private baseUrl: string = "Finance/api";
+    private baseUrl: string = "Finance/api";
 
-  constructor(private ApiService: ApiService) { }
+    constructor(private ApiService: ApiService) { }
 
-  async getPurchaseInvoices() {
+    async getPurchaseInvoices() {
 
-    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseInvoices`).toPromise();
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseInvoices`).toPromise();
+    }
 
-  getPurchaseInvoice(id): Observable<PurchaseInvoice> {
-    
-    return this.ApiService.get(this.baseUrl +'/FinancePurchase/GetFinancePurchaseInvoice/' + id);
-  }
+    getPurchaseInvoice(id): Observable<PurchaseInvoice> {
 
-  async addPurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
+        return this.ApiService.get(this.baseUrl + '/FinancePurchase/GetFinancePurchaseInvoice/' + id);
+    }
 
-    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseInvoice`, PurchaseInvoice).toPromise();
-  }
+    async addPurchaseInvoice(PurchaseInvoice: PurchaseInvoice) {
 
-   updatePurchaseInvoice(data: PurchaseInvoice) : Observable<any> {
+        return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseInvoice`, PurchaseInvoice).toPromise();
+    }
 
-    return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoice`, data);
+    updatePurchaseInvoice(data: PurchaseInvoice): Observable<any> {
 
-  }
+        return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoice`, data);
 
-  async DeletePurchaseInvoice(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseInvoice/${id}`).toPromise();
-  }
+    }
 
-  async getPurchaseInvoiceDetails() {
+    async DeletePurchaseInvoice(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseInvoice/${id}`).toPromise();
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseInvoiceDetails`).toPromise();
-  }
+    async getPurchaseInvoiceDetails() {
 
-  async addPurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
+        return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseInvoiceDetails`).toPromise();
+    }
 
-    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
-  }
+    async addPurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
 
-  async updatePurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
+        return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
+    }
 
-    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
+    async updatePurchaseInvoiceDetail(PurchaseInvoiceDetail: PurchaseInvoiceDetail) {
 
-  }
+        return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseInvoiceDetail`, PurchaseInvoiceDetail).toPromise();
 
-  async DeletePurchaseInvoiceDetail(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseInvoiceDetail/${id}`).toPromise();
-  }
+    }
 
-  async getPurchaseReturns() {
+    async DeletePurchaseInvoiceDetail(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseInvoiceDetail/${id}`).toPromise();
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseReturns`).toPromise();
-  }
+    async getPurchaseReturns() {
 
-  getPurchaseReturn(id): Observable<PurchaseReturn> {
-    
-    return this.ApiService.get(this.baseUrl +'/FinancePurchase/GetFinancePurchaseReturn/' + id);
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseReturns`).toPromise();
+    }
 
-  async addPurchaseReturn(PurchaseReturn: PurchaseReturn) {
+    getPurchaseReturn(id): Observable<PurchaseReturn> {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseReturn`, PurchaseReturn).toPromise();
-  }
+        return this.ApiService.get(this.baseUrl + '/FinancePurchase/GetFinancePurchaseReturn/' + id);
+    }
 
-   updatePurchaseReturn(data: PurchaseReturn) : Observable<any> {
+    async addPurchaseReturn(PurchaseReturn: PurchaseReturn) {
 
-    return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturn`, data);
+        return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseReturn`, PurchaseReturn).toPromise();
+    }
 
-  }
+    updatePurchaseReturn(data: PurchaseReturn): Observable<any> {
 
-  async DeletePurchaseReturn(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseReturn/${id}`).toPromise();
-  }
+        return this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturn`, data);
 
-  async getPurchaseReturnDetails() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseReturnDetails`).toPromise();
-  }
+    async DeletePurchaseReturn(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseReturn/${id}`).toPromise();
+    }
 
-  async addPurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
+    async getPurchaseReturnDetails() {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinancePurchase/GetFinancePurchaseReturnDetails`).toPromise();
+    }
 
-  async updatePurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
+    async addPurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/FinancePurchase/AddFinancePurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
+    }
 
-  }
+    async updatePurchaseReturnDetail(PurchaseReturnDetail: PurchaseReturnDetail) {
 
-  async DeletePurchaseReturnDetail(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseReturnDetail/${id}`).toPromise();
-  }
+        return await this.ApiService.put(`${this.baseUrl}/FinancePurchase/UpdateFinancePurchaseReturnDetail`, PurchaseReturnDetail).toPromise();
 
-  async getVouchers() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/Finance/GetVouchers`).toPromise();
-  }
+    async DeletePurchaseReturnDetail(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinancePurchase/DeleteFinancePurchaseReturnDetail/${id}`).toPromise();
+    }
 
-  async addVoucher(Voucher: Voucher) {
+    async getVouchers() {
 
-    return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucher`, Voucher).toPromise();
-  }
+        return await this.ApiService.get(`${this.baseUrl}/Finance/GetVouchers`).toPromise();
+    }
 
-   updateVoucher(data: Voucher) : Observable<any> {
+    async addVoucher(Voucher: Voucher) {
 
-    return this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucher`, data);
+        return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucher`, Voucher).toPromise();
+    }
 
-  }
+    updateVoucher(data: Voucher): Observable<any> {
 
-  async DeleteVoucher(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucher/${id}`).toPromise();
-  }
+        return this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucher`, data);
 
-  async getVoucherDetails() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
-  }
+    async DeleteVoucher(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucher/${id}`).toPromise();
+    }
 
-  getVoucher(id): Observable<Voucher> {
+    async getVoucherDetails() {
 
-    return this.ApiService.get(this.baseUrl +'/Finance/GetVoucher/' + id);
-  }
+        return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
+    }
 
-  async addVoucherDetail(VoucherDetail: VoucherDetail) {
+    getVoucher(id): Observable<Voucher> {
 
-    return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucherDetail`, VoucherDetail).toPromise();
-  }
+        return this.ApiService.get(this.baseUrl + '/Finance/GetVoucher/' + id);
+    }
 
-  async updateVoucherDetail(VoucherDetail: VoucherDetail) {
+    async addVoucherDetail(VoucherDetail: VoucherDetail) {
 
-    return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucherDetail`, VoucherDetail).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/Finance/AddVoucherDetail`, VoucherDetail).toPromise();
+    }
 
-  }
+    async updateVoucherDetail(VoucherDetail: VoucherDetail) {
 
-  async DeleteVoucherDetail(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucherDetail/${id}`).toPromise();
-  }
+        return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucherDetail`, VoucherDetail).toPromise();
 
-  async getSalesInvoices() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoices`).toPromise();
-  }
+    async DeleteVoucherDetail(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/Finance/DeleteVoucherDetail/${id}`).toPromise();
+    }
 
-   getSalesInvoiceByID(id): Observable<SalesInvoice> {
+    async getSalesInvoices() {
 
-    return this.ApiService.get(this.baseUrl +'/FinanceSales/GetFinanceSalesInvoice/' + id);
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoices`).toPromise();
+    }
 
-  async addSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
+    getSalesInvoiceByID(id): Observable<SalesInvoice> {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
-  }
+        return this.ApiService.get(this.baseUrl + '/FinanceSales/GetFinanceSalesInvoice/' + id);
+    }
 
-   updateSalesInvoice(data : SalesInvoice) : Observable<any> {
+    async addSalesInvoice(FinanceSalesInvoice: SalesInvoice) {
 
-    return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, data);
+        return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoice`, FinanceSalesInvoice).toPromise();
+    }
 
-  }
+    updateSalesInvoice(data: SalesInvoice): Observable<any> {
 
-  async DeleteSalesInvoice(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesInvoice/${id}`).toPromise();
-  }
+        return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoice`, data);
 
-  async getSalesInvoiceDetails() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoiceDetails`).toPromise();
-  }
+    async DeleteSalesInvoice(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesInvoice/${id}`).toPromise();
+    }
 
-  async addSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
+    async getSalesInvoiceDetails() {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesInvoiceDetails`).toPromise();
+    }
 
-  async updateSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
+    async addSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
+    }
 
-  }
+    async updateSalesInvoiceDetail(SalesInvoiceDetail: SalesInvoiceDetail) {
 
-  async DeleteSalesInvoiceDetail(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesInvoiceDetail/${id}`).toPromise();
-  }
+        return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesInvoiceDetail`, SalesInvoiceDetail).toPromise();
 
-  async getSalesReturns() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturns`).toPromise();
-  }
+    async DeleteSalesInvoiceDetail(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesInvoiceDetail/${id}`).toPromise();
+    }
 
-  getSalesReturn(id): Observable<SalesReturn> {
+    async getSalesReturns() {
 
-    return this.ApiService.get(this.baseUrl +'/FinanceSales/GetFinanceSalesReturn/' + id);
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturns`).toPromise();
+    }
 
-  async addSalesReturn(SalesReturn: SalesReturn) {
+    getSalesReturn(id): Observable<SalesReturn> {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesReturn`, SalesReturn).toPromise();
-  }
+        return this.ApiService.get(this.baseUrl + '/FinanceSales/GetFinanceSalesReturn/' + id);
+    }
 
-   updateSalesReturn(data: SalesReturn) : Observable<any> {
+    async addSalesReturn(SalesReturn: SalesReturn) {
 
-    return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturn`, data);
+        return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesReturn`, SalesReturn).toPromise();
+    }
 
-  }
+    updateSalesReturn(data: SalesReturn): Observable<any> {
 
-  async DeleteSalesReturn(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturn/${id}`).toPromise();
-  }
+        return this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturn`, data);
 
-  async getSalesReturnDetails() {
+    }
 
-    return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturnDetails`).toPromise();
-  }
+    async DeleteSalesReturn(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturn/${id}`).toPromise();
+    }
 
-  async addSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
+    async getSalesReturnDetails() {
 
-    return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesReturnDetail`, SalesReturnDetail).toPromise();
-  }
+        return await this.ApiService.get(`${this.baseUrl}/FinanceSales/GetFinanceSalesReturnDetails`).toPromise();
+    }
 
-  async updateSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
+    async addSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
 
-    return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturnDetail`, SalesReturnDetail).toPromise();
+        return await this.ApiService.post(`${this.baseUrl}/FinanceSales/AddFinanceSalesReturnDetail`, SalesReturnDetail).toPromise();
+    }
 
-  }
+    async updateSalesReturnDetail(SalesReturnDetail: SalesReturnDetail) {
 
-  async DeleteSalesReturnDetail(id) {
-    return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturnDetail/${id}`).toPromise();
-  }
+        return await this.ApiService.put(`${this.baseUrl}/FinanceSales/UpdateFinanceSalesReturnDetail`, SalesReturnDetail).toPromise();
+
+    }
+
+    async DeleteSalesReturnDetail(id) {
+        return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturnDetail/${id}`).toPromise();
+    }
 
 }

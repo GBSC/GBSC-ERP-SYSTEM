@@ -6,32 +6,36 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class InsemenationService {
 
-  private Url = "Hims/api/PatientInsemenation/"
+    private Url = "Hims/api/PatientInsemenation/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getPatientInsemenationByClinicalRecordId(id: number) {
-    return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
-  }
+    getPatientInsemenationByClinicalRecordId(id: number) {
+        return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
+    }
 
-  getPatientInsemenations(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientInsemenations");
-  }
+    getPatientInsemenationsPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetPatientInsemenationsPatientId/' + patientId);
+    }
 
-  getPatientInsemenation(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientInsemenation/" + id);
-  }
+    getPatientInsemenations(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientInsemenations");
+    }
 
-  addPatientInsemenation(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddPatientInsemenation", value);
-  }
+    getPatientInsemenation(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientInsemenation/" + id);
+    }
 
-  updatePatientInsemenation(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdatePatientInsemenation", value);
-  }
+    addPatientInsemenation(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddPatientInsemenation", value);
+    }
 
-  deletePatientInsemenation(id) {
-    this.ApiService.delete(this.Url + "DeletePatientInsemenation" + id);
-  }
+    updatePatientInsemenation(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdatePatientInsemenation", value);
+    }
+
+    deletePatientInsemenation(id) {
+        this.ApiService.delete(this.Url + "DeletePatientInsemenation" + id);
+    }
 }

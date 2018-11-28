@@ -6,32 +6,36 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class FreezepreprationService {
 
-  private Url = "Hims/api/FreezePrepration/"
+    private Url = "Hims/api/FreezePrepration/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getFreezePreprationByClinicalRecordId(id: number) {
-    return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);
-  }
+    getFreezePreprationByClinicalRecordId(id: number) {
+        return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);
+    }
 
-  getPatientEmbryologies(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
-  }
+    getAllFreezePreprationsByPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetAllFreezePreprationsByPatientId/' + patientId);
+    }
 
-  getFreezePrepration(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetFreezePrepration/" + id);
-  }
+    getPatientEmbryologies(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
+    }
 
-  addFreezePrepration(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddFreezePrepration", value);
-  }
+    getFreezePrepration(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetFreezePrepration/" + id);
+    }
 
-  updateFreezePrepration(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateFreezePrepration", value);
-  }
+    addFreezePrepration(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddFreezePrepration", value);
+    }
 
-  deleteFreezePrepration(id) {
-    this.ApiService.delete(this.Url + "DeleteFreezePrepration" + id);
-  }
+    updateFreezePrepration(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateFreezePrepration", value);
+    }
+
+    deleteFreezePrepration(id) {
+        this.ApiService.delete(this.Url + "DeleteFreezePrepration" + id);
+    }
 }

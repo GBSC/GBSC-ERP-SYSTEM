@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DxSelectBoxComponent } from 'devextreme-angular';
+import { SemenanalysisService } from '../../../../app/core/Services/HIMS/Lab/semenanalysis.service';
+import { PatientService } from '../../../../app/core';
 
 @Component({
     selector: 'app-semensanalysislist',
@@ -6,25 +9,42 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./semensanalysislist.component.scss']
 })
 export class SemensanalysislistComponent implements OnInit {
-    public TaxonBenefits: any;
-    public Branch: any;
-    public Employee: any;
-    constructor() { }
+    private patients: any;
+    private spouse: any;
+    private patient: any;
+    private tests: any;
+    private id: any;
+
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+
+    constructor(private semenAnalysisService: SemenanalysisService,
+        private patientService: PatientService) {
+
+        this.tests = [];
+    }
 
     ngOnInit() {
-        this.TaxonBenefits = [
-            {
-                id: "1",
-                bankTitle: "Meezan",
-                bankBranchCode: "001",
-                companyBank: "Abc",
-                Branch: [{ display: "xyz", value: "xyz" }, { display: "xyz", value: "xyz" }],
-                Employee: ["--Select--", "Bank Al Habib", "UBL"],
-                active: "yes"
-            }
-        ]
-        this.Branch = [{ value: "General-With-NIC", display: "General With NIC" }, { value: "UBL", display: "UBL" }];
-        this.Employee = [{ value: "--Select--" }, { value: "Bank-Al-Habib", display: "Bank Al Habib" }, { value: "UBL", display: "UBL" }];
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+
+        });
+
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+
+            this.semenAnalysisService
+                .getAllSemenAnalysisByPatientId(this.patient.patientId).subscribe(resp => {
+                    this.tests = resp;
+                });
+
+        });
     }
 
 }

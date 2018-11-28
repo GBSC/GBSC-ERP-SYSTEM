@@ -15,8 +15,8 @@ export class LeaveService {
 
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveOpenings`).toPromise();
     }
-   
-     getLeaveOpeningById(id) : Observable<LeaveOpening> {
+
+    getLeaveOpeningById(id): Observable<LeaveOpening> {
         return this.ApiService.get(this.baseUrl + '/Leave/GetLeaveOpening/' + id);
     }
 
@@ -29,8 +29,8 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpening`, data).toPromise();
     }
 
-     updateLeaveOpening(data : LeaveOpening) {
- 
+    updateLeaveOpening(data: LeaveOpening) {
+
         return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpening`, data);
     }
 
@@ -50,8 +50,8 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveOpeningDetail`, data).toPromise();
     }
 
-     updateLeaveOpeningDetail(data : LeaveOpening): Observable<any>{
- 
+    updateLeaveOpeningDetail(data: LeaveOpening): Observable<any> {
+
         return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveOpeningDetail`, data);
 
     }
@@ -87,9 +87,9 @@ export class LeaveService {
 
     }
 
-     getleaverequest(id) : Observable<LeaveRequest>{
+    getleaverequest(id): Observable<LeaveRequest> {
 
-        return this.ApiService.get(this.baseUrl +'/Leave/GetLeaveRequest/' + id);
+        return this.ApiService.get(this.baseUrl + '/Leave/GetLeaveRequest/' + id);
 
     }
 
@@ -97,8 +97,8 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data).toPromise();
     }
 
-     updateLeaveRequest(data : LeaveRequest) : Observable<any> {
- 
+    updateLeaveRequest(data: LeaveRequest): Observable<any> {
+
         return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
     }
 
@@ -118,7 +118,7 @@ export class LeaveService {
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequestDetail`, data).toPromise();
     }
 
-    async updateLeaveRequestDetail(data) { 
+    async updateLeaveRequestDetail(data) {
         return await this.ApiService.put(`${this.baseUrl}/Leave/Updateleaverequestdetail`, data).toPromise();
 
     }

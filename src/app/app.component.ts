@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
         this._router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
 
-                (<any>mLayout).closeMobileAsideMenuOffcanvas();
+                 (<any>mLayout).closeMobileAsideMenuOffcanvas();
                 (<any>mLayout).closeMobileHorMenuOffcanvas();
                 (<any>mApp).scrollTop();
                 Helpers.setLoading(true);
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
                 Helpers.setLoading(false);
                 // content m-wrapper animation
                 let animation = 'm-animate-fade-in-up';
-                $('.m-wrapper').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function (e) {
+                $('.m-wrapper').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(e) {
                     $('.m-wrapper').removeClass(animation);
                 }).removeClass(animation).addClass(animation);
 

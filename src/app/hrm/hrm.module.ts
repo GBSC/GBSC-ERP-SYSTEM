@@ -291,7 +291,8 @@ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/atte
         AttendanceRuleDetailComponent,
         
     ],
-    exports: []
+    exports: [],
+ 
 
 })
 export class HrmModule { }

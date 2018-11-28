@@ -1,7 +1,4 @@
-<div class="m-content">
-
-    <div class="row">
-      <div class="col-md-12">
+ 
         <div class="m-portlet">
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
@@ -55,7 +52,7 @@
                         </div>
                         <div class="col-lg-6">
                           <label class="">
-                          IS Multiple Day Shift:
+                          is Multiple Day Shift:
                           </label>
                           <div class="m-checkbox-list">
                               <label class="m-checkbox m-checkbox--state-success">
@@ -114,9 +111,8 @@
                         <dx-data-grid id="gridContainer"
                         [dataSource]="[]"
                          keyExpr="assignRosterId"
-                         (onRowInserted)="addAssignroster($event)" 
-                         (onRowUpdated)="updateMasterDetail($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                         (onRowInserted)="addAssignroster($event)">
+                          <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                             </dxo-popup>
                           </dxo-editing>
@@ -157,7 +153,5 @@
             </div>
           </div>
         </div>
-      </div>
-    </div> 
-    </div>
+   
     

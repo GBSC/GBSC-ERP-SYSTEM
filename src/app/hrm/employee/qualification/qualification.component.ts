@@ -1,6 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../core/Models/HRM/employee';
+import { EmployeeQualification } from '../../../core/Models/HRM/employeeQualification';
+import { DataGrid } from 'primeng/primeng';
 
 @Component({
     selector: 'app-employeequalification',
@@ -8,63 +12,40 @@ import { EmployeeService, SetupService } from '../../../core';
     styleUrls: ['./qualification.component.css']
 })
 export class EmployeeQualificationComponent implements OnInit {
-    @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
 
-    setQualificationFormValue: any;
-    public QualificationForm: any;
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
+    public degrees: any;
+    public qualifications: any;
 
-    addFieldValue() {
-        this.employee.allQualifications.push({ ...this.employee.QualificationForm.value });
-        console.log(this.employee.allQualifications);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
+
+    @Input('employeeId') id: number;
+
+
+    constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
+        public router: Router, private route: ActivatedRoute) {
     }
-
-    setUniName(e) {
-        console.log(e);
-        // console.log(this.employee.university);
-        // this.employee.university.Name = e.target.value;
-    }
-
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
-
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
 
     async ngOnInit() {
 
+        this.SetupServiceobj.getAllDegrees().subscribe(resp => this.degrees = resp);
 
-        await this.SetupServiceobj.getAllqualifications();
-        let qualifctn = this.SetupServiceobj.qualification;
-        console.log(qualifctn);
+        this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
 
-        await this.SetupServiceobj.getAllDegrees();
-        let dgree = this.SetupServiceobj.degree;
-
-        await this.SetupServiceobj.getAllgrades();
-        let grde = this.SetupServiceobj.grades;
-
-        await this.SetupServiceobj.getAllUniversities();
-        let uni = this.SetupServiceobj.university;
-
-        // this.employee.currentUniversity = this.employee.allQualifications[0];
     }
 
-    p(e) {
-        console.log(e);
-        this.employee.university.Name = e.target.value;
-        console.log(this.employee.university);
+    addQualification(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addQualification(value.data).subscribe(resp => console.log(resp));
     }
 
-    getQualificationFormValue() {
-        this.setQualificationFormValue.emit(this.QualificationForm.value);
+    updateQualification(value) {
+
+        let qualification = this.qualifications.find(x => x.universityId == value.key);
+
+        qualification = { ...qualification, ...value.data };
+
+        this.employeeService.updateQualification(qualification).subscribe(resp => console.log(resp));
     }
 
-    async addqualification() {
-        let qualification = await this.employee.adduserUniversities();
-        console.log(qualification);
-    }
 }
+

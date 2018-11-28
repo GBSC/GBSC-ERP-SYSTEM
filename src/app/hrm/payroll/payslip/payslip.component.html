@@ -7,175 +7,159 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-               Payslip 
+                Payslip
               </h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="PayslipForm"> 
+          <form [formGroup]="PayslipForm">
 
-
-              <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                        From:
-                    </label>
-                    <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                       Till:
-                    </label>
-                    <input type="date" class="form-control m-input" formControlName="Till" placeholder="0">
-                  </div>
-                </div>
-
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Payment Date:
-                    </label>
-                    <input type="date" class="form-control m-input" formControlName="PaymentDate" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      Hours:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="Hours" placeholder="0">
-                  </div>
-                </div>
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Days:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="Days" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      GrossAmount:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="GrossAmount" placeholder="0">
-                  </div>
-                </div>
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Tax Amount:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      Pf Deduction Amount:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="PfDeductionAmount" placeholder="0">
-                  </div>
-                </div>
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Loan Deduction Amount:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="LoanDeductionAmount" placeholder="0">
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      Net Amount:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="NetAmount" placeholder="0">
-                  </div>
-                </div>
-
+            <div class="form-group m-form__group row">
+              <div class="col-lg-12">
+                <label class="">
+                  Employee:
+                </label>
+                <select #s class="form-control m-input" (change)="GetUserloan(s.value)" formControlName="UserId" id="">
+                  <option value="" disabled selected>-- Select Employee --</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
+                </select>
+              </div>
+            </div>
 
             <div class="form-group m-form__group row">
               <div class="col-lg-6">
                 <label>
-                Monthly User Salary:
+                  From:
                 </label>
-                <select class="form-control m-input" formControlName="MonthlyUserSalaryId">
-                    <option value="" disabled selected>-- Select Monthly Salary --</option>
-                    <option *ngFor ="let salary of payrollservice?.monthlyUserSalary" [value]="salary.gratuityTypeId" >{{salary.name}}</option>
-           </select>
+                <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
               </div>
               <div class="col-lg-6">
                 <label class="">
-                 Employee:
-                </label> 
-                <select class="form-control m-input" formControlName="UserId" id="">
-                  <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor ="let user of Employeeservice?.employeereg" [value]="user.userId" >{{user.firstName}}</option>
-         </select>
+                  Till:
+                </label>
+                <input type="date" class="form-control m-input" formControlName="Till" placeholder="0">
               </div>
             </div>
-            <div class="m--space-30"></div> 
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Payment Date:
+                </label>
+                <input type="date" class="form-control m-input" formControlName="PaymentDate" placeholder="0">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Hours:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="Hours" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Days:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="Days" placeholder="0">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Gross Amount:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="GrossAmount" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Tax Amount:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  PF Deduction Amount:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="PfDeductionAmount" placeholder="0">
+              </div>
+            </div>
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Loan Deduction Amount:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="LoanDeductionAmount" placeholder="0">
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Net Amount:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="NetAmount" placeholder="0">
+              </div>
+            </div>
+
+            <div class="m--space-30"></div>
 
             <div class="row">
-                <div class="col-xl-12">
-                  <div class="m-portlet">
-                    <div class="m-portlet__head">
-                      <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                          <h3 class="m-portlet__head-text">User Loan</h3>
-                        </div>
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">User Loan</h3>
                       </div>
                     </div>
-                    <div class="m-portlet__body">
-                      <div class="m-section">
-                        <div class="m-section__content">
-                          <dx-data-grid id="gridContainer"
-                          [dataSource]="[]"
-                           keyExpr="userLoanId"
-                           (onRowInserted)="userloan($event)" >
-                            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                              <dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                              </dxo-popup>
-                            </dxo-editing>
-                            <dxo-filter-row [visible]="true"></dxo-filter-row>
-                            <dxo-header-filter [visible]="true"></dxo-header-filter>
-            
-                            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                            <dxo-paging [pageSize]="6"></dxo-paging>
-                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                            </dxo-pager>  
-                            <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
-                              <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
-                              </dxo-lookup> 
-                            </dxi-column>
-                            <dxi-column dataField="slabAmount" caption="Amount"></dxi-column>
-                          </dx-data-grid>
-                        
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer" [dataSource]="currentUserLoan" keyExpr="userLoanId" (onRowUpdated)="updateUserLoan()" (onRowUpdating)="Updatingloan($event)">
+                          <!-- (onRowInserted)="userLoan($event)" -->
+                          <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
+                            <dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                            </dxo-popup>
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>
+                          <dxi-column dataField="amount" caption="Loan Amount" [formItem]="{editorOptions: { readOnly: true }}"> </dxi-column>
+                          <dxi-column dataField="paidTillNow" caption="Paid Till Now" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                          <dxi-column dataField="lastPaidAmount" caption="Last Paid"> </dxi-column>
+                        </dx-data-grid>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-                  <div class="m--space-50"></div> 
-                  <div class="m-separator m-separator"></div>
-      
-                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                    <div class="m-form__actions m-form__actions--solid">
-                      <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
-                          <button type="submit" class="btn btn-brand" (click)="addGratuity(GratuityForm.value)">
-                            Submit
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                            Cancel
-                          </button>
-                        </div>
-                        <div class="col-lg-4"></div>
-                      </div>
-                    </div>
+            <div class="m--space-50"></div>
+            <div class="m-separator m-separator"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                    <button type="submit" class="btn btn-brand" (click)="addPayslip(PayslipForm.value)">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
                   </div>
+                  <div class="col-lg-4"></div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
     </div>
-  </div> 
   </div>
-  
+</div>

@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-employeebank',
@@ -8,24 +10,36 @@ import { EmployeeService, SetupService } from '../../../core';
     styleUrls: ['./bank.component.css']
 })
 export class EmployeeBankComponent implements OnInit {
-    @Output('setBankFormValue') setBankFormValue = new EventEmitter();
 
-    public EmpbankForm: FormGroup;
-    // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public SetupServiceobj: SetupService) { }
+    public Employee: any;
+    public banks: any;
+
+    @Input('employeeId') id: number;
+
+    constructor(public employeeService: EmployeeService) {
+    }
 
     async ngOnInit() {
 
-    }
+        this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
 
-    getBankFormValue() {
-        this.setBankFormValue.emit(this.EmpbankForm.value);
-    }
-
-    async adduserbank() {
-        let usrbnk = await this.employee.addBank();
-        console.log(usrbnk);
 
     }
+
+    addBank(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addBank(value.data).subscribe(resp => console.log(resp));
+    }
+
+    updateBank(value) {
+
+        let bank = this.banks.find(x => x.bankId == value.key);
+
+        bank = { ...bank, ...value.data };
+
+        this.employeeService.updateBank(bank).subscribe(resp => console.log(resp));
+    }
+
 
 }

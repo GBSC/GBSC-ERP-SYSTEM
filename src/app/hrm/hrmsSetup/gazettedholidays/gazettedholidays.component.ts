@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
- 
+
 
 import { BehaviorSubject } from 'rxjs';
 
 import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-gazettedholidays',
@@ -20,16 +20,13 @@ export class GazettedHolidaysComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllGazettedHolidays();
-        this.holiday = this.dataService.gazetholidays;
-        console.log(this.holiday);
-        // this.dataService.getAllGazettedHolidays().subscribe((data)=>this.GazettedHolidays=data);
+        this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addHolidays(holiday) {
         this.dataService.addGazettedHolidays(holiday.data);
+        this.holiday = this.dataService.getAllGazettedHolidays();
     }
 
     Editholiday(hday) {

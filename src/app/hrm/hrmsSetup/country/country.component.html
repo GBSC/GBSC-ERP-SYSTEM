@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -12,13 +10,13 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="countries" keyExpr="countryId" (onRowInserted)="addNewCountry($event)" (onRowUpdated)="EditNewCountry($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="countries" keyExpr="countryId" 
+              (onRowInserted)="addNewCountry($event)"
+               (onRowUpdating)="UpdatingCountry($event)"
+               (onRowUpdated)="UpdateCountry()"
                 (onRowRemoved)="deleteCountry($event)">
                 <dxo-export [enabled]="true" fileName="Countries"></dxo-export>
-                <!-- [columns]="['Id', 'Code', 'Name', 'Description']" -->
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Country" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
 
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -35,6 +33,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    

@@ -1,0 +1,64 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Active Visit
+              </h3>
+            </div>
+          </div>
+          <!-- <div class="m-portlet__head-tools">
+            <div class="dropdown">
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
+                type="button">
+                <span _ngcontent-c21="">
+                  <i class="fa fa-cog"></i>
+                </span> Actions
+              </button>
+             <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+                <button class="dropdown-item" type="button">
+                  Go Back
+                </button>
+                <button class="dropdown-item" type="button">
+                  Another action
+                </button>
+                <button class="dropdown-item" type="button">
+                  Something else here
+                </button>
+              </div>  
+            </div>
+          </div> -->
+        </div>
+        <!--begin::Form-->
+ 
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"  [dataSource]="activeVisits">
+                <!-- <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true">
+                </dxo-editing> -->
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5,10, 20]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="patient.mrn"  caption="MRN No"></dxi-column>
+                <dxi-column dataField="patient.fullName"  caption="Patient Name"></dxi-column>
+                <dxi-column dataField="startTime" dataType="datetime" format="shortTime" caption="Check IN"></dxi-column>
+                <dxi-column dataField="patient.visitNatureId" caption="Type Of Visit">
+                  <dxo-lookup [dataSource]="visitType" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
+                </dxi-column>
+               </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

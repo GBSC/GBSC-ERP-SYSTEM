@@ -9,29 +9,29 @@ export class InseminationprepService {
 
     private readonly API_URL = 'hims/api/InseminationPrep/';
 
-    constructor(private http: HttpClient, private ApiService : ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
     getInseminationPrep(id): Observable<InseminationPrep> {
         return this.ApiService.get(this.API_URL + 'GetInesminationPrep/' + id);
         //return this.http.get<InseminationPrep>(this.API_URL + '/InseminationPrep/' + id);
     }
 
+    getInsemenationPrepByClinicalRecordId(id): Observable<any> {
+
+        return this.ApiService.get(this.API_URL + 'GetInsemenationPrepByClinicalRecordId/' + id);
+    }
+
     async getInseminationPreps() {
         return this.ApiService.get(this.API_URL + 'GetInseminationPreps').toPromise();
     }
 
-    async addInseminationPrep(inseminationPrep: InseminationPrep) {
-        return await this.ApiService.post(this.API_URL + 'AddInseminationPrep', inseminationPrep).toPromise();
-        // let x = await this.http.post(this.API_URL + '/InseminationPrep/AddInseminationPrep/', inseminationPrep).toPromise();
-        // console.log(x);
-        // return x;
+     addInseminationPrep(inseminationPrep: InseminationPrep) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'AddInseminationPrep', inseminationPrep);
     }
 
-    async updateInseminationPrep(inseminationPrep: InseminationPrep) {
-        return await this.ApiService.put(this.API_URL + 'UpdateInseminationPrep', inseminationPrep).toPromise();
-        // let x = await this.http.put(this.API_URL + '/InseminationPrep/UpdateInseminationPrep/', inseminationPrep).toPromise();
-        // console.log(x);
-        // return x;
+    updateInseminationPrep(inseminationPrep: InseminationPrep): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'UpdateInseminationPrep', inseminationPrep);
+
     }
 
     async deleteInseminationPrep(id) {

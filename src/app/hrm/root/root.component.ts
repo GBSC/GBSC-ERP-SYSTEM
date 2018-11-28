@@ -5,6 +5,7 @@ import { ScriptLoaderService } from '../../_services/script-loader.service';
 declare let mApp: any;
 declare let mUtil: any;
 declare let mLayout: any;
+
 @Component({
     selector: 'app-root',
     templateUrl: './root.component.html',
@@ -44,12 +45,5 @@ export class RootComponent implements OnInit {
             }
         });
     }
-    
-    ngAfterViewInit() {
-        this._script.loadScripts('app-widgets-bootstrap-datetimepicker',
-            ['assets/demo/default/custom/components/forms/widgets/bootstrap-datetimepicker.js']);
-
-    }
-
 
 }

@@ -7,32 +7,34 @@ import { LeaveSetupService } from '../../../../core';
     styleUrls: ['./leavepurpose.component.css']
 })
 export class LeavepurposeComponent implements OnInit {
-    public levepurpose: any;
+    public leavePurpose: any;
+    public updatingPurpose: any;
 
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getleavepurpose();
-        this.levepurpose = this.leavesetupservice.leavepurpose
+
+        this.leavePurpose = await this.leavesetupservice.getLeavePurposes(); 
     }
 
-    addleavepurpose(lpurpose) {
-        console.log(lpurpose.data);
-        this.leavesetupservice.addleavepurpose(lpurpose.data);
+    async addleavepurpose(value) {
+
+        await this.leavesetupservice.addLeavePurpose(value.data);
+        this.leavePurpose = await this.leavesetupservice.getLeavePurposes(); 
     }
 
-    updateleavepurpose(levpurpose) {
-        console.log(levpurpose);
-        this.leavesetupservice.updatepurpose(levpurpose);
-        console.log('in updated purpose')
+    updatingleavepurpose(value) { 
+        this.updatingPurpose = {...value.oldData, ...value.newData}; 
 
     }
 
-    deleteleavepurpose(lvpurpose) {
-        console.log(lvpurpose);
-        this.leavesetupservice.Deleteleavpurpose(lvpurpose.key);
-        console.log('in updated purpose')
+   async updateleavepurpose() { 
+        await this.leavesetupservice.updateLeavePurpose(this.updatingPurpose); 
 
+    }
+
+    async deleteleavepurpose(value) { 
+        await this.leavesetupservice.DeleteLeavPurpose(value.key); 
     }
 
 }

@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -14,7 +12,7 @@
             <div class="m-section__content">
 
               <dx-data-grid id="gridContainer" [dataSource]="salarystructure" keyExpr="salaryStructureId" (onRowInserted)="addSalaryStructure($event)" (onRowUpdated)="updateSalaryStructure($event)" (onRowRemoved)="deleteSalaryStructure($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Salary Structure" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -26,11 +24,11 @@
                 </dxo-pager>
 
                 <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="setupservice?.group" displayExpr="name" valueExpr="groupId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
                 </dxi-column>
  
                 <dxi-column dataField="title" caption="Title"></dxi-column>
@@ -43,6 +41,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

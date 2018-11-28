@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -14,8 +12,11 @@
             <div class="m-section__content">
 
               <dx-data-grid id="gridContainer" [dataSource]="userSalary" 
-              keyExpr="userSalaryId" (onRowInserted)="addUserSalary($event)" (onRowUpdated)="updateUserSalary($event)" (onRowRemoved)="deleteUserSalary($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+              keyExpr="userSalaryId" 
+              (onRowInserted)="addUserSalary($event)" 
+              (onRowUpdated)="updateUserSalary($event)" 
+              (onRowRemoved)="deleteUserSalary($event)">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="User Salary" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -27,15 +28,15 @@
                 </dxo-pager>
 
                 <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.incometaxrule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="incometaxRule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="setupservice?.group" displayExpr="name" valueExpr="groupId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
                 </dxi-column>
 
                 <dxi-column dataField="userId" caption="Employee">
-                  <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
                 </dxi-column> 
                 <dxi-column dataField="salary" caption="Salary"></dxi-column>
                 <dxi-column dataField="salaryDate" caption="Salary Date" dataType="date" format="shortdate"></dxi-column>
@@ -46,6 +47,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

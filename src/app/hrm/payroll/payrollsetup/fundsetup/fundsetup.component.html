@@ -132,7 +132,7 @@
                   </label>
                   <select class="form-control m-input" formControlName="PayrollYearId" id="">
                     <option value="" disabled selected>-- Select Payroll Year --</option>
-                    <option *ngFor="let year of payrollsetupservice.payrollyear" [value]="year.payrollYearId">{{year.name}}</option>
+                    <option *ngFor="let year of payrollYears" [value]="year.payrollYearId">{{year.name}}</option>
                   </select>
                 </div>
 
@@ -141,7 +141,7 @@
                     Employeer Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="PfEmployerContribution" formControlName="PfEmployerContribution"
-                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pf Employer Contribution">
                 </div>
 
                 <div class="form-group m-form__group">
@@ -149,7 +149,7 @@
                     Employee Contribution (%)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="PfEmployeeContribution" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
+                    placeholder="Pf Employee Contribution">
                 </div>
 
                 <div class="form-group m-form__group">
@@ -157,7 +157,7 @@
                     Taxable Amount Label
                   </label>
                   <input type="number" class="form-control m-input" formControlName="TaxableAmountLimit" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
+                    placeholder="Taxable Amount Limit">
                 </div>
 
               </div>
@@ -167,7 +167,7 @@
                 </h3>
                 <div class="form-group m-form__group">
                   <label for="exampleInputEmail1">
-                    Minimum Service provider (Year)
+                    Minimum Service Provider (Year)
                   </label>
                   <input type="number" class="form-control m-input" formControlName="MinServicePeriod" id="" aria-describedby="emailHelp" placeholder="Minimum Service Provider Year">
                 </div>
@@ -327,8 +327,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
+  
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -344,44 +343,42 @@
            keyExpr="fundSetupId"
             (onRowUpdated)="updateFundSetup()"
             (onRowUpdating)="updatingFundSetup($event)"
-             (onRowRemoved)="deleteAllowanceDeduction($event)">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+             (onRowRemoved)="deleteFundSetup($event)">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-
+            <dxo-header-filter [visible]="true"></dxo-header-filter> 
             <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
             <dxo-paging [pageSize]="8"></dxo-paging>
             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
             </dxo-pager>
  
             <dxi-column dataField="payrollYearId" caption="Payroll Year">
-              <dxo-lookup [dataSource]="payrollsetupservice?.payrollyear" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
+              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
             </dxi-column>
-            <dxi-column dataField="pfEmployerContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="pfEmployeeContribution"></dxi-column>
+            <dxi-column dataField="pfEmployerContribution"></dxi-column>
+            <dxi-column dataField="pfEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="taxableAmountLimit"></dxi-column>
-            <dxi-column dataField="minServicePeriod"></dxi-column>
+            <dxi-column dataField="minServicePeriod" [visible]="false"></dxi-column>
             <dxi-column dataField="applicableFrom"></dxi-column>
-            <dxi-column dataField="eobiMinimumSalary"></dxi-column>
-            <dxi-column dataField="eobiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiMinimumSalary" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiEmployerContribution"></dxi-column>
             <dxi-column dataField="eobiEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="maximumContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="exemptAge"></dxi-column>
-            <dxi-column dataField="sessiMinimumSalary"></dxi-column>
-            <dxi-column dataField="sessiEmployerContribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiMinimumSalary" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiEmployerContribution"></dxi-column>
             <dxi-column dataField="sessiEmployeeContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiMinimumSalary" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiEmployerContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="pessiEmployeeContribution" [visible]="false"></dxi-column>
-            <dxi-column dataField="iessiMinimumSalary"></dxi-column>
+            <dxi-column dataField="iessiMinimumSalary" [visible]="false"></dxi-column>
             <dxi-column dataField="iessiEmployerContribution" [visible]="false"></dxi-column>
             <dxi-column dataField="iessiEmployeeContribution" [visible]="false"></dxi-column>
           </dx-data-grid>
 
         </div>
       </div>
-    </div>
-  </div>
+    
 </div>

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
 import { RegistrationComponent } from '../patient/registration/registration.component';
+import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DiagnosesComponent } from './diagnoses/diagnoses.component';
 import { RecentvisitsComponent } from './recentvisits/recentvisits.component';
@@ -25,9 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FindPatientComponent } from './find-patient/find-patient.component';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { HimsSetupTestComponent } from './hims-setup-test/hims-setup-test.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { AppointmentscheduleComponent } from './appointmentschedule/appointmentschedule.component';
 import { VisitnatureComponent } from './patientsetup/visitnature/visitnature.component';
@@ -35,6 +34,15 @@ import { VisitdetailComponent } from './visitdetail/visitdetail.component';
 import { ConditionsComponent } from './conditions/conditions.component';
 import { DiagnosisComponent } from './patientsetup/diagnosis/diagnosis.component';
 import { TestComponent } from './test/test.component';
+import { ViewallAppointmetsComponent } from './viewall-appointmets/viewall-appointmets.component';
+import { VisitPrescriptionComponent } from './visit-prescription/visit-prescription.component';
+import { PaymentreceiptComponent } from './paymentreceipt/paymentreceipt.component';
+import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
+import { ReportsComponent } from './Reports/reports/reports.component';
+import { TestTypeComponent } from './test-type/test-type.component';
+import { TestCategoryComponent } from './test-category/test-category.component';
+import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
+
 // import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -53,6 +61,9 @@ import { TestComponent } from './test/test.component';
 
         RootComponent,
         RegistrationComponent,
+        PaymentreceiptComponent,
+        ActiveVisitsComponent,
+        ReportsComponent,
         ProfileComponent,
         DiagnosesComponent,
         RecentvisitsComponent,
@@ -73,15 +84,19 @@ import { TestComponent } from './test/test.component';
         HimsSetupTestComponent,
         HomeComponent,
         FindPatientComponent,
-        HeaderComponent,
         MenuComponent,
-        FooterComponent,
         AppointmentscheduleComponent,
         VisitnatureComponent,
         VisitdetailComponent,
         ConditionsComponent,
         DiagnosisComponent,
         TestComponent,
+        ViewallAppointmetsComponent,
+        VisitPrescriptionComponent,
+        PatientReferenceComponent,
+        TestTypeComponent,
+        TestCategoryComponent,
+        AppointmentpaymentreceiptComponent,
     ]
 })
 export class PatientModule { }

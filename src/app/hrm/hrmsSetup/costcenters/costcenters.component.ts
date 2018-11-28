@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 import { SetupService } from '../../../core';
 
 @Component({
@@ -11,23 +11,18 @@ import { SetupService } from '../../../core';
 export class CostCenterComponent implements OnInit {
     public ccenter: any;
 
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient,public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-        await this.dataService.getAllCostCenter();
-        this.ccenter = this.dataService.costcenter;
-        console.log(this.ccenter);
-        // this.dataService.GetAllCostCenter().subscribe((data)=>this.CostCenter=data);
+        this.ccenter = await this.dataService.getAllCostCenter();
     }
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addNewCostCenter(cc) {
         this.dataService.addCostCenter(cc.data);
+        this.ccenter = this.dataService.getAllCostCenter();
+
     }
 
     EditCost(costcntr) {

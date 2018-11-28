@@ -2,33 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-bank-advice-template',
-  templateUrl: './bank-advice-template.component.html',
-  styleUrls: ['./bank-advice-template.component.scss']
+    selector: 'app-bank-advice-template',
+    templateUrl: './bank-advice-template.component.html',
+    styleUrls: ['./bank-advice-template.component.scss']
 })
 export class BankAdviceTemplateComponent implements OnInit {
 
-  public bankadvice: any; 
+    public bankAdviceTemplates: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
- async ngOnInit() {
+    async ngOnInit() {
 
-      await this.payrollsetupservice.getbankadvicetemplates();
-      this.bankadvice = this.payrollsetupservice.bankadvicetemplate;
+        this.bankAdviceTemplates = await this.payrollsetupservice.getBankAdviceTemplates();
     }
-  
+
     async addBankAdviceTemplate(value) {
-      await this.payrollsetupservice.addbankadvicetemplate(value.data);
+        await this.payrollsetupservice.addBankAdviceTemplate(value.data);
+        this.bankAdviceTemplates = await this.payrollsetupservice.getBankAdviceTemplates();
     }
-  
+
     async updateBankAdviceTemplate(value) {
-      console.log(value);
-      await this.payrollsetupservice.updatebankadvicetemplate(value);
+        await this.payrollsetupservice.updateBankAdviceTemplate(value);
     }
-  
+
     async deleteBankAdviceTemplate(value) {
-      await this.payrollsetupservice.Deletebankadvicetemplate(value.key);
+        await this.payrollsetupservice.deleteBankAdviceTemplate(value.key);
     }
-  
-  }
+
+}

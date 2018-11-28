@@ -9,6 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class AllowanceDeductionComponent implements OnInit {
     public allowancededuction: any;
+    public allowanceCalculationTypes: any;
     public AllowanceorDeductionForm: FormGroup;
     private updatingdeduction: any;
 
@@ -28,6 +29,7 @@ export class AllowanceDeductionComponent implements OnInit {
             CalculationSequenceNumber: ['', Validators],
             RemitKey: ['', Validators],
             GlCodeAllowance: ['', Validators],
+            RepostNumber: ['', Validators],
             GlCodeDeduction: ['', Validators],
             GlCode: ['', Validators],
             DefaultCostCenter: ['', Validators],
@@ -38,26 +40,24 @@ export class AllowanceDeductionComponent implements OnInit {
         });
 
 
-        await this.payrollSetupService.getallowancedeductions();
-        this.allowancededuction = this.payrollSetupService.allowancededuction;
-    
-        await this.payrollSetupService.getallowancecalculationtypes();
-        let allowancecalculationtype = this.payrollSetupService.allowancecalculationtype;
+        this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
+
+        this.allowanceCalculationTypes = await this.payrollSetupService.getAllowanceCalculationTypes();
     }
 
     async addAllowanceDeduction() {
-       await this.payrollSetupService.addallowancededuction(this.AllowanceorDeductionForm.value);
-        console.log(this.AllowanceorDeductionForm.value);
+        await this.payrollSetupService.addAllowanceDeduction(this.AllowanceorDeductionForm.value);
+        this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
     }
 
-    updatingAllowanceDeduction(value){
-        this.updatingdeduction = {...value.oldData, ...value.newData};
+    updatingAllowanceDeduction(value) {
+        this.updatingdeduction = { ...value.oldData, ...value.newData };
     }
-    async updateAllowanceDeduction() { 
-       await this.payrollSetupService.updateallowancededuction(this.updatingdeduction);
+    async updateAllowanceDeduction() {
+        await this.payrollSetupService.updateAllowanceDeduction(this.updatingdeduction);
     }
 
     async deleteAllowanceDeduction(value) {
-        this.payrollSetupService.Deleteallowancededuction(value.key);
+       await this.payrollSetupService.DeleteAllowanceDeduction(value.key);
     }
 }

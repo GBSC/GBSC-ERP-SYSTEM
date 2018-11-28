@@ -2,7 +2,6 @@ import { UserRosterAttendance } from "./userRosterAttendance";
 
 export class MonthlyUserSalary {
 
-    monthlyUserSalaryId: number;
     MonthStartDate: Date;
     MonthEndDate: Date;
     TotalWorkingDaysInMonth: number;
@@ -16,6 +15,6 @@ export class MonthlyUserSalary {
     UserSalaryId: number;
     PfPaymentId: number;
     PayslipId: number;
-    PayrollId: number; 
-   UserRosterAttendances: UserRosterAttendance[];
+    PayrollId: number;
+    UserRosterAttendances: UserRosterAttendance[];
 }

@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -13,7 +11,7 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="bankadvice"
+              <dx-data-grid id="gridContainer" [dataSource]="bankAdviceTemplates"
                keyExpr="bankAdviceTemplateId" 
                (onRowInserted)="addBankAdviceTemplate($event)" 
                (onRowUpdated)="updateBankAdviceTemplate($event)" 
@@ -38,6 +36,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

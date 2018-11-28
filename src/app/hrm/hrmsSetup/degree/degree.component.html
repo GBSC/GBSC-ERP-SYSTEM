@@ -1,11 +1,9 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Degrees</h3>
+              <h3 class="m-portlet__head-text">Degree</h3>
             </div>
           </div>
         </div>
@@ -14,12 +12,8 @@
             <div class="m-section__content">
               <dx-data-grid id="gridContainer" [dataSource]="degree" keyExpr="degreeId" (onRowInserted)="addNewDegree($event)" (onRowUpdated)="Editdegree($event)"
                 (onRowRemoved)="deleteDegree($event)">
-                <dxo-export [enabled]="true" fileName="Degrees"></dxo-export>
-                <!-- [columns]="['Id', 'Code', 'Name', 'Description']" -->
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                  <dxo-popup title="Degree" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-export [enabled]="true" fileName="Degrees"></dxo-export> 
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -36,6 +30,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

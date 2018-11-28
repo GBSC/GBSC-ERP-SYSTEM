@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -18,9 +16,7 @@
                (onRowInserted)="addattendanceflag($event)" 
                (onRowUpdated)="updateattendanceflag($event)"
                (onRowRemoved)="deleteattendanceflag($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -30,16 +26,16 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
                 <dxi-column dataField="flagCategoryId" caption="Flag Category">
-                  <dxo-lookup [dataSource]="attendancesetupservice?.flagCategory" displayExpr="name" valueExpr="flagCategoryId">
+                  <dxo-lookup [dataSource]="flagcategory" displayExpr="name" valueExpr="flagCategoryId">
                   </dxo-lookup> 
                 </dxi-column>
                 <dxi-column dataField="title" caption="Name"></dxi-column> 
                 <dxi-column dataField="flagEffectTypeId" caption="Effect By">
-                    <dxo-lookup [dataSource]="attendancesetupservice?.flagEffecttype" displayExpr="name" valueExpr="flagEffectTypeId">
+                    <dxo-lookup [dataSource]="flagEffecttypes" displayExpr="name" valueExpr="flagEffectTypeId">
                     </dxo-lookup> 
                   </dxi-column>
                   <dxi-column dataField="flagValueId" caption="Flag Value">
-                      <dxo-lookup [dataSource]="attendancesetupservice?.flagvalue" displayExpr="value" valueExpr="flagValueId">
+                      <dxo-lookup [dataSource]="flagvalue" displayExpr="value" valueExpr="flagValueId">
                       </dxo-lookup> 
                     </dxi-column>
                 <dxi-column dataType="boolean" dataField="isActive" caption ="Is Active"></dxi-column>   
@@ -48,6 +44,4 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div> 
+ 

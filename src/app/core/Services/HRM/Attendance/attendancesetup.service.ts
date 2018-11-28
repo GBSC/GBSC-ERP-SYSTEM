@@ -1,50 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
 
 @Injectable()
 export class AttendancesetupService {
 
-    private baseUrl: string = "SystemAdmin/api/AttendanceSetup/";
+    private baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
-    public asignroster;
-    public attendanceflag;
-    public attendancerequestapprover;
-    public attendanceRequestType;
-    public flagCategory;
-    public flagEffecttype;
-    public flagtype;
-    public flagvalue;
-    public roster;
-    public shift;
+    constructor(private ApiService: ApiService) { }
 
-        /* Over Time */
-        public overtimetype;
-        public overtimeflag;
-
-        
-    constructor(private ApiService : ApiService) { }
-
-
-    /** Assign Roster CRUD METHODS */
-    async getasignrosters() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.asignroster = await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
-        console.log(this.asignroster);
-        return this.asignroster;
+    async getAsignRosters() {
+        return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
- 
-    // DEMO ONLY, you can find working methods below
-    async addasignroster(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newasignroster = await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();
-        console.log(newasignroster);
+    async addAsignRoster(data) {
 
+        return await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();
     }
 
     async getdataToUpdate(attendanceId, attendanceUrl) {
@@ -52,446 +22,255 @@ export class AttendancesetupService {
     }
 
 
-    async updateasignroster(data) {
-
-        let rosterassign = await this.getdataToUpdate(data.key, 'GetAssignRoster');
-        rosterassign = { ...rosterassign, ...data.data }
-        console.log(rosterassign);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, rosterassign).toPromise();
+    async updateAsignRoster(data) {
+ 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
 
     }
 
-    async Deleteasignroster(id) {
+    async DeleteAsignRoster(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAssignRoster/${id}`).toPromise();
     }
 
-    /** Attendance Flag CRUD METHODS */
-    async getattendanceflag() {
+    async getAttendanceFlags() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.attendanceflag = await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`).toPromise();
-        console.log(this.attendanceflag);
-        return this.attendanceflag;
+        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`).toPromise();
     }
-    async addattendanceflag(data) {
+    async addAttendanceFlag(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendanceflag = await this.ApiService.post(`${this.baseUrl}/AddattendanceFlag`, data).toPromise();
-        console.log(newattendanceflag);
+        return await this.ApiService.post(`${this.baseUrl}/AddattendanceFlag`, data).toPromise();
 
     }
 
-    async updateattendanceflag(data) {
+    async updateAttendanceFlag(data) {
 
         let attendanceflag = await this.getdataToUpdate(data.key, 'GetAttendanceFlag');
         attendanceflag = { ...attendanceflag, ...data.data }
-        console.log(attendanceflag);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, attendanceflag).toPromise();
 
     }
 
-    async Deleteattendanceflag(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteAttendanceFlag(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceFlag/${id}`).toPromise();
     }
 
 
-    /** Attendance Request Approver CRUD METHODS */
-    async getattendanceRequestapprover() {
+    async getAttendanceRequestApprover() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestApprovers`).toPromise();
 
-        this.attendancerequestapprover = await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestApprovers`).toPromise();
-        console.log(this.attendancerequestapprover);
-        return this.attendancerequestapprover;
     }
-    async addattendanceRequestapprover(data) {
+    async addAttendanceRequestApprover(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendancerequestapprover = await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestApprover`, data).toPromise();
-        console.log(newattendancerequestapprover);
+        return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestApprover`, data).toPromise();
 
     }
 
-    async updateattendanceRequestapprover(data) {
-
-        let attendancerequestapprover = await this.getdataToUpdate(data.key, 'GetAttendanceRequestApprover');
-        attendancerequestapprover = { ...attendancerequestapprover, ...data.data }
-        console.log(attendancerequestapprover);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestApprover`, attendancerequestapprover).toPromise();
+    async updateAttendanceRequestApprover(data) {
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestApprover`, data).toPromise();
 
     }
 
-    async DeleteattendanceRequestapprover(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteAttendanceRequestApprover(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceRequestApprover/${id}`).toPromise();
     }
 
 
-    /** Attendance Request Approver CRUD METHODS */
-    async getattendanceRequestTypes() {
+    async getAttendanceRequestTypes() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.attendanceRequestType = await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`).toPromise();
-        console.log(this.attendanceRequestType);
-        return this.attendanceRequestType;
+        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`).toPromise();
     }
-    async addattendanceRequestType(data) {
+    async addAttendanceRequestType(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newattendanceRequestType = await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data).toPromise();
-        console.log(newattendanceRequestType);
+        return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data).toPromise();
 
     }
 
-    async updateattendanceRequestType(data) {
+    async updateAttendanceRequestType(data) {
 
         let attendanceRequestType = await this.getdataToUpdate(data.key, 'GetAttendanceRequestType');
         attendanceRequestType = { ...attendanceRequestType, ...data.data }
-        console.log(attendanceRequestType);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRequestType`, attendanceRequestType).toPromise();
 
     }
 
-    async DeleteattendanceRequestType(id) {
+    async DeleteAttendanceRequestType(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAttendanceRequestType/${id}`).toPromise();
     }
 
-    /** Flag Category Approver CRUD METHODS */
-    async getflagCategories() {
+    async getFlagCategories() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.flagCategory = await this.ApiService.get(`${this.baseUrl}/GetFlagCategories`).toPromise();
-        console.log(this.flagCategory);
-        return this.flagCategory;
+        return await this.ApiService.get(`${this.baseUrl}/GetFlagCategories`).toPromise();
     }
-    async addflagCategory(data) {
+    async addFlagCategory(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagCategory = await this.ApiService.post(`${this.baseUrl}/AddFlagCategory`, data).toPromise();
-        console.log(newflagCategory);
+        return await this.ApiService.post(`${this.baseUrl}/AddFlagCategory`, data).toPromise();
 
     }
 
-    async updateflagCategory(data) {
+    async updateFlagCategory(data) {
 
         let flagCategory = await this.getdataToUpdate(data.key, 'GetFlagCategory');
         flagCategory = { ...flagCategory, ...data.data }
-        console.log(flagCategory);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagCategory`, flagCategory).toPromise();
 
     }
 
-    async DeleteflagCategory(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteFlagCategory(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagCategory/${id}`).toPromise();
     }
 
-    /** Flag Effect Type CRUD METHODS */
-    async getflagEffecttypes() {
+    async getFlagEffectTypes() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.flagEffecttype = await this.ApiService.get(`${this.baseUrl}/GetFlagEffectTypes`).toPromise();
-        console.log(this.flagEffecttype);
-        return this.flagEffecttype;
+        return await this.ApiService.get(`${this.baseUrl}/GetFlagEffectTypes`).toPromise();
     }
-    async addflagEffecttype(data) {
+    async addFlagEffectType(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagEffecttype = await this.ApiService.post(`${this.baseUrl}/AddFlagEffectType`, data).toPromise();
-        console.log(newflagEffecttype);
-
+        return await this.ApiService.post(`${this.baseUrl}/AddFlagEffectType`, data).toPromise();
     }
 
-    async updateflagEffecttype(data) {
+    async updateFlagEffectType(data) {
 
         let flagEffecttype = await this.getdataToUpdate(data.key, 'GetFlagEffectType');
         flagEffecttype = { ...flagEffecttype, ...data.data }
-        console.log(flagEffecttype);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagEffectType`, flagEffecttype).toPromise();
 
     }
 
-    async DeleteflagEffecttype(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteFlagEffectType(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagEffectType/${id}`).toPromise();
     }
 
-    /** Flag Type CRUD METHODS */
-    async getflagtypes() {
+    async getFlagTypes() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.flagtype = await this.ApiService.get(`${this.baseUrl}/GetFlagTypes`).toPromise();
-        console.log(this.flagtype);
-        return this.flagtype;
+        return await this.ApiService.get(`${this.baseUrl}/GetFlagTypes`).toPromise();
     }
-    async addflagtype(data) {
+    async addFlagType(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagtype = await this.ApiService.post(`${this.baseUrl}/AddFlagType`, data).toPromise();
-        console.log(newflagtype);
+        return await this.ApiService.post(`${this.baseUrl}/AddFlagType`, data).toPromise();
 
     }
 
-    async updateflagtype(data) {
+    async updateFlagType(data) {
 
         let flagtype = await this.getdataToUpdate(data.key, 'GetFlagType');
         flagtype = { ...flagtype, ...data.data }
-        console.log(flagtype);
-        
-        let authToken = localStorage.getItem('auth_token');  
-        let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagType`, flagtype).toPromise();
 
     }
 
-    async Deleteflagtype(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteFlagType(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagType/${id}`).toPromise();
     }
 
+    async getFlagValues() {
 
-    /** Flag Value CRUD METHODS */
-    async getflagvalues() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.flagvalue = await this.ApiService.get(`${this.baseUrl}/GetFlagValues`).toPromise();
-        console.log(this.flagvalue);
-        return this.flagvalue;
-    }
-    async addflagvalue(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newflagvalue = await this.ApiService.post(`${this.baseUrl}/Addflagvalue`, data).toPromise();
-        console.log(newflagvalue);
+        return await this.ApiService.get(`${this.baseUrl}/GetFlagValues`).toPromise();
 
     }
+    async addFlagValue(data) {
 
-    async updateflagvalue(data) {
+        return await this.ApiService.post(`${this.baseUrl}/Addflagvalue`, data).toPromise();
+    }
+
+    async updateFlagValue(data) {
 
         let flagvalue = await this.getdataToUpdate(data.key, 'GetFlagValue');
         flagvalue = { ...flagvalue, ...data.data }
-        console.log(flagvalue);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateFlagValue`, flagvalue).toPromise();
 
     }
 
-    async Deleteflagvalue(id) {
+    async DeleteFlagValue(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagValue/${id}`).toPromise();
     }
 
-
-    /** Roster CRUD METHODS */
-    async getrosters() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.roster = await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
-        console.log(this.roster);
-        return this.roster;
+    async getRosters() {
+        return await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
     }
-    async addroster(data) {
+    async addRoster(data) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newroster = await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
-        console.log(newroster);
+        return await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
 
     }
 
-    async updateroster(data) {
+    async updateRoster(data) {
 
         let roster = await this.getdataToUpdate(data.key, 'Getroster');
         roster = { ...roster, ...data.data }
-        console.log(roster);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateRoster`, roster).toPromise();
 
     }
 
-    async Deleteroster(id) {
+    async DeleteRoster(id) {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
         return await this.ApiService.delete(`${this.baseUrl}/DeleteRoster/${id}`).toPromise();
     }
 
-    /** Shift CRUD METHODS */
-    async getshifts() {
+    async getShifts() {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
-        this.shift = await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
-        console.log(this.shift);
-        return this.shift;
-    }
-    async addshift(data) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let newshift = await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
-        console.log(newshift);
-
+        return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
     }
 
-    async updateshift(data) {
+    async addShift(data) {
+
+        return await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
+    }
+
+    async updateShift(data) {
 
         let shift = await this.getdataToUpdate(data.key, 'GetsSift');
         shift = { ...shift, ...data.data }
-        console.log(shift);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
         return await this.ApiService.put(`${this.baseUrl}/UpdateShift`, shift).toPromise();
 
     }
 
-    async Deleteshift(id) {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async DeleteShift(id) {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteShift/${id}`).toPromise();
     }
 
-        /** CRUD METHODS */
-        async getAllovertimetype() {
+    async getAllOvertimeType() {
+        return await this.ApiService.get(`${this.baseUrl}/GetOverTimeTypes`).toPromise();
+    }
 
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.overtimetype = await this.ApiService.get(`${this.baseUrl}/GetOverTimeTypes`).toPromise();
-            console.log(this.overtimetype);
-            return this.overtimetype;
-        }
-    
-    
-        // DEMO ONLY, you can find working methods below
-        async addovertimetype(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newovertimetype = await this.ApiService.post(`${this.baseUrl}/AddOverTimeType`, data).toPromise();
-            console.log(newovertimetype);
-    
-        }
-    
-        async updateovertimetype(data) {
-    
-            console.log(data.key);
-            console.log(data);
-    
-            let overtimetype = await this.getdataToUpdate(data.key, 'GetOverTimeType');
-            overtimetype = { ...overtimetype, ...data.data }
-            console.log(overtimetype);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, overtimetype).toPromise();
-    
-        }
-    
-        async Deleteovertimetype(overtimetypeId) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeType/${overtimetypeId}`).toPromise();
-        }
-    
-        /** CRUD METHODS */
-        async getAllovertimeflag() {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    
-            this.overtimeflag = await this.ApiService.get(`${this.baseUrl}/GetOverTimeFlags`).toPromise();
-            console.log(this.overtimeflag);
-            return this.overtimeflag;
-        }
-    
-    
-        // DEMO ONLY, you can find working methods below
-        async addovertimeflag(data) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json' } }
-            let newovertimeflag = await this.ApiService.post(`${this.baseUrl}/AddOverTimeFlag`, data).toPromise();
-            console.log(newovertimeflag);
-    
-        }
-    
-        async updateovertimeflag(data) {
-    
-            console.log(data.key);
-            console.log(data);
-    
-            let overtimeflag = await this.getdataToUpdate(data.key, 'GetOverTimeFlag');
-            overtimeflag = { ...overtimeflag, ...data.data }
-            console.log(overtimeflag);
-            // let authToken = localStorage.getItem('auth_token');  
-            // let headers = {headers: {'Content-Type':'application/json'}}
-            return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, overtimeflag).toPromise();
-    
-        }
-    
-        async Deleteovertimeflag(overtimeflagId) {
-    
-            let authToken = localStorage.getItem('auth_token');
-            let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-            return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeFlag/${overtimeflagId}`).toPromise();
-        }
+    async addOvertimeType(data) {
+        return await this.ApiService.post(`${this.baseUrl}/AddOverTimeType`, data).toPromise();
+    }
+
+    async updateOvertimeType(data) {
+ 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeType`, data).toPromise();
+
+    }
+
+    async DeleteOvertimeType(overtimetypeId) {
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeType/${overtimetypeId}`).toPromise();
+    }
+
+
+    async getAllOvertimeFlag() {
+        return await this.ApiService.get(`${this.baseUrl}/GetOverTimeFlags`).toPromise();
+    }
+
+    async addOvertimeFlag(data) {
+        return await this.ApiService.post(`${this.baseUrl}/AddOverTimeFlag`, data).toPromise();
+    }
+
+    async updateOvertimeFlag(data) {
+
+        let overtimeflag = await this.getdataToUpdate(data.key, 'GetOverTimeFlag');
+        overtimeflag = { ...overtimeflag, ...data.data }
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, overtimeflag).toPromise();
+
+    }
+
+    async DeleteOvertimeFlag(overtimeflagId) {
+
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteOverTimeFlag/${overtimeflagId}`).toPromise();
+    }
 
 }

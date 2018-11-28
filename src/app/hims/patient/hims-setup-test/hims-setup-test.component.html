@@ -13,7 +13,7 @@
            <div class="m-section">
              <div class="m-section__content">
                <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.testing" (onRowInserted)="addtest($event)"   (onRowUpdated)="updateTest($event)" (onRowRemoved)="deleteTest($event)"> 
-                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
+                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
                </dxo-editing>
                  <dxo-filter-row [visible]="true"></dxo-filter-row>
                  <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -21,6 +21,8 @@
                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                  <dxi-column dataField="testCode" caption="Test Code"></dxi-column>
                  <dxi-column dataField="testName" caption="Test Name"></dxi-column> 
+                 <dxi-column dataField="charges" caption="Charges"></dxi-column> 
+
                  <!-- <dxi-column dataField="patientId" caption="Patients" [width]="125">         
                  <dxo-lookup  [dataSource]="patient" displayExpr="lastName" valueExpr="patientId"></dxo-lookup>
                 </dxi-column> -->

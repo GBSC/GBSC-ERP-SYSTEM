@@ -12,13 +12,11 @@ import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
-import { SetupService } from './core/Services/HRM/Setup/setup.service';
-import { EmployeeService } from './core/Services/HRM/Employee/employee.service';
-import { LeaveSetupService } from './core/Services/HRM/Leave/leaveSetup.service';
-import { LeaveService } from './core/Services/HRM/Leave/leave.service';
-import { HrmsService } from './core/Services/HRM/Setup/hrms.service';
-import { ApiService } from './core/Services/api.service';
-import { CoreModule } from './core/core.module';
+import { ToastrModule } from 'ngx-toastr';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
+import { ClinicalrecordComponent } from './hims/coordination/clinicalrecord/clinicalrecord.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 
@@ -26,9 +24,17 @@ import { CoreModule } from './core/core.module';
     declarations: [
         ThemeComponent,
         AppComponent,
-        
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
+        CommonModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }), // ToastrModule added
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -39,7 +45,9 @@ import { CoreModule } from './core/core.module';
         DevExtremeModule,
         HttpClientModule
     ],
-    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }, ScriptLoaderService],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+        ScriptLoaderService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

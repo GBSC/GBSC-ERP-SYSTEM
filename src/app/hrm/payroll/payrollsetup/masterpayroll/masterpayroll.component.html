@@ -1,7 +1,4 @@
-<div class="m-content">
-
-  <div class="row">
-    <div class="col-md-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -23,7 +20,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of empservice.employeereg" [value]="user.userId">{{user.firstName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
@@ -41,22 +38,21 @@
                 </label>
                 <select class="form-control m-input" formControlName="CurrencyId">
                   <option value="" disabled selected>-- Select Currency --</option>
-                  <option *ngFor="let currency of payrollsetupservice?.Currency" [value]="currency.currencyId">{{currency.name}}</option>
+                  <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
                 </select>
               </div>
               <div class="col-lg-6">
                 <label class="">
-                  Calculation Type:
+                 Payroll Bank:
                 </label>
                 <select class="form-control m-input" formControlName="PayrollBankId">
-                  <option value="" disabled selected>-- Select Payroll Bank --</option>
-                  <option *ngFor="let payrollbank of payrollsetupservice?.payrollbank" [value]="payrollbank.payrollBankId">{{payrollbank.bankTitle}}</option>
+                  <option value="" disabled>-- Select Payroll Bank --</option>
+                  <option *ngFor="let pb of banksPayroll" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
                 </select>
               </div>
             </div>
           </form>
-
-            <div class="m--space-30"></div>
+ 
             <div class="m--space-30"></div>
             <div class="row">
               <div class="col-xl-12">
@@ -72,14 +68,11 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="[]"
-                         keyExpr="masterPayrollDetailsId"
+                        [dataSource]="masterDetail"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
-                         (onRowUpdated)="updateMasterDetail($event)"
+                         (onRowUpdated)="updateMasterpayrollDetail()"
                           (onRowRemoved)="deleteleavetypebalance($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                            <dxo-popup title="Master Payroll Detail" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                            </dxo-popup>
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -93,15 +86,15 @@
                           <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
                    
                           <dxi-column dataField="allowanceId" caption="Allowance">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
                             </dxo-lookup> 
                             </dxi-column>
                           <dxi-column dataField="frequencyId" caption="Frequency">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.frequency" displayExpr="name" valueExpr="frequencyId">
+                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
                             </dxo-lookup> 
                             </dxi-column>
                           <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                            <dxo-lookup [dataSource]="payrollsetupservice?.payrolltype" displayExpr="name" valueExpr="payrollTypeId">
+                            <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
                             </dxo-lookup> 
                             </dxi-column>
                  
@@ -120,19 +113,25 @@
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
                   <div class="col-lg-2"></div>
-                  <div class="col-lg-6">
-                    <button type="reset" class="btn btn-brand" (click)="submitForm(MasterPayrollForm.value)">
+                <div class="col-lg-6">
+                    <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(submitForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="submitForm(submitForm.value)">
                       Submit
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
+                    </button>  
+                  </ng-template> 
+                  <button type="reset" class="btn btn-secondary">
+                      Reset
                     </button>
                   </div>
-                </div>
               </div>
             </div>  
         </div>
       </div>
-    </div>
-  </div>
-</div>
+  
+ 
+ 

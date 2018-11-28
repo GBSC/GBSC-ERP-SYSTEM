@@ -8,32 +8,26 @@ import { LeaveSetupService } from '../../../../core';
 })
 export class LeavedaytypeComponent implements OnInit {
 
-    public levedaytype: any;
+    public leveDayType: any;
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
-        await this.leavesetupservice.getAllleavedaytype();
-        this.levedaytype = this.leavesetupservice.leavedaytype
-        console.log(this.levedaytype);
+
+        this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
     async addleavedaytype(ldaytype) {
-        console.log(ldaytype.data);
-        this.leavesetupservice.addleavedaytype(ldaytype.data);
+
+        this.leavesetupservice.addLeaveDayType(ldaytype.data);
+        this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
     async updateleavedaytype(levdaytype) {
-        console.log(levdaytype);
-        this.leavesetupservice.updateleavedaytype(levdaytype);
-        console.log('in updated year')
-
+        this.leavesetupservice.updateLeaveDayType(levdaytype);
     }
 
-    async deleteleavedaytype(lvdaytype) {
-        console.log(lvdaytype);
-        this.leavesetupservice.Deleteleavedaytype(lvdaytype.key);
-
-
+    async deleteleavedaytype(value) {
+        this.leavesetupservice.DeleteLeaveDayType(value.key);
     }
 
 }

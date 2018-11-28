@@ -2,37 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollService, PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-stopsalary',
-  templateUrl: './stopsalary.component.html',
-  styleUrls: ['./stopsalary.component.scss']
+    selector: 'app-stopsalary',
+    templateUrl: './stopsalary.component.html',
+    styleUrls: ['./stopsalary.component.scss']
 })
 export class StopsalaryComponent implements OnInit {
 
-  public StopSalary: any;
-  private updatingstopsalary: any;
+    public PayrollType: any;
+    public StopSalary: any;
+    private updatingstopsalary: any;
 
-  constructor(public payrollservice: PayrollService, public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollservice: PayrollService, public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
-    await this.payrollservice.getstopsalaries();
-    this.StopSalary = this.payrollservice.stopsalary;
+    async ngOnInit() {
 
-    await this.payrollsetupservice.getpayrolltypes();
-    let PayrollType = this.payrollsetupservice.payrolltype;
-  }
+        this.StopSalary = await this.payrollservice.getStopSalaries();
 
-  async addStopSalary(value) {
-    await this.payrollservice.addstopsalary(value.data);
-  }
+        this.PayrollType = await this.payrollsetupservice.getPayrollTypes();
+    }
 
-  StopSalaryUpdating(value) {
-    this.updatingstopsalary = { ...value.oldData, ...value.newData};
-  }
-  async updateStopSalary() {
-    await this.payrollservice.updatestopsalary(this.updatingstopsalary);
-  }
+    async addStopSalary(value) {
+        
+        this.StopSalary = await this.payrollservice.getStopSalaries();
+        await this.payrollservice.addStopSalary(value.data);
+    }
 
-  async deleteStopSalary(value) {
-    await this.payrollservice.Deletestopsalary(value.key);
-  }
+    StopSalaryUpdating(value) {
+        this.updatingstopsalary = { ...value.oldData, ...value.newData };
+    }
+    async updateStopSalary() {
+        await this.payrollservice.updateStopSalary(this.updatingstopsalary);
+    }
+
+    async deleteStopSalary(value) {
+        await this.payrollservice.deleteStopSalary(value.key);
+    }
 }

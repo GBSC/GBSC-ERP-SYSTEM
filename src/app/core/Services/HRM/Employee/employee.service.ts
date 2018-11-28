@@ -6,400 +6,168 @@ import { HrmsService } from '../Setup/hrms.service';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
 import { Employee } from '../../../Models/HRM/employee';
+import { EmployeeCompany } from '../../../Models/HRM/employeeCompany';
+import { EmployeeSocial } from '../../../Models/HRM/employeeSocial';
+import { EmployeeQualification } from '../../../Models/HRM/employeeQualification';
+import { EmployeeBank } from '../../../Models/HRM/employeeBank';
+import { EmployeeExperience } from '../../../Models/HRM/employeeExperience';
+import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
 
 @Injectable()
 export class EmployeeService {
 
-    public EmpCompanyForm: FormGroup;
-    public documentForm: FormGroup;
-    public EmpbankForm: FormGroup;
-    public SocialForm: FormGroup;
-    public DependantForm: FormGroup;
-    public EmpbasicForm: FormGroup;
-    public experienceForm: FormGroup;
-    public Profilepic: FormGroup;
-    public QualificationForm: FormGroup;
-    public allDependentForm: any = [];
-    public allExperiencexpForm: any = [];
-    public employeereg: Object;
-    public allFormData: any = {};
-    public currentlyLoggedinUser
-    private baseUrl: string  = 'systemadmin/api';
-    public firstForm: any;
-    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService : ApiService) {
+    private baseUrl: string = 'systemadmin/api';
+    public employeereg;
 
 
-        this.EmpbasicForm = this.fb.group({
-            FirstName: [''],
-            LastName: [''],
-            FatherName: [''],
-            Email: [''],
-            Cnic: [''],
-            CnicExpiry: [''],
-            PhoneNumber: [''],
-            HomeNumber: [''],
-            DOB: [''],
-            POB: [''],
-            BloodGroup: [''],
-            MaritalStatus: [''],
-            Gender: [''],
-            countryId: [''],
-            CityId: [''],
-            ReligionId: [''],
-            LanguageId: [''],
-            Address: [''],
-            PermanentAddress: ['']
-        });
+    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService: ApiService) {
 
-        this.EmpCompanyForm = this.fb.group({
-            DesignationId: [''],
-            ManagementLevelId: [''],
-            FunctionId: [''],
-            GroupId: [''],
-            EmployeeStatusId: [''],
-            EmployeeTypeId: [''],
-            Shift: [''],
-            GradeId: [''],
-            QualificationId: [''],
-            ContractStart: [''],
-            ContractEnd: [''],
-            AppointmentDate: [''],
-            NextApprisalDate: [''],
-            ConfirmDueDate: [''],
-            ConfirmationDate: [''],
-            LeavingDate: [''],
-            ResignDate: [''],
-            Approver: ['']
-
-        });
-
-        this.QualificationForm = this.fb.group({
-            Name: [''],
-            DegreeId: [],
-            Timefrom: ['12-01-2016'],
-            Timeto: ['12-01-2017'],
-            Grade: [''],
-            Courses: [''],
-            Description: [''],
-            SkillLevel: []
-        });
-
-        this.Profilepic = this.fb.group({
-            ProfileImg: ['']
-        });
-
-        this.DependantForm = this.fb.group({
-
-            Name: [''],
-            Phone: [''],
-            Email: [''],
-            Address: [''],
-            Country: [''],
-            City: [''],
-            State: [''],
-            Zip: [''],
-            HomePhone: [''],
-            PermanentAddress: ['']
-
-        });
-
-        this.SocialForm = this.fb.group({
-            Fb: [''],
-            Twitter: [''],
-            Instagram: [''],
-            Linkedin: [''],
-            GooglePlus: [''],
-            Youtube: [''],
-            Blog: [''],
-            Pinterest: ['']
-        });
-
-        this.experienceForm = this.fb.group({
-            CompanyName: [''],
-            Designation: [''],
-            Timefrom: [''],
-            Timeto: [''],
-            Description: ['']
-        });
-
-        this.EmpbankForm = this.fb.group({
-            AccountTitle: [''],
-            AccountNumber: [''],
-            BankTitle: [''],
-            BankCode: [''],
-            BankBranch: ['']
-        });
-
-        this.documentForm = this.fb.group({
-            Documents: ['']
-        });
 
     }
 
+    //Employee
     async GetAllEmployees() {
-
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-
         this.employeereg = await this.ApiService.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
-        console.log(this.employeereg);
         return this.employeereg;
     }
 
-    GetEmployee(id) : Observable<Employee>
-    {
-        return this.ApiService.get(this.baseUrl+'/Users/GetUser/'+id);       
+    GetEmployee(id): Observable<Employee> {
+        return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
     }
 
 
-    async  updateEmployee(Employee  : Employee)
-    {
-    //   let id = localStorage.getItem('id');
-      let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUser',Employee).toPromise();
-      console.log(x);
-      return x;
-    }
+    updateEmployeeBasicInfo(Employee: Employee): Observable<any> {
 
-    async updateUersById(Employee  : Employee){
-        let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUserDetail/'+localStorage.getItem('id'),Employee).toPromise();
-        console.log(x);
-        return x;
-    }
-
-    async updateUserCompanyById(Employee  : Employee){
-        let x = await  this.ApiService.put(this.baseUrl+'/Users/UpdateUserCompany/'+localStorage.getItem('id'),Employee).toPromise();
-        console.log(x);
-        return x;
-    }
-
-    checkIfDisabled(e) {
-        console.log(e);
-    }
-
-    // DEMO ONLY, you can find working methods below
-    async addEmployee() {
-
-        // let allFormDataInOne = this.prepareFormData();
-console.log(this.EmpbasicForm.value);
-        let newuser: any = await this.ApiService.post(`${this.baseUrl}/Users/AddUser`, this.EmpbasicForm.value).toPromise();
-        console.log(newuser);
-        localStorage.setItem('id', newuser.userID);
-        return newuser;
+        return this.ApiService.put(this.baseUrl + '/Users/UpdateUser', Employee);
     }
 
 
-    async addusercompany() {
-        console.log(this.EmpCompanyForm.value);
-        console.log(localStorage.getItem('id'));
+    addEmployee(employee): Observable<any> {
 
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let usercompany = await this.ApiService.post(`${this.baseUrl}/Users/AddUserDetailsById/${localStorage.getItem('id')}`, this.EmpCompanyForm.value).toPromise();
-        return usercompany;
+        return this.ApiService.post(`${this.baseUrl}/Users/AddUser`, employee);
+
     }
 
-    public selectedPic;
+    //Employee Company
+    GetEmployeeCompany(id): Observable<EmployeeCompany> {
 
-    async adduserProfilepic() {
-
-        let fomrData: any = new FormData();
-        fomrData.append('myFile', this.selectedPic, this.selectedPic.name);
-
-        console.log(fomrData);
-
-        let authToken = localStorage.getItem('auth_token');
-        // let headers = { headers: { 'Content-Type': 'multipart/form-data'} }
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let userpic = await this.ApiService.post(`${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}`, this.selectedPic).toPromise();
-        console.log(userpic);
-        return userpic;
+        return this.ApiService.get(this.baseUrl + '/Users/GetUserCompany/' + id);
     }
 
-    // ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
+    addUserCompany(UserCompany): Observable<any> {
 
-    addDocument(file :FormData){
-        this.ApiService.post(this.baseUrl+'/Users/AddUserPhotoById/'+localStorage.getItem('id'), file).subscribe( res => {
-           console.log(res);
-       });
+        return this.ApiService.post(`${this.baseUrl}/Users/AddUserCompany`, UserCompany);
     }
 
-   addDocuments(models : FormData){
+    updateUserCompany(UserCompany): Observable<any> {
 
-       this.ApiService.post(this.baseUrl+'/Users/AddUserDocumentsById/'+localStorage.getItem('id'), models).subscribe( res => {
-           console.log(res);
-       });
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateUserCompany`, UserCompany);
     }
 
-   public DocumentsByUserId : any;
-   async GetDocumentsByUserId()
-    {
-        this.DocumentsByUserId = await this.ApiService.get(this.baseUrl+'/Users/GetDocumentsByUserId/'+localStorage.getItem('id')).toPromise();
-        console.log(this.DocumentsByUserId);
-        return this.DocumentsByUserId;
+
+    //Employee Documents
+    addDocument(userId, file: FormData) {
+        this.ApiService.post(this.baseUrl + '/Users/AddUserPhotoById/' + userId, file).subscribe(res => {
+        });
     }
 
-    async deleteUserDocument(id)
-    {
-        let x = await this.ApiService.delete(this.baseUrl+'/Users/DeleteUserDocumentById/'+id).toPromise();
-        console.log(x);
+    addDocuments(userId, models: FormData) {
+
+        this.ApiService.post(this.baseUrl + '/Users/AddUserDocumentsById/' + userId, models).subscribe(res => {
+        });
+    }
+
+    async GetDocumentsByUserId(userId) {
+
+        return await this.ApiService.get(this.baseUrl + '/Users/GetDocumentsByUserId/' + userId).toPromise();
+
+    }
+
+    async deleteUserDocument(userId) {
+        let x = await this.ApiService.delete(this.baseUrl + '/Users/DeleteUserDocumentById/' + userId).toPromise();
         return x;
     }
 
 
-     //  ${this.baseUrl}/Users/AddUserPhotoById/${localStorage.getItem('id')}
 
-    async adduserDocuments() {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let documents = await this.ApiService.post(`${this.baseUrl}/Users/AddUserDocumentsById/${localStorage.getItem('id')}`, this.documentForm.value).toPromise();
-        console.log(documents);
-        return documents;
-    }
+    //Employee Social
+    updateuserSocial(UserId: number, EmployeeSocial: EmployeeSocial): Observable<any> {
 
-    async adduserSocial() {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let social = await this.ApiService.post(`${this.baseUrl}/Users/UpdateUser/${localStorage.getItem('id')}`, this.SocialForm.value).toPromise();
-        console.log(social);
-        return social;
-    }
-
-    async addBank() {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let bank = await this.ApiService.post(`${this.baseUrl}/Users/AddUserBankById/${localStorage.getItem('id')}`, this.EmpbankForm.value).toPromise();
-        console.log(bank);
-        return bank;
-    }
-
-    public allQualifications = [];
-    public currentUniversity: any = {};
-    public university = {
-        Name: '',
-        Qualifications: []
-    }
-
-    async adduserUniversities() {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: { 'Content-Type': 'application/json' } }
-        let q = { ...this.QualificationForm.value, Degree: { Name: this.QualificationForm.value.DegreeId } };
-
-        delete q.DegreeId;
-        this.university.Qualifications.push(q);
-        this.allQualifications.push(this.university);
-        console.log(this.allQualifications);
-
-        // this.allQualifications.push(this.createuniversity(this.QualificationForm.value.School));
-        let universities = await this.ApiService.post(`${this.baseUrl}/Users/AddUserUniversitiesById/${localStorage.getItem('id')}`, this.allQualifications).toPromise();
-        console.log(universities);
-        return universities;
-    }
-
-    createuniversity(name) {
-        let uni = {
-            Name: '',
-            Qualification: [],
-            SkillLevel: []
-        };
-
-        return uni;
-    }
-
-    createDegree(deg) {
-        return {
-            Degree: deg
-        }
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateUserSocial/${UserId}`, EmployeeSocial);
     }
 
 
-    async adduserRelation() {
+    //Employee Relations
 
-        let authToken = localStorage.getItem('auth_token');
-        // let headers = { headers: { } }
-        // console.log(this.DependantForm.value);
-        console.log(this.allDependentForm);
-        // if(this.allDependentForm.length === 1) {
-        this.allDependentForm[0] = this.DependantForm.value;
-        // }
-        let relation = await this.ApiService.post(`${this.baseUrl}/Users/AddUserRelationsById/${localStorage.getItem('id')}`, this.allDependentForm).toPromise();
-        return relation;
+    GetRelationsByUserId(id): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl + '/Users/GetRelationsByUserId/' + id);
+    }
+
+    addUserRelation(relation: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/AddRelation`, relation);
+    }
+
+    updateUserRelation(relation: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateRelation`, relation);
     }
 
 
-    async adduserexperience() {
-        let authToken = localStorage.getItem('auth_token');
-        let headers = { headers: ({ 'Content-Type': 'application/json' }) }
-        this.allExperiencexpForm[0] = this.experienceForm.value;
-        let exp = await this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperiencesById/${localStorage.getItem('id')}`, this.allExperiencexpForm).toPromise();
-        console.log(exp);
-        return exp;
+    //Employee Qualification
+
+    getQualifications(userId): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl + '/Users/GetUserQualification/' + userId);
+    }
+
+    addQualification(qualification: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/AddQualification`, qualification);
+    }
+
+    updateQualification(qualification: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateQualification`, qualification);
     }
 
 
-    async getBasicInfoOfCurrentUser() {
-        this.currentlyLoggedinUser = localStorage.getItem('id');
-        console.log(this.currentlyLoggedinUser);
-        return await this.ApiService.get(`${this.baseUrl}/Users/GetUser/${this.currentlyLoggedinUser}`).toPromise();
+    //Employee Work Experience
+
+    getWorkExperience(userId): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl + '/Users/GetworkExperienceByUserId/' + userId);
     }
 
-    // prepareFormData(): any {
-    //   let form = {};
-    //   form = {
-    //     ...this.allFormData.Empbasicinfo,
-    //     ...this.allFormData.QualificationForm,
-    //     ...this.allFormData.experience,
-    //     ...this.allFormData.Profilepic,
-    //     ...this.allFormData.DependantForm,
-    //     ...this.allFormData.SocialForm,
-    // home    ...this.allFormData.documentForm,
-    //     ...this.allFormData.EmpCompanyForm,
-    //     ...this.allFormData.EmpbankForm
-    //   }
+    addWorkExperience(experience: any): Observable<any> {
 
-    //   return form;
-    // }
-
-
-    getProfileInfo(value) {
-        this.allFormData.profileInfo = value;
+        return this.ApiService.post(`${this.baseUrl}/Users/AddWorkExperience`, experience);
     }
 
-    getBank(value) {
-        this.allFormData.bank = value;
-    }
+    updateWorkExperience(experience: any): Observable<any> {
 
-    async getdataToUpdate(userId, userUrl) {
-        return await this.ApiService.get(`${this.baseUrl}/${userUrl}/${userId}`).toPromise();
-    }
-
-    async updateUser(data) {
-
-        console.log(data.key);
-        console.log(data);
-
-        let usr = await this.getdataToUpdate(data.key, 'GetUser');
-        usr = { ...usr, ...data.data }
-        console.log(usr);
-        // let authToken = localStorage.getItem('auth_token');  
-        // let headers = {headers: {'Content-Type':'application/json'}}
-        return await this.ApiService.put('${this.baseUrl}/Users/UpdateUser', usr).toPromise();
-
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateWorkExperience`, experience);
     }
 
 
-    // DeleteEmployeeBasicInfos(EmployeeBasicInfo : EmployeeBasicInfo): void {
+    //Employee Banks
 
-    // console.log(EmployeeBasicInfo);
+    getBanks(userId): Observable<any> {
 
-    // let authToken = localStorage.getItem('auth_token');
-    // let headers = {headers: {'Content-Type':'application/json','Authorization':`bearer ${authToken}`}}
+        return this.ApiService.get(this.baseUrl + '/Users/GetUserBanksByUserId/' + userId);
+    }
 
-    // this.ApiService.delete('http://demo-gbscinc.azurewebsites.net/hrisservice/api/EmployeeReg/DeleteEmployeeBasicInfo/'+EmployeeBasicInfo.Id).subscribe(data => {
-    //   console.log(data); 
-    // },
-    //   (error: HttpErrorResponse) => {
-    //     console.log(error.name + ' ' + error.message);
-    //   });
+    addBank(bank: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/AddUserBank`, bank);
+    }
+
+    updateBank(bank: any): Observable<any> {
+
+        return this.ApiService.post(`${this.baseUrl}/Users/UpdateUserBank`, bank);
+    }
+
 
 }
 

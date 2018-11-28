@@ -22,7 +22,7 @@
                 </label>
                 <select class="form-control m-input" formControlName="GroupId" id="">
                     <option value="" disabled selected>-- Select Group --</option>
-                    <option *ngFor ="let group of hrsetupservice?.group" [value]="group.groupId" >{{group.name}}</option>
+                    <option *ngFor ="let group of groups" [value]="group.groupId" >{{group.name}}</option>
            </select>
               </div>
               <div class="col-lg-6">
@@ -31,7 +31,7 @@
                 </label> 
                     <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
                         <option value="" disabled selected>-- Select Attendance Flag --</option>
-                        <option *ngFor ="let flag of attendancesetupservice?.attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
+                        <option *ngFor ="let flag of attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
                </select>
               </div>
             </div>
@@ -121,7 +121,7 @@
                         <div class="m-portlet__head">
                           <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
-                              <h3 class="m-portlet__head-text">Attendance Flag</h3>
+                              <h3 class="m-portlet__head-text">Leave Type</h3>
                             </div>
                           </div>
                         </div>
@@ -129,12 +129,11 @@
                           <div class="m-section">
                             <div class="m-section__content">
                               <dx-data-grid id="gridContainer"
-                              [dataSource]="[]"
+                              [dataSource]="RuleDetail"
                                keyExpr="attendanceRuleId"
-                               (onRowInserted)="attendanceRuleLeave($event)" >
-                                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                  <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                                  </dxo-popup>
+                               (onRowInserted)="attendanceRuleLeave($event)"
+                               (onRowUpdated)="updateattendancerule($event)" >
+                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                 </dxo-editing>
                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -144,7 +143,7 @@
                                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                 </dxo-pager>  
                                 <dxi-column dataField="leaveTypeId" caption="Leave Type">
-                                    <dxo-lookup [dataSource]="leavesetupservice?.leavetype" displayExpr="title" valueExpr="leaveTypeId">
+                                    <dxo-lookup [dataSource]="LeaveTypes" displayExpr="title" valueExpr="leaveTypeId">
                                     </dxo-lookup> 
                                     </dxi-column>
                               </dx-data-grid>
@@ -155,22 +154,29 @@
                     </div>
                   </div>
                 </div>
-                  <div class="m--space-50"></div> 
                   <div class="m-separator m-separator"></div>
-      
-                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                    <div class="m-form__actions m-form__actions--solid">
-                      <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
-                          <button type="submit" class="btn btn-brand" (click)="addattendancerule(AttendanceRuleForm.value)">
-                            Submit
-                          </button>
-                          <button type="reset" class="btn btn-secondary">
-                            Cancel
-                          </button>
+
+                  <div class="row" >
+                    <div class="col-md-12">
+                      <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions" style="padding:19px;">
+                          <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                              <div *ngIf="isUpdate(); else create">
+                                <button class="btn btn-primary" (click)="update(AttendanceRuleForm.value)">
+                                    Update
+                                  </button>        
+                            </div> 
+                            <ng-template #create>
+                              <button class="btn btn-Success" (click)="addattendancerule(AttendanceRuleForm.value)">
+                                Submit
+                              </button>  
+                            </ng-template> 
+                            </div>
+                            <div class="col-lg-3"></div>
+                          </div>
                         </div>
-                        <div class="col-lg-4"></div>
                       </div>
                     </div>
                   </div>

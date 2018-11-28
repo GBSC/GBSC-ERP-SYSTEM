@@ -10,16 +10,17 @@ import { Shift } from '../../../../core/Models/HRM/shift';
     styleUrls: ['./shift.component.scss']
 })
 export class ShiftComponent implements OnInit {
- 
+
     public ShiftForm: FormGroup;
     public shift: any;
-    private assignRoster: AssignRosterShift[]; 
- 
-    constructor(private fb: FormBuilder,public attendancesetupservice: AttendancesetupService) { }
+    public attendanceflag: any;
+    private assignRoster: AssignRosterShift[];
+    private AssignRosters: any;
+    constructor(private fb: FormBuilder, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 
-       this.assignRoster = []; 
+        this.assignRoster = [];
 
         this.ShiftForm = this.fb.group({
             ShiftCode: ['', Validators],
@@ -31,46 +32,38 @@ export class ShiftComponent implements OnInit {
             OverTimeStartTime: ['', Validators],
             MinimumOverTime: ['', Validators],
             InTimeShiftThreshold: ['', Validators],
-            OutTimeShiftThreshold: ['', Validators] 
-             
+            OutTimeShiftThreshold: ['', Validators]
+
         });
 
-        await this.attendancesetupservice.getshifts();
-        this.shift = this.attendancesetupservice.shift
+        this.shift = await this.attendancesetupservice.getShifts();
 
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
-        await this.attendancesetupservice.getattendanceflag();
-        let attendanceflag = this.attendancesetupservice.attendanceflag
+        this.AssignRosters = await this.attendancesetupservice.getAsignRosters();
 
-        await this.attendancesetupservice.getrosters();
-        let rosterAssign = this.attendancesetupservice.roster
     }
 
     async assignroster(value) {
         let data = value.data;
         this.assignRoster.push(data);
-        console.log(this.assignRoster);
-      }
+    }
 
     async addshift(value) {
-       console.log(value);
-      let shifts = new Shift();
-      shifts = {...shifts, ...value};
-      console.log(this.assignRoster);
-      shifts.AssignRosterShifts = this.assignRoster;
-      console.log(shifts);
-      let x = await this.attendancesetupservice.addshift(shifts);
-      console.log(x);
-      
+        let shifts = new Shift();
+        shifts = { ...shifts, ...value };
+        shifts.AssignRosterShifts = this.assignRoster;
+        let s = await this.attendancesetupservice.addShift(shifts);
+        this.ShiftForm.reset();
+
     }
 
     async updateshift(value) {
-        console.log(value);
-        this.attendancesetupservice.updateshift(value);
+        this.attendancesetupservice.updateShift(value);
     }
 
     async deleteshift(value) {
-        this.attendancesetupservice.Deleteshift(value.key);
+        this.attendancesetupservice.DeleteShift(value.key);
     }
 
 }

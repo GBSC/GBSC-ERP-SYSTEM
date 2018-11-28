@@ -2,38 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-taxrelief',
-  templateUrl: './taxrelief.component.html',
-  styleUrls: ['./taxrelief.component.scss']
+    selector: 'app-taxrelief',
+    templateUrl: './taxrelief.component.html',
+    styleUrls: ['./taxrelief.component.scss']
 })
 export class TaxreliefComponent implements OnInit {
 
-  public taxRelief: any;
-    updatingtaxRelief: any;
+    public taxRelief: any;
+    public incometaxRule: any;
+    public updatingtaxRelief: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
-      await this.payrollsetupservice.gettaxreliefs();
-      this.taxRelief = this.payrollsetupservice.taxrelief;
+    async ngOnInit() {
 
-      await this.payrollsetupservice.incometaxrule();
-      let incomeTaxrule = this.payrollsetupservice.incometaxrule;
-  }
+        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
 
-  async addTaxRelief(value) {
-      await this.payrollsetupservice.addtaxrelief(value.data);
-  }
+        this.incometaxRule = await this.payrollsetupservice.getIncomeTaxRules();
+    }
 
-  updatingTaxRelief(value){
-    this.updatingtaxRelief = {...value.oldData, ...value.newData}; 
-  }
+    async addTaxRelief(value) {
+        await this.payrollsetupservice.addTaxRelief(value.data);
+        this.taxRelief = await this.payrollsetupservice.getTaxReliefs();
+    }
 
-  async updateTaxRelief() { 
-      await this.payrollsetupservice.updatetaxrelief(this.updatingtaxRelief);
-  }
+    updatingTaxRelief(value) {
+        this.updatingtaxRelief = { ...value.oldData, ...value.newData };
+    }
 
-  async deleteTaxRelief(value) {
-      await this.payrollsetupservice.Deletetaxrelief(value.key);
-  }
+    async updateTaxRelief() {
+        await this.payrollsetupservice.updateTaxRelief(this.updatingtaxRelief);
+    }
+
+    async deleteTaxRelief(value) {
+        await this.payrollsetupservice.deleteTaxRelief(value.key);
+    }
 }

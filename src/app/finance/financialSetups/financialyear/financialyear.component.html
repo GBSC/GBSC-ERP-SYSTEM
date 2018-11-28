@@ -1,0 +1,78 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Financial Year</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <form [formGroup]="FinancialYearForm">
+                <div class="form-group row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Start Date
+                      </label>
+                      <dx-date-box formControlName="StartDate" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                  </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        End Date
+                      </label>
+                      <dx-date-box formControlName="EndDate" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                  </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label class="">
+                        Active:
+                      </label>
+                      <div class="m-checkbox-list">
+                        <label class="m-checkbox m-checkbox--state-success">
+                          <input type="checkbox" formControlName="IsActive">
+                          <span></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3" style="margin-top: 28px;">
+                    <button type="submit" (click)="addFinancialyear()" class="btn btn-primary">
+                      Save
+                    </button>
+                  </div> 
+                  </div>
+              </form>
+
+              <div class="form-group row">
+                <div class="m--space-07"></div>
+
+                <dx-data-grid id="gridContainer" [dataSource]="financialYear" keyExpr="financialYearId">
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="4"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager>
+
+                  <dxi-column dataField="name" caption="Financial Year"></dxi-column>
+                  <dxi-column dataField="startDate" dataType="date" format="shortdate" caption="Start Date"></dxi-column>
+                  <dxi-column dataField="endDate" dataType="date" format="shortdate" caption="End Date"></dxi-column>
+                  <dxi-column dataField="isActive" dataType="boolean" caption="Active"></dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

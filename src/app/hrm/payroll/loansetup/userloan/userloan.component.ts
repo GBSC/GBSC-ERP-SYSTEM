@@ -2,42 +2,46 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService, EmployeeService } from '../../../../core';
 
 @Component({
-  selector: 'app-userloan',
-  templateUrl: './userloan.component.html',
-  styleUrls: ['./userloan.component.scss']
+    selector: 'app-userloan',
+    templateUrl: './userloan.component.html',
+    styleUrls: ['./userloan.component.scss']
 })
 export class UserloanComponent implements OnInit {
 
-  public UserLoan: any;
-  Updateloan: any;
+    public UserLoan: any;
+    public users: any;
+    public loanType: any;
+    public Updateloan: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService,public employeeservice : EmployeeService) { }
+    constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getuserloans();
-    this.UserLoan = this.payrollsetupservice.userloan;
-    
-    await this.payrollsetupservice.getloantypes();
-    let Loantype = this.payrollsetupservice.loantype;
+    async ngOnInit() {
 
-    
-    await this.employeeservice.GetAllEmployees();
-    let employee = this.employeeservice.employeereg;
-  }
+        this.UserLoan = await this.payrollsetupservice.getUserLoans();
 
-  async addUserLoan(value) {
-    await this.payrollsetupservice.adduserloan(value.data);
-  }
+        this.loanType = await this.payrollsetupservice.getLoanTypes();
 
-  Updatingloan(value) { 
-    this.Updateloan = {...value.oldData, ...value.newData}; 
-  }
+        this.users = await this.employeeservice.GetAllEmployees();
+    }
 
-  async updateUserLoan() { 
-    await this.payrollsetupservice.updateuserloan(this.Updateloan);
-  }
+    async addUserLoan(value) {
 
-  async deleteUserLoan(value) {
-    await this.payrollsetupservice.Deleteuserloan(value.key);
-  }
+        await this.payrollsetupservice.addUserLoan(value.data);
+        this.UserLoan = await this.payrollsetupservice.getUserLoans();
+    }
+
+    Updatingloan(value) {
+
+        this.Updateloan = { ...value.oldData, ...value.newData };
+    }
+
+    async updateUserLoan() {
+
+        await this.payrollsetupservice.updateUserLoan(this.Updateloan);
+    }
+
+    async deleteUserLoan(value) {
+        
+        await this.payrollsetupservice.deleteUserLoan(value.key);
+    }
 }

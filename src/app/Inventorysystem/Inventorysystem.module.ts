@@ -5,8 +5,6 @@ import { routing } from './Inventorysystem.routing';
 import { RootComponent } from './root/root.component';
 
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from '../Inventorysystem/shared/footer/footer.component';
-import { HeaderComponent } from '../Inventorysystem/shared/header/header.component';
 import { MenuComponent } from '../Inventorysystem/shared/menu/menu.component';
 
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
@@ -56,6 +54,8 @@ import { SalesInvoiceComponent } from './Sales/sales-invoice/sales-invoice.compo
 import { SalesOrderItemComponent } from './Sales/sales-order-item/sales-order-item.component';
 import { AreaComponent } from './Setup/area/area.component';
 import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 
 @NgModule({
     imports: [
@@ -66,13 +66,11 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         DevExtremeModule,
         DxDataGridModule,
         routing
-        ],
+    ],
     declarations: [
 
         RootComponent,
         HomeComponent,
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         GoodsreceiptComponent,
         PurchaseIndentComponent,
@@ -121,6 +119,7 @@ import { DeliveryNoteComponent } from './Sales/delivery-note/delivery-note.compo
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent
-    ]
+    ],
+    providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer }]
 })
 export class InventorysystemModule { }

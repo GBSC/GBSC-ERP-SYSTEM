@@ -1,0 +1,39 @@
+<div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">Supplier</h3>
+        </div>
+      </div>
+    </div>
+  
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-md-12"> 
+                <dx-data-grid id="gridContainer" [dataSource]="Suppliers" keyExpr="supplierId" (onRowInserted)="AddSupplier($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateSupplier($event)" (onRowRemoved)="DeleteSupplier($event)">
+                    <dxo-editing mode="popup" [allowAdding]="true"  [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                        <dxo-popup title="Add Supplier" [showTitle]="true" [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-paging [pageSize]="5"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                    <dxi-column dataField="name" caption="Name"></dxi-column>
+                    <dxi-column dataField="code" caption="Code"></dxi-column>
+                    <dxi-column dataField="status" caption="Status"></dxi-column>
+                    <dxi-column dataField="address" caption="Address"></dxi-column>
+                    <dxi-column dataField="city" caption="City"></dxi-column>
+                    <dxi-column dataField="country" caption="Country"></dxi-column>
+                    <dxi-column dataField="contactName" caption="Contact Name"></dxi-column>
+                    <dxi-column dataField="contactNumber" caption="Contact Number"></dxi-column>
+                    <dxi-column dataField="faxNumber" caption="Fax Number"></dxi-column>
+                    <dxi-column dataField="email" caption="Email"></dxi-column>
+                    <dxi-column dataField="glAccount" caption="Gl Account"></dxi-column>
+                    <dxi-column dataField="landlineNumber" caption="Landline Number"></dxi-column>
+                    <dxi-column dataField="mobilerNumber" caption="Cell Number"></dxi-column>
+                    <dxi-column dataField="nature" caption="Nature"></dxi-column>
+                </dx-data-grid>
+            </div>
+        </div>
+    </div>
+</div>

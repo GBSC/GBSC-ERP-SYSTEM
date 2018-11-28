@@ -18,6 +18,7 @@ import { PatientvitalsComponent } from '../patient/patientvitals/patientvitals.c
 import { AdmitinpatientComponent } from '../patient/admitinpatient/admitinpatient.component';
 import { GeneralactionsComponent } from '../patient/generalactions/generalactions.component';
 import { VisitnoteComponent } from '../patient/visitnote/visitnote.component';
+import { ViewallAppointmetsComponent } from '../patient/viewall-appointmets/viewall-appointmets.component';
 import { VisitsComponent } from '../patient/visits/visits.component';
 import { AppointmentsblockComponent } from '../patient/appointmentsblock/appointmentsblock.component';
 import { FindPatientComponent } from '../patient/find-patient/find-patient.component';
@@ -28,13 +29,19 @@ import { HimsSetupTestComponent } from '../patient/hims-setup-test/hims-setup-te
 import { VisitnatureComponent } from '../patient/patientsetup/visitnature/visitnature.component';
 import { VisitdetailComponent } from '../patient/visitdetail/visitdetail.component';
 import { DiagnosisComponent } from '../patient/patientsetup/diagnosis/diagnosis.component';
-import { AuthGuardService, ModuleGuardService } from '../../core';
+import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
+import {  PaymentreceiptComponent } from '../patient/paymentreceipt/paymentreceipt.component';
+import { PatientReferenceComponent } from './patient-reference/patient-reference.component';
+import { ReportsComponent } from './Reports/reports/reports.component';
+import { TestTypeComponent } from './test-type/test-type.component';
+import { TestCategoryComponent } from './test-category/test-category.component';
+import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
         path: 'hims/patient',
-        component: RootComponent,   
-        canActivate: [AuthGuardService, ModuleGuardService],
+        component: RootComponent,
+        // canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
             { path: 'updatepatient/:id', component: RegistrationComponent },
@@ -45,25 +52,35 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'diagnoses', component: DiagnosesComponent },
             { path: 'recentvisits', component: RecentvisitsComponent },
             { path: 'latestobservation', component: LatestobservationComponent },
-            { path: 'family', component: FamilyComponent },
-            { path: 'health_trend_summary', component: HealthTrendSummaryComponent },
             { path: 'allergies', component: AllergiesComponent },
-            { path: 'weight_graph', component: WeightGraphComponent },
             { path: 'vitals', component: VitalsComponent },
             { path: 'appointments', component: AppointmentsComponent },
             { path: 'patientvitals/:id', component: PatientvitalsComponent },
             { path: 'admitinpatient', component: AdmitinpatientComponent },
-            { path: 'generalactions', component: GeneralactionsComponent },
             { path: 'visitnote', component: VisitnoteComponent },
             { path: 'visits/:id', component: VisitsComponent },
             { path: 'appointmentsblock', component: AppointmentsblockComponent },
             { path: 'findpatient', component: FindPatientComponent },
             { path: 'appointmentschedule', component: AppointmentscheduleComponent },
-            { path: 'consultant', component: ConsultantComponent },
-            { path: 'visitnature', component: VisitnatureComponent },
-            { path: 'himssetuptest', component: HimsSetupTestComponent },
             { path: 'visitdetail/:id', component: VisitdetailComponent },
-            { path: 'diagnose', component: DiagnosisComponent },
+            { path: 'reports', component: ReportsComponent },
+            { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
+            { path: 'paymentreceipt', component: PaymentreceiptComponent },
+            { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
+            { path: 'activevisits', component: ActiveVisitsComponent },
+            { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
+            {
+                path: "setup",
+                children: [
+                    { path: 'testcategory', component: TestCategoryComponent },
+                    { path: 'testtype', component: TestTypeComponent },
+                    { path: 'test', component: HimsSetupTestComponent },
+                    { path: 'diagnose', component: DiagnosisComponent },
+                    { path: 'reference', component: PatientReferenceComponent },
+                    { path: 'consultant', component: ConsultantComponent },
+                    { path: 'visitnature', component: VisitnatureComponent }
+                ]
+            }
         ]
     }
 ]);

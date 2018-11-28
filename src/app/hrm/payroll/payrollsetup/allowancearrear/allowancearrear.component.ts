@@ -3,34 +3,32 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { PayrollSetupService } from '../../../../core';
 
 @Component({
-  selector: 'app-allowancearrear',
-  templateUrl: './allowancearrear.component.html',
-  styleUrls: ['./allowancearrear.component.scss']
+    selector: 'app-allowancearrear',
+    templateUrl: './allowancearrear.component.html',
+    styleUrls: ['./allowancearrear.component.scss']
 })
 export class AllowancearrearComponent implements OnInit {
-  public allowancearrear: any;
-  @ViewChild('clientGrid') clientGrid: DxDataGridComponent;
+    
+    public allowancearrear: any;
 
-  constructor(public payrollsetupservice: PayrollSetupService) { }
+    constructor(public payrollsetupservice: PayrollSetupService) { }
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getallowancearrears();
-    this.allowancearrear = this.payrollsetupservice.allowancearrear;
+    async ngOnInit() {
 
-  }
+        this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
+    }
 
-  async addallowancearrear(value) {
-    await this.payrollsetupservice.addallowancearrear(value.data);
-    this.clientGrid.instance.refresh();
-  }
+    async addallowancearrear(value) {
+        await this.payrollsetupservice.addAllowanceArrear(value.data);
+        this.allowancearrear = await this.payrollsetupservice.getAllowanceArrears();
+    }
 
-  async updateallowancearrear(value) {
-    console.log(value);
-    await this.payrollsetupservice.updateallowancearrear(value);
-  }
+    async updateallowancearrear(value) {
+        await this.payrollsetupservice.updateAllowanceArrear(value);
+    }
 
-  async deleteallowancearrear(value) {
-    await this.payrollsetupservice.Deleteallowancearrear(value.key);
-  }
+    async deleteallowancearrear(value) {
+        await this.payrollsetupservice.deleteAllowanceArrear(value.key);
+    }
 
 }

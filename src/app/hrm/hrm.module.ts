@@ -6,18 +6,13 @@ import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
-import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
-import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
-import { MaritalStatusComponent } from './hrmsSetup/maritalstatus/maritalstatus.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
 import { EmployeeTypes } from './hrmsSetup/employeetype/employeetype.component';
-import { GenderComponent } from './hrmsSetup/genders/genders.component';
 import { RelationComponent } from './hrmsSetup/relations/relations.component';
-import { BloodGroupComponent } from './hrmsSetup/bloodgroups/bloodgroups.component';
 import { SkillLevelsComponent } from './hrmsSetup/skilllevels/skilllevels.component';
 import { LanguageComponent } from './hrmsSetup/languages/languages.component';
 import { CostCenterComponent } from './hrmsSetup/costcenters/costcenters.component';
@@ -27,8 +22,6 @@ import { DesignationComponent } from './hrmsSetup/designations/designations.comp
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { LeavepolicyComponent } from './leave/leavesetup/leavepolicy/leavepolicy.component';
 import { LeavetypeComponent } from './leave/leavesetup/leavetype/leavetype.component';
 import { LeavedaytypeComponent } from './leave/leavesetup/leavedaytype/leavedaytype.component';
@@ -69,7 +62,6 @@ import { AttendancerequestComponent } from './attendance/attendancerequest/atten
 import { OvertimeEntitlementComponent } from './attendance/overtime-entitlement/overtime-entitlement.component';
 import { OfficialVisitEntryComponent } from './attendance/official-visit-entry/official-visit-entry.component';
 import { EmployeeOvertimeEntitlementComponent } from './attendance/employee-overtime-entitlement/employee-overtime-entitlement.component';
-import { UserRosterAttendanceComponent } from './attendance/user-roster-attendance/user-roster-attendance.component';
 import { OvertimeflagComponent } from './attendance/overtime/overtimeflag/overtimeflag.component';
 import { OvertimetypeComponent } from './attendance/overtime/overtimetype/overtimetype.component';
 import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
@@ -134,16 +126,13 @@ import { GratuityslabComponent } from './payroll/payrollsetup/gratuityslab/gratu
 import { PayrollyearComponent } from './payroll/payrollsetup/payrollyear/payrollyear.component';
 import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment.component';
 import { PayslipComponent } from './payroll/payslip/payslip.component';
-import { LeaveService } from '../core/Services/HRM/Leave/leave.service';
-import { SetupService } from '../core/Services/HRM/Setup/setup.service';
-import { AttendanceService } from '../core/Services/HRM/Attendance/attendance.service';
-import { AttendancesetupService } from '../core/Services/HRM/Attendance/attendancesetup.service';
-import { HrmsService } from '../core/Services/HRM/Setup/hrms.service';
-import { LeaveSetupService } from '../core/Services/HRM/Leave/leaveSetup.service';
-import { EmployeeService } from '../core/Services/HRM/Employee/employee.service';
-import { SystemAdministrationService } from '../core';
-import { PayrollService } from '../core/Services/HRM/Payroll/payroll.service';
-import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.service';
+import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
+import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
+import { CityComponent } from './hrmsSetup/city/city.component';
+import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
 
 
 @NgModule({
@@ -151,13 +140,11 @@ import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.s
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        DevExtremeModule, 
+        DevExtremeModule,
         HttpClientModule,
         routing
     ],
     declarations: [
-        FooterComponent,
-        HeaderComponent,
         MenuComponent,
         RootComponent,
 
@@ -176,22 +163,17 @@ import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.s
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent,
         CountryComponent,
+        CityComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
-        GenderComponent,
-        CityComponent,
         EmployeeTypes,
         FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
-        MaritalStatusComponent,
         ReligionComponent,
         BankComponent,
-        CityComponent,
-        AccountTypeComponent,
         UniversityComponent,
 
 
@@ -203,7 +185,6 @@ import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.s
         OvertimeEntitlementComponent,
         OfficialVisitEntryComponent,
         EmployeeOvertimeEntitlementComponent,
-        UserRosterAttendanceComponent,
 
         OvertimeflagComponent,
         OvertimetypeComponent,
@@ -224,7 +205,7 @@ import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.s
         LeavepolicyComponent,
         LeaveapproverComponent,
         LeavetypeComponent,
-        LeavedaytypeComponent, 
+        LeavedaytypeComponent,
         LeavepurposeComponent,
         LeaveeligibilityComponent,
         LeaveyearsetupComponent,
@@ -301,19 +282,17 @@ import { PayrollSetupService } from '../core/Services/HRM/Payroll/payrollsetup.s
         TaxyearComponent,
         GratuityComponent,
         MonthlyUserSalaryComponent,
-        PayslipComponent
-
-
-
+        PayslipComponent,
+        ViewemployeeleaveopeningComponent,
+        ViewleaverequestComponent,
+        ViewCompensationTransactionComponent,
+        MonthlyUserSalaryDetailComponent,
+        GratuitydetailComponent, 
+        AttendanceRuleDetailComponent,
+        
     ],
     exports: [],
-
-    providers: [LeaveService, SetupService,
-        AttendanceService,
-        AttendancesetupService, HrmsService,
-        LeaveSetupService, EmployeeService,
-        SystemAdministrationService,
-    PayrollService,PayrollSetupService] 
+ 
 
 })
 export class HrmModule { }

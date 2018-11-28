@@ -2,38 +2,38 @@ import { Component, OnInit } from '@angular/core';
 import { PayrollSetupService, EmployeeService } from '../../../../core';
 
 @Component({
-  selector: 'app-payroll',
-  templateUrl: './payroll.component.html',
-  styleUrls: ['./payroll.component.scss']
+    selector: 'app-payroll',
+    templateUrl: './payroll.component.html',
+    styleUrls: ['./payroll.component.scss']
 })
 export class PayrollComponent implements OnInit {
 
-  public payRoll: any;
-  public MasterpayRoll: any;
-  constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
+    public employees: any;
+    public payRoll: any;
+    public MasterpayRoll: any;
 
-  async ngOnInit() {
-    await this.payrollsetupservice.getpayrolls();
-    this.payRoll = this.payrollsetupservice.payroll;
+    constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
-    await this.payrollsetupservice.getmasterpayrolls();
-    this.MasterpayRoll = this.payrollsetupservice.masterpayroll;
+    async ngOnInit() {
 
-    await this.employeeservice.GetAllEmployees();
-    let user = this.employeeservice.employeereg;
-  }
+        this.payRoll = await this.payrollsetupservice.getPayrolls();
 
-  async addPayroll(value) {
-    await this.payrollsetupservice.addpayroll(value.data);
-  }
+        this.MasterpayRoll = await this.payrollsetupservice.getMasterPayrolls();
 
-  async updatePayroll(value) {
-    console.log(value);
-    await this.payrollsetupservice.updatepayroll(value);
-  }
+        this.employees = await this.employeeservice.GetAllEmployees();
+    }
 
-  async deletePayroll(value) {
-    await this.payrollsetupservice.Deletepayroll(value.key);
-  }
+    async addPayroll(value) {
+        await this.payrollsetupservice.addPayroll(value.data);
+        this.payRoll = await this.payrollsetupservice.getPayrolls();
+    }
+
+    async updatePayroll(value) {
+        await this.payrollsetupservice.updatePayroll(value);
+    }
+
+    async deletePayroll(value) {
+        await this.payrollsetupservice.deletePayroll(value.key);
+    }
 
 }

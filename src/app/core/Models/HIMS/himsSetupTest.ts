@@ -3,5 +3,5 @@ export interface himsSetupTest {
     TestCode: string,
     TestName: string,
     AppointmentId: number,
-
+    Charges : number
 }

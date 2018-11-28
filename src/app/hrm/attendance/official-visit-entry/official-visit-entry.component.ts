@@ -8,34 +8,39 @@ import { AttendanceService, SystemAdministrationService, EmployeeService } from 
 })
 export class OfficialVisitEntryComponent implements OnInit {
 
+    public branches: any;
+    public employee: any;
     public officialVisitentry: any;
+    public updatingOfficialEntry: any;
+
     constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
 
     async ngOnInit() {
-        await this.attendanceservice.getofficialVisitentries();
-        this.officialVisitentry = this.attendanceservice.officialVisitentry
-        //console.log(this.officialVisitentry);
 
-        await this.empservice.GetAllEmployees();
-        let employee = this.empservice.employeereg
+        this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
 
-        await this.companyservice.getBranches();
-        let branch = this.companyservice.branches
+        this.employee = await this.empservice.GetAllEmployees();
 
+        this.branches = await this.companyservice.getBranches();
     }
 
     async addofficialVisitentry(value) {
-        this.attendanceservice.addofficialVisitentry(value.data);
+
+        this.attendanceservice.addOfficialVisitEntry(value.data);
+        this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
     }
 
-    async updateofficialVisitentry(value) {
-        console.log(value);
-        this.attendanceservice.updateofficialVisitentry(value);
+    async updatingVisitentry(value) {
+        this.updatingOfficialEntry = { ...value.oldData, ...value.newData };
+    }
+
+    async updateVisitentry() {
+        this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
     }
 
     async deleteofficialVisitentry(value) {
-        this.attendanceservice.DeleteofficialVisitentry(value.key);
+        this.attendanceservice.DeleteOfficialVisitEntry(value.key);
     }
 
 }

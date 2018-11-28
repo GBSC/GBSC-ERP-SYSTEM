@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AttendanceService, AttendancesetupService, LeaveSetupService, SetupService } from '../../../../core';
 import { AttendanceRuleLeaveType } from '../../../../core/Models/HRM/AttendanceRuleLeaveType';
 import { AttendanceRule } from '../../../../core/Models/HRM/attendanceRule';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-attendancerule',
@@ -13,17 +15,22 @@ export class AttendanceruleComponent implements OnInit {
 
     public AttendanceRuleForm;
     public attendancerule: any;
-    private leaves : AttendanceRuleLeaveType[]; 
+    public LeaveTypes: any;
+    public ruleofAttendannce: any;
+    private leaves: AttendanceRuleLeaveType[];
+    public RuleDetail: any[] = [];
     public attendanceRule: any;
+    public attendanceflag: any;
+    public groups: any;
+    @Input('attendanceRuleId') id: number;
 
-    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
-        public attendancesetupservice: AttendancesetupService, public leavesetupservice: LeaveSetupService,
-        public hrsetupservice: SetupService, ) { }
+    constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public attendanceservice: AttendanceService,
+        public attendancesetupservice: AttendancesetupService,public router : Router, public leavesetupservice: LeaveSetupService,
+        public hrsetupservice: SetupService,public toastr:ToastrService, ) { }
 
     async ngOnInit() {
 
-        this.leaves = []; 
-
+        this.leaves = [];
         this.AttendanceRuleForm = this.fb.group({
             GroupId: ['', Validators.required],
             AttendanceFlagId: ['', Validators.required],
@@ -34,53 +41,88 @@ export class AttendanceruleComponent implements OnInit {
             EffectQuantity: ['', Validators.required],
             EffectType: ['', Validators.required],
             EffectFrequency: ['', Validators.required],
-            Action: ['', Validators.required] 
-
+            Action: ['', Validators.required]
         });
 
-        await this.attendanceservice.getattendancerules();
-        this.attendancerule = this.attendanceservice.attendancerule
-        console.log(this.attendancerule);
+        this.attendancerule = await this.attendanceservice.getAttendanceRules();
 
-        await this.hrsetupservice.getAllGroups();
-        let groups = this.hrsetupservice.group;
+        this.groups = await this.hrsetupservice.getAllGroups();
 
-        await this.attendancesetupservice.getattendanceflag();
-        let attendanceflag = this.attendancesetupservice.attendanceflag;
+        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
-        await this.leavesetupservice.getAllleavetype();
-        let leavetype = this.leavesetupservice.leavetype; 
-
+        this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
+       
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+          });
+          if (this.isUpdate() === true) {
+            this.attendanceservice.getAttendanceRule(this.id).subscribe(resp => {
+              this.ruleofAttendannce = resp;
+                this.RuleDetail = this.ruleofAttendannce.AttendanceRuleLeaveTypes;
+                 this.patchValues(this.ruleofAttendannce);
+            });
+          }
     }
 
     async attendanceRuleLeave(value) {
         let data = value.data;
-        this.leaves.push(data);
-        console.log(this.leaves);
+        await this.leaves.push(data);
+    }
+
+    async addattendancerule(value) {
+        let attendanceRule = new AttendanceRule();
+        attendanceRule = { ...attendanceRule, ...value };
+        attendanceRule.attendanceRuleLeaveTypes = this.leaves;
+        await this.attendanceservice.addAttendanceRule(attendanceRule);
+        this.toastr.success("Attendance Rule Submit Successfully");
+        this.AttendanceRuleForm.reset();
+        this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
+    }
+
+
+    isUpdate(): boolean {
+
+        if (this.id > 0) {
+          return true;
+        }
+        else
+          return false;
       }
 
-    async addattendancerule(value) { 
+       updateattendancerule(value) {
         console.log(value);
-        let attendanceRule = new AttendanceRule();
-        attendanceRule = {...attendanceRule, ...value};
-        console.log(this.leaves);
-        attendanceRule.attendanceRuleLeaveTypes = this.leaves;
-        console.log(attendanceRule);
-        let r= this.attendanceservice.addattendancerule(attendanceRule);
-        console.log(r);
-
-    }
-
-    AttendanceRuleUpdating(value) {
-        this.attendanceRule = { ...value.oldData, ...value.newData };
-    }
-
-    async updateattendancerule() {
-        this.attendanceservice.updateattendancerule(this.attendanceRule);
-    }
-
+      }
+    
+      async update(value) { 
+          console.log(value); 
+        value.attendanceRuleId = this.id;
+        value.attendanceRuleLeaveTypes = this.RuleDetail;
+        await this.attendanceservice.updateAttendanceRule(value).subscribe(resp => {
+          this.toastr.success("Attendance Rule Detail Updated"); 
+                this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
+    
+        });
+      }  
     async deleteattendancerule(value) {
-        this.attendanceservice.Deleteattendancerule(value.key);
+        await this.attendanceservice.DeleteAttendanceRule(value.key);
     }
+
+    patchValues(rule: any) {
+
+        this.AttendanceRuleForm.patchValue({
+    
+            GroupId: rule.groupId,
+            AttendanceFlagId: rule.attendanceFlagId,
+            FlagCount: rule.flagCount,
+            ExemptFlagCount: rule.exemptFlagCount,
+            ExemptMinutes: rule.exemptMinutes,
+            ConditionalExemption: rule.conditionalExemption,
+            EffectQuantity: rule.effectQuantity,
+            EffectType: rule.effectType,
+            EffectFrequency: rule.effectFrequency,
+            Action: rule.action
+        })
+    
+      }
 
 }

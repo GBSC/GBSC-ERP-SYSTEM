@@ -1,11 +1,9 @@
-<div class="m-content">
-    <div class="row">
-      <div class="col-xl-12">
+ 
         <div class="m-portlet">
           <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
               <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Over Time Type</h3>
+                <h3 class="m-portlet__head-text">Overtime Type</h3>
               </div>
             </div>
           </div>
@@ -16,10 +14,11 @@
                  [dataSource]="overtimetype"
                  keyExpr="overTimeTypeId"
                  (onRowInserted)="addovertimetype($event)" 
-                 (onRowUpdated)="updateovertimetype($event)"
+                 (onRowUpdating)="updatingOvertimetype($event)"
+                 (onRowUpdated)="updateOvertimetype()"
                  (onRowRemoved)="deleteovertimetype($event)">
-                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Over Time Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                    <dxo-popup title="Overtime Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -29,17 +28,15 @@
                   <dxo-paging [pageSize]="6"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager> 
-                  <dxi-column dataField="title"></dxi-column> 
                   <dxi-column dataField="overtimeFlagId" caption="Overtime Flag">
-                    <dxo-lookup [dataSource]="attendancesetupservice?.overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
+                    <dxo-lookup [dataSource]="overtimeflag" displayExpr="name" valueExpr="overtimeFlagId">
                     </dxo-lookup> 
                   </dxi-column>
-                  <dxi-column dataType="boolean" dataField="active" caption ="Is Active"></dxi-column> 
+                  <dxi-column dataField="title"></dxi-column> 
+                  <dxi-column dataType="boolean" dataField="active" caption="Active"></dxi-column> 
                 </dx-data-grid>
               </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div> 
+ 

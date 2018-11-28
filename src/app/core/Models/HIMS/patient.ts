@@ -1,5 +1,5 @@
 import { Spouse } from "./spouse";
-export class Patient {
+export interface Patient {
 
     PatientId: number;
     Date: Date;

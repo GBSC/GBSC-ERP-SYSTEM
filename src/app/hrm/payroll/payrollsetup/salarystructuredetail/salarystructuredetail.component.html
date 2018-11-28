@@ -1,11 +1,9 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Salary Structure</h3>
+              <h3 class="m-portlet__head-text">Salary Structure Detail</h3>
             </div>
           </div>
         </div>
@@ -15,7 +13,7 @@
 
               <dx-data-grid id="gridContainer" [dataSource]="salaryStructureDetail" 
               keyExpr="salaryStructureDetailId" (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)" (onRowRemoved)="deleteSalaryStructureDetail($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -27,19 +25,19 @@
                 </dxo-pager>
 
                 <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.salarycalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
                 </dxi-column>
   
                 <dxi-column dataField="benefitId" caption="Benefit">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.benefits" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                 </dxi-column>
 
                 <dxi-column dataField="allowanceId" caption="Allowance">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
                 </dxi-column>
                 
                 <dxi-column dataField="salaryStructureId" caption="Salary Structure">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.salarystructure" displayExpr="title" valueExpr="salaryStructureId"></dxo-lookup>
+                  <dxo-lookup [dataSource]="salarystructure" displayExpr="title" valueExpr="salaryStructureId"></dxo-lookup>
                 </dxi-column>
  
                 <dxi-column dataField="value" caption="Value"></dxi-column>
@@ -50,6 +48,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

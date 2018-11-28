@@ -1,3 +1,5 @@
+import { InventoryItem } from "./InventoryItem";
+
 export interface SalesOrderItem {
     SalesOrderItemId: number,
     ComissionAmount: number,
@@ -12,5 +14,5 @@ export interface SalesOrderItem {
     SalesOrderId: number,
     InventoryItemId: number,
     InventoryId: number,
-    ComissionId: number
+    InventoryItem: InventoryItem
 }

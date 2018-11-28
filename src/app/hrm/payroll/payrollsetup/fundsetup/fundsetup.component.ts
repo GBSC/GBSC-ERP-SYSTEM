@@ -9,59 +9,59 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FundsetupComponent implements OnInit {
 
-    public fundSetup: any; 
+    public fundSetup: any;
     public FundSetupForm: FormGroup;
-  private updatingfundSetup: any;
-    
-    constructor(private fb: FormBuilder,public payrollsetupservice: PayrollSetupService) { }
+    public payrollYears: any;
+    public updatingfundSetup: any;
 
-   async ngOnInit() {
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
-    this.FundSetupForm = this.fb.group({
-      PayrollYearId: ['', Validators],
-      PfEmployerContribution: ['', Validators],
-      PfEmployeeContribution: ['', Validators],
-      TaxableAmountLimit: ['', Validators],
-      MinServicePeriod: ['', Validators],
-      ApplicableFrom: ['', Validators],
-      EobiMinimumSalary: ['', Validators],
-      EobiEmployerContribution: ['', Validators],
-      EobiEmployeeContribution: ['', Validators],
-      MaximumContribution: ['', Validators],
-      ExemptAge: ['', Validators],
-      SessiMinimumSalary: ['', Validators],
-      SessiEmployerContribution: ['', Validators],
-      SessiEmployeeContribution: ['', Validators],
-      PessiMinimumSalary: ['', Validators],
-      PessiEmployerContribution: ['', Validators],
-      PessiEmployeeContribution: ['', Validators],
-      IessiMinimumSalary: ['', Validators],
-      IessiEmployerContribution: ['', Validators],
-      IessiEmployeeContribution: ['', Validators]
-  });
+    async ngOnInit() {
 
-        await this.payrollsetupservice.getfundsetups();
-        this.fundSetup = this.payrollsetupservice.fundsetup;
-       
-        await this.payrollsetupservice.getpayrollyears();
-        let Payrollyear = this.payrollsetupservice.payrollyear;
-      }
-    
-      async addFundSetup() {
-        await this.payrollsetupservice.addfundsetup(this.FundSetupForm.value);
-        console.log(this.FundSetupForm.value);
+        this.FundSetupForm = this.fb.group({
+            PayrollYearId: ['', Validators],
+            PfEmployerContribution: ['', Validators],
+            PfEmployeeContribution: ['', Validators],
+            TaxableAmountLimit: ['', Validators],
+            MinServicePeriod: ['', Validators],
+            ApplicableFrom: ['', Validators],
+            EobiMinimumSalary: ['', Validators],
+            EobiEmployerContribution: ['', Validators],
+            EobiEmployeeContribution: ['', Validators],
+            MaximumContribution: ['', Validators],
+            ExemptAge: ['', Validators],
+            SessiMinimumSalary: ['', Validators],
+            SessiEmployerContribution: ['', Validators],
+            SessiEmployeeContribution: ['', Validators],
+            PessiMinimumSalary: ['', Validators],
+            PessiEmployerContribution: ['', Validators],
+            PessiEmployeeContribution: ['', Validators],
+            IessiMinimumSalary: ['', Validators],
+            IessiEmployerContribution: ['', Validators],
+            IessiEmployeeContribution: ['', Validators]
+        });
+
+        this.fundSetup = await this.payrollsetupservice.getFundSetups();
+
+        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+    }
+
+    async addFundSetup() {
         
-      }
-    
-      updatingFundSetup(value){
-        this.updatingfundSetup = {...value.oldData, ...value.newData};
+        await this.payrollsetupservice.addFundSetup(this.FundSetupForm.value);
+        this.fundSetup = await this.payrollsetupservice.getFundSetups();
     }
-    async updateFundSetup() { 
-       await this.payrollsetupservice.updateallowancededuction(this.updatingfundSetup);
+
+    updatingFundSetup(value) {
+        this.updatingfundSetup = { ...value.oldData, ...value.newData };
     }
-    
-      async deleteFundSetup(value) {
-        await this.payrollsetupservice.Deletefundsetup(value.key);
-      }
-    
+
+    async updateFundSetup() {
+        await this.payrollsetupservice.updateFundSetup(this.updatingfundSetup);
     }
+
+    async deleteFundSetup(value) {
+        await this.payrollsetupservice.deleteFundSetup(value.key);
+    }
+
+}

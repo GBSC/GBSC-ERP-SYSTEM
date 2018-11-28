@@ -8,6 +8,9 @@ import { ConsultantService, PatientService } from '../../../core';
 import { Consultant } from '../../../core/Models/HIMS/consultant';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { Spouse } from '../../../core/Models/HIMS/spouse';
+import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
+import { ActivatedRoute } from '@angular/router';
+import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
 
 @Component({
     selector: 'app-inseminationprep',
@@ -17,52 +20,59 @@ import { Spouse } from '../../../core/Models/HIMS/spouse';
 export class InseminationprepComponent implements OnInit {
 
     private inseminationPrepForm: FormGroup;
-    public abc: any;
-    private consultants: Consultant;
-    private patients: Patient;
-    private spouse: Spouse;
-    private patient: Patient;
+    public id: any;
+    private consultants: any;
+    private patients: any;
+    private spouse: any;
+    private patient: any;
+    private clinicalRecord: any;
+    private treatments: any;
     public total: any;
+    private insemenationPrep: any;
+    private prepForOptions: any;
+    private sampleTypeOptions: any;
+    private methods: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
 
-    constructor(private inseminationPrepService: InseminationprepService, private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService) {
+    constructor(private inseminationPrepService: InseminationprepService,
+        private clinicalrecordservice: PatientclinicalrecordService,
+        private route: ActivatedRoute,
+        private treatmentService: TreatmentService,
+        private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService) {
 
         this.inseminationPrepForm = formBuilder.group({
-            'InseminationPrepDate': ['', Validators.required],
-            'TreatmentNumber': ['', Validators.required],
-            'PatientId': ['', Validators.required],
-            'ConsultantId': ['', Validators.required],
-            'CycleNumber': ['', Validators.required],
-            'InseminationPrepType': ['', Validators.required],
+            'InsemenationDate': ['', Validators.required],
             'PrepFor': ['', Validators.required],
             'CollectionNumber': ['', Validators.required],
             'CollectionDate': ['', Validators.required],
             'SampleType': ['', Validators.required],
             'ProcedureNumber': ['', Validators.required],
-            'DetailInseminationDate': ['', Validators.required],
             'Method': ['', Validators.required],
             'Volume': ['', Validators.required],
             'TotalCount': ['', Validators.required],
-            'TotalCountValue': ['', Validators.required],
+            'TotalCountRange': ['', Validators.required],
             'MotileCount': ['', Validators.required],
-            'RapidLinearProgression': ['', Validators.required],
-            'MobileCount': ['', Validators.required],
-            'MotileCountValue': ['', Validators.required],
-            'LinearProgression': ['', Validators.required],
-            'TimeCompleted': ['', Validators.required],
-            'MobileCountUnit': ['', Validators.required],
             'NonLinearProgression': ['', Validators.required],
+            'RapidLinearProgression': ['', Validators.required],
+            'MotileCountRange': ['', Validators.required],
+            'TimeCompleted': ['', Validators.required],
             'FinalVolume': ['', Validators.required],
             'Comments': ['', Validators.required],
             'SpecialComment': ['', Validators.required],
 
 
-        })
+        });
 
+        this.prepForOptions = [{ name: "SEMEN" }, { name: "PESA" }, { name: "TESE" }, { name: "PESA-TESE" }];
 
+        this.sampleTypeOptions = [{ name: "Fresh" }, { name: "Thawed" }, { name: "Fresh + Thawed" }]
+
+        this.methods = [{ name: "SPIND" }, { name: "ULAY" }, { name: "PURESPERM" }]
+
+        this.inseminationPrepForm.disable();
 
     }
 
@@ -70,15 +80,39 @@ export class InseminationprepComponent implements OnInit {
 
 
     ngOnInit() {
-        this.patientcb.onValueChanged.subscribe(res => this.populatePatient(res.component.option("value")));
 
-        this.consultantService.getConsultants()
-            .subscribe(consultants => this.consultants = consultants)
+        this.route.params.subscribe((params) => {
 
-        this.patientService.getPatientObservable()
-            .subscribe(patients => this.patients = patients);
+            this.id = +params['id'];
+
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+            });
+
+
+            this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
+                .subscribe(resp => this.insemenationPrep = resp);
+
+        });
+
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatient(res.component.option("value"))
+            this.inseminationPrepForm.enable();
+
+        });
+
+
+        this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
     }
+
     populatePatient(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
@@ -86,28 +120,11 @@ export class InseminationprepComponent implements OnInit {
         });
     }
 
-    async  onSubmit(value) {
+    onSubmit(value) {
 
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        let { TotalCount, TotalCountValue } = this.inseminationPrepForm.value;
-
-        this.inseminationPrepForm.value.TotalCount = `${TotalCount} ${TotalCountValue}`;
-
-        delete this.inseminationPrepForm.value.TotalCountValue;
-
-
-        let { MotileCount, MotileCountValue } = this.inseminationPrepForm.value;
-        this.inseminationPrepForm.value.MotileCount = `${MotileCount} ${MotileCountValue}`
-        delete this.inseminationPrepForm.value.MotileCountValue;
-
-        console.log(value);
-        console.log(this.total);
-
-        console.log(this.inseminationPrepForm.value.TotalCount)
-        let x = await this.inseminationPrepService.addInseminationPrep(value);
-        console.log(x);
-
-
+        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => console.log(resp));
     }
 
 }

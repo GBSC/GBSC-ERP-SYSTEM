@@ -14,17 +14,12 @@ export class UniversityComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllUniversities();
-        this.university = this.dataService.university;
-        // console.log(this.university);
-        // this.dataService.GetAllRelation().subscribe((data)=>this.Relation=data);
+        this.university = await this.dataService.getAllUniversities();
     }
-
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     adduniversity(uni) {
         this.dataService.adduniversity(uni.data);
+        this.university = this.dataService.getAllUniversities();
     }
 
     Edituniversity(university) {

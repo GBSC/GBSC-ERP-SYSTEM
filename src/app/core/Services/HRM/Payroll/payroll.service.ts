@@ -1,143 +1,98 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
+import { MonthlyUserSalary } from '../../../Models/HRM/monthlyUserSalary';
+import { Gratuity } from '../../../Models/HRM/gratuity';
 
 
 @Injectable()
 export class PayrollService {
 
-  private baseUrl: string = "SystemAdmin/api/Payroll";
-  //private baseUrl: string = "http://localhost:58090/api/Payroll";
-  public stopsalary;
-  public getGratuity: Object;
-  public monthlyUserSalary: Object;
-  Payslip: any;
+    private baseUrl: string = "SystemAdmin/api/Payroll";
 
-  constructor(private ApiService: ApiService) { }
+    constructor(private ApiService: ApiService) { }
 
-  async getstopsalaries() {
+    async getStopSalaries() {
+        return await this.ApiService.get(`${this.baseUrl}/GetStopSalaries`).toPromise();
+    }
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
+    async addStopSalary(data) {
+        return await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
+    }
 
-    this.stopsalary = await this.ApiService.get(`${this.baseUrl}/GetStopSalaries`).toPromise();
-    console.log(this.stopsalary);
-    return this.stopsalary;
-  }
+    async updateStopSalary(data) {
+        return await this.ApiService.put(`${this.baseUrl}/UpdateStopSalary`, data).toPromise();
+    }
 
-  // async getdataToUpdate(payrollId, payrollUrl) {
-  //   return await this.ApiService.get(`${this.baseUrl}/${payrollUrl}/${payrollId}`).toPromise();
-  // }
+    async deleteStopSalary(stopsalaryId) {
+
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteStopSalary/${stopsalaryId}`).toPromise();
+    }
 
 
-  async addstopsalary(data) {
+    async getGratuities() {
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    let newstopsalary = await this.ApiService.post(`${this.baseUrl}/AddStopSalary`, data).toPromise();
-    console.log(newstopsalary);
+        return await this.ApiService.get(`${this.baseUrl}/GetGratuities`).toPromise();
+    }
 
-  }
+    getGratuity(id) : Observable<Gratuity> {
+        return this.ApiService.get(this.baseUrl + '/GetGratuity/' + id);
+    }
 
-  async updatestopsalary(data) {
+    async addGratuity(data) {
+        return await this.ApiService.post(`${this.baseUrl}/AddGratuity`, data).toPromise();
+    }
 
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateStopSalary`, data).toPromise();
-  }
+     updateGratuity(data : Gratuity) : Observable<any> {
 
-  async Deletestopsalary(stopsalaryId) {
+        return this.ApiService.put(`${this.baseUrl}/UpdateGratuity`, data);
+    }
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeleteStopSalary/${stopsalaryId}`).toPromise();
-  }
+    async deleteGratuity(Id) {
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteGratuity/${Id}`).toPromise();
+    }
 
+    async getMonthlySalaries() {
+        return await this.ApiService.get(`${this.baseUrl}/GetMonthlyUserSalaries`).toPromise();
+    }
 
-  async getgratuities() {
+    getmonthlyUserSalary(id) : Observable<MonthlyUserSalary> {
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    this.getGratuity = await this.ApiService.get(`${this.baseUrl}/GetGratuities`).toPromise();
-    return this.getGratuity;
-  }
+        return this.ApiService.get(this.baseUrl + '/GetMonthlyUserSalary/' + id);
+    }
 
-  async addgratuity(data) {
-    console.log(data);
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    let newgratuity = await this.ApiService.post(`${this.baseUrl}/AddGratuity`, data).toPromise();
-    return newgratuity;
-  }
+    async addMonthlySalary(data) {
 
-  async updategratuity(data) {
+        return await this.ApiService.post(`${this.baseUrl}/AddMonthlyUserSalary`, data).toPromise();
+    }
 
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateGratuity`, data).toPromise();
-  }
+     updateMonthlySalary(data : MonthlyUserSalary) : Observable<any> {
 
-  async Deletegratuity(Id) {
+        return this.ApiService.put(`${this.baseUrl}/UpdateMonthlyUserSalary`, data);
+    }
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeleteGratuity/${Id}`).toPromise();
-  }
+    async DeleteMonthlySalary(Id) {
 
-  async getMonthlySalaries() {
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteMonthlyUserSalary/${Id}`).toPromise();
+    }
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    this.monthlyUserSalary = await this.ApiService.get(`${this.baseUrl}/GetMonthlyUserSalaries`).toPromise();
-    return this.monthlyUserSalary;
-  }
+    async getPayslips() {
 
-  async addMonthlySalary(data) {
-    console.log(data);
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    let newmonthlyUserSalary = await this.ApiService.post(`${this.baseUrl}/AddMonthlyUserSalary`, data).toPromise();
-    return newmonthlyUserSalary;
-  }
+        return await this.ApiService.get(`${this.baseUrl}/GetPaySlips`).toPromise();
+    }
 
-  async updateMonthlySalary(data) {
+    async addPayslip(data) {
 
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdateMonthlyUserSalary`, data).toPromise();
-  }
+        return await this.ApiService.post(`${this.baseUrl}/AddPayslip`, data).toPromise();
+    }
 
-  async DeleteMonthlySalary(Id) {
+    async updatePayslip(data) {
 
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeleteMonthlyUserSalary/${Id}`).toPromise();
-  }
+        return await this.ApiService.put(`${this.baseUrl}/UpdatePaySlip`, data).toPromise();
+    }
 
+    async deletePayslip(Id) {
 
-  async getpayslips() {
-
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    this.Payslip = await this.ApiService.get(`${this.baseUrl}/GetPaySlips`).toPromise();
-    return this.Payslip;
-  }
-
-  async addpayslip(data) {
-    console.log(data);
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    let newpayslip = await this.ApiService.post(`${this.baseUrl}/AddPayslip`, data).toPromise();
-    return newpayslip;
-  }
-
-  async updatepayslip(data) {
-
-    let headers = { headers: { 'Content-Type': 'application/json' } }
-    return await this.ApiService.put(`${this.baseUrl}/UpdatePaySlip`, data).toPromise();
-  }
-
-  async Deletepayslip(Id) {
-
-    let authToken = localStorage.getItem('auth_token');
-    let headers = { headers: { 'Content-Type': 'application/json', 'Authorization': `bearer ${authToken}` } }
-    return await this.ApiService.delete(`${this.baseUrl}/DeletePaySlip/${Id}`).toPromise();
-  }
+        return await this.ApiService.delete(`${this.baseUrl}/DeletePaySlip/${Id}`).toPromise();
+    }
 }

@@ -1,0 +1,372 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Clinical Record</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <h4>Clinical Master</h4>
+              <hr>
+              <div class="row">
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Doc No.
+                    </label>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      disabled>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      MRN No.
+                    </label>
+                    <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      placeholder="{{patient?.mrn}}" disabled>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Patient Name
+                    </label>
+                    <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                      [searchEnabled]="true">
+                    </dx-select-box>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Spouse
+                    </label>
+                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="col-sm-2" style="padding-top: 28px;">
+                  <button type="button" class="btn btn-primary btn-block">
+                    Add New Cycle
+                  </button>
+                </div>
+
+              </div>
+              <h4 style="margin-top: 30px;">Clinical Details</h4>
+              <form [formGroup]="clinicalrecordform">
+                <div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Cycle No.
+                        </label>
+                        <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                          aria-describedby="emailHelp" formControlName="CycleNumber">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          LMP
+                        </label>
+                        <dx-date-box formControlName="Lmp1" type="date" [value]="clinicalRecord?.lmp1">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          LMP2
+                        </label>
+                        <dx-date-box formControlName="Lmp2" type="date" [value]="clinicalRecord?.lmp2">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Type Wise Treatment#
+                        </label>
+                        <input type="number" class="form-control m-input" id="exampleInputEmail1" [value]="clinicalRecord?.typewiseTreatmentNumber"
+                          aria-describedby="emailHelp" formControlName="TypewiseTreatmentNumber">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleSelect1">
+                          Treatment Type
+                        </label>
+                        <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId"
+                          formControlName="TreatmentTypeId" [value]="clinicalRecord?.treatmentTypeId" [searchEnabled]="true">
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleSelect1">
+                          Status
+                        </label>
+                        <select class="form-control m-input" id="exampleSelect1" formControlName="ActiveInactive"
+                          [value]="clinicalRecord?.activeInactive">
+                          <option>
+                            Active
+                          </option>
+                          <option>
+                            InActive
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Outcome
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          formControlName="Outcome" [value]="clinicalRecord?.outcome">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Supression Dt.
+                        </label>
+                        <dx-date-box formControlName="SupressionDate" type="date" [value]="clinicalRecord?.supressionDate">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Stimulation Dt.
+                        </label>
+                        <dx-date-box formControlName="SimulationDate" type="date" [value]="clinicalRecord?.simulationDate">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Protocol Type
+                        </label>
+                        <dx-select-box [items]="protocols" displayExpr="name" valueExpr="protocolId" formControlName="ProtocolId"
+                          [value]="clinicalRecord?.protocolId" [searchEnabled]="true">
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Trigger Dt.
+                        </label>
+                        <dx-date-box formControlName="TriggerDate" type="date" [value]="clinicalRecord?.triggerDate">
+                        </dx-date-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          E.T. Date
+                        </label>
+                        <dx-date-box formControlName="EtDate" type="date" [value]="clinicalRecord?.etDate">
+                        </dx-date-box>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Consultant
+                        </label>
+                        <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId"
+                          formControlName="ConsultantId" [value]="clinicalRecord?.consultantId" [searchEnabled]="true">
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Reasons.*
+                        </label>
+                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          formControlName="Reason" [value]="clinicalRecord?.reason">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="m-widget24" style="border: 1px solid #d6d6d6; border-radius: 10px;">
+                        <div class="m-widget24__item">
+                          <h4 class="m-widget24__title">
+                            Phase I
+                          </h4>
+                          <br>
+                          <span class="m-widget24__desc">
+                            (LMP1 to Suppression Check)
+                          </span>
+                          <span class="m-widget24__stats m--font-brand">
+
+                            <input type="checkbox" checked="checked" style="-ms-transform: scale(2); /* IE */-moz-transform: scale(2); /* FF */-webkit-transform: scale(2); /* Safari and Chrome */-o-transform: scale(2); /* Opera */padding: 10px;/* display: inline; */">
+                          </span>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-primary btn-block">
+                            Generate Event
+                          </button>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-success btn-block">
+                            View Data
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <div class="m-widget24" style="border: 1px solid #d6d6d6; border-radius: 10px;">
+                        <div class="m-widget24__item">
+                          <h4 class="m-widget24__title">
+                            Phase II
+                          </h4>
+                          <br>
+                          <span class="m-widget24__desc">
+                            (Stimulation to Trigger Day)
+                          </span>
+                          <span class="m-widget24__stats m--font-brand">
+
+                            <input type="checkbox" checked="checked" style="-ms-transform: scale(2); /* IE */-moz-transform: scale(2); /* FF */-webkit-transform: scale(2); /* Safari and Chrome */-o-transform: scale(2); /* Opera */padding: 10px;/* display: inline; */">
+                          </span>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-primary btn-block">
+                            Generate Event
+                          </button>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-success btn-block">
+                            View Data
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="m-widget24" style="border: 1px solid #d6d6d6; border-radius: 10px;">
+                        <div class="m-widget24__item">
+                          <h4 class="m-widget24__title">
+                            Phase III
+                          </h4>
+                          <br>
+                          <span class="m-widget24__desc">
+                            (Trigger & Pickup)
+                          </span>
+                          <span class="m-widget24__stats m--font-brand">
+
+                            <input type="checkbox" checked="checked" style="-ms-transform: scale(2); /* IE */-moz-transform: scale(2); /* FF */-webkit-transform: scale(2); /* Safari and Chrome */-o-transform: scale(2); /* Opera */padding: 10px;/* display: inline; */">
+                          </span>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-primary btn-block">
+                            Generate Event
+                          </button>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-success btn-block">
+                            View Data
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="m-widget24" style="border: 1px solid #d6d6d6; border-radius: 10px;">
+                        <div class="m-widget24__item">
+                          <h4 class="m-widget24__title">
+                            Phase IV
+                          </h4>
+                          <br>
+                          <span class="m-widget24__desc">
+                            (ET to Delivery Notes)
+                          </span>
+                          <span class="m-widget24__stats m--font-brand">
+
+                            <input type="checkbox" checked="checked" style="-ms-transform: scale(2); /* IE */-moz-transform: scale(2); /* FF */-webkit-transform: scale(2); /* Safari and Chrome */-o-transform: scale(2); /* Opera */padding: 10px;/* display: inline; */">
+                          </span>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-primary btn-block">
+                            Generate Event
+                          </button>
+                          <div class="m--space-10"></div>
+                          <button type="button" class="btn btn-success btn-block">
+                            View Data
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h4>Drugs Details</h4>
+                      <div class="m-form m-form--fit m-form--label-align-right" style="margin-top: 30px;">
+                        <dx-data-grid id="gridContainer" [dataSource]="drugs">
+
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                            [useIcons]="true">
+
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                          <dxo-paging [pageSize]="8"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>
+                          <dxi-column dataField="medicineId" caption="Drug" [setCellValue]="setStateValue">
+                            <dxo-lookup [dataSource]="medicines" displayExpr="name" valueExpr="medicineId">
+                            </dxo-lookup>
+                          </dxi-column>
+                          <dxi-column dataField="fromDate" dataType="date" caption="From Date"></dxi-column>
+                          <dxi-column dataField="toDate" dataType="date" caption="To Date"></dxi-column>
+                          <dxi-column dataField="days" dataType="number" caption="Days"></dxi-column>
+                          <dxi-column dataField="quantity" dataType="number" caption="Quantity"></dxi-column>
+                          <dxi-column dataField="totalDosage" dataType="text" caption="Total Dosage"></dxi-column>
+                        </dx-data-grid>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-form__actions m-form__actions--solid">
+                    <div class="row">
+                      <div class="col-lg-6">
+
+                      </div>
+                      <div class="col-lg-6 m--align-right">
+                        <button *ngIf="id > 0; else submit" class="btn btn-primary" (click)="submit(clinicalrecordform.value)">
+                          Update
+                        </button>
+                        <ng-template #submit>
+                          <button class="btn btn-primary" (click)="submitForm(clinicalrecordform.value)">
+                            Submit
+                          </button>
+                        </ng-template>
+                        <button class="btn btn-secondary">
+                          Back
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

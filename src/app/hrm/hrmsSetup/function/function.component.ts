@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-function',
@@ -15,17 +15,13 @@ export class FunctionComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        // this.dataService.getAllFunctions().subscribe((data)=>this.funct=data);
-
-        await this.dataService.getAllFunctions();
-        this.func = this.dataService.function;
-        console.log(this.func);
-
+        this.func = await this.dataService.getAllFunctions();
     }
 
 
     addNewfunction(func) {
         this.dataService.addFunction(func.data);
+        this.func = this.dataService.getAllFunctions();
     }
 
     Editfunction(fun) {

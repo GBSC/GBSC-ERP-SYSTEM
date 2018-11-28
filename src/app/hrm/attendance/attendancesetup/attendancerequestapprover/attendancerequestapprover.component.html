@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -16,11 +14,10 @@
                [dataSource]="attendanceRequestapprover"
                keyExpr="attendanceRequestApproverId"
                (onRowInserted)="addRequestapprover($event)" 
-              (onRowUpdated)="updateRequestapprover($event)"
+              (onRowUpdating)="updatingRequestapprover($event)"
+              (onRowUpdated)="updateRequestapprover()"
                 (onRowRemoved)="deleteRequestapprover($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Attendance Request Approver" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -32,7 +29,7 @@
  
                 <dxi-column dataField="name" caption="Approver Name"></dxi-column>
                 <dxi-column dataField="userId" caption="Employee">
-                  <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
+                  <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
                   </dxo-lookup> 
             </dxi-column>
               </dx-data-grid>
@@ -40,6 +37,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+    

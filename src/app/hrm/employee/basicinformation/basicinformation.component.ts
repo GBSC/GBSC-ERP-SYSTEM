@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { EmployeeService, SetupService } from '../../../core';
+import { EmployeeService, SetupService, HrmsService } from '../../../core';
+import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-basicinformation',
@@ -12,178 +13,117 @@ export class BasicinformationComponent implements OnInit {
 
 
     public basic: any;
-    public id : any;
-    public Employee : any;
-    @Output('setbasicinfoFormValue') setBasicinfoFormValue = new EventEmitter();
+    public religion: any;
+    public language: any;
+    public city: any;
+    public Employee: any;
+
+    @Input('employeeId') id: number;
+
+    @Output() updateMessage = new EventEmitter();
+
 
     public EmpbasicForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, private SetupServiceobj: SetupService,  public router: Router, private route: ActivatedRoute) { }
-    public basicInfo: any = {};
 
-    // async ngOnInit() {
+    constructor(public employeeService: EmployeeService, public fb: FormBuilder,private hrmService: HrmsService,
+        private SetupServiceobj: SetupService, public router: Router, private route: ActivatedRoute) {
 
-    //     this.basicInfo = await this.employee.getBasicInfoOfCurrentUser();
-    //     console.log(this.basicInfo);
-    //     await this.employee.GetAllEmployees();
-    //     this.basic = this.employee.employeereg;
-    //     this.employee.EmpbasicForm.value.FirstName = this.basicInfo.firstName;
-    //     this.employee.EmpbasicForm.value.LastName = this.basicInfo.lastName;
+        this.EmpbasicForm = this.fb.group({
+            FirstName: [''],
+            LastName: [''],
+            FatherName: [''],
+            Email: [''],
+            Cnic: [''],
+            CnicExpiry: [''],
+            Phone: [''],
+            HomePhone: [''],
+            DOB: [''],
+            POB: [''],
+            BloodGroup: [''],
+            MaritalStatus: [''],
+            Gender: [''],
+            CountryId: [''],
+            CityId: [''],
+            ReligionId: [''],
+            LanguageId: [''],
+            Address: [''],
+            PermanentAddress: ['']
+        });
 
-    //     console.log(this.employee.EmpbasicForm.value);
-
-    //     await this.SetupServiceobj.getAllDesignations();
-    //     let dsg = this.SetupServiceobj.designation;
-
-    //     await this.SetupServiceobj.getAllLanguages();
-    //     let lng = this.SetupServiceobj.language;
-
-
-    //     await this.SetupServiceobj.getAllFunctions();
-    //     let func = this.SetupServiceobj.function;
-
-    //     await this.SetupServiceobj.getAllReligions();
-    //     let relg = this.SetupServiceobj.religion;
-    //     console.log(relg);
-
-    //     await this.SetupServiceobj.getAllGazettedHolidays();
-    //     let holiday = this.SetupServiceobj.gazetholidays;
-
-    //     await this.SetupServiceobj.getAllCities();
-    //     let cty = this.SetupServiceobj.city;
-
-    // }
-
-    getbasicinfoFormValue() {
-        this.setBasicinfoFormValue.emit(this.EmpbasicForm.value);
     }
 
-    // async onsubmit() {
-    //   console.log(this.activatedRoute.url);
-    //   // let basicinfo = await this.employee.addEmployee();
-    //   // console.log(basicinfo);
-    //   // this.router.navigate(['employees']);
+    update(value) {
 
-    //   // if (basicinfo){
-    //   //   } 
-    //   //   else{
-    //   //     alert('User could not created');
+        value.UserId = this.id;
 
-    //   //   }
-    // }
-    async update(value){
-        console.log(value);
-       this.employee.EmpbasicForm.value.userId = this.id;
-            // value = {...this.Employee, ...value}
-           // this.joinValues(value, this.Employee);
-         await this.employee.updateEmployee(value);
+        this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
+            this.showSuccess("Basic Information Updated");
+        });
+
     }
-
-    async updateUersById(value)
-    {
-        console.log(value);
-        await this.employee.updateUersById(value);
-    }
-
-    // joinValues(form, data) {
-    //     console.log(data)
-      
-    //     for(let k in data) {
-    //         for(let p in form) {
-    //             p = p.substr(0, 1).toLowerCase() + p.substr(1);
-    //             // console.log(p);
-    //             if(p === k) {
-    //                 console.log('--------------')
-    //                 console.log('fro,m join values', k, data[k], p, form[p]);
-    //                 // console.log(form)
-    //                 console.log('--------------')
-    //             }
-    //         }
-    //     }
-    // }
 
     async ngOnInit() {
 
+        this.religion = await this.SetupServiceobj.getAllReligions();
+
+        this.language = await this.SetupServiceobj.getAllLanguages();
+
+        this.city = await this.hrmService.getAllCities();
+
+        if (this.id) {
+            this.employeeService.GetEmployee(this.id).subscribe(resp => {
+
+                this.Employee = resp;
+
+                this.patchValues(resp);
+
+            });
+        }
 
 
-        console.log(this.router.url);
+    }
 
-        this.route.params.subscribe((params) => {
-            this.id = +params['id'];
+    showSuccess(message) {
 
-                    this.employee.GetEmployee(this.id).subscribe((Employee) => {
-                       this.Employee = Employee
-                      //  let emp = this.Employee;
-                            this.employee.EmpbasicForm.patchValue({
-                                FirstName : this.Employee.firstName,
-                                LastName : this.Employee.lastName,
-                                FatherName  : this.Employee.fatherName,
-                                DOB  : this.Employee.dob,
-                                POB  : this.Employee.pob,
-                                Cnic  : this.Employee.cnic,
-                                CnicExpiry  : this.Employee.cnicExpiry,
-                                Email  : this.Employee.email,
-                                LanguageId  : this.Employee.languageId,
-                                ReligionId  : this.Employee.religionId,
-                                CityId  : this.Employee.cityId,
-                                BloodGroup  : this.Employee.bloodGroup,
-                                MaritalStatus  : this.Employee.maritalStatus,
-                                PhoneNumber  : this.Employee.phoneNumber,
-                                HomeNumber  : this.Employee.homeNumber,
-                                Address  : this.Employee.address,
-                                PermanentAddress  : this.Employee.permanentAddress,
+        this.updateMessage.emit(message);
+    }
 
+    isUpdate(): boolean {
 
+        if (this.id > 0)
+            return true;
+        else
+            return false;
+    }
 
+    patchValues(employee: any) {
 
-                            });
-                            console.log(Employee)
-                            console.log(this.Employee.firstName)
-                          //  console.log(emp.firstName)
-
-                            
-                    });
-
-
-                    
-                    
-
-        
-
+        this.EmpbasicForm.patchValue({
+            FirstName: employee.firstName,
+            LastName: employee.lastName,
+            FatherName: employee.fatherName,
+            Email: employee.email,
+            Cnic: employee.cnic,
+            CnicExpiry: employee.cnicExpiry,
+            Phone: employee.phone,
+            HomePhone: employee.homePhone,
+            DOB: employee.dob,
+            POB: employee.pob,
+            BloodGroup: employee.bloodGroup,
+            MaritalStatus: employee.maritalStatus,
+            Gender: employee.gender,
+            CityId: employee.cityId,
+            ReligionId: employee.religionId,
+            Address: employee.address,
+            PermanentAddress: employee.permanentAddress
         });
+    }
 
-            // this.basicInfo = await this.employee.getBasicInfoOfCurrentUser();
-            // console.log(this.basicInfo);
-            // await this.employee.GetAllEmployees();
-            // this.basic = this.employee.employeereg;
-            // this.employee.EmpbasicForm.value.FirstName = this.basicInfo.firstName;
-            // this.employee.EmpbasicForm.value.LastName = this.basicInfo.lastName;
-    
-            // console.log(this.employee.EmpbasicForm.value);
-    
-            await this.SetupServiceobj.getAllDesignations();
-            let dsg = this.SetupServiceobj.designation;
-    
-            await this.SetupServiceobj.getAllLanguages();
-            let lng = this.SetupServiceobj.language;
-    
-    
-            await this.SetupServiceobj.getAllFunctions();
-            let func = this.SetupServiceobj.function;
-    
-            await this.SetupServiceobj.getAllReligions();
-            let relg = this.SetupServiceobj.religion;
-            console.log(relg);
-    
-            await this.SetupServiceobj.getAllGazettedHolidays();
-            let holiday = this.SetupServiceobj.gazetholidays;
-    
-            await this.SetupServiceobj.getAllCities();
-            let cty = this.SetupServiceobj.city;
+    async Formsubmit(value) {
 
+        this.employeeService.addEmployee(value).subscribe(resp => {
 
-
-
-
-
+            this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
+        })
     }
 }

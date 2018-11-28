@@ -1,8 +1,7 @@
 import { AttendanceRuleLeaveType } from "./AttendanceRuleLeaveType";
 
 export class AttendanceRule {
-
-    attendanceRuleId: number;
+ 
     action: number;
     effectFrequency: string;
     flagCount: Date;
@@ -12,7 +11,7 @@ export class AttendanceRule {
     effectQuantity: number;
     effectType: number;
     attendanceFlagId: number;
-    groupId: number; 
-    attendanceRuleLeaveTypes : AttendanceRuleLeaveType[];
-    
+    groupId: number;
+    attendanceRuleLeaveTypes: AttendanceRuleLeaveType[];
+
 }

@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -17,8 +15,7 @@
                 (onRowInserted)="addGratuitySlabGratuity($event)"
                 (onRowUpdated)="updateGratuitySlabGratuity($event)" 
                 (onRowRemoved)="deleteGratuitySlabGratuity($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Gratuity Slab Gratuity" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -27,18 +24,12 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="slabAmount" caption="Slab Amount"></dxi-column>
                 <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.gratuityslab" displayExpr="title" valueExpr="gratuitySlabId">
+                  <dxo-lookup [dataSource]="gratuitySlab" displayExpr="title" valueExpr="gratuitySlabId">
                   </dxo-lookup>
-                </dxi-column>
-                <dxi-column dataField="gratuityId" caption="Gratuity">
-                  <dxo-lookup [dataSource]="payrollsetupservice?.gratuity" displayExpr="gratuityAmount" valueExpr="gratuityId">
-                  </dxo-lookup>
-                </dxi-column>
+                </dxi-column> 
               </dx-data-grid>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+     

@@ -1,71 +1,73 @@
-import { Component, OnInit } from '@angular/core';
-import { PayrollSetupService } from '../../../../core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { PayrollSetupService, SetupService } from '../../../../core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-payrollbank',
-  templateUrl: './payrollbank.component.html',
-  styleUrls: ['./payrollbank.component.scss']
+    selector: 'app-payrollbank',
+    templateUrl: './payrollbank.component.html',
+    styleUrls: ['./payrollbank.component.scss']
 })
 export class PayrollbankComponent implements OnInit {
+    pattern: any = /^\d{3}-\d{8}$/i;
+    public payrollBank: any;
+    public PayrollBankForm: FormGroup;
+    private updatingbank: any;
+    public chequeTemplate: any;
+    public msg: any;
+    public bankAdviceTemplate: any;
 
-  public payrollBank: any;
-  public PayrollBankForm: FormGroup;
-  private updatingbank: any;
-  constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
+    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public setupservice: SetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.PayrollBankForm = this.fb.group({
-      BankTitle: ['', Validators],
-      AccountNumber: ['', Validators],
-      RoutingCode: ['', Validators],
-      UniqueId: ['', Validators],
-      RemitType: ['', Validators],
-      RemitKey: ['', Validators],
-      BranchCode: ['', Validators],
-      Branch: ['', Validators],
-      BranchContactNumber: ['', Validators],
-      BranchAddress: ['', Validators],
-      BranchEmplyeeName: ['', Validators],
-      BranchEmplyeeDesignation: ['', Validators],
-      FirstApproverName: ['', Validators],
-      FirstApproverDesignation: ['', Validators],
-      SecondApproverName: ['', Validators],
-      SecondApproverDesignation: ['', Validators],
-      BankAdviceTemplateId: ['', Validators],
-      ChequeTemplateId: ['', Validators],
-      CostCentreCode: ['', Validators],
-      CompanyBank: ['', Validators],
-      GlCode: ['', Validators],
-      Active: ['', Validators]
-    });
+        this.PayrollBankForm = this.fb.group({
+            BankTitle: ['', Validators],
+            AccountNumber: ['', Validators],
+            RoutingCode: ['', Validators],
+            UniqueId: ['', Validators],
+            RemitType: ['', Validators],
+            RemitKey: ['', Validators],
+            BranchCode: ['', Validators],
+            Branch: ['', Validators],
+            BranchContactNumber: ['', Validators],
+            BranchAddress: ['', Validators],
+            BranchEmplyeeName: ['', Validators],
+            BranchEmplyeeDesignation: ['', Validators],
+            FirstApproverName: ['', Validators],
+            FirstApproverDesignation: ['', Validators],
+            SecondApproverName: ['', Validators],
+            SecondApproverDesignation: ['', Validators],
+            BankAdviceTemplateId: ['', Validators],
+            ChequeTemplateId: ['', Validators],
+            CostCentreCode: ['', Validators],
+            CompanyBank: ['', Validators],
+            GlCode: ['', Validators],
+            Active: ['', Validators]
+        });
 
-    await this.payrollsetupservice.getpayrollbanks();
-    this.payrollBank = this.payrollsetupservice.payrollbank;
+        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();
 
-    await this.payrollsetupservice.getbankadvicetemplates();
-    let bankAdviceTemplate = this.payrollsetupservice.bankadvicetemplate;
+        this.bankAdviceTemplate = await this.payrollsetupservice.getBankAdviceTemplates();
 
-    await this.payrollsetupservice.getchequetemplates();
-    let chequeTemplate = this.payrollsetupservice.chequetemplate;
-  }
+        this.chequeTemplate = await this.payrollsetupservice.getChequeTemplates();
+    }
 
-  async addPayrollBank() {
-    await this.payrollsetupservice.addpayrollbank(this.PayrollBankForm.value);
-    console.log(this.PayrollBankForm.value);
-    this.PayrollBankForm.reset();
-  }
+    async addPayrollBank(value) {
+       let c= await this.payrollsetupservice.addPayrollBank(value.data);
+        this.payrollBank = await this.payrollsetupservice.getPayrollBanks();        
+    }
+ 
 
-  updatingPayrollBank(value) {
-    this.updatingbank = { ...value.oldData, ...value.newData };
-  }
-  async updatePayrollBank() {
-    await this.payrollsetupservice.updatepayrollbank(this.updatingbank);
-  }
+    updatingPayrollBank(value) {
+        this.updatingbank = { ...value.oldData, ...value.newData };
+    }
+    async updatePayrollBank() {
+        await this.payrollsetupservice.updatePayrollBank(this.updatingbank);
+       
+    }
 
-  async deletePayrollBank(value) {
-    await this.payrollsetupservice.Deletepayrollbank(value.key);
-  }
+    async deletePayrollBank(value) {
+        await this.payrollsetupservice.deletePayrollBank(value.key);
+    }
 
 }

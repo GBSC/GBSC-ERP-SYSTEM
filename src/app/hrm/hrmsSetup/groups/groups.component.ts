@@ -16,16 +16,12 @@ export class GroupComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.dataService.getAllGroups();
-        this.group = this.dataService.group;
-        // console.log(this.group);
-        // this.dataService.getAllGroups().subscribe((data)=>this.groups=data);
+        this.group = await this.dataService.getAllGroups();
     }
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
     addNewGroups(grp) {
         this.dataService.addGroup(grp.data);
+        this.group = this.dataService.getAllGroups();
     }
 
     EditGroup(grop) {

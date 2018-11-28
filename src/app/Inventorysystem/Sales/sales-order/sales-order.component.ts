@@ -15,53 +15,53 @@ export class SalesOrderComponent implements OnInit {
     private SalesPerson: any;
     private ModeOfPayment: any;
     private Customer: any;
-    private FilteredCustomers : any;
+    private FilteredCustomers: any;
     private Tax: any;
     //private SalesOrder: any;
-    private CustomerWarehouses : any;
-    private FilteredWarehouses : any
-    private CustomerTypes : any;
-    private Distributors : any;
-    private FilteredDistributor : Distributor;
-    private DispAddress : string = "";
-    private SalesOrderForm : FormGroup;
+    private CustomerWarehouses: any;
+    private FilteredWarehouses: any
+    private CustomerTypes: any;
+    private Distributors: any;
+    private FilteredDistributor: Distributor;
+    private DispAddress: string = "";
+    private SalesOrderForm: FormGroup;
 
-    constructor(private InventoryService: InventorysystemService, private FormBuilder : FormBuilder) {
-        
-        this.SalesOrderForm = this.FormBuilder.group( {
-            salesOrderId : [''],
-            salesOrderCode : [''],
-            issueDate : [''],
-            isIssued : [''],
-            approvedDate : [''],
-            isApproved : [''],
-            processedDate : [''],
-            isProcessed : [''],
-            remarks : [''],
-            slipNumber : [''],
-            status : [''],
-            contactPerson : [''],
-            contactPersonNumber : [''],
-            againstLotNumber : [''],
-            deliveryDate : [''],
-            totalQuantity : [''],
-            extendedAmount : [''],
-            discountedAmount : [''],
-            shipped : [''],
-            discountAmount : [''],
-            salesTaxAmount : [''],
-            orderAmount : [''],
-            specialDiscountPercentage : [''],
-            specialDiscountAmount : [''],
-            extraDiscountPercentage : [''],
-            extraDiscountAmount : [''],
-            userId : [''],
-            deliveryOrderId : [''],
-            salesIndentId : [''],
-            salesPersonId : [''],
-            modeOfPaymentId : [''],
-            customerId : [''],
-            taxId : ['']
+    constructor(private InventoryService: InventorysystemService, private FormBuilder: FormBuilder) {
+
+        this.SalesOrderForm = this.FormBuilder.group({
+            salesOrderId: [''],
+            salesOrderCode: [''],
+            issueDate: [''],
+            isIssued: [''],
+            approvedDate: [''],
+            isApproved: [''],
+            processedDate: [''],
+            isProcessed: [''],
+            remarks: [''],
+            slipNumber: [''],
+            status: [''],
+            contactPerson: [''],
+            contactPersonNumber: [''],
+            againstLotNumber: [''],
+            deliveryDate: [''],
+            totalQuantity: [''],
+            extendedAmount: [''],
+            discountedAmount: [''],
+            shipped: [''],
+            discountAmount: [''],
+            salesTaxAmount: [''],
+            orderAmount: [''],
+            specialDiscountPercentage: [''],
+            specialDiscountAmount: [''],
+            extraDiscountPercentage: [''],
+            extraDiscountAmount: [''],
+            userId: [''],
+            deliveryOrderId: [''],
+            salesIndentId: [''],
+            salesPersonId: [''],
+            modeOfPaymentId: [''],
+            customerId: [''],
+            taxId: ['']
         });
     }
 
@@ -96,7 +96,7 @@ export class SalesOrderComponent implements OnInit {
     }
 
     getSelectedDistributors(value) {
-        this.FilteredDistributor = this.Distributors.find(a =>  a.distributorId === value.selectedItem.distributorId);
+        this.FilteredDistributor = this.Distributors.find(a => a.distributorId === value.selectedItem.distributorId);
         this.DispAddress = this.FilteredDistributor.address.toString();
     }
 

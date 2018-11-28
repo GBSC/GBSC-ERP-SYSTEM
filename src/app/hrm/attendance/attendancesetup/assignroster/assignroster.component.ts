@@ -8,32 +8,36 @@ import { AttendancesetupService } from '../../../../core';
 })
 export class AssignrosterComponent implements OnInit {
 
-
+    public updatingModel : any;
     public assignroster: any;
+    public roster: any;
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        await this.attendancesetupservice.getasignrosters();
-        this.assignroster = this.attendancesetupservice.asignroster
-        console.log(this.assignroster);
 
-        await this.attendancesetupservice.getrosters();
-        let Roster = this.attendancesetupservice.roster;
+        this.assignroster = await this.attendancesetupservice.getAsignRosters();
+  
+        this.roster = await this.attendancesetupservice.getRosters();
 
     }
 
     async addassignroster(value) {
 
-        this.attendancesetupservice.addasignroster(value.data);
+        await this.attendancesetupservice.addAsignRoster(value.data);
+        this.assignroster = await this.attendancesetupservice.getAsignRosters();
     }
 
-    async updateassignroster(value) {
-        console.log(value);
-        this.attendancesetupservice.updateasignroster(value);
+     updatingAssignroster(value) {
+       this.updatingModel = {...value.oldData, ...value.newData };
+    }
+   
+    async updateassignroster() {
+       await this.attendancesetupservice.updateAsignRoster(this.updatingModel);
+       this.assignroster = await this.attendancesetupservice.getAsignRosters();
     }
 
     async deleteassignroster(value) {
-        this.attendancesetupservice.Deleteasignroster(value.key);
+        await this.attendancesetupservice.DeleteAsignRoster(value.key);
     }
 
 }

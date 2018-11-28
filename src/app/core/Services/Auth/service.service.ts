@@ -10,7 +10,7 @@ export class AccountService {
     private readonly API_URL = 'authentication/api/auth/login';
     private loggedInUser: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService : ApiService) {
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService: ApiService) {
     }
 
     async login(credentials) {
@@ -34,12 +34,16 @@ export class AccountService {
         }
     }
 
+    logout() {
+        localStorage.removeItem('user');
+
+        this.router.navigate(['login']);
+
+    }
+
     isAuthenticated() {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-            console.log('user is called');
-            console.log(user.accessibleModules);
-            // console.log(user);
             this.accessibleModules = user.accessibleModules;
             return true;
         } else {
@@ -48,7 +52,6 @@ export class AccountService {
     }
 
     checkIfModuleIsAccessible(module) {
-        console.log(module);
         let isAccessible;
 
         this.getAvailableModules().forEach(m => {
@@ -58,8 +61,6 @@ export class AccountService {
                 });
             }
         });
-
-        console.log(isAccessible);
 
         if (isAccessible) {
             return true;

@@ -1,0 +1,585 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Insemenation</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="insemenationForm">
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Treatment#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="clinicalRecord?.typewiseTreatmentNumber">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Cycle#
+                      </label>
+                      <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Treatment Type
+                      </label>
+                      <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
+                        [searchEnabled]="true" disabled>
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Insemenation Details</h4>
+                    <div class="row" style="margin-top: 30px;">
+
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Collection No.
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.collectionNumber" formControlName="CollectionNumber">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleTextarea col-sm-3">
+                            Collection Date
+                          </label>
+                          <dx-date-box [value]="insemenation?.collectionDate" formControlName="CollectionDate">
+                          </dx-date-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Procedure#
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.procedureNumber" formControlName="ProcedureNumber">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleSelect1">
+                            Abstinence (Days)
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.abstinence" formControlName="Abstinence">
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Ejaculation Time
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.EjaculationTime" formControlName="EjaculationTime">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Location
+                          </label>
+                          <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.location"
+                            formControlName="Location">
+                            <option>
+                              Concept
+                            </option>
+                            <option>
+                              Home
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr>
+                    <h5>Semen</h5>
+                    <div class="row" style="margin-top: 15px;">
+
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Assay Time
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.assayTime" formControlName="AssayTime">
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Volume (mls)
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.volume" formControlName="Volume">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Consistency
+                          </label>
+                          <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.consistency"
+                            formControlName="Consistency">
+                            <option>
+                              Noraml
+                            </option>
+                            <option>
+                              Abnormal
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Appearence
+                          </label>
+                          <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.appearance"
+                            formControlName="Appearance">
+                            <option>
+                              Noraml
+                            </option>
+                            <option>
+                              Abnormal
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            pH
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="insemenation?.ph" formControlName="Ph">
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <hr>
+                    <h5>Sperm Concentration</h5>
+                    <div class="row" style="margin-top: 15px;">
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-4 col-form-label">
+                            Motile Count
+                          </label>
+                          <div class="col-4" style="padding: 0px 7px 0px 0px;">
+                            <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.motileCountRange"
+                              formControlName="MotileCountRange">
+                              <option>
+                                Equals
+                              </option>
+                              <option>
+                                Less Than
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-4" style="padding: 0px;">
+                            <div class="input-group">
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2"
+                                (ngModelChange)="motileCount = $event" [value]="insemenation?.motileCount"
+                                formControlName="MotileCount">
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
+                                  (ML)
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-4 col-form-label" style="padding: 12px 0px 0px 25px;">
+                            Immotile Cnt
+                          </label>
+                          <div class="col-4" style="padding: 0px 7px 0px 0px;">
+                            <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.immotileCountRange"
+                              formControlName="ImmotileCountRange">
+                              <option>
+                                Equals
+                              </option>
+                              <option>
+                                Less Than
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-4" style="padding: 0px;">
+                            <div class="input-group">
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.immotileCountRange"
+                                (ngModelChange)="immotileCount = $event" formControlName="ImmotileCount">
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
+                                  (ML)
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-4 col-form-label">
+                            Total Count
+                          </label>
+                          <div class="col-4" style="padding: 0px 7px 0px 0px;">
+                            <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.totalCountRange"
+                              formControlName="TotalCountRange">
+                              <option>
+                                Equals
+                              </option>
+                              <option>
+                                Less Than
+                              </option>
+                            </select>
+                          </div>
+                          <div class="col-4" style="padding: 0px;">
+                            <div class="input-group">
+
+                              <input type="number" class="form-control m-input" aria-describedby="basic-addon2" [value]="insemenation?.totalCount"
+                                (ngModelChange)="totalCount = $event" formControlName="TotalCount">
+
+                              <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2" style="padding: 10px; color: #5b5b5b;">
+                                  (ML)
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <hr>
+
+                      <div class="col-sm-6">
+                        <table class="table">
+                          <!--begin::Thead-->
+                          <thead>
+                            <tr>
+                              <td colspan="3" class="m-widget11__label"><strong>Progression (as % of Motile Count)</strong>
+                              </td>
+                              <td class="m-widget11__sales"><strong>Reported (% of Total Count)</strong></td>
+                            </tr>
+                          </thead>
+                          <!--end::Thead-->
+                          <!--begin::Tbody-->
+                          <tbody>
+                            <tr>
+                              <td width="184">
+                                Rapid Linear</td>
+                              <td width="168"><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style="background:#fec080;" [value]="insemenation?.spermProgressionRapidLinear"
+                                  (ngModelChange)="calculateReportedLinear($event)" formControlName="SpermProgressionRapidLinear">
+                              </td>
+                              <td width="44">(%)
+
+                              </td>
+                              <td width="250"><input class="form-control m-input" type="text" id="example-text-input"
+                                  [value]=reportedLiner></td>
+                            </tr>
+                            <tr>
+                              <td>
+
+                                Slow / Non Linear</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style="background:#fee080;" [value]="insemenation?.spermProgressionNonLinear"
+                                  (ngModelChange)="calculateReportedNonLinear($event)" formControlName="SpermProgressionNonLinear"></td>
+                              <td>(%) </td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedNonLinear></td>
+                            </tr>
+                            <tr>
+                              <td>
+
+                                Non - Progressive</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style="background:#fefe80;" [value]="insemenation?.spermProgressionNonProgressive"
+                                  (ngModelChange)="calculateReportedNonProgressive($event)" formControlName="SpermProgressionNonProgressive">></td>
+                              <td>(%) </td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedNonProgressive></td>
+                            </tr>
+                            <tr>
+                              <td>
+
+                                Immotile</td>
+                              <td><input class="form-control m-input" type="number" id="example-text-input" style="background:#e0fe80;"
+                                  (ngModelChange)="calculateReportedImmotile($event)" [value]="insemenation?.immotile"
+                                  formControlName="Immotile"></td>
+                              <td>(%) </td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" [value]=reportedImmotile></td>
+                            </tr>
+                            <tr>
+                              <td align="right">=</td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" value={{totalProgression}}></td>
+                              <td>&nbsp;</td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input" value={{totalReportedProgression}}></td>
+                            </tr>
+                          </tbody>
+                          <!--end::Tbody-->
+                        </table>
+                        <table class="table">
+                          <!--begin::Thead-->
+                          <thead>
+                            <tr>
+                              <td class="m-widget11__label"><strong>Sperm Morphology</strong> </td>
+
+                            </tr>
+                          </thead>
+                          <!--end::Thead-->
+                          <!--begin::Tbody-->
+                          <tbody>
+                            <tr>
+                              <td width="184">Normal Forms</td>
+                              <td width="168"><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style=" background: #6ab4ff;" [value]="insemenation?.normalForms" formControlName="NormalForms"></td>
+                              <td width="40" align="center">(%) </td>
+                              <td width="60">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>Head Abnormalities</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style=" background: #48cde3;" [value]="insemenation?.headAbnormalities"
+                                  formControlName="HeadAbnormalities"></td>
+                              <td align="center">(%)</td>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>Midpiece Abnormalities</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  style=" background: #48cde3a8;" [value]="insemenation?.midpieceAbnormalities"
+                                  formControlName="MidpieceAbnormalities"></td>
+                              <td align="center">(%) </td>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>Tail Abnormalities</td>
+                              <td><input class="form-control m-input" type="number" id="example-text-input" style=" background: #00fff3;"
+                                  [value]="insemenation?.tailAbnormalities" formControlName="TailAbnormalities"></td>
+                              <td align="center">=</td>
+                              <td><input class="form-control m-input" type="text" id="example-text-input2"></td>
+                            </tr>
+                            <tr>
+                              <td>Other Cells</td>
+                              <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input"
+                                  [value]="insemenation?.otherCells" formControlName="OtherCells"></td>
+                            </tr>
+                            <tr>
+                              <td>Comments</td>
+                              <td colspan="3"><input class="form-control m-input" type="text" id="example-text-input3"
+                                  [value]="insemenation?.comments" formControlName="Comments"></td>
+                            </tr>
+                          </tbody>
+                          <!--end::Tbody-->
+                        </table>
+                      </div>
+                      <div class="col-sm-6">
+                        <table width="540" class="table">
+                          <!--begin::Thead-->
+                          <thead>
+                            <tr>
+                              <td class="m-widget11__label"><strong>Test Preparation</strong> </td>
+                            </tr>
+                          </thead>
+                          <!--end::Thead-->
+                          <!--begin::Tbody-->
+                          <tbody>
+                            <tr>
+                              <td width="239">Prepration Method</td>
+                              <td width="168"><select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.testPreprationMethod"
+                                  formControlName="TestPreprationMethod">
+                                  <option>
+                                    Spind
+                                  </option>
+                                  <option>
+                                    ULAY
+                                  </option>
+                                  <option>
+                                    PURESPERM
+                                  </option>
+
+                                </select></td>
+                              <td width="117">&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>Volume Semen Used</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  [value]="insemenation?.volumeSemenUsed" formControlName="VolumeSemenUsed"></td>
+                              <td>(mls) </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <table width="100%" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="54%" style="padding: 0; border-top: none;">Total Count</td>
+                                    <td width="46%" style="padding: 0; border-top: none;">
+                                      <select class="form-control m-input" id="exampleSelect1" [value]="insemenation?.testPreprationTotalCountRange"
+                                        formControlName="TestPreprationTotalCountRange">
+                                        <option>
+                                          Equals
+                                        </option>
+                                        <option>
+                                          Less Than
+                                        </option>
+
+                                      </select></td>
+                                  </tr>
+                                </table>
+                              </td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input"
+                                  [value]="insemenation?.testPreprationTotalCount" formControlName="TestPreprationTotalCount"></td>
+                              <td>(mil./ml)</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <table width="100%" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="54%" style="padding: 0; border-top: none;">Total Count</td>
+                                    <td width="46%" style="padding: 0; border-top: none;"><select class="form-control m-input"
+                                        id="exampleSelect1" [value]="insemenation?.testPreprationMotileCountRange"
+                                        formControlName="TestPreprationMotileCountRange">
+                                        <option>
+                                          Equals
+                                        </option>
+                                        <option>
+                                          Less Than
+                                        </option>
+
+                                      </select></td>
+                                  </tr>
+                                </table>
+                              </td>
+                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="insemenation?.testPreprationMotileCount"
+                                  formControlName="TestPreprationMotileCount"></td>
+                              <td>(mil./ml) </td>
+                            </tr>
+                            <tr>
+                              <td>Rapid Linear Progression</td>
+                              <td><input class="form-control m-input" type="number" id="example-text-input" [value]="insemenation?.testPreprationRapidLinearProgression"
+                                  formControlName="TestPreprationRapidLinearProgression"></td>
+                              <td>(%) </td>
+                            </tr>
+                            <tr>
+                              <td>Slow Non-Linear Progression</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input2"
+                                  [value]="insemenation?.testPreprationRapidNonLinearProgression" formControlName="TestPreprationRapidNonLinearProgression"></td>
+                              <td>(%) </td>
+                            </tr>
+                            <tr>
+                              <td>Time Complete</td>
+                              <td><input class="form-control m-input" type="text" value="0" id="example-text-input3"
+                                  [value]="insemenation?.timeCompleted" formControlName="TimeCompleted"></td>
+                              <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                              <td>Final Volume</td>
+                              <td><input class="form-control m-input" type="number" value="0" id="example-text-input4"
+                                  [value]="insemenation?.finalVolume" formControlName="FinalVolume"></td>
+                              <td>(mls)</td>
+                            </tr>
+                          </tbody>
+                          <!--end::Tbody-->
+                        </table>
+                        <hr>
+
+                        <div class="m-demo__preview m-demo__preview--btn">
+                          <button type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(insemenationForm.value)">
+                            Submit
+                          </button>
+                          <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                            Freeze Prep.
+                          </button>
+                          <button type="button" class="btn btn-success m-btn m-btn--custom">
+                            Questionnaire
+                          </button>
+                          <button type="button" class="btn btn-info m-btn m-btn--custom">
+                            Insem. Prep.
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,4 @@
-<div class="m-content">
-
-  <div class="row">
-    <div class="col-md-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -48,7 +45,7 @@
                     </label> 
                         <select class="form-control m-input" formControlName="AllowanceCalculationTypeId" id="">
                             <option value="" disabled selected>-- Select Allowance Calculation Type --</option>
-                            <option *ngFor ="let calculationtype of payrollSetupService?.allowancecalculationtype" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
+                            <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
                    </select>
                   </div>
                 </div>
@@ -200,11 +197,9 @@
           </form>
         </div>
       </div>
-    </div>
-  </div> 
+ 
 
-  <div class="row">
-    <div class="col-md-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -234,7 +229,7 @@
             <dxi-column dataField="title"></dxi-column>
             <dxi-column dataField="type"> </dxi-column>
             <dxi-column dataField="allowanceCalculationTypeId"caption="Allowance Calculation Type" [width]="250">
-              <dxo-lookup [dataSource]="payrollSetupService?.allowancecalculationtype" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>
+              <dxo-lookup [dataSource]="allowanceCalculationTypes" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>
           </dxi-column>
             <dxi-column dataField="fixedValue" caption="Fixed Value" [visible]="false"></dxi-column>
             <dxi-column dataField="valueExpressionPayment" caption="Value Expression Payment"></dxi-column>
@@ -253,8 +248,5 @@
 
         </div>
       </div>
-    </div>
-  </div>
-
-  </div>
+ 
   

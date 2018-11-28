@@ -74,7 +74,7 @@ export class FindPatientComponent implements OnInit {
                 delete value[key];
             }
         }
-        console.log(value);
+
         await this.PatientServiceobj.SearchPatient(value);
     }
 

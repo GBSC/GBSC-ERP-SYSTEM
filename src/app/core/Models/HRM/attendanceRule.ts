@@ -1,7 +1,7 @@
 import { AttendanceRuleLeaveType } from "./AttendanceRuleLeaveType";
 
 export class AttendanceRule {
- 
+
     action: number;
     effectFrequency: string;
     flagCount: Date;

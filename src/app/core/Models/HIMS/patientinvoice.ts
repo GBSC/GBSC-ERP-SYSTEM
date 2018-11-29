@@ -26,7 +26,7 @@ export interface PatientInvoice {
     Patient: Patient,
     AppointmentId: number,
     Appointment: Appointment,
-    PatientInvoiceReturnId : number,
-    PatientInvoiceReturn : PatientInvoiceReturn,
+    PatientInvoiceReturnId: number,
+    PatientInvoiceReturn: PatientInvoiceReturn,
     PatientInvoiceItems: PatientInvoiceItem[]
 };

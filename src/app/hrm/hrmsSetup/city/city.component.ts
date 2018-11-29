@@ -3,45 +3,45 @@ import { HttpClient } from '@angular/common/http';
 import { HrmsService, SetupService, SystemAdministrationService } from '../../../core';
 
 @Component({
-  selector: 'app-city',
-  templateUrl: './city.component.html',
-  styleUrls: ['./city.component.scss']
+    selector: 'app-city',
+    templateUrl: './city.component.html',
+    styleUrls: ['./city.component.scss']
 })
 export class CityComponent implements OnInit {
 
-  public city: any;
-  public updatingModel: any;
-  public country: any;
-  public company: any;
+    public city: any;
+    public updatingModel: any;
+    public country: any;
+    public company: any;
 
-  constructor(public httpClient: HttpClient,
-    public hrmService: HrmsService, public companyService: SystemAdministrationService) { }
+    constructor(public httpClient: HttpClient,
+        public hrmService: HrmsService, public companyService: SystemAdministrationService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.city = await this.hrmService.getAllCities();
-   
-    this.country = await this.hrmService.getAllCountries();
-   
-    this.company = await this.companyService.getCompanies();
+        this.city = await this.hrmService.getAllCities();
 
-  }
+        this.country = await this.hrmService.getAllCountries();
 
-  async addcity(value) {
-    await this.hrmService.addCity(value.data);
-    this.city = await this.hrmService.getAllCities();
-  }
+        this.company = await this.companyService.getCompanies();
 
-  UpdatingCity(value) {
-    this.updatingModel = {...value.oldData, ...value.newData};
-  }
+    }
 
-  Updatecity() {
-    this.hrmService.updateCity(this.updatingModel)
-  }
+    async addcity(value) {
+        await this.hrmService.addCity(value.data);
+        this.city = await this.hrmService.getAllCities();
+    }
 
-  deletecity(value) {
-    this.hrmService.deleteCity(value.key);
-  }
+    UpdatingCity(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
+    }
+
+    Updatecity() {
+        this.hrmService.updateCity(this.updatingModel)
+    }
+
+    deletecity(value) {
+        this.hrmService.deleteCity(value.key);
+    }
 
 }

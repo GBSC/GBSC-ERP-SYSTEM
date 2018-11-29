@@ -25,8 +25,8 @@ export class AttendanceruleComponent implements OnInit {
     @Input('attendanceRuleId') id: number;
 
     constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public attendanceservice: AttendanceService,
-        public attendancesetupservice: AttendancesetupService,public router : Router, public leavesetupservice: LeaveSetupService,
-        public hrsetupservice: SetupService,public toastr:ToastrService, ) { }
+        public attendancesetupservice: AttendancesetupService, public router: Router, public leavesetupservice: LeaveSetupService,
+        public hrsetupservice: SetupService, public toastr: ToastrService, ) { }
 
     async ngOnInit() {
 
@@ -51,17 +51,17 @@ export class AttendanceruleComponent implements OnInit {
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
         this.LeaveTypes = await this.leavesetupservice.getLeaveTypes();
-       
+
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-          });
-          if (this.isUpdate() === true) {
+        });
+        if (this.isUpdate() === true) {
             this.attendanceservice.getAttendanceRule(this.id).subscribe(resp => {
-              this.ruleofAttendannce = resp;
+                this.ruleofAttendannce = resp;
                 this.RuleDetail = this.ruleofAttendannce.AttendanceRuleLeaveTypes;
-                 this.patchValues(this.ruleofAttendannce);
+                this.patchValues(this.ruleofAttendannce);
             });
-          }
+        }
     }
 
     async attendanceRuleLeave(value) {
@@ -83,26 +83,26 @@ export class AttendanceruleComponent implements OnInit {
     isUpdate(): boolean {
 
         if (this.id > 0) {
-          return true;
+            return true;
         }
         else
-          return false;
-      }
+            return false;
+    }
 
-       updateattendancerule(value) {
+    updateattendancerule(value) {
         console.log(value);
-      }
-    
-      async update(value) { 
-          console.log(value); 
+    }
+
+    async update(value) {
+        console.log(value);
         value.attendanceRuleId = this.id;
         value.attendanceRuleLeaveTypes = this.RuleDetail;
         await this.attendanceservice.updateAttendanceRule(value).subscribe(resp => {
-          this.toastr.success("Attendance Rule Detail Updated"); 
-                this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
-    
+            this.toastr.success("Attendance Rule Detail Updated");
+            this.router.navigate(['/hrm/attendance/attendanceadmin/attendanceruledetail']);
+
         });
-      }  
+    }
     async deleteattendancerule(value) {
         await this.attendanceservice.DeleteAttendanceRule(value.key);
     }
@@ -110,7 +110,7 @@ export class AttendanceruleComponent implements OnInit {
     patchValues(rule: any) {
 
         this.AttendanceRuleForm.patchValue({
-    
+
             GroupId: rule.groupId,
             AttendanceFlagId: rule.attendanceFlagId,
             FlagCount: rule.flagCount,
@@ -122,7 +122,7 @@ export class AttendanceruleComponent implements OnInit {
             EffectFrequency: rule.effectFrequency,
             Action: rule.action
         })
-    
-      }
+
+    }
 
 }

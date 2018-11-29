@@ -6,4 +6,4 @@ export class VoucherDetail {
     DepartmentName: string;
     DetailAccountId: number;
     VoucherId: number;
-    }
+}

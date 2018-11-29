@@ -681,7 +681,7 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoice/' + id);
     }
 
-    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string) : Observable<PatientInvoice> {
+    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string): Observable<PatientInvoice> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceWithDetailsBySlipNumberForReturn/' + slipnumber);
     }
 

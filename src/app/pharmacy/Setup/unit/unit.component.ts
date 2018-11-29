@@ -10,9 +10,9 @@ import { InventoryItemComponent } from '../inventory-item/inventory-item.compone
     styleUrls: ['./unit.component.css']
 })
 export class UnitComponent implements OnInit {
-    
+
     @Output() UpdateUnitInInventoryItemComponent = new EventEmitter<any>();
-    
+
     private Units: Unit;
     private UpdatedModel: any;
 

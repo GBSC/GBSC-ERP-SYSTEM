@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
         this._router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
 
-                 (<any>mLayout).closeMobileAsideMenuOffcanvas();
+                (<any>mLayout).closeMobileAsideMenuOffcanvas();
                 (<any>mLayout).closeMobileHorMenuOffcanvas();
                 (<any>mApp).scrollTop();
                 Helpers.setLoading(true);

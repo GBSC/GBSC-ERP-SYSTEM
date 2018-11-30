@@ -40,7 +40,7 @@ import { InsemenationRecordsComponent } from './insemenation-records/insemenatio
 import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
-
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -51,6 +51,7 @@ import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/in
         DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
+        CKEditorModule,
         routing,
 
     ],

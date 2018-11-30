@@ -12,7 +12,7 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              
+
               <form *ngIf="formVisible" class="m-form m-form--fit m-form--label-align-right">
                 <div class="form-group m-form__group row">
                   <label for="example-text-input" class="col-2 col-form-label">
@@ -36,8 +36,7 @@
                     Reference Range:
                   </label>
                   <div class="col-10">
-                    <textarea class="form-control" name="ReferenceRange" [(ngModel)]="ReferenceRange"
-                      value="{{ReferenceRange}}" data-provide="markdown" rows="10"></textarea>
+                    <ckeditor name="ReferenceRange" [(ngModel)]="ReferenceRange" [data]="ReferenceRange"  [editor]="Editor"></ckeditor>
                   </div>
 
                 </div>
@@ -61,7 +60,8 @@
 
               <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId">
 
-                <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
+                <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false"
+                  [useIcons]="true">
 
                   <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>

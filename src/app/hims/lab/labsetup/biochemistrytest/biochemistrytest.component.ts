@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BioChemistryService } from '../../../../core';
 import { BioChemistryTest } from '../../../../core/Models/HIMS/biochemistrytest';
 import { ScriptLoaderService } from '../../../../../../src/app/_services/script-loader.service';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-biochemistrytest',
@@ -10,11 +11,13 @@ import { ScriptLoaderService } from '../../../../../../src/app/_services/script-
 })
 export class BiochemistrytestComponent implements OnInit {
 
+    public Editor = ClassicEditor;
+
     private tests: BioChemistryTest[];
     private bioChemistryTestId: number;
     private TestName: string;
     private TestDescription: string;
-    private ReferenceRange: string;
+    private ReferenceRange: string = "";
     private formVisible : boolean = false;
 
     constructor(private bioChemistryServie: BioChemistryService, private _script: ScriptLoaderService) {
@@ -22,9 +25,6 @@ export class BiochemistrytestComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        this._script.loadScripts('app-validation-form-widgets',
-        ['assets/demo/default/custom/components/forms/validation/form-widgets.js']);
 
         this.bioChemistryServie.getTests().subscribe(tests => this.tests = tests);
 
@@ -66,6 +66,10 @@ export class BiochemistrytestComponent implements OnInit {
 
         this.formVisible = false;
 
+    }
+
+    onCancel(){
+        this.formVisible = false;
     }
 
 

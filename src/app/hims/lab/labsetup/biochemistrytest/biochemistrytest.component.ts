@@ -10,7 +10,12 @@ import { ScriptLoaderService } from '../../../../../../src/app/_services/script-
 })
 export class BiochemistrytestComponent implements OnInit {
 
-    private tests: BioChemistryTest;
+    private tests: BioChemistryTest[];
+    private bioChemistryTestId: number;
+    private TestName: string;
+    private TestDescription: string;
+    private ReferenceRange: string;
+    private formVisible : boolean = false;
 
     constructor(private bioChemistryServie: BioChemistryService, private _script: ScriptLoaderService) {
 
@@ -18,43 +23,50 @@ export class BiochemistrytestComponent implements OnInit {
 
     ngOnInit() {
 
+        this._script.loadScripts('app-validation-form-widgets',
+        ['assets/demo/default/custom/components/forms/validation/form-widgets.js']);
+
         this.bioChemistryServie.getTests().subscribe(tests => this.tests = tests);
 
     }
-    
-    ngAfterViewInit() {
-        this._script.loadScripts('app-validation-form-widgets',
-            ['assets/demo/default/custom/components/forms/validation/form-widgets.js']);
+
+    edit(value) {
+
+        this.formVisible = true;
+        this.bioChemistryTestId = value;
+        var test = this.tests.find(t => t.bioChemistryTestId == value);
+        this.ReferenceRange = test.referenceRange;
+        this.TestName = test.name;
+        this.TestDescription = test.description;
 
     }
 
-    addNewTest(test) {
+    onSubmit() {
 
-        this.bioChemistryServie.addTest(test.data).subscribe(resp=>console.log(resp));
+        if (this.TestName || this.ReferenceRange || this.TestDescription) {
+            let editValue: BioChemistryTest = { bioChemistryTestId: this.bioChemistryTestId, name: this.TestName, description: this.TestDescription, referenceRange: this.ReferenceRange };
 
-    }
+            if (this.bioChemistryTestId) {
+                let oldValue = this.tests.find(obj => obj.bioChemistryTestId == this.bioChemistryTestId);
 
-    UpdateTest(test)
-    {
-        let biotest = test.data;
-        biotest.bioChemistryTestId = test.key;
-        this.bioChemistryServie.updateTest(biotest).subscribe(resp=>console.log(resp));
+                let index = this.tests.indexOf(oldValue, 0);
+                if (index > -1) {
+                    this.tests.splice(index, 1);
+                }
 
-    }
+                this.tests.splice(index, 0, editValue);
 
-
-
-    onEditorPreparing(e) {
-
-        if (e.parentType == "filterRow" && e.dataField == "referenceRange")
-            e.cancel = true;
-
-        if (e.dataField === "referenceRange") {
-            e.editorName = "dxTextArea";
-            e.editorOptions.height = 200;
-            e.editorOptions.width = 500;
+                this.bioChemistryServie.updateTest(editValue).subscribe(resp => console.log(resp));
+            }
+            else {
+                this.tests.splice(0, 0, editValue);
+                this.bioChemistryServie.addTest(editValue).subscribe(resp => console.log(resp));
+            }
         }
 
+        this.formVisible = false;
+
     }
+
 
 }

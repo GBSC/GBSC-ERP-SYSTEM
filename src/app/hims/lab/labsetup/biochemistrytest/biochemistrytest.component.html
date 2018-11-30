@@ -12,60 +12,56 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <form class="m-form m-form--fit m-form--label-align-right">
-              <div class="form-group m-form__group row">
-                <label for="example-text-input" class="col-2 col-form-label">
-                  Name: 
-                </label>
-                <div class="col-4">
-                  <input class="form-control m-input" type="text" value="AMH" id="example-text-input">
-                </div>
+              
+              <form *ngIf="formVisible" class="m-form m-form--fit m-form--label-align-right">
+                <div class="form-group m-form__group row">
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Name:
+                  </label>
+                  <div class="col-4">
+                    <input class="form-control m-input" type="text" name="TestName" [(ngModel)]="TestName" value="{{TestName}}"
+                      id="example-text-input">
+                  </div>
 
-                <label for="example-text-input" class="col-2 col-form-label">
-                  Description: 
-                </label>
-                <div class="col-4">
-                  <input class="form-control m-input" type="text" value="Anti Mullerian Hormone" id="example-text-input">
-                </div>
-              </div>
-              <div class="form-group m-form__group row">
-                <label for="example-text-input" class="col-2 col-form-label">
-                  Reference Range:
-                </label>
-                <div class="col-10">
-                  <textarea name="markdown" class="form-control" data-provide="markdown" rows="10"></textarea>
-                </div>
-
-              </div>
-
-
-              <div class="m-form__actions">
-                <div class="row">
-                  <div class="col-2"></div>
-                  <div class="col-10">
-                    <button type="reset" class="btn btn-success">
-                      Submit
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
-                    </button>
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Description:
+                  </label>
+                  <div class="col-4">
+                    <input class="form-control m-input" type="text" name="TestDescription" [(ngModel)]="TestDescription"
+                      value="{{TestDescription}}" id="example-text-input">
                   </div>
                 </div>
-              </div>
+                <div class="form-group m-form__group row">
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Reference Range:
+                  </label>
+                  <div class="col-10">
+                    <textarea class="form-control" name="ReferenceRange" [(ngModel)]="ReferenceRange"
+                      value="{{ReferenceRange}}" data-provide="markdown" rows="10"></textarea>
+                  </div>
 
-             </form>
+                </div>
 
 
+                <div class="m-form__actions">
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                      <button type="reset" (click)="onSubmit()" class="btn btn-success">
+                        Submit
+                      </button>
+                      <button type="reset" (click)="onCancel()" class="btn btn-secondary">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
+              </form>
 
+              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId">
 
-
-
-              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId" (onEditorPreparing)="onEditorPreparing($event)"
-                (onRowInserted)="addNewTest($event)" (onRowUpdated)="UpdateTest($event)">
-
-                <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true"
-                  [useIcons]="true">
+                <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
 
                   <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
@@ -80,6 +76,10 @@
                 <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
                 <dxi-column dataField="referenceRange"></dxi-column>
+                <dxi-column dataField="bioChemistryTestId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                <div *dxTemplate="let data of 'cellTemplate'">
+                  <a class="btn btn-primary" (click)="edit(data.value)">Edit</a>
+                </div>
               </dx-data-grid>
             </div>
           </div>

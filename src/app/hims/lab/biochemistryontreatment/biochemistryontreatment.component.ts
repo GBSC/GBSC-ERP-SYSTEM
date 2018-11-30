@@ -14,6 +14,7 @@ import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.s
 import { ActivatedRoute } from '@angular/router';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { ToastrService } from 'ngx-toastr';
+import { ScriptLoaderService } from '../../../../app/_services/script-loader.service';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -41,7 +42,8 @@ export class BiochemistryontreatmentComponent implements OnInit {
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
-    constructor(private formBuilder: FormBuilder,
+    constructor(private _script: ScriptLoaderService,
+        private formBuilder: FormBuilder,
         private consultantService: ConsultantService,
         private patientService: PatientService,
         private treatmentService: TreatmentService,
@@ -105,6 +107,12 @@ export class BiochemistryontreatmentComponent implements OnInit {
         this.bioChemistryService.getUnits().subscribe(units => this.units = units);
 
 
+
+    }
+
+    ngAfterViewInit() {
+        this._script.loadScripts('app-validation-form-widgets',
+            ['assets/demo/default/custom/components/forms/validation/form-widgets.js']);
 
     }
 

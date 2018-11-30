@@ -152,14 +152,14 @@
                   <div class="col-sm-12">
                     <h4>Biochemistry Details</h4>
                     <dx-data-grid id="gridContainer" [dataSource]="testDetail" [allowColumnReordering]="true"
-                      [showBorders]="true">
+                      [showBorders]="true" [focusedRowEnabled]="true" [focusedRowKey]="1" (onFocusedRowChanged)="onFocusedRowChanged($event)">
 
                       <dxo-paging [enabled]="true"></dxo-paging>
                       <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
                       </dxo-editing>
 
                       <dxi-column dataField="bioChemistryTestId" caption="Discription of Test">
-                        <dxo-lookup [dataSource]="tests" displayExpr="description" valueExpr="bioChemistryTestId">
+                        <dxo-lookup [dataSource]="tests" displayExpr="name" valueExpr="bioChemistryTestId">
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="testUnitId" caption="Unit">
@@ -176,6 +176,11 @@
                   </div>
                 </div>
                 <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    {{RefRange}}
+                  </div>
+                </div>
                 <div class="row">
                   <!-- <div class="col-sm-10">
                     <div class="form-group m-form__group">

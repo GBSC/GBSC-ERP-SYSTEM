@@ -13,11 +13,11 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId" 
-              (onRowInserted)="addNewTest($event)"
-               (onRowUpdated)="UpdateTest($event)">
+              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId" (onEditorPreparing)="onEditorPreparing($event)"
+                (onRowInserted)="addNewTest($event)" (onRowUpdated)="UpdateTest($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true"
+                  [useIcons]="true">
 
                   <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
@@ -29,8 +29,9 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-
+                <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
+                <dxi-column dataField="referenceRange"></dxi-column>
               </dx-data-grid>
             </div>
           </div>

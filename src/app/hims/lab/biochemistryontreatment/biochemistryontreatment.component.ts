@@ -33,6 +33,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
     private units: TestUnit;
     private id: any;
     private bioChemistry: any;
+    private RefRange : any;
     private testDetail: BioChemistryTestDetail[];
 
     public packg: any;
@@ -132,6 +133,16 @@ export class BiochemistryontreatmentComponent implements OnInit {
             console.log(patient.partner);
             this.spouse = patient.partner;
         });
+    }
+
+    onFocusedRowChanged(e) {
+
+        var data = e.row.data;
+
+        this.bioChemistryService.getTest(data.bioChemistryTestId).subscribe(resp => {
+
+            this.RefRange = resp.referenceRange;
+        })
     }
 
     displayToast(message) {

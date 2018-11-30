@@ -23,7 +23,30 @@ export class BiochemistrytestComponent implements OnInit {
 
     addNewTest(test) {
 
-        this.bioChemistryServie.addTest(test.data);
+        this.bioChemistryServie.addTest(test.data).subscribe(resp=>console.log(resp));
+
+    }
+
+    UpdateTest(test)
+    {
+        let biotest = test.data;
+        biotest.bioChemistryTestId = test.key;
+        this.bioChemistryServie.updateTest(biotest).subscribe(resp=>console.log(resp));
+
+    }
+
+
+
+    onEditorPreparing(e) {
+
+        if (e.parentType == "filterRow" && e.dataField == "referenceRange")
+            e.cancel = true;
+
+        if (e.dataField === "referenceRange") {
+            e.editorName = "dxTextArea";
+            e.editorOptions.height = 200;
+            e.editorOptions.width = 500;
+        }
 
     }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BioChemistryService } from '../../../../core';
 import { BioChemistryTest } from '../../../../core/Models/HIMS/biochemistrytest';
+import { ScriptLoaderService } from '../../../../../../src/app/_services/script-loader.service';
 
 @Component({
     selector: 'app-biochemistrytest',
@@ -11,13 +12,19 @@ export class BiochemistrytestComponent implements OnInit {
 
     private tests: BioChemistryTest;
 
-    constructor(private bioChemistryServie: BioChemistryService) {
+    constructor(private bioChemistryServie: BioChemistryService, private _script: ScriptLoaderService) {
 
     }
 
     ngOnInit() {
 
         this.bioChemistryServie.getTests().subscribe(tests => this.tests = tests);
+
+    }
+    
+    ngAfterViewInit() {
+        this._script.loadScripts('app-validation-form-widgets',
+            ['assets/demo/default/custom/components/forms/validation/form-widgets.js']);
 
     }
 

@@ -12,6 +12,54 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
+              <form class="m-form m-form--fit m-form--label-align-right">
+              <div class="form-group m-form__group row">
+                <label for="example-text-input" class="col-2 col-form-label">
+                  Name: 
+                </label>
+                <div class="col-4">
+                  <input class="form-control m-input" type="text" value="AMH" id="example-text-input">
+                </div>
+
+                <label for="example-text-input" class="col-2 col-form-label">
+                  Description: 
+                </label>
+                <div class="col-4">
+                  <input class="form-control m-input" type="text" value="Anti Mullerian Hormone" id="example-text-input">
+                </div>
+              </div>
+              <div class="form-group m-form__group row">
+                <label for="example-text-input" class="col-2 col-form-label">
+                  Reference Range:
+                </label>
+                <div class="col-10">
+                  <textarea name="markdown" class="form-control" data-provide="markdown" rows="10"></textarea>
+                </div>
+
+              </div>
+
+
+              <div class="m-form__actions">
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-10">
+                    <button type="reset" class="btn btn-success">
+                      Submit
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+             </form>
+
+
+
+
+
+
 
               <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId" (onEditorPreparing)="onEditorPreparing($event)"
                 (onRowInserted)="addNewTest($event)" (onRowUpdated)="UpdateTest($event)">

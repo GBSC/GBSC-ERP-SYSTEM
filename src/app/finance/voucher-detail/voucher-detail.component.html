@@ -17,21 +17,21 @@
                     (onToolbarPreparing)="onToolbarPreparing($event)"
                      keyExpr="voucherId" 
                     [dataSource]="voucher" 
-                    columnWidth="auto"
-                    [columnAutoWidth]="true"
-                    [showBorders]="true"    
+                    [columnAutoWidth]="true"    
                     (onSelectionChanged)="selectionChanged($event)"
                     (onContentReady)="contentReady($event)"
-                     [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
+                     [masterDetail]="{ enabled: true, template: 'detail' }">
 
-                     <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+                     <dxo-selection mode="single"></dxo-selection>
+
                         <dxo-paging [pageSize]="7"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
                         </dxo-pager>                
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                        <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>   
+                       
+                        <!-- <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>    -->
                         <dxi-column dataField="voucherTypeId" caption="Voucher Type">
                             <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
                             </dxo-lookup>
@@ -48,7 +48,7 @@
                       </div>
 
                         <div *dxTemplate="let voucherDetail of 'detail'">
-                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true" [columnAutoWidth]="true">
+                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true">
 
                                 <dxi-column dataField="detailAccountId" caption="Detail Account">
                                     <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">

@@ -116,7 +116,7 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
-import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
+ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -135,7 +135,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
             { path: 'role', component: RoleComponent },
-
+ 
             {
                 path: 'setup',
                 children: [
@@ -335,6 +335,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'payslip', component: PayslipComponent }
                 ]
             }
+
+            
 
 
         ]

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
+import { DevExtremeModule, DxSchedulerModule ,DxDataGridModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -133,6 +133,7 @@ import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
 import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
+  
 
 
 @NgModule({
@@ -140,7 +141,9 @@ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/atte
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        DxSchedulerModule,
         DevExtremeModule,
+        DxDataGridModule,
         HttpClientModule,
         routing
     ],
@@ -289,7 +292,7 @@ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/atte
         MonthlyUserSalaryDetailComponent,
         GratuitydetailComponent, 
         AttendanceRuleDetailComponent,
-        
+         
     ],
     exports: [],
  

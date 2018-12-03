@@ -49,6 +49,7 @@
         "@angular/cli": "^6.1.1",
         "@angular/compiler-cli": "^5.2.0",
         "@angular/language-service": "^5.2.0",
+        "@types/knockout": "^3.4.60",
         "typescript": "~2.5.3"
     }
 }

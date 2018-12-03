@@ -147,7 +147,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
             { path: 'role', component: RoleComponent },
-
+ 
             {
                 path: 'setup',
                 children: [

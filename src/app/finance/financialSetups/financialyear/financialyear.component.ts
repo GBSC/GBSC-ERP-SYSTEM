@@ -17,7 +17,7 @@ export class FinancialyearComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.FinancialYearForm = this.fb.group({ 
+        this.FinancialYearForm = this.fb.group({
             StartDate: [''],
             EndDate: [''],
             IsActive: ['']
@@ -32,7 +32,7 @@ export class FinancialyearComponent implements OnInit {
         this.FinancialYearForm.reset();
     }
 
-     updatingFinancialyear(value) {
+    updatingFinancialyear(value) {
 
         this.updateFinancalyear = { ...value.oldData, ...value.newData };
     }

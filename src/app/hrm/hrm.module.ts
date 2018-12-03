@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule, DxSchedulerModule ,DxDataGridModule } from 'devextreme-angular';
+import { DevExtremeModule, DxSchedulerModule, DxButtonModule, DxDataGridModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -133,7 +133,16 @@ import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
 import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
-  
+import { ReportviewerComponent } from './reportviewer/reportviewer.component';
+import { EmployeeDetailComponent } from './Reports/employee-detail/employee-detail.component';
+import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
+import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
+import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
+import { LeaveDetailComponent } from './Reports/leave-detail/leave-detail.component'; 
+import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
+import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
+import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
+import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.component';
 
 
 @NgModule({
@@ -141,7 +150,7 @@ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/atte
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        DxSchedulerModule,
+        DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
         HttpClientModule,
@@ -290,12 +299,22 @@ import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/atte
         ViewleaverequestComponent,
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
-        GratuitydetailComponent, 
+        GratuitydetailComponent,
         AttendanceRuleDetailComponent,
-         
+        ReportviewerComponent,
+        EmployeeDetailComponent,
+        EmployeecardComponent,
+        ListOfJoinnersComponent,
+        ListOfLeaversComponent,
+        LeaveDetailComponent, 
+        InOutDurationComponent,
+        MissingentriesComponent,
+        SalarypaymentComponent,
+        MonthlyleaveComponent
+
     ],
     exports: [],
- 
+
 
 })
 export class HrmModule { }

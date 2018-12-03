@@ -116,7 +116,16 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
- import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
+import { AttendanceRuleDetailComponent } from './attendance/attendanceadmin/attendance-rule-detail/attendance-rule-detail.component';
+import { ReportviewerComponent } from './reportviewer/reportviewer.component';
+import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
+import { LeaveDetailComponent } from './Reports/leave-detail/leave-detail.component';
+import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
+import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
+import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.component';
+import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
+import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
+ 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -334,11 +343,22 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'updatemonthlysalary/:id', component: MonthlyUserSalaryComponent },
                     { path: 'payslip', component: PayslipComponent }
                 ]
-            }
-
+            },
             
-
-
+            {
+                path: 'reports',
+                children: [
+                    { path: 'employeereport', component: ReportviewerComponent },
+                    { path: 'employeecard', component: EmployeecardComponent },
+                    { path: 'leavedetail', component: LeaveDetailComponent },
+                    { path: 'joiners', component: ListOfJoinnersComponent },
+                    { path: 'leavers', component: ListOfJoinnersComponent },
+                    { path: 'in/outduration', component: InOutDurationComponent },
+                    { path: 'missingentries', component: MissingentriesComponent },
+                    { path: 'monthlyleave', component: MonthlyleaveComponent },
+                    { path: 'salarypayment', component: SalarypaymentComponent }
+                ]
+            }
         ]
     }
 ])

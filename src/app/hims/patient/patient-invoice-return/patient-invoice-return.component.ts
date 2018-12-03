@@ -15,22 +15,22 @@ import { PatientInvoiceReturnItem } from '../../../core/Models/HIMS/PatientInvoi
 export class PatientInvoiceReturnComponent implements OnInit {
 
     private ReturnForm: FormGroup;
-    private CurrentDate : Date = new Date();
-    private PurchaseDate : Date = new Date();
-    private PatientInvoiceReturnItems : PatientInvoiceReturnItem[] = [];
+    private CurrentDate: Date = new Date();
+    private PurchaseDate: Date = new Date();
+    private PatientInvoiceReturnItems: PatientInvoiceReturnItem[] = [];
 
-    private TotalGrossReturn : number = 0;
-    private TotalDiscountDeduction : number = 0;
-    private TotalNetReturn : number = 0;
+    private TotalGrossReturn: number = 0;
+    private TotalDiscountDeduction: number = 0;
+    private TotalNetReturn: number = 0;
 
-    private InvoiceId : number = null;
-    private PatientId : number = null;
+    private InvoiceId: number = null;
+    private PatientId: number = null;
 
 
-    private ReturnItem : any = {
-        Nature : '',
-        Name : '',
-        InvoiceType : '',
+    private ReturnItem: any = {
+        Nature: '',
+        Name: '',
+        InvoiceType: '',
         Description: '',
         UnitPrice: 0,
         SaleQuantity: 0,
@@ -45,13 +45,13 @@ export class PatientInvoiceReturnComponent implements OnInit {
         Remarks: '',
     };
 
-    constructor(private PatientService : PatientService, private FormBuilder: FormBuilder, private Toastr: ToastrService) {
+    constructor(private PatientService: PatientService, private FormBuilder: FormBuilder, private Toastr: ToastrService) {
         this.ReturnForm = this.FormBuilder.group({
             InvoiceType: [''],
             ReturnDate: new Date(),
             Remarks: [''],
-            SlipNumber : [''],
-            PurchaseDate : Date,
+            SlipNumber: [''],
+            PurchaseDate: Date,
             MRN: [''],
             PatientName: [''],
             SpouseName: [''],
@@ -74,17 +74,17 @@ export class PatientInvoiceReturnComponent implements OnInit {
                 this.TotalGrossReturn = 0;
                 this.TotalNetReturn = 0;
                 if (res != null) {
-                    if(res.patientInvoiceReturnId != null || res.patientInvoiceReturn != null) {
+                    if (res.patientInvoiceReturnId != null || res.patientInvoiceReturn != null) {
                         this.ReturnForm.reset();
                         this.Toastr.error("Return for selected invoice already exists");
                     } else {
                         this.InvoiceId = res.patientInvoiceId;
-                        if(res.patientInvoiceItems.length > 0) {
-                            res.patientInvoiceItems.forEach((PatientInvoiceItem : any ) => {
-                                if(PatientInvoiceItem.isPaid === true) {
-                                    let ReturnItem : any = {
-                                        Nature : PatientInvoiceItem.nature || '',
-                                        Name : PatientInvoiceItem.name || '',
+                        if (res.patientInvoiceItems.length > 0) {
+                            res.patientInvoiceItems.forEach((PatientInvoiceItem: any) => {
+                                if (PatientInvoiceItem.isPaid === true) {
+                                    let ReturnItem: any = {
+                                        Nature: PatientInvoiceItem.nature || '',
+                                        Name: PatientInvoiceItem.name || '',
                                         Description: PatientInvoiceItem.description || '',
                                         UnitPrice: PatientInvoiceItem.unitPrice || 0,
                                         SaleQuantity: PatientInvoiceItem.quantity || 0,
@@ -105,27 +105,27 @@ export class PatientInvoiceReturnComponent implements OnInit {
                             });
                         }
 
-                        let patientname : string = '';
-                        let patientmrn : string = '';
-                        let partnername : string = '';
+                        let patientname: string = '';
+                        let patientmrn: string = '';
+                        let partnername: string = '';
 
-                        if(res.patient) {
+                        if (res.patient) {
                             this.PatientId = res.patientId;
                             patientname = res.patient.fullName;
                             patientmrn = res.patient.mrn;
-                            if(res.patient.partner) {
+                            if (res.patient.partner) {
                                 partnername = res.patient.partner.fullName;
                             }
                         }
 
                         this.PurchaseDate = new Date(res.dateCreated);
-                        
+
                         this.ReturnForm.patchValue({
-                            InvoiceType : res.invoiceType || '',
-                            MRN : patientmrn,
-                            PatientName : patientname,
-                            SpouseName : partnername,
-                            NetSale : res.totalNetAmount || 0
+                            InvoiceType: res.invoiceType || '',
+                            MRN: patientmrn,
+                            PatientName: patientname,
+                            SpouseName: partnername,
+                            NetSale: res.totalNetAmount || 0
                         });
 
                         this.Toastr.success("Invoice details for slip # " + SlipNumber);
@@ -141,8 +141,8 @@ export class PatientInvoiceReturnComponent implements OnInit {
 
     UpdatingModel(event) {
         // console.log(event);
-        if(event.newData.ReturnQuantity) {
-            if(event.newData.ReturnQuantity > event.oldData.SaleQuantity) {
+        if (event.newData.ReturnQuantity) {
+            if (event.newData.ReturnQuantity > event.oldData.SaleQuantity) {
                 event.newData.ReturnQuantity = Number.parseFloat(event.oldData.SaleQuantity);
                 this.Toastr.error("Return quantity can't be greater than purchased quantity");
             }
@@ -153,36 +153,36 @@ export class PatientInvoiceReturnComponent implements OnInit {
             this.TotalDiscountDeduction += event.newData.DiscountDeductionAmount;
             this.TotalNetReturn -= event.oldData.ReturnNetAmount;
             this.TotalNetReturn += event.newData.ReturnNetAmount;
-            this.TotalGrossReturn =  this.TotalNetReturn + this.TotalDiscountDeduction;
+            this.TotalGrossReturn = this.TotalNetReturn + this.TotalDiscountDeduction;
         }
         // console.log(event.oldData, event.newData);
     }
 
     SubmitReturn(value) {
         // console.log(value);
-        let returninvoice : any = {
+        let returninvoice: any = {
             ReturnDate: new Date(value.ReturnDate).toISOString(),
             Remarks: value.Remarks,
             TotalReturnAmount: this.TotalNetReturn,
             PatientInvoiceId: this.InvoiceId,
             PatientInvoiceReturnItems: this.PatientInvoiceReturnItems
         }
-        if(this.PatientId) {
+        if (this.PatientId) {
             returninvoice.PatientId = this.PatientId;
         }
         // console.log(returninvoice);
 
-        this.PatientService.AddPatientInvoiceReturn(returninvoice).subscribe((resReturn : any) => {
+        this.PatientService.AddPatientInvoiceReturn(returninvoice).subscribe((resReturn: any) => {
             console.log(resReturn);
             this.ReturnForm.reset();
             this.PatientInvoiceReturnItems = [];
             this.TotalDiscountDeduction = 0;
             this.TotalGrossReturn = 0;
             this.TotalNetReturn = 0;
-            this.PatientService.GetPatientInvoice(this.InvoiceId).subscribe((resGetInvoice : PatientInvoice) => {
+            this.PatientService.GetPatientInvoice(this.InvoiceId).subscribe((resGetInvoice: PatientInvoice) => {
                 console.log(resGetInvoice);
                 resGetInvoice.PatientInvoiceReturnId = resReturn.patientInvoiceReturnID;
-                this.PatientService.UpdatePatientInvoice(resGetInvoice).subscribe((resUpdateInvoice : any) => {
+                this.PatientService.UpdatePatientInvoice(resGetInvoice).subscribe((resUpdateInvoice: any) => {
                     console.log(resUpdateInvoice);
                 });
             });

@@ -25,7 +25,7 @@ export class InventoryItemCategoryComponent implements OnInit {
 
     async AddItemCategory(value) {
         await this.PharmacyService.AddInventoryItemCategory(value.data).toPromise();
-        this.PharmacyService.GetInventoryItemCategories().subscribe((res : InventoryItemCategory) => {
+        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => {
             this.ItemCategories = res;
             this.UpdateInventoryItemCategoryInInventoryItemComponent.emit(this.ItemCategories);
         });

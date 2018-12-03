@@ -7,6 +7,6 @@ export class Voucher {
     ChequeNumber: string;
     Total: number;
     IsFinal: boolean;
-    VoucherTypeId : number;
-    VoucherDetails : VoucherDetail[];
+    VoucherTypeId: number;
+    VoucherDetails: VoucherDetail[];
 }

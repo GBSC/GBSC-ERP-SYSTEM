@@ -23,7 +23,7 @@ export class PayrolltypeComponent implements OnInit {
     }
 
     async updatingPayrollType(value) {
-       this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
     async updatePayrollType() {

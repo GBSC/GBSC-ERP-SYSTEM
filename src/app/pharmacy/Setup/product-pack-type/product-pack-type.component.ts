@@ -9,9 +9,9 @@ import { InventoryItemComponent } from '../inventory-item/inventory-item.compone
     styleUrls: ['./product-pack-type.component.scss']
 })
 export class ProductPackTypeComponent implements OnInit {
-    
+
     @Output() UpdatePackTypeInInventoryItemComponent = new EventEmitter<any>();
-    
+
     private PackTypes: PackType;
     private UpdatedModel: any;
 

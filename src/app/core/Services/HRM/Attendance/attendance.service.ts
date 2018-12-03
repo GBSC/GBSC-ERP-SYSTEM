@@ -139,7 +139,7 @@ export class AttendanceService {
         return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRules`).toPromise();
     }
 
-     getAttendanceRule(id) : Observable<AttendanceRule> {
+    getAttendanceRule(id): Observable<AttendanceRule> {
         return this.ApiService.get(this.baseUrl + '/GetAttendanceRule/' + id);
     }
 
@@ -147,7 +147,7 @@ export class AttendanceService {
         return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRule`, data).toPromise();
     }
 
-     updateAttendanceRule(data: AttendanceRule) {
+    updateAttendanceRule(data: AttendanceRule) {
 
         return this.ApiService.put(`${this.baseUrl}/UpdateAttendanceRule`, data);
 

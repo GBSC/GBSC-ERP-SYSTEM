@@ -143,6 +143,11 @@ import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duratio
 import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
 import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.component';
+import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
+import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
+import { MonthlyOvertimeComponent } from './Reports/monthly-overtime/monthly-overtime.component';
+import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
+import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
 
 
 @NgModule({
@@ -310,7 +315,12 @@ import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.compo
         InOutDurationComponent,
         MissingentriesComponent,
         SalarypaymentComponent,
-        MonthlyleaveComponent
+        MonthlyleaveComponent,
+        CreateAttendancerequestComponent,
+        EmployeelistComponent,
+        MonthlyOvertimeComponent,
+        UserrosterattendanceComponent,
+        ViewShiftComponent
 
     ],
     exports: [],

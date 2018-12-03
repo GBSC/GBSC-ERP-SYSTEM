@@ -8,6 +8,7 @@ import { AttendancesetupService } from '../../../../core';
 })
 export class AttendanceflagComponent implements OnInit {
 
+    public updatingModel: any;
     public attendanceflag: any;
     public flagcategory: any;
     public flagEffecttypes: any;
@@ -31,8 +32,12 @@ export class AttendanceflagComponent implements OnInit {
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
     }
 
-    async updateattendanceflag(value) {
-        await this.attendancesetupservice.updateAttendanceFlag(value);
+     updatingattendanceflag(value) {
+       this.updatingModel = {...value.oldData, ...value.newData};
+    }
+
+    async updateattendanceflag() {
+        await this.attendancesetupservice.updateAttendanceFlag(this.updatingModel);
     }
 
     async deleteattendanceflag(value) {

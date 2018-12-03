@@ -27,9 +27,13 @@ export class AssignrosterComponent implements OnInit {
         this.assignroster = await this.attendancesetupservice.getAsignRosters();
     }
 
+    async updatingAssignroster(value) {
+         
+        this.updatingModel ={...value.oldData, ...value.newData};
+    }
+
     async updateassignroster() {
         await this.attendancesetupservice.updateAsignRoster(this.updatingModel);
-        this.assignroster = await this.attendancesetupservice.getAsignRosters();
     }
 
     async deleteassignroster(value) {

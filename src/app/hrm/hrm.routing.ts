@@ -125,6 +125,9 @@ import { MissingentriesComponent } from './Reports/missingentries/missingentries
 import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.component';
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
+import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
+import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
+import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
  
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -239,7 +242,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'flagtype', component: FlagtypeComponent },
                             { path: 'flagvalue', component: FlagvalueComponent },
                             { path: 'roster', component: RosterComponent },
-                            { path: 'shift', component: ShiftComponent }
+                            { path: 'shift', component: ShiftComponent },
+                            { path: 'shifts', component: ViewShiftComponent },
+                            { path: 'updateshift/:id', component: ShiftComponent }
                         ]
                     },
                     {
@@ -259,9 +264,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         ]
                     },
                     { path: 'attendancerequest', component: AttendancerequestComponent },
+                    { path: 'create-attendance-request', component: CreateAttendancerequestComponent },
                     { path: 'official-visit-entry', component: OfficialVisitEntryComponent },
                     { path: 'overtime-entitlement', component: OvertimeEntitlementComponent },
                     { path: 'employee-overtime-entitlement', component: EmployeeOvertimeEntitlementComponent },
+                    { path: 'user-roster-attendance', component: UserrosterattendanceComponent },
                     { path: 'rostercopy', component: RostercopyComponent },
                     { path: 'rostermapping', component: RostermappingComponent },
                 ]

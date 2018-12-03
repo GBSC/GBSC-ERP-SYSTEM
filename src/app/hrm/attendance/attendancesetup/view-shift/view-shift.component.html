@@ -1,0 +1,63 @@
+
+  <div class="m-portlet">
+      <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                      Shift Scheduling
+                  </h3>
+              </div>
+          </div>
+      </div>
+      <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer"
+          keyExpr="shiftsId" 
+          [dataSource]="shift" 
+          (onSelectionChanged)="selectionChanged($event)"
+          (onContentReady)="contentReady($event)"
+          (onToolbarPreparing)="onToolbarPreparing($event)"
+          [masterDetail]="{ enabled: true, template: 'detail' }"
+          [columnAutoWidth]="true" 
+           [showBorders]="true">
+              
+          <dxo-selection mode="single"></dxo-selection>
+              <!-- <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
+                  </dxo-editing> -->
+              <dxo-paging [pageSize]="6"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+              </dxo-pager>                
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+ 
+              <dxi-column dataField="shiftTitle"></dxi-column>
+              <dxi-column dataField="startTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="endTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="graceTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="overTimeStartTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="minimumOverTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="inTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="outTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="isMultiple" dataType="boolean"></dxi-column>
+              <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+              <div *dxTemplate="let d of 'chartCellTemplate'">
+                <div class="chart-cell">
+                    <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
+                </div>
+            </div>
+
+              <div *dxTemplate="let attendanceFlag of 'detail'">
+                  <dx-data-grid [dataSource]="attendanceFlag.data.UserRosterAttendanceAttendanceFlags" [showBorders]="true" [columnAutoWidth]="true">
+                    <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                      <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                      </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
+                    <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
+                    <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
+                      </dx-data-grid>
+              </div>
+          </dx-data-grid>
+      </div>
+  </div>
+ 

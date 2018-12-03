@@ -1,5 +1,5 @@
 export class UserRosterAttendanceAttendanceFlag {
 
     attendanceFlagId: number;
-    userRosterAttendanceId: number;
+   userRosterAttendanceId: number;
 }

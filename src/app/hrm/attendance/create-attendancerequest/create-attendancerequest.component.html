@@ -1,0 +1,127 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Attendance Request
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="leaveRequestForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Requestioner:
+                  </label>
+                  <div class="col-lg-8">
+                    <select class="form-control m-input" formControlName="UserId" name="employee">
+                      <option value="" disabled selected>-- Select Employee --</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Leave Request Date:
+                  </label>
+                  <div class="col-lg-8">
+                    <dx-date-box  [value]="now"  type="date" format="dd/MM/yyyy" width="100%">
+                    </dx-date-box> 
+                  </div>
+                </div>
+              </div> 
+            </div>
+
+ 
+          </form>
+          <div class="m--space-30"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">
+                        Leave Details
+                      </h3>
+                    </div>
+                  </div>
+                </div> 
+                
+                <div class="m-section">
+                  <div class="m-section__content">
+                  <dx-data-grid id="gridContainer"
+                   [dataSource]="" 
+                  >
+                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+        
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="8"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager>
+         
+                    <dxi-column dataType="" dataField="Schedule In Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataType="" dataField="Schedule In Time" dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataType="" dataField="Schedule Out Date"  dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataType="" dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataType="" dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataType="" dataField="In Date"  dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataType="" dataField="In Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataType="" dataField="Out Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataType="" dataField="Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="" caption="Remarks"></dxi-column>
+                  </dx-data-grid>
+         </div>
+         </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m--space-50"></div>
+ 
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="m-portlet__foot m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions" style="padding:19px;">
+                  <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                      <div *ngIf="isUpdate(); else create">
+                        <button class="btn btn-primary" (click)="update(leaveRequestForm.value)">
+                            Update
+                          </button>        
+                    </div> 
+                    <ng-template #create>
+                      <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
+                        Submit
+                      </button>  
+                      <button type="reset" class="btn btn-secondary">
+                          Reset
+                        </button>
+                    </ng-template> 
+                    </div>
+                    <div class="col-lg-3"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div>

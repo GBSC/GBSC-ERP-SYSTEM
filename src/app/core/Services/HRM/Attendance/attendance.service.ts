@@ -105,9 +105,8 @@ export class AttendanceService {
 
     async updateUserRosterAttendance(data) {
 
-        let userRosterattendance = await this.getdataToUpdate(data.key, 'GetUserRosterAttendance');
-        userRosterattendance = { ...userRosterattendance, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateUserRosterAttendance`, userRosterattendance).toPromise();
+
+        return await this.ApiService.put(`${this.baseUrl}/UpdateUserRosterAttendance`, data).toPromise();
 
     }
 

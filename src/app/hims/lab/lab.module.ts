@@ -41,6 +41,7 @@ import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-re
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { BiochemistryOntreatmentReportviewerComponent } from './biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
         FreezePrepRecordsComponent,
         EmbryologyThawingRecordsComponent,
         InsemenationPrepRecordsComponent,
+        BiochemistryOntreatmentReportviewerComponent,
     ]
 })
 export class LabModule { }

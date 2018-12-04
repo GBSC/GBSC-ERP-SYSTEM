@@ -152,7 +152,9 @@
                   <div class="col-sm-12">
                     <h4>Biochemistry Details</h4>
                     <dx-data-grid id="gridContainer" [dataSource]="testDetail" [allowColumnReordering]="true"
-                      [showBorders]="true" [focusedRowEnabled]="true" [focusedRowKey]="1" (onFocusedRowChanged)="onFocusedRowChanged($event)">
+                      [showBorders]="true" [focusedRowEnabled]="true"
+                      (onFocusedRowChanging)="onFocusedRowChanging($event)" 
+                      (onFocusedRowChanged)="onFocusedRowChanged($event)">
 
                       <dxo-paging [enabled]="true"></dxo-paging>
                       <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">

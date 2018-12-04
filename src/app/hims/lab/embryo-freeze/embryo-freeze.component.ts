@@ -79,7 +79,8 @@ export class EmbryoFreezeComponent implements OnInit {
 
                                 for (let embryo of det) {
 
-                                    this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
+                                    if (embryo.fate == "Stored")
+                                        this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
                                 }
 
                             });
@@ -114,8 +115,8 @@ export class EmbryoFreezeComponent implements OnInit {
         });
     }
 
-    setValues(){
-        
+    setValues() {
+
         this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
 
             this.thawAssessment = cresp;

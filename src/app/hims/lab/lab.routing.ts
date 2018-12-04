@@ -38,6 +38,7 @@ import { InsemenationRecordsComponent } from './insemenation-records/insemenatio
 import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
+import { BiochemistryOntreatmentReportviewerComponent } from './biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -58,6 +59,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'semen-analysis', component: SemenanalysisComponent },
             { path: 'semen-analysis/:id', component: SemenanalysisComponent },
             { path: 'semen-analysis-list', component: SemensanalysislistComponent },
+            { path: 'biochemistry-ontreatment-report', component: BiochemistryOntreatmentReportviewerComponent },
             { path: 'biochemistry-ontreatment-records', component: BiochemistryOntreatmentRecordsComponent },
             { path: 'biochemistry-ontreatment', component: BiochemistryontreatmentComponent },
             { path: 'biochemistry-ontreatment/:id', component: BiochemistryontreatmentComponent },

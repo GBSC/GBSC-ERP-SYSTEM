@@ -203,6 +203,10 @@ export class PatientService {
         return this.getApptbyId;
     }
 
+    async GetAppointmentTestByAppointmentId(id) {
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentTestByAppointmentId/' + id).toPromise();
+    }
+
     GetAppointmentById(id: number): Observable<Appointment> {
         return this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + id);
     }
@@ -542,8 +546,9 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteVisitNature/' + id).toPromise();
     }
 
-    async SearchPatient(patient: Patient) {
-        this.SearchPatientbyname = await this.ApiService.post(this.API_URL + 'patients/SearchPatient', patient).toPromise();
+    SearchPatient(patient: any) {
+        let params = "mrn=" + patient.mrn + "&name=" + patient.name + "&contact=" + patient.contact;
+        return this.ApiService.get(this.API_URL + 'patients/SearchPatient?' + params);
     }
 
     SearchPatientByMrn(mrn): Observable<Patient> {
@@ -681,7 +686,7 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoice/' + id);
     }
 
-    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string) : Observable<PatientInvoice> {
+    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string): Observable<PatientInvoice> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceWithDetailsBySlipNumberForReturn/' + slipnumber);
     }
 

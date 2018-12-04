@@ -98,14 +98,14 @@ export class GeneralactionsComponent implements OnInit {
                 this.displayToastError("Please Select Consultant")
             }
             else {
-                await this.PatientServiceobj.AddVisits(this.id);
+                 await this.PatientServiceobj.AddVisits(this.id);
                 let x = this.currentconsultant.find(t => t.consultantId == value)
                 x.visitStatus = 'start';
-                this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
+                 this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
                 //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-
-                this.router.navigate(['/hims/patient/visits/' + this.id]);
+                 this.router.navigate(['/hims/patient/visits/' + this.id]);
                 console.log(x);
+                console.log(value)
             }
 
         }

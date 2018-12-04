@@ -18,7 +18,7 @@
               </dx-select-box>    -->
 
               <select class="form-control m-input ng-pristine ng-invalid ng-touched"#consultantId >
-                <option class="active" *ngFor="let x of consultant" [value]="x.consultantId">{{x.name}}</option>
+                <option class="active" *ngFor="let x of consultant" [value]="x?.consultantId || ''">{{x?.name}}</option>
               </select>
 
 

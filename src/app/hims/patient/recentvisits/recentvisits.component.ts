@@ -18,7 +18,7 @@ export class RecentvisitsComponent implements OnInit {
     visits: Visits;
     constructor(private PatientServiceobj: PatientService, public router: Router, private rout: ActivatedRoute) {
 
-    }
+    } 
 
     ngOnInit() {
         this.rout.params.subscribe(params => {
@@ -35,7 +35,7 @@ export class RecentvisitsComponent implements OnInit {
 
     async onclick(id) {
         this.router.navigate(['/hims/patient/visitdetail/' + id]);
-        //    console.log(this.visits);
+        //    console.log(this.visits449);
 
     }
 }

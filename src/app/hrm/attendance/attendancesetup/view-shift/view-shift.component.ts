@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ViewShiftComponent implements OnInit {
  
   public shiftsId: any;
+  public flagType: any;
   public shift: any;
   public attendanceflag: any; 
   public AssignRosters: any;
@@ -21,6 +22,8 @@ export class ViewShiftComponent implements OnInit {
       this.shift = await this.attendancesetupservice.getShifts();
 
       this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+     
+      this.flagType = await this.attendancesetupservice.getFlagTypes();
 
       this.AssignRosters = await this.attendancesetupservice.getAsignRosters();
 

@@ -1,5 +1,5 @@
-import { UserRosterAttendanceAttendanceFlag } from "./userRosterAttendanceAttendanceFlag";
 import { AssignRosterShift } from "./assignRosterShift";
+import { ShiftAttendanceFlag } from "./userRosterAttendanceAttendanceFlag";
 
 export class Shift {
 
@@ -19,6 +19,6 @@ export class Shift {
     outTimeShiftThreshold: Date;
     shiftHours: number;
     overTimeRate: number;
-    UserRosterAttendanceAttendanceFlags: UserRosterAttendanceAttendanceFlag[];
+    ShiftAttendanceFlags: ShiftAttendanceFlag[];
     AssignRosterShifts: AssignRosterShift[];
 }

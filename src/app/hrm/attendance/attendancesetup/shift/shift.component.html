@@ -30,7 +30,7 @@
                       <label class="">
                         Shift Hour:
                       </label>
-                      <input type="number" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
+                      <input type="number" class="form-control m-input" formControlName="ShiftHours" placeholder="00:00">
                     </div>
                   </div>
   
@@ -104,13 +104,13 @@
                             <label>
                                OverTime Rate:
                             </label>
-                            <input type="number" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
+                            <input type="number" class="form-control m-input" formControlName="OverTimeRate" placeholder="">
                           </div>
                           <div class="col-lg-6">
                             <label class="">
                              Description:
                             </label>
-                            <input type="text" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
+                            <input type="text" class="form-control m-input" formControlName="Description" placeholder="Description">
                           </div>
                         </div>
             </form>
@@ -131,11 +131,9 @@
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
                         [dataSource]="[]"
-                         keyExpr="attendanceFlagId"
+                         keyExpr="shiftAttendanceFlagId"
                          (onRowInserted)="addAttendanceFlag($event)">
-                          <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                            <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                            </dxo-popup>
+                          <dxo-editing mode="cell" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -144,12 +142,16 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager>  
-                          <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                            <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                          <dxi-column dataField="flagTypeId" caption="Flag Type">
+                            <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
                             </dxo-lookup>
                           </dxi-column>
                           <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
                           <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
+                              <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                                <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                                </dxo-lookup>
+                              </dxi-column>
                           <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
                         </dx-data-grid>
                     </div>
@@ -164,8 +166,8 @@
             <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
-                  <div class="col-lg-2"></div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
                     <button type="reset" class="btn btn-brand" (click)="addshift(ShiftForm.value)">
                       Submit
                     </button>
@@ -173,6 +175,7 @@
                       Cancel
                     </button>
                   </div>
+                  <div class="col-lg-4"></div>
                 </div>
               </div>
             </div>

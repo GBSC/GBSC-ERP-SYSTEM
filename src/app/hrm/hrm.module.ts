@@ -148,6 +148,8 @@ import { EmployeelistComponent } from './Reports/employeelist/employeelist.compo
 import { MonthlyOvertimeComponent } from './Reports/monthly-overtime/monthly-overtime.component';
 import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
+import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
+import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
 
 
 @NgModule({
@@ -320,7 +322,9 @@ import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view
         EmployeelistComponent,
         MonthlyOvertimeComponent,
         UserrosterattendanceComponent,
-        ViewShiftComponent
+        ViewShiftComponent,
+        GrossSalaryComponent,
+        LoansummaryComponent
 
     ],
     exports: [],

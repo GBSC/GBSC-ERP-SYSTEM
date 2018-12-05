@@ -6,13 +6,13 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-                Attendance Request
+                Attendance Request Header
               </h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
-          <form [formGroup]="leaveRequestForm">
+  
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
@@ -20,9 +20,9 @@
                     Requestioner:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="UserId" name="employee">
+                    <select class="form-control m-input" formControlName="UserId">
                       <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                      <option #x *ngFor="let employee of employees" [value]="employee.userId" (change)="getDataByEmployee(x)">{{employee.firstName}}</option>
                     </select>
                   </div>
                 </div>
@@ -40,9 +40,7 @@
                 </div>
               </div> 
             </div>
-
  
-          </form>
           <div class="m--space-30"></div>
           <div class="row">
             <div class="col-md-12">
@@ -51,7 +49,7 @@
                   <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                       <h3 class="m-portlet__head-text">
-                        Leave Details
+                       List
                       </h3>
                     </div>
                   </div>
@@ -59,10 +57,9 @@
                 
                 <div class="m-section">
                   <div class="m-section__content">
-                  <dx-data-grid id="gridContainer"
-                   [dataSource]="" 
-                  >
-                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                  <!-- <dx-data-grid id="gridContainer"
+                   [dataSource]="">
+                    <dxo-editing mode="cell" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -72,17 +69,17 @@
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
          
-                    <dxi-column dataType="" dataField="Schedule In Date" dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataType="" dataField="Schedule In Time" dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataType="" dataField="Schedule Out Date"  dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataType="" dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataType="" dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataType="" dataField="In Date"  dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataType="" dataField="In Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataType="" dataField="Out Date" dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataType="" dataField="Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="" caption="Remarks"></dxi-column>
-                  </dx-data-grid>
+                    <dxi-column  dataField="Schedule In Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="Schedule In Time" dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="Schedule Out Date"  dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="In Date"  dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="In Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="Out Date" dataType="date" format="shortdate"></dxi-column>
+                    <dxi-column dataField="Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="Remarks" caption="Remarks"></dxi-column>
+                  </dx-data-grid> -->
          </div>
          </div>
               </div>
@@ -91,7 +88,7 @@
 
           <div class="m--space-50"></div>
  
-          <div class="row" >
+          <!-- <div class="row" >
             <div class="col-md-12">
               <div class="m-portlet__foot m-portlet__foot--fit">
                 <div class="m-form__actions m-form__actions" style="padding:19px;">
@@ -117,7 +114,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>

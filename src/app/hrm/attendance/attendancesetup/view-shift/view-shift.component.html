@@ -1,4 +1,4 @@
-
+<div class="m-content"> 
   <div class="m-portlet">
       <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -47,17 +47,22 @@
             </div>
 
               <div *dxTemplate="let attendanceFlag of 'detail'">
-                  <dx-data-grid [dataSource]="attendanceFlag.data.UserRosterAttendanceAttendanceFlags" [showBorders]="true" [columnAutoWidth]="true">
-                    <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                      <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
-                      </dxo-lookup>
-                    </dxi-column>
-                    <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
-                    <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
-                    <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
+                  <dx-data-grid [dataSource]="attendanceFlag.data.shiftAttendanceFlags" [showBorders]="true">
+                    <dxi-column dataField="flagTypeId" caption="Flag Type">
+                        <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
+                        </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
+                      <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
+                          <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                            <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                            </dxo-lookup>
+                          </dxi-column>
+                      <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
                       </dx-data-grid>
               </div>
           </dx-data-grid>
       </div>
+  </div>
   </div>
  

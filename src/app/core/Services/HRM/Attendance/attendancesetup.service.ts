@@ -14,6 +14,11 @@ export class AttendancesetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
+    async getAsignRoster(id){
+        return await this.ApiService.get(`${this.baseUrl}/GetAssignRoster/` + id).toPromise();
+    
+    }
+
     async addAsignRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();

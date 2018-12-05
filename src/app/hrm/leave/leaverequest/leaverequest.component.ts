@@ -74,18 +74,19 @@ export class LeaverequestComponent implements OnInit {
         }
     }
 
-    async leaveRequestDetail(value) {
-        let data = value.data;
-        this.requestDetail.push(data);
-    }
-
+    
     async updatingRequestDetail(value) {
         this.updatingRequest = { ...value.oldData, ...value.newData };
     }
-
+    
     async updateRequestDetail() {
         await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
+
+     async leaveRequestDetail(value) {
+     let data = value.data;
+      this.requestDetail.push(data);
+     }
 
     async addLeaveRequest(value) {
         let request = new LeaveRequest();

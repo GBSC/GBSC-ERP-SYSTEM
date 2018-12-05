@@ -3,9 +3,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AttendancesetupService } from '../../../../core';
 import { AssignRosterShift } from '../../../../core/Models/HRM/assignRosterShift';
 import { Shift } from '../../../../core/Models/HRM/shift';
-import { UserRosterAttendanceAttendanceFlag } from '../../../../core/Models/HRM/userRosterAttendanceAttendanceFlag';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ShiftAttendanceFlag } from '../../../../core/Models/HRM/userRosterAttendanceAttendanceFlag';
 
 @Component({
     selector: 'app-shift',
@@ -16,16 +16,18 @@ export class ShiftComponent implements OnInit {
 
     public ShiftForm: FormGroup;
     public shift: any;
+    public flagCategory: any;
     public shifts: any;
+    public flagType: any;
     public attendnceFlag: any[] = [];
     public attendanceflag: any;
-    private attendanceFlag: UserRosterAttendanceAttendanceFlag[];
+    private attendanceFlag: ShiftAttendanceFlag[];
     public AssignRosters: any;
 
     @Input('shiftsId') id: number;
     
     constructor(public toastr: ToastrService, private fb: FormBuilder,
-        private activatedRoute: ActivatedRoute, public attendancesetupservice: AttendancesetupService) { }
+        private activatedRoute: ActivatedRoute, public router: Router, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 
@@ -42,15 +44,19 @@ export class ShiftComponent implements OnInit {
             MinimumOverTime: ['', Validators],
             InTimeShiftThreshold: ['', Validators],
             OutTimeShiftThreshold: [''],
-            overTimeRate: ['', Validators],
-            description: ['', Validators],
-            shiftHours: ['', Validators]
+            OverTimeRate: ['', Validators],
+            Description: ['', Validators],
+            ShiftHours: ['', Validators]
 
         });
 
         this.shift = await this.attendancesetupservice.getShifts();
 
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+        
+        this.flagType = await this.attendancesetupservice.getFlagTypes();
+
+        this.flagCategory = await this.attendancesetupservice.getFlagCategories();
 
         this.AssignRosters = await this.attendancesetupservice.getAsignRosters();
 
@@ -72,22 +78,19 @@ export class ShiftComponent implements OnInit {
     }
 
     async addAttendanceFlag(value) {
-        let data = value.data;
-        this.attendanceFlag.push(data);
-        console.log(data);
+        let data = value.data; 
+        this.attendanceFlag.push(data); 
         
     }
 
-    async addshift(value) {
-        console.log(value); 
+    async addshift(value) {  
         let shifts = new Shift();
-        shifts = { ...shifts, ...value };
-        shifts.UserRosterAttendanceAttendanceFlags = this.attendanceFlag;
-     let s =await this.attendancesetupservice.addShift(shifts);
-         console.log(value); 
-         console.log(s); 
- 
-     
+        shifts = { ...shifts, ...value }; 
+        shifts.ShiftAttendanceFlags = this.attendanceFlag;
+        console.log(shifts); 
+        await this.attendancesetupservice.addShift(shifts);  
+        this.toastr.success("Shift Added");
+        this.router.navigate(['/hrm/attendance/attendancesetup/shifts']);
     }
 
     

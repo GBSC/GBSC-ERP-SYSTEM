@@ -128,6 +128,8 @@ import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duratio
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
 import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
+import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
+import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
  
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -363,7 +365,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'in/outduration', component: InOutDurationComponent },
                     { path: 'missingentries', component: MissingentriesComponent },
                     { path: 'monthlyleave', component: MonthlyleaveComponent },
-                    { path: 'salarypayment', component: SalarypaymentComponent }
+                    { path: 'salarypayment', component: SalarypaymentComponent },
+                    { path: 'gross-salary', component: GrossSalaryComponent },
+                    { path: 'loansummary', component: LoansummaryComponent }
                 ]
             }
         ]

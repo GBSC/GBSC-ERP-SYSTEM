@@ -8,6 +8,7 @@ import { AttendanceService, EmployeeService, AttendancesetupService } from '../.
 })
 export class CreateAttendancerequestComponent implements OnInit {
 
+  public employee : any;
   public employees : any;
   
   constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
@@ -15,7 +16,15 @@ export class CreateAttendancerequestComponent implements OnInit {
 
 
   async ngOnInit() {
+    
     this.employees = await this.Employeeservice.GetAllEmployees();
   }
 
+  getDataByEmployee(a){
+    console.log(a);
+    
+    // this.Employeeservice.GetEmployee(a).subscribe(
+    //   x=> this.employee = x)
+
+  }
 }

@@ -9,11 +9,11 @@ import { InventoryItemComponent } from '../inventory-item/inventory-item.compone
     styleUrls: ['./product-type.component.scss']
 })
 export class ProductTypeComponent implements OnInit {
-    
+
     // @ViewChild(InventoryItemComponent) InventoryItemComponent : InventoryItemComponent;
 
     @Output() UpdateProductTypeInInventoryItemComponent = new EventEmitter<any>()
-    
+
     private ProductTypes: ProductType;
     private UpdatedModel: any;
 

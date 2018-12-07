@@ -8,7 +8,7 @@ declare let mLayout: any;
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-    constructor(private authService : AuthService) { }
+    constructor(private authService: AuthService) { }
 
     ngOnInit() {
     }
@@ -19,8 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     }
 
-    logout()
-    {
+    logout() {
         this.authService.logout();
     }
 

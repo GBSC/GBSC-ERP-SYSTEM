@@ -78,7 +78,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
 
         });
- 
+
     }
 
     check() {

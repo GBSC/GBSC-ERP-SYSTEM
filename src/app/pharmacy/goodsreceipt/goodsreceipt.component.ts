@@ -42,10 +42,10 @@ export class GoodsreceiptComponent implements OnInit {
     private Grn: GRN;
     private Inventories: Inventory[] = [];
 
-    private GrnItemSaveTrack : number[] = [];
+    private GrnItemSaveTrack: number[] = [];
     private isDisable = false;
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast : ToastrService) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
@@ -82,12 +82,12 @@ export class GoodsreceiptComponent implements OnInit {
     ngOnInit() {
     }
 
-    GetSelectedPurchaseOrderDetails(ponumber, keycode){
+    GetSelectedPurchaseOrderDetails(ponumber, keycode) {
         //  console.log(ponumber);
         //  console.log(keycode);
-        if(keycode.key == "Enter") {
-            this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res : PurchaseOrder) => {
-                if(res != null) {
+        if (keycode.key == "Enter") {
+            this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res: PurchaseOrder) => {
+                if (res != null) {
                     this.SelectedPurchaseOrder = res;
                     //console.log("SelectedPurchaseOrder", this.SelectedPurchaseOrder);
                     this.SelectedPurchaseOrderItems = this.SelectedPurchaseOrder.purchaseOrderItems;
@@ -150,19 +150,19 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     SubmitGRN() {
-        if(this.GrnItemSaveTrack.reduce(function(a, b) { return a + b; }, 0) === this.SelectedPurchaseOrderItems.length) {
-            var a : any = {
-                GrnDate : this.GoodReceiptNoteForm.value.GrnDate || new Date().toISOString(),
-                PurchaseOrderId : this.SelectedPurchaseOrder.purchaseOrderId,
-                Remarks : this.GoodReceiptNoteForm.value.Remarks,
-                TotalExpectedAmount : this.TotalExpectedAmount,
-                TotalPaymentAmount : this.TotalPaymentAmount,
-                TotalDifferenceAmount : this.TotalDifferenceAmount,
-                TotalExpectedQUantity : this.TotalExpectedQuantity,
-                TotalReceivedQuantity : this.TotalReceivedQuantity,
-                TotalDifferenceQuantity : this.TotalDifferenceQuantity,
-                Supplier : this.SelectedPurchaseOrder.supplier.name,
-                GrnItems : this.GrnItems
+        if (this.GrnItemSaveTrack.reduce(function(a, b) { return a + b; }, 0) === this.SelectedPurchaseOrderItems.length) {
+            var a: any = {
+                GrnDate: this.GoodReceiptNoteForm.value.GrnDate || new Date().toISOString(),
+                PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
+                Remarks: this.GoodReceiptNoteForm.value.Remarks,
+                TotalExpectedAmount: this.TotalExpectedAmount,
+                TotalPaymentAmount: this.TotalPaymentAmount,
+                TotalDifferenceAmount: this.TotalDifferenceAmount,
+                TotalExpectedQUantity: this.TotalExpectedQuantity,
+                TotalReceivedQuantity: this.TotalReceivedQuantity,
+                TotalDifferenceQuantity: this.TotalDifferenceQuantity,
+                Supplier: this.SelectedPurchaseOrder.supplier.name,
+                GrnItems: this.GrnItems
             };
 
             console.log("VarGrn", a);

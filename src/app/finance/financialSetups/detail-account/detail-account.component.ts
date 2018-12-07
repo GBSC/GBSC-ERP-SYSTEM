@@ -49,7 +49,7 @@ export class DetailAccountComponent implements OnInit {
 
     async deleteDetailaccount(value) {
 
-      await this.financeService.DeleteDetailAccount(value.key);
-  }
+        await this.financeService.DeleteDetailAccount(value.key);
+    }
 
 }

@@ -48,7 +48,7 @@ export class SubAccountComponent implements OnInit {
 
     async deleteSubaccount(value) {
 
-      await this.financeService.DeleteSubAccount(value.key);
-  }
+        await this.financeService.DeleteSubAccount(value.key);
+    }
 
 }

@@ -4,48 +4,48 @@ import { ThawAssessmentService } from '../../../../app/core/Services/HIMS/Lab/th
 import { PatientService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-embryology-thawing-records',
-  templateUrl: './embryology-thawing-records.component.html',
-  styleUrls: ['./embryology-thawing-records.component.scss']
+    selector: 'app-embryology-thawing-records',
+    templateUrl: './embryology-thawing-records.component.html',
+    styleUrls: ['./embryology-thawing-records.component.scss']
 })
 export class EmbryologyThawingRecordsComponent implements OnInit {
 
-  private patients: any;
-  private spouse: any;
-  private patient: any;
-  private tests: any;
-  private id: any;
+    private patients: any;
+    private spouse: any;
+    private patient: any;
+    private tests: any;
+    private id: any;
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  constructor(private thawAssessmentService: ThawAssessmentService,
-    private patientService: PatientService) {
+    constructor(private thawAssessmentService: ThawAssessmentService,
+        private patientService: PatientService) {
 
-    this.tests = [];
-  }
+        this.tests = [];
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.patientcb.onValueChanged.subscribe(res => {
-      this.populatePatientDate(res.component.option("value"))
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
 
-    });
-
-    this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
-
-  }
-
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-
-      this.thawAssessmentService
-        .getThawAssessmentsByPatientId(this.patient.patientId).subscribe(resp => {
-          this.tests = resp;
         });
 
-    });
-  }
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+
+            this.thawAssessmentService
+                .getThawAssessmentsByPatientId(this.patient.patientId).subscribe(resp => {
+                    this.tests = resp;
+                });
+
+        });
+    }
 
 }

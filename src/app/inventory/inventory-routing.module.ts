@@ -51,81 +51,81 @@ import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-ind
 
 const routes: Routes = [
 
-  {
-    path: '',
-    component: RootComponent,
+    {
+        path: '',
+        component: RootComponent,
 
-    children: [
-      { path: 'home', component: HomeComponent },
-      {
-        path: "setup",
         children: [
-          { path: 'area', component: AreaComponent },
-          { path: 'brand', component: BrandComponent },
-          { path: 'comission', component: ComissionComponent },
-          { path: 'customeraccount', component: CustomerAccountComponent },
-          { path: 'customerbank', component: CustomerBankComponent },
-          { path: 'pricepicklevel', component: CustomerPricePickLevelComponent },
-          { path: 'customer', component: CustomerSetupComponent },
-          { path: 'customertype', component: CustomerTypeComponent },
-          { path: 'customerwarehouse', component: CustomerWarehouseComponent },
-          { path: 'distributor', component: DistributorComponent },
-          { path: 'inventorystock', component: InventoryComponent },
-          { path: 'inventoryitem', component: InventoryItemComponent },
-          { path: 'inventoryitemcategory', component: InventoryItemCategoryComponent },
-          { path: 'itempricestructure', component: ItemPriceStructureComponent },
-          { path: 'modeofpayment', component: ModeOfPaymentComponent },
-          { path: 'packagetype', component: PackageTypeComponent },
-          { path: 'productpackcategory', component: ProductPackCategoryComponent },
-          { path: 'packsize', component: ProductPackSizeComponent },
-          { path: 'packtype', component: ProductPackTypeComponent },
-          { path: 'producttype', component: ProductTypeComponent },
-          { path: 'region', component: RegionComponent },
-          { path: 'returnreason', component: ReturnReasonComponent },
-          { path: 'salesperson', component: SalesPersonComponent },
-          { path: 'supplier', component: SupplierComponent },
-          { path: 'tax', component: TaxComponent },
-          { path: 'territory', component: TerritoryComponent },
-          { path: 'transport', component: TransportComponent },
-          { path: 'unit', component: UnitComponent }
+            { path: 'home', component: HomeComponent },
+            {
+                path: "setup",
+                children: [
+                    { path: 'area', component: AreaComponent },
+                    { path: 'brand', component: BrandComponent },
+                    { path: 'comission', component: ComissionComponent },
+                    { path: 'customeraccount', component: CustomerAccountComponent },
+                    { path: 'customerbank', component: CustomerBankComponent },
+                    { path: 'pricepicklevel', component: CustomerPricePickLevelComponent },
+                    { path: 'customer', component: CustomerSetupComponent },
+                    { path: 'customertype', component: CustomerTypeComponent },
+                    { path: 'customerwarehouse', component: CustomerWarehouseComponent },
+                    { path: 'distributor', component: DistributorComponent },
+                    { path: 'inventorystock', component: InventoryComponent },
+                    { path: 'inventoryitem', component: InventoryItemComponent },
+                    { path: 'inventoryitemcategory', component: InventoryItemCategoryComponent },
+                    { path: 'itempricestructure', component: ItemPriceStructureComponent },
+                    { path: 'modeofpayment', component: ModeOfPaymentComponent },
+                    { path: 'packagetype', component: PackageTypeComponent },
+                    { path: 'productpackcategory', component: ProductPackCategoryComponent },
+                    { path: 'packsize', component: ProductPackSizeComponent },
+                    { path: 'packtype', component: ProductPackTypeComponent },
+                    { path: 'producttype', component: ProductTypeComponent },
+                    { path: 'region', component: RegionComponent },
+                    { path: 'returnreason', component: ReturnReasonComponent },
+                    { path: 'salesperson', component: SalesPersonComponent },
+                    { path: 'supplier', component: SupplierComponent },
+                    { path: 'tax', component: TaxComponent },
+                    { path: 'territory', component: TerritoryComponent },
+                    { path: 'transport', component: TransportComponent },
+                    { path: 'unit', component: UnitComponent }
+                ]
+            },
+            {
+                path: "sales",
+                children: [
+                    { path: 'dispatchnote', component: DeliveryNoteComponent },
+                    { path: 'deliveryOrder', component: DeliveryOrderComponent },
+                    { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
+                    { path: 'salesindent', component: SalesIndentComponent },
+                    { path: 'salesindentitem', component: SalesIndentItemComponent },
+                    { path: 'salesinvoice', component: SalesInvoiceComponent },
+                    { path: 'salesorder', component: SalesOrderComponent },
+                    { path: 'salesorderitem', component: SalesOrderItemComponent },
+                    { path: 'salesreturn', component: SalesReturnComponent },
+                    { path: 'salesreturnitem', component: SalesReturnItemComponent }
+                ]
+            },
+            {
+                path: "purchase",
+                children: [
+                    { path: 'grn', component: GoodsreceiptComponent },
+                    { path: 'purchaseIndent', component: PurchaseIndentComponent },
+                    { path: 'purchaseIndentItem', component: PurchaseIndentItemComponent },
+                    { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
+                    { path: 'purchaseorder', component: PurchaseOrderComponent },
+                    { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
+                    { path: 'purchaseReturn', component: PurchaseReturnComponent },
+                    { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
+                ]
+            }
         ]
-      },
-      {
-        path: "sales",
-        children: [
-          { path: 'dispatchnote', component: DeliveryNoteComponent },
-          { path: 'deliveryOrder', component: DeliveryOrderComponent },
-          { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
-          { path: 'salesindent', component: SalesIndentComponent },
-          { path: 'salesindentitem', component: SalesIndentItemComponent },
-          { path: 'salesinvoice', component: SalesInvoiceComponent },
-          { path: 'salesorder', component: SalesOrderComponent },
-          { path: 'salesorderitem', component: SalesOrderItemComponent },
-          { path: 'salesreturn', component: SalesReturnComponent },
-          { path: 'salesreturnitem', component: SalesReturnItemComponent }
-        ]
-      },
-      {
-        path: "purchase",
-        children: [
-          { path: 'grn', component: GoodsreceiptComponent },
-          { path: 'purchaseIndent', component: PurchaseIndentComponent },
-          { path: 'purchaseIndentItem', component: PurchaseIndentItemComponent },
-          { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
-          { path: 'purchaseorder', component: PurchaseOrderComponent },
-          { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
-          { path: 'purchaseReturn', component: PurchaseReturnComponent },
-          { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
-        ]
-      }
-    ]
-  }
+    }
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class InventoryRoutingModule { }

@@ -15,12 +15,12 @@ export class BankComponent implements OnInit {
     public employee: any;
 
     constructor(public httpClient: HttpClient,
-        public dataService: SetupService,public empService: EmployeeService) { }
+        public dataService: SetupService, public empService: EmployeeService) { }
 
     async ngOnInit() {
 
         this.bank = await this.dataService.getAllBanks();
-       
+
         this.employee = await this.empService.GetAllEmployees();
     }
 

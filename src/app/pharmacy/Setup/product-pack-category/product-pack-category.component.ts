@@ -25,7 +25,7 @@ export class ProductPackCategoryComponent implements OnInit {
 
     async AddPackCategory(value) {
         await this.PharmacyService.AddPackCategory(value.data).toPromise();
-        this.PharmacyService.GetPackCategories().subscribe((res: PackCategory) => { 
+        this.PharmacyService.GetPackCategories().subscribe((res: PackCategory) => {
             this.PackCategories = res;
             this.UpdatePackCategoryInInventoryItemComponent.emit(this.PackCategories);
         });

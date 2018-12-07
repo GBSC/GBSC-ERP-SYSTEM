@@ -142,7 +142,7 @@ export class VisitdetailComponent implements OnInit {
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-                   console.log(this.visit);
+                console.log(this.visit);
 
                 // work for disable time strat
 

@@ -18,7 +18,7 @@ export class RecentvisitsComponent implements OnInit {
     visits: Visits;
     constructor(private PatientServiceobj: PatientService, public router: Router, private rout: ActivatedRoute) {
 
-    } 
+    }
 
     ngOnInit() {
         this.rout.params.subscribe(params => {

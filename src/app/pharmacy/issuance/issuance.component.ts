@@ -248,6 +248,8 @@ export class IssuanceComponent implements OnInit {
             delete t.ItemCode;
         });
 
+        console.log(this.arraydata);
+
         this.IssuanceForm.value.SalesOrderItems = this.arraydata;
         this.IssuanceForm.value.OrderAmount = this.total;
 
@@ -262,7 +264,7 @@ export class IssuanceComponent implements OnInit {
             // ContactPersonNumber = Spouse Name
             ContactPersonNumber: this.IssuanceForm.value.SpouseName,
             TotalQuantity: this.TotalQuantity,
-            SalesOrderItems: value,
+            SalesOrderItems: this.IssuanceForm.value.SalesOrderItems,
             OrderAmount: this.total,
             // AgainstLotNumber = MRN/CRN
             AgainstLotNumber: this.IssuanceForm.value.CRN
@@ -271,16 +273,15 @@ export class IssuanceComponent implements OnInit {
 
         console.log(a)
         this.PharmacyService.AddSalesOrder(a).subscribe(r => {
+            console.log(r);
+            this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
+                console.log(res);
+            });
         });
 
-        this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
-        });
-        //    this.IssuanceForm.reset();
+        this.IssuanceForm.reset();
+        this.InventoryItemForm.reset();
         this.total = 0;
-
-
-        console.log(value);
-
     }
 
 

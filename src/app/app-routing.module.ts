@@ -8,9 +8,8 @@ const routes: Routes = [
     { path: 'lab', loadChildren: './hims/lab/lab.module#LabModule' },
     // { path: 'coordination', loadChildren: './hims/coordination/coordination.module#CoordinationModule' },
     { path: 'hrm', loadChildren: './hrm/hrm.module#HrmModule' },
-    // { path: 'inventorysystem', loadChildren: './Inventorysystem/Inventorysystem.module#InventorySystemModule' },
+    { path: 'inventory', loadChildren: './inventory/inventory.module#InventoryModule' },
     { path: 'pharmacy', loadChildren: './pharmacy/pharmacy.module#PharmacyModule' },
-    
 ];
 
 

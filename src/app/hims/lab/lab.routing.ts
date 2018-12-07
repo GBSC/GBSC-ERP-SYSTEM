@@ -44,7 +44,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
-        path: 'lab',
+        path: '',
         component: RootComponent,
         canActivate: [AuthGuardService, ModuleGuardService],
         children: [

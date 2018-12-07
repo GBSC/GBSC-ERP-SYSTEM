@@ -18,6 +18,15 @@ import { ClinicalrecordComponent } from './hims/coordination/clinicalrecord/clin
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ClinicalRecordsListComponent } from './hims/coordination/clinical-records-list/clinical-records-list.component';
+import { PharmacyModule } from './pharmacy/pharmacy.module';
+import { CoreModule } from './core/core.module';
+import { PatientModule } from './hims/patient/patient.module';
+import { LabModule } from './hims/lab/lab.module';
+import { FinanceModule } from './finance/finance.module';
+import { SuperadminModule } from './superadmin/superadmin.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { HrmModule } from './hrm/hrm.module';
+import { CoordinationRoutingModule } from './hims/coordination/coordination-routing.module';
 
 
 
@@ -41,11 +50,20 @@ import { ClinicalRecordsListComponent } from './hims/coordination/clinical-recor
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        ThemeRoutingModule,
         FormsModule,
         ReactiveFormsModule,
         DevExtremeModule,
-        HttpClientModule
+        HttpClientModule,
+
+        PharmacyModule,
+        CoreModule,
+        PatientModule,
+        LabModule,
+        FinanceModule,
+        SuperadminModule,
+        DashboardModule,
+        HrmModule,
+        CoordinationRoutingModule
     ],
     providers: [{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
     { provide: LocationStrategy, useClass: HashLocationStrategy },

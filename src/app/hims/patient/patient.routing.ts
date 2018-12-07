@@ -38,59 +38,68 @@ import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
-import {  PatientInvoiceReturnComponent} from './patient-invoice-return/patient-invoice-return.component';
+import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-invoice-return.component';
 import { InvoiceReturnViewComponent } from './invoice-return-view/invoice-return-view.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'hims/patient',
+        path: '',
         component: RootComponent,
         // canActivate: [AuthGuardService, ModuleGuardService],
         children: [
 
-            { path: 'updatepatient/:id', component: RegistrationComponent },
-            { path: '', component: HomeComponent },
-            { path: 'home', component: HomeComponent },
-            { path: 'registration', component: RegistrationComponent },
-            { path: 'profile/:id', component: ProfileComponent },
-            { path: 'diagnoses', component: DiagnosesComponent },
-            { path: 'recentvisits', component: RecentvisitsComponent },
-            { path: 'latestobservation', component: LatestobservationComponent },
-            { path: 'allergies', component: AllergiesComponent },
-            { path: 'vitals', component: VitalsComponent },
-            { path: 'appointments', component: AppointmentsComponent },
-            { path: 'patientvitals/:id', component: PatientvitalsComponent },
-            { path: 'admitinpatient', component: AdmitinpatientComponent },
-            { path: 'visitnote', component: VisitnoteComponent },
-            { path: 'visits/:id', component: VisitsComponent },
-            { path: 'appointmentsblock', component: AppointmentsblockComponent },
-            { path: 'findpatient', component: FindPatientComponent },
-            { path: 'appointmentschedule', component: AppointmentscheduleComponent },
-            { path: 'visitdetail/:id', component: VisitdetailComponent },
-            { path: 'reports', component: ReportsComponent },
-            { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
-            { path: 'paymentreceipt', component: PaymentreceiptComponent },
-            { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
-            { path: 'activevisits', component: ActiveVisitsComponent },
-            { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
-            { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
-            
-            // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
-            // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
-                path: "setup",
+                path: 'patient',
                 children: [
-                    { path: 'testcategory', component: TestCategoryComponent },
-                    { path: 'testtype', component: TestTypeComponent },
-                    { path: 'test', component: HimsSetupTestComponent },
-                    { path: 'diagnose', component: DiagnosisComponent },
-                    { path: 'reference', component: PatientReferenceComponent },
-                    { path: 'consultant', component: ConsultantComponent },
-                    { path: 'package', component: PackageComponent },
-                    { path: 'visitnature', component: VisitnatureComponent }
+
+                    { path: 'updatepatient/:id', component: RegistrationComponent },
+                    { path: '', component: HomeComponent },
+                    { path: 'home', component: HomeComponent },
+                    { path: 'registration', component: RegistrationComponent },
+                    { path: 'profile/:id', component: ProfileComponent },
+                    { path: 'diagnoses', component: DiagnosesComponent },
+                    { path: 'recentvisits', component: RecentvisitsComponent },
+                    { path: 'latestobservation', component: LatestobservationComponent },
+                    { path: 'allergies', component: AllergiesComponent },
+                    { path: 'vitals', component: VitalsComponent },
+                    { path: 'appointments', component: AppointmentsComponent },
+                    { path: 'patientvitals/:id', component: PatientvitalsComponent },
+                    { path: 'admitinpatient', component: AdmitinpatientComponent },
+                    { path: 'visitnote', component: VisitnoteComponent },
+                    { path: 'visits/:id', component: VisitsComponent },
+                    { path: 'appointmentsblock', component: AppointmentsblockComponent },
+                    { path: 'findpatient', component: FindPatientComponent },
+                    { path: 'appointmentschedule', component: AppointmentscheduleComponent },
+                    { path: 'visitdetail/:id', component: VisitdetailComponent },
+                    { path: 'reports', component: ReportsComponent },
+                    { path: 'viewallappoinment', component: ViewallAppointmetsComponent },
+                    { path: 'paymentreceipt', component: PaymentreceiptComponent },
+                    { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
+                    { path: 'activevisits', component: ActiveVisitsComponent },
+                    { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
+                    { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
+
+                    // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
+                    // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
+                    {
+                        path: "setup",
+                        children: [
+                            { path: 'testcategory', component: TestCategoryComponent },
+                            { path: 'testtype', component: TestTypeComponent },
+                            { path: 'test', component: HimsSetupTestComponent },
+                            { path: 'diagnose', component: DiagnosisComponent },
+                            { path: 'reference', component: PatientReferenceComponent },
+                            { path: 'consultant', component: ConsultantComponent },
+                            { path: 'package', component: PackageComponent },
+                            { path: 'visitnature', component: VisitnatureComponent }
+                        ]
+                    }
                 ]
             }
+
         ]
+
     }
+
 ]);

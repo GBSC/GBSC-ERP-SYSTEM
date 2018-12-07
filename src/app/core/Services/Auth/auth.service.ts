@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Injectable()
-export class AccountService {
+export class AuthService {
     public accessibleModules: any = ['patient'];
     private readonly API_URL = 'authentication/api/auth/login';
     private loggedInUser: any;
@@ -72,7 +72,6 @@ export class AccountService {
     getAvailableModules() {
         return [
             { module: 'SystemAdministration', route: 'systemadministration' },
-            { module: 'Inventory System', route: 'inventorysystem' },
             { module: 'Human Resource Management', route: 'hrm' },
             { module: 'Hospital Management System', route: 'hims/patient' },
             { module: 'Inventory Management System', route: 'inventorysystem' },

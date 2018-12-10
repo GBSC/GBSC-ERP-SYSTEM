@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
     }
-    
+
     ngAfterViewInit() {
 
         mLayout.initAside();

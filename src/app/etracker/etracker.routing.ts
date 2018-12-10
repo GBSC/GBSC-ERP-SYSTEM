@@ -5,18 +5,18 @@ import { AuthGuardService } from '../core';
 import { LocatorComponent } from './locator/locator.component';
 
 const routes: Routes = [
-  {
-    path: '', component: RootComponent, 
-    canActivate: [AuthGuardService],
-    children: [
-      { path: 'locator', component: LocatorComponent }
-    ]
-  }
+    {
+        path: '', component: RootComponent,
+        canActivate: [AuthGuardService],
+        children: [
+            { path: 'locator', component: LocatorComponent }
+        ]
+    }
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class ETrackerRoutingModule { }

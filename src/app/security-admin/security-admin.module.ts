@@ -15,24 +15,24 @@ import { CityComponent } from './city/city.component';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SecurityRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule
-  ],
-  declarations: [
-    RootComponent,
-    MenuComponent,
-    CountryComponent,
-    CityComponent,
-    BranchComponent,
-    DepartmentComponent,
-    RolesandprivilegesComponent,
-    CompanyComponent 
-  ]
+    imports: [
+        CommonModule,
+        SecurityRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule
+    ],
+    declarations: [
+        RootComponent,
+        MenuComponent,
+        CountryComponent,
+        CityComponent,
+        BranchComponent,
+        DepartmentComponent,
+        RolesandprivilegesComponent,
+        CompanyComponent
+    ]
 })
 export class SecurityAdminModule { }

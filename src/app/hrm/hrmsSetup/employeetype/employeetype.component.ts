@@ -11,7 +11,9 @@ import { SetupService } from '../../../core';
     styleUrls: ['./employeetype.component.css']
 })
 export class EmployeeTypes implements OnInit {
+    public updatingModel: any;
     public emptype: any;
+    
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
@@ -20,18 +22,21 @@ export class EmployeeTypes implements OnInit {
     }
 
 
-    addemptype(emptype) {
-        this.dataService.addEmployeeType(emptype.data);
-        this.emptype = this.dataService.getAllEmployeeTypes();
+    async addemptype(emptype) {
+        await this.dataService.addEmployeeType(emptype.data);
+        this.emptype = await this.dataService.getAllEmployeeTypes();
     }
 
-    Updateemptype(emptype) {
-        this.dataService.updateEmployeeType(emptype);
-
+    Updatingemptype(value) {
+        this.updatingModel = {...value.oldData, ...value.newData};
     }
 
-    deleteEType(emptype) {
-        this.dataService.DeleteEmployeeType(emptype.key);
+    async Updateemptype() {
+        await this.dataService.updateEmployeeType(this.updatingModel);
+    }
+
+    async deleteEType(emptype) {
+        await this.dataService.DeleteEmployeeType(emptype.key);
 
     }
 

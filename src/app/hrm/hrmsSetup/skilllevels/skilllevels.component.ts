@@ -10,29 +10,30 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SkillLevelsComponent implements OnInit {
 
-
-
     public skill: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
-
-
-
+    public updatingSkill: any;
+ 
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
+ 
     async ngOnInit() {
         this.skill = await this.dataService.getAllSkillLevels();
     }
 
-    addNewskill(slevel) {
-        this.dataService.addSkillLevel(slevel.data);
-        this.skill = this.dataService.getAllSkillLevels();
+    async addNewskill(slevel) {
+        await this.dataService.addSkillLevel(slevel.data);
+        this.skill = await this.dataService.getAllSkillLevels();
     }
 
-    Editskill(skill) {
-        this.dataService.updateSkillLevel(skill);
-    }
+     skillEditing(value) {
+        this.updatingSkill= {...value.oldData, ...value.newData};
+       }
+   
+       async Editskill() {
+        await this.dataService.updateSkillLevel(this.updatingSkill);
+      }
 
-    deleteskill(skillevel) {
-        this.dataService.DeleteSkillLevel(skillevel.key);
+      async deleteskill(skillevel) {
+        await this.dataService.DeleteSkillLevel(skillevel.key);
     }
 
 }

@@ -32,10 +32,8 @@ export class SetupService {
     }
 
 
-    async updateBank(data) {
-        let bank = await this.getdataToUpdate(data.key, 'GetBank');
-        bank = { ...bank, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateBank`, bank).toPromise();
+    async updateBank(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateBank`, data).toPromise();
 
     }
 
@@ -55,11 +53,8 @@ export class SetupService {
 
     }
 
-    async updateEmployeeType(data) {
-
-        let emptype = await this.getdataToUpdate(data.key, 'GetEmployeeType');
-        emptype = { ...emptype, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, emptype).toPromise();
+    async updateEmployeeType(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, data).toPromise();
     }
 
     async DeleteEmployeeType(id) {
@@ -75,12 +70,8 @@ export class SetupService {
         await this.ApiService.post(`${this.hrUrl}/AddFunction`, data).toPromise();
     }
 
-    async updatefunction(data) {
-
-        let funct = await this.getdataToUpdate(data.key, 'GetFunction');
-        funct = { ...funct, ...data.data }
-
-        return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, funct).toPromise();
+    async updatefunction(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, data).toPromise();
     }
 
     async Deletefunction(id) {
@@ -120,10 +111,8 @@ export class SetupService {
     }
 
     async updateEmployeeStatus(data) {
-
-        let estatus = await this.getdataToUpdate(data.key, 'GetEmployeeStatus');
-        estatus = { ...estatus, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, estatus).toPromise();
+ 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, data).toPromise();
     }
 
     async DeleteEmployeeStatus(id) {
@@ -138,11 +127,8 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
     }
 
-    async updateReligion(data) {
-
-        let rlg = await this.getdataToUpdate(data.key, 'GetReligion');
-        rlg = { ...rlg, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateReligion`, rlg).toPromise();
+    async updateReligion(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateReligion`, data).toPromise();
     }
 
     async DeleteReligion(id) {
@@ -151,9 +137,9 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-    getAllDegrees() {
+    async getAllDegrees() {
 
-        return this.ApiService.get(`${this.hrUrl}/GetDegrees`);
+        return await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
     }
 
     // DEMO ONLY, you can find working methods below
@@ -161,12 +147,8 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
     }
 
-    async updateDegree(data) {
-
-        let deg = await this.getdataToUpdate(data.key, 'GetDegree');
-        deg = { ...deg, ...data.data }
-
-        return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, deg).toPromise();
+    async updateDegree(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, data).toPromise();
 
     }
 
@@ -192,9 +174,7 @@ export class SetupService {
 
     async updateDesignation(data) {
 
-        let desg = await this.getdataToUpdate(data.key, 'GetDesignation');
-        desg = { ...desg, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateDesignation`, desg).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDesignation`, data).toPromise();
     }
 
     async DeleteDesignation(id) {
@@ -217,10 +197,8 @@ export class SetupService {
 
 
     async updateManagementLevel(data) {
-
-        let mlevel = await this.getdataToUpdate(data.key, 'GetManagementLevel');
-        mlevel = { ...mlevel, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, mlevel).toPromise();
+ 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, data).toPromise();
     }
 
     async DeleteManagementLevel(id) {
@@ -239,12 +217,8 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
     }
 
-    async updateGroup(data) {
-
-        let group = await this.getdataToUpdate(data.key, 'GetGroup');
-        group = { ...group, ...data.data }
-
-        return await this.ApiService.put(`${this.hrUrl}/UpdateGroup`, group).toPromise();
+    async updateGroup(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateGroup`, data).toPromise();
     }
 
     async DeleteGroup(id) {
@@ -265,10 +239,7 @@ export class SetupService {
     }
 
     async updateCostCenter(data) {
-
-        let cc = await this.getdataToUpdate(data.key, 'GetCostCenter');
-        cc = { ...cc, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateCostCenter`, cc).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateCostCenter`, data).toPromise();
     }
 
     async DeleteCostCenter(id) {
@@ -311,9 +282,7 @@ export class SetupService {
 
     async updateGazettedHolidays(data) {
 
-        let hd = await this.getdataToUpdate(data.key, 'GetHoliday');
-        hd = { ...hd, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateHoliday`, hd).toPromise();
+        return await this.ApiService.put(`${this.hrUrl}/UpdateHoliday`, data).toPromise();
     }
 
     async DeleteGazettedHolidays(id) {
@@ -369,11 +338,8 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddUniversity`, data).toPromise();
     }
 
-    async updateuniversity(data) {
-
-        let uni = await this.getdataToUpdate(data.key, 'GetUniversity');
-        uni = { ...uni, ...data.data }
-        return await this.ApiService.put(`${this.hrUrl}/UpdateUniversity`, uni).toPromise();
+    async updateuniversity(data) { 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateUniversity`, data).toPromise();
     }
 
     async Deleteuniversity(id) {

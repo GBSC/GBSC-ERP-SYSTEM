@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SetupService } from '../../../core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReligionComponent implements OnInit {
 
     public religion: any;
+    public modelUpdating: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
@@ -20,17 +20,21 @@ export class ReligionComponent implements OnInit {
     }
 
 
-    addNewreligion(religon) {
-        this.dataService.addReligion(religon.data);
-        this.religion = this.dataService.getAllReligions();
+    async addNewreligion(religon) {
+        await this.dataService.addReligion(religon.data);
+        this.religion = await this.dataService.getAllReligions();
     }
 
-    updatereligion(religon) {
-        this.dataService.updateReligion(religon);
+    updatingreligion(value) {
+        this.modelUpdating= {...value.oldData, ...value.newData};
+    }
+    
+    async updatereligion() {
+        await this.dataService.updateReligion(this.modelUpdating);
     }
 
-    deletereligion(religon) {
-        this.dataService.DeleteReligion(religon.key);
+    async deletereligion(religon) {
+        await this.dataService.DeleteReligion(religon.key);
     }
 
 }

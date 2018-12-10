@@ -12,6 +12,7 @@ export class DesignationComponent implements OnInit {
 
 
     public designatn: any;
+    public updatingModel: any;
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
@@ -21,20 +22,24 @@ export class DesignationComponent implements OnInit {
     }
 
 
-    addDesignation(desg) {
+    async addDesignation(desg) {
 
-        this.dataService.addDesignation(desg.data);
-        this.designatn = this.dataService.getAllDesignations();
+        await this.dataService.addDesignation(desg.data);
+        this.designatn = await this.dataService.getAllDesignations();
     }
 
-    EditDesignation(desig) {
+    EditingDesignation(value) {
 
-        this.dataService.updateDesignation(desig);
+        this.updatingModel = {...value.oldData, ...value.newData};
     }
 
+    async EditDesignation() {
 
-    deleteDesignation(dsg) {
+        await this.dataService.updateDesignation(this.updatingModel);
+    }
+ 
+    async deleteDesignation(dsg) {
 
-        this.dataService.DeleteDesignation(dsg.key);
+        await this.dataService.DeleteDesignation(dsg.key);
     }
 }

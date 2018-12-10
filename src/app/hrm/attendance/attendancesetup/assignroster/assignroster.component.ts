@@ -10,11 +10,12 @@ import { DxTreeViewComponent } from 'devextreme-angular';
 })
 export class AssignrosterComponent implements OnInit {
     @ViewChild(DxTreeViewComponent) treeView;
+    
     public updatingModel: any;
+    public shifts: any;
     public employee: any;
     popupVisible = false;
-    public assignrosters: any;
-    treeBoxValue: string[];
+    public assignrosters: any; 
     public rosterAsign: any;
     public roster: any;
     selectedRows: number[];
@@ -34,6 +35,8 @@ export class AssignrosterComponent implements OnInit {
         this.roster = await this.attendancesetupservice.getRosters();
         
         this.employee = await this.empservice.GetAllEmployees();
+       
+        this.shifts = await this.attendancesetupservice.getShifts();
 
     }
 

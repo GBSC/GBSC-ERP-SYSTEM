@@ -9,9 +9,10 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./managementlevels.component.css']
 })
 export class ManagementLevelsComponent implements OnInit {
-
-
+    
     public managlevel: any;
+    public modelUpdating: any;
+
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
@@ -19,19 +20,21 @@ export class ManagementLevelsComponent implements OnInit {
     }
 
 
-    addNewManagementLevels(mnglevel) {
+   async addNewManagementLevels(mnglevel) {
 
-        this.dataService.addManagementLevel(mnglevel.data);
-        this.managlevel = this.dataService.getAllManagementlevels();
+        await this.dataService.addManagementLevel(mnglevel.data);
+        this.managlevel = await this.dataService.getAllManagementlevels();
     }
 
-    EditManagementLevel(manglevel) {
-
-        this.dataService.updateManagementLevel(manglevel);
+    updatingMngLevel(value) {
+        this.modelUpdating= {...value.oldData, ...value.newData};
     }
 
-    deleteManagementLevel(mng) {
+    async EditManagementLevel() {
+        await this.dataService.updateManagementLevel(this.modelUpdating);
+    }
 
-        this.dataService.DeleteManagementLevel(mng.key);
+    async deleteManagementLevel(mng) {
+       await this.dataService.DeleteManagementLevel(mng.key);
     }
 }

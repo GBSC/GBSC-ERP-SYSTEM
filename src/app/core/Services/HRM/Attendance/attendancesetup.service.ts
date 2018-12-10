@@ -223,7 +223,7 @@ export class AttendancesetupService {
 
      getShift(id): Observable<Shift> {
 
-        return this.ApiService.get(this.baseUrl + '/GetShifts' + id);
+        return this.ApiService.get(this.baseUrl + '/GetShift/' + id);
     }
 
     async addShift(data) {

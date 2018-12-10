@@ -13,13 +13,12 @@ import { ShiftAttendanceFlag } from '../../../../core/Models/HRM/userRosterAtten
     styleUrls: ['./shift.component.scss']
 })
 export class ShiftComponent implements OnInit {
-
     public ShiftForm: FormGroup;
     public shift: any;
     public flagCategory: any;
     public shifts: any;
     public flagType: any;
-    public attendnceFlag: any[] = [];
+    public Flag: any[] = [];
     public attendanceflag: any;
     private attendanceFlag: ShiftAttendanceFlag[];
     public AssignRosters: any;
@@ -28,7 +27,7 @@ export class ShiftComponent implements OnInit {
     
     constructor(public toastr: ToastrService, private fb: FormBuilder,
         private activatedRoute: ActivatedRoute, public router: Router, public attendancesetupservice: AttendancesetupService) { }
-
+        
     async ngOnInit() {
 
         this.attendanceFlag = [];
@@ -63,15 +62,16 @@ export class ShiftComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
         });
+        
         if (this.isUpdate() === true) {
             this.attendancesetupservice.getShift(this.id).subscribe(resp => {
                 this.shifts = resp;
-                let a = this.shifts.UserRosterAttendanceAttendanceFlags;
-                // this.attendnceFlag = a.filter(b => {
-                //     delete b.leaveRequestDetailId;
-                //     delete b.leaveRequestId;
-                //     return b;
-                // });
+                let a = this.shifts.shiftAttendanceFlags;
+                this.Flag = a.filter(b => {
+                    delete b.shiftAttendanceFlagId;
+                    delete b.shiftsId;
+                    return b;
+                });
                 this.patchValues(this.shifts);
             });
         }
@@ -109,7 +109,7 @@ export class ShiftComponent implements OnInit {
 
     async update(value) {
         value.shiftsId = this.id;
-        value.UserRosterAttendanceAttendanceFlags = this.attendnceFlag;
+        value.shiftAttendanceFlags = this.Flag;
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
             this.toastr.success("Shift Updated");
             // this.router.navigate(['/hrm/leave/leaverequests']);
@@ -137,7 +137,10 @@ export class ShiftComponent implements OnInit {
             OverTimeStartTime:  shift.overTimeStartTime,
             MinimumOverTime:      shift.minimumOverTime,
             InTimeShiftThreshold:   shift.inTimeShiftThreshold,
-            OutTimeShiftThreshold:  shift.outTimeShiftThreshold
+            OutTimeShiftThreshold:  shift.outTimeShiftThreshold,
+            OverTimeRate:  shift.OverTimeRate,
+            Description:  shift.Description,
+            ShiftHours:  shift.ShiftHours
 
         })
 

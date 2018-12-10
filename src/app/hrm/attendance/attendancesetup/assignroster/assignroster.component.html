@@ -34,7 +34,11 @@
                 <dxi-column dataField="rosterId" caption="Roster">
                     <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
                     </dxo-lookup> 
-                    </dxi-column>     
+                    </dxi-column> 
+                    <dxi-column dataField="shiftsId" caption="Shift">
+                      <dxo-lookup [dataSource]="shifts" displayExpr="shiftTitle" valueExpr="shiftsId">
+                      </dxo-lookup> 
+                      </dxi-column>     
                     <dxi-column caption="Employee" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
                     <div *dxTemplate="let d of 'chartCellTemplate'">
                       <div class="chart-cell">

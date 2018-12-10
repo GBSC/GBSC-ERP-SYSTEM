@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SetupService, EmployeeService } from '../../../core';
+import { SetupService, EmployeeService, HrmsService } from '../../../core';
 
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,6 +19,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public groups: any;
     public managementlevel: any;
     public employeestatus: any;
+    public departments: any;
 
     @Input('employeeId') id: number;
 
@@ -27,7 +28,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, private hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
             ManagementLevelId: [''],
@@ -35,6 +36,7 @@ export class EmployeeCompanyComponent implements OnInit {
             EmployeeStatusId: [''],
             EmployeeTypeId: [''],
             DesignationId: [''],
+            // DepartmentId: [''],
             ContractStartDate: [''],
             ContractEndDate: [''],
             AppointmentDate: [''],
@@ -53,6 +55,8 @@ export class EmployeeCompanyComponent implements OnInit {
     async ngOnInit() {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
+        
+        this.departments = await this.hrmService.getAllDepartments();
 
         this.designation = await this.SetupServiceobj.getAllDesignations();
 

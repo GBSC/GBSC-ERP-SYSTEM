@@ -10,29 +10,32 @@ import { SetupService } from '../../../core';
 export class EmployeeStatuscomponent implements OnInit {
 
     public empstatus: any;
+    public modelUpdating: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-
         this.empstatus = await this.dataService.getEmployeeStatus();
     }
 
 
-    addNewempstatus(empstatus) {
-        this.dataService.addEmployeeStatus(empstatus.data);
-        this.empstatus = this.dataService.getEmployeeStatus();
+    async addNewempstatus(empstatus) {
+        await this.dataService.addEmployeeStatus(empstatus.data);
+        this.empstatus = await this.dataService.getEmployeeStatus();
     }
 
-    EmpstatusEdit(estatus) {
-        this.dataService.updateEmployeeStatus(estatus);
+    EditingEmpstatus(value) {
+        this.modelUpdating = {...value.oldData, ...value.newData};    
     }
 
-    deleteestatus(empstats) {
+    async EmpstatusEdit(estatus) {
+        await this.dataService.updateEmployeeStatus(this.modelUpdating);
+    }
 
-        this.dataService.DeleteEmployeeStatus(empstats.key);
+    async deleteestatus(empstats) {
+        await this.dataService.DeleteEmployeeStatus(empstats.key);
     }
 
 }

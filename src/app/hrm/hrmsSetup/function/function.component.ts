@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FunctionComponent implements OnInit {
     public func: any;
+    public updatingModel: any;
 
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
@@ -19,18 +20,21 @@ export class FunctionComponent implements OnInit {
     }
 
 
-    addNewfunction(func) {
-        this.dataService.addFunction(func.data);
-        this.func = this.dataService.getAllFunctions();
+    async addNewfunction(func) {
+        await this.dataService.addFunction(func.data);
+        this.func = await this.dataService.getAllFunctions();
     }
 
-    Editfunction(fun) {
-
-        this.dataService.updatefunction(fun);
+    functionEditing(value) {
+       this.updatingModel = {...value.oldData, ...value.newData};
+    }
+  
+    async Editfunction() {
+       await this.dataService.updatefunction(this.updatingModel);
     }
 
-    deletefunc(fnc) {
-        this.dataService.Deletefunction(fnc.key);
+    async deletefunc(fnc) {
+        await this.dataService.Deletefunction(fnc.key);
     }
 
 }

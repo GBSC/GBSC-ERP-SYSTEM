@@ -107,6 +107,14 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
+                  <a class="m-nav__link" href="#fundsetup" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Fund Setup
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
                   <a class="m-nav__link" href="#gratuityslab" data-toggle="tab">
                     <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                     <span class="m-nav__link-text">
@@ -237,10 +245,8 @@
                     <dx-data-grid id="gridContainer" [dataSource]="allowance" keyExpr="allowanceId" (onRowInserted)="addallowance($event)" (onRowUpdated)="updateallowance()"
                       (onRowUpdating)="updatingallowance($event)" (onRowRemoved)="deleteallowance($event)">
 
-                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                        <dxo-popup title="Allowance" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                        </dxo-popup>
+                      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+ 
                       </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -293,6 +299,9 @@
           </div>
           <div class="tab-pane" id="frequency">
             <app-frequency></app-frequency>
+          </div>
+          <div class="tab-pane" id="fundsetup">
+            <app-fundsetup></app-fundsetup>
           </div>
 
           <div class="tab-pane" id="gratuitytype">

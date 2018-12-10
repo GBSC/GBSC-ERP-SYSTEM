@@ -245,8 +245,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'flagvalue', component: FlagvalueComponent },
                             { path: 'roster', component: RosterComponent },
                             { path: 'shift', component: ShiftComponent },
-                            { path: 'shifts', component: ViewShiftComponent },
-                            { path: 'updateshift/:id', component: ShiftComponent }
+                            { path: 'updateshift/:id', component: ShiftComponent },
+                            { path: 'shifts', component: ViewShiftComponent }
                         ]
                     },
                     {

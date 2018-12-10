@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="m-portlet__body">
-  
+         <form [formGroup]="attendancerequestForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
@@ -20,9 +20,9 @@
                     Requestioner:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="UserId">
+                    <select #e class="form-control m-input" (change)="GetUserattendance(e.value)" formControlName="UserId">
                       <option value="" disabled selected>-- Select Employee --</option>
-                      <option #x *ngFor="let employee of employees" [value]="employee.userId" (change)="getDataByEmployee(x)">{{employee.firstName}}</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
                     </select>
                   </div>
                 </div>
@@ -31,16 +31,17 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
-                    Leave Request Date:
+                     Request Date:
                   </label>
                   <div class="col-lg-8">
-                    <dx-date-box  [value]="now"  type="date" format="dd/MM/yyyy" width="100%">
+                    <dx-date-box  [value]="now"  type="date" format="dd/MM/yyyy" formControlName="AttendanceDate" width="100%">
                     </dx-date-box> 
                   </div>
                 </div>
               </div> 
-            </div>
- 
+            </div> 
+          </form>
+
           <div class="m--space-30"></div>
           <div class="row">
             <div class="col-md-12">
@@ -55,11 +56,13 @@
                   </div>
                 </div> 
                 
-                <div class="m-section">
-                  <div class="m-section__content">
-                  <!-- <dx-data-grid id="gridContainer"
-                   [dataSource]="">
-                    <dxo-editing mode="cell" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+            
+                  <dx-data-grid id="gridContainer"
+                   [dataSource]="currentUserAttendance" 
+                   (onRowUpdating)="updatingattendance($event)"
+                   (onRowUpdated)="updateuserRosterattendance()" 
+                    [showBorders]="true">
+                    <dxo-editing mode="cell" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -69,19 +72,18 @@
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
          
-                    <dxi-column  dataField="Schedule In Date" dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataField="Schedule In Time" dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="Schedule Out Date"  dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column  dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
+                    <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
+                     <dxi-column dataField="attendanceDate"  dataType="date" format="shortdate"></dxi-column>
+                    <!--<dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
                     <dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
                     <dxi-column dataField="In Date"  dataType="date" format="shortdate"></dxi-column>
                     <dxi-column dataField="In Time"  dataType="datetime" format="shorttime"></dxi-column>
                     <dxi-column dataField="Out Date" dataType="date" format="shortdate"></dxi-column>
                     <dxi-column dataField="Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="Remarks" caption="Remarks"></dxi-column>
-                  </dx-data-grid> -->
-         </div>
-         </div>
+                    <dxi-column dataField="Remarks" caption="Remarks"></dxi-column> -->
+                  </dx-data-grid>
+     
               </div>
             </div>
           </div>

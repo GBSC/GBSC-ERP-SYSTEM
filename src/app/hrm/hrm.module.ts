@@ -325,7 +325,6 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
         ViewShiftComponent,
         GrossSalaryComponent,
         LoansummaryComponent
-
     ],
     exports: [],
 

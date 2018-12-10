@@ -12,6 +12,7 @@ import { SetupService, EmployeeService } from '../../../core';
 export class BankComponent implements OnInit {
 
     public bank: any;
+    public modelUpdating: any;
     public employee: any;
 
     constructor(public httpClient: HttpClient,
@@ -24,18 +25,21 @@ export class BankComponent implements OnInit {
         this.employee = await this.empService.GetAllEmployees();
     }
 
-    addNewbank(bank) {
-        this.dataService.addbank(bank.data);
-        this.bank = this.dataService.getAllBanks();
+    async addNewbank(bank) {
+        await this.dataService.addbank(bank.data);
+        this.bank = await this.dataService.getAllBanks();
     }
 
-    UpdateBank(bank) {
-
-        this.dataService.updateBank(bank)
+    bankUpdating(value) {
+        this.modelUpdating = {...value.oldData, ...value.newData}
     }
 
-    deletebank(bnk) {
-        this.dataService.DeleteBank(bnk.key);
+    async UpdateBank() {
+        await this.dataService.updateBank(this.modelUpdating)
+    }
+
+    async deletebank(bnk) {
+        await this.dataService.DeleteBank(bnk.key);
     }
 
 

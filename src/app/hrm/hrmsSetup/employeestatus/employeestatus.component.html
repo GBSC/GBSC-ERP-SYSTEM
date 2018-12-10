@@ -10,12 +10,14 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="empstatus" keyExpr="employeeStatusId" (onRowInserted)="addNewempstatus($event)"
-                (onRowUpdated)="EmpstatusEdit($event)" (onRowRemoved)="deleteestatus($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                  <dxo-popup title="Employee Status" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+              <dx-data-grid id="gridContainer"
+               [dataSource]="empstatus"
+                keyExpr="employeeStatusId" 
+                (onRowInserted)="addNewempstatus($event)"
+                (onRowUpdating)="EditingEmpstatus($event)"
+                (onRowUpdated)="EmpstatusEdit()"
+                 (onRowRemoved)="deleteestatus($event)">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

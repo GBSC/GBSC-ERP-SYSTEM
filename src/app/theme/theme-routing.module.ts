@@ -33,17 +33,6 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
-        PharmacyModule,
-        CoreModule,
-        PatientModule,
-        LabModule,
-        FinanceModule,
-        // InventorysystemModule,
-        SuperadminModule,
-        DashboardModule,
-        HrmModule,
-        EtrackerModule,
-        CoordinationRoutingModule
     ],
     exports: [
         RouterModule,

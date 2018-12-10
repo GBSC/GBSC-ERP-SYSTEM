@@ -8,6 +8,7 @@ import { RolesandprivilegesComponent } from './rolesandprivileges/rolesandprivil
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
 import { AuthGuardService } from '../core';
+import { UserregistrationComponent } from './userregistration/userregistration.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'company', component: CompanyComponent },
       { path: 'branch', component: BranchComponent },
       { path: 'department', component: DepartmentComponent },
-      { path: 'rolesandprivileges', component: RolesandprivilegesComponent }
+      { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
+      { path: 'user-registration', component: UserregistrationComponent }
     ]
   }
 ];

@@ -12,6 +12,7 @@ import { RolesandprivilegesComponent } from './rolesandprivileges/rolesandprivil
 import { CompanyComponent } from './company/company.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
+import { UserregistrationComponent } from './userregistration/userregistration.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CityComponent } from './city/city.component';
     BranchComponent,
     DepartmentComponent,
     RolesandprivilegesComponent,
-    CompanyComponent 
+    CompanyComponent,
+    UserregistrationComponent 
   ]
 })
 export class SecurityAdminModule { }

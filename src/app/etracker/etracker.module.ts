@@ -7,6 +7,10 @@ import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-a
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { RouterModule } from '@angular/router';
+import { SalesusersComponent } from './salesusers/salesusers.component';
+import { SectionmanagementComponent } from './sectionmanagement/sectionmanagement.component';
+import { StoresComponent } from './stores/stores.component';
+import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 
 @NgModule({
     imports: [
@@ -18,6 +22,6 @@ import { RouterModule } from '@angular/router';
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent]
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent]
 })
 export class EtrackerModule { }

@@ -12,6 +12,7 @@ import { CoreModule } from '../core/core.module';
 import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
 import { AuthGuardService } from '../core';
 import { CoordinationRoutingModule } from '../hims/coordination/coordination-routing.module';
+import { EtrackerModule } from '../etracker/etracker.module';
 
 
 
@@ -41,6 +42,7 @@ const routes: Routes = [
         SuperadminModule,
         DashboardModule,
         HrmModule,
+        EtrackerModule,
         CoordinationRoutingModule
     ],
     exports: [

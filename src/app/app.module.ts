@@ -26,6 +26,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { HrmModule } from './hrm/hrm.module';
 import { CoordinationRoutingModule } from './hims/coordination/coordination-routing.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { SecurityAdminModule } from './security-admin/security-admin.module';
 
 
 
@@ -53,9 +54,10 @@ import { InventoryModule } from './inventory/inventory.module';
         ReactiveFormsModule,
         DevExtremeModule,
         HttpClientModule,
-
-        PharmacyModule,
         CoreModule,
+
+        SecurityAdminModule,
+        PharmacyModule,
         PatientModule,
         LabModule,
         FinanceModule,

@@ -7,6 +7,7 @@ import { SalesusersComponent } from './salesusers/salesusers.component';
 import { SectionmanagementComponent } from './sectionmanagement/sectionmanagement.component';
 import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
+import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 
 const routes: Routes = [
     {
@@ -17,7 +18,8 @@ const routes: Routes = [
             { path: 'sales-users', component: SalesusersComponent },
             { path: 'section-management', component: SectionmanagementComponent},
             { path: 'stores', component: StoresComponent },
-            { path: 'store-profile', component: StoresProfileComponent }
+            { path: 'store-profile', component: StoresProfileComponent },
+            { path: 'visit-summary', component: VisitSummaryComponent }
         ]
     }
 ];

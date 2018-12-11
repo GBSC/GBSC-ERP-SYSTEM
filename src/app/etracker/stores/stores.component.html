@@ -1,3 +1,33 @@
-<p>
-  stores works!
-</p>
+<div class="m-content">
+         
+  <div class="row">
+          <div class="col-sg-12">
+
+            <div class="m-portlet m-portlet--unair">
+              <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon">
+                        <i class="fa fa-calendar"></i>
+                      </span> 
+                  <h3 class="m-portlet__head-text">
+                    Stores
+                  </h3>
+                </div>
+              </div>
+              </div>
+              <div class="m-portlet__body">
+                <dx-data-grid
+                id="gridContainer"
+                [dataSource]=""
+                [columns]="['Shop Name', 'Shop Keeper', 'Contact', 'Distributer', 'CNIC', 'Map', 'Visit']"
+                [showBorders]="true">
+            </dx-data-grid>
+              
+              </div>
+              </div>
+          </div>
+  </div>
+</div>
+
+

@@ -1,3 +1,80 @@
-<p>
-  stores-profile works!
-</p>
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Shop Profile
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+
+
+          <div class="m-card-profile">
+            <div class="m-card-profile__pic">
+                <div class="m-card-profile__pic-wrapper">
+                        <img src="http://evasalesforceprod.azurewebsites.net/service//StoreImages\Store_3782\1536132286696.jpg" alt="">
+                </div>
+            </div>
+            <div class="m-card-profile__details">
+                <span class="m-card-profile__name">
+                    Nizam store
+                </span>
+                <div class="m-card-profile__email">
+                    03151003342
+                </div>
+                <div class="m-card-profile__email" style="padding: 0px 10px;">
+                  111 A Shahrah-e-Faisal Rd, Block A 
+                  (SMCHS), Karachi
+                </div>
+                
+            </div>
+        </div>
+
+
+
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+        <div class="">
+          <div class="tab-content">
+            
+
+            <div class="tab-pane  active" id="Inventory">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Sales Representative Visits</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <dx-data-grid
+    id="gridContainer"
+    [dataSource]="customers"
+    [columns]="['Date','Start Time', 'End Time', 'Visit detail']"
+    [showBorders]="true">
+</dx-data-grid>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -65,7 +65,7 @@ export class DailyProcedureComponent implements OnInit {
       this.PatientServiceobj.getDailyProcedure().subscribe(res => {
         this.DailyProcedure = res ;
       });
- 
+
     });
   }
 

@@ -58,6 +58,16 @@ import { SemenConsultationMovementSummaryComponent } from './Reports/semen-consu
 import { FcConsultationMovementSummaryComponent } from './Reports/fc-consultation-movement-summary/fc-consultation-movement-summary.component';
 import { DailyProcedureComponent } from './daily-procedure/daily-procedure.component';
 import { ProcedureComponent } from './procedure/procedure.component';
+import { NewFcClinicPatientSummaryComponent } from './Reports/new-fc-clinic-patient-summary/new-fc-clinic-patient-summary.component';
+import { FcPatientReferenceSummaryComponent } from './Reports/fc-patient-reference-summary/fc-patient-reference-summary.component';
+import { BloodTestReferenceSummaryComponent } from './Reports/blood-test-reference-summary/blood-test-reference-summary.component';
+import { SemenPatientReferenceSummaryComponent } from './Reports/semen-patient-reference-summary/semen-patient-reference-summary.component';
+import { TotalPatientReferenceSummaryComponent } from './Reports/total-patient-reference-summary/total-patient-reference-summary.component';
+import { NewPatientSheetBloodKarachiComponent } from './Reports/new-patient-sheet-blood-karachi/new-patient-sheet-blood-karachi.component';
+import { NewPatientSheetSemenKarachiComponent } from './Reports/new-patient-sheet-semen-karachi/new-patient-sheet-semen-karachi.component';
+import { SubsiquentSemenFreezingListComponent } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
+import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
+import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -130,6 +140,16 @@ import { ProcedureComponent } from './procedure/procedure.component';
         FcConsultationMovementSummaryComponent,
         DailyProcedureComponent,
         ProcedureComponent,
+        NewFcClinicPatientSummaryComponent,
+        FcPatientReferenceSummaryComponent,
+        BloodTestReferenceSummaryComponent,
+        SemenPatientReferenceSummaryComponent,
+        TotalPatientReferenceSummaryComponent,
+        NewPatientSheetBloodKarachiComponent,
+        NewPatientSheetSemenKarachiComponent,
+        SubsiquentSemenFreezingListComponent,
+        MedicineDetailsComponent,
+        ConsultantActivityDetailsComponent,
     ]
 })
 export class PatientModule { }

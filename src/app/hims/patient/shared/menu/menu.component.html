@@ -158,6 +158,11 @@
 			   </div>
 		   </li>
 			<!-- setup end -->
+
+
+	
+
+
 			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a  routerLink="/hims/patient/appointmentschedule" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-calendar"></i>
@@ -198,7 +203,236 @@
 						</a>
 						
 					</li> -->
-			
+				<!-- Reports strat -->
+		<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+		aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+		   <a href="#" class="m-menu__link m-menu__toggle">
+			   <i class="m-menu__link-icon flaticon-menu"></i>
+			   <span class="m-menu__link-text">
+				Reports
+			   </span>
+			   <i class="m-menu__ver-arrow la la-angle-right"></i>
+		   </a>
+		   <div class="m-menu__submenu">
+			   <span class="m-menu__arrow"></span>
+			   <div class="m-menu__wrapper">
+				   <ul class="m-menu__subnav">
+					   <li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+						aria-haspopup="true">
+						   <!-- <span class="m-menu__link">
+							   <span class="m-menu__link-text">
+								 
+							   </span>
+						   </span> -->
+					   </li>
+					   <!-- <li class="m-menu__section">
+						   <h4 class="m-menu__section-text">
+							   
+						   </h4>
+						   <i class="m-menu__section-icon flaticon-more-v3"></i>
+					   </li> -->
+
+					   <!-- BEGIN: Company Setup -->
+					   <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+						aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+						   <a href="#" class="m-menu__link m-menu__toggle">
+							   <span class="m-menu__link-text">
+								HIMS Reports  
+							   </span>
+							   <i class="m-menu__ver-arrow la la-angle-right"></i>
+						   </a>
+						   <div class="m-menu__submenu">
+							   <span class="m-menu__arrow"></span>
+							   <ul class="m-menu__subnav">
+									<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									   <a routerLink="/hims/patient/report/registrationlist" class="m-menu__link">
+										   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											   <span></span>
+										   </i>
+										   <span class="m-menu__link-text">
+											Registration
+										   </span>
+									   </a>
+								   </li>
+								   <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/appointmentsheet" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Appointment
+										</span>
+									</a>
+									</li>
+									<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+										<a routerLink="/hims/patient/report/dailyactivity" class="m-menu__link">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												DailyActivity
+											</span>
+										</a>
+										</li>
+									<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									   <a routerLink="/hims/patient/report/bloodconsultationmovementsummary" class="m-menu__link">
+										   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											   <span></span>
+										   </i>
+										   <span class="m-menu__link-text">
+											Blood Consultation  
+
+										   </span>
+									   </a>
+								   </li>
+								   <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/semenconsultationmovementsummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Semen Consultation  
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/fcConsultationmovementsummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Fc Consultation  
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/newpatientsheetfckarachi" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											New Patient Sheet Fc Karachi
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/medicinedetails" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Medicine Details
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/consultantactivitydetails" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Consultant Activity Details
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/newpatientsheetsemenkarachi" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											New Patient Sheet Semen Karachi
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/newpatientsheetbloodkarachi" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											New Patient Sheet Blood Karachi
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/totalpatientreferencesummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Total Patient Reference 
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/semenpatientreferencesummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Semen Patient Reference 
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/subsiquentsemenfreezinglist" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Subsiquent Semen  
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/fcpatientreferencesummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Fc Patient Reference 
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/bloodtestreferencesummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Blood Test Reference 
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/newfcclinicpatientsummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											New Fc Clinic Patient 
+										</span>
+									</a>
+								</li>
+								<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+									<a routerLink="/hims/patient/report/fcproceduremovementsummary" class="m-menu__link">
+										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+											<span></span>
+										</i>
+										<span class="m-menu__link-text">
+											Fc Procedure Movement 
+										</span>
+									</a>
+								</li>
+							   </ul>
+						   </div>
+					   </li>
+				   </ul>
+			   </div>
+		   </div>
+	   </li>
+		<!-- Reports end -->
 		</ul>
 	</div>
 	<!-- END: Aside Menu -->

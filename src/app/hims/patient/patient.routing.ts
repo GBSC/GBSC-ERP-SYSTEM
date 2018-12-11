@@ -52,6 +52,17 @@ import { DailyProcedureComponent } from './daily-procedure/daily-procedure.compo
 import { BloodConsultationMovementSummaryComponent } from './Reports/blood-consultation-movement-summary/blood-consultation-movement-summary.component';
 
 
+import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
+import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
+import { SubsiquentSemenFreezingListComponent  } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
+import { NewPatientSheetSemenKarachiComponent  } from './Reports/new-patient-sheet-semen-karachi/new-patient-sheet-semen-karachi.component';
+import { NewPatientSheetBloodKarachiComponent } from './Reports/new-patient-sheet-blood-karachi/new-patient-sheet-blood-karachi.component';
+import { TotalPatientReferenceSummaryComponent  } from './Reports/total-patient-reference-summary/total-patient-reference-summary.component';
+import { SemenPatientReferenceSummaryComponent } from './Reports/semen-patient-reference-summary/semen-patient-reference-summary.component';
+import { BloodTestReferenceSummaryComponent } from './Reports/blood-test-reference-summary/blood-test-reference-summary.component';
+import { FcPatientReferenceSummaryComponent } from './Reports/fc-patient-reference-summary/fc-patient-reference-summary.component';
+import { NewFcClinicPatientSummaryComponent } from './Reports/new-fc-clinic-patient-summary/new-fc-clinic-patient-summary.component';
+
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
@@ -107,13 +118,23 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: "report",
                 children: [
-                    { path: 'appointmentsheet', component: AppointmentSheetComponent },
                     { path: 'registrationlist', component: RegistrationlistComponent },
-                    { path: 'newpatientsheetfckarachi', component: NewPatientSheetFcKarachiComponent },
+                    { path: 'appointmentsheet', component: AppointmentSheetComponent },
                     { path: 'dailyactivity', component: DailyActivityReportComponent },
-                    { path: 'fcConsultationmovementsummary', component: FcConsultationMovementSummaryComponent },
-                    { path: 'semenconsultationmovementsummary', component: SemenConsultationMovementSummaryComponent },
                     { path: 'bloodconsultationmovementsummary', component: BloodConsultationMovementSummaryComponent },
+                    { path: 'semenconsultationmovementsummary', component: SemenConsultationMovementSummaryComponent },
+                    { path: 'fcConsultationmovementsummary', component: FcConsultationMovementSummaryComponent },
+                    { path: 'newpatientsheetfckarachi', component: NewPatientSheetFcKarachiComponent }, 
+                    { path: 'medicinedetails', component: MedicineDetailsComponent },
+                    { path: 'consultantactivitydetails', component: ConsultantActivityDetailsComponent },
+                    { path: 'newpatientsheetsemenkarachi', component: NewPatientSheetSemenKarachiComponent }, 
+                    { path: 'newpatientsheetbloodkarachi', component: NewPatientSheetBloodKarachiComponent },
+                    { path: 'totalpatientreferencesummary', component: TotalPatientReferenceSummaryComponent },
+                    { path: 'semenpatientreferencesummary', component: SemenPatientReferenceSummaryComponent },
+                    { path: 'subsiquentsemenfreezinglist', component: SubsiquentSemenFreezingListComponent },
+                    { path: 'fcpatientreferencesummary', component: FcPatientReferenceSummaryComponent },
+                    { path: 'bloodtestreferencesummary', component: BloodTestReferenceSummaryComponent },
+                    { path: 'newfcclinicpatientsummary', component: NewFcClinicPatientSummaryComponent },
                     { path: 'fcproceduremovementsummary', component: FcProcedureMovementSummaryComponent }
 
 

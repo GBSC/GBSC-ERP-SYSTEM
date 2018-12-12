@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SuperadminserviceService } from '../../core';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,8 @@ export class SetupcompanyComponent implements OnInit {
     private companyForm: FormGroup;
 
     private systemAdminForm: FormGroup;
+
+    private company: any;
 
     private companyId: number;
 
@@ -28,7 +31,11 @@ export class SetupcompanyComponent implements OnInit {
 
     private LisInstalled: boolean;
 
-    constructor(private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
+    private InventoryInstalled: boolean;
+
+    private eTrackerInstalled: boolean;
+
+    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
 
         this.companyForm = this.formBuilder.group({
             'name': ['', Validators.required],
@@ -50,20 +57,46 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     ngOnInit() {
+
+
+        this.route.params.subscribe((params) => {
+            this.companyId = +params['id'];
+        });
+
+        if (this.companyId) {
+            this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
+                this.company = company;
+
+                for(let module of company.modules)
+                {
+                    this.checkModulesInstalled(module);
+                }
+
+            })
+        }
+
     }
 
     async onAddCompany(value) {
-        let response: any = await this.superAdminService.addCompany(value);
-
-        this.companyId = response.companyID;
+        this.superAdminService.addCompany(value).subscribe(resp => {
+            console.log("Company Added");
+            this.companyId = resp.companyID;
+            this.superAdminService.addModule({ Name: "Security Admin", CompanyId: this.companyId, Code: "000", ModuleId: 0 }).subscribe();
+        });
     }
+
 
     async onAddModule(value) {
 
         var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
-        let response: any = await this.superAdminService.addModule(module);
+        this.superAdminService.addModule(module).subscribe(s => {
 
+            this.checkModulesInstalled(value);
+        })
+    }
+
+    checkModulesInstalled(value) {
         if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
@@ -82,6 +115,12 @@ export class SetupcompanyComponent implements OnInit {
         else if (value == "Lab Information System") {
             this.LisInstalled = true;
         }
+        else if (value == "Inventory") {
+            this.InventoryInstalled = true;
+        }
+        else if (value == "eTracker") {
+            this.eTrackerInstalled = true;
+        }
     }
 
     async onSubmitRegistration(value: SystemAdminRegistrationViewModel) {
@@ -89,7 +128,10 @@ export class SetupcompanyComponent implements OnInit {
         value.CompanyId = this.companyId;
         value.IsSystemAdmin = true;
 
-        let response: any = await this.superAdminService.registerAdmin(value);
+        this.superAdminService.registerAdmin(value).subscribe(resp => {
+
+            console.log("Admin registerd");
+        });
 
     }
 

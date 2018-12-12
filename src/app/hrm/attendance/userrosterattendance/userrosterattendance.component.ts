@@ -26,7 +26,7 @@ export class UserrosterattendanceComponent implements OnInit {
 
   async adduserRosterattendance(value) {
 
-      this.attendanceservice.addUserRosterAttendance(value.data);
+     await this.attendanceservice.addUserRosterAttendance(value.data);
       this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
   }
 
@@ -36,10 +36,10 @@ export class UserrosterattendanceComponent implements OnInit {
 
 
   async updateuserRosterattendance() {
-      this.attendanceservice.updateUserRosterAttendance( this.updatingModel);
+     await this.attendanceservice.updateUserRosterAttendance( this.updatingModel);
   }
 
   async deleteuserRosterattendance(value) {
-      this.attendanceservice.DeleteUserRosterAttendance(value.key);
+     await this.attendanceservice.DeleteUserRosterAttendance(value.key);
   }
 }

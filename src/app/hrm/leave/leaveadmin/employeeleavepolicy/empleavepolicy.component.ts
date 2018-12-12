@@ -90,7 +90,8 @@ export class EmpleavepolicyComponent implements OnInit {
     }
 
     async addemployeeleavepolicy(empleavepolicy) {
-        this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+       await this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+       this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
     }
 
 

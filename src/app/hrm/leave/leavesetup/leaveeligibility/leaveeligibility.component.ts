@@ -17,17 +17,17 @@ export class LeaveeligibilityComponent implements OnInit {
     }
 
     async addleaveeligibility(value) {
-        this.leavesetupservice.addLeaveEligibility(value.data);
+        await this.leavesetupservice.addLeaveEligibility(value.data);
         this.leaveeligibility = await this.leavesetupservice.getLeaveEligibilities();;
     }
 
     async updateleaveeligibility(value) {
-        this.leavesetupservice.updateLeaveEligibility(value);
+        await this.leavesetupservice.updateLeaveEligibility(value);
 
     }
 
     async deleteleaveeligibility(value) {
-        this.leavesetupservice.deleteLeaveEligibility(value.key);
+        await this.leavesetupservice.deleteLeaveEligibility(value.key);
 
 
     }

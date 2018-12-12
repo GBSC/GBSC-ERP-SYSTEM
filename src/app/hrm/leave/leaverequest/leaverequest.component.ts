@@ -15,7 +15,7 @@ export class LeaverequestComponent implements OnInit {
 
     public leaveDetail: any[] = [];
     public leaveRequestForm: FormGroup;
-    public leaverequestdetail: any;
+    // public leaverequestdetail: any;
     public leaveYear: any;
     public employees: any;
     public leaveType: any;
@@ -23,8 +23,7 @@ export class LeaverequestComponent implements OnInit {
     public leaveApprovr: any;
     public leaverequest: any;
     public updatingRequest: any;
-    public leaveOpening: any;
-    public leaveRequestId;
+    public leaveOpening: any; 
     private requestDetail: LeaveRequestDetail[];
 
     @Input('leaveRequestId') id: number;

@@ -18,16 +18,16 @@ export class OvertimeflagComponent implements OnInit {
     }
 
     async addovertimeflag(value) {
-        this.attendanceSetupservice.addOvertimeFlag(value.data);
+        await this.attendanceSetupservice.addOvertimeFlag(value.data);
         this.overtimeflag = await this.attendanceSetupservice.getAllOvertimeFlag();
     }
 
     async updateovertimeflag() {
-        this.attendanceSetupservice.updateOvertimeFlag(this.modelUpdate);
+        await this.attendanceSetupservice.updateOvertimeFlag(this.modelUpdate);
     }
 
     async deleteovertimeflag(value) {
-        this.attendanceSetupservice.DeleteOvertimeFlag(value.key);
+        await this.attendanceSetupservice.DeleteOvertimeFlag(value.key);
     }
 
 }

@@ -23,6 +23,14 @@
                   </a>
                 </li>
                 <li class="m-nav__item">
+                    <a class="m-nav__link" href="#shift" data-toggle="tab">
+                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                      <span class="m-nav__link-text">
+                        Shift
+                      </span>
+                    </a>
+                  </li>
+                <li class="m-nav__item">
                   <a class="m-nav__link" href="#assignRoster" data-toggle="tab">
                     <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                     <span class="m-nav__link-text">
@@ -88,14 +96,7 @@
                     </span>
                   </a>
                 </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#shift" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Shift
-                    </span>
-                  </a>
-                </li>
+
 
               </ul>
             </div>
@@ -138,6 +139,9 @@
                     </div>
                 </div>
           </div>
+          <div class="tab-pane" id="shift">
+              <app-view-shift></app-view-shift>
+            </div>
           <div class="tab-pane" id="assignRoster">
             <app-assignroster></app-assignroster>
           </div>
@@ -162,11 +166,7 @@
           <div class="tab-pane" id="flagValue">
             <app-flagvalue></app-flagvalue>
           </div>
-          <div class="tab-pane" id="shift">
-            <app-view-shift></app-view-shift>
-          </div>
-
-
+  
         </div>
 
       </div>

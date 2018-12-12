@@ -44,8 +44,8 @@
                   </label>
                   <select class="form-control m-input" formControlName="Action">
                       <option value="" disabled selected>-- Select Action --</option>
-                      <option value="deductionofLeavesBasedOnFlagCount"> Deduction of Leaves Based On Flag Count </option>
-                      <option value="deductionofLeavesBasedOnFlagCount "> Deduction of Leaves Based On Flag Count </option>
+                      <option value="deductionofLeavesBasedOnFlagCount(Minute)"> Deduction of Leaves Based On Flag Count(Minutes) </option>
+                      <option value="deductionofLeavesBasedOnFlagCount "> Deduction of Leaves Based On Flag Count(s) </option>
           </select>
                 </div>
                 <div class="col-lg-6">
@@ -100,8 +100,12 @@
                   <div class="col-lg-6">
                     <label>
                      Effect Quantity:
-                    </label>
-                    <input type="number" class="form-control m-input" formControlName="EffectQuantity" placeholder="0">
+                    </label> 
+                    <select class="form-control m-input" formControlName="EffectQuantity">
+                        <option value="" disabled selected>-- Select Effect Quantity --</option>
+                        <option value="0.5"> 0.5 </option>
+                        <option value="1"> 1 </option> 
+                      </select>
                   </div>
                   <div class="col-lg-6">
                     <label class="">

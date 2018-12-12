@@ -9,6 +9,8 @@ import { LeaveSetupService } from '../../../../core';
 export class LeavedaytypeComponent implements OnInit {
 
     public leveDayType: any;
+    public Modelupdating: any;
+
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
@@ -16,18 +18,22 @@ export class LeavedaytypeComponent implements OnInit {
         this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
-    async addleavedaytype(ldaytype) {
+    async addleavedaytype(value) {
 
-        this.leavesetupservice.addLeaveDayType(ldaytype.data);
+        await this.leavesetupservice.addLeaveDayType(value.data);
         this.leveDayType = await this.leavesetupservice.getLeaveDayTypes();
     }
 
-    async updateleavedaytype(levdaytype) {
-        this.leavesetupservice.updateLeaveDayType(levdaytype);
+    async updatingleavedaytype(value) {
+        this.Modelupdating = {...value.oldData, ...value.newData};
+    }
+    
+    async updateleavedaytype() {
+        await this.leavesetupservice.updateLeaveDayType(this.Modelupdating);
     }
 
     async deleteleavedaytype(value) {
-        this.leavesetupservice.DeleteLeaveDayType(value.key);
+        await this.leavesetupservice.DeleteLeaveDayType(value.key);
     }
 
 }

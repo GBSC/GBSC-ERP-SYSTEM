@@ -1,7 +1,6 @@
  <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
            
-                    <div class="row">
-                      <div class="col-xl-12">
+ 
                         <div class="m-portlet">
                           <div class="m-portlet__head">
                             <div class="m-portlet__head-caption">
@@ -29,8 +28,11 @@
                                   <dxo-paging [pageSize]="6"></dxo-paging>
                                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                   </dxo-pager> 
-                                  <dxi-column dataField="name">
-                                  </dxi-column>
+                                  <dxi-column dataField="name"></dxi-column>
+                                  <dxi-column dataField="dependantsRelationId" caption="Dependants Relation">
+                                      <dxo-lookup [dataSource]="dependantrelations" displayExpr="name" valueExpr="dependantsRelationId">
+                                      </dxo-lookup>
+                                    </dxi-column>  
                                   <dxi-column dataField="email"></dxi-column>
                                   <dxi-column dataField="address"></dxi-column>
                                   <dxi-column dataField="permanentAddress" [visible]="false"></dxi-column>
@@ -52,6 +54,5 @@
                           </div>
                         </div>
                       </div>
-                    </div> 
-                    </div>   
+               
 

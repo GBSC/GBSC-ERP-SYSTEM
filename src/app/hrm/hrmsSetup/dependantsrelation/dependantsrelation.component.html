@@ -3,37 +3,32 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Language</h3>
+              <h3 class="m-portlet__head-text">Relation</h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+              [dataSource]="dependantsRelation" 
+              keyExpr="dependantsRelationId" 
+              (onRowInserted)="addDependantRelation($event)"
+               (onRowUpdating)="DependantRelationUpdating($event)"
+               (onRowUpdated)="editDependantRelation()"
+                (onRowRemoved)="deleteDependantRelation($event)">
 
-              <dx-data-grid id="gridContainer" 
-               [dataSource]="language"
-               keyExpr="languageId"
-               (onRowInserted)="addLanguage($event)" 
-               (onRowUpdated)="EditLanguage($event)"
-                (onRowRemoved)="deleteLanguage($event)">
-
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
-
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-
                 <dxi-column dataField="code"></dxi-column>
                 <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
-
               </dx-data-grid>
             </div>
           </div>

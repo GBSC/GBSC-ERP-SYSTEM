@@ -17,6 +17,7 @@ export class AssignrosterComponent implements OnInit {
     popupVisible = false;
     public assignrosters: any; 
     public rosterAsign: any;
+    public rosterData : any = {};
     public roster: any;
     selectedRows: number[];
     prefix: string;
@@ -48,13 +49,11 @@ export class AssignrosterComponent implements OnInit {
     selectionChangedHandler(e) {
         console.log(e);
         this.rosterData.UserAssignRosters = e.selectedRowsData.map(u => {
-            // console.log();
             return {
                 userId: u.userId,
                 
             };
-        });
-        console.log(this.rosterData);
+        }); 
         if(!this.selectionChangedBySelectbox) {
             this.prefix=null;
         }
@@ -62,20 +61,13 @@ export class AssignrosterComponent implements OnInit {
         this.selectionChangedBySelectbox=false; 
     }
 
-    async addselecteduser() {
-        console.log(this.selectedUsers);
+     addselecteduser() { 
         this.popupVisible = false;
     }
-
-    public rosterData : any = {};
-
-    async addassignroster(value) {
-    console.log(value);
-
-        // let rosterData = {users: []};
+ 
+    async addassignroster(value) { 
         this.rosterData = {...this.rosterData, ...value.data};
-        console.log(this.rosterData);
-        this.attendancesetupservice.addAsignRoster(this.rosterData);
+        await this.attendancesetupservice.addAsignRoster(this.rosterData);
         this.assignrosters = await this.attendancesetupservice.getAsignRosters();
     }
 

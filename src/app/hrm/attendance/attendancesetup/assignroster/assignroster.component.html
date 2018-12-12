@@ -63,11 +63,8 @@
                   keyExpr="userId"
                   [(selectedRowKeys)]="selectedRows"
                   (onSelectionChanged)="selectionChangedHandler($event)">
-                  <dxo-selection
-                  mode="multiple">
-              </dxo-selection>
-                   <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                   </dxo-editing> -->
+                  <dxo-selection mode="multiple"></dxo-selection>
+        
                    <dxo-filter-row [visible]="true"></dxo-filter-row>
                    <dxo-header-filter [visible]="true"></dxo-header-filter>
    
@@ -75,8 +72,7 @@
                    <dxo-paging [pageSize]="7"></dxo-paging>
                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                    </dxo-pager> 
-                   <dxi-column dataField="firstName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
-                   <dxi-column dataField="lastName" dataType="date" format="shortDate"></dxi-column> 
+                   <dxi-column dataField="fullName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
                  </dx-data-grid>
                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions--solid">

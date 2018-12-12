@@ -7,7 +7,9 @@ import { LeaveSetupService } from '../../../../core';
     styleUrls: ['./leaveyearsetup.component.css']
 })
 export class LeaveyearsetupComponent implements OnInit {
+    public updatingModel: any;
     public leveyear: any;
+
     constructor(public leavesetupservice: LeaveSetupService) { }
 
     async ngOnInit() {
@@ -15,15 +17,19 @@ export class LeaveyearsetupComponent implements OnInit {
     }
 
     async addleaveyear(value) {
-        this.leavesetupservice.addLeaveYear(value.data);
+        await this.leavesetupservice.addLeaveYear(value.data);
         this.leveyear = await this.leavesetupservice.getLeaveYears();
     }
 
-    async updateleaveyear(value) {
-        this.leavesetupservice.updateLeaveYear(value);
+    async updatingLeaveyear(value) {
+        this.updatingModel = {...value.oldData, ...value.newData};
+    }
+   
+    async updateleaveyear() {
+        await this.leavesetupservice.updateLeaveYear( this.updatingModel);
     }
 
     async deleteleaveyear(value) {
-        this.leavesetupservice.DeleteLeaveYear(value.key);
+        await this.leavesetupservice.DeleteLeaveYear(value.key);
     }
 }

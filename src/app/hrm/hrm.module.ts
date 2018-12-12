@@ -150,6 +150,7 @@ import { UserrosterattendanceComponent } from './attendance/userrosterattendance
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
+import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/dependantsrelation.component';
 
 
 @NgModule({
@@ -324,7 +325,8 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
         UserrosterattendanceComponent,
         ViewShiftComponent,
         GrossSalaryComponent,
-        LoansummaryComponent
+        LoansummaryComponent,
+        DependantsrelationComponent
     ],
     exports: [],
 

@@ -58,7 +58,7 @@
             </div>
 
               <div *dxTemplate="let ruledetail of 'detail'">
-                  <dx-data-grid [dataSource]="ruledetail.data.attendanceRuleLeaveTypes" [showBorders]="true" [columnAutoWidth]="true">
+                  <dx-data-grid [dataSource]="ruledetail.data.attendanceRuleLeaveTypes" [showBorders]="true">
 
                       <dxi-column dataField="leaveTypeId" caption="Leave Type">
                           <dxo-lookup [dataSource]="LeaveTypes" displayExpr="title" valueExpr="leaveTypeId">

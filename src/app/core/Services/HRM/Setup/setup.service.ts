@@ -326,7 +326,24 @@ export class SetupService {
 
     async DeleteRelation(id) {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
+    }
+ 
+    async getDependantsRelations() {
+        return await this.ApiService.get(`${this.hrUrl}/GetDependantsRelations`).toPromise();
+    }
 
+    // DEMO ONLY, you can find working methods below
+    async addDependantsRelation(data) {
+        return await this.ApiService.post(`${this.hrUrl}/AddDependantsRelation`, data).toPromise();
+    }
+
+    async updateDependantsRelation(data) {
+ 
+        return await this.ApiService.put(`${this.hrUrl}/UpdateDependantsRelation`, data).toPromise();
+    }
+
+    async DeleteDependantsRelation(id) {
+        return await this.ApiService.delete(`${this.hrUrl}/DeleteDependantsRelation/${id}`).toPromise();
     }
 
     async getAllUniversities() {

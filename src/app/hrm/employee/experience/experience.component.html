@@ -17,7 +17,7 @@
                  [dataSource]="experiences"
                  keyExpr="workExperienceId" 
                  (onRowInserted)="addWorkExperience($event)"
-                (onRowUpdated)="updateWorkExperience()">
+                (onRowUpdated)="updateWorkExperience($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                     <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                     </dxo-popup>

@@ -15,15 +15,13 @@ export class FunctionComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        // this.dataService.getAllFunctions().subscribe((data)=>this.funct=data);
-
-        await this.dataService.getAllFunctions();
-        this.func = this.dataService.function;
+        this.func = await this.dataService.getAllFunctions();
     }
 
 
     addNewfunction(func) {
         this.dataService.addFunction(func.data);
+        this.func = this.dataService.getAllFunctions();
     }
 
     Editfunction(fun) {

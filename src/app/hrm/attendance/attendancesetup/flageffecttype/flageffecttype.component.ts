@@ -13,10 +13,12 @@ export class FlageffecttypeComponent implements OnInit {
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
+
         this.flageffecttype = await this.attendancesetupservice.getFlagEffectTypes();
     }
 
     async addflageffecttype(value) {
+
         this.attendancesetupservice.addFlagEffectType(value.data);
         this.flageffecttype = await this.attendancesetupservice.getFlagEffectTypes();
     }

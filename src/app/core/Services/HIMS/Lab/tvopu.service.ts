@@ -6,33 +6,37 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class TvopuService {
 
-  private Url = "Hims/api/Tvopu/"
+    private Url = "Hims/api/Tvopu/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getTvopus(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllTvopus");
-  }
+    getTvopus(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllTvopus");
+    }
 
-  getTvopuByClinicalRecordId(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "getTvopuByClinicalRecordId/" + id);
-  }
+    getTvopusByPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.Url + "GetTvopusByPatientId/" + patientId);
+    }
 
-  getTvopu(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetTvopu/" + id);
-  }
+    getTvopuByClinicalRecordId(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "getTvopuByClinicalRecordId/" + id);
+    }
 
-  addTvopu(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddTvopu", value);
-  }
+    getTvopu(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetTvopu/" + id);
+    }
 
-  updateTvopu(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateTvopu", value);
-  }
+    addTvopu(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddTvopu", value);
+    }
 
-  deleteTvopu(id) {
-    this.ApiService.delete(this.Url + "DeleteTvopu/" + id);
-  }
+    updateTvopu(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateTvopu", value);
+    }
+
+    deleteTvopu(id) {
+        this.ApiService.delete(this.Url + "DeleteTvopu/" + id);
+    }
 
 }

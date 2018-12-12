@@ -402,16 +402,16 @@
                                   </span>
                                 </div>
                               </div>
-                              <div class="form-group m-form__group m-form__group--sm row">
+                              <!-- <div class="form-group m-form__group m-form__group--sm row">
                                 <label class="col-xl-4 col-lg-4 col-form-label">
                                   Person Name:
                                 </label>
                                 <div class="col-xl-8 col-lg-8">
                                   <span class="m-form__control-static">
-                                    {{Patient.patientReference?.personName}}
+                                    {{patientreferenc}}
                                   </span>
                                 </div>
-                              </div>
+                              </div> -->
                               <div class="form-group m-form__group m-form__group--sm row">
                                 <label class="col-xl-4 col-lg-4 col-form-label">
                                   Reference Address:
@@ -549,6 +549,135 @@
     <!--begin::Portlet-->
     <div class="col-lg-4 abc2">
       <app-generalactions class="abc2"></app-generalactions>
+
+      <div class="m-portlet m-portlet--mobile">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <span class="m-portlet__head-icon">
+               <i class="fa fa-calendar-check-o"></i>
+                    </span>
+                <h3 class="m-portlet__head-text">
+                   Patient Package
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            	<!--begin::Section-->
+						<div class="m-section">
+                <!-- <div class="row">
+                  <div class="col-lg-4">
+                      <h3 class="m-section__heading">
+                          Last Patient Package
+                      </h3>
+                  </div>
+                  <div class="col-lg-8">
+                      <h3 class="m-section__heading">
+                        Hello
+                       </h3>
+                  </div>
+                </div> -->
+  
+                <div class="m-section__content">
+                  <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                    <div class="m-demo__preview">
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Package Name
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{PatientPackage?.packageName}}
+                            </h6>
+                          </span>
+                      </p>
+                      <p class="row">
+                          <span  class="col-lg-8 m--font-boldest">
+                              Charges
+                          </span>
+                          <span  class="col-lg-4">
+                              <h6 class="m--font-brand">
+                                  {{PatientPackage?.charges}}
+                              </h6>
+                            </span>
+                        </p>
+                        <p class="row">
+                          <span  class="col-lg-8 m--font-boldest">
+                              Package Code
+                          </span>
+                          <span  class="col-lg-4">
+                              <h6 class="m--font-brand">
+                                  {{PatientPackage?.packageCode}}
+                                </h6> 
+                            </span>
+                        </p>
+
+                        <p class="row">
+                            <span  class="col-lg-8 m--font-boldest">
+                              Last Paid Amount
+                            </span>
+                            <span  class="col-lg-4">
+                                <h6 class="m--font-brand">
+                                    {{patientpackagedetail?.lastPaidAmount}}
+                                  </h6> 
+                              </span>
+                          </p>
+                          <p class="row">
+                              <span  class="col-lg-8 m--font-boldest">
+                                Total Amount Paid
+                              </span>
+                              <span  class="col-lg-4">
+                                  <h6 class="m--font-brand">
+                                      {{patientpackagedetail?.totalAmountPaid}}
+                                    </h6> 
+                                </span>
+                            </p>
+                            <p class="row">
+                                <span  class="col-lg-8 m--font-boldest">
+                                  Total Balance
+                                </span>
+                                <span  class="col-lg-4">
+                                    <h6 class="m--font-brand">
+                                        {{patientpackagedetail?.totalBalance}}
+                                      </h6> 
+                                  </span>
+                              </p>
+                              <p class="row">
+                                  <span  class="col-lg-8 m--font-boldest">
+                                    Total Price
+                                  </span>
+                                  <span  class="col-lg-4">
+                                      <h6 class="m--font-brand">
+                                          {{patientpackagedetail?.totalPrice}}
+                                        </h6> 
+                                    </span>
+                                </p>
+                          
+                        
+                    
+                  
+                          
+                      
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+                
+                
+              </div>
+              <!--end::Section-->
+             
+           </div>
+        </div>
+
+
+
+
+
+
+
     </div>
     <!--end::Portlet-->
   </div>

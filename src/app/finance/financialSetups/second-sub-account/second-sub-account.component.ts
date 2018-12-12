@@ -3,51 +3,51 @@ import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
 
 @Component({
-  selector: 'app-second-sub-account',
-  templateUrl: './second-sub-account.component.html',
-  styleUrls: ['./second-sub-account.component.scss']
+    selector: 'app-second-sub-account',
+    templateUrl: './second-sub-account.component.html',
+    styleUrls: ['./second-sub-account.component.scss']
 })
 export class SecondSubAccountComponent implements OnInit {
 
-  public secondSubAccount: any;
-  public SecondSubAccountForm: any;
-  public subAccount: any;
-  public UpdatingSecondsubAccount: any;
+    public secondSubAccount: any;
+    public SecondSubAccountForm: any;
+    public subAccount: any;
+    public UpdatingSecondsubAccount: any;
 
-  constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-      this.SecondSubAccountForm = this.fb.group({
-        SecondSubAccountCode: [''],
-        Name: [''], 
-        SubAccountId: [''] 
-      });
+        this.SecondSubAccountForm = this.fb.group({
+            SecondSubAccountCode: [''],
+            Name: [''],
+            SubAccountId: ['']
+        });
 
-      this.secondSubAccount = await this.financeService.getSecondSubAccounts();
-      
-      this.subAccount = await this.financeService.getSubAccounts();
-  }
+        this.secondSubAccount = await this.financeService.getSecondSubAccounts();
 
-  async addSecondSubaccount() {
+        this.subAccount = await this.financeService.getSubAccounts();
+    }
 
-      await this.financeService.addSecondSubAccount(this.SecondSubAccountForm.value);
-      this.secondSubAccount = await this.financeService.getSecondSubAccounts();
-      this.SecondSubAccountForm.reset();
-  }
+    async addSecondSubaccount() {
 
-  async updatingSecondSubaccount(value) {
+        await this.financeService.addSecondSubAccount(this.SecondSubAccountForm.value);
+        this.secondSubAccount = await this.financeService.getSecondSubAccounts();
+        this.SecondSubAccountForm.reset();
+    }
 
-      this.UpdatingSecondsubAccount = { ...value.oldData, ...value.newData };
-  }
-  async updateSecondSubaccount() {
+    async updatingSecondSubaccount(value) {
 
-      await this.financeService.updateSecondSubAccount(this.UpdatingSecondsubAccount);
-  }
+        this.UpdatingSecondsubAccount = { ...value.oldData, ...value.newData };
+    }
+    async updateSecondSubaccount() {
 
-  async deleteSecondSubaccount(value) {
+        await this.financeService.updateSecondSubAccount(this.UpdatingSecondsubAccount);
+    }
 
-      await this.financeService.DeleteSecondSubAccount(value.key);
-  }
+    async deleteSecondSubaccount(value) {
+
+        await this.financeService.DeleteSecondSubAccount(value.key);
+    }
 
 }

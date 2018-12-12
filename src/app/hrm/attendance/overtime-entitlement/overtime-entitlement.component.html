@@ -5,7 +5,7 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text"> OverTime Entitlement</h3>
+              <h3 class="m-portlet__head-text"> Overtime Entitlement</h3>
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
                 (onRowInserted)="addovertimeEntitlement($event)" 
                 (onRowUpdated)="updateovertimeEntitlement($event)"
                 (onRowRemoved)="deleteovertimeEntitlement($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="OverTime Entitlement" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
                 </dxo-editing>

@@ -11,6 +11,7 @@ export class RosterComponent implements OnInit {
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
+
         this.roster = await this.attendancesetupservice.getRosters();
     }
 

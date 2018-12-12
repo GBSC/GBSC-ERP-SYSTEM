@@ -7,120 +7,131 @@ import { ProtocolService } from '../../../../app/core/Services/HIMS/protocol.ser
 import { MedicineService } from '../../../../app/core/Services/HIMS/medicine.service';
 import { PatientclinicalrecordService } from '../../../core/Services/HIMS/patientclinicalrecord.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-clinicalrecord',
-  templateUrl: './clinicalrecord.component.html',
-  styleUrls: ['./clinicalrecord.component.scss']
+    selector: 'app-clinicalrecord',
+    templateUrl: './clinicalrecord.component.html',
+    styleUrls: ['./clinicalrecord.component.scss']
 })
 export class ClinicalrecordComponent implements OnInit {
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  private patient: any;
-  private spouse: any;
-  private patients: any;
-  private consultants: any;
-  private treatments: any;
-  private protocols: any;
-  private medicines: any;
-  private id: number;
-  private drugs: any[];
-  private clinicalRecord: any;
+    private patient: any;
+    private spouse: any;
+    private patients: any;
+    private consultants: any;
+    private treatments: any;
+    private protocols: any;
+    private medicines: any;
+    private id: number;
+    private drugs: any[];
+    private clinicalRecord: any;
 
-  private clinicalrecordform: FormGroup;
+    private clinicalrecordform: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-    private consultantService: ConsultantService,
-    private patientService: PatientService,
-    private treatmentService: TreatmentService,
-    private medicineService: MedicineService,
-    private protocolService: ProtocolService,
-    public router: Router,
-    private route: ActivatedRoute,
-    private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(private formBuilder: FormBuilder,
+        private consultantService: ConsultantService,
+        private patientService: PatientService,
+        private treatmentService: TreatmentService,
+        private medicineService: MedicineService,
+        private protocolService: ProtocolService,
+        public router: Router,
+        private route: ActivatedRoute,
+        private toastr: ToastrService,
+        private clinicalrecordservice: PatientclinicalrecordService) {
 
-    this.clinicalrecordform = this.formBuilder.group({
-      'CycleNumber': ['', Validators.required],
-      'Lmp1': [''],
-      'Lmp2': [''],
-      'TypewiseTreatmentNumber': [''],
-      'ActiveInactive': [],
-      'Outcome': [''],
-      'Reason': [''],
-      'SupressionDate': [''],
-      'SimulationDate': [''],
-      'TriggerDate': [''],
-      'EtDate': [''],
-      'TreatmentTypeId': [''],
-      'ConsultantId': [''],
-      'ProtocolId': ['']
-    })
+        this.clinicalrecordform = this.formBuilder.group({
+            'CycleNumber': ['', Validators.required],
+            'Lmp1': [''],
+            'Lmp2': [''],
+            'TypewiseTreatmentNumber': [''],
+            'ActiveInactive': [],
+            'Outcome': [''],
+            'Reason': [''],
+            'SupressionDate': [''],
+            'SimulationDate': [''],
+            'TriggerDate': [''],
+            'EtDate': [''],
+            'TreatmentTypeId': [''],
+            'ConsultantId': [''],
+            'ProtocolId': ['']
+        })
 
-    this.clinicalrecordform.disable();
-
-  }
-
-  ngOnInit() {
-
-    this.route.params.subscribe((params) => {
-      this.id = +params['id'];
-
-      this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
-
-        this.clinicalRecord = resp;
-
-        if (resp != null) {
-          this.drugs = resp.clinicalRecordDrugs;
-
-        }
-
-
-      })
-
-    })
-
-    this.patientcb.onValueChanged.subscribe(res => {
-      this.populatePatientDate(res.component.option("value"))
-      this.clinicalrecordform.enable();
-    });
-
-
-    this.consultantService.getConsultants()
-      .subscribe(consultants => this.consultants = consultants)
-
-    this.patientService.getPatientObservable()
-      .subscribe(patients => this.patients = patients);
-
-    this.protocolService.getProtocols().subscribe(resp => this.protocols = resp);
-
-    this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
-
-    this.medicineService.getMedicines().subscribe(resp => this.medicines = resp);
-
-    this.drugs = [];
-
-  }
-
-  submitForm(value) {
-
-    if (this.patient) {
-
-      value.patientId = this.patient.patientId;
-      value.clinicalRecordDrugs = this.drugs;
-
-      this.clinicalrecordservice.addPatientClinicalRecord(value).subscribe(resp => console.log(resp));
+        this.clinicalrecordform.disable();
 
     }
 
-  }
+    ngOnInit() {
 
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-    });
-  }
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+                if (resp != null) {
+                    this.drugs = resp.clinicalRecordDrugs;
+
+                }
+
+
+            })
+
+        })
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+            this.clinicalrecordform.enable();
+        });
+
+
+        this.consultantService.getConsultants()
+            .subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientCb()
+            .subscribe(patients => this.patients = patients);
+
+        this.protocolService.getProtocols().subscribe(resp => this.protocols = resp);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+        this.medicineService.getMedicines().subscribe(resp => this.medicines = resp);
+
+        this.drugs = [];
+
+    }
+
+    submitForm(value) {
+
+        if (this.patient) {
+
+            value.patientId = this.patient.patientId;
+            value.clinicalRecordDrugs = this.drugs;
+
+            this.clinicalrecordservice.addPatientClinicalRecord(value).subscribe(resp => {
+                this.displayToast("Patient Clinical Record Saved");
+                this.router.navigate(['coordination/clinical-record/' + resp.patientClinicalRecordId]);
+            });
+
+        }
+
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+        });
+    }
 
 
 

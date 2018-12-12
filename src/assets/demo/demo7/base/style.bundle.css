@@ -30603,7 +30603,7 @@ body.m-content--skin-light2 {
       display: table !important;
       width: 100%; }
     .m-brand.m-brand--skin-light {
-      background-image: linear-gradient(to right top, #747474, #868686, #999999, #acacac, #c0c0c0); }
+      background: #d2d2d2; }
     .m-brand.m-brand--skin-dark {
       background: #21232f; }
     .m-brand .m-brand__logo {
@@ -31077,7 +31077,7 @@ body.m-content--skin-light2 {
         position: relative; }
       .m-header-menu .m-menu__nav > .m-menu__item > .m-menu__link {
         height: 38px;
-        padding: 12px 10px;
+        padding: 8px 8px;
         -webkit-border-radius: 8px;
         -moz-border-radius: 8px;
         -ms-border-radius: 8px;
@@ -31109,9 +31109,9 @@ body.m-content--skin-light2 {
             height: 1px; }
         .m-header-menu .m-menu__nav > .m-menu__item > .m-menu__link .m-menu__link-text {
           font-weight: 300;
-          font-size: 13px;
+          font-size: 12px;
           text-transform: initial;
-          letter-spacing: 1px; }
+          letter-spacing: 0px; }
         .m-header-menu .m-menu__nav > .m-menu__item > .m-menu__link .m-menu__link-badge {
           padding: 0px 0px 0px 5px;
           text-align: right; }

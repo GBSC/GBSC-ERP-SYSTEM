@@ -4,6 +4,7 @@ export interface SalesIndent {
     salesIndentId: number,
     date: Date,
     salesIndentNumber: string,
+    totalQuantity: number,
     totalTradePrice: number,
     totalTradeOfferDiscount: number,
     totalTradeOffer: number,
@@ -18,10 +19,10 @@ export interface SalesIndent {
     deliveryOrderId: number,
     salesInvoiceId: number,
     deliveryChallanId: number,
-    salesIndentItems : SalesIndentItem[],
+    salesIndentItems: SalesIndentItem[],
 
-    customerName : string,
-    customerSecondName : string,
-    consultantName : string,
-    customerCode : string
+    customerName: string,
+    customerSecondName: string,
+    consultantName: string,
+    customerCode: string
 }

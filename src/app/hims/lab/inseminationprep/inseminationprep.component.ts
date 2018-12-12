@@ -11,6 +11,7 @@ import { Spouse } from '../../../core/Models/HIMS/spouse';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { ActivatedRoute } from '@angular/router';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-inseminationprep',
@@ -41,6 +42,7 @@ export class InseminationprepComponent implements OnInit {
         private clinicalrecordservice: PatientclinicalrecordService,
         private route: ActivatedRoute,
         private treatmentService: TreatmentService,
+        private toastr: ToastrService,
         private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService) {
 
         this.inseminationPrepForm = formBuilder.group({
@@ -93,7 +95,11 @@ export class InseminationprepComponent implements OnInit {
 
 
             this.inseminationPrepService.getInsemenationPrepByClinicalRecordId(this.id)
-                .subscribe(resp => this.insemenationPrep = resp);
+                .subscribe(resp => {
+
+                    this.insemenationPrep = resp
+                    this.patchValues(this.insemenationPrep);
+                });
 
         });
 
@@ -107,7 +113,7 @@ export class InseminationprepComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
@@ -124,7 +130,48 @@ export class InseminationprepComponent implements OnInit {
 
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
 
-        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => console.log(resp));
+        this.inseminationPrepService.addInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Saved"));
+    }
+
+    onUpdate(value) {
+
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.inseminationPrepId = this.insemenationPrep.inseminationPrepId;
+
+        this.inseminationPrepService.updateInseminationPrep(value).subscribe(resp => this.displayToast("Insemenation Prep Updated"));
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    patchValues(insemenationPrep) {
+
+        this.inseminationPrepForm.patchValue({
+
+            'InsemenationDate': insemenationPrep.insemenationDate,
+            'PrepFor': insemenationPrep.prepFor,
+            'CollectionNumber': insemenationPrep.collectionNumber,
+            'CollectionDate': insemenationPrep.collectionDate,
+            'SampleType': insemenationPrep.sampleType,
+            'ProcedureNumber': insemenationPrep.procedureNumber,
+            'Method': insemenationPrep.method,
+            'Volume': insemenationPrep.volume,
+            'TotalCount': insemenationPrep.totalCount,
+            'TotalCountRange': insemenationPrep.totalCountRange,
+            'MotileCount': insemenationPrep.motileCount,
+            'NonLinearProgression': insemenationPrep.nonLinearProgression,
+            'RapidLinearProgression': insemenationPrep.rapidLinearProgression,
+            'MotileCountRange': insemenationPrep.motileCountRange,
+            'TimeCompleted': insemenationPrep.timeCompleted,
+            'FinalVolume': insemenationPrep.finalVolume,
+            'Comments': insemenationPrep.comments,
+            'SpecialComment': insemenationPrep.specialComment
+
+        })
+
     }
 
 }

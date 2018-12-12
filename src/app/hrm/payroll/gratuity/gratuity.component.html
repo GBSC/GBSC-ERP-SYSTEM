@@ -37,13 +37,13 @@
                     <label>
                         From:
                     </label>
-                    <input type="date" class="form-control m-input" formControlName="From" placeholder="0">
+                    <dx-date-box formControlName="From" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
                   </div>
                   <div class="col-lg-6">
                     <label class="">
                         Total Salary:
                     </label>
-                    <input type="date" class="form-control m-input" formControlName="To" placeholder="0">
+                    <dx-date-box formControlName="To" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
                   </div>
                 </div>
 
@@ -105,17 +105,15 @@
                       <div class="m-section">
                         <div class="m-section__content">
                           <dx-data-grid id="gridContainer"
-                          [dataSource]="[]"
-                           keyExpr="gratuitySlabId"
-                           (onRowInserted)="gratuitySlab($event)" >
-                            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                              <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                              </dxo-popup>
+                          [dataSource]="Gratuity"
+                           (onRowInserted)="gratuitySlab($event)"
+                           (onRowUpdated)="updateGratuitySlabGratuity($event)" >
+                            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             </dxo-editing>
                             <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-header-filter [visible]="true"></dxo-header-filter>
             
-                            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                            <dxo-search-panel [visible]="true" [width]="180" placeholder="Search..."></dxo-search-panel>
                             <dxo-paging [pageSize]="6"></dxo-paging>
                             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                             </dxo-pager>  
@@ -140,11 +138,18 @@
                       <div class="row">
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4">
+                            <div *ngIf="isUpdate(); else create">
+                                <button class="btn btn-primary" (click)="update(GratuityForm.value)">
+                                    Update
+                                  </button>        
+                            </div> 
+                            <ng-template #create>
                           <button type="submit" class="btn btn-brand" (click)="addGratuity(GratuityForm.value)">
                             Submit
                           </button>
+                          </ng-template>
                           <button type="reset" class="btn btn-secondary">
-                            Cancel
+                            Reset
                           </button>
                         </div>
                         <div class="col-lg-4"></div>

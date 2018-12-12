@@ -16,13 +16,13 @@ export class RelationComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllRelation();
-        this.relation = this.dataService.relation;
+        this.relation = await this.dataService.getAllRelation();
     }
 
 
     addrelation(relation) {
         this.dataService.addRelation(relation.data);
+        this.relation = this.dataService.getAllRelation();
     }
 
     Editrelation(reltion) {

@@ -11,20 +11,18 @@ import { SetupService } from '../../../core';
 export class CostCenterComponent implements OnInit {
     public ccenter: any;
 
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-        await this.dataService.getAllCostCenter();
-        this.ccenter = this.dataService.costcenter;
+        this.ccenter = await this.dataService.getAllCostCenter();
     }
-
-
 
     addNewCostCenter(cc) {
         this.dataService.addCostCenter(cc.data);
+        this.ccenter = this.dataService.getAllCostCenter();
+
     }
 
     EditCost(costcntr) {

@@ -14,13 +14,12 @@ export class UniversityComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllUniversities();
-        this.university = this.dataService.university;
-
+        this.university = await this.dataService.getAllUniversities();
     }
 
     adduniversity(uni) {
         this.dataService.adduniversity(uni.data);
+        this.university = this.dataService.getAllUniversities();
     }
 
     Edituniversity(university) {

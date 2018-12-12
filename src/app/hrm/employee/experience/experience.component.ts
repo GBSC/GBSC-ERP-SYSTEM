@@ -34,7 +34,7 @@ export class ExperienceComponent implements OnInit {
 
     updateWorkExperience(value) {
 
-        let expereince = this.experiences.find(x => x.WorkExperienceId == value.key);
+        let expereince = this.experiences.find(x => x.workExperienceId == value.key);
 
         expereince = { ...expereince, ...value.data };
 

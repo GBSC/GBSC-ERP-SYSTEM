@@ -3,52 +3,52 @@ import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
 
 @Component({
-  selector: 'app-sub-account',
-  templateUrl: './sub-account.component.html',
-  styleUrls: ['./sub-account.component.scss']
+    selector: 'app-sub-account',
+    templateUrl: './sub-account.component.html',
+    styleUrls: ['./sub-account.component.scss']
 })
 export class SubAccountComponent implements OnInit {
 
-  public subAccount: any;
-  public SubAccountForm: any;
-  public masterAccount: any;
-  public UpdatingsubAccount: any;
+    public subAccount: any;
+    public SubAccountForm: any;
+    public masterAccount: any;
+    public UpdatingsubAccount: any;
 
-  constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-      this.SubAccountForm = this.fb.group({
-        SubAccountCode: [''],
-        Name: [''], 
-        MasterAccountId: [''] 
-      });
+        this.SubAccountForm = this.fb.group({
+            SubAccountCode: [''],
+            Name: [''],
+            MasterAccountId: ['']
+        });
 
-      this.subAccount = await this.financeService.getSubAccounts();
-      
-      this.masterAccount = await this.financeService.getMasterAccounts();
-  }
+        this.subAccount = await this.financeService.getSubAccounts();
 
-  async addSubaccount() {
+        this.masterAccount = await this.financeService.getMasterAccounts();
+    }
 
-      await this.financeService.addSubAccount(this.SubAccountForm.value);
-      this.subAccount = await this.financeService.getSubAccounts();
-      this.SubAccountForm.reset();
+    async addSubaccount() {
 
-  }
+        await this.financeService.addSubAccount(this.SubAccountForm.value);
+        this.subAccount = await this.financeService.getSubAccounts();
+        this.SubAccountForm.reset();
 
-  async updatingSubaccount(value) {
+    }
 
-      this.UpdatingsubAccount = { ...value.oldData, ...value.newData };
-  }
-  async updateSubaccount() {
+    async updatingSubaccount(value) {
 
-      await this.financeService.updateSubAccount(this.UpdatingsubAccount);
-  }
+        this.UpdatingsubAccount = { ...value.oldData, ...value.newData };
+    }
+    async updateSubaccount() {
 
-  async deleteSubaccount(value) {
+        await this.financeService.updateSubAccount(this.UpdatingsubAccount);
+    }
 
-      await this.financeService.DeleteSubAccount(value.key);
-  }
+    async deleteSubaccount(value) {
+
+        await this.financeService.DeleteSubAccount(value.key);
+    }
 
 }

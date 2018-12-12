@@ -2,177 +2,112 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Compensation Transaction
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-
-          <form [formGroup]="CompensationTransactionForm">
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Payroll Year:
-                </label>
-                <select class="form-control m-input" formControlName="PayrollyearId" id="">
-                  <option value="" disabled selected>-- Select Payroll Year --</option>
-                  <option *ngFor="let payrollyear of payrollYears" [value]="payrollyear.payrollYearId">{{payrollyear.name}}</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Month:
-                </label>
-                <input type="date" class="form-control m-input" formControlName="Month" placeholder="">
-              </div>
-            </div>
-
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Employee:
-                </label>
-                <select class="form-control m-input" formControlName="UserId" id="">
-                  <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of employees" [value]="user.userId">{{user.firstName}}</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Payroll Type:
-                </label>
-                <select class="form-control m-input" formControlName="PayrollTypeId" id="">
-                  <option value="" disabled selected>-- Select Payroll Type --</option>
-                  <option *ngFor="let payrollType of payrollTypes" [value]="payrollType.payrollTypeId">{{payrollType.name}}</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                 Allowance:
-                </label>
-                <select class="form-control m-input" formControlName="AllowanceId" id="">
-                  <option value="" disabled selected>-- Select Allowance  --</option>
-                  <option *ngFor="let allowance of allowances" [value]="allowance.allowanceId">{{allowance.name}}</option>
-                </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Amount:
-                </label>
-                <input type="number" class="form-control m-input" formControlName="Amount" placeholder="0">
-              </div>
-            </div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-12">
-                <label>
-                  Remarks:
-                </label>
-                <textarea class="form-control m-input" formControlName="Remarks" id="" rows="3"></textarea>
-              </div> 
-            </div>
-            <div class="m--space-30"></div>
-            <div class="form-group m-form__group row">
-              <div class="col-lg-12">
-                <label class="">
-                   Taxable Income:
-                </label>
-                <div class="m-checkbox-list">
-                  <label class="m-checkbox m-checkbox--state-success">
-                    <input type="checkbox" formControlName="IsTaxableIncome">
-                    <span></span>
-                  </label>
-                </div>
-              </div> 
-            </div>
-
-            <div class="m--space-50"></div>
-            <div class="m-separator m-separator"></div> 
-
-            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-              <div class="m-form__actions m-form__actions--solid">
-                <div class="row">
-                  <div class="col-lg-4"></div>
-                  <div class="col-lg-4">
-                    <button type="submit" class="btn btn-brand" (click)="addCompensationTransaction()">
-                      Submit
-                    </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
-                    </button>
-                  </div>
-                  <div class="col-lg-4"></div>
-                </div>
-              </div>
-            </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                  Compensation Transaction
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="compensationTransaction" keyExpr="compensationTransactionId"
-          (onRowUpdated)="updateCompensationTransact()" 
-          (onRowUpdating)="updatingCompensationTransaction($event)" 
-          (onRowRemoved)="deleteCompensationTransaction($event)">
-          <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">	
-            <dxo-popup title="Compensation Transaction" [showTitle]="true" [width]="750" [height]="550" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-          </dxo-editing>
-          <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-            <dxo-paging [pageSize]="8"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-            </dxo-pager>
-  
-            <dxi-column dataField="userId"caption="Employee">
-              <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
-          </dxi-column>
-          <dxi-column dataField="amount" caption="Amount"></dxi-column>
-          <dxi-column dataField="month" caption="Month" dataType="date" format="month"></dxi-column>
-
-            <dxi-column dataField="payrollyearId" caption="Payroll Year"  [visible]="false">
-              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
-          </dxi-column>
-            <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-              <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
-          </dxi-column>
-            <dxi-column dataField="allowanceId" caption="Allowance">
-              <dxo-lookup [dataSource]="allowances" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
-          </dxi-column>
-            <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
-             <dxi-column dataField="isTaxableIncome" caption="Taxable Income" dataType="boolean"></dxi-column>
-          </dx-data-grid>
-
-        </div>
-      </div>
-    </div>
-  </div>
  
+      <form [formGroup]="CompensationTransactionForm">
+
+        <div class="form-group m-form__group row">
+          <div class="col-lg-6">
+            <label>
+              Payroll Year:
+            </label>
+            <select class="form-control m-input" formControlName="PayrollyearId">
+              <option value="" disabled selected>-- Select Payroll Year --</option>
+              <option *ngFor="let payrollyear of payrollYears" [value]="payrollyear.payrollYearId">{{payrollyear.year}}</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <label class="">
+              Month:
+            </label>
+            <input type="date" class="form-control m-input" formControlName="Month" placeholder="">
+          </div>
+        </div>
+
+
+        <div class="form-group m-form__group row">
+          <div class="col-lg-6">
+            <label>
+              Employee:
+            </label>
+            <select class="form-control m-input" formControlName="UserId" id="">
+              <option value="" disabled selected>-- Select Employee --</option>
+              <option *ngFor="let user of employees" [value]="user.userId">{{user.firstName}}</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <label class="">
+              Payroll Type:
+            </label>
+            <select class="form-control m-input" formControlName="PayrollTypeId" id="">
+              <option value="" disabled selected>-- Select Payroll Type --</option>
+              <option *ngFor="let payrollType of payrollTypes" [value]="payrollType.payrollTypeId">{{payrollType.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+          <div class="col-lg-6">
+            <label>
+              Allowance:
+            </label>
+            <select class="form-control m-input" formControlName="AllowanceId" id="">
+              <option value="" disabled selected>-- Select Allowance --</option>
+              <option *ngFor="let allowance of allowances" [value]="allowance.allowanceId">{{allowance.name}}</option>
+            </select>
+          </div>
+          <div class="col-lg-6">
+            <label class="">
+              Amount:
+            </label>
+            <input type="number" class="form-control m-input" formControlName="Amount" placeholder="0">
+          </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+          <div class="col-lg-12">
+            <label>
+              Remarks:
+            </label>
+            <textarea class="form-control m-input" formControlName="Remarks" id="" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="m--space-30"></div>
+        <div class="form-group m-form__group row">
+          <div class="col-lg-12">
+            <label class="">
+              Taxable Income:
+            </label>
+            <div class="m-checkbox-list">
+              <label class="m-checkbox m-checkbox--state-success">
+                <input type="checkbox" formControlName="IsTaxableIncome">
+                <span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="m--space-50"></div>
+        <div class="m-separator m-separator"></div>
+
+        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+          <div class="m-form__actions m-form__actions--solid">
+            <div class="row">
+              <div class="col-lg-4"></div>
+              <div class="col-lg-4">
+                <button type="submit" class="btn btn-brand" (click)="addCompensationTransaction()">
+                  Submit
+                </button>
+                <button type="reset" class="btn btn-secondary">
+                  Reset
+                </button>
+              </div>
+              <div class="col-lg-4"></div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
 </div>

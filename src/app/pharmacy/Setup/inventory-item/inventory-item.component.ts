@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 import { Unit } from '../../../core/Models/Pharmacy/Unit';
@@ -8,6 +8,8 @@ import { PackCategory } from '../../../core/Models/Pharmacy/PackCategory';
 import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
 import { InventoryItemCategory } from '../../../core/Models/Pharmacy/InventoryItemCategory';
 import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
+import { Observable } from 'rxjs';
+import { InventoryComponent } from '../inventory/inventory.component';
 
 
 
@@ -18,6 +20,8 @@ import { PackageType } from '../../../core/Models/Pharmacy/PackageType';
 })
 
 export class InventoryItemComponent implements OnInit {
+
+    @ViewChild(InventoryComponent) InventoryComponent: InventoryComponent;
 
     private InventoryItems: InventoryItem;
     private Units: Unit;
@@ -46,8 +50,40 @@ export class InventoryItemComponent implements OnInit {
 
     async AddInventoryItem(value) {
         console.log(value);
-        await this.PharmacyService.AddInventoryItem(value.data).toPromise();
-        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => this.InventoryItems = res);
+        let a: any = await this.PharmacyService.AddInventoryItem(value.data).toPromise();
+        this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => {
+            this.InventoryItems = res;
+            let b: any = res;
+            this.InventoryComponent.AddNewInventoryItem(b.find(c => c.inventoryItemId === a.itemID));
+        });
+    }
+
+    UpdateUnitInInventoryItemComponent(NewUnits) {
+        this.Units = NewUnits;
+    }
+
+    UpdatePackTypeInInventoryItemComponent(NewPackTypes) {
+        this.PackTypes = NewPackTypes;
+    }
+
+    UpdatePackSizeInInventoryItemComponent(NewPackSizes) {
+        this.PackSizes = NewPackSizes;
+    }
+
+    UpdatePackCategoryInInventoryItemComponent(NewPackCategories) {
+        this.PackCategories = NewPackCategories;
+    }
+
+    UpdateProductTypeInInventoryItemComponent(NewProductTypes) {
+        this.ProductTypes = NewProductTypes;
+    }
+
+    UpdateInventoryItemCategoryInInventoryItemComponent(NewInventoryItemCategories) {
+        this.InventoryItemCategories = NewInventoryItemCategories;
+    }
+
+    UpdatePackageTypeInInventoryItemComponent(NewPackageTypes) {
+        this.PackageTypes = NewPackageTypes;
     }
 
     UpdateModel(value) {

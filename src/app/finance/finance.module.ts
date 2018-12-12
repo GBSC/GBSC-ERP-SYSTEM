@@ -64,6 +64,6 @@ import { UpdateVoucherComponent } from './update-voucher/update-voucher.componen
         DemoComponent,
         UpdateVoucherComponent 
     ],
-    providers: [FinanceSetupService,FinanceService]
+    providers: [FinanceSetupService, FinanceService]
 })
 export class FinanceModule { }

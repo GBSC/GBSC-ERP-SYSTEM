@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientModule } from '../../app/hims/patient/patient.module'
-import { InventorysystemModule } from '../Inventorysystem/Inventorysystem.module';
+// import { InventorysystemModule } from '../inventorysystem/inventorysystem.module';
 import { FinanceModule } from '../finance/finance.module';
 import { LabModule } from '../../app/hims/lab/lab.module'
 import { DashboardModule } from '../dashboard/dashboard.module';
@@ -37,7 +37,7 @@ const routes: Routes = [
         PatientModule,
         LabModule,
         FinanceModule,
-        InventorysystemModule,
+        // InventorysystemModule,
         SuperadminModule,
         DashboardModule,
         HrmModule,

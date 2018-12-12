@@ -16,13 +16,13 @@ export class EmployeeTypes implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllEmployeeTypes();
-        this.emptype = this.dataService.employeetype;
+        this.emptype = await this.dataService.getAllEmployeeTypes();
     }
 
 
     addemptype(emptype) {
-        this.dataService.addEmployeeType(emptype.data)
+        this.dataService.addEmployeeType(emptype.data);
+        this.emptype = this.dataService.getAllEmployeeTypes();
     }
 
     Updateemptype(emptype) {

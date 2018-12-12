@@ -79,8 +79,8 @@ export class LeavepolicyComponent implements OnInit {
 
     }
 
-    async addleavepolicy() {
-        await this.leavesetupservice.addLeavePolicy(this.leavePolicyForm.value);
+    async addleavepolicy(value) {
+        await this.leavesetupservice.addLeavePolicy(value.data);
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
     }
 

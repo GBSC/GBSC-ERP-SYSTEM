@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PurchaseOrder } from '../../core/Models/Pharmacy/PurchaseOrder';
 import { PharmacyService } from '../../core';
 
- 
+
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -15,16 +15,16 @@ import { Router } from '@angular/router';
 export class PurhcaseorderViewComponent implements OnInit {
     private PurchaseOrders: PurchaseOrder;
     private DetailPO: PurchaseOrder;
-    private PurchaseOrder : any;
+    private PurchaseOrder: any;
 
-    private PurchaseOrderViewForm : FormGroup;
+    private PurchaseOrderViewForm: FormGroup;
 
-    public date : any;
+    public date: any;
 
-    constructor(private PharmacyService: PharmacyService , private formBuilder : FormBuilder, public router: Router) {
+    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
 
         this.PurchaseOrderViewForm = this.formBuilder.group({
-            orderDate:['']
+            orderDate: ['']
         })
 
     }
@@ -32,12 +32,12 @@ export class PurhcaseorderViewComponent implements OnInit {
     ngOnInit() {
         // this.PharmacyService.GetPurchaseOrders().subscribe((res: PurchaseOrder) => this.PurchaseOrders = res);
         this.date = this.formatDate(new Date());
-        this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res : PurchaseOrder) => {
+        this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res: PurchaseOrder) => {
             this.PurchaseOrder = res;
             // console.log(this.PurchaseOrder);
             // console.log(this.formatDate(new Date()));
         });
-        
+
     }
 
     // GetPurchaseOrderDetails(value) {
@@ -45,14 +45,14 @@ export class PurhcaseorderViewComponent implements OnInit {
     // }
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-        {
-            location: 'after',
-            widget: 'dxButton',
-            options: {
-              icon: 'add',
-              onClick: this.addvoucher.bind(this)
-            }
-        });
+            {
+                location: 'after',
+                widget: 'dxButton',
+                options: {
+                    icon: 'add',
+                    onClick: this.addvoucher.bind(this)
+                }
+            });
     }
 
     addvoucher() {
@@ -60,14 +60,14 @@ export class PurhcaseorderViewComponent implements OnInit {
     }
 
     formatDate(date: Date) {
-        return date.getFullYear( ) + "-" + (date.getMonth() +1);
+        return date.getFullYear() + "-" + (date.getMonth() + 1);
     }
 
-    async onsubmit(value){
+    async onsubmit(value) {
         // console.log(value)
-        this.PharmacyService.GetPurchaseOrdersByMonth(value.orderDate).subscribe((res : PurchaseOrder) => {
+        this.PharmacyService.GetPurchaseOrdersByMonth(value.orderDate).subscribe((res: PurchaseOrder) => {
             this.PurchaseOrder = res;
         });
-     }
+    }
 
 }

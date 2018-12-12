@@ -14,7 +14,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
     public users: any;
     public taxYears: any;
     public groups: any;
-    updatingincomeAdjustment: any;
+    private updatingincomeAdjustment: any;
 
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }
@@ -35,6 +35,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
 
     async addTaxableincomeAdjustment(value) {
         await this.payrollsetupservice.addTaxableIncomeAdjustment(value.data);
+        this.taxableIncomeAdjustment = await this.payrollsetupservice.getTaxableIncomeAdjustments();
     }
 
     updatingTaxableincomeAdjustment(value) {

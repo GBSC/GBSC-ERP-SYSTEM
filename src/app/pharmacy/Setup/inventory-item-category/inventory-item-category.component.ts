@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { InventoryItemCategory } from '../../../core/Models/Pharmacy/InventoryItemCategory';
+import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
 @Component({
     selector: 'app-inventory-item-category',
@@ -8,6 +9,9 @@ import { InventoryItemCategory } from '../../../core/Models/Pharmacy/InventoryIt
     styleUrls: ['./inventory-item-category.component.scss']
 })
 export class InventoryItemCategoryComponent implements OnInit {
+
+    @Output() UpdateInventoryItemCategoryInInventoryItemComponent = new EventEmitter<any>();
+
     private ItemCategories: InventoryItemCategory;
     private UpdatedModel: any;
 
@@ -21,7 +25,10 @@ export class InventoryItemCategoryComponent implements OnInit {
 
     async AddItemCategory(value) {
         await this.PharmacyService.AddInventoryItemCategory(value.data).toPromise();
-        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => this.ItemCategories = res);
+        this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => {
+            this.ItemCategories = res;
+            this.UpdateInventoryItemCategoryInInventoryItemComponent.emit(this.ItemCategories);
+        });
     }
 
     async UpdateItemCategory() {

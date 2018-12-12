@@ -1,229 +1,104 @@
-
 <div class="m-content">
-
-    <div class="row">
-            <div class="col-xl-12">
-              <div class="m-portlet">
-                <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                      <h3 class="m-portlet__head-text">Payment Receipt</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="m-portlet__body">
-                    <form  class="m-form ng-untouched ng-pristine ng-valid"  >
-                        <div  class="m-portlet__body">
-                          <div  class="form-group row">
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> MRN No </label>
-                              <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="mrnno" type="text" >
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleInputEmail1">  Date </label>
-                              <div  class="input-group date">
-                                <input  class="form-control m-input" id="m_datepicker_2" type="text">
-                                <div  class="input-group-append">
-                                  <span  class="input-group-text">
-                                    <i  class="la la-calendar"></i>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> Visit Nature </label>
-                              <select  class="form-control m-input ng-pristine ng-invalid ng-touched">
-                                <option  class="active" value="Consultation" >Consultation</option>
-                              </select>
-                            </div>
-                            <div  class="form-group col-lg-3">
-                              <label  for="exampleSelect1"> Slip No </label>
-                              <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" name="slipno" type="text" >
-                            </div>
-                          </div>
-                          <div  class="form-group row">
-                            <div  class="form-group col-lg-6">
-                              <h5>Patient Information</h5>
-                              
-                              </div>
-                            <div  class="form-group col-lg-6">
-                                <h5>Account Information</h5>
-                            </div>
-                          </div>
-                          <div  class="form-group row">
-                              <div  class="form-group col-lg-6">
-                                  <div  class="form-group row">
-                                      <div  class="form-group col-lg-6">
-                                        <label  for="exampleSelect1"> Patient Name </label>
-                                        <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                      </div>
-                                      <div  class="form-group col-lg-6">
-                                        <label  for="exampleSelect1"> Spouse Name </label>
-                                        <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                      </div>
-                                    </div>   
-                                    <div  class="form-group row">
-                                        <div  class="form-group col-lg-2">
-                                          <label  for="exampleSelect1"> Package </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                        </div>
-                                        <div  class="form-group col-lg-4">
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched blankinput" type="text" >
-                                        </div>
-                                        <div  class="form-group col-lg-2">
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched blankinput" type="text" >
-                                        </div>
-                                        <div class="form-group col-lg-4">
-                                            <label class="m-checkbox blankinput">
-                                                <input type="checkbox">
-                                                Payment Flag
-                                                <span></span>
-                                              </label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div  class="form-group row">
-                                        <div  class="form-group col-lg-3">
-                                          <label  for="exampleSelect1"> Pay Amount </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                        </div>
-                                        <div  class="form-group col-lg-3">
-                                          <label  for="exampleSelect1"> Pre </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                        </div>
-                                        <div  class="form-group col-lg-3">
-                                          <label  for="exampleSelect1"> Paid </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                        </div>
-                                        <div  class="form-group col-lg-3">
-                                          <label  for="exampleSelect1"> Bal </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                        </div>
-                                    </div>  
-
-                                    <div  class="form-group row">
-                                        <div  class="form-group col-lg-6">
-                                            <label   for="exampleTextarea"> Remarks </label>
-                                            <textarea  class="form-control m-input" id="exampleTextarea" rows="5">
-                                            </textarea>
-                                        </div>
-                                        <div  class="form-group col-lg-6">
-                                          <label  for="exampleSelect1"> Consultant </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                          <label  for="exampleSelect1"> Others </label>
-                                          <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text" >
-                                       
-                                        </div>
-
-                                         
-                                    </div>  
-                                    
-                                </div>
-                                                               
-          
-                              <div  class="form-group col-lg-6">
-                                  <div  class="form-group row">
-                                    <div class="form-group col-lg-12">
-                                        <div class="m-checkbox-inline blankinput">
-                                            <label class="m-checkbox">
-                                                <input type="checkbox">
-                                                Pay Order
-                                                <span></span>
-                                            </label>
-                                            <label class="m-checkbox">
-                                                <input type="checkbox">
-                                                Cash
-                                                <span></span>
-                                            </label>
-                                            <label class="m-checkbox">
-                                                <input type="checkbox">
-                                               Credit Card
-                                                <span></span>
-                                            </label>
-                                            <label class="m-checkbox">
-                                                <input type="checkbox">
-                                                 Cheque
-                                                <span></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                     
-                                    </div>
-                                    <div  class="form-group row">
-                                        <div class="form-group col-lg-6">
-                                            <label  for="exampleSelect1"> Cheque #</label>
-                                            <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label  for="exampleSelect1"> Bank </label>
-                                            <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
-                                        </div>
-                                         
-                                    </div>
-                                    <div  class="form-group row">
-                                        <div class="form-group col-lg-12">
-                                            <label  for="exampleSelect1"> Credit Card Charges % </label>
-                                            <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
-                                        </div>
-                                    </div>
-                                    <div  class="form-group row">
-                                        <div class="form-group col-lg-6">
-                                            <label  for="exampleSelect1"> Total Charges </label>
-                                            <input  class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
-                                        </div>
-                                        <div class="form-group col-lg-6">
-                                            <label  for="exampleSelect1" class="blankinput"> (With Cr. Charges) </label>
-                                        </div>
-                                    </div>
-
-
-                              </div>
-                              
-                            </div>
-                          </div>
- 
-                      </form>
-
-
-
-
-                  <div class="m-section">
-                    <div class="m-section__content" >
-                        <dx-data-grid id="gridContainer" [dataSource]="PatientServiceobj.patients "> 
-                            <dxo-editing mode="cell"
-                            [allowUpdating]="true">
-                           </dxo-editing>
-                            <dxo-paging [pageSize]="5"></dxo-paging>
-                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                            <dxi-column dataField="fisrtName" caption="FisrtName"></dxi-column>
-                            <dxi-column dataField="partner.fullName"></dxi-column>
-                            <dxi-column dataField="lastName"></dxi-column>
-                            <dxi-column dataField="dob"></dxi-column>
-                            <dxi-column dataField="gender" caption="Gender"></dxi-column>  
-                            <dxi-column dataField="'aaaa'">
-                                <dxo-lookup
-                                            [dataSource]="[{id: 0, name: 'Nature'}, {id: 1, name: 'asdfasdf'}]"
-                                            displayExpr="name"
-                                            valueExpr="id">
-                                </dxo-lookup>
-                            </dxi-column>
-                        </dx-data-grid>  
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-12">
+			<!--begin::Portlet-->
+			<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+						<div class="m-portlet__head-title">
+							<h3 class="m-portlet__head-text">
+								Payment Receipt
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="m-portlet__body">
+					<ul class="nav nav-pills" role="tablist">
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_1" [ngClass]="showApp">
+								Appointment
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_2" [ngClass]="showID">
+								Invoice
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#m_tabs_3_3" [ngClass]="showMRN">
+								View
+							</a>
+						</li>
+					</ul>
 
 
 
 
 
-    
-  </div>
+					<div class="tab-content">
+						<div class="tab-pane" id="m_tabs_3_1" role="tabpanel" [ngClass]="showApp">
+							<div class="form-group col-lg-3">
+								<label> MRN No </label>
+								<input class="form-control m-input" #MRN type="text" (change)="GetAppointmentsByMRN(MRN.value)">
+							</div>
+							<!-- <div class="form-group col-lg-3">
+								<label> Date </label>
+								<div class="input-group date">
+									<input class="form-control m-input" type="date" #Date (change)="GetAppointmentByDateAndMRN(Date.value, MRN.value)">
+									<div class="input-group-append">
+										<span class="input-group-text">
+											<i class="la la-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div> -->
+							<dx-data-grid id="gridContainer" [dataSource]="Appointments">
+								<dxo-paging [pageSize]="5"></dxo-paging>
+								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 15, 30]" [showInfo]="true"></dxo-pager>
+								<dxi-column dataField="appointmentDate" dataType="date" caption="Date"></dxi-column>
+								<dxi-column dataField="tentativeTime" dataType="date" format="hh:mm:ss" caption="Tentative"></dxi-column>
+								<dxi-column dataField="finalTime" dataType="date" format="hh:mm:ss" caption="Final"></dxi-column>
+								<dxi-column dataField="remarks" dataType="text" caption="Remarks"></dxi-column>
+								<dxi-column dataField="consultant.name" dataType="text" caption="Consultant"></dxi-column>
+								<dxi-column dataField="patient.firstName" dataType="text" caption="Patient"></dxi-column>
+								<dxi-column dataField="visitStatus" dataType="text" caption="Visit Status"></dxi-column>
+								<dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized"></dxi-column>
+								<dxi-column dataField="isPaid" dataType="boolean" caption="Paid"  ></dxi-column>
+								<dxi-column dataField="isPaid" caption="Invoice" cellTemplate="chartCellTemplate" [width]="auto" ></dxi-column>
+								<div *dxTemplate="let d of 'chartCellTemplate'">
+										<dx-button *ngIf="d.value == null || d.value == false" (click)="SwitchTab('id', d, MRN.value)" icon="plus"></dx-button>
+										<dx-button *ngIf="d.value == true"  (click)="SwitchTab('mrn', d, MRN.value)"icon="back"></dx-button>
+								</div>
+							</dx-data-grid>
+						</div>
 
 
- 
+						<div class="tab-pane" id="m_tabs_3_2" role="tabpanel" [ngClass]="showID">
+							<app-appointmentpaymentreceipt></app-appointmentpaymentreceipt>
+						</div>
+
+						<div class="tab-pane" id="m_tabs_3_3" role="tabpanel" [ngClass]="showMRN">
+							<app-patient-invoice-view></app-patient-invoice-view>
+						</div>
+					</div>
 
 
 
+
+
+
+				</div>
+			</div>
+		</div>
+		<!--end::Portlet-->
+
+
+
+
+
+
+
+
+
+	</div>
+</div>

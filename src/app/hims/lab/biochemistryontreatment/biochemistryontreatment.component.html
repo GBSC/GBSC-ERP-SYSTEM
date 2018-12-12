@@ -21,7 +21,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled>
+                        [value]="patient?.mrn" disabled>
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -38,8 +38,8 @@
                       <label for="exampleInputEmail1">
                         LMP
                       </label>
-                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="bioChemistry?.lmp" formControlName="LMP">
+                      <dx-date-box type="date" [value]="bioChemistry?.lmp" formControlName="LMP">
+                      </dx-date-box>
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -65,7 +65,7 @@
                         Patient Name
                       </label>
                       <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -75,15 +75,16 @@
                         Spouse
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{spouse?.display}}" disabled="disabled">
+                        [value]="spouse?.display" disabled="disabled">
                     </div>
                   </div>
                   <div class="col-sm-4">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Age
+                        DOB
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_1" placeholder="{{patient?.age}}" />
+                      <dx-date-box type="date" [value]="patient?.dob" [disabled]="true">
+                      </dx-date-box>
                     </div>
                   </div>
                 </div>
@@ -94,7 +95,7 @@
                         Doctor
                       </label>
                       <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -104,7 +105,7 @@
                         Other
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="Others">
+                        [value]="bioChemistry?.Other" formControlName="Other">
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -112,7 +113,7 @@
                       <label for="exampleSelect1">
                         Gender
                       </label>
-                      <input type="text" class="form-control m-input" placeholder="{{patient?.gender}}">
+                      <input type="text" class="form-control m-input" [value]="patient?.gender" disabled>
                     </div>
                   </div>
                 </div>
@@ -123,7 +124,7 @@
                         Treatment#
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="clinicalRecord?.typewiseTreatmentNumber">
+                        [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -141,7 +142,7 @@
                         Treatment Type
                       </label>
                       <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
-                        [searchEnabled]="true" disabled>
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -176,7 +177,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col-sm-10">
+                  <!-- <div class="col-sm-10">
                     <div class="form-group m-form__group">
                       <label for="exampleTextarea col-sm-3">
                         Referance Range
@@ -184,12 +185,19 @@
                       <textarea class="form-control m-input col-sm-9" id="exampleTextarea" rows="3" [value]="bioChemistry?.refRange"
                         formControlName="RefRange"></textarea>
                     </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <button (click)="onsubmit(bioChemistryontreatmentForm.value)" class="btn btn-primary">
-                      Submit
+                  </div> -->
+                  <div *ngIf="bioChemistry; else update" class="col-sm-2">
+                    <button (click)="onUpdate(bioChemistryontreatmentForm.value)" class="btn btn-primary">
+                      Update
                     </button>
                   </div>
+                  <ng-template #update>
+                    <div class="col-sm-2">
+                      <button (click)="onsubmit(bioChemistryontreatmentForm.value)" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </div>
+                  </ng-template>
                 </div>
               </div>
             </div>

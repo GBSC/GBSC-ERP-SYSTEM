@@ -13,8 +13,8 @@ export class FlagcategoryComponent implements OnInit {
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
-        this.flagcategory = await this.attendancesetupservice.getFlagCategories();
 
+        this.flagcategory = await this.attendancesetupservice.getFlagCategories();
     }
 
     async addflagcategory(value) {

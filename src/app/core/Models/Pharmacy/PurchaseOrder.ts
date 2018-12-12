@@ -21,7 +21,7 @@ export interface PurchaseOrder {
     remarks: string,
     status: boolean,
     supplierId: number,
-    supplier : Supplier,
+    supplier: Supplier,
     userId: number,
     purchaseOrderItems: PurchaseOrderItem[]
 }

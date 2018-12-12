@@ -21,7 +21,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled>
+                        [value]="patient?.mrn" disabled>
                        </div>
                   </div>
                   <div class="col-sm-4">
@@ -30,7 +30,7 @@
                         Patient Name
                       </label>
                       <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -39,7 +39,7 @@
                       <label for="exampleInputEmail1">
                         Spouse
                       </label>
-                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                      <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
                     </div>
                   </div>
 
@@ -60,7 +60,7 @@
                         Treatment#
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="clinicalRecord?.typewiseTreatmentNumber">
+                        [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -69,7 +69,7 @@
                         Treatment Type
                       </label>
                       <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
-                        [searchEnabled]="true" disabled>
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -79,7 +79,7 @@
                         Consultant
                       </label>
                       <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -226,9 +226,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-2">
-                        <button type="button" (click)="submitForm(tvopuform.value)" class="btn btn-primary">
-                          Submit
+                      <div *ngIf="!tvopu" class="col-sm-2">
+                          <button type="button" (click)="submitForm(tvopuform.value)" class="btn btn-primary">
+                            Submit
+                          </button>
+                        </div>
+                      <div *ngIf="tvopu" class="col-sm-2">
+                        <button type="button" (click)="updateForm(tvopuform.value)" class="btn btn-primary">
+                          Update
                         </button>
                       </div>
                     </div>
@@ -239,28 +244,28 @@
                   <div class="col-sm-7">
                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                       <div class="m-demo__preview m-demo__preview--btn">
-                        <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                        <a *ngIf="tvopu" [routerLink]="['/lab/embryology', tvopu?.tvopuId]" class="btn btn-primary m-btn m-btn--custom">
                           Assesment
-                        </button>
-                        <button type="button" class="btn btn-brand m-btn m-btn--custom">
+                        </a>
+                        <a *ngIf="tvopu" [routerLink]="['/lab/embryo-freeze', id]" class="btn btn-success m-btn m-btn--custom">
                           Freezing
-                        </button>
-                        <button type="button" class="btn btn-success m-btn m-btn--custom">
+                        </a>
+                        <!-- <button type="button" class="btn btn-success m-btn m-btn--custom">
                           Thaw
                         </button>
                         <button type="button" class="btn btn-info m-btn m-btn--custom">
                           PGS
-                        </button>
+                        </button> -->
                       </div>
                     </div>
                   </div>
                   <div class="col-sm-5">
                     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
                       <div class="m-demo__preview m-demo__preview--btn">
-                        <button type="button" class="btn btn-primary m-btn m-btn--custom">
+                        <button *ngIf="tvopu" [routerLink]="['/lab/biochemistry-ontreatment', id]" class="btn btn-primary m-btn m-btn--custom">
                           Bio-Chemistry
                         </button>
-                        <button type="button" class="btn btn-success m-btn m-btn--custom">
+                        <button *ngIf="tvopu" [routerLink]="['/lab/insemenation', id]" class="btn btn-success m-btn m-btn--custom">
                           Insemination
                         </button>
                       </div>

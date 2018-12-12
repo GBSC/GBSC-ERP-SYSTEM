@@ -8,139 +8,139 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-purchase-invoice',
-  templateUrl: './purchase-invoice.component.html',
-  styleUrls: ['./purchase-invoice.component.scss']
+    selector: 'app-purchase-invoice',
+    templateUrl: './purchase-invoice.component.html',
+    styleUrls: ['./purchase-invoice.component.scss']
 })
 export class PurchaseInvoiceComponent implements OnInit {
 
-  public InvoiceDetail: any[] = [];
-  public purchaseinvoice: any;
-  public purchasereturn: any;
-  public voucher: any;
-  public detailAccount: any;
-  public PurchaseInvoiceForm: any;
-  public PurchaseInvoice: any;
-  public purchaseInvoiceDetail: PurchaseInvoiceDetail[];
+    public InvoiceDetail: any[] = [];
+    public purchaseinvoice: any;
+    public purchasereturn: any;
+    public voucher: any;
+    public detailAccount: any;
+    public PurchaseInvoiceForm: any;
+    public PurchaseInvoice: any;
+    public purchaseInvoiceDetail: PurchaseInvoiceDetail[];
 
-  @Input('purchaseInvoiceId') id: number;
+    @Input('purchaseInvoiceId') id: number;
 
-  constructor(public toastr:ToastrService, private fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
-    public financeService: FinanceService) { }
+    constructor(public toastr: ToastrService, private fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+        public financeService: FinanceService) { }
 
-  async ngOnInit() {
+    async ngOnInit() {
 
-    this.purchaseInvoiceDetail = [];
+        this.purchaseInvoiceDetail = [];
 
-    this.PurchaseInvoiceForm = this.fb.group({
+        this.PurchaseInvoiceForm = this.fb.group({
 
-      BillNumber: [''],
-      Date: [''],
-      Description: [''],
-      CreditDays: [''],
-      VoucherNumber: [''],
-      InvoiceNumber: [''],
-      Expenses: [''],
-      GstAmount: [''],
-      GstPercentage: [''],
-      DiscountAmount: [''],
-      DiscountPercentage: [''],
-      TaxPercentage: [''],
-      TaxAmount: [''],
-      WithholdingTaxPercentage: [''],
-      WihtholdingTaxAmount: [''],
-      TotalAmount: [''],
-      FinancePurchaseReturnId: [''],
-      DetailAccountId: ['']
+            BillNumber: [''],
+            Date: [''],
+            Description: [''],
+            CreditDays: [''],
+            VoucherNumber: [''],
+            InvoiceNumber: [''],
+            Expenses: [''],
+            GstAmount: [''],
+            GstPercentage: [''],
+            DiscountAmount: [''],
+            DiscountPercentage: [''],
+            TaxPercentage: [''],
+            TaxAmount: [''],
+            WithholdingTaxPercentage: [''],
+            WihtholdingTaxAmount: [''],
+            TotalAmount: [''],
+            FinancePurchaseReturnId: [''],
+            DetailAccountId: ['']
 
-    })
+        })
 
-    this.detailAccount = await this.financeSetupService.getDetailAccounts();
+        this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-    });
+        this.activatedRoute.params.subscribe(params => {
+            this.id = params['id'];
+        });
 
-    if (this.isUpdate() === true) {
+        if (this.isUpdate() === true) {
 
-      this.financeService.getPurchaseInvoice(this.id).subscribe(resp => {
+            this.financeService.getPurchaseInvoice(this.id).subscribe(resp => {
 
-        this.PurchaseInvoice = resp;
-        let a = this.PurchaseInvoice.financePurchaseInvoiceDetails;
-        this.InvoiceDetail = a.filter(b => {
-          delete b.financePurchaseInvoiceDetailId;
-          delete b.financePurchaseInvoiceId;
-          return b;
-        }); 
-        this.patchValues(this.PurchaseInvoice);
-      });
+                this.PurchaseInvoice = resp;
+                let a = this.PurchaseInvoice.financePurchaseInvoiceDetails;
+                this.InvoiceDetail = a.filter(b => {
+                    delete b.financePurchaseInvoiceDetailId;
+                    delete b.financePurchaseInvoiceId;
+                    return b;
+                });
+                this.patchValues(this.PurchaseInvoice);
+            });
+        }
+
     }
 
-  }
-
-  async addPurchaseInvoiceDetail(value) {
-    let data = value.data;
-    this.purchaseInvoiceDetail.push(data);
-  }
-
-  async addPurchaseInvoice(value) {
-    let invoicedetail = new PurchaseInvoice();
-    invoicedetail= { ...invoicedetail, ...value };
-    invoicedetail.FinancePurchaseInvoiceDetails = this.purchaseInvoiceDetail;
-     await this.financeService.addPurchaseInvoice(invoicedetail);    
-     this.router.navigate(['/finance/purchase-invoice-detail']);
- 
-  }
-
-  isUpdate(): boolean {
-
-    if (this.id > 0) {
-      return true;
+    async addPurchaseInvoiceDetail(value) {
+        let data = value.data;
+        this.purchaseInvoiceDetail.push(data);
     }
-    else
-      return false;
-  }
 
-  async updatepurchaseInvoiceDetail(value) {
-    console.log(value);
-  }
+    async addPurchaseInvoice(value) {
+        let invoicedetail = new PurchaseInvoice();
+        invoicedetail = { ...invoicedetail, ...value };
+        invoicedetail.FinancePurchaseInvoiceDetails = this.purchaseInvoiceDetail;
+        await this.financeService.addPurchaseInvoice(invoicedetail);
+        this.router.navigate(['/finance/purchase-invoice-detail']);
 
-  async update(value){
+    }
 
-    value.FinancePurchaseInvoiceId = this.id;
-    value.financePurchaseInvoiceDetails = this.InvoiceDetail;
-    console.log(value);
-    this.financeService.updatePurchaseInvoice(value).subscribe(resp=>{
-      this.toastr.success("Purchase Invoice Updated"); 
-      this.router.navigate(['/finance/purchase-invoice-detail']);
+    isUpdate(): boolean {
 
-    })
-  }
+        if (this.id > 0) {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    async updatepurchaseInvoiceDetail(value) {
+        console.log(value);
+    }
+
+    async update(value) {
+
+        value.FinancePurchaseInvoiceId = this.id;
+        value.financePurchaseInvoiceDetails = this.InvoiceDetail;
+        console.log(value);
+        this.financeService.updatePurchaseInvoice(value).subscribe(resp => {
+            this.toastr.success("Purchase Invoice Updated");
+            this.router.navigate(['/finance/purchase-invoice-detail']);
+
+        })
+    }
 
 
-  patchValues(purchaseinvoice: any) {
+    patchValues(purchaseinvoice: any) {
 
-    this.PurchaseInvoiceForm.patchValue({
+        this.PurchaseInvoiceForm.patchValue({
 
-      Date: purchaseinvoice.date,
-      Description: purchaseinvoice.description,
-      BillNumber: purchaseinvoice.billNumber,
-      CreditDays: purchaseinvoice.creditDays,
-      VoucherNumber: purchaseinvoice.voucherNumber,
-      InvoiceNumber: purchaseinvoice.invoiceNumber,
-      Expenses: purchaseinvoice.expenses,
-      GstAmount: purchaseinvoice.gstAmount,
-      GstPercentage: purchaseinvoice.gstPercentage,
-      DiscountAmount: purchaseinvoice.discountAmount,
-      DiscountPercentage: purchaseinvoice.discountPercentage,
-      TaxPercentage: purchaseinvoice.taxPercentage,
-      TaxAmount: purchaseinvoice.taxAmount,
-      WithholdingTaxPercentage: purchaseinvoice.withholdingTaxPercentage,
-      WihtholdingTaxAmount: purchaseinvoice.wihtholdingTaxAmount,
-      TotalAmount: purchaseinvoice.totalAmount,
-      DetailAccountId: purchaseinvoice.detailAccountId
+            Date: purchaseinvoice.date,
+            Description: purchaseinvoice.description,
+            BillNumber: purchaseinvoice.billNumber,
+            CreditDays: purchaseinvoice.creditDays,
+            VoucherNumber: purchaseinvoice.voucherNumber,
+            InvoiceNumber: purchaseinvoice.invoiceNumber,
+            Expenses: purchaseinvoice.expenses,
+            GstAmount: purchaseinvoice.gstAmount,
+            GstPercentage: purchaseinvoice.gstPercentage,
+            DiscountAmount: purchaseinvoice.discountAmount,
+            DiscountPercentage: purchaseinvoice.discountPercentage,
+            TaxPercentage: purchaseinvoice.taxPercentage,
+            TaxAmount: purchaseinvoice.taxAmount,
+            WithholdingTaxPercentage: purchaseinvoice.withholdingTaxPercentage,
+            WihtholdingTaxAmount: purchaseinvoice.wihtholdingTaxAmount,
+            TotalAmount: purchaseinvoice.totalAmount,
+            DetailAccountId: purchaseinvoice.detailAccountId
 
-    })
+        })
 
-  }
+    }
 }

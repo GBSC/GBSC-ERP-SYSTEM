@@ -12,6 +12,7 @@ import { SectionmanagementComponent } from './sectionmanagement/sectionmanagemen
 import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
+import { OrderTakingComponent } from './order-taking/order-taking.component';
 
 @NgModule({
     imports: [
@@ -23,6 +24,6 @@ import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent]
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent]
 })
 export class EtrackerModule { }

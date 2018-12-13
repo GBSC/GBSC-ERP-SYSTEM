@@ -35,7 +35,7 @@ export class FinanceAccountComponent implements OnInit {
 
     this.FinanceSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
       console.log(res);
-      this.FinancialYears = res;
+      this.FinancialYears = res.filter(a => a.isActive == true);
     });
 
     this.AccountForm = this.fb.group({

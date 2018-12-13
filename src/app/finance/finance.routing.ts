@@ -21,6 +21,7 @@ import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-d
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { FinanceAccountComponent } from './finance-account/finance-account.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -32,7 +33,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'setup',
                 children: [
-
+                    { path: 'account', component: FinanceAccountComponent },
                     { path: 'companysetup', component: CompanysetupComponent },
                     { path: 'masteraccount', component: MasterAccountComponent },
                     { path: 'detailaccount', component: DetailAccountComponent },

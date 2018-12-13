@@ -14,76 +14,6 @@ import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 })
 export class UpdateVoucherComponent implements OnInit {
 
-<<<<<<< HEAD
-  public debitTotal = 0;
-  public creditTotal = 0;
-
-  public disableDebit;
-  public disableCredit;
-
-  public departments: any;
-  public financialYear: any;
-  public Detail: any[] = [];
-  public detailAccount: any;
-  public VoucherDetailForm: any;
-  public VoucherForm: any;
-  public voucherType: any;
-  public Vouchers: any;
-  public Voucher: any;
-  public isDisabled: any;
-  @Input('voucherId') id: number;
-
-  constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
-    public financeService: FinanceService, public SetupService: SetupService) { }
-
-  async ngOnInit() {
-
-    this.Detail = [];
-  
-    this.VoucherForm = this.fb.group({
-      VoucherCode: [''],
-      Date: [''],
-      Description: [''],
-      ChequeNumber: [''],
-      Total: [''],
-      IsFinal: [''],
-      VoucherTypeId: ['']
-
-    }) 
-
-    this.voucherType = await this.financeSetupService.getVoucherTypes();
-
-    this.detailAccount = await this.financeSetupService.getDetailAccounts();
-
-    this.financialYear = await this.financeSetupService.getFinancialYears();
-
-    this.departments = await this.SetupService.getAllDepartments();
-
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-
-    });
-
-
-    if (this.isUpdate() === true) {
-      this.financeService.getVoucher(this.id).subscribe((resp : any) => {
-        this.Voucher = resp;
-        // console.log(this.Voucher);
-        // this.Detail = this.Voucher.voucherDetails;
-        let a = this.Voucher.voucherDetails;
-        this.Detail = a.map(b => {
-          delete b.voucherDetailId;
-          delete b.voucherId;
-          return b;
-        });
-        this.patchValues(this.Voucher);
-      }); 
-    }
-
-  }
- 
-  isUpdate(): boolean {
-=======
     public debitTotal = 0;
     public creditTotal = 0;
 
@@ -229,27 +159,11 @@ export class UpdateVoucherComponent implements OnInit {
         else {
             this.toastr.error("Credit Debit Amount not equal");
         }
->>>>>>> master
 
     }
 
     isUpdate(): boolean {
 
-<<<<<<< HEAD
-  async update(value) {
-    value.voucherId = this.id;
-
-    let debit : number = 0;
-    let credit : number = 0;
-
-    this.Detail.forEach(element => {
-      debit += element.debitAmount;
-      credit += element.creditAmount;
-    });
-    if (debit === credit) {
-      this.VoucherForm.value.voucherDetails = this.Detail;
-      this.financeService.updateVoucher(value).subscribe(resp => {
-=======
         if (this.id > 0) {
             return true;
         }
@@ -258,7 +172,6 @@ export class UpdateVoucherComponent implements OnInit {
     }
 
     async updatevoucherDetail(value) {
->>>>>>> master
         console.log(value);
 
     }

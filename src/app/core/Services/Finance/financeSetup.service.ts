@@ -6,6 +6,7 @@ import { MasterAccount } from '../../Models/Finance/masterAccount';
 import { DetailAccount } from '../../Models/Finance/detailAccount';
 import { SubAccount } from '../../Models/Finance/subAccount';
 import { SecondSubAccount } from '../../Models/Finance/secondSubAccount';
+import { Observable } from 'rxjs';
 
 export class Company {
     SNo: number;
@@ -43,6 +44,10 @@ export class FinanceSetupService {
     async getFinancialYears() {
 
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetFinancialYears`).toPromise();
+    }
+
+    GetFinancialYears() : Observable<FinancialYear[]> {
+        return this.ApiService.get(this.baseUrl + '/FinanceSetup/GetFinancialYears');
     }
 
     async addFinancialYear(financialYear: FinancialYear) {

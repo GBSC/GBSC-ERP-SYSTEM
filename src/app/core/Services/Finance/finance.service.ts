@@ -11,6 +11,8 @@ import { SalesInvoice } from '../../Models/Finance/salesInvoice';
 import { SalesInvoiceDetail } from '../../Models/Finance/salesInvoiceDetail';
 import { SalesReturn } from '../../Models/Finance/salesReturn';
 import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
+import { Account } from '../../Models/Finance/Account';
+import { AccountViewModel } from '../../Models/Finance/AccountViewModel';
 
 @Injectable()
 
@@ -243,6 +245,28 @@ export class FinanceService {
 
     async DeleteSalesReturnDetail(id) {
         return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturnDetail/${id}`).toPromise();
+    }
+
+    //++++++++++++++++++++++Account Start++++++++++++++++++++++++++++++//
+
+    getAccounts() : Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccounts');
+    }
+
+    getAccount(id : number) : Observable<Account> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccount/' + id);
+    }
+
+    addAccount(newaccountviewmodel : AccountViewModel) : Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/AddAccount', newaccountviewmodel);
+    }
+
+    updateAccount(account : Account) : Observable<any> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateAccount', account);
+    }
+
+    deleteAccount(id : number) : Observable<any> {
+        return this.ApiService.delete(this.baseUrl + '/Finance/DeleteAccount/' + id);
     }
 
 }

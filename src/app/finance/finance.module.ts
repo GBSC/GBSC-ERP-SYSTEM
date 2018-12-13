@@ -26,7 +26,8 @@ import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoic
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { DemoComponent } from './demo/demo.component';
-import { UpdateVoucherComponent } from './update-voucher/update-voucher.component'; 
+import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { FinanceAccountComponent } from './finance-account/finance-account.component'; 
 
 @NgModule({
     imports: [
@@ -62,7 +63,8 @@ import { UpdateVoucherComponent } from './update-voucher/update-voucher.componen
         SalesReturnDetailComponent,
         VoucherDetailComponent,
         DemoComponent,
-        UpdateVoucherComponent 
+        UpdateVoucherComponent,
+        FinanceAccountComponent 
     ],
     providers: [FinanceSetupService, FinanceService]
 })

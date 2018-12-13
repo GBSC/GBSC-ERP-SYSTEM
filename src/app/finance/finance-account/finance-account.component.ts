@@ -16,16 +16,12 @@ import { AccountViewModel } from '../../core/Models/Finance/AccountViewModel';
 export class FinanceAccountComponent implements OnInit {
   private Accounts : Account[] = [];
   private FinancialYears : FinancialYear[] = [];
-	private SelectedParentAccount : Account;
-	private AccountUpdateSelected : Account;
 	private AccountForm : FormGroup;
 
-	private RequestAccount : AccountViewModel;
+  private RequestAccount : AccountViewModel;
+  private UpdateAccount : Account;
 	
 	private IsUpdate : boolean = false;
-	private IsOpeningBalanceDiabaled : boolean = false;
-	private IsGeneralAccountUpdate : boolean = false;
-	private IsDetailAccountUpdate : boolean = false;
  
   constructor(private fb: FormBuilder, private FinanceService : FinanceService, private FinanceSetupService : FinanceSetupService, private Toastr : ToastrService) {
 
@@ -56,6 +52,13 @@ export class FinanceAccountComponent implements OnInit {
   }
 
   addAccount(value) {
+
+    if(value.data.isGeneralOrDetail == false) {
+      this.Toastr.error("Can't add child accounts for detail account");
+      this.AccountForm.reset();
+      return;
+    }
+
 		console.log(value);
 		this.IsUpdate = false;
 
@@ -68,12 +71,15 @@ export class FinanceAccountComponent implements OnInit {
   updateAccount(value) {
 		console.log(value);
 		this.IsUpdate = true;
-		this.IsGeneralAccountUpdate = value.data.isGeneralOrDetail;
 
     this.AccountForm.patchValue({
 			ParentAccountCode : value.data.parentAccountCode,
 			ParentAccountLevel : Number.parseInt(value.data.accountLevel) - 1,
-			IsGeneralOrDetail : value.data.isGeneralOrDetail
+      IsGeneralOrDetail : value.data.isGeneralOrDetail,
+      AccountCode : value.data.accountCode,
+      FinancialYearId : value.data.financialYearId,
+      OpeningBalance : value.data.openingBalance,
+      Description : value.data.description
     });
   }
 
@@ -82,14 +88,21 @@ export class FinanceAccountComponent implements OnInit {
 	}
 	
 	ResetBools() {
-		// this.IsUpdate = false;
-		// this.IsOpeningBalanceDiabaled = false;
-		// this.IsGeneralAccountUpdate = false;
-		// this.IsDetailAccountUpdate = false;
+		this.AccountForm.reset();
 	}
 
 	SendRequest(value) {
-    // console.log(value);
+    console.log(value);
+
+    if(value.ParentAccountCode == null || value.ParentAccountCode == "") {
+      value.ParentAccountLevel = 0;
+      value.IsGeneralOrDetail = true;
+      value.OpeningBalance = null;
+    }
+
+    if(value.IsGeneralOrDetail == true) {
+      value.OpeningBalance = null;
+    }
     
 		if(this.IsUpdate === false) {
       var a : any = {
@@ -102,18 +115,35 @@ export class FinanceAccountComponent implements OnInit {
       };
 
       this.RequestAccount = a;
-
       console.log(this.RequestAccount);
-      
 
       this.FinanceService.addAccount(this.RequestAccount).subscribe((res : any) => {
-        // console.log(res);
+        console.log(res);
         this.FinanceService.getAccounts().subscribe((res : Account[]) => {
           console.log(res);
           this.Accounts = res;
+          this.Toastr.success("Account Added Successfully");
+          this.AccountForm.reset();
         });
       });
+
     } else if(this.IsUpdate === true) {
+
+      let a : Account = this.Accounts.find(a => a.accountCode == value.AccountCode);
+      a.description = value.Description;
+      a.openingBalance = Number.parseFloat(value.OpeningBalance) || null;
+
+      this.UpdateAccount = a;
+
+      this.FinanceService.updateAccount(this.UpdateAccount).subscribe((res : any) => {
+        console.log(res);
+        this.FinanceService.getAccounts().subscribe((res : Account[]) => {
+          this.Accounts = res;
+          console.log(res);
+          this.Toastr.success("Account information updated successfully");
+          this.AccountForm.reset();
+        });
+      });
 
     }
 	}

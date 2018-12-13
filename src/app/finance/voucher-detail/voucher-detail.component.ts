@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
+import { Account } from '../../core/Models/Finance/Account';
 import { SetupService } from '../../core';
 import { Router } from '@angular/router';
 
@@ -15,7 +16,8 @@ export class VoucherDetailComponent implements OnInit {
     public financialYear: any;
     public voucherType: any;
     public voucher: any;
-    public detailAccount: any;
+    public detailAccount: Account[] = [];
+    public getaccounts : any;
     public voucherId: any;
 
     constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
@@ -24,7 +26,17 @@ export class VoucherDetailComponent implements OnInit {
 
         this.voucher = await this.financeService.getVouchers();
         this.voucherType = await this.financeSetupService.getVoucherTypes();
-        this.detailAccount = await this.financeSetupService.getDetailAccounts();
+
+        // this.detailAccount = await this.financeSetupService.getDetailAccounts();
+
+        this.financeService.getAccounts().subscribe((res : Account[]) => {
+            this.getaccounts = res.filter(a => a.isGeneralOrDetail == false);
+            this.getaccounts.forEach((element : Account) => {
+                element.description = element.accountCode + '-' + element.description;
+                this.detailAccount.push(element);
+            });
+        });
+
         this.financialYear = await this.financeSetupService.getFinancialYears();
 
         // this.departments = await this.SetupService.getAllDepartments();    

@@ -6,6 +6,8 @@ import { SetupService, HrmsService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
+import { Account } from '../../core/Models/Finance/Account';
+import { FinancialYear } from '../../core/Models/Finance/financialYear';
 
 @Component({
     selector: 'app-voucher',
@@ -16,7 +18,6 @@ export class VoucherComponent implements OnInit {
 
     public debitTotal = 0;
     public creditTotal = 0;
-
     public departments: any;
     public financialYear: any;
     public Detail: any[] = [];
@@ -46,7 +47,8 @@ export class VoucherComponent implements OnInit {
             VoucherCode: [''],
             Date: [''],
             Description: [''],
-            ChequeNumber: [''],
+            FinancialYearId: [''],
+            // ChequeNumber: [''],
             Total: [''],
             IsFinal: [''],
             VoucherTypeId: ['']
@@ -57,25 +59,31 @@ export class VoucherComponent implements OnInit {
 
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-        this.detailAccount = await this.financeSetupService.getDetailAccounts();
+        // this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
-        this.financialYear = await this.financeSetupService.getFinancialYears();
+        this.financeService.getAccounts().subscribe((res : Account[]) => {
+            this.detailAccount = res.filter(a => a.isGeneralOrDetail == false);
+        });
+
+        this.financeSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
+            this.financialYear = res.filter(a => a.isActive == true);
+        });
 
         this.departments = await this.HrmService.getAllDepartments();
-
     }
 
     initItemRows() {
         // let disCre = this.disableCredit;
         // let disDec = this.disableDebit;
         return this.fb.group({
-            DetailAccountId: [''],
+            AccountId: [''],
             // DebitAmount: [{value: '', disabled: disDec}],
             // CreditAmount: [{value: '', disabled: disCre}],
             DebitAmount: [''],
             CreditAmount: [''],
             DepartmentName: [''],
             UniqueName: [''],
+            ChequeNumber: [''],
             Description: ['']
         });
     }

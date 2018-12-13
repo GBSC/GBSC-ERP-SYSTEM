@@ -36,9 +36,8 @@
                             <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
                             </dxo-lookup>
                           </dxi-column>
-                        <dxi-column dataField="date" dataType="date" format="shortdate"></dxi-column>
-                        <dxi-column dataField="chequeNumber"></dxi-column>
-                        <dxi-column dataField="description"></dxi-column>
+                        <dxi-column dataField="date" dataType="date" format="shortdate" caption="Date"></dxi-column>
+                        <dxi-column dataField="description" datatype="text" caption="Description"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                           <div class="chart-cell">
@@ -50,14 +49,15 @@
                         <div *dxTemplate="let voucherDetail of 'detail'">
                             <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true">
 
-                                <dxi-column dataField="detailAccountId" caption="Detail Account">
-                                    <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
+                                <dxi-column dataField="accountId" caption="Detail Account">
+                                    <dxo-lookup [dataSource]="detailAccount" displayExpr="description" valueExpr="accountId">
                                     </dxo-lookup>
-                                  </dxi-column>
-                                  <dxi-column dataField="departmentName" caption="Department"></dxi-column>
-                                  <dxi-column dataField="uniqueName" caption="Refrence"></dxi-column>                               
-                                  <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
-                                <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                    </dxi-column>
+                                    <dxi-column dataField="departmentName" caption="Department"></dxi-column>
+                                    <dxi-column dataField="uniqueName" caption="Refrence"></dxi-column>                               
+                                    <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                    <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                    <dxi-column dataField="chequeNumber"  caption="Cheque Number"></dxi-column>
                                 </dx-data-grid>
                         </div>
                     </dx-data-grid>

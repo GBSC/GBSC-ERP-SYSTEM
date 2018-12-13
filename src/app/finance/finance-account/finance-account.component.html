@@ -4,7 +4,7 @@
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
         <h3 class="m-portlet__head-text">
-          Details
+          COA
         </h3>
       </div>
     </div>
@@ -36,7 +36,7 @@
       <dxo-header-filter [visible]="true"></dxo-header-filter>
       <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
       <dxo-paging [pageSize]="25"></dxo-paging>
-      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[50, 100, 200]" [showInfo]="true">
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25, 50, 100]" [showInfo]="true">
       </dxo-pager>
       <dxi-column dataField="accountCode"></dxi-column> 
       <dxi-column dataField="description"></dxi-column>
@@ -49,8 +49,8 @@
       <dxi-column caption="Action" [minWidth]="100" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
       <div *dxTemplate="let d of 'chartCellTemplate'">
         <div class="chart-cell">
-            <input type="submit" (click)="updateAccount(d)" data-toggle="modal" data-target="#m_modal_4">
-            <input type="submit" (click)="addAccount(d)" data-toggle="modal" data-target="#m_modal_4">
+            <input class="btn btn-primary" type="submit" value="Update" (click)="updateAccount(d)" data-toggle="modal" data-target="#m_modal_4">
+            <input class="btn btn-success" type="submit" value="Add" (click)="addAccount(d)" data-toggle="modal" data-target="#m_modal_4">
         </div>
     </div>
     </dx-data-grid>

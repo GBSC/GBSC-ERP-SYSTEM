@@ -12,6 +12,7 @@ import { CoreModule } from '../core/core.module';
 import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
 import { AuthGuardService } from '../core';
 import { CoordinationRoutingModule } from '../hims/coordination/coordination-routing.module';
+import { EtrackerModule } from '../etracker/etracker.module';
 
 
 
@@ -32,16 +33,6 @@ const routes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forChild(routes),
-        PharmacyModule,
-        CoreModule,
-        PatientModule,
-        LabModule,
-        FinanceModule,
-        // InventorysystemModule,
-        SuperadminModule,
-        DashboardModule,
-        HrmModule,
-        CoordinationRoutingModule
     ],
     exports: [
         RouterModule,

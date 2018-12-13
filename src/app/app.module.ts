@@ -27,6 +27,7 @@ import { HrmModule } from './hrm/hrm.module';
 import { CoordinationRoutingModule } from './hims/coordination/coordination-routing.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { SecurityAdminModule } from './security-admin/security-admin.module';
+import { EtrackerModule } from './etracker/etracker.module';
 
 
 
@@ -57,6 +58,7 @@ import { SecurityAdminModule } from './security-admin/security-admin.module';
         CoreModule,
 
         SecurityAdminModule,
+        EtrackerModule,
         PharmacyModule,
         PatientModule,
         LabModule,

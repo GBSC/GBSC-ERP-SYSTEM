@@ -1,0 +1,53 @@
+
+<div class="m-content">
+         
+  <div class="row">
+          <div class="col-sg-12">
+
+            <div class="m-portlet m-portlet--unair">
+              <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon">
+                        <i class="fa fa-calendar"></i>
+                      </span> 
+                  <h3 class="m-portlet__head-text">
+                    Sales Users
+                  </h3>
+                </div>
+              </div>
+              </div>
+              <div class="m-portlet__body">
+                <dx-data-grid id="" [dataSource]=""> 
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>
+                   <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                   <dxo-paging [pageSize]="8"></dxo-paging>
+                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
+                   <dxo-selection mode="single"></dxo-selection>
+                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                   <dxo-filter-row [visible]="true"></dxo-filter-row>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>
+                   <dxo-paging [pageSize]="5"></dxo-paging>
+                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                   <dxi-column dataField="mrn" caption="First Name"></dxi-column>
+                   <dxi-column dataField="display" caption="Last Name"></dxi-column>  
+                   <dxi-column dataField="phoneNumber" caption="Distributer"></dxi-column>
+                   <dxi-column dataField="gender" caption="Territory"></dxi-column> 
+                   <dxi-column dataField="gender" caption="Email"></dxi-column> 
+                   <dxi-column dataField="gender" caption="Contact No"></dxi-column> 
+                   <dxi-column dataField="gender" caption="CNIC"></dxi-column> 
+                   <dxi-column dataField="gender" caption="DOB"></dxi-column>
+                   <dxi-column dataField="gender" caption="Address"></dxi-column>  
+                   <dxi-column dataField="patientId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                   <div *dxTemplate="let data of 'cellTemplate'">
+                     <a class="btn btn-primary" [routerLink]="['/hims/patient/profile', data.value]">View</a>
+                   </div> 
+                   </dx-data-grid>  
+              </div>
+              </div>
+          </div>
+  </div>
+</div>
+
+

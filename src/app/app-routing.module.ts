@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
     { path: 'security', loadChildren: './security-admin/security-admin.module#SecurityAdminModule' },
+    { path: 'superadmin', loadChildren: './superadmin/superadmin.module#SuperadminModule' },
     { path: 'employee', loadChildren: './dashboard/dashboard.module#DashboardModule' },
     { path: 'login', loadChildren: './account/account.module#AccountModule' },
     { path: 'hims', loadChildren: './hims/patient/patient.module#PatientModule' },
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'hrm', loadChildren: './hrm/hrm.module#HrmModule' },
     { path: 'inventory', loadChildren: './inventory/inventory.module#InventoryModule' },
     { path: 'pharmacy', loadChildren: './pharmacy/pharmacy.module#PharmacyModule' },
+    { path: 'etracker', loadChildren: './etracker/etracker.module#EtrackerModule' },
 ];
 
 

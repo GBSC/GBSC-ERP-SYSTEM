@@ -24,51 +24,46 @@ export class LeavetypebalanceComponent implements OnInit {
     async ngOnInit() {
 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
-       console.log(this.LeavePolicies);
-       
+        console.log(this.LeavePolicies);
+
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
-        console.log( this.empleavepolicy);
-        
+        console.log(this.empleavepolicy);
+
         this.leavetypebalance = await this.leavesetupservice.getLeaveTypeBalances();
 
         this.LeaveType = await this.leavesetupservice.getLeaveTypes();
 
         this.employees = await this.employeeservice.GetAllEmployees();
 
-// this.LeavePolicies = this.LeavePolicies.filter(a => {
-//   this.LeavePoliciesarray = a.leaveTypeId 
-//   console.log(a.leaveTypeId);
-// });
-//       console.log(this.LeavePolicies);
-//       console.log(this.LeavePoliciesarray);
 
-//       //console.log(x)
-        
-//         this.empleavepolicy.filter(a=>{
-//             a.leaveTypeId
-//             console.log(a.leaveTypeId);
-//         });
-         
-this.LeavePoliciesarray = this.LeavePolicies.filter(a=> {
-this.empleavepolicyarray =  this.empleavepolicy.filter(b=>{
-  let x =  b.leaveTypeId == a.leaveTypeId;
-    console.log(this.LeavePoliciesarray);
-    console.log(b);
-    console.log(a);
-    console.log(b+a); 
-    console.log(x);
-    // console.log(b.leaveTypeId == a.leaveTypeId);
-    // console.log(b.leaveTypeId);
-    // console.log(a.leaveTypeId); 
-});
+        this.LeavePoliciesarray = this.LeavePolicies.filter(a => { 
+        this.empleavepolicyarray = this.empleavepolicy.filter(b =>{
+            (b.leaveTypeId === a.leaveTypeId) && 
+                (b.maximumAllowedBalance + a.maximumAllowedBalance)
+                
+                console.log(b);
+            }
+            // let h = a.maximumAllowedBalance + b.maximumAllowedBalance
+            //    console.log(h);
+            //    console.log(d); 
+            
+        )
+        console.log(this.empleavepolicyarray);
 
-console.log(this.empleavepolicyarray);
+        }) 
+        // this.LeavePoliciesarray = this.LeavePolicies.filter(a => {
+        //     this.empleavepolicy.filter(b => {
+        //         b.leaveTypeId == a.leaveTypeId; 
+        //         let x = a.maximumAllowedBalance + b.maximumAllowedBalance
+        //         console.log(x);
+        //         console.log(b);
+        //     });
 
-}) 
-    //    let x = this.LeavePolicies.maximumAllowedBalance +  this.empleavepolicy.maximumAllowedBalance
-    //       console.log(x); 
+
+        // })
+        //    let x = this.LeavePolicies.maximumAllowedBalance +  this.empleavepolicy.maximumAllowedBalance
+        //       console.log(x); 
     }
-
 
     async addleavetypebalance(value) {
 
@@ -82,7 +77,10 @@ console.log(this.empleavepolicyarray);
     }
 
     async deleteleavetypebalance(value) {
-       await this.leavesetupservice.deleteLeaveTypeBalance(value.key);
+        await this.leavesetupservice.deleteLeaveTypeBalance(value.key);
     }
+
+
+
 
 }

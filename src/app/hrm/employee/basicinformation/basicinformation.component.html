@@ -119,15 +119,15 @@
         <div class="m--space-07"></div>
 
         <div class="row">
-          <!-- <div class="col-md-4">
+          <div class="col-md-4">
                   <div class="form-group m-form__group">
-                          <label for="cnlanguageic" class="control-label">Language</label>
-                          <select class="form-control m-input m-input--solid" formControlName="LanguageId" [value]="Employee?.name || ''" name="language" id="lng">
-                                  <option *ngFor ="let lng of language" [value]="lng.languageId">{{lng.name}}</option>
+                          <label class="control-label">Group</label>
+                          <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''">
+                                  <option *ngFor ="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
                               </select>
                         </div>
-          </div> -->
-          <div class="col-md-6">
+          </div>
+          <div class="col-md-4">
                   <div class="form-group m-form__group">
                           <label for="Religion" class="control-label">Religion</label>
                           <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
@@ -136,7 +136,7 @@
                               </select>
                         </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               <div class="form-group m-form__group">
                 <label for="City" class="control-label">City</label>
                 <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">

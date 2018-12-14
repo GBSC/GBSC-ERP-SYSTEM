@@ -25,6 +25,7 @@ export class LeaverequestComponent implements OnInit {
     public updatingRequest: any;
     public leaveOpening: any; 
     private requestDetail: LeaveRequestDetail[];
+    public totalleave : any;
 
     @Input('leaveRequestId') id: number;
 
@@ -71,6 +72,8 @@ export class LeaverequestComponent implements OnInit {
                 this.patchValues(this.leaveRequest);
             });
         }
+
+        // this.totalleave = 
     }
 
     

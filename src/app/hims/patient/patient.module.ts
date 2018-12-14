@@ -68,6 +68,7 @@ import { NewPatientSheetSemenKarachiComponent } from './Reports/new-patient-shee
 import { SubsiquentSemenFreezingListComponent } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
 import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
 import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
+import { DailySemenAnalysisComponent } from './daily-semen-analysis/daily-semen-analysis.component';
 
 // import { SharedModule } from './shared/shared.module';
 
@@ -150,6 +151,7 @@ import { ConsultantActivityDetailsComponent } from './Reports/consultant-activit
         SubsiquentSemenFreezingListComponent,
         MedicineDetailsComponent,
         ConsultantActivityDetailsComponent,
+        DailySemenAnalysisComponent,
     ]
 })
 export class PatientModule { }

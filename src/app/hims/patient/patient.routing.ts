@@ -40,6 +40,8 @@ import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
 import {  PatientInvoiceReturnComponent} from './patient-invoice-return/patient-invoice-return.component';
 import { InvoiceReturnViewComponent } from './invoice-return-view/invoice-return-view.component';
+import { DailySemenAnalysisComponent } from './daily-semen-analysis/daily-semen-analysis.component';
+
 import { AppointmentSheetComponent } from './Reports/appointment-sheet/appointment-sheet.component';
 import { RegistrationlistComponent } from './Reports/registrationlist/registrationlist.component';
 import { NewPatientSheetFcKarachiComponent } from './Reports/new-patient-sheet-fc-karachi/new-patient-sheet-fc-karachi.component';
@@ -97,6 +99,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'activevisits', component: ActiveVisitsComponent },
             { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent }, 
             { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
+            { path: 'dailysemenanalysis', component: DailySemenAnalysisComponent },
             { path: 'dailyprocedure', component: DailyProcedureComponent },
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},

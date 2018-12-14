@@ -35,6 +35,7 @@ export class DailyProcedureComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.PatientServiceobj.getPatientObservable().subscribe(res => {
       this.Patients = res ;
       console.log(this.Patients);

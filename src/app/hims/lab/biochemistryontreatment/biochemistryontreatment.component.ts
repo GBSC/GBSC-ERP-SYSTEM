@@ -36,7 +36,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
     private units: TestUnit;
     private id: any;
     private bioChemistry: any;
-    private RefRange : any;
+    private RefRange: any;
     private testDetail: BioChemistryTestDetail[];
 
     public packg: any;
@@ -142,12 +142,12 @@ export class BiochemistryontreatmentComponent implements OnInit {
             pageCount = e.component.pageCount(),
             pageIndex = e.component.pageIndex();
 
-        if(e.event.key && e.prevRowIndex === e.newRowIndex) {
-            if(e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
+        if (e.event.key && e.prevRowIndex === e.newRowIndex) {
+            if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
                 e.component.pageIndex(pageIndex + 1).done(function() {
                     e.component.option("focusedRowIndex", 0);
                 });
-            } else if(e.newRowIndex === 0 && pageIndex > 0) {
+            } else if (e.newRowIndex === 0 && pageIndex > 0) {
                 e.component.pageIndex(pageIndex - 1).done(function() {
                     e.component.option("focusedRowIndex", rowsCount - 1);
                 });

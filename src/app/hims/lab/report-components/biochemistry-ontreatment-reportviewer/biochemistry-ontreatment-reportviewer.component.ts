@@ -1,16 +1,15 @@
-import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, ViewChild, Renderer2, ElementRef } from '@angular/core';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
-    selector: 'report-viewer',
-    encapsulation: ViewEncapsulation.None,
-    templateUrl: './report-viewer.component.html',
-    // styleUrls: ["../../../../../node_modules/devexpress-reporting/css/web-document-viewer-light.min.css"]
+    selector: 'app-biochemistry-ontreatment-reportviewer',
+    templateUrl: './biochemistry-ontreatment-reportviewer.component.html',
+    styleUrls: ['./biochemistry-ontreatment-reportviewer.component.scss']
 })
-export class ReportViewerComponent implements AfterViewInit {
+export class BiochemistryOntreatmentReportviewerComponent {
+
     @ViewChild('scripts')
     scripts: ElementRef;
 
@@ -21,7 +20,7 @@ export class ReportViewerComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
-        const reportUrl = ko["observable"]("Products"),
+        const reportUrl = ko["observable"]("BiochemistryOntreatment"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = `${environment.repotr_url}`;
@@ -34,5 +33,4 @@ export class ReportViewerComponent implements AfterViewInit {
             }
         }, this.control.nativeElement);
     }
-
 }

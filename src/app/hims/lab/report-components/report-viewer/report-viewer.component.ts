@@ -4,13 +4,13 @@ import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../../environments/environment';
 
-
 @Component({
-    selector: 'app-daily-activity-report',
-    templateUrl: './daily-activity-report.component.html',
-    styleUrls: ['./daily-activity-report.component.scss']
+    selector: 'report-viewer',
+    encapsulation: ViewEncapsulation.None,
+    templateUrl: './report-viewer.component.html',
+    // styleUrls: ["../../../../../node_modules/devexpress-reporting/css/web-document-viewer-light.min.css"]
 })
-export class DailyActivityReportComponent implements AfterViewInit {
+export class ReportViewerComponent implements AfterViewInit {
     @ViewChild('scripts')
     scripts: ElementRef;
 
@@ -21,7 +21,7 @@ export class DailyActivityReportComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
-        const reportUrl = ko["observable"]("DailyActivityReport"),
+        const reportUrl = ko["observable"]("Products"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = `${environment.repotr_url}`;

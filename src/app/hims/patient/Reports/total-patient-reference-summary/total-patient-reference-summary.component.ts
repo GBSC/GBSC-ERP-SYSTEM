@@ -5,33 +5,33 @@ import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-total-patient-reference-summary',
-  templateUrl: './total-patient-reference-summary.component.html',
-  styleUrls: ['./total-patient-reference-summary.component.scss']
+    selector: 'app-total-patient-reference-summary',
+    templateUrl: './total-patient-reference-summary.component.html',
+    styleUrls: ['./total-patient-reference-summary.component.scss']
 })
 export class TotalPatientReferenceSummaryComponent implements AfterViewInit {
-  @ViewChild('scripts')
-  scripts: ElementRef;
+    @ViewChild('scripts')
+    scripts: ElementRef;
 
-  @ViewChild("control")
-  control: ElementRef
+    @ViewChild("control")
+    control: ElementRef
 
-  constructor(private renderer: Renderer2) { }
+    constructor(private renderer: Renderer2) { }
 
-  ngAfterViewInit() {
+    ngAfterViewInit() {
 
-      const reportUrl = ko["observable"]("TotalPatientsReferenceSummary"),
-          container = this.renderer.createElement("div");
-      container.innerHTML = Html;
-      var host =`${environment.repotr_url}` ;
-      this.renderer.appendChild(this.scripts.nativeElement, container);
-      ko.applyBindings({
-          reportUrl,
-          requestOptions: {
-              host,
-              invokeAction: 'WebDocumentViewer/Invoke'
-          }
-      }, this.control.nativeElement);
-  }
+        const reportUrl = ko["observable"]("TotalPatientsReferenceSummary"),
+            container = this.renderer.createElement("div");
+        container.innerHTML = Html;
+        var host = `${environment.repotr_url}`;
+        this.renderer.appendChild(this.scripts.nativeElement, container);
+        ko.applyBindings({
+            reportUrl,
+            requestOptions: {
+                host,
+                invokeAction: 'WebDocumentViewer/Invoke'
+            }
+        }, this.control.nativeElement);
+    }
 
 }

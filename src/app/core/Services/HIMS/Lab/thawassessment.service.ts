@@ -53,7 +53,7 @@ export class ThawAssessmentService {
 
     }
 
-    updateThawedEmbryos(embryos : any) : Observable<any>{
+    updateThawedEmbryos(embryos: any): Observable<any> {
         return this.ApiService.put(this.API_URL + 'UpdateThawedEmbryos', embryos);
     }
 

@@ -30,7 +30,7 @@ import { PatientPackage } from '../../Models/HIMS/PatientPackage';
 import { PatientInvoiceReturn } from '../../Models/HIMS/PatientInvoiceReturn';
 import { PatientInvoiceReturnItem } from '../../Models/HIMS/PatientInvoiceReturnItem';
 import { Procedure } from '../../Models/HIMS/procedure';
-import { DailyProcedure  } from '../../Models/HIMS/dailyProcedure';
+import { DailyProcedure } from '../../Models/HIMS/dailyProcedure';
 
 @Injectable()
 export class PatientService {
@@ -770,47 +770,47 @@ export class PatientService {
 
 
 
-    getProcedure():Observable<Procedure>{
-        return this.ApiService.get(this.API_URL+'HimsSetup/GetProcedures');
-    } 
-
- 
-    async addProcedure(Procedure  ) {
-        return await this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure).toPromise();
+    getProcedure(): Observable<Procedure> {
+        return this.ApiService.get(this.API_URL + 'HimsSetup/GetProcedures');
     }
 
-    async updateProcedure(Procedure )  {
-        return await this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure).toPromise();
+
+    async addProcedure(Procedure) {
+        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddProcedure', Procedure).toPromise();
+    }
+
+    async updateProcedure(Procedure) {
+        return await this.ApiService.put(this.API_URL + 'HimsSetup/UpdateProcedure', Procedure).toPromise();
     }
     async  deleteProcedure(id: number) {
-        return await this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id).toPromise();
+        return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteProcedure/' + id).toPromise();
     }
 
-    getDailyProcedure():Observable<DailyProcedure>{
-        return this.ApiService.get(this.API_URL+'Procedure/GetDailyProcedures');
+    getDailyProcedure(): Observable<DailyProcedure> {
+        return this.ApiService.get(this.API_URL + 'Procedure/GetDailyProcedures');
     }
 
-    addDailyProcedure(value):Observable<any>{
-        return this.ApiService.post(this.API_URL+'Procedure/AddDailyProcedure',value);
+    addDailyProcedure(value): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Procedure/AddDailyProcedure', value);
     }
 
-    updateDailyProcedure(value):Observable<any>{
-        return this.ApiService.put(this.API_URL+'Procedure/UpdateDailyProcedure',value);
+    updateDailyProcedure(value): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Procedure/UpdateDailyProcedure', value);
     }
 
     deleteDailyProcedure(id: number): Observable<any> {
-        return this.ApiService.delete(this.API_URL+'Procedure/DeleteDailyProcedure/'+id);
+        return this.ApiService.delete(this.API_URL + 'Procedure/DeleteDailyProcedure/' + id);
     }
 
-//    addProcedure(Procedure : Procedure) : Observable<any>{
-//        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
-//    }
-//    updateProcedure(Procedure : Procedure) : Observable<any>{
-//        return this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure);
-//    }
-//    deleteProcedure(id: number): Observable<any> {
-//        return this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id);
-//    }
+    //    addProcedure(Procedure : Procedure) : Observable<any>{
+    //        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
+    //    }
+    //    updateProcedure(Procedure : Procedure) : Observable<any>{
+    //        return this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure);
+    //    }
+    //    deleteProcedure(id: number): Observable<any> {
+    //        return this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id);
+    //    }
 
 
 

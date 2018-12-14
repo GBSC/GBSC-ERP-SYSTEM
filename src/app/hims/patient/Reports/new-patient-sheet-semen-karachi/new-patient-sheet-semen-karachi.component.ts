@@ -6,33 +6,33 @@ import { environment } from '../../../../../environments/environment';
 
 
 @Component({
-  selector: 'app-new-patient-sheet-semen-karachi',
-  templateUrl: './new-patient-sheet-semen-karachi.component.html',
-  styleUrls: ['./new-patient-sheet-semen-karachi.component.scss']
+    selector: 'app-new-patient-sheet-semen-karachi',
+    templateUrl: './new-patient-sheet-semen-karachi.component.html',
+    styleUrls: ['./new-patient-sheet-semen-karachi.component.scss']
 })
 export class NewPatientSheetSemenKarachiComponent implements AfterViewInit {
-  @ViewChild('scripts')
-  scripts: ElementRef;
+    @ViewChild('scripts')
+    scripts: ElementRef;
 
-  @ViewChild("control")
-  control: ElementRef
+    @ViewChild("control")
+    control: ElementRef
 
-  constructor(private renderer: Renderer2) { }
+    constructor(private renderer: Renderer2) { }
 
-  ngAfterViewInit() {
+    ngAfterViewInit() {
 
-      const reportUrl = ko["observable"]("NewPatientSheetSemenKarachi"),
-          container = this.renderer.createElement("div");
-      container.innerHTML = Html;
-      var host =`${environment.repotr_url}` ;
-      this.renderer.appendChild(this.scripts.nativeElement, container);
-      ko.applyBindings({
-          reportUrl,
-          requestOptions: {
-              host,
-              invokeAction: 'WebDocumentViewer/Invoke'
-          }
-      }, this.control.nativeElement);
-  }
+        const reportUrl = ko["observable"]("NewPatientSheetSemenKarachi"),
+            container = this.renderer.createElement("div");
+        container.innerHTML = Html;
+        var host = `${environment.repotr_url}`;
+        this.renderer.appendChild(this.scripts.nativeElement, container);
+        ko.applyBindings({
+            reportUrl,
+            requestOptions: {
+                host,
+                invokeAction: 'WebDocumentViewer/Invoke'
+            }
+        }, this.control.nativeElement);
+    }
 
 }

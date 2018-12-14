@@ -5,33 +5,33 @@ import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-fc-consultation-movement-summary',
-  templateUrl: './fc-consultation-movement-summary.component.html',
-  styleUrls: ['./fc-consultation-movement-summary.component.scss']
+    selector: 'app-fc-consultation-movement-summary',
+    templateUrl: './fc-consultation-movement-summary.component.html',
+    styleUrls: ['./fc-consultation-movement-summary.component.scss']
 })
 export class FcConsultationMovementSummaryComponent implements AfterViewInit {
-  @ViewChild('scripts')
-  scripts: ElementRef;
+    @ViewChild('scripts')
+    scripts: ElementRef;
 
-  @ViewChild("control")
-  control: ElementRef
+    @ViewChild("control")
+    control: ElementRef
 
-  constructor(private renderer: Renderer2) { }
+    constructor(private renderer: Renderer2) { }
 
-  ngAfterViewInit() {
+    ngAfterViewInit() {
 
-      const reportUrl = ko["observable"]("FcConsultationMovementSummary"),
-          container = this.renderer.createElement("div");
-      container.innerHTML = Html;
-      var host =`${environment.repotr_url}` ;
-      this.renderer.appendChild(this.scripts.nativeElement, container);
-      ko.applyBindings({
-          reportUrl,
-          requestOptions: {
-              host,
-              invokeAction: 'WebDocumentViewer/Invoke'
-          }
-      }, this.control.nativeElement);
-  }
+        const reportUrl = ko["observable"]("FcConsultationMovementSummary"),
+            container = this.renderer.createElement("div");
+        container.innerHTML = Html;
+        var host = `${environment.repotr_url}`;
+        this.renderer.appendChild(this.scripts.nativeElement, container);
+        ko.applyBindings({
+            reportUrl,
+            requestOptions: {
+                host,
+                invokeAction: 'WebDocumentViewer/Invoke'
+            }
+        }, this.control.nativeElement);
+    }
 
 }

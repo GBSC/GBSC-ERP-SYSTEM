@@ -18,7 +18,7 @@ export class BiochemistrytestComponent implements OnInit {
     private TestName: string;
     private TestDescription: string;
     private ReferenceRange: string = "";
-    private formVisible : boolean = false;
+    private formVisible: boolean = false;
 
     constructor(private bioChemistryServie: BioChemistryService, private _script: ScriptLoaderService) {
 
@@ -68,7 +68,7 @@ export class BiochemistrytestComponent implements OnInit {
 
     }
 
-    onCancel(){
+    onCancel() {
         this.formVisible = false;
     }
 

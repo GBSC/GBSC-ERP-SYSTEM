@@ -50,7 +50,7 @@ export class EmbryologyThawingComponent implements OnInit {
             this.clinicalRecordService.getPatientClinicalRecord(this.id).subscribe(resp => {
 
                 this.clinicalRecord = resp;
-                
+
             })
         });
 
@@ -69,26 +69,26 @@ export class EmbryologyThawingComponent implements OnInit {
             this.spouse = patient.partner;
         });
 
-        this.thawassessmentService.getFrozenEmbryos(patientId).subscribe(resp=>{
+        this.thawassessmentService.getFrozenEmbryos(patientId).subscribe(resp => {
 
             this.unthawedSamples = resp;
         });
 
-        this.thawassessmentService.getThawedEmbryos(patientId).subscribe(resp=>{
+        this.thawassessmentService.getThawedEmbryos(patientId).subscribe(resp => {
 
             this.thawedSamples = resp;
         });
     }
 
     updateThawAssessment() {
-        
-        this.thawassessmentService.updateThawedEmbryos(this.thawedSamples).subscribe(resp=>{
+
+        this.thawassessmentService.updateThawedEmbryos(this.thawedSamples).subscribe(resp => {
 
             console.log(resp);
         })
     }
 
-    onThaw(value){
+    onThaw(value) {
 
         this.unthawedSamples.pop(value.data);
         this.thawedSamples.push(value.data);

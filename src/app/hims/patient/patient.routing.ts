@@ -56,10 +56,10 @@ import { BloodConsultationMovementSummaryComponent } from './Reports/blood-consu
 
 import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
 import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
-import { SubsiquentSemenFreezingListComponent  } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
-import { NewPatientSheetSemenKarachiComponent  } from './Reports/new-patient-sheet-semen-karachi/new-patient-sheet-semen-karachi.component';
+import { SubsiquentSemenFreezingListComponent } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
+import { NewPatientSheetSemenKarachiComponent } from './Reports/new-patient-sheet-semen-karachi/new-patient-sheet-semen-karachi.component';
 import { NewPatientSheetBloodKarachiComponent } from './Reports/new-patient-sheet-blood-karachi/new-patient-sheet-blood-karachi.component';
-import { TotalPatientReferenceSummaryComponent  } from './Reports/total-patient-reference-summary/total-patient-reference-summary.component';
+import { TotalPatientReferenceSummaryComponent } from './Reports/total-patient-reference-summary/total-patient-reference-summary.component';
 import { SemenPatientReferenceSummaryComponent } from './Reports/semen-patient-reference-summary/semen-patient-reference-summary.component';
 import { BloodTestReferenceSummaryComponent } from './Reports/blood-test-reference-summary/blood-test-reference-summary.component';
 import { FcPatientReferenceSummaryComponent } from './Reports/fc-patient-reference-summary/fc-patient-reference-summary.component';
@@ -97,7 +97,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
-            { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent }, 
+            { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
             { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
             { path: 'dailysemenanalysis', component: DailySemenAnalysisComponent },
             { path: 'dailyprocedure', component: DailyProcedureComponent },
@@ -127,10 +127,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'bloodconsultationmovementsummary', component: BloodConsultationMovementSummaryComponent },
                     { path: 'semenconsultationmovementsummary', component: SemenConsultationMovementSummaryComponent },
                     { path: 'fcConsultationmovementsummary', component: FcConsultationMovementSummaryComponent },
-                    { path: 'newpatientsheetfckarachi', component: NewPatientSheetFcKarachiComponent }, 
+                    { path: 'newpatientsheetfckarachi', component: NewPatientSheetFcKarachiComponent },
                     { path: 'medicinedetails', component: MedicineDetailsComponent },
                     { path: 'consultantactivitydetails', component: ConsultantActivityDetailsComponent },
-                    { path: 'newpatientsheetsemenkarachi', component: NewPatientSheetSemenKarachiComponent }, 
+                    { path: 'newpatientsheetsemenkarachi', component: NewPatientSheetSemenKarachiComponent },
                     { path: 'newpatientsheetbloodkarachi', component: NewPatientSheetBloodKarachiComponent },
                     { path: 'totalpatientreferencesummary', component: TotalPatientReferenceSummaryComponent },
                     { path: 'semenpatientreferencesummary', component: SemenPatientReferenceSummaryComponent },

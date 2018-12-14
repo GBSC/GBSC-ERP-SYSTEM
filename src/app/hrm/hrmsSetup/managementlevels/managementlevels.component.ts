@@ -13,7 +13,7 @@ export class ManagementLevelsComponent implements OnInit {
 
     public managlevel: any;
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
- 
+
     async ngOnInit() {
         this.managlevel = await this.dataService.getAllManagementlevels();
     }

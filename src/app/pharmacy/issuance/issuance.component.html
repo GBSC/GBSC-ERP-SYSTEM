@@ -133,7 +133,6 @@
                                                 <dxi-column dataField="PackQuantity" caption="Pack Quantity"></dxi-column>
                                                 <dxi-column dataField="OrderUnitQuantity" caption="Order Unit Quantity"></dxi-column>
                                                 <dxi-column dataField="UnitPrice" caption="Unit Price"></dxi-column>
-                                                <dxi-column dataField="unitPrice" caption="Description"></dxi-column>
                                                 <dxi-column dataField="ItemTotalAmount" caption="Item Total Amount"></dxi-column>
                                             </dx-data-grid>
 
@@ -173,7 +172,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
-                    Modal title
+                    Add Medicine
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
@@ -189,8 +188,8 @@
                                 <label for="exampleInputEmail1">
                                     Manual Code
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched"
-                                    (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)" formControlName="InventoryItemId">
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
+                                    formControlName="InventoryItemId">
                                     <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
                                     </option>
                                 </select>

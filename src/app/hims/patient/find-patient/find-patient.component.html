@@ -300,7 +300,7 @@
                         </form>
                         <div class="m-section">
                     <div class="m-section__content" >
-                        <dx-data-grid id="" [dataSource]="PatientServiceobj?.SearchPatientbyname" (onSelectionChanged)="selectionChanged($event)"> 
+                        <dx-data-grid id="" [dataSource]="patients"> 
                        <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
@@ -316,14 +316,11 @@
                         <dxi-column dataField="display" caption="Patient Name"></dxi-column>  
                         <dxi-column dataField="phoneNumber" caption="Contact Number"></dxi-column>
                         <dxi-column dataField="date" dataType="date" caption="Registration Date"></dxi-column>
-                        <dxi-column dataField="gender" caption="Gender"></dxi-column>  
-
-                            <!-- <dxi-column caption="Dynamics" cellTemplate="chartCellTemplate"></dxi-column>
-                            <div *dxTemplate="let d of 'chartCellTemplate'">
-                                <div class="chart-cell">
-                                    <dx-button  icon="plus"></dx-button>
-                                </div>
-                            </div> -->
+                        <dxi-column dataField="gender" caption="Gender"></dxi-column> 
+                        <dxi-column dataField="patientId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                          <a class="btn btn-primary" [routerLink]="['/hims/patient/profile', data.value]">View</a>
+                        </div> 
                         </dx-data-grid>  
                     </div>
                   </div>

@@ -38,13 +38,37 @@ import { TestTypeComponent } from './test-type/test-type.component';
 import { TestCategoryComponent } from './test-category/test-category.component';
 import { AppointmentpaymentreceiptComponent } from './appointmentpaymentreceipt/appointmentpaymentreceipt.component';
 import { PatientInvoiceViewComponent } from './patient-invoice-view/patient-invoice-view.component';
-import {  PatientInvoiceReturnComponent} from './patient-invoice-return/patient-invoice-return.component';
+import { PatientInvoiceReturnComponent } from './patient-invoice-return/patient-invoice-return.component';
 import { InvoiceReturnViewComponent } from './invoice-return-view/invoice-return-view.component';
+import { DailySemenAnalysisComponent } from './daily-semen-analysis/daily-semen-analysis.component';
+
+import { AppointmentSheetComponent } from './Reports/appointment-sheet/appointment-sheet.component';
+import { RegistrationlistComponent } from './Reports/registrationlist/registrationlist.component';
+import { NewPatientSheetFcKarachiComponent } from './Reports/new-patient-sheet-fc-karachi/new-patient-sheet-fc-karachi.component';
+import { DailyActivityReportComponent } from './Reports/daily-activity-report/daily-activity-report.component';
+import { FcProcedureMovementSummaryComponent } from './Reports/fc-procedure-movement-summary/fc-procedure-movement-summary.component';
+import { FcConsultationMovementSummaryComponent } from './Reports/fc-consultation-movement-summary/fc-consultation-movement-summary.component';
+import { SemenConsultationMovementSummaryComponent } from './Reports/semen-consultation-movement-summary/semen-consultation-movement-summary.component';
+import { ProcedureComponent } from './procedure/procedure.component';
+import { DailyProcedureComponent } from './daily-procedure/daily-procedure.component';
+import { BloodConsultationMovementSummaryComponent } from './Reports/blood-consultation-movement-summary/blood-consultation-movement-summary.component';
+
+
+import { MedicineDetailsComponent } from './Reports/medicine-details/medicine-details.component';
+import { ConsultantActivityDetailsComponent } from './Reports/consultant-activity-details/consultant-activity-details.component';
+import { SubsiquentSemenFreezingListComponent  } from './Reports/subsiquent-semen-freezing-list/subsiquent-semen-freezing-list.component';
+import { NewPatientSheetSemenKarachiComponent  } from './Reports/new-patient-sheet-semen-karachi/new-patient-sheet-semen-karachi.component';
+import { NewPatientSheetBloodKarachiComponent } from './Reports/new-patient-sheet-blood-karachi/new-patient-sheet-blood-karachi.component';
+import { TotalPatientReferenceSummaryComponent  } from './Reports/total-patient-reference-summary/total-patient-reference-summary.component';
+import { SemenPatientReferenceSummaryComponent } from './Reports/semen-patient-reference-summary/semen-patient-reference-summary.component';
+import { BloodTestReferenceSummaryComponent } from './Reports/blood-test-reference-summary/blood-test-reference-summary.component';
+import { FcPatientReferenceSummaryComponent } from './Reports/fc-patient-reference-summary/fc-patient-reference-summary.component';
+import { NewFcClinicPatientSummaryComponent } from './Reports/new-fc-clinic-patient-summary/new-fc-clinic-patient-summary.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'hims/patient',
+        path: 'patient',
         component: RootComponent,
         // canActivate: [AuthGuardService, ModuleGuardService],
         children: [
@@ -73,13 +97,14 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'paymentreceipt', component: PaymentreceiptComponent },
             { path: 'paymentreceipt/:id', component: PaymentreceiptComponent },
             { path: 'activevisits', component: ActiveVisitsComponent },
-            { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
+            { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent }, 
             { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
-            
+            { path: 'dailysemenanalysis', component: DailySemenAnalysisComponent },
+            { path: 'dailyprocedure', component: DailyProcedureComponent },
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
-                path: "setup",
+                path: 'patient',
                 children: [
                     { path: 'testcategory', component: TestCategoryComponent },
                     { path: 'testtype', component: TestTypeComponent },
@@ -88,9 +113,42 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'reference', component: PatientReferenceComponent },
                     { path: 'consultant', component: ConsultantComponent },
                     { path: 'package', component: PackageComponent },
+                    { path: 'procedure', component: ProcedureComponent },
                     { path: 'visitnature', component: VisitnatureComponent }
                 ]
+            },
+
+            {
+                path: "report",
+                children: [
+                    { path: 'registrationlist', component: RegistrationlistComponent },
+                    { path: 'appointmentsheet', component: AppointmentSheetComponent },
+                    { path: 'dailyactivity', component: DailyActivityReportComponent },
+                    { path: 'bloodconsultationmovementsummary', component: BloodConsultationMovementSummaryComponent },
+                    { path: 'semenconsultationmovementsummary', component: SemenConsultationMovementSummaryComponent },
+                    { path: 'fcConsultationmovementsummary', component: FcConsultationMovementSummaryComponent },
+                    { path: 'newpatientsheetfckarachi', component: NewPatientSheetFcKarachiComponent }, 
+                    { path: 'medicinedetails', component: MedicineDetailsComponent },
+                    { path: 'consultantactivitydetails', component: ConsultantActivityDetailsComponent },
+                    { path: 'newpatientsheetsemenkarachi', component: NewPatientSheetSemenKarachiComponent }, 
+                    { path: 'newpatientsheetbloodkarachi', component: NewPatientSheetBloodKarachiComponent },
+                    { path: 'totalpatientreferencesummary', component: TotalPatientReferenceSummaryComponent },
+                    { path: 'semenpatientreferencesummary', component: SemenPatientReferenceSummaryComponent },
+                    { path: 'subsiquentsemenfreezinglist', component: SubsiquentSemenFreezingListComponent },
+                    { path: 'fcpatientreferencesummary', component: FcPatientReferenceSummaryComponent },
+                    { path: 'bloodtestreferencesummary', component: BloodTestReferenceSummaryComponent },
+                    { path: 'newfcclinicpatientsummary', component: NewFcClinicPatientSummaryComponent },
+                    { path: 'fcproceduremovementsummary', component: FcProcedureMovementSummaryComponent }
+
+
+                ]
             }
+
+
+
+
         ]
+
     }
+
 ]);

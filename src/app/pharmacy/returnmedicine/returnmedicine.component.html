@@ -22,10 +22,11 @@
               </button>
             </div>
           </div>
-        </div>
+        </div>   
+        <div class="m-portlet__body">
           <!--begin::Form-->
           <form class="m-form" [formGroup]="ReturnMedicineForm">
-              <div class="m-portlet__body">
+           
                   <div class="m-form m-form--fit m-form--label-align-right">
                         <div class="form-group m-form__group row">
                                 <label for="example-text-input" class="col-5 col-form-label">
@@ -101,15 +102,12 @@
                               <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
                           </div>
                       </div>       
-              </div>
+              
           </form>
-      <div class="row">
-        <div class="m-portlet__body">
-            <div class="m-section">
-                <div class="m-section__content">
-                    <form [formGroup]="ReturnMedicineDetailsForm">
-                        <div class="form-group m-form__group row">
-                            <div class="col-lg-12">
+
+
+          <form [formGroup]="ReturnMedicineDetailsForm">
+                        <div class="form-group m-form__group">
                                 <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
                                     <th>Manual Code</th>
                                     <th>Description</th>
@@ -150,7 +148,6 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </div>
                         </div>
                         <div class="form-group m-form__group row">
 
@@ -167,18 +164,15 @@
                                     </div>
                         </div>
 
-                        <div class="form-group m-form__group row">
-                            <div class="col-lg-12">
+                        <div class="form-group m-form__group">
                                 <div class="modal-footer">
                                         <button class="btn btn-success" (click)="AddSalesReturn()">Submit</button>
                                         <button class="btn btn-primary" (click)="ResetWholeForm()">Reset</button>
-                                </div>
-                            </div>  
+                                </div>  
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+          </form>
+
+
     </div>
     </div>
   </div>

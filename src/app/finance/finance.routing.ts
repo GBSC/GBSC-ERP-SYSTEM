@@ -25,7 +25,7 @@ import { UpdateVoucherComponent } from './update-voucher/update-voucher.componen
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
     {
-        path: 'finance',
+        path: '',
         component: RootComponent,
 
         children: [

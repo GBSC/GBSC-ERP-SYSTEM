@@ -137,7 +137,7 @@ export class VisitsComponent implements OnInit {
         console.log(x);
         console.log(this.Patient.appointments)
         let y = this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
-       
+
         y.visitStatus = 'end';
         console.log(y);
         await this.PatientServiceobj.updateAppointment(y);

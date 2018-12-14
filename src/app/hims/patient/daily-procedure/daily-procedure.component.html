@@ -1,0 +1,139 @@
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Daily Procedure Form
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <!--begin::Form-->
+                <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="DailyProcedureForm">
+                    <div class="m-portlet__body">
+                        <div class="form-group row">
+                            <div class="form-group col-lg-3">
+                                <label for="exampleSelect1"> Nature </label>
+                                <input class="form-control m-input m-input--solid" formControlName="Nature" type="text">
+                            </div>
+                            <div class="form-group col-lg-3">
+                                    <label for="exampleSelect1"> Patient</label>
+                                     <dx-select-box [items]="Patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true" formControlName="PatientId" > 
+                                    </dx-select-box>  
+                                </div>
+                            <div class="form-group col-lg-3">
+                                <label for="exampleSelect1"> Procedure Type</label>
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" formControlName="ProcedureType">
+                                    <option value="TVOPU">TVOPU</option>
+                                    <option value="AIH">AIH</option>
+                                    <option value="ET/FET">ET/FET</option>
+                                    <option value="OTHERS">OTHERS</option>
+                                    <option value="TVOPU/GA">TVOPU/GA</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-3">
+                                    <label for="exampleSelect1"> Time </label>
+                                    <input class="form-control m-input m-input--solid"  formControlName="Time" type="time">
+                                </div>                           
+                        </div>
+                        <div class="form-group row">
+                                <div class="form-group col-lg-3">
+                                        <label for="exampleSelect1"> Consultant  </label>
+                                         <dx-select-box [items]="Consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="AssignedConsultantId" > 
+                                        </dx-select-box>  
+                                    </div>
+                                <div class="form-group col-lg-3">
+                                        <label for="exampleSelect1"> Procedure</label>
+                                         <dx-select-box [items]="Procedure" displayExpr="procedureName" valueExpr="procedureId" [searchEnabled]="true" formControlName="ProcedureId"  > 
+                                        </dx-select-box>  
+                                    </div>
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleSelect1"> Done By Nature</label>
+                                    <select class="form-control m-input ng-pristine ng-valid ng-touched" formControlName="DoneByNature">
+                                        <option value="Surgeon">Surgeon</option>
+                                        <option value="Doctor">Doctor</option>
+                                        <option value="Default">Default</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                        <label for="exampleSelect1"> Done By  </label>
+                                         <dx-select-box [items]="Consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="PerformedByConsultantId" > 
+                                        </dx-select-box>  
+                                    </div>
+
+                                                  
+                            </div>
+
+                        <div class="form-group row">
+                                <div class="form-group col-lg-3">
+                                    <label for="exampleSelect1"> Remarks </label>
+                                    <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
+                                </div>
+                                <div class="form-group col-lg-7"></div>
+                                <div class="form-group col-lg-2">
+                                    <button type="button" (click)="addDailyProcedure(DailyProcedureForm.value)" class="btn btn-primary pull-right">
+                                            Save
+                                    </button>
+                                </div>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-lg-12">
+                <!--begin::Portlet-->
+                <div class="m-portlet">
+                        <div class="m-portlet__head">
+                          <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">Daily Procedure</h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-portlet__body">
+                          <div class="m-section">
+                            <div class="m-section__content">
+                              <dx-data-grid id="gridContainer" [dataSource]="DailyProcedure"  (onRowUpdated)="updateDailyProcedure($event)" (onRowRemoved)="deleteDailyProcedure($event)"> 
+                                  <dxo-editing mode="row"   [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
+                              </dxo-editing>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                <dxo-paging [pageSize]="5"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                                <dxi-column dataField="nature" caption="Nature"></dxi-column>
+                                <dxi-column dataField="patientId" caption="Patient" [allowEditing]="false">
+                                    <dxo-lookup [dataSource]="Patients" displayExpr="display" valueExpr="patientId"></dxo-lookup>
+                                </dxi-column>   
+                                <dxi-column dataField="procedureId" caption="Procedure" [allowEditing]="false">
+                                    <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
+                                </dxi-column>  
+                                <dxi-column dataField="assignedConsultantId" caption="Consultant" [allowEditing]="false">
+                                    <dxo-lookup [dataSource]="Consultants" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                                </dxi-column>  
+                                <dxi-column dataField="time" caption="Time"  dataType="datetime" format="shortTime"></dxi-column>
+                                 <dxi-column dataField="procedureType" caption="Procedure Type"></dxi-column>
+                                 <dxi-column dataField="performedByConsultantId" caption="Done By" [allowEditing]="false">
+                                    <dxo-lookup [dataSource]="Consultants" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="doneByNature" caption="Done By Nature"></dxi-column>
+                                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+                              </dx-data-grid>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+        </div>
+</div>

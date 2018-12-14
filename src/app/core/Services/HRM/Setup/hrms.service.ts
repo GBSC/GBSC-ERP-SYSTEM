@@ -23,7 +23,7 @@ export class HrmsService {
 
     }
 
-    async updateCountry(data) { 
+    async updateCountry(data) {
         return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
     }
 
@@ -41,7 +41,7 @@ export class HrmsService {
 
     }
 
-    async updateCity(data) { 
+    async updateCity(data) {
         return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
     }
 

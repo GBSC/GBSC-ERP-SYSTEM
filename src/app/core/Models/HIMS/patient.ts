@@ -37,7 +37,7 @@ export interface Patient {
     partner: Spouse,
     patientPackage: PatientPackage,
     patientInvoices: PatientInvoice[],
-    patientInvoiceReturns : PatientInvoiceReturn[]
+    patientInvoiceReturns: PatientInvoiceReturn[]
 }
 
 

@@ -121,7 +121,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
     {
-        path: 'hrm', component: RootComponent,
+        path: '', component: RootComponent,
         canActivate: [AuthGuardService],
         children: [
 

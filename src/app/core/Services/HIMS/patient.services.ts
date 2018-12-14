@@ -29,6 +29,8 @@ import { Test } from '../../Models/HIMS/Test';
 import { PatientPackage } from '../../Models/HIMS/PatientPackage';
 import { PatientInvoiceReturn } from '../../Models/HIMS/PatientInvoiceReturn';
 import { PatientInvoiceReturnItem } from '../../Models/HIMS/PatientInvoiceReturnItem';
+import { Procedure } from '../../Models/HIMS/procedure';
+import { DailyProcedure  } from '../../Models/HIMS/dailyProcedure';
 
 @Injectable()
 export class PatientService {
@@ -201,6 +203,10 @@ export class PatientService {
     async getAppointmentById(id) {
         this.getApptbyId = await this.ApiService.get(this.API_URL + 'Appointments/GetAppointment/' + id).toPromise();
         return this.getApptbyId;
+    }
+
+    async GetAppointmentTestByAppointmentId(id) {
+        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentTestByAppointmentId/' + id).toPromise();
     }
 
     GetAppointmentById(id: number): Observable<Appointment> {
@@ -542,8 +548,9 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'HimsSetup/DeleteVisitNature/' + id).toPromise();
     }
 
-    async SearchPatient(patient: Patient) {
-        this.SearchPatientbyname = await this.ApiService.post(this.API_URL + 'patients/SearchPatient', patient).toPromise();
+    SearchPatient(patient: any) {
+        let params = "mrn=" + patient.mrn + "&name=" + patient.name + "&contact=" + patient.contact;
+        return this.ApiService.get(this.API_URL + 'patients/SearchPatient?' + params);
     }
 
     SearchPatientByMrn(mrn): Observable<Patient> {
@@ -681,7 +688,7 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoice/' + id);
     }
 
-    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string) : Observable<PatientInvoice> {
+    GetPatientInvoiceWithDetailsBySlipNumberForReturn(slipnumber: string): Observable<PatientInvoice> {
         return this.ApiService.get(this.API_URL + 'PatientInvoices/GetPatientInvoiceWithDetailsBySlipNumberForReturn/' + slipnumber);
     }
 
@@ -760,6 +767,53 @@ export class PatientService {
     DeletePatientInvoiceItem(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'PatientInvoices/DeletePatientInvoiceItem/' + id);
     }
+
+
+
+    getProcedure():Observable<Procedure>{
+        return this.ApiService.get(this.API_URL+'HimsSetup/GetProcedures');
+    } 
+
+ 
+    async addProcedure(Procedure  ) {
+        return await this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure).toPromise();
+    }
+
+    async updateProcedure(Procedure )  {
+        return await this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure).toPromise();
+    }
+    async  deleteProcedure(id: number) {
+        return await this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id).toPromise();
+    }
+
+    getDailyProcedure():Observable<DailyProcedure>{
+        return this.ApiService.get(this.API_URL+'Procedure/GetDailyProcedures');
+    }
+
+    addDailyProcedure(value):Observable<any>{
+        return this.ApiService.post(this.API_URL+'Procedure/AddDailyProcedure',value);
+    }
+
+    updateDailyProcedure(value):Observable<any>{
+        return this.ApiService.put(this.API_URL+'Procedure/UpdateDailyProcedure',value);
+    }
+
+    deleteDailyProcedure(id: number): Observable<any> {
+        return this.ApiService.delete(this.API_URL+'Procedure/DeleteDailyProcedure/'+id);
+    }
+
+//    addProcedure(Procedure : Procedure) : Observable<any>{
+//        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
+//    }
+//    updateProcedure(Procedure : Procedure) : Observable<any>{
+//        return this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure);
+//    }
+//    deleteProcedure(id: number): Observable<any> {
+//        return this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id);
+//    }
+
+
+
 
     /*********************************Patient Invoice Return Item **********************************/
 

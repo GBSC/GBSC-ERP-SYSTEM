@@ -7,9 +7,9 @@ import { LeaveOpening } from '../../../Models/HRM/leaveOpening';
 @Injectable()
 export class LeaveService {
 
-    private baseUrl: string = "SystemAdmin/api";
+    public baseUrl: string = "SystemAdmin/api";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getLeaveOpening() {
 

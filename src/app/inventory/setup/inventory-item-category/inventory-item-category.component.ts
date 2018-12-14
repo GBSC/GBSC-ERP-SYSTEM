@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./inventory-item-category.component.scss']
 })
 export class InventoryItemCategoryComponent implements OnInit {
-    private ItemCategories: any;
-    private UpdatedModel: any;
+    public ItemCategories: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

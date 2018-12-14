@@ -6,15 +6,15 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./delivery-note.component.scss']
 })
 export class DeliveryNoteComponent implements OnInit {
-    private DeliveryOrder: any;
-    private Transport: any;
-    private SalesInvoice: any;
-    private DeliveryNote: any;
+    public DeliveryOrder: any;
+    public Transport: any;
+    public SalesInvoice: any;
+    public DeliveryNote: any;
     minDate = new Date(2000, 0, 1);
     maxDate = new Date(2029, 11, 31);
     currentDate = new Date();
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

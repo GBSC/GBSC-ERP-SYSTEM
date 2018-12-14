@@ -12,6 +12,7 @@ import { RolesandprivilegesComponent } from './rolesandprivileges/rolesandprivil
 import { CompanyComponent } from './company/company.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CityComponent } from './city/city.component';
     declarations: [
         RootComponent,
         MenuComponent,
+        SettingsComponent,
         CountryComponent,
         CityComponent,
         BranchComponent,

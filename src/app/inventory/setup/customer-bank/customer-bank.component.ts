@@ -6,11 +6,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-bank.component.scss']
 })
 export class CustomerBankComponent implements OnInit {
-    private CustomerBanks: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    public CustomerBanks: any;
+    public CustomerTypes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

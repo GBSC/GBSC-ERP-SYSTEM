@@ -326,7 +326,7 @@
                           <dxo-paging [pageSize]="8"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager>
-                          <dxi-column dataField="medicineId" caption="Drug" [setCellValue]="setStateValue">
+                          <dxi-column dataField="medicineId" caption="Drug">
                             <dxo-lookup [dataSource]="medicines" displayExpr="name" valueExpr="medicineId">
                             </dxo-lookup>
                           </dxi-column>

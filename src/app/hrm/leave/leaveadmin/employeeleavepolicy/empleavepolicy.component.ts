@@ -22,7 +22,7 @@ export class EmpleavepolicyComponent implements OnInit {
     public message: any = null;
     public messagetext: "Add Successfully";
 
-    constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
+    constructor(public fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {

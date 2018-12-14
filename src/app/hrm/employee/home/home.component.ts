@@ -14,7 +14,7 @@ export class EmployeeHomeComponent implements OnInit {
 
     public id: number;
 
-    constructor(private toastr: ToastrService, public employeeService: EmployeeService, public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(public toastr: ToastrService, public employeeService: EmployeeService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 

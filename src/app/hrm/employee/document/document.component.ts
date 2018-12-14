@@ -24,7 +24,7 @@ export class DocumentComponent implements OnInit {
     }
 
 
-    private forimg: File[] = [];
+    public forimg: File[] = [];
     public allDocs: File[] = [];
 
     fileselect(event) {

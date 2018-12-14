@@ -10,13 +10,13 @@ import { PatientService } from '../../../core';
     styleUrls: ['./daily-procedure.component.scss']
 })
 export class DailyProcedureComponent implements OnInit {
-    private DailyProcedureForm: FormGroup;
-    private Patients: any;
-    private Consultants: any;
-    private Procedure: any;
-    private DailyProcedure: any;
+    public DailyProcedureForm: FormGroup;
+    public Patients: any;
+    public Consultants: any;
+    public Procedure: any;
+    public DailyProcedure: any;
 
-    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
+    constructor(public toastr: ToastrService, public formBuilder: FormBuilder, public PatientServiceobj: PatientService) {
 
         this.DailyProcedureForm = this.formBuilder.group({
             Nature: [''],

@@ -8,10 +8,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./unit.component.css']
 })
 export class UnitComponent implements OnInit {
-    private Units: any;
-    private UpdatedModel: any;
+    public Units: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

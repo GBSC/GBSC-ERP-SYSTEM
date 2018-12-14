@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./goodsreceipt.component.css']
 })
 export class GoodsreceiptComponent implements OnInit {
-    private PurchaseInvoice: any;
-    private GRN: any;
+    public PurchaseInvoice: any;
+    public GRN: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

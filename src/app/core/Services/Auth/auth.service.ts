@@ -7,10 +7,10 @@ import { ApiService } from '../api.service';
 @Injectable()
 export class AuthService {
     public accessibleModules: any = ['patient'];
-    private readonly API_URL = 'authentication/api/auth/login';
-    private loggedInUser: any;
+    public readonly API_URL = 'authentication/api/auth/login';
+    public loggedInUser: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public router: Router, public route: ActivatedRoute, public ApiService: ApiService) {
     }
 
     async login(credentials) {

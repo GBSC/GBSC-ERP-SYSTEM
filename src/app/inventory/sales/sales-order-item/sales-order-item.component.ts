@@ -7,14 +7,14 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./sales-order-item.component.scss']
 })
 export class SalesOrderItemComponent implements OnInit {
-    private PackType: any;
-    private SalesOrder: any;
-    private InventoryItem: any;
-    private Inventory: any;
-    private Comission: any;
-    private SalesOrderItem: any;
+    public PackType: any;
+    public SalesOrder: any;
+    public InventoryItem: any;
+    public Inventory: any;
+    public Comission: any;
+    public SalesOrderItem: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

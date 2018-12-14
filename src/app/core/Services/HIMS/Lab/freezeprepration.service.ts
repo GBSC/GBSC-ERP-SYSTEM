@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class FreezepreprationService {
 
-    private Url = "Hims/api/FreezePrepration/"
+    public Url = "Hims/api/FreezePrepration/"
 
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getFreezePreprationByClinicalRecordId(id: number) {
         return this.ApiService.get(this.Url + 'GetFreezePreprationByClinicalRecordId/' + id);

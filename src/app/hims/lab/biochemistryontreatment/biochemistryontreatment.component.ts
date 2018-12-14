@@ -25,33 +25,33 @@ export class BiochemistryontreatmentComponent implements OnInit {
 
     public Editor = ClassicEditor;
 
-    private consultants: any;
-    private treatments: any;
-    private clinicalRecord: any;
-    private patients: any;
-    private spouse: Spouse;
-    private patient: Patient;
-    private bioChemistryontreatmentForm: FormGroup;
-    private tests: BioChemistryTest;
-    private units: TestUnit;
-    private id: any;
-    private bioChemistry: any;
-    private RefRange: any;
-    private testDetail: BioChemistryTestDetail[];
+    public consultants: any;
+    public treatments: any;
+    public clinicalRecord: any;
+    public patients: any;
+    public spouse: Spouse;
+    public patient: Patient;
+    public bioChemistryontreatmentForm: FormGroup;
+    public tests: BioChemistryTest;
+    public units: TestUnit;
+    public id: any;
+    public bioChemistry: any;
+    public RefRange: any;
+    public testDetail: BioChemistryTestDetail[];
 
     public packg: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private route: ActivatedRoute,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService,
-        private bioChemistryService: BioChemistryService) {
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService,
+        public bioChemistryService: BioChemistryService) {
 
         this.bioChemistryontreatmentForm = formBuilder.group({
             'CollectionDate': ['', Validators.required],

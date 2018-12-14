@@ -8,12 +8,12 @@ import { Module } from '../../Models/HRM/module';
 @Injectable()
 export class SuperadminserviceService {
 
-    private SystemAdmin_API_URL = "systemadmin/api/";
-    private AuthUrl = "authentication/api/"
+    public SystemAdmin_API_URL = "systemadmin/api/";
+    public AuthUrl = "authentication/api/"
 
-    // private Account_API_URL = "http://localhost:61161/api/"
+    // public Account_API_URL = "http://localhost:61161/api/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 

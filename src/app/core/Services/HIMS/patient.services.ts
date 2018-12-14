@@ -81,11 +81,11 @@ export class PatientService {
     //for diagnoses
     public diagnoses: any;
 
-    private readonly API_URL = 'hims/api/';
+    public readonly API_URL = 'hims/api/';
 
     dialogData: any;
 
-    constructor(private http1: HttpClient, private ApiService: ApiService) {
+    constructor(public http1: HttpClient, public ApiService: ApiService) {
     }
 
     async getPatient() {

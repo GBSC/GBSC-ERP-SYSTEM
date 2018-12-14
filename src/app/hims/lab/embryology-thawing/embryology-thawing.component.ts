@@ -14,24 +14,24 @@ export class EmbryologyThawingComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private id: any;
-    private clinicalRecord: any;
-    private unthawedSamples: any;
-    private thawedSamples: any;
+    public id: any;
+    public clinicalRecord: any;
+    public unthawedSamples: any;
+    public thawedSamples: any;
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
 
-    private freeFreezeOptions: any;
-    private topBottomOptions: any;
+    public freeFreezeOptions: any;
+    public topBottomOptions: any;
 
-    private thawassessment: any;
+    public thawassessment: any;
 
-    constructor(private route: ActivatedRoute,
-        private patientService: PatientService,
-        private clinicalRecordService: PatientclinicalrecordService,
-        private thawassessmentService: ThawAssessmentService) {
+    constructor(public route: ActivatedRoute,
+        public patientService: PatientService,
+        public clinicalRecordService: PatientclinicalrecordService,
+        public thawassessmentService: ThawAssessmentService) {
 
         this.freeFreezeOptions = [{ name: "Vitrification" }, { name: "Slow Freeze" }, { name: "Default" }];
 

@@ -9,12 +9,12 @@ import { InventorysystemService } from '../../../core';
 
 })
 export class DeliveryOrderItemComponent implements OnInit {
-    private DeliveryOrder: any;
-    private InventoryItem: any;
-    private Inventory: any;
-    private DeliveryOrderItem: any;
+    public DeliveryOrder: any;
+    public InventoryItem: any;
+    public Inventory: any;
+    public DeliveryOrderItem: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

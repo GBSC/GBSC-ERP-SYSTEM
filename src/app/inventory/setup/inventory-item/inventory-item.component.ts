@@ -10,18 +10,18 @@ import { InventorysystemService } from '../../../core';
 })
 
 export class InventoryItemComponent implements OnInit {
-    private InventoryItems: any;
-    private Brands: any;
-    private Units: any;
-    private PackTypes: any;
-    private PackSizes: any;
-    private PackCategories: any;
-    private ProductTypes: any;
-    private InventoryItemCategories: any;
-    private PackageTypes: any;
-    private UpdatedModel: any;
+    public InventoryItems: any;
+    public Brands: any;
+    public Units: any;
+    public PackTypes: any;
+    public PackSizes: any;
+    public PackCategories: any;
+    public ProductTypes: any;
+    public InventoryItemCategories: any;
+    public PackageTypes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

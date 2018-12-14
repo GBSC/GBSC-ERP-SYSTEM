@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./transport.component.scss']
 })
 export class TransportComponent implements OnInit {
-    private Transports: any;
-    private UpdatedModel: any;
+    public Transports: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

@@ -6,9 +6,9 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class ThawAssessmentService {
 
-    private readonly API_URL = 'hims/api/ThawAssessment/';
+    public readonly API_URL = 'hims/api/ThawAssessment/';
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getThawAssessment(id): Observable<any> {
         return this.ApiService.get(this.API_URL + 'GetThawAssessment/' + id);

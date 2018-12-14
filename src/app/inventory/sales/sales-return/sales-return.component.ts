@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./sales-return.component.css']
 })
 export class SalesReturnComponent implements OnInit {
-    private SalesInvoice: any;
-    private ReturnReason: any;
-    private SalesReturn: any;
+    public SalesInvoice: any;
+    public ReturnReason: any;
+    public SalesReturn: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

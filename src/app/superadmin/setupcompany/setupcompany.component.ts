@@ -11,31 +11,31 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SetupcompanyComponent implements OnInit {
 
-    private companyForm: FormGroup;
+    public companyForm: FormGroup;
 
-    private systemAdminForm: FormGroup;
+    public systemAdminForm: FormGroup;
 
-    private company: any;
+    public company: any;
 
-    private companyId: number;
+    public companyId: number;
 
-    private HimsInstalled: boolean;
+    public HimsInstalled: boolean;
 
-    private HrmInstalled: boolean;
+    public HrmInstalled: boolean;
 
-    private ImsInstalled: boolean;
+    public ImsInstalled: boolean;
 
-    private PmsInstalled: boolean;
+    public PmsInstalled: boolean;
 
-    private AccountingSystemInstalled: boolean;
+    public AccountingSystemInstalled: boolean;
 
-    private LisInstalled: boolean;
+    public LisInstalled: boolean;
 
-    private InventoryInstalled: boolean;
+    public InventoryInstalled: boolean;
 
-    private eTrackerInstalled: boolean;
+    public eTrackerInstalled: boolean;
 
-    constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
+    constructor(public route: ActivatedRoute, public formBuilder: FormBuilder, public superAdminService: SuperadminserviceService) {
 
         this.companyForm = this.formBuilder.group({
             'name': ['', Validators.required],

@@ -10,7 +10,7 @@ export class PackageComponent implements OnInit {
 
     public packg: any;
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     async ngOnInit() {
 

@@ -9,10 +9,10 @@ import { TestCategory } from '../../../core/Models/HIMS/TestCategory';
 })
 export class TestCategoryComponent implements OnInit {
 
-    private TestCategories: TestCategory[];
-    private UpdatedModel: TestCategory;
+    public TestCategories: TestCategory[];
+    public UpdatedModel: TestCategory;
 
-    constructor(private PatientService: PatientService) {
+    constructor(public PatientService: PatientService) {
 
     }
 

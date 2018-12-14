@@ -13,11 +13,11 @@ import { Area } from '../../../core/Models/Inventory/Setup/Area';
 
 
 export class AreaComponent implements OnInit {
-    private Regions: any;
-    private Areas: any;
-    private newarea: Area;
+    public Regions: any;
+    public Areas: any;
+    public newarea: Area;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

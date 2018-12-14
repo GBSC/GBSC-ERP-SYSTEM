@@ -9,13 +9,13 @@ import { PatientService } from '../../../core';
 })
 export class DailySemenAnalysisComponent implements OnInit {
 
-    private DailySemenAnalysisForm: FormGroup;
-    private ProcedureForm: FormGroup;
-    private Patients: any;
-    private Consultants: any;
-    private Procedure: any;
+    public DailySemenAnalysisForm: FormGroup;
+    public ProcedureForm: FormGroup;
+    public Patients: any;
+    public Consultants: any;
+    public Procedure: any;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
+    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],

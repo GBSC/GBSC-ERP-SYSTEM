@@ -7,13 +7,13 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./inventory.component.scss']
 })
 export class InventoryComponent implements OnInit {
-    private InventoryItems: any;
-    private Inventories: any;
-    private UpdatedModel: any;
-    private UnassignedItems: any;
-    private DataSource: any;
+    public InventoryItems: any;
+    public Inventories: any;
+    public UpdatedModel: any;
+    public UnassignedItems: any;
+    public DataSource: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }

@@ -32,7 +32,7 @@ export class GeneralactionsComponent implements OnInit {
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
 
     async  ngOnInit() {
 

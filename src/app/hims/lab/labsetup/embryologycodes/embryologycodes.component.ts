@@ -11,7 +11,7 @@ export class EmbryologycodesComponent implements OnInit {
 
     public embryologycode: any;
 
-    constructor(private BioChemistryServiceobj: BioChemistryService) { }
+    constructor(public BioChemistryServiceobj: BioChemistryService) { }
 
     async ngOnInit() {
 

@@ -8,10 +8,10 @@ import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType'
     styleUrls: ['./customer-type.component.scss']
 })
 export class CustomerTypeComponent implements OnInit {
-    private CustomerTypes: any;
-    private newCusTyp: CustomerType;
+    public CustomerTypes: any;
+    public newCusTyp: CustomerType;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

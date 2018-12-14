@@ -9,10 +9,10 @@ import { Region } from '../../../core/Models/Inventory/Setup/Region';
     styleUrls: ['./region.component.scss']
 })
 export class RegionComponent implements OnInit {
-    private Regions: any;
-    private updatedmodel: Region;
+    public Regions: any;
+    public updatedmodel: Region;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
         // this.form = new FormGroup {
 
         // };

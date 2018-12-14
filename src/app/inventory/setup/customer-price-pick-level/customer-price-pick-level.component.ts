@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-price-pick-level.component.scss']
 })
 export class CustomerPricePickLevelComponent implements OnInit {
-    private CustomerPrices: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    public CustomerPrices: any;
+    public CustomerTypes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

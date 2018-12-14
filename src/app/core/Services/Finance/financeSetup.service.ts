@@ -32,9 +32,9 @@ let companies: Company[] = [{
 @Injectable()
 export class FinanceSetupService {
 
-    private baseUrl: string = "Finance/api";
+    public baseUrl: string = "Finance/api";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     getCompanies() {
         return companies;

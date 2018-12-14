@@ -11,7 +11,7 @@ export class RoleComponent implements OnInit {
     public departments: any;
     public featuremodule: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 

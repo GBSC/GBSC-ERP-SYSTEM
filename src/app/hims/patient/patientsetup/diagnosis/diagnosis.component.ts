@@ -9,7 +9,7 @@ import { PatientService } from '../../../../core';
 })
 export class DiagnosisComponent implements OnInit {
     public diagnos: any;
-    constructor(private PatientServiceobj: PatientService) {
+    constructor(public PatientServiceobj: PatientService) {
 
     }
 

@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./territory.component.scss']
 })
 export class TerritoryComponent implements OnInit {
-    private Territories: any;
-    private Areas: any;
-    private UpdatedModel: any;
+    public Territories: any;
+    public Areas: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

@@ -21,7 +21,7 @@ export class PayslipComponent implements OnInit {
     public users: any;
     public userLoans: any;
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService,
+    constructor(public fb: FormBuilder, public payrollservice: PayrollService,
         public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {

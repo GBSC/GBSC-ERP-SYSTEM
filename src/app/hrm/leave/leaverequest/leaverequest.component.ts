@@ -25,11 +25,11 @@ export class LeaverequestComponent implements OnInit {
     public updatingRequest: any;
     public leaveOpening: any;
     public leaveRequestId;
-    private requestDetail: LeaveRequestDetail[];
+    public requestDetail: LeaveRequestDetail[];
 
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr: ToastrService, private fb: FormBuilder, private activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public leaveservice: LeaveService) { }
 
     async ngOnInit() {

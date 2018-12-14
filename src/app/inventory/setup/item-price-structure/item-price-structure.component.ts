@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./item-price-structure.component.scss']
 })
 export class ItemPriceStructureComponent implements OnInit {
-    private ItemPriceStructures: any;
-    private UpdatedModel: any;
+    public ItemPriceStructures: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

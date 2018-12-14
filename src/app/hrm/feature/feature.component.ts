@@ -11,7 +11,7 @@ export class FeatureComponent implements OnInit {
     public mod: any;
     public features: any;
 
-    constructor(private SystemAdministrationServicebj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServicebj: SystemAdministrationService) { }
 
     async  ngOnInit() {
 

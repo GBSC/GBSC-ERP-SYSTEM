@@ -8,11 +8,11 @@ import { CustomerAccount } from '../../../core/Models/Inventory/Setup/CustomerAc
     styleUrls: ['./customer-account.component.scss']
 })
 export class CustomerAccountComponent implements OnInit {
-    private CustomerAccounts: any;
-    private CustomerTypes: any;
-    private updatedmodel: CustomerAccount;
+    public CustomerAccounts: any;
+    public CustomerTypes: any;
+    public updatedmodel: CustomerAccount;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService) { }
 
     async ngOnInit() {
         this.CustomerAccounts = await this.InventoryService.GetCustomerAccounts();

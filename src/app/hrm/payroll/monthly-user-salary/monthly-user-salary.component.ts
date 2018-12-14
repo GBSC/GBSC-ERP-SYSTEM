@@ -13,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MonthlyUserSalaryComponent implements OnInit {
 
-    private MonthlyUserSalaryForm: any
-    private rosterAttendance: UserRosterAttendance[];
+    public MonthlyUserSalaryForm: any
+    public rosterAttendance: UserRosterAttendance[];
     public rosterattendance: any[] = [];
     public stopSalary: any;
     public paySlip: any;
@@ -28,8 +28,8 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     @Input('monthlyUserSalaryId') id: number;
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
-        public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(public fb: FormBuilder, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
+        public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
 

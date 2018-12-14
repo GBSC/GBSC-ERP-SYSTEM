@@ -16,10 +16,10 @@ export class ViewallAppointmetsComponent implements OnInit {
     SearchAppointmentForm: FormGroup;
     public appointmentbydate: any;
     public par: any;
-    private tentativeAppointments: any;
-    private finalizedAppointments: any;
+    public tentativeAppointments: any;
+    public finalizedAppointments: any;
 
-    constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
+    constructor(formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router) {
         this.SearchAppointmentForm = formBuilder.group({
             TentativeTime: ['']
         })

@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ClinicalRecordsListComponent } from './hims/coordination/clinical-records-list/clinical-records-list.component';
 import { PharmacyModule } from './pharmacy/pharmacy.module';
 import { CoreModule } from './core/core.module';
 import { PatientModule } from './hims/patient/patient.module';
@@ -36,8 +35,7 @@ import { EtrackerModule } from './etracker/etracker.module';
         ThemeComponent,
         AppComponent,
         HeaderComponent,
-        FooterComponent,
-        ClinicalRecordsListComponent
+        FooterComponent
     ],
     imports: [
         CommonModule,

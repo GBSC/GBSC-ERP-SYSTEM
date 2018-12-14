@@ -19,6 +19,7 @@ export class AuthService {
         if (response.status && response.message === 'Login Successful') {
             let userData = {
                 credentials: response.response,
+                assignedId: response.assignedId,
                 accessibleModules: response.modules.map((m, i) => {
                     return {
                         Description: m,
@@ -49,6 +50,16 @@ export class AuthService {
         } else {
             return false;
         }
+    }
+
+    getUser() {
+        return JSON.parse(localStorage.getItem('user'));
+    }
+
+    getUserCompanyId(){
+
+        var user = this.getUser();
+        return user.assignedId.companyId;
     }
 
     checkIfModuleIsAccessible(module) {

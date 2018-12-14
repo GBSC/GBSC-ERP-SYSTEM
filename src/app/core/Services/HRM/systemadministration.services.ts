@@ -32,9 +32,9 @@ export class SystemAdministrationService {
         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
-    async getData() {
+    async getModulesByCompanyId(companyId: any) {
 
-        let params = new HttpParams().set('companyId', '164');
+        let params = new HttpParams().set('companyId', companyId);
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
 
@@ -119,6 +119,10 @@ export class SystemAdministrationService {
 
     async getRoles() {
         return await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
+    }
+
+    getRolesByCompanyId(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
     }
 
     async addRole(role: Role) {

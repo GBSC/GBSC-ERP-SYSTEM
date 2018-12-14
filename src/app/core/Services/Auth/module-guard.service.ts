@@ -8,7 +8,6 @@ export class ModuleGuardService implements CanActivate {
     constructor(private router: Router, private route: ActivatedRoute, private accountService: AuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        console.log('it worked');
         let module = state.url.split('/')[1];
         if (this.accountService.checkIfModuleIsAccessible(module)) {
             return true;

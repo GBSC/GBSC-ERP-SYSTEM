@@ -40,7 +40,8 @@ const routes: Routes = [{
     declarations: [
         RootComponent,
         MenuComponent,
-        ClinicalrecordComponent
+        ClinicalrecordComponent,
+        ClinicalRecordsListComponent
     ],
     exports: [RouterModule]
 })

@@ -13,6 +13,10 @@ import { CompanyComponent } from './company/company.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
+import { UsersComponent } from './users/users.component';
+import { UrlSerializer } from '@angular/router';
+import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
+import { UserService } from '../core/Services/Security/user.service';
 
 
 @NgModule({
@@ -34,7 +38,15 @@ import { UserregistrationComponent } from './userregistration/userregistration.c
     DepartmentComponent,
     RolesandprivilegesComponent,
     CompanyComponent,
-    UserregistrationComponent 
-  ]
+    UserregistrationComponent,
+    UsersComponent
+  ],
+  providers: [
+    {
+        provide: UrlSerializer,
+        useClass: LowerCaseUrlSerializer
+    },
+      UserService
+]
 })
 export class SecurityAdminModule { }

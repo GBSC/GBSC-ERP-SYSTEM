@@ -1,7 +1,7 @@
 
 
 import { NgModule, Component, Pipe, PipeTransform, enableProdMode, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService } from '../../core';
 
 
 @Pipe({ name: 'title' })
@@ -23,8 +23,12 @@ export class TitlePipe implements PipeTransform {
 export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
+    public companyId : any;
 
-    constructor(private systemAdmin: SystemAdministrationService) { }
+    constructor(private systemAdmin: SystemAdministrationService, private authService : AuthService) {
+
+        this.companyId = this.authService.getUserCompanyId();
+     }
 
     createNewRole() {
         this.showPopup = true;
@@ -45,7 +49,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
     ngOnInit() {
         this.systemAdmin.getPermissions();
-        this.systemAdmin.getData();
+        this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
         this.role = {
             Name: '',

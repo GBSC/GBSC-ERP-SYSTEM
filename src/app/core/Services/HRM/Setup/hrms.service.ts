@@ -36,6 +36,11 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
+    getCitiesByCompanyId(companyId: any) {
+
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
     async addCity(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
 

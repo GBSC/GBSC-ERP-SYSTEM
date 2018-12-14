@@ -68,7 +68,7 @@ import { NewFcClinicPatientSummaryComponent } from './Reports/new-fc-clinic-pati
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: '',
+        path: 'patient',
         component: RootComponent,
         // canActivate: [AuthGuardService, ModuleGuardService],
         children: [

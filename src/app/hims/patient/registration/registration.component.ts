@@ -16,7 +16,7 @@ import { Reference } from '../../../core/Models/HIMS/reference';
 
 export class RegistrationComponent implements OnInit {
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
@@ -36,16 +36,16 @@ export class RegistrationComponent implements OnInit {
     public visitnature: any;
     id: number;
     public Patient: any = '';
-    private forevent: File = null;
-    private Documentupload: File;
-    private patientId: any;
+    public forevent: File = null;
+    public Documentupload: File;
+    public patientId: any;
     submitted = false;
     spousesubmitted = false;
     referencesubmitted = false;
     documentsumitted = false;
     public getreferncdata: any;
 
-    constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public Location: Location, public cd: ChangeDetectorRef, public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             //  'ReferredBy': [''],
@@ -144,8 +144,8 @@ export class RegistrationComponent implements OnInit {
                         State: Patient.state,
                         PostalCode: Patient.postalCode,
                         Initial: Patient.initial,
-                        PrivatePatientCons: Patient.privatePatientCons,
-                        PrivateHospital: Patient.privateHospital,
+                        PrivatePatientCons: Patient.publicPatientCons,
+                        PrivateHospital: Patient.publicHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                         patientReferenceId: Patient.patientReferenceId,
 
@@ -490,8 +490,8 @@ export class RegistrationComponent implements OnInit {
         this.toastr.error(message);
     }
 
-    private Other: string = 'NoOther';
-    private disable: boolean = true;
+    public Other: string = 'NoOther';
+    public disable: boolean = true;
 
     // valueChanged(e){
     //     console.log(e);

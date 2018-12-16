@@ -30,7 +30,6 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
-import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 import { BiochemistryOutsiderComponent } from './biochemistry-outsider/biochemistry-outsider.component';
 import { TvopuRecordsComponent } from './tvopu-records/tvopu-records.component';
 import { BiopsyRecordsComponent } from './biopsy-records/biopsy-records.component';
@@ -40,6 +39,13 @@ import { InsemenationRecordsComponent } from './insemenation-records/insemenatio
 import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { BiochemistryOntreatmentReportviewerComponent } from './report-components/biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
+import { SemenAnalysisOutsiderReportviewerComponent } from './report-components/semen-analysis-outsider-reportviewer/semen-analysis-outsider-reportviewer.component';
+import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-components/biochemistry-details-ontreatment-reportviewer/biochemistry-details-ontreatment-reportviewer.component';
+import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
+import { LabsummaryReportviewerComponent } from './report-components/labsummary-reportviewer/labsummary-reportviewer.component';
+import { BiopsyReportviewerComponent } from './report-components/biopsy-reportviewer/biopsy-reportviewer.component';
 
 
 
@@ -51,6 +57,7 @@ import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/in
         DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
+        CKEditorModule,
         routing,
 
     ],
@@ -83,7 +90,6 @@ import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/in
         FreezepreparationComponent,
         ClinicalrecordsComponent,
         SemenanalysisComponent,
-        ReportViewerComponent,
         BiochemistryOutsiderComponent,
         TvopuRecordsComponent,
         BiopsyRecordsComponent,
@@ -93,6 +99,12 @@ import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/in
         FreezePrepRecordsComponent,
         EmbryologyThawingRecordsComponent,
         InsemenationPrepRecordsComponent,
+        BiochemistryOntreatmentReportviewerComponent,
+        SemenAnalysisOutsiderReportviewerComponent,
+        BiochemistryDetailsOntreatmentReportviewerComponent,
+        BiochemistryOutsiderReportviewerComponent,
+        LabsummaryReportviewerComponent,
+        BiopsyReportviewerComponent,
     ]
 })
 export class LabModule { }

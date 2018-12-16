@@ -6,10 +6,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./product-pack-size.component.scss']
 })
 export class ProductPackSizeComponent implements OnInit {
-    private PackSizes: any;
-    private UpdatedModel: any;
+    public PackSizes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

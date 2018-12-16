@@ -10,7 +10,7 @@ declare let mLayout: any;
 })
 export class MenuComponent implements OnInit, AfterViewInit {
 
-    constructor(private route: ActivatedRoute, private router: Router) { }
+    constructor(public route: ActivatedRoute, public router: Router) { }
 
     ngOnInit() {
     }

@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ProfilepicComponent implements OnInit {
     @Output('setBankFormValue') setpicFormValue = new EventEmitter();
     public Profilepic: any;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, private route: ActivatedRoute) { }
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, public route: ActivatedRoute) { }
 
     public selectedPic;
 
@@ -35,7 +35,7 @@ export class ProfilepicComponent implements OnInit {
 
 
 
-    private forevent: File = null;
+    public forevent: File = null;
 
     onfileselect(event) {
         this.forevent = <File>event.target.files[0];

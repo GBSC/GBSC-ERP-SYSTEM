@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./mode-of-payment.component.scss']
 })
 export class ModeOfPaymentComponent implements OnInit {
-    private ModeOfPayments: any;
-    private UpdatedModel: any;
+    public ModeOfPayments: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService) { }
 
     async ngOnInit() {
         this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();

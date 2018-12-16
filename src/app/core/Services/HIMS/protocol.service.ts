@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProtocolService {
 
-    private Url = "Hims/api/Protocol/"
+    public Url = "Hims/api/Protocol/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getProtocols(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllProtocols");

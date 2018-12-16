@@ -30,7 +30,7 @@ export class VoucherComponent implements OnInit {
     public isDisabled: any;
     @Input('voucherId') id: number;
 
-    constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+    constructor(public toastr: ToastrService, public router: Router, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
         public financeService: FinanceService, public HrmService: HrmsService) { }
 
     async ngOnInit() {

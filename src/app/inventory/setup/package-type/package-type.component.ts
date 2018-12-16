@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./package-type.component.scss']
 })
 export class PackageTypeComponent implements OnInit {
-    private PackageTypes: any;
-    private UpdatedModel: any;
+    public PackageTypes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

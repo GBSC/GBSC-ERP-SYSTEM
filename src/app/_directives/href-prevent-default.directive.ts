@@ -8,7 +8,7 @@ import { AfterViewInit, Directive, ElementRef, Input } from '@angular/core';
 export class HrefPreventDefaultDirective implements AfterViewInit {
     @Input() href: string;
 
-    constructor(private el: ElementRef) {
+    constructor(public el: ElementRef) {
 
     }
     ngAfterViewInit() {

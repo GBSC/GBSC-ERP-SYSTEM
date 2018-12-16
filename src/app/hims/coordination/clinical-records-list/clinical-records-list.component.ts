@@ -12,14 +12,14 @@ export class ClinicalRecordsListComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
 
-    private clinicalRecords: any;
+    public clinicalRecords: any;
 
-    constructor(private clinicalRecordService: PatientclinicalrecordService,
-        private patientService: PatientService) {
+    constructor(public clinicalRecordService: PatientclinicalrecordService,
+        public patientService: PatientService) {
 
     }
 

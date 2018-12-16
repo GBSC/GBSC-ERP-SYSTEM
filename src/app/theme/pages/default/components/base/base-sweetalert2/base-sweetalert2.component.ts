@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '../../../../../../_services/script-loader.s
 export class BaseSweetalert2Component implements OnInit, AfterViewInit {
 
 
-    constructor(private _script: ScriptLoaderService) {
+    constructor(public _script: ScriptLoaderService) {
 
     }
     ngOnInit() {

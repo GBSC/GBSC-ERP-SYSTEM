@@ -8,7 +8,7 @@ declare let mLayout: any;
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-    constructor(private authService: AuthService) { }
+    constructor(public authService: AuthService) { }
 
     ngOnInit() {
     }

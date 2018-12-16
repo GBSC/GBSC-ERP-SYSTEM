@@ -9,24 +9,24 @@ import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
     styleUrls: ['./sales-order.component.scss']
 })
 export class SalesOrderComponent implements OnInit {
-    //private User: any;
-    //private DeliveryOrder: any;
-    private SalesIndent: any;
-    private SalesPerson: any;
-    private ModeOfPayment: any;
-    private Customer: any;
-    private FilteredCustomers: any;
-    private Tax: any;
-    //private SalesOrder: any;
-    private CustomerWarehouses: any;
-    private FilteredWarehouses: any
-    private CustomerTypes: any;
-    private Distributors: any;
-    private FilteredDistributor: Distributor;
-    private DispAddress: string = "";
-    private SalesOrderForm: FormGroup;
+    //public User: any;
+    //public DeliveryOrder: any;
+    public SalesIndent: any;
+    public SalesPerson: any;
+    public ModeOfPayment: any;
+    public Customer: any;
+    public FilteredCustomers: any;
+    public Tax: any;
+    //public SalesOrder: any;
+    public CustomerWarehouses: any;
+    public FilteredWarehouses: any
+    public CustomerTypes: any;
+    public Distributors: any;
+    public FilteredDistributor: Distributor;
+    public DispAddress: string = "";
+    public SalesOrderForm: FormGroup;
 
-    constructor(private InventoryService: InventorysystemService, private FormBuilder: FormBuilder) {
+    constructor(public InventoryService: InventorysystemService, public FormBuilder: FormBuilder) {
 
         this.SalesOrderForm = this.FormBuilder.group({
             salesOrderId: [''],

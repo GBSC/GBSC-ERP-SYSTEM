@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class TestComponent implements OnInit {
     public id: any
     public patientVisitTest = [];
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) { }
+    constructor(public PatientServiceobj: PatientService, public route: ActivatedRoute) { }
 
     async ngOnInit() {
         this.route.params.subscribe(params => {

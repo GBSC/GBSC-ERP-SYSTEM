@@ -27,6 +27,7 @@ import { CoordinationRoutingModule } from './hims/coordination/coordination-rout
 import { InventoryModule } from './inventory/inventory.module';
 import { SecurityAdminModule } from './security-admin/security-admin.module';
 import { EtrackerModule } from './etracker/etracker.module';
+import { TitlePipe } from './_pipes/title';
 
 
 
@@ -34,6 +35,7 @@ import { EtrackerModule } from './etracker/etracker.module';
     declarations: [
         ThemeComponent,
         AppComponent,
+        TitlePipe,
         HeaderComponent,
         FooterComponent
     ],

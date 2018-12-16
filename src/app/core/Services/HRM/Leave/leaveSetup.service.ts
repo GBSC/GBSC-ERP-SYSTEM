@@ -4,9 +4,9 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class LeaveSetupService {
 
-    private baseUrl: string = "SystemAdmin/api/LeaveSetup";
+    public baseUrl: string = "SystemAdmin/api/LeaveSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getLeavePolicies() {
         return await this.ApiService.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();

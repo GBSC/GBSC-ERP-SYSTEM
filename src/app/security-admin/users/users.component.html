@@ -9,6 +9,7 @@
   <div class="m-portlet__body">
     <div class="m-section">
       <div class="m-section__content">
+        <a class="btn btn-success" [routerLink]="['/security/user-registration']">New User</a>
         <dx-data-grid id="gridContainer" [dataSource]="users" keyExpr="userId">
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -23,8 +24,8 @@
           <dxi-column dataField="email"></dxi-column>
           <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
           <div *dxTemplate="let data of 'cellTemplate'">
-            <a *ngIf="data.data.hasAccount" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
-              data-toggle="modal" data-target="#m_modal_4">
+            <a *ngIf="!data.data.hasAccount" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill"
+              data-toggle="modal" data-target="#m_modal_4" (click)="setSelectedUserId(data.value)">
               <span>
                 <i class="la la-plus"></i>
                 <span>
@@ -41,12 +42,6 @@
 </div>
 
 
-
-
-
-
-
-
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -61,16 +56,36 @@
         </button>
       </div>
       <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">
-          Save
-        </button>
+        <div class="row">
+          <form [formGroup]="registrationForm">
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" formControlName="Email">
+            </div>
+            <div class="form-group">
+              <label for="username">Login Id</label>
+              <input type="text" class="form-control" id="username" formControlName="Username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="text" class="form-control" id="password" formControlName="Password">
+            </div>
+            <div class="form-group">
+              <label for="confirmpassword">Confirm Password</label>
+              <input type="text" class="form-control" id="confirmpassword">
+            </div>
+            <button type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-primary"
+              data-dismiss="modal">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            Save
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>

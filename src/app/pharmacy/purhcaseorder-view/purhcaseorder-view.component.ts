@@ -13,15 +13,15 @@ import { Router } from '@angular/router';
     styleUrls: ['./purhcaseorder-view.component.scss']
 })
 export class PurhcaseorderViewComponent implements OnInit {
-    private PurchaseOrders: PurchaseOrder;
-    private DetailPO: PurchaseOrder;
-    private PurchaseOrder: any;
+    public PurchaseOrders: PurchaseOrder;
+    public DetailPO: PurchaseOrder;
+    public PurchaseOrder: any;
 
-    private PurchaseOrderViewForm: FormGroup;
+    public PurchaseOrderViewForm: FormGroup;
 
     public date: any;
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public router: Router) {
 
         this.PurchaseOrderViewForm = this.formBuilder.group({
             orderDate: ['']

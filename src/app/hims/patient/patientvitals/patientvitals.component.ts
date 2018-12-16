@@ -26,7 +26,7 @@ export class PatientvitalsComponent implements OnInit {
     Patient: Patient;
     patientId: number;
     visitId: number;
-    constructor(private toastr: ToastrService, private Location: Location, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public Location: Location, public PatientServiceobj: PatientService, public formBuilder: FormBuilder, public router: Router, public route: ActivatedRoute) {
         this.PatientVitaLForm = this.formBuilder.group({
             Height: ['', Validators.required],
             Weight: ['', Validators.required],

@@ -7,13 +7,13 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./sales-person.component.scss']
 })
 export class SalesPersonComponent implements OnInit {
-    private SalesPeople: any;
-    private Distributors: any;
-    private Areas: any;
-    private Territories: any;
-    private UpdatedModel: any;
+    public SalesPeople: any;
+    public Distributors: any;
+    public Areas: any;
+    public Territories: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
         this.getFilteredDistributors = this.getFilteredDistributors.bind(this);
         this.getFilteredTerritories = this.getFilteredTerritories.bind(this);
     }

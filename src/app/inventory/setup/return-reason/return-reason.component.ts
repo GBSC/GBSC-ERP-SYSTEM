@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons: any;
-    private UpdatedModel: any;
+    public ReturnReasons: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

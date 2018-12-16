@@ -81,7 +81,7 @@
               <h4>Account Registration</h4>
               <div class="m--space-10"></div>
               <div class="row">
-  
+
                 <div class="col-md-6">
                   <div class="form-group m-form__group">
                     <label class="control-label">User Name</label>
@@ -102,7 +102,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group m-form__group">
-                    <label for="employee_id">Confrim Password</label>
+                    <label for="employee_id">Confirm Password</label>
                     <input class="form-control m-input m-input--solid" formControlName="ConfirmPassword" placeholder="Confirm Password"
                       aria-describedby="Password" type="password">
                   </div>
@@ -110,17 +110,18 @@
               </div>
               <div class="m--space-10"></div>
             </div>
-            
-              <div class="row">
-                <div class="col-sm-12">
-                  <button *ngIf="!user" class="btn btn-primary" (click)="submit(userForm.value)">
-                    Submit
-                  </button>
-                  <button *ngIf="user" class="btn btn-primary" (click)="update(userForm.value)">
-                    Update
-                  </button>
-                </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <button *ngIf="!user" class="btn btn-primary" (click)="submit(userForm.value)">
+                  Submit
+                </button>
+
+                <button *ngIf="user" class="btn btn-primary" (click)="update(userForm.value)">
+                  Update
+                </button>
               </div>
+            </div>
           </form>
 
 

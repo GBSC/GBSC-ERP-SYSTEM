@@ -13,7 +13,7 @@ export class SupplierComponent implements OnInit {
     public Supplier: any;
     public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

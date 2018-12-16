@@ -7,9 +7,9 @@ import { Consultant } from '../../Models/HIMS/consultant';
 @Injectable()
 export class ConsultantService {
 
-    private readonly API_URL = 'hims/api/HimsSetup/';
+    public readonly API_URL = 'hims/api/HimsSetup/';
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getConsultants(): Observable<Consultant> {
         return this.ApiService.get(this.API_URL + 'GetConsultants');

@@ -21,11 +21,11 @@ export class Product {
 @Injectable()
 export class SystemAdministrationService {
 
-    private readonly API_URL = "systemadmin/api/setup/";
+    public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
 
 
-    constructor(private ApiService: ApiService) {
+    constructor(public ApiService: ApiService) {
     }
 
     async saveNewRoleData(data) {

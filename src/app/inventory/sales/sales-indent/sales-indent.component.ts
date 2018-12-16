@@ -8,13 +8,13 @@ import { InventorysystemService } from '../../../core';
 })
 export class SalesIndentComponent implements OnInit {
 
-    private SalesOrder: any;
-    private DeliveryOrder: any;
-    private SalesInvoice: any;
-    private DeliveryNote: any;
-    private SalesIndent: any;
+    public SalesOrder: any;
+    public DeliveryOrder: any;
+    public SalesInvoice: any;
+    public DeliveryNote: any;
+    public SalesIndent: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-warehouse.component.scss']
 })
 export class CustomerWarehouseComponent implements OnInit {
-    private CustomerWarehouses: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    public CustomerWarehouses: any;
+    public CustomerTypes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

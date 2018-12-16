@@ -12,29 +12,29 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 })
 export class EmbryologysectionComponent implements OnInit {
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private clinicalRecord: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public clinicalRecord: any;
 
-    private patientInsemenation: any;
-    private bioChemistryTestOnTreatment: any;
-    private thawAssessment: any;
-    private freezePrepration: any;
-    private insemenationPrep: any;
-    private biopsy: any;
-    private tvopu: any;
+    public patientInsemenation: any;
+    public bioChemistryTestOnTreatment: any;
+    public thawAssessment: any;
+    public freezePrepration: any;
+    public insemenationPrep: any;
+    public biopsy: any;
+    public tvopu: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private route: ActivatedRoute,
-        private clinicalrecordservice: PatientclinicalrecordService) { }
+    constructor(public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public route: ActivatedRoute,
+        public clinicalrecordservice: PatientclinicalrecordService) { }
 
     ngOnInit() {
 

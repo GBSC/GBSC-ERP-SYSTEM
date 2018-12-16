@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SuperadminserviceService, HrmsService, AuthService, SystemAdministrationService } from '../../../app/core';
 import { UserService } from '../../../app/core/Services/Security/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-userregistration',
@@ -24,6 +25,7 @@ export class UserregistrationComponent implements OnInit {
     private adminService: HrmsService,
     private systemAdminService: SystemAdministrationService,
     private userService: UserService,
+    public toastr: ToastrService,
     private authService: AuthService) {
 
     this.companyId = this.authService.getUserCompanyId();
@@ -48,7 +50,8 @@ export class UserregistrationComponent implements OnInit {
       this.userId = +params['id'];
 
 
-      this.setValues();
+      if (this.userId)
+        this.setValues();
 
     })
 
@@ -61,21 +64,25 @@ export class UserregistrationComponent implements OnInit {
   submit(value) {
 
     value.companyId = this.companyId;
-    this.userService.createAppUser(value).subscribe(resp => console.log(resp));
+    this.userService.createAppUser(value).subscribe(resp => {
+      this.userId = resp.userId;
+      this.displayToast("Account Created");
+      this.setValues();
+    });
   }
 
   update(value) {
 
-    let user = this.user;
+     let user = this.user;
 
-    user.firstName = value.firstName;
-    user.lastName = value.lastName;
-    user.email = value.email;
-    user.phone = value.phone;
-    user.cityId = value.cityId;
-    user.roleId = value.roleId;
-    
-    this.userService.editUser(user).subscribe(resp => console.log(resp));
+    user.firstName = value.FirstName;
+    user.lastName = value.LastName;
+    user.email = value.Email;
+    user.phone = value.Phone;
+    user.cityId = value.CityId;
+    user.roleId = value.RoleId;
+
+    this.userService.editUser(user).subscribe(resp => this.displayToast("Account Updated"));
   }
 
   setValues() {
@@ -85,6 +92,10 @@ export class UserregistrationComponent implements OnInit {
       this.patchValues(this.user);
     }
     );
+  }
+
+  public displayToast(message) {
+    this.toastr.success(message);
   }
 
 

@@ -7,10 +7,10 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./tax.component.scss']
 })
 export class TaxComponent implements OnInit {
-    private Taxes: any;
-    private UpdatedModel: any;
+    public Taxes: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

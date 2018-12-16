@@ -12,41 +12,35 @@ import { RolesandprivilegesComponent } from './rolesandprivileges/rolesandprivil
 import { CompanyComponent } from './company/company.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
+import { SettingsComponent } from './settings/settings.component';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 import { UsersComponent } from './users/users.component';
-import { UrlSerializer } from '@angular/router';
-import { LowerCaseUrlSerializer } from '../LowerCaseUrlSerializer';
 import { UserService } from '../core/Services/Security/user.service';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SecurityRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DxButtonModule,
-    DevExtremeModule,
-    DxDataGridModule
-  ],
-  declarations: [
-    RootComponent,
-    MenuComponent,
-    CountryComponent,
-    CityComponent,
-    BranchComponent,
-    DepartmentComponent,
-    RolesandprivilegesComponent,
-    CompanyComponent,
-    UserregistrationComponent,
-    UsersComponent
-  ],
-  providers: [
-    {
-        provide: UrlSerializer,
-        useClass: LowerCaseUrlSerializer
-    },
-      UserService
-]
+    imports: [
+        CommonModule,
+        SecurityRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DxButtonModule,
+        DevExtremeModule,
+        DxDataGridModule
+    ],
+    declarations: [
+        RootComponent,
+        MenuComponent,
+        UserregistrationComponent,
+        UsersComponent,
+        SettingsComponent,
+        CountryComponent,
+        CityComponent,
+        BranchComponent,
+        DepartmentComponent,
+        RolesandprivilegesComponent,
+        CompanyComponent
+    ],
+    providers : [UserService]
 })
 export class SecurityAdminModule { }

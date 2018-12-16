@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-    private isDisabled = true;
+    public isDisabled = true;
     public EmpCompanyForm: any;
     public designation: any;
     public employeetype: any;
@@ -26,7 +26,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
             ManagementLevelId: [''],

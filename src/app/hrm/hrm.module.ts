@@ -132,6 +132,12 @@ import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/vie
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
 import { CityComponent } from './hrmsSetup/city/city.component';
+import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
+import { AllowancequantityComponent } from './payroll/payrollprocess/allowancequantity/allowancequantity.component';
+import { SettingsComponent } from './hrmsSetup/settings/settings.component';
+import { IncrementtransactionComponent } from './payroll/payrollprocess/incrementtransaction/incrementtransaction.component';
+import { CreatesalaryfilesComponent } from './payroll/payrollprocess/createsalaryfiles/createsalaryfiles.component';
+import { DefaultrosterComponent } from './attendance/defaultroster/defaultroster.component';
 
 
 @NgModule({
@@ -147,6 +153,11 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         MenuComponent,
         RootComponent,
 
+        BanksComponent,
+        AllowancequantityComponent,
+        CreatesalaryfilesComponent,
+        IncrementtransactionComponent,
+        SettingsComponent,
         BranchComponent,
         DepartmentComponent,
         CompanyComponent,
@@ -189,6 +200,7 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         OvertimetypeComponent,
 
         AssignrosterComponent,
+        DefaultrosterComponent,
         AttendanceflagComponent,
         AttendancerequestapproverComponent,
         AttendancerequesttypeComponent,

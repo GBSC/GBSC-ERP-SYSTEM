@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     public patientref: any;
     public patientreferenc: any;
 
-    constructor(private PatientServiceobj: PatientService, private Router: Router, private route: ActivatedRoute) { }
+    constructor(public PatientServiceobj: PatientService, public Router: Router, public route: ActivatedRoute) { }
 
 
     async ngOnInit() {

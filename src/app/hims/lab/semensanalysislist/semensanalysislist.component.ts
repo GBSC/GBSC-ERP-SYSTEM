@@ -9,16 +9,16 @@ import { PatientService } from '../../../../app/core';
     styleUrls: ['./semensanalysislist.component.scss']
 })
 export class SemensanalysislistComponent implements OnInit {
-    private patients: any;
-    private spouse: any;
-    private patient: any;
-    private tests: any;
-    private id: any;
+    public patients: any;
+    public spouse: any;
+    public patient: any;
+    public tests: any;
+    public id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private semenAnalysisService: SemenanalysisService,
-        private patientService: PatientService) {
+    constructor(public semenAnalysisService: SemenanalysisService,
+        public patientService: PatientService) {
 
         this.tests = [];
     }

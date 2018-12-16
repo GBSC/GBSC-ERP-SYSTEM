@@ -9,13 +9,13 @@ import { DxDataGridModule, DxPopupModule } from "devextreme-angular";
     styleUrls: ['./distributor.component.scss']
 })
 export class DistributorComponent implements OnInit {
-    private Distributors: any;
-    private Territories: any;
-    private UnassignedTerritories: any;
-    private UpdatedModel: any;
-    private DataSource: any;
+    public Distributors: any;
+    public Territories: any;
+    public UnassignedTerritories: any;
+    public UpdatedModel: any;
+    public DataSource: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }

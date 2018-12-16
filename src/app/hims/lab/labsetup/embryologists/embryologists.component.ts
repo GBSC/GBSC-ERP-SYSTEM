@@ -10,7 +10,7 @@ export class EmbryologistsComponent implements OnInit {
 
     public embryologist: any;
 
-    constructor(private BioChemistryServiceobj: BioChemistryService) {
+    constructor(public BioChemistryServiceobj: BioChemistryService) {
 
     }
 

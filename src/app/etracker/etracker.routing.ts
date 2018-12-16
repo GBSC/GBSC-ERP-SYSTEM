@@ -17,7 +17,7 @@ const routes: Routes = [
         children: [
             { path: 'locator', component: LocatorComponent },
             { path: 'sales-users', component: SalesusersComponent },
-            { path: 'section-management', component: SectionmanagementComponent},
+            { path: 'section-management', component: SectionmanagementComponent },
             { path: 'stores', component: StoresComponent },
             { path: 'store-profile', component: StoresProfileComponent },
             { path: 'visit-summary', component: VisitSummaryComponent },

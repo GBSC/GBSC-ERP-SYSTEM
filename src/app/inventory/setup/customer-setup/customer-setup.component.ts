@@ -7,13 +7,13 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-setup.component.scss']
 })
 export class CustomerSetupComponent implements OnInit {
-    private Customers: any;
-    private CustomerTypes: any;
-    private SalesPeople: any;
-    private ModeOfPayments: any;
-    private UpdatedModel: any;
+    public Customers: any;
+    public CustomerTypes: any;
+    public SalesPeople: any;
+    public ModeOfPayments: any;
+    public UpdatedModel: any;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService) { }
 
     async ngOnInit() {
         this.Customers = await this.InventoryService.GetCustomers();

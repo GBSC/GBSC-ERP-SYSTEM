@@ -14,7 +14,7 @@ export class MasterAccountComponent implements OnInit {
     public masterAccount: any;
     public updatingMasterAccount: any;
 
-    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 

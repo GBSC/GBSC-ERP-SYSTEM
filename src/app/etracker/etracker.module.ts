@@ -20,6 +20,7 @@ import { SectionComponent } from './territories/section/section.component';
 import { SubsectionComponent } from './territories/subsection/subsection.component';
 import { DistributersComponent } from './territories/distributers/distributers.component';
 import { TerritoryComponent } from './territories/territory/territory.component';
+import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,7 @@ import { TerritoryComponent } from './territories/territory/territory.component'
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
     providers:[eTrackerUserService]
 })
 export class EtrackerModule { }

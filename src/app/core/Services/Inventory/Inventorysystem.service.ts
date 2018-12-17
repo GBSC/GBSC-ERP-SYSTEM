@@ -600,6 +600,10 @@ export class InventorysystemService {
         // return this.Area;
     }
 
+    getAreasByCompany(companyId: any): Observable<Area> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetAreasByCompany/' + companyId);
+    }
+
     AddArea(Area: Area): Observable<Area> {
         return this.ApiService.post(this.API_URL + 'Setup/AddArea', Area);
         // let x = await this.http.post(this.API_URL + 'Setup/AddArea', Area).toPromise();
@@ -1180,6 +1184,10 @@ export class InventorysystemService {
         // return this.Region;
     }
 
+    getRegionsByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByCompany/' + companyId);
+    }
+
     AddRegion(Region: Region): Observable<Region> {
         return this.ApiService.post(this.API_URL + 'Setup/AddRegion', Region);
         // let x = await this.http.post(this.API_URL + 'Setup/AddRegion', Region).toPromise();
@@ -1323,6 +1331,10 @@ export class InventorysystemService {
         // this.Territory = await this.http.get<Territory>(this.API_URL + 'Setup/GetTerritories').toPromise();
         // //console.log(this.Territory);
         // return this.Territory;
+    }
+
+    getTerritoriesByCompany(companyId: any): Observable<Territory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByCompany/' + companyId);
     }
 
     AddTerritory(Territory: Territory): Observable<Territory> {

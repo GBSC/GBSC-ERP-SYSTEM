@@ -157,6 +157,7 @@ export class InsemenationComponent implements OnInit {
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.insemenationService.addPatientInsemenation(value).subscribe(resp => {
             this.displayToast("Insemenation Saved");
             this.setValues();
@@ -166,6 +167,7 @@ export class InsemenationComponent implements OnInit {
     updateForm(value) {
         value.patientInsemenationId = this.insemenation.patientInsemenationId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
     }
 
@@ -255,7 +257,7 @@ export class InsemenationComponent implements OnInit {
 
     calculateOnLoad(insemenation) {
         this.motileCount = insemenation.motileCount;
-        this.immotileCount = insemenation.immotileCountRange;
+        this.immotileCount = insemenation.immotileCount;
         this.totalCount = insemenation.totalCount;
     }
 

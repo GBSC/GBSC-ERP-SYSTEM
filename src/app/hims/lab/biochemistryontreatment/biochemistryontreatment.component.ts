@@ -14,6 +14,7 @@ import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.s
 import { ActivatedRoute } from '@angular/router';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
 import { ToastrService } from 'ngx-toastr';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -21,6 +22,8 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./biochemistryontreatment.component.scss']
 })
 export class BiochemistryontreatmentComponent implements OnInit {
+
+    public Editor = ClassicEditor;
 
     private consultants: any;
     private treatments: any;
@@ -33,6 +36,7 @@ export class BiochemistryontreatmentComponent implements OnInit {
     private units: TestUnit;
     private id: any;
     private bioChemistry: any;
+    private RefRange: any;
     private testDetail: BioChemistryTestDetail[];
 
     public packg: any;
@@ -129,9 +133,36 @@ export class BiochemistryontreatmentComponent implements OnInit {
     populatePatientDate(patientId) {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
-            console.log(patient.partner);
             this.spouse = patient.partner;
         });
+    }
+
+    onFocusedRowChanging(e) {
+        var rowsCount = e.component.getVisibleRows().length,
+            pageCount = e.component.pageCount(),
+            pageIndex = e.component.pageIndex();
+
+        if (e.event.key && e.prevRowIndex === e.newRowIndex) {
+            if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
+                e.component.pageIndex(pageIndex + 1).done(function() {
+                    e.component.option("focusedRowIndex", 0);
+                });
+            } else if (e.newRowIndex === 0 && pageIndex > 0) {
+                e.component.pageIndex(pageIndex - 1).done(function() {
+                    e.component.option("focusedRowIndex", rowsCount - 1);
+                });
+            }
+        }
+    }
+
+    onFocusedRowChanged(e) {
+
+        var data = e.row.data;
+
+        this.bioChemistryService.getTest(data.bioChemistryTestId).subscribe(resp => {
+
+            this.RefRange = resp.referenceRange;
+        })
     }
 
     displayToast(message) {

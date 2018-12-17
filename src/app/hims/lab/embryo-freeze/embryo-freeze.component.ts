@@ -61,18 +61,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.id = +params['id'];
 
-            this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
-
-                this.thawAssessment = cresp;
-
-                this.patchValues(this.thawAssessment);
-
-                if (this.thawAssessment) {
-                    this.embryoFreezeDetails = [];
-                    this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
-                }
-
-            });
+            this.setValues();
 
             this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
@@ -84,15 +73,14 @@ export class EmbryoFreezeComponent implements OnInit {
 
                     if (this.tvopu) {
 
-                        console.log(this.embryoFreezeDetails.length);
-
                         if (!(this.embryoFreezeDetails.length > 0)) {
 
                             this.embryologyService.getPatientEmbryologyDetailsByTvopuId(this.tvopu.tvopuId).subscribe(det => {
 
                                 for (let embryo of det) {
 
-                                    this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
+                                    if (embryo.fate == "Stored")
+                                        this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
                                 }
 
                             });
@@ -127,6 +115,22 @@ export class EmbryoFreezeComponent implements OnInit {
         });
     }
 
+    setValues() {
+
+        this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
+
+            this.thawAssessment = cresp;
+
+            this.patchValues(this.thawAssessment);
+
+            if (this.thawAssessment) {
+                this.embryoFreezeDetails = [];
+                this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
+            }
+
+        });
+    }
+
     displayToast(message) {
 
         this.toastr.success(message);
@@ -139,7 +143,10 @@ export class EmbryoFreezeComponent implements OnInit {
             value.tvopuId = this.tvopu.tvopuId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
+        this.embryoFreezeDetails.forEach(element => {
+            element.patientId = this.patient.patientId;
 
+        });
 
         this.thawAssessmentService.addThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Saved"));
 
@@ -148,9 +155,15 @@ export class EmbryoFreezeComponent implements OnInit {
     updateForm(value) {
         if (this.tvopu)
             value.tvopuId = this.tvopu.tvopuId;
+
+        this.embryoFreezeDetails.forEach(element => {
+            element.patientId = this.patient.patientId;
+
+        });
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
         value.thawAssessmentId = this.thawAssessment.thawAssessmentId;
+
 
         this.thawAssessmentService.updateThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Updated"));
     }

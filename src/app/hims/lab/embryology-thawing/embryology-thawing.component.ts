@@ -51,13 +51,6 @@ export class EmbryologyThawingComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.thawassessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(thaw => {
-
-                    this.unthawedSamples = thaw.embryoFreezeUnthaweds;
-                    this.thawedSamples = thaw.embryoFreezeThaweds;
-                    this.thawassessment = thaw;
-
-                })
             })
         });
 
@@ -65,8 +58,7 @@ export class EmbryologyThawingComponent implements OnInit {
 
         this.patientcb.onValueChanged.subscribe(res => {
 
-            console.log('valie changed')
-            this.populatePatientDate(res.component.option("value"))
+            this.populatePatientDate(res.component.option("value"));
 
         });
     }
@@ -76,18 +68,33 @@ export class EmbryologyThawingComponent implements OnInit {
             this.patient = patient;
             this.spouse = patient.partner;
         });
+
+        this.thawassessmentService.getFrozenEmbryos(patientId).subscribe(resp => {
+
+            this.unthawedSamples = resp;
+        });
+
+        this.thawassessmentService.getThawedEmbryos(patientId).subscribe(resp => {
+
+            this.thawedSamples = resp;
+        });
     }
 
     updateThawAssessment() {
-        if (!this.thawassessment)
-            this.thawassessment.patientClinicalRecordId = this.id;
 
-        this.thawassessment.embryoFreezeThaweds = this.thawedSamples;
-        this.thawassessment.embryoFreezeUnthaweds = this.unthawedSamples;
-        this.thawassessmentService.updateThawAssessment(this.thawassessment).subscribe(resp => {
+        this.thawassessmentService.updateThawedEmbryos(this.thawedSamples).subscribe(resp => {
 
-            console.log(resp)
+            console.log(resp);
         })
+    }
+
+    onThaw(value) {
+
+        this.unthawedSamples.pop(value.data);
+        this.thawedSamples.push(value.data);
+
+        this.thawassessmentService.removeFrozenEmbryo(value.data.embryoFreezeUnthawedId);
+        // this.thawassessmentService.addThawedEmbryo(value.data).subscribe(resp=>console.log(resp));
     }
 
 }

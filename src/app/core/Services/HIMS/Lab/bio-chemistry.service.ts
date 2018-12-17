@@ -57,8 +57,16 @@ export class BioChemistryService {
         return this.ApiService.get(this.API_URL + 'GetTestUnits');
     }
 
+    getTest(id): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetBioChemistryTest/' + id);
+    }
+
     addTest(test: BioChemistryTest): Observable<any> {
         return this.ApiService.post(this.API_URL + 'AddBioChemistryTest', test);
+    }
+
+    updateTest(test: BioChemistryTest): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'UpdateBioChemistryTest', test);
     }
 
     async addUnit(test: TestUnit) {

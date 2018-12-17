@@ -67,8 +67,7 @@ export class SetupcompanyComponent implements OnInit {
             this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
                 this.company = company;
 
-                for(let module of company.modules)
-                {
+                for (let module of company.modules) {
                     this.checkModulesInstalled(module);
                 }
 

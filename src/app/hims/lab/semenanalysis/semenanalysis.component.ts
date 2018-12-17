@@ -140,6 +140,7 @@ export class SemenanalysisComponent implements OnInit {
 
 
     submitForm(value) {
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.semenAnalysisService.addSemenAnalysis(value).subscribe(resp => {
             console.log(resp);
             this.displayToast("Semen Analysis Saved");
@@ -150,8 +151,8 @@ export class SemenanalysisComponent implements OnInit {
 
     updateForm(value) {
         value.semenAnalysisId = this.id;
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.semenAnalysisService.updateSemenAnalysis(value).subscribe(resp => {
-            console.log(resp);
             this.displayToast("Semen Analysis Updated");
         });
     }

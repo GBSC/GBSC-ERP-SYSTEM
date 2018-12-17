@@ -14,12 +14,12 @@ import { StoresProfileComponent } from './stores-profile/stores-profile.componen
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 import { OrderTakingComponent } from './order-taking/order-taking.component';
 import { eTrackerUserService } from '../core';
-import { TerritoryComponent } from './territory/territory.component';
 import { RegionComponent } from './territories/region/region.component';
 import { AreaComponent } from './territories/area/area.component';
 import { SectionComponent } from './territories/section/section.component';
 import { SubsectionComponent } from './territories/subsection/subsection.component';
 import { DistributersComponent } from './territories/distributers/distributers.component';
+import { TerritoryComponent } from './territories/territory/territory.component';
 
 @NgModule({
     imports: [

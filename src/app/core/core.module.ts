@@ -23,7 +23,8 @@ import {
     SystemAdministrationService,
     InventorysystemService,
     PharmacyService,
-    SuperadminserviceService
+    SuperadminserviceService,
+    eTrackerUserService
 }
     from '.';
 
@@ -87,6 +88,7 @@ import { UserService } from './Services/Security/user.service';
         InsemenationService,
         SemenanalysisService,
         BiochemistryoutsiderService,
-        UserService    ]
+        UserService ,
+        eTrackerUserService   ]
 })
 export class CoreModule { }

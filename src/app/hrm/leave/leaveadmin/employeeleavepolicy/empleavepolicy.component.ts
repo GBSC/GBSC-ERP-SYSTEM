@@ -15,14 +15,13 @@ export class EmpleavepolicyComponent implements OnInit {
     public empleavepolicy: any;
     public employees: any;
     public leaveyear: any;
+    public leavepolicy: any;
     public leaveTypes: any;
     public leaveDayType: any;
     public leaveEligiblity: any;
-    public updatingEmpleavePolicy: any;
-    public message: any = null;
-    public messagetext: "Add Successfully";
+    public updatingEmpleavePolicy: any; 
 
-    constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
+    constructor(private fb: FormBuilder, public setupService: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {
@@ -72,9 +71,10 @@ export class EmpleavepolicyComponent implements OnInit {
             PrintOnPaySlip: ['', Validators]
 
         });
-
-
+ 
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
+        
+        this.leavepolicy = await this.leavesetupservice.getLeavePolicies();
 
         this.employees = await this.empservice.GetAllEmployees();
 
@@ -89,6 +89,19 @@ export class EmpleavepolicyComponent implements OnInit {
         this.groups = await this.hrsetupservice.getAllGroups();
     }
 
+
+    Getleavepolicy(value) {
+        console.log(value);
+        console.log(this.leavepolicy);
+        
+    //  this.leavepolicy.filter(ul => ul.userId == value)
+     
+    //  let usersWithgroup = this.setupService.groups.map(r => {
+    //     r.userId = this.groups.userId;
+    //     return r;       
+    //  })
+    //  console.log(usersWithgroup);
+    }
     async addemployeeleavepolicy(empleavepolicy) {
        await this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
        this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();

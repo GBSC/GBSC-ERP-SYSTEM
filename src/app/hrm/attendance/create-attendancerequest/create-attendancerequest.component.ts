@@ -47,9 +47,9 @@ export class CreateAttendancerequestComponent implements OnInit {
       r.shiftsId = this.assignrosters.shiftsId;
       return r;
     });
-    usersWithShifts.foreach(
+    // usersWithShifts.foreach(
       
-    )
+    // )
     console.log(usersWithShifts);
   }
 

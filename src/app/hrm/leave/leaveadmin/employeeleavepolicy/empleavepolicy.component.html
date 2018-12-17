@@ -23,7 +23,7 @@
                       Employee:
                     </label>
                     <div class="col-lg-8">
-                      <select class="form-control m-input m-input--solid" formControlName="UserId" name="employee">
+                      <select #lp class="form-control m-input m-input--solid" (change)="Getleavepolicy(lp.value)" formControlName="UserId" name="employee">
                         <option value="" disabled selected>-- Select Employee --</option>
                         <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}}</option>
                       </select>
@@ -42,7 +42,7 @@
                     <div class="col-lg-8">
                       <select class="form-control m-input m-input--solid" formControlName="LeaveYearId">
                         <option value="" disabled selected>-- Select Leave Year --</option>
-                        <option *ngFor="let leaveyear of leaveyear" [value]="leaveyear.leaveYearId">{{leaveyear.name}}</option>
+                        <option *ngFor="let leaveyear of leaveyear" [value]="leavepolicy.leaveYearId">{{leaveyear.name}}</option>
                       </select> 
                     </div>
                   </div>
@@ -76,7 +76,7 @@
                   <div class="form-group m-form__group row">
                     <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
                     <div class="col-lg-8">
-                      <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
+                      <input class="form-control m-input m-input--solid" value="leavepolicy.EntitledQuantity" formControlName="EntitledQuantity" name="daysqty" placeholder="3" aria-describedby="days"
                         type="number">
                     </div>
                   </div>

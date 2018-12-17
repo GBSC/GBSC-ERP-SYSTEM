@@ -16,13 +16,15 @@ export class TerritoryComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.Territories = await this.InventoryService.GetTerritories();
-        this.Areas = await this.InventoryService.GetAreas();
+        this.InventoryService.GetTerritories().subscribe(t=> this.Territories = t);
+        this.InventoryService.GetAreas().subscribe(a=>this.Areas = a);
     }
 
     async AddTerritory(value) {
-        await this.InventoryService.AddTerritory(value.data);
-        this.Territories = await this.InventoryService.GetTerritories();
+        this.InventoryService.AddTerritory(value.data).subscribe(resp=>{
+            console.log(value);
+            this.InventoryService.GetTerritories().subscribe(t=> this.Territories = t);
+        });
     }
 
     UpdateModel(value) {
@@ -30,11 +32,11 @@ export class TerritoryComponent implements OnInit {
     }
 
     async UpdateTerritory() {
-        return await this.InventoryService.UpdateTerritory(this.UpdatedModel);
+        this.InventoryService.UpdateTerritory(this.UpdatedModel).subscribe(resp=>console.log(resp));
     }
 
     async DeleteTerritory(value) {
-        return await this.InventoryService.DeleteTerritory(value.key);
+        this.InventoryService.DeleteTerritory(value.key).subscribe(resp=>console.log(resp));
     }
 
 }

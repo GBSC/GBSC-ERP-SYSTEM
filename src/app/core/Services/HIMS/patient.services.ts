@@ -798,6 +798,19 @@ export class PatientService {
         return this.ApiService.delete(this.API_URL+'Procedure/DeleteDailyProcedure/'+id);
     }
 
+    getDailySemenAnalysis():Observable<any>{
+        return this.ApiService.get(this.API_URL+'SemenAnalysis/GetDailySemenAnalysises');
+    }
+
+    addDailySemenAnalysis(value):Observable<any>{
+        return this.ApiService.post(this.API_URL+'SemenAnalysis/AddDailySemenAnalysis',value);
+    }
+    updateDailySemenAnalysis(value):Observable<any>{
+        return  this.ApiService.put(this.API_URL+'SemenAnalysis/UpdateDailySemenAnalysis',value);
+    }
+    deleteDailySemenAnalysis(id : number):Observable<any>{
+        return  this.ApiService.put(this.API_URL+'SemenAnalysis/DeleteDailySemenAnalysis'+id);
+    }
 //    addProcedure(Procedure : Procedure) : Observable<any>{
 //        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
 //    }

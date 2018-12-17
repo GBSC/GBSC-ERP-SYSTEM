@@ -14,6 +14,8 @@ export class DailySemenAnalysisComponent implements OnInit {
   private Patients : any;
   private Consultants : any;
   private Procedure : any;
+  private Procedurearray : any = [];
+  private dailysemenanalysisobj : any;
 
   constructor(private formBuilder : FormBuilder,private PatientServiceobj: PatientService) { 
     this.DailySemenAnalysisForm = this.formBuilder.group({
@@ -23,7 +25,8 @@ export class DailySemenAnalysisComponent implements OnInit {
       'Remarks' :['',Validators.required],
       'PatientId'  : ['',Validators.required],
       'ConsultantId': ['',Validators.required],
-      'ProcedureId' :['',this.formBuilder.array([])]  
+      'DailySemenAnalysisProcedures' :['',this.formBuilder.array([])]  ,
+     // 'ProcedureId' :['',Validators.required] 
     });
   }
 
@@ -42,19 +45,40 @@ export class DailySemenAnalysisComponent implements OnInit {
     this.PatientServiceobj.getProcedure().subscribe(res => {
       this.Procedure = res;
       console.log(this.Procedure);
-    });
+       
+     });
 
 
   }
 
 
+
+
+
+
+  
   addDailySemenAnalysis(value){
-    console.log(value);
-    console.log(this.DailySemenAnalysisForm.value);
+    // this.dailysemenanalysisobj = value
+    //  console.log(this.dailysemenanalysisobj );
+ 
+    //  this.dailysemenanalysisobj =  this.dailysemenanalysisobj.filter(t=> {
+    //   return delete t.ProcedureId;
+    // });
+     console.log(this.DailySemenAnalysisForm.value);
+     this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures =  this.Procedurearray
+
   }
 
-  addData(value){
-    console.log(value.key);
+  addProcedure(value){
+  let x = value.key;
+    this.Procedurearray.push(x);
   }
 
+
+  deleteProcedure(value){
+    this.Procedurearray.splice(value.key, 1)
+  }
+
+
+  
 }

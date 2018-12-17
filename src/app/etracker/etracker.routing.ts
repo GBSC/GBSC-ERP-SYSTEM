@@ -9,7 +9,7 @@ import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 import { OrderTakingComponent } from './order-taking/order-taking.component';
-import { TerritoryComponent } from '../inventory/setup/territory/territory.component';
+import { TerritoryComponent } from './territory/territory.component';
 
 const routes: Routes = [
     {

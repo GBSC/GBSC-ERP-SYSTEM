@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../api.service';
 
 @Injectable()
+
 export class eTrackerUserService {
 
   private Url = "etracker/api/";

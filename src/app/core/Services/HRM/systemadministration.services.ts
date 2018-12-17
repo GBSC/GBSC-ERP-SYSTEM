@@ -62,6 +62,7 @@ export class SystemAdministrationService {
     }
 
 
+
     async getPermissions() {
         let response = await this.ApiService.get(this.API_URL + 'getpermissions').toPromise();
     }

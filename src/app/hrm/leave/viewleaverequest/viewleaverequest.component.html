@@ -36,7 +36,6 @@
                         <dxi-column dataField="userId" caption="Employee" [width]="450">
                             <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
                             </dxo-lookup>
-                            <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
                         </dxi-column>
                         <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
                         <dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column>

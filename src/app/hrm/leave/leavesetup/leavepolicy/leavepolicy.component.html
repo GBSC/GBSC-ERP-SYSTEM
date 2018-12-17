@@ -13,7 +13,7 @@
           <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
             (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
             <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-              <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630" [position]="{ my: 'center', at: 'center', of: window }">
+              <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">
               </dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>

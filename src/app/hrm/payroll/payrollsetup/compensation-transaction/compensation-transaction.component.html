@@ -18,7 +18,7 @@
           (onRowUpdated)="updateCompensationTransact()"
           (onRowRemoved)="deleteCompensationTransaction($event)">
           <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-            <dxo-popup title="Compensation Transaction" [showTitle]="true" [width]="750" [height]="550" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+            <dxo-popup title="Compensation Transaction" [showTitle]="true" [width]="750" [height]="550"></dxo-popup>
           </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>

@@ -3,10 +3,7 @@
 import { NgModule, Component, OnInit } from '@angular/core';
 import { SystemAdministrationService } from '../../core';
 
-
-
-
-
+ 
 @Component({
     selector: 'app-rolesandprivileges',
     templateUrl: './rolesandprivileges.component.html',
@@ -22,8 +19,7 @@ export class RolesandprivilegesComponent implements OnInit {
     constructor(public systemAdmin: SystemAdministrationService) { }
 
     createNewRole() {
-        this.showPopup = true;
-
+        this.showPopup = true; 
     }
 
     getSelectedModules(e) {

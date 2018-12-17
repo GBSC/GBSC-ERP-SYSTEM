@@ -30,7 +30,7 @@ export class EmployeeStatuscomponent implements OnInit {
         this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    async EmpstatusEdit(estatus) {
+    async EmpstatusEdit() {
         await this.dataService.updateEmployeeStatus(this.modelUpdating);
     }
 

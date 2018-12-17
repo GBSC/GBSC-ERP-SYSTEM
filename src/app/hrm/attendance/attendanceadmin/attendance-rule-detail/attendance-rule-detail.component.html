@@ -33,13 +33,11 @@
 
               <dxi-column dataField="groupId" caption="Group" [width]="450">
                   <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
-                  </dxo-lookup>
-                  <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
+                  </dxo-lookup> 
               </dxi-column>
               <dxi-column dataField="attendanceFlagId" caption="Attendance Flag" [width]="450">
                   <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
-                  </dxo-lookup>
-                  <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
+                  </dxo-lookup> 
               </dxi-column>
               <dxi-column dataField="flagCount"></dxi-column>
               <dxi-column dataField="exemptFlagCount"></dxi-column>

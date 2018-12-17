@@ -14,7 +14,7 @@
               <dx-data-grid id="gridContainer" [dataSource]="salaryStructureDetail" 
               keyExpr="salaryStructureDetailId" (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)" (onRowRemoved)="deleteSalaryStructureDetail($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                  <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

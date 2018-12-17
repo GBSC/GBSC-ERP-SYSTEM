@@ -28,8 +28,8 @@ export class RelationComponent implements OnInit {
         this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    async Editrelation(reltion) {
-        await this.dataService.updateRelation(reltion);
+    async Editrelation() {
+        await this.dataService.updateRelation(this.updatingModel);
     }
 
     async deleterelation(reltn) {

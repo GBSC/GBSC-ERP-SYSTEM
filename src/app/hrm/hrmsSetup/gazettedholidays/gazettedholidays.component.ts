@@ -25,16 +25,16 @@ export class GazettedHolidaysComponent implements OnInit {
     }
 
 
-    async addHolidays(holiday) {
-        await this.dataService.addGazettedHolidays(holiday.data);
+    async addHolidays(value) {
+        await this.dataService.addGazettedHolidays(value.data);
         this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
-    Editholiday(value) {
+    updatingholiday(value) {
         this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    async updatingholiday() {
+    async Editholiday() {
         await this.dataService.updateGazettedHolidays(this.modelUpdating);
     }
 

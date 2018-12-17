@@ -47,8 +47,7 @@ import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandp
 import { CompanyComponent } from '../hrm/company/company.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { FeatureComponent } from '../hrm/feature/feature.component';
-import { ModuleComponent } from '../hrm/module/module.component';
-import { RoleComponent } from '../hrm/role/role.component';
+import { ModuleComponent } from '../hrm/module/module.component'; 
 import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
 import { LeaverequestComponent } from './leave/leaverequest/leaverequest.component';
@@ -147,8 +146,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'city', component: CityComponent },
             { path: 'department', component: DepartmentComponent },
             { path: 'feature', component: FeatureComponent },
-            { path: 'module', component: ModuleComponent },
-            { path: 'role', component: RoleComponent },
+            { path: 'module', component: ModuleComponent }, 
 
             {
                 path: 'setup',

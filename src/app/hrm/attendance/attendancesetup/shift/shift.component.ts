@@ -103,16 +103,15 @@ export class ShiftComponent implements OnInit {
             return false;
     }
 
-    async updateLeaverequestDetail(value) {
+    async updateAttendanceFlag(value) {
         console.log(value);
     }
 
-    async update(value) {
+     update(value) {
         value.shiftsId = this.id;
         value.shiftAttendanceFlags = this.Flag;
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
-            this.toastr.success("Shift Updated");
-            // this.router.navigate(['/hrm/leave/leaverequests']);
+            this.toastr.success("Shift Updated"); 
 
         });
     }

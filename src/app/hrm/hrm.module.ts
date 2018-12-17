@@ -78,8 +78,7 @@ import { BranchComponent } from '../hrm/branch/branch.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { CompanyComponent } from '../hrm/company/company.component';
 import { FeatureComponent } from '../hrm/feature/feature.component';
-import { ModuleComponent } from '../hrm/module/module.component';
-import { RoleComponent } from '../hrm/role/role.component';
+import { ModuleComponent } from '../hrm/module/module.component'; 
 import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandprivileges.component';
 import { LeaveapproverComponent } from './leave/leavesetup/leaveapprover/leaveapprover.component';
 import { LeaveclosingComponent } from './leave/leaveclosing/leaveclosing.component';
@@ -151,7 +150,7 @@ import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
 import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/dependantsrelation.component';
-
+import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
 
 @NgModule({
     imports: [
@@ -172,8 +171,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
         DepartmentComponent,
         CompanyComponent,
         FeatureComponent,
-        ModuleComponent,
-        RoleComponent,
+        ModuleComponent, 
         RolesandprivilegesComponent,
 
         HrmSetupHomeComponent,
@@ -326,7 +324,8 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
         ViewShiftComponent,
         GrossSalaryComponent,
         LoansummaryComponent,
-        DependantsrelationComponent
+        DependantsrelationComponent,
+        BanksComponent
     ],
     exports: [],
 

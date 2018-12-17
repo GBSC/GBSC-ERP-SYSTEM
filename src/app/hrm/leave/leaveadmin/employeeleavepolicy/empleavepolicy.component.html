@@ -406,12 +406,7 @@
                       <button type="reset" class="btn btn-secondary">
                         Cancel
                       </button>
-                    </div>
-                    <div class="col-lg-3">
-                      <div class="alert alert-success alert-dismissable alrt" *ngIf="message">
-                        <p>{{message?.message}}</p>
-                      </div>
-                    </div>
+                    </div> 
                   </div>
                 </div>
               </div>
@@ -437,7 +432,7 @@
             <dx-data-grid id="gridContainer" [dataSource]="empleavepolicy" keyExpr="leavePolicyEmployeeWiseId" (onRowUpdating)="updatingEmpleavepolicy($event)"
               (onRowUpdated)="updateEmpLeavePolicy()" (onRowRemoved)="deleteEmpleavePolicy($event)">
               <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-                <dxo-popup title="Employee Leave Policy" [showTitle]="true" [width]="1200" [height]="545" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-popup title="Employee Leave Policy" [showTitle]="true" [width]="1200" [height]="545">
                 </dxo-popup>
               </dxo-editing>
               <dxo-filter-row [visible]="true"></dxo-filter-row>

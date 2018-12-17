@@ -16,7 +16,7 @@ export class LeavetypebalanceComponent implements OnInit {
     public empleavepolicy: any;
     public totalleave = []
     private LeavePoliciesarray: any[];
-    private empleavepolicyarray: any[];
+    public empleavepolicyarray: any[];
 
 
     constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService, public employeeservice: EmployeeService) { }

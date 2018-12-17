@@ -10,6 +10,11 @@ import { StoresProfileComponent } from './stores-profile/stores-profile.componen
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 import { OrderTakingComponent } from './order-taking/order-taking.component';
 import { TerritoryComponent } from './territory/territory.component';
+import { AreaComponent } from './territories/area/area.component';
+import { RegionComponent } from './territories/region/region.component';
+import { SectionComponent } from './territories/section/section.component';
+import { SubsectionComponent } from './territories/subsection/subsection.component';
+import { DistributersComponent } from './territories/distributers/distributers.component';
 
 const routes: Routes = [
     {
@@ -22,7 +27,12 @@ const routes: Routes = [
             { path: 'stores', component: StoresComponent },
             { path: 'store-profile', component: StoresProfileComponent },
             { path: 'visit-summary', component: VisitSummaryComponent },
+            { path: 'area', component: AreaComponent },
+            { path: 'region', component: RegionComponent },
+            { path: 'section', component: SectionComponent },
+            { path: 'subsection', component: SubsectionComponent },
             { path: 'territory', component: TerritoryComponent },
+            { path: 'distributers', component: DistributersComponent },
             { path: 'order-taking', component: OrderTakingComponent }
         ]
     }

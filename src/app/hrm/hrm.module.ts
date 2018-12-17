@@ -167,7 +167,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
     declarations: [
         MenuComponent,
         RootComponent,
-
+  
         BranchComponent,
         DepartmentComponent,
         CompanyComponent,
@@ -209,7 +209,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
         OvertimeflagComponent,
         OvertimetypeComponent,
 
-        AssignrosterComponent,
+        AssignrosterComponent, 
         AttendanceflagComponent,
         AttendancerequestapproverComponent,
         AttendancerequesttypeComponent,

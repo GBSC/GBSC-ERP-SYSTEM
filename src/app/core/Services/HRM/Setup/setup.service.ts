@@ -10,9 +10,9 @@ export class SetupService {
         throw new Error("Method not implemented.");
     }
 
-    private hrUrl: string = "SystemAdmin/api/HrSetup";
+    public hrUrl: string = "SystemAdmin/api/HrSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getdataToUpdate(countryId, countryUrl) {
         return await this.ApiService.get(`${this.hrUrl}/${countryUrl}/${countryId}`).toPromise();

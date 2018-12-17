@@ -10,7 +10,7 @@ export class TaxscheduleComponent implements OnInit {
 
     public taxSchedule: any;
     public incomeTaxrule: any;
-    private taxScheduling: any;
+    public taxScheduling: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 

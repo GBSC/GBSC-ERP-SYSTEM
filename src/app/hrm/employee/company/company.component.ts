@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-    private isDisabled = true;
+    public isDisabled = true;
     public EmpCompanyForm: any;
     public designation: any;
     public employeetype: any;

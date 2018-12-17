@@ -9,7 +9,7 @@ import { PatientService } from '../../../core';
 })
 export class ConsultantComponent implements OnInit {
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     async  ngOnInit() {
 

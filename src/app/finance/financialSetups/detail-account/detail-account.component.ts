@@ -15,7 +15,7 @@ export class DetailAccountComponent implements OnInit {
     public secondSubAccount: any;
     public UpdatingdetailAccount: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 

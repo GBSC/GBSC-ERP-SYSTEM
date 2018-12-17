@@ -34,8 +34,8 @@ import { SalesIndentViewModel } from '../../Models/Pharmacy/IndentViewModel';
 @Injectable()
 export class PharmacyService {
 
-    private readonly API_URL = 'inventory/api/';
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    public readonly API_URL = 'inventory/api/';
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 

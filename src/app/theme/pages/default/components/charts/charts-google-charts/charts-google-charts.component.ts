@@ -12,7 +12,7 @@ declare let GoogleChartsDemo: any;
 export class ChartsGoogleChartsComponent implements OnInit, AfterViewInit {
 
 
-    constructor(private _script: ScriptLoaderService) {
+    constructor(public _script: ScriptLoaderService) {
 
     }
     ngOnInit() {

@@ -32,7 +32,7 @@ export class GeneralactionsComponent implements OnInit {
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
 
     async  ngOnInit() {
 
@@ -103,9 +103,9 @@ export class GeneralactionsComponent implements OnInit {
                 x.visitStatus = 'start';
                 this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
                 //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-
                 this.router.navigate(['/hims/patient/visits/' + this.id]);
                 console.log(x);
+                console.log(value)
             }
 
         }

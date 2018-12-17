@@ -17,7 +17,7 @@ export class VitalsComponent implements OnInit {
 
     // patientVital :  PatientVital   ;
     public patientVital: any = {};
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) { }
+    constructor(public PatientServiceobj: PatientService, public route: ActivatedRoute) { }
 
     async ngOnInit() {
         this.route.params.subscribe(params => {

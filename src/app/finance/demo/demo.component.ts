@@ -8,7 +8,7 @@ import { FormBuilder, FormArray } from '@angular/forms';
 })
 export class DemoComponent implements OnInit {
     public invoiceForm: any;
-    constructor(private fb: FormBuilder, ) { }
+    constructor(public fb: FormBuilder, ) { }
 
     ngOnInit() {
         this.invoiceForm = this.fb.group({

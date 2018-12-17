@@ -10,7 +10,7 @@ export class TreatmenttypeComponent implements OnInit {
 
     public treatments: any;
 
-    constructor(private treatmentService: TreatmentService) { }
+    constructor(public treatmentService: TreatmentService) { }
 
     ngOnInit() {
 

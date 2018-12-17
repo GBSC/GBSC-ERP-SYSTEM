@@ -1,0 +1,113 @@
+<div class="m-content">
+
+
+    <div class="row">
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                  Daily Semen Analysis
+              </h3>
+            </div>
+          </div>
+        </div>
+        <!--begin::Form-->
+        <form class="m-form m-form--label-align-left- m-form--state-"  [formGroup]="DailySemenAnalysisForm">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleSelect1"> Time In </label>
+                <input type="time" class="form-control m-input m-input--solid" formControlName="Timein" >
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleSelect1"> Time Out </label>
+                <input type="time" class="form-control m-input m-input--solid" formControlName="Timeout" >
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleSelect1"> Payment </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="Payment" >
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleSelect1"> Remarks </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks" >
+              </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-lg-3">
+                  <label for="exampleSelect1"> Patient </label>
+                  <dx-select-box [items]="Patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true" formControlName="PatientId" > 
+                    </dx-select-box>  
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="exampleSelect1"> Consultant </label>
+                    <dx-select-box [items]="Consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId" > 
+                      </dx-select-box>  
+                  </div>
+
+                  <div class="form-group col-lg-3">
+                      <label for="exampleSelect1"> Procedure </label>
+                      <dx-select-box [items]="Procedure" displayExpr="procedureName" valueExpr="procedureId" [searchEnabled]="true" formControlName="ProcedureId"  > 
+                        </dx-select-box>  
+                    </div>
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-lg-9">
+                </div>
+                <div class="form-group col-lg-9">
+                    <button type="button" (click)="addDailySemenAnalysis(DailySemenAnalysisForm.value)" class="btn btn-secondary">
+                          Save
+                    </button>
+                </div>
+            </div>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Add Procedure</h3>
+             </div>
+           </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+               <dx-data-grid id="gridContainer" [dataSource]="[]" (onRowInserted)="addData($event)"   (onRowUpdated)="($event)" (onRowRemoved)="($event)"> 
+                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
+               </dxo-editing>
+                 <dxo-filter-row [visible]="true"></dxo-filter-row>
+                 <dxo-header-filter [visible]="true"></dxo-header-filter>
+                 <dxo-paging [pageSize]="5"></dxo-paging>
+                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                 <!-- <dxi-column dataField="procedureId" caption="Procedure" >
+                    <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
+                  </dxi-column> -->
+                  <dxi-column dataField="ProcedureId" caption="Procedure" >
+                      <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="ProcedureId" caption="Procedure" >
+                        <dxo-lookup [dataSource]="Procedure" displayExpr="code" valueExpr="procedureId"></dxo-lookup>
+                      </dxi-column>
+                 <dxi-column dataField="procedureId" caption="Procedure Code"></dxi-column> 
+                </dx-data-grid>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>

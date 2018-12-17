@@ -10,7 +10,7 @@ import { AuthGuardService } from '../../core';
 import { ClinicalRecordsListComponent } from './clinical-records-list/clinical-records-list.component';
 
 const routes: Routes = [{
-    path: "coordination",
+    path: "",
     component: RootComponent,
     canActivate: [AuthGuardService],
     children: [{
@@ -40,7 +40,8 @@ const routes: Routes = [{
     declarations: [
         RootComponent,
         MenuComponent,
-        ClinicalrecordComponent
+        ClinicalrecordComponent,
+        ClinicalRecordsListComponent
     ],
     exports: [RouterModule]
 })

@@ -13,10 +13,10 @@ export class UnitComponent implements OnInit {
 
     @Output() UpdateUnitInInventoryItemComponent = new EventEmitter<any>();
 
-    private Units: Unit;
-    private UpdatedModel: any;
+    public Units: Unit;
+    public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

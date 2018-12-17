@@ -14,16 +14,16 @@ import { Router } from '@angular/router';
 })
 export class GrnViewComponent implements OnInit {
 
-    private GRNs: GRN;
-    private DetailGRN: GRN;
-    private grnview: any;
+    public GRNs: GRN;
+    public DetailGRN: GRN;
+    public grnview: any;
 
     GrnViewForm: FormGroup;
 
     public date: any;
 
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public router: Router) {
         this.GrnViewForm = this.formBuilder.group({
             grnDate: ['']
         });

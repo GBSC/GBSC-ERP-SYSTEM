@@ -10,7 +10,7 @@ export class StopsalaryComponent implements OnInit {
 
     public PayrollType: any;
     public StopSalary: any;
-    private updatingstopsalary: any;
+    public updatingstopsalary: any;
 
     constructor(public payrollservice: PayrollService, public payrollsetupservice: PayrollSetupService) { }
 

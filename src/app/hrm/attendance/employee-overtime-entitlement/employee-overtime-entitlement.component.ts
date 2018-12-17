@@ -27,7 +27,7 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
     public IncomingOTForm: FormGroup;
     public OutgoingOTForm: FormGroup;
 
-    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService,
+    constructor(public fb: FormBuilder, public attendanceservice: AttendanceService, public attendancesetupservice: AttendancesetupService,
         public employeeservice: EmployeeService) { }
 
     async ngOnInit() {

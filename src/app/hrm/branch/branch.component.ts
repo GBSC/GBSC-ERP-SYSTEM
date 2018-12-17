@@ -11,7 +11,7 @@ export class BranchComponent implements OnInit {
     public com: any;
     public branches: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 

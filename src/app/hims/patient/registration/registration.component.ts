@@ -16,7 +16,7 @@ import { Reference } from '../../../core/Models/HIMS/reference';
 
 export class RegistrationComponent implements OnInit {
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public partnerForm: FormGroup;
     public documentForm: FormGroup;
     public referenceForm: FormGroup;
@@ -36,16 +36,16 @@ export class RegistrationComponent implements OnInit {
     public visitnature: any;
     id: number;
     public Patient: any = '';
-    private forevent: File = null;
-    private Documentupload: File;
-    private patientId: any;
+    public forevent: File = null;
+    public Documentupload: File;
+    public patientId: any;
     submitted = false;
     spousesubmitted = false;
     referencesubmitted = false;
     documentsumitted = false;
     public getreferncdata: any;
 
-    constructor(private toastr: ToastrService, private Location: Location, private cd: ChangeDetectorRef, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public Location: Location, public cd: ChangeDetectorRef, public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) {
 
         this.referenceForm = this.formBuilder.group({
             //  'ReferredBy': [''],
@@ -144,22 +144,25 @@ export class RegistrationComponent implements OnInit {
                         State: Patient.state,
                         PostalCode: Patient.postalCode,
                         Initial: Patient.initial,
-                        PrivatePatientCons: Patient.privatePatientCons,
-                        PrivateHospital: Patient.privateHospital,
+                        PrivatePatientCons: Patient.publicPatientCons,
+                        PrivateHospital: Patient.publicHospital,
                         AuthorizedPerson: Patient.authorizedPerson,
                         patientReferenceId: Patient.patientReferenceId,
-                    });
 
-                    this.partnerForm.patchValue({
-                        FirstName: Patient.partner.firstName,
-                        MiddleName: Patient.partner.middleName,
-                        LastName: Patient.partner.lastName,
-                        DOB: Patient.partner.dob,
-                        PlaceOfBirth: Patient.partner.placeOfBirth,
-                        Occupation: Patient.partner.occupation,
-                        NIC: Patient.partner.nic,
-                        PhoneNumber: Patient.partner.phoneNumber,
                     });
+                    if (Patient.partner) {
+                        this.partnerForm.patchValue({
+                            FirstName: Patient.partner.firstName,
+                            MiddleName: Patient.partner.middleName,
+                            LastName: Patient.partner.lastName,
+                            DOB: Patient.partner.dob,
+                            PlaceOfBirth: Patient.partner.placeOfBirth,
+                            Occupation: Patient.partner.occupation,
+                            NIC: Patient.partner.nic,
+                            PhoneNumber: Patient.partner.phoneNumber,
+                        });
+                    }
+
 
                     // this.referenceForm.patchValue({
                     //     ReferredBy: Patient.patientReference.referredBy,
@@ -397,23 +400,19 @@ export class RegistrationComponent implements OnInit {
         if (this.patientForm.value.dob === '') {
             this.patientForm.value.dob = this.Patient.dob;
         }
-
-
         //value.partner = this.Patient.partner;
         //value.patientDocuments = this.document;
-
         // value.patientReference = this.addReference;
         // value.partner = this.addpartnet;
+        value.display = value.FirstName + ' ' + value.LastName + ' ' + value.mrn
+        value.fullName = value.FirstName + ' ' + value.LastName
+        console.log(value)
         let x = await this.PatientServiceobj.updatePatient(value);
         //  console.log(x);
-
         //   console.log(value);
         let updatedpatientId = this.id;
         this.router.navigate(['/hims/patient/profile/' + updatedpatientId]);
         this.displayToastSuccess("Updated");
-
-
-
     }
 
 
@@ -491,8 +490,8 @@ export class RegistrationComponent implements OnInit {
         this.toastr.error(message);
     }
 
-    private Other: string = 'NoOther';
-    private disable: boolean = true;
+    public Other: string = 'NoOther';
+    public disable: boolean = true;
 
     // valueChanged(e){
     //     console.log(e);

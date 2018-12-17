@@ -11,7 +11,7 @@ export class ReferencerangeComponent implements OnInit {
 
     public refrang: any;
 
-    constructor(private bioChemistryServie: BioChemistryService) {
+    constructor(public bioChemistryServie: BioChemistryService) {
 
     }
 

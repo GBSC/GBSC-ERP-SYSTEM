@@ -18,7 +18,7 @@ export class CompensationTransactionComponent implements OnInit {
     public payrollTypes: any;
     public updatingTransaction: any;
 
-    constructor(private fb: FormBuilder, public router: Router, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
+    constructor(public fb: FormBuilder, public router: Router, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
 

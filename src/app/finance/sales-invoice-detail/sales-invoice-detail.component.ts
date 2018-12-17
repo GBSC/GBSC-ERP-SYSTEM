@@ -20,7 +20,7 @@ export class SalesInvoiceDetailComponent implements OnInit {
     public detailAccount: any;
     public salesInvoiceId: any;
 
-    constructor(private fb: FormBuilder, public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
+    constructor(public fb: FormBuilder, public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService) { }
 
     async ngOnInit() {
 

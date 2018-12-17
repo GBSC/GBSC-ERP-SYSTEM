@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { AuthService } from '../../../app/core/Services/Auth/auth.service';
 
 declare let mLayout: any;
 @Component({
@@ -7,7 +8,7 @@ declare let mLayout: any;
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
-    constructor() { }
+    constructor(public authService: AuthService) { }
 
     ngOnInit() {
     }
@@ -16,6 +17,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
         mLayout.initHeader();
 
+    }
+
+    logout() {
+        this.authService.logout();
     }
 
 }

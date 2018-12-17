@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AttendancesetupService {
 
-    private baseUrl: string = "SystemAdmin/api/AttendanceSetup";
+    public baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();

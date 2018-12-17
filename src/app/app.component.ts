@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Helpers } from "./helpers";
 import { ScriptLoaderService } from './_services/script-loader.service';
+import { AuthService } from './core';
 
 declare let mLayout: any;
 declare let mApp: any;
@@ -19,10 +20,17 @@ declare let mUtil: any;
 })
 export class AppComponent implements OnInit {
 
+    get authorized(): boolean {
+        if (this.authService.isAuthenticated()) {
+            return true;
+        }
+        return false;
+    }
+
     title = 'app';
     globalBodyClass = 'm-page--loading-non-block m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default';
 
-    constructor(private _script: ScriptLoaderService, private _router: Router) {
+    constructor(public _script: ScriptLoaderService, public authService: AuthService, public _router: Router) {
     }
 
     public ngOnInit() {
@@ -68,6 +76,7 @@ export class AppComponent implements OnInit {
             }
         });
     }
+
 
 
 }

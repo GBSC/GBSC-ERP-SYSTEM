@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService, DashboardService } from '../../core';
+import { AuthService, DashboardService } from '../../core';
 
 @Component({
     selector: 'app-dashboard',
@@ -10,7 +10,7 @@ import { AccountService, DashboardService } from '../../core';
 export class DashboardComponent implements OnInit {
     public dataSource: any = [];
     public availableModules = [];
-    constructor(service: DashboardService, private router: Router, private accountService: AccountService) {
+    constructor(service: DashboardService, public router: Router, public accountService: AuthService) {
         this.dataSource = service.getCompanies();
     }
 

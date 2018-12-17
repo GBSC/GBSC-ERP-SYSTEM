@@ -21,9 +21,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     @ViewChild('appointmentgrid') appointmentgrid: DxDataGridComponent;
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public patientIdIs;
-    private appointmentForm: FormGroup;
+    public appointmentForm: FormGroup;
 
 
 
@@ -32,13 +32,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public appointment: any;
     public appointmenttest: any;
 
-    private newOrPrevious: string = 'previous';
-    private tentativeorfinal: string = 'tetative';
-    private showAddNewPatientRow: boolean = false;
+    public newOrPrevious: string = 'previous';
+    public tentativeorfinal: string = 'tetative';
+    public showAddNewPatientRow: boolean = false;
 
 
-    private appointmentTimeForm: FormGroup;
-    private InvoiceForm: FormGroup;
+    public appointmentTimeForm: FormGroup;
+    public InvoiceForm: FormGroup;
     public appointtime: any;
 
     public allpatients: any;
@@ -46,7 +46,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public profileForm: FormGroup;
 
-    private PatientInvoiceItemsdata: any[] = [];
+    public PatientInvoiceItemsdata: any[] = [];
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
@@ -62,13 +62,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public date: any;
     public visitNatures: any;
 
-    private getTestbyId: any = [];
+    public getTestbyId: any = [];
     public gettestName: any = [];
 
     submitted = false;
 
-    private tentativeAppointments: any[];
-    private finalizedAppointments: any[];
+    public tentativeAppointments: any[];
+    public finalizedAppointments: any[];
 
     public appointmentbydate: any;
 
@@ -77,7 +77,7 @@ export class AppointmentscheduleComponent implements OnInit {
     public currenttime: any;
 
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http: HttpClient, private router: Router) {
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public formBuilder: FormBuilder, public Http: HttpClient, public router: Router) {
 
         this.appointmenttestForm = this.formBuilder.group({
             AppointmentId: ['', Validators.required],
@@ -134,10 +134,14 @@ export class AppointmentscheduleComponent implements OnInit {
         await this.PatientServiceobj.getappointments();
         this.appointment = this.PatientServiceobj.appointment;
         console.log(this.appointment);
+        /////current day/////
+        // await this.PatientServiceobj.getAppointmentById(this.currentpatient);
+        // this.getaptbyid = this.PatientServiceobj.getApptbyId;
+        // console.log(this.getaptbyid);
+        /////current day/////
+        // console.log(this.currentpatient);
+        //         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
 
-        await this.PatientServiceobj.getAppointmentById(this.currentpatient);
-        this.getaptbyid = this.PatientServiceobj.getApptbyId;
-        console.log(this.getaptbyid);
 
 
 
@@ -193,19 +197,24 @@ export class AppointmentscheduleComponent implements OnInit {
 
     addrange() {
         let { value } = this.appointmenttestForm;
-        let test = this.tests.find(t => t.testId == value.TestId);
-        let doc = {
-            TestId: value.TestId,
-            TestName: test.testName
-
+        if (value.TestId == '' || value.TestId == null || value.TestId.lenght == 0) {
+            this.toastr.error('Please Select Test');
         }
-        this.Tests.push(doc);
+        else {
+            let test = this.tests.find(t => t.testId == value.TestId);
+            console.log(value.TestId);
+            let doc = {
+                TestId: value.TestId,
+                TestName: test.testName
+            }
+            this.Tests.push(doc);
+        }
     }
 
     remove(index) {
         this.Tests.splice(index, 1);
     }
-    removeall(index) {
+    removeall() {
         this.Tests.length = 0
     }
 
@@ -222,11 +231,15 @@ export class AppointmentscheduleComponent implements OnInit {
         this.Tests.filter(t => {
             return delete t.TestName;
         });
-
+        console.log(value);
         let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-
-        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
-        this.removeall(value);
+        console.log(value);
+        this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+        console.log(value);
+        console.log(this.getaptbyid);
+        this.removeall();
+        console.log(value);
+        console.log(x);
         return x;
     }
 
@@ -256,7 +269,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private patid: number = null;
+    public patid: number = null;
 
     get f() { return this.patientForm.controls; }
 
@@ -300,17 +313,21 @@ export class AppointmentscheduleComponent implements OnInit {
             this.patid = null;
         }
         if (date == null || date == '' || date.length == 0) {
+            console.log("1", (date == null || date == '' || date.length == 0));
+            // console.log('date', date);
             this.toastr.error('Please Select AppointmentDate  ');
-        }
-        else if (time == null || time == '' || time.length == 0) {
-            this.toastr.error('Please Select Tentative Time O');
-        }
-
-        else if (cid.value == null || cid.value == '' || cid.value.length == 0) {
+        } else if (time == null || time == '' || time.length == 0) {
+            console.log("2", (time == null || time == '' || time.length == 0));
+            // console.log('time', time);
+            this.toastr.error('Please Select Tentative Time');
+        } else if (cid.value == null || cid.value == '' || cid.value.length == 0) {
+            console.log("3", (cid.value == null || cid.value == '' || cid.value.length == 0));
+            // console.log('cid.value ', cid.value);
             this.toastr.error('Please Select Consultant');
         }
-
         else {
+            console.log("   ");
+            // console.log('else', value);
             console.log(value.PatientId);
             if (value.PatientId == null || value.PatientId == '') {
                 this.toastr.error('Please Select Patient');
@@ -474,7 +491,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private consultantfee: any = {};
+    public consultantfee: any = {};
 
     async updateAppointment(value) {
 
@@ -635,7 +652,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     async getCurrentRowData(d) {
         this.currentpatient = d.key;
-        this.getaptbyid = await this.PatientServiceobj.getAppointmentById(this.currentpatient.appointmentId);
+        this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
         console.log(this.getaptbyid);
     }
 

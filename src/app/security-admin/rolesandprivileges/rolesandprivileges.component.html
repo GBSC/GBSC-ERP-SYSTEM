@@ -30,18 +30,12 @@
               <div class="m-portlet__body">
                 <div class="m-section">
                   <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="">
+                    <dx-data-grid id="gridContainer" [dataSource]="roles">
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
                       <dxo-paging [pageSize]="5"></dxo-paging>
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                      <dxi-column dataField="ManualCode" caption="Action"></dxi-column>
-                      <dxi-column dataField="Discription" caption="Discription"></dxi-column>
-                      <dxi-column dataField="" caption="Role Id"></dxi-column>
-                      <dxi-column dataField="" caption="Role Name"></dxi-column>
-                      <dxi-column dataField="" caption="Company"></dxi-column>
-                      <dxi-column dataField="" caption="Menu Permission"></dxi-column>
-                      <dxi-column dataField="" caption="Added Date"></dxi-column>
+                      <dxi-column dataField="name" caption="Role"></dxi-column>
                     </dx-data-grid>
                   </div>
                 </div>

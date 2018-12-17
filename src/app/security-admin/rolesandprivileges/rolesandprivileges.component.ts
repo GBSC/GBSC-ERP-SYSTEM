@@ -1,7 +1,7 @@
 
 
 import { NgModule, Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService } from '../../core';
 
 
 
@@ -15,9 +15,12 @@ import { SystemAdministrationService } from '../../core';
 export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
-    public companyId : any;
+    public companyId: any;
 
-    constructor(public systemAdmin: SystemAdministrationService) { }
+    constructor(public systemAdmin: SystemAdministrationService, public authService: AuthService) {
+
+        this.companyId = this.authService.getUserCompanyId();
+    }
 
     createNewRole() {
         this.showPopup = true;
@@ -29,6 +32,7 @@ export class RolesandprivilegesComponent implements OnInit {
     }
 
     public modules: any = [];
+    public roles: any = [];
     public role: any;
     public currentFeature: any;
     public selectedPermissions: any = [];
@@ -37,6 +41,9 @@ export class RolesandprivilegesComponent implements OnInit {
     public popup: boolean = false;
 
     ngOnInit() {
+
+        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp=> this.roles = resp);
+        
         this.systemAdmin.getPermissions();
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
@@ -118,7 +125,8 @@ export class RolesandprivilegesComponent implements OnInit {
             alert('Role cannot be saved without a name');
         } else {
         }
-        this.systemAdmin.saveNewRoleData(this.role);
+        console.log(this.role);
+        // this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;
     }
 

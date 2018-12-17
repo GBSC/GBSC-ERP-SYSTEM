@@ -70,7 +70,7 @@ export class EmployeeOvertimeEntitlementComponent implements OnInit {
         this.OverTimeType = await this.attendancesetupservice.getAllOvertimeType();
 
         console.log(this.OverTimeType);
-        
+
         this.employee = await this.employeeservice.GetAllEmployees();
     }
 

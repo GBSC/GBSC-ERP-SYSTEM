@@ -22,11 +22,11 @@ export class LeaveyearsetupComponent implements OnInit {
     }
 
     async updatingLeaveyear(value) {
-        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
-   
+
     async updateleaveyear() {
-        await this.leavesetupservice.updateLeaveYear( this.updatingModel);
+        await this.leavesetupservice.updateLeaveYear(this.updatingModel);
     }
 
     async deleteleaveyear(value) {

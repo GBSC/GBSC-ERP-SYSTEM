@@ -6,11 +6,11 @@ export class Shift {
     shiftsId: number;
     shiftCode: number;
     shiftTitle: string;
-    duties : string;
-    day : string;
-    startTime : Date;
-    endTime : Date;
-    description : string;
+    duties: string;
+    day: string;
+    startTime: Date;
+    endTime: Date;
+    description: string;
     graceTime: Date;
     isMultiple: number;
     overTimeStartTime: Date;

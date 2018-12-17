@@ -36,21 +36,21 @@ export class LeavetypebalanceComponent implements OnInit {
         this.employees = await this.employeeservice.GetAllEmployees();
 
 
-        this.LeavePoliciesarray = this.LeavePolicies.filter(a => { 
-        this.empleavepolicyarray = this.empleavepolicy.filter(b =>{
-            (b.leaveTypeId === a.leaveTypeId) && 
-                (b.maximumAllowedBalance + a.maximumAllowedBalance)
-                
+        this.LeavePoliciesarray = this.LeavePolicies.filter(a => {
+            this.empleavepolicyarray = this.empleavepolicy.filter(b => {
+                (b.leaveTypeId === a.leaveTypeId) &&
+                    (b.maximumAllowedBalance + a.maximumAllowedBalance)
+
                 console.log(b);
             }
-            // let h = a.maximumAllowedBalance + b.maximumAllowedBalance
-            //    console.log(h);
-            //    console.log(d); 
-            
-        )
-        console.log(this.empleavepolicyarray);
+                // let h = a.maximumAllowedBalance + b.maximumAllowedBalance
+                //    console.log(h);
+                //    console.log(d); 
 
-        }) 
+            )
+            console.log(this.empleavepolicyarray);
+
+        })
         // this.LeavePoliciesarray = this.LeavePolicies.filter(a => {
         //     this.empleavepolicy.filter(b => {
         //         b.leaveTypeId == a.leaveTypeId; 

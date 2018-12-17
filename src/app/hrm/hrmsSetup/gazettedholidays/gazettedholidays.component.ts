@@ -31,7 +31,7 @@ export class GazettedHolidaysComponent implements OnInit {
     }
 
     Editholiday(value) {
-        this.modelUpdating = {...value.oldData, ...value.newData};
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
     async updatingholiday() {

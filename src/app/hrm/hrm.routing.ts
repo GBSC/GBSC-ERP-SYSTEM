@@ -130,7 +130,7 @@ import { UserrosterattendanceComponent } from './attendance/userrosterattendance
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
 import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
- 
+
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -149,7 +149,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
             { path: 'role', component: RoleComponent },
- 
+
             {
                 path: 'setup',
                 children: [
@@ -353,7 +353,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'payslip', component: PayslipComponent }
                 ]
             },
-            
+
             {
                 path: 'reports',
                 children: [

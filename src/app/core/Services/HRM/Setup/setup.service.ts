@@ -32,7 +32,7 @@ export class SetupService {
     }
 
 
-    async updateBank(data) { 
+    async updateBank(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateBank`, data).toPromise();
 
     }
@@ -53,7 +53,7 @@ export class SetupService {
 
     }
 
-    async updateEmployeeType(data) { 
+    async updateEmployeeType(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeType`, data).toPromise();
     }
 
@@ -70,7 +70,7 @@ export class SetupService {
         await this.ApiService.post(`${this.hrUrl}/AddFunction`, data).toPromise();
     }
 
-    async updatefunction(data) { 
+    async updatefunction(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateFunction`, data).toPromise();
     }
 
@@ -111,7 +111,7 @@ export class SetupService {
     }
 
     async updateEmployeeStatus(data) {
- 
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateEmployeeStatus`, data).toPromise();
     }
 
@@ -127,7 +127,7 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
     }
 
-    async updateReligion(data) { 
+    async updateReligion(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateReligion`, data).toPromise();
     }
 
@@ -147,7 +147,7 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
     }
 
-    async updateDegree(data) { 
+    async updateDegree(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateDegree`, data).toPromise();
 
     }
@@ -197,7 +197,7 @@ export class SetupService {
 
 
     async updateManagementLevel(data) {
- 
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateManagementLevel`, data).toPromise();
     }
 
@@ -217,7 +217,7 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();
     }
 
-    async updateGroup(data) { 
+    async updateGroup(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateGroup`, data).toPromise();
     }
 
@@ -327,7 +327,7 @@ export class SetupService {
     async DeleteRelation(id) {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteRelation/${id}`).toPromise();
     }
- 
+
     async getDependantsRelations() {
         return await this.ApiService.get(`${this.hrUrl}/GetDependantsRelations`).toPromise();
     }
@@ -338,7 +338,7 @@ export class SetupService {
     }
 
     async updateDependantsRelation(data) {
- 
+
         return await this.ApiService.put(`${this.hrUrl}/UpdateDependantsRelation`, data).toPromise();
     }
 
@@ -355,7 +355,7 @@ export class SetupService {
         return await this.ApiService.post(`${this.hrUrl}/AddUniversity`, data).toPromise();
     }
 
-    async updateuniversity(data) { 
+    async updateuniversity(data) {
         return await this.ApiService.put(`${this.hrUrl}/UpdateUniversity`, data).toPromise();
     }
 

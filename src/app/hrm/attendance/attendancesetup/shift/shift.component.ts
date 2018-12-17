@@ -24,10 +24,10 @@ export class ShiftComponent implements OnInit {
     public AssignRosters: any;
 
     @Input('shiftsId') id: number;
-    
+
     constructor(public toastr: ToastrService, private fb: FormBuilder,
         private activatedRoute: ActivatedRoute, public router: Router, public attendancesetupservice: AttendancesetupService) { }
-        
+
     async ngOnInit() {
 
         this.attendanceFlag = [];
@@ -52,7 +52,7 @@ export class ShiftComponent implements OnInit {
         this.shift = await this.attendancesetupservice.getShifts();
 
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
-        
+
         this.flagType = await this.attendancesetupservice.getFlagTypes();
 
         this.flagCategory = await this.attendancesetupservice.getFlagCategories();
@@ -62,7 +62,7 @@ export class ShiftComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
         });
-        
+
         if (this.isUpdate() === true) {
             this.attendancesetupservice.getShift(this.id).subscribe(resp => {
                 this.shifts = resp;
@@ -78,22 +78,22 @@ export class ShiftComponent implements OnInit {
     }
 
     async addAttendanceFlag(value) {
-        let data = value.data; 
-        this.attendanceFlag.push(data); 
-        
+        let data = value.data;
+        this.attendanceFlag.push(data);
+
     }
 
-    async addshift(value) {  
+    async addshift(value) {
         let shifts = new Shift();
-        shifts = { ...shifts, ...value }; 
+        shifts = { ...shifts, ...value };
         shifts.ShiftAttendanceFlags = this.attendanceFlag;
-        console.log(shifts); 
-        await this.attendancesetupservice.addShift(shifts);  
+        console.log(shifts);
+        await this.attendancesetupservice.addShift(shifts);
         this.toastr.success("Shift Added");
         this.router.navigate(['/hrm/attendance/attendancesetup/shifts']);
     }
 
-    
+
     isUpdate(): boolean {
 
         if (this.id > 0) {
@@ -129,18 +129,18 @@ export class ShiftComponent implements OnInit {
         this.ShiftForm.patchValue({
 
             ShiftCode: shift.shiftCode,
-            ShiftTitle:  shift.shiftTitle,
-            StartTime:   shift.startTime,
-            EndTime:     shift.endTime,
-            GraceTime:    shift.graceTime,
-            IsMultiple:   shift.isMultiple,
-            OverTimeStartTime:  shift.overTimeStartTime,
-            MinimumOverTime:      shift.minimumOverTime,
-            InTimeShiftThreshold:   shift.inTimeShiftThreshold,
-            OutTimeShiftThreshold:  shift.outTimeShiftThreshold,
-            OverTimeRate:  shift.OverTimeRate,
-            Description:  shift.Description,
-            ShiftHours:  shift.ShiftHours
+            ShiftTitle: shift.shiftTitle,
+            StartTime: shift.startTime,
+            EndTime: shift.endTime,
+            GraceTime: shift.graceTime,
+            IsMultiple: shift.isMultiple,
+            OverTimeStartTime: shift.overTimeStartTime,
+            MinimumOverTime: shift.minimumOverTime,
+            InTimeShiftThreshold: shift.inTimeShiftThreshold,
+            OutTimeShiftThreshold: shift.outTimeShiftThreshold,
+            OverTimeRate: shift.OverTimeRate,
+            Description: shift.Description,
+            ShiftHours: shift.ShiftHours
 
         })
 

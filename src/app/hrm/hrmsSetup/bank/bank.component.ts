@@ -31,7 +31,7 @@ export class BankComponent implements OnInit {
     }
 
     bankUpdating(value) {
-        this.modelUpdating = {...value.oldData, ...value.newData}
+        this.modelUpdating = { ...value.oldData, ...value.newData }
     }
 
     async UpdateBank() {

@@ -14,20 +14,20 @@ export class RelationComponent implements OnInit {
     public relation: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
- 
+
     async ngOnInit() {
         this.relation = await this.dataService.getAllRelation();
     }
- 
+
     async addrelation(relation) {
         await this.dataService.addRelation(relation.data);
         this.relation = await this.dataService.getAllRelation();
     }
 
     relationUpdating(value) {
-        this.updatingModel= {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
-   
+
     async Editrelation(reltion) {
         await this.dataService.updateRelation(reltion);
     }

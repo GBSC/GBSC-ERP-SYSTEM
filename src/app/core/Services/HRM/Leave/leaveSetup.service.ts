@@ -55,7 +55,7 @@ export class LeaveSetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddLeaveYear`, data).toPromise();
     }
 
-    async updateLeaveYear(data) { 
+    async updateLeaveYear(data) {
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, data).toPromise();
     }
 
@@ -97,7 +97,7 @@ export class LeaveSetupService {
     }
 
     async updateLeaveDayType(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveDayType`, data).toPromise();
     }
 

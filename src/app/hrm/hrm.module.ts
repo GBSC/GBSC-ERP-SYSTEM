@@ -138,7 +138,7 @@ import { EmployeeDetailComponent } from './Reports/employee-detail/employee-deta
 import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
 import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
-import { LeaveDetailComponent } from './Reports/leave-detail/leave-detail.component'; 
+import { LeaveDetailComponent } from './Reports/leave-detail/leave-detail.component';
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
 import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
@@ -167,7 +167,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
     declarations: [
         MenuComponent,
         RootComponent,
-  
+
         BranchComponent,
         DepartmentComponent,
         CompanyComponent,
@@ -209,7 +209,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
         OvertimeflagComponent,
         OvertimetypeComponent,
 
-        AssignrosterComponent, 
+        AssignrosterComponent,
         AttendanceflagComponent,
         AttendancerequestapproverComponent,
         AttendancerequesttypeComponent,
@@ -314,7 +314,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
         EmployeecardComponent,
         ListOfJoinnersComponent,
         ListOfLeaversComponent,
-        LeaveDetailComponent, 
+        LeaveDetailComponent,
         InOutDurationComponent,
         MissingentriesComponent,
         SalarypaymentComponent,

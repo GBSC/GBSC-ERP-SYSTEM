@@ -23,9 +23,9 @@ export class LeaverequestComponent implements OnInit {
     public leaveApprovr: any;
     public leaverequest: any;
     public updatingRequest: any;
-    public leaveOpening: any; 
+    public leaveOpening: any;
     private requestDetail: LeaveRequestDetail[];
-    public totalleave : any;
+    public totalleave: any;
 
     @Input('leaveRequestId') id: number;
 
@@ -76,19 +76,19 @@ export class LeaverequestComponent implements OnInit {
         // this.totalleave = 
     }
 
-    
+
     async updatingRequestDetail(value) {
         this.updatingRequest = { ...value.oldData, ...value.newData };
     }
-    
+
     async updateRequestDetail() {
         await this.leaveservice.updateLeaveRequestDetail(this.updatingRequest);
     }
 
-     async leaveRequestDetail(value) {
-     let data = value.data;
-      this.requestDetail.push(data);
-     }
+    async leaveRequestDetail(value) {
+        let data = value.data;
+        this.requestDetail.push(data);
+    }
 
     async addLeaveRequest(value) {
         let request = new LeaveRequest();

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { SetupService } from '../../../core'; 
+import { SetupService } from '../../../core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['./managementlevels.component.css']
 })
 export class ManagementLevelsComponent implements OnInit {
-    
+
     public managlevel: any;
     public modelUpdating: any;
 
@@ -19,14 +19,14 @@ export class ManagementLevelsComponent implements OnInit {
     }
 
 
-   async addNewManagementLevels(mnglevel) {
+    async addNewManagementLevels(mnglevel) {
 
         await this.dataService.addManagementLevel(mnglevel.data);
         this.managlevel = await this.dataService.getAllManagementlevels();
     }
 
     updatingMngLevel(value) {
-        this.modelUpdating= {...value.oldData, ...value.newData};
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
     async EditManagementLevel() {
@@ -34,6 +34,6 @@ export class ManagementLevelsComponent implements OnInit {
     }
 
     async deleteManagementLevel(mng) {
-       await this.dataService.DeleteManagementLevel(mng.key);
+        await this.dataService.DeleteManagementLevel(mng.key);
     }
 }

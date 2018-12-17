@@ -26,11 +26,11 @@ export class FunctionComponent implements OnInit {
     }
 
     functionEditing(value) {
-       this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
-  
+
     async Editfunction() {
-       await this.dataService.updatefunction(this.updatingModel);
+        await this.dataService.updatefunction(this.updatingModel);
     }
 
     async deletefunc(fnc) {

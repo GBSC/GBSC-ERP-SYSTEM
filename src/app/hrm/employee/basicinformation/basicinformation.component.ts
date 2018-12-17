@@ -68,7 +68,7 @@ export class BasicinformationComponent implements OnInit {
         this.religion = await this.SetupServiceobj.getAllReligions();
 
         this.language = await this.SetupServiceobj.getAllLanguages();
-        
+
         this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.city = await this.hrmService.getAllCities();

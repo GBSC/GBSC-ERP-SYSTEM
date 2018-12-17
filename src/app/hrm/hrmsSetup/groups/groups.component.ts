@@ -13,7 +13,7 @@ export class GroupComponent implements OnInit {
     public group: any;
     public modelUpdating: any;
 
-    constructor(public httpClient: HttpClient,public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
 
@@ -26,7 +26,7 @@ export class GroupComponent implements OnInit {
     }
 
     async groupUpdaing(value) {
-       this.modelUpdating = {...value.oldData, ...value.newData};
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
     async EditGroup() {

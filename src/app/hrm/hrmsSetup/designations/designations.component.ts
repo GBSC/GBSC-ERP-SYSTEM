@@ -30,14 +30,14 @@ export class DesignationComponent implements OnInit {
 
     EditingDesignation(value) {
 
-        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
     async EditDesignation() {
 
         await this.dataService.updateDesignation(this.updatingModel);
     }
- 
+
     async deleteDesignation(dsg) {
 
         await this.dataService.DeleteDesignation(dsg.key);

@@ -25,9 +25,9 @@ export class LeavedaytypeComponent implements OnInit {
     }
 
     async updatingleavedaytype(value) {
-        this.Modelupdating = {...value.oldData, ...value.newData};
+        this.Modelupdating = { ...value.oldData, ...value.newData };
     }
-    
+
     async updateleavedaytype() {
         await this.leavesetupservice.updateLeaveDayType(this.Modelupdating);
     }

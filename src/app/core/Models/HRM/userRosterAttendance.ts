@@ -13,5 +13,5 @@ export class UserRosterAttendance {
     monthlyUserSalaryId: number;
     leavePolicyEmployeeId: number;
     // OfficialVisitEntries: OfficialVisitEntry[];
- 
+
 }

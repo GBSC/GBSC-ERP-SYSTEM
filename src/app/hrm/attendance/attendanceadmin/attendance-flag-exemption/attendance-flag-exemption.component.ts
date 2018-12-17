@@ -17,9 +17,9 @@ export class AttendanceFlagExemptionComponent implements OnInit {
     public attendanceFlag: any;
     public employee: any;
     public flagType: any;
-    public attendanceExemption : any = {};
+    public attendanceExemption: any = {};
 
-    constructor(public attendanceservice: AttendanceService,public empservice: EmployeeService, public attendancesetupservice: AttendancesetupService) { }
+    constructor(public attendanceservice: AttendanceService, public empservice: EmployeeService, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
         this.attendanceflagExemption = await this.attendanceservice.getAttendanceFlagExemptions();
@@ -31,31 +31,31 @@ export class AttendanceFlagExemptionComponent implements OnInit {
         this.flagType = await this.attendancesetupservice.getFlagTypes();
     }
 
-    showInfo(employee) { 
+    showInfo(employee) {
         this.popupVisible = true;
     }
 
-      
-    selectionChangedHandler(e) { 
+
+    selectionChangedHandler(e) {
         this.attendanceExemption.UserAttendanceFlagExemptions = e.selectedRowsData.map(u => {
             return {
-                userId: u.userId, 
+                userId: u.userId,
             };
-        }); 
-        if(!this.selectionChangedBySelectbox) {
-            this.prefix=null;
+        });
+        if (!this.selectionChangedBySelectbox) {
+            this.prefix = null;
         }
-       
-        this.selectionChangedBySelectbox=false; 
+
+        this.selectionChangedBySelectbox = false;
     }
 
-     addselecteduser() {
+    addselecteduser() {
         console.log(this.selectedUsers);
         this.popupVisible = false;
     }
 
     async addflagExemption(value) {
-        this.attendanceExemption = {...this.attendanceExemption, ...value.data};
+        this.attendanceExemption = { ...this.attendanceExemption, ...value.data };
         console.log(this.attendanceExemption);
 
         await this.attendanceservice.addAttendanceFlagExemption(this.attendanceExemption);

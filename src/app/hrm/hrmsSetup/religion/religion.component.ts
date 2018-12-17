@@ -26,9 +26,9 @@ export class ReligionComponent implements OnInit {
     }
 
     updatingreligion(value) {
-        this.modelUpdating= {...value.oldData, ...value.newData};
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
-    
+
     async updatereligion() {
         await this.dataService.updateReligion(this.modelUpdating);
     }

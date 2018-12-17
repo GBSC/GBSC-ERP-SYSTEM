@@ -14,7 +14,7 @@ export class CostCenterComponent implements OnInit {
     public modelUpdating: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
- 
+
     async ngOnInit() {
         this.costCenter = await this.dataService.getAllCostCenter();
     }
@@ -26,7 +26,7 @@ export class CostCenterComponent implements OnInit {
     }
 
     costcntrUpdating(value) {
-        this.modelUpdating = {...value.oldData, ...value.newData};
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
     async editCostCenter() {

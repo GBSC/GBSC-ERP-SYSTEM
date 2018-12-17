@@ -14,9 +14,9 @@ export class AttendancesetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
-    async getAsignRoster(id){
+    async getAsignRoster(id) {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRoster/` + id).toPromise();
-    
+
     }
 
     async addAsignRoster(data) {
@@ -51,7 +51,7 @@ export class AttendancesetupService {
     }
 
     async updateAttendanceFlag(data) {
- 
+
         return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, data).toPromise();
 
     }
@@ -221,7 +221,7 @@ export class AttendancesetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
     }
 
-     getShift(id): Observable<Shift> {
+    getShift(id): Observable<Shift> {
 
         return this.ApiService.get(this.baseUrl + '/GetShift/' + id);
     }
@@ -231,7 +231,7 @@ export class AttendancesetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
     }
 
-      updateShift(data : Shift): Observable<any> { 
+    updateShift(data: Shift): Observable<any> {
         return this.ApiService.put(`${this.baseUrl}/UpdateShift`, data);
 
     }

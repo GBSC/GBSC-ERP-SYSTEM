@@ -13,7 +13,7 @@ import { SetupService } from '../../../core';
 export class EmployeeTypes implements OnInit {
     public updatingModel: any;
     public emptype: any;
-    
+
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
@@ -28,7 +28,7 @@ export class EmployeeTypes implements OnInit {
     }
 
     Updatingemptype(value) {
-        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
     async Updateemptype() {

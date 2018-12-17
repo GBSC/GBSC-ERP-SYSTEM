@@ -55,7 +55,7 @@ export class EmployeeCompanyComponent implements OnInit {
     async ngOnInit() {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
-        
+
         this.departments = await this.hrmService.getAllDepartments();
 
         this.designation = await this.SetupServiceobj.getAllDesignations();

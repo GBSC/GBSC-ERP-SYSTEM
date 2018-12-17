@@ -32,8 +32,8 @@ export class AttendanceflagComponent implements OnInit {
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
     }
 
-     updatingattendanceflag(value) {
-       this.updatingModel = {...value.oldData, ...value.newData};
+    updatingattendanceflag(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
     async updateattendanceflag() {

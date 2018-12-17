@@ -41,6 +41,6 @@ import { UserService } from '../core/Services/Security/user.service';
         RolesandprivilegesComponent,
         CompanyComponent
     ],
-    providers : [UserService]
+    providers: [UserService]
 })
 export class SecurityAdminModule { }

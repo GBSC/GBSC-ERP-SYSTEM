@@ -12,9 +12,9 @@ export class SkillLevelsComponent implements OnInit {
 
     public skill: any;
     public updatingSkill: any;
- 
+
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
- 
+
     async ngOnInit() {
         this.skill = await this.dataService.getAllSkillLevels();
     }
@@ -24,15 +24,15 @@ export class SkillLevelsComponent implements OnInit {
         this.skill = await this.dataService.getAllSkillLevels();
     }
 
-     skillEditing(value) {
-        this.updatingSkill= {...value.oldData, ...value.newData};
-       }
-   
-       async Editskill() {
-        await this.dataService.updateSkillLevel(this.updatingSkill);
-      }
+    skillEditing(value) {
+        this.updatingSkill = { ...value.oldData, ...value.newData };
+    }
 
-      async deleteskill(skillevel) {
+    async Editskill() {
+        await this.dataService.updateSkillLevel(this.updatingSkill);
+    }
+
+    async deleteskill(skillevel) {
         await this.dataService.DeleteSkillLevel(skillevel.key);
     }
 

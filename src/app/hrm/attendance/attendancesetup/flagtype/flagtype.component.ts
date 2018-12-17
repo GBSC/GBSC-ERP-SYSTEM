@@ -18,12 +18,12 @@ export class FlagtypeComponent implements OnInit {
     }
 
     async addflagtype(value) {
-       await this.attendancesetupservice.addFlagType(value.data);
+        await this.attendancesetupservice.addFlagType(value.data);
         this.flagtype = await this.attendancesetupservice.getFlagTypes();
     }
 
     async updateflagtype(value) {
-       await this.attendancesetupservice.updateFlagType(value);
+        await this.attendancesetupservice.updateFlagType(value);
     }
 
     async deleteflagtype(value) {

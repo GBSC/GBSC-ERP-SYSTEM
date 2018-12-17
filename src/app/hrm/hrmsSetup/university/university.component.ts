@@ -12,7 +12,7 @@ export class UniversityComponent implements OnInit {
     public university: any;
     public universityupdating: any;
 
-    constructor(public httpClient: HttpClient,public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
         this.university = await this.dataService.getAllUniversities();
@@ -24,9 +24,9 @@ export class UniversityComponent implements OnInit {
     }
 
     universityEditing(value) {
-        this.universityupdating = {...value.oldData, ...value.newData};
+        this.universityupdating = { ...value.oldData, ...value.newData };
     }
-    
+
     async Edituniversity() {
         await this.dataService.updateuniversity(this.universityupdating);
     }

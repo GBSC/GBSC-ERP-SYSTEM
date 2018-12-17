@@ -16,11 +16,7 @@ export class SemenAnalysisOutsiderReportviewerComponent {
     @ViewChild("control")
     control: ElementRef
 
-<<<<<<< HEAD
   constructor(public renderer: Renderer2) { }
-=======
-    constructor(private renderer: Renderer2) { }
->>>>>>> a21f706163d72ece4ff412f8ddad9475b6bd6ab0
 
     ngAfterViewInit() {
 

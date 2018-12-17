@@ -6,29 +6,27 @@ import { environment } from '../../../../environments/environment';
 @Injectable()
 export class UserService {
 
-  private SystemAdmin_API_URL = "systemadmin/api/";
-  private Auth_Url = "authentication/api/";
+    private SystemAdmin_API_URL = "systemadmin/api/";
+    private Auth_Url = "authentication/api/";
 
-  constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(private http: HttpClient, private ApiService: ApiService) {
 
-  }
+    }
 
-  createAppUser(user : any)
-  {
-    return this.ApiService.post(this.Auth_Url+'accounts', user);
-  }
+    createAppUser(user: any) {
+        return this.ApiService.post(this.Auth_Url + 'accounts', user);
+    }
 
-  editUser(user : any)
-  {
-    return this.ApiService.put(this.Auth_Url+'accounts/UpdateProfile',user);
-  }
+    editUser(user: any) {
+        return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
+    }
 
-  getUsersByCompany(comapnyId: number) {
-    return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUsersByCompany/' + comapnyId);
-  }
+    getUsersByCompany(comapnyId: number) {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUsersByCompany/' + comapnyId);
+    }
 
-  getUser(userId: any) {
-    return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
-  }
+    getUser(userId: any) {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
+    }
 
 }

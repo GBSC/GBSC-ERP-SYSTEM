@@ -9,24 +9,24 @@ import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
 import { AuthGuardService } from '../core';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
-import {UsersComponent} from './users/users.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
-  {
-    path: '', component: RootComponent, 
-    canActivate: [AuthGuardService],
-    children: [
-      { path: 'country', component: CountryComponent },
-      { path: 'city', component: CityComponent },
-      { path: 'company', component: CompanyComponent },
-      { path: 'branch', component: BranchComponent },
-      { path: 'department', component: DepartmentComponent },
-      { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
-      { path: 'user-registration', component: UserregistrationComponent },
-      { path: 'user-registration/:id', component: UserregistrationComponent },
-      { path: 'users', component: UsersComponent }
-    ]
-  }
+    {
+        path: '', component: RootComponent,
+        canActivate: [AuthGuardService],
+        children: [
+            { path: 'country', component: CountryComponent },
+            { path: 'city', component: CityComponent },
+            { path: 'company', component: CompanyComponent },
+            { path: 'branch', component: BranchComponent },
+            { path: 'department', component: DepartmentComponent },
+            { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
+            { path: 'user-registration', component: UserregistrationComponent },
+            { path: 'user-registration/:id', component: UserregistrationComponent },
+            { path: 'users', component: UsersComponent }
+        ]
+    }
 ];
 
 @NgModule({

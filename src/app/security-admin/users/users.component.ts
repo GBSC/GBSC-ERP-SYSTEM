@@ -4,57 +4,57 @@ import { AuthService } from '../../../app/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
 
-  public companyId : any;
-  public users: any;
-  public selectedUserId: any;
-  public registrationForm: FormGroup;
+    public companyId: any;
+    public users: any;
+    public selectedUserId: any;
+    public registrationForm: FormGroup;
 
-  constructor(private userService: UserService, private authService: AuthService, formBuilder: FormBuilder) {
-    this.companyId = this.authService.getUserCompanyId();
+    constructor(private userService: UserService, private authService: AuthService, formBuilder: FormBuilder) {
+        this.companyId = this.authService.getUserCompanyId();
 
-    this.registrationForm = formBuilder.group({
-      'Email': ['', Validators.required],
-      'Username': ['', Validators.required],
-      'Password': ['', Validators.required]
-    })
-  }
+        this.registrationForm = formBuilder.group({
+            'Email': ['', Validators.required],
+            'Username': ['', Validators.required],
+            'Password': ['', Validators.required]
+        })
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
-      this.users = resp;
-    })
+        this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
+            this.users = resp;
+        })
 
-  }
+    }
 
-  getdata(data) {
-    console.log(data);
-  }
+    getdata(data) {
+        console.log(data);
+    }
 
-  setSelectedUserId(id) {
-    this.selectedUserId = id;
-  }
+    setSelectedUserId(id) {
+        this.selectedUserId = id;
+    }
 
-  submitRegisterUserForm(value){
+    submitRegisterUserForm(value) {
 
-    let user = this.users.find(u=> u.userId = this.selectedUserId);
-    
-    value.firstName = user.firstName;
-    value.lastName = user.lastName;
-    value.email = user.email;
-    value.phone = user.phone;
-    value.cityId = user.cityId;
-    value.roleId = user.roleId;
+        let user = this.users.find(u => u.userId = this.selectedUserId);
 
-    value.companyId = this.companyId;
-    
-    console.log(value);
-  }
+        value.firstName = user.firstName;
+        value.lastName = user.lastName;
+        value.email = user.email;
+        value.phone = user.phone;
+        value.cityId = user.cityId;
+        value.roleId = user.roleId;
+
+        value.companyId = this.companyId;
+
+        console.log(value);
+    }
 
 }

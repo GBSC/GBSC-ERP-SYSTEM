@@ -9,13 +9,15 @@ import { PatientService } from '../../../core';
 })
 export class DailySemenAnalysisComponent implements OnInit {
 
-    public DailySemenAnalysisForm: FormGroup;
-    public ProcedureForm: FormGroup;
+    public DailySemenAnalysisForm : FormGroup;
+    private ProcedureForm: FormGroup;
     public Patients: any;
     public Consultants: any;
     public Procedure: any;
+    private Procedurearray: any = [];
+    private dailysemenanalysisobj: any;
 
-    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService) {
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],
@@ -23,7 +25,8 @@ export class DailySemenAnalysisComponent implements OnInit {
             'Remarks': ['', Validators.required],
             'PatientId': ['', Validators.required],
             'ConsultantId': ['', Validators.required],
-            'ProcedureId': ['', this.formBuilder.array([])]
+            'DailySemenAnalysisProcedures': ['', this.formBuilder.array([])],
+            // 'ProcedureId' :['',Validators.required] 
         });
     }
 
@@ -42,19 +45,40 @@ export class DailySemenAnalysisComponent implements OnInit {
         this.PatientServiceobj.getProcedure().subscribe(res => {
             this.Procedure = res;
             console.log(this.Procedure);
+
         });
 
 
     }
 
 
+
+
+
+
+
     addDailySemenAnalysis(value) {
-        console.log(value);
+        // this.dailysemenanalysisobj = value
+        //  console.log(this.dailysemenanalysisobj );
+
+        //  this.dailysemenanalysisobj =  this.dailysemenanalysisobj.filter(t=> {
+        //   return delete t.ProcedureId;
+        // });
         console.log(this.DailySemenAnalysisForm.value);
+        this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
+
     }
 
-    addData(value) {
-        console.log(value.key);
+    addProcedure(value) {
+        let x = value.key;
+        this.Procedurearray.push(x);
     }
+
+
+    deleteProcedure(value) {
+        this.Procedurearray.splice(value.key, 1)
+    }
+
+
 
 }

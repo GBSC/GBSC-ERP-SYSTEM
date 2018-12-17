@@ -13,7 +13,7 @@
     <div class="col-md-12"> 
         <dx-data-grid id="gridContainer" [dataSource]="Territories" keyExpr="territoryId" (onRowInserted)="AddTerritory($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateTerritory()" (onRowRemoved)="DeleteTerritory($event)"> 
             <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
-              <dxo-popup title="Add Territory" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              <dxo-popup title="Add Territory" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"  ></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>

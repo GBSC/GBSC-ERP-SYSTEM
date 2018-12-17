@@ -16,7 +16,7 @@ export class BiochemistryDetailsOntreatmentReportviewerComponent {
     @ViewChild("control")
     control: ElementRef
 
-  constructor(public renderer: Renderer2) { }
+    constructor(public renderer: Renderer2) { }
 
     ngAfterViewInit() {
 

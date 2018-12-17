@@ -799,31 +799,31 @@ export class PatientService {
     }
 
     deleteDailyProcedure(id: number): Observable<any> {
-        return this.ApiService.delete(this.API_URL+'Procedure/DeleteDailyProcedure/'+id);
+        return this.ApiService.delete(this.API_URL + 'Procedure/DeleteDailyProcedure/' + id);
     }
 
-    getDailySemenAnalysis():Observable<any>{
-        return this.ApiService.get(this.API_URL+'SemenAnalysis/GetDailySemenAnalysises');
+    getDailySemenAnalysis(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'SemenAnalysis/GetDailySemenAnalysises');
     }
 
-    addDailySemenAnalysis(value):Observable<any>{
-        return this.ApiService.post(this.API_URL+'SemenAnalysis/AddDailySemenAnalysis',value);
+    addDailySemenAnalysis(value): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'SemenAnalysis/AddDailySemenAnalysis', value);
     }
-    updateDailySemenAnalysis(value):Observable<any>{
-        return  this.ApiService.put(this.API_URL+'SemenAnalysis/UpdateDailySemenAnalysis',value);
+    updateDailySemenAnalysis(value): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'SemenAnalysis/UpdateDailySemenAnalysis', value);
     }
-    deleteDailySemenAnalysis(id : number):Observable<any>{
-        return  this.ApiService.put(this.API_URL+'SemenAnalysis/DeleteDailySemenAnalysis'+id);
+    deleteDailySemenAnalysis(id: number): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'SemenAnalysis/DeleteDailySemenAnalysis' + id);
     }
-//    addProcedure(Procedure : Procedure) : Observable<any>{
-//        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
-//    }
-//    updateProcedure(Procedure : Procedure) : Observable<any>{
-//        return this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure);
-//    }
-//    deleteProcedure(id: number): Observable<any> {
-//        return this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id);
-//    }
+    //    addProcedure(Procedure : Procedure) : Observable<any>{
+    //        return this.ApiService.post(this.API_URL+'HimsSetup/AddProcedure',Procedure);
+    //    }
+    //    updateProcedure(Procedure : Procedure) : Observable<any>{
+    //        return this.ApiService.put(this.API_URL+'HimsSetup/UpdateProcedure',Procedure);
+    //    }
+    //    deleteProcedure(id: number): Observable<any> {
+    //        return this.ApiService.delete(this.API_URL+'HimsSetup/DeleteProcedure/'+id);
+    //    }
 
 
 

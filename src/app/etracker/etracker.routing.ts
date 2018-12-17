@@ -9,6 +9,7 @@ import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 import { OrderTakingComponent } from './order-taking/order-taking.component';
+import { TerritoryComponent } from '../inventory/setup/territory/territory.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,7 @@ const routes: Routes = [
             { path: 'stores', component: StoresComponent },
             { path: 'store-profile', component: StoresProfileComponent },
             { path: 'visit-summary', component: VisitSummaryComponent },
+            { path: 'territory', component: TerritoryComponent },
             { path: 'order-taking', component: OrderTakingComponent }
         ]
     }

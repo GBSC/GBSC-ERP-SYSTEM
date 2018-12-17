@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { eTrackerUserService, AuthService } from '../../../app/core';
 
 @Component({
     selector: 'app-salesusers',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesusersComponent implements OnInit {
 
-    constructor() { }
+    public companyId : any;
+    public users : any;
+
+    constructor(private authService: AuthService, private userService : eTrackerUserService) {
+
+        this.companyId = this.authService.getUserCompanyId();
+     }
 
     ngOnInit() {
+
+        this.userService.getSalesUsersByCompany(this.companyId).subscribe(u=>{
+
+            this.users = u;
+        })
     }
 
 }

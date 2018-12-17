@@ -125,8 +125,8 @@ export class RolesandprivilegesComponent implements OnInit {
             alert('Role cannot be saved without a name');
         } else {
         }
-        console.log(this.role);
-        // this.systemAdmin.saveNewRoleData(this.role);
+        this.role.companyId = this.companyId;
+        this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;
     }
 

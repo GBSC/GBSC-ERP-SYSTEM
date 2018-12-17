@@ -4,10 +4,10 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class AttendanceService {
 
-    private baseUrl: string = "SystemAdmin/api/Attendance";
-    private baseUrl2: string = "SystemAdmin/api/AttendanceSetup";
+    public baseUrl: string = "SystemAdmin/api/Attendance";
+    public baseUrl2: string = "SystemAdmin/api/AttendanceSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
 
     async getAttendanceRequests() {

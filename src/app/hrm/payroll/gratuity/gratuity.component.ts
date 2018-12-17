@@ -22,13 +22,13 @@ export class GratuityComponent implements OnInit {
     public fundSetups: any;
     public gratuitySlabs: any;
     public GratuitySlab: any;
-    private gratuityslab: GratuitySlabGratuity[];
+    public gratuityslab: GratuitySlabGratuity[];
     public GratuityForm: any;
 
     @Input('userGratuityId') id: number;
 
 
-    constructor(private fb: FormBuilder, public payrollservice: PayrollService, private activatedRoute: ActivatedRoute,
+    constructor(public fb: FormBuilder, public payrollservice: PayrollService, public activatedRoute: ActivatedRoute,
         public Employeeservice: EmployeeService, public toastr: ToastrService, public payrollsetupservice: PayrollSetupService, public router: Router, ) { }
 
     async ngOnInit() {

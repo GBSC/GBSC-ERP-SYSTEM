@@ -3,9 +3,9 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { PatientService } from '../../../core';
 
 @Component({
-  selector: 'app-daily-semen-analysis',
-  templateUrl: './daily-semen-analysis.component.html',
-  styleUrls: ['./daily-semen-analysis.component.scss']
+    selector: 'app-daily-semen-analysis',
+    templateUrl: './daily-semen-analysis.component.html',
+    styleUrls: ['./daily-semen-analysis.component.scss']
 })
 export class DailySemenAnalysisComponent implements OnInit {
 

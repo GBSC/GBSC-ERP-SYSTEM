@@ -14,7 +14,7 @@ export class MasterAccountComponent implements OnInit {
     public masterAccount: any;
     public updatingMasterAccount: any;
 
-    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
@@ -47,6 +47,6 @@ export class MasterAccountComponent implements OnInit {
 
     async deleteMasteraccount(value) {
 
-        await this.financeService.DeleteMasterAccount(value.data);
+        await this.financeService.DeleteMasterAccount(value.key);
     }
 }

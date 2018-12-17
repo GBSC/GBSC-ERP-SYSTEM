@@ -14,7 +14,7 @@ export class SupplierComponent implements OnInit {
     public Suppliers: any;
     public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

@@ -19,28 +19,28 @@ export class TvopuComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private embryologists: any;
-    private id: number;
-    private clinicalRecord: any;
-    private tvopu: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public embryologists: any;
+    public id: number;
+    public clinicalRecord: any;
+    public tvopu: any;
 
-    private tvopuform: FormGroup;
+    public tvopuform: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologistService,
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologistService,
         public router: Router,
-        private toastr: ToastrService,
-        private route: ActivatedRoute,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public toastr: ToastrService,
+        public route: ActivatedRoute,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.tvopuform = this.formBuilder.group({
             'TimeStart': ['', Validators.required],
@@ -73,11 +73,7 @@ export class TvopuComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                this.tvopuService
-                    .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
-                        this.tvopu = resp;
-                        this.patchValues(this.tvopu);
-                    });
+                this.setValues();
 
             })
 
@@ -92,11 +88,20 @@ export class TvopuComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
         this.embryologyService.getEmbryologists().subscribe(resp => this.embryologists = resp);
+
+    }
+
+    setValues() {
+        this.tvopuService
+            .getTvopuByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
+                this.tvopu = resp;
+                this.patchValues(this.tvopu);
+            });
 
     }
 
@@ -108,9 +113,7 @@ export class TvopuComponent implements OnInit {
     }
 
     displayToast(message) {
-
         this.toastr.success(message);
-
     }
 
 
@@ -120,7 +123,7 @@ export class TvopuComponent implements OnInit {
 
             this.displayToast("TVOPU saved");
 
-            this.router.navigate(['lab/tvopu/' + this.clinicalRecord.patientClinicalRecordId]);
+            this.setValues();
         });
     }
 

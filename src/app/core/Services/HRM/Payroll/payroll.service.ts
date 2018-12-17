@@ -8,9 +8,9 @@ import { Gratuity } from '../../../Models/HRM/gratuity';
 @Injectable()
 export class PayrollService {
 
-    private baseUrl: string = "SystemAdmin/api/Payroll";
+    public baseUrl: string = "SystemAdmin/api/Payroll";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getStopSalaries() {
         return await this.ApiService.get(`${this.baseUrl}/GetStopSalaries`).toPromise();

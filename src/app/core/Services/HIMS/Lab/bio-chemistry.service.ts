@@ -16,9 +16,9 @@ export class BioChemistryService {
     public embryologist: any;
     public embryologycode: any;
 
-    private readonly API_URL = 'hims/api/biochemistry/';
+    public readonly API_URL = 'hims/api/biochemistry/';
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
 
     getPatientBioChemistryTestByClinicalRecordId(id: number) {
@@ -27,6 +27,10 @@ export class BioChemistryService {
 
     getPatientBioChemistryTests(): Observable<any> {
         return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTests");
+    }
+
+    getPatientBioChemistryTestsByPatientId(patientId): Observable<any> {
+        return this.ApiService.get(this.API_URL + "GetPatientBioChemistryTestsByPatientId/" + patientId);
     }
 
     getPatientBioChemistryTest(id: number): Observable<any> {
@@ -53,8 +57,16 @@ export class BioChemistryService {
         return this.ApiService.get(this.API_URL + 'GetTestUnits');
     }
 
+    getTest(id): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetBioChemistryTest/' + id);
+    }
+
     addTest(test: BioChemistryTest): Observable<any> {
         return this.ApiService.post(this.API_URL + 'AddBioChemistryTest', test);
+    }
+
+    updateTest(test: BioChemistryTest): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'UpdateBioChemistryTest', test);
     }
 
     async addUnit(test: TestUnit) {

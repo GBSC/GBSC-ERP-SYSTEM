@@ -12,9 +12,7 @@ import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestat
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
 import { EmployeeTypes } from './hrmsSetup/employeetype/employeetype.component';
-import { GenderComponent } from './hrmsSetup/genders/genders.component';
 import { RelationComponent } from './hrmsSetup/relations/relations.component';
-import { BloodGroupComponent } from './hrmsSetup/bloodgroups/bloodgroups.component';
 import { SkillLevelsComponent } from './hrmsSetup/skilllevels/skilllevels.component';
 import { LanguageComponent } from './hrmsSetup/languages/languages.component';
 import { CostCenterComponent } from './hrmsSetup/costcenters/costcenters.component';
@@ -133,6 +131,13 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
 import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
 import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
 import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
+import { CityComponent } from './hrmsSetup/city/city.component';
+import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
+import { AllowancequantityComponent } from './payroll/payrollprocess/allowancequantity/allowancequantity.component';
+import { SettingsComponent } from './hrmsSetup/settings/settings.component';
+import { IncrementtransactionComponent } from './payroll/payrollprocess/incrementtransaction/incrementtransaction.component';
+import { CreatesalaryfilesComponent } from './payroll/payrollprocess/createsalaryfiles/createsalaryfiles.component';
+import { DefaultrosterComponent } from './attendance/defaultroster/defaultroster.component';
 
 
 @NgModule({
@@ -148,6 +153,11 @@ import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail
         MenuComponent,
         RootComponent,
 
+        BanksComponent,
+        AllowancequantityComponent,
+        CreatesalaryfilesComponent,
+        IncrementtransactionComponent,
+        SettingsComponent,
         BranchComponent,
         DepartmentComponent,
         CompanyComponent,
@@ -163,12 +173,11 @@ import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent,
         CountryComponent,
+        CityComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
-        GenderComponent,
         EmployeeTypes,
         FunctionComponent,
         QualificationComponent,
@@ -191,6 +200,7 @@ import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail
         OvertimetypeComponent,
 
         AssignrosterComponent,
+        DefaultrosterComponent,
         AttendanceflagComponent,
         AttendancerequestapproverComponent,
         AttendancerequesttypeComponent,
@@ -288,7 +298,8 @@ import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail
         ViewleaverequestComponent,
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
-        GratuitydetailComponent
+        GratuitydetailComponent,
+
     ],
     exports: []
 

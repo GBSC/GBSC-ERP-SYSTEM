@@ -23,30 +23,30 @@ export class VisitdetailComponent implements OnInit {
     public visitnature: any = {};
     public visit: any = {};
     public appointment: any = {};
-    private getconsultantbyId: any = {};
-    private getvisitnatureId: any = {};
-    private getvisitdiagnosesbyId: any = [];
-    private getvisitTestbyId: any = [];
+    public getconsultantbyId: any = {};
+    public getvisitnatureId: any = {};
+    public getvisitdiagnosesbyId: any = [];
+    public getvisitTestbyId: any = [];
 
-    private visitdiag: any = {};
-    private visitTst: any = {};
+    public visitdiag: any = {};
+    public visitTst: any = {};
 
     public visitnatures: any;
 
-    private VisitVitalDetailForm: FormGroup;
-    private VisitAppointmentForm: FormGroup;
+    public VisitVitalDetailForm: FormGroup;
+    public VisitAppointmentForm: FormGroup;
 
-    private VisitNoteForm: FormGroup;
+    public VisitNoteForm: FormGroup;
 
-    private VisitDiagnosesForm: FormGroup;
+    public VisitDiagnosesForm: FormGroup;
 
-    private VisitTestForm: FormGroup;
+    public VisitTestForm: FormGroup;
 
     public updateTimeLimitExceeded: boolean = false;
     public vitalUpdateFieldsEnabled: boolean = false;
 
 
-    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private Location: Location, private PatientServiceobj: PatientService, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public formBuilder: FormBuilder, public Location: Location, public PatientServiceobj: PatientService, public route: ActivatedRoute) {
 
         this.VisitVitalDetailForm = this.formBuilder.group({
             Height: ['', Validators.required],
@@ -142,7 +142,7 @@ export class VisitdetailComponent implements OnInit {
             let x = this.PatientServiceobj.Getvisit(this.id).subscribe((visit: any) => {
                 this.visit = visit;
 
-                   console.log(this.visit);
+                console.log(this.visit);
 
                 // work for disable time strat
 

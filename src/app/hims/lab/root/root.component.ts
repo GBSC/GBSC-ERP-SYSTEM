@@ -14,7 +14,7 @@ declare let mUtil: any;
 })
 export class RootComponent implements OnInit {
 
-    constructor(private _script: ScriptLoaderService, private _router: Router) { }
+    constructor(public _script: ScriptLoaderService, public _router: Router) { }
 
     ngOnInit() {
         // let visitID = JSON.parse(sessionStorage.getItem('visitId'));

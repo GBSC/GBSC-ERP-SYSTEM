@@ -13,7 +13,7 @@ declare let mLayout: any;
 })
 export class RootComponent implements OnInit {
 
-    constructor(private _script: ScriptLoaderService, private _router: Router) { }
+    constructor(public _script: ScriptLoaderService, public _router: Router) { }
 
     ngOnInit() {
         this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/demo7/base/scripts.bundle.js'], true)
@@ -22,7 +22,8 @@ export class RootComponent implements OnInit {
                 // optional js to be loaded once
                 this._script.loadScripts('head', ['assets/vendors/custom/fullcalendar/fullcalendar.bundle.js',
                     'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js',
-                    'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js']);
+                    'assets/demo/default/custom/components/forms/widgets/bootstrap-daterangepicker.js',
+                    '/assets/demo/default/custom/components/forms/widgets/bootstrap-timepicker.js']);
             });
         this._router.events.subscribe((route) => {
             if (route instanceof NavigationStart) {

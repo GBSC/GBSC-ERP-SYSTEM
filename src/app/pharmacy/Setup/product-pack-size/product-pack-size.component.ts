@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { PackSize } from '../../../core/Models/Pharmacy/PackSize';
+import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
 @Component({
     selector: 'app-product-pack-size',
@@ -8,10 +9,13 @@ import { PackSize } from '../../../core/Models/Pharmacy/PackSize';
     styleUrls: ['./product-pack-size.component.scss']
 })
 export class ProductPackSizeComponent implements OnInit {
-    private PackSizes: PackSize;
-    private UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    @Output() UpdatePackSizeInInventoryItemComponent = new EventEmitter<any>();
+
+    public PackSizes: PackSize;
+    public UpdatedModel: any;
+
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 
@@ -21,7 +25,10 @@ export class ProductPackSizeComponent implements OnInit {
 
     async AddPackSize(value) {
         await this.PharmacyService.AddPackSize(value.data).toPromise();
-        this.PharmacyService.GetPackSizes().subscribe((res: PackSize) => this.PackSizes = res);
+        this.PharmacyService.GetPackSizes().subscribe((res: PackSize) => {
+            this.PackSizes = res;
+            this.UpdatePackSizeInInventoryItemComponent.emit(this.PackSizes);
+        });
     }
 
     UpdateModel(value) {

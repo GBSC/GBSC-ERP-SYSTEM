@@ -16,11 +16,11 @@ import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
 @Injectable()
 export class EmployeeService {
 
-    private baseUrl: string = 'systemadmin/api';
+    public baseUrl: string = 'systemadmin/api';
     public employeereg;
 
 
-    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService: ApiService) {
+    constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {
 
 
     }

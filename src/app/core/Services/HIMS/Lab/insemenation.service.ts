@@ -6,13 +6,17 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class InsemenationService {
 
-    private Url = "Hims/api/PatientInsemenation/"
+    public Url = "Hims/api/PatientInsemenation/"
 
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getPatientInsemenationByClinicalRecordId(id: number) {
         return this.ApiService.get(this.Url + 'GetPatientInsemenationByClinicalRecordId/' + id);
+    }
+
+    getPatientInsemenationsPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetPatientInsemenationsPatientId/' + patientId);
     }
 
     getPatientInsemenations(): Observable<any> {

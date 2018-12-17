@@ -21,9 +21,9 @@ export class FindPatientComponent implements OnInit {
 
 
     public Patientid: any;
-    public patients : any;
+    public patients: any;
 
-    constructor(formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router) {
+    constructor(formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router) {
 
         this.searchPatientForm = formBuilder.group({
             'name': ['', Validators.required],
@@ -40,7 +40,7 @@ export class FindPatientComponent implements OnInit {
 
     async SearchPatient(value) {
 
-        this.PatientServiceobj.SearchPatient(value).subscribe(resp=>{
+        this.PatientServiceobj.SearchPatient(value).subscribe(resp => {
             this.patients = resp;
         })
     }

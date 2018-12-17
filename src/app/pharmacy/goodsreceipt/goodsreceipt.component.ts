@@ -17,32 +17,35 @@ import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
 export class GoodsreceiptComponent implements OnInit {
 
-    private GoodReceiptNoteForm: FormGroup;
-    private GoodReceiptNoteItemsForm: FormGroup;
+    public GoodReceiptNoteForm: FormGroup;
+    public GoodReceiptNoteItemsForm: FormGroup;
 
-    private SelectedPurchaseOrder: PurchaseOrder;
-    private SelectedPurchaseOrderItems: any[] = [];
+    public SelectedPurchaseOrder: PurchaseOrder;
+    public SelectedPurchaseOrderItems: any[] = [];
 
-    private ExpectedAmount: number[] = [];
-    private PaymentAmount: number[] = [];
-    private DifferenceAmount: number[] = [];
+    public ExpectedAmount: number[] = [];
+    public PaymentAmount: number[] = [];
+    public DifferenceAmount: number[] = [];
 
-    private ExpectedQuantity: number[] = [];
-    private ReceivedQuantity: number[] = [];
-    private DifferenceQuantity: number[] = [];
+    public ExpectedQuantity: number[] = [];
+    public ReceivedQuantity: number[] = [];
+    public DifferenceQuantity: number[] = [];
 
-    private TotalExpectedQuantity: number = 0;
-    private TotalReceivedQuantity: number = 0;
-    private TotalDifferenceQuantity: number = 0;
-    private TotalExpectedAmount: number = 0;
-    private TotalPaymentAmount: number = 0;
-    private TotalDifferenceAmount: number = 0;
+    public TotalExpectedQuantity: number = 0;
+    public TotalReceivedQuantity: number = 0;
+    public TotalDifferenceQuantity: number = 0;
+    public TotalExpectedAmount: number = 0;
+    public TotalPaymentAmount: number = 0;
+    public TotalDifferenceAmount: number = 0;
 
-    private GrnItems: GRNItem[] = [];
-    private Grn: GRN;
-    private Inventories: Inventory[] = [];
+    public GrnItems: GRNItem[] = [];
+    public Grn: GRN;
+    public Inventories: Inventory[] = [];
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
+    public GrnItemSaveTrack: number[] = [];
+    public isDisable = false;
+
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
@@ -80,8 +83,8 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     GetSelectedPurchaseOrderDetails(ponumber, keycode) {
-        console.log(ponumber);
-        console.log(keycode);
+        //  console.log(ponumber);
+        //  console.log(keycode);
         if (keycode.key == "Enter") {
             this.PharmacyService.GetPurchaseOrderDetailsByCode(ponumber).subscribe((res: PurchaseOrder) => {
                 if (res != null) {
@@ -94,6 +97,8 @@ export class GoodsreceiptComponent implements OnInit {
                     this.Toast.error('GRN already exists for selected PO!', 'Error!');
                 }
             });
+        } else {
+            this.Toast.info("Press enter to get PO details");
         }
     }
 
@@ -125,49 +130,59 @@ export class GoodsreceiptComponent implements OnInit {
             DifferenceAmount: this.DifferenceAmount[index],
             InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
-        // console.log("GrnItem", a);
-        this.GrnItems.push(a);
-        // console.log("GrnItems", this.GrnItems);
+        console.log("GrnItem", a);
+        this.GrnItems[index] = a;
+        console.log("GrnItems", this.GrnItems);
 
         var b: any = {
             InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
             StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
             InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
         };
-        // console.log("Inventory", b);
-        this.Inventories.push(b);
-        // console.log("Inventories", this.Inventories);
+        console.log("Inventory", b);
+        this.Inventories[index] = b;
+        console.log("Inventories", this.Inventories);
+
+        this.GrnItemSaveTrack[index] = 1;
+
+        this.Toast.success("Item Saved");
+        this.isDisable = true;
     }
 
     SubmitGRN() {
+        if (this.GrnItemSaveTrack.reduce(function(a, b) { return a + b; }, 0) === this.SelectedPurchaseOrderItems.length) {
+            var a: any = {
+                GrnDate: this.GoodReceiptNoteForm.value.GrnDate || new Date().toISOString(),
+                PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
+                Remarks: this.GoodReceiptNoteForm.value.Remarks,
+                TotalExpectedAmount: this.TotalExpectedAmount,
+                TotalPaymentAmount: this.TotalPaymentAmount,
+                TotalDifferenceAmount: this.TotalDifferenceAmount,
+                TotalExpectedQUantity: this.TotalExpectedQuantity,
+                TotalReceivedQuantity: this.TotalReceivedQuantity,
+                TotalDifferenceQuantity: this.TotalDifferenceQuantity,
+                Supplier: this.SelectedPurchaseOrder.supplier.name,
+                GrnItems: this.GrnItems
+            };
 
-        var a: any = {
-            GrnDate: this.GoodReceiptNoteForm.value.GrnDate,
-            PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
-            Remarks: this.GoodReceiptNoteForm.value.Remarks,
-            TotalExpectedAmount: this.TotalExpectedAmount,
-            TotalPaymentAmount: this.TotalPaymentAmount,
-            TotalDifferenceAmount: this.TotalDifferenceAmount,
-            TotalExpectedQUantity: this.TotalExpectedQuantity,
-            TotalReceivedQuantity: this.TotalReceivedQuantity,
-            TotalDifferenceQuantity: this.TotalDifferenceQuantity,
-            Supplier: this.SelectedPurchaseOrder.supplier.name,
-            GrnItems: this.GrnItems
-        };
+            console.log("VarGrn", a);
+            this.Grn = a;
+            console.log("GRN", this.Grn);
 
-        // console.log("VarGrn", a);
-        this.Grn = a;
-        // console.log("GRN", this.Grn);
+            this.PharmacyService.AddGRN(this.Grn).subscribe(res => {
+                console.log(res);
+                this.Toast.success("GRN Added successfully");
+            });
 
-        this.PharmacyService.AddGRN(this.Grn).subscribe(res => {
-            // console.log(res);
-        });
+            this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => {
+                console.log(res);
+                this.Toast.success("Inventory stock updated successfully");
+            });
 
-        this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => {
-            // console.log(res);
-        });
-
-        this.ResetWholeForm();
+            this.ResetWholeForm();
+        } else {
+            this.Toast.error("Please save all items by pressing the + button before submitting");
+        }
     }
 
     ResetWholeForm() {
@@ -195,6 +210,9 @@ export class GoodsreceiptComponent implements OnInit {
         this.GrnItems = null;
         this.Grn = null;
         this.Inventories = null;
+
+        this.isDisable = true;
+        this.GrnItemSaveTrack = [];
     }
 
 }

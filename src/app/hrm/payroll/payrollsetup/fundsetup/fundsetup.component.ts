@@ -14,7 +14,7 @@ export class FundsetupComponent implements OnInit {
     public payrollYears: any;
     public updatingfundSetup: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
+    constructor(public fb: FormBuilder, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
 

@@ -7,20 +7,15 @@ import { ApiService } from '../../api.service';
 
 export class HrmsService {
 
-    private setupUrl: string = "SystemAdmin/api/Setup";
+    public setupUrl: string = "SystemAdmin/api/Setup";
 
-    constructor(private ApiService: ApiService) {
+    constructor(public ApiService: ApiService) {
     }
 
     async getAllCountries() {
 
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
-
-    async getdataToUpdate(countryId, countryUrl) {
-        return await this.ApiService.get(`${this.setupUrl}/${countryUrl}/${countryId}`).toPromise();
-    }
-
 
     // DEMO ONLY, you can find working methods below
     async addCountry(data) {
@@ -29,10 +24,7 @@ export class HrmsService {
     }
 
     async updateCountry(data) {
-
-        let country = await this.getdataToUpdate(data.key, 'GetCountry');
-        country = { ...country, ...data.data }
-        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', country).toPromise();
+        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
     }
 
     async DeleteCountry(countryId) {
@@ -44,19 +36,21 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
+    getCitiesByCompanyId(companyId: any) {
+
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
     async addCity(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
 
     }
 
     async updateCity(data) {
-
-        let city = await this.getdataToUpdate(data.key, 'GetCity');
-        city = { ...city, ...data.data }
-        return await this.ApiService.put(this.setupUrl + '/UpdateCity', city).toPromise();
+        return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
     }
 
-    async DeleteCity(cityId) {
+    async deleteCity(cityId) {
         return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
     }
 

@@ -12,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./patient-invoice-view.component.scss']
 })
 export class PatientInvoiceViewComponent implements OnInit {
-    private PatientInvoices: PatientInvoice[] = [];
-    private CurrentDate: Date = new Date()
-    private ViewForm: FormGroup;
+    public PatientInvoices: PatientInvoice[] = [];
+    public CurrentDate: Date = new Date()
+    public ViewForm: FormGroup;
 
-    constructor(private PatientService: PatientService, private ActivatedRoute: ActivatedRoute, private FormBuilder: FormBuilder, private Toastr: ToastrService) {
+    constructor(public PatientService: PatientService, public ActivatedRoute: ActivatedRoute, public FormBuilder: FormBuilder, public Toastr: ToastrService) {
         this.ViewForm = this.FormBuilder.group({
             MRN: [''],
             Date: Date

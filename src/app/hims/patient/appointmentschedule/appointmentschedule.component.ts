@@ -21,9 +21,9 @@ export class AppointmentscheduleComponent implements OnInit {
 
     @ViewChild('appointmentgrid') appointmentgrid: DxDataGridComponent;
 
-    private patientForm: FormGroup;
+    public patientForm: FormGroup;
     public patientIdIs;
-    private appointmentForm: FormGroup;
+    public appointmentForm: FormGroup;
 
 
 
@@ -32,13 +32,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public appointment: any;
     public appointmenttest: any;
 
-    private newOrPrevious: string = 'previous';
-    private tentativeorfinal: string = 'tetative';
-    private showAddNewPatientRow: boolean = false;
+    public newOrPrevious: string = 'previous';
+    public tentativeorfinal: string = 'tetative';
+    public showAddNewPatientRow: boolean = false;
 
 
-    private appointmentTimeForm: FormGroup;
-    private InvoiceForm: FormGroup;
+    public appointmentTimeForm: FormGroup;
+    public InvoiceForm: FormGroup;
     public appointtime: any;
 
     public allpatients: any;
@@ -46,7 +46,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
     public profileForm: FormGroup;
 
-    private PatientInvoiceItemsdata: any[] = [];
+    public PatientInvoiceItemsdata: any[] = [];
 
     public appointmenttestForm: FormGroup;
     public Tests: any = [];
@@ -62,13 +62,13 @@ export class AppointmentscheduleComponent implements OnInit {
     public date: any;
     public visitNatures: any;
 
-    private getTestbyId: any = [];
+    public getTestbyId: any = [];
     public gettestName: any = [];
 
     submitted = false;
 
-    private tentativeAppointments: any[];
-    private finalizedAppointments: any[];
+    public tentativeAppointments: any[];
+    public finalizedAppointments: any[];
 
     public appointmentbydate: any;
 
@@ -77,7 +77,7 @@ export class AppointmentscheduleComponent implements OnInit {
     public currenttime: any;
 
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private formBuilder: FormBuilder, private Http: HttpClient, private router: Router) {
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public formBuilder: FormBuilder, public Http: HttpClient, public router: Router) {
 
         this.appointmenttestForm = this.formBuilder.group({
             AppointmentId: ['', Validators.required],
@@ -139,8 +139,8 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.getaptbyid = this.PatientServiceobj.getApptbyId;
         // console.log(this.getaptbyid);
         /////current day/////
-// console.log(this.currentpatient);
-//         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+        // console.log(this.currentpatient);
+        //         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
 
 
 
@@ -197,13 +197,13 @@ export class AppointmentscheduleComponent implements OnInit {
 
     addrange() {
         let { value } = this.appointmenttestForm;
-        if(value.TestId == '' || value.TestId == null || value.TestId.lenght == 0){
+        if (value.TestId == '' || value.TestId == null || value.TestId.lenght == 0) {
             this.toastr.error('Please Select Test');
         }
-        else{
+        else {
             let test = this.tests.find(t => t.testId == value.TestId);
             console.log(value.TestId);
-             let doc = {
+            let doc = {
                 TestId: value.TestId,
                 TestName: test.testName
             }
@@ -231,16 +231,16 @@ export class AppointmentscheduleComponent implements OnInit {
         this.Tests.filter(t => {
             return delete t.TestName;
         });
-            console.log(value);
-          let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-          console.log(value);
-          this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
-          console.log(value);
-          console.log(this.getaptbyid);
-          this.removeall();
-          console.log(value);
-          console.log(x);
-          return x;
+        console.log(value);
+        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
+        console.log(value);
+        this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+        console.log(value);
+        console.log(this.getaptbyid);
+        this.removeall();
+        console.log(value);
+        console.log(x);
+        return x;
     }
 
     // refresh() {
@@ -269,7 +269,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private patid: number = null;
+    public patid: number = null;
 
     get f() { return this.patientForm.controls; }
 
@@ -491,7 +491,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
 
 
-    private consultantfee: any = {};
+    public consultantfee: any = {};
 
     async updateAppointment(value) {
 

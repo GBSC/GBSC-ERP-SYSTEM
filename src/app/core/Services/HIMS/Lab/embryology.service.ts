@@ -6,13 +6,17 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class EmbryologyService {
 
-    private Url = "Hims/api/PatientEmbryology/"
+    public Url = "Hims/api/PatientEmbryology/"
 
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getPatientEmbryologyByTvopuId(id: number) {
         return this.ApiService.get(this.Url + 'GetPatientEmbryologyByTvopuId/' + id);
+    }
+
+    getAllPatientEmbryologiesByPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetAllPatientEmbryologiesByPatientId/' + patientId);
     }
 
     getPatientEmbryologyDetailsByTvopuId(id: number) {

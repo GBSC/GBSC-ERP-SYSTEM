@@ -9,11 +9,11 @@ import { SalesIndentViewModel } from '../../core/Models/Pharmacy/IndentViewModel
     styleUrls: ['./prescription-view.component.scss']
 })
 export class PrescriptionViewComponent implements OnInit {
-    private Prescriptions: SalesIndent[] = [];
-    private PrescriptionsDetails: SalesIndentViewModel[] = [];
-    private PrescriptionsViews: SalesIndent[] = [];
+    public Prescriptions: SalesIndent[] = [];
+    public PrescriptionsDetails: SalesIndentViewModel[] = [];
+    public PrescriptionsViews: SalesIndent[] = [];
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

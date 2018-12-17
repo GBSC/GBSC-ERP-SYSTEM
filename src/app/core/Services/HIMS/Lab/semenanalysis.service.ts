@@ -6,12 +6,16 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SemenanalysisService {
 
-    private Url = "Hims/api/SemenAnalysis/"
+    public Url = "Hims/api/SemenAnalysis/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     GetAllSemenAnalyses(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllSemenAnalyses");
+    }
+
+    getAllSemenAnalysisByPatientId(patientId: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllSemenAnalysisByPatientId/" + patientId);
     }
 
     getSemenAnalysis(id: number): Observable<any> {

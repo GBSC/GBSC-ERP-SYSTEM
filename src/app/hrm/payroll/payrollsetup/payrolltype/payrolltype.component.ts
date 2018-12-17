@@ -8,7 +8,9 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class PayrolltypeComponent implements OnInit {
 
+    public updatingModel: any;
     public payrollType: any;
+
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
@@ -20,8 +22,13 @@ export class PayrolltypeComponent implements OnInit {
         this.payrollType = await this.payrollsetupservice.getPayrollTypes();
     }
 
-    async updatePayrollType(value) {
-        await this.payrollsetupservice.updatePayrollType(value);
+    async updatingPayrollType(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
+    }
+
+    async updatePayrollType() {
+
+        await this.payrollsetupservice.updatePayrollType(this.updatingModel);
     }
 
     async deletePayrollType(value) {

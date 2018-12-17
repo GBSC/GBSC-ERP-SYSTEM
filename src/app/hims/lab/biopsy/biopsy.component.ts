@@ -17,27 +17,27 @@ export class BiopsyComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private patientid: number;
-    private biopsyid: number;
-    private clinicalRecord: any;
-    private biopsy: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public patientid: number;
+    public biopsyid: number;
+    public clinicalRecord: any;
+    public biopsy: any;
 
-    private biopsyForm: FormGroup;
+    public biopsyForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private biopsyService: BiopsyService,
-        private route: ActivatedRoute,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public biopsyService: BiopsyService,
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.biopsyForm = formBuilder.group({
 
@@ -82,7 +82,7 @@ export class BiopsyComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 

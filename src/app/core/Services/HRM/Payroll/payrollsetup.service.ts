@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class PayrollSetupService {
 
-    private baseUrl: string = "SystemAdmin/api/PayrollSetup";
+    public baseUrl: string = "SystemAdmin/api/PayrollSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getAllowances() {
         return await this.ApiService.get(`${this.baseUrl}/GetAllowances`).toPromise();
@@ -468,10 +468,7 @@ export class PayrollSetupService {
     }
 
     async updatePayrollType(data) {
-
-        let payrolltype = await this.getdataToUpdate(data.key, 'GetPayrollType');
-        payrolltype = { ...payrolltype, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollType`, payrolltype).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollType`, data).toPromise();
     }
 
     async deletePayrollType(id) {

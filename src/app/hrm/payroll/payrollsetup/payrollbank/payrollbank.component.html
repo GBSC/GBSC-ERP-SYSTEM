@@ -35,10 +35,16 @@
         <dxi-column dataField="remitKey" [visible]="false"></dxi-column>
         <dxi-column dataField="branchCode" [visible]="false"></dxi-column>
         <dxi-column dataField="branch"></dxi-column>
-        <dxi-column dataField="branchContactNumber"></dxi-column>
+        <dxi-column dataField="branchContactNumber">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxi-validation-rule 
+              type="pattern"
+              [pattern]="pattern" message="Your phone must have &#34;021-36551480&#34; format!"
+              ></dxi-validation-rule>
+        </dxi-column>
         <dxi-column dataField="branchAddress" [visible]="false"></dxi-column>
-        <dxi-column dataField="branchEmplyeeName"></dxi-column>
-        <dxi-column dataField="branchEmplyeeDesignation" [visible]="false"></dxi-column>
+        <dxi-column dataField="branchEmplyeeName" caption="Branch Employee Name"></dxi-column>
+        <dxi-column dataField="branchEmplyeeDesignation" caption="Branch Employee Designation" [visible]="false"></dxi-column>
         <dxi-column dataField="firstApproverName" [visible]="false"></dxi-column>
         <dxi-column dataField="firstApproverDesignation" [visible]="false"></dxi-column>
         <dxi-column dataField="secondApproverName" [visible]="false"></dxi-column>

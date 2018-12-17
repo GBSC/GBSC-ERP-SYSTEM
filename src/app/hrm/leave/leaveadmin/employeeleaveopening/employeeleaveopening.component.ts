@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EmployeeleaveopeningComponent implements OnInit {
     public leaveOpeningForm: FormGroup;
-    private openingDetail: LeaveOpeningDetail[];
+    public openingDetail: LeaveOpeningDetail[];
     public employees: any;
     public leaveOpeningDetail: any[] = [];
     public leaveYear: any;
@@ -25,7 +25,7 @@ export class EmployeeleaveopeningComponent implements OnInit {
 
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr: ToastrService, private activatedRoute: ActivatedRoute,
+    constructor(public toastr: ToastrService, public activatedRoute: ActivatedRoute,
         public fb: FormBuilder, public setup: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public router: Router) { }
 

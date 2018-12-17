@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { PackCategory } from '../../../core/Models/Pharmacy/PackCategory';
+import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
 @Component({
     selector: 'app-product-pack-category',
@@ -8,10 +9,13 @@ import { PackCategory } from '../../../core/Models/Pharmacy/PackCategory';
     styleUrls: ['./product-pack-category.component.scss']
 })
 export class ProductPackCategoryComponent implements OnInit {
-    private PackCategories: PackCategory;
-    private UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    @Output() UpdatePackCategoryInInventoryItemComponent = new EventEmitter<any>();
+
+    public PackCategories: PackCategory;
+    public UpdatedModel: any;
+
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 
@@ -21,7 +25,10 @@ export class ProductPackCategoryComponent implements OnInit {
 
     async AddPackCategory(value) {
         await this.PharmacyService.AddPackCategory(value.data).toPromise();
-        this.PharmacyService.GetPackCategories().subscribe((res: PackCategory) => this.PackCategories = res);
+        this.PharmacyService.GetPackCategories().subscribe((res: PackCategory) => {
+            this.PackCategories = res;
+            this.UpdatePackCategoryInInventoryItemComponent.emit(this.PackCategories);
+        });
     }
 
     UpdateModel(value) {

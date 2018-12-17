@@ -21,6 +21,7 @@ export class GroupComponent implements OnInit {
 
     addNewGroups(grp) {
         this.dataService.addGroup(grp.data);
+        this.group = this.dataService.getAllGroups();
     }
 
     EditGroup(grop) {

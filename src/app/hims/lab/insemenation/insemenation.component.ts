@@ -18,42 +18,42 @@ export class InsemenationComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private clinicalRecord: any;
-    private insemenation: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public clinicalRecord: any;
+    public insemenation: any;
 
-    private motileCount: number;
-    private immotileCount: number;
-    private totalCount: number;
-    private linear: number;
-    private nonLinear: number;
-    private nonProgresive: number;
-    private immotile: number;
-    private reportedLiner: number;
-    private reportedNonLinear: number;
-    private reportedNonProgressive: number;
-    private reportedImmotile: number;
-    private totalProgression: number;
-    private totalReportedProgression: number;
-
-
-    private insemenationForm: FormGroup;
+    public motileCount: number;
+    public immotileCount: number;
+    public totalCount: number;
+    public linear: number;
+    public nonLinear: number;
+    public nonProgresive: number;
+    public immotile: number;
+    public reportedLiner: number;
+    public reportedNonLinear: number;
+    public reportedNonProgressive: number;
+    public reportedImmotile: number;
+    public totalProgression: number;
+    public totalReportedProgression: number;
 
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private insemenationService: InsemenationService,
+    public insemenationForm: FormGroup;
+
+
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public insemenationService: InsemenationService,
         public router: Router,
-        private route: ActivatedRoute,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.insemenationForm = this.formBuilder.group({
             'CollectionDate': [''],
@@ -111,17 +111,7 @@ export class InsemenationComponent implements OnInit {
 
                 this.clinicalRecord = resp;
 
-                if (this.clinicalRecord != null) {
-                    this.insemenationService
-                        .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
-                        .subscribe(resp => {
-                            console.log(resp);
-                            this.insemenation = resp;
-                            this.patchForm(this.insemenation);
-                            this.calculateOnLoad(this.insemenation);
-                        });
-                }
-
+                this.setValues();
 
             })
 
@@ -136,10 +126,24 @@ export class InsemenationComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
+
+    }
+
+    setValues() {
+
+        if (this.clinicalRecord != null) {
+            this.insemenationService
+                .getPatientInsemenationByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                .subscribe(resp => {
+                    this.insemenation = resp;
+                    this.patchForm(this.insemenation);
+                    this.calculateOnLoad(this.insemenation);
+                });
+        }
 
     }
 
@@ -153,12 +157,17 @@ export class InsemenationComponent implements OnInit {
 
     submitForm(value) {
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
-        this.insemenationService.addPatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Saved"));
+        value.reportedMotileCount = 100 - this.reportedImmotile;
+        this.insemenationService.addPatientInsemenation(value).subscribe(resp => {
+            this.displayToast("Insemenation Saved");
+            this.setValues();
+        });
     }
 
     updateForm(value) {
         value.patientInsemenationId = this.insemenation.patientInsemenationId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.insemenationService.updatePatientInsemenation(value).subscribe(resp => this.displayToast("Insemenation Updated"));
     }
 
@@ -209,28 +218,22 @@ export class InsemenationComponent implements OnInit {
         this.reportedLiner = Math.round((this.motileCount / this.totalCount) * value);
         this.linear = value;
 
-        console.log("1", this.reportedLiner);
     }
 
     calculateReportedNonLinear(value) {
         this.reportedNonLinear = Math.round((this.motileCount / this.totalCount) * value);
         this.nonLinear = value;
 
-        console.log("2", this.reportedNonLinear);
     }
 
     calculateReportedNonProgressive(value) {
         this.reportedNonProgressive = Math.round((this.motileCount / this.totalCount) * value);
         this.nonProgresive = value;
-
-        console.log("3", this.reportedNonProgressive);
     }
 
     calculateReportedImmotile(value) {
         this.reportedImmotile = Math.round((this.immotileCount / this.totalCount) * 100);
         this.immotile = value;
-
-        console.log("4", this.reportedImmotile);
 
         this.progression();
 
@@ -254,7 +257,7 @@ export class InsemenationComponent implements OnInit {
 
     calculateOnLoad(insemenation) {
         this.motileCount = insemenation.motileCount;
-        this.immotileCount = insemenation.immotileCountRange;
+        this.immotileCount = insemenation.immotileCount;
         this.totalCount = insemenation.totalCount;
     }
 

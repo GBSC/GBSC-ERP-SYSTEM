@@ -15,12 +15,12 @@ export class AttendanceruleComponent implements OnInit {
     public attendancerule: any;
     public LeaveTypes: any;
     public message: any;
-    private leaves: AttendanceRuleLeaveType[];
+    public leaves: AttendanceRuleLeaveType[];
     public attendanceRule: any;
     public attendanceflag: any;
     public groups: any;
 
-    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService,
+    constructor(public fb: FormBuilder, public attendanceservice: AttendanceService,
         public attendancesetupservice: AttendancesetupService, public leavesetupservice: LeaveSetupService,
         public hrsetupservice: SetupService, ) { }
 
@@ -62,10 +62,6 @@ export class AttendanceruleComponent implements OnInit {
         attendanceRule = { ...attendanceRule, ...value };
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
         let r = await this.attendanceservice.addAttendanceRule(attendanceRule);
-        this.message = 'Success! Attendance Rule Submit Successfully';
-        setTimeout(() => {
-            this.message = null;
-        }, 3000);
         this.AttendanceRuleForm.reset();
     }
 

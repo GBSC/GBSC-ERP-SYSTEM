@@ -20,7 +20,7 @@ export class MasterpayrollComponent implements OnInit {
     public frequency: any;
     public masterdetailupdating: any;
     public masterPayrollDetail: any;
-    private payrollDetail: MasterPayrollDetail[];
+    public payrollDetail: MasterPayrollDetail[];
     public banksPayroll: any;
     public payrollType: any;
     public MasterPayrollForm: any;
@@ -31,7 +31,7 @@ export class MasterpayrollComponent implements OnInit {
 
     @Input('masterPayrollId') id: number;
 
-    constructor(private fb: FormBuilder, public toastr: ToastrService, public router: Router, private activatedRoute: ActivatedRoute,
+    constructor(public fb: FormBuilder, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute,
         public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
 
     async ngOnInit() {

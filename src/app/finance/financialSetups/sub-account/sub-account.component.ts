@@ -14,7 +14,7 @@ export class SubAccountComponent implements OnInit {
     public masterAccount: any;
     public UpdatingsubAccount: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
@@ -48,7 +48,7 @@ export class SubAccountComponent implements OnInit {
 
     async deleteSubaccount(value) {
 
-        await this.financeService.DeleteSubAccount(value.data);
+        await this.financeService.DeleteSubAccount(value.key);
     }
 
 }

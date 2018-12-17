@@ -19,31 +19,35 @@ export class EmbryologyComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private clinicalRecord: any;
-    private embryology: any;
-    private tvopu: any;
-    private embryologists: any;
-    private embryologydetails: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public clinicalRecord: any;
+    public embryology: any;
+    public tvopu: any;
+    public embryologists: any;
+    public embryologydetails: any;
+    public eggNumber: any = "";
+    public fateOptions: any;
 
-    private embryologyForm: FormGroup;
+    public embryologyForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private treatmentService: TreatmentService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologyService,
-        private embryologistService: EmbryologistService,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public route: ActivatedRoute,
+        public router: Router,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologyService,
+        public embryologistService: EmbryologistService,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
+
+        this.fateOptions = [{ name: "Stored" }, { name: "Replaced" }, { name: "Discarded" }, { name: "None" }];
 
         this.embryologyForm = formBuilder.group({
             EggNumber: [''],
@@ -86,17 +90,7 @@ export class EmbryologyComponent implements OnInit {
 
                     })
 
-                    this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
-
-                        this.embryology = emb;
-                        if (this.embryology) {
-                            console.log("Patching values..")
-                            this.patchValues(this.embryology);
-                            this.embryologydetails = emb.patientEmbryologyDetails;
-
-                        }
-
-                    })
+                    this.setValues();
                 }
 
             });
@@ -108,13 +102,25 @@ export class EmbryologyComponent implements OnInit {
 
             this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-            this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+            this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
             this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
 
             this.embryologistService.getEmbryologists().subscribe(resp => this.embryologists = resp);
 
 
+        });
+    }
+
+    setValues() {
+
+        this.embryologyService.getPatientEmbryologyByTvopuId(this.tvopu.tvopuId).subscribe(emb => {
+
+            this.embryology = emb;
+            if (this.embryology) {
+                this.patchValues(this.embryology);
+                this.embryologydetails = emb.patientEmbryologyDetails;
+            }
         });
     }
 
@@ -125,6 +131,24 @@ export class EmbryologyComponent implements OnInit {
         });
     }
 
+    rowInserted(value) {
+        if (value.data.fate == "Discarded") {
+            if (this.eggNumber != "")
+                this.eggNumber = this.eggNumber + "," + value.data.eggNumber;
+            else
+                this.eggNumber = value.data.eggNumber;
+        }
+    }
+
+    rowUpdated(value) {
+        if (value.data.fate == "Discarded") {
+            if (this.eggNumber != "")
+                this.eggNumber = this.eggNumber + "," + value.data.eggNumber;
+            else
+                this.eggNumber = value.data.eggNumber;
+        }
+    }
+
 
     submitForm(value) {
 
@@ -133,11 +157,9 @@ export class EmbryologyComponent implements OnInit {
 
         this.embryologyService.addPatientEmbryology(value).subscribe(resp => {
             this.displayToast("Patient Embryology Saved");
-            this.router.navigate(["/lab/embryology/" + this.tvopu.tvopuId]);
+            this.setValues();
         });
     }
-
-
 
     update(value) {
         value.tvopuId = this.id;
@@ -145,7 +167,7 @@ export class EmbryologyComponent implements OnInit {
         value.patientEmbryologyDetails = this.embryologydetails;
         this.embryologyService.updatePatientEmbryology(value).subscribe(resp => {
 
-            this.displayToast("Patient Embryology Saved");
+            this.displayToast("Patient Embryology Updated");
 
         });
 

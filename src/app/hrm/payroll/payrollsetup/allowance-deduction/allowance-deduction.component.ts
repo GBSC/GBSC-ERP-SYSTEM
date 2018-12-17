@@ -11,9 +11,9 @@ export class AllowanceDeductionComponent implements OnInit {
     public allowancededuction: any;
     public allowanceCalculationTypes: any;
     public AllowanceorDeductionForm: FormGroup;
-    private updatingdeduction: any;
+    public updatingdeduction: any;
 
-    constructor(private fb: FormBuilder, public payrollSetupService: PayrollSetupService) { }
+    constructor(public fb: FormBuilder, public payrollSetupService: PayrollSetupService) { }
 
     async ngOnInit() {
 

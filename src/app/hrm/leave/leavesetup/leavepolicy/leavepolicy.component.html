@@ -31,7 +31,7 @@
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveYearId" caption="Leave Year">
-              <dxo-lookup [dataSource]="leaveYears" displayExpr="year" valueExpr="leaveYearId">
+              <dxo-lookup [dataSource]="leaveYears" displayExpr="name" valueExpr="leaveYearId">
               </dxo-lookup>
             </dxi-column>
             <dxi-column dataField="leaveTypeId" caption="Leave">
@@ -49,8 +49,8 @@
             <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
             <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false"></dxi-column>
             <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false"></dxi-column>
-            <dxi-column dataField="maximumAtATime" [visible]="false" [visible]="false"></dxi-column>
-            <dxi-column dataField="minimumAtATime" [visible]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="maximumAtATime" caption="maximum at a Time" [visible]="false"></dxi-column>
+            <dxi-column dataField="minimumAtATime" caption="minimum at a Time" [visible]="false"></dxi-column>
             <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
             <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
             <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
@@ -65,7 +65,7 @@
             <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isShortLeaveAllowed"></dxi-column>
             <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
             <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
@@ -73,10 +73,10 @@
             <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="allowOnZeroBalance" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="allowOnZeroBalance" caption="Allow on Zero Balance" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
             <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="printOnPaySlip" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="printOnPaySlip" caption="Print on Payslip" [visible]="false"></dxi-column>
           </dx-data-grid>
 
         </div>

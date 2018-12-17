@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
+import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
 @Component({
     selector: 'app-product-type',
@@ -8,10 +9,15 @@ import { ProductType } from '../../../core/Models/Pharmacy/ProductType';
     styleUrls: ['./product-type.component.scss']
 })
 export class ProductTypeComponent implements OnInit {
-    private ProductTypes: ProductType;
-    private UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    // @ViewChild(InventoryItemComponent) InventoryItemComponent : InventoryItemComponent;
+
+    @Output() UpdateProductTypeInInventoryItemComponent = new EventEmitter<any>()
+
+    public ProductTypes: ProductType;
+    public UpdatedModel: any;
+
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 
@@ -21,7 +27,10 @@ export class ProductTypeComponent implements OnInit {
 
     async AddProductType(value) {
         await this.PharmacyService.AddProductType(value.data).toPromise();
-        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => {
+            this.ProductTypes = res;
+            this.UpdateProductTypeInInventoryItemComponent.emit(this.ProductTypes);
+        });
     }
 
     UpdateModel(value) {

@@ -20,7 +20,7 @@
                         MRN No.
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        placeholder="{{patient?.mrn}}" disabled> </div>
+                        [value]="patient?.mrn" disabled> </div>
                   </div>
                 </div>
                 <div class="col-sm-2">
@@ -58,7 +58,7 @@
                       Patient Name
                     </label>
                     <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
-                      [searchEnabled]="true">
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -67,7 +67,7 @@
                     <label for="exampleInputEmail1">
                       Spouse
                     </label>
-                    <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
                   </div>
                 </div>
                 <div class="col-sm-3">
@@ -76,7 +76,7 @@
                       Doctor
                     </label>
                     <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                      [searchEnabled]="true">
+                      [searchEnabled]="true" [disabled]="true">
                     </dx-select-box>
                   </div>
                 </div>
@@ -123,7 +123,7 @@
                         <label for="exampleInputEmail1">
                           Collection No.
                         </label>
-                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input type="number" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                           [value]="freezePrepration?.collectionNumber" formControlName="CollectionNumber">
                       </div>
                     </div>
@@ -141,7 +141,7 @@
                         <label for="exampleInputEmail1">
                           Procedure#
                         </label>
-                        <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input type="number" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                           [value]="freezePrepration?.procedureNumber" formControlName="ProcedureNumber">
                       </div>
                     </div>
@@ -157,7 +157,7 @@
                           No. Straw Frozen
                         </label>
                         <div class="col-md-7">
-                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          <input type="number" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
                             [value]="freezePrepration?.noOfStrawFrozen" formControlName="NoOfStrawFrozen">
                         </div>
 
@@ -175,12 +175,12 @@
                         <tbody>
                           <tr>
                             <td width="184">Drawer</td>
-                            <td width="168"><input class="form-control m-input" type="text" id="example-text-input"
+                            <td width="168"><input class="form-control m-input" type="number" id="example-text-input"
                                 [value]="freezePrepration?.drawerNumber" formControlName="DrawerNumber"></td>
                           </tr>
                           <tr>
                             <td>Cannister</td>
-                            <td><input class="form-control m-input" type="text" id="example-text-input3" [value]="freezePrepration?.cannisterNumber"
+                            <td><input class="form-control m-input" type="number" id="example-text-input3" [value]="freezePrepration?.cannisterNumber"
                                 formControlName="CannisterNumber"></td>
                           </tr>
                           <tr>
@@ -321,7 +321,7 @@
                   <button *ngIf="!freezePrepration" type="button" class="btn btn-primary m-btn m-btn--custom" (click)="submitForm(freePreprationForm.value)">
                     Submit
                   </button>
-                  <button [routerLink]="['/lab/embryology-thawing', id]" type="button" class="btn btn-brand m-btn m-btn--custom">
+                  <button [routerLink]="['/lab/embryology-thawing', id]" type="button" class="btn btn-brand m-btn m-btn--custom" disabled>
                     Thaw Detail
                   </button>
                   <a [routerLink]="['/lab/insemenation-prep', id]" class="btn btn-info m-btn m-btn--custom">

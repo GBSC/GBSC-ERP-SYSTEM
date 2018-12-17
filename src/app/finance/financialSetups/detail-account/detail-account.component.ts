@@ -10,12 +10,12 @@ import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup
 })
 export class DetailAccountComponent implements OnInit {
 
-    detailAccount: any;
-    DetailAccountForm: any;
-    secondSubAccount: any;
-    UpdatingdetailAccount: any;
+    public detailAccount: any;
+    public DetailAccountForm: any;
+    public secondSubAccount: any;
+    public UpdatingdetailAccount: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
@@ -49,7 +49,7 @@ export class DetailAccountComponent implements OnInit {
 
     async deleteDetailaccount(value) {
 
-        await this.financeService.DeleteDetailAccount(value.data);
+        await this.financeService.DeleteDetailAccount(value.key);
     }
 
 }

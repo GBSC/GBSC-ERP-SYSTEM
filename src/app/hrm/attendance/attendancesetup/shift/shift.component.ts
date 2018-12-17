@@ -14,9 +14,9 @@ export class ShiftComponent implements OnInit {
     public ShiftForm: FormGroup;
     public shift: any;
     public attendanceflag: any;
-    private assignRoster: AssignRosterShift[];
-    private AssignRosters: any;
-    constructor(private fb: FormBuilder, public attendancesetupservice: AttendancesetupService) { }
+    public assignRoster: AssignRosterShift[];
+    public AssignRosters: any;
+    constructor(public fb: FormBuilder, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 

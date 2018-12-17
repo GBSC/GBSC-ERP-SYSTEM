@@ -211,7 +211,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">
-                    Modal title
+                    Add Medicine
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
@@ -227,7 +227,7 @@
                                 <label for="exampleInputEmail1">
                                     Manual Code
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched" style="width: 100px;"
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched"
                                     (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)" formControlName="ManualCode">
                                     <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
                                         {{x?.itemCode}}
@@ -324,7 +324,7 @@
                                 <label for="exampleInputEmail1">
                                     Discount %
                                 </label>
-                                <input type="text" [disabled]="dataEnabled" #DiscountPercentage class="form-control m-input m-input--solid"
+                                <input type="text" [disabled]="fieldsenabled" #DiscountPercentage class="form-control m-input m-input--solid"
                                     formControlName="DiscountPercentage" (keyup)="CalculateDiscountAmount(DiscountPercentage.value || 0)">
                             </div>
                         </div>
@@ -381,7 +381,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
-                <button class="btn btn-success" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)">Save</button>
+                <button class="btn btn-success"  (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)">Save</button>
             </div>
         </div>
     </div>

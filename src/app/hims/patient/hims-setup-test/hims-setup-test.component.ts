@@ -11,7 +11,7 @@ export class HimsSetupTestComponent implements OnInit {
     public test: any;
     public patient: any;
 
-    constructor(private PatientServiceobj: PatientService) {
+    constructor(public PatientServiceobj: PatientService) {
 
     }
 

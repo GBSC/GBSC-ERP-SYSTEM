@@ -13,7 +13,7 @@ export class AttendancerequestComponent implements OnInit {
     public attendanceRequestApprover: any;
     public assignroster: any;
     public employees: any;
-    private UpdatingRequest;
+    public UpdatingRequest;
 
     constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
         public Employeeservice: EmployeeService) { }

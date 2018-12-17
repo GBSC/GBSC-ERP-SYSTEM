@@ -8,16 +8,15 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
     styleUrls: ['./payrollbank.component.scss']
 })
 export class PayrollbankComponent implements OnInit {
-
-
+    pattern: any = /^\d{3}-\d{8}$/i;
     public payrollBank: any;
     public PayrollBankForm: FormGroup;
-    private updatingbank: any;
+    public updatingbank: any;
     public chequeTemplate: any;
     public msg: any;
     public bankAdviceTemplate: any;
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public setupservice: SetupService) { }
+    constructor(public fb: FormBuilder, public payrollsetupservice: PayrollSetupService, public setupservice: SetupService) { }
 
     async ngOnInit() {
 

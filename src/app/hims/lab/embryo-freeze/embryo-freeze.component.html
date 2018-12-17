@@ -59,7 +59,7 @@
                         TVOPU Ref.#
                       </label>
                       <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        [value]="tvopu?.tvopuId">
+                        [value]="tvopu?.tvopuId" disabled>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -68,7 +68,7 @@
                         Doctor
                       </label>
                       <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
-                        [searchEnabled]="true">
+                        [searchEnabled]="true" [disabled]="true">
                       </dx-select-box>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
                   <dx-data-grid id="gridContainer" [dataSource]="embryoFreezeDetails">
 
                     <dxo-paging [enabled]="true"></dxo-paging>
-                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
                     </dxo-editing>
                     <dxi-column dataField="embryoNumber" caption="Embryo No."></dxi-column>
                     <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
@@ -93,11 +93,6 @@
                       <dxo-lookup [dataSource]="topBottomOptions" displayExpr="name" valueExpr="name">
                       </dxo-lookup>
                     </dxi-column>
-                    <dxi-column dataField="freeFreeze" caption="Free Freeze">
-                      <dxo-lookup [dataSource]="freeFreezeOptions" displayExpr="name" valueExpr="name">
-                      </dxo-lookup>
-                    </dxi-column>
-
                   </dx-data-grid>
                 </div>
                 <hr>

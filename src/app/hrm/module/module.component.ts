@@ -9,7 +9,7 @@ import { SystemAdministrationService } from '../../core';
 })
 export class ModuleComponent implements OnInit {
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 

@@ -19,29 +19,29 @@ export class EmbryoFreezeComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private id: number;
-    private clinicalRecord: any;
-    private thawAssessment: any;
-    private embryoFreezeDetails: any;
-    private tvopu: any;
-    private freeFreezeOptions: any;
-    private topBottomOptions: any;
-    private thawAssessmentForm: FormGroup;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public id: number;
+    public clinicalRecord: any;
+    public thawAssessment: any;
+    public embryoFreezeDetails: any;
+    public tvopu: any;
+    public freeFreezeOptions: any;
+    public topBottomOptions: any;
+    public thawAssessmentForm: FormGroup;
 
     constructor(
-        private formBuild: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private route: ActivatedRoute,
-        private tvopuService: TvopuService,
-        private embryologyService: EmbryologyService,
-        private thawAssessmentService: ThawAssessmentService,
-        private toastr: ToastrService,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public formBuild: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public route: ActivatedRoute,
+        public tvopuService: TvopuService,
+        public embryologyService: EmbryologyService,
+        public thawAssessmentService: ThawAssessmentService,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.thawAssessmentForm = this.formBuild.group({
             "CreateDate": ['']
@@ -61,18 +61,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.id = +params['id'];
 
-            this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
-
-                this.thawAssessment = cresp;
-
-                this.patchValues(this.thawAssessment);
-
-                if (this.thawAssessment) {
-                    this.embryoFreezeDetails = [];
-                    this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
-                }
-
-            });
+            this.setValues();
 
             this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
@@ -84,19 +73,14 @@ export class EmbryoFreezeComponent implements OnInit {
 
                     if (this.tvopu) {
 
-                        console.log(this.embryoFreezeDetails.length);
-
                         if (!(this.embryoFreezeDetails.length > 0)) {
 
                             this.embryologyService.getPatientEmbryologyDetailsByTvopuId(this.tvopu.tvopuId).subscribe(det => {
 
                                 for (let embryo of det) {
 
-                                    if (!(this.embryoFreezeDetails.length > 0)) {
-
+                                    if (embryo.fate == "Stored")
                                         this.embryoFreezeDetails.push({ embryoNumber: embryo.eggNumber });
-
-                                    }
                                 }
 
                             });
@@ -118,7 +102,7 @@ export class EmbryoFreezeComponent implements OnInit {
 
             this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-            this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+            this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
 
         });
@@ -128,6 +112,22 @@ export class EmbryoFreezeComponent implements OnInit {
         this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
             this.patient = patient;
             this.spouse = patient.partner;
+        });
+    }
+
+    setValues() {
+
+        this.thawAssessmentService.getThawAssessmentByClinicalRecordId(this.id).subscribe(cresp => {
+
+            this.thawAssessment = cresp;
+
+            this.patchValues(this.thawAssessment);
+
+            if (this.thawAssessment) {
+                this.embryoFreezeDetails = [];
+                this.embryoFreezeDetails = this.thawAssessment.embryoFreezeUnthaweds;
+            }
+
         });
     }
 
@@ -143,7 +143,10 @@ export class EmbryoFreezeComponent implements OnInit {
             value.tvopuId = this.tvopu.tvopuId;
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
+        this.embryoFreezeDetails.forEach(element => {
+            element.patientId = this.patient.patientId;
 
+        });
 
         this.thawAssessmentService.addThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Saved"));
 
@@ -152,9 +155,15 @@ export class EmbryoFreezeComponent implements OnInit {
     updateForm(value) {
         if (this.tvopu)
             value.tvopuId = this.tvopu.tvopuId;
+
+        this.embryoFreezeDetails.forEach(element => {
+            element.patientId = this.patient.patientId;
+
+        });
         value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
         value.embryoFreezeUnthaweds = this.embryoFreezeDetails;
         value.thawAssessmentId = this.thawAssessment.thawAssessmentId;
+
 
         this.thawAssessmentService.updateThawAssessment(value).subscribe(resp => this.displayToast("Embryo Freeze Updated"));
     }

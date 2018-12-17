@@ -38,7 +38,7 @@
                             <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
                         </dxi-column>
                         <dxi-column dataField="leaveYearId" caption="Leave Year" [width]="450">
-                            <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                            <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="remarks"></dxi-column>

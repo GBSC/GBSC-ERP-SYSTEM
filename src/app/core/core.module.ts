@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuardService, ModuleGuardService, AccountService, DashboardService, BioChemistryService, InseminationprepService, ConsultantService, PatientService, AttendanceService, AttendancesetupService, EmployeeService, LeaveService, LeaveSetupService, PayrollService, PayrollSetupService, HrmsService, SetupService, SystemAdministrationService, InventorysystemService, PharmacyService, SuperadminserviceService } from '.';
+import { AuthGuardService, ModuleGuardService, AuthService, DashboardService, BioChemistryService, InseminationprepService, ConsultantService, PatientService, AttendanceService, AttendancesetupService, EmployeeService, LeaveService, LeaveSetupService, PayrollService, PayrollSetupService, HrmsService, SetupService, SystemAdministrationService, InventorysystemService, PharmacyService, SuperadminserviceService } from '.';
 import { ApiService } from './Services/api.service';
 import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
@@ -28,10 +28,11 @@ import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryout
         ApiService,
         AuthGuardService,
         ModuleGuardService,
-        AccountService,
+        AuthService,
         DashboardService,
         //FinanceService,
         BioChemistryService,
+        BiochemistryoutsiderService,
         InseminationprepService,
         ConsultantService,
         PatientService,

@@ -32,7 +32,7 @@ export class GeneralactionsComponent implements OnInit {
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
 
     async  ngOnInit() {
 
@@ -63,23 +63,23 @@ export class GeneralactionsComponent implements OnInit {
             this.Patient = Patient
             if (this.Patient.appointments.length) {
                 this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'pendding');
-               console.log('if')
+                console.log('if')
                 // console.log(this.currentconsultant);
                 // console.log(this.consultants);
-                
+
                 // console.log(this.consultants.find(t =>  
                 //     t.consultantId == this.currentconsultant.consultantId));
-                    this.currentconsultant.forEach((consultant : Consultant ) => {
-                        let a : Consultant = this.consultants.find(t =>  
-                            t.consultantId == consultant.consultantId);
-                            this.consultant.push(a);
-                            console.log(a);
-                    });
-                    console.log(this.consultant);
-                    
-                    // this.consultant =  this.consultants.find(t =>  
-                    //     t.consultantId == this.currentconsultant.consultantId);
-                    //    console.log(this.consultant);
+                this.currentconsultant.forEach((consultant: Consultant) => {
+                    let a: Consultant = this.consultants.find(t =>
+                        t.consultantId == consultant.consultantId);
+                    this.consultant.push(a);
+                    console.log(a);
+                });
+                console.log(this.consultant);
+
+                // this.consultant =  this.consultants.find(t =>  
+                //     t.consultantId == this.currentconsultant.consultantId);
+                //    console.log(this.consultant);
             }
             console.log(this.Patient);
             console.log('else')
@@ -98,12 +98,12 @@ export class GeneralactionsComponent implements OnInit {
                 this.displayToastError("Please Select Consultant")
             }
             else {
-                 await this.PatientServiceobj.AddVisits(this.id);
+                await this.PatientServiceobj.AddVisits(this.id);
                 let x = this.currentconsultant.find(t => t.consultantId == value)
                 x.visitStatus = 'start';
-                 this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
+                this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
                 //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-                 this.router.navigate(['/hims/patient/visits/' + this.id]);
+                this.router.navigate(['/hims/patient/visits/' + this.id]);
                 console.log(x);
                 console.log(value)
             }

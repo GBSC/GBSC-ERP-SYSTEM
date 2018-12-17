@@ -75,7 +75,7 @@
                       </label>
                       <input type="number" class="form-control m-input" formControlName="GstPercentage" placeholder="0">
                     </div>
-                  </div> 
+                  </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
@@ -111,7 +111,7 @@
                       <input type="number" class="form-control m-input" formControlName="TaxPercentage" placeholder="0">
                     </div>
                   </div>
- 
+
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
@@ -131,18 +131,18 @@
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Expenses
-                          </label>
-                          <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
-                        </div>
-                      </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Expenses
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="Expenses" placeholder="0">
+                    </div>
+                  </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="">
-                         Purchase Invoice
+                        Purchase Invoice
                       </label>
                       <select class="form-control m-input" formControlName="FinancePurchaseInvoiceId">
                         <option value="" disabled selected>-- Select Purchase Invoice --</option>
@@ -161,13 +161,13 @@
                       </select> </div>
                   </div>
                   <div class="col-sm-3">
-                      <div class="form-group m-form__group">
-                        <label>
-                          Total Amount:
-                        </label>
-                        <input type="number" class="form-control m-input" formControlName="TotalAmount" placeholder="0">
-                      </div>
+                    <div class="form-group m-form__group">
+                      <label>
+                        Total Amount:
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="TotalAmount" placeholder="0">
                     </div>
+                  </div>
                 </div>
 
                 <div class="form-group row">
@@ -187,9 +187,7 @@
                 <h3>
                   Prchase Return Detail
                 </h3>
-                <dx-data-grid id="gridContainer" [dataSource]="PurchaseDetail" 
-                (onRowInserted)="addpurchaseReturnDetail($event)"
-                (onRowUpdated)="updatepurchaseReturnDetail($event)">
+                <dx-data-grid id="gridContainer" [dataSource]="PurchaseDetail" (onRowInserted)="addpurchaseReturnDetail($event)" (onRowUpdated)="updatepurchaseReturnDetail($event)">
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -206,21 +204,27 @@
               </div>
               <div class="m-separator"></div>
 
-              <div *ngIf="isUpdate(); else create" class="m--align-right">
-                <button class="btn btn-primary" (click)="update(PurchaseReturnForm.value)">
-                    Update
-                  </button>        
-            </div> 
-            <ng-template #create>
-              <button class="btn btn-primary" (click)="addPurchaseReturn(PurchaseReturnForm.value)">
-                Submit
-              </button>  
-            </ng-template> 
-  
+              <div class="form-group row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div *ngIf="isUpdate(); else create" class="m--align-right">
+                    <button class="btn btn-primary" (click)="update(PurchaseReturnForm.value)">
+                      Update
+                    </button>
+                  </div>
+                  <ng-template #create class="m--align-left">
+                    <button class="btn btn-primary" (click)="addPurchaseReturn(PurchaseReturnForm.value)">
+                      Submit
+                    </button>
+                    <button class="btn btn-default" type="reset">
+                      Reset
+                    </button>
+                  </ng-template>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

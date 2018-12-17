@@ -44,12 +44,12 @@ export class VisitsComponent implements OnInit {
     public patinetappointment: any = [];
     id: number;
     vistid: number;
-    private Patient: any;
+    public Patient: any;
     Visits: Visits;
 
     public Patientappointment: any;
 
-    constructor(private toastr: ToastrService, private formBuilder: FormBuilder, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) {
+    constructor(public toastr: ToastrService, public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) {
 
         this.PatientVisitNoteForm = this.formBuilder.group({
             'ClinicalNote': ['', Validators.required],
@@ -137,7 +137,7 @@ export class VisitsComponent implements OnInit {
         console.log(x);
         console.log(this.Patient.appointments)
         let y = this.Patient.appointments.find(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && (t.visitStatus === 'start'));
-       
+
         y.visitStatus = 'end';
         console.log(y);
         await this.PatientServiceobj.updateAppointment(y);

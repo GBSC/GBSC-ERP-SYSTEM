@@ -25,6 +25,9 @@ import { PurchasereturndetailComponent } from './purchasereturndetail/purchasere
 import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
+import { DemoComponent } from './demo/demo.component';
+import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 
 @NgModule({
     imports: [
@@ -34,7 +37,7 @@ import { VoucherDetailComponent } from './voucher-detail/voucher-detail.componen
         DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
-        routing,
+        routing
 
     ],
     declarations: [
@@ -58,7 +61,10 @@ import { VoucherDetailComponent } from './voucher-detail/voucher-detail.componen
         PurchasereturndetailComponent,
         SalesInvoiceDetailComponent,
         SalesReturnDetailComponent,
-        VoucherDetailComponent
+        VoucherDetailComponent,
+        DemoComponent,
+        UpdateVoucherComponent,
+        ReportViewerComponent
     ],
     providers: [FinanceSetupService, FinanceService]
 })

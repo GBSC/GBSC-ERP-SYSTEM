@@ -29,7 +29,7 @@ import { PrescriptionViewComponent } from './prescription-view/prescription-view
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'pharmacy',
+        path: '',
         component: RootComponent,
         children: [
             { path: '', component: HomeComponent },

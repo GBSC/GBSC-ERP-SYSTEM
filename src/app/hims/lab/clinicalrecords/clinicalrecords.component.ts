@@ -13,24 +13,14 @@ export class ClinicalrecordsComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
 
-    private clinicalRecords: any;
-    private searchForm: FormGroup;
+    public clinicalRecords: any;
 
-    constructor(private clinicalRecordService: PatientclinicalrecordService,
-        private patientService: PatientService,
-        private formBuilder: FormBuilder) {
-
-        this.searchForm = this.formBuilder.group({
-            'Mrn': [''],
-            'Patient': [''],
-            'Spouse': [''],
-            'TreatmentNumber': [''],
-            'CycleNumber': ['']
-        });
+    constructor(public clinicalRecordService: PatientclinicalrecordService,
+        public patientService: PatientService) {
 
     }
 
@@ -41,7 +31,7 @@ export class ClinicalrecordsComponent implements OnInit {
 
         });
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
     }
 

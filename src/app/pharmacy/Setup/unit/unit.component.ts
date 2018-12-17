@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { PharmacyService } from '../../../core';
 import { Unit } from '../../../core/Models/Pharmacy/Unit';
+import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
 
 @Component({
@@ -9,10 +10,13 @@ import { Unit } from '../../../core/Models/Pharmacy/Unit';
     styleUrls: ['./unit.component.css']
 })
 export class UnitComponent implements OnInit {
-    private Units: Unit;
-    private UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    @Output() UpdateUnitInInventoryItemComponent = new EventEmitter<any>();
+
+    public Units: Unit;
+    public UpdatedModel: any;
+
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 
@@ -22,7 +26,10 @@ export class UnitComponent implements OnInit {
 
     async AddUnit(value) {
         await this.PharmacyService.AddUnit(value.data).toPromise();
-        this.PharmacyService.GetUnits().subscribe((res: Unit) => this.Units = res);
+        this.PharmacyService.GetUnits().subscribe((res: Unit) => {
+            this.Units = res;
+            this.UpdateUnitInInventoryItemComponent.emit(this.Units)
+        });
     }
 
     UpdateModel(value) {

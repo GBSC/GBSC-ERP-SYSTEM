@@ -8,14 +8,17 @@ import { Currency } from '../../../core/Models/Pharmacy/Currency';
     styleUrls: ['./currency.component.scss']
 })
 export class CurrencyComponent implements OnInit {
-    private Currencies: Currency[];
-    private UpdatedModel: Currency;
-    constructor(private PharmacyService: PharmacyService) {
+    public Currencies: Currency[];
+    public UpdatedModel: Currency;
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => { this.Currencies = res; console.log(this.Currencies); });
+        this.PharmacyService.GetCurrency().subscribe((res: Currency[]) => {
+            this.Currencies = res;
+            // console.log(this.Currencies);
+        });
     }
 
     async AddCurrency(value) {

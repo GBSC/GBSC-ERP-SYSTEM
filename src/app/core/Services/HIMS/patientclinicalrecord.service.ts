@@ -7,9 +7,9 @@ import { TreatmentService } from './treatment.service';
 @Injectable()
 export class PatientclinicalrecordService {
 
-    private Url = "Hims/api/PatientClinicalRecord/"
+    public Url = "Hims/api/PatientClinicalRecord/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getPatientClinicalRecords(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllPatientClinicalRecords");

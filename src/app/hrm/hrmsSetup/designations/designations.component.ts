@@ -24,6 +24,7 @@ export class DesignationComponent implements OnInit {
     addDesignation(desg) {
 
         this.dataService.addDesignation(desg.data);
+        this.designatn = this.dataService.getAllDesignations();
     }
 
     EditDesignation(desig) {

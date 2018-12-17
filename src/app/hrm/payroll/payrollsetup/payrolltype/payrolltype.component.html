@@ -14,7 +14,8 @@
               <dx-data-grid id="gridContainer" [dataSource]="payrollType"
                keyExpr="payrollTypeId" 
                (onRowInserted)="addPayrollType($event)" 
-               (onRowUpdated)="updatePayrollType($event)" 
+               (onRowUpdating)="updatingPayrollType($event)" 
+               (onRowUpdated)="updatePayrollType()" 
                 (onRowRemoved)="deletePayrollType($event)">
 
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">

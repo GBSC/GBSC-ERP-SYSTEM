@@ -10,7 +10,7 @@ export class ProtocolComponent implements OnInit {
 
     public protocols: any;
 
-    constructor(private protocolService: ProtocolService) { }
+    constructor(public protocolService: ProtocolService) { }
 
     ngOnInit() {
 

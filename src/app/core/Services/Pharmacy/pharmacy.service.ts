@@ -34,8 +34,8 @@ import { SalesIndentViewModel } from '../../Models/Pharmacy/IndentViewModel';
 @Injectable()
 export class PharmacyService {
 
-    private readonly API_URL = 'inventory/api/';
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    public readonly API_URL = 'inventory/api/';
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 
@@ -266,6 +266,10 @@ export class PharmacyService {
     //InventoryItem
     GetInventoryItems(): Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
+    }
+
+    GetInventoryItem(id: number): Observable<InventoryItem> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItem/' + id);
     }
 
     GetInventoryItemsArray(): Observable<InventoryItem[]> {

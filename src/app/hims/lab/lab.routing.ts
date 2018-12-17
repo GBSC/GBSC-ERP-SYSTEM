@@ -106,28 +106,28 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'report',
                 children: [
                     {
-                        path : 'biochemistry-details-ontreatment',
-                        component : BiochemistryDetailsOntreatmentReportviewerComponent
+                        path: 'biochemistry-details-ontreatment',
+                        component: BiochemistryDetailsOntreatmentReportviewerComponent
                     },
                     {
-                        path : 'biochemistry-ontreatment',
-                        component : BiochemistryOntreatmentReportviewerComponent
+                        path: 'biochemistry-ontreatment',
+                        component: BiochemistryOntreatmentReportviewerComponent
                     },
                     {
-                        path : 'biochemistry-outsider',
-                        component : BiochemistryOutsiderReportviewerComponent
+                        path: 'biochemistry-outsider',
+                        component: BiochemistryOutsiderReportviewerComponent
                     },
                     {
-                        path : 'biopsy',
-                        component : BiopsyReportviewerComponent
+                        path: 'biopsy',
+                        component: BiopsyReportviewerComponent
                     },
                     {
-                        path : 'labsummary',
-                        component : LabsummaryReportviewerComponent
+                        path: 'labsummary',
+                        component: LabsummaryReportviewerComponent
                     },
                     {
-                        path : 'semen-analysis',
-                        component : SemenAnalysisOutsiderReportviewerComponent
+                        path: 'semen-analysis',
+                        component: SemenAnalysisOutsiderReportviewerComponent
                     }
                 ]
             }

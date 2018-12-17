@@ -9,11 +9,11 @@ import { PatientService } from '../../../core';
 })
 export class DailySemenAnalysisComponent implements OnInit {
 
-    private DailySemenAnalysisForm: FormGroup;
+    public DailySemenAnalysisForm : FormGroup;
     private ProcedureForm: FormGroup;
-    private Patients: any;
-    private Consultants: any;
-    private Procedure: any;
+    public Patients: any;
+    public Consultants: any;
+    public Procedure: any;
     private Procedurearray: any = [];
     private dailysemenanalysisobj: any;
 

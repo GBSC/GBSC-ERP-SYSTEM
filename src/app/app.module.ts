@@ -28,6 +28,8 @@ import { InventoryModule } from './inventory/inventory.module';
 import { SecurityAdminModule } from './security-admin/security-admin.module';
 import { EtrackerModule } from './etracker/etracker.module';
 import { TitlePipe } from './_pipes/title';
+import { Select2Module } from 'ng2-select2';
+
 
 
 
@@ -41,6 +43,7 @@ import { TitlePipe } from './_pipes/title';
     ],
     imports: [
         CommonModule,
+        Select2Module,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({
             timeOut: 5000,

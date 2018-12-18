@@ -21,11 +21,13 @@ import { SubsectionComponent } from './territories/subsection/subsection.compone
 import { DistributersComponent } from './territories/distributers/distributers.component';
 import { TerritoryComponent } from './territories/territory/territory.component';
 import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
+import { Select2Module } from 'ng2-select2';
 
 
 @NgModule({
     imports: [
         CommonModule,
+        Select2Module,
         ETrackerRoutingModule,
         FormsModule,
         ReactiveFormsModule,

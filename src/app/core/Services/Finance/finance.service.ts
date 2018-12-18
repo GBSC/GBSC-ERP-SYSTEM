@@ -137,6 +137,9 @@ export class FinanceService {
         return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
     }
 
+    getVoucherDetail(id):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetVoucherDetail/'+id);
+    }
     getVoucher(id): Observable<Voucher> {
 
         return this.ApiService.get(this.baseUrl + '/Finance/GetVoucher/' + id);
@@ -151,6 +154,10 @@ export class FinanceService {
 
         return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucherDetail`, VoucherDetail).toPromise();
 
+    }
+
+    updateVoucherDetails(value):Observable<VoucherDetail>{
+        return this.ApiService.put(this.baseUrl+'Finance/UpdateVoucherDetails',value);
     }
 
     async DeleteVoucherDetail(id) {
@@ -269,8 +276,79 @@ export class FinanceService {
         return this.ApiService.delete(this.baseUrl + '/Finance/DeleteAccount/' + id);
     }
 
-  getUnprocessedAccountsLedgers():Observable<any>{
-    return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedgers');
-  }
+    processAccountsForLedger(value):Observable<any>{
+        return this.ApiService.post(this.baseUrl+'Finance/ProcessAccountsForLedger',value);
+    }
+
+    getUnprocessedAccountsLedgers():Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedgers');
+    }
+
+    getUnprocessedAccountsLedgerById(id):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedger/'+id)
+    }
+
+    updateUnprocessedAccountsLedger(value):Observable<any>{
+        return this.ApiService.put(this.baseUrl+'Finance/UpdateUnprocessedAccountsLedger',value);
+    }
+
+    addUnprocessedAccountsLedgers(value):Observable<any>{
+        return this.ApiService.post(this.baseUrl+'Finance/AddUnprocessedAccountsLedgers',value);
+    }
+
+    deleteUnprocessedAccountsLedger(id : number):Observable<any>{
+        return this.ApiService.delete(this.baseUrl+'Finance/DeleteUnprocessedAccountsLedger/'+id);
+    }
+
+
+    getProcessedAccountsLedgers():Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetProcessedAccountsLedgers');
+    }
+    getProcessedAccountsLedgerById(id):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetProcessedAccountsLedger/'+id);
+    }
+    
+    updateProcessedAccountsLedger(value):Observable<any>{
+        return  this.ApiService.put(this.baseUrl+'Finance/UpdateProcessedAccountsLedger',value);
+    }
+
+    addProcessedAccountsLedgers(value):Observable<any>{
+        return this.ApiService.post(this.baseUrl+'Finance/AddProcessedAccountsLedgers',value);
+    }
+
+    deleteProcessedAccountsLedger(id : number):Observable<any>{
+        return this.ApiService.delete(this.baseUrl+'Finance/DeleteProcessedAccountsLedger/'+id);
+    }
+
+    getUnpostedVouchers():Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetUnpostedVouchers');
+    }
+
+    getUnpostedVoucher(id):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetUnpostedVoucher/'+id);
+    }
+
+    updateUnpostedVoucher(value):Observable<any>{
+        return this.ApiService.put(this.baseUrl+'Finance/UpdateUnpostedVoucher',value);
+    }
+
+    deleteUnpostedVoucher(id : number):Observable<any>{
+        return this.ApiService.delete(this.baseUrl+'Finance/DeleteUnpostedVoucher/'+id)
+    }
+
+    getPostedVouchers():Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchers');
+    }
+
+    getPostedVouchersByFinancialYear(id):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchersByFinancialYear/'+id);
+    }
+
+    getPostedVouchersByDateRange(fromdate , todate):Observable<any>{
+        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchersByDateRange/'+fromdate+'/'+todate);
+    }
+
+
+   
 
 }

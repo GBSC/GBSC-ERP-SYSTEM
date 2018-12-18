@@ -10,6 +10,7 @@ import { CityComponent } from './city/city.component';
 import { AuthGuardService } from '../core';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 import {UsersComponent} from './users/users.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
       { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
       { path: 'user-registration', component: UserregistrationComponent },
       { path: 'user-registration/:id', component: UserregistrationComponent },
-      { path: 'users', component: UsersComponent }
+      { path: 'users', component: UsersComponent },
+      { path: 'profile', component: ProfileComponent },
     ]
   }
 ];

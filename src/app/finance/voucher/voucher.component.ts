@@ -69,7 +69,7 @@ export class VoucherComponent implements OnInit {
             this.financialYear = res.filter(a => a.isActive == true);
         });
 
-        this.departments = await this.HrmService.getAllDepartments();
+        // this.departments = await this.HrmService.getAllDepartments();
     }
 
     initItemRows() {

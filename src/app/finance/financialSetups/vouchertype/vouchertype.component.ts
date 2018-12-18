@@ -11,17 +11,17 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VouchertypeComponent implements OnInit {
 
-    voucherType: any;
-    VoucherTypeForm: any;
-    updateVoucherType: any;
+    public voucherType: any;
+    public VoucherTypeForm: any;
+    public updateVoucherType: any;
 
-    constructor(private toastr: ToastrService,private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
         this.VoucherTypeForm = this.fb.group({
             VoucherCode: [''],
-            Name: [''] 
+            Name: ['']
         });
 
         this.voucherType = await this.financeService.getVoucherTypes();
@@ -46,7 +46,7 @@ export class VouchertypeComponent implements OnInit {
 
     async deleteVouchertype(value) {
 
-        await this.financeService.DeleteVoucherType(value.data);
+        await this.financeService.DeleteVoucherType(value.key);
     }
 
 }

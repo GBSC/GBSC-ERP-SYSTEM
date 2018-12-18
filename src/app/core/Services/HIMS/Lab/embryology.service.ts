@@ -6,34 +6,42 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class EmbryologyService {
 
-  private Url = "Hims/api/PatientEmbryology/"
+    private Url = "Hims/api/PatientEmbryology/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getPatientEmbryologyByTvopuId(id: number) {
-    return this.ApiService.get(this.Url + 'GetPatientEmbryologyByTvopuId/' + id);
-  }
+    getPatientEmbryologyByTvopuId(id: number) {
+        return this.ApiService.get(this.Url + 'GetPatientEmbryologyByTvopuId/' + id);
+    }
 
-  getPatientEmbryologies(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
-  }
+    getAllPatientEmbryologiesByPatientId(patientId: number) {
+        return this.ApiService.get(this.Url + 'GetAllPatientEmbryologiesByPatientId/' + patientId);
+    }
 
-  getPatientEmbryology(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientEmbryology/" + id);
-  }
+    getPatientEmbryologyDetailsByTvopuId(id: number) {
+        return this.ApiService.get(this.Url + 'GetPatientEmbryologyDetailsByTvopuId/' + id);
+    }
 
-  addPatientEmbryology(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddPatientEmbryology", value);
-  }
+    getPatientEmbryologies(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllPatientEmbryologies");
+    }
 
-  updatePatientEmbryology(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdatePatientEmbryology", value);
-  }
+    getPatientEmbryology(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientEmbryology/" + id);
+    }
 
-  deletePatientEmbryology(id) {
-    this.ApiService.delete(this.Url + "DeletePatientEmbryology" + id);
-  }
+    addPatientEmbryology(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddPatientEmbryology", value);
+    }
+
+    updatePatientEmbryology(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdatePatientEmbryology", value);
+    }
+
+    deletePatientEmbryology(id) {
+        this.ApiService.delete(this.Url + "DeletePatientEmbryology" + id);
+    }
 
 
 }

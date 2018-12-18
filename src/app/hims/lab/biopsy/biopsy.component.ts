@@ -6,6 +6,7 @@ import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.s
 import { BiopsyService } from '../../../../app/core/Services/HIMS/Lab/biopsy.service';
 import { ActivatedRoute } from '@angular/router';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-biopsy',
@@ -22,6 +23,8 @@ export class BiopsyComponent implements OnInit {
     private consultants: any;
     private treatments: any;
     private id: number;
+    private patientid: number;
+    private biopsyid: number;
     private clinicalRecord: any;
     private biopsy: any;
 
@@ -33,6 +36,7 @@ export class BiopsyComponent implements OnInit {
         private treatmentService: TreatmentService,
         private biopsyService: BiopsyService,
         private route: ActivatedRoute,
+        private toastr: ToastrService,
         private clinicalrecordservice: PatientclinicalrecordService) {
 
         this.biopsyForm = formBuilder.group({
@@ -49,7 +53,8 @@ export class BiopsyComponent implements OnInit {
             "TeseTime": [''],
             "TeseLeft": [''],
             "TeseRight": [''],
-            "TeseResult": ['']
+            "TeseResult": [''],
+            "PatientId": []
         });
 
         this.biopsyForm.disable();
@@ -58,16 +63,13 @@ export class BiopsyComponent implements OnInit {
     ngOnInit() {
 
         this.route.params.subscribe((params) => {
+
             this.id = +params['id'];
 
-            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+            this.biopsyid = +params['biopsyid'];
 
-                this.clinicalRecord = resp;
+            this.setValues();
 
-                this.biopsyService
-                    .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => this.biopsy = resp);
-
-            })
 
         })
 
@@ -80,9 +82,57 @@ export class BiopsyComponent implements OnInit {
 
         this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
 
-        this.patientService.getPatientObservable().subscribe(patients => this.patients = patients);
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
         this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+
+    }
+
+    setValues() {
+
+        if (this.id) {
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
+
+                this.clinicalRecord = resp;
+
+                this.patientid = this.clinicalRecord.patientId;
+
+                this.biopsyService
+                    .getPatientBiopsyByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId).subscribe(resp => {
+                        this.biopsy = resp;
+                        this.patchValues(this.biopsy);
+                    });
+
+            })
+        }
+        else if (this.biopsyid) {
+
+            this.biopsyService.getPatientBiopsy(this.biopsyid).subscribe(resp => {
+
+                this.biopsy = resp;
+
+                this.patientid = this.biopsy.patientId;
+
+                this.patchValues(this.biopsy);
+
+            })
+        }
+    }
+
+    searchBiopsyByCollectionDate(value) {
+
+        if (value) {
+
+            let date = new Date(value).toLocaleDateString();
+
+            let patientid = this.patient != null ? this.patient.patientId : 0;
+
+            if (patientid > 0)
+                this.biopsyService.getPatientBiopsyByCollectionDate(date, patientid)
+                    .subscribe(resp => this.biopsy = resp);
+
+        }
 
 
     }
@@ -96,9 +146,56 @@ export class BiopsyComponent implements OnInit {
 
     submitForm(value) {
 
-        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.patientId = this.patient.patientId;
 
-        this.biopsyService.addPatientBiopsy(value).subscribe(resp => console.log(resp));
+        if (this.clinicalRecord) {
+            value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+
+        }
+
+        this.biopsyService.addPatientBiopsy(value).subscribe(resp => {
+            this.displayToast("Biopsy Saved");
+            this.setValues();
+        });
+    }
+
+    updateForm(value) {
+        value.patientId = this.patient.patientId;
+        value.biopsyId = this.biopsy.biopsyId;
+
+        if (this.clinicalRecord) {
+            value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+
+        }
+
+        this.biopsyService.updatePatientBiopsy(value).subscribe(resp => this.displayToast("Biopsy Updated"));
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
+
+
+    patchValues(biopsy) {
+        this.biopsyForm.patchValue({
+            "BiopsyType": biopsy.biopsyType,
+            "CollectionNumber": biopsy.collectionNumber,
+            "CollectionDate": biopsy.collectionDate,
+            "ProcedureNumber": biopsy.procedureNumber,
+            "Remarks": biopsy.remarks,
+            "PesaTime": biopsy.pesaTime,
+            "PesaLeft": biopsy.pesaLeft,
+            "PesaRight": biopsy.pesaRight,
+            "PesaResult": biopsy.pesaResult,
+            "TeseTime": biopsy.teseTime,
+            "TeseLeft": biopsy.teseLeft,
+            "TeseRight": biopsy.teseRight,
+            "TeseResult": biopsy.teseResult,
+            "PatientId": biopsy.patientId
+
+        })
     }
 
 }

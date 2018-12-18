@@ -7,40 +7,44 @@ import { TreatmentService } from './treatment.service';
 @Injectable()
 export class PatientclinicalrecordService {
 
-  private Url = "Hims/api/PatientClinicalRecord/"
+    private Url = "Hims/api/PatientClinicalRecord/"
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getPatientClinicalRecords(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetAllPatientClinicalRecords");
-  }
+    getPatientClinicalRecords(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetAllPatientClinicalRecords");
+    }
 
-  searchClinicalRecords(patientname, spousename, mrn, cyclenumber, treatmentnumber) {
+    getClinicalRecordsByPatientId(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "getClinicalRecordsByPatientId/" + id);
+    }
 
-    let params = "patientname=" + patientname + "&spousename=" + spousename + "&mrn=" + mrn + "&cyclenumber=" + cyclenumber + "&treatmentnumber=" + TreatmentService;
+    searchClinicalRecords(patientname, spousename, mrn, cyclenumber, treatmentnumber) {
 
-    return this.ApiService.get(this.Url + "SearchClinicalRecords?" + params);
-  }
+        let params = "patientname=" + patientname + "&spousename=" + spousename + "&mrn=" + mrn + "&cyclenumber=" + cyclenumber + "&treatmentnumber=" + TreatmentService;
 
-  getPatientClinicalRecord(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientClinicalRecord/" + id);
-  }
+        return this.ApiService.get(this.Url + "SearchClinicalRecords?" + params);
+    }
 
-  getPatientClinicalRecordWithChildren(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetPatientClinicalRecordWithChildren/" + id);
-  }
+    getPatientClinicalRecord(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientClinicalRecord/" + id);
+    }
 
-  addPatientClinicalRecord(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddPatientClinicalRecord", value);
-  }
+    getPatientClinicalRecordWithChildren(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetPatientClinicalRecordWithChildren/" + id);
+    }
 
-  updatePatientClinicalRecord(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdatePatientClinicalRecord", value);
-  }
+    addPatientClinicalRecord(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddPatientClinicalRecord", value);
+    }
 
-  deletePatientClinicalRecord(id) {
-    this.ApiService.delete(this.Url + "DeletePatientClinicalRecord" + id);
-  }
+    updatePatientClinicalRecord(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdatePatientClinicalRecord", value);
+    }
+
+    deletePatientClinicalRecord(id) {
+        this.ApiService.delete(this.Url + "DeletePatientClinicalRecord" + id);
+    }
 
 
 }

@@ -19,13 +19,12 @@ export class SkillLevelsComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllSkillLevels();
-        this.skill = this.dataService.skilllevels;
-
+        this.skill = await this.dataService.getAllSkillLevels();
     }
 
     addNewskill(slevel) {
         this.dataService.addSkillLevel(slevel.data);
+        this.skill = this.dataService.getAllSkillLevels();
     }
 
     Editskill(skill) {

@@ -17,12 +17,13 @@ export class CurrencyComponent implements OnInit {
     constructor(public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
-        this.currency = await this.payrollsetupservice.getCurrencies();
 
+        this.currency = await this.payrollsetupservice.getCurrencies();
     }
 
     async addCurrency(value) {
         await this.payrollsetupservice.addCurrency(value.data);
+        this.currency = await this.payrollsetupservice.getCurrencies();
     }
 
     async updateCurrency(value) {

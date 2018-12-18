@@ -1,4 +1,4 @@
-<div class="m-content">
+<!-- <div class="m-content">
   <div class="row">
     <div class="col-xl-12">
       <div class="m-portlet">
@@ -19,7 +19,7 @@
               (onRowUpdated)="updateleavetype($event)"
                 (onRowRemoved)="deleteleavetype($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="LeaveType" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -40,4 +40,203 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+      
+    
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveType" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-share"></i>
+                    <span class="m-nav__link-text">
+                      Leave Type</span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveSubtype" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leave Subtype
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveDayType" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leave Day Type
+                    </span>
+                  </a>
+                </li>
+			<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveYear" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                     Leave Year
+                    </span>
+                  </a>
+                </li>
+				
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveEligibilty" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leave Eligibility
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leavePolicy" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                     Leave Policy
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leavePurpose" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                    Leave Purpose
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveTypeBalance" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leave Type Balance
+                    </span>
+                  </a>
+                </li>
+	
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#leaveApprover" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Leave Approver
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#prorateMatrix" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                     Prorate Matrix
+                    </span>
+                  </a>
+                </li>
+				<li class="m-nav__item">
+                  <a class="m-nav__link" href="#decimalRoundingMatrix" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                     Decimal Rounding Matrix
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+          <div class="tab-content">
+            <div class="tab-pane active" id="leaveType">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Leave Types</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-section">
+                    <div class="m-section__content">
+                      <dx-data-grid id="gridContainer"
+                       [dataSource]="levetype"
+                       keyExpr="leaveTypeId"
+                       (onRowInserted)="addleavetype($event)" 
+                      (onRowUpdated)="updateleavetype($event)"
+                        (onRowRemoved)="deleteleavetype($event)">
+                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                          <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                          </dxo-popup>
+                        </dxo-editing>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                        <dxo-paging [pageSize]="6"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                        </dxo-pager> 
+                        <dxi-column dataField="title"></dxi-column>
+                        <dxi-column dataField="dayCost"></dxi-column>
+                        <dxi-column dataField="dayPrice"></dxi-column>
+                        <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+                      </dx-data-grid>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="leaveSubtype">
+              <app-leavesubtype></app-leavesubtype>
+            </div>
+            <div class="tab-pane" id="leaveDayType">
+              <app-leavedaytype></app-leavedaytype>
+            </div>
+			<div class="tab-pane" id="leaveYear">
+              <app-leaveyearsetup></app-leaveyearsetup>
+            </div>
+			<div class="tab-pane" id="leaveEligibilty">
+              <app-leaveeligibility></app-leaveeligibility>
+            </div>
+			<div class="tab-pane" id="leavePolicy">
+              <app-leavepolicy></app-leavepolicy>
+            </div>
+			<div class="tab-pane" id="leavePurpose">
+              <app-leavepurpose></app-leavepurpose>
+            </div>
+			<div class="tab-pane" id="leaveTypeBalance">
+              <app-leavetypebalance></app-leavetypebalance>
+            </div>
+			<div class="tab-pane" id="leaveApprover">
+              <app-leaveapprover></app-leaveapprover>
+            </div>
+			<div class="tab-pane" id="prorateMatrix">
+              <app-proratematrix></app-proratematrix>
+            </div>
+			<div class="tab-pane" id="decimalRoundingMatrix">
+              <app-decimalroundingmatrix></app-decimalroundingmatrix>
+            </div>
+			 
+          </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>

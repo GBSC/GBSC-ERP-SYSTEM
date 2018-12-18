@@ -10,11 +10,10 @@ var BootstrapTimepicker = function () {
         // minimum setup
         $('#m_timepicker_2, #m_timepicker_2_modal').timepicker({
             minuteStep: 1,
-            defaultTime: '',
-            showSeconds: true,
-            showMeridian: false,
-            snapToStep: true
-        });
+            showSeconds: false,
+            snapToStep: false,
+            showInputs: true
+                });
 
         // default time
         $('#m_timepicker_3, #m_timepicker_3_modal').timepicker({

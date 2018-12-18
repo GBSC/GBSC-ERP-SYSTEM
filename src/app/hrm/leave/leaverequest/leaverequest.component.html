@@ -34,7 +34,7 @@
                     Leave Request Date:
                   </label>
                   <div class="col-lg-8">
-                    <dx-date-box formControlName="RequestDate" type="date">
+                    <dx-date-box formControlName="RequestDate" type="date" format="dd/MM/yyyy" width="100%">
                     </dx-date-box> 
                   </div>
                 </div>
@@ -43,8 +43,7 @@
 
             </div>
 
-            <div class="row">
-
+            <div class="row"> 
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
@@ -78,10 +77,9 @@
                 
                 <div class="m-section">
                   <div class="m-section__content">
-                  <dx-data-grid id="gridContainer" [dataSource]="[]" keyExpr="leaveRequestDetailId"
+                  <dx-data-grid id="gridContainer" [dataSource]="leaveDetail"
                   (onRowInserted)="leaveRequestDetail($event)"
-                  (onRowUpdating)="updatingRequestDetail($event)"
-                  (onRowUpdated)="updateRequestDetail()">
+                  (onRowUpdated)="updateLeaverequestDetail()">
                     <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -93,7 +91,7 @@
                     </dxo-pager>
         
                     <dxi-column dataField="leaveYearId" caption="Leave Year">
-                      <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                      <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                       </dxo-lookup>
                     </dxi-column>
                     <dxi-column dataField="leaveTypeId" caption="Leave Type">
@@ -114,26 +112,29 @@
           </div>
 
           <div class="m--space-50"></div>
-            
-          <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show"
-           role="alert" *ngIf="msg">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-            <strong> {{ msg }}</strong>
-          </div> 
-          <div class="row">
+ 
+          <div class="row" >
             <div class="col-md-12">
               <div class="m-portlet__foot m-portlet__foot--fit">
                 <div class="m-form__actions m-form__actions" style="padding:19px;">
                   <div class="row">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6">
-                      <button type="submit" (click)="addLeaveRequest(leaveRequestForm.value)" class="btn btn-success">
+                      <div *ngIf="isUpdate(); else create">
+                        <button class="btn btn-primary" (click)="update(leaveRequestForm.value)">
+                            Update
+                          </button>        
+                    </div> 
+                    <ng-template #create>
+                      <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
                         Submit
-                      </button>
+                      </button>  
                       <button type="reset" class="btn btn-secondary">
-                        Cancel
-                      </button>
+                          Reset
+                        </button>
+                    </ng-template> 
                     </div>
+                    <div class="col-lg-3"></div>
                   </div>
                 </div>
               </div>

@@ -40,9 +40,9 @@
                     Leave Year:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="LeaveYearId" name="leaveYear" id="">
+                    <select class="form-control m-input" formControlName="LeaveYearId">
                       <option value="" disabled selected>-- Select Leave Year --</option>
-                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.year}}</option>
+                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.name}}</option>
                     </select>
                   </div>
                 </div>
@@ -57,7 +57,7 @@
                     Remarks:
                   </label>
                   <div class="col-lg-8">
-                    <textarea class="form-control m-input" formControlName="Remarks" id="exampleTextarea" rows="3"></textarea>
+                    <textarea class="form-control m-input" formControlName="Remarks" rows="3"></textarea>
                   </div>
                 </div>
               </div>
@@ -84,11 +84,9 @@
         </div>
         <div class="m-portlet__body">
 
-          <dx-data-grid id="gridContainer" [dataSource]="[]" 
-          keyExpr="leaveOpeningDetailId" 
+          <dx-data-grid id="gridContainer" [dataSource]="leaveOpeningDetail" 
           (onRowInserted)="addLeaveopenDetail($event)"
-            (onRowUpdating)="updatingLeaveOpeningDetail($event)" 
-            (onRowUpdated)="updateLeaveOpeningDetail()">
+            (onRowUpdated)="updateLeaveopenDetail($event)">
             <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -104,27 +102,29 @@
             <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
             <dxi-column dataField="expiryDate" caption="Expiry Date" dataType="date" format="shortdate"></dxi-column>
           </dx-data-grid>
- 
-          <div class="m--space-50"></div>
-          <div class="m-alert m-alert--outline m-alert--outline-2x alert alert-success alert-dismissible fade show" role="alert" *ngIf="msg">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-            <strong> {{ msg }}</strong>
-          </div>
-
+          <!-- <div class="m--space-50"></div> -->
           <div class="m--space-10"></div>
-
           <div class="m-portlet__foot m-portlet__foot--fit">
             <div class="m-form__actions m-form__actions" style="padding:19px;">
               <div class="row">
-                <div class="col-lg-3"></div>
-                <div class="col-lg-6">
-                  <button type="submit" (click)="addleaveopening(leaveOpeningForm.value)" class="btn btn-success">
-                    Submit
-                  </button>
-                  <button type="reset" class="btn btn-secondary">
-                    Cancel
-                  </button>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+           
+                  <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(leaveOpeningForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="addleaveopening(leaveOpeningForm.value)">
+                      Submit
+                    </button>  
+                    <button type="reset" class="btn btn-secondary">
+                      Reset
+                    </button>
+                  </ng-template> 
                 </div>
+                  <div class="col-lg-4"></div>
               </div>
             </div>
           </div>

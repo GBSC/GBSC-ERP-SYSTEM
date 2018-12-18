@@ -19,7 +19,7 @@
                     [dataSource]="leaveopening" 
                     (onSelectionChanged)="selectionChanged($event)"
                     (onContentReady)="contentReady($event)"
-                     [masterDetail]="{ enabled: false, template: 'detail' }" [showBorders]="true">
+                     [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
                         
                         <!-- <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
                             </dxo-editing> -->
@@ -38,10 +38,16 @@
                             <dxo-header-filter [dataSource]="licensesHeaderFilter"></dxo-header-filter>
                         </dxi-column>
                         <dxi-column dataField="leaveYearId" caption="Leave Year" [width]="450">
-                            <dxo-lookup [dataSource]="leaveYear" displayExpr="year" valueExpr="leaveYearId">
+                            <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="remarks"></dxi-column>
+                        <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                        <div *dxTemplate="let d of 'chartCellTemplate'">
+                          <div class="chart-cell">
+                              <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
+                          </div>
+                      </div>
 
                         <div *dxTemplate="let leave of 'detail'">
                             <dx-data-grid [dataSource]="leave.data.leaveOpeningDetails" [showBorders]="true" [columnAutoWidth]="true">

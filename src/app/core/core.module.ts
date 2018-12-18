@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuardService, ModuleGuardService, AccountService, DashboardService, BioChemistryService, InseminationprepService, ConsultantService, PatientService, AttendanceService, AttendancesetupService, EmployeeService, LeaveService, LeaveSetupService, PayrollService, PayrollSetupService, HrmsService, SetupService, SystemAdministrationService, InventorysystemService, PharmacyService, SuperadminserviceService } from '.';
+import { AuthGuardService, ModuleGuardService, AuthService, DashboardService, BioChemistryService, InseminationprepService, ConsultantService, PatientService, AttendanceService, AttendancesetupService, EmployeeService, LeaveService, LeaveSetupService, PayrollService, PayrollSetupService, HrmsService, SetupService, SystemAdministrationService, InventorysystemService, PharmacyService, SuperadminserviceService } from '.';
 import { ApiService } from './Services/api.service';
 import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
@@ -16,6 +16,7 @@ import { BiopsyService } from './Services/HIMS/Lab/biopsy.service';
 import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.service';
 import { InsemenationService } from './Services/HIMS/Lab/insemenation.service';
 import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service';
+import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryoutsider.service';
 
 @NgModule({
     imports: [
@@ -27,10 +28,11 @@ import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service'
         ApiService,
         AuthGuardService,
         ModuleGuardService,
-        AccountService,
+        AuthService,
         DashboardService,
         //FinanceService,
         BioChemistryService,
+        BiochemistryoutsiderService,
         InseminationprepService,
         ConsultantService,
         PatientService,
@@ -58,7 +60,8 @@ import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service'
         BiopsyService,
         FreezepreprationService,
         InsemenationService,
-        SemenanalysisService
+        SemenanalysisService,
+        BiochemistryoutsiderService
     ]
 })
 export class CoreModule { }

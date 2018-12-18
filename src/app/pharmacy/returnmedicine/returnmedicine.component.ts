@@ -17,24 +17,24 @@ import { ToastrService } from 'ngx-toastr';
 export class ReturnmedicineComponent implements OnInit {
 
     private ReturnMedicineForm: FormGroup;
-    private ReturnMedicineDetailsForm : FormGroup;
+    private ReturnMedicineDetailsForm: FormGroup;
 
     private ReturnReasons: any;
-    private SelectedReturnReason : any;
+    private SelectedReturnReason: any;
     private Customers: any;
     private SelectedCustomer: any;
-    private SelectedSalesOrder : SalesOrder;
-    private SelectedSalesOrderDetails : any[] = [];
-    private SalesReturnDetails : SalesReturnItem[] = [];
-    private SalesReturn : SalesReturn;
-    private UpdateInventories : Inventory[] = [];
+    private SelectedSalesOrder: SalesOrder;
+    private SelectedSalesOrderDetails: any[] = [];
+    private SalesReturnDetails: SalesReturnItem[] = [];
+    private SalesReturn: SalesReturn;
+    private UpdateInventories: Inventory[] = [];
 
-    private ReturnAmount : number[] = [];
-    private TotalReturnAmount : number = 0;
-    private ReturnQuantity : number[] = [];
-    private TotalReturnQuantity : number = 0;
+    private ReturnAmount: number[] = [];
+    private TotalReturnAmount: number = 0;
+    private ReturnQuantity: number[] = [];
+    private TotalReturnQuantity: number = 0;
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast : ToastrService) {
+    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast: ToastrService) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
             MRN: [''],
@@ -47,32 +47,32 @@ export class ReturnmedicineComponent implements OnInit {
             SalesOrderNumber: [''],
             TotalReturnAmount: [''],
             ReturnReasonId: [''],
-            SalesOrderId : [''],
+            SalesOrderId: [''],
             SalesReturnItems: this.FormBuilder.array([])
         });
 
         this.ReturnMedicineDetailsForm = this.FormBuilder.group({
-            ItemCode : [''],
-            Description : [''],
-            PackType : [''],
-            PackSize : [''],
-            StockQuantity : [''],
-            PerUnit : [''],
-            Rate : [''],
-            PurchaseQuantity : [''],
-            ReturnQuantity : [''],
-            PurchaseAmount : [''],
-            ReturnAmount : ['']
+            ItemCode: [''],
+            Description: [''],
+            PackType: [''],
+            PackSize: [''],
+            StockQuantity: [''],
+            PerUnit: [''],
+            Rate: [''],
+            PurchaseQuantity: [''],
+            ReturnQuantity: [''],
+            PurchaseAmount: [''],
+            ReturnAmount: ['']
         });
 
     }
 
     ngOnInit() {
-        this.PharmacyService.GetReturnReasons().subscribe(res => { 
-            this.ReturnReasons = res; 
+        this.PharmacyService.GetReturnReasons().subscribe(res => {
+            this.ReturnReasons = res;
             // console.log(this.ReturnReasons) 
         });
-        this.PharmacyService.getCustomers().subscribe(result => { 
+        this.PharmacyService.getCustomers().subscribe(result => {
             this.Customers = result;
             // console.log(this.Customers); 
         });
@@ -94,8 +94,8 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("SelectedSalesOrderDetailsValue", value);
         if (event.key === "Enter") {
             this.ResetGrid();
-            this.PharmacyService.GetSalesOrderDetailsByCode(value).subscribe((res : SalesOrder) => {
-                if(res != null) {
+            this.PharmacyService.GetSalesOrderDetailsByCode(value).subscribe((res: SalesOrder) => {
+                if (res != null) {
                     this.SelectedSalesOrder = res;
                     // console.log("SelectedSalesOrder", this.SelectedSalesOrder);
                     this.SelectedSalesOrderDetails = this.SelectedSalesOrder.salesOrderItems;
@@ -147,20 +147,20 @@ export class ReturnmedicineComponent implements OnInit {
         this.ReturnMedicineDetailsForm.value.ReturnAmount = Number.parseFloat(this.SelectedSalesOrderDetails[index].inventoryItem.retailPrice) * Number.parseInt(returnquantity);
         // console.log("ReturnMedicineDetailsForm", this.ReturnMedicineDetailsForm);
 
-        var salesreturnitem : any = {
-            ReturnQuantity : Number.parseInt(returnquantity),
-            ReturnAmount : this.ReturnMedicineDetailsForm.value.ReturnAmount,
-            InventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId,
-            inventoryItemId : this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
+        var salesreturnitem: any = {
+            ReturnQuantity: Number.parseInt(returnquantity),
+            ReturnAmount: this.ReturnMedicineDetailsForm.value.ReturnAmount,
+            InventoryId: this.SelectedSalesOrderDetails[index].inventory.inventoryId,
+            inventoryItemId: this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
         };
         // console.log("salesreturnitem", salesreturnitem);
         this.SalesReturnDetails.push(salesreturnitem);
         // console.log("SalesReturnDetail", this.SalesReturnDetails);
 
-        var inventoryupdateobject : any = {
-            inventoryId : this.SelectedSalesOrderDetails[index].inventory.inventoryId,
-            stockQuantity : this.SelectedSalesOrderDetails[index].inventory.stockQuantity + Number.parseInt(returnquantity),
-            inventoryItemId : this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
+        var inventoryupdateobject: any = {
+            inventoryId: this.SelectedSalesOrderDetails[index].inventory.inventoryId,
+            stockQuantity: this.SelectedSalesOrderDetails[index].inventory.stockQuantity + Number.parseInt(returnquantity),
+            inventoryItemId: this.SelectedSalesOrderDetails[index].inventoryItem.inventoryItemId
         };
         // console.log("inventoryupdateobject", inventoryupdateobject);
         this.UpdateInventories.push(inventoryupdateobject);
@@ -185,7 +185,7 @@ export class ReturnmedicineComponent implements OnInit {
         this.ReturnMedicineForm.value.SalesReturnItems = this.SalesReturnDetails;
         // console.log("ReturnMedicineForm", this.ReturnMedicineForm);
 
-        var salesreturnsubmitobject : any = {
+        var salesreturnsubmitobject: any = {
             SalesOrderId: this.SelectedSalesOrder.salesOrderId,
             ReturnDate: this.ReturnMedicineForm.value.ReturnDate,
             Remarks: this.ReturnMedicineForm.value.Remarks,
@@ -196,7 +196,7 @@ export class ReturnmedicineComponent implements OnInit {
         console.log("salesreturnsubmitobject", salesreturnsubmitobject)
         this.SalesReturn = salesreturnsubmitobject;
         // console.log("SalesReturn", this.SalesReturn);
-        this.PharmacyService.AddSalesReturn(this.SalesReturn).subscribe( res => {
+        this.PharmacyService.AddSalesReturn(this.SalesReturn).subscribe(res => {
             // console.log("SalesReturnPostRequestPostRequest", res);
         });
         this.PharmacyService.UpdateInventories(this.UpdateInventories).subscribe(res => {
@@ -208,7 +208,7 @@ export class ReturnmedicineComponent implements OnInit {
     ResetWholeForm() {
         this.ReturnMedicineForm.reset();
         this.ReturnMedicineDetailsForm.reset();
-        this.SelectedReturnReason  = null;
+        this.SelectedReturnReason = null;
         this.SelectedCustomer = null;
         this.SelectedSalesOrder = null;
         this.SelectedSalesOrderDetails = null;

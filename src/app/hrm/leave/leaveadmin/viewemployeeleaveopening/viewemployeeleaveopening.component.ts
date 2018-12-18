@@ -3,37 +3,37 @@ import { LeaveService, LeaveSetupService, SetupService, EmployeeService } from '
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-viewemployeeleaveopening',
-  templateUrl: './viewemployeeleaveopening.component.html',
-  styleUrls: ['./viewemployeeleaveopening.component.scss']
+    selector: 'app-viewemployeeleaveopening',
+    templateUrl: './viewemployeeleaveopening.component.html',
+    styleUrls: ['./viewemployeeleaveopening.component.scss']
 })
 export class ViewemployeeleaveopeningComponent implements OnInit {
 
-  public leaveopening : any;
-  public leveopeningdetail : any;
-  public employees : any;
-  public leaveYear : any;
-  public leaveType : any;
-  
-  constructor(public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
-    public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
+    public leaveopening: any;
+    public leveopeningdetail: any;
+    public employees: any;
+    public leaveYear: any;
+    public leaveType: any;
 
-  async ngOnInit() {
+    constructor(public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
+        public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
-    this.leaveopening = await this.leaveservice.getLeaveOpening();
-        
-    this.leveopeningdetail = await this.leaveservice.getLeaveOpeningDetail();
- 
-    this.employees = await this.empservice.GetAllEmployees(); 
+    async ngOnInit() {
 
-    this.leaveYear = await this.leavesetupservice.getLeaveYears(); 
+        this.leaveopening = await this.leaveservice.getLeaveOpening();
 
-    this.leaveType = await this.leavesetupservice.getLeaveTypes();
+        this.leveopeningdetail = await this.leaveservice.getLeaveOpeningDetail();
 
-  }
-      onToolbarPreparing(e) {
+        this.employees = await this.empservice.GetAllEmployees();
+
+        this.leaveYear = await this.leavesetupservice.getLeaveYears();
+
+        this.leaveType = await this.leavesetupservice.getLeaveTypes();
+
+    }
+    onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
-           {
+            {
                 location: 'after',
                 widget: 'dxButton',
                 options: {
@@ -41,20 +41,20 @@ export class ViewemployeeleaveopeningComponent implements OnInit {
                     onClick: this.addleaveopening.bind(this)
                 }
             });
-          }
+    }
 
 
-  contentReady(e) {
-    if (!e.component.getSelectedRowKeys().length)
-        e.component.selectRowsByIndexes(0);
-}
+    contentReady(e) {
+        if (!e.component.getSelectedRowKeys().length)
+            e.component.selectRowsByIndexes(0);
+    }
 
-selectionChanged(e) {
-    e.component.collapseAll(0);
-    e.component.expandRow(e.currentSelectedRowKeys[0]);    
-}
+    selectionChanged(e) {
+        e.component.collapseAll(0);
+        e.component.expandRow(e.currentSelectedRowKeys[0]);
+    }
 
-addleaveopening(){
-  this.router.navigate(['/hrm/leave/leaveadmin/createleaveopening']);
-}
+    addleaveopening() {
+        this.router.navigate(['/hrm/leave/leaveadmin/createleaveopening']);
+    }
 }

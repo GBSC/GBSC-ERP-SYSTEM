@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SetupService } from '../../../core';
+import { SetupService, HrmsService } from '../../../core';
 @Component({
     selector: 'app-country',
     templateUrl: './country.component.html',
@@ -8,40 +8,33 @@ import { SetupService } from '../../../core';
 })
 export class CountryComponent implements OnInit {
 
-    currentCountry: any;
+    updatingModel: any;
     public countries: any;
 
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
-
-
+    constructor(public httpClient: HttpClient, public dataService: SetupService, public hrmService: HrmsService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllCountries();
-        this.countries = this.dataService.country;
 
+        this.countries = await this.hrmService.getAllCountries();
     }
 
 
     addNewCountry(Country) {
-
-        this.dataService.addCountry(Country.data)
-
+        this.hrmService.addCountry(Country.data)
+        this.countries = this.hrmService.getAllCountries();
     }
 
-    EditNewCountry(country) {
+    UpdatingCountry(value) {
 
-        this.dataService.updateCountry(country);
-
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    getCountryToUpdate(country) {
-        this.currentCountry = country;
+    UpdateCountry() {
+        this.hrmService.updateCountry(this.updatingModel);
     }
-
 
     deleteCountry(countr) {
-        this.dataService.DeleteCountry(countr.key);
+        this.hrmService.DeleteCountry(countr.key);
     }
 
 

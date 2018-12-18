@@ -16,14 +16,13 @@ export class QualificationComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllqualifications();
-        this.qualification = this.dataService.qualification;
-
+        this.qualification = await this.dataService.getAllqualifications();
     }
 
 
     addNewqualification(qfc) {
         this.dataService.addQualification(qfc.data);
+        this.qualification = this.dataService.getAllqualifications();
 
     }
 

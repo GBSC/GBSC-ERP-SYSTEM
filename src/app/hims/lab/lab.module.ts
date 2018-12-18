@@ -30,6 +30,16 @@ import { EmbryologyThawingComponent } from './embryology-thawing/embryology-thaw
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
+import { ReportViewerComponent } from './report-viewer/report-viewer.component';
+import { BiochemistryOutsiderComponent } from './biochemistry-outsider/biochemistry-outsider.component';
+import { TvopuRecordsComponent } from './tvopu-records/tvopu-records.component';
+import { BiopsyRecordsComponent } from './biopsy-records/biopsy-records.component';
+import { BiochemistryOntreatmentRecordsComponent } from './biochemistry-ontreatment-records/biochemistry-ontreatment-records.component';
+import { EmbryologyRecordsComponent } from './embryology-records/embryology-records.component';
+import { InsemenationRecordsComponent } from './insemenation-records/insemenation-records.component';
+import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
+import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
+import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
 
 
 
@@ -73,6 +83,16 @@ import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component'
         FreezepreparationComponent,
         ClinicalrecordsComponent,
         SemenanalysisComponent,
+        ReportViewerComponent,
+        BiochemistryOutsiderComponent,
+        TvopuRecordsComponent,
+        BiopsyRecordsComponent,
+        BiochemistryOntreatmentRecordsComponent,
+        EmbryologyRecordsComponent,
+        InsemenationRecordsComponent,
+        FreezePrepRecordsComponent,
+        EmbryologyThawingRecordsComponent,
+        InsemenationPrepRecordsComponent,
     ]
 })
 export class LabModule { }

@@ -17,15 +17,14 @@ export class DesignationComponent implements OnInit {
 
 
     async ngOnInit() {
-        await this.dataService.getAllDesignations();
-        this.designatn = this.dataService.designation;
-
+        this.designatn = await this.dataService.getAllDesignations();
     }
 
 
     addDesignation(desg) {
 
         this.dataService.addDesignation(desg.data);
+        this.designatn = this.dataService.getAllDesignations();
     }
 
     EditDesignation(desig) {

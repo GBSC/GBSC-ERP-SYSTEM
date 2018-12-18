@@ -1,50 +1,92 @@
-
-
 <div class="m-content">
   <div class="row">
-      <div class="col-xl-12">
-        <div class="m-portlet">
+    <div class="col-xl-12">
+      <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
-          <div class="m-portlet__head-title">
-            <h3 class="m-portlet__head-text">Semens Analysis List</h3>
-          </div>
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Semen Analysis Records</h3>
+            </div>
           </div>
         </div>
         <div class="m-portlet__body">
-          <div class="m-section">
-          <div class="m-section__content" >
-            <dx-data-grid id="gridContainer" [dataSource]="TaxonBenefits" keyExpr="id" (onRowInserted)="addAllowances($event)" (onRowUpdated)="EditAllowances($event)" (onRowRemoved)="deleteAllowances($event)"> 
-              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-                <dxo-popup title="Semens Analysis List" [showTitle]="true" [width]="750" [height]="545" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
-              </dxo-editing>
-              <dxo-filter-row [visible]="true"></dxo-filter-row>
-              <dxo-header-filter [visible]="true"></dxo-header-filter>
-              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-              <dxo-paging [pageSize]="10"></dxo-paging>
-              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-              <dxi-column dataField="" caption="MRN No."></dxi-column>
-              <dxi-column dataField="" caption="Name"></dxi-column>
-              <dxi-column dataField="" caption="Spouse Name"></dxi-column>
-        <dxi-column dataField="ReportDate"  caption="Report Date"  dataType="date" format="shortDate"></dxi-column>
-        <dxi-column dataField="PayrollType"caption="Doctor">
-          <dxo-lookup [dataSource]="PayrollType" valueExpr="value" displayExpr="display"></dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="PayrollType"caption="Status">
-        <dxo-lookup [dataSource]="PayrollType" valueExpr="value" displayExpr="display"></dxo-lookup>
-    </dxi-column>
-    <dxi-column dataField="PayrollType"caption="Location">
-      <dxo-lookup [dataSource]="PayrollType" valueExpr="value" displayExpr="display"></dxo-lookup>
-  </dxi-column>
-      </dx-data-grid> 
-          </div>
-          </div>
-        </div>
+          <form>
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="pull-right">
+                      <a routerLink="/lab/semen-analysis" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon flaticon-add"></i>
+                        <span class="m-menu__link-text">Create New
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <dx-data-grid id="gridContainer" [dataSource]="tests">
+
+                      <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false">
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel [visible]="false" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                      </dxo-pager>
+                      <dxi-column dataField="collectionDate"></dxi-column>
+                      <dxi-column dataField="collectionNumber"></dxi-column>
+                      <dxi-column dataField="procedureNumber"></dxi-column>
+                      <dxi-column dataField="consultant.name" caption="Consultant"></dxi-column>
+                      <dxi-column dataField="semenAnalysisId" caption="Action"
+                        cellTemplate="cellTemplate"></dxi-column>
+                      <div *dxTemplate="let data of 'cellTemplate'">
+                        <a class="btn btn-primary" [routerLink]="['/lab/semen-analysis', data.value]">View</a>
+                      </div>
+                    </dx-data-grid>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
         </div>
       </div>
+    </div>
   </div>
 </div>
-
-
-
-

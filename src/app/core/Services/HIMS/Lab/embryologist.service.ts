@@ -7,30 +7,30 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class EmbryologistService {
 
- 
-  private Url = "Hims/api/HimsSetup/"
+
+    private Url = "Hims/api/HimsSetup/"
 
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getEmbryologists(): Observable<any> {
-    return this.ApiService.get(this.Url + "GetEmbryologists");
-  }
+    getEmbryologists(): Observable<any> {
+        return this.ApiService.get(this.Url + "GetEmbryologists");
+    }
 
-  getEmbryologist(id: number): Observable<any> {
-    return this.ApiService.get(this.Url + "GetEmbryologist/" + id);
-  }
+    getEmbryologist(id: number): Observable<any> {
+        return this.ApiService.get(this.Url + "GetEmbryologist/" + id);
+    }
 
-  addEmbryologist(value): Observable<any> {
-    return this.ApiService.post(this.Url + "AddEmbryologist", value);
-  }
+    addEmbryologist(value): Observable<any> {
+        return this.ApiService.post(this.Url + "AddEmbryologist", value);
+    }
 
-  updateEmbryologist(value): Observable<any> {
-    return this.ApiService.put(this.Url + "UpdateEmbryologist", value);
-  }
+    updateEmbryologist(value): Observable<any> {
+        return this.ApiService.put(this.Url + "UpdateEmbryologist", value);
+    }
 
-  deleteEmbryologist(id) {
-    this.ApiService.delete(this.Url + "DeleteEmbryologist/" + id);
-  }
-  
+    deleteEmbryologist(id) {
+        this.ApiService.delete(this.Url + "DeleteEmbryologist/" + id);
+    }
+
 }

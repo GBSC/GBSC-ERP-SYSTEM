@@ -8,7 +8,7 @@ import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup
     styleUrls: ['./financialyear.component.scss']
 })
 export class FinancialyearComponent implements OnInit {
-   
+
     public FinancialYearForm: any;
     public financialYear: any;
     public updateFinancalyear: any;
@@ -18,39 +18,33 @@ export class FinancialyearComponent implements OnInit {
     async ngOnInit() {
 
         this.FinancialYearForm = this.fb.group({
-            // Year: [''],
-            IsActive: [''],
             StartDate: [''],
-            EndDate: ['']
+            EndDate: [''],
+            IsActive: ['']
         });
- 
+
         this.financialYear = await this.financeService.getFinancialYears();
-        console.log(this.financialYear);
     }
 
-    async addFinancialyear() { 
-       await this.financeService.addFinancialYear(this.FinancialYearForm.value);  
-       this.financialYear = await this.financeService.getFinancialYears();
-       this.FinancialYearForm.reset();
+    async addFinancialyear() {
+        await this.financeService.addFinancialYear(this.FinancialYearForm.value);
+        this.financialYear = await this.financeService.getFinancialYears();
+        this.FinancialYearForm.reset();
     }
 
-    formatDate(date: Date) {
-
-        return (date.getDay() - 1) + "/" + date.getDate() + "/" + date.getFullYear();
-    }
-
-     updatingFinancialyear(value) {
+    updatingFinancialyear(value) {
 
         this.updateFinancalyear = { ...value.oldData, ...value.newData };
     }
+
     async updateFinancialyear() {
 
         await this.financeService.updateFinancialYear(this.updateFinancalyear);
+        this.financialYear = await this.financeService.getFinancialYears();
     }
 
     async deleteFinancialyear(value) {
-
-        await this.financeService.DeleteFinancialYear(value.data);
+        await this.financeService.DeleteFinancialYear(value.key);
     }
- 
+
 }

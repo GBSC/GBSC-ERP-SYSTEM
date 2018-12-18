@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -16,22 +14,19 @@
               <dx-data-grid id="gridContainer" [dataSource]="leveyear" keyExpr="leaveYearId" (onRowInserted)="addleaveyear($event)" (onRowUpdated)="updateleaveyear($event)"
                 (onRowRemoved)="deleteleaveyear($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                  <dxo-popup title="Leave Year" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
 
 
-                <dxi-column dataField="name" caption="Name"></dxi-column>
-                <dxi-column dataField="year" caption="Year"  dataType="date" format="year"></dxi-column>
+                <dxi-column dataField="name" caption="Year" [allowEditing]="false"></dxi-column>
+                <!-- <dxi-column dataField="year" caption="Year" dataType="date" format="year"></dxi-column> -->
                 <dxi-column dataField="startDate" dataType="date" format="shortDate"></dxi-column>
                 <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
                 <dxi-column dataType="boolean" dataField="isCurrentYear"></dxi-column>
@@ -40,6 +35,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+     

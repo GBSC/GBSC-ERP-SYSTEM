@@ -23,12 +23,13 @@ import { GrnViewComponent } from './grn-view/grn-view.component';
 import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { CurrencyComponent } from './Setup/currency/currency.component';
+import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
 
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'pharmacy',
+        path: '',
         component: RootComponent,
         children: [
             { path: '', component: HomeComponent },
@@ -41,6 +42,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'purchaseorderview', component: PurhcaseorderViewComponent },
             { path: 'return', component: ReturnmedicineComponent },
             { path: 'returnview', component: ReturnViewComponent },
+            { path: 'prescriptionview', component: PrescriptionViewComponent },
 
             {
                 path: "setup",

@@ -153,6 +153,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 
 
                 
@@ -163,6 +164,58 @@
 
                 
                 
+=======
+                <div class="m-portlet__body">
+                    <dx-data-grid id="gridContainer"
+                    (onToolbarPreparing)="onToolbarPreparing($event)"
+                     keyExpr="voucherId" 
+                    [dataSource]="voucher" 
+                    [columnAutoWidth]="true"    
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                     [masterDetail]="{ enabled: true, template: 'detail' }">
+
+                     <dxo-selection mode="single"></dxo-selection>
+
+                        <dxo-paging [pageSize]="7"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                        </dxo-pager>                
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                       
+                        <!-- <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>    -->
+                        <dxi-column dataField="voucherTypeId" caption="Voucher Type">
+                            <dxo-lookup [dataSource]="voucherType" displayExpr="name" valueExpr="voucherTypeId">
+                            </dxo-lookup>
+                          </dxi-column>
+                        <dxi-column dataField="date" dataType="date" format="shortdate" caption="Date"></dxi-column>
+                        <dxi-column dataField="description" datatype="text" caption="Description"></dxi-column>
+                        <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                        <div *dxTemplate="let d of 'chartCellTemplate'">
+                          <div class="chart-cell">
+                              <dx-button (click)="getCurrentRowData(d)" icon="edit">
+                          </dx-button>
+                          </div>
+                      </div>
+
+                        <div *dxTemplate="let voucherDetail of 'detail'">
+                            <dx-data-grid [dataSource]="voucherDetail.data.voucherDetails" [showBorders]="true">
+
+                                <dxi-column dataField="accountId" caption="Detail Account">
+                                    <dxo-lookup [dataSource]="detailAccount" displayExpr="description" valueExpr="accountId">
+                                    </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="departmentName" caption="Department"></dxi-column>
+                                    <dxi-column dataField="uniqueName" caption="Refrence"></dxi-column>                               
+                                    <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                                    <dxi-column dataField="creditAmount" caption="Credit Amount"> </dxi-column>
+                                    <dxi-column dataField="chequeNumber"  caption="Cheque Number"></dxi-column>
+                                </dx-data-grid>
+                        </div>
+                    </dx-data-grid>
+                </div>
+>>>>>>> 7c53a3347d68497670f9a9b961d56f25204d78ef
             </div>
         </div>
 </div>

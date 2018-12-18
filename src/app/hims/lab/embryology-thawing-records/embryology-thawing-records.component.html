@@ -1,0 +1,79 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Embryology Thawing Records</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form>
+            <div class="m-section">
+              <div class="m-section__content">
+
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <dx-data-grid id="gridContainer" [dataSource]="tests">
+
+                      <dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false">
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel [visible]="false" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                      </dxo-pager>
+                      <dxi-column dataField="createDate"></dxi-column>
+                      <dxi-column dataField="tvopuId"></dxi-column>
+                      <dxi-column dataField="patientClinicalRecord.cycleNumber" caption="Cycle #"></dxi-column>
+                      <dxi-column dataField="patientClinicalRecord.patientClinicalRecordId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                      <div *dxTemplate="let data of 'cellTemplate'">
+                        <a class="btn btn-primary" [routerLink]="['/lab/embryology-thawing', data.value]">View</a>
+                      </div>
+                    </dx-data-grid>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

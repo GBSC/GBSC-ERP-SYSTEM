@@ -1,61 +1,62 @@
 <div class="m-content">
-    <div class="row">
-       <div class="col-xl-12">
-         <div class="m-portlet">
-           <div class="m-portlet__head">
-             <div class="m-portlet__head-caption">
-               <div class="m-portlet__head-title">
-                 <h3 class="m-portlet__head-text">Voucher</h3>
-                </div>
-              </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Voucher</h3>
             </div>
-            <div class="m-portlet__body">
-              <div class="m-section">
-                <div class="m-section__content">
-                  <form [formGroup]="VoucherForm"> 
-                    <div class="form-group row">
-                        <div class="col-sm-3">
-                            <div class="form-group m-form__group">
-                              <label>
-                                Voucher Code
-                              </label>
-                              <input type="text" class="form-control m-input" formControlName="VoucherCode" placeholder="0007">
-                              
-                              </div>
-                            </div>
-                        <div class="col-sm-3">
-                          <div class="form-group m-form__group">
-                            <label>
-                                Voucher Type
-                            </label>
-                            <select class="form-control m-input" formControlName="VoucherTypeId">
-                                <option value="" disabled selected>-- Select Voucher Type --</option>
-                                <option *ngFor="let vt of voucherType" [value]="vt.voucherTypeId">{{vt.name}}</option>
-                              </select> 
-                          </div>
-                        </div>
-                        <div class="col-sm-3">
-                          <div class="form-group m-form__group">
-                            <label>
-                                Financial Year
-                            </label>
-                            <select class="form-control m-input" formControlName="FinancialYearId">
-                                <option value="" disabled selected>-- Select Financial Year --</option>
-                                <option *ngFor="let Financeyear of financialYear" [value]="Financeyear.financialYearId">{{Financeyear.name}}</option>
-                              </select>                
-                                </div>
-                        </div>  
-                        <div class="col-sm-3">
-                            <div class="form-group m-form__group">
-                              <label>
-                                  Date
-                              </label>
-                              <dx-date-box formControlName="Date" width="100%" type="date">
-                                </dx-date-box>
-                            </div>
-                          </div>
-                        </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content"> 
+              <form [formGroup]="VoucherForm">
                 <div class="form-group row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Voucher Type
+                      </label>
+                      <select class="form-control m-input" formControlName="VoucherTypeId">
+                        <option value="" disabled selected>-- Select Voucher Type --</option>
+                        <option *ngFor="let vt of voucherType" [value]="vt.voucherTypeId">{{vt.name}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Date
+                      </label>
+                      <dx-date-box formControlName="Date" type="date" width="100%"> </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Financial Year
+                      </label>
+                        <select class="form-control m-input" formControlName="FinancialYearId">
+                          <option value="" disabled selected>-- Select Financial Year --</option>
+                          <option *ngFor="let year of financialYear" [value]="year.financialYearId">{{year.name}}</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  
+
+                  <!-- <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Cheque Number
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="ChequeNumber" placeholder="0007">
+                    </div>
+                  </div> -->
+                </div>
+                <!-- <div class="form-group row">
  
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
@@ -89,83 +90,181 @@
                         <input type="number" class="form-control m-input" formControlName="TotalDebitAmount" placeholder="0">
                       </div>
                     </div>  
-                </div>
-                <div class="form-group row">
-                    
-                  <div class="col-sm-10">
-                      <div class="form-group m-form__group">
-                          <label>
-                              Description
-                          </label>
-                          <textarea class="form-control m-input" formControlName="Description"></textarea>
-                        </div>
-                  </div> 
-                  <div class="col-sm-2">
-                      <div class="form-group m-form__group">
-                          <label for="">
-                              Final
-                          </label> 
-                          <div class="m-checkbox-list">
-                              <label class="m-checkbox m-checkbox--state-success">
-                                <input type="checkbox" formControlName="IsFinal"> 
-                                <span></span>
-                              </label>
-                            </div>                
-                              </div>
-                  </div> 
-                </div>
-                </form>
-
-                <div class="m-separator m-separator--dashed m-separator--lg"></div>
+                </div> -->
               
                 <div class="form-group row">
-                    <div class="m--space-07"></div> 
-                    <dx-data-grid id="gridContainer"  
-                     [dataSource]="Detail" 
-                   (onRowInserted)="addVoucherDetail($event)"
-                   (onRowUpdated)="updatevoucherDetail($event)">
-                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
-                      </dxo-editing>
-                    <dxo-filter-row [visible]="true"></dxo-filter-row>
-                    <dxo-header-filter [visible]="true"></dxo-header-filter>
-        
-                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                    <dxo-paging [pageSize]="8"></dxo-paging>
-                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                    </dxo-pager>
-        
-                    <dxi-column dataField="creditAmount" caption="Credit Amount"></dxi-column>
-                    <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>        
-                    <dxi-column dataField="detailAccountId" caption="Detail Account">
-                        <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
-                        </dxo-lookup>
-                      </dxi-column>    
-                  </dx-data-grid>
+                  <div class="col-sm-12">
+                    <div class="form-group m-form__group">
+                      <label>
+                        Description
+                      </label>
+                      <textarea class="form-control m-input" formControlName="Description"></textarea>
+                    </div>
+                  </div>
                 </div>
+              </form>
+
+              <div class="m-separator m-separator--dashed m-separator--lg"></div>
+
+              <div class="form-group row">
+                <div class="m--space-07"></div>
+                <!-- <dx-data-grid id="gridContainer" [dataSource]="Detail" (onContentReady)="onContentReady($event)">
+                  <dxo-editing mode="cell" [allowUpdating]="true"></dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager>
+
+                  <dxi-column dataField="creditAmount" caption="Credit Amount" (onValueChanged)="onValueChanged($event)"></dxi-column>
+                  <dxi-column dataField="debitAmount" caption="Debit Amount"></dxi-column>
+                  <dxi-column dataField="detailAccountId" caption="Detail Account">
+                    <dxo-lookup [dataSource]="detailAccount" displayExpr="name" valueExpr="detailAccountId">
+                    </dxo-lookup>
+                  </dxi-column>
+
+                </dx-data-grid> -->
+                <!-- <form [formGroup]="VoucherDetailForm"> 
+                      <div class="form-group row">
+                          <div class="col-sm-2">
+                            <div class="form-group m-form__group">
+                              <label>
+                                  Detail Account
+                              </label>
+                              <select class="form-control m-input" formControlName="DetailAccountId">
+                                  <option value="" disabled selected>-- Select Detail Account --</option>
+                                  <option *ngFor="let daccount of detailAccount" [value]="daccount.detailAccountId">{{daccount.detailAccountCode}} | {{daccount.name}}</option>
+                                </select> 
+                            </div>
+                          </div> 
+                          <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label>
+                                   Debit
+                                </label>
+                                <input type="number" class="form-control m-input" formControlName="DebitAmount" placeholder="0007">
+                              </div>
+                            </div>
   
-                <div class="m-separator"></div>
+                            <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label>
+                                 Credit
+                                </label>
+                                <input type="number" class="form-control m-input" formControlName="CreditAmount" placeholder="0007">
+                                
+                                </div>
+                              </div>
+                            <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label>
+                                 Deopartment
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="0007">
+                                
+                                </div>
+                              </div>
+                            <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label>
+                                 Name
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="0007">
+                                
+                                </div>
+                              </div>
+                            <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                <label>
+                                 Description
+                                </label>
+                                <input type="text" class="form-control m-input" formControlName="Description" placeholder="0007">
+                                </div>
+                              </div> 
+                          </div>
+                    </form> -->
+                <div class="table-responsive">
+                  <form [formGroup]="VoucherDetailForm">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>Detail A/C</th>
+                          <th>DepartmentName</th>
+                          <th>Refrence</th>
+                          <th>DebitAmount</th>
+                          <th>CreditAmount</th>
+                          <th>Cheque Number</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody formArrayName="VoucherDetails">
+                        <tr *ngFor="let field of VoucherDetailForm.controls.VoucherDetails.controls; let i=index" [formGroupName]="i">
+                          <td>
+                            <select class="form-control m-input" formControlName="AccountId">
+                              <option value="" disabled selected>-- Select Detail A/C --</option>
+                              <option *ngFor="let account of detailAccount" [value]="account.accountId">{{account.accountCode}}
+                                | {{account.description}}</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input type="text" class="form-control m-input" formControlName="DepartmentName" placeholder="Department Name">
+                          </td>
+                          <td>
+                              <input type="text" class="form-control m-input" formControlName="UniqueName" placeholder="Refrence">
+                          </td>
+                          <td>
+                            <input type="text" class="form-control m-input" (change)="sumDebit($event)" formControlName="DebitAmount" placeholder="000">
+                          </td>
+                          <td>
+                            <input type="text" class="form-control m-input" (change)="sumCredit($event)" (keydown)="addNewRow($event,i)" formControlName="CreditAmount" placeholder="000">
+                          </td>
+                          <td>
+                            <input type="text" class="form-control m-input" formControlName="ChequeNumber" placeholder="Cheque No.">
+                        </td> 
+                          <td>
+                            <a class="m-widget4__icon" (click)="deleteRow(i)">
+                              <i class="la la-trash-o"></i>
+                            </a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td> </td>
+                          <td> </td>
+                          <td> </td>
+                          <td>
+                            <input type="text" [value]="debitTotal" class="form-control m-input" readonly>
+                          </td>
+                          <td>
+                            <input type="text" [value]="creditTotal" class="form-control m-input" readonly>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+              </div>
 
-                <div *ngIf="isUpdate(); else create" class="m--align-right">
-                  <button class="btn btn-primary" (click)="update(VoucherForm.value)">
+              <div class="m-separator"></div>
+              <div class="form-group row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                  <!-- <div *ngIf="isUpdate(); else create" class="m--align-right">
+                    <button class="btn btn-primary" (click)="update(VoucherForm.value)">
                       Update
-                    </button>        
-              </div> 
-              <ng-template #create>
-                <button class="btn btn-primary" (click)="addVoucher(VoucherForm.value)">
-                  Submit
-                </button>  
-              </ng-template> 
-
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-   
-   
-   
-   
-   
-   
-   </div>
+                    </button>
+                  </div> -->
+                  
+                    <button class="btn btn-primary" (click)="addVoucher(VoucherForm.value)">
+                      Submit
+                    </button> 
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

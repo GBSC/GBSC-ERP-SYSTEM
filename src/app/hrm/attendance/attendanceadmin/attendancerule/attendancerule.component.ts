@@ -62,10 +62,6 @@ export class AttendanceruleComponent implements OnInit {
         attendanceRule = { ...attendanceRule, ...value };
         attendanceRule.attendanceRuleLeaveTypes = this.leaves;
         let r = await this.attendanceservice.addAttendanceRule(attendanceRule);
-        this.message = 'Success! Attendance Rule Submit Successfully';
-        setTimeout(() => {
-            this.message = null;
-        }, 3000);
         this.AttendanceRuleForm.reset();
     }
 

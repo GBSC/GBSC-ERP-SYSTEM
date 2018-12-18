@@ -27,6 +27,10 @@ import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-d
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
  
+import { DemoComponent } from './demo/demo.component';
+import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { FinanceAccountComponent } from './finance-account/finance-account.component'; 
+
 @NgModule({
     imports: [
         CommonModule,
@@ -35,7 +39,7 @@ import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/c
         DxButtonModule,
         DevExtremeModule,
         DxDataGridModule,
-        routing,
+        routing
 
     ],
     declarations: [
@@ -62,7 +66,10 @@ import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/c
         VoucherDetailComponent,
         CurrentTrailBalanceViewComponent,
          
+        DemoComponent,
+        UpdateVoucherComponent,
+        FinanceAccountComponent 
     ],
-    providers: [FinanceSetupService,FinanceService]
+    providers: [FinanceSetupService, FinanceService]
 })
 export class FinanceModule { }

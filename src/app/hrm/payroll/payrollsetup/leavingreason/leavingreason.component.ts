@@ -17,6 +17,7 @@ export class LeavingreasonComponent implements OnInit {
 
     async addLeavingReason(value) {
         await this.payrollsetupservice.addLeavingReason(value.data);
+        this.leavingReason = await this.payrollsetupservice.getLeavingReasons();
     }
 
     async updateLeavingReason(value) {

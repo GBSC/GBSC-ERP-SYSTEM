@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -19,9 +17,7 @@
               (onRowUpdating)="updatingpromatrix($event)"
               (onRowUpdated)="updatepromatrix()"
                 (onRowRemoved)="deleteprmatrix($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Prorate Matrix" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
-                  </dxo-popup>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -30,9 +26,9 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="from"></dxi-column> 
-                <dxi-column dataField="till"></dxi-column> 
-                <dxi-column dataField="percentage"></dxi-column> 
+                <dxi-column dataField="from" caption="From"></dxi-column> 
+                <dxi-column dataField="till" caption="Till"></dxi-column> 
+                <dxi-column dataField="percentage" caption="Percentage"></dxi-column> 
                 <dxi-column dataField="leavePolicyId" caption="Encashment Days" [width]="450">
                   <dxo-lookup [dataSource]="leavepolicy" displayExpr="encashmentDays" valueExpr="leavePolicyId">
                   </dxo-lookup> 
@@ -47,6 +43,3 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-</div>

@@ -2,30 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { MedicineService } from '../../../core/Services/HIMS/medicine.service';
 
 @Component({
-  selector: 'app-medicine',
-  templateUrl: './medicine.component.html',
-  styleUrls: ['./medicine.component.scss']
+    selector: 'app-medicine',
+    templateUrl: './medicine.component.html',
+    styleUrls: ['./medicine.component.scss']
 })
 export class MedicineComponent implements OnInit {
 
-  private medicines: any;
+    private medicines: any;
 
-  constructor(private medicineService: MedicineService) { }
+    constructor(private medicineService: MedicineService) { }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.medicineService.getMedicines().subscribe(resp => this.medicines = resp);
+        this.medicineService.getMedicines().subscribe(resp => this.medicines = resp);
 
-  }
+    }
 
-  addMedicine(value) {
-    this.medicineService.addMedicine(value.data).subscribe(resp => console.log(resp));
-  }
+    addMedicine(value) {
+        this.medicineService.addMedicine(value.data).subscribe(resp => console.log(resp));
+    }
 
-  updateMedicine(value)
-  {
-    this.medicineService.updateMedicine(value.key).subscribe(resp=>console.log(resp));
-  }
+    updateMedicine(value) {
+        this.medicineService.updateMedicine(value.key).subscribe(resp => console.log(resp));
+    }
 
 
 

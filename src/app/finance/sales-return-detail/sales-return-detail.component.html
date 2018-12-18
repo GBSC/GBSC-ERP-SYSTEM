@@ -13,8 +13,14 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <dx-data-grid id="gridContainer" (onToolbarPreparing)="onToolbarPreparing($event)" keyExpr="financeSalesReturnId" [dataSource]="salesReturn"
-                        [columnAutoWidth]="true" [showBorders]="true" (onSelectionChanged)="selectionChanged($event)" (onContentReady)="contentReady($event)"
+                    <dx-data-grid id="gridContainer"
+                     (onToolbarPreparing)="onToolbarPreparing($event)"
+                      keyExpr="financeSalesReturnId"
+                       [dataSource]="salesReturn"
+                        [columnAutoWidth]="true" 
+                        [showBorders]="true" 
+                        (onSelectionChanged)="selectionChanged($event)"
+                         (onContentReady)="contentReady($event)"
                         [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
 
                         <dxo-selection mode="single"></dxo-selection>
@@ -59,7 +65,7 @@
                       </div>
 
                         <div *dxTemplate="let salesReturnDetail of 'detail'">
-                            <dx-data-grid [dataSource]="salesReturnDetail.data.financeSalesReturnDetails" [columnAutoWidth]="true" [showBorders]="true">
+                            <dx-data-grid [dataSource]="salesReturnDetail.data.financeSalesReturnDetails" [showBorders]="true">
                                 <dxi-column dataField="amount" caption="Amount"> </dxi-column>
                                 <dxi-column dataField="itemDescription" caption="Description"></dxi-column>
                             </dx-data-grid>

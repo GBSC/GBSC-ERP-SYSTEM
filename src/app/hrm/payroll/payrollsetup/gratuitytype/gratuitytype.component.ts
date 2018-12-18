@@ -19,6 +19,7 @@ export class GratuitytypeComponent implements OnInit {
 
     async addGratuityType(value) {
         await this.payrollsetupservice.addGratuityType(value.data);
+        this.gratuityType = await this.payrollsetupservice.getGratuityTypes();
     }
 
     async updateGratuityType(value) {

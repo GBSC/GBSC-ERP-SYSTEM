@@ -6,18 +6,13 @@ import { DevExtremeModule, DxSchedulerModule } from 'devextreme-angular';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
-import { AccountTypeComponent } from './hrmsSetup/accounttype/accounttype.component';
-import { CityComponent } from './hrmsSetup/cities/cities.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { ReligionComponent } from './hrmsSetup/religion/religion.component';
-import { MaritalStatusComponent } from './hrmsSetup/maritalstatus/maritalstatus.component';
 import { EmployeeStatuscomponent } from './hrmsSetup/employeestatus/employeestatus.component';
 import { QualificationComponent } from './hrmsSetup/qualification/qualification.component';
 import { FunctionComponent } from './hrmsSetup/function/function.component';
 import { EmployeeTypes } from './hrmsSetup/employeetype/employeetype.component';
-import { GenderComponent } from './hrmsSetup/genders/genders.component';
 import { RelationComponent } from './hrmsSetup/relations/relations.component';
-import { BloodGroupComponent } from './hrmsSetup/bloodgroups/bloodgroups.component';
 import { SkillLevelsComponent } from './hrmsSetup/skilllevels/skilllevels.component';
 import { LanguageComponent } from './hrmsSetup/languages/languages.component';
 import { CostCenterComponent } from './hrmsSetup/costcenters/costcenters.component';
@@ -133,6 +128,10 @@ import { PfPaymentComponent } from './payroll/payrollsetup/pf-payment/pf-payment
 import { PayslipComponent } from './payroll/payslip/payslip.component';
 import { ViewemployeeleaveopeningComponent } from './leave/leaveadmin/viewemployeeleaveopening/viewemployeeleaveopening.component';
 import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleaverequest.component';
+import { ViewCompensationTransactionComponent } from './payroll/payrollsetup/view-compensation-transaction/view-compensation-transaction.component';
+import { MonthlyUserSalaryDetailComponent } from './payroll/monthly-user-salary-detail/monthly-user-salary-detail.component';
+import { GratuitydetailComponent } from './payroll/gratuitydetail/gratuitydetail.component';
+import { CityComponent } from './hrmsSetup/city/city.component';
 
 
 @NgModule({
@@ -163,22 +162,17 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         CostCenterComponent,
         LanguageComponent,
         SkillLevelsComponent,
-        BloodGroupComponent,
         CountryComponent,
+        CityComponent,
         DegreeComponent,
         GroupComponent,
         RelationComponent,
-        GenderComponent,
-        CityComponent,
         EmployeeTypes,
         FunctionComponent,
         QualificationComponent,
         EmployeeStatuscomponent,
-        MaritalStatusComponent,
         ReligionComponent,
         BankComponent,
-        CityComponent,
-        AccountTypeComponent,
         UniversityComponent,
 
 
@@ -289,9 +283,10 @@ import { ViewleaverequestComponent } from './leave/viewleaverequest/viewleavereq
         MonthlyUserSalaryComponent,
         PayslipComponent,
         ViewemployeeleaveopeningComponent,
-        ViewleaverequestComponent
-
-
+        ViewleaverequestComponent,
+        ViewCompensationTransactionComponent,
+        MonthlyUserSalaryDetailComponent,
+        GratuitydetailComponent,
 
     ],
     exports: []

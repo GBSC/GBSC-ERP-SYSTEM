@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
+import { Account } from '../../core/Models/Finance/Account';
 import { SetupService } from '../../core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-voucher-detail',
-  templateUrl: './voucher-detail.component.html',
-  styleUrls: ['./voucher-detail.component.scss']
+    selector: 'app-voucher-detail',
+    templateUrl: './voucher-detail.component.html',
+    styleUrls: ['./voucher-detail.component.scss']
 })
 export class VoucherDetailComponent implements OnInit {
 
@@ -19,8 +20,9 @@ export class VoucherDetailComponent implements OnInit {
   public voucherId: any; 
   public finalvoucher : any;
   public notfinalvoucher : any;
+  public getaccounts : any;
 
-  constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
+    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
     this.voucher = await this.financeService.getVouchers();
@@ -30,45 +32,53 @@ export class VoucherDetailComponent implements OnInit {
     this.finalvoucher = this.voucher.filter(t=> t.isFinal != null &&  t.isFinal !=  false );
     console.log(this.finalvoucher);
 
-    this.voucherType = await this.financeSetupService.getVoucherTypes();
+        this.voucher = await this.financeService.getVouchers();
+        this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-    this.detailAccount = await this.financeSetupService.getDetailAccounts();
+        // this.detailAccount = await this.financeSetupService.getDetailAccounts();
 
-    this.financialYear = await this.financeSetupService.getFinancialYears();
+        this.financeService.getAccounts().subscribe((res : Account[]) => {
+            this.getaccounts = res.filter(a => a.isGeneralOrDetail == false);
+            this.getaccounts.forEach((element : Account) => {
+                element.description = element.accountCode + '-' + element.description;
+                this.detailAccount.push(element);
+            });
+        });
 
-    this.departments = await this.SetupService.getAllDepartments();    
-  }
+        this.financialYear = await this.financeSetupService.getFinancialYears();
 
-  onToolbarPreparing(e) {
-    e.toolbarOptions.items.unshift(
-      {
-        location: 'after',
-        widget: 'dxButton',
-        options: {
-          icon: 'add',
-          onClick: this.addvoucher.bind(this)
-        }
-      });
-  }
+        // this.departments = await this.SetupService.getAllDepartments();    
+    }
 
+    onToolbarPreparing(e) {
+        e.toolbarOptions.items.unshift(
+            {
+                location: 'after',
+                widget: 'dxButton',
+                options: {
+                    icon: 'add',
+                    onClick: this.addvoucher.bind(this)
+                }
+            });
+    }
 
-  contentReady(e) {
-    if (!e.component.getSelectedRowKeys().length)
-      e.component.selectRowsByIndexes(-1);
-  }
+    contentReady(e) {
+        if (!e.component.getSelectedRowKeys().length)
+            e.component.selectRowsByIndexes(-1);
+    }
 
-  selectionChanged(e) {
-    e.component.collapseAll(-0);
-    e.component.expandRow(e.currentSelectedRowKeys[0]);
-  }
+    selectionChanged(e) {
+        e.component.collapseAll(-0);
+        e.component.expandRow(e.currentSelectedRowKeys[0]);
+    }
 
-  addvoucher() {
-    this.router.navigate(['/finance/voucher']);
-  }
+    addvoucher() {
+        this.router.navigate(['/finance/voucher']);
+    }
 
-  getCurrentRowData(d) {
-    this.voucherId = d.key;
-    this.router.navigate(['finance/update-voucher/' + this.voucherId]);
-  }
+    getCurrentRowData(d) {
+        this.voucherId = d.key;
+        this.router.navigate(['finance/update-voucher/' + this.voucherId]);
+    }
 
 }

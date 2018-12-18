@@ -22,6 +22,8 @@ export class PackageComponent implements OnInit {
     async addpackage(value) {
 
         let x = await this.PatientServiceobj.addPackage(value.key);
+        await this.PatientServiceobj.getPackage();
+        this.packg = this.PatientServiceobj.package;
         console.log(x);
     }
 

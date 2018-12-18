@@ -20,18 +20,21 @@ import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoic
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
+import { DemoComponent } from './demo/demo.component';
+import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
+import { FinanceAccountComponent } from './finance-account/finance-account.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
     {
-        path: 'finance',
+        path: '',
         component: RootComponent,
 
         children: [
             {
                 path: 'setup',
                 children: [
-
+                    { path: 'account', component: FinanceAccountComponent },
                     { path: 'companysetup', component: CompanysetupComponent },
                     { path: 'masteraccount', component: MasterAccountComponent },
                     { path: 'detailaccount', component: DetailAccountComponent },
@@ -42,6 +45,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
 
                 ]
             },
+            { path: 'demo', component: DemoComponent },
             { path: 'purchase-invoice', component: PurchaseInvoiceComponent },
             { path: 'update-purchase-invoice/:id', component: PurchaseInvoiceComponent },
             { path: 'purchase-invoice-detail', component: PurchaseinvoicedetailComponent },
@@ -57,6 +61,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'voucher', component: VoucherComponent },
              { path: 'update-voucher/:id', component: VoucherComponent }, 
              { path: 'currenttrailbalanceview', component: CurrentTrailBalanceViewComponent },
+            { path: 'update-voucher/:id', component: UpdateVoucherComponent },
             { path: 'voucher-detail', component: VoucherDetailComponent }
 
         ]

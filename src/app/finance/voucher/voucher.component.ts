@@ -1,139 +1,138 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
-import { Voucher } from '../../core/Models/Finance/voucher';
-import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService } from '../../core';
+import { SetupService, HrmsService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
+import { Account } from '../../core/Models/Finance/Account';
+import { FinancialYear } from '../../core/Models/Finance/financialYear';
 
 @Component({
-  selector: 'app-voucher',
-  templateUrl: './voucher.component.html',
-  styleUrls: ['./voucher.component.scss']
+    selector: 'app-voucher',
+    templateUrl: './voucher.component.html',
+    styleUrls: ['./voucher.component.scss']
 })
 export class VoucherComponent implements OnInit {
 
-  public departments: any;
-  public financialYear: any;
-  public Detail: any[] = [];
-  public voucherType: any;
-  public voucher: any;
-  public detailAccount: any;
-  public VoucherForm: any;
-  public Voucher: any;
-  public voucherDetail: VoucherDetail[];
+    public debitTotal = 0;
+    public creditTotal = 0;
+    public departments: any;
+    public financialYear: any;
+    public Detail: any[] = [];
+    public detailAccount: any;
+    public VoucherDetailForm: any;
+    public VoucherForm: any;
+    public voucherType: any;
+    public Vouchers: any;
+    public Voucher: any;
+    public PatchDetail: any;
+    public isDisabled: any;
+    @Input('voucherId') id: number;
 
-  @Input('voucherId') id:number;
+    constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+        public financeService: FinanceService, public HrmService: HrmsService) { }
 
-  constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
-    public financeService: FinanceService, public SetupService: SetupService) { }
+    async ngOnInit() {
 
-  async ngOnInit() {
+        this.Detail = [];
+        //init new row
+        this.VoucherDetailForm = this.fb.group({
+            VoucherDetails: this.fb.array([this.initItemRows()])
 
-    this.voucherDetail = [];
-
-    this.VoucherForm = this.fb.group({
-
-      VoucherCode: [''],
-      Date: [''],
-      Description: [''],
-      ChequeNumber: [''],
-      TotalCreditAmount: [''],
-      TotalDebitAmount: [''],
-      DepartmentName: [''],
-      DepartmentCode: [''],
-      IsFinal: [''],
-      VoucherTypeId: [''],
-      FinancialYearId: [''],
-      DepartmentId: ['']
-
-    })
- 
-    this.voucherType = await this.financeSetupService.getVoucherTypes();
-
-    this.detailAccount = await this.financeSetupService.getDetailAccounts();
-
-    this.financialYear = await this.financeSetupService.getFinancialYears();
-
-    this.departments = await this.SetupService.getAllDepartments();    
-
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-    });
-
-    if (this.isUpdate() === true) {
-
-      this.financeService.getVoucher(this.id).subscribe(resp => {
-
-        this.Voucher = resp; 
-        let a = this.Voucher.voucherDetails;
-        this.Detail = a.filter(b => {
-          delete b.voucherDetailId;
-          delete b.voucherId;
-          return b;
         });
-        this.patchValues(this.Voucher);
-      });
+
+        this.VoucherForm = this.fb.group({
+            VoucherCode: [''],
+            Date: [''],
+            Description: [''],
+            FinancialYearId: [''],
+            // ChequeNumber: [''],
+            Total: [''],
+            IsFinal: [''],
+            VoucherTypeId: ['']
+
+        })
+
+        // this.Vouchers = await this.financeService.getVouchers();
+
+        this.voucherType = await this.financeSetupService.getVoucherTypes();
+
+        // this.detailAccount = await this.financeSetupService.getDetailAccounts();
+
+        this.financeService.getAccounts().subscribe((res : Account[]) => {
+            this.detailAccount = res.filter(a => a.isGeneralOrDetail == false);
+        });
+
+        this.financeSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
+            this.financialYear = res.filter(a => a.isActive == true);
+        });
+
+        this.departments = await this.HrmService.getAllDepartments();
     }
 
-  }
-
-  isUpdate(): boolean {
-
-    if (this.id > 0) {
-      return true;
+    initItemRows() {
+        // let disCre = this.disableCredit;
+        // let disDec = this.disableDebit;
+        return this.fb.group({
+            AccountId: [''],
+            // DebitAmount: [{value: '', disabled: disDec}],
+            // CreditAmount: [{value: '', disabled: disCre}],
+            DebitAmount: [''],
+            CreditAmount: [''],
+            DepartmentName: [''],
+            UniqueName: [''],
+            ChequeNumber: [''],
+            Description: ['']
+        });
     }
-    else
-      return false;
-  }
+    public disableDebit;
+    public disableCredit;
+    sumDebit() {
+        this.debitTotal = 0;
+        const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
+        for (let d of control) {
+            this.debitTotal += (+d.value.DebitAmount);
 
-   addVoucherDetail(value) {
-    let data = value.data;
-    this.voucherDetail.push(data);
-  }
+        }
+    }
 
-  async addVoucher(value) {
-    let v = new Voucher();
-    v = { ...v, ...value };
-    v.VoucherDetails = this.voucherDetail;
-     await this.financeService.addVoucher(v); 
-     this.router.navigate(['/finance/voucher-detail']);
+    sumCredit() {
+        this.creditTotal = 0;
+        const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
+        for (let c of control) {
+            this.creditTotal += (+c.value.CreditAmount);
 
-  }
+        }
+    }
 
-   updatevoucherDetail(value) {
-    console.log(value);
-  }
+    addNewRow(e, i) {
+        const control: any = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
+        if ((e.keyCode === 9 || e.keyCode === 13)
+            && e.target.value && (i == this.VoucherDetailForm.controls.VoucherDetails.controls.length - 1)) {
+            console.log(this.VoucherDetailForm.controls.VoucherDetails.controls)
+            control.push(this.initItemRows());
+            console.log(control)
+        }
+    }
 
-  async update(value){
+    deleteRow(index: number) {
+        const control = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
+        control.removeAt(index);
+    }
 
-    value.voucherId = this.id;
-    value.VoucherDetails = this.Detail;
-    this.financeService.updateVoucher(value).subscribe(resp=>{
-      this.toastr.success("Voucher Updated"); 
-      this.router.navigate(['finance/voucher-detail']);
-    })
-  }
- 
-  patchValues(voucher: any) {
+    async addVoucher(value) {
+        if (this.creditTotal === this.debitTotal) {
 
-    this.VoucherForm.patchValue({
+            this.VoucherForm.value.voucherDetails = this.VoucherDetailForm.value.VoucherDetails;
+            await this.financeService.addVoucher(value);
+            this.toastr.success("Successfuly! Voucher Added")
+            this.router.navigate(['finance/voucher-detail']);
+        }
+        else {
+            this.toastr.error("Credit Debit Amount not equal");
+        }
 
-      Date: voucher.date,
-      VoucherCode: voucher.voucherCode,
-      DepartmentName: voucher.departmentName,
-      DepartmentCode: voucher.departmentCode,
-      Description: voucher.description,
-      ChequeNumber: voucher.chequeNumber,
-      TotalCreditAmount: voucher.totalCreditAmount,
-      TotalDebitAmount: voucher.totalDebitAmount,
-      IsFinal: voucher.isFinal,
-      VoucherTypeId: voucher.voucherTypeId,
-      FinancialYearId: voucher.financialYearId 
-
-    })
-
-  }
+    }
 }

@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
         // this.username= localStorage.getItem("loginCred");
         //  return JSON.parse(localStorage.getItem('loginCred'));
         this.currentUser = JSON.parse(localStorage.getItem('loginCred'));
-        console.log(this.currentUser.Username);
 
     }
 

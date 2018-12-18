@@ -19,6 +19,7 @@ import { PurchasereturndetailComponent } from './purchasereturndetail/purchasere
 import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
+import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -54,7 +55,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'update-sales-return/:id', component: SalesReturnComponent },
             { path: 'sales-return-detail', component: SalesReturnDetailComponent },
             { path: 'voucher', component: VoucherComponent },
-            { path: 'update-voucher/:id', component: VoucherComponent },
+             { path: 'update-voucher/:id', component: VoucherComponent }, 
+             { path: 'currenttrailbalanceview', component: CurrentTrailBalanceViewComponent },
             { path: 'voucher-detail', component: VoucherDetailComponent }
 
         ]

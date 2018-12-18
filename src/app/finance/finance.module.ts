@@ -25,7 +25,8 @@ import { PurchasereturndetailComponent } from './purchasereturndetail/purchasere
 import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoice-detail.component';
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
-
+import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
+ 
 @NgModule({
     imports: [
         CommonModule,
@@ -58,7 +59,9 @@ import { VoucherDetailComponent } from './voucher-detail/voucher-detail.componen
         PurchasereturndetailComponent,
         SalesInvoiceDetailComponent,
         SalesReturnDetailComponent,
-        VoucherDetailComponent
+        VoucherDetailComponent,
+        CurrentTrailBalanceViewComponent,
+         
     ],
     providers: [FinanceSetupService,FinanceService]
 })

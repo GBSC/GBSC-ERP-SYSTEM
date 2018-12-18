@@ -245,4 +245,8 @@ export class FinanceService {
     return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturnDetail/${id}`).toPromise();
   }
 
+  getUnprocessedAccountsLedgers():Observable<any>{
+    return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedgers');
+  }
+
 }

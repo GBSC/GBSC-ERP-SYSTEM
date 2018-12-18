@@ -17,11 +17,18 @@ export class VoucherDetailComponent implements OnInit {
   public voucher: any;
   public detailAccount: any; 
   public voucherId: any; 
+  public finalvoucher : any;
+  public notfinalvoucher : any;
 
   constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService) { }
 
   async ngOnInit() {
     this.voucher = await this.financeService.getVouchers();
+    console.log(this.voucher);
+    this.notfinalvoucher = this.voucher.filter(t=> t.isFinal === null ||   t.isFinal ==  false);
+    console.log(this.notfinalvoucher);
+    this.finalvoucher = this.voucher.filter(t=> t.isFinal != null &&  t.isFinal !=  false );
+    console.log(this.finalvoucher);
 
     this.voucherType = await this.financeSetupService.getVoucherTypes();
 

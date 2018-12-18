@@ -1,105 +1,62 @@
 <div class="m-content">
-    <div class="row">
-      <div class="col-lg-3">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">
-                  Territory Management
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="m-portlet__body" style="padding: 0px !important;">
-            <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-              <div class="m-demo__preview">
-                <ul class="m-nav nav nav-tabs">
-                
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#region" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Region
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#area" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Area
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#territory" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Territory
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#section" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Section
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#subsection" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Subsection
-                      </span>
-                    </a>
-                  </li>
-                  <li class="m-nav__item">
-                    <a class="m-nav__link" href="#distributers" data-toggle="tab">
-                      <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                      <span class="m-nav__link-text">
-                        Distributors
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Territory Management
+              </h3>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-9">
-        <!-- Tab panes -->
-        <div class="m-portlet">
-          <div class="">
-            <div class="tab-content">
-              <div class="tab-pane active" id="region">
-                <app-region></app-region>
-             </div>
-             <div class="tab-pane" id="area">
-              <app-area></app-area>
-           </div>
-              <div class="tab-pane" id="territory">
-                  <app-territory></app-territory>
-              </div>
-              <div class="tab-pane" id="section">
-                <app-section></app-section>
-             </div>
-             <div class="tab-pane" id="subsection">
-              <app-subsection></app-subsection>
-           </div>
-           <div class="tab-pane" id="distributers">
-            <app-distributers></app-distributers>
-         </div>
-  
-              
-  
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item" *ngFor="let tab of tabs;" [class.active]="selectedTab===tab">
+                  <a (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      {{tab}}
+                    </span></a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+        <div class="">
+          <div class="tab-content">
+            <div class="tab-pane active" *ngIf="selectedTab === tabs[0]" id="region">
+              <app-region></app-region>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[1]" id="area">
+              <app-area></app-area>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[2]" id="territory">
+              <app-territory></app-territory>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[3]" id="section">
+              <app-section></app-section>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[4]" id="subsection">
+              <app-subsection></app-subsection>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[5]" id="distributor">
+              <app-distributers></app-distributers>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</div>

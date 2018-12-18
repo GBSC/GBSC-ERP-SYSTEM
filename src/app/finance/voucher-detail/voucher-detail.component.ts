@@ -16,7 +16,7 @@ export class VoucherDetailComponent implements OnInit {
   public financialYear: any;
   public voucherType: any;
   public voucher: any;
-  public detailAccount: any; 
+  public detailAccount: Account[] = []; 
   public voucherId: any; 
   public finalvoucher : any;
   public notfinalvoucher : any;
@@ -32,7 +32,7 @@ export class VoucherDetailComponent implements OnInit {
     this.finalvoucher = this.voucher.filter(t=> t.isFinal != null &&  t.isFinal !=  false );
     console.log(this.finalvoucher);
 
-        this.voucher = await this.financeService.getVouchers();
+        // this.voucher = await this.financeService.getVouchers();
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
         // this.detailAccount = await this.financeSetupService.getDetailAccounts();

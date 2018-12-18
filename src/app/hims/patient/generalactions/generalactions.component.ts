@@ -93,6 +93,7 @@ export class GeneralactionsComponent implements OnInit {
     }
     public appointmentId: any;
     async startVisit(value) {
+        if(this.currentconsultant){
         if (this.currentconsultant.length) {
             if (value.length == 0 || value == null || value == '') {
                 this.displayToastError("Please Select Consultant")
@@ -109,6 +110,7 @@ export class GeneralactionsComponent implements OnInit {
             }
 
         }
+    }
         else {
             this.displayToastError("Current Date Appointment Not Schedule")
         }

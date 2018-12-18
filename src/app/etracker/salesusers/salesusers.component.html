@@ -37,11 +37,14 @@
                    <dxi-column dataField="email" caption="Email"></dxi-column> 
                    <dxi-column dataField="phone" caption="Contact No"></dxi-column> 
                    <dxi-column dataField="cnic" caption="CNIC"></dxi-column> 
-                   <dxi-column dataField="dob" caption="DOB"></dxi-column>
+                   <!-- <dxi-column dataField="dob" caption="DOB"></dxi-column> -->
                    <dxi-column dataField="address" caption="Address"></dxi-column>  
-                   <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                   <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
                    <div *dxTemplate="let data of 'cellTemplate'">
-                     <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a>
+                      <a data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                          <i class="flaticon-layers"></i>
+                        </a>
+                     <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a> -->
                    </div> 
                    </dx-data-grid>  
               </div>
@@ -68,14 +71,67 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <form>
-              <div class="form-group">
-                <label for="distributor">Distributor</label>
-                <input type="text" class="form-control" id="distributor">
+          <form>
+            <div class="row">
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Distributor
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect1">
+                          <option selected="">
+                              -- Select Distributor --
+                            </option>
+                        <option>
+                            Distributor 1
+                        </option>
+                        <option>
+                            Distributor 2
+                        </option>
+                      </select>
+                    </div>
               </div>
-            </form>
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Territory
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect2" disabled="disabled">
+                          <option selected="">
+                              -- Select Territory --
+                            </option>
+                        <option>
+                            Territory 1
+                        </option>
+                        <option>
+                            Territory 2
+                        </option>
+                      </select>
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Section
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect3" disabled="disabled">
+                          <option selected="">
+                              -- Select Section --
+                            </option>
+                          <option>
+                              Section 1
+                          </option>
+                        <option>
+                            Section 1
+                        </option>
+                        <option>
+                            Section 2
+                        </option>
+                      </select>
+                    </div>
+              </div>
           </div>
+        </form>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close

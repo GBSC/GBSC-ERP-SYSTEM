@@ -6,45 +6,36 @@
                   Tracking System
                 </span>
             </h2>
-            <form class="m-form">
+
                 <div class="m-grid m-grid--ver-desktop m-grid--desktop">
                     <div class="m-grid__item m-grid__item--middle">
-                        <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
-                            <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="Booking Number">
-                            <span class="m-input-icon__icon m-input-icon__icon--right">
-                                <span>
-                                    <i class="la la-puzzle-piece"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-                            <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="From">
-                            <span class="m-input-icon__icon m-input-icon__icon--right">
-                                <span>
-                                    <i class="la la-calendar-check-o"></i>
-                                </span>
-                            </span>
-                        </div>
-                        <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-md m-input-icon--right">
-                            <input type="text" class="form-control form-control-lg m-input m-input--pill" placeholder="To">
-                            <span class="m-input-icon__icon m-input-icon__icon--right">
-                                <span>
-                                    <i class="la la-calendar-check-o"></i>
-                                </span>
-                            </span>
-                        </div>
+                            <label for="">Select User</label>
+                            <select name="" id="" (change)="selectUser($event)">
+                              <option [selected]="user.userid == mapService.currentUser.userid" *ngFor="let user of mapService.allUsers; let i = index" [value]="user?.userid">{{user.userid}}</option>
+                            </select>
+                            <label for="">From</label>
+                            <input type="date" (change)="filterFromDate($event)">
+                            <label for="">To</label>
+                            <input type="date" (change)="filterToDate($event)">
+                            <input type="checkbox" (change)="showVisitedShops($event)">
+                            <label for="">Show Visited Shops</label>
+                            <button (click)="go($event)">Search</button>
+                            <label for="">Set Zoom</label>
+                            <select (change)="selectZoomLevel($event)">
+                              <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+                            </select>
                     </div>
                     <div class="m-grid__item m-grid__item--middle">
                         <div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-                        <button type="button" class="btn m-btn--pill m-subheader-search__submit-btn">
-                            Search Bookings
-                        </button>
+                        <p *ngIf="mapService?.showSpinner">loading...</p>
+                        <img *ngIf="mapService?.showSpinner" src="/assets/images/spinner.gif" />
+                        
                        
                     </div>
           
           
                 </div>
-            </form>
+
           </div>
 
 
@@ -53,7 +44,47 @@
 
 <div class="m-portlet">
       <div class="m-portlet__body  m-portlet__body--no-padding">
-        <div id="m_gmap_4" style="height:500px;"></div>
+            <agm-map *ngIf="mapService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="mapService.currentUser?.lat"
+            [longitude]="mapService.currentUser?.lng" (mapReady)=mapReady($event)>
+          
+            <agm-marker [latitude]="mapService.currentUser?.lat" [longitude]="mapService.currentUser?.lng" [iconUrl]="currentLocationMarker">
+              <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+                [placement]="right" [closeWhenOthersOpen]="false">
+                <ng-template>
+                  <div class="marker-info">
+                    <div class="info-header">
+                      <h1>Description</h1>
+                    </div>
+                    <div class="info-body">
+                      <p>Username: {{mapService?.currentUser?.userid}}</p>
+                      <p>Event</p>
+                      <p>Time: {{getTime(mapService?.currentUser?.timestamp.seconds)}}</p>
+                      <p>Date: {{getDate(mapService?.currentUser?.timestamp.seconds)}}</p>
+                      <p>Customer</p>
+                    </div>
+                    <div class="info-footer">
+                    </div>
+                  </div>
+                </ng-template>
+              </agm-snazzy-info-window>
+            </agm-marker>
+          
+            <agm-polyline *ngFor="let polyline of mapService?.locationHistory;let i = index;" [strokeColor]="'red'" [geodesic]="true"
+              [strokeOpacity]="0.7">
+              <agm-polyline-point *ngFor="let point of mapService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
+              </agm-polyline-point>
+            </agm-polyline>
+          
+          
+          
+            <agm-marker *ngFor="let loc of mapService.visitedShops" [latitude]="loc.lat" [longitude]="loc.lng" [iconUrl]="shopmarker">
+              <agm-info-window>
+                <strong>InfoWindow content</strong>
+              </agm-info-window>
+            </agm-marker>
+          
+          
+          </agm-map>
       </div>
 
 

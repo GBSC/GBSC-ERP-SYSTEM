@@ -18,7 +18,7 @@
               </div>
               </div>
               <div class="m-portlet__body">
-                <dx-data-grid id="" [dataSource]=""> 
+                <dx-data-grid id="" [dataSource]="users"> 
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                    <dxo-header-filter [visible]="true"></dxo-header-filter>
                    <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
@@ -30,18 +30,21 @@
                    <dxo-header-filter [visible]="true"></dxo-header-filter>
                    <dxo-paging [pageSize]="5"></dxo-paging>
                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                   <dxi-column dataField="mrn" caption="First Name"></dxi-column>
-                   <dxi-column dataField="display" caption="Last Name"></dxi-column>  
-                   <dxi-column dataField="phoneNumber" caption="Distributer"></dxi-column>
-                   <dxi-column dataField="gender" caption="Territory"></dxi-column> 
-                   <dxi-column dataField="gender" caption="Email"></dxi-column> 
-                   <dxi-column dataField="gender" caption="Contact No"></dxi-column> 
-                   <dxi-column dataField="gender" caption="CNIC"></dxi-column> 
-                   <dxi-column dataField="gender" caption="DOB"></dxi-column>
-                   <dxi-column dataField="gender" caption="Address"></dxi-column>  
-                   <dxi-column dataField="patientId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                   <dxi-column dataField="firstName" caption="First Name"></dxi-column>
+                   <dxi-column dataField="lastName" caption="Last Name"></dxi-column>  
+                   <dxi-column dataField="distributer" caption="Distributer"></dxi-column>
+                   <dxi-column dataField="territory" caption="Territory"></dxi-column> 
+                   <dxi-column dataField="email" caption="Email"></dxi-column> 
+                   <dxi-column dataField="phone" caption="Contact No"></dxi-column> 
+                   <dxi-column dataField="cnic" caption="CNIC"></dxi-column> 
+                   <!-- <dxi-column dataField="dob" caption="DOB"></dxi-column> -->
+                   <dxi-column dataField="address" caption="Address"></dxi-column>  
+                   <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
                    <div *dxTemplate="let data of 'cellTemplate'">
-                     <a class="btn btn-primary" [routerLink]="['/hims/patient/profile', data.value]">View</a>
+                      <a data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                          <i class="flaticon-layers"></i>
+                        </a>
+                     <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a> -->
                    </div> 
                    </dx-data-grid>  
               </div>
@@ -51,3 +54,92 @@
 </div>
 
 
+
+
+
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Add Account
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              &times;
+            </span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Distributor
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect1">
+                          <option selected="">
+                              -- Select Distributor --
+                            </option>
+                        <option>
+                            Distributor 1
+                        </option>
+                        <option>
+                            Distributor 2
+                        </option>
+                      </select>
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Territory
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect2" disabled="disabled">
+                          <option selected="">
+                              -- Select Territory --
+                            </option>
+                        <option>
+                            Territory 1
+                        </option>
+                        <option>
+                            Territory 2
+                        </option>
+                      </select>
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                          Section
+                      </label>
+                      <select class="form-control m-input" id="exampleSelect3" disabled="disabled">
+                          <option selected="">
+                              -- Select Section --
+                            </option>
+                          <option>
+                              Section 1
+                          </option>
+                        <option>
+                            Section 1
+                        </option>
+                        <option>
+                            Section 2
+                        </option>
+                      </select>
+                    </div>
+              </div>
+          </div>
+        </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -42,8 +42,8 @@ export class RolesandprivilegesComponent implements OnInit {
 
     ngOnInit() {
 
-        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp=> this.roles = resp);
-        
+        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
+
         this.systemAdmin.getPermissions();
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
@@ -125,8 +125,8 @@ export class RolesandprivilegesComponent implements OnInit {
             alert('Role cannot be saved without a name');
         } else {
         }
-        console.log(this.role);
-        // this.systemAdmin.saveNewRoleData(this.role);
+        this.role.companyId = this.companyId;
+        this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;
     }
 

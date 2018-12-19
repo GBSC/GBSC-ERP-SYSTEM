@@ -13,10 +13,21 @@ import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
 import { OrderTakingComponent } from './order-taking/order-taking.component';
+import { eTrackerUserService } from '../core';
+import { RegionComponent } from './territories/region/region.component';
+import { AreaComponent } from './territories/area/area.component';
+import { SectionComponent } from './territories/section/section.component';
+import { SubsectionComponent } from './territories/subsection/subsection.component';
+import { DistributersComponent } from './territories/distributers/distributers.component';
+import { TerritoryComponent } from './territories/territory/territory.component';
+import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
+import { Select2Module } from 'ng2-select2';
+
 
 @NgModule({
     imports: [
         CommonModule,
+        Select2Module,
         ETrackerRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -24,6 +35,7 @@ import { OrderTakingComponent } from './order-taking/order-taking.component';
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent]
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
+    providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

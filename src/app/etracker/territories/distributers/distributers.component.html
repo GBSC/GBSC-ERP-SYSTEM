@@ -1,0 +1,71 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Distributers</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-md-12">
+        <form *ngIf="isEdit" [formGroup]="distributorForm">
+          <div class="row">
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1">Full Name</label>
+              <input class="form-control m-input m-input--solid" [value]="distributor?.name" formControlName="Name">
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1">Contact No</label>
+              <input class="form-control m-input m-input--solid" [value]="distributor?.contactNumber" formControlName="ContactNumber">
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1">Email</label>
+              <input class="form-control m-input m-input--solid" [value]="distributor?.email" formControlName="Email">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1">Address</label>
+              <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1">Territories</label>
+              <br>
+              <select2 [data]="territoryOptions" [options]="options" [width]="500" [value]="value"></select2>
+            </div>
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1"> </label>
+              <button type="reset" (click)="addDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Submit</button>
+              <button type="reset" (click)="isEdit=false" style="margin-top: 28px;" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+        </form>
+        <button type="button" class="btn btn-primary m-btn m-btn--icon m-btn--wide" (click)="isEdit=true"><span>
+          <i class="flaticon-plus"></i>
+          <span>
+            New Distributor
+          </span>
+        </span></button>
+        <dx-data-grid id="gridContainer" [dataSource]="distributors" keyExpr="distributorId">
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+          <dxi-column dataField="name" caption="Name"></dxi-column>
+          <dxi-column dataField="contactNumber" caption="Contact"></dxi-column>
+          <dxi-column dataField="email" caption="Email"></dxi-column>
+          <dxi-column dataField="address" caption="Address"></dxi-column>
+          <dxi-column dataField="distributorId" cellTemplate="cellTemplate" [width]="60"></dxi-column>
+          <div *dxTemplate="let data of 'cellTemplate'" >
+
+              <a (click)="onEdit(data.value)" class="btn btn-primary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                  <i class="fa flaticon-edit" style="color: white;"></i>
+                </a>
+          </div>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+</div>

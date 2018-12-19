@@ -43,6 +43,6 @@ import { ProfileComponent } from './profile/profile.component';
         CompanyComponent,
         ProfileComponent
     ],
-    providers : [UserService]
+    providers: [UserService]
 })
 export class SecurityAdminModule { }

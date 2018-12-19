@@ -26819,7 +26819,7 @@ select.m-select2 {
 
 .select2-container--default .select2-selection--multiple,
 .select2-container--default .select2-selection--single {
-  border: 1px solid #ebedf2; }
+  border: 1px solid #828282; }
   .select2-container--default .select2-selection--multiple .select2-selection__placeholder,
   .select2-container--default .select2-selection--single .select2-selection__placeholder {
     color: #9699a2; }
@@ -26827,7 +26827,7 @@ select.m-select2 {
 .select2-container--default.select2-container--focus .select2-selection--multiple,
 .select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple,
 .select2-container--default.select2-container--open .select2-selection--single {
-  border-color: #22b9ff; }
+  border-color: #555555; }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #575962; }

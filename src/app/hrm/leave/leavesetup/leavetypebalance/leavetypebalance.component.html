@@ -11,15 +11,14 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="empleavepolicyarray"> 
-
+               [dataSource]="empleavepolicy"> 
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter> 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <dxi-column dataField="balanceValue" caption="Balance Value"></dxi-column>
+                <dxi-column dataField="entitledQuantity" caption="Balance Value"></dxi-column>
                 <dxi-column dataField="leaveTypeId" caption="Leave Type">
                   <dxo-lookup [dataSource]="LeaveType" displayExpr="title" valueExpr="leaveTypeId">
                   </dxo-lookup> 

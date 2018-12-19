@@ -25,7 +25,6 @@ export class EmergencycontactComponent implements OnInit {
         this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
 
         this.dependantrelations = await this.SetupServiceobj.getDependantsRelations();
-        console.log(this.dependantrelations);
 
     }
 

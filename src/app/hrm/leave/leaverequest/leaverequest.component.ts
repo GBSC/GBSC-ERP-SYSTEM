@@ -20,12 +20,14 @@ export class LeaverequestComponent implements OnInit {
     public employees: any;
     public leaveType: any;
     public leaveRequest: any;
+    public leaveTypeBalances: any;
     public leaveApprovr: any;
     public leaverequest: any;
     public updatingRequest: any;
     public leaveOpening: any;
     private requestDetail: LeaveRequestDetail[];
     public totalleave: any;
+    public empleavePolicy: any;
 
     @Input('leaveRequestId') id: number;
 
@@ -57,6 +59,8 @@ export class LeaverequestComponent implements OnInit {
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
+        this.empleavePolicy = await this.leaveservice.getLeavePolicyEmployee();
+
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
         });
@@ -71,9 +75,7 @@ export class LeaverequestComponent implements OnInit {
                 });
                 this.patchValues(this.leaveRequest);
             });
-        }
-
-        // this.totalleave = 
+        } 
     }
 
     async leaveRequestDetail(value) {
@@ -115,6 +117,22 @@ export class LeaverequestComponent implements OnInit {
 
         });
     }
+
+    public getleavedata: any;
+    public selectedLeaveTypes = 45;
+
+    getLeaveBalance(userId,leaveTypeId) {
+        let selectedEmployee = this.employees.find(e => e.userId == userId)
+        this.getleavedata = this.empleavePolicy.find(e => e.groupId === selectedEmployee.groupId);
+        this.selectedLeaveTypes = this.empleavePolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.getleavedata.groupId);
+    
+    }
+
+    // getQuantitybyType(leaveTypeId) {
+    //     this.selectedLeaveTypes = this.leavepolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.sample.groupId);
+    //     this.patchvalues(this.sample);
+    // }
+
 
     patchValues(request: any) {
 

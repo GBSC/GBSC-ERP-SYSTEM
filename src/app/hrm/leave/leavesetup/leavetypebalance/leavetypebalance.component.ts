@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService, LeaveSetupService, LeaveService } from '../../../../core';
+import { EmployeeService, LeaveSetupService, LeaveService, HrmsService, SetupService } from '../../../../core';
 import { concatMap } from 'rxjs/operator/concatMap';
 
 @Component({
@@ -15,55 +15,79 @@ export class LeavetypebalanceComponent implements OnInit {
     public LeavePolicies: any;
     public empleavepolicy: any;
     public totalleave = []
-    private LeavePoliciesarray: any[];
+    public groups: any;
     public empleavepolicyarray: any[];
 
 
-    constructor(public leavesetupservice: LeaveSetupService, public leaveservice: LeaveService, public employeeservice: EmployeeService) { }
+    constructor(public leavesetupservice: LeaveSetupService, public hrSetupService: SetupService, public leaveservice: LeaveService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
-        console.log(this.LeavePolicies);
 
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
-        console.log(this.empleavepolicy);
-
+        
         this.leavetypebalance = await this.leavesetupservice.getLeaveTypeBalances();
 
         this.LeaveType = await this.leavesetupservice.getLeaveTypes();
 
-        this.employees = await this.employeeservice.GetAllEmployees();
+        this.employees = await this.employeeservice.GetAllEmployees(); 
+       
+        // this.groups = await this.hrSetupService.getAllGroups(); 
+
+        console.log(this.empleavepolicy);
+        console.log(this.LeavePolicies);
+        console.log(this.employees);
 
 
-        this.LeavePoliciesarray = this.LeavePolicies.filter(a => {
-            this.empleavepolicyarray = this.empleavepolicy.filter(b => {
-                (b.leaveTypeId === a.leaveTypeId) &&
-                    (b.maximumAllowedBalance + a.maximumAllowedBalance)
-
-                console.log(b);
+        
+        this.employees = this.employees.map(user => {
+            let u;
+            for(let lp of this.empleavepolicy) {
+                if(lp.userId == user.userId) {
+                    console.log('lp', lp)
+                    console.log('user', user)
+                    user.sampleCount = lp.entitledQuantity;
+                    user.sampleId = lp.leaveTypeId;
+                    u = user;
+                }else {
+                    return user;
+                }
             }
-                // let h = a.maximumAllowedBalance + b.maximumAllowedBalance
-                //    console.log(h);
-                //    console.log(d); 
-
-            )
-            console.log(this.empleavepolicyarray);
-
-        })
-        // this.LeavePoliciesarray = this.LeavePolicies.filter(a => {
-        //     this.empleavepolicy.filter(b => {
-        //         b.leaveTypeId == a.leaveTypeId; 
-        //         let x = a.maximumAllowedBalance + b.maximumAllowedBalance
-        //         console.log(x);
-        //         console.log(b);
-        //     });
-
-
-        // })
-        //    let x = this.LeavePolicies.maximumAllowedBalance +  this.empleavepolicy.maximumAllowedBalance
-        //       console.log(x); 
+            
+        
+        });
+        // console.log('emp', this.employees); 
+        // this.LeavePolicies.forEach(e => { 
+        //     for(let user of this.employees) {
+        //         // console.log('user', user);
+        //         if(e.groupId == user.groupId) {
+        //             if(e.leaveTypeId === user.sampleId) {
+        //                 console.log(user);
+        //                 console.log(e);
+        //                 console.log(user.sampleId)
+        //                 console.log(user.sampleCount)
+        //                 console.log(e.leaveTypeId);
+        //                 console.log(e.entitledQuantity);
+        //                 // this.empleavepolicy.forEach(lpp => {
+        //                 //     if(lpp.userId === user.userId) {
+        //                 //         console.log(lpp);
+                                
+        //                 //         lpp.entitledQuantity += e.entitledQuantity;
+        //                 //         console.log(lpp);
+                                
+        //                 //         return lpp;
+        //                 //     }
+        //                 // })
+        //             }
+        //         }
+        //     }
+           
+        // });
+        
+      
     }
+  
 
     async addleavetypebalance(value) {
 

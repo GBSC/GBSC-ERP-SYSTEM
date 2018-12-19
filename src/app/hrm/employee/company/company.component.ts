@@ -20,6 +20,9 @@ export class EmployeeCompanyComponent implements OnInit {
     public managementlevel: any;
     public employeestatus: any;
     public departments: any;
+    public employees: any;
+    public manager : any;
+    public filterdemplyoee : any;
 
     @Input('employeeId') id: number;
 
@@ -64,8 +67,17 @@ export class EmployeeCompanyComponent implements OnInit {
         this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
+        
+        this.employees = await this.employeeService.GetAllEmployees();
 
         this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
+
+
+        this.employeeService.getManagers().subscribe(res =>{
+            this.manager = res;
+            console.log(this.manager);
+            // this.filterdemplyoee = this.employes.fil
+        })
 
         await this.SetupServiceobj.getEmployeeStatus();
 

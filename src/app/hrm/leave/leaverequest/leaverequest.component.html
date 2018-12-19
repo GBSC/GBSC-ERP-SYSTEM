@@ -20,9 +20,9 @@
                     Requestioner:
                   </label>
                   <div class="col-lg-8">
-                    <select class="form-control m-input" formControlName="UserId" name="employee">
+                    <select #lb class="form-control m-input" (change)="getLeaveBalance(lb.value)" formControlName="UserId" name="employee">
                       <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.fullName}}</option>
                     </select>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                       <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                       </dxo-lookup>
                     </dxi-column>
-                    <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                    <dxi-column dataField="leaveTypeId" (onValueChanged)="getLeaveBalance($event)" caption="Leave Type">
                       <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
                       </dxo-lookup>
                     </dxi-column>
@@ -104,7 +104,7 @@
                     <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
                     <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
                     <dxi-column dataField="value" caption="Calculated Leave Value"></dxi-column>
-                    <dxi-column dataField="totalLeaveDetailValue" caption="Balance Leave Value"> </dxi-column>
+                    <dxi-column dataField="totalLeaveDetailValue" value="getleavedata.totalLeaveDetailValue" caption="Balance Leave Value"> </dxi-column>
                   </dx-data-grid>
          </div>
          </div>

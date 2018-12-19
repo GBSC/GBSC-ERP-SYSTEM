@@ -859,7 +859,7 @@ export class InventorysystemService {
 
     //Distributor
     GetDistributor(distributorId: any): Observable<Distributor> {
-        return this.ApiService.get(this.API_URL + 'Setup/GetDistributor/'+distributorId);
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributor/' + distributorId);
     }
 
     GetDistributors(): Observable<Distributor> {

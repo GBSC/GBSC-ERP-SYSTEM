@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     public Patient: any = {};
 
     public visitnature: any;
-    public vistnatr : any = [];
+    public vistnatr: any = [];
     public PatientPackage: any = {};
     public patientpackagebypatientid: any = {};
     public patientpackagedetail: any;

@@ -88,7 +88,7 @@ import { UserService } from './Services/Security/user.service';
         InsemenationService,
         SemenanalysisService,
         BiochemistryoutsiderService,
-        UserService ,
-        eTrackerUserService   ]
+        UserService,
+        eTrackerUserService]
 })
 export class CoreModule { }

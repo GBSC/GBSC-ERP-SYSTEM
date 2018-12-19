@@ -9,7 +9,7 @@ import { PatientService } from '../../../core';
 })
 export class DailySemenAnalysisComponent implements OnInit {
 
-    public DailySemenAnalysisForm : FormGroup;
+    public DailySemenAnalysisForm: FormGroup;
     private ProcedureForm: FormGroup;
     public Patients: any;
     public Consultants: any;

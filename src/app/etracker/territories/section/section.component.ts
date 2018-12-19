@@ -2,39 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { InventorysystemService, AuthService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-section',
-  templateUrl: './section.component.html',
-  styleUrls: ['./section.component.scss']
+    selector: 'app-section',
+    templateUrl: './section.component.html',
+    styleUrls: ['./section.component.scss']
 })
 export class SectionComponent implements OnInit {
 
-  public sections: any;
-  public territories: any;
-  public companyId: any;
+    public sections: any;
+    public territories: any;
+    public companyId: any;
 
-  constructor(public inventoryService: InventorysystemService, public authService: AuthService) {
-    this.companyId = this.authService.getUserCompanyId();
-  }
+    constructor(public inventoryService: InventorysystemService, public authService: AuthService) {
+        this.companyId = this.authService.getUserCompanyId();
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.inventoryService.getSectionsByCompany(this.companyId).subscribe(resp => {
-      this.sections = resp;
-    });
+        this.inventoryService.getSectionsByCompany(this.companyId).subscribe(resp => {
+            this.sections = resp;
+        });
 
-    this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t => this.territories = t);
-  }
+        this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t => this.territories = t);
+    }
 
-  addSection(value) {
+    addSection(value) {
 
-  }
+    }
 
-  updateSection(value) {
+    updateSection(value) {
 
-  }
+    }
 
-  deleteSection(value) {
+    deleteSection(value) {
 
-  }
+    }
 
 }

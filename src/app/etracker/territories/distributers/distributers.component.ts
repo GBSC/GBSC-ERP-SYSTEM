@@ -4,93 +4,93 @@ import { InventorysystemService, AuthService } from '../../../../app/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Select2OptionData } from 'ng2-select2';
 @Component({
-  selector: 'app-distributers',
-  templateUrl: './distributers.component.html',
-  styleUrls: ['./distributers.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-distributers',
+    templateUrl: './distributers.component.html',
+    styleUrls: ['./distributers.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DistributersComponent implements OnInit {
 
-  public distributors: any;
-  public distributor: any;
-  public territories: any;
-  public companyId: any;
-  public distributorTerritories: string[];
-  public distributorForm: FormGroup;
-  public value: string[] = [];
-  public options: Select2Options;
-  public territoryOptions: Array<Select2OptionData>;
+    public distributors: any;
+    public distributor: any;
+    public territories: any;
+    public companyId: any;
+    public distributorTerritories: string[];
+    public distributorForm: FormGroup;
+    public value: string[] = [];
+    public options: Select2Options;
+    public territoryOptions: Array<Select2OptionData>;
 
-  public isEdit: boolean = false;
+    public isEdit: boolean = false;
 
-  constructor(
-    public formBuilder: FormBuilder,
-    public inventoryService: InventorysystemService,
-    public authService: AuthService) {
+    constructor(
+        public formBuilder: FormBuilder,
+        public inventoryService: InventorysystemService,
+        public authService: AuthService) {
 
-    this.companyId = this.authService.getUserCompanyId();
+        this.companyId = this.authService.getUserCompanyId();
 
 
-    this.distributorForm = this.formBuilder.group({
-      'Name': [],
-      'ContactNumber': [],
-      'Address': [],
-      'Email': []
-    })
-  }
-
-  ngOnInit() {
-
-    this.options = {
-      multiple: true
+        this.distributorForm = this.formBuilder.group({
+            'Name': [],
+            'ContactNumber': [],
+            'Address': [],
+            'Email': []
+        })
     }
 
-    this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t => {
-      this.territories = t;
+    ngOnInit() {
 
-      this.territoryOptions = [];
-      for (let territory of this.territories) {
-        this.territoryOptions.push({ id: territory.territoryId.toString(), text: territory.name })
-      }
+        this.options = {
+            multiple: true
+        }
 
-    });
+        this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t => {
+            this.territories = t;
 
-    this.inventoryService.GetDistributorsByCompany(this.companyId).subscribe(d => {
-      this.distributors = d;
-    })
-  }
+            this.territoryOptions = [];
+            for (let territory of this.territories) {
+                this.territoryOptions.push({ id: territory.territoryId.toString(), text: territory.name })
+            }
 
-  onEdit(id) {
+        });
 
-    this.isEdit = true;
+        this.inventoryService.GetDistributorsByCompany(this.companyId).subscribe(d => {
+            this.distributors = d;
+        })
+    }
 
-    this.inventoryService.GetDistributor(id).subscribe(dist => {
+    onEdit(id) {
 
-      this.distributor = dist;
+        this.isEdit = true;
 
-      this.value = [];
+        this.inventoryService.GetDistributor(id).subscribe(dist => {
 
-      for (let territory of this.distributor.territories) {
-        this.value.push(territory.territoryId.toString());
-      }
+            this.distributor = dist;
 
-    })
-  }
+            this.value = [];
 
-  addDistributor(value) {
+            for (let territory of this.distributor.territories) {
+                this.value.push(territory.territoryId.toString());
+            }
 
-    console.log(value);
-    console.log(this.territoryOptions);
-  }
+        })
+    }
 
-  patchValues(distributor) {
-    this.distributorForm.patchValue({
-      'Name': distributor.name,
-      'Email': distributor.name,
-      'ContactNumber': distributor.contactNumber,
-      'Address': distributor.address
-    })
-  }
+    addDistributor(value) {
+
+        console.log(value);
+        console.log(this.territoryOptions);
+    }
+
+    patchValues(distributor) {
+        this.distributorForm.patchValue({
+            'Name': distributor.name,
+            'Email': distributor.name,
+            'ContactNumber': distributor.contactNumber,
+            'Address': distributor.address
+        })
+    }
 
 
 }

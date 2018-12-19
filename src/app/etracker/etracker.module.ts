@@ -36,6 +36,6 @@ import { Select2Module } from 'ng2-select2';
         DxDataGridModule
     ],
     declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
-    providers:[eTrackerUserService]
+    providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

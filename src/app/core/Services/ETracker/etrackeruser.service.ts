@@ -6,13 +6,13 @@ import { ApiService } from '../api.service';
 
 export class eTrackerUserService {
 
-  private Url = "etracker/api/";
+    private Url = "etracker/api/";
 
-  constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-  getSalesUsersByCompany(companyId){
+    getSalesUsersByCompany(companyId) {
 
-    return this.ApiService.get(this.Url+'User/GetSalesUsersByCompanyId/'+companyId);
+        return this.ApiService.get(this.Url + 'User/GetSalesUsersByCompanyId/' + companyId);
 
-  }
+    }
 }

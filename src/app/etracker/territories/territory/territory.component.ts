@@ -2,42 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService, InventorysystemService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-territory',
-  templateUrl: './territory.component.html',
-  styleUrls: ['./territory.component.scss']
+    selector: 'app-territory',
+    templateUrl: './territory.component.html',
+    styleUrls: ['./territory.component.scss']
 })
 export class TerritoryComponent implements OnInit {
 
-  public territories: any;
-  public areas: any;
-  public companyId: any;
+    public territories: any;
+    public areas: any;
+    public companyId: any;
 
-  constructor(public inventoryService: InventorysystemService, public authService : AuthService) {
-    this.companyId = this.authService.getUserCompanyId();
-   }
+    constructor(public inventoryService: InventorysystemService, public authService: AuthService) {
+        this.companyId = this.authService.getUserCompanyId();
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t=>{
-      this.territories = t;
-    });
+        this.inventoryService.getTerritoriesByCompany(this.companyId).subscribe(t => {
+            this.territories = t;
+        });
 
-    this.inventoryService.getAreasByCompany(this.companyId).subscribe(a=>{
-      this.areas = a;
-    })
-  }
+        this.inventoryService.getAreasByCompany(this.companyId).subscribe(a => {
+            this.areas = a;
+        })
+    }
 
-  addTerritory(territory){
+    addTerritory(territory) {
 
-  }
+    }
 
-  updateTerritory(territory)
-  {
+    updateTerritory(territory) {
 
-  }
+    }
 
-  deleteTerritory(territory){
-    
-  }
+    deleteTerritory(territory) {
+
+    }
 
 }

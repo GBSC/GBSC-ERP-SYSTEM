@@ -15,9 +15,9 @@
           <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
             <div class="m-demo__preview">
               <ul class="m-nav nav nav-tabs">
-                <li class="m-nav__item" *ngFor="let tab of tabs;" [class.active]="selectedTab===tab">
-                  <a (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <li class="m-nav__item" *ngFor="let tab of tabs;">
+                  <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-share"></i>
                     <span class="m-nav__link-text">
                       {{tab}}
                     </span></a>

@@ -45,7 +45,7 @@ export class InventoryComponent implements OnInit {
         await this.CheckUnassignedItems();
     }
 
-    async UpdateInventory( ) {
+    async UpdateInventory() {
         await this.InventoryService.UpdateInventory(this.UpdatedModel);
         await this.CheckUnassignedItems();
     }

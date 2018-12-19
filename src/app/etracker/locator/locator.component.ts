@@ -19,7 +19,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
-import { eTrackerUserService } from 'src/app/core/Services/ETracker/etrackeruser.service';
+import { eTrackerUserService } from '../../core/Services/ETracker/etrackeruser.service';
+
 
 @Component({
     selector: 'app-locator',
@@ -49,8 +50,8 @@ export class LocatorComponent implements OnInit {
         this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 45);
         this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 45);
         this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
-       
-       
+
+
         for (let i = 0; i <= 22; i++) {
             this.zoomLevels.push(i);
         }
@@ -59,7 +60,7 @@ export class LocatorComponent implements OnInit {
             this.userLatestlocation = data;
             console.log('latestLoc', this.userLatestlocation);
             this.eTrackerUserService.currentUser = this.userLatestlocation;
-        });  
+        });
 
     }
 
@@ -108,9 +109,9 @@ export class LocatorComponent implements OnInit {
     getTime(seconds) {
         return `${this.createDate(seconds).substr(16, 8)}`
     }
-    
+
     getDate(seconds) {
-        return `${this.createDate(seconds).substr(0, 16)}`        
+        return `${this.createDate(seconds).substr(0, 16)}`
     }
 }
 

@@ -30,10 +30,14 @@ import { EtrackerModule } from './etracker/etracker.module';
 import { TitlePipe } from './_pipes/title';
 import { Select2Module } from 'ng2-select2';
 import { AgmCoreModule } from '@agm/core';
-import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire'
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
 
 
 
@@ -66,8 +70,9 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
         CoreModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFirestoreModule,
+        AngularFireAuthModule,
         AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
+            apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
         }),
         AgmSnazzyInfoWindowModule,
         SecurityAdminModule,

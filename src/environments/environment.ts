@@ -14,6 +14,6 @@ export const environment = {
         projectId: 'trackingsystemdemo',
         storageBucket: 'trackingsystemdemo.appspot.com',
         messagingSenderId: '58044608671'
-      }
+    }
     //api_url: ''
 };

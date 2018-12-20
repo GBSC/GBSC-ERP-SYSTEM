@@ -16,6 +16,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 import { UsersComponent } from './users/users.component';
 import { UserService } from '../core/Services/Security/user.service';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -39,8 +40,9 @@ import { UserService } from '../core/Services/Security/user.service';
         BranchComponent,
         DepartmentComponent,
         RolesandprivilegesComponent,
-        CompanyComponent
+        CompanyComponent,
+        ProfileComponent
     ],
-    providers : [UserService]
+    providers: [UserService]
 })
 export class SecurityAdminModule { }

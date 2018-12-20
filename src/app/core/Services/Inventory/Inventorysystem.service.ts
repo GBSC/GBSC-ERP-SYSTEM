@@ -600,6 +600,10 @@ export class InventorysystemService {
         // return this.Area;
     }
 
+    getAreasByCompany(companyId: any): Observable<Area> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetAreasByCompany/' + companyId);
+    }
+
     AddArea(Area: Area): Observable<Area> {
         return this.ApiService.post(this.API_URL + 'Setup/AddArea', Area);
         // let x = await this.http.post(this.API_URL + 'Setup/AddArea', Area).toPromise();
@@ -854,11 +858,19 @@ export class InventorysystemService {
     }
 
     //Distributor
+    GetDistributor(distributorId: any): Observable<Distributor> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributor/' + distributorId);
+    }
+
     GetDistributors(): Observable<Distributor> {
         return this.ApiService.get(this.API_URL + 'Setup/GetDistributors');
         // this.Distributor = await this.http.get<Distributor>(this.API_URL + 'Setup/GetDistributors').toPromise();
         // //console.log(this.Distributor);
         // return this.Distributor;
+    }
+
+    GetDistributorsByCompany(companyId: any): Observable<Distributor> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributorsByCompany/' + companyId);
     }
 
     AddDistributor(Distributor: Distributor): Observable<Distributor> {
@@ -1180,6 +1192,10 @@ export class InventorysystemService {
         // return this.Region;
     }
 
+    getRegionsByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByCompany/' + companyId);
+    }
+
     AddRegion(Region: Region): Observable<Region> {
         return this.ApiService.post(this.API_URL + 'Setup/AddRegion', Region);
         // let x = await this.http.post(this.API_URL + 'Setup/AddRegion', Region).toPromise();
@@ -1200,6 +1216,57 @@ export class InventorysystemService {
         // console.log(x);
         // return x;
     }
+
+
+    //Section
+    GetSections(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSections');
+    }
+
+    getSectionsByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByCompany/' + companyId);
+    }
+
+    getSectionsByTerritory(territoryId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByTerritory/' + territoryId);
+    }
+
+    AddSection(Section: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddSection', Section);
+    }
+
+    UpdateSection(Section: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateSection', Section);
+    }
+
+    DeleteSection(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteSection/' + id);
+    }
+
+
+    //Subsection
+    GetSubsections(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSubsections');
+    }
+
+    getSubsectionsByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSubsectionsByCompany/' + companyId);
+    }
+
+    AddSubsection(Subsection: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddSubsection', Subsection);
+    }
+
+    UpdateSubsection(Subsection: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateSubsection', Subsection);
+    }
+
+    DeleteSubsection(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteSubsection/' + id);
+    }
+
+
+
 
     //ReturnReason
     GetReturnReasons(): Observable<ReturnReason> {
@@ -1323,6 +1390,14 @@ export class InventorysystemService {
         // this.Territory = await this.http.get<Territory>(this.API_URL + 'Setup/GetTerritories').toPromise();
         // //console.log(this.Territory);
         // return this.Territory;
+    }
+
+    getTerritoriesByCompany(companyId: any): Observable<Territory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByCompany/' + companyId);
+    }
+
+    getTerritoriesByDistributorId(distributorId: any): Observable<Territory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByDistributor/' + distributorId);
     }
 
     AddTerritory(Territory: Territory): Observable<Territory> {

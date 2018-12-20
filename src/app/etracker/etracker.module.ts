@@ -20,10 +20,14 @@ import { SectionComponent } from './territories/section/section.component';
 import { SubsectionComponent } from './territories/subsection/subsection.component';
 import { DistributersComponent } from './territories/distributers/distributers.component';
 import { TerritoryComponent } from './territories/territory/territory.component';
+import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
+import { Select2Module } from 'ng2-select2';
+
 
 @NgModule({
     imports: [
         CommonModule,
+        Select2Module,
         ETrackerRoutingModule,
         FormsModule,
         ReactiveFormsModule,
@@ -31,7 +35,7 @@ import { TerritoryComponent } from './territories/territory/territory.component'
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent],
-    providers:[eTrackerUserService]
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
+    providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

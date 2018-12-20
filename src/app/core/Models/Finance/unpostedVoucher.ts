@@ -1,6 +1,6 @@
 import { VoucherDetail } from "./voucherDetail";
 
-export interface UnPostedVouchers  {
+export interface UnpostedVouchers  {
 
 
     VoucherId : number,

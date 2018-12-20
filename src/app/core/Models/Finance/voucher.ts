@@ -1,12 +1,11 @@
 import { VoucherDetail } from "./voucherDetail";
 
 export class Voucher {
-
-    Date: Date;
-    Description: string;
-    ChequeNumber: string;
-    Total: number;
-    IsFinal: boolean;
-    VoucherTypeId: number;
-    VoucherDetails: VoucherDetail[];
+    date: Date;
+    description: string;
+    chequeNumber: string;
+    total: number;
+    isFinal: boolean;
+    voucherTypeId: number;
+    voucherDetails: VoucherDetail[];
 }

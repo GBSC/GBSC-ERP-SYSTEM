@@ -1,16 +1,16 @@
 import { VoucherDetail } from "./voucherDetail";
 
-export interface UnPostedVouchers  {
+export interface PostedVouchers  {
 
 
-    VoucherId : number,
-    VoucherCode : number,
-    DateTime : Date,
-    Description : string,
-    TotalCreditAmount : number,
-    TotalDebitAmount : number,
-    FinancialYearId : number,
-    VoucherTypeId : number ,
-    VoucherDetail : VoucherDetail[]
-    Posted : boolean
+    voucherId : number,
+    voucherCode : number,
+    dateTime : Date,
+    description : string,
+    totalCreditAmount : number,
+    totalDebitAmount : number,
+    financialYearId : number,
+    voucherTypeId : number ,
+    voucherDetail : VoucherDetail[]
+    posted : boolean
 }

@@ -13,7 +13,6 @@ import { SalesReturn } from '../../Models/Finance/salesReturn';
 import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 import { Account } from '../../Models/Finance/Account';
 import { AccountViewModel } from '../../Models/Finance/AccountViewModel';
-import { UnpostedVoucher } from '../../Models/Finance/UnpostedVoucher';
 import { UnpostedVoucherViewModel } from '../../Models/Finance/UnpostedVoucherViewModel';
 import { PostedVoucherViewModel } from '../../Models/Finance/PostedVoucherViewModel';
 import { TransactionAccount } from '../../Models/Finance/TransactionAccount';
@@ -281,8 +280,8 @@ export class FinanceService {
         return this.ApiService.delete(this.baseUrl + '/Finance/DeleteAccount/' + id);
     }
 
-    processAccountsForLedger(value):Observable<any>{
-        return this.ApiService.post(this.baseUrl+'/Finance/ProcessAccountsForLedger',value);
+    processAccountsForLedger(newfinancialyearid : number) : Observable<any>{
+        return this.ApiService.get(this.baseUrl+'/Finance/ProcessAccountsForLedger/' + newfinancialyearid);
     }
 
     getTransactionAccounts() : Observable<TransactionAccount[]> {

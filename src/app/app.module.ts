@@ -29,8 +29,6 @@ import { SecurityAdminModule } from './security-admin/security-admin.module';
 import { EtrackerModule } from './etracker/etracker.module';
 import { TitlePipe } from './_pipes/title';
 import { Select2Module } from 'ng2-select2';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';

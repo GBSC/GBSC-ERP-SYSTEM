@@ -32,7 +32,6 @@ import { ApiService } from '../api.service';
 
 export class eTrackerUserService {
 
-<<<<<<< HEAD
     public allUsers: any = [];
     public locationHistory: any = [];
     public visitedShops: any = [];
@@ -42,6 +41,16 @@ export class eTrackerUserService {
     public realTimeTracking: BehaviorSubject<any> = new BehaviorSubject<any>(null);
     private Url = "etracker/api/";
     constructor(private firebase: AngularFirestore, private http: HttpClient, private ApiService: ApiService) { }
+
+
+    getUser(userId: any) {
+        return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
+    }
+
+    assignUserSection(userId: any, distributorId: any, sectionId: any) {
+        let params = "userId=" + userId + "&distributorId=" + distributorId + "&sectionId=" + sectionId;
+        return this.ApiService.get(this.Url + 'User/AssignUserSection?' + params);
+    }
 
     getSalesUsersByCompany(companyId) {
 
@@ -195,22 +204,7 @@ class MarkerLabel {
     }
     set text(value) {
         this._text = value;
-=======
-    private Url = "etracker/api/";
-
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
-
-    getUser(userId: any) {
-        return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
     }
 
-    getSalesUsersByCompany(companyId: any) {
-        return this.ApiService.get(this.Url + 'User/GetSalesUsersByCompanyId/' + companyId);
-    }
 
-    assignUserSection(userId: any, distributorId: any, sectionId: any) {
-        let params = "userId=" + userId + "&distributorId=" + distributorId + "&sectionId=" + sectionId;
-        return this.ApiService.get(this.Url + 'User/AssignUserSection?' + params);
->>>>>>> 8c748bc0883f9459b5861e747274fc93ae4afedb
-    }
 }

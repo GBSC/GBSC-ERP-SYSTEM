@@ -13,12 +13,6 @@ export class SalesusersComponent implements OnInit {
 
     public companyId: any;
     public users: any;
-<<<<<<< HEAD
-
-    constructor(private authService: AuthService, private userService: eTrackerUserService) {
-
-        this.companyId = this.authService.getUserCompanyId();
-=======
     public distributors: any;
     public territories: any;
     public sections: any;
@@ -37,7 +31,7 @@ export class SalesusersComponent implements OnInit {
     @ViewChild("distributorcb") distributorcb: DxSelectBoxComponent;
     @ViewChild("territorycb") territorycb: DxSelectBoxComponent;
     @ViewChild("sectioncb") sectioncb: DxSelectBoxComponent;
-    
+
 
     constructor(private authService: AuthService,
         private userService: eTrackerUserService,
@@ -51,20 +45,16 @@ export class SalesusersComponent implements OnInit {
             'DistributorId': ['', Validators.required],
             'SectionId': ['', Validators.required]
         })
->>>>>>> 8c748bc0883f9459b5861e747274fc93ae4afedb
     }
 
     ngOnInit() {
 
-<<<<<<< HEAD
-=======
         this.inventoryService.GetDistributorsByCompany(this.companyId).subscribe(dist => {
 
             this.distributors = dist;
         });
 
 
->>>>>>> 8c748bc0883f9459b5861e747274fc93ae4afedb
         this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
 
             this.users = u;

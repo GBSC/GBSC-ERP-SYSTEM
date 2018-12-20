@@ -1,55 +1,55 @@
-
 <div class="m-content">
-         
-  <div class="row">
-          <div class="col-sg-12">
 
-            <div class="m-portlet m-portlet--unair">
-              <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                    <span class="m-portlet__head-icon">
-                        <i class="fa fa-calendar"></i>
-                      </span> 
-                  <h3 class="m-portlet__head-text">
-                    Sales Users
-                  </h3>
-                </div>
-              </div>
-              </div>
-              <div class="m-portlet__body">
-                <dx-data-grid id="" [dataSource]="users"> 
-                  <dxo-filter-row [visible]="true"></dxo-filter-row>
-                   <dxo-header-filter [visible]="true"></dxo-header-filter>
-                   <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                   <dxo-paging [pageSize]="8"></dxo-paging>
-                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]"[showInfo]="true"></dxo-pager>
-                   <dxo-selection mode="single"></dxo-selection>
-                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                   <dxo-filter-row [visible]="true"></dxo-filter-row>
-                   <dxo-header-filter [visible]="true"></dxo-header-filter>
-                   <dxo-paging [pageSize]="5"></dxo-paging>
-                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                   <dxi-column dataField="firstName" caption="First Name"></dxi-column>
-                   <dxi-column dataField="lastName" caption="Last Name"></dxi-column>  
-                   <dxi-column dataField="distributer" caption="Distributer"></dxi-column>
-                   <dxi-column dataField="territory" caption="Territory"></dxi-column> 
-                   <dxi-column dataField="email" caption="Email"></dxi-column> 
-                   <dxi-column dataField="phone" caption="Contact No"></dxi-column> 
-                   <dxi-column dataField="cnic" caption="CNIC"></dxi-column> 
-                   <!-- <dxi-column dataField="dob" caption="DOB"></dxi-column> -->
-                   <dxi-column dataField="address" caption="Address"></dxi-column>  
-                   <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
-                   <div *dxTemplate="let data of 'cellTemplate'">
-                      <a data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
-                          <i class="flaticon-layers"></i>
-                        </a>
-                     <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a> -->
-                   </div> 
-                   </dx-data-grid>  
-              </div>
-              </div>
+  <div class="row">
+    <div class="col-sg-12">
+
+      <div class="m-portlet m-portlet--unair">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon">
+                <i class="fa fa-calendar"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Sales Users
+              </h3>
+            </div>
           </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="" [dataSource]="users">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[12, 22, 32]" [showInfo]="true"></dxo-pager>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-paging [pageSize]="5"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+            <dxi-column dataField="firstName" caption="First Name"></dxi-column>
+            <dxi-column dataField="lastName" caption="Last Name"></dxi-column>
+            <dxi-column dataField="distributer" caption="Distributer"></dxi-column>
+            <dxi-column dataField="territory" caption="Territory"></dxi-column>
+            <dxi-column dataField="email" caption="Email"></dxi-column>
+            <dxi-column dataField="phone" caption="Contact No"></dxi-column>
+            <dxi-column dataField="cnic" caption="CNIC"></dxi-column>
+            <!-- <dxi-column dataField="dob" caption="DOB"></dxi-column> -->
+            <dxi-column dataField="address" caption="Address"></dxi-column>
+            <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
+            <div *dxTemplate="let data of 'cellTemplate'">
+              <a data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer" (click)="onUserSelect(data.value)"
+                style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                <i class="flaticon-layers"></i>
+              </a>
+              <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a> -->
+            </div>
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -58,88 +58,70 @@
 
 
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">
-            Add Account
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">
-              &times;
-            </span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-sm-4">
-                  <div class="form-group m-form__group">
-                      <label for="exampleSelect1">
-                          Distributor
-                      </label>
-                      <select class="form-control m-input" id="exampleSelect1">
-                          <option selected="">
-                              -- Select Distributor --
-                            </option>
-                        <option>
-                            Distributor 1
-                        </option>
-                        <option>
-                            Distributor 2
-                        </option>
-                      </select>
-                    </div>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Assign Distributor & Section
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="assignForm">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group m-form__group">
+                <label for="exampleSelect1">
+                  Distributor
+                </label>
+                <dx-select-box #distributorcb [items]="distributors" displayExpr="name" valueExpr="distributorId"
+                  [value]="distributorId" formControlName="DistributorId" [searchEnabled]="true">
+                </dx-select-box>
               </div>
-              <div class="col-sm-4">
-                  <div class="form-group m-form__group">
-                      <label for="exampleSelect1">
-                          Territory
-                      </label>
-                      <select class="form-control m-input" id="exampleSelect2" disabled="disabled">
-                          <option selected="">
-                              -- Select Territory --
-                            </option>
-                        <option>
-                            Territory 1
-                        </option>
-                        <option>
-                            Territory 2
-                        </option>
-                      </select>
-                    </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group m-form__group">
+                <label for="exampleSelect1">
+                  Territory
+                </label>
+                <dx-select-box #territorycb [items]="territories" displayExpr="name" valueExpr="territoryId" [value]="territoryId"
+                  formControlName="TerritoryId" [searchEnabled]="true">
+                </dx-select-box>
               </div>
-              <div class="col-sm-4">
-                  <div class="form-group m-form__group">
-                      <label for="exampleSelect1">
-                          Section
-                      </label>
-                      <select class="form-control m-input" id="exampleSelect3" disabled="disabled">
-                          <option selected="">
-                              -- Select Section --
-                            </option>
-                          <option>
-                              Section 1
-                          </option>
-                        <option>
-                            Section 1
-                        </option>
-                        <option>
-                            Section 2
-                        </option>
-                      </select>
-                    </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group m-form__group">
+                <label for="exampleSelect1">
+                  Section
+                </label>
+                <dx-select-box #sectioncb [items]="sections" displayExpr="name" valueExpr="sectionId" [value]="sectionId"
+                  formControlName="SectionId" [searchEnabled]="true">
+                </dx-select-box>
               </div>
+            </div>
+          </div>
+          <div *ngIf="assignForm.controls['DistributorId'].hasError('required')">
+            <span>Select Distributor</span>
+          </div>
+          <div *ngIf="assignForm.controls['TerritoryId'].hasError('required')">
+            <span>Select Territory</span>
+          </div>
+          <div *ngIf="assignForm.controls['SectionId'].hasError('required')">
+            <span>Select Section</span>
           </div>
         </form>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">
-              Save
-            </button>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary" (click)="assignUserSection(assignForm.value)">
+            Save
+          </button>
         </div>
       </div>
     </div>
+  </div>

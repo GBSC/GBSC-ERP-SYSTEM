@@ -2,36 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { InventorysystemService, AuthService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-region',
-  templateUrl: './region.component.html',
-  styleUrls: ['./region.component.scss']
+    selector: 'app-region',
+    templateUrl: './region.component.html',
+    styleUrls: ['./region.component.scss']
 })
 export class RegionComponent implements OnInit {
 
-  public regions : any;
-  public companyId : any;
+    public regions: any;
+    public companyId: any;
 
-  constructor(public inventoryService : InventorysystemService, public authService : AuthService) {
-    this.companyId = this.authService.getUserCompanyId();
-   }
+    constructor(public inventoryService: InventorysystemService, public authService: AuthService) {
+        this.companyId = this.authService.getUserCompanyId();
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.inventoryService.getRegionsByCompany(this.companyId).subscribe(reg=> this.regions = reg);
-  }
+        this.inventoryService.getRegionsByCompany(this.companyId).subscribe(reg => this.regions = reg);
+    }
 
-  addRegions(region){
+    addRegions(region) {
 
-  }
+    }
 
-  updateRegion(region)
-  {
+    updateRegion(region) {
 
-  }
+    }
 
-  deleteRegion(region)
-  {
+    deleteRegion(region) {
 
-  }
+    }
 
 }

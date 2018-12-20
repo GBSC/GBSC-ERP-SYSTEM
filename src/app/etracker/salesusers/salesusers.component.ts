@@ -31,7 +31,7 @@ export class SalesusersComponent implements OnInit {
     @ViewChild("distributorcb") distributorcb: DxSelectBoxComponent;
     @ViewChild("territorycb") territorycb: DxSelectBoxComponent;
     @ViewChild("sectioncb") sectioncb: DxSelectBoxComponent;
-    
+
 
     constructor(private authService: AuthService,
         private userService: eTrackerUserService,

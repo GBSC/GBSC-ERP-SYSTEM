@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { PackType } from '../../../core/Models/Inventory/Setup/PackType';
 
 @Component({
     selector: 'app-product-pack-type',
@@ -9,29 +10,38 @@ import { InventorysystemService } from '../../../core';
 export class ProductPackTypeComponent implements OnInit {
     public PackTypes: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.PackTypes = await this.InventoryService.GetPackTypes();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
+            this.PackTypes = res;
+        });
     }
 
-    async AddPackType(value) {
-        await this.InventoryService.AddPackType(value.data);
-        this.PackTypes = await this.InventoryService.GetPackTypes();
+    AddPackType(value) {
+        this.InventoryService.AddPackType(value.data).subscribe(res => {
+            this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
+                this.PackTypes = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdatePackType() {
-        return await this.InventoryService.UpdatePackType(this.UpdatedModel);
+    UpdatePackType() {
+        return this.InventoryService.UpdatePackType(this.UpdatedModel).subscribe();
     }
 
-    async DeletePackType(value) {
-        return await this.InventoryService.DeletePackType(value.key);
+    DeletePackType(value) {
+        return this.InventoryService.DeletePackType(value.key).subscribe();
     }
 }

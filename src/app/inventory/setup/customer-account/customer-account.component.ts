@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { CustomerAccount } from '../../../core/Models/Inventory/Setup/CustomerAccount';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
     selector: 'app-customer-account',
@@ -11,26 +12,37 @@ export class CustomerAccountComponent implements OnInit {
     public CustomerAccounts: any;
     public CustomerTypes: any;
     public updatedmodel: CustomerAccount;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
 
-    async ngOnInit() {
-        this.CustomerAccounts = await this.InventoryService.GetCustomerAccounts();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetCustomerAccountsByCompany(this.CompanyId).subscribe((res: CustomerAccount) => {
+            this.CustomerAccounts = res;
+        });
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
     }
 
-    async AddCustomerAccount(value) {
+    AddCustomerAccount(value) {
         console.log(value);
-        await this.InventoryService.AddCustomerAccount(value.data);
-        this.CustomerAccounts = await this.InventoryService.GetCustomerAccounts();
+        this.InventoryService.AddCustomerAccount(value.data).subscribe(res => {
+            this.InventoryService.GetCustomerAccountsByCompany(this.CompanyId).subscribe((res: CustomerAccount) => {
+                this.CustomerAccounts = res;
+            });
+        });
     }
 
-    async UpdateCustomerAccount() {
-        return await this.InventoryService.UpdateCustomerAccount(this.updatedmodel);
+    UpdateCustomerAccount() {
+        return this.InventoryService.UpdateCustomerAccount(this.updatedmodel).subscribe();
     }
 
-    async DeleteCustomerAccount(value) {
-        return await this.InventoryService.DeleteCustomerAccount(value.key);
+    DeleteCustomerAccount(value) {
+        return this.InventoryService.DeleteCustomerAccount(value.key).subscribe();
     }
 
     UpdateModel(value) {

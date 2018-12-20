@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 
 @Component({
     selector: 'app-territory',
@@ -10,20 +10,24 @@ export class TerritoryComponent implements OnInit {
     public Territories: any;
     public Areas: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
     async ngOnInit() {
-        this.InventoryService.GetTerritories().subscribe(t=> this.Territories = t);
-        this.InventoryService.GetAreas().subscribe(a=>this.Areas = a);
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe(t => this.Territories = t);
+        this.InventoryService.GetAreasByCompany(this.CompanyId).subscribe(a => this.Areas = a);
     }
 
     async AddTerritory(value) {
-        this.InventoryService.AddTerritory(value.data).subscribe(resp=>{
-            console.log(value);
-            this.InventoryService.GetTerritories().subscribe(t=> this.Territories = t);
+        this.InventoryService.AddTerritory(value.data).subscribe(resp => {
+            // console.log(value);
+            this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe(t => this.Territories = t);
         });
     }
 
@@ -32,11 +36,11 @@ export class TerritoryComponent implements OnInit {
     }
 
     async UpdateTerritory() {
-        this.InventoryService.UpdateTerritory(this.UpdatedModel).subscribe(resp=>console.log(resp));
+        this.InventoryService.UpdateTerritory(this.UpdatedModel).subscribe();
     }
 
     async DeleteTerritory(value) {
-        this.InventoryService.DeleteTerritory(value.key).subscribe(resp=>console.log(resp));
+        this.InventoryService.DeleteTerritory(value.key).subscribe();
     }
 
 }

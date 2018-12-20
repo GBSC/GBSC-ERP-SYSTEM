@@ -55,6 +55,7 @@ import { AreaComponent } from './setup/area/area.component';
 import { DeliveryNoteComponent } from './sales/delivery-note/delivery-note.component';
 
 import { InventoryRoutingModule } from './inventory-routing.module';
+import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
 
 @NgModule({
     imports: [
@@ -116,7 +117,8 @@ import { InventoryRoutingModule } from './inventory-routing.module';
         TerritoryComponent,
         TransportComponent,
         UnitComponent,
-        DeliveryNoteComponent
+        DeliveryNoteComponent,
+        InventoryMasterComponent
     ]
 })
 export class InventoryModule { }

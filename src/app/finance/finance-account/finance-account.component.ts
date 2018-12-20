@@ -52,7 +52,7 @@ export class FinanceAccountComponent implements OnInit {
   }
 
   addAccount(value) {
-
+    console.log(value);
     if(value.data.isGeneralOrDetail == false) {
       this.Toastr.error("Can't add child accounts for detail account");
       this.AccountForm.reset();
@@ -95,6 +95,7 @@ export class FinanceAccountComponent implements OnInit {
     console.log(value);
 
     if(value.ParentAccountCode == null || value.ParentAccountCode == "") {
+      delete value.ParentAccountCode;
       value.ParentAccountLevel = 0;
       value.IsGeneralOrDetail = true;
       value.OpeningBalance = null;

@@ -13,6 +13,12 @@ import { SalesReturn } from '../../Models/Finance/salesReturn';
 import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 import { Account } from '../../Models/Finance/Account';
 import { AccountViewModel } from '../../Models/Finance/AccountViewModel';
+import { UnpostedVoucher } from '../../Models/Finance/UnpostedVoucher';
+import { UnpostedVoucherViewModel } from '../../Models/Finance/UnpostedVoucherViewModel';
+import { PostedVoucherViewModel } from '../../Models/Finance/PostedVoucherViewModel';
+import { UnprocessedAccountsLedger } from '../../Models/Finance/UnprocessedAccountsLedger';
+import { ProcessedAccountsLedger } from '../../Models/Finance/ProcessedAccountsLedger';
+import { observableToBeFn } from 'rxjs/testing/TestScheduler';
 
 @Injectable()
 
@@ -138,7 +144,7 @@ export class FinanceService {
     }
 
     getVoucherDetail(id):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetVoucherDetail/'+id);
+        return this.ApiService.get(this.baseUrl+'/Finance/GetVoucherDetail/'+id);
     }
     getVoucher(id): Observable<Voucher> {
 
@@ -157,7 +163,7 @@ export class FinanceService {
     }
 
     updateVoucherDetails(value):Observable<VoucherDetail>{
-        return this.ApiService.put(this.baseUrl+'Finance/UpdateVoucherDetails',value);
+        return this.ApiService.put(this.baseUrl+'/Finance/UpdateVoucherDetails',value);
     }
 
     async DeleteVoucherDetail(id) {
@@ -277,78 +283,90 @@ export class FinanceService {
     }
 
     processAccountsForLedger(value):Observable<any>{
-        return this.ApiService.post(this.baseUrl+'Finance/ProcessAccountsForLedger',value);
+        return this.ApiService.post(this.baseUrl+'/Finance/ProcessAccountsForLedger',value);
     }
 
-    getUnprocessedAccountsLedgers():Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedgers');
+    getUnprocessedAccountsLedgers() : Observable<UnprocessedAccountsLedger[]> {
+        return this.ApiService.get(this.baseUrl+'/Finance/GetUnprocessedAccountsLedgers');
     }
 
-    getUnprocessedAccountsLedgerById(id):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetUnprocessedAccountsLedger/'+id)
+    getUnprocessedAccountsLedgerById(id : number) : Observable<UnprocessedAccountsLedger> {
+        return this.ApiService.get(this.baseUrl+'/Finance/GetUnprocessedAccountsLedger/'+id)
     }
 
-    updateUnprocessedAccountsLedger(value):Observable<any>{
-        return this.ApiService.put(this.baseUrl+'Finance/UpdateUnprocessedAccountsLedger',value);
+    updateUnprocessedAccountsLedger(model : UnprocessedAccountsLedger) : Observable<any> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateUnprocessedAccountsLedger', model);
     }
 
-    addUnprocessedAccountsLedgers(value):Observable<any>{
-        return this.ApiService.post(this.baseUrl+'Finance/AddUnprocessedAccountsLedgers',value);
+    addUnprocessedAccountsLedgers(models : UnprocessedAccountsLedger[]) : Observable<any>{
+        return this.ApiService.post(this.baseUrl+'/Finance/AddUnprocessedAccountsLedgers', models);
     }
 
-    deleteUnprocessedAccountsLedger(id : number):Observable<any>{
-        return this.ApiService.delete(this.baseUrl+'Finance/DeleteUnprocessedAccountsLedger/'+id);
+    deleteUnprocessedAccountsLedger(id : number) : Observable<any>{
+        return this.ApiService.delete(this.baseUrl+'/Finance/DeleteUnprocessedAccountsLedger/'+id);
     }
 
-
-    getProcessedAccountsLedgers():Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetProcessedAccountsLedgers');
+    getProcessedAccountsLedgers() : Observable<ProcessedAccountsLedger[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetProcessedAccountsLedgers');
     }
-    getProcessedAccountsLedgerById(id):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetProcessedAccountsLedger/'+id);
+
+    getProcessedAccountsLedgerById(id) : Observable<ProcessedAccountsLedger>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetProcessedAccountsLedger/'+id);
     }
     
-    updateProcessedAccountsLedger(value):Observable<any>{
-        return  this.ApiService.put(this.baseUrl+'Finance/UpdateProcessedAccountsLedger',value);
+    updateProcessedAccountsLedger(model : ProcessedAccountsLedger) : Observable<any> {
+        return  this.ApiService.put(this.baseUrl+'/Finance/UpdateProcessedAccountsLedger', model);
     }
 
-    addProcessedAccountsLedgers(value):Observable<any>{
-        return this.ApiService.post(this.baseUrl+'Finance/AddProcessedAccountsLedgers',value);
+    addProcessedAccountsLedgers(models : ProcessedAccountsLedger[]) : Observable<any> {
+        return this.ApiService.post(this.baseUrl+'/Finance/AddProcessedAccountsLedgers', models);
+    }
+ 
+    deleteProcessedAccountsLedger(id : number) : Observable<any> {
+        return this.ApiService.delete(this.baseUrl+'/Finance/DeleteProcessedAccountsLedger/' + id);
     }
 
-    deleteProcessedAccountsLedger(id : number):Observable<any>{
-        return this.ApiService.delete(this.baseUrl+'Finance/DeleteProcessedAccountsLedger/'+id);
+    getUnpostedVouchers() : Observable<UnpostedVoucherViewModel[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetUnpostedVouchers');
     }
 
-    getUnpostedVouchers():Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetUnpostedVouchers');
+    getUnpostedVoucher(id : number) : Observable<UnpostedVoucherViewModel>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetUnpostedVoucher/'+id);
     }
 
-    getUnpostedVoucher(id):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetUnpostedVoucher/'+id);
+    updateUnpostedVoucher(value : UnpostedVoucherViewModel) : Observable<any>{
+        return this.ApiService.put(this.baseUrl+'/Finance/UpdateUnpostedVoucher',value);
     }
 
-    updateUnpostedVoucher(value):Observable<any>{
-        return this.ApiService.put(this.baseUrl+'Finance/UpdateUnpostedVoucher',value);
+    deleteUnpostedVoucher(id : number) : Observable<any>{
+        return this.ApiService.delete(this.baseUrl+'/Finance/DeleteUnpostedVoucher/'+id)
     }
 
-    deleteUnpostedVoucher(id : number):Observable<any>{
-        return this.ApiService.delete(this.baseUrl+'Finance/DeleteUnpostedVoucher/'+id)
+    postUnpostedVouchers(models : UnpostedVoucherViewModel[]) : Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/PostUnpostedVouchers', models);
     }
 
-    getPostedVouchers():Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchers');
+    postUnpostedVoucher(model : UnpostedVoucherViewModel) : Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/PostUnpostedVoucher', model);
     }
 
-    getPostedVouchersByFinancialYear(id):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchersByFinancialYear/'+id);
+    getPostedVouchers():Observable<PostedVoucherViewModel[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchers');
     }
 
-    getPostedVouchersByDateRange(fromdate , todate):Observable<any>{
-        return this.ApiService.get(this.baseUrl+'Finance/GetPostedVouchersByDateRange/'+fromdate+'/'+todate);
+    getPostedVouchersByFinancialYear(id : number) : Observable<PostedVoucherViewModel[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByFinancialYear/'+id);
     }
 
+    getPostedVouchersByDateRange(fromdate : Date , todate : Date) : Observable<PostedVoucherViewModel[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDateRange/' + fromdate + '/' + todate);
+    }
 
-   
+    getPostedVouchersByDate(date : Date) : Observable<PostedVoucherViewModel[]>{
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDate/' + date);
+    }
 
+    private FormatDate(date : Date) {
+        return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+    }
 }

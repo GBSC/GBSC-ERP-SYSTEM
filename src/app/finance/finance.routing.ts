@@ -41,7 +41,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'financialyear', component: FinancialyearComponent },
                     { path: 'vouchertype', component: VouchertypeComponent },
                     { path: 'controlaccount', component: SubAccountComponent },
-                    { path: 'secondsubaccount', component: SecondSubAccountComponent }
+                    { path: 'secondsubaccount', component: SecondSubAccountComponent },
 
                 ]
             },

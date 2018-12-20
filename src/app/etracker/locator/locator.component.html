@@ -11,7 +11,7 @@
                     <div class="m-grid__item m-grid__item--middle">
                             <label for="">Select User</label>
                             <select name="" id="" (change)="selectUser($event)">
-                              <option [selected]="user.userid == mapService.currentUser.userid" *ngFor="let user of mapService.allUsers; let i = index" [value]="user?.userid">{{user.userid}}</option>
+                              <option [selected]="user.userid == eTrackerUserService.currentUser.userid" *ngFor="let user of eTrackerUserService.allUsers; let i = index" [value]="user?.userid">{{user.userid}}</option>
                             </select>
                             <label for="">From</label>
                             <input type="date" (change)="filterFromDate($event)">
@@ -27,8 +27,8 @@
                     </div>
                     <div class="m-grid__item m-grid__item--middle">
                         <div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
-                        <p *ngIf="mapService?.showSpinner">loading...</p>
-                        <img *ngIf="mapService?.showSpinner" src="/assets/images/spinner.gif" />
+                        <p *ngIf="eTrackerUserService?.showSpinner">loading...</p>
+                        <img *ngIf="eTrackerUserService?.showSpinner" src="/assets/images/spinner.gif" />
                         
                        
                     </div>
@@ -44,22 +44,22 @@
 
 <div class="m-portlet">
       <div class="m-portlet__body  m-portlet__body--no-padding">
-            <agm-map *ngIf="mapService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="mapService.currentUser?.lat"
-            [longitude]="mapService.currentUser?.lng" (mapReady)=mapReady($event)>
+            <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
+            [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)=mapReady($event)>
           
-            <agm-marker [latitude]="mapService.currentUser?.lat" [longitude]="mapService.currentUser?.lng" [iconUrl]="currentLocationMarker">
+            <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker" [label]="{text: ''+eTrackerUserService.currentUser.userid}">
               <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
-                [placement]="right" [closeWhenOthersOpen]="false">
+                [placement]="right" [closeWhenOthersOpen]="false" >
                 <ng-template>
                   <div class="marker-info">
                     <div class="info-header">
                       <h1>Description</h1>
                     </div>
                     <div class="info-body">
-                      <p>Username: {{mapService?.currentUser?.userid}}</p>
+                      <p>Username: {{eTrackerUserService?.currentUser?.userid}}</p>
                       <p>Event</p>
-                      <p>Time: {{getTime(mapService?.currentUser?.timestamp.seconds)}}</p>
-                      <p>Date: {{getDate(mapService?.currentUser?.timestamp.seconds)}}</p>
+                      <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+                      <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
                       <p>Customer</p>
                     </div>
                     <div class="info-footer">
@@ -69,15 +69,15 @@
               </agm-snazzy-info-window>
             </agm-marker>
           
-            <agm-polyline *ngFor="let polyline of mapService?.locationHistory;let i = index;" [strokeColor]="'red'" [geodesic]="true"
+            <agm-polyline *ngFor="let polyline of eTrackerUserService?.locationHistory;let i = index;" [strokeColor]="'red'" [geodesic]="true"
               [strokeOpacity]="0.7">
-              <agm-polyline-point *ngFor="let point of mapService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
+              <agm-polyline-point *ngFor="let point of eTrackerUserService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
               </agm-polyline-point>
             </agm-polyline>
           
           
           
-            <agm-marker *ngFor="let loc of mapService.visitedShops" [latitude]="loc.lat" [longitude]="loc.lng" [iconUrl]="shopmarker">
+            <agm-marker *ngFor="let loc of eTrackerUserService.visitedShops" [latitude]="loc.lat" [longitude]="loc.lng" [iconUrl]="shopmarker">
               <agm-info-window>
                 <strong>InfoWindow content</strong>
               </agm-info-window>

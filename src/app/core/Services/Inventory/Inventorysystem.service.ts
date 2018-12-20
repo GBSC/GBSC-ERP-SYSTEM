@@ -1227,6 +1227,10 @@ export class InventorysystemService {
         return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByCompany/' + companyId);
     }
 
+    getSectionsByTerritory(territoryId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSectionsByTerritory/' + territoryId);
+    }
+
     AddSection(Section: any): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Setup/AddSection', Section);
     }
@@ -1390,6 +1394,10 @@ export class InventorysystemService {
 
     getTerritoriesByCompany(companyId: any): Observable<Territory> {
         return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByCompany/' + companyId);
+    }
+
+    getTerritoriesByDistributorId(distributorId: any): Observable<Territory> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByDistributor/' + distributorId);
     }
 
     AddTerritory(Territory: Territory): Observable<Territory> {

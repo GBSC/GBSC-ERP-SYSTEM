@@ -10,9 +10,16 @@ export class eTrackerUserService {
 
     constructor(private http: HttpClient, private ApiService: ApiService) { }
 
-    getSalesUsersByCompany(companyId) {
+    getUser(userId: any) {
+        return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
+    }
 
+    getSalesUsersByCompany(companyId: any) {
         return this.ApiService.get(this.Url + 'User/GetSalesUsersByCompanyId/' + companyId);
+    }
 
+    assignUserSection(userId: any, distributorId: any, sectionId: any) {
+        let params = "userId=" + userId + "&distributorId=" + distributorId + "&sectionId=" + sectionId;
+        return this.ApiService.get(this.Url + 'User/AssignUserSection?' + params);
     }
 }

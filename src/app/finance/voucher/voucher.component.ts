@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 import { Account } from '../../core/Models/Finance/Account';
 import { FinancialYear } from '../../core/Models/Finance/financialYear';
-import { UnprocessedAccountsLedger } from '../../core/Models/Finance/UnprocessedAccountsLedger';
+import { TransactionAccount } from '../../core/Models/Finance/TransactionAccount';
 
 @Component({
     selector: 'app-voucher',
@@ -58,8 +58,8 @@ export class VoucherComponent implements OnInit {
 
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-        this.financeService.getUnprocessedAccountsLedgers().subscribe((res : UnprocessedAccountsLedger[]) => {
-            this.detailAccount = res.filter(a => a.isGeneralOrDetail == false);
+        this.financeService.getTransactionAccounts().subscribe((res : TransactionAccount[]) => {
+            this.detailAccount = res;
             // console.log(this.detailAccount);
         });
 

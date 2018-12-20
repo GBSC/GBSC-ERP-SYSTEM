@@ -6,10 +6,10 @@ import { SetupService } from '../../core';
 import { Router } from '@angular/router';
 import { UnpostedVoucherViewModel } from '../../core/Models/Finance/UnpostedVoucherViewModel';
 import { PostedVoucherViewModel } from '../../core/Models/Finance/PostedVoucherViewModel';
-import { UnprocessedAccountsLedger } from '../../core/Models/Finance/UnprocessedAccountsLedger';
 import { FinancialYear } from '../../core/Models/Finance/financialYear';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { ToastrService } from 'ngx-toastr';
+import { TransactionAccount } from '../../core/Models/Finance/TransactionAccount';
 
 @Component({
     selector: 'app-voucher-detail',
@@ -22,7 +22,7 @@ export class VoucherDetailComponent implements OnInit {
     
     public financialYears : any[];
     public voucherTypes : any[];
-    public unprocessedaccounts: UnprocessedAccountsLedger[] = [];
+    public unprocessedaccounts: TransactionAccount[] = [];
 
     private UnpostedVouchers: UnpostedVoucherViewModel[] = [];
     private PostedVouchers: PostedVoucherViewModel[] = [];
@@ -43,8 +43,8 @@ export class VoucherDetailComponent implements OnInit {
 
         this.voucherTypes = await this.financeSetupService.getVoucherTypes();
 
-        this.financeService.getUnprocessedAccountsLedgers().subscribe((res: UnprocessedAccountsLedger[]) => {
-            res.filter(a => a.isGeneralOrDetail == false).forEach((element: UnprocessedAccountsLedger) => {
+        this.financeService.getTransactionAccounts().subscribe((res: TransactionAccount[]) => {
+            res.forEach((element: TransactionAccount) => {
                 element.description = element.accountCode + '-' + element.description;
                 this.unprocessedaccounts.push(element);
             });

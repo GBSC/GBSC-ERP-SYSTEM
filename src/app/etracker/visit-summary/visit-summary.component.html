@@ -1,97 +1,80 @@
 <div class="m-content">
   <div class="row">
     <div class="col-lg-3">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Visit Summary
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body" style="padding: 0px !important;">
-
-
+      <div class="m-portlet m-portlet--full-height  ">
+        <div class="m-portlet__body">
           <div class="m-card-profile">
+            <div class="m-card-profile__title m--hide">
+              Your Profile
+            </div>
             <div class="m-card-profile__pic">
               <div class="m-card-profile__pic-wrapper">
-                <img src="http://evasalesforceprod.azurewebsites.net/service//StoreImages\Store_3782\1536132286696.jpg"
-                  alt="">
+                <img src="../assets/app/media/img/users/user4.jpg" alt="">
               </div>
             </div>
             <div class="m-card-profile__details">
               <span class="m-card-profile__name">
-                {{store?.shopName}}
+                Mark Andre
               </span>
-              <div class="m-card-profile__email">
-                {{store?.contactNo}}
-              </div>
-              <div class="m-card-profile__email" style="padding: 0px 10px;">
-                {{store?.address}}
-              </div>
-
+              <a href="" class="m-card-profile__email m-link">
+                mark.andre@gmail.com
+              </a>
             </div>
           </div>
+          <div class="m-portlet__body-separator"></div>
+          <ul class="m-nav nav nav-tabs">
 
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Inventory" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Inventory Taking
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#order" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Order Taking
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Currency" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Gift Order
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Market Survey
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Merchandising
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Stock" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Shop Query
+                </span>
+              </a>
+            </li>
+          </ul>
+       
 
-
-          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-            <div class="m-demo__preview">
-              <ul class="m-nav nav nav-tabs">
-
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Inventory" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Inventory Taking
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#order" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Order Taking
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Currency" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Gift Order
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Market Survey
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Merchandising
-                    </span>
-                  </a>
-                </li>
-                <li class="m-nav__item">
-                  <a class="m-nav__link" href="#Stock" data-toggle="tab">
-                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                    <span class="m-nav__link-text">
-                      Shop Query
-                    </span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>

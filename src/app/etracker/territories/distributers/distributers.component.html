@@ -2,7 +2,7 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
-        <h3 class="m-portlet__head-text">Distributers</h3>
+        <h3 class="m-portlet__head-text">Distributors</h3>
       </div>
     </div>
   </div>
@@ -32,12 +32,13 @@
             <div class="form-group col-lg-4">
               <label for="exampleInputEmail1">Territories</label>
               <br>
-              <select2 [data]="territoryOptions" [options]="options" [width]="500" [value]="value"></select2>
+              <select2 [data]="territoryOptions" [options]="options" [width]="500" [value]="value" (valueChanged)="changed($event)"></select2>
             </div>
             <div class="form-group col-lg-4">
               <label for="exampleInputEmail1"> </label>
-              <button type="reset" (click)="addDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Submit</button>
-              <button type="reset" (click)="isEdit=false" style="margin-top: 28px;" class="btn btn-secondary">Cancel</button>
+              <button type="reset" *ngIf="distributor" (click)="updateDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Update</button>
+              <button type="reset" *ngIf="!distributor" (click)="addDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Submit</button>
+              <button type="reset" (click)="isEdit=false" style="margin-top: 28px;" class="btn btn-secondary">Close</button>
             </div>
           </div>
         </form>

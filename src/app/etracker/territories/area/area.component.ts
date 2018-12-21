@@ -9,7 +9,7 @@ import { InventorysystemService, AuthService } from '../../../../app/core';
 export class AreaComponent implements OnInit {
 
     public areas: any;
-    public regions: any;
+    public cities: any;
     public companyId: any;
 
     constructor(public inventoryService: InventorysystemService, public authService: AuthService) {
@@ -22,20 +22,32 @@ export class AreaComponent implements OnInit {
             this.areas = a;
         });
 
-        this.inventoryService.getRegionsByCompany(this.companyId).subscribe(r => {
-            this.regions = r;
+        this.inventoryService.getCitiesByCompany(this.companyId).subscribe(r => {
+            this.cities = r;
         })
     }
 
-    addArrea(area) {
+    addArea(area) {
+
+        area.data.companyId = this.companyId;
+        this.inventoryService.AddArea(area.data)
+            .subscribe(s => console.log(s));
 
     }
 
     updateArea(area) {
+        area.data.companyId = this.companyId;
+        this.inventoryService.UpdateArea(area.data)
+            .subscribe(s => console.log(s));
 
     }
 
     deleteArea(area) {
+
+        console.log(area);
+
+        // this.inventoryService.DeleteArea(area.data)
+        //     .subscribe(s => console.log(s));
 
     }
 

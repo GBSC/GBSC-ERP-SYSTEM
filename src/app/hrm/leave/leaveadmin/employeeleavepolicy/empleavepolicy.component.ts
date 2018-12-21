@@ -102,7 +102,7 @@ export class EmpleavepolicyComponent implements OnInit {
         this.patchvalues(this.sample);
     }
 
-    async addemployeeleavepolicy(empleavepolicy) { 
+    async addemployeeleavepolicy(empleavepolicy) {
         await this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
     }

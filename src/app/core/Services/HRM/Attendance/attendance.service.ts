@@ -225,4 +225,8 @@ export class AttendanceService {
     async DeleteEmployeeOutgoingOt(id) {
         return await this.ApiService.delete(`${this.baseUrl2}/DeleteEmployeeOutgoingOt/${id}`).toPromise();
     }
+
+    getUserAttendancesbyIddate(id, fromdate, todate): Observable<any> {
+        return this.ApiService.get(this.baseUrl + '/GetUserAttendancesbyIddate/' + id + '/' + fromdate + '/' + todate)
+    }
 }

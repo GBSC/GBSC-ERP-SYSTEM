@@ -11,12 +11,12 @@ import { Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./profilepic.component.css']
 })
 export class ProfilepicComponent implements OnInit {
-    @Output('setBankFormValue') setpicFormValue = new EventEmitter(); 
-    public selectedPic; 
+    @Output('setBankFormValue') setpicFormValue = new EventEmitter();
+    public selectedPic;
     public Profilepic: FormGroup;
     @Input('employeeId') id: number;
 
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, public route: ActivatedRoute) { 
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
     }
 
     async ngOnInit() {
@@ -32,7 +32,7 @@ export class ProfilepicComponent implements OnInit {
 
     getProfilePic(e) {
     }
- 
+
     public forevent: File = null;
 
     onfileselect(event) {

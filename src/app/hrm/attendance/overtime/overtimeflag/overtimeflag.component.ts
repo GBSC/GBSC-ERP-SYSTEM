@@ -22,8 +22,8 @@ export class OvertimeflagComponent implements OnInit {
         this.overtimeflag = await this.attendanceSetupservice.getAllOvertimeFlag();
     }
 
-     updatingModel(value) {
-        this.modelUpdate = {...value.oldData, ...value.newData};
+    updatingModel(value) {
+        this.modelUpdate = { ...value.oldData, ...value.newData };
     }
 
     async updateovertimeflag() {

@@ -17,13 +17,11 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
-                    Requestioner:
+                     From Date:
                   </label>
                   <div class="col-lg-8">
-                    <select #e class="form-control m-input" (change)="GetUserattendance(e.value)" formControlName="UserId">
-                      <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
-                    </select>
+                    <dx-date-box type="date" format="dd/MM/yyyy" formControlName="FromDate" width="100%">
+                    </dx-date-box> 
                   </div>
                 </div>
               </div>
@@ -31,15 +29,57 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
-                     Request Date:
+                     To Date:
                   </label>
                   <div class="col-lg-8">
-                    <dx-date-box type="date" format="dd/MM/yyyy" formControlName="AttendanceDate" width="100%">
+                    <dx-date-box type="date" format="dd/MM/yyyy" formControlName="ToDate" width="100%">
                     </dx-date-box> 
                   </div>
                 </div>
               </div> 
             </div> 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Requestioner:
+                  </label>
+                  <div class="col-lg-8">
+                    <select  class="form-control m-input" formControlName="UserId">
+                      <option value="" disabled selected>-- Select Employee --</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                           <div class="form-group m-form__group row">
+                      <button type="button" (click)="getattendancerequest(attendancerequestForm.value)" class="btn btn-primary">
+                        Get
+                      </button>
+                    </div>
+                  <!-- <div class="form-group m-form__group row">
+                      <label class="col-lg-4 col-form-label">
+                        Roster :
+                      </label>
+                      <div class="col-lg-8">
+                        <select  class="form-control m-input" formControlName="RosterId">
+                          <option value="" disabled selected>-- Select Employee --</option>
+                          <option *ngFor="let rosters of assignrosters" [value]="rosters.rosterId">{{rosters.name}}</option>
+                        </select>
+                      </div>
+                    </div> -->
+              </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group m-form__group row">
+                      <button type="button" (click)="getattendancerequest(attendancerequestForm.value)" class="btn btn-primary">
+                        Get
+                      </button>
+                    </div>
+                  </div> 
+            </div> -->
           </form>
 
           <div class="m--space-30"></div>
@@ -55,14 +95,11 @@
                     </div>
                   </div>
                 </div> 
-                
-            
                   <dx-data-grid id="gridContainer"
-                   [dataSource]="currentUserAttendance" 
-                   (onRowUpdating)="updatingattendance($event)"
-                   (onRowUpdated)="updateuserRosterattendance()" 
+                   [dataSource]="employeeData" 
+                   (onRowUpdated)="updateUserAttendance($event)" 
                     [showBorders]="true">
-                    <dxo-editing mode="cell" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                    <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                     </dxo-editing>
                     <dxo-filter-row [visible]="true"></dxo-filter-row>
                     <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -71,7 +108,16 @@
                     <dxo-paging [pageSize]="8"></dxo-paging>
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager>
-         
+
+                    <dxi-column dataField="employeeAsignRosters.shiftsId" caption="Title" [allowEditing]="false">
+                      <dxo-lookup [dataSource]="shift" displayExpr="shiftTitle" valueExpr="employeeAsignRosters.shiftsId" ></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="employeeAsignRosters.shiftsId" caption="StratTime" [allowEditing]="false">
+                        <dxo-lookup [dataSource]="shift" displayExpr="startTime" valueExpr="employeeAsignRosters.shiftsId" ></dxo-lookup>
+                    </dxi-column>
+                     <dxi-column dataField="employeeAsignRosters.shiftsId" caption="End Time" [allowEditing]="false">
+                        <dxo-lookup [dataSource]="shift" displayExpr="endTime" valueExpr="employeeAsignRosters.shiftsId"  dataType="date" ></dxo-lookup>
+                    </dxi-column>
                     <dxi-column  dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                     <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
                      <dxi-column dataField="attendanceDate"  dataType="date" format="shortdate"></dxi-column>

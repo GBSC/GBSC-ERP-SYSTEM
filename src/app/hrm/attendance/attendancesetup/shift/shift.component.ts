@@ -107,11 +107,11 @@ export class ShiftComponent implements OnInit {
         console.log(value);
     }
 
-     update(value) {
+    update(value) {
         value.shiftsId = this.id;
         value.shiftAttendanceFlags = this.Flag;
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
-            this.toastr.success("Shift Updated"); 
+            this.toastr.success("Shift Updated");
 
         });
     }

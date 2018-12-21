@@ -26,13 +26,13 @@ export class LeavetypebalanceComponent implements OnInit {
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
 
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
-        
+
         this.leavetypebalance = await this.leavesetupservice.getLeaveTypeBalances();
 
         this.LeaveType = await this.leavesetupservice.getLeaveTypes();
 
-        this.employees = await this.employeeservice.GetAllEmployees(); 
-       
+        this.employees = await this.employeeservice.GetAllEmployees();
+
         // this.groups = await this.hrSetupService.getAllGroups(); 
 
         console.log(this.empleavepolicy);
@@ -40,22 +40,22 @@ export class LeavetypebalanceComponent implements OnInit {
         console.log(this.employees);
 
 
-        
+
         this.employees = this.employees.map(user => {
             let u;
-            for(let lp of this.empleavepolicy) {
-                if(lp.userId == user.userId) {
+            for (let lp of this.empleavepolicy) {
+                if (lp.userId == user.userId) {
                     console.log('lp', lp)
                     console.log('user', user)
                     user.sampleCount = lp.entitledQuantity;
                     user.sampleId = lp.leaveTypeId;
                     u = user;
-                }else {
+                } else {
                     return user;
                 }
             }
-            
-        
+
+
         });
         // console.log('emp', this.employees); 
         // this.LeavePolicies.forEach(e => { 
@@ -72,22 +72,22 @@ export class LeavetypebalanceComponent implements OnInit {
         //                 // this.empleavepolicy.forEach(lpp => {
         //                 //     if(lpp.userId === user.userId) {
         //                 //         console.log(lpp);
-                                
+
         //                 //         lpp.entitledQuantity += e.entitledQuantity;
         //                 //         console.log(lpp);
-                                
+
         //                 //         return lpp;
         //                 //     }
         //                 // })
         //             }
         //         }
         //     }
-           
+
         // });
-        
-      
+
+
     }
-  
+
 
     async addleavetypebalance(value) {
 

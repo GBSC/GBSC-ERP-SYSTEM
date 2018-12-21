@@ -75,7 +75,7 @@ export class LeaverequestComponent implements OnInit {
                 });
                 this.patchValues(this.leaveRequest);
             });
-        } 
+        }
     }
 
     async leaveRequestDetail(value) {
@@ -121,11 +121,11 @@ export class LeaverequestComponent implements OnInit {
     public getleavedata: any;
     public selectedLeaveTypes = 45;
 
-    getLeaveBalance(userId,leaveTypeId) {
+    getLeaveBalance(userId, leaveTypeId) {
         let selectedEmployee = this.employees.find(e => e.userId == userId)
         this.getleavedata = this.empleavePolicy.find(e => e.groupId === selectedEmployee.groupId);
         this.selectedLeaveTypes = this.empleavePolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.getleavedata.groupId);
-    
+
     }
 
     // getQuantitybyType(leaveTypeId) {

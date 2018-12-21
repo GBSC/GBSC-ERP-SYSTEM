@@ -30,7 +30,7 @@ export class TerritoryComponent implements OnInit {
     addTerritory(territory) {
 
         territory.data.companyId = this.companyId;
-        this.inventoryService.AddTerritory(territory.data).subscribe(resp=>{
+        this.inventoryService.AddTerritory(territory.data).subscribe(resp => {
             console.log(resp);
         })
     }

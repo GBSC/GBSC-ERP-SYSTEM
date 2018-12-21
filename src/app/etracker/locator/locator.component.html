@@ -91,7 +91,6 @@
       <div class="m-portlet__body  m-portlet__body--no-padding">
             <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true"  [latitude]="eTrackerUserService.currentUser?.lat"
             [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)=mapReady($event)>
-          
             <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker" [label]="{text: ''+eTrackerUserService.currentUser.userid}">
               <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="600" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
                 [placement]="right" [closeWhenOthersOpen]="false" >
@@ -119,9 +118,6 @@
               <agm-polyline-point *ngFor="let point of eTrackerUserService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
               </agm-polyline-point>
             </agm-polyline>
-          
-          
-          
             <agm-marker *ngFor="let loc of eTrackerUserService.visitedShops" [latitude]="loc.lat" [longitude]="loc.lng" [iconUrl]="shopmarker">
               <agm-info-window>
                 <strong>InfoWindow content</strong>

@@ -47,15 +47,20 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
     }
 
-    assignUserSection(userId: any, distributorId: any, sectionId: any) {
-        let params = "userId=" + userId + "&distributorId=" + distributorId + "&sectionId=" + sectionId;
-        return this.ApiService.get(this.Url + 'User/AssignUserSection?' + params);
+    assignUserSection(model) {
+        return this.ApiService.post(this.Url + 'User/AssignUserSection', model);
     }
 
     getSalesUsersByCompany(companyId) {
-
         return this.ApiService.get(this.Url + 'User/GetSalesUsersByCompanyId/' + companyId);
+    }
 
+    getAssignedSubsectionsBySection(sectionid, userid) {
+        return this.ApiService.get(this.Url + 'Territory/GetAssignedSubsectionsBySection/' + sectionid + '/' + userid);
+    }
+
+    assignSubsections(subsections) {
+        return this.ApiService.post(this.Url + 'User/AssignSubsections', subsections);
     }
 
     fetchAllUsers() {

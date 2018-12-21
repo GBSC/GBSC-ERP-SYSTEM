@@ -16,6 +16,7 @@ export class SalesusersComponent implements OnInit {
     public distributors: any;
     public territories: any;
     public sections: any;
+    public assignedSubsections: any;
 
     public distributorId: any;
     public territoryId: any;
@@ -31,6 +32,7 @@ export class SalesusersComponent implements OnInit {
     @ViewChild("distributorcb") distributorcb: DxSelectBoxComponent;
     @ViewChild("territorycb") territorycb: DxSelectBoxComponent;
     @ViewChild("sectioncb") sectioncb: DxSelectBoxComponent;
+    @ViewChild("sectioncb2") sectioncb2: DxSelectBoxComponent;
 
 
     constructor(private authService: AuthService,
@@ -54,6 +56,9 @@ export class SalesusersComponent implements OnInit {
             this.distributors = dist;
         });
 
+        this.inventoryService.getSectionsByCompany(this.companyId).subscribe(sec => {
+            this.sections = sec;
+        });
 
         this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
 
@@ -65,6 +70,8 @@ export class SalesusersComponent implements OnInit {
         this.territorycb.onValueChanged.subscribe(res => this.onTerritoryChange(res.component.option("value")));
 
         this.sectioncb.onValueChanged.subscribe(res => this.onSectionChange(res.component.option("value")));
+
+        this.sectioncb2.onValueChanged.subscribe(res => this.onSectionChange(res.component.option("value")));
 
     }
 
@@ -78,6 +85,21 @@ export class SalesusersComponent implements OnInit {
             this.territoryId = resp.territoryId;
             this.sectionId = resp.sectionId;
 
+        });
+
+    }
+
+    onAssignSubsections(userId, sectionId) {
+        this.userId = userId;
+
+        this.inventoryService.getSectionsByCompany(this.companyId).subscribe(resp => {
+            this.sections = resp;
+            this.sectionId = sectionId;
+
+            if (this.sectionId)
+                this.userService.getAssignedSubsectionsBySection(this.sectionId, this.userId).subscribe(resp => {
+                    this.assignedSubsections = resp;
+                });
         });
     }
 
@@ -101,15 +123,29 @@ export class SalesusersComponent implements OnInit {
 
     onSectionChange(id) {
         this.sectionId = id;
+
+        if (this.sectionId)
+            this.userService.getAssignedSubsectionsBySection(this.sectionId, this.userId).subscribe(resp => {
+                this.assignedSubsections = resp;
+            });
+    }
+
+    onSubsectionSelect(e, i) {
+        this.assignedSubsections[i].isAssigned = e.target.checked;
+    }
+
+    assignSubsectionsOnSubmit()
+    {
+        this.userService.assignSubsections(this.assignedSubsections).subscribe(resp=>{
+            console.log(resp);
+        })
     }
 
     assignUserSection(value) {
 
-        console.log(value);
-
-        // this.userService.assignUserSection(this.userId, this.distributorId, this.sectionId).subscribe(resp => {
-        //     console.log(resp);
-        // });
+        this.userService.assignUserSection({UserId: this.userId, DistributorId: value.DistributorId, SectionId: value.SectionId}).subscribe(resp => {
+            console.log(resp);
+        });
     }
 
 }

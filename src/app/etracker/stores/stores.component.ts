@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../../../app/core';
+import { AuthService } from '../../../app/core';
 import { StoreService } from '../../../app/core/Services/ETracker/store.service';
 
 @Component({
@@ -9,16 +9,16 @@ import { StoreService } from '../../../app/core/Services/ETracker/store.service'
 })
 export class StoresComponent implements OnInit {
 
-    public stores : any;
-    public companyId : any;
+    public stores: any;
+    public companyId: any;
 
-    constructor(public authService : AuthService, public storeService : StoreService) {
+    constructor(public authService: AuthService, public storeService: StoreService) {
         this.companyId = this.authService.getUserCompanyId();
-     }
+    }
 
     ngOnInit() {
 
-        this.storeService.getAllStoresByCompany(this.companyId).subscribe(stores=>{
+        this.storeService.getAllStoresByCompany(this.companyId).subscribe(stores => {
 
             this.stores = stores;
         })

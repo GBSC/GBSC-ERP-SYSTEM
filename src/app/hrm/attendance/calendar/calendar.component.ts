@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// import { DateRangeDescriptor, DateRangeType, IgxCalendarComponent, IgxSnackbarComponent } from "igniteui-angular";
+//  import { DateRangeDescriptor, DateRangeType, IgxCalendarComponent, IgxSnackbarComponent } from "igniteui-angular";
 
 @Component({
     selector: 'app-calendar',
@@ -8,9 +8,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
-    // @ViewChild("calendar") public calendar: IgxCalendarComponent;
-    // @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
-    // public range = [];
+    //   @ViewChild("calendar") public calendar: IgxCalendarComponent;
+//  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
+     public range = [];
 
     constructor() { }
 
@@ -23,7 +23,7 @@ export class CalendarComponent implements OnInit {
     //     this.range = dates;
     // }
 
-    // public submitPTOdays(eventArgs) {
+    //   public submitPTOdays(eventArgs) {
     //     this.calendar.specialDates =
     //         [{ type: DateRangeType.Specific, dateRange: this.range }];
 
@@ -37,6 +37,6 @@ export class CalendarComponent implements OnInit {
     //         this.snackbar.message = "PTO days submitted.";
     //     }
     //     this.snackbar.show();
-    // }
+     // }
 
 }

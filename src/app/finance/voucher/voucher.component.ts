@@ -60,7 +60,7 @@ export class VoucherComponent implements OnInit {
 
         this.financeService.getTransactionAccounts().subscribe((res : TransactionAccount[]) => {
             this.detailAccount = res;
-            // console.log(this.detailAccount);
+            console.log(this.detailAccount);
         });
 
         this.financeSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
@@ -109,14 +109,14 @@ export class VoucherComponent implements OnInit {
         control.removeAt(index);
     }
 
-    async addVoucher(value : any, detailsvalue : any[]) {
+    async addVoucher(value : any, detailsvalue : any) {
 
         if (this.creditTotal === this.debitTotal) {
 
             let VDs : VoucherDetail[] = [];
             console.log(detailsvalue);
             
-            detailsvalue.forEach((element : any) => {
+            detailsvalue.VoucherDetails.forEach((element : any) => {
                 if(element.AccountId != null && element.AccountId != undefined && element.AccountId != '' && element.DebitAmount != null && element.DebitAmount != undefined && element.DebitAmount != '' && element.CreditAmount != null && element.CreditAmount != undefined && element.CreditAmount != '') {
                     let a : any = {
                         departmentName : element.DepartmentName,
@@ -129,7 +129,7 @@ export class VoucherComponent implements OnInit {
                     };
                     VDs.push(a);
                 } else {
-                    this.toastr.error("Empty details removed!! Account, Credit Amount & Debit AMount are required.");
+                    this.toastr.error("Empty details removed!! Account, Credit Amount & Debit Amount are required.");
                 }
             });
 

@@ -95,14 +95,14 @@ export class FinanceAccountComponent implements OnInit {
     console.log(value);
 
     if(value.ParentAccountCode == null || value.ParentAccountCode == "") {
-      delete value.ParentAccountCode;
+      delete value.parentAccountCode;
+      delete value.OpeningBalance;
       value.ParentAccountLevel = 0;
       value.IsGeneralOrDetail = true;
-      value.OpeningBalance = null;
     }
 
     if(value.IsGeneralOrDetail == true) {
-      value.OpeningBalance = null;
+      delete value.OpeningBalance;
     }
     
 		if(this.IsUpdate === false) {

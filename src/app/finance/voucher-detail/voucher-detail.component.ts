@@ -10,6 +10,7 @@ import { FinancialYear } from '../../core/Models/Finance/financialYear';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { ToastrService } from 'ngx-toastr';
 import { TransactionAccount } from '../../core/Models/Finance/TransactionAccount';
+import { VoucherType } from '../../core/Models/Finance/vouchertype';
 
 @Component({
     selector: 'app-voucher-detail',
@@ -41,7 +42,9 @@ export class VoucherDetailComponent implements OnInit {
             console.log(this.PostedVouchers);
         });
 
-        this.voucherTypes = await this.financeSetupService.getVoucherTypes();
+        this.financeSetupService.GetVoucherTypes().subscribe((res : VoucherType[]) => {
+            this.voucherTypes = res;
+        });
 
         this.financeService.getTransactionAccounts().subscribe((res: TransactionAccount[]) => {
             res.forEach((element: TransactionAccount) => {
@@ -71,6 +74,13 @@ export class VoucherDetailComponent implements OnInit {
                 console.log(this.UnpostedVouchers);
             });
             this.Toastr.success("Voucher Deleted");
+        });
+    }
+
+    GetPostedVoucehrsByDateRange(fromdate : Date, todate : Date) {
+        this.financeService.getPostedVouchersByDateRange(fromdate, todate).subscribe((res: PostedVoucherViewModel[]) => {
+            this.PostedVouchers = res;
+            console.log(this.PostedVouchers);
         });
     }
 

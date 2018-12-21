@@ -70,6 +70,10 @@ export class FinanceSetupService {
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`).toPromise();
     }
 
+    GetVoucherTypes() : Observable<VoucherType[]> {
+        return this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`);
+    }
+
     async addVoucherType(vouchertype: VoucherType) {
 
         return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddVoucherType`, vouchertype).toPromise();

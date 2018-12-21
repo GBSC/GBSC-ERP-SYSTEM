@@ -13,10 +13,12 @@ import { SalesReturn } from '../../Models/Finance/salesReturn';
 import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
 import { Account } from '../../Models/Finance/Account';
 import { AccountViewModel } from '../../Models/Finance/AccountViewModel';
+import { UnpostedVoucher } from '../../Models/Finance/UnpostedVoucher';
 import { UnpostedVoucherViewModel } from '../../Models/Finance/UnpostedVoucherViewModel';
 import { PostedVoucherViewModel } from '../../Models/Finance/PostedVoucherViewModel';
 import { TransactionAccount } from '../../Models/Finance/TransactionAccount';
 import { observableToBeFn } from 'rxjs/testing/TestScheduler';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 
@@ -280,8 +282,8 @@ export class FinanceService {
         return this.ApiService.delete(this.baseUrl + '/Finance/DeleteAccount/' + id);
     }
 
-    processAccountsForLedger(newfinancialyearid : number) : Observable<any>{
-        return this.ApiService.get(this.baseUrl+'/Finance/ProcessAccountsForLedger/' + newfinancialyearid);
+    processAccountsForLedger(value):Observable<any>{
+        return this.ApiService.post(this.baseUrl+'/Finance/ProcessAccountsForLedger',value);
     }
 
     getTransactionAccounts() : Observable<TransactionAccount[]> {
@@ -337,11 +339,16 @@ export class FinanceService {
     }
 
     getPostedVouchersByDateRange(fromdate : Date , todate : Date) : Observable<PostedVoucherViewModel[]>{
-        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDateRange/' + fromdate + '/' + todate);
+        let params = new HttpParams();
+        params.append("fromdate", this.FormatDate(fromdate));
+        params.append("todate", this.FormatDate(todate));
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDateRange', params);
     }
 
     getPostedVouchersByDate(date : Date) : Observable<PostedVoucherViewModel[]>{
-        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDate/' + date);
+        let params = new HttpParams();
+        params.append("date", this.FormatDate(date));
+        return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDate', params);
     }
 
     private FormatDate(date : Date) {

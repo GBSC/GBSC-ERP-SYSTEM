@@ -22,10 +22,18 @@ export class RegionComponent implements OnInit {
 
     addRegions(region) {
 
+        region.data.companyId = this.companyId;
+        this.inventoryService.AddRegion(region.data).subscribe(resp=>console.log(resp));
+
     }
 
     updateRegion(region) {
 
+        region.data.regionId = region.key;
+        region.data.companyId = this.companyId;
+        this.inventoryService.UpdateRegion(region.data).subscribe(resp=>{
+            console.log(resp);
+        });
     }
 
     deleteRegion(region) {

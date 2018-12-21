@@ -36,7 +36,11 @@ export class TerritoryComponent implements OnInit {
     }
 
     updateTerritory(territory) {
-
+        territory.data.territoryId = territory.key;
+        territory.data.companyId = this.companyId;
+        this.inventoryService.UpdateTerritory(territory.data).subscribe(resp=>{
+            console.log(resp);
+        });
     }
 
     deleteTerritory(territory) {

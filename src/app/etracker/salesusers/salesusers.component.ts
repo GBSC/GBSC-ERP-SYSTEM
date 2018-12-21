@@ -92,6 +92,7 @@ export class SalesusersComponent implements OnInit {
 
     onTerritoryChange(id) {
 
+        console.log(id);
         this.inventoryService.getSectionsByTerritory(id).subscribe(sections => {
             this.sections = sections;
             this.territoryId = id;

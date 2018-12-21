@@ -1,29 +1,74 @@
 
         <div class="m-subheader-search">
-            <h2 class="m-subheader-search__title">
+            <!-- <h2 class="m-subheader-search__title">
               Locater
                 <span class="m-subheader-search__desc">
                   Tracking System
                 </span>
-            </h2>
+            </h2> -->
 
                 <div class="m-grid m-grid--ver-desktop m-grid--desktop">
-                    <div class="m-grid__item m-grid__item--middle">
-                            <label for="">Select User</label>
-                            <select name="" id="" (change)="selectUser($event)">
-                              <option [selected]="user.userid == eTrackerUserService.currentUser.userid" *ngFor="let user of eTrackerUserService.allUsers; let i = index" [value]="user?.userid">{{user.userid}}</option>
-                            </select>
-                            <label for="">From</label>
-                            <input type="date" (change)="filterFromDate($event)">
-                            <label for="">To</label>
-                            <input type="date" (change)="filterToDate($event)">
-                            <input type="checkbox" (change)="showVisitedShops($event)">
-                            <label for="">Show Visited Shops</label>
-                            <button (click)="go($event)">Search</button>
-                            <label for="">Set Zoom</label>
-                            <select (change)="selectZoomLevel($event)">
-                              <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
-                            </select>
+                    <div class="col-sm-12" >
+                        <div class="row">
+                          <div class="col-sm-3">
+                              <div class="form-group m-form__group">
+                                  <label>
+                                      Select User
+                                  </label>
+                                  <select class="form-control m-input" name="" id="" (change)="selectUser($event)">
+                                      <option [selected]="user.userid == eTrackerUserService.currentUser.userid" *ngFor="let user of eTrackerUserService.allUsers; let i = index" [value]="user?.userid">{{user.userid}}</option>
+                                    </select>
+                                </div>
+                          </div>
+                          <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                  <label>
+                                      From
+                                  </label>
+                                  <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group m-form__group">
+                                    <label>
+                                        To
+                                    </label>
+                                    <input class="form-control m-input" type="date" (change)="filterToDate($event)">                                  </div>
+                              </div>
+                             
+                                <div class="col-sm-2">
+                                    <div class="form-group m-form__group">
+                                        <label>
+                                            Set Zoom
+                                        </label>
+                                        <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                                            <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+                                          </select>
+                                      </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="m-form__group form-group">
+                                        <label>
+                                          Shops
+                                        </label>
+                                        <div class="m-checkbox-list">
+                                          <label class="m-checkbox m-checkbox--check-bold">
+                                            <input type="checkbox" (change)="showVisitedShops($event)" style="color: white;">
+                                            Visited Shops
+                                            <span></span>
+                                          </label>
+                                        </div>
+                                      </div>
+                                  </div>
+                                
+                                <div class="col-sm-1">
+                                    <button (click)="go($event)" class="btn btn-success">
+                                        Search
+                                      </button>
+                                </div>
+
+                        </div>
+                       
                     </div>
                     <div class="m-grid__item m-grid__item--middle">
                         <div class="m--margin-top-20 m--visible-tablet-and-mobile"></div>
@@ -44,11 +89,11 @@
 
 <div class="m-portlet">
       <div class="m-portlet__body  m-portlet__body--no-padding">
-            <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
+            <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true"  [latitude]="eTrackerUserService.currentUser?.lat"
             [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)=mapReady($event)>
           
             <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker" [label]="{text: ''+eTrackerUserService.currentUser.userid}">
-              <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+              <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="600" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
                 [placement]="right" [closeWhenOthersOpen]="false" >
                 <ng-template>
                   <div class="marker-info">

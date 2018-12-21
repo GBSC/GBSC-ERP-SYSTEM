@@ -145,9 +145,9 @@ export class eTrackerUserService {
 
 class MapHelper {
 
-    static shopIcon: string = './assets/images/baseline-store_mall_directory-24px.svg';
-    static CurrentLocationIcon: string = './assets/images/baseline-my_location-24px.svg';
-    static simpleIcon: string = './assets/images/baseline-arrow_right_alt-24px.svg';
+    static shopIcon: string = './assets/images/online-shop.gif';
+    static CurrentLocationIcon: string = './assets/images/e7mkwk.gif';
+    static simpleIcon: string = './assets/images/visit.png';
 
     static createMarker(url, size) {
         return new MarkerIcon(url, size).init();

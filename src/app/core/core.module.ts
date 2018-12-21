@@ -43,6 +43,7 @@ import { InsemenationService } from './Services/HIMS/Lab/insemenation.service';
 import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service';
 import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryoutsider.service';
 import { UserService } from './Services/Security/user.service';
+import { StoreService } from './Services/ETracker/store.service';
 
 @NgModule({
     imports: [
@@ -89,6 +90,7 @@ import { UserService } from './Services/Security/user.service';
         SemenanalysisService,
         BiochemistryoutsiderService,
         UserService,
+        StoreService,
         eTrackerUserService]
 })
 export class CoreModule { }

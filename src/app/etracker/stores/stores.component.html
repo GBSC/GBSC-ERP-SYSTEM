@@ -1,33 +1,68 @@
 <div class="m-content">
-         
-  <div class="row">
-          <div class="col-sg-12">
 
-            <div class="m-portlet m-portlet--unair">
-              <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                <div class="m-portlet__head-title">
-                    <span class="m-portlet__head-icon">
-                        <i class="fa fa-calendar"></i>
-                      </span> 
-                  <h3 class="m-portlet__head-text">
-                    Stores
-                  </h3>
-                </div>
-              </div>
-              </div>
-              <div class="m-portlet__body">
-                <dx-data-grid
-                id="gridContainer"
-                [dataSource]=""
-                [columns]="['Shop Name', 'Shop Keeper', 'Contact', 'Distributer', 'CNIC', 'Map', 'Visit']"
-                [showBorders]="true">
-            </dx-data-grid>
-              
-              </div>
-              </div>
+  <div class="row">
+    <div class="col-sg-12">
+
+      <div class="m-portlet m-portlet--unair">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon">
+                <i class="fa fa-calendar"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Stores
+              </h3>
+            </div>
           </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="stores" keyExpr="storeId">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="6"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+            <dxi-column dataField="shopName"></dxi-column>
+            <dxi-column dataField="landline"></dxi-column>
+            <dxi-column dataField="section"></dxi-column>
+            <dxi-column dataField="subsection"></dxi-column>
+            <dxi-column dataField="salesPerson"></dxi-column>
+            <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
+            <div *dxTemplate="let data of 'cellTemplate'">
+              <a title="Store visits" [routerLink]="['/etracker/visit-summary', data.value]" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                <i class="flaticon-layers"></i>
+              </a>
+              <a data-toggle="modal" data-target="#m_modal_4" title="Map" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                <i class="flaticon-layers"></i>
+              </a>
+            </div>
+          </dx-data-grid>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Map
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>

@@ -880,6 +880,14 @@ export class InventorysystemService {
         // return x;
     }
 
+    AddDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddDistributorWithTerritories', Distributor);
+    }
+
+    UpdateDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/UpdateDistributorWithTerritories', Distributor);
+    }
+
     UpdateDistributor(Distributor: Distributor): Observable<Distributor> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateDistributor', Distributor);
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateDistributor', Distributor).toPromise();

@@ -1217,6 +1217,27 @@ export class InventorysystemService {
         // return x;
     }
 
+    //City
+    getCities(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCities');
+    }
+
+    getCitiesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByCompany/' + companyId);
+    }
+
+    addCity(City: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddCity', City);
+    }
+
+    updateCity(City: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateCity', City);
+    }
+
+    deleteCity(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteCity/' + id);
+    }
+
 
     //Section
     GetSections(): Observable<any> {

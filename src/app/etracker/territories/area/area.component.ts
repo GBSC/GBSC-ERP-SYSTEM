@@ -27,15 +27,27 @@ export class AreaComponent implements OnInit {
         })
     }
 
-    addArrea(area) {
+    addArea(area) {
+
+        area.data.companyId = this.companyId;
+        this.inventoryService.AddArea(area.data)
+            .subscribe(s => console.log(s));
 
     }
 
     updateArea(area) {
+        area.data.companyId = this.companyId;
+        this.inventoryService.UpdateArea(area.data)
+            .subscribe(s => console.log(s));
 
     }
 
     deleteArea(area) {
+
+        console.log(area);
+
+        // this.inventoryService.DeleteArea(area.data)
+        //     .subscribe(s => console.log(s));
 
     }
 

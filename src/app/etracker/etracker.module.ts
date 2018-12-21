@@ -24,6 +24,7 @@ import { TerritoryMasterComponent } from './territories/territory-master/territo
 import { Select2Module } from 'ng2-select2';
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { CityComponent } from './territories/city/city.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
         }),
         AgmSnazzyInfoWindowModule,
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

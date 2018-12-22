@@ -880,6 +880,14 @@ export class InventorysystemService {
         // return x;
     }
 
+    AddDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddDistributorWithTerritories', Distributor);
+    }
+
+    UpdateDistributorWithTerritories(Distributor: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/UpdateDistributorWithTerritories', Distributor);
+    }
+
     UpdateDistributor(Distributor: Distributor): Observable<Distributor> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateDistributor', Distributor);
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateDistributor', Distributor).toPromise();
@@ -1215,6 +1223,27 @@ export class InventorysystemService {
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteRegion/' + id).toPromise();
         // console.log(x);
         // return x;
+    }
+
+    //City
+    getCities(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCities');
+    }
+
+    getCitiesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByCompany/' + companyId);
+    }
+
+    addCity(City: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddCity', City);
+    }
+
+    updateCity(City: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateCity', City);
+    }
+
+    deleteCity(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteCity/' + id);
     }
 
 

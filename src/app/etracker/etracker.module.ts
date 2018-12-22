@@ -22,7 +22,9 @@ import { DistributersComponent } from './territories/distributers/distributers.c
 import { TerritoryComponent } from './territories/territory/territory.component';
 import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
 import { Select2Module } from 'ng2-select2';
-
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { CityComponent } from './territories/city/city.component';
 
 @NgModule({
     imports: [
@@ -33,9 +35,13 @@ import { Select2Module } from 'ng2-select2';
         ReactiveFormsModule,
         DxButtonModule,
         DevExtremeModule,
-        DxDataGridModule
+        DxDataGridModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
+        }),
+        AgmSnazzyInfoWindowModule,
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

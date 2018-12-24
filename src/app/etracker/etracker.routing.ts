@@ -16,6 +16,16 @@ import { SubsectionComponent } from './territories/subsection/subsection.compone
 import { DistributersComponent } from './territories/distributers/distributers.component';
 import { TerritoryComponent } from './territories/territory/territory.component';
 import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
+import { LocationReportComponent } from './reports/location-report/location-report.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-diff-units.component';
+import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-census-detail.component';
+import { ShopCensusSummaryComponent } from './reports/shop-census-summary/shop-census-summary.component';
+import { ShopStatusDetailComponent } from './reports/shop-status-detail/shop-status-detail.component';
+import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-status-summary.component';
+import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
+import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
 
 const routes: Routes = [
     {
@@ -35,7 +45,24 @@ const routes: Routes = [
             { path: 'territory-management', component: TerritoryMasterComponent },
             { path: 'territory', component: TerritoryComponent },
             { path: 'distributers', component: DistributersComponent },
-            { path: 'order-taking', component: OrderTakingComponent }
+            { path: 'order-taking', component: OrderTakingComponent },
+            {
+                path: "reports",
+                children: [
+                    { path: 'location-report', component: LocationReportComponent},
+                    { path: 'order-detail', component: OrderDetailComponent},
+                    { path: 'order-summary', component: OrderSummaryComponent},
+                    { path: 'product-diff-units', component: ProductDiffUnitsComponent},
+                    { path: 'shop-census-detail', component: ShopCensusDetailComponent},
+                    { path: 'shop-census-summary', component: ShopCensusSummaryComponent},
+                    { path: 'shop-status-detail', component: ShopStatusDetailComponent},
+                    { path: 'shop-status-summary', component: ShopStatusSummaryComponent},
+                    { path: 'visit-detail', component: VisitDetailComponent},
+                    { path: 'visit-summary', component: VisitSummaryReportComponent},
+
+                  
+                ]
+            }
         ]
     }
 ];

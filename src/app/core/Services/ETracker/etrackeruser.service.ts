@@ -47,12 +47,12 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
     }
 
-    assignUserSection(model) {
-        return this.ApiService.post(this.Url + 'User/AssignUserSection', model);
+    assignUserLevel(model) {
+        return this.ApiService.post(this.Url + 'User/AssignUserLevel', model);
     }
 
     getSalesUsersByCompany(companyId) {
-        return this.ApiService.get(this.Url + 'User/GetSalesUsersByCompanyId/' + companyId);
+        return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }
 
     getAssignedSubsectionsBySection(sectionid, userid) {

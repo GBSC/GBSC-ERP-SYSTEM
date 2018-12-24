@@ -600,8 +600,12 @@ export class InventorysystemService {
         // return this.Area;
     }
 
-    getAreasByCompany(companyId: any): Observable<Area> {
+    getAreasByCompany(companyId: any) {
         return this.ApiService.get(this.API_URL + 'Setup/GetAreasByCompany/' + companyId);
+    }
+
+    getAreasByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetAreasByUser/' + userId);
     }
 
     AddArea(Area: Area): Observable<Area> {
@@ -1195,13 +1199,14 @@ export class InventorysystemService {
     //Region
     GetRegions(): Observable<Region> {
         return this.ApiService.get(this.API_URL + 'Setup/GetRegions');
-        // this.Region = await this.http.get<Region>(this.API_URL + 'Setup/GetRegions').toPromise();
-        // //console.log(this.Region);
-        // return this.Region;
     }
 
     getRegionsByCompany(companyId: any) {
         return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByCompany/' + companyId);
+    }
+
+    getRegionsByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByUser/' + userId);
     }
 
     AddRegion(Region: Region): Observable<Region> {
@@ -1232,6 +1237,10 @@ export class InventorysystemService {
 
     getCitiesByCompany(companyId: any) {
         return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByCompany/' + companyId);
+    }
+
+    getCitiesByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetCitiesByUser/' + userId);
     }
 
     addCity(City: any): Observable<any> {
@@ -1421,8 +1430,12 @@ export class InventorysystemService {
         // return this.Territory;
     }
 
-    getTerritoriesByCompany(companyId: any): Observable<Territory> {
+    getTerritoriesByCompany(companyId: any) {
         return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByCompany/' + companyId);
+    }
+
+    getTerritoriesByUser(userId: any) {
+        return this.ApiService.get(this.API_URL + 'Setup/GetTerritoriesByUser/' + userId);
     }
 
     getTerritoriesByDistributorId(distributorId: any): Observable<Territory> {

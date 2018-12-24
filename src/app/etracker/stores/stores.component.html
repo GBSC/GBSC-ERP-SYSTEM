@@ -32,8 +32,8 @@
             <dxi-column dataField="salesPerson"></dxi-column>
             <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
             <div *dxTemplate="let data of 'cellTemplate'">
-              <a title="Store visits" [routerLink]="['/etracker/store-profile', data.value]" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
-                <i class="flaticon-layers"></i>
+              <a title="Store Profile" [routerLink]="['/etracker/store-profile', data.value]" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                <i class="flaticon-profile"></i>
               </a>
               <a data-toggle="modal" data-target="#m_modal_4" title="Map" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
                 <i class="flaticon-placeholder"></i>

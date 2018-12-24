@@ -47,9 +47,9 @@ export class LocatorComponent implements OnInit {
     ngOnInit() {
         this.mapHelper = this.eTrackerUserService.mapHelper;
         this.eTrackerUserService.fetchAllUsers();
-        this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 45);
-        this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 45);
-        this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
+        this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 64);
+        this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 64);
+        this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 64);
 
 
         for (let i = 0; i <= 22; i++) {

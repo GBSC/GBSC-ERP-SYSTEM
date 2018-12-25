@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TerritoryMasterComponent implements OnInit {
 
-    tabs: string[] = ['region', 'area', 'territory', 'section', 'subsection', 'distributor'];
+    tabs: string[] = ['region', 'city', 'area', 'territory', 'section', 'subsection', 'distributor'];
     selectedTab = this.tabs[0];
 
     constructor() { }

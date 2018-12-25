@@ -29,10 +29,19 @@ export class SubsectionComponent implements OnInit {
 
     addSubsection(value) {
 
+        value.data.companyId = this.companyId;
+        this.inventoryService.AddSubsection(value.data).subscribe(resp => {
+            console.log(resp);
+        })
+
     }
 
     updateSubsection(value) {
-
+        value.data.subsectionId = value.key;
+        value.data.companyId = this.companyId;
+        this.inventoryService.UpdateSubsection(value.data).subscribe(resp => {
+            console.log(resp);
+        });
     }
 
     deleteSubsection(value) {

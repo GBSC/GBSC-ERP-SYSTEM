@@ -60,6 +60,10 @@ export class DistributersComponent implements OnInit {
         })
     }
 
+    changed(data: { value: string[] }) {
+        this.value = data.value;
+    }
+
     onEdit(id) {
 
         this.isEdit = true;
@@ -67,6 +71,8 @@ export class DistributersComponent implements OnInit {
         this.inventoryService.GetDistributor(id).subscribe(dist => {
 
             this.distributor = dist;
+
+            this.patchValues(this.distributor);
 
             this.value = [];
 
@@ -79,8 +85,22 @@ export class DistributersComponent implements OnInit {
 
     addDistributor(value) {
 
-        console.log(value);
-        console.log(this.territoryOptions);
+        value.companyId = this.companyId;
+        var dist = { Distributor: value, TerritoryIds: this.value };
+        this.inventoryService.AddDistributorWithTerritories(dist).subscribe(resp => {
+            console.log(resp);
+        });
+    }
+
+    updateDistributor(value) {
+
+        value.companyId = this.companyId;
+        value.distributorId = this.distributor.distributorId;
+        var dist = { Distributor: value, TerritoryIds: this.value };
+        this.inventoryService.UpdateDistributorWithTerritories(dist).subscribe(resp => {
+            console.log(resp);
+        });
+
     }
 
     patchValues(distributor) {

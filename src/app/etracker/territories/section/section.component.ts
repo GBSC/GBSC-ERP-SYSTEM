@@ -27,9 +27,18 @@ export class SectionComponent implements OnInit {
 
     addSection(value) {
 
+        value.data.companyId = this.companyId;
+        this.inventoryService.AddSection(value.data).subscribe(resp => console.log(resp));
+
     }
 
     updateSection(value) {
+
+        value.data.sectionId = value.key;
+        value.data.companyId = this.companyId;
+        this.inventoryService.UpdateSection(value.data).subscribe(resp => {
+            console.log(resp);
+        });
 
     }
 

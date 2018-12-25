@@ -4,7 +4,6 @@ import { RootComponent } from './root/root.component';
 import { AuthGuardService } from '../core';
 import { LocatorComponent } from './locator/locator.component';
 import { SalesusersComponent } from './salesusers/salesusers.component';
-import { SectionmanagementComponent } from './sectionmanagement/sectionmanagement.component';
 import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
@@ -33,8 +32,7 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
         children: [
             { path: 'locator', component: LocatorComponent },
-            { path: 'sales-users', component: SalesusersComponent },
-            { path: 'section-management', component: SectionmanagementComponent },
+            { path: 'users', component: SalesusersComponent },
             { path: 'stores', component: StoresComponent },
             { path: 'store-profile/:id', component: StoresProfileComponent },
             { path: 'visit-summary/:id', component: VisitSummaryComponent },
@@ -43,7 +41,6 @@ const routes: Routes = [
             { path: 'section', component: SectionComponent },
             { path: 'subsection', component: SubsectionComponent },
             { path: 'territory-management', component: TerritoryMasterComponent },
-            { path: 'territory', component: TerritoryComponent },
             { path: 'distributers', component: DistributersComponent },
             { path: 'order-taking', component: OrderTakingComponent },
             {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService, InventorysystemService } from '../../../../app/core';
 
 @Component({
   selector: 'app-visit-summary-report',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisitSummaryReportComponent implements OnInit {
   showHideFilter : boolean = false;
-  constructor() { }
+  public userLevel : string;
+
+  constructor(public authService : AuthService, public inventoryService : InventorysystemService) {
+    this.userLevel = this.authService.getUserLevel();
+    console.log(this.userLevel);
+   }
 
   ngOnInit() {
   }

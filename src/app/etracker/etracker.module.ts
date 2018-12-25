@@ -8,7 +8,6 @@ import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { SalesusersComponent } from './salesusers/salesusers.component';
-import { SectionmanagementComponent } from './sectionmanagement/sectionmanagement.component';
 import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
 import { VisitSummaryComponent } from './visit-summary/visit-summary.component';
@@ -51,7 +50,7 @@ import { VisitSummaryReportComponent } from './reports/visit-summary-report/visi
         }),
         AgmSnazzyInfoWindowModule,
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, SectionmanagementComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, OrderSummaryComponent, OrderDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, OrderSummaryComponent, OrderDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

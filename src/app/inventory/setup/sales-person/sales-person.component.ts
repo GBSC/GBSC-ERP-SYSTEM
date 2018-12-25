@@ -30,7 +30,7 @@ export class SalesPersonComponent implements OnInit {
         this.InventoryService.GetSalesPeopleByCompany(this.CompanyId).subscribe((res: SalesPerson) => {
             this.SalesPeople = res;
         });
-        this.InventoryService.GetAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+        this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
             this.Areas = res;
         });
         this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe((res: Territory) => {

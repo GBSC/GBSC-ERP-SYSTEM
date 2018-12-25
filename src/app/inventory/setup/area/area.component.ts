@@ -32,7 +32,7 @@ export class AreaComponent implements OnInit {
         this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
             this.Regions = res;
         });
-        this.InventoryService.GetAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+        this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
             this.Areas = res;
         });
     }
@@ -44,7 +44,7 @@ export class AreaComponent implements OnInit {
 
     AddArea(value) {
         this.InventoryService.AddArea(value.data).subscribe((res: any) => {
-            this.InventoryService.GetAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+            this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
                 this.Areas = res;
             });
         });

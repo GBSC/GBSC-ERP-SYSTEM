@@ -1,0 +1,164 @@
+<div class="m-subheader-search">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2 class="m-subheader-search__title" style="text-align: left;">
+            Shop Status Summary
+            <span class="m-subheader-search__desc">
+              Report
+            </span>
+          </h2>
+        </div>
+        <div class="col-sm-6">
+          <button (click)="toggleFilter()" style="float: right; border: solid 1px;" class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
+            <span *ngIf="showHideFilter">
+              <i class="la la-close"></i>
+              <span>
+                Hide
+              </span>
+            </span>
+  
+            <span *ngIf="!showHideFilter">
+                <i class="la la-sort"></i>
+                <span>
+                  Show Filters
+                </span>
+              </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+    <div *ngIf="showHideFilter" class="m-grid m-grid--ver-desktop m-grid--desktop">
+  
+      <div class="col-sm-12">
+        <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Date
+              </label>
+              <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Time
+              </label>
+              <input class="form-control m-input" type="date" (change)="filterToDate($event)"> </div>
+          </div>
+  
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Region
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="m-form__group form-group">
+              <label>
+                City
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="m-form__group form-group">
+              <label>
+                Area
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Distributor
+              </label>
+              <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
+            </div>
+          </div>
+  
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Territory
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select> </div>
+          </div>
+  
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Section
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="m-form__group form-group">
+              <label>
+                Sub Section
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="m-form__group form-group">
+              <label>
+                DSF (Current)
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Last Status
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group m-form__group">
+              <label>
+                Header Group
+              </label>
+              <select class="form-control m-input" (change)="selectZoomLevel($event)">
+                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              </select> </div>
+          </div>
+  
+  
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  </div>

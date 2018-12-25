@@ -36,13 +36,12 @@ export class CityComponent implements OnInit {
         })
     }
 
-  updateCity(value)
-  {
-    value.data.cityId = value.key;
-    value.data.companyId = this.companyId;
-    this.inventoryService.updateCity(value.data).subscribe(resp=>{
-        console.log(resp);
-    });
+    updateCity(value) {
+        value.data.cityId = value.key;
+        value.data.companyId = this.companyId;
+        this.inventoryService.updateCity(value.data).subscribe(resp => {
+            console.log(resp);
+        });
 
     }
 

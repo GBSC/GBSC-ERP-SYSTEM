@@ -20,10 +20,10 @@ export class RegionComponent implements OnInit {
         this.inventoryService.getRegionsByCompany(this.companyId).subscribe(reg => this.regions = reg);
     }
 
-    addRegions(region) {
+    addRegion(region) {
 
         region.data.companyId = this.companyId;
-        this.inventoryService.AddRegion(region.data).subscribe(resp=>console.log(resp));
+        this.inventoryService.AddRegion(region.data).subscribe(resp => console.log(resp));
 
     }
 
@@ -31,7 +31,7 @@ export class RegionComponent implements OnInit {
 
         region.data.regionId = region.key;
         region.data.companyId = this.companyId;
-        this.inventoryService.UpdateRegion(region.data).subscribe(resp=>{
+        this.inventoryService.UpdateRegion(region.data).subscribe(resp => {
             console.log(resp);
         });
     }

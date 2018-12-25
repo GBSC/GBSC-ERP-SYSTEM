@@ -5,31 +5,33 @@
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text col-lg-10">Set New Role</h3>
-              <button class="btn btn-success blankinput" type="button" (click)="createNewRole()"> Add New </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text ">List All Roles</h3>
             </div>
           </div>
+          <div class="m-portlet__head-tools">
+              <ul class="m-portlet__nav">
+                  <li class="m-portlet__nav-item">
+                      <a class="m-portlet__nav-link m-portlet__nav-link--icon">
+                          <span class="m--font-bolder">
+                              Set New Role
+                            </span>
+                      </a>
+                    </li>
+                <li class="m-portlet__nav-item">
+                  <a (click)="createNewRole()" class="m-portlet__nav-link m-portlet__nav-link--icon" title="" data-original-title="Add New Role">
+                    <i class="flaticon-plus" style="
+                    color: #00080c;
+                    font-weight: bold;
+                "></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <div class="m-portlet__body">
-                <div class="m-section">
-                  <div class="m-section__content">
                     <dx-data-grid id="gridContainer" [dataSource]="roles">
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -37,9 +39,6 @@
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                       <dxi-column dataField="name" caption="Role"></dxi-column>
                     </dx-data-grid>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-location-report',
-  templateUrl: './location-report.component.html',
-  styleUrls: ['./location-report.component.scss']
+    selector: 'app-location-report',
+    templateUrl: './location-report.component.html',
+    styleUrls: ['./location-report.component.scss']
 })
 export class LocationReportComponent implements OnInit {
 
-  showHideFilter : boolean = false;
+    showHideFilter: boolean = false;
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  toggleFilter(){
-    this.showHideFilter = !this.showHideFilter;
-  }
+    toggleFilter() {
+        this.showHideFilter = !this.showHideFilter;
+    }
 
 }

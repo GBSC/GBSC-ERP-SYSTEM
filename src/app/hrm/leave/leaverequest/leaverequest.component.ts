@@ -90,7 +90,7 @@ export class LeaverequestComponent implements OnInit {
                 this.getLeaveBalance(this.leaveRequest.userId);
                 this.patchValues(this.leaveRequest);
             });
-        } 
+        }
     }
 
     async leaveRequestDetail(value) {

@@ -24,7 +24,7 @@ export class ListOfJoinnersComponent implements AfterViewInit {
         const reportUrl = ko["observable"]("ListofJoiners"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host =`${environment.repotr_url}`;
+        var host = `${environment.repotr_url}`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

@@ -32,7 +32,7 @@ export class EmployeeService {
         return this.employeereg;
     }
 
-    getManagers():Observable<any>{
+    getManagers(): Observable<any> {
         return this.ApiService.get('SystemAdmin/api/HrSetup/GetUserCompanies');
     }
 

@@ -47,13 +47,14 @@ import { RolesandprivilegesComponent } from '../hrm/rolesandprivileges/rolesandp
 import { CompanyComponent } from '../hrm/company/company.component';
 import { DepartmentComponent } from '../hrm/department/department.component';
 import { FeatureComponent } from '../hrm/feature/feature.component';
-import { ModuleComponent } from '../hrm/module/module.component'; 
+import { ModuleComponent } from '../hrm/module/module.component';
 import { EmployeeBankComponent } from './employee/bank/bank.component';
 import { LeavetypebalanceComponent } from './leave/leavesetup/leavetypebalance/leavetypebalance.component';
 import { LeaverequestComponent } from './leave/leaverequest/leaverequest.component';
 import { AttendanceFlagExemptionComponent } from './attendance/attendanceadmin/attendance-flag-exemption/attendance-flag-exemption.component';
 import { AttendanceruleComponent } from './attendance/attendanceadmin/attendancerule/attendancerule.component';
 import { AttendancerequestComponent } from './attendance/attendancerequest/attendancerequest.component';
+import { AttendanceapproveComponent } from './attendance/attendanceapprove/attendanceapprove.component';
 import { EmployeeQualificationComponent } from './employee/qualification/qualification.component';
 import { BankComponent } from './hrmsSetup/bank/bank.component';
 import { EmpleavepolicyComponent } from './leave/leaveadmin/employeeleavepolicy/empleavepolicy.component';
@@ -125,6 +126,7 @@ import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.compo
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
+import { CalendarComponent } from './attendance/calendar/calendar.component';
 import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
 import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
@@ -146,7 +148,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'city', component: CityComponent },
             { path: 'department', component: DepartmentComponent },
             { path: 'feature', component: FeatureComponent },
-            { path: 'module', component: ModuleComponent }, 
+            { path: 'module', component: ModuleComponent },
 
             {
                 path: 'setup',
@@ -264,7 +266,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         ]
                     },
                     { path: 'attendancerequest', component: AttendancerequestComponent },
+                    { path: 'attendanceapprove', component: AttendanceapproveComponent },
                     { path: 'create-attendance-request', component: CreateAttendancerequestComponent },
+                    { path: 'calendar', component: CalendarComponent },
                     { path: 'official-visit-entry', component: OfficialVisitEntryComponent },
                     { path: 'overtime-entitlement', component: OvertimeEntitlementComponent },
                     { path: 'employee-overtime-entitlement', component: EmployeeOvertimeEntitlementComponent },

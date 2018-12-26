@@ -29,8 +29,7 @@ import { SecurityAdminModule } from './security-admin/security-admin.module';
 import { EtrackerModule } from './etracker/etracker.module';
 import { TitlePipe } from './_pipes/title';
 
-
-
+//I keep the new line
 @NgModule({
     declarations: [
         ThemeComponent,
@@ -41,12 +40,12 @@ import { TitlePipe } from './_pipes/title';
     ],
     imports: [
         CommonModule,
-        BrowserAnimationsModule, // required animations module
+        BrowserAnimationsModule,
         ToastrModule.forRoot({
             timeOut: 5000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
-        }), // ToastrModule added
+        }),
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -74,4 +73,5 @@ import { TitlePipe } from './_pipes/title';
         ScriptLoaderService],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

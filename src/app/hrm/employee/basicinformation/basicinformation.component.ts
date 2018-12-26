@@ -49,14 +49,14 @@ export class BasicinformationComponent implements OnInit {
             GroupId: [''],
             Address: [''],
             PermanentAddress: [''],
-            FullName:['']
+            FullName: ['']
         });
 
     }
 
     update(value) {
 
-        value.UserId = this.id;        
+        value.UserId = this.id;
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
             this.showSuccess("Basic Information Updated");
         });

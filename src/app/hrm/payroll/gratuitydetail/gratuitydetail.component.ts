@@ -34,7 +34,7 @@ export class GratuitydetailComponent implements OnInit {
         this.fundSetups = await this.payrollsetupservice.getFundSetups();
 
         this.employees = await this.employeeservice.GetAllEmployees();
-        
+
         this.paySlip = await this.payrollservice.getPayslips();
     }
 

@@ -65,6 +65,14 @@ export class AuthService {
 
     }
 
+    getProfileInfo() {
+        let user = JSON.parse(localStorage.getItem('user'));
+        return {
+            Username : user.fullName,
+            UserLevel : user.userLevel
+        };
+    }
+
     getUserCompanyId() {
 
         var user = this.getUser();

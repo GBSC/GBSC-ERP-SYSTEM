@@ -21,7 +21,7 @@ export class TerritoryComponent implements OnInit {
             this.CompanyId = res;
         });
         this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe(t => this.Territories = t);
-        this.InventoryService.GetAreasByCompany(this.CompanyId).subscribe(a => this.Areas = a);
+        this.InventoryService.getAreasByCompany(this.CompanyId).subscribe(a => this.Areas = a);
     }
 
     async AddTerritory(value) {

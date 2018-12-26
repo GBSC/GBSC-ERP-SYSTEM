@@ -347,7 +347,7 @@ export class FinanceService {
 
     getPostedVouchersByDate(date : Date) : Observable<PostedVoucherViewModel[]>{
         let params = new HttpParams();
-        params.append("date", this.FormatDate(date));
+        params.append("date", date.toLocaleDateString());
         return this.ApiService.get(this.baseUrl+'/Finance/GetPostedVouchersByDate', params);
     }
 

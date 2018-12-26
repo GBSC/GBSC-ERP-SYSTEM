@@ -136,6 +136,8 @@ export class VoucherComponent implements OnInit {
             value.VoucherDetails = VDs;
             value.TotalCreditAmount = this.creditTotal;
             value.TotalDebitAmount = this.debitTotal;
+            let a : Date = new Date(value.Date);
+            value.Date = a.toLocaleDateString();
             console.log(value);
             await this.financeService.addVoucher(value);
             this.toastr.success("Successfull! Voucher Added")

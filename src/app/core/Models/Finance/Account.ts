@@ -10,6 +10,8 @@ export interface Account {
 	description : string,
 	openingBalance : number,
 	isBankAccount : boolean,
+	showInBalanceSheet : boolean,
+	masterAccountType: string,
 	isProcessed : boolean,
 	financialYearId : number,
 	financialYear : FinancialYear,

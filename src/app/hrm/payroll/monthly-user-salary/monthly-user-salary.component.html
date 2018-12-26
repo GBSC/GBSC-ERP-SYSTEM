@@ -89,7 +89,7 @@
                     <label>
                       Stop Salary:
                     </label>
-                    <select class="form-control m-input" formControlName="StopSalaryId" id="">
+                    <select class="form-control m-input" formControlName="StopSalaryId">
                       <option value="" disabled selected>-- Select Stop Salary --</option>
                       <option *ngFor ="let stopSalary of stopSalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
                     </select>

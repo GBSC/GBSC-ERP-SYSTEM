@@ -18,6 +18,7 @@ export class EmployeeService {
 
     public baseUrl: string = 'systemadmin/api';
     public employeereg;
+    public updatedLeaves;
 
 
     constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {

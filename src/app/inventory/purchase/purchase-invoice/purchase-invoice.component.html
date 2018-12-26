@@ -116,7 +116,7 @@
                                         Supplier
                                     </label>
                                     <select class="form-control m-input m-input--solid" formControlName="SupplierId" required>
-                                        <option *ngFor="let supplier of InventorysystemServiceobj?.Suppliers" [value]="supplier.supplierId"> {{supplier.name}}</option>
+                                        <option *ngFor="let supplier of InventoryService?.Suppliers" [value]="supplier.supplierId"> {{supplier.name}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-lg-4">

@@ -18,6 +18,7 @@ export class AuthService {
 
         if (response.status && response.message === 'Login Successful') {
             let userData = {
+                userLevel : response.userLevel,
                 credentials: response.response,
                 assignedId: response.assignedId,
                 accessibleModules: response.modules.map((m, i) => {
@@ -60,6 +61,11 @@ export class AuthService {
 
         var user = this.getUser();
         return user.assignedId.companyId;
+    }
+
+    getUserLevel(){
+        var user = this.getUser();
+        return user.userLevel;
     }
 
     checkIfModuleIsAccessible(module) {

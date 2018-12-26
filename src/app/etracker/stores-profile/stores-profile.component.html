@@ -1,53 +1,74 @@
+<div class="m-subheader-search">
+ 
+  <div class="twPc-div">
+    <a class="twPc-bg twPc-block"></a>
+
+	<div>
+		<div class="twPc-button">
+            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; width: 79px; height: 28px;" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.d30011b0f5ce05b98f24b01d3331b3c1.en.html#dnt=true&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=mertskaplan&amp;show_count=false&amp;show_screen_name=false&amp;size=l&amp;time=1545400086580" data-screen-name="mertskaplan"></iframe>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <!-- Twitter Button -->   
+		</div>
+
+		<a title="Shop" class="twPc-avatarLink">
+			<img alt="Shop" src="..\assets\images\shopimage.png" class="twPc-avatarImg">
+		</a>
+
+		<div class="twPc-divUser">
+			<div class="twPc-divName">
+			 {{store?.shopName}} 
+			</div>
+			<span>
+        {{store?.address}}
+			</span>
+		</div>
+
+		<div class="twPc-divStats">
+			<ul class="twPc-Arrange">
+				<li class="twPc-ArrangeSizeFit">
+						<span class="twPc-StatLabel twPc-block">Shopkeeper Name</span>
+						<span class="twPc-StatValue">Irfan Ali Khan</span>
+				</li>
+				<li class="twPc-ArrangeSizeFit">
+						<span class="twPc-StatLabel twPc-block">Contact No</span>
+						<span class="twPc-StatValue">{{store?.contactNo}}</span>
+				</li>
+				<li class="twPc-ArrangeSizeFit">
+						<span class="twPc-StatLabel twPc-block">Landline</span>
+						<span class="twPc-StatValue">021-5076698</span>
+        </li>
+        <li class="twPc-ArrangeSizeFit">
+          <span class="twPc-StatLabel twPc-block">Section</span>
+          <span class="twPc-StatValue">Landhi no 3</span>
+      </li>
+      <li class="twPc-ArrangeSizeFit">
+        <span class="twPc-StatLabel twPc-block">CNIC NO</span>
+        <span class="twPc-StatValue">42201-1234567-5</span>
+    </li>
+    <li class="twPc-ArrangeSizeFit">
+      <span class="twPc-StatLabel twPc-block">Distributer</span>
+      <span class="twPc-StatValue">Noofil Enterprise</span>
+  </li>
+			</ul>
+		</div>
+	</div>
+</div>
+ 
+  
+</div>
+
+
+
 <div class="m-content">
   <div class="row">
-    <div class="col-lg-3">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Shop Profile
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body" style="padding: 0px !important;">
-
-
-          <div class="m-card-profile">
-            <div class="m-card-profile__pic">
-                <div class="m-card-profile__pic-wrapper">
-                        <img src="http://evasalesforceprod.azurewebsites.net/service//StoreImages\Store_3782\1536132286696.jpg" alt="">
-                </div>
-            </div>
-            <div class="m-card-profile__details">
-                <span class="m-card-profile__name">
-                    Nizam store
-                </span>
-                <div class="m-card-profile__email">
-                    03151003342
-                </div>
-                <div class="m-card-profile__email" style="padding: 0px 10px;">
-                  111 A Shahrah-e-Faisal Rd, Block A 
-                  (SMCHS), Karachi
-                </div>
-                
-            </div>
-        </div>
-
-
-
-          <br>
-          <br>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-9">
+ 
+    <div class="col-lg-12">
       <!-- Tab panes -->
       <div class="m-portlet">
         <div class="">
           <div class="tab-content">
-            
+
 
             <div class="tab-pane  active" id="Inventory">
               <div class="m-portlet">
@@ -61,17 +82,35 @@
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                      <dx-data-grid
-    id="gridContainer"
-    [dataSource]="customers"
-    [columns]="['Date','Start Time', 'End Time', 'Visit detail']"
-    [showBorders]="true">
-</dx-data-grid>
+                      <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                        <dxo-paging [pageSize]="6"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                        </dxo-pager>
+                        <dxi-column dataField="createdAt"></dxi-column>
+                        <dxi-column dataField="startTime"></dxi-column>
+                        <dxi-column dataField="endtime"></dxi-column>
+                        <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                          <a title="Visit Details" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                            <i class="flaticon-interface-2"></i>
+                          </a>
+                        </div>
+                      </dx-data-grid>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="tab-pane" id="order">
+              <app-order-taking></app-order-taking>
+
+            </div>
+
           </div>
         </div>
       </div>

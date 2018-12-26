@@ -16,7 +16,7 @@
                 <span class="m-card-profile__name">
                   {{userName}}
                 </span>
-                <a href="" class="m-card-profile__email m-link">
+                <a class="m-card-profile__email">
                   {{userLevel}}
                 </a>
               </div>
@@ -49,14 +49,14 @@
           </div>
           <div class="tab-content">
             <div class="tab-pane active" id="m_user_profile_tab_1">
-              <form class="m-form m-form--fit m-form--label-align-right">
+              <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="UpdateUserProfileForm">
                 <div class="m-portlet__body">
                   <div class="form-group m-form__group row">
                     <label for="example-text-input" class="col-3 col-form-label">
                       First Name *
                     </label>
                     <div class="col-7">
-                      <input class="form-control m-input" type="text" value="Mark Andre">
+                      <input class="form-control m-input" type="text" formControlName="FirstName">
                     </div>
                   </div>
                   <div class="form-group m-form__group row">
@@ -64,15 +64,15 @@
                       Last Name *
                     </label>
                     <div class="col-7">
-                      <input class="form-control m-input" type="text" value="Mark Andre">
+                      <input class="form-control m-input" type="text" formControlName="LastName">
                     </div>
                   </div>
-                  <div class="form-group m-form__group row">
+                  <!-- <div class="form-group m-form__group row">
                     <label for="example-text-input" class="col-3 col-form-label">
                       City
                     </label>
                     <div class="col-7">
-                        <select class="form-control m-input m-input--square" [value]="UserCity?.name  || ''" formControlName="City">
+                        <select class="form-control m-input m-input--square" [value]="UserCity?.cityId  || ''" formControlName="City">
                             <option  disabled>
                               Select City
                             </option>
@@ -81,21 +81,21 @@
                             </option>
                           </select>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group m-form__group row">
                     <label for="example-text-input" class="col-3 col-form-label">
                       Contact Number *
                     </label>
                     <div class="col-7">
-                      <input class="form-control m-input" type="text" value="+456669067890">
+                      <input class="form-control m-input" type="text" formControlName="ContactNumber">
                     </div>
                   </div>
-                  <div class="form-group m-form__group row">
+                  <!-- <div class="form-group m-form__group row">
                       <label for="example-text-input" class="col-3 col-form-label">
                         Role
                       </label>
                       <div class="col-7">
-                          <select class="form-control m-input m-input--square" [value]="UserRole?.name  || ''" formControlName="Role">
+                          <select class="form-control m-input m-input--square" [value]="UserRole?.roleId  || ''" formControlName="Role">
                               <option  disabled>
                                 Select Role
                               </option>
@@ -104,13 +104,13 @@
                               </option>
                             </select>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="form-group m-form__group row">
                         <label for="example-text-input" class="col-3 col-form-label">
                             Email
                         </label>
                         <div class="col-7">
-                          <input class="form-control m-input" type="text" value="Mark Andre">
+                          <input class="form-control m-input" type="text" formControlName="Email">
                         </div>
                       </div>                 
                 </div>
@@ -120,7 +120,7 @@
                       
                     </div>
                     <div class="col-lg-6 m--align-right">
-                      <button type="submit" class="btn btn-brand">
+                      <button type="submit" class="btn btn-brand" (click)=UpdateUserProfileInfo(UpdateUserProfileForm.value)>
                         Submit
                       </button>
                     </div>
@@ -129,14 +129,22 @@
               </form>
             </div>
             <div class="tab-pane" id="m_user_profile_tab_2">
-                <form class="m-form m-form--fit m-form--label-align-right">
+                <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="UpdatePasswordForm">
                     <div class="m-portlet__body">
+                        <div class="form-group m-form__group row">
+                            <label for="example-text-input" class="col-3 col-form-label">
+                              Username*
+                            </label>
+                            <div class="col-7">
+                              <input class="form-control m-input" type="text" formControlName="Username">
+                            </div>
+                          </div>
                       <div class="form-group m-form__group row">
                         <label for="example-text-input" class="col-3 col-form-label">
                           Current Password*
                         </label>
                         <div class="col-7">
-                          <input class="form-control m-input" type="password" value="Mark Andre">
+                          <input class="form-control m-input" type="password" formControlName="CurrentPassword">
                         </div>
                       </div>
                       <div class="form-group m-form__group row">
@@ -144,7 +152,7 @@
                           New Password *
                         </label>
                         <div class="col-7">
-                          <input class="form-control m-input" type="password" value="Mark Andre">
+                          <input class="form-control m-input" type="password" formControlName="NewPassword">
                         </div>
                       </div>
                       <div class="form-group m-form__group row">
@@ -152,7 +160,7 @@
                          Confirm Password
                         </label>
                         <div class="col-7">
-                          <input class="form-control m-input" type="password" value="Mark Andre">
+                          <input class="form-control m-input" type="password" formControlName="ConfirmPassword">
                         </div>
                       </div>
                       <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
@@ -163,7 +171,7 @@
                           
                         </div>
                         <div class="col-lg-6 m--align-right">
-                          <button type="submit" class="btn btn-brand">
+                          <button type="submit" class="btn btn-brand" (click)="UpdatePassword(UpdatePasswordForm.value)">
                             Submit
                           </button>
                         </div>

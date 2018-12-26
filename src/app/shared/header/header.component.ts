@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
     private Username : string = '';
-    private UserLevel : number = null;
+    private UserLevel : string = '';
 
     constructor(public authService: AuthService) { }
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
-import { CityComponent } from 'src/app/security-admin/city/city.component';
 import { City } from '../../../../core/Models/HRM/city';
 
 

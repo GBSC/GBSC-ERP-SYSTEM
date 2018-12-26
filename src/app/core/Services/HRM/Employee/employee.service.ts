@@ -22,7 +22,6 @@ export class EmployeeService {
 
     constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {
 
-
     }
 
     //Employee

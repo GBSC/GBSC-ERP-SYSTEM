@@ -14,10 +14,10 @@
               </div>
               <div class="m-card-profile__details">
                 <span class="m-card-profile__name">
-                  Mark Andre
+                  {{userName}}
                 </span>
                 <a href="" class="m-card-profile__email m-link">
-                  mark.andre@gmail.com
+                  {{userLevel}}
                 </a>
               </div>
             </div>
@@ -72,21 +72,12 @@
                       City
                     </label>
                     <div class="col-7">
-                        <select class="form-control m-input m-input--square" id="exampleSelect1">
-                            <option>
-                              1
+                        <select class="form-control m-input m-input--square" [value]="UserCity?.name  || ''" formControlName="City">
+                            <option  disabled>
+                              Select City
                             </option>
-                            <option>
-                              2
-                            </option>
-                            <option>
-                              3
-                            </option>
-                            <option>
-                              4
-                            </option>
-                            <option>
-                              5
+                            <option class="active" *ngFor="let city of Cities" [value]="city.cityId">
+                              {{city.name}}
                             </option>
                           </select>
                     </div>
@@ -101,24 +92,15 @@
                   </div>
                   <div class="form-group m-form__group row">
                       <label for="example-text-input" class="col-3 col-form-label">
-                          Role
+                        Role
                       </label>
                       <div class="col-7">
-                          <select class="form-control m-input m-input--square" id="exampleSelect2">
-                              <option>
-                                1
+                          <select class="form-control m-input m-input--square" [value]="UserRole?.name  || ''" formControlName="Role">
+                              <option  disabled>
+                                Select Role
                               </option>
-                              <option>
-                                2
-                              </option>
-                              <option>
-                                3
-                              </option>
-                              <option>
-                                4
-                              </option>
-                              <option>
-                                5
+                              <option class="active" *ngFor="let role of Roles" [value]="role.roleId">
+                                {{role.name}}
                               </option>
                             </select>
                       </div>

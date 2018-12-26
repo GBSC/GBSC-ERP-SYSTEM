@@ -24,6 +24,8 @@ enum modules {
 export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
+    private Username : string = '';
+    private UserLevel : number = null;
 
     constructor(public authService: AuthService) { }
 
@@ -34,6 +36,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         for (let module of modules) {
             this.accessableModules.push(module.Description);
         }
+
+        this.Username = this.authService.getProfileInfo().Username;
+        this.UserLevel = this.authService.getProfileInfo().UserLevel;
+
+
 
     }
 
@@ -46,5 +53,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     logout() {
         this.authService.logout();
     }
+
+
 
 }

@@ -87,7 +87,7 @@
 											<ul class="m-menu__inner">
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/security/user-registration" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+														<i class="m-menu__link-icon flaticon-user-add">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -97,7 +97,7 @@
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/security/users" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+														<i class="m-menu__link-icon flaticon-users">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -117,7 +117,7 @@
 											<ul class="m-menu__inner">
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/security/rolesandprivileges" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<i class="m-menu__link-icon flaticon-user-settings">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -1582,7 +1582,7 @@
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/etracker/users" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+														<i class="m-menu__link-icon flaticon-users">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -1593,7 +1593,7 @@
 
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/etracker/stores" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+														<i class="m-menu__link-icon flaticon-profile">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -1603,7 +1603,7 @@
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/etracker/territory-management" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+														<i class="m-menu__link-icon flaticon-map">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
@@ -1620,8 +1620,89 @@
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
-
+											<ul class="m-menu__inner">
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/etracker/reports/location-report" class="m-menu__link">
+															<span class="m-menu__link-text">
+																	Location Report
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/etracker/reports/order-detail" class="m-menu__link">
+															<span class="m-menu__link-text">
+																	Order Detail
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/etracker/reports/order-summary" class="m-menu__link">
+															<span class="m-menu__link-text">
+																	Order Summary
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link">
+															<span class="m-menu__link-text">
+																	Shop Census Detail
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link">
+															<span class="m-menu__link-text">
+																	Shop Census Summary
+															</span>
+														</a>
+													</li>
+												</ul>
 										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+														Reports
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+															<a routerLink="/etracker/reports/shop-status-detail" class="m-menu__link">
+																<span class="m-menu__link-text">
+																		Shop Status Detail
+																</span>
+															</a>
+														</li>
+														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																<a routerLink="/etracker/reports/shop-status-summary" class="m-menu__link">
+																	<span class="m-menu__link-text">
+																			Shop Status Summary
+																	</span>
+																</a>
+															</li>
+															<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																	<a routerLink="/etracker/reports/visit-detail" class="m-menu__link">
+																		<span class="m-menu__link-text">
+																				Visit Detail
+																		</span>
+																	</a>
+																</li>
+																<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																		<a routerLink="/etracker/reports/visit-summary" class="m-menu__link">
+																			<span class="m-menu__link-text">
+																				Visit Summary
+																			</span>
+																		</a>
+																	</li>
+																	<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																			<a routerLink="/etracker/reports/product-diff-units" class="m-menu__link">
+																				<span class="m-menu__link-text">
+																						Product Diffrence Units
+																				</span>
+																			</a>
+																		</li>
+													</ul>
+											</li>
 									</ul>
 								</div>
 							</div>
@@ -1888,52 +1969,15 @@
 														</span>
 													</li>
 													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
+														<a routerLink="/security/profile" class="m-nav__link">
 															<i class="m-nav__link-icon flaticon-profile-1"></i>
 															<span class="m-nav__link-title">
 																<span class="m-nav__link-wrap">
-																	<span class="m-nav__link-text">
-																		My Profile
+																		<span class="m-nav__link-text">
+																		Profile Settings
 																	</span>
-																	<span class="m-nav__link-badge">
-																		<span class="m-badge m-badge--success">
-																			2
-																		</span>
-																	</span>
+																	
 																</span>
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-share"></i>
-															<span class="m-nav__link-text">
-																Activity
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-chat-1"></i>
-															<span class="m-nav__link-text">
-																Messages
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__separator m-nav__separator--fit"></li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-info"></i>
-															<span class="m-nav__link-text">
-																FAQ
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-															<span class="m-nav__link-text">
-																Support
 															</span>
 														</a>
 													</li>

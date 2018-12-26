@@ -19,7 +19,7 @@ export class DailySemenAnalysisComponent implements OnInit {
     private Procedurearray: any = [];
     private dailysemenanalysisobj: any;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService,public router: Router) {
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],
@@ -56,10 +56,10 @@ export class DailySemenAnalysisComponent implements OnInit {
     addDailySemenAnalysis(value) {
         console.log(this.DailySemenAnalysisForm.value);
         this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
-        this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res=> {
+        this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res => {
             console.log(res);
         });
-        this.DailySemenAnalysisForm.reset();        
+        this.DailySemenAnalysisForm.reset();
         this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }
 

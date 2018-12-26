@@ -12,7 +12,7 @@
          <div class="m-portlet__body">
            <div class="m-section">
              <div class="m-section__content">
-               <dx-data-grid id="gridContainer" [dataSource]="SystemAdministrationServiceobj.features"  (onRowInserted)="addFeature($event)"   (onRowUpdated)="updateFeature($event)" (onRowRemoved)="deletFeature($event)">
+               <dx-data-grid id="gridContainer" [dataSource]="features"  (onRowInserted)="addFeature($event)"   (onRowUpdated)="updateFeature($event)" (onRowRemoved)="deletFeature($event)">
                 <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true">
                 </dxo-editing>
                  <dxo-filter-row [visible]="true"></dxo-filter-row>

@@ -10,8 +10,8 @@ import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 })
 export class EmergencycontactComponent implements OnInit {
     public relations: any;
-    pattern: any = /^\d{4}-\d{7}$/i;
-
+    public dependantrelations: any;
+    pattern: any = /^\d{11}$/i;
 
     @Input('employeeId') id: number;
 
@@ -23,6 +23,8 @@ export class EmergencycontactComponent implements OnInit {
     async ngOnInit() {
 
         this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
+
+        this.dependantrelations = await this.SetupServiceobj.getDependantsRelations();
 
     }
 

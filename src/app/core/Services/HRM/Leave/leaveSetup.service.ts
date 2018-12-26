@@ -56,10 +56,7 @@ export class LeaveSetupService {
     }
 
     async updateLeaveYear(data) {
-
-        let leavyear = await this.getdataToUpdate(data.key, 'GetLeaveYear');
-        leavyear = { ...leavyear, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, data).toPromise();
     }
 
     async DeleteLeaveYear(leavyearId) {
@@ -101,9 +98,7 @@ export class LeaveSetupService {
 
     async updateLeaveDayType(data) {
 
-        let leavedaytype = await this.getdataToUpdate(data.key, 'Getleavedaytype');
-        leavedaytype = { ...leavedaytype, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveDayType`, leavedaytype).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveDayType`, data).toPromise();
     }
 
     async DeleteLeaveDayType(leavedaytypeId) {

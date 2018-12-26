@@ -17,7 +17,7 @@
         (onRowUpdating)="updatingPayrollBank($event)" 
         (onRowRemoved)="deletePayrollBank($event)">
         <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
-          <dxo-popup title="Payroll Bank" [showTitle]="true" [width]="1100" [height]="620" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+          <dxo-popup title="Payroll Bank" [showTitle]="true" [width]="1100" [height]="620"></dxo-popup>
         </dxo-editing>
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -30,7 +30,7 @@
         <dxi-column dataField="bankTitle"></dxi-column>
         <dxi-column dataField="accountNumber"> </dxi-column>
         <dxi-column dataField="routingCode" [visible]="false"></dxi-column>
-        <dxi-column dataField="uniqueId" [visible]="false"></dxi-column>
+        <dxi-column dataField="swiftCode" [visible]="false"></dxi-column>
         <dxi-column dataField="remitType" [visible]="false"></dxi-column>
         <dxi-column dataField="remitKey" [visible]="false"></dxi-column>
         <dxi-column dataField="branchCode" [visible]="false"></dxi-column>

@@ -10,9 +10,14 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="degree" keyExpr="degreeId" (onRowInserted)="addNewDegree($event)" (onRowUpdated)="Editdegree($event)"
+              <dx-data-grid id="gridContainer" 
+              [dataSource]="degrees"
+               keyExpr="degreeId" 
+               (onRowInserted)="addNewDegree($event)"
+                (onRowUpdating)="Editingdegree($event)"
+                (onRowUpdated)="Editdegree()"
                 (onRowRemoved)="deleteDegree($event)">
-                <dxo-export [enabled]="true" fileName="Degrees"></dxo-export> 
+                <!-- <dxo-export [enabled]="true" fileName="Degrees"></dxo-export>  -->
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

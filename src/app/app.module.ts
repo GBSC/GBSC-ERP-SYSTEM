@@ -38,8 +38,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 
-
-
+//I keep the new line
 @NgModule({
     declarations: [
         ThemeComponent,
@@ -56,7 +55,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
             timeOut: 5000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
-        }), // ToastrModule added
+        }),
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -90,4 +89,5 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         ScriptLoaderService],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

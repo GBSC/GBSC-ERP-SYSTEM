@@ -16,6 +16,7 @@ export class GratuitydetailComponent implements OnInit {
     public leavingReasons: any;
     public fundSetups: any;
     public gratuitySlabs: any;
+    public paySlip: any;
 
     constructor(public router: Router, public payrollservice: PayrollService,
         public employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
@@ -33,6 +34,8 @@ export class GratuitydetailComponent implements OnInit {
         this.fundSetups = await this.payrollsetupservice.getFundSetups();
 
         this.employees = await this.employeeservice.GetAllEmployees();
+
+        this.paySlip = await this.payrollservice.getPayslips();
     }
 
     onToolbarPreparing(e) {

@@ -42,12 +42,12 @@
             <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
             <div *dxTemplate="let data of 'cellTemplate'">
               <button data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer" (click)="onUserSelect(data.value)"
-                style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
-                <i class="flaticon-layers"></i>
+                 class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+                <i class="fa fa-address-card-o"></i>
               </button>
               <button [disabled]="!data.data.territory" data-toggle="modal" data-target="#m_modal_5" title="Assign Subsections"
-                (click)="onAssignSubsections(data.value, data.data.sectionId)" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
-                <i class="flaticon-map"></i>
+                (click)="onAssignSubsections(data.value, data.data.sectionId)" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+                <i class="fa	fa-street-view"></i>
               </button>
               <!-- <a class="btn btn-primary" data-toggle="modal" data-target="#m_modal_4">Assign Distributer</a> -->
             </div>
@@ -76,31 +76,61 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-6">
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-sm-4">
             <dx-select-box #userlevelcb [items]="userLevels" displayExpr="value" valueExpr="value" [value]="userLevel"
               [searchEnabled]="true">
             </dx-select-box>
           </div>
-          <div class="col-sm-6">
-            <select2 *ngIf="userLevelStatus == 1" [data]="regionOptions" [options]="options" [width]="300" [value]="value"
+          <div class="col-sm-8 m-form m-form--fit m-form--label-align-right">
+            <div *ngIf="userLevelStatus == 1" class="form-group m-form__group row">
+                <label class="col-4" style="padding-top: 6px;">
+                   Region
+                </label>
+                <select2  class="col-8" [data]="regionOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+            </div>
+
+            <div *ngIf="userLevelStatus == 2" class="form-group m-form__group row">
+                <label class="col-4" style="padding-top: 6px;">
+                    City
+                </label>
+                <select2 class="col-8" [data]="cityOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+           </div>
+           <div *ngIf="userLevelStatus == 3" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                  Area
+              </label>
+              <select2 class="col-8" [data]="areaOptions" [options]="options" [width]="300" [value]="value"
               (valueChanged)="changed($event)"></select2>
-            <select2 *ngIf="userLevelStatus == 2" [data]="cityOptions" [options]="options" [width]="300" [value]="value"
+         </div>
+       <div *ngIf="userLevelStatus == 4" class="form-group m-form__group row">
+          <label class="col-4" style="padding-top: 6px;">
+              Territory
+          </label>
+          <select2 class="col-8" [data]="territoryOptions" [options]="options" [width]="300" [value]="value"
               (valueChanged)="changed($event)"></select2>
-            <select2 *ngIf="userLevelStatus == 3" [data]="areaOptions" [options]="options" [width]="300" [value]="value"
-              (valueChanged)="changed($event)"></select2>
-            <select2 *ngIf="userLevelStatus == 4" [data]="territoryOptions" [options]="options" [width]="300" [value]="value"
-              (valueChanged)="changed($event)"></select2>
-            <dx-select-box *ngIf="userLevelStatus == 5" [items]="sections" displayExpr="name" valueExpr="sectionId"
+     </div>
+            
+           <div *ngIf="userLevelStatus == 5" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                  Sections
+              </label>
+             <dx-select-box class="col-8" [items]="sections" displayExpr="name" valueExpr="sectionId"
               [value]="sectionId" [searchEnabled]="true">
             </dx-select-box>
+           </div>
+            
+            
+            
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary active" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary" (click)="assignUserLevel()">
+          <button type="button" class="btn btn-brand" (click)="assignUserLevel()">
             Save
           </button>
         </div>
@@ -155,7 +185,7 @@
           <button type="button" class="btn btn-secondary active" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary" (click)="assignSubsectionsOnSubmit()">
+          <button type="button" class="btn btn-brand" (click)="assignSubsectionsOnSubmit()">
             Save
           </button>
         </div>

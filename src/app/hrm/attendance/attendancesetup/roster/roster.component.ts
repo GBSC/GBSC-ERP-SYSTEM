@@ -16,16 +16,16 @@ export class RosterComponent implements OnInit {
     }
 
     async addroster(value) {
-        this.attendancesetupservice.addRoster(value.data);
+        await this.attendancesetupservice.addRoster(value.data);
         this.roster = await this.attendancesetupservice.getRosters();
     }
 
     async updateroster(value) {
-        this.attendancesetupservice.updateRoster(value);
+        await this.attendancesetupservice.updateRoster(value);
     }
 
     async deleteroster(value) {
-        this.attendancesetupservice.DeleteRoster(value.key);
+        await this.attendancesetupservice.DeleteRoster(value.key);
     }
 
 }

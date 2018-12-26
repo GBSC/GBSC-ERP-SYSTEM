@@ -15,8 +15,9 @@ import { HttpClient } from '@angular/common/http';
 export class GazettedHolidaysComponent implements OnInit {
 
     public holiday: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public modelUpdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
     async ngOnInit() {
@@ -24,17 +25,21 @@ export class GazettedHolidaysComponent implements OnInit {
     }
 
 
-    addHolidays(holiday) {
-        this.dataService.addGazettedHolidays(holiday.data);
-        this.holiday = this.dataService.getAllGazettedHolidays();
+    async addHolidays(value) {
+        await this.dataService.addGazettedHolidays(value.data);
+        this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
-    Editholiday(hday) {
-        this.dataService.updateGazettedHolidays(hday);
+    updatingholiday(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteholiday(holidays) {
-        this.dataService.DeleteGazettedHolidays(holidays.key);
+    async Editholiday() {
+        await this.dataService.updateGazettedHolidays(this.modelUpdating);
+    }
+
+    async deleteholiday(holidays) {
+        await this.dataService.DeleteGazettedHolidays(holidays.key);
     }
 
 }

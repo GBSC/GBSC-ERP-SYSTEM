@@ -36,13 +36,13 @@
             </div>
             <div class="form-group col-lg-4">
               <label for="exampleInputEmail1"> </label>
-              <button type="reset" *ngIf="distributor" (click)="updateDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Update</button>
+              <button type="reset" *ngIf="distributor" (click)="updateDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-brand">Update</button>
               <button type="reset" *ngIf="!distributor" (click)="addDistributor(distributorForm.value)" style="margin-top: 28px;" class="btn btn-primary">Submit</button>
               <button type="reset" (click)="isEdit=false" style="margin-top: 28px;" class="btn btn-secondary">Close</button>
             </div>
           </div>
         </form>
-        <button type="button" class="btn btn-primary m-btn m-btn--icon m-btn--wide" (click)="isEdit=true"><span>
+        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--wide" (click)="isEdit=true"><span>
           <i class="flaticon-plus"></i>
           <span>
             New Distributor
@@ -61,8 +61,8 @@
           <dxi-column dataField="distributorId" cellTemplate="cellTemplate" [width]="60"></dxi-column>
           <div *dxTemplate="let data of 'cellTemplate'" >
 
-              <a (click)="onEdit(data.value)" class="btn btn-primary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
-                  <i class="fa flaticon-edit" style="color: white;"></i>
+              <a (click)="onEdit(data.value)" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+                  <i class="fa fa-pencil"></i>
                 </a>
           </div>
         </dx-data-grid>

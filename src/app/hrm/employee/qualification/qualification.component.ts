@@ -26,10 +26,9 @@ export class EmployeeQualificationComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.SetupServiceobj.getAllDegrees().subscribe(resp => this.degrees = resp);
+        this.degrees = await this.SetupServiceobj.getAllDegrees();
 
         this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
-
     }
 
     addQualification(value) {

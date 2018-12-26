@@ -17,9 +17,8 @@ export class BrandComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
             this.Brands = res;
         });

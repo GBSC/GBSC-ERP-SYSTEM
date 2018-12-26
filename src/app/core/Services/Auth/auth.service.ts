@@ -18,7 +18,9 @@ export class AuthService {
 
         if (response.status && response.message === 'Login Successful') {
             let userData = {
-                userLevel : response.userLevel,
+                userLevel: response.userLevel,
+                fullName: response.fullName,
+                userId: response.userId,
                 credentials: response.response,
                 assignedId: response.assignedId,
                 accessibleModules: response.modules.map((m, i) => {
@@ -57,15 +59,32 @@ export class AuthService {
         return JSON.parse(localStorage.getItem('user'));
     }
 
+    getAccessableModules() {
+        let user = JSON.parse(localStorage.getItem('user'));
+        return user.accessibleModules;
+
+    }
+
     getUserCompanyId() {
 
         var user = this.getUser();
         return user.assignedId.companyId;
     }
 
-    getUserLevel(){
+    getUserLevel() {
         var user = this.getUser();
         return user.userLevel;
+    }
+
+    getUserId() {
+        var user = this.getUser();
+        return user.userId;
+    }
+
+    getuserName(){
+
+        var user = this.getUser();
+        return user.fullName;
     }
 
     checkIfModuleIsAccessible(module) {
@@ -93,8 +112,13 @@ export class AuthService {
             { module: 'Hospital Management System', route: 'hims/patient' },
             { module: 'Inventory Management System', route: 'inventorysystem' },
             { module: 'Payroll Management System', route: 'payroll' },
+            { module: 'Finance', route: 'finance' },
             { module: 'Lab Information System', route: 'lab' },
-            { module: 'Accounting System', route: 'accounting' }
+            { module: 'Accounting System', route: 'accounting' },
+            { module: 'Security Admin', route: 'security' },
+            { module: 'eTracker', route: 'etracker' },
+            { module: 'Coordination', route: 'coordination' },
+            { module: 'Pharmacy', route: 'pharmacy' },
         ];
     }
 

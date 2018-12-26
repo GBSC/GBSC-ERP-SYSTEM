@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { PatientService } from '../../../core';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-daily-semen-analysis',
@@ -17,7 +19,7 @@ export class DailySemenAnalysisComponent implements OnInit {
     private Procedurearray: any = [];
     private dailysemenanalysisobj: any;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService) {
+    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],
@@ -51,29 +53,20 @@ export class DailySemenAnalysisComponent implements OnInit {
 
     }
 
-
-
-
-
-
-
     addDailySemenAnalysis(value) {
-        // this.dailysemenanalysisobj = value
-        //  console.log(this.dailysemenanalysisobj );
-
-        //  this.dailysemenanalysisobj =  this.dailysemenanalysisobj.filter(t=> {
-        //   return delete t.ProcedureId;
-        // });
         console.log(this.DailySemenAnalysisForm.value);
         this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
-
+        this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res => {
+            console.log(res);
+        });
+        this.DailySemenAnalysisForm.reset();
+        this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }
 
     addProcedure(value) {
         let x = value.key;
         this.Procedurearray.push(x);
     }
-
 
     deleteProcedure(value) {
         this.Procedurearray.splice(value.key, 1)

@@ -430,7 +430,6 @@ export class RegistrationComponent implements OnInit {
         await this.PatientServiceobj.addDocument(f, this.id).toPromise();
 
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe(resp => this.documents = resp);
-
     }
     // <end work for image uploading
 

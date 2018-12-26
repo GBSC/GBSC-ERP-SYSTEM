@@ -46,18 +46,18 @@ const routes: Routes = [
             {
                 path: "reports",
                 children: [
-                    { path: 'location-report', component: LocationReportComponent},
-                    { path: 'order-detail', component: OrderDetailComponent},
-                    { path: 'order-summary', component: OrderSummaryComponent},
-                    { path: 'product-diff-units', component: ProductDiffUnitsComponent},
-                    { path: 'shop-census-detail', component: ShopCensusDetailComponent},
-                    { path: 'shop-census-summary', component: ShopCensusSummaryComponent},
-                    { path: 'shop-status-detail', component: ShopStatusDetailComponent},
-                    { path: 'shop-status-summary', component: ShopStatusSummaryComponent},
-                    { path: 'visit-detail', component: VisitDetailComponent},
-                    { path: 'visit-summary', component: VisitSummaryReportComponent},
+                    { path: 'location-report', component: LocationReportComponent },
+                    { path: 'order-detail', component: OrderDetailComponent },
+                    { path: 'order-summary', component: OrderSummaryComponent },
+                    { path: 'product-diff-units', component: ProductDiffUnitsComponent },
+                    { path: 'shop-census-detail', component: ShopCensusDetailComponent },
+                    { path: 'shop-census-summary', component: ShopCensusSummaryComponent },
+                    { path: 'shop-status-detail', component: ShopStatusDetailComponent },
+                    { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
+                    { path: 'visit-detail', component: VisitDetailComponent },
+                    { path: 'visit-summary', component: VisitSummaryReportComponent },
 
-                  
+
                 ]
             }
         ]

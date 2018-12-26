@@ -48,6 +48,7 @@ import { PurchaseOrderItemComponent } from './purchase/purchase-order-item/purch
 import { PurchaseReturnComponent } from './purchase/purchase-return/purchase-return.component';
 import { PurchaseReturnItemComponent } from './purchase/purchase-return-item/purchase-return-item.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
+import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
 
 const routes: Routes = [
 
@@ -61,7 +62,6 @@ const routes: Routes = [
                 path: "setup",
                 children: [
                     { path: 'area', component: AreaComponent },
-                    { path: 'brand', component: BrandComponent },
                     { path: 'comission', component: ComissionComponent },
                     { path: 'customeraccount', component: CustomerAccountComponent },
                     { path: 'customerbank', component: CustomerBankComponent },
@@ -70,16 +70,8 @@ const routes: Routes = [
                     { path: 'customertype', component: CustomerTypeComponent },
                     { path: 'customerwarehouse', component: CustomerWarehouseComponent },
                     { path: 'distributor', component: DistributorComponent },
-                    { path: 'inventorystock', component: InventoryComponent },
-                    { path: 'inventoryitem', component: InventoryItemComponent },
-                    { path: 'inventoryitemcategory', component: InventoryItemCategoryComponent },
                     { path: 'itempricestructure', component: ItemPriceStructureComponent },
                     { path: 'modeofpayment', component: ModeOfPaymentComponent },
-                    { path: 'packagetype', component: PackageTypeComponent },
-                    { path: 'productpackcategory', component: ProductPackCategoryComponent },
-                    { path: 'packsize', component: ProductPackSizeComponent },
-                    { path: 'packtype', component: ProductPackTypeComponent },
-                    { path: 'producttype', component: ProductTypeComponent },
                     { path: 'region', component: RegionComponent },
                     { path: 'returnreason', component: ReturnReasonComponent },
                     { path: 'salesperson', component: SalesPersonComponent },
@@ -87,7 +79,8 @@ const routes: Routes = [
                     { path: 'tax', component: TaxComponent },
                     { path: 'territory', component: TerritoryComponent },
                     { path: 'transport', component: TransportComponent },
-                    { path: 'unit', component: UnitComponent }
+                    { path: 'unit', component: UnitComponent },
+                    { path: 'inventory-master', component: InventoryMasterComponent }
                 ]
             },
             {

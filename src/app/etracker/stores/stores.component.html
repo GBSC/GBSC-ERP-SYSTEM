@@ -35,7 +35,7 @@
               <a title="Store Profile" [routerLink]="['/etracker/store-profile', data.value]" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
                 <i class="flaticon-profile"></i>
               </a>
-              <a data-toggle="modal" data-target="#m_modal_4" title="Map" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+              <a data-toggle="modal" data-target="#m_modal_4" title="Map" (click)="getLatLog(data)" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
                 <i class="flaticon-placeholder"></i>
               </a>
             </div>
@@ -62,7 +62,9 @@
         </button>
       </div>
       <div class="modal-body">
-        
-      </div>
+          <agm-map [latitude]="lat" [longitude]="lng"  [zoom]="zoom" >
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            </agm-map>
+        </div>
     </div>
   </div>

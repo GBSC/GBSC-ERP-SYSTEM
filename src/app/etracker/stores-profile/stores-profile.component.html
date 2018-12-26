@@ -28,7 +28,7 @@
 			<ul class="twPc-Arrange">
 				<li class="twPc-ArrangeSizeFit">
 						<span class="twPc-StatLabel twPc-block">Shopkeeper Name</span>
-						<span class="twPc-StatValue">Irfan Ali Khan</span>
+						<span class="twPc-StatValue">{{store?.shopName}}</span>
 				</li>
 				<li class="twPc-ArrangeSizeFit">
 						<span class="twPc-StatLabel twPc-block">Contact No</span>
@@ -36,7 +36,7 @@
 				</li>
 				<li class="twPc-ArrangeSizeFit">
 						<span class="twPc-StatLabel twPc-block">Landline</span>
-						<span class="twPc-StatValue">021-5076698</span>
+						<span class="twPc-StatValue">{{store?.landline}}</span>
         </li>
         <li class="twPc-ArrangeSizeFit">
           <span class="twPc-StatLabel twPc-block">Section</span>
@@ -44,7 +44,7 @@
       </li>
       <li class="twPc-ArrangeSizeFit">
         <span class="twPc-StatLabel twPc-block">CNIC NO</span>
-        <span class="twPc-StatValue">42201-1234567-5</span>
+        <span class="twPc-StatValue">{{store?.cnic}}</span>
     </li>
     <li class="twPc-ArrangeSizeFit">
       <span class="twPc-StatLabel twPc-block">Distributer</span>
@@ -90,12 +90,12 @@
                         <dxo-paging [pageSize]="6"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                         </dxo-pager>
-                        <dxi-column dataField="createdAt"></dxi-column>
-                        <dxi-column dataField="startTime"></dxi-column>
-                        <dxi-column dataField="endtime"></dxi-column>
+                        <!-- <dxi-column dataField="createdAt"></dxi-column> -->
+                        <dxi-column dataField="startTime" dataType="datetime"></dxi-column>
+                        <dxi-column dataField="endTime" dataType="datetime"></dxi-column>
                         <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
                         <div *dxTemplate="let data of 'cellTemplate'">
-                          <a title="Visit Details" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
+                          <a title="Visit Details" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill" (click)="routeVisitSummary(data)" >
                             <i class="flaticon-interface-2"></i>
                           </a>
                         </div>

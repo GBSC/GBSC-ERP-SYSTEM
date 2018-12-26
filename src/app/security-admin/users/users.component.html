@@ -15,16 +15,13 @@
             <li class="m-portlet__nav-item">
                 <a class="m-portlet__nav-link m-portlet__nav-link--icon">
                     <span class="m--font-bolder">
-                        New User
+                       Add New User: 
                       </span>
                 </a>
               </li>
           <li class="m-portlet__nav-item">
-            <a [routerLink]="['/security/user-registration']" class="m-portlet__nav-link m-portlet__nav-link--icon" title="" data-original-title="Add New Role">
-              <i class="flaticon-plus" style="
-              color: #00080c;
-              font-weight: bold;
-          "></i>
+            <a [routerLink]="['/security/user-registration']" class="btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="Add New Role" data-original-title="Add New Role">
+              <i class="fa fa-user-plus"></i>
             </a>
           </li>
 
@@ -46,13 +43,13 @@
           <dxi-column dataField="lastName"></dxi-column>
           <dxi-column dataField="phone"></dxi-column>
           <dxi-column dataField="email"></dxi-column>
-          <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+          <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="110" ></dxi-column>
           <div *dxTemplate="let data of 'cellTemplate'">
-            <a *ngIf="!data.data.hasAccount" title="Create Account" class="btn btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--pill"
+            <a *ngIf="!data.data.hasAccount" title="Create Account" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
               data-toggle="modal" data-target="#m_modal_4" (click)="setSelectedUserId(data.value)">
                 <i class="fa fa-user-plus"></i>
             </a>
-            <a class="btn btn-info m-btn m-btn--icon m-btn--icon-only m-btn--pill" title="View" [routerLink]="['/security/user-registration', data.value]">
+            <a href="" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="View" [routerLink]="['/security/user-registration', data.value]">
                   <i class="fa fa-eye"></i>
             </a>
           </div>
@@ -109,11 +106,11 @@
                   </div>
               </div>
         <div class="modal-footer">
-          <button  type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-primary"
+          <button  type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-brand"
           data-dismiss="modal">
               Submit
           </button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
             close
           </button>
         </div></form>

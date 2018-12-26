@@ -13,8 +13,9 @@
             </div>
           </div>
         </div>
+        <form class="signup-form" [formGroup]="userForm">
         <div class="m-portlet__body">
-          <form class="signup-form" [formGroup]="userForm">
+          
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group m-form__group">
@@ -110,22 +111,24 @@
               </div>
               <div class="m--space-10"></div>
             </div>
+        </div>
 
-            <div class="row">
-              <div class="col-sm-12">
-                <button *ngIf="!user" class="btn btn-primary" (click)="submit(userForm.value)">
-                  Submit
-                </button>
-
-                <button *ngIf="user" class="btn btn-primary" (click)="update(userForm.value)">
+        <div class="m-portlet__foot">
+          <div class="row align-items-center">
+            <div class="col-lg-6 m--valign-middle">
+              
+            </div>
+            <div class="col-lg-6 m--align-right">
+              <button *ngIf="!user" type="submit" class="btn btn-brand"  (click)="submit(userForm.value)">
+                Submit
+              </button>
+                <button *ngIf="user" type="submit" class="btn btn-success" (click)="update(userForm.value)">
                   Update
                 </button>
-              </div>
             </div>
-          </form>
-
-
+          </div>
         </div>
+         </form>
       </div>
     </div>
   </div>

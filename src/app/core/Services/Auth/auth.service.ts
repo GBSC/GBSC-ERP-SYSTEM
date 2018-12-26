@@ -81,7 +81,7 @@ export class AuthService {
         return user.userId;
     }
 
-    get userName(){
+    getuserName(){
 
         var user = this.getUser();
         return user.fullName;

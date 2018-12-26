@@ -1551,6 +1551,135 @@
 							</div>
 						</li>
 
+						<li class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #993d2d;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+								<span class="m-menu__link-text">
+									Inventory
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+														Setups
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/inventory/setup/inventoryitem" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																Configuration
+															</span>
+														</a>
+													</li>
+												</ul>
+	
+											</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Purchase
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<!-- <ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/issuanceview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Issuance
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/purchaseorderview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Purchase Order
+														</span>
+													</a>
+												</li>
+											</ul> -->
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Sales
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<!-- <ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/grnview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Goods Receipt Note
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/returnview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Medicine Return
+														</span>
+													</a>
+												</li>
+											</ul> -->
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+														Reports
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/inventory/reports/order-summary-report" class="m-menu__link">
+															<i class="m-menu__link-icon flaticon-map"></i>
+															<span class="m-menu__link-text">
+																	Order Summary Report
+															</span>
+														</a>
+													</li>
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+															<a routerLink="/inventory/reports/order-detail-report" class="m-menu__link">
+																<i class="m-menu__link-icon flaticon-map"></i>
+																<span class="m-menu__link-text">
+																		Order Detail Report
+																</span>
+															</a>
+														</li>
+	
+												</ul>
+											</li>
+										
+
+									</ul>
+								</div>
+							</div>
+						</li>
+
 						<li *ngIf="this.accessableModules.includes('eTracker')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 							<a href="#" class="m-menu__link m-menu__toggle" style="background: #005c89;">

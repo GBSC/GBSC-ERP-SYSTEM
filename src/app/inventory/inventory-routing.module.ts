@@ -52,7 +52,7 @@ import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-ind
 const routes: Routes = [
 
     {
-        path: '',
+        path: 'inventory',
         component: RootComponent,
 
         children: [

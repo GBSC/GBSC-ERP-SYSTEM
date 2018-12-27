@@ -86,7 +86,7 @@
                       <dxo-lookup [dataSource]="shifts" displayExpr="shiftTitle" valueExpr="shiftsId">
                       </dxo-lookup> 
                       </dxi-column>     
-                    <dxi-column caption="Employee" [minWidth]="225" cellTemplate="chartCellTemplate"  [formItem]="{visible: false}"></dxi-column>
+                    <dxi-column caption="Employee" [minWidth]="225" cellTemplate="chartCellTemplate" ></dxi-column>
                     <div *dxTemplate="let d of 'chartCellTemplate'">
                       <div class="chart-cell">
                           <dx-button text="Off Days"  (click)="openOffDayModel()" data-toggle="modal" data-target="#m_modal_3"></dx-button>

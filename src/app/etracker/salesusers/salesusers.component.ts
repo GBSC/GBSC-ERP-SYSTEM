@@ -118,7 +118,7 @@ export class SalesusersComponent implements OnInit {
             this.sections = sec;
         });
 
-        this.userService.getUsers(this.loggedinUserId).subscribe(u => {
+        this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
 
             this.users = u;
         });

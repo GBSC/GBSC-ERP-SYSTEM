@@ -97,19 +97,28 @@
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                        <dx-data-grid id="gridContainer" [dataSource]="dataSource" [showBorders]="true">    
+                     <div *ngIf="Storevisitdetails.length">
+                         <dx-data-grid id="gridContainer" [dataSource]="Storevisitdetails" [showBorders]="true"
+                       [masterDetail]="{ enabled: true, template: 'detail' }">    
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
-                        <dxo-group-panel [visible]="true"></dxo-group-panel>    
-                        <dxi-column dataField="Task_ID" [width]="90"></dxi-column>
-                        <dxi-column dataField="Task_Subject" [width]="190" caption="Subject"></dxi-column>
-                        <dxi-column dataField="Task_Status" caption="Status" [groupIndex]="0"></dxi-column>
-                        <dxi-column dataField="Task_Priority" caption="Priority" [groupIndex]="1">
-                          <dxo-lookup [dataSource]="priority" valueExpr="value"  displayExpr="name"></dxo-lookup>
-                        </dxi-column>
-                        <dxi-column dataField="ResponsibleEmployee.Employee_Full_Name" caption="Assigned To" [allowGrouping]="false" [allowSorting]="false"></dxi-column>
-                        <dxi-column dataField="Task_Start_Date" caption="Start Date" dataType="date"></dxi-column>
-                        <dxi-column dataField="Task_Due_Date" caption="Due Date" dataType="date"></dxi-column>
-                    </dx-data-grid>
+                         
+                        <dxi-column dataField="brandName" caption="Brand Name  " ></dxi-column>
+                        <div *dxTemplate="let type of 'detail'">
+                          <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
+                            <dxi-column dataField="productType" caption="Product Type"></dxi-column>
+                               <div *dxTemplate="let orderitems of 'sub-detail'">
+                                  <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                                      <dxi-column dataField="name" caption="Items"></dxi-column>
+                                  </dx-data-grid>
+                                </div>
+                          </dx-data-grid>
+                        </div>
+                    </dx-data-grid>  
+                  </div>
+
+                    <div *ngIf="!Storevisitdetails.length">
+                        {{StoreNoOrderReason.reason}}
+                      </div>
                       <!-- <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>

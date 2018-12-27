@@ -17,6 +17,7 @@ export class StoresProfileComponent implements OnInit {
     public storeVisits: any;
     public storeId: any;
 
+
     constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute , public router: Router) {
 
         this.companyId = this.authService.getUserCompanyId();
@@ -26,6 +27,7 @@ export class StoresProfileComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.storeId = +params['id'];
+          
 
             this.storeService.getStore(this.storeId, this.companyId).subscribe(s => {
                 this.store = s;
@@ -37,6 +39,7 @@ export class StoresProfileComponent implements OnInit {
                 console.log(this.storeVisits)
             });
 
+
         });
 
     }
@@ -46,6 +49,7 @@ export class StoresProfileComponent implements OnInit {
 
         let storeVisitId = value.key.storeVisitId;
         this.router.navigate(['/etracker/visit-summary/' + storeVisitId]);
+
      }
 
 }

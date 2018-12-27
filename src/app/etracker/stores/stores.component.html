@@ -62,7 +62,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <agm-map [latitude]="lat" [longitude]="lng"  [zoom]="zoom" style="height: 545px">
+        <agm-map [latitude]="lat" [longitude]="lng" [usePanning]="true"   [zoom]="zoom" style="height: 545px">
               <agm-marker [latitude]="lat" [longitude]="lng" >
                   <agm-info-window>Börk</agm-info-window>
               </agm-marker>

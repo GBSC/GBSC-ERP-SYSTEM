@@ -17,7 +17,7 @@ export class StoresComponent implements OnInit {
     public lat: number = 51.678418;
     public lng: number = 7.809007;
  
-    public zoom  : number = 12;
+    public zoom  : number = 18;
 
 
     constructor(public authService: AuthService, public storeService: StoreService) {

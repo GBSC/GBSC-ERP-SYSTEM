@@ -9,6 +9,7 @@ import { Department } from '../../Models/HRM/department';
 import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
+import { Observable } from 'rxjs/Observable';
 
 export class Product {
     id: string;
@@ -125,6 +126,14 @@ export class SystemAdministrationService {
     getRolesByCompanyId(companyId: any) {
         return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
     }
+
+    async getRolesByCompanyIdAsync(companyId: any) {
+        return await this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId).toPromise();
+    }
+
+    // GetRolesByCompanyId(companyId: number) : Observable<Role[]> {
+    //     return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
+    // }
 
     async addRole(role: Role) {
         return this.ApiService.post(this.API_URL + 'AddRole', role).toPromise();

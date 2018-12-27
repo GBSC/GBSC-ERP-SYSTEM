@@ -16,9 +16,8 @@ export class ProductPackSizeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetPackSizesByCompany(this.CompanyId).subscribe((res: PackSize) => {
             this.PackSizes = res;
         });

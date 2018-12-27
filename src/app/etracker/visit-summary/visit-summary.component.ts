@@ -16,6 +16,7 @@ export class VisitSummaryComponent implements OnInit {
     public storeId: any;
     public Storevisitdetail : any =[];
     public Storevisitdetails : any = [] ;
+    public StoreVisitInventories : any = [] ;
     public StoreNoOrderReason : any = {};
 
     constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute) {
@@ -51,6 +52,15 @@ export class VisitSummaryComponent implements OnInit {
                     });
                  }
              });
+
+
+             this.storeService.getInventoriesByStoreVisitId(this.storeId).subscribe(sv=>{
+                this.StoreVisitInventories = sv;
+                console.log(this.StoreVisitInventories)
+                 
+             });
+
+
 
         });
 

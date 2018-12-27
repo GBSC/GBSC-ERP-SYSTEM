@@ -25,18 +25,18 @@
           <ul class="m-nav nav nav-tabs">
 
             <li class="m-nav__item">
-              <a class="m-nav__link" href="#Inventory" data-toggle="tab">
-                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                <span class="m-nav__link-text">
-                  Inventory Taking
-                </span>
-              </a>
-            </li>
-            <li class="m-nav__item">
               <a class="m-nav__link" href="#order" data-toggle="tab">
                 <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                 <span class="m-nav__link-text">
                   Order Taking
+                </span>
+              </a>
+            </li>
+            <li class="m-nav__item">
+              <a class="m-nav__link" href="#Inventory" data-toggle="tab">
+                <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                <span class="m-nav__link-text">
+                  Inventory Taking
                 </span>
               </a>
             </li>
@@ -85,7 +85,7 @@
           <div class="tab-content">
 
 
-            <div class="tab-pane  active" id="Inventory">
+            <div class="tab-pane  active" id="order">
               <div class="m-portlet">
                 <div class="m-portlet__head">
                   <div class="m-portlet__head-caption">
@@ -143,9 +143,41 @@
               </div>
             </div>
 
-            <div class="tab-pane" id="order">
-              <app-order-taking></app-order-taking>
-
+            <div class="tab-pane" id="Inventory">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Inventory Taking</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    
+                         <dx-data-grid id="gridContainer" [dataSource]="StoreVisitInventories" [showBorders]="true"
+                       [masterDetail]="{ enabled: true, template: 'detail' }">    
+                        <dxo-scrolling mode="virtual"></dxo-scrolling>
+                         
+                        <dxi-column dataField="brandName" caption="Brand Name  " ></dxi-column>
+                        <div *dxTemplate="let type of 'detail'">
+                          <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
+                            <dxi-column dataField="productType" caption="Product Type"></dxi-column>
+                               <div *dxTemplate="let orderitems of 'sub-detail'">
+                                  <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                                      <dxi-column dataField="name" caption="Items"></dxi-column>
+                                  </dx-data-grid>
+                                </div>
+                          </dx-data-grid>
+                        </div>
+                    </dx-data-grid>  
+                
+ 
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

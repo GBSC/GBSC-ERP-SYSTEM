@@ -23,4 +23,12 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'StoreVisit/GetVisits/' + storeId);
     }
 
+
+    getOrdersByStoreVisitId(storeVisitid : any):Observable<any>{
+        return this.ApiService.get(this.Url+'StoreVisit/GetOrders/'+storeVisitid);
+    }
+
+    getStoreNoOrderReason(storeVisitid : any):Observable<any>{
+        return this.ApiService.get(this.Url+'StoreVisit/GetStoreNoOrderReason/'+storeVisitid);
+    }
 }

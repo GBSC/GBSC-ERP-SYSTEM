@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { CustomerBank } from '../../../core/Models/Inventory/Setup/CustomerBank';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 @Component({
     selector: 'app-customer-bank',
     templateUrl: './customer-bank.component.html',
@@ -9,20 +11,31 @@ export class CustomerBankComponent implements OnInit {
     public CustomerBanks: any;
     public CustomerTypes: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.CustomerBanks = await this.InventoryService.GetCustomerBanks();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetCustomerBanksByCompany(this.CompanyId).subscribe((res: CustomerBank) => {
+            this.CustomerBanks = res;
+        });
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
     }
 
-    async AddCustomerBank(value) {
+    AddCustomerBank(value) {
         //console.log(value);
-        await this.InventoryService.AddCustomerBank(value.data);
-        this.CustomerBanks = await this.InventoryService.GetCustomerBanks();
+        this.InventoryService.AddCustomerBank(value.data).subscribe(res => {
+            this.InventoryService.GetCustomerBanksByCompany(this.CompanyId).subscribe((res: CustomerBank) => {
+                this.CustomerBanks = res;
+            });
+        });
     }
 
     UpdateModel(value) {
@@ -30,13 +43,13 @@ export class CustomerBankComponent implements OnInit {
         //console.log(this.UpdatedModel);
     }
 
-    async UpdateCustomerBank() {
-        return await this.InventoryService.UpdateCustomerBank(this.UpdatedModel);
+    UpdateCustomerBank() {
+        return this.InventoryService.UpdateCustomerBank(this.UpdatedModel).subscribe();
     }
 
-    async DeleteCustomerBank(value) {
+    DeleteCustomerBank(value) {
         //console.log(value.key);
-        return await this.InventoryService.DeleteCustomerBank(value.key);
+        return this.InventoryService.DeleteCustomerBank(value.key).subscribe();
     }
 
 }

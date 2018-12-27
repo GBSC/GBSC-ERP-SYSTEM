@@ -28,6 +28,15 @@ import { InventoryModule } from './inventory/inventory.module';
 import { SecurityAdminModule } from './security-admin/security-admin.module';
 import { EtrackerModule } from './etracker/etracker.module';
 import { TitlePipe } from './_pipes/title';
+import { Select2Module } from 'ng2-select2';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+
+
+
 
 //I keep the new line
 @NgModule({
@@ -40,7 +49,8 @@ import { TitlePipe } from './_pipes/title';
     ],
     imports: [
         CommonModule,
-        BrowserAnimationsModule,
+        Select2Module,
+        BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({
             timeOut: 5000,
             positionClass: 'toast-bottom-right',
@@ -55,7 +65,13 @@ import { TitlePipe } from './_pipes/title';
         DevExtremeModule,
         HttpClientModule,
         CoreModule,
-
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        // AngularFireAuthModule,
+        // AgmCoreModule.forRoot({
+        //     apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
+        // }),
+        // AgmSnazzyInfoWindowModule,
         SecurityAdminModule,
         EtrackerModule,
         PharmacyModule,

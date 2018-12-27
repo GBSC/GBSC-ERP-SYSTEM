@@ -2,7 +2,32 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuardService, ModuleGuardService, AuthService, DashboardService, BioChemistryService, InseminationprepService, ConsultantService, PatientService, AttendanceService, AttendancesetupService, EmployeeService, LeaveService, LeaveSetupService, PayrollService, PayrollSetupService, HrmsService, SetupService, SystemAdministrationService, InventorysystemService, PharmacyService, SuperadminserviceService } from '.';
+import {
+    AuthGuardService,
+    ModuleGuardService,
+    AuthService,
+    DashboardService,
+    BioChemistryService,
+    InseminationprepService,
+    ConsultantService,
+    PatientService,
+    AttendanceService,
+    AttendancesetupService,
+    EmployeeService,
+    LeaveService,
+    LeaveSetupService,
+    PayrollService,
+    PayrollSetupService,
+    HrmsService,
+    SetupService,
+    SystemAdministrationService,
+    InventorysystemService,
+    PharmacyService,
+    SuperadminserviceService,
+    eTrackerUserService
+}
+    from '.';
+
 import { ApiService } from './Services/api.service';
 import { TreatmentService } from './Services/HIMS/treatment.service';
 import { MedicineService } from './Services/HIMS/medicine.service';
@@ -17,6 +42,8 @@ import { FreezepreprationService } from './Services/HIMS/Lab/freezeprepration.se
 import { InsemenationService } from './Services/HIMS/Lab/insemenation.service';
 import { SemenanalysisService } from './Services/HIMS/Lab/semenanalysis.service';
 import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryoutsider.service';
+import { UserService } from './Services/Security/user.service';
+import { StoreService } from './Services/ETracker/store.service';
 
 @NgModule({
     imports: [
@@ -61,7 +88,9 @@ import { BiochemistryoutsiderService } from './Services/HIMS/Lab/biochemistryout
         FreezepreprationService,
         InsemenationService,
         SemenanalysisService,
-        BiochemistryoutsiderService
-    ]
+        BiochemistryoutsiderService,
+        UserService,
+        StoreService,
+        eTrackerUserService]
 })
 export class CoreModule { }

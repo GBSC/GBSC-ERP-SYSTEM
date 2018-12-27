@@ -32,8 +32,4 @@ export class BranchComponent implements OnInit {
     async deletBranch(value) {
         await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
     }
-
-
-
-
 }

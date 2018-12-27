@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SuperadminserviceService } from '../../core';
+import { SuperadminserviceService } from '../../core/Services/SuperAdmin/superadminservice.service';
 import { ActivatedRoute } from '@angular/router';
 
 

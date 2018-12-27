@@ -36,7 +36,7 @@ export class RolesandprivilegesComponent implements OnInit {
     public role: any;
     public currentFeature: any;
     public selectedPermissions: any = [];
-    public typeOfPermissions: any = ['Read', 'Write', 'Insert', 'Delete'];
+    public typeOfPermissions: any = ['Read', 'Write', 'Update', 'Delete'];
     public moduleColums: any = [];
     public popup: boolean = false;
 
@@ -125,8 +125,8 @@ export class RolesandprivilegesComponent implements OnInit {
             alert('Role cannot be saved without a name');
         } else {
         }
-        console.log(this.role);
-        // this.systemAdmin.saveNewRoleData(this.role);
+        this.role.companyId = this.companyId;
+        this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;
     }
 

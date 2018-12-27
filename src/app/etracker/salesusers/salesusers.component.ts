@@ -31,6 +31,8 @@ export class SalesusersComponent implements OnInit {
 
     public userId: any;
 
+    public loggedinUserId : any;
+
     public assignForm: FormGroup;
 
     public userLevels: any;
@@ -52,6 +54,7 @@ export class SalesusersComponent implements OnInit {
         private formBuilder: FormBuilder) {
 
         this.companyId = this.authService.getUserCompanyId();
+        this.loggedinUserId = this.authService.getUserId();
 
         // this.assignForm = this.formBuilder.group({
         //     'TerritoryId': ['', Validators.required],
@@ -115,7 +118,7 @@ export class SalesusersComponent implements OnInit {
             this.sections = sec;
         });
 
-        this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
+        this.userService.getUsers(this.loggedinUserId).subscribe(u => {
 
             this.users = u;
         });

@@ -51,6 +51,10 @@ export class eTrackerUserService {
         return this.ApiService.post(this.Url + 'User/AssignUserLevel', model);
     }
 
+    getUsers(loggedinUserId) {
+        return this.ApiService.get(this.Url + 'User/GetUsers/' + loggedinUserId);
+    }
+
     getSalesUsersByCompany(companyId) {
         return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }

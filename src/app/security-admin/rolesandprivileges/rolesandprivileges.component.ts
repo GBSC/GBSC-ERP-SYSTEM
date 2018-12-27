@@ -36,7 +36,7 @@ export class RolesandprivilegesComponent implements OnInit {
     public role: any;
     public currentFeature: any;
     public selectedPermissions: any = [];
-    public typeOfPermissions: any = ['Read', 'Write', 'Insert', 'Delete'];
+    public typeOfPermissions: any = ['Read', 'Write', 'Update', 'Delete'];
     public moduleColums: any = [];
     public popup: boolean = false;
 

@@ -24,18 +24,24 @@ enum modules {
 export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
+    public accessibleFeatures : string[] = [];
     private Username : string = '';
     private UserLevel : string = '';
 
-    constructor(public authService: AuthService) { }
+    
+
+    constructor(public authService: AuthService) {
+        
+        
+    }
 
     ngOnInit() {
 
-        let modules = this.authService.getAccessableModules();
+        this.accessableModules = this.authService.getAccessableModulesAndFeatures().modules;
+        this.accessibleFeatures = this.authService.getAccessableModulesAndFeatures().features;
 
-        for (let module of modules) {
-            this.accessableModules.push(module.Description);
-        }
+        console.log(this.accessableModules);
+        console.log(this.accessibleFeatures);
 
         this.Username = this.authService.getProfileInfo().Username;
         this.UserLevel = this.authService.getProfileInfo().UserLevel;
@@ -47,7 +53,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
 
         mLayout.initHeader();
-
     }
 
     logout() {

@@ -17,15 +17,18 @@ export class AuthService {
         let response: any = await this.ApiService.post(this.API_URL, credentials).toPromise();
 
         if (response.status && response.message === 'Login Successful') {
+            console.log(response);
+
             let userData = {
                 userLevel: response.userLevel,
                 fullName: response.fullName,
                 userId: response.userId,
                 credentials: response.response,
                 assignedId: response.assignedId,
-                accessibleModules: response.modules.map((m, i) => {
+                accessibleModules: response.moduleFeatures.map((m, i) => {
                     return {
-                        Description: m,
+                        Description: m.moduleName,
+                        Features: m.features,
                         SNo: i + 1
                     }
                 })
@@ -63,6 +66,22 @@ export class AuthService {
         let user = JSON.parse(localStorage.getItem('user'));
         return user.accessibleModules;
 
+    }
+
+    getAccessableModulesAndFeatures() {
+        let modules : string[] = [];
+        let features : string[] = [];
+
+        let user = JSON.parse(localStorage.getItem('user'));
+
+        for (let module of user.accessibleModules) {
+            modules.push(module.Description);
+            for(let feature of module.Features) {
+                features.push(module.Description + ' - ' + feature);
+            }
+        }
+        
+        return { modules, features };
     }
 
     getProfileInfo() {

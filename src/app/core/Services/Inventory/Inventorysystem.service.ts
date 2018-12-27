@@ -764,7 +764,7 @@ export class InventorysystemService {
     }
 
     GetBrandsByCompany(companyId: number): Observable<Brand> {
-        return this.ApiService.get(this.API_URL + 'Setup/GetBrandsByCompany/' + companyId);
+        return this.ApiService.get(this.API_URL + 'Setup/GetBrandsByCompanyId/' + companyId);
         // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
         // //console.log(this.Brand);
         // return this.Brand;

@@ -53,7 +53,7 @@ import { InventoryMasterComponent } from './setup/inventory-master/inventory-mas
 const routes: Routes = [
 
     {
-        path: '',
+        path: 'inventory',
         component: RootComponent,
 
         children: [

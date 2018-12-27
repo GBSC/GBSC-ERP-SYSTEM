@@ -54,7 +54,7 @@
   <div class="col-md-4">
     <div class="form-group m-form__group">
       <label class="control-label">Cnic <em class="required_label">*</em>  </label>
-      <input class="form-control m-input m-input--solid" maxlength="13" formControlName="Cnic" [value]="Employee?.cnic" placeholder="42401-5486552-6" type="text">
+      <input class="form-control m-input m-input--solid" maxlength="13" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526" type="text">
     </div>
   </div>
   <div class="col-md-4">
@@ -72,37 +72,7 @@
     </div>
 </div>
 <div class="m--space-07"></div>
-<div class="row">
-          <div class="col-md-4">
-                  <div class="form-group m-form__group">
-                          <label for="cnlanguageic" class="control-label">Language</label>
-                          <select class="form-control m-input m-input--solid" formControlName="LanguageId" [value]="Employee?.name || ''" name="language" id="lng">
-                                 <!-- <option value="" disabled selected>-- Select Language --</option> -->
-                                  <option *ngFor ="let lng of language" [value]="lng.languageId">{{lng.name}}</option>
-                              </select>
-                        </div>
-          </div>
-          <div class="col-md-4">
-                  <div class="form-group m-form__group">
-                          <label for="Religion" class="control-label">Religion</label>
-                          <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
-                              <!-- <option value="" disabled selected>-- Select Religion --</option> -->
-                                  <option *ngFor ="let relg of religion" [value]="relg.religionId">{{relg.name}}</option>
-                              </select>
-                        </div>
-          </div>
-          <div class="col-md-4">
-              <div class="form-group m-form__group">
-                <label for="City" class="control-label">City</label>
-                <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">
-                    <!-- <option value="" disabled selected>-- Select City --</option> -->
-                        <option *ngFor ="let cty of city" [value]="cty?.cityId">{{cty.name}}</option>
-                    </select>
-              </div>
-            </div>
-        </div>
 
-        <div class="m--space-07"></div>
 
 <div class="row">
           <div class="col-md-4">
@@ -148,6 +118,36 @@
 
         <div class="m--space-07"></div>
 
+        <div class="row">
+          <div class="col-md-4">
+                  <div class="form-group m-form__group">
+                          <label class="control-label">Group</label>
+                          <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''">
+                                  <option *ngFor ="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
+                              </select>
+                        </div>
+          </div>
+          <div class="col-md-4">
+                  <div class="form-group m-form__group">
+                          <label for="Religion" class="control-label">Religion</label>
+                          <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
+                              <!-- <option value="" disabled selected>-- Select Religion --</option> -->
+                                  <option *ngFor ="let relg of religion" [value]="relg.religionId">{{relg.name}}</option>
+                              </select>
+                        </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group m-form__group">
+                <label for="City" class="control-label">City</label>
+                <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                        <option *ngFor ="let cty of city" [value]="cty?.cityId">{{cty.name}}</option>
+                    </select>
+              </div>
+            </div>
+        </div>
+
+        <div class="m--space-07"></div>
 
         <div class="row">
               <div class="col-md-6">
@@ -205,4 +205,4 @@
 </div>  -->
 </div>
     </form>
-   
+  

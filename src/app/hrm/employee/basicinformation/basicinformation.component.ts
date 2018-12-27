@@ -17,6 +17,7 @@ export class BasicinformationComponent implements OnInit {
     public language: any;
     public city: any;
     public Employee: any;
+    public groups: any;
 
     @Input('employeeId') id: number;
 
@@ -45,9 +46,10 @@ export class BasicinformationComponent implements OnInit {
             CountryId: [''],
             CityId: [''],
             ReligionId: [''],
-            LanguageId: [''],
+            GroupId: [''],
             Address: [''],
-            PermanentAddress: ['']
+            PermanentAddress: [''],
+            FullName: ['']
         });
 
     }
@@ -55,7 +57,6 @@ export class BasicinformationComponent implements OnInit {
     update(value) {
 
         value.UserId = this.id;
-
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
             this.showSuccess("Basic Information Updated");
         });
@@ -67,6 +68,8 @@ export class BasicinformationComponent implements OnInit {
         this.religion = await this.SetupServiceobj.getAllReligions();
 
         this.language = await this.SetupServiceobj.getAllLanguages();
+
+        this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.city = await this.hrmService.getAllCities();
 
@@ -112,6 +115,7 @@ export class BasicinformationComponent implements OnInit {
             BloodGroup: employee.bloodGroup,
             MaritalStatus: employee.maritalStatus,
             Gender: employee.gender,
+            GroupId: employee.groupId,
             CityId: employee.cityId,
             ReligionId: employee.religionId,
             Address: employee.address,

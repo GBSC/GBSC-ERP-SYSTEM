@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { Transport } from '../../../core/Models/Inventory/Setup/Transport';
 
 @Component({
     selector: 'app-transport',
@@ -9,30 +10,39 @@ import { InventorysystemService } from '../../../core';
 export class TransportComponent implements OnInit {
     public Transports: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.Transports = await this.InventoryService.GetTransports();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetTransportsByCompany(this.CompanyId).subscribe((res: Transport) => {
+            this.Transports = res;
+        });
     }
 
-    async AddTransport(value) {
-        await this.InventoryService.AddTransport(value.data);
-        this.Transports = await this.InventoryService.GetTransports();
+    AddTransport(value) {
+        this.InventoryService.AddTransport(value.data).subscribe(res => {
+            this.InventoryService.GetTransportsByCompany(this.CompanyId).subscribe((res: Transport) => {
+                this.Transports = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateTransport() {
-        return this.InventoryService.UpdateTransport(this.UpdatedModel);
+    UpdateTransport() {
+        return this.InventoryService.UpdateTransport(this.UpdatedModel).subscribe();
     }
 
-    async DeleteTransport(value) {
-        return this.InventoryService.DeleteTransport(value.key);
+    DeleteTransport(value) {
+        return this.InventoryService.DeleteTransport(value.key).subscribe();
     }
 
 }

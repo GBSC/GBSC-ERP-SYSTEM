@@ -25,7 +25,7 @@ const routes: Routes = [
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
             { path: 'user-registration', component: UserregistrationComponent },
             { path: 'user-registration/:id', component: UserregistrationComponent },
-            { path: 'users', component: UsersComponent },
+             { path: 'users', component: UsersComponent },
             { path: 'profile', component: ProfileComponent },
         ]
     }

@@ -4,12 +4,7 @@
     <a class="twPc-bg twPc-block"></a>
 
 	<div>
-		<div class="twPc-button">
-            <!-- Twitter Button | you can get from: https://about.twitter.com/tr/resources/buttons#follow -->
-            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; width: 79px; height: 28px;" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.d30011b0f5ce05b98f24b01d3331b3c1.en.html#dnt=true&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=mertskaplan&amp;show_count=false&amp;show_screen_name=false&amp;size=l&amp;time=1545400086580" data-screen-name="mertskaplan"></iframe>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <!-- Twitter Button -->   
-		</div>
+	
 
 		<a title="Shop" class="twPc-avatarLink">
 			<img alt="Shop" src="..\assets\images\shopimage.png" class="twPc-avatarImg">
@@ -27,8 +22,8 @@
 		<div class="twPc-divStats">
 			<ul class="twPc-Arrange">
 				<li class="twPc-ArrangeSizeFit">
-						<span class="twPc-StatLabel twPc-block">Shopkeeper Name</span>
-						<span class="twPc-StatValue">Irfan Ali Khan</span>
+            <span class="twPc-StatLabel twPc-block">Shopkeeper Name</span>
+            <span class="twPc-StatValue">{{store?.shopName}}</span>
 				</li>
 				<li class="twPc-ArrangeSizeFit">
 						<span class="twPc-StatLabel twPc-block">Contact No</span>
@@ -36,20 +31,20 @@
 				</li>
 				<li class="twPc-ArrangeSizeFit">
 						<span class="twPc-StatLabel twPc-block">Landline</span>
-						<span class="twPc-StatValue">021-5076698</span>
+						<span class="twPc-StatValue">{{store?.landline}}</span>
         </li>
-        <li class="twPc-ArrangeSizeFit">
+        <!-- <li class="twPc-ArrangeSizeFit">
           <span class="twPc-StatLabel twPc-block">Section</span>
           <span class="twPc-StatValue">Landhi no 3</span>
-      </li>
+      </li> -->
       <li class="twPc-ArrangeSizeFit">
         <span class="twPc-StatLabel twPc-block">CNIC NO</span>
-        <span class="twPc-StatValue">42201-1234567-5</span>
-    </li>
-    <li class="twPc-ArrangeSizeFit">
+        <span class="twPc-StatValue">{{store?.cnic}}</span>
+      </li>
+    <!-- <li class="twPc-ArrangeSizeFit">
       <span class="twPc-StatLabel twPc-block">Distributer</span>
       <span class="twPc-StatValue">Noofil Enterprise</span>
-  </li>
+  </li> -->
 			</ul>
 		</div>
 	</div>
@@ -90,13 +85,13 @@
                         <dxo-paging [pageSize]="6"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                         </dxo-pager>
-                        <dxi-column dataField="createdAt"></dxi-column>
-                        <dxi-column dataField="startTime"></dxi-column>
-                        <dxi-column dataField="endtime"></dxi-column>
-                        <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
+                        <!-- <dxi-column dataField="createdAt"></dxi-column> -->
+                        <dxi-column dataField="startTime" dataType="datetime"></dxi-column>
+                        <dxi-column dataField="endTime" dataType="datetime"></dxi-column>
+                        <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="90"></dxi-column>
                         <div *dxTemplate="let data of 'cellTemplate'">
-                          <a title="Visit Details" style="color: white;" class="btn btn-primary m-btn m-btn--icon btn-lg m-btn--icon-only  m-btn--pill">
-                            <i class="flaticon-interface-2"></i>
+                          <a title="Visit Details" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" (click)="routeVisitSummary(data)">
+                            <i class="fa fa-send"></i>
                           </a>
                         </div>
                       </dx-data-grid>

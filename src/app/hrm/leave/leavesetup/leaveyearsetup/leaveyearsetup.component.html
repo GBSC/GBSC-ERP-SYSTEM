@@ -11,7 +11,12 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="leveyear" keyExpr="leaveYearId" (onRowInserted)="addleaveyear($event)" (onRowUpdated)="updateleaveyear($event)"
+              <dx-data-grid id="gridContainer"
+               [dataSource]="leveyear" 
+               keyExpr="leaveYearId" 
+               (onRowInserted)="addleaveyear($event)" 
+               (onRowUpdating)="updatingLeaveyear($event)"
+               (onRowUpdated)="updateleaveyear()"
                 (onRowRemoved)="deleteleaveyear($event)">
 
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
@@ -25,7 +30,7 @@
                 </dxo-pager>
 
 
-                <dxi-column dataField="name" caption="Year" [allowEditing]="false"></dxi-column>
+                <dxi-column dataField="name" caption="Year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <!-- <dxi-column dataField="year" caption="Year" dataType="date" format="year"></dxi-column> -->
                 <dxi-column dataField="startDate" dataType="date" format="shortDate"></dxi-column>
                 <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>

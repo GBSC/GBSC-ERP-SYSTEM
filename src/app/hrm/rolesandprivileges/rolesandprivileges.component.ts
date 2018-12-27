@@ -4,9 +4,6 @@ import { NgModule, Component, OnInit } from '@angular/core';
 import { SystemAdministrationService } from '../../core';
 
 
-
-
-
 @Component({
     selector: 'app-rolesandprivileges',
     templateUrl: './rolesandprivileges.component.html',
@@ -23,7 +20,6 @@ export class RolesandprivilegesComponent implements OnInit {
 
     createNewRole() {
         this.showPopup = true;
-
     }
 
     getSelectedModules(e) {

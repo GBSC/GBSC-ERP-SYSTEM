@@ -1571,6 +1571,7 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
+<<<<<<< HEAD
 
 										<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
@@ -1597,6 +1598,31 @@
 										</li>
 										<li *ngIf="accessibleFeatures.includes('Inventory - Purchase')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
+=======
+										
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+												<h3 class="m-menu__heading m-menu__toggle">
+													<span class="m-menu__link-text">
+														Setups
+													</span>
+													<i class="m-menu__ver-arrow la la-angle-right"></i>
+												</h3>
+												<ul class="m-menu__inner">
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<a routerLink="/inventory/setup/inventory-master" class="m-menu__link">
+															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																<span></span>
+															</i>
+															<span class="m-menu__link-text">
+																Configuration
+															</span>
+														</a>
+													</li>
+												</ul>
+	
+											</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+>>>>>>> cc672be39ed7865d043541920b40b796dce6b046
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Purchase

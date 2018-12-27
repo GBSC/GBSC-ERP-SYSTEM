@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 
 @Component({
@@ -11,12 +11,17 @@ import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 export class BrandComponent implements OnInit {
     public Brands: any;
     public newbrand: Brand;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
     }
 
-    async ngOnInit() {
-        this.Brands = await this.InventoryService.GetBrands();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
+        this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
+            this.Brands = res;
+        });
         //console.log(this.Brands);
     }
 
@@ -25,19 +30,22 @@ export class BrandComponent implements OnInit {
         //console.log(this.newbrand);
     }
 
-    async AddBrand(value) {
+    AddBrand(value) {
         //console.log(value);
-        await this.InventoryService.AddBrand(value.data);
-        this.Brands = await this.InventoryService.GetBrands();
+        this.InventoryService.AddBrand(value.data).subscribe(res => {
+            this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
+                this.Brands = res;
+            });
+        });
     }
 
-    async UpdateBrand() {
-        return await this.InventoryService.UpdateBrand(this.newbrand);
+    UpdateBrand() {
+        return this.InventoryService.UpdateBrand(this.newbrand).subscribe();
     }
 
-    async DeleteBrand(value) {
+    DeleteBrand(value) {
         //console.log(value);
-        return await this.InventoryService.DeleteBrand(value.key);
+        return this.InventoryService.DeleteBrand(value.key).subscribe();
     }
 
 }

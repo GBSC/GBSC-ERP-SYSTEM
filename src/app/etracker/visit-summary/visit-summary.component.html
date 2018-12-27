@@ -97,7 +97,29 @@
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                      <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
+                     <div *ngIf="Storevisitdetails.length">
+                         <dx-data-grid id="gridContainer" [dataSource]="Storevisitdetails" [showBorders]="true"
+                       [masterDetail]="{ enabled: true, template: 'detail' }">    
+                        <dxo-scrolling mode="virtual"></dxo-scrolling>
+                         
+                        <dxi-column dataField="brandName" caption="Brand Name  " ></dxi-column>
+                        <div *dxTemplate="let type of 'detail'">
+                          <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
+                            <dxi-column dataField="productType" caption="Product Type"></dxi-column>
+                               <div *dxTemplate="let orderitems of 'sub-detail'">
+                                  <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                                      <dxi-column dataField="name" caption="Items"></dxi-column>
+                                  </dx-data-grid>
+                                </div>
+                          </dx-data-grid>
+                        </div>
+                    </dx-data-grid>  
+                  </div>
+
+                    <div *ngIf="!Storevisitdetails.length">
+                        {{StoreNoOrderReason.reason}}
+                      </div>
+                      <!-- <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
 
@@ -114,7 +136,7 @@
                             <i class="flaticon-layers"></i>
                           </a>
                         </div>
-                      </dx-data-grid>
+                      </dx-data-grid> -->
                     </div>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import { LeaveSetupService } from '../../../../core';
 })
 export class LeavetypeComponent implements OnInit {
 
+    public levesubtype: any;
     public levetype: any;
 
     constructor(public leavesetupservice: LeaveSetupService) { }
@@ -15,20 +16,22 @@ export class LeavetypeComponent implements OnInit {
     async ngOnInit() {
 
         this.levetype = await this.leavesetupservice.getLeaveTypes();
+
+        this.levesubtype = await this.leavesetupservice.getLeaveSubTypes();
     }
 
     async addleavetype(value) {
 
-        this.leavesetupservice.addLeaveType(value.data);
+        await this.leavesetupservice.addLeaveType(value.data);
         this.levetype = await this.leavesetupservice.getLeaveTypes();
     }
 
     async updateleavetype(value) {
-        this.leavesetupservice.updateLeaveType(value);
+        await this.leavesetupservice.updateLeaveType(value);
     }
 
     async deleteleavetype(value) {
-        this.leavesetupservice.deleteLeaveType(value.key);
+        await this.leavesetupservice.deleteLeaveType(value.key);
     }
 
 }

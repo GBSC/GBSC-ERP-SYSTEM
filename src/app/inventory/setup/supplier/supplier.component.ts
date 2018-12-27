@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { InventorysystemService } from '../../../core';
-
+import { InventorysystemService, AuthService } from '../../../core';
+import { Supplier } from '../../../core/Models/Inventory/Setup/Supplier';
 
 @Component({
     selector: 'app-supplier',
@@ -12,30 +12,39 @@ import { InventorysystemService } from '../../../core';
 export class SupplierComponent implements OnInit {
     public Supplier: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async  ngOnInit() {
-        this.Supplier = await this.InventoryService.GetSuppliers();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetSuppliersByCompany(this.CompanyId).subscribe((res: Supplier) => {
+            this.Supplier = res;
+        });
     }
 
-    async AddSupplier(value) {
-        await this.InventoryService.AddSupplier(value.data);
-        this.Supplier = await this.InventoryService.GetSuppliers();
+    AddSupplier(value) {
+        this.InventoryService.AddSupplier(value.data).subscribe(res => {
+            this.InventoryService.GetSuppliersByCompany(this.CompanyId).subscribe((res: Supplier) => {
+                this.Supplier = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateSupplier() {
-        return await this.InventoryService.UpdateSupplier(this.UpdatedModel);
+    UpdateSupplier() {
+        return this.InventoryService.UpdateSupplier(this.UpdatedModel).subscribe();
     }
 
-    async DeleteSupplier(value) {
-        return await this.InventoryService.DeleteSupplier(value.key);
+    DeleteSupplier(value) {
+        return this.InventoryService.DeleteSupplier(value.key).subscribe();
     }
 
 

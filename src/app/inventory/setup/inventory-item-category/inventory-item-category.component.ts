@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { InventoryItemCategory } from '../../../core/Models/Inventory/Setup/InventoryItemCategory';
 
 @Component({
     selector: 'app-inventory-item-category',
@@ -9,30 +10,38 @@ import { InventorysystemService } from '../../../core';
 export class InventoryItemCategoryComponent implements OnInit {
     public ItemCategories: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.ItemCategories = await this.InventoryService.GetInventoryItemCategories();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
+        this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: InventoryItemCategory) => {
+            this.ItemCategories = res;
+        });
     }
 
-    async AddItemCategory(value) {
-        await this.InventoryService.AddInventoryItemCategory(value.data);
-        this.ItemCategories = await this.InventoryService.GetInventoryItemCategories();
+    AddItemCategory(value) {
+        this.InventoryService.AddInventoryItemCategory(value.data).subscribe(res => {
+            this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: InventoryItemCategory) => {
+                this.ItemCategories = res;
+            });
+        });
     }
 
-    async UpdateItemCategory() {
-        return await this.InventoryService.UpdateInventoryItemCategory(this.UpdatedModel);
+    UpdateItemCategory() {
+        return this.InventoryService.UpdateInventoryItemCategory(this.UpdatedModel).subscribe();
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async DeleteItemCategory(value) {
-        return await this.InventoryService.DeleteInventoryItemCategory(value.key);
+    DeleteItemCategory(value) {
+        return this.InventoryService.DeleteInventoryItemCategory(value.key).subscribe();
     }
 
 }

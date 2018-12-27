@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class ApiService {
     constructor(
         public http: HttpClient,
-        //public jwtService: JwtService
+        // public jwtService: JwtService
     ) { }
 
     public formatErrors(error: any) {

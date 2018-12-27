@@ -14,7 +14,7 @@
 	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light" data-menu-vertical="true"
 	 data-menu-scrollable="true" data-menu-dropdown-timeout="500">
 		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+			<li *ngIf="accessibleFeatures.includes('Security - Company Setup')" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a  routerLink="/security/company" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-search"></i>
 					<span class="m-menu__link-text">Company Setup
@@ -22,7 +22,7 @@
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+			<li *ngIf="accessibleFeatures.includes('Security - User Registration')" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a  routerLink="/security/user-registration" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-search"></i>
 					<span class="m-menu__link-text">User Registration
@@ -30,7 +30,7 @@
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+			<li *ngIf="accessibleFeatures.includes('Security - Users')" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a  routerLink="/security/users" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-search"></i>
 					<span class="m-menu__link-text">Users List
@@ -38,7 +38,7 @@
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
-			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+			<li *ngIf="accessibleFeatures.includes('Security - Roles and Privileges')" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a  routerLink="/security/rolesandprivileges" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-search"></i>
 					<span class="m-menu__link-text">Roles & Privileges

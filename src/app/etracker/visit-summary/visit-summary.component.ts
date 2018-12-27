@@ -31,6 +31,7 @@ export class VisitSummaryComponent implements OnInit {
 
             this.storeService.getStoreVisits(this.storeId).subscribe(s => {
                 this.storeVisits = s;
+                console.log(this.storeVisits)
             });
 
         });

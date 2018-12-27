@@ -25,7 +25,7 @@ export class UnitComponent implements OnInit {
     }
 
     AddUnit(value) {
-        value.companyId = this.CompanyId;
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddUnit(value.data).subscribe(res => {
             this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: Unit) => {
                 this.Units = res;

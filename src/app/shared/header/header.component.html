@@ -45,7 +45,7 @@
 
 							</a>
 						</li>
-						<li *ngIf="accessableModules.includes('Security')" class="m-menu__item  m-menu__item--submenu"
+						<li *ngIf="accessableModules.includes('Security Admin')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 							<a href="#" class="m-menu__link m-menu__toggle" style="background:#8c2424;">
 								<span class="m-menu__item-here"></span>
@@ -59,7 +59,7 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li *ngIf="accessibleFeatures.includes('Security - Company Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										<li *ngIf="accessibleFeatures.includes('Security Admin - Company Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
@@ -68,7 +68,7 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li *ngIf="accessibleFeatures.includes('Security - Company Setup')" class="m-menu__item" data-redirect="true"
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Company Setup')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
 													<a routerLink="/security/company" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
@@ -79,7 +79,7 @@
 												</li>
 											</ul>
 										</li>
-										<li *ngIf="accessibleFeatures.includes('Security - Users')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										<li *ngIf="accessibleFeatures.includes('Security Admin - Users')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
@@ -88,7 +88,7 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li *ngIf="accessibleFeatures.includes('Security - User Registration')" class="m-menu__item" data-redirect="true"
+												<li *ngIf="accessibleFeatures.includes('Security Admin - User Registration')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
 													<a routerLink="/security/user-registration" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user-add">
@@ -99,7 +99,7 @@
 														</span>
 													</a>
 												</li>
-												<li *ngIf="accessibleFeatures.includes('Security - Users')" class="m-menu__item" data-redirect="true"
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Users')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
 													<a routerLink="/security/users" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-users">
@@ -112,7 +112,7 @@
 												</li>
 											</ul>
 										</li>
-										<li *ngIf="accessibleFeatures.includes('Security - Roles and Privileges')" class="m-menu__item"
+										<li *ngIf="accessibleFeatures.includes('Security Admin - Roles and Privileges')" class="m-menu__item"
 										 routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
@@ -121,7 +121,7 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li *ngIf="accessibleFeatures.includes('Security - Company Setup')" class="m-menu__item" data-redirect="true"
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Company Setup')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
 													<a routerLink="/security/rolesandprivileges" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user-settings">

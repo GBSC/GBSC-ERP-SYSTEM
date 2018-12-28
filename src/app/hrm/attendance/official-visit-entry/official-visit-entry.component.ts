@@ -27,7 +27,7 @@ export class OfficialVisitEntryComponent implements OnInit {
 
     async addofficialVisitentry(value) {
 
-        this.attendanceservice.addOfficialVisitEntry(value.data);
+        await this.attendanceservice.addOfficialVisitEntry(value.data);
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
     }
 
@@ -36,11 +36,11 @@ export class OfficialVisitEntryComponent implements OnInit {
     }
 
     async updateVisitentry() {
-        this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
+        await this.attendanceservice.updateOfficialVisitEntry(this.updatingOfficialEntry);
     }
 
     async deleteofficialVisitentry(value) {
-        this.attendanceservice.DeleteOfficialVisitEntry(value.key);
+        await this.attendanceservice.DeleteOfficialVisitEntry(value.key);
     }
 
 }

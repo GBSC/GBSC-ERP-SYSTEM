@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
+import { City } from '../../../../core/Models/HRM/city';
 
 
 @Injectable()
 
 export class HrmsService {
 
-    private setupUrl: string = "SystemAdmin/api/Setup";
+    public setupUrl: string = "SystemAdmin/api/Setup";
 
-    constructor(private ApiService: ApiService) {
+    constructor(public ApiService: ApiService) {
     }
 
     async getAllCountries() {
@@ -34,6 +36,15 @@ export class HrmsService {
     async getAllCities() {
 
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
+    }
+
+    getCitiesByCompanyId(companyId: any) {
+
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
+    GetCitiesByCompanyId(companyId: any) : Observable<City[]> {
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 
     async addCity(data) {

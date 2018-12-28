@@ -7,11 +7,11 @@ import { SystemAdministrationService } from '../../core';
     styleUrls: ['./branch.component.css']
 })
 export class BranchComponent implements OnInit {
-    pattern: any = /^\d{3}-\d{8}$/i;
+    pattern: any = /^\d{11}$/i;
     public com: any;
     public branches: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 

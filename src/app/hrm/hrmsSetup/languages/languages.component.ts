@@ -24,17 +24,17 @@ export class LanguageComponent implements OnInit {
 
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
-    addLanguage(lang) {
-        this.dataService.addLanguage(lang.data);
-        this.language = this.dataService.getAllLanguages();
+    async addLanguage(value) {
+        await this.dataService.addLanguage(value.data);
+        this.language = await this.dataService.getAllLanguages();
     }
 
-    EditLanguage(lng) {
-        this.dataService.updateLanguage(lng);
+    async EditLanguage(value) {
+        await this.dataService.updateLanguage(value);
     }
 
-    deleteLanguage(lnguge) {
-        this.dataService.DeleteLanguage(lnguge.key);
+    async deleteLanguage(value) {
+        await this.dataService.DeleteLanguage(value.key);
 
     }
 

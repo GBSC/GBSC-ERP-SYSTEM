@@ -10,24 +10,29 @@ import { HttpClient } from '@angular/common/http';
 export class UniversityComponent implements OnInit {
 
     public university: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public universityupdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
         this.university = await this.dataService.getAllUniversities();
     }
 
-    adduniversity(uni) {
-        this.dataService.adduniversity(uni.data);
-        this.university = this.dataService.getAllUniversities();
+    async adduniversity(uni) {
+        await this.dataService.adduniversity(uni.data);
+        this.university = await this.dataService.getAllUniversities();
     }
 
-    Edituniversity(university) {
-        this.dataService.updateuniversity(university);
+    universityEditing(value) {
+        this.universityupdating = { ...value.oldData, ...value.newData };
     }
 
-    deleterelation(universty) {
-        this.dataService.Deleteuniversity(universty.key);
+    async Edituniversity() {
+        await this.dataService.updateuniversity(this.universityupdating);
+    }
+
+    async deleterelation(universty) {
+        await this.dataService.Deleteuniversity(universty.key);
     }
 
 }

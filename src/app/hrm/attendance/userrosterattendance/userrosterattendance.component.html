@@ -1,0 +1,54 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">User Roster Attendance </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="userRosterattendance"
+               keyExpr="userRosterAttendanceId"
+                (onRowInserted)="adduserRosterattendance($event)" 
+                (onRowUpdating)="updatingattendance($event)"
+                (onRowUpdated)="updateuserRosterattendance()"
+                (onRowRemoved)="deleteuserRosterattendance($event)">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+                    <dxi-column dataField="assignRosterId" caption="Assign Roster">
+                      <dxo-lookup [dataSource]="assignRoster" displayExpr="year" valueExpr="assignRosterId">
+                      </dxo-lookup>
+                    </dxi-column>  
+                            <dxi-column dataField="userId" caption="Employee">
+                              <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
+                              </dxo-lookup>
+                              </dxi-column>
+                <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
+                <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
+                <!-- <dxi-column dataField="isPresent" dataType="boolean" caption="Is Present"></dxi-column> -->
+                <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave"></dxi-column>
+                <!-- <dxi-column dataField="hoursWorked" caption="Hours Worked"></dxi-column> -->
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

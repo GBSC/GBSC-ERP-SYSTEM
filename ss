@@ -24,7 +24,7 @@
 [1m--- a/src/app/Inventorysystem/Sales/delivery-note/delivery-note.component.ts[m
 [1m+++ b/src/app/Inventorysystem/Sales/delivery-note/delivery-note.component.ts[m
 [36m@@ -17,7 +17,7 @@[m [mexport class DeliveryNoteComponent implements OnInit {[m
-     constructor(private InventoryService: InventorysystemService) {[m
+     constructor(public InventoryService: InventorysystemService) {[m
  [m
      }[m
 [31m-   [m
@@ -37,29 +37,29 @@
 [1m--- a/src/app/Inventorysystem/Sales/sales-order/sales-order.component.ts[m
 [1m+++ b/src/app/Inventorysystem/Sales/sales-order/sales-order.component.ts[m
 [36m@@ -15,53 +15,53 @@[m [mexport class SalesOrderComponent implements OnInit {[m
-     private SalesPerson: any;[m
-     private ModeOfPayment: any;[m
-     private Customer: any;[m
-[31m-    private FilteredCustomers : any;[m
-[32m+[m[32m    private FilteredCustomers: any;[m
-     private Tax: any;[m
-     //private SalesOrder: any;[m
-[31m-    private CustomerWarehouses : any;[m
-[31m-    private FilteredWarehouses : any[m
-[31m-    private CustomerTypes : any;[m
-[31m-    private Distributors : any;[m
-[31m-    private FilteredDistributor : Distributor;[m
-[31m-    private DispAddress : string = "";[m
-[31m-    private SalesOrderForm : FormGroup;[m
-[32m+[m[32m    private CustomerWarehouses: any;[m
-[32m+[m[32m    private FilteredWarehouses: any[m
-[32m+[m[32m    private CustomerTypes: any;[m
-[32m+[m[32m    private Distributors: any;[m
-[32m+[m[32m    private FilteredDistributor: Distributor;[m
-[32m+[m[32m    private DispAddress: string = "";[m
-[32m+[m[32m    private SalesOrderForm: FormGroup;[m
+     public SalesPerson: any;[m
+     public ModeOfPayment: any;[m
+     public Customer: any;[m
+[31m-    public FilteredCustomers : any;[m
+[32m+[m[32m    public FilteredCustomers: any;[m
+     public Tax: any;[m
+     //public SalesOrder: any;[m
+[31m-    public CustomerWarehouses : any;[m
+[31m-    public FilteredWarehouses : any[m
+[31m-    public CustomerTypes : any;[m
+[31m-    public Distributors : any;[m
+[31m-    public FilteredDistributor : Distributor;[m
+[31m-    public DispAddress : string = "";[m
+[31m-    public SalesOrderForm : FormGroup;[m
+[32m+[m[32m    public CustomerWarehouses: any;[m
+[32m+[m[32m    public FilteredWarehouses: any[m
+[32m+[m[32m    public CustomerTypes: any;[m
+[32m+[m[32m    public Distributors: any;[m
+[32m+[m[32m    public FilteredDistributor: Distributor;[m
+[32m+[m[32m    public DispAddress: string = "";[m
+[32m+[m[32m    public SalesOrderForm: FormGroup;[m
  [m
-[31m-    constructor(private InventoryService: InventorysystemService, private FormBuilder : FormBuilder) {[m
+[31m-    constructor(public InventoryService: InventorysystemService, public FormBuilder : FormBuilder) {[m
 [31m-        [m
 [31m-        this.SalesOrderForm = this.FormBuilder.group( {[m
 [31m-            salesOrderId : [''],[m

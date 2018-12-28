@@ -1,15 +1,7 @@
 
 
-import { NgModule, Component, Pipe, PipeTransform, enableProdMode, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
-
-
-@Pipe({ name: 'title' })
-export class TitlePipe implements PipeTransform {
-    transform(value: any): string {
-        return value.text;
-    }
-}
+import { NgModule, Component, OnInit } from '@angular/core';
+import { SystemAdministrationService, AuthService } from '../../core';
 
 
 
@@ -23,8 +15,12 @@ export class TitlePipe implements PipeTransform {
 export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
+    public companyId: any;
 
-    constructor(private systemAdmin: SystemAdministrationService) { }
+    constructor(public systemAdmin: SystemAdministrationService, public authService: AuthService) {
+
+        this.companyId = this.authService.getUserCompanyId();
+    }
 
     createNewRole() {
         this.showPopup = true;
@@ -35,17 +31,21 @@ export class RolesandprivilegesComponent implements OnInit {
         console.log(e);
     }
 
-    private modules: any = [];
-    private role: any;
-    private currentFeature: any;
-    private selectedPermissions: any = [];
-    private typeOfPermissions: any = ['Read', 'Write', 'Insert', 'Delete'];
-    private moduleColums: any = [];
-    private popup: boolean = false;
+    public modules: any = [];
+    public roles: any = [];
+    public role: any;
+    public currentFeature: any;
+    public selectedPermissions: any = [];
+    public typeOfPermissions: any = ['Read', 'Write', 'Update', 'Delete'];
+    public moduleColums: any = [];
+    public popup: boolean = false;
 
     ngOnInit() {
+
+        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
+
         this.systemAdmin.getPermissions();
-        this.systemAdmin.getData();
+        this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
         this.role = {
             Name: '',
@@ -125,6 +125,7 @@ export class RolesandprivilegesComponent implements OnInit {
             alert('Role cannot be saved without a name');
         } else {
         }
+        this.role.companyId = this.companyId;
         this.systemAdmin.saveNewRoleData(this.role);
         this.showPopup = false;
     }

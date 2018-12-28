@@ -16,12 +16,11 @@ import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
 @Injectable()
 export class EmployeeService {
 
-    private baseUrl: string = 'systemadmin/api';
+    public baseUrl: string = 'systemadmin/api';
     public employeereg;
 
 
-    constructor(private service: HrmsService, private fb: FormBuilder, private ApiService: ApiService) {
-
+    constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {
 
     }
 
@@ -31,6 +30,10 @@ export class EmployeeService {
         return this.employeereg;
     }
 
+    getManagers(): Observable<any> {
+        return this.ApiService.get('SystemAdmin/api/HrSetup/GetUserCompanies');
+    }
+
     GetEmployee(id): Observable<Employee> {
         return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
     }
@@ -38,7 +41,7 @@ export class EmployeeService {
 
     updateEmployeeBasicInfo(Employee: Employee): Observable<any> {
 
-        return this.ApiService.post(this.baseUrl + '/Users/UpdateUserDetail', Employee);
+        return this.ApiService.put(this.baseUrl + '/Users/UpdateUserBasicInfo', Employee);
     }
 
 

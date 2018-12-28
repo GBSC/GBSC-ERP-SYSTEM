@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { FormGroup } from '@angular/forms';
 import { Region } from '../../../core/Models/Inventory/Setup/Region';
 
@@ -9,21 +9,31 @@ import { Region } from '../../../core/Models/Inventory/Setup/Region';
     styleUrls: ['./region.component.scss']
 })
 export class RegionComponent implements OnInit {
-    private Regions: any;
-    private updatedmodel: Region;
+    public Regions: any;
+    public updatedmodel: Region;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
         // this.form = new FormGroup {
 
         // };
     }
 
-    async ngOnInit() {
-        this.Regions = await this.InventoryService.GetRegions();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
+            this.Regions = res;
+        });
     }
 
-    async AddRegion(value) {
-        await this.InventoryService.AddRegion(value.data);
+    AddRegion(value) {
+        this.InventoryService.AddRegion(value.data).subscribe(res => {
+            this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
+                this.Regions = res;
+            });
+        });
     }
 
     UpdateModel(value) {
@@ -31,14 +41,14 @@ export class RegionComponent implements OnInit {
         console.log(this.updatedmodel);
     }
 
-    async UpdateRegion(value) {
+    UpdateRegion(value) {
         var updateRow: Region = value.data;
         updateRow.regionId = value.key;
-        await this.InventoryService.UpdateRegion(updateRow);
+        this.InventoryService.UpdateRegion(updateRow).subscribe();
     }
 
-    async DeleteRegion(value) {
-        await this.InventoryService.DeleteRegion(value.data.regionId);
+    DeleteRegion(value) {
+        this.InventoryService.DeleteRegion(value.data.regionId).subscribe();
     }
 
 }

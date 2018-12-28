@@ -14,7 +14,7 @@ export class TaxableIncomeAdjustmentComponent implements OnInit {
     public users: any;
     public taxYears: any;
     public groups: any;
-    private updatingincomeAdjustment: any;
+    public updatingincomeAdjustment: any;
 
     constructor(public payrollsetupservice: PayrollSetupService, public setupservice: SetupService,
         public employeeservice: EmployeeService) { }

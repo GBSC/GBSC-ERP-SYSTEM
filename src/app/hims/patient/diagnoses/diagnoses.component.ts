@@ -13,7 +13,7 @@ export class DiagnosesComponent implements OnInit {
     id: number;
     public patientVisitDiagnoses = [];
 
-    constructor(private PatientServiceobj: PatientService, private route: ActivatedRoute) {
+    constructor(public PatientServiceobj: PatientService, public route: ActivatedRoute) {
 
     }
 

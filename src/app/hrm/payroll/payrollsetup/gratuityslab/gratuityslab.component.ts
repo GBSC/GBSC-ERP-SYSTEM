@@ -15,7 +15,7 @@ export class GratuityslabComponent implements OnInit {
     public gratuitySlabForm: any;
     public gratuitySlabGratuityDetail: GratuitySlabGratuity[];
 
-    constructor(private fb: FormBuilder, public payrollsetupservice: PayrollSetupService,
+    constructor(public fb: FormBuilder, public payrollsetupservice: PayrollSetupService,
         public payrollservice: PayrollService) { }
 
     async ngOnInit() {

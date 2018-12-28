@@ -18,8 +18,8 @@
                 (onRowInserted)="addflagExemption($event)" 
                 (onRowUpdated)="updateflagExemption($event)"
                 (onRowRemoved)="deleteflagExemption($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,18 +30,66 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
                 <dxi-column dataField="date" dataType="date" format="shortDate" ></dxi-column>
-                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
-
-                <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                  <dxo-lookup [dataSource]="attendanceFlag" displayExpr="title" valueExpr="attendanceFlagId">
-                  </dxo-lookup>
-                  </dxi-column>
-
                 <dxi-column dataField="flagTypeId" caption="Flag Type">
                   <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
                   </dxo-lookup>
-                  </dxi-column>  
+                  </dxi-column> 
+                  <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                    <dxo-lookup [dataSource]="attendanceFlag" displayExpr="title" valueExpr="attendanceFlagId">
+                    </dxo-lookup>
+                    </dxi-column> 
+                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+
+                  <dxi-column caption="Employee" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                  <div *dxTemplate="let d of 'chartCellTemplate'">
+                    <div class="chart-cell">
+                        <dx-button text="Select User" (onClick)="showInfo(employee)"></dx-button>
+                    </div>
+                </div> 
+
               </dx-data-grid>
+
+              <dx-popup
+              class="popup"
+              [width]="1100"
+              [height]="550"
+              [showTitle]="true"
+              title="Select Employees"
+              [dragEnabled]="false"
+              [closeOnOutsideClick]="true"
+              [(visible)]="popupVisible">
+              <div *dxTemplate="let data of 'content'">
+                   
+                  <dx-data-grid id="gridContainer"
+                  [dataSource]="employee"
+                  keyExpr="userId"
+                  [(selectedRowKeys)]="selectedRows"
+                  (onSelectionChanged)="selectionChangedHandler($event)">
+                  <dxo-selection mode="multiple"> </dxo-selection>
+                   <dxo-filter-row [visible]="true"></dxo-filter-row>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>
+                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                   <dxo-paging [pageSize]="7"></dxo-paging>
+                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                   </dxo-pager> 
+                   <dxi-column dataField="fullName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                 </dx-data-grid>
+                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid">
+                      <div class="row">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                          <button class="btn btn-success" (click)="addselecteduser()">
+                            Submit
+                          </button> 
+                        </div>
+                        <div class="col-lg-4"></div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </dx-popup>
+
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { DxDataGridComponent } from "devextreme-angular";
 import { ValidationStatesModule } from '../../../theme/pages/default/components/forms/validation/validation-states/validation-states.module';
 import { Area } from '../../../core/Models/Inventory/Setup/Area';
+import { Region } from '../../../core/Models/Inventory/Setup/Region';
 
 @Component({
     selector: 'app-area',
@@ -13,17 +14,27 @@ import { Area } from '../../../core/Models/Inventory/Setup/Area';
 
 
 export class AreaComponent implements OnInit {
-    private Regions: any;
-    private Areas: any;
-    private newarea: Area;
+    public Regions: any;
+    public Areas: any;
+    public newarea: Area;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.Regions = await this.InventoryService.GetRegions();
-        this.Areas = await this.InventoryService.GetAreas();
+    ngOnInit() {
+
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+
+        this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
+            this.Regions = res;
+        });
+        this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+            this.Areas = res;
+        });
     }
 
     mergeArea(value) {
@@ -31,18 +42,21 @@ export class AreaComponent implements OnInit {
         console.log(this.newarea);
     }
 
-    async AddArea(value) {
-        await this.InventoryService.AddArea(value.data);
-        this.Areas = await this.InventoryService.GetAreas();
+    AddArea(value) {
+        this.InventoryService.AddArea(value.data).subscribe((res: any) => {
+            this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+                this.Areas = res;
+            });
+        });
     }
 
-    async UpdateArea() {
-        await this.InventoryService.UpdateArea(this.newarea);
+    UpdateArea() {
+        this.InventoryService.UpdateArea(this.newarea).subscribe();
     }
 
-    async DeleteArea(value) {
+    DeleteArea(value) {
         console.log(value);
-        await this.InventoryService.DeleteArea(value.data.areaId);
+        this.InventoryService.DeleteArea(value.data.areaId).subscribe();
     }
 
 }

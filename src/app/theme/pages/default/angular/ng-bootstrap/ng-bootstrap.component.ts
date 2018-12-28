@@ -28,8 +28,8 @@ export class NgBootstrapComponent implements OnInit {
     public backup: Array<IAlert>;
     public hovered;
 
-    constructor(private formBuilder: FormBuilder,
-        private modalService: NgbModal) {
+    constructor(public formBuilder: FormBuilder,
+        public modalService: NgbModal) {
     }
 
     ngOnInit() {
@@ -82,7 +82,7 @@ export class NgBootstrapComponent implements OnInit {
         this.timepickerMeridian = !this.timepickerMeridian;
     }
 
-    private modalDismissReason(reason: any): string {
+    public modalDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {

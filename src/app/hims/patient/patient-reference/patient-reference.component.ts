@@ -12,7 +12,7 @@ export class PatientReferenceComponent implements OnInit {
     pattern: any = /^\d{4}-\d{7}$/i;
     public reference: any;
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     ngOnInit() {
 

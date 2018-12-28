@@ -13,7 +13,7 @@ export class FinancialyearComponent implements OnInit {
     public financialYear: any;
     public updateFinancalyear: any;
 
-    constructor(private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 

@@ -22,10 +22,7 @@
                   <dxo-paging [pageSize]="7"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                    <dxi-column dataField="name" caption="Name"></dxi-column>
-                   <dxi-column
-                   dataField="branchId"
-                   caption="Branches"
-                   [width]="225">         
+                   <dxi-column dataField="branchId"caption="Branches">         
                    <dxo-lookup [dataSource]="branch" displayExpr="name" valueExpr="branchId"></dxo-lookup>
                </dxi-column>
                  </dx-data-grid>

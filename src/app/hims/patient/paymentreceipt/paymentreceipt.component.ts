@@ -13,15 +13,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PaymentreceiptComponent implements OnInit {
 
-    private Appointments: Appointment[] = [];
+    public Appointments: Appointment[] = [];
 
-    constructor(private PatientService: PatientService, private Toastr: ToastrService, private ActivatedRoute: ActivatedRoute, private Router: Router) {
+    constructor(public PatientService: PatientService, public Toastr: ToastrService, public ActivatedRoute: ActivatedRoute, public Router: Router) {
 
     }
 
-    private showApp = { 'active show': 'app' };
-    private showMRN = { 'active show': '' };
-    private showID = { 'active show': '' };
+    public showApp = { 'active show': 'app' };
+    public showMRN = { 'active show': '' };
+    public showID = { 'active show': '' };
 
     async  ngOnInit() {
 

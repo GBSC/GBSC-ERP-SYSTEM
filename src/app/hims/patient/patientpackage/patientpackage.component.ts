@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class PatientpackageComponent implements OnInit {
     public id: any;
 
-    constructor(private PatientService: PatientService, private Router: Router, private route: ActivatedRoute) { }
+    constructor(public PatientService: PatientService, public Router: Router, public route: ActivatedRoute) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {

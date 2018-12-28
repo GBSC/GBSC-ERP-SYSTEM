@@ -64,7 +64,7 @@
 								<dxi-column dataField="visitStatus" dataType="text" caption="Visit Status"></dxi-column>
 								<dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized"></dxi-column>
 								<dxi-column dataField="isPaid" dataType="boolean" caption="Paid"  ></dxi-column>
-								<dxi-column dataField="isPaid" caption="Invoice" cellTemplate="chartCellTemplate" [width]="auto" ></dxi-column>
+								<dxi-column dataField="isPaid" caption="Invoice" cellTemplate="chartCellTemplate"></dxi-column>
 								<div *dxTemplate="let d of 'chartCellTemplate'">
 										<dx-button *ngIf="d.value == null || d.value == false" (click)="SwitchTab('id', d, MRN.value)" icon="plus"></dx-button>
 										<dx-button *ngIf="d.value == true"  (click)="SwitchTab('mrn', d, MRN.value)"icon="back"></dx-button>

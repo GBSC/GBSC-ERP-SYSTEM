@@ -13,11 +13,55 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId" 
-              (onRowInserted)="addNewTest($event)"
-               (onRowUpdated)="UpdateTest($event)">
+              <form *ngIf="formVisible" class="m-form m-form--fit m-form--label-align-right">
+                <div class="form-group m-form__group row">
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Name:
+                  </label>
+                  <div class="col-4">
+                    <input class="form-control m-input" type="text" name="TestName" [(ngModel)]="TestName" value="{{TestName}}"
+                      id="example-text-input">
+                  </div>
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Description:
+                  </label>
+                  <div class="col-4">
+                    <input class="form-control m-input" type="text" name="TestDescription" [(ngModel)]="TestDescription"
+                      value="{{TestDescription}}" id="example-text-input">
+                  </div>
+                </div>
+                <div class="form-group m-form__group row">
+                  <label for="example-text-input" class="col-2 col-form-label">
+                    Reference Range:
+                  </label>
+                  <div class="col-10">
+                    <ckeditor name="ReferenceRange" [(ngModel)]="ReferenceRange" [data]="ReferenceRange"  [editor]="Editor"></ckeditor>
+                  </div>
+
+                </div>
+
+
+                <div class="m-form__actions">
+                  <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-10">
+                      <button type="reset" (click)="onSubmit()" class="btn btn-success">
+                        Submit
+                      </button>
+                      <button type="reset" (click)="onCancel()" class="btn btn-secondary">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+              <dx-data-grid id="gridContainer" [dataSource]="tests" keyExpr="bioChemistryTestId">
+
+                <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false"
+                  [useIcons]="true">
 
                   <dxo-popup title="Test" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
                   </dxo-popup>
@@ -29,8 +73,13 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-
+                <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
+                <dxi-column dataField="referenceRange"></dxi-column>
+                <dxi-column dataField="bioChemistryTestId" caption="Action" cellTemplate="cellTemplate"></dxi-column>
+                <div *dxTemplate="let data of 'cellTemplate'">
+                  <a class="btn btn-primary" (click)="edit(data.value)">Edit</a>
+                </div>
               </dx-data-grid>
             </div>
           </div>

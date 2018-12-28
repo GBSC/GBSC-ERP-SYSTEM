@@ -16,25 +16,25 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReturnmedicineComponent implements OnInit {
 
-    private ReturnMedicineForm: FormGroup;
-    private ReturnMedicineDetailsForm: FormGroup;
+    public ReturnMedicineForm: FormGroup;
+    public ReturnMedicineDetailsForm: FormGroup;
 
-    private ReturnReasons: any;
-    private SelectedReturnReason: any;
-    private Customers: any;
-    private SelectedCustomer: any;
-    private SelectedSalesOrder: SalesOrder;
-    private SelectedSalesOrderDetails: any[] = [];
-    private SalesReturnDetails: SalesReturnItem[] = [];
-    private SalesReturn: SalesReturn;
-    private UpdateInventories: Inventory[] = [];
+    public ReturnReasons: any;
+    public SelectedReturnReason: any;
+    public Customers: any;
+    public SelectedCustomer: any;
+    public SelectedSalesOrder: SalesOrder;
+    public SelectedSalesOrderDetails: any[] = [];
+    public SalesReturnDetails: SalesReturnItem[] = [];
+    public SalesReturn: SalesReturn;
+    public UpdateInventories: Inventory[] = [];
 
-    private ReturnAmount: number[] = [];
-    private TotalReturnAmount: number = 0;
-    private ReturnQuantity: number[] = [];
-    private TotalReturnQuantity: number = 0;
+    public ReturnAmount: number[] = [];
+    public TotalReturnAmount: number = 0;
+    public ReturnQuantity: number[] = [];
+    public TotalReturnQuantity: number = 0;
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast: ToastrService) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
             MRN: [''],

@@ -4,9 +4,9 @@ import { ApiService } from '../../api.service';
 @Injectable()
 export class LeaveSetupService {
 
-    private baseUrl: string = "SystemAdmin/api/LeaveSetup";
+    public baseUrl: string = "SystemAdmin/api/LeaveSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getLeavePolicies() {
         return await this.ApiService.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
@@ -56,10 +56,7 @@ export class LeaveSetupService {
     }
 
     async updateLeaveYear(data) {
-
-        let leavyear = await this.getdataToUpdate(data.key, 'GetLeaveYear');
-        leavyear = { ...leavyear, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, leavyear).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveYear`, data).toPromise();
     }
 
     async DeleteLeaveYear(leavyearId) {
@@ -101,9 +98,7 @@ export class LeaveSetupService {
 
     async updateLeaveDayType(data) {
 
-        let leavedaytype = await this.getdataToUpdate(data.key, 'Getleavedaytype');
-        leavedaytype = { ...leavedaytype, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveDayType`, leavedaytype).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveDayType`, data).toPromise();
     }
 
     async DeleteLeaveDayType(leavedaytypeId) {

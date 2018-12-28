@@ -9,7 +9,7 @@ import { PayrollSetupService } from '../../../../core';
 export class PayrollyearComponent implements OnInit {
 
     public payrollYear: any;
-    private updatingYear: any;
+    public updatingYear: any;
 
     constructor(public payrollsetupservice: PayrollSetupService) { }
 

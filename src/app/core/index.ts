@@ -20,3 +20,5 @@ export * from './Services/HRM/systemadministration.services';
 export * from './Services/Inventory/Inventorysystem.service';
 export * from './Services/Pharmacy/pharmacy.service';
 export * from './Services/SuperAdmin/superadminservice.service';
+export * from './Services/Security/user.service';
+export * from './Services/ETracker/etrackeruser.service';

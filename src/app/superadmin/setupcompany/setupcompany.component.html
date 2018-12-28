@@ -67,16 +67,16 @@
                 Company Name
               </label>
               <div class="col-3">
-                <input class="form-control m-input" type="text" formControlName="name">
+                <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
               </div>
               <label for="example-search-input" class="col-2 col-form-label">
-                No Of Employee
+                No of Employees
               </label>
               <div class="col-2">
-                <input class="form-control m-input" type="text" formControlName="numberOfEmployees">
+                <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
               </div>
               <div class="col-3">
-                <button type="submit" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
+                <button type="submit" *ngIf="!companyId" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
                   Submit
                 </button>
                 <div *ngIf="companyId" class="m-demo-icon">
@@ -103,7 +103,7 @@
                   Human Resource Managment
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HrmInstalled; else InstallHrm">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HrmInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -111,7 +111,7 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallHrm *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -124,7 +124,7 @@
                   Hospital Managment System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HimsInstalled; else InstallHims">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HimsInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -132,7 +132,7 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallHims *ngIf="!HimsInstalled"  (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!HimsInstalled"  (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -145,7 +145,7 @@
                   Inventory Managment System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled; else InstallIms">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -153,7 +153,7 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallIms *ngIf="!ImsInstalled"  (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!ImsInstalled"  (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -166,7 +166,7 @@
                   Payroll Managment System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="PmsInstalled; else InstallPms">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="PmsInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -174,7 +174,7 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallPms *ngIf="!PmsInstalled"  (click)="onAddModule('Payroll Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!PmsInstalled"  (click)="onAddModule('Payroll Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -187,7 +187,7 @@
                   Accounting System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="AccountingSystemInstalled; else InstallAccountingSystem">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="AccountingSystemInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -195,7 +195,7 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallAccountingSystem *ngIf="!AccountingSystemInstalled"  (click)="onAddModule('Accounting System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!AccountingSystemInstalled"  (click)="onAddModule('Accounting System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -208,7 +208,7 @@
                   Lab Information System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled; else InstallLis">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -216,7 +216,49 @@
                       </span>
                     </span>
                   </button>
-                  <button #InstallLis *ngIf="!LisInstalled" (click)="onAddModule('Lab Information System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button *ngIf="!LisInstalled" (click)="onAddModule('Lab Information System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Inventory
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!InventoryInstalled" (click)="onAddModule('Inventory')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  e-Tracker
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="eTrackerInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -257,7 +299,9 @@
                       <label for="exampleInputEmail1">
                         Date Of Birth
                       </label>
-                      <input type="text" class="form-control" id="m_datepicker_1" readonly placeholder="Select date" formControlName="DOB" />                      </div>
+                      <dx-date-box [value]="bioChemistry?.collectionDate" formControlName="DOB">
+                      </dx-date-box>                                         
+                    </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group m-form__group">

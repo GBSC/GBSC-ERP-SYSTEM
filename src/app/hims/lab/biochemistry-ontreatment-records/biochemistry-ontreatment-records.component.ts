@@ -10,16 +10,16 @@ import { Spouse } from '../../../../app/core/Models/HIMS/spouse';
 })
 export class BiochemistryOntreatmentRecordsComponent implements OnInit {
 
-    private patients: any;
-    private spouse: Spouse;
-    private patient: any;
-    private tests: any;
-    private id: any;
+    public patients: any;
+    public spouse: Spouse;
+    public patient: any;
+    public tests: any;
+    public id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private biochemistryService: BioChemistryService,
-        private patientService: PatientService) {
+    constructor(public biochemistryService: BioChemistryService,
+        public patientService: PatientService) {
 
         this.tests = [];
     }

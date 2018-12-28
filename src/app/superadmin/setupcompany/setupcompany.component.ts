@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SuperadminserviceService } from '../../core';
+import { SuperadminserviceService } from '../../core/Services/SuperAdmin/superadminservice.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,25 +11,31 @@ import { SuperadminserviceService } from '../../core';
 })
 export class SetupcompanyComponent implements OnInit {
 
-    private companyForm: FormGroup;
+    public companyForm: FormGroup;
 
-    private systemAdminForm: FormGroup;
+    public systemAdminForm: FormGroup;
 
-    private companyId: number;
+    public company: any;
 
-    private HimsInstalled: boolean;
+    public companyId: number;
 
-    private HrmInstalled: boolean;
+    public HimsInstalled: boolean;
 
-    private ImsInstalled: boolean;
+    public HrmInstalled: boolean;
 
-    private PmsInstalled: boolean;
+    public ImsInstalled: boolean;
 
-    private AccountingSystemInstalled: boolean;
+    public PmsInstalled: boolean;
 
-    private LisInstalled: boolean;
+    public AccountingSystemInstalled: boolean;
 
-    constructor(private formBuilder: FormBuilder, private superAdminService: SuperadminserviceService) {
+    public LisInstalled: boolean;
+
+    public InventoryInstalled: boolean;
+
+    public eTrackerInstalled: boolean;
+
+    constructor(public route: ActivatedRoute, public formBuilder: FormBuilder, public superAdminService: SuperadminserviceService) {
 
         this.companyForm = this.formBuilder.group({
             'name': ['', Validators.required],
@@ -50,20 +57,45 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     ngOnInit() {
+
+
+        this.route.params.subscribe((params) => {
+            this.companyId = +params['id'];
+        });
+
+        if (this.companyId) {
+            this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
+                this.company = company;
+
+                for (let module of company.modules) {
+                    this.checkModulesInstalled(module);
+                }
+
+            })
+        }
+
     }
 
     async onAddCompany(value) {
-        let response: any = await this.superAdminService.addCompany(value);
-
-        this.companyId = response.companyID;
+        this.superAdminService.addCompany(value).subscribe(resp => {
+            console.log("Company Added");
+            this.companyId = resp.companyID;
+            this.superAdminService.addModule({ Name: "Security Admin", CompanyId: this.companyId, Code: "000", ModuleId: 0 }).subscribe();
+        });
     }
+
 
     async onAddModule(value) {
 
         var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
-        let response: any = await this.superAdminService.addModule(module);
+        this.superAdminService.addModule(module).subscribe(s => {
 
+            this.checkModulesInstalled(value);
+        })
+    }
+
+    checkModulesInstalled(value) {
         if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
@@ -82,6 +114,12 @@ export class SetupcompanyComponent implements OnInit {
         else if (value == "Lab Information System") {
             this.LisInstalled = true;
         }
+        else if (value == "Inventory") {
+            this.InventoryInstalled = true;
+        }
+        else if (value == "eTracker") {
+            this.eTrackerInstalled = true;
+        }
     }
 
     async onSubmitRegistration(value: SystemAdminRegistrationViewModel) {
@@ -89,7 +127,10 @@ export class SetupcompanyComponent implements OnInit {
         value.CompanyId = this.companyId;
         value.IsSystemAdmin = true;
 
-        let response: any = await this.superAdminService.registerAdmin(value);
+        this.superAdminService.registerAdmin(value).subscribe(resp => {
+
+            console.log("Admin registerd");
+        });
 
     }
 

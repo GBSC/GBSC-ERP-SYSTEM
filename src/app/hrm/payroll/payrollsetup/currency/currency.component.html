@@ -13,7 +13,7 @@
 					<div class="m-section__content" >
 						<dx-data-grid id="gridContainer" [dataSource]="currency" keyExpr="currencyId" (onRowInserted)="addCurrency($event)" (onRowUpdated)="updateCurrency($event)" (onRowRemoved)="deleteCurrency($event)"> 
 							<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
-								<dxo-popup title="Currency" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								<dxo-popup title="Currency" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
 							<dxo-header-filter [visible]="true"></dxo-header-filter>

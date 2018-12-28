@@ -61,6 +61,7 @@ import { City } from '../../Models/HRM/city';
 export class InventorysystemService {
 
     public readonly API_URL = 'inventory/api/';
+    public readonly TerritoryApi_Url = 'etracker/api/';
     constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
@@ -1825,34 +1826,34 @@ export class InventorysystemService {
 
     /***************************************For eTracker Reporting **********************************/
     getCitiesByUserAndRegion(regionid : number, userid : number) : Observable<City[]> {
-        return this.ApiService.get('' + regionid + '/' + userid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByUserAndRegion/' + regionid + '/' + userid);
     }
 
     getAreasByUserAndCity(cityid : number, userid : number) : Observable<Area[]> {
-        return this.ApiService.get('' + cityid + '/' + userid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByUserAndCity/' + cityid + '/' + userid);
     }
 
     getDistributorsByUserAndArea(areaid : number, userid : number) : Observable<Distributor[]> {
-        return this.ApiService.get('' + areaid + '/' + userid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByUserAndArea/' + areaid + '/' + userid);
     }
 
     getTerritoriesByUserAndDistributor(distributorId : number, userid : number) : Observable<Territory[]> {
-        return this.ApiService.get('' + distributorId + '/' + userid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByUserAndDistributor/' + distributorId + '/' + userid);
     }
 
     getSectionsByUserAndTerritory(territoryId : number, userid : number) : Observable<Territory[]> {
-        return this.ApiService.get('' + territoryId + '/' + userid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSectionsByUserAndTerritory/' + territoryId + '/' + userid);
     }
 
     getSubsectionsBySection(sectionid : number) : Observable<any[]> {
-        return this.ApiService.get('' + sectionid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSubsectionsBySection/' + sectionid);
     }
 
     getRegionByCity(cityid : number) : Observable<Region> {
-        return this.ApiService.get('' + cityid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetRegionByCity/' + cityid);
     }
 
     getCityByArea(areaid : number) : Observable<City> {
-        return this.ApiService.get('' + areaid);
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCityByArea/' + areaid);
     }
 }

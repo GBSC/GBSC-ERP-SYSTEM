@@ -102,7 +102,7 @@ export class ShopCensusSummaryComponent implements OnInit {
             });
 
         } else {
-
+            
         }
     }
 

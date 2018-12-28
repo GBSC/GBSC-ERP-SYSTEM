@@ -54,6 +54,7 @@ import { Supplier } from '../../Models/Inventory/Setup/Supplier';
 import { Unit } from '../../Models/Inventory/Setup/Unit';
 import { componentFactoryName } from '@angular/compiler';
 import { Transport } from '../../Models/Inventory/Setup/Transport';
+import { City } from '../../Models/HRM/city';
 
 
 @Injectable()
@@ -1820,5 +1821,38 @@ export class InventorysystemService {
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteUnit/' + id).toPromise();
         // console.log(x);
         // return x;
+    }
+
+    /***************************************For eTracker Reporting **********************************/
+    getCitiesByUserAndRegion(regionid : number, userid : number) : Observable<City[]> {
+        return this.ApiService.get('' + regionid + '/' + userid);
+    }
+
+    getAreasByUserAndCity(cityid : number, userid : number) : Observable<Area[]> {
+        return this.ApiService.get('' + cityid + '/' + userid);
+    }
+
+    getDistributorsByUserAndArea(areaid : number, userid : number) : Observable<Distributor[]> {
+        return this.ApiService.get('' + areaid + '/' + userid);
+    }
+
+    getTerritoriesByUserAndDistributor(distributorId : number, userid : number) : Observable<Territory[]> {
+        return this.ApiService.get('' + distributorId + '/' + userid);
+    }
+
+    getSectionsByUserAndTerritory(territoryId : number, userid : number) : Observable<Territory[]> {
+        return this.ApiService.get('' + territoryId + '/' + userid);
+    }
+
+    getSubsectionsBySection(sectionid : number) : Observable<any[]> {
+        return this.ApiService.get('' + sectionid);
+    }
+
+    getRegionByCity(cityid : number) : Observable<Region> {
+        return this.ApiService.get('' + cityid);
+    }
+
+    getCityByArea(areaid : number) : Observable<City> {
+        return this.ApiService.get('' + areaid);
     }
 }

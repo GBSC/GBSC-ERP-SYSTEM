@@ -58,8 +58,8 @@
               <label>
                 Region
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="DisableRegion" class="form-control m-input" (change)="onRegionChange($event)">
+                <option *ngFor="let region of Regions" [value]="SelectedRegion">{{region.name}}</option>
               </select>
             </div>
           </div>
@@ -68,8 +68,8 @@
               <label>
                 City
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="DisableCity" class="form-control m-input" (change)="onCityChange($event)">
+                <option *ngFor="let city of Cities" [value]="SelectedCity">{{city.name}}</option>
               </select>
             </div>
           </div>
@@ -78,8 +78,8 @@
               <label>
                 Area
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="DisableArea" class="form-control m-input" (change)="onAreaChange($event)">
+                <option *ngFor="let area of Areas" [value]="SelectedArea">{{area.name}}</option>
               </select>
             </div>
           </div>
@@ -88,7 +88,9 @@
               <label>
                 Distributor
               </label>
-              <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
+              <select [disabled]="DistributorDisable" class="form-control m-input" (change)="onDistributorChange($event)">
+                <option *ngFor="let distributor of Distributors" [value]="SelectedDistributor">{{distributor.name}}</option>
+              </select> 
             </div>
           </div>
   
@@ -99,8 +101,8 @@
               <label>
                 Territory
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="TerritoryDisable" class="form-control m-input" (change)="onTerritoryChange($event)">
+                <option *ngFor="let territory of Territories" [value]="SelectedTerritory">{{territory.name}}</option>
               </select> </div>
           </div>
   
@@ -109,8 +111,8 @@
               <label>
                 Section
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="SectionDisable" class="form-control m-input" (change)="onSectionChange($event)">
+                <option *ngFor="let section of Sections" [value]="SelectedSection">{{section.name}}</option>
               </select>
             </div>
           </div>
@@ -119,8 +121,8 @@
               <label>
                 Sub Section
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="SubsectionDisable" class="form-control m-input">
+                <option *ngFor="let subsection of Subsections">{{subsection.name}}</option>
               </select>
             </div>
           </div>
@@ -129,36 +131,31 @@
               <label>
                 DSF (Current)
               </label>
-              <select class="form-control m-input" (change)="selectZoomLevel($event)">
-                <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
+              <select [disabled]="DsfDisable" class="form-control m-input">
+                <option *ngFor="let dsf of DSFs">{{dsf.fullName}}</option>
               </select>
             </div>
           </div>
-          <div class="col-sm-2">
+          <!-- <div class="col-sm-2">
             <div class="form-group m-form__group">
               <label>
-                Last Status
+                Classification
               </label>
               <select class="form-control m-input" (change)="selectZoomLevel($event)">
                 <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
               </select>
             </div>
-          </div>
-          <div class="col-sm-2">
+          </div> -->
+          <!-- <div class="col-sm-2">
             <div class="form-group m-form__group">
               <label>
-                Header Group
+                Category
               </label>
               <select class="form-control m-input" (change)="selectZoomLevel($event)">
                 <option *ngFor="let level of zoomLevels" [value]="level">{{level}}</option>
               </select> </div>
-          </div>
-  
-  
+          </div> -->
         </div>
       </div>
-  
-  
     </div>
-  
   </div>

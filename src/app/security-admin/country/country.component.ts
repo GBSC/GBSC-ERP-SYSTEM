@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HrmsService } from '../../../app/core/Services/HRM/Setup/hrms.service';
+import { AuthService } from '../../core';
 
 @Component({
     selector: 'app-country',
@@ -9,29 +10,35 @@ import { HrmsService } from '../../../app/core/Services/HRM/Setup/hrms.service';
 })
 export class CountryComponent implements OnInit {
 
-    updatingModel: any;
+    private updatingModel: any;
     public countries: any;
 
-    constructor(public httpClient: HttpClient, public hrmService: HrmsService) { }
+    constructor(public httpClient: HttpClient, public hrmService: HrmsService, private authService : AuthService) { }
 
     async ngOnInit() {
 
-        this.countries = await this.hrmService.getAllCountries();
+        this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
+            this.countries = res;
+        });
     }
 
 
-    addNewCountry(Country) {
-        this.hrmService.addCountry(Country.data)
-        this.countries = this.hrmService.getAllCountries();
+    async addNewCountry(Country) {
+        // console.log(Country);
+        Country.data.companyId = this.authService.getUserCompanyId();
+        await this.hrmService.addCountry(Country.data);
+        this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
+            this.countries = res;
+        });
     }
 
     UpdatingCountry(value) {
-
         this.updatingModel = { ...value.oldData, ...value.newData };
+        this.updatingModel.companyId = this.authService.getUserCompanyId();
     }
 
-    UpdateCountry() {
-        this.hrmService.updateCountry(this.updatingModel);
+    async UpdateCountry() {
+        await this.hrmService.updateCountry(this.updatingModel);
     }
 
     deleteCountry(countr) {

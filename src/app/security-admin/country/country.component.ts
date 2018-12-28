@@ -41,8 +41,9 @@ export class CountryComponent implements OnInit {
         await this.hrmService.updateCountry(this.updatingModel);
     }
 
-    deleteCountry(countr) {
-        this.hrmService.DeleteCountry(countr.key);
+    async deleteCountry(countr) {
+        console.log(countr);
+        await this.hrmService.DeleteCountry(countr.key);
     }
 
 

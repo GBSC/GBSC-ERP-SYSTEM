@@ -33,22 +33,26 @@ export class ShopCensusSummaryComponent implements OnInit {
     private Subsections : any[] = [];
     private DSFs : Employee[] = [];
 
-    private SelectedRegion : Region;
-    private SelectedCity : any
-    private SelectedArea : Area;
-    private SelectedDistributor : Distributor;
-    private SelectedTerritory : Territory;
-    private SelectedSection : any;
+    private SelectedRegions : Region[] = [];
+    private SelectedCities : any[] = [];
+    private SelectedAreas : Area[] = [];
+    private SelectedDistributors : Distributor[] = [];
+    private SelectedTerritories : Territory[] = [];
+    private SelectedSections : any[] = [];
+    private SelectedSubsections : any[] = [];
+    private SelectedDSFs : Employee[] = [];
+
+    private IsAdmin : boolean = false;
+    private IsRsm : boolean = false;
+    private IsZsm : boolean = false;
 
 
     constructor(private Auth : AuthService, private InventoryService : InventorysystemService, private eTrackerUserService : eTrackerUserService) { }
 
     ngOnInit() {
 
-        // console.log("User Level: ", this.Auth.getUserLevel());
-
         if(this.Auth.getUserLevel() == 'Admin' || this.Auth.getUserLevel() == 'NSM' || this.Auth.getUserLevel() == 'HO') {
-            
+            this.IsAdmin = true;
             this.DisableRegion = false;
             this.DisableCity = false;
             this.DisableArea = false;
@@ -60,10 +64,39 @@ export class ShopCensusSummaryComponent implements OnInit {
 
             this.InventoryService.getRegionsByUser(this.Auth.getUserId()).subscribe((res : Region[]) => {
                 this.Regions = res;
+                this.SelectedRegions = res;
             });
 
-        } else if(this.Auth.getUserLevel() == 'RSM') {
+            this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res : City[]) => {
+                this.Cities = res;
+            });
 
+            this.InventoryService.getAreasByCompany(this.Auth.getUserCompanyId()).subscribe((res : Area[]) => {
+                this.Areas = res;
+            });
+
+            this.InventoryService.getDistributorsByCompany(this.Auth.getUserCompanyId()).subscribe((res : Distributor[]) => {
+                this.Distributors = res;
+            });
+
+            this.InventoryService.getTerritoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res : Territory[]) => {
+                this.Territories = res;
+            });
+
+            this.InventoryService.getSectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+                this.Sections = res;
+            });
+
+            this.InventoryService.getSubsectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) =>{
+                this.Subsections = res;
+            });
+
+            this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res : Employee[]) => {
+                this.DSFs = res;
+            })
+
+        } else if(this.Auth.getUserLevel() == 'RSM') {
+            this.IsRsm = true;
             this.DisableCity = false;
             this.DisableArea = false;
             this.DistributorDisable = false;
@@ -74,14 +107,43 @@ export class ShopCensusSummaryComponent implements OnInit {
 
             this.InventoryService.getCitiesByUser(this.Auth.getUserId()).subscribe((res : any[]) => {
                 this.Cities = res;
+                this.SelectedCities = res;
                 this.InventoryService.getRegionByCity(this.Cities[0].regionId).subscribe((res : Region) => {
                     this.Regions = [res];
-                    this.SelectedRegion = res;
+                    this.SelectedRegions = [res];
+                });
+                this.Cities.forEach(city => {
+                    this.InventoryService.getAreasByCity(city.cityId).subscribe((res : Area[]) => {
+                        this.Areas = res;
+                        this.Areas.forEach(area => {
+                            this.InventoryService.getDistributorsByArea(area.areaId).subscribe((res : Distributor[]) => {
+                                this.Distributors = res;
+                                this.Distributors.forEach(distributor => {
+                                    this.InventoryService.getTerritoriesByDistributor(distributor.distributorId).subscribe((res : Territory[]) => {
+                                        this.Territories = res;
+                                        this.Territories.forEach(territory => {
+                                            this.InventoryService.getSectionsByTerritory(territory.territoryId).subscribe((res : any[]) => {
+                                                this.Sections = res;
+                                                this.Sections.forEach(section => {
+                                                    this.InventoryService.getSubsectionsBySection(section.sectionId).subscribe((res : any[]) => {
+                                                        this.Subsections = res;
+                                                    });
+                                                    this.eTrackerUserService.getUsersBySection(section.sectionId).subscribe((res : Employee[]) => {
+                                                        this.DSFs = res;
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
                 });
             });
 
         } else if(this.Auth.getUserLevel() == 'ZSM') {
-
+            this.IsZsm = true;
             this.DisableArea = false;
             this.DistributorDisable = false;
             this.TerritoryDisable = false;
@@ -91,69 +153,81 @@ export class ShopCensusSummaryComponent implements OnInit {
 
             this.InventoryService.getAreasByUser(this.Auth.getUserId()).subscribe((res : Area[]) => {
                 this.Areas = res;
-                this.InventoryService.getCityByArea(res[0].areaId).subscribe((res : City) => {
-                    this.Cities = [res];
-                    this.SelectedCity = res;
-                    this.InventoryService.getRegionByCity(res.regionId).subscribe((res : Region) => {
-                        this.Regions = [res];
-                        this.SelectedRegion = res;
+                this.SelectedAreas = res;
+                this.InventoryService.getCityByArea(res[0].areaId).subscribe((res1 : City) => {
+                    this.Cities = [res1];
+                    this.SelectedCities = [res1];
+                    this.InventoryService.getRegionByCity(res1.regionId).subscribe((res2 : Region) => {
+                        this.Regions = [res2];
+                        this.SelectedRegions = [res2];
                     });
-                })
+                });
+                this.Areas.forEach(area => {
+                    this.InventoryService.getDistributorsByArea(area.areaId).subscribe((res : Distributor[]) => {
+                        this.Distributors = res;
+                        this.Distributors.forEach(distributor => {
+                            this.InventoryService.getTerritoriesByDistributor(distributor.distributorId).subscribe((res : Territory[]) => {
+                                this.Territories = res;
+                                this.Territories.forEach(territory => {
+                                    this.InventoryService.getSectionsByTerritory(territory.territoryId).subscribe((res : any[]) => {
+                                        this.Sections = res;
+                                        this.Sections.forEach(section => {
+                                            this.InventoryService.getSubsectionsBySection(section.sectionId).subscribe((res : any[]) => {
+                                                this.Subsections = res;
+                                            });
+                                            this.eTrackerUserService.getUsersBySection(section.sectionId).subscribe((res : Employee[]) => {
+                                                this.DSFs = res;
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
             });
 
         } else {
-            
+
         }
     }
 
-    onRegionChange(value) {
-        console.log(value);
-        
-        this.InventoryService.getCitiesByUserAndRegion(value, this.Auth.getUserId()).subscribe((res : any[]) => {
-            this.Cities = res;
-            this.SelectedRegion = this.Regions.find(a => a.regionId == value);
+    onRegionChange(value : number) {
+        this.SelectedCities = this.Cities.filter(a => a.regionId == value);
+    }
+
+    onCityChange(value : number) {
+        this.SelectedAreas = this.Areas.filter(a => a.cityId == value);
+    }
+
+    onAreaChange(value : number) {
+        this.InventoryService.getDistributorsByArea(value).subscribe((res : Distributor[]) => {
+            this.SelectedDistributors = res;
         });
     }
 
-    onCityChange(value) {
-        this.InventoryService.getAreasByUserAndCity(value, this.Auth.getUserId()).subscribe((res : Area[]) => {
-            this.Areas = res;
-            this.SelectedCity = this.Cities.find(a => a.cityId == value);
-        });
+    onDistributorChange(value : number) {
+        this.SelectedTerritories = this.Territories.filter(a => a.distributorId == value);
     }
 
-    onAreaChange(value) {
-        this.InventoryService.getDistributorsByUserAndArea(value, this.Auth.getUserId()).subscribe((res : Distributor[]) => {
-            this.Distributors = res;
-            this.SelectedArea = this.Areas.find(a => a.areaId == value);
-        });
+    onTerritoryChange(value : number) {
+        this.SelectedSections = this.Sections.filter(a => a.territoryId == value);
     }
 
-    onDistributorChange(value) {
-        this.InventoryService.getTerritoriesByUserAndDistributor(value, this.Auth.getUserId()).subscribe((res : Territory[]) => {
-            this.Territories = res;
-            this.SelectedDistributor = this.Distributors.find(a => a.distributorId == value);
-        });
-    }
-
-    onTerritoryChange(value) {
-        this.InventoryService.getSectionsByUserAndTerritory(value, this.Auth.getUserId()).subscribe((res : Territory[]) => {
-            this.Sections = res;
-            this.SelectedTerritory = this.Territories.find(a => a.territoryId == value);
-        });
-    }
-
-    onSectionChange(value) {
-        this.SelectedSection = this.Sections.find(a => a.sectionId == value);
-        this.eTrackerUserService.getUsersBySection(value).subscribe((res : Employee[]) => {
-            this.DSFs = res;
-        });
-        this.InventoryService.getSubsectionsBySection(value).subscribe((res : any[]) => {
-            this.Subsections = res;
-        });
+    onSectionChange(value : number) {
+        this.SelectedSubsections = this.Subsections.filter(a => a.sectionId == value);
+        this.SelectedDSFs = this.DSFs.filter(a => a.sectionId == value);
     }
 
     toggleFilter() {
         this.showHideFilter = !this.showHideFilter;
+    }
+
+    filterFromDate(value : Date) {
+        console.log(value);
+    }
+
+    filterToDate(value : Date) {
+        console.log(value);
     }
 }

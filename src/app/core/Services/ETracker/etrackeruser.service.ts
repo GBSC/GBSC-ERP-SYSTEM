@@ -60,6 +60,10 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }
 
+    GetSalesUsersByCompany(companyId : number) : Observable<Employee[]> {
+        return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
+    }
+
     getAssignedSubsectionsBySection(sectionid, userid) {
         return this.ApiService.get(this.Url + 'Territory/GetAssignedSubsectionsBySection/' + sectionid + '/' + userid);
     }

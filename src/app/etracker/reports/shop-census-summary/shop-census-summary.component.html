@@ -42,7 +42,7 @@
               <label>
                 Date
               </label>
-              <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
+              <input #FromDate class="form-control m-input" type="date" (change)="filterFromDate(FromDate.value)">
             </div>
           </div>
           <div class="col-sm-2">
@@ -50,7 +50,7 @@
               <label>
                 Time
               </label>
-              <input class="form-control m-input" type="date" (change)="filterToDate($event)"> </div>
+              <input #ToDate class="form-control m-input" type="date" (change)="filterToDate(ToDate.value)"> </div>
           </div>
   
           <div class="col-sm-2">
@@ -58,8 +58,9 @@
               <label>
                 Region
               </label>
-              <select [disabled]="DisableRegion" class="form-control m-input" (change)="onRegionChange($event)">
-                <option *ngFor="let region of Regions" [value]="SelectedRegion">{{region.name}}</option>
+              <select [disabled]="DisableRegion" #Region class="form-control m-input" (change)="onRegionChange(Region.value)">
+                <option class='option' disabled selected>Select Region</option>
+                <option class='option' *ngFor="let region of SelectedRegions" [value]="region.regionId">{{region.name}}</option>
               </select>
             </div>
           </div>
@@ -68,8 +69,9 @@
               <label>
                 City
               </label>
-              <select [disabled]="DisableCity" class="form-control m-input" (change)="onCityChange($event)">
-                <option *ngFor="let city of Cities" [value]="SelectedCity">{{city.name}}</option>
+              <select [disabled]="DisableCity" #City class="form-control m-input" (change)="onCityChange(City.value)">
+                <option class='option' disabled selected>Select City</option>
+                <option class='option' *ngFor="let city of SelectedCities" [value]="city.cityId">{{city.name}}</option>
               </select>
             </div>
           </div>
@@ -78,8 +80,9 @@
               <label>
                 Area
               </label>
-              <select [disabled]="DisableArea" class="form-control m-input" (change)="onAreaChange($event)">
-                <option *ngFor="let area of Areas" [value]="SelectedArea">{{area.name}}</option>
+              <select [disabled]="DisableArea" #Area class="form-control m-input" (change)="onAreaChange(Area.value)">
+                <option class='option' disabled selected>Select Area</option>
+                <option class='option' *ngFor="let area of SelectedAreas" [value]="area.areaId">{{area.name}}</option>
               </select>
             </div>
           </div>
@@ -88,8 +91,9 @@
               <label>
                 Distributor
               </label>
-              <select [disabled]="DistributorDisable" class="form-control m-input" (change)="onDistributorChange($event)">
-                <option *ngFor="let distributor of Distributors" [value]="SelectedDistributor">{{distributor.name}}</option>
+              <select [disabled]="DistributorDisable" #Distributor class="form-control m-input" (change)="onDistributorChange(Distributor.value)">
+                <option class='option' disabled selected>Select Distributor</option>
+                <option class='option' *ngFor="let distributor of SelectedDistributors" [value]="distributor.distributorId">{{distributor.name}}</option>
               </select> 
             </div>
           </div>
@@ -101,8 +105,9 @@
               <label>
                 Territory
               </label>
-              <select [disabled]="TerritoryDisable" class="form-control m-input" (change)="onTerritoryChange($event)">
-                <option *ngFor="let territory of Territories" [value]="SelectedTerritory">{{territory.name}}</option>
+              <select [disabled]="TerritoryDisable" #Territory class="form-control m-input" (change)="onTerritoryChange(Territory.value)">
+                <option class='option' disabled selected>Select Region</option>
+                <option class='option' *ngFor="let territory of SelectedTerritories" [value]="territory.territoryId">{{territory.name}}</option>
               </select> </div>
           </div>
   
@@ -111,8 +116,9 @@
               <label>
                 Section
               </label>
-              <select [disabled]="SectionDisable" class="form-control m-input" (change)="onSectionChange($event)">
-                <option *ngFor="let section of Sections" [value]="SelectedSection">{{section.name}}</option>
+              <select [disabled]="SectionDisable" #Section class="form-control m-input" (change)="onSectionChange(Section.value)">
+                <option class='option' disabled selected>Select Section</option>
+                <option class='option' *ngFor="let section of SelectedSections" [value]="section.sectionId">{{section.name}}</option>
               </select>
             </div>
           </div>
@@ -121,8 +127,9 @@
               <label>
                 Sub Section
               </label>
-              <select [disabled]="SubsectionDisable" class="form-control m-input">
-                <option *ngFor="let subsection of Subsections">{{subsection.name}}</option>
+              <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input">
+                <option class='option' disabled selected>Select Subsection</option>
+                <option class='option' *ngFor="let subsection of SelectedSubsections" [value]="subsection.subsectionId">{{subsection.name}}</option>
               </select>
             </div>
           </div>
@@ -131,8 +138,9 @@
               <label>
                 DSF (Current)
               </label>
-              <select [disabled]="DsfDisable" class="form-control m-input">
-                <option *ngFor="let dsf of DSFs">{{dsf.fullName}}</option>
+              <select [disabled]="DsfDisable" #DSF class="form-control m-input">
+                <option class='option' disabled selected>Select DSF</option>
+                <option class='option' *ngFor="let dsf of SelectedDSFs" [value]="dsf.userId">{{dsf.fullName}}</option>
               </select>
             </div>
           </div>

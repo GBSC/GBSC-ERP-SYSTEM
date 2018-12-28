@@ -61,13 +61,48 @@ export class AssignrosterComponent implements OnInit {
     }
     addOffDaysList(value){
         this.calendarForm.value.Daysoffs = value;
-        delete this.calendarForm.value.Dayoff;
-        delete this.calendarForm.value.Remarks;
+         delete this.calendarForm.value.Dayoff;
+         delete this.calendarForm.value.Remarks;
         this.Daysoffs = this.calendarForm.value; 
-       // this.offdays =  this.offdays.Daysoffs.map(d => d);
+      // // this.offdays =  this.offdays.Daysoffs.map(d => d);
          console.log(this.Daysoffs);
          
     }
+ 
+
+
+
+
+      public inputvaluelist : any = [ ];
+   
+ 
+      changeremarks(e ,i){
+        this.inputvaluelist[i].Remarks = e.target.value
+      }
+ 
+       
+  click(formatDate , todate)
+  {
+        var currentDate = new Date(formatDate.value);
+        var endDate = new Date(todate.value);
+        //   let counter = 0;
+        while(currentDate <= endDate) {
+            currentDate = new Date(currentDate.setDate(currentDate.getDate()+1));
+            let a : any = {
+                Dayoff : this.formatDate(new Date(currentDate)),
+                Remarks : 'On'
+            };
+            this.inputvaluelist.push(a); 
+            //   counter ++;
+        }
+        console.log(this.inputvaluelist);
+
+        return this.inputvaluelist;
+  }
+
+
+ 
+    
 
     addrange(){
         let { value } = this.calendarForm;
@@ -135,6 +170,12 @@ export class AssignrosterComponent implements OnInit {
 
     async deleteassignroster(value) {
         await this.attendancesetupservice.DeleteAsignRoster(value.key);
+    }
+
+    exportRowData(value){
+        console.log(value);
+        console.log(value.data)
+        console.log(value.key)
     }
 
 }

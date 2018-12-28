@@ -58,6 +58,7 @@
                keyExpr="assignRosterId"
                (onRowInserted)="addassignroster($event)"
                  [masterDetail]="{ enabled: true, template: 'detail' }"
+                 [masterDetail]="{ enabled: true, template: 'sub-detail' }"
                (onRowUpdating)="updatingAssignroster($event)"
                (onRowUpdated)="updateassignroster()"
                (onRowRemoved)="deleteassignroster($event)">
@@ -76,7 +77,7 @@
                 </dxo-pager>    
                 <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
                 <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column> 
-                <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column> 
+                <dxi-column dataField="toDate" dataType="date" format="shortDate" (change)="fromDate($event)"></dxi-column> 
                 <dxi-column dataType="boolean" dataField="isDefaultRoster" caption ="Default Roster"></dxi-column> 
                 <dxi-column dataField="rosterId" caption="Roster">
                     <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
@@ -93,14 +94,25 @@
                           <dx-button text="Select User" (onClick)="showInfo(employee)"></dx-button>
                       </div>
                   </div> 
+                  <dxi-column caption="Export" cellTemplate="chartCellTemplateExport" ></dxi-column>
+                    <div *dxTemplate="let d of 'chartCellTemplateExport'">
+                      <div class="chart-cell">
+                          <dx-button text="Export" (click)="exportRowData(d)"></dx-button>
+                      </div>
+                  </div> 
                   <div *dxTemplate="let x of 'detail'">
                         <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true">
-                          <dxo-export [enabled]="true" fileName="EmployeesDetail" [allowExportSelectedData]="true"></dxo-export>
-                         <dxi-column dataField="userId" caption="Users">
+                          <!-- <dxo-export [enabled]="true" fileName="EmployeesDetail" [allowExportSelectedData]="true"></dxo-export> -->
+                         <dxi-column dataField="userId" caption="Users"  [width]="230">
                             <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                             </dxo-lookup>
                           </dxi-column> 
                           </dx-data-grid>
+                          <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true"  [width]="230">
+                              <!-- <dxo-export [enabled]="true" fileName="EmployeesDetail" [allowExportSelectedData]="true"></dxo-export> -->
+                              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="shortDate"></dxi-column> 
+                              <dxi-column dataField="remarks" caption="Remarks" ></dxi-column> 
+                            </dx-data-grid>
                   </div>
               </dx-data-grid>  
 
@@ -177,7 +189,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
+                  <!-- <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
                     <div class="m-portlet__body">
                       <div class="form-group row">
                         <div class="form-group col-lg-5">
@@ -215,8 +227,7 @@
                                     <button type="button" (click)="remove(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
                                         <i class="la la-trash-o"></i>
                                       </button>
-                                  <!-- <button type="button" (click)="remove(i)" class="btn btn-primary">-</button> -->
-                                </td>
+                                 </td>
                               </tr>
                             </tbody>
                           </table>
@@ -232,7 +243,58 @@
                         Cancel
                       </button>
                     </div>
-                  </form>
+                  </form> -->
+                  <div class="form-group row">
+                    <div class="form-group col-lg-5">
+                      <label for="exampleInputEmail1"> From Date </label>
+                      <input class="form-control m-input m-input--solid" type="date" #fromdate>
+                    </div>
+                    <div class="form-group col-lg-5">
+                      <label for="exampleInputEmail1"> To Date </label>
+                      <input class="form-control m-input m-input--solid" type="date" #todate>
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <button type="button" (click)="click(fromdate , todate)"  class="btn btn-primary">
+                            Click
+                          </button>
+                    </div>
+                  </div>
+            <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="calendarForm">
+              <table class="table table-bordered m-table m-table--border-success">
+                <thead>
+                  <tr>
+                     
+                    <th>
+                    Days  
+                    </th>
+                    <th>
+                      Remarks  
+                      </th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr *ngFor="let day of inputvaluelist ;let i = index ">
+                      <td>
+                        <input type="text" [value]="day.Dayoff" formControlName="Dayoff" >
+                      </td>
+                      <td>
+                        <input type="text"  [value]="day.Remarks" value="on" placeholder="on" formControlName="Remarks" (change)="changeremarks($event , i)">
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="modal-footer">
+                  <button type="button" (click)="addOffDaysList(inputvaluelist)" data-dismiss="modal"  class="btn btn-primary">
+                    Submit
+                  </button>
+                  <button type="button" data-dismiss="modal" class="btn btn-secondary">
+                    Cancel
+                  </button>
+                </div>
+
+            </form>
                 </div>
               </div>
             </div>

@@ -37,6 +37,10 @@ import { VisitSummaryReportComponent } from './reports/visit-summary-report/visi
 
 @NgModule({
     imports: [
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
+        }),
+        AgmSnazzyInfoWindowModule,
         CommonModule,
         Select2Module,
         ETrackerRoutingModule,
@@ -44,11 +48,7 @@ import { VisitSummaryReportComponent } from './reports/visit-summary-report/visi
         ReactiveFormsModule,
         DxButtonModule,
         DevExtremeModule,
-        DxDataGridModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
-        }),
-        AgmSnazzyInfoWindowModule,
+        DxDataGridModule
     ],
     declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, OrderSummaryComponent, OrderDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent],
     providers: [eTrackerUserService]

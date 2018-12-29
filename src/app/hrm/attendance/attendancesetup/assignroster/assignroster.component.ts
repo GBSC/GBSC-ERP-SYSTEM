@@ -47,7 +47,7 @@ export class AssignrosterComponent implements OnInit {
         this.assignrosters = await this.attendancesetupservice.getAsignRosters();
         console.log(this.assignrosters);
 
-        this.rosterAsign = await this.attendancesetupservice.getAsignRoster(20);
+        // this.rosterAsign = await this.attendancesetupservice.getAsignRoster( );
 
         this.roster = await this.attendancesetupservice.getRosters();
 

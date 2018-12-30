@@ -9,34 +9,34 @@ import { SystemAdministrationService } from '../../core';
 })
 export class CompanyComponent implements OnInit {
 
-    public companies: any;
-    public updatingcompany: any;
+    // public companies: any;
+    // public updatingcompany: any;
     constructor(public SystemAdministrationServiceobj: SystemAdministrationService) {
 
     }
 
     async ngOnInit() {
 
-        this.companies = await this.SystemAdministrationServiceobj.getCompanies();
+        // this.companies = await this.SystemAdministrationServiceobj.getCompanies();
     }
 
     async addCompany(value) {
-        await this.SystemAdministrationServiceobj.addCompany(value.data);
-        this.companies = await this.SystemAdministrationServiceobj.getCompanies();
+        // await this.SystemAdministrationServiceobj.addCompany(value.data);
+        // this.companies = await this.SystemAdministrationServiceobj.getCompanies();
     }
 
 
     async updatingCompany(value) {
-        this.updatingcompany = { ...value.oldData, ...value.newData };
+        // this.updatingcompany = { ...value.oldData, ...value.newData };
     }
 
     async updateCompany() {
-        await this.SystemAdministrationServiceobj.updateCompany(this.updatingcompany);
+        // await this.SystemAdministrationServiceobj.updateCompany(this.updatingcompany);
     }
 
 
     async deleteCompany(value) {
-        await this.SystemAdministrationServiceobj.deletCompany(value.key)
+        // await this.SystemAdministrationServiceobj.deletCompany(value.key);
     }
 
 }

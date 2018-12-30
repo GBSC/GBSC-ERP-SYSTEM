@@ -92,7 +92,7 @@ export class SetupcompanyComponent implements OnInit {
         this.superAdminService.addModule(module).subscribe(s => {
 
             this.checkModulesInstalled(value);
-        })
+        });
     }
 
     checkModulesInstalled(value) {

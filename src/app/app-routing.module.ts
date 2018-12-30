@@ -12,8 +12,8 @@ const routes: Routes = [
     { path: 'hrm', loadChildren: './hrm/hrm.module#HrmModule' },
     { path: 'inventory', loadChildren: './inventory/inventory.module#InventoryModule' },
     { path: 'pharmacy', loadChildren: './pharmacy/pharmacy.module#PharmacyModule' },
-    { path: 'finance', loadChildren: './finance/finance.module#FinanceModule'}
-    { path: 'etracker', loadChildren: './etracker/etracker.module#EtrackerModule' },
+    { path: 'finance', loadChildren: './finance/finance.module#FinanceModule'},
+    { path: 'etracker', loadChildren: './etracker/etracker.module#EtrackerModule' }
 ];
 
 

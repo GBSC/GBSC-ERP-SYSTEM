@@ -12,8 +12,9 @@
         <dx-data-grid id="gridContainer" [dataSource]="sections" keyExpr="sectionId" (onRowInserted)="addSection($event)"
           (onRowUpdated)="updateSection($event)" (onRowRemoved)="deleteSection($event)">
           <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+              <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
             <dxo-popup title="Add Section" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false"
-              [closeOnOutsideClick]="true" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+              [closeOnOutsideClick]="true"></dxo-popup>
           </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>

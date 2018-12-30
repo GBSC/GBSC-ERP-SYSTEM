@@ -42,7 +42,7 @@ export class LocatorComponent implements OnInit {
     public mapHelper: any;
     public showSpinner: boolean = false;
 
-    constructor(private eTrackerUserService: eTrackerUserService) { }
+    constructor(public eTrackerUserService: eTrackerUserService) { }
 
     ngOnInit() {
         this.mapHelper = this.eTrackerUserService.mapHelper;

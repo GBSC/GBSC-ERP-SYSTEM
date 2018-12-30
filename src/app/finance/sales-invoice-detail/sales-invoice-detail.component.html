@@ -16,8 +16,6 @@
                     <dx-data-grid id="gridContainer"
                     (onToolbarPreparing)="onToolbarPreparing($event)"
                      keyExpr="financeSalesInvoiceId" 
-                     (onRowUpdating)="updatingsalesInvoice($event)"
-                     (onRowUpdated)="updatesalesInvoice()"
                      [columnAutoWidth]="true"
                     [dataSource]="salesInvoice" 
                     (onSelectionChanged)="selectionChanged($event)"

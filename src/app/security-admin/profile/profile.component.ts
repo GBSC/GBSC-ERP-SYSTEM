@@ -10,16 +10,16 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    private userName : string = '';
-    private userLevel : string = '';
-    private UpdateUserProfileForm : FormGroup;
+    public userName : string = '';
+    public userLevel : string = '';
+    public UpdateUserProfileForm : FormGroup;
     private User : any;
     // private Cities : any[] = [];
     // private UserCity : any;
     // private Roles : any[] = [];
     // private UserRole : any;
 
-    private UpdatePasswordForm : FormGroup;
+    public UpdatePasswordForm : FormGroup;
 
     constructor(private authservice : AuthService, private formBuilder : FormBuilder, private EmployeeService : EmployeeService, private HrmsService : HrmsService, private SystemAdminService : SystemAdministrationService, private UserService : UserService, private Toastr : ToastrService) {
         this.UpdateUserProfileForm = this.formBuilder.group({

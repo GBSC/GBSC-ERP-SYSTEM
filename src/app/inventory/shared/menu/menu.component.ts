@@ -10,7 +10,7 @@ declare let mLayout: any;
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, AfterViewInit {
-    private accessibleFeatures : string[] = [];
+    public accessibleFeatures : string[] = [];
 
     constructor(private AuthService : AuthService) { }
 

@@ -148,7 +148,7 @@
                       </label>
                       <select class="form-control m-input" formControlName="FinanceSalesInvoiceId">
                         <option value="" disabled selected>-- Select Sales Invoice --</option>
-                        <option *ngFor="let invoicesale of salesInvoice" [value]="invoicesale.FinanceSalesInvoiceId">{{invoicesale.totalAmount}}</option>
+                        <option *ngFor="let invoicesale of SalesInvoice" [value]="invoicesale.FinanceSalesInvoiceId">{{invoicesale.totalAmount}}</option>
                       </select>
                     </div>
                   </div>

@@ -17,15 +17,15 @@ export class UnitComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: Unit) => {
             this.Units = res;
         });
     }
 
     AddUnit(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddUnit(value.data).subscribe(res => {
             this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: Unit) => {
                 this.Units = res;
@@ -34,6 +34,7 @@ export class UnitComponent implements OnInit {
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 

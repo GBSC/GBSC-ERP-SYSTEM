@@ -22,7 +22,6 @@ export interface Employee {
     UserLanguages: Array<any>,
     userId: any,
     roleId : number,
-    role : Role
-
-
+    role : Role,
+    sectionId : number,
 }

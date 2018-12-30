@@ -118,7 +118,7 @@ export class SalesusersComponent implements OnInit {
             this.sections = sec;
         });
 
-        this.userService.getUsers(this.loggedinUserId).subscribe(u => {
+        this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
 
             this.users = u;
         });
@@ -129,15 +129,17 @@ export class SalesusersComponent implements OnInit {
 
     }
 
+    sectionChange(value){
+        this.sectionId = value;
+    }
+
     onUserSelect(userId) {
-
         this.userId = userId;
-
         this.userService.getUser(this.userId).subscribe(resp => {
             this.sectionId = resp.sectionId;
             this.userLevel = resp.userLevel;
+            console.log(this.sectionId);
         });
-
     }
 
     changed(data: { value: string[] }) {
@@ -233,7 +235,6 @@ export class SalesusersComponent implements OnInit {
 
     onSectionChange(id) {
         this.sectionId = id;
-
         if (this.sectionId)
             this.userService.getAssignedSubsectionsBySection(this.sectionId, this.userId).subscribe(resp => {
                 this.assignedSubsections = resp;

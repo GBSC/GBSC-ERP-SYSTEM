@@ -90,6 +90,10 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
     }
 
+    getBranchesByComapnyId(compid : number) : Observable<Branch[]>{
+        return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
+    }
+
     async addBranches(branch: Branch) {
         return await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
     }
@@ -104,6 +108,10 @@ export class SystemAdministrationService {
 
     async getDepartments() {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
+    }
+
+    getDepartmentsByCompanyId(compid : number) : Observable<Department[]> {
+        return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
     async addDepartment(department: Department) {

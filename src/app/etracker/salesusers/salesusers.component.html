@@ -117,7 +117,7 @@
               <label class="col-4" style="padding-top: 6px;">
                 Sections
               </label>
-              <select #mySelect class="form-control" id="section" (change)="sectionChange(mySelect.value)" [value]="sectionId">
+              <select #mySelect class="form-control" id="section" class="col-8"  (change)="sectionChange(mySelect.value)" [value]="sectionId">
                 <option *ngFor="let section of sections" [value]="section.sectionId">{{section.name}}</option>
               </select>
               <!-- <dx-select-box #sectioncb class="col-8" [items]="sections" displayExpr="name" valueExpr="sectionId"
@@ -133,7 +133,7 @@
           <button type="button" class="btn btn-secondary active" data-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-brand" (click)="assignUserLevel()">
+          <button type="button" class="btn btn-brand"  data-dismiss="modal" (click)="assignUserLevel()">
             Save
           </button>
         </div>

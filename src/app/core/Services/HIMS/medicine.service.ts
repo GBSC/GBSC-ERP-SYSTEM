@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class MedicineService {
 
-    private Url = "Hims/api/Medicine/"
+    public Url = "Hims/api/Medicine/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getMedicines(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllMedicines");

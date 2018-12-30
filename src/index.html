@@ -16,7 +16,7 @@
 		<link href="./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="./assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="./assets/demo/demo7/base/style.bundle.css" rel="stylesheet" type="text/css" />
-		<link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" />
+		<!-- <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" /> -->
 			</head>
 
 	<!-- <div class="m-page-loader m-page-loader--non-block" style="margin-left: -80px; margin-top: -20px;">
@@ -30,21 +30,42 @@
 		</div>  
 	</div> -->
 	<!-- end::Page loader -->         <!-- end::Body -->
-	<body class="m-page--loading-non-block m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default"  ></body>	<!-- end::Body -->
-<!-- <script>
-	function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('#imagePreview').css('background-image', 'url('+e.target.result +')');
-            $('#imagePreview').hide();
-            $('#imagePreview').fadeIn(650);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#imageUpload").change(function() {
-    readURL(this);
-});
-</script> -->
+	<body class="m-page--loading-non-block m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default igx-typography"  ></body>	<!-- end::Body -->
+ <script>
+	$(document).ready( function() {
+    	$(document).on('change', '.btn-file :file', function() {
+		var input = $(this),
+			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+		input.trigger('fileselect', [label]);
+		});
+
+		$('.btn-file :file').on('fileselect', function(event, label) {
+		    
+		    var input = $(this).parents('.input-group').find(':text'),
+		        log = label;
+		    
+		    if( input.length ) {
+		        input.val(log);
+		    } else {
+		        if( log ) alert(log);
+		    }
+	    
+		});
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        
+		        reader.onload = function (e) {
+		            $('#img-upload').attr('src', e.target.result);
+		        }
+		        
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+
+		$("#imgInp").change(function(){
+		    readURL(this);
+		}); 	
+	});
+</script>
 	</html>

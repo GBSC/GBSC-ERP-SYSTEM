@@ -11,11 +11,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
     styleUrls: ['./invoice-return-view.component.scss']
 })
 export class InvoiceReturnViewComponent implements OnInit {
-    private CurrentDate: Date = new Date();
-    private ReturnViewForm: FormGroup;
-    private InvoiceReturns: any[] = [];
+    public CurrentDate: Date = new Date();
+    public ReturnViewForm: FormGroup;
+    public InvoiceReturns: any[] = [];
 
-    constructor(private PatientService: PatientService, private Toastr: ToastrService, private FormBuilder: FormBuilder) {
+    constructor(public PatientService: PatientService, public Toastr: ToastrService, public FormBuilder: FormBuilder) {
         this.ReturnViewForm = this.FormBuilder.group({
             MRN: [''],
             ReturnNumber: [''],

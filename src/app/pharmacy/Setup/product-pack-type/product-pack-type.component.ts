@@ -12,10 +12,10 @@ export class ProductPackTypeComponent implements OnInit {
 
     @Output() UpdatePackTypeInInventoryItemComponent = new EventEmitter<any>();
 
-    private PackTypes: PackType;
-    private UpdatedModel: any;
+    public PackTypes: PackType;
+    public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

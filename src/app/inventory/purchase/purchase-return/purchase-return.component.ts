@@ -7,11 +7,11 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./purchase-return.component.scss']
 })
 export class PurchaseReturnComponent implements OnInit {
-    private GRN: any;
-    private ReturnReason: any;
-    private PurchaseReturn: any;
+    public GRN: any;
+    public ReturnReason: any;
+    public PurchaseReturn: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

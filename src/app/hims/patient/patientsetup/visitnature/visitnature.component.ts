@@ -9,7 +9,7 @@ import { PatientService } from '../../../../core';
 })
 export class VisitnatureComponent implements OnInit {
     public visitnatr: any;
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     async ngOnInit() {
         await this.PatientServiceobj.GetVisitNatures();

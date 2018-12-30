@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { ReturnReason } from '../../../core/Models/Inventory/Setup/ReturnReason';
 
 @Component({
     selector: 'app-return-reason',
@@ -7,32 +8,41 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons: any;
-    private UpdatedModel: any;
+    public ReturnReasons: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.ReturnReasons = await this.InventoryService.GetReturnReasons();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetReturnReasonsByCompany(this.CompanyId).subscribe((res: ReturnReason) => {
+            this.ReturnReasons = res;
+        });
     }
 
-    async AddReturnReason(value) {
-        await this.InventoryService.AddReturnReason(value.data);
-        this.ReturnReasons = await this.InventoryService.GetReturnReasons();
+    AddReturnReason(value) {
+        this.InventoryService.AddReturnReason(value.data).subscribe(res => {
+            this.InventoryService.GetReturnReasonsByCompany(this.CompanyId).subscribe((res: ReturnReason) => {
+                this.ReturnReasons = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateReturnReason() {
-        return await this.InventoryService.UpdateReturnReason(this.UpdatedModel);
+    UpdateReturnReason() {
+        return this.InventoryService.UpdateReturnReason(this.UpdatedModel).subscribe();
     }
 
-    async DeleteReturnReason(value) {
-        return await this, this.InventoryService.DeleteReturnReason(value.key);
+    DeleteReturnReason(value) {
+        return this, this.InventoryService.DeleteReturnReason(value.key).subscribe();
     }
 
 }

@@ -8,12 +8,12 @@ import { InventorysystemService } from '../../../core';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    private PurchaseOrder: any;
-    private Supplier: any;
-    private PurchaseIndent: any;
-    private User: any;
+    public PurchaseOrder: any;
+    public Supplier: any;
+    public PurchaseIndent: any;
+    public User: any;
 
-    // constructor(private formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService) {
+    // constructor(public formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService) {
     //     this.PurchaseOrderForm = this.formBuilder.group({
     //         'OrderDate': ['', Validators.required],
     //         'OrderNumber': ['', Validators.required],
@@ -24,7 +24,7 @@ export class PurchaseOrderComponent implements OnInit {
     //     });
     // }
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

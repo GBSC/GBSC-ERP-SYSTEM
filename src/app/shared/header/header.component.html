@@ -1,5 +1,5 @@
 <!-- BEGIN: Header -->
-<header class="m-grid__item    m-header"  data-minimize-offset="200" data-minimize-mobile-offset="200" appunwraptag="" >
+<header class="m-grid__item    m-header" data-minimize-offset="200" data-minimize-mobile-offset="200" appunwraptag="">
 	<div class="m-container m-container--fluid m-container--full-height">
 		<div class="m-stack m-stack--ver m-stack--desktop">
 			<!-- BEGIN: Brand -->
@@ -7,7 +7,7 @@
 				<div class="m-stack m-stack--ver m-stack--general">
 					<div class="m-stack__item m-stack__item--middle m-brand__logo">
 						<a routerLink="/index" class="m-brand__logo-wrapper">
-							<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png"/>
+							<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png" />
 						</a>
 					</div>
 					<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -15,11 +15,13 @@
 						<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
 							<span></span>
 						</a>
-						<!-- END --> 					  							<!-- BEGIN: Responsive Header Menu Toggler -->
+						<!-- END -->
+						<!-- BEGIN: Responsive Header Menu Toggler -->
 						<a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
 							<span></span>
 						</a>
-						<!-- END --> 				  			<!-- BEGIN: Topbar Toggler -->
+						<!-- END -->
+						<!-- BEGIN: Topbar Toggler -->
 						<a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
 							<i class="flaticon-more"></i>
 						</a>
@@ -35,137 +37,243 @@
 				</button>
 				<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light">
 					<ul class="m-menu__nav  m-menu__nav--submenu-arrow">
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+						<li class="m-menu__item  m-menu__item--submenu" data-menu-submenu-toggle="click" data-redirect="true"
+						 aria-haspopup="true">
 							<a routerLink="/employee/dashboard" class="m-menu__link m-menu__toggle" style="background:#ededed">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-dashboard" style="color: #003b77;margin: 0 9px 0px 9px; font-size: 16px;"></i>
-								
+
 							</a>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle" style="background:#003b77;">
+						<li *ngIf="accessableModules.includes('Security Admin')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background:#8c2424;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-lock" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+								<span class="m-menu__link-text">
+									Security
+								</span>
+
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										<li *ngIf="accessableModules.includes('Security Admin')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Setup
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Company Setup')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/security/company" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															Company Setup
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li *ngIf="accessibleFeatures.includes('Security Admin - Users')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													User Management
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('Security Admin - User Registration')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/security/user-registration" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-user-add">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															User Registration
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Users')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/security/users" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-users">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															User List
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li *ngIf="accessibleFeatures.includes('Security Admin - Roles and Privileges')" class="m-menu__item"
+										 routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Roles & Privileges
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('Security Admin - Roles and Privileges')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/security/rolesandprivileges" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-user-settings">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															List All Roles
+														</span>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li *ngIf="accessableModules.includes('Human Resource Management')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background:#003b77;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-user-circle" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
 									Human Resource
 								</span>
-							
+
 							</a>
-							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;" >
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-												Attendance
+													Attendance
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/attendance/attendancerequest" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-																Attendance Request 
+															Attendance Request
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/official-visit-entry" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/official-visit-entry" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
-																Official Visit Entry
+															Official Visit Entry
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/overtime-entitlement" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/overtime-entitlement" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
-																Overtime Entitlement
+															Overtime Entitlement
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/employee-overtime-entitlement" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/employee-overtime-entitlement" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
-																Employee Overtime Entitlement
+															Employee Overtime Entitlement
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/rostercopy" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/rostercopy" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
-																Roster Copy
+															Roster Copy
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-												Leave 
+													Leave
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leaverequests" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leaverequests" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Leave Request
+															Leave Request
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leaveapproval" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leaveapproval" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Leave Approval
+															Leave Approval
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leaveclosing" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leaveclosing" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Leave Closing
+															Leave Closing
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leaveadmin/leaveopenings" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leaveadmin/leaveopenings" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Leave Opening 
+															Leave Opening
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leaveadmin/employeeleavepolicy" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leaveadmin/employeeleavepolicy" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Employee Leave Policy 
+															Employee Leave Policy
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Employees
@@ -173,103 +281,105 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/employee/employees" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/employee/employees" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Employees
+															Employees
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/employee/registration" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/employee/registration" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Employee Registration
+															Employee Registration
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/rolesandprivileges" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/rolesandprivileges" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Roles & Priviliges
+															Roles & Priviliges
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Setup Configuration
+													Setup Configuration
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/company" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/company" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Company Setup
+															Company Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/leave/leavesetup/leavetype" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/leave/leavesetup/leavetype" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Leave Setup
+															Leave Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/attendancesetup/roster" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/attendancesetup/roster" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Attendance Setup 
+															Attendance Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/attendance/overtime/overtimeflag" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/overtime/overtimeflag" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Overtime Setup
+															Overtime Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Payroll Setup
+															Payroll Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
 														<span class="m-menu__link-text">
-																Tax Setup
+															Tax Setup
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/hrm/payroll/loansetup/loantype" class="m-menu__link">
-															<span class="m-menu__link-text">
-																	Loan Setup
-															</span>
-														</a>
-													</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/loansetup/loantype" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Loan Setup
+														</span>
+													</a>
+												</li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 							</div>
-						</li>						
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle" style="background: #0c7185;">
+						</li>
+
+						<li *ngIf="accessableModules.includes('Hospital Management System')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #0c7185;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
@@ -280,135 +390,137 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Patient
+													Patient
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/home" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/home" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-																Dashboard
+															Dashboard
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/findpatient" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/findpatient" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
-																Find Patient Records
+															Find Patient Records
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/registration" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/registration" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
-																Register Patient
+															Register Patient
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/activevisits" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/activevisits" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
-																Active Visit
+															Active Visit
 														</span>
 													</a>
 												</li>
-											
+
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Appointment
+													Appointment
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/appointmentschedule" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/appointmentschedule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Appointment Scheduling
+															Appointment Scheduling
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Setup Configuration
+													Setup Configuration
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/visitnature" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/visitnature" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Visit Nature
+															Visit Nature
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/himssetuptest" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/himssetuptest" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Test
+															Test
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/diagnose" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/diagnose" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Diagnose
+															Diagnose
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hims/patient/consultant" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/consultant" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Consultant
+															Consultant
 														</span>
 													</a>
 												</li>
-											
+
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Reports
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
-											
+
 										</li>
 									</ul>
 								</div>
 							</div>
-						</li>	
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background:  #483698;">
+						</li>
+
+						<li *ngIf="accessableModules.includes('Lab Information System')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background:  #483698;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-flask" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
@@ -419,316 +531,382 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Transections
+													Transections
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/clinical-records" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/clinical-records" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-														 Clinical Record
+															Clinical Record
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/tvopu" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/tvopu" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
-																TVOPU 
+															TVOPU
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/biochemistry-ontreatment" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/biochemistry-ontreatment" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
-																Biochemistry On Treatment 
+															Biochemistry On Treatment
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/biochemistry" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/biochemistry" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
-																Biochemistry 
+															Biochemistry
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/lab/biopsy" class="m-menu__link">
-															<i class="m-menu__link-icon flaticon-graphic-2"></i>
-															<span class="m-menu__link-text">
-																	Biopsy 
-															</span>
-														</a>
-													</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/biopsy" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-graphic-2"></i>
+														<span class="m-menu__link-text">
+															Biopsy
+														</span>
+													</a>
+												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Embryology
+													Embryology
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/embryology" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryology" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Embryology
+															Embryology
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/embryo-freeze" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryo-freeze" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Embryofreeze
+															Embryofreeze
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/embryology-thawing" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryology-thawing" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Embryology Thawing
+															Embryology Thawing
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/embryology-section" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryology-section" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Embryology Section 
+															Embryology Section
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/insemenation" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/insemenation" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Insemenation 
+															Insemenation
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/lab/insemination-prep" class="m-menu__link">
-															<i class="m-menu__link-bullet m-menu__link-bullet--line">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Insemination Prep 
-															</span>
-														</a>
-													</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/insemination-prep" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Insemination Prep
+														</span>
+													</a>
+												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Setup Configuration 
+													Setup Configuration
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/proceduresortest" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/proceduresortest" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Lab Test
+															Lab Test
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/test-unit" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/test-unit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Test Unit
+															Test Unit
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/lab/embryologist" class="m-menu__link">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																Embryologists
-															</span>
-														</a>
-													</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/lab/biochemistry-test" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryologist" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Biochemistry Tests
+															Embryologists
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/lab/embryology-code" class="m-menu__link">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Embryology Codes
-															</span>
-														</a>
-													</li>
-											
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/biochemistry-test" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Biochemistry Tests
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/embryology-code" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Embryology Codes
+														</span>
+													</a>
+												</li>
+
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Reports 
+													Reports
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
-										
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/biochemistry-details-ontreatment" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Biochemistry Details (On treatment)
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/biochemistry-ontreatment" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Biochemistry (On treatment)
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/biochemistry-outsider" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Biochemistry (Outsider)
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/biopsy" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Biopsy
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/labsummary" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Lab Summary
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/lab/report/semen-analysis" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Semen Analysis
+														</span>
+													</a>
+												</li>
+
+											</ul>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-								<a  href="#" class="m-menu__link m-menu__toggle" style="background: #9c25af;">
-									<span class="m-menu__item-here"></span>
-									<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
-									<span class="m-menu__link-text">
-										Coordinator
-									</span>
-								</a>
-								<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
-									<span class="m-menu__arrow m-menu__arrow--adjust"></span>
-									<div class="m-menu__subnav">
-										<ul class="m-menu__content">
-											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
-												<h3 class="m-menu__heading m-menu__toggle">
-													<span class="m-menu__link-text">
-															Clinic
-													</span>
-													<i class="m-menu__ver-arrow la la-angle-right"></i>
-												</h3>
-												<ul class="m-menu__inner">
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/coordination/clinical-record" class="m-menu__link">
-															<i class="m-menu__link-icon flaticon-map"></i>
-															<span class="m-menu__link-text">
-																	Clinical Records
-															</span>
-														</a>
-													</li>
-												</ul>
-											</li>
-											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
-												<h3 class="m-menu__heading m-menu__toggle">
-													<span class="m-menu__link-text">
-															Appointment
-													</span>
-													<i class="m-menu__ver-arrow la la-angle-right"></i>
-												</h3>
-												<ul class="m-menu__inner">
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/hims/patient/appointmentschedule" class="m-menu__link" style="background: #FF9800;">
-															<i class="m-menu__link-bullet m-menu__link-bullet--line">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Appointment Scheduling
-															</span>
-														</a>
-													</li>
-												</ul>
-											</li>
-											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
-												<h3 class="m-menu__heading m-menu__toggle">
-													<span class="m-menu__link-text">
-															Setup Configuration
-													</span>
-													<i class="m-menu__ver-arrow la la-angle-right"></i>
-												</h3>
-												<ul class="m-menu__inner">
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/hims/patient/visitnature" class="m-menu__link"  style="background: #FF9800;">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	visit Nature
-															</span>
-														</a>
-													</li>
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/hims/patient/himssetuptest" class="m-menu__link"  style="background: #FF9800;">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Test
-															</span>
-														</a>
-													</li>
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true" >
-														<a  routerLink="/hims/patient/diagnose" class="m-menu__link" style="background: #FF9800;">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Diagnose
-															</span>
-														</a>
-													</li>
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-														<a  routerLink="/hims/patient/consultant" class="m-menu__link" style="background: #FF9800;">
-															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																<span></span>
-															</i>
-															<span class="m-menu__link-text">
-																	Consultant
-															</span>
-														</a>
-													</li>
-												
-												</ul>
-											</li>
-											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
-												<h3 class="m-menu__heading m-menu__toggle">
-													<span class="m-menu__link-text">
-														Reports
-													</span>
-													<i class="m-menu__ver-arrow la la-angle-right"></i>
-												</h3>
-												
-											</li>
-										</ul>
-									</div>
+
+						<li *ngIf="accessableModules.includes('Coordination')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #9c25af;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+								<span class="m-menu__link-text">
+									Coordinator
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Clinic
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/coordination/clinical-record" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															Clinical Records
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Appointment
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/appointmentschedule" class="m-menu__link" style="background: #FF9800;">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Appointment Scheduling
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Setup Configuration
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/visitnature" class="m-menu__link" style="background: #FF9800;">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															visit Nature
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/himssetuptest" class="m-menu__link" style="background: #FF9800;">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Test
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/diagnose" class="m-menu__link" style="background: #FF9800;">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Diagnose
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/consultant" class="m-menu__link" style="background: #FF9800;">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Consultant
+														</span>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Reports
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+
+										</li>
+									</ul>
 								</div>
-							</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #775447;">
+							</div>
+						</li>
+
+						<li *ngIf="accessableModules.includes('Pharmacy')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #775447;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
@@ -739,7 +917,7 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Pharmacy
@@ -747,78 +925,78 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/home" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/home" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
-																Dashboard
+															Dashboard
 														</span>
 													</a>
 												</li>
-											
+
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Purchase 	
+													Purchase
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/issuanceview" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/issuanceview" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Issuance
+															Issuance
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/purchaseorderview" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/purchaseorderview" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Purchase Order
+															Purchase Order
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-														Sales 
+													Sales
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/grnview" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/grnview" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																Goods Receipt Note 
+															Goods Receipt Note
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/pharmacy/returnview" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/returnview" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-																 Medicine Return
+															Medicine Return
 														</span>
 													</a>
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Setups
@@ -826,26 +1004,28 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-													<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-															<a  routerLink="/pharmacy/setup/inventoryitem" class="m-menu__link">
-																<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-																	<span></span>
-																</i>
-																<span class="m-menu__link-text">
-																		Configuration
-																</span>
-															</a>
-														</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/setup/inventory-master" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Configuration
+														</span>
+													</a>
+												</li>
 											</ul>
-											
+
 										</li>
-										
+
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #3173e9;">
+
+						<li *ngIf="accessableModules.includes('Payroll Management System')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #3173e9;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-money" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
@@ -856,51 +1036,52 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-												Payroll
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
+										<li class="m-menu__item  m-menu__item--submenu" data-menu-submenu-toggle="click" data-redirect="true"
+										 aria-haspopup="true">
+											Payroll
+											</span>
+											<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrolladmin/stopsalary" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrolladmin/stopsalary" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 															Stop Salary
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/gratuity" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/gratuity" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
 															Gratuity
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/monthlyusersalary" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/monthlyusersalary" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
 															Monthly User Salary
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payslip" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payslip" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
 															PaySlip
 														</span>
 													</a>
 												</li>
-												
+
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Tax Setup
@@ -908,8 +1089,8 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -918,8 +1099,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxadjustmentreason" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxadjustmentreason" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -928,8 +1109,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxbenefit" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxbenefit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -938,8 +1119,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxableincomeadjustment" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxableincomeadjustment" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -948,8 +1129,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxrelief" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxrelief" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -958,8 +1139,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxschedule" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxschedule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -968,8 +1149,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/taxsetup/taxyear" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/taxsetup/taxyear" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -980,7 +1161,7 @@
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Payroll Setup
@@ -988,8 +1169,8 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -998,8 +1179,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/benefit" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/benefit" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1008,8 +1189,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/Currency" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/Currency" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1018,8 +1199,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/fundsetup" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/fundsetup" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1028,8 +1209,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/gratuityslab" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/gratuityslab" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1038,8 +1219,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/hrm/payroll/payrollsetup/payrolltype" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/payroll/payrollsetup/payrolltype" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1050,7 +1231,7 @@
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Reports
@@ -1058,43 +1239,43 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Report Adjusments
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Sources & Mediums
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Reporting Settings
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Conversions
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Report Flows
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Audit & Logs
 														</span>
@@ -1106,8 +1287,10 @@
 								</div>
 							</div>
 						</li>
-						<li class="m-menu__item  m-menu__item--submenu"  data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a  href="#" class="m-menu__link m-menu__toggle"  style="background: #4c4c4c;">
+
+						<li *ngIf="accessableModules.includes('Finance')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #4c4c4c;">
 								<span class="m-menu__item-here"></span>
 								<i class="fa fa-bank" style="color: white; margin-right: 9px; font-size: 16px;"></i>
 								<span class="m-menu__link-text">
@@ -1118,7 +1301,7 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Accounts
@@ -1126,40 +1309,40 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/purchase-invoice-detail" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/purchase-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 															Purchase Invoice
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/purchase-return-detail" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/purchase-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
 															Purchase Return
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/sales-invoice-detail" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/sales-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
 															Sales Invoice
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/sales-return-detail" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/sales-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
 															Sales Return
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/voucher-detail" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/voucher-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
 															Voucher
@@ -1168,16 +1351,16 @@
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
-												   Finance Setups
+													Finance Setups
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/companysetup" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/companysetup" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1186,8 +1369,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/masteraccount" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/masteraccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1196,8 +1379,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/detailaccount" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/detailaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1206,8 +1389,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/financialyear" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/financialyear" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1216,8 +1399,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/vouchertype" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/vouchertype" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1226,8 +1409,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/controlaccount" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/controlaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1236,8 +1419,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/finance/setup/secondsubaccount" class="m-menu__link">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/setup/secondsubaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
@@ -1248,7 +1431,7 @@
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Finance Reports
@@ -1256,8 +1439,8 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1266,8 +1449,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1276,8 +1459,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1286,8 +1469,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1296,8 +1479,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1306,8 +1489,8 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1318,7 +1501,7 @@
 												</li>
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" >
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Finance Reports
@@ -1326,43 +1509,43 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Report Adjusments
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Sources & Mediums
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Reporting Settings
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Conversions
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Report Flows
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item"  data-redirect="true" aria-haspopup="true">
-													<a  routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/inner" class="m-menu__link" style="background: #FF9800;">
 														<span class="m-menu__link-text">
 															Audit & Logs
 														</span>
@@ -1374,14 +1557,309 @@
 								</div>
 							</div>
 						</li>
-				
+
+						<li *ngIf="accessableModules.includes('Inventory')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a class="m-menu__link m-menu__toggle" style="background: #993d2d;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+								<span class="m-menu__link-text">
+									Inventory
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+
+										<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Setups
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/inventory/setup/inventoryitem" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Configuration
+														</span>
+													</a>
+												</li>
+											</ul>
+
+										</li>
+										<li *ngIf="accessibleFeatures.includes('Inventory - Purchase')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Purchase
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<!-- <ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/issuanceview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Issuance
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/purchaseorderview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--line">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Purchase Order
+														</span>
+													</a>
+												</li>
+											</ul> -->
+										</li>
+										<li *ngIf="accessibleFeatures.includes('Inventory - Sales')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Sales
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<!-- <ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/grnview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Goods Receipt Note
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/pharmacy/returnview" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Medicine Return
+														</span>
+													</a>
+												</li>
+											</ul> -->
+										</li>
+										<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Reports
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/inventory/reports/order-summary-report" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															Order Summary Report
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/inventory/reports/order-detail-report" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															Order Detail Report
+														</span>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+
+
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li *ngIf="accessableModules.includes('eTracker')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle" style="background: #005c89;">
+								<span class="m-menu__item-here"></span>
+								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+								<span class="m-menu__link-text">
+									eTracker
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Tracking
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('eTracker - Locator')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/locator" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															Locator
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Users')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/users" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-users">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Users
+														</span>
+													</a>
+												</li>
+
+												<li *ngIf="accessibleFeatures.includes('eTracker - Stores')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/stores" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-profile">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Stores
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Territory Management')" class="m-menu__item"
+												 data-redirect="true" aria-haspopup="true">
+													<a routerLink="/etracker/territory-management" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Territory Management
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Reports
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/location-report" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Location Report
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Shop Census Detail
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Shop Census Summary
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										 routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Reports
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/shop-status-detail" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Shop Status Detail
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/shop-status-summary" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Shop Status Summary
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/visit-detail" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Visit Detail
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/visit-summary" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Visit Summary
+														</span>
+													</a>
+												</li>
+												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												 aria-haspopup="true">
+													<a routerLink="/etracker/reports/product-diff-units" class="m-menu__link">
+														<span class="m-menu__link-text">
+															Product Diffrence Units
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+
 					</ul>
 				</div>
-				<!-- END: Horizontal Menu -->				 				<!-- BEGIN: Topbar -->
+				<!-- END: Horizontal Menu -->
+				<!-- BEGIN: Topbar -->
 				<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
 					<div class="m-stack__item m-topbar__nav-wrapper">
 						<ul class="m-topbar__nav m-nav m-nav--inline">
-							<li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" data-dropdown-toggle="click" data-dropdown-persistent="true">
+							<!-- <li class="m-nav__item m-topbar__notifications m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width"
+							 data-dropdown-toggle="click" data-dropdown-persistent="true">
 								<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
 									<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
 									<span class="m-nav__link-icon">
@@ -1591,11 +2069,12 @@
 										</div>
 									</div>
 								</div>
-							</li>
-							<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+							</li> -->
+							<li class="m-nav__item m-topbar__user-profile  m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light"
+							 data-dropdown-toggle="click">
 								<a href="#" class="m-nav__link m-dropdown__toggle">
 									<span class="m-topbar__userpic m--hide">
-										<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+										<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt="" />
 									</span>
 									<span class="m-nav__link-icon m-topbar__usericon">
 										<span class="m-nav__link-icon-wrapper">
@@ -1603,7 +2082,7 @@
 										</span>
 									</span>
 									<span class="m-topbar__username m--hide">
-										Nick
+										{{Username}}
 									</span>
 								</a>
 								<div class="m-dropdown__wrapper">
@@ -1612,14 +2091,14 @@
 										<div class="m-dropdown__header m--align-center">
 											<div class="m-card-user m-card-user--skin-light">
 												<div class="m-card-user__pic">
-													<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+													<img src="./assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="" />
 												</div>
 												<div class="m-card-user__details">
 													<span class="m-card-user__name m--font-weight-500">
-														Mark Andre
+														{{Username}}
 													</span>
 													<a href="" class="m-card-user__email m--font-weight-300 m-link">
-														mark.andre@gmail.com
+														{{UserLevel}}
 													</a>
 												</div>
 											</div>
@@ -1633,52 +2112,15 @@
 														</span>
 													</li>
 													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
+														<a routerLink="/security/profile" class="m-nav__link">
 															<i class="m-nav__link-icon flaticon-profile-1"></i>
 															<span class="m-nav__link-title">
 																<span class="m-nav__link-wrap">
 																	<span class="m-nav__link-text">
-																		My Profile
+																		Profile Settings
 																	</span>
-																	<span class="m-nav__link-badge">
-																		<span class="m-badge m-badge--success">
-																			2
-																		</span>
-																	</span>
+
 																</span>
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-share"></i>
-															<span class="m-nav__link-text">
-																Activity
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-chat-1"></i>
-															<span class="m-nav__link-text">
-																Messages
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__separator m-nav__separator--fit"></li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-info"></i>
-															<span class="m-nav__link-text">
-																FAQ
-															</span>
-														</a>
-													</li>
-													<li class="m-nav__item">
-														<a routerLink="/profile" class="m-nav__link">
-															<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-															<span class="m-nav__link-text">
-																Support
 															</span>
 														</a>
 													</li>
@@ -1694,7 +2136,7 @@
 									</div>
 								</div>
 							</li>
-							
+
 						</ul>
 					</div>
 				</div>

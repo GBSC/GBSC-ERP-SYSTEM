@@ -9,11 +9,11 @@ import { catchError } from 'rxjs/operators';
 @Injectable()
 export class ApiService {
     constructor(
-        private http: HttpClient,
-        //private jwtService: JwtService
+        public http: HttpClient,
+        // public jwtService: JwtService
     ) { }
 
-    private formatErrors(error: any) {
+    public formatErrors(error: any) {
         return _throw(error.error);
     }
 

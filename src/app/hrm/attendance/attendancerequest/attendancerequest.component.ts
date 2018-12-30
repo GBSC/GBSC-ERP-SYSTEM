@@ -13,7 +13,7 @@ export class AttendancerequestComponent implements OnInit {
     public attendanceRequestApprover: any;
     public assignroster: any;
     public employees: any;
-    private UpdatingRequest;
+    public UpdatingRequest;
 
     constructor(public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
         public Employeeservice: EmployeeService) { }
@@ -21,6 +21,7 @@ export class AttendancerequestComponent implements OnInit {
     async ngOnInit() {
 
         this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
+        this.attendancerequest = this.attendancerequest.filter(t => (t.isSubmitted == true) && (t.isApproved == null || t.isApproved == false) && (t.isRejected == null || t.isRejected == false))
 
         this.employees = await this.Employeeservice.GetAllEmployees();
 
@@ -33,8 +34,11 @@ export class AttendancerequestComponent implements OnInit {
 
 
     async addattendancerequest(value) {
-        this.attendanceservice.addAttendanceRequest(value.data);
+        await this.attendanceservice.addAttendanceRequest(value.data);
+
         this.attendancerequest = await this.attendanceservice.getAttendanceRequests();
+        this.attendancerequest = this.attendancerequest.filter(t => (t.isSubmitted == true) && (t.isApproved == null || t.isApproved == false) && (t.isRejected == null || t.isRejected == false))
+        console.log(this.attendancerequest);
     }
 
     async updatingrequest(value) {

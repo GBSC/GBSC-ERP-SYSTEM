@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ClinicalRecordsListComponent } from './hims/coordination/clinical-records-list/clinical-records-list.component';
 import { PharmacyModule } from './pharmacy/pharmacy.module';
 import { CoreModule } from './core/core.module';
 import { PatientModule } from './hims/patient/patient.module';
@@ -27,25 +26,36 @@ import { HrmModule } from './hrm/hrm.module';
 import { CoordinationRoutingModule } from './hims/coordination/coordination-routing.module';
 import { InventoryModule } from './inventory/inventory.module';
 import { SecurityAdminModule } from './security-admin/security-admin.module';
+import { EtrackerModule } from './etracker/etracker.module';
+import { TitlePipe } from './_pipes/title';
+import { Select2Module } from 'ng2-select2';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+// import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 
+
+//I keep the new line
 @NgModule({
     declarations: [
         ThemeComponent,
         AppComponent,
+        TitlePipe,
         HeaderComponent,
-        FooterComponent,
-        ClinicalRecordsListComponent
+        FooterComponent
     ],
     imports: [
         CommonModule,
+        Select2Module,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({
             timeOut: 5000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
-        }), // ToastrModule added
+        }),
         LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
@@ -55,8 +65,15 @@ import { SecurityAdminModule } from './security-admin/security-admin.module';
         DevExtremeModule,
         HttpClientModule,
         CoreModule,
-
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        // AngularFireAuthModule,
+        // AgmCoreModule.forRoot({
+        //     apiKey: 'AIzaSyA3NAuCASr2T0ClhN7SK1xNo9wPrG8XIuU'
+        // }),
+        // AgmSnazzyInfoWindowModule,
         SecurityAdminModule,
+        EtrackerModule,
         PharmacyModule,
         PatientModule,
         LabModule,
@@ -72,4 +89,5 @@ import { SecurityAdminModule } from './security-admin/security-admin.module';
         ScriptLoaderService],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

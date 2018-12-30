@@ -8,11 +8,11 @@ import { InventorysystemService } from '../../../core';
 })
 
 export class PurchaseInvoiceComponent implements OnInit {
-    private PurchaseOrder: any;
-    private GRN: any;
-    private PurchaseInvoice: any;
+    public PurchaseOrder: any;
+    public GRN: any;
+    public PurchaseInvoice: any;
 
-    // constructor(private formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService) {
+    // constructor(public formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService) {
     //     this.PurchaseInvoiceForm = this.formBuilder.group(
     //         {
     //             'InvoiceNo': ['', Validators.required],
@@ -32,7 +32,7 @@ export class PurchaseInvoiceComponent implements OnInit {
     //     )
     // }
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

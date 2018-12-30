@@ -1,5 +1,4 @@
-
-
+ 
 <div class="m-content">
 	<div class="row">
 			<div class="col-xl-12">
@@ -22,7 +21,7 @@
 							(onRowRemoved)="deleteattendancerequest($event)"> 
 
 							<dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
-								<dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								<dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
 							<dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -48,9 +47,9 @@
 								</dxi-column> 
 
 							<dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column> 
-							<dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column> 
+							<!-- <dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column>  -->
 							<dxi-column dataField="isSubmitted" caption="Submitted" dataType="boolean"></dxi-column> 
-							<dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>  
+							<!-- <dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>   -->
 						</dx-data-grid> 
 					</div>
 					</div>

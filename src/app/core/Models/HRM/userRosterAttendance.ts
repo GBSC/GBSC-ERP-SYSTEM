@@ -1,4 +1,3 @@
-import { UserRosterAttendanceAttendanceFlag } from "./userRosterAttendanceAttendanceFlag";
 
 export class UserRosterAttendance {
 
@@ -14,5 +13,5 @@ export class UserRosterAttendance {
     monthlyUserSalaryId: number;
     leavePolicyEmployeeId: number;
     // OfficialVisitEntries: OfficialVisitEntry[];
-    userRosterAttendanceAttendanceFlags: UserRosterAttendanceAttendanceFlag[];
+
 }

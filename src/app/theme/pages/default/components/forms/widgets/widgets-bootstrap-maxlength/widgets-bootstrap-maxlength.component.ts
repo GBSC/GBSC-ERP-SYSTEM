@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '../../../../../../../_services/script-loade
 export class WidgetsBootstrapMaxlengthComponent implements OnInit, AfterViewInit {
 
 
-    constructor(private _script: ScriptLoaderService) {
+    constructor(public _script: ScriptLoaderService) {
 
     }
     ngOnInit() {

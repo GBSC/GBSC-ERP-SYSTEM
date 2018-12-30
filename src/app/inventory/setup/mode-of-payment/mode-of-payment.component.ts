@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { ModeOfPayment } from '../../../core/Models/Inventory/Setup/ModeOfPayment';
 
 @Component({
     selector: 'app-mode-of-payment',
@@ -7,31 +8,40 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./mode-of-payment.component.scss']
 })
 export class ModeOfPaymentComponent implements OnInit {
-    private ModeOfPayments: any;
-    private UpdatedModel: any;
+    public ModeOfPayments: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
 
-    async ngOnInit() {
-        this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetModeOfPaymentsByCompany(this.CompanyId).subscribe((res: ModeOfPayment) => {
+            this.ModeOfPayments = res;
+        });
     }
 
-    async AddModeOfPayment(value) {
+    AddModeOfPayment(value) {
         //console.log(value.data);
-        await this.InventoryService.AddModeOfPayment(value.data);
-        this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
+        this.InventoryService.AddModeOfPayment(value.data).subscribe(res => {
+            this.InventoryService.GetModeOfPaymentsByCompany(this.CompanyId).subscribe((res: ModeOfPayment) => {
+                this.ModeOfPayments = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateModeOfPayment() {
-        return await this.InventoryService.UpdateModeOfPayment(this.UpdatedModel);
+    UpdateModeOfPayment() {
+        return this.InventoryService.UpdateModeOfPayment(this.UpdatedModel).subscribe();
     }
 
-    async DeleteModeOfPayment(value) {
-        return await this.InventoryService.DeleteModeOfPayment(value.key);
+    DeleteModeOfPayment(value) {
+        return this.InventoryService.DeleteModeOfPayment(value.key).subscribe();
     }
 
 }

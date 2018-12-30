@@ -7449,7 +7449,7 @@ var Calendar = /** @class */ (function () {
             this.optionsManager.add(name);
         }
     };
-    // private getter
+    // public getter
     Calendar.prototype.opt = function (name) {
         return this.optionsManager.get(name);
     };

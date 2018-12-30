@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { SalesPerson } from '../../../core/Models/Inventory/Setup/SalesPerson';
+import { Area } from '../../../core/Models/Inventory/Setup/Area';
+import { Territory } from '../../../core/Models/Inventory/Setup/Territory';
+import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
 
 @Component({
     selector: 'app-sales-person',
@@ -7,39 +11,54 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./sales-person.component.scss']
 })
 export class SalesPersonComponent implements OnInit {
-    private SalesPeople: any;
-    private Distributors: any;
-    private Areas: any;
-    private Territories: any;
-    private UpdatedModel: any;
+    public SalesPeople: any;
+    public Distributors: any;
+    public Areas: any;
+    public Territories: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
         this.getFilteredDistributors = this.getFilteredDistributors.bind(this);
         this.getFilteredTerritories = this.getFilteredTerritories.bind(this);
     }
 
-    async ngOnInit() {
-        this.SalesPeople = await this.InventoryService.GetSalesPeople();
-        this.Areas = await this.InventoryService.GetAreas();
-        this.Territories = await this.InventoryService.GetTerritories();
-        this.Distributors = await this.InventoryService.GetDistributors();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetSalesPeopleByCompany(this.CompanyId).subscribe((res: SalesPerson) => {
+            this.SalesPeople = res;
+        });
+        this.InventoryService.getAreasByCompany(this.CompanyId).subscribe((res: Area) => {
+            this.Areas = res;
+        });
+        this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe((res: Territory) => {
+            this.Territories = res;
+        });
+        this.InventoryService.GetDistributorsByCompany(this.CompanyId).subscribe((res: Distributor) => {
+            this.Distributors = res;
+        });
     }
 
-    async AddSalesPerson(value) {
-        await this.InventoryService.AddSalesPerson(value.data);
-        this.SalesPeople = await this.InventoryService.GetSalesPeople();
+    AddSalesPerson(value) {
+        this.InventoryService.AddSalesPerson(value.data).subscribe(res => {
+            this.InventoryService.GetSalesPeopleByCompany(this.CompanyId).subscribe((res: SalesPerson) => {
+                this.SalesPeople = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateSalesPerson() {
-        return await this.InventoryService.UpdateSalesPerson(this.UpdatedModel);
+    UpdateSalesPerson() {
+        return this.InventoryService.UpdateSalesPerson(this.UpdatedModel).subscribe();
     }
 
-    async DeleteSalesPerson(value) {
-        return await this.InventoryService.DeleteSalesPerson(value.key);
+    DeleteSalesPerson(value) {
+        return this.InventoryService.DeleteSalesPerson(value.key).subscribe();
     }
 
     getFilteredTerritories(options) {

@@ -10,22 +10,26 @@ import { SetupService } from '../../../core';
 })
 export class DegreeComponent implements OnInit {
 
-    public degree: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public degrees: any;
+    public Model: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-
-        this.degree = await this.dataService.getAllDegrees();
+        this.degrees = await this.dataService.getAllDegrees();
     }
 
-    addNewDegree(dgree) {
-        this.dataService.addDegree(dgree.data);
-        this.degree = this.dataService.getAllDegrees();
+    async addNewDegree(dgree) {
+        await this.dataService.addDegree(dgree.data);
+        this.degrees = await this.dataService.getAllDegrees();
     }
 
-    Editdegree(deg) {
-        this.dataService.updateDegree(deg);
+    Editingdegree(value) {
+        this.Model = { ...value.oldData, ...value.newData };
+    }
+
+    async Editdegree() {
+        await this.dataService.updateDegree(this.Model);
     }
 
     deleteDegree(dgre) {

@@ -8,7 +8,7 @@ import { Helpers } from '../helpers';
 export class UnwrapTagDirective implements AfterViewInit {
 
 
-    constructor(private el: ElementRef) {
+    constructor(public el: ElementRef) {
 
     }
     ngAfterViewInit() {

@@ -10,19 +10,21 @@ import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 })
 export class EmergencycontactComponent implements OnInit {
     public relations: any;
-    pattern: any = /^\d{4}-\d{7}$/i;
-
+    public dependantrelations: any;
+    pattern: any = /^\d{11}$/i;
 
     @Input('employeeId') id: number;
 
-    constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute) {
+    constructor(public employeeService: EmployeeService, public SetupServiceobj: SetupService,
+        public router: Router, public route: ActivatedRoute) {
 
     }
 
     async ngOnInit() {
 
         this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
+
+        this.dependantrelations = await this.SetupServiceobj.getDependantsRelations();
 
     }
 

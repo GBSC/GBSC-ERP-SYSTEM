@@ -17,38 +17,38 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IssuanceComponent implements OnInit {
 
-    private IssuanceForm: FormGroup;
-    private InventoryItemForm: FormGroup;
+    public IssuanceForm: FormGroup;
+    public InventoryItemForm: FormGroup;
 
-    private SelectedSalesIndent: SalesIndent;
-    private SelectedSalesIndentDetails: SalesIndentItem[] = [];
+    public SelectedSalesIndent: SalesIndent;
+    public SelectedSalesIndentDetails: SalesIndentItem[] = [];
 
-    private SalesOrders: SalesOrder;
-    private InventoryItems: InventoryItem;
-    private Items: InventoryItem[] = [];
-    private aaa: InventoryItem[];
-    private FilteredItems: InventoryItem;
-    private GridDataSource: any;
-    private LookUpDataSource: any;
-    private SalesOrderItemForm: FormGroup;
-    private filterItems: InventoryItem[];
+    public SalesOrders: SalesOrder;
+    public InventoryItems: InventoryItem;
+    public Items: InventoryItem[] = [];
+    public aaa: InventoryItem[];
+    public FilteredItems: InventoryItem;
+    public GridDataSource: any;
+    public LookUpDataSource: any;
+    public SalesOrderItemForm: FormGroup;
+    public filterItems: InventoryItem[];
 
-    private customerdata: any = {};
-    private AllItems: any;
-    private AllCustomers: any;
-    private data: any = {};
-    private arraydata = [];
-    private StockQuantityarraydata: any[] = [];
-    private total: number = 0;
-    private desc: any;
-    private TotalQuantity: number = 0;
-    private ItemTotal: number = 0;
-    private ItemPackQuantity: number = 0;
+    public customerdata: any = {};
+    public AllItems: any;
+    public AllCustomers: any;
+    public data: any = {};
+    public arraydata = [];
+    public StockQuantityarraydata: any[] = [];
+    public total: number = 0;
+    public desc: any;
+    public TotalQuantity: number = 0;
+    public ItemTotal: number = 0;
+    public ItemPackQuantity: number = 0;
 
-    private Inv: Inventory;
-    private Invs: Inventory[];
+    public Inv: Inventory;
+    public Invs: Inventory[];
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast: ToastrService) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
 
         this.IssuanceForm = this.FormBuilder.group({
             Department: [''],

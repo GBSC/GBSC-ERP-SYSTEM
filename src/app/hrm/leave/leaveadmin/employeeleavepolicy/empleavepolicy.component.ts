@@ -15,14 +15,15 @@ export class EmpleavepolicyComponent implements OnInit {
     public empleavepolicy: any;
     public employees: any;
     public leaveyear: any;
+    public leavepolicy: any;
     public leaveTypes: any;
     public leaveDayType: any;
     public leaveEligiblity: any;
     public updatingEmpleavePolicy: any;
-    public message: any = null;
-    public messagetext: "Add Successfully";
+    public sample: any;
+    public selectedLeaveTypes = 45;
 
-    constructor(private fb: FormBuilder, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
+    constructor(private fb: FormBuilder, public setupService: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {
@@ -73,8 +74,9 @@ export class EmpleavepolicyComponent implements OnInit {
 
         });
 
-
         this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
+
+        this.leavepolicy = await this.leavesetupservice.getLeavePolicies();
 
         this.employees = await this.empservice.GetAllEmployees();
 
@@ -89,10 +91,21 @@ export class EmpleavepolicyComponent implements OnInit {
         this.groups = await this.hrsetupservice.getAllGroups();
     }
 
-    async addemployeeleavepolicy(empleavepolicy) {
-        this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+    getLeavePolicy(userId) {
+        let selectedEmployee = this.employees.find(e => e.userId == userId)
+        this.sample = this.leavepolicy.find(e => e.groupId === selectedEmployee.groupId);
+        this.patchvalues(this.sample);
     }
 
+    getQuantitybyType(leaveTypeId) {
+        this.selectedLeaveTypes = this.leavepolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.sample.groupId);
+        this.patchvalues(this.sample);
+    }
+
+    async addemployeeleavepolicy(empleavepolicy) {
+        await this.leaveservice.addLeavePolicyEmployee(empleavepolicy);
+        this.empleavepolicy = await this.leaveservice.getLeavePolicyEmployee();
+    }
 
     updatingEmpleavepolicy(value) {
         this.updatingEmpleavePolicy = { ...value.oldData, ...value.newData };
@@ -105,5 +118,22 @@ export class EmpleavepolicyComponent implements OnInit {
         await this.leaveservice.DeleteLeavePolicyEmployee(value.key);
     }
 
+    patchvalues(policy: any) {
+        this.EmployeeleavePolicyForm.patchValue({
+            LeaveYearId: policy.leaveYearId,
+            LeaveTypeId: policy.leaveTypeId,
+            LeaveEligibilityId: policy.leaveEligibilityId,
+            LeaveDayTypeId: policy.leaveDayTypeId,
+            IsActive: policy.isActive,
+            IsAllowedOnlyOnceInService: policy.isAllowedOnlyOnceInService,
+            IsBalanceBroughtForward: policy.isBalanceBroughtForward,
+            IsEncashable: policy.isEncashable,
+            IsFemale: policy.isFemale,
+            IsMale: policy.isMale,
+            IsJobPeriodBased: policy.isJobPeriodBased,
+            IsMarried: policy.isMarried,
+            IsMonthBased: policy.isMonthBased
 
+        });
+    }
 }

@@ -11,7 +11,7 @@ export class BranchComponent implements OnInit {
     public com: any;
     public branches: any;
 
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
 
     async ngOnInit() {
 
@@ -32,8 +32,4 @@ export class BranchComponent implements OnInit {
     async deletBranch(value) {
         await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
     }
-
-
-
-
 }

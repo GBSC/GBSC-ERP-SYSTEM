@@ -10,11 +10,11 @@ import { InventorysystemService } from '../../../core';
 
 })
 export class DeliveryOrderComponent implements OnInit {
-    private SalesOrder: any;
-    private DeliveryNote: any;
-    private DeliveryOrder: any;
+    public SalesOrder: any;
+    public DeliveryNote: any;
+    public DeliveryOrder: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
     }
 
     async ngOnInit() {

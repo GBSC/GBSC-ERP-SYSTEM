@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { ItemPriceStructure } from '../../../core/Models/Inventory/Setup/ItemPriceStructure';
 
 @Component({
     selector: 'app-item-price-structure',
@@ -7,31 +8,40 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./item-price-structure.component.scss']
 })
 export class ItemPriceStructureComponent implements OnInit {
-    private ItemPriceStructures: any;
-    private UpdatedModel: any;
+    public ItemPriceStructures: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.ItemPriceStructures = await this.InventoryService.GetItemPriceStructures();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetItemPriceStructuresByCompany(this.CompanyId).subscribe((res: ItemPriceStructure) => {
+            this.ItemPriceStructures = res;
+        });
     }
 
-    async AddItemPriceStructure(value) {
-        await this.InventoryService.AddItemPriceStructure(value.data);
-        this.ItemPriceStructures = await this.InventoryService.GetItemPriceStructures();
+    AddItemPriceStructure(value) {
+        this.InventoryService.AddItemPriceStructure(value.data).subscribe(res => {
+            this.InventoryService.GetItemPriceStructuresByCompany(this.CompanyId).subscribe((res: ItemPriceStructure) => {
+                this.ItemPriceStructures = res;
+            });
+        });
     }
 
     UpdateModel(value) {
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
-    async UpdateItemPriceStructure() {
-        return await this.InventoryService.UpdateItemPriceStructure(this.UpdatedModel);
+    UpdateItemPriceStructure() {
+        return this.InventoryService.UpdateItemPriceStructure(this.UpdatedModel).subscribe();
     }
 
-    async DeleteItemPriceStructure(value) {
-        return await this.InventoryService.DeleteItemPriceStructure(value.key);
+    DeleteItemPriceStructure(value) {
+        return this.InventoryService.DeleteItemPriceStructure(value.key).subscribe();
     }
 }

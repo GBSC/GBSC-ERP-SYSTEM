@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class EmbryologistService {
 
 
-    private Url = "Hims/api/HimsSetup/"
+    public Url = "Hims/api/HimsSetup/"
 
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getEmbryologists(): Observable<any> {
         return this.ApiService.get(this.Url + "GetEmbryologists");

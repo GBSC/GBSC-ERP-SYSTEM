@@ -8,9 +8,9 @@ import { MedicineService } from '../../../core/Services/HIMS/medicine.service';
 })
 export class MedicineComponent implements OnInit {
 
-    private medicines: any;
+    public medicines: any;
 
-    constructor(private medicineService: MedicineService) { }
+    constructor(public medicineService: MedicineService) { }
 
     ngOnInit() {
 

@@ -11,9 +11,11 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer" [dataSource]="holiday" keyExpr="gazettedHolidaysId" (onRowInserted)="addHolidays($event)"
-                (onRowUpdated)="Editholiday($event)" (onRowRemoved)="deleteholiday($event)">
+                (onRowUpdating)="updatingholiday($event)"
+                (onRowUpdated)="Editholiday()"
+                 (onRowRemoved)="deleteholiday($event)">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Holiday" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Holiday" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

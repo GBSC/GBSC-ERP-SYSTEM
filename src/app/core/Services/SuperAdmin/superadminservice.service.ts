@@ -8,27 +8,29 @@ import { Module } from '../../Models/HRM/module';
 @Injectable()
 export class SuperadminserviceService {
 
-    private SystemAdmin_API_URL = "systemadmin/api/";
+    public SystemAdmin_API_URL = "systemadmin/api/";
+    public AuthUrl = "authentication/api/"
 
-    // private Account_API_URL = "http://localhost:61161/api/"
+    // public Account_API_URL = "http://localhost:61161/api/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 
-    async addCompany(company: Company) {
-        let response = await this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/AddCompany', company).toPromise();
-        return response;
+    addCompany(company: Company) {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/AddCompany', company);
     }
 
-    async addModule(module: Module) {
-        let response = await this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/AddModule', module).toPromise();
-        return response;
+    addModule(module: Module) {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddModuleWithAllFeatures', module);
     }
 
-    async registerAdmin(admin: SystemAdminRegistrationViewModel) {
-        let response = await this.ApiService.post(`${environment.api_url}api/accounts`, admin).toPromise();
-        return response;
+    registerAdmin(admin: SystemAdminRegistrationViewModel) {
+        return this.ApiService.post(this.AuthUrl + '/accounts', admin);
+    }
+
+    getCompanyInfo(companyid: any) {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'CompanySetup/GetCompanyInfo/' + companyid);
     }
 
 }

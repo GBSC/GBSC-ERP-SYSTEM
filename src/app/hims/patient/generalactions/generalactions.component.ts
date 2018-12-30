@@ -32,7 +32,7 @@ export class GeneralactionsComponent implements OnInit {
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
-    constructor(private toastr: ToastrService, private PatientServiceobj: PatientService, private router: Router, private route: ActivatedRoute) { }
+    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
 
     async  ngOnInit() {
 
@@ -93,21 +93,23 @@ export class GeneralactionsComponent implements OnInit {
     }
     public appointmentId: any;
     async startVisit(value) {
-        if (this.currentconsultant.length) {
-            if (value.length == 0 || value == null || value == '') {
-                this.displayToastError("Please Select Consultant")
-            }
-            else {
-                await this.PatientServiceobj.AddVisits(this.id);
-                let x = this.currentconsultant.find(t => t.consultantId == value)
-                x.visitStatus = 'start';
-                this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
-                //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-                this.router.navigate(['/hims/patient/visits/' + this.id]);
-                console.log(x);
-                console.log(value)
-            }
+        if (this.currentconsultant) {
+            if (this.currentconsultant.length) {
+                if (value.length == 0 || value == null || value == '') {
+                    this.displayToastError("Please Select Consultant")
+                }
+                else {
+                    await this.PatientServiceobj.AddVisits(this.id);
+                    let x = this.currentconsultant.find(t => t.consultantId == value)
+                    x.visitStatus = 'start';
+                    this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
+                    //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
+                    this.router.navigate(['/hims/patient/visits/' + this.id]);
+                    console.log(x);
+                    console.log(value)
+                }
 
+            }
         }
         else {
             this.displayToastError("Current Date Appointment Not Schedule")

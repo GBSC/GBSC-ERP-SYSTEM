@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { CustomerWarehouse } from '../../../core/Models/Inventory/Setup/CustomerWarehouse';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
 
 @Component({
     selector: 'app-customer-warehouse',
@@ -7,22 +9,34 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-warehouse.component.scss']
 })
 export class CustomerWarehouseComponent implements OnInit {
-    private CustomerWarehouses: any;
-    private CustomerTypes: any;
-    private UpdatedModel: any;
+    public CustomerWarehouses: any;
+    public CustomerTypes: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.CustomerWarehouses = await this.InventoryService.GetCustomerWarehouses();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetCustomerWarehousesByCompany(this.CompanyId).subscribe((res: CustomerWarehouse) => {
+            this.CustomerWarehouses = res;
+        });
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
     }
 
-    async AddWarehouse(value) {
+    AddWarehouse(value) {
         //console.log(value.data);
-        return await this.InventoryService.AddCustomerWarehouse(value.data);
+        this.InventoryService.AddCustomerWarehouse(value.data).subscribe(res => {
+            this.InventoryService.GetCustomerWarehousesByCompany(this.CompanyId).subscribe((res: CustomerWarehouse) => {
+                this.CustomerWarehouses = res;
+            });
+        });
     }
 
     UpdateModel(value) {
@@ -30,13 +44,13 @@ export class CustomerWarehouseComponent implements OnInit {
         //console.log(this.UpdatedModel);
     }
 
-    async UpdateWarehouse() {
-        return await this.InventoryService.UpdateCustomerWarehouse(this.UpdatedModel);
+    UpdateWarehouse() {
+        this.InventoryService.UpdateCustomerWarehouse(this.UpdatedModel).subscribe();
     }
 
-    async DeleteWarehouse(value) {
+    DeleteWarehouse(value) {
         //console.log(value.key);
-        await this.InventoryService.DeleteCustomerWarehouse(value.key);
+        this.InventoryService.DeleteCustomerWarehouse(value.key).subscribe();
     }
 
 }

@@ -7,12 +7,12 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./purchase-indent-item.component.scss']
 })
 export class PurchaseIndentItemComponent implements OnInit {
-    private PurchaseIndent: any;
-    private InventoryItem: any;
-    private Inventory: any;
-    private PurchaseIndentItem: any;
+    public PurchaseIndent: any;
+    public InventoryItem: any;
+    public Inventory: any;
+    public PurchaseIndentItem: any;
 
-    constructor(private InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService) {
 
     }
 

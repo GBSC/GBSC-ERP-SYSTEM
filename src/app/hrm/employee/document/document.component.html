@@ -3,7 +3,7 @@
 
 </div>
 
-<form class="signup-form" [formGroup]="employee.documentForm"> 
+<form class="signup-form"> 
  
         <div class="form-group m-form__group row">
             <label class="col-form-label col-lg-3 col-sm-12">
@@ -37,7 +37,7 @@
 </div>
 </form> -->
 
-<dx-data-grid id="gridContainer" [dataSource]="employee?.DocumentsByUserId" (onRowRemoved)="deleteUserDocument($event)"> 
+<dx-data-grid id="gridContainer" [dataSource]="DocumentsByUserId" (onRowRemoved)="deleteUserDocument($event)"> 
   <dxo-editing mode="row" [allowDeleting]="true">
 </dxo-editing>
 <dxo-filter-row [visible]="true"></dxo-filter-row>

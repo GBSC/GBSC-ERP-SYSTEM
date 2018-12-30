@@ -17,7 +17,7 @@ export class SocialComponent implements OnInit {
     public SocialForm: any;
 
     constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public employeeService: EmployeeService,
-        public router: Router, private route: ActivatedRoute) {
+        public router: Router, public route: ActivatedRoute) {
         this.SocialForm = this.fb.group({
             FacebookUrl: [''],
             TwitterUrl: [''],

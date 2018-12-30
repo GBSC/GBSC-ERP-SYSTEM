@@ -9,9 +9,9 @@ import { TestUnit } from '../../../../core/Models/HIMS/testunit';
 })
 export class TestunitComponent implements OnInit {
 
-    private units: TestUnit;
+    public units: TestUnit;
 
-    constructor(private bioChemistryService: BioChemistryService) { }
+    constructor(public bioChemistryService: BioChemistryService) { }
 
     ngOnInit() {
 

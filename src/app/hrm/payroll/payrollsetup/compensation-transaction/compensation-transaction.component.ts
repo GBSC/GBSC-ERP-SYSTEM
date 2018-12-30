@@ -18,20 +18,9 @@ export class CompensationTransactionComponent implements OnInit {
     public payrollTypes: any;
     public updatingTransaction: any;
 
-    constructor(private fb: FormBuilder, public router: Router, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
+    constructor(public fb: FormBuilder, public router: Router, public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
 
     async ngOnInit() {
-
-        this.CompensationTransactionForm = this.fb.group({
-            PayrollyearId: ['', Validators],
-            Month: ['', Validators],
-            UserId: ['', Validators],
-            PayrollTypeId: ['', Validators],
-            AllowanceId: ['', Validators],
-            Amount: ['', Validators],
-            Remarks: ['', Validators],
-            IsTaxableIncome: ['', Validators]
-        });
 
         this.compensationTransaction = await this.payrollsetupservice.getCompensationTransactions();
 
@@ -44,8 +33,9 @@ export class CompensationTransactionComponent implements OnInit {
         this.allowances = await this.payrollsetupservice.getAllowances();
     }
 
-    async addCompensationTransaction() {
-        await this.payrollsetupservice.addCompensationTransaction(this.CompensationTransactionForm.value);
+    async addCompensationTransaction(value) {
+        await this.payrollsetupservice.addCompensationTransaction(value.data);
+        this.compensationTransaction = await this.payrollsetupservice.getCompensationTransactions();
     }
 
     updatingCompensationTransaction(value) {

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { Customer } from '../../../core/Models/Inventory/Setup/Customer';
+import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType';
+import { SalesPerson } from '../../../core/Models/Inventory/Setup/SalesPerson';
+import { ModeOfPayment } from '../../../core/Models/Inventory/Setup/ModeOfPayment';
 
 @Component({
     selector: 'app-customer-setup',
@@ -7,25 +11,40 @@ import { InventorysystemService } from '../../../core';
     styleUrls: ['./customer-setup.component.scss']
 })
 export class CustomerSetupComponent implements OnInit {
-    private Customers: any;
-    private CustomerTypes: any;
-    private SalesPeople: any;
-    private ModeOfPayments: any;
-    private UpdatedModel: any;
+    public Customers: any;
+    public CustomerTypes: any;
+    public SalesPeople: any;
+    public ModeOfPayments: any;
+    public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
 
-    async ngOnInit() {
-        this.Customers = await this.InventoryService.GetCustomers();
-        this.CustomerTypes = await this.InventoryService.GetCustomerTypes();
-        this.SalesPeople = await this.InventoryService.GetSalesPeople();
-        this.ModeOfPayments = await this.InventoryService.GetModeOfPayments();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetCustomersByCompany(this.CompanyId).subscribe((res: Customer) => {
+            this.Customers = res;
+        });
+        this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
+            this.CustomerTypes = res;
+        });
+        this.InventoryService.GetSalesPeopleByCompany(this.CompanyId).subscribe((res: SalesPerson) => {
+            this.SalesPeople = res;
+        });
+        this.InventoryService.GetModeOfPaymentsByCompany(this.CompanyId).subscribe((res: ModeOfPayment) => {
+            this.ModeOfPayments = res;
+        });
     }
 
-    async AddCustomer(value) {
+    AddCustomer(value) {
         //console.log(value.data);
-        await this.InventoryService.AddCustomer(value.data);
-        this.Customers = await this.InventoryService.GetCustomers();
+        this.InventoryService.AddCustomer(value.data).subscribe(res => {
+            this.InventoryService.GetCustomersByCompany(this.CompanyId).subscribe((res: Customer) => {
+                this.Customers = res;
+            });
+        });
         //console.log(this.Customers);
     }
 
@@ -34,12 +53,12 @@ export class CustomerSetupComponent implements OnInit {
         //console.log(this.UpdatedModel);
     }
 
-    async UpdateCustomer() {
-        return await this.InventoryService.UpdateCustomer(this.UpdatedModel);
+    UpdateCustomer() {
+        return this.InventoryService.UpdateCustomer(this.UpdatedModel).subscribe();
     }
 
-    async DeleteCustomer(value) {
-        return await this.InventoryService.DeleteCustomer(value.key);
+    DeleteCustomer(value) {
+        return this.InventoryService.DeleteCustomer(value.key).subscribe();
     }
 
 }

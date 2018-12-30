@@ -23,9 +23,9 @@ import { HttpParams } from '@angular/common/http';
 
 export class FinanceService {
 
-    private baseUrl: string = "Finance/api";
+    public baseUrl: string = "Finance/api";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getPurchaseInvoices() {
 

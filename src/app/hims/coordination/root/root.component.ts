@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '../../../_services/script-loader.service';
 })
 export class RootComponent implements OnInit {
 
-    constructor(private _script: ScriptLoaderService, private _router: Router) { }
+    constructor(public _script: ScriptLoaderService, public _router: Router) { }
 
     ngOnInit() {
         this._script.loadScripts('body', ['assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js', 'assets/demo/default/custom/components/forms/widgets/bootstrap-datepicker.js'], true)

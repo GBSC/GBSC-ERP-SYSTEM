@@ -16,7 +16,7 @@ export class RecentvisitsComponent implements OnInit {
     public currentPatient: any = [];
     id: number;
     visits: Visits;
-    constructor(private PatientServiceobj: PatientService, public router: Router, private rout: ActivatedRoute) {
+    constructor(public PatientServiceobj: PatientService, public router: Router, public rout: ActivatedRoute) {
 
     }
 

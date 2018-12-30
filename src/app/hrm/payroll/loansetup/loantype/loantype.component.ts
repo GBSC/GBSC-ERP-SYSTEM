@@ -7,7 +7,7 @@ import { PayrollSetupService } from '../../../../core';
     styleUrls: ['./loantype.component.scss']
 })
 export class LoantypeComponent implements OnInit {
-    private UpdatedModel: any;
+    public UpdatedModel: any;
 
     public LoanType: any;
 

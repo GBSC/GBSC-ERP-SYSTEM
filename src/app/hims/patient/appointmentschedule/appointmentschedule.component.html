@@ -217,7 +217,7 @@
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
               <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
-                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345"  ></dxo-popup>
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

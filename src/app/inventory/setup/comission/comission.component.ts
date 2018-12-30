@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
 import { Comission } from '../../../core/Models/Inventory/Setup/Comission';
 
 @Component({
@@ -8,13 +8,19 @@ import { Comission } from '../../../core/Models/Inventory/Setup/Comission';
     styleUrls: ['./comission.component.scss']
 })
 export class ComissionComponent implements OnInit {
-    private Comissions: any;
-    private updatedmodel: Comission;
+    public Comissions: any;
+    public updatedmodel: Comission;
+    private CompanyId: number;
 
-    constructor(private InventoryService: InventorysystemService) { }
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
 
-    async ngOnInit() {
-        this.Comissions = await this.InventoryService.GetComissions();
+    ngOnInit() {
+        this.AuthService.getUserCompanyId().subscribe((res: number) => {
+            this.CompanyId = res;
+        });
+        this.InventoryService.GetComissionsByCompany(this.CompanyId).subscribe((res: Comission) => {
+            this.Comissions = res;
+        });
     }
 
     UpdateModel(value) {
@@ -22,19 +28,22 @@ export class ComissionComponent implements OnInit {
         console.log(this.updatedmodel);
     }
 
-    async AddComission(value) {
+    AddComission(value) {
         console.log(value.data);
-        await this.InventoryService.AddComission(value.data);
-        this.Comissions = await this.InventoryService.GetComissions();
+        this.InventoryService.AddComission(value.data).subscribe(res => {
+            this.InventoryService.GetComissionsByCompany(this.CompanyId).subscribe((res: Comission) => {
+                this.Comissions = res;
+            });
+        });
     }
 
-    async UpdateComission() {
-        return await this.InventoryService.UpdateComission(this.updatedmodel);
+    UpdateComission() {
+        return this.InventoryService.UpdateComission(this.updatedmodel).subscribe();
     }
 
-    async DeleteComission(value) {
+    DeleteComission(value) {
         console.log(value);
-        return await this.InventoryService.DeleteComission(value.key);
+        return this.InventoryService.DeleteComission(value.key).subscribe();
     }
 
 }

@@ -20,31 +20,31 @@ import { DISABLED } from '@angular/forms/src/model';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-    private PurchaseOrders: PurchaseOrder;
-    private NewPurchaseOrder: PurchaseOrder;
-    private Suppliers: Supplier;
-    private SelectedSupplier: Supplier;
-    private PurchaseOrderForm: FormGroup;
-    private PurchaseOrderDetailsForm: FormGroup;
-    private PurchaseOrderDetailsFormArray: any[] = [];
-    private InventoryItems: InventoryItem;
-    private SelectedInventoryItem: any;
-    private PurchaseOrderDetailsArray: any[] = [];
-    private FilteredInventoryItems: any;
-    private Currencies: Currency[];
-    private SelectedCurrency: Currency;
-    private TotalOrderAmount: number = 0;
-    private GrossAmount: number = 0;
-    private SalesTaxAmount: number = 0;
-    private DiscountAmount: number = 0;
-    private NetAmount: number = 0;
-    private TotalQuantity: number = 0;
-    private Inventories: Inventory[] = [];
+    public PurchaseOrders: PurchaseOrder;
+    public NewPurchaseOrder: PurchaseOrder;
+    public Suppliers: Supplier;
+    public SelectedSupplier: Supplier;
+    public PurchaseOrderForm: FormGroup;
+    public PurchaseOrderDetailsForm: FormGroup;
+    public PurchaseOrderDetailsFormArray: any[] = [];
+    public InventoryItems: InventoryItem;
+    public SelectedInventoryItem: any;
+    public PurchaseOrderDetailsArray: any[] = [];
+    public FilteredInventoryItems: any;
+    public Currencies: Currency[];
+    public SelectedCurrency: Currency;
+    public TotalOrderAmount: number = 0;
+    public GrossAmount: number = 0;
+    public SalesTaxAmount: number = 0;
+    public DiscountAmount: number = 0;
+    public NetAmount: number = 0;
+    public TotalQuantity: number = 0;
+    public Inventories: Inventory[] = [];
 
     public fieldsenabled: boolean = true;
 
 
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder) {
         this.PurchaseOrderForm = this.FormBuilder.group({
             OrderNumber: [''],
             OrderDate: [''],

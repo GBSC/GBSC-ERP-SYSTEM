@@ -10,7 +10,8 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "postinstall": "npm run tsformat",
-        "tsformat": "tsfmt -r"
+        "tsformat": "tsfmt -r",
+        "build-prod": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --prod"
     },
     "private": true,
     "dependencies": {

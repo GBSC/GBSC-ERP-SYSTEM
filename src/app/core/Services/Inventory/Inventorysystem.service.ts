@@ -54,12 +54,14 @@ import { Supplier } from '../../Models/Inventory/Setup/Supplier';
 import { Unit } from '../../Models/Inventory/Setup/Unit';
 import { componentFactoryName } from '@angular/compiler';
 import { Transport } from '../../Models/Inventory/Setup/Transport';
+import { City } from '../../Models/HRM/city';
 
 
 @Injectable()
 export class InventorysystemService {
 
     public readonly API_URL = 'inventory/api/';
+    public readonly TerritoryApi_Url = 'etracker/api/';
     constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
@@ -1059,6 +1061,10 @@ export class InventorysystemService {
         return this.ApiService.get(this.API_URL + 'Setup/GetDistributorsByCompany/' + companyId);
     }
 
+    getDistributorsByCompany(companyId: number): Observable<Distributor[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetDistributorsByCompany/' + companyId);
+    }
+
     AddDistributor(Distributor: Distributor): Observable<Distributor> {
         return this.ApiService.post(this.API_URL + 'Setup/AddDistributor', Distributor);
         // let x = await this.http.post(this.API_URL + 'Setup/AddDistributor', Distributor).toPromise();
@@ -1820,5 +1826,55 @@ export class InventorysystemService {
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteUnit/' + id).toPromise();
         // console.log(x);
         // return x;
+    }
+
+    /***************************************For eTracker Reporting **********************************/
+
+    getCitiesByUserAndRegion(regionid : number, userid : number) {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByUserAndRegion/' + regionid + '/' + userid);
+    }
+
+    getAreasByUserAndCity(cityid : number, userid : number) : Observable<Area[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByUserAndCity/' + cityid + '/' + userid);
+    }
+
+    getDistributorsByUserAndArea(areaid : number, userid : number) : Observable<Distributor[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByUserAndArea/' + areaid + '/' + userid);
+    }
+
+    getTerritoriesByUserAndDistributor(distributorId : number, userid : number) : Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByUserAndDistributor/' + distributorId + '/' + userid);
+    }
+
+    getSectionsByUserAndTerritory(territoryId : number, userid : number) : Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSectionsByUserAndTerritory/' + territoryId + '/' + userid);
+    }
+
+    getSubsectionsBySection(sectionid : number) : Observable<any[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSubsectionsBySection/' + sectionid);
+    }
+
+    getRegionByCity(cityid : number) : Observable<Region> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetRegionByCity/' + cityid);
+    }
+
+    getCityByArea(areaid : number) : Observable<City> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCityByArea/' + areaid);
+    }
+
+    getCitiesByRegion(regionid : number) {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByRegion/' + regionid);
+    }
+
+    getAreasByCity(cityid : number) : Observable<Area[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByCity/' + cityid);
+    }
+
+    getDistributorsByArea(areaid : number) : Observable<Distributor[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByArea/' + areaid);
+    }
+
+    getTerritoriesByDistributor(distributorId : number) : Observable<Territory[]> {
+        return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByDistributor/' + distributorId);
     }
 }

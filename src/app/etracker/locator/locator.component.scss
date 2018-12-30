@@ -76,3 +76,38 @@ agm-map {
     border: none;
     outline: none;
   }
+  .live-tracking-panel{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 110;
+    }
+    
+    .live-tracking-overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 0.8;
+    }
+    
+    .live-tracking-map-view{
+    height: 80%;
+    width: 90%;
+    z-index: 100;
+    }
+    
+    .live-tracking-map-view button{
+    z-index: 1000;
+    }
+    
+    .live-tracking-map-view amg-amp{
+    height: 100%;
+    }

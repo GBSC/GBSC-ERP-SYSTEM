@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
-import { eTrackerUserService } from '../../core/Services/ETracker/etrackeruser.service';
-
+import { AuthService, InventorysystemService, eTrackerUserService } from '../../core';
+import { Region } from '../../core/Models/Inventory/Setup/Region';
+import { Area } from '../../core/Models/Inventory/Setup/Area';
+import { Distributor } from '../../core/Models/Inventory/Setup/Distributor';
+import { Territory } from '../../core/Models/Inventory/Setup/Territory';
+import { Employee } from '../../core/Models/HRM/employee';
+import { City } from '../../core/Models/HRM/city';
 
 @Component({
     selector: 'app-locator',
@@ -10,6 +15,7 @@ import { eTrackerUserService } from '../../core/Services/ETracker/etrackeruser.s
 })
 
 export class LocatorComponent {
+    public showHideFilter: boolean = false;
     public title: string = 'Angular Map';
     public userLatestlocation: any;
     public userLocationHistory: any[];
@@ -31,12 +37,77 @@ export class LocatorComponent {
     public nonProductiveShopMarker: any;
     public nonProductiveShopMarkerOther: any;
     public liveTrackingRouteCoords: any = [];
+    public DisableRegion: boolean = true;
+    public DisableCity: boolean = true;
+    public DisableArea: boolean = true;
+    public DistributorDisable: boolean = true;
+    public TerritoryDisable: boolean = true;
+    public SectionDisable: boolean = true;
+    public SubsectionDisable: boolean = true;
+    public DsfDisable: boolean = true;
 
-    constructor(private eTrackerUserService: eTrackerUserService) { }
+    public Regions: any;
+    public Cities: any[] = [];
+    public Areas: any;
+    public Distributors: any;
+    public Territories: any;
+    public Sections: any[] = [];
+    public Subsections: any[] = [];
+    public DSFs: any;
+    public IsAdmin: boolean = false;
+    public IsRsm: boolean = false;
+    public IsZsm: boolean = false;
+    public regionId: any;
+    public cityId: any;
+    public areaId: any;
+    public territoryId: any;
+    public sectionId: any;
+    public subsectionId: any;
+    public distributorId: any;
+    public dsfId: any;
+
+
+    constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
     ngOnInit() {
 
+        this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
+            this.Regions = res;
+        });
+
+        this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res: City[]) => {
+            this.Cities = res;
+        });
+
+        this.InventoryService.getAreasByCompany(this.Auth.getUserCompanyId()).subscribe((res: Area[]) => {
+            this.Areas = res;
+        });
+
+        this.InventoryService.getDistributorsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Distributor[]) => {
+            this.Distributors = res;
+        });
+
+        this.InventoryService.getTerritoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res: Territory[]) => {
+            this.Territories = res;
+        });
+
+        this.InventoryService.getSectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
+            this.Sections = res;
+        });
+
+        this.InventoryService.getSubsectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
+            this.Subsections = res;
+        });
+
+        this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
+            this.DSFs = res;
+        });
+
+        this.setDropboxValues();
+
         
+
+
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');
         console.log(simpleMarker);
@@ -72,12 +143,105 @@ export class LocatorComponent {
         console.log(map);
     }
 
+    setDropboxValues() {
+
+        if (this.Auth.getUserLevel() == 'Admin' || this.Auth.getUserLevel() == 'NSM' || this.Auth.getUserLevel() == 'HO') {
+            this.IsAdmin = true;
+            this.DisableRegion = false;
+            this.DisableCity = false;
+            this.DisableArea = false;
+            this.DistributorDisable = false;
+            this.TerritoryDisable = false;
+            this.SectionDisable = false;
+            this.SubsectionDisable = false;
+            this.DsfDisable = false;
+
+            this.Regions = this.Regions.filter(r => r.userId == this.Auth.getUserId());
+
+
+        } else if (this.Auth.getUserLevel() == 'ZSM') {
+            this.IsRsm = true;
+            this.DisableCity = false;
+            this.DisableArea = false;
+            this.DistributorDisable = false;
+            this.TerritoryDisable = false;
+            this.SectionDisable = false;
+            this.SubsectionDisable = false;
+            this.DsfDisable = false;
+
+            this.Cities = this.Cities.filter(c => c.userId == this.Auth.getUserId());
+
+        } else if (this.Auth.getUserLevel() == 'ASM') {
+            this.IsZsm = true;
+            this.DisableArea = false;
+            this.DistributorDisable = false;
+            this.TerritoryDisable = false;
+            this.SectionDisable = false;
+            this.SubsectionDisable = false;
+            this.DsfDisable = false;
+
+            this.Areas = this.Areas.filter(a => a.userId == this.Auth.getUserId());
+
+        } else {
+
+        }
+    }
+
+    onRegionChange(value: number) {
+        this.regionId = value;
+        this.Cities = this.Cities.filter(a => a.regionId == value);
+    }
+
+    onCityChange(value: number) {
+        this.cityId = value;
+        let city = this.Cities.find(c => c.cityId == value);
+        this.regionId = city.regionId;
+        this.Areas = this.Areas.filter(a => a.cityId == value);
+    }
+
+    onAreaChange(value: number) {
+        this.areaId = value;
+        let area = this.Areas.find(a => a.areaId == value);
+        this.cityId = area.cityId;
+        this.Territories = this.Territories.filter(a => a.areaId == value);
+    }
+
+    onDistributorChange(value: number) {
+        this.distributorId = value;
+        this.Territories = this.Territories.filter(a => a.distributorId == value);
+    }
+
+    onTerritoryChange(value: number) {
+        this.territoryId = value;
+        let territory = this.Territories.find(t => t.territoryId == value);
+        this.areaId = territory.areaId;
+        this.Sections = this.Sections.filter(a => a.territoryId == value);
+    }
+
+    onSectionChange(value: number) {
+        this.sectionId = value;
+        let section = this.Sections.find(s => s.sectionId == value);
+        this.territoryId = section.territoryId;
+        this.Subsections = this.Subsections.filter(a => a.sectionId == value);
+        this.DSFs = this.DSFs.filter(a => a.sectionId == value);
+    }
+
+    onSubsectionChange(value: number) {
+        this.subsectionId = value;
+        let subsection = this.Subsections.find(s => s.subsectionId == value);
+        this.sectionId = subsection.sectionId;
+    }
+
+    onDsfChange(value) {
+        this.dsfId = value;
+    }
+
 
     selectUser(e) {
         this.eTrackerUserService.locationHistory = [];
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
-        this.eTrackerUserService.setCurrentUser(e.target.value);
+        this.eTrackerUserService.setCurrentUser(e);
         this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
 
@@ -156,12 +320,14 @@ export class LocatorComponent {
     showNonProductiveShops() {
         this.eTrackerUserService.filterNonProductiveShops();
     }
-
-
     showRouteTaken() {
         this.eTrackerUserService.showRouteTaken()
     }
+    toggleFilter() {
+        this.showHideFilter = !this.showHideFilter;
+    }
 
+    
 
 
 }

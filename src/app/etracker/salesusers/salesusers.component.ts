@@ -3,6 +3,7 @@ import { eTrackerUserService, AuthService, InventorysystemService } from '../../
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Select2OptionData } from 'ng2-select2';
+import { ToastrService } from 'ngx-toastr';
 
 export enum UserLevelStatus {
     showRegion = 1,
@@ -51,7 +52,7 @@ export class SalesusersComponent implements OnInit {
     constructor(private authService: AuthService,
         private userService: eTrackerUserService,
         private inventoryService: InventorysystemService,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,public toastr: ToastrService) {
 
         this.companyId = this.authService.getUserCompanyId();
         this.loggedinUserId = this.authService.getUserId();
@@ -216,6 +217,12 @@ export class SalesusersComponent implements OnInit {
         }
 
         this.userService.assignUserLevel(assign).subscribe(resp => console.log(resp));
+        this.displayToastSuccess("Saved");
+
+        this.userService.getSalesUsersByCompany(this.companyId).subscribe(u => {
+
+            this.users = u;
+        });
 
     }
 
@@ -250,9 +257,12 @@ export class SalesusersComponent implements OnInit {
         this.userService.assignSubsections(this.assignedSubsections).subscribe(resp => {
             console.log(resp);
         })
+        this.displayToastSuccess("Saved");
     }
 
-
+    displayToastSuccess(message) {
+        this.toastr.success(message);
+    }
 }
 
 

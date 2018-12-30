@@ -125,25 +125,6 @@
             </select>
           </div>
         </div>
-        <div class="col-sm-3">
-          <div class="form-group m-form__group">
-            <label>
-              Classifications
-            </label>
-            <select #Classification class="form-control m-input" (change)="onClassificationSelect(Classification.value)">
-              <option *ngFor="let classification of Classifications" [value]="classification">{{classification}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group m-form__group">
-            <label>
-              Categories
-            </label>
-            <select #Category class="form-control m-input" (change)="onCategorySelect(Category.value)">
-              <option *ngFor="let category of Categories" [value]="category">{{category}}</option>
-            </select> </div>
-        </div>
       </div>
     </div>
   </div>

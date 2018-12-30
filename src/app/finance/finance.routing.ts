@@ -34,7 +34,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'setup',
                 children: [
-                    { path: 'account', component: FinanceAccountComponent },
+                    { path: 'coa', component: FinanceAccountComponent },
                     { path: 'companysetup', component: CompanysetupComponent },
                     { path: 'masteraccount', component: MasterAccountComponent },
                     { path: 'detailaccount', component: DetailAccountComponent },

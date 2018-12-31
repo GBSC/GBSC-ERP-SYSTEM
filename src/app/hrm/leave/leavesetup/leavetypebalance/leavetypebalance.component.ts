@@ -17,6 +17,9 @@ export class LeavetypebalanceComponent implements OnInit {
     public totalleave = []
     public groups: any;
     public empleavepolicyarray: any[];
+    public any: any = [];
+    public any2: any = [];
+    public data: any = []
 
 
     constructor(public leavesetupservice: LeaveSetupService, public hrSetupService: SetupService, public leaveservice: LeaveService, public employeeservice: EmployeeService) { }
@@ -33,6 +36,8 @@ export class LeavetypebalanceComponent implements OnInit {
 
         this.employees = await this.employeeservice.GetAllEmployees();
 
+        this.data = this.leaveservice.prepareLeaveData(this.employees, this.LeaveType, this.empleavepolicy
+        , this.LeavePolicies);
         // this.groups = await this.hrSetupService.getAllGroups(); 
 
         console.log(this.empleavepolicy);

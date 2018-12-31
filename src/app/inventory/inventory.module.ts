@@ -56,6 +56,8 @@ import { DeliveryNoteComponent } from './sales/delivery-note/delivery-note.compo
 
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 
 @NgModule({
     imports: [
@@ -118,7 +120,9 @@ import { InventoryMasterComponent } from './setup/inventory-master/inventory-mas
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent,
-        InventoryMasterComponent
+        InventoryMasterComponent,
+        OrderSummaryComponent, 
+        OrderDetailComponent
     ]
 })
 export class InventoryModule { }

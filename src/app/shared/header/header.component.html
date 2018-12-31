@@ -1309,35 +1309,43 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/purchase-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 															Purchase Invoice
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												</li> -->
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/purchase-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
 															Purchase Return
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												</li> -->
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/sales-invoice-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-clipboard"></i>
 														<span class="m-menu__link-text">
 															Sales Invoice
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												</li> -->
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/sales-return-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
 															Sales Return
+														</span>
+													</a>
+												</li> -->
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/finance/voucher" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-graphic-2"></i>
+														<span class="m-menu__link-text">
+															New Voucher
 														</span>
 													</a>
 												</li>
@@ -1345,7 +1353,7 @@
 													<a routerLink="/finance/voucher-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-2"></i>
 														<span class="m-menu__link-text">
-															Voucher
+															View Vouchers
 														</span>
 													</a>
 												</li>
@@ -1369,7 +1377,7 @@
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/setup/masteraccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
@@ -1378,8 +1386,8 @@
 															Master Account
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												</li> -->
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/setup/detailaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
@@ -1388,7 +1396,7 @@
 															Detail Account
 														</span>
 													</a>
-												</li>
+												</li> -->
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/setup/financialyear" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
@@ -1410,16 +1418,16 @@
 													</a>
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/finance/setup/controlaccount" class="m-menu__link">
+													<a routerLink="/finance/setup/coa" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Control Account
+															Chart of Account
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/finance/setup/secondsubaccount" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
@@ -1428,7 +1436,7 @@
 															Second Sub Account
 														</span>
 													</a>
-												</li>
+												</li> -->
 											</ul>
 										</li>
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
@@ -1583,7 +1591,7 @@
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
-													<a routerLink="/inventory/setup/inventoryitem" class="m-menu__link">
+													<a routerLink="/inventory/setup/inventory-master" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 															<span></span>
 														</i>
@@ -1668,7 +1676,7 @@
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
-													<a routerLink="/inventory/reports/order-summary-report" class="m-menu__link">
+													<a routerLink="/inventory/reports/order-summary" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 															Order Summary Report
@@ -1677,7 +1685,7 @@
 												</li>
 												<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
-													<a routerLink="/inventory/reports/order-detail-report" class="m-menu__link">
+													<a routerLink="/inventory/reports/order-detail" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-map"></i>
 														<span class="m-menu__link-text">
 															Order Detail Report

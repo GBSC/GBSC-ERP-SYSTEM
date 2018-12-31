@@ -12,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 export class UserregistrationComponent implements OnInit {
 
     private companyId: any;
-    private roles: any;
-    private cities: any;
-    private user: any;
+    public roles: any;
+    public cities: any;
+    public user: any;
     private userId: any;
 
-    private userForm: FormGroup;
+    public userForm: FormGroup;
 
     constructor(private route: ActivatedRoute,
         private formBuilder: FormBuilder,

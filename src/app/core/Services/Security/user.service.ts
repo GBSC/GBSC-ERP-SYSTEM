@@ -23,7 +23,7 @@ export class UserService {
         return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
     }
 
-    EditUser(user: any) : Observable<any> {
+    EditUser(user: any): Observable<any> {
         return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
     }
 
@@ -35,7 +35,7 @@ export class UserService {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
     }
 
-    changePassword(model : any) : Observable<string> {
+    changePassword(model: any): Observable<string> {
         return this.ApiService.post(this.Auth_Url + 'accounts/ChangePassword', model);
     }
 

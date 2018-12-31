@@ -28,6 +28,7 @@ export class OfficialVisitEntryComponent implements OnInit {
     async addofficialVisitentry(value) {
 
         await this.attendanceservice.addOfficialVisitEntry(value.data);
+        await this.attendanceservice.addAttendanceRequest(value.data);
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
     }
 

@@ -71,7 +71,7 @@
           </div>
 
           <div class="form-group col-lg-4">
-            <dx-tree-view [items]="products" [width]="320" showCheckBoxesMode="normal" (onItemSelectionChanged)="selectionChanged($event)">
+            <dx-tree-view [items]="[]" [width]="320" showCheckBoxesMode="normal" (onItemSelectionChanged)="selectionChanged()">
             </dx-tree-view>
           </div>
           <a data-toggle="modal" data-target="#m_modal_3">
@@ -79,7 +79,7 @@
           </a>
 
           <div class="form-group col-lg-4">
-            <dx-tree-view id="selection-treeview" [items]="products" [width]="320" showCheckBoxesMode="normal">
+            <dx-tree-view id="selection-treeview" [items]="[]" [width]="320" showCheckBoxesMode="normal">
             </dx-tree-view>
           </div>
         </div>

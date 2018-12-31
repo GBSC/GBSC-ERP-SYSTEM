@@ -32,7 +32,7 @@ export class SalesusersComponent implements OnInit {
 
     public userId: any;
 
-    public loggedinUserId : any;
+    public loggedinUserId: any;
 
     public assignForm: FormGroup;
 
@@ -52,7 +52,7 @@ export class SalesusersComponent implements OnInit {
     constructor(private authService: AuthService,
         private userService: eTrackerUserService,
         private inventoryService: InventorysystemService,
-        private formBuilder: FormBuilder,public toastr: ToastrService) {
+        private formBuilder: FormBuilder, public toastr: ToastrService) {
 
         this.companyId = this.authService.getUserCompanyId();
         this.loggedinUserId = this.authService.getUserId();
@@ -130,7 +130,7 @@ export class SalesusersComponent implements OnInit {
 
     }
 
-    sectionChange(value){
+    sectionChange(value) {
         this.sectionId = value;
     }
 

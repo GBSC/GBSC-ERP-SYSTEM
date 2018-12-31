@@ -11,9 +11,9 @@ declare let mLayout: any;
 })
 export class MenuComponent implements OnInit, AfterViewInit {
 
-    private accessibleFeatures : string[] = [];
+    public accessibleFeatures : string[] = [];
 
-    constructor(public route: ActivatedRoute, public router: Router, private AuthService : AuthService) { }
+    constructor(public route: ActivatedRoute, public router: Router, private AuthService: AuthService) { }
 
     ngOnInit() {
         this.accessibleFeatures = this.AuthService.getAccessableModulesAndFeatures().features;

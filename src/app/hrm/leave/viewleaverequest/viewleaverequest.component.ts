@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LeaveSetupService, LeaveService, EmployeeService } from '../../../core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-viewleaverequest',
@@ -12,14 +14,17 @@ export class ViewleaverequestComponent implements OnInit {
     public leaveRequestId: any;
     public leaverequestdetail: any;
     public leaveYear: any;
+    public leaveRequestForm: FormGroup;
     public employees: any;
     public leaveType: any;
     public leaveApprovr: any;
+    public leaveRequest: any;
     public leaverequest: any;
     public leaveOpening: any;
-
-    constructor(public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
-        public router: Router, public leaveservice: LeaveService) { }
+    public leaveDetail: any[] = []; 
+    
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+        public router: Router, public activatedRoute: ActivatedRoute, public leaveservice: LeaveService) { }
 
 
     async ngOnInit() {
@@ -37,8 +42,12 @@ export class ViewleaverequestComponent implements OnInit {
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
+
+
     }
 
+    // [formItem]="{editorOptions: { readOnly: true }}"
+ 
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
             {
@@ -57,9 +66,42 @@ export class ViewleaverequestComponent implements OnInit {
             e.component.selectRowsByIndexes(-1);
     }
 
+    public dataToUpdate: any = null;
+
     selectionChanged(e) {
         e.component.collapseAll(-0);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
+        console.log(e);
+    }
+
+    updateLeaveRequest(e){
+        console.log(e);
+          
+        if(e.data.isApproved) {
+            let leave = this.leaverequest.find(l=>{
+                if(l.leaveRequestId=== e.key){
+                    return l;
+                }
+            })
+            console.log(leave);
+            leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => { 
+                let g= d.totalLeaveDetailValue -= d.value;
+                console.log(g);
+                delete d.leaveRequestDetailId
+                return d; 
+            });
+            
+            this.empservice.updatedLeaves = e.key.leaveRequestDetails;
+            this.leaveservice.updateLeaveRequest(leave).subscribe(resp => {
+                    this.toastr.success("Leave Request Updated");
+                    this.router.navigate(['/hrm/leave/leaverequests']);
+                
+                });
+                console.log('send Req', e.key);
+            
+        }
+
+
     }
 
     addleaveRequest() {
@@ -67,7 +109,7 @@ export class ViewleaverequestComponent implements OnInit {
     }
 
     getSingleRowData(d) {
-        this.leaveRequestId = d.key;
+        this.leaveRequestId = d.key; 
         this.router.navigate(['hrm/leave/update-leave-request/' + this.leaveRequestId]);
     }
 }

@@ -42,6 +42,7 @@
         <dxi-column dataField="description"></dxi-column>
         <dxi-column dataField="openingBalance"></dxi-column>
         <dxi-column dataField="isGeneralOrDetail" dataType="boolean" caption="General Account"></dxi-column>
+        <dxi-column dataField="showInBalanceSheet" dataType="boolean" caption="In Balance Sheet"></dxi-column>
         <dxi-column dataField="financialYearId">
           <dxo-lookup [dataSource]="FinancialYears" displayExpr="name" valueExpr="financialYearId">
           </dxo-lookup>
@@ -92,10 +93,10 @@
                       </label>
                     </div>
                   </div>
-                  <!-- <div class="row"> -->
-                  <div class="col-lg-6">
+                  <div class="row form-group">
+                  <div class="col-sm-6">
                     <div class="m-checkbox-list">
-                      <label class="m-checkbox m-checkbox--state-success">Bank Account
+                      <label class="m-checkbox">Bank Account
                         <input type="checkbox" formControlName="IsBankAccount">
                       </label>
                       <label class="m-checkbox m-checkbox--state-success">Show In Balance Sheet
@@ -103,8 +104,9 @@
                       </label>
                     </div>
                   </div>
+                </div>
                   <div class="form-group">
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                       <div class="form-group m-form__group row">
                         <label class="col-lg-4 col-form-label">
                           Account Type
@@ -119,7 +121,7 @@
                           </select>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <label for="recipient-name" class="form-control-label">
                       Parent Account Code:
                     </label>

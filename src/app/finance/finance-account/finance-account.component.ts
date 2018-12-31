@@ -115,7 +115,8 @@ export class FinanceAccountComponent implements OnInit {
         isGeneralOrDetail : value.IsGeneralOrDetail,
         description : value.Description,
         financialYearId : Number.parseInt(value.FinancialYearId),
-        openingBalance : Number.parseFloat(value.OpeningBalance)
+        openingBalance : Number.parseFloat(value.OpeningBalance),
+        showInBalanceSheet : value.ShowInBalanceSheet
       };
 
       this.RequestAccount = a;
@@ -136,9 +137,10 @@ export class FinanceAccountComponent implements OnInit {
       let a : Account = this.Accounts.find(a => a.accountCode == value.AccountCode);
       a.description = value.Description;
       a.openingBalance = Number.parseFloat(value.OpeningBalance) || null;
+      a.showInBalanceSheet = value.ShowInBalanceSheet;
 
       this.UpdateAccount = a;
-
+      console.log(a);
       this.FinanceService.updateAccount(this.UpdateAccount).subscribe((res : any) => {
         console.log(res);
         this.FinanceService.getAccounts().subscribe((res : Account[]) => {

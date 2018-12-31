@@ -120,17 +120,28 @@ export class ShopCensusDetailComponent implements OnInit {
             callbacks: {
                 // For demonstration purposes. Get the "Search" action and hide it.  
                 ParametersSubmitted: (s, e) => this.ngZone.run(() => {
-                    e.Parameters.filter(function(p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "sectionid"; })[0].Value = this.sectionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "territoryid"; })[0].Value = this.territoryId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "areaid"; })[0].Value = this.areaId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "cityid"; })[0].Value = this.cityId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "regionid"; })[0].Value = this.regionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "distributorid"; })[0].Value = this.distributorId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "userid"; })[0].Value = this.dsfId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "category"; })[0].Value = this.category || "";
-                    e.Parameters.filter(function(p) { return p.Key == "classification"; })[0].Value = this.classification || "";
-                    e.Parameters.filter(function(p) { return p.Key == "shopstatus"; })[0].Value = this.shopstatus || "";
+                    if(this.subsectionId)
+                    e.Parameters.filter(function (p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId;
+                    if(this.sectionId)
+                    e.Parameters.filter(function (p) { return p.Key == "sectionid"; })[0].Value = this.sectionId;
+                    if(this.territoryId)
+                    e.Parameters.filter(function (p) { return p.Key == "territoryid"; })[0].Value = this.territoryId;
+                    if(this.areaId)
+                    e.Parameters.filter(function (p) { return p.Key == "areaid"; })[0].Value = this.areaId;
+                    if(this.cityId)
+                    e.Parameters.filter(function (p) { return p.Key == "cityid"; })[0].Value = this.cityId;
+                    if(this.regionId)
+                    e.Parameters.filter(function (p) { return p.Key == "regionid"; })[0].Value = this.regionId;
+                    if(this.distributorId)
+                    e.Parameters.filter(function (p) { return p.Key == "distributorid"; })[0].Value = this.distributorId;
+                    if(this.dsfId)
+                    e.Parameters.filter(function (p) { return p.Key == "userid"; })[0].Value = this.dsfId;
+                    if(this.category)
+                    e.Parameters.filter(function (p) { return p.Key == "category"; })[0].Value = this.category;
+                    if(this.classification)
+                    e.Parameters.filter(function (p) { return p.Key == "classification"; })[0].Value = this.classification;
+                    if(this.shopstatus)
+                    e.Parameters.filter(function(p) { return p.Key == "shopstatus"; })[0].Value = this.shopstatus;
                 })
             }
         }, this.control.nativeElement);

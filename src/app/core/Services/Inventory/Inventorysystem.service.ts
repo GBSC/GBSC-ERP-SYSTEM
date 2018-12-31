@@ -1830,51 +1830,51 @@ export class InventorysystemService {
 
     /***************************************For eTracker Reporting **********************************/
 
-    getCitiesByUserAndRegion(regionid : number, userid : number) {
+    getCitiesByUserAndRegion(regionid: number, userid: number) {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByUserAndRegion/' + regionid + '/' + userid);
     }
 
-    getAreasByUserAndCity(cityid : number, userid : number) : Observable<Area[]> {
+    getAreasByUserAndCity(cityid: number, userid: number): Observable<Area[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByUserAndCity/' + cityid + '/' + userid);
     }
 
-    getDistributorsByUserAndArea(areaid : number, userid : number) : Observable<Distributor[]> {
+    getDistributorsByUserAndArea(areaid: number, userid: number): Observable<Distributor[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByUserAndArea/' + areaid + '/' + userid);
     }
 
-    getTerritoriesByUserAndDistributor(distributorId : number, userid : number) : Observable<Territory[]> {
+    getTerritoriesByUserAndDistributor(distributorId: number, userid: number): Observable<Territory[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByUserAndDistributor/' + distributorId + '/' + userid);
     }
 
-    getSectionsByUserAndTerritory(territoryId : number, userid : number) : Observable<Territory[]> {
+    getSectionsByUserAndTerritory(territoryId: number, userid: number): Observable<Territory[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSectionsByUserAndTerritory/' + territoryId + '/' + userid);
     }
 
-    getSubsectionsBySection(sectionid : number) : Observable<any[]> {
+    getSubsectionsBySection(sectionid: number): Observable<any[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetSubsectionsBySection/' + sectionid);
     }
 
-    getRegionByCity(cityid : number) : Observable<Region> {
+    getRegionByCity(cityid: number): Observable<Region> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetRegionByCity/' + cityid);
     }
 
-    getCityByArea(areaid : number) : Observable<City> {
+    getCityByArea(areaid: number): Observable<City> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCityByArea/' + areaid);
     }
 
-    getCitiesByRegion(regionid : number) {
+    getCitiesByRegion(regionid: number) {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetCitiesByRegion/' + regionid);
     }
 
-    getAreasByCity(cityid : number) : Observable<Area[]> {
+    getAreasByCity(cityid: number): Observable<Area[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetAreasByCity/' + cityid);
     }
 
-    getDistributorsByArea(areaid : number) : Observable<Distributor[]> {
+    getDistributorsByArea(areaid: number): Observable<Distributor[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetDistributorsByArea/' + areaid);
     }
 
-    getTerritoriesByDistributor(distributorId : number) : Observable<Territory[]> {
+    getTerritoriesByDistributor(distributorId: number): Observable<Territory[]> {
         return this.ApiService.get(this.TerritoryApi_Url + 'Territory/GetTerritoriesByDistributor/' + distributorId);
     }
 }

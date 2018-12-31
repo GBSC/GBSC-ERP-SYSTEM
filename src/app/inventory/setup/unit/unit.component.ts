@@ -18,7 +18,7 @@ export class UnitComponent implements OnInit {
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: Unit) => {
             this.Units = res;
         });

@@ -21,7 +21,7 @@ export interface Employee {
     CityId: number,
     UserLanguages: Array<any>,
     userId: any,
-    roleId : number,
-    role : Role,
-    sectionId : number,
+    roleId: number,
+    role: Role,
+    sectionId: number,
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InventorysystemService } from '../../../core';
+import { InventorysystemService, AuthService } from '../../../core';
+import { PackCategory } from '../../../core/Models/Inventory/Setup/PackCategory';
 
 @Component({
     selector: 'app-product-pack-category',
@@ -9,32 +10,41 @@ import { InventorysystemService } from '../../../core';
 export class ProductPackCategoryComponent implements OnInit {
     public PackCategories: any;
     public UpdatedModel: any;
+    private CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService) {
+    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
 
     }
 
-    async ngOnInit() {
-        this.PackCategories = await this.InventoryService.GetPackCategories();
+    ngOnInit() {
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
+        this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: PackCategory) => {
+            this.PackCategories = res;
+        });
     }
 
-    async AddPackCategory(value) {
-        await this.InventoryService.AddPackCategory(value.data);
-        this.PackCategories = await this.InventoryService.GetPackCategories();
+    AddPackCategory(value) {
+        value.data.companyId = this.CompanyId;
+        this.InventoryService.AddPackCategory(value.data).subscribe(res => {
+            this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: PackCategory) => {
+                this.PackCategories = res;
+            });
+        });
     }
 
     UpdateModel(value) {
-        //console.log(value);
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
         //console.log(this.UpdatedModel);
     }
 
-    async UpdatePackCategory() {
-        return await this.InventoryService.UpdatePackCategory(this.UpdatedModel);
+    UpdatePackCategory() {
+        return this.InventoryService.UpdatePackCategory(this.UpdatedModel).subscribe();
     }
 
-    async DeletePackCategory(value) {
-        return await this.InventoryService.DeletePackCategory(value.key);
+    DeletePackCategory(value) {
+        return this.InventoryService.DeletePackCategory(value.key).subscribe();
     }
 
 }

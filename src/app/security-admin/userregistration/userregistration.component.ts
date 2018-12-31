@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SuperadminserviceService, HrmsService, AuthService, SystemAdministrationService } from '../../../app/core';
-import { UserService } from '../../../app/core/Services/Security/user.service';
+import { HrmsService, AuthService, SystemAdministrationService, UserService } from '../../../app/core';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

@@ -1,0 +1,78 @@
+agm-map {
+    height: 600px;
+  }
+  
+  input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+  }
+  
+  
+  .container{
+    width: 200px;
+    height: 200px;
+    background: red;
+  }
+  
+  .marker-info{
+    width: 200px;
+    background: white;
+    width: 200px;
+    height: 250px;
+    position: absolute;
+    top: -120px;
+    /* top: -calc(50% - 20px); */
+    left: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-header{
+    height: 40px;
+    width: 100%;
+    background: orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-header h1{
+    font-size: 18px;
+    font-weight: normal;
+  }
+  
+  .info-body{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-body p{
+    width: 90%;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  .info-footer{
+    height: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .info-footer button{
+    background: orange;
+    color: white;
+    font-size: 15px;
+    width: 150px;
+    height: 30px;
+    margin-bottom: 40px;
+    border: none;
+    outline: none;
+  }

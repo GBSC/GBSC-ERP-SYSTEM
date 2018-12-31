@@ -49,12 +49,6 @@
                     <dx-select-box [items]="Consultants" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId" > 
                       </dx-select-box>  
                   </div>
-
-                  <div class="form-group col-lg-3">
-                      <label for="exampleSelect1"> Procedure </label>
-                      <dx-select-box [items]="Procedure" displayExpr="procedureName" valueExpr="procedureId" [searchEnabled]="true" formControlName="ProcedureId"  > 
-                        </dx-select-box>  
-                    </div>
             </div>
             <div class="form-group row">
                 <div class="form-group col-lg-9">
@@ -86,23 +80,18 @@
          <div class="m-portlet__body">
            <div class="m-section">
              <div class="m-section__content">
-               <dx-data-grid id="gridContainer" [dataSource]="[]" (onRowInserted)="addData($event)"   (onRowUpdated)="($event)" (onRowRemoved)="($event)"> 
+               <dx-data-grid id="gridContainer" [dataSource]="[]" (onRowInserted)="addProcedure($event)"   (onRowUpdated)="($event)" (onRowRemoved)="deleteProcedure($event)"> 
                    <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
                </dxo-editing>
                  <dxo-filter-row [visible]="true"></dxo-filter-row>
                  <dxo-header-filter [visible]="true"></dxo-header-filter>
                  <dxo-paging [pageSize]="5"></dxo-paging>
                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                 <!-- <dxi-column dataField="procedureId" caption="Procedure" >
-                    <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
-                  </dxi-column> -->
+ 
                   <dxi-column dataField="ProcedureId" caption="Procedure" >
                       <dxo-lookup [dataSource]="Procedure" displayExpr="procedureName" valueExpr="procedureId"></dxo-lookup>
                     </dxi-column>
-                    <dxi-column dataField="ProcedureId" caption="Procedure" >
-                        <dxo-lookup [dataSource]="Procedure" displayExpr="code" valueExpr="procedureId"></dxo-lookup>
-                      </dxi-column>
-                 <dxi-column dataField="procedureId" caption="Procedure Code"></dxi-column> 
+                   
                 </dx-data-grid>
              </div>
            </div>

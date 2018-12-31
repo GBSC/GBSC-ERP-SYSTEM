@@ -110,7 +110,7 @@
             </form>
 
             <div class="m--space-07"></div>
-            <dx-data-grid id="gridContainer" [dataSource]="SalesIndentItems" keyExpr="">
+            <dx-data-grid id="gridContainer" [dataSource]="SalesIndentItems" keyExpr="" (onRowInserted)="AddIndent($event)">
               <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
               </dxo-editing>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -122,6 +122,7 @@
                 </dxo-lookup>
               </dxi-column>
               <dxi-column dataField="quantity" caption="Quantity" dataType="number"></dxi-column>
+              <dxi-column dataField="companyId" dataType="number" visible="false"></dxi-column>
             </dx-data-grid>
           </div>
         </div>

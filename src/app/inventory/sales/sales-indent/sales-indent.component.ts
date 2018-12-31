@@ -55,4 +55,8 @@ export class SalesIndentComponent implements OnInit {
         await this.InventoryService.AddSalesIndent(a).subscribe(res => console.log(res));
     }
 
+    AddIndent(value) {
+        value.companyId = this.Auth.getUserCompanyId();
+    }
+
 }

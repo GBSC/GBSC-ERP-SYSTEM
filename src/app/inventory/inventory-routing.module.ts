@@ -49,6 +49,7 @@ import { PurchaseReturnComponent } from './purchase/purchase-return/purchase-ret
 import { PurchaseReturnItemComponent } from './purchase/purchase-return-item/purchase-return-item.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
 
 const routes: Routes = [
 
@@ -91,6 +92,7 @@ const routes: Routes = [
                     { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
                     { path: 'salesindent', component: SalesIndentComponent },
                     { path: 'salesindentitem', component: SalesIndentItemComponent },
+                    { path: 'salesindentprocess', component: IndentProcessComponent},
                     { path: 'salesinvoice', component: SalesInvoiceComponent },
                     { path: 'salesorder', component: SalesOrderComponent },
                     { path: 'salesorderitem', component: SalesOrderItemComponent },

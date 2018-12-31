@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
         this.userName = this.authservice.getProfileInfo().Username;
         this.userLevel = this.authservice.getProfileInfo().UserLevel;
-        console.log(this.authservice.getUser());
         // console.log(this.userLevel);
 
         // this.HrmsService.GetCitiesByCompanyId(this.authservice.getUserCompanyId()).subscribe((res : any[]) => {

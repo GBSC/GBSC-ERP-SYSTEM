@@ -1,0 +1,170 @@
+<div class="m-content">
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            COA
+          </h3>
+        </div>
+      </div>
+      <div class="m-portlet__head-tools">
+        <ul class="m-portlet__nav">
+          <li class="m-portlet__nav-item">
+            <div class="row align-items-center">
+              <div class="col-xl-4 order-1 order-xl-2 m--align-right">
+                <a class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--air m-btn--pill" data-toggle="modal"
+                  data-target="#m_modal_4">
+                  <span>
+                    <i class="la la-plus"></i>
+                    <span>
+                      Add Master Account
+                    </span>
+                  </span>
+                </a>
+                <div class="m-separator m-separator--dashed d-xl-none"></div>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+      <dx-data-grid id="gridContainer" [dataSource]="Accounts" keyExpr="accountId">
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-paging [pageSize]="25"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25, 50, 100]" [showInfo]="true">
+        </dxo-pager>
+        <dxi-column dataField="accountCode"></dxi-column>
+        <dxi-column dataField="description"></dxi-column>
+        <dxi-column dataField="openingBalance"></dxi-column>
+        <dxi-column dataField="isGeneralOrDetail" dataType="boolean" caption="General Account"></dxi-column>
+        <dxi-column dataField="financialYearId">
+          <dxo-lookup [dataSource]="FinancialYears" displayExpr="name" valueExpr="financialYearId">
+          </dxo-lookup>
+        </dxi-column>
+        <dxi-column caption="Action" [minWidth]="100" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+        <div *dxTemplate="let d of 'chartCellTemplate'">
+          <div class="chart-cell">
+            <input class="btn btn-primary" type="submit" value="Update" (click)="updateAccount(d)" data-toggle="modal"
+              data-target="#m_modal_4">
+            <input class="btn btn-success" type="submit" value="Add" (click)="addAccount(d)" data-toggle="modal"
+              data-target="#m_modal_4">
+          </div>
+        </div>
+      </dx-data-grid>
+
+
+      <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Add Account
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="AccountForm">
+                <div class="m-form__group form-group row">
+                  <label class="col-3 col-form-label">
+                    Account Type
+                  </label>
+                  <div class="col-9">
+                    <div class="m-radio-inline">
+                      <label class="m-radio">
+                        <input type="radio" #Account value="true" formControlName="IsGeneralOrDetail">
+                        General
+                        <span></span>
+                      </label>
+                      <label class="m-radio">
+                        <input type="radio" #Account value="false" formControlName="IsGeneralOrDetail">
+                        Detail
+                        <span></span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- <div class="row"> -->
+                  <div class="col-lg-6">
+                    <div class="m-checkbox-list">
+                      <label class="m-checkbox m-checkbox--state-success">Bank Account
+                        <input type="checkbox" formControlName="IsBankAccount">
+                      </label>
+                      <label class="m-checkbox m-checkbox--state-success">Show In Balance Sheet
+                        <input type="checkbox" formControlName="ShowInBalanceSheet">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                          Account Type
+                        </label>
+                        <div class="col-lg-8">
+                          <select class="form-control m-input" formControlName="MasterAccountType">
+                            <option [value]="Asset">Asset</option>
+                            <option [value]="Liability">Liability</option>
+                            <option [value]="Expense">Expense</option>
+                            <option [value]="Xyz">Xyz</option>
+                            <option [value]="Abc">Abc</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <label for="recipient-name" class="form-control-label">
+                      Parent Account Code:
+                    </label>
+                    <input type="text" disabled class="form-control" formControlName="ParentAccountCode">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="form-control-label">
+                      Parent Account Level
+                    </label>
+                    <input type="text" disabled class="form-control" formControlName="ParentAccountLevel">
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="form-control-label">
+                      Financial Year:
+                    </label>
+                    <select class="form-control" formControlName="FinancialYearId">
+                      <option *ngFor="let year of FinancialYears" [value]="year.financialYearId">{{year.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="form-control-label">
+                      Opening Balance:
+                    </label>
+                    <input disable=Account type="text" class="form-control" formControlName="OpeningBalance">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="form-control-label">
+                      Description:
+                    </label>
+                    <textarea class="form-control" formControlName="Description"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="ResetBools()" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button type="button" (click)="SendRequest(AccountForm.value)" class="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

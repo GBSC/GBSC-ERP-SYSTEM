@@ -5,6 +5,7 @@ import { FinanceService } from '../../core/Services/Finance/finance.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SetupService } from '../../core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
+import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
 
 @Component({
     selector: 'app-update-voucher',

@@ -67,7 +67,7 @@
                         <div *dxTemplate="let salesInvoiceDetail of 'detail'">
                             <dx-data-grid 
                             [dataSource]="salesInvoiceDetail.data.financeSalesInvoiceDetails"
-                             [showBorders]="true" [columnAutoWidth]="true">
+                             [showBorders]="true">
                                 <dxi-column dataField="amount" caption="Amount"> </dxi-column>
                                 <dxi-column dataField="itemDescription" caption="Description"></dxi-column>
                                 </dx-data-grid>

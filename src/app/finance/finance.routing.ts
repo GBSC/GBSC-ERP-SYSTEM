@@ -59,8 +59,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'update-sales-return/:id', component: SalesReturnComponent },
             { path: 'sales-return-detail', component: SalesReturnDetailComponent },
             { path: 'voucher', component: VoucherComponent },
-             { path: 'update-voucher/:id', component: VoucherComponent }, 
-             { path: 'currenttrailbalanceview', component: CurrentTrailBalanceViewComponent },
+            { path: 'update-voucher/:id', component: VoucherComponent },
+            { path: 'currenttrailbalanceview', component: CurrentTrailBalanceViewComponent },
             { path: 'update-voucher/:id', component: UpdateVoucherComponent },
             { path: 'voucher-detail', component: VoucherDetailComponent }
 

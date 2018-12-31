@@ -26,10 +26,10 @@ import { SalesInvoiceDetailComponent } from './sales-invoice-detail/sales-invoic
 import { SalesReturnDetailComponent } from './sales-return-detail/sales-return-detail.component';
 import { VoucherDetailComponent } from './voucher-detail/voucher-detail.component';
 import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/current-trail-balance-view.component';
- 
+
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
-import { FinanceAccountComponent } from './finance-account/finance-account.component'; 
+import { FinanceAccountComponent } from './finance-account/finance-account.component';
 
 @NgModule({
     imports: [
@@ -65,10 +65,10 @@ import { FinanceAccountComponent } from './finance-account/finance-account.compo
         SalesReturnDetailComponent,
         VoucherDetailComponent,
         CurrentTrailBalanceViewComponent,
-         
+
         DemoComponent,
         UpdateVoucherComponent,
-        FinanceAccountComponent 
+        FinanceAccountComponent
     ],
     providers: [FinanceSetupService, FinanceService]
 })

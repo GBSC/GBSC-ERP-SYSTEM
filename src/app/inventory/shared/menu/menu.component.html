@@ -286,16 +286,41 @@
 					</div>
 				</div>
 			</li>
-			<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight"
-			 routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true"
-			 data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+			<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item m-menu__item--submenu m-menu__item--submenu-fullheight m-menu__item--open-dropdown m-menu__item--hover"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-time-3"></i>
 					<span class="m-menu__link-text">
 						Reports
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a></li>
+				</a>
+				<div class="m-menu__submenu "><span class="m-menu__arrow"></span>
+					<div class="m-menu__wrapper m-scroller ps ps--active-y" style="height: 341px; overflow: hidden;">
+						<ul class="m-menu__subnav">
+							<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" aria-haspopup="true">
+								<span class="m-menu__link"><span class="m-menu__link-text">Order Reports</span></span>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/inventory/reports/order-summary" class="m-menu__link "><span class="m-menu__link-text">Order
+										Summary</span></a>
+							</li>
+							<li *ngIf="accessibleFeatures.includes('Inventory - Reports')" class="m-menu__item " aria-haspopup="true">
+								<a routerLink="/inventory/reports/order-detail" class="m-menu__link "><span class="m-menu__link-text">Order
+										Detail</span></a>
+							</li>
+
+						</ul>
+						<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+							<div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+						</div>
+						<div class="ps__rail-y" style="top: 0px; height: 341px; right: 4px;">
+							<div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 150px;"></div>
+						</div>
+					</div>
+				</div>
+			</li>
 
 		</ul>
 	</div>

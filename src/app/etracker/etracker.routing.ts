@@ -16,8 +16,6 @@ import { DistributersComponent } from './territories/distributers/distributers.c
 import { TerritoryComponent } from './territories/territory/territory.component';
 import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
 import { LocationReportComponent } from './reports/location-report/location-report.component';
-import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
-import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-diff-units.component';
 import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-census-detail.component';
 import { ShopCensusSummaryComponent } from './reports/shop-census-summary/shop-census-summary.component';
@@ -47,8 +45,6 @@ const routes: Routes = [
                 path: "reports",
                 children: [
                     { path: 'location-report', component: LocationReportComponent },
-                    { path: 'order-detail', component: OrderDetailComponent },
-                    { path: 'order-summary', component: OrderSummaryComponent },
                     { path: 'product-diff-units', component: ProductDiffUnitsComponent },
                     { path: 'shop-census-detail', component: ShopCensusDetailComponent },
                     { path: 'shop-census-summary', component: ShopCensusSummaryComponent },

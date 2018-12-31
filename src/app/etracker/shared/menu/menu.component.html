@@ -73,10 +73,10 @@
 							<li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" aria-haspopup="true">
 								<span class="m-menu__link"><span class="m-menu__link-text">eTracker Reports</span></span>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item ">
+							<!-- <li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item ">
 								<a routerLink="/etracker/reports/location-report" class="m-menu__link "><span class="m-menu__link-text">Location
 										Report</span></a>
-							</li>
+							</li> -->
 							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item ">
 								<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link "><span class="m-menu__link-text">Shop
 										Census Detail</span></a>
@@ -100,11 +100,6 @@
 							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/visit-summary" class="m-menu__link "><span class="m-menu__link-text">Visit
 										Summary</span></a>
-							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true"
-							 m-menu-link-redirect="1">
-								<a routerLink="/etracker/reports/product-diff-units" class="m-menu__link "><span class="m-menu__link-text">Product
-										Diffrence Units</span></a>
 							</li>
 
 						</ul>

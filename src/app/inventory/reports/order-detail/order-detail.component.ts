@@ -10,13 +10,14 @@ import { City } from '../../../core/Models/HRM/city';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
+import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
 
 @Component({
-    selector: 'app-visit-summary-report',
-    templateUrl: './visit-summary-report.component.html',
-    styleUrls: ['./visit-summary-report.component.scss']
+    selector: 'app-order-detail',
+    templateUrl: './order-detail.component.html',
+    styleUrls: ['./order-detail.component.scss']
 })
-export class VisitSummaryReportComponent implements OnInit {
+export class OrderDetailComponent implements OnInit {
 
     public showHideFilter: boolean = false;
     public DisableRegion: boolean = true;
@@ -37,7 +38,17 @@ export class VisitSummaryReportComponent implements OnInit {
     public Subsections: any[] = [];
     public DSFs: any;
     public Classifications: any[] = ['500 & Above', '250 to 499', '100 to 249', 'Less then 100'];
-    public Categories: any[] = ['LMT', 'V/S', 'Retail']
+    public Categories: any[] = ['LMT', 'V/S', 'Retail'];
+    public Products: any;
+    public Shops: any;
+    public ProductCategories: any;
+    public ProductBrands: any;
+    public ProductTypes: any;
+    public ProductPackageTypes: any;
+    public ProductPackTypes: any;
+    public ProductPackSizes: any;
+    public ProductPackCategories: any;
+    public PackCategories: any;
 
     public IsAdmin: boolean = false;
     public IsRsm: boolean = false;
@@ -53,6 +64,16 @@ export class VisitSummaryReportComponent implements OnInit {
     public dsfId: any;
     public classification: any = '500 & Above';
     public category: any = 'LMT';
+    public productId: any;
+    public shopId: any;
+    public productCategoryId: any;
+    public productBrandId: any;
+    public productTypeId: any;
+    public productPackTypeId: any;
+    public productPackSizeId: any;
+    public productPackCategoryId: any;
+    public productPackageTypeId: any;
+
 
     public startDate: any;
     public endDate: any;
@@ -63,7 +84,12 @@ export class VisitSummaryReportComponent implements OnInit {
     @ViewChild("control")
     control: ElementRef
 
-    constructor(public renderer: Renderer2, public ngZone: NgZone, public Auth: AuthService, public InventoryService: InventorysystemService, public eTrackerUserService: eTrackerUserService) { }
+    constructor(public renderer: Renderer2,
+        public ngZone: NgZone,
+        public Auth: AuthService,
+        public InventoryService: InventorysystemService,
+        public storeService: StoreService,
+        public eTrackerUserService: eTrackerUserService) { }
 
     ngOnInit() {
 
@@ -99,12 +125,49 @@ export class VisitSummaryReportComponent implements OnInit {
             this.DSFs = res;
         });
 
+        this.InventoryService.GetProductTypesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductTypes = resp;
+        });
+
+        this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.Products = resp;
+        });
+
+        this.InventoryService.GetInventoryItemCategoriesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductCategories = resp;
+        });
+
+        this.InventoryService.GetPackSizesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductPackSizes = resp;
+        });
+
+        this.InventoryService.GetPackCategoriesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.PackCategories = resp;
+        });
+
+        this.InventoryService.GetPackTypesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductPackTypes = resp;
+        });
+
+        this.InventoryService.GetPackageTypesByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductPackageTypes = resp;
+        });
+
+        this.InventoryService.GetBrandsByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.ProductBrands = resp;
+        });
+
+        this.storeService.getAllStoresByCompany(this.Auth.getUserCompanyId()).subscribe(resp => {
+            this.Shops = resp;
+        });
+
+
         this.setDropboxValues();
     }
 
     ngAfterViewInit() {
 
-        const reportUrl = ko["observable"]("VisitSummary"),
+        const reportUrl = ko["observable"]("OrderDetail"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = 'http://localhost:57581/';
@@ -138,6 +201,22 @@ export class VisitSummaryReportComponent implements OnInit {
                     e.Parameters.filter(function (p) { return p.Key == "category"; })[0].Value = this.category;
                     if(this.classification)
                     e.Parameters.filter(function (p) { return p.Key == "classification"; })[0].Value = this.classification;
+                    if(this.productBrandId)
+                    e.Parameters.filter(function (p) { return p.Key == "brandid"; })[0].Value = this.productBrandId;
+                    if(this.productTypeId)
+                    e.Parameters.filter(function (p) { return p.Key == "producttypeid"; })[0].Value = this.productTypeId;
+                    if(this.productPackTypeId)
+                    e.Parameters.filter(function (p) { return p.Key == "packtypeid"; })[0].Value = this.productPackTypeId;
+                    if(this.productPackSizeId)
+                    e.Parameters.filter(function (p) { return p.Key == "packsizeid"; })[0].Value = this.productPackSizeId;
+                    if(this.productPackCategoryId)
+                    e.Parameters.filter(function (p) { return p.Key == "packcategoryid"; })[0].Value = this.productPackCategoryId;
+                    if(this.productId)
+                    e.Parameters.filter(function (p) { return p.Key == "inventryitemid"; })[0].Value = this.productId;
+                    if(this.productCategoryId)
+                    e.Parameters.filter(function (p) { return p.Key == "inventoryitemcategoryid"; })[0].Value = this.productCategoryId;
+                    if(this.shopId)
+                    e.Parameters.filter(function (p) { return p.Key == "storeid"; })[0].Value = this.shopId;
                 })
             }
         }, this.control.nativeElement);
@@ -242,6 +321,38 @@ export class VisitSummaryReportComponent implements OnInit {
 
     onClassificationSelect(value) {
         this.classification = value;
+    }
+
+    onShopSelect(value) {
+        this.shopId = value;
+    }
+
+    onProductSelect(value) {
+        this.productId = value;
+    }
+
+    onProductCategorySelect(value) {
+        this.productCategoryId = value;
+    }
+
+    onProductBrandSelect(value) {
+        this.productBrandId = value;
+    }
+
+    onProductTypeSelect(value) {
+        this.productTypeId = value;
+    }
+
+    onProductPackTypeSelect(value) {
+        this.productPackTypeId = value;
+    }
+
+    onProductPackSizeSelect(value) {
+        this.productPackSizeId = value;
+    }
+
+    onProductPackCategorySelect(value) {
+        this.productPackCategoryId = value;
     }
 
     toggleFilter() {

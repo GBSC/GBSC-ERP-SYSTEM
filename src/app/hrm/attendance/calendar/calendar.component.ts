@@ -11,15 +11,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class CalendarComponent implements OnInit {
 
-<<<<<<< HEAD
-    //  @ViewChild("calendar") public calendar: IgxCalendarComponent;
-    //  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
-    //  public range = [];
-=======
     //   @ViewChild("calendar") public calendar: IgxCalendarComponent;
     //  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
     public range = [];
->>>>>>> master
 
     public days = [];
     public remarks = [];
@@ -28,7 +22,7 @@ export class CalendarComponent implements OnInit {
     public calendarForm : FormGroup;
     // public years = [];
     // public monthSelected = null;
-    constructor(private formBuilder : FormBuilder) { 
+    constructor(public formBuilder : FormBuilder) { 
         this.calendarForm = this.formBuilder.group({
             Date : [''],
             Reamrks : ['']

@@ -11,7 +11,7 @@ export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
 
-    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, private authService : AuthService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public authService : AuthService) { }
 
     async ngOnInit() {
 

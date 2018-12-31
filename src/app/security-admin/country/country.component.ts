@@ -10,10 +10,10 @@ import { AuthService } from '../../core';
 })
 export class CountryComponent implements OnInit {
 
-    private updatingModel: any;
+    public updatingModel: any;
     public countries: any;
 
-    constructor(public httpClient: HttpClient, public hrmService: HrmsService, private authService : AuthService) { }
+    constructor(public httpClient: HttpClient, public hrmService: HrmsService, public authService : AuthService) { }
 
     async ngOnInit() {
 

@@ -23,7 +23,7 @@ export class EmpleavepolicyComponent implements OnInit {
     public sample: any;
     public selectedLeaveTypes : any ;
 
-    constructor(private fb: FormBuilder, public setupService: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
+    constructor(public fb: FormBuilder, public setupService: SetupService, public leaveservice: LeaveService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {

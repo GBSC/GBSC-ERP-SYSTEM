@@ -14,16 +14,16 @@ import { AccountViewModel } from '../../core/Models/Finance/AccountViewModel';
 })
 
 export class FinanceAccountComponent implements OnInit {
-    private Accounts: Account[] = [];
-    private FinancialYears: FinancialYear[] = [];
-    private AccountForm: FormGroup;
+    public Accounts: Account[] = [];
+    public FinancialYears: FinancialYear[] = [];
+    public AccountForm: FormGroup;
 
-    private RequestAccount: AccountViewModel;
-    private UpdateAccount: Account;
+    public RequestAccount: AccountViewModel;
+    public UpdateAccount: Account;
 
-    private IsUpdate: boolean = false;
+    public IsUpdate: boolean = false;
 
-    constructor(private fb: FormBuilder, private FinanceService: FinanceService, private FinanceSetupService: FinanceSetupService, private Toastr: ToastrService) {
+    constructor(public fb: FormBuilder, public FinanceService: FinanceService, public FinanceSetupService: FinanceSetupService, public Toastr: ToastrService) {
 
     }
 

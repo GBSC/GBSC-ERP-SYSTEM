@@ -25,10 +25,10 @@ export class VoucherDetailComponent implements OnInit {
     public voucherTypes: any[];
     public unprocessedaccounts: TransactionAccount[] = [];
 
-    private UnpostedVouchers: UnpostedVoucherViewModel[] = [];
-    private PostedVouchers: PostedVoucherViewModel[] = [];
+    public UnpostedVouchers: UnpostedVoucherViewModel[] = [];
+    public PostedVouchers: PostedVoucherViewModel[] = [];
 
-    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService, private Toastr: ToastrService) { }
+    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService, public Toastr: ToastrService) { }
 
     async ngOnInit() {
 

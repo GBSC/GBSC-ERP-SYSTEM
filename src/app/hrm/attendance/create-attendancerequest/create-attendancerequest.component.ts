@@ -22,7 +22,7 @@ export class CreateAttendancerequestComponent implements OnInit {
     public employeeAsignRosters: any = [];
     public shift: any;
 
-    constructor(private fb: FormBuilder, public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
+    constructor(public fb: FormBuilder, public attendanceservice: AttendanceService, public attendanceSetupservice: AttendancesetupService,
         public Employeeservice: EmployeeService) { }
 
 

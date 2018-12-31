@@ -10,13 +10,9 @@ declare let mLayout: any;
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit, AfterViewInit {
-<<<<<<< HEAD
-    public accessibleFeatures : string[] = [];
-=======
-    private accessibleFeatures: string[] = [];
->>>>>>> master
+    public accessibleFeatures: string[] = [];
 
-    constructor(private AuthService: AuthService) { }
+    constructor(public AuthService: AuthService) { }
 
     ngOnInit() {
         this.accessibleFeatures = this.AuthService.getAccessableModulesAndFeatures().features;

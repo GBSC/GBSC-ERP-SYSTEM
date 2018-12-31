@@ -12,14 +12,14 @@ import { Router } from '@angular/router';
 export class DailySemenAnalysisComponent implements OnInit {
 
     public DailySemenAnalysisForm: FormGroup;
-    private ProcedureForm: FormGroup;
+    public ProcedureForm: FormGroup;
     public Patients: any;
     public Consultants: any;
     public Procedure: any;
-    private Procedurearray: any = [];
-    private dailysemenanalysisobj: any;
+    public Procedurearray: any = [];
+    public dailysemenanalysisobj: any;
 
-    constructor(private formBuilder: FormBuilder, private PatientServiceobj: PatientService, public router: Router) {
+    constructor(public formBuilder: FormBuilder, public PatientServiceobj: PatientService, public router: Router) {
         this.DailySemenAnalysisForm = this.formBuilder.group({
             'Timein': ['', Validators.required],
             'Timeout': ['', Validators.required],

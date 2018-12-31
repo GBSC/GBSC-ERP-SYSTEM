@@ -12,7 +12,7 @@ import { Employee } from '../../Models/HRM/employee';
 
 export class eTrackerUserService {
 
-    private Url = "etracker/api/";
+    public Url = "etracker/api/";
     public allUsers: any = [];
     public locationHistory: any = [];
     public visitedShops: any = [];
@@ -24,7 +24,7 @@ export class eTrackerUserService {
     public showSpinner: boolean = false;
     public realTimeTracking: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    constructor(public firebase: AngularFirestore, private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public firebase: AngularFirestore, public http: HttpClient, public ApiService: ApiService) { }
 
     getUser(userId: any) {
         return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
@@ -233,8 +233,8 @@ class MapHelper {
 }
 
 class MarkerIcon {
-    private url;
-    private size;
+    public url;
+    public size;
     constructor(url, size) {
         this.url = url;
         this.size = size;

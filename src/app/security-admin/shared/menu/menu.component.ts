@@ -10,13 +10,8 @@ declare let mLayout: any;
     encapsulation: ViewEncapsulation.None,
 })
 export class MenuComponent implements OnInit, AfterViewInit {
-<<<<<<< HEAD
-    
-    public accessibleFeatures : string[] = [];
-=======
->>>>>>> master
 
-    private accessibleFeatures: string[] = [];
+    public accessibleFeatures: string[] = [];
 
     constructor(public route: ActivatedRoute, public router: Router, public AuthService: AuthService) { }
 

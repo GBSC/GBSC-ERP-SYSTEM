@@ -20,7 +20,7 @@ export class LocatorComponent {
     public userLatestlocation: any;
     public userLocationHistory: any[];
     public selectedUser: any;
-    protected agmMap: any;
+    public agmMap: any;
     public dateRange: any = {};
     public zoomLevels: any = [];
     public selectedZoom: any = 18;
@@ -37,10 +37,6 @@ export class LocatorComponent {
     public nonProductiveShopMarker: any;
     public nonProductiveShopMarkerOther: any;
     public liveTrackingRouteCoords: any = [];
-<<<<<<< HEAD
-
-    constructor(public eTrackerUserService: eTrackerUserService) { }
-=======
     public DisableRegion: boolean = true;
     public DisableCity: boolean = true;
     public DisableArea: boolean = true;
@@ -72,7 +68,6 @@ export class LocatorComponent {
 
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
->>>>>>> 2c5ebbcbb9204c5a18a518c60057da06662f3f94
 
     ngOnInit() {
 

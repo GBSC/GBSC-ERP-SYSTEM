@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
-    private SystemAdmin_API_URL = "systemadmin/api/";
-    private Auth_Url = "authentication/api/";
+    public SystemAdmin_API_URL = "systemadmin/api/";
+    public Auth_Url = "authentication/api/";
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 

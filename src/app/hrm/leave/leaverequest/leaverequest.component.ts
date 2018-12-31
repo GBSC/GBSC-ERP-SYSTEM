@@ -25,7 +25,7 @@ export class LeaverequestComponent implements OnInit {
     public leaverequest: any;
     public updatingRequest: any;
     public leaveOpening: any;
-    private requestDetail: LeaveRequestDetail[];
+    public requestDetail: LeaveRequestDetail[];
     public totalleave: any;
     public leavePolicy: any;
     public empleavePolicy: any;

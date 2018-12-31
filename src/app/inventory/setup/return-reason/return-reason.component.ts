@@ -10,9 +10,9 @@ import { ReturnReason } from '../../../core/Models/Inventory/Setup/ReturnReason'
 export class ReturnReasonComponent implements OnInit {
     public ReturnReasons: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

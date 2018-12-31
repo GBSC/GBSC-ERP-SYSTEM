@@ -350,7 +350,7 @@ export class FinanceService {
         return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchersByDate', params);
     }
 
-    private FormatDate(date: Date) {
+    public FormatDate(date: Date) {
         return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
     }
 }

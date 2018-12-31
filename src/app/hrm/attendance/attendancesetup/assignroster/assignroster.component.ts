@@ -34,7 +34,7 @@ export class AssignrosterComponent implements OnInit {
 
 
     constructor(public attendancesetupservice: AttendancesetupService,
-        public empservice: EmployeeService , private formBuilder : FormBuilder) { 
+        public empservice: EmployeeService , public formBuilder : FormBuilder) { 
             this.calendarForm = this.formBuilder.group({
                 Dayoff : [''],
                 Remarks : [''],

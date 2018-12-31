@@ -49,10 +49,10 @@ export class SalesusersComponent implements OnInit {
     @ViewChild("userlevelcb") userlevelcb: DxSelectBoxComponent;
 
 
-    constructor(private authService: AuthService,
-        private userService: eTrackerUserService,
-        private inventoryService: InventorysystemService,
-        private formBuilder: FormBuilder, public toastr: ToastrService) {
+    constructor(public authService: AuthService,
+        public userService: eTrackerUserService,
+        public inventoryService: InventorysystemService,
+        public formBuilder: FormBuilder, public toastr: ToastrService) {
 
         this.companyId = this.authService.getUserCompanyId();
         this.loggedinUserId = this.authService.getUserId();

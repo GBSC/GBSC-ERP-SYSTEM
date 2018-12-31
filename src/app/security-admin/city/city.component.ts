@@ -18,7 +18,7 @@ export class CityComponent implements OnInit {
     public company: any;
 
     constructor(public httpClient: HttpClient,
-        public hrmService: HrmsService, public companyService: SystemAdministrationService, private authService : AuthService) { }
+        public hrmService: HrmsService, public companyService: SystemAdministrationService, public authService : AuthService) { }
 
     async ngOnInit() {
 

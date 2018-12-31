@@ -13,7 +13,7 @@ export class BranchComponent implements OnInit {
     public cities: any[] = [];
     public branches: any[] = [];
 
-    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, private hrmService: HrmsService, private authService : AuthService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public hrmService: HrmsService, public authService : AuthService) { }
 
     async ngOnInit() {
 

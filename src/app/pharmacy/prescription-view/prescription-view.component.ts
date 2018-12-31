@@ -17,7 +17,7 @@ export class PrescriptionViewComponent implements OnInit {
 
     public date : any ;
 
-    constructor(public PharmacyService: PharmacyService, private FormBuilder : FormBuilder) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder : FormBuilder) {
         // this.PresciptionForm = this.FormBuilder.group({
         //     Date : [''],
 

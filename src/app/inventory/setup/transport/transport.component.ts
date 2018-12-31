@@ -10,9 +10,9 @@ import { Transport } from '../../../core/Models/Inventory/Setup/Transport';
 export class TransportComponent implements OnInit {
     public Transports: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

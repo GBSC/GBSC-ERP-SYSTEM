@@ -6142,7 +6142,7 @@ a.text-dark:focus, a.text-dark:hover {
   right: -1px; }
 
 .m-tooltip .tooltip-inner {
-  color: #6f727d;
+  color: black;
   background: white;
   -webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1) ;
   -moz-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1) ;
@@ -10850,7 +10850,7 @@ b, strong {
       text-decoration: none; }
 
 .m-nav-sticky {
-  background: #fff;
+  background: #3a3a3a;
   -webkit-box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ;
   -moz-box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ;
   box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ; }

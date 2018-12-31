@@ -11,9 +11,9 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class CalendarComponent implements OnInit {
 
-    //   @ViewChild("calendar") public calendar: IgxCalendarComponent;
+    //  @ViewChild("calendar") public calendar: IgxCalendarComponent;
     //  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
-    public range = [];
+    //  public range = [];
 
     public days = [];
     public remarks = [];

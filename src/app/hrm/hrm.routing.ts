@@ -131,6 +131,8 @@ import { UserrosterattendanceComponent } from './attendance/userrosterattendance
 import { ViewShiftComponent } from './attendance/attendancesetup/view-shift/view-shift.component';
 import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.component';
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
+import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
+import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -190,7 +192,6 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'leavedaytype', component: LeavedaytypeComponent },
                             { path: 'leaveeligibility', component: LeaveeligibilityComponent },
                             { path: 'leavesubtype', component: LeavesubtypeComponent },
-                            { path: 'leavetypebalance', component: LeavetypebalanceComponent },
                             { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
                             { path: 'proratematrix', component: ProratematrixComponent }
                         ]
@@ -204,6 +205,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
                         ]
                     },
+                    { path: 'leavetypebalance', component: LeavetypebalanceComponent },
                     { path: 'leaverequests', component: ViewleaverequestComponent },
                     { path: 'update-leave-request/:id', component: LeaverequestComponent },
                     { path: 'createleaverequest', component: LeaverequestComponent },
@@ -361,9 +363,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 children: [
                     { path: 'employeereport', component: ReportviewerComponent },
                     { path: 'employeecard', component: EmployeecardComponent },
-                    { path: 'leavedetail', component: LeaveDetailComponent },
+                    { path: 'employeelist', component: EmployeelistComponent },
                     { path: 'joiners', component: ListOfJoinnersComponent },
-                    { path: 'leavers', component: ListOfJoinnersComponent },
+                    { path: 'leavers', component: ListOfLeaversComponent },
+                    { path: 'leavedetail', component: LeaveDetailComponent },
                     { path: 'in/outduration', component: InOutDurationComponent },
                     { path: 'missingentries', component: MissingentriesComponent },
                     { path: 'monthlyleave', component: MonthlyleaveComponent },

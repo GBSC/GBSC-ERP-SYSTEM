@@ -25,7 +25,8 @@ export class EmployeelistComponent implements AfterViewInit {
         const reportUrl = ko["observable"]("EmployeeList"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = `${environment.repotr_url}`;
+        // var host = `${environment.repotr_url}`;
+        var host = `http://localhost:57581/EmployeeList`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

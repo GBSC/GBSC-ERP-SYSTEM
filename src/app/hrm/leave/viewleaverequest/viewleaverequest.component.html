@@ -33,7 +33,7 @@
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 
 
-                        <dxi-column dataField="userId" caption="Employee" [width]="450" [allowEditing]="false"  [formItem]="{editorOptions: { readOnly: true }}">
+                        <dxi-column dataField="userId" caption="Employee" [width]="300" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}">
                             <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                             </dxo-lookup>
                         </dxi-column>
@@ -63,7 +63,7 @@
                                   <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
                                   <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
                                   <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
-                                  <dxi-column value="" caption="Total"> </dxi-column>
+                                  <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
                                 </dx-data-grid>
                         </div>
                     </dx-data-grid>

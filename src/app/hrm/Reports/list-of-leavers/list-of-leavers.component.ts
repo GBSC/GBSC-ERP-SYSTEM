@@ -25,6 +25,7 @@ export class ListOfLeaversComponent implements AfterViewInit {
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = `${environment.repotr_url}`;
+        // var host = `http://localhost:57581/ListofLeavers`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

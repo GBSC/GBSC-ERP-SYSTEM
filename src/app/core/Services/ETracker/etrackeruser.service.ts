@@ -60,7 +60,7 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }
 
-    GetSalesUsersByCompany(companyId : number) : Observable<Employee[]> {
+    GetSalesUsersByCompany(companyId: number): Observable<Employee[]> {
         return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }
 
@@ -68,7 +68,7 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'Territory/GetAssignedSubsectionsBySection/' + sectionid + '/' + userid);
     }
 
-    getUsersBySection(sectionid : number) : Observable<Employee[]> {
+    getUsersBySection(sectionid: number): Observable<Employee[]> {
         return this.ApiService.get(this.Url + 'Territory/GetUsersBySection/' + sectionid);
     }
 

@@ -24,15 +24,15 @@ enum modules {
 export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
-    public accessibleFeatures : string[] = [];
-    private Username : string = '';
-    private UserLevel : string = '';
+    public accessibleFeatures: string[] = [];
+    private Username: string = '';
+    private UserLevel: string = '';
 
-    
+
 
     constructor(public authService: AuthService) {
-        
-        
+
+
     }
 
     ngOnInit() {

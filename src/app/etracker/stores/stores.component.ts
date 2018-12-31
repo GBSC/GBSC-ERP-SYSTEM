@@ -16,8 +16,8 @@ export class StoresComponent implements OnInit {
     title: string = 'My first AGM project';
     public lat: number = 51.678418;
     public lng: number = 7.809007;
- 
-    public zoom  : number = 18;
+
+    public zoom: number = 18;
 
 
     constructor(public authService: AuthService, public storeService: StoreService) {
@@ -32,12 +32,12 @@ export class StoresComponent implements OnInit {
         })
     }
 
-    getLatLog(value){
+    getLatLog(value) {
         this.lat = value.data.latitude;
         this.lng = value.data.longitude;
         console.log(value);
-     }
+    }
 
-    
+
 
 }

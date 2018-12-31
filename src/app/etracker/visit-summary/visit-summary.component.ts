@@ -14,10 +14,10 @@ export class VisitSummaryComponent implements OnInit {
     public store: any;
     public storeVisits: any;
     public storeId: any;
-    public Storevisitdetail : any =[];
-    public Storevisitdetails : any = [] ;
-    public StoreVisitInventories : any = [] ;
-    public StoreNoOrderReason : any = {};
+    public Storevisitdetail: any = [];
+    public Storevisitdetails: any = [];
+    public StoreVisitInventories: any = [];
+    public StoreNoOrderReason: any = {};
 
     constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute) {
         this.companyId = this.authService.getUserCompanyId();
@@ -38,27 +38,27 @@ export class VisitSummaryComponent implements OnInit {
                 //console.log(this.storeVisits)
             });
 
-            this.storeService.getOrdersByStoreVisitId(this.storeId).subscribe(sv=>{
+            this.storeService.getOrdersByStoreVisitId(this.storeId).subscribe(sv => {
                 this.Storevisitdetail = sv;
-                 if(this.Storevisitdetail.length){
-                     this.Storevisitdetails = this.Storevisitdetail
-                     console.log('yes');
-                     console.log(this.Storevisitdetails);
-                 }
-                 else{
-                    this.storeService.getStoreNoOrderReason(this.storeId).subscribe(res=>{
+                if (this.Storevisitdetail.length) {
+                    this.Storevisitdetails = this.Storevisitdetail
+                    console.log('yes');
+                    console.log(this.Storevisitdetails);
+                }
+                else {
+                    this.storeService.getStoreNoOrderReason(this.storeId).subscribe(res => {
                         this.StoreNoOrderReason = res;
                         console.log(this.StoreNoOrderReason);
                     });
-                 }
-             });
+                }
+            });
 
 
-             this.storeService.getInventoriesByStoreVisitId(this.storeId).subscribe(sv=>{
+            this.storeService.getInventoriesByStoreVisitId(this.storeId).subscribe(sv => {
                 this.StoreVisitInventories = sv;
                 console.log(this.StoreVisitInventories)
-                 
-             });
+
+            });
 
 
 

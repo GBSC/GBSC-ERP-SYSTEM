@@ -18,7 +18,7 @@ export class StoresProfileComponent implements OnInit {
     public storeId: any;
 
 
-    constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute , public router: Router) {
+    constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute, public router: Router) {
 
         this.companyId = this.authService.getUserCompanyId();
     }
@@ -27,7 +27,7 @@ export class StoresProfileComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.storeId = +params['id'];
-          
+
 
             this.storeService.getStore(this.storeId, this.companyId).subscribe(s => {
                 this.store = s;
@@ -45,11 +45,11 @@ export class StoresProfileComponent implements OnInit {
     }
 
 
-    routeVisitSummary(value){
+    routeVisitSummary(value) {
 
         let storeVisitId = value.key.storeVisitId;
         this.router.navigate(['/etracker/visit-summary/' + storeVisitId]);
 
-     }
+    }
 
 }

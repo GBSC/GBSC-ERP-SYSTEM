@@ -37,7 +37,7 @@ export class InventoryItemComponent implements OnInit {
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
             this.InventoryItems = res;
         });

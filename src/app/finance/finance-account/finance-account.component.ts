@@ -140,7 +140,7 @@ export class FinanceAccountComponent implements OnInit {
       a.showInBalanceSheet = value.ShowInBalanceSheet;
 
       this.UpdateAccount = a;
-
+      console.log(a);
       this.FinanceService.updateAccount(this.UpdateAccount).subscribe((res : any) => {
         console.log(res);
         this.FinanceService.getAccounts().subscribe((res : Account[]) => {

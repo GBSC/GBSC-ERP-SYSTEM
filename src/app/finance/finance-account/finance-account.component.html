@@ -75,67 +75,65 @@
             </div>
             <div class="modal-body">
               <form [formGroup]="AccountForm">
-<div class="row">
-  <div class="col-sm-6">
-      <div class="m-form__group form-group row">
-          <label for="" class="col-4 col-form-label">
-              Account Type:
-          </label>
-          <div class="col-8">
-              <div class="m-radio-inline">
-                  <label class="m-radio">
-                    <input type="radio" #Account value="true" formControlName="IsGeneralOrDetail">
-                    General
-                    <span></span>
+                <div class="m-form__group form-group row">
+                  <label class="col-3 col-form-label">
+                    Account Type
                   </label>
-                  <label class="m-radio">
-                    <input type="radio" #Account value="false" formControlName="IsGeneralOrDetail">
-                    Detail
-                    <span></span>
-                  </label>
-              </div>
-          </div>
-          
-</div>
-  </div>
-  <div class="col-sm-6">
-      <div class="m-form__group form-group row">
-          <div class="col-lg-12">
-            <div class="m-checkbox-inline">
-              <label class="m-checkbox">
-                <input type="checkbox" formControlName="IsBankAccount">
-                Bank Account
-                <span></span>
-              </label>
-              <label class="m-checkbox">
-                <input type="checkbox" formControlName="ShowInBalanceSheet">
-                Show In Balance Sheet
-                <span></span>
-              </label>
-            </div>
-          </div>
-        </div>
-  </div>
-
-</div>
-<hr>
-
-                <div class="row">
-
-                  <div class="form-group col-4">
-
+                  <div class="col-9">
+                    <div class="m-radio-inline">
+                      <label class="m-radio">
+                        <input type="radio" #Account value="true" formControlName="IsGeneralOrDetail">
+                        General
+                        <span></span>
+                      </label>
+                      <label class="m-radio">
+                        <input type="radio" #Account value="false" formControlName="IsGeneralOrDetail">
+                        Detail
+                        <span></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                  <div class="col-sm-6">
+                    <div class="m-checkbox-list">
+                      <label class="m-checkbox">Bank Account
+                        <input type="checkbox" formControlName="IsBankAccount">
+                      </label>
+                      <label class="m-checkbox m-checkbox--state-success">Show In Balance Sheet
+                        <input type="checkbox" formControlName="ShowInBalanceSheet">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <!-- <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                          Account Type
+                        </label>
+                        <div class="col-lg-8">
+                          <select class="form-control m-input" formControlName="MasterAccountType">
+                            <option [value]="Asset">Asset</option>
+                            <option [value]="Liability">Liability</option>
+                            <option [value]="Expense">Expense</option>
+                            <option [value]="Xyz">Xyz</option>
+                            <option [value]="Abc">Abc</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div> -->
                     <label for="recipient-name" class="form-control-label">
                       Parent Account Code:
                     </label>
                     <input type="text" disabled class="form-control" formControlName="ParentAccountCode">
                   </div>
-                  <div class="form-group col-4">
+                  <div class="form-group">
                     <label for="recipient-name" class="form-control-label">
                       Parent Account Level
                     </label>
                     <input type="text" disabled class="form-control" formControlName="ParentAccountLevel">
                   </div>
-                  <div class="form-group col-4">
+                  <div class="form-group">
                     <label for="recipient-name" class="form-control-label">
                       Financial Year:
                     </label>
@@ -143,22 +141,18 @@
                       <option *ngFor="let year of FinancialYears" [value]="year.financialYearId">{{year.name}}</option>
                     </select>
                   </div>
-                  
-                  
-                </div>
-                <div class="row">
-                    <div class="form-group col-4">
-                        <label for="recipient-name" class="form-control-label">
-                          Opening Balance:
-                        </label>
-                        <input disable=Account type="text" class="form-control" formControlName="OpeningBalance">
-                      </div>
-                    <div class="form-group col-sm-8">
-                        <label for="message-text" class="form-control-label">
-                          Description:
-                        </label>
-                        <textarea class="form-control" formControlName="Description"></textarea>
-                      </div>
+                  <div class="form-group">
+                    <label for="recipient-name" class="form-control-label">
+                      Opening Balance:
+                    </label>
+                    <input disable=Account type="text" class="form-control" formControlName="OpeningBalance">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="form-control-label">
+                      Description:
+                    </label>
+                    <textarea class="form-control" formControlName="Description"></textarea>
+                  </div>
                 </div>
               </form>
             </div>

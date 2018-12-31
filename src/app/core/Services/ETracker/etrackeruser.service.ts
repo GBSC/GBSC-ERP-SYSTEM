@@ -67,7 +67,7 @@ export class eTrackerUserService {
             user.lng = Number.parseFloat(user.lng)
           return user;
         });
-        console.log(this.allUsers);
+        console.log(this.allUsers); 
         if (this.currentUser) {
           let user = this.allUsers.find(u => u.userid == this.currentUser.userid);
           this.realTimeTracking.next(user);

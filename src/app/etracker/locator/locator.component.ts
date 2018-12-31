@@ -105,7 +105,7 @@ export class LocatorComponent {
 
         this.setDropboxValues();
 
-        
+
 
 
         this.mapHelper = this.eTrackerUserService.mapHelper;
@@ -130,7 +130,7 @@ export class LocatorComponent {
         this.eTrackerUserService.realTimeTracking.subscribe(data => {
             this.userLatestlocation = data;
             console.log('latestLoc', this.userLatestlocation);
-            if(data) {
+            if (data) {
                 this.liveTrackingRouteCoords.push(this.userLatestlocation);
                 this.eTrackerUserService.currentUser = this.userLatestlocation;
             }
@@ -155,8 +155,9 @@ export class LocatorComponent {
             this.SectionDisable = false;
             this.SubsectionDisable = false;
             this.DsfDisable = false;
-
-            this.Regions = this.Regions.filter(r => r.userId == this.Auth.getUserId());
+            if (this.Regions && this.Regions.length) {
+                this.Regions = this.Regions.filter(r => r.userId == this.Auth.getUserId());
+            }
 
 
         } else if (this.Auth.getUserLevel() == 'ZSM') {
@@ -265,7 +266,13 @@ export class LocatorComponent {
     }
 
     showVisitedShops(e) {
-        this.eTrackerUserService.fetchVisitedShops(this.dateRange);
+        if (e.target.checked) {
+            this.eTrackerUserService.fetchVisitedShops(this.dateRange);
+        } else {
+            this.eTrackerUserService.visitedShops = [];
+            this.eTrackerUserService.clearFilteredShops();
+            this.eTrackerUserService.shopRouteTaken = [];
+        }
     }
 
     go() {
@@ -327,7 +334,7 @@ export class LocatorComponent {
         this.showHideFilter = !this.showHideFilter;
     }
 
-    
+
 
 
 }

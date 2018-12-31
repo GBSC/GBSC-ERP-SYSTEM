@@ -111,3 +111,17 @@ agm-map {
     .live-tracking-map-view amg-amp{
     height: 100%;
     }
+    .live-track {
+      width: 100px;
+    height: 60px;
+    position: fixed;
+    bottom: 70px;
+    left: 220px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    padding-top: 0px;
+    z-index: 110;
+    border-radius: 100%;
+    }

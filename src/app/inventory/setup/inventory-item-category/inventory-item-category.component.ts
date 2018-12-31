@@ -18,7 +18,7 @@ export class InventoryItemCategoryComponent implements OnInit {
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: InventoryItemCategory) => {
             this.ItemCategories = res;
         });

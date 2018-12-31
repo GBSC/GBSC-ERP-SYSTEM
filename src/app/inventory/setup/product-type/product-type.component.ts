@@ -18,7 +18,7 @@ export class ProductTypeComponent implements OnInit {
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetProductTypesByCompany(this.CompanyId).subscribe((res: ProductType) => {
             this.ProductTypes = res;
         });

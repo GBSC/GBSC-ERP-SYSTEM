@@ -97,18 +97,21 @@
                   <dxi-column caption="Export" cellTemplate="chartCellTemplateExport" ></dxi-column>
                     <div *dxTemplate="let d of 'chartCellTemplateExport'">
                       <div class="chart-cell">
-                          <dx-button text="Export" (click)="exportRowData(d)"></dx-button>
+                          <dx-button text="Export" (click)="onClickMe(d)"></dx-button>
                       </div>
                   </div> 
                   <div *dxTemplate="let x of 'detail'">
                         <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true">
+                            <dxo-paging [pageSize]="7"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                            </dxo-pager>
                           <!-- <dxo-export [enabled]="true" fileName="EmployeesDetail" [allowExportSelectedData]="true"></dxo-export> -->
-                         <dxi-column dataField="userId" caption="Users"  [width]="230">
+                         <dxi-column dataField="userId" caption="Users">
                             <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                             </dxo-lookup>
                           </dxi-column> 
                           </dx-data-grid>
-                          <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true"  [width]="230">
+                          <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true">
                               <!-- <dxo-export [enabled]="true" fileName="EmployeesDetail" [allowExportSelectedData]="true"></dxo-export> -->
                               <dxi-column dataField="dayoff" caption="Date" dataType="date" format="shortDate"></dxi-column> 
                               <dxi-column dataField="remarks" caption="Remarks" ></dxi-column> 

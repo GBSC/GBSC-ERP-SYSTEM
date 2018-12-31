@@ -18,7 +18,7 @@ export class ProductPackTypeComponent implements OnInit {
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
             this.PackTypes = res;
         });

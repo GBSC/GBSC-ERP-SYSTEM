@@ -31,7 +31,7 @@ export class SalesusersComponent implements OnInit {
 
     public userId: any;
 
-    public loggedinUserId : any;
+    public loggedinUserId: any;
 
     public assignForm: FormGroup;
 

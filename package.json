@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-prod": "bash ./scripts/ng.sh build --prod --aot --env=prod"
+    "fix-memory-limit": "cross-env LIMIT=8192 increase-memory-limit",
+    "build-prod": "bash ./scripts/ng.sh build --prod --aot"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +58,8 @@
     "@types/node": "~8.9.4",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "increase-memory-limit": "^1.0.3",
+    "cross-env": "^5.0.5",
     "@ckeditor/ckeditor5-angular": "^1.0.1",
     "@ckeditor/ckeditor5-build-classic": "^11.1.1",
     "typescript": "~3.1.6"

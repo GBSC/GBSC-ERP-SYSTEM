@@ -6370,8 +6370,8 @@ a.text-dark:focus, a.text-dark:hover {
 
 .btn-brand {
   color: #fff;
-  background-color: #716aca;
-  border-color: #716aca; }
+  background-color: #716aca !important;
+  border-color: #716aca !important; }
   .btn-brand:hover {
     color: #fff;
     background-color: #5853a8;

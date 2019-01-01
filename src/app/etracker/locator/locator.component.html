@@ -322,12 +322,12 @@
 <div *ngIf="liveTracking" class="live-tracking-panel">
   <div class="live-tracking-overlay"></div>
   <div class="live-tracking-map-view">
-    <button (click)="liveTracking = false">End Live Tracking</button>
+    <button (click)="liveTracking = false" class="btn btn-outline-success m-btn m-btn--icon m-btn--outline-2x m-btn--pill" style="margin: 9px 43%;border-color: white !important;color: white !important;">End Live Tracking</button>
     <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
       [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
 
       <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng"
-        [iconUrl]="currentLocationMarker" [label]="{text:'JOhn Doe', color: 'black', fontSize: '20px', fontWeight: 'bold'}">
+        [iconUrl]="currentLocationMarker" [label]="{text: userSelected?.fullName, color: 'black', fontSize: '20px', fontWeight: 'bold'}">
         <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
           [placement]="right" [closeWhenOthersOpen]="false">
           <ng-template>

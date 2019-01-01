@@ -65,7 +65,7 @@ export class LocatorComponent {
     public subsectionId: any;
     public distributorId: any;
     public dsfId: any;
-
+    public userSelected: any;
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
@@ -101,6 +101,10 @@ export class LocatorComponent {
 
         this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
             this.DSFs = res;
+            console.log(res);
+            this.userSelected  = res.find(u => u.userId === this.eTrackerUserService.currentUser.userId)
+            this.userSelected.fullName = this.userSelected.firstName + ' ' + this.userSelected.lastName;
+            console.log(this.userSelected);
         });
 
         this.setDropboxValues();
@@ -243,6 +247,7 @@ export class LocatorComponent {
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
         this.eTrackerUserService.setCurrentUser(e);
+        console.log(this.eTrackerUserService.currentUser);
         this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
 

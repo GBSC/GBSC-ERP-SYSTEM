@@ -88,7 +88,7 @@ const routes: Routes = [
                 path: "sales",
                 children: [
                     { path: 'dispatchnote', component: DeliveryNoteComponent },
-                    { path: 'deliveryOrder', component: DeliveryOrderComponent },
+                    { path: 'deliveryorder', component: DeliveryOrderComponent },
                     { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
                     { path: 'salesindent', component: SalesIndentComponent },
                     { path: 'salesindentitem', component: SalesIndentItemComponent },
@@ -104,13 +104,13 @@ const routes: Routes = [
                 path: "purchase",
                 children: [
                     { path: 'grn', component: GoodsreceiptComponent },
-                    { path: 'purchaseIndent', component: PurchaseIndentComponent },
-                    { path: 'purchaseIndentItem', component: PurchaseIndentItemComponent },
+                    { path: 'purchaseindent', component: PurchaseIndentComponent },
+                    { path: 'purchaseindentitem', component: PurchaseIndentItemComponent },
                     { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
                     { path: 'purchaseorder', component: PurchaseOrderComponent },
-                    { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
-                    { path: 'purchaseReturn', component: PurchaseReturnComponent },
-                    { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
+                    { path: 'purchaseorderitem', component: PurchaseOrderItemComponent },
+                    { path: 'purchasereturn', component: PurchaseReturnComponent },
+                    { path: 'purchasereturnitem', component: PurchaseReturnItemComponent }
                 ]
             }
         ]

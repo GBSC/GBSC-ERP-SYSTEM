@@ -20,9 +20,8 @@ export class RegionComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
             this.Regions = res;
         });

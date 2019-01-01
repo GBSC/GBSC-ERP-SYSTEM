@@ -52,7 +52,7 @@
               </div>
             </div>
             <div *dxTemplate="let IndentDetail of 'detail'">
-              <dx-data-grid [dataSource]="IndentDetail.data.SalesIndentDetails" [showBorders]="true" [columnAutoWidth]="true">
+              <dx-data-grid [dataSource]="IndentDetail.data.salesIndentItems" [showBorders]="true" [columnAutoWidth]="true">
                 <dxi-column dataField="inventoryItemId">
                   <dxo-lookup [dataSource]="InventoryItems" displayExpr="name" valueExpr="inventoryItemId">
                   </dxo-lookup>

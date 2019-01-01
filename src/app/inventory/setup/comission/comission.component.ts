@@ -15,9 +15,8 @@ export class ComissionComponent implements OnInit {
     constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetComissionsByCompany(this.CompanyId).subscribe((res: Comission) => {
             this.Comissions = res;
         });

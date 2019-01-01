@@ -17,9 +17,8 @@ export class ReturnReasonComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetReturnReasonsByCompany(this.CompanyId).subscribe((res: ReturnReason) => {
             this.ReturnReasons = res;
         });

@@ -26,7 +26,6 @@
     "@angular/platform-browser": "~7.1.0",
     "@angular/platform-browser-dynamic": "~7.1.0",
     "@angular/router": "~7.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.3",
     "cldrjs": "~0.5.0",
     "core-js": "^2.5.4",
     "devexpress-reporting": "~18.1.7",

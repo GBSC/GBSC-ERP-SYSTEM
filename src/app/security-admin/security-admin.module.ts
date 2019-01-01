@@ -9,7 +9,6 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { BranchComponent } from './branch/branch.component';
 import { DepartmentComponent } from './department/department.component';
 import { RolesandprivilegesComponent } from './rolesandprivileges/rolesandprivileges.component';
-import { CompanyComponent } from './company/company.component';
 import { CountryComponent } from './country/country.component';
 import { CityComponent } from './city/city.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -17,6 +16,7 @@ import { UserregistrationComponent } from './userregistration/userregistration.c
 import { UsersComponent } from './users/users.component';
 import { UserService } from '../core/Services/Security/user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { CompanySetupComponent } from './company-setup/company-setup.component';
 
 
 @NgModule({
@@ -40,8 +40,8 @@ import { ProfileComponent } from './profile/profile.component';
         BranchComponent,
         DepartmentComponent,
         RolesandprivilegesComponent,
-        CompanyComponent,
-        ProfileComponent
+        ProfileComponent,
+        CompanySetupComponent
     ],
     providers: [UserService]
 })

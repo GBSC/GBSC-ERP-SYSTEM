@@ -21,8 +21,8 @@ export class LoginformComponent implements OnInit {
     constructor(public formBuilder: FormBuilder, public accountservice: AuthService, public router: Router, public route: ActivatedRoute) {
 
         this.loginForm = formBuilder.group({
-            'Username': ['Username', Validators.required],
-            'Password': ['Password', Validators.required]
+            'Username': ['', Validators.required],
+            'Password': ['', Validators.required]
         });
     }
 

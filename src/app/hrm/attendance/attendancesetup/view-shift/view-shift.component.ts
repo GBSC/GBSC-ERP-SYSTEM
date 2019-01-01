@@ -57,7 +57,7 @@ export class ViewShiftComponent implements OnInit {
     }
 
     getSingleRowData(d) {
-        this.shiftsId = d.key;
+        this.shiftsId = d.key;  
         this.router.navigate(['/hrm/attendance/attendancesetup/updateshift/' + this.shiftsId]);
     }
 

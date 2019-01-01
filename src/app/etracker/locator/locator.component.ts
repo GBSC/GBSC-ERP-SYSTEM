@@ -20,7 +20,7 @@ export class LocatorComponent {
     public userLatestlocation: any;
     public userLocationHistory: any[];
     public selectedUser: any;
-    protected agmMap: any;
+    public agmMap: any;
     public dateRange: any = {};
     public zoomLevels: any = [];
     public selectedZoom: any = 18;
@@ -65,7 +65,7 @@ export class LocatorComponent {
     public subsectionId: any;
     public distributorId: any;
     public dsfId: any;
-
+    public userSelected: any;
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
@@ -101,11 +101,15 @@ export class LocatorComponent {
 
         this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
             this.DSFs = res;
+            console.log(res);
+            this.userSelected  = res.find(u => u.userId === this.eTrackerUserService.currentUser.userId)
+            this.userSelected.fullName = this.userSelected.firstName + ' ' + this.userSelected.lastName;
+            console.log(this.userSelected);
         });
 
         this.setDropboxValues();
 
-        
+
 
 
         this.mapHelper = this.eTrackerUserService.mapHelper;
@@ -130,7 +134,7 @@ export class LocatorComponent {
         this.eTrackerUserService.realTimeTracking.subscribe(data => {
             this.userLatestlocation = data;
             console.log('latestLoc', this.userLatestlocation);
-            if(data) {
+            if (data) {
                 this.liveTrackingRouteCoords.push(this.userLatestlocation);
                 this.eTrackerUserService.currentUser = this.userLatestlocation;
             }
@@ -155,8 +159,9 @@ export class LocatorComponent {
             this.SectionDisable = false;
             this.SubsectionDisable = false;
             this.DsfDisable = false;
-
-            this.Regions = this.Regions.filter(r => r.userId == this.Auth.getUserId());
+            if (this.Regions && this.Regions.length) {
+                this.Regions = this.Regions.filter(r => r.userId == this.Auth.getUserId());
+            }
 
 
         } else if (this.Auth.getUserLevel() == 'ZSM') {
@@ -241,7 +246,10 @@ export class LocatorComponent {
         this.eTrackerUserService.locationHistory = [];
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
-        this.eTrackerUserService.setCurrentUser(e);
+        this.eTrackerUserService.setCurrentUser(e, this.DSFs);
+       
+
+        console.log(this.eTrackerUserService.currentUser);
         this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
 
@@ -265,7 +273,13 @@ export class LocatorComponent {
     }
 
     showVisitedShops(e) {
-        this.eTrackerUserService.fetchVisitedShops(this.dateRange);
+        if (e.target.checked) {
+            this.eTrackerUserService.fetchVisitedShops(this.dateRange);
+        } else {
+            this.eTrackerUserService.visitedShops = [];
+            this.eTrackerUserService.clearFilteredShops();
+            this.eTrackerUserService.shopRouteTaken = [];
+        }
     }
 
     go() {
@@ -299,7 +313,7 @@ export class LocatorComponent {
             } else {
                 clearInterval(timer);
                 console.log('timer cleared');
-                this.eTrackerUserService.setCurrentUser(0);
+                this.eTrackerUserService.setCurrentUser(0, this.DSFs);
                 this.agmMap.setCenter(this.eTrackerUserService.currentUser);
                 this.sampleTracking = [];
 
@@ -327,7 +341,7 @@ export class LocatorComponent {
         this.showHideFilter = !this.showHideFilter;
     }
 
-    
+
 
 
 }

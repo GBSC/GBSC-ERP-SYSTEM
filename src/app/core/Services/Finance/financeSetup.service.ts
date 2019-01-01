@@ -46,7 +46,7 @@ export class FinanceSetupService {
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetFinancialYears`).toPromise();
     }
 
-    GetFinancialYears() : Observable<FinancialYear[]> {
+    GetFinancialYears(): Observable<FinancialYear[]> {
         return this.ApiService.get(this.baseUrl + '/FinanceSetup/GetFinancialYears');
     }
 
@@ -70,7 +70,7 @@ export class FinanceSetupService {
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`).toPromise();
     }
 
-    GetVoucherTypes() : Observable<VoucherType[]> {
+    GetVoucherTypes(): Observable<VoucherType[]> {
         return this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`);
     }
 

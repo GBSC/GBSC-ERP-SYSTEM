@@ -29,11 +29,11 @@ export class BiochemistryontreatmentComponent implements OnInit {
     public treatments: any;
     public clinicalRecord: any;
     public patients: any;
-    public spouse: Spouse;
-    public patient: Patient;
+    public spouse: any;
+    public patient: any;
     public bioChemistryontreatmentForm: FormGroup;
-    public tests: BioChemistryTest;
-    public units: TestUnit;
+    public tests: any;
+    public units: any;
     public id: any;
     public bioChemistry: any;
     public RefRange: any;

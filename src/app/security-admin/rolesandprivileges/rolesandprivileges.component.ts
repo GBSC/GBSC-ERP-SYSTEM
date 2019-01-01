@@ -140,7 +140,9 @@ export class RolesandprivilegesComponent implements OnInit {
             return false
         }
     }
-
+    selectionChanged(){
+        
+    }
 
 
 }

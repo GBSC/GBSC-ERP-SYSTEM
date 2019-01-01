@@ -57,6 +57,8 @@ import { DeliveryNoteComponent } from './sales/delivery-note/delivery-note.compo
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
 import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 
 @NgModule({
     imports: [
@@ -120,7 +122,12 @@ import { IndentProcessComponent } from './sales/indent-process/indent-process.co
         UnitComponent,
         DeliveryNoteComponent,
         InventoryMasterComponent,
+<<<<<<< HEAD
         IndentProcessComponent
+=======
+        OrderSummaryComponent, 
+        OrderDetailComponent
+>>>>>>> etracker
     ]
 })
 export class InventoryModule { }

@@ -10,9 +10,9 @@ import { Comission } from '../../../core/Models/Inventory/Setup/Comission';
 export class ComissionComponent implements OnInit {
     public Comissions: any;
     public updatedmodel: Comission;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) { }
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();

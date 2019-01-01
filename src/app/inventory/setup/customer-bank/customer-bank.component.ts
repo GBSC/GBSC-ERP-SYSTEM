@@ -11,9 +11,9 @@ export class CustomerBankComponent implements OnInit {
     public CustomerBanks: any;
     public CustomerTypes: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

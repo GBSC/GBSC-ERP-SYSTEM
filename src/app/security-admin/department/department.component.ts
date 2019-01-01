@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService } from '../../core';
+import { Department } from '../../core/Models/HRM/department';
+import { Branch } from '../../core/Models/HRM/branch';
 @Component({
     selector: 'app-department',
     templateUrl: './department.component.html',
@@ -9,22 +11,31 @@ export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
 
-    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public authService : AuthService) { }
 
     async ngOnInit() {
 
-        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
+        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.deprt = res;
+        });
 
-        this.branch = await this.SystemAdministrationServiceobj.getBranches();
+        this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branch = res;
+        });
     }
 
 
     async addDepartment(value) {
+        // console.log(value);
+        value.key.companyId = this.authService.getUserCompanyId();
         await this.SystemAdministrationServiceobj.addDepartment(value.key);
-        this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
+        this.SystemAdministrationServiceobj.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.deprt = res;
+        });
     }
 
     async updateDepartment(value) {
+        value.key.companyId = this.authService.getUserCompanyId();
         await this.SystemAdministrationServiceobj.updateDepartment(value.key);
     }
     async deletDepartment(value) {

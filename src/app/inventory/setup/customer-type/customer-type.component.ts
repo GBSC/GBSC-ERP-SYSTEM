@@ -10,9 +10,9 @@ import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType'
 export class CustomerTypeComponent implements OnInit {
     public CustomerTypes: any;
     public newCusTyp: CustomerType;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

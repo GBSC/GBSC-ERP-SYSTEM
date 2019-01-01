@@ -11,7 +11,7 @@ export class DailySemenAnalysisViewComponent implements OnInit {
 
     public dailySemenAnalysis: any;
 
-    constructor(private PatientServiceObj: PatientService, private router: Router) { }
+    constructor(public PatientServiceObj: PatientService, public router: Router) { }
 
     ngOnInit() {
         this.PatientServiceObj.getDailySemenAnalysis().subscribe(res => {

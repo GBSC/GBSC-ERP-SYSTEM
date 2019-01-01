@@ -18,7 +18,7 @@ export class MonthlyOvertimeComponent implements AfterViewInit {
     @ViewChild("control")
     control: ElementRef
 
-    constructor(private renderer: Renderer2) { }
+    constructor(public renderer: Renderer2) { }
 
     ngAfterViewInit() {
 

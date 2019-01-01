@@ -72,7 +72,7 @@
                         </div>
 
                         <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
-                                <dx-button id="getPostButton" text="Search" type="default" (onClick)="GetPostedVoucehrsByDateRange(FromDate, ToDate)"></dx-button>
+                                <dx-button id="getPostButton" text="Search" type="default"></dx-button>
                                 <dx-data-grid id="PostedVoucherGrid" keyExpr="postedVoucherId" [dataSource]="PostedVouchers" columnWidth="auto"
                                 [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
                                 [showBorders]="true">

@@ -69,26 +69,26 @@ export class AuthService {
     }
 
     getAccessableModulesAndFeatures() {
-        let modules : string[] = [];
-        let features : string[] = [];
+        let modules: string[] = [];
+        let features: string[] = [];
 
         let user = JSON.parse(localStorage.getItem('user'));
 
         for (let module of user.accessibleModules) {
             modules.push(module.Description);
-            for(let feature of module.Features) {
+            for (let feature of module.Features) {
                 features.push(module.Description + ' - ' + feature);
             }
         }
-        
+
         return { modules, features };
     }
 
     getProfileInfo() {
         let user = JSON.parse(localStorage.getItem('user'));
         return {
-            Username : user.fullName,
-            UserLevel : user.userLevel
+            Username: user.fullName,
+            UserLevel: user.userLevel
         };
     }
 
@@ -108,7 +108,7 @@ export class AuthService {
         return user.userId;
     }
 
-    getuserName(){
+    getuserName() {
 
         var user = this.getUser();
         return user.fullName;

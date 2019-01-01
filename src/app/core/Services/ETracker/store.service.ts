@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class StoreService {
 
-    private Url = "etracker/api/";
+    public Url = "etracker/api/";
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
     }
 
     getAllStoresByCompany(companyId: any) {
@@ -24,16 +24,16 @@ export class StoreService {
     }
 
 
-    getOrdersByStoreVisitId(storeVisitid : any):Observable<any>{
-        return this.ApiService.get(this.Url+'StoreVisit/GetOrders/'+storeVisitid);
+    getOrdersByStoreVisitId(storeVisitid: any): Observable<any> {
+        return this.ApiService.get(this.Url + 'StoreVisit/GetOrders/' + storeVisitid);
     }
 
-    getStoreNoOrderReason(storeVisitid : any):Observable<any>{
-        return this.ApiService.get(this.Url+'StoreVisit/GetStoreNoOrderReason/'+storeVisitid);
+    getStoreNoOrderReason(storeVisitid: any): Observable<any> {
+        return this.ApiService.get(this.Url + 'StoreVisit/GetStoreNoOrderReason/' + storeVisitid);
     }
 
-    getInventoriesByStoreVisitId(storeVisitid : any):Observable<any>{
-        return this.ApiService.get(this.Url+'StoreVisit/GetInventories/'+storeVisitid);
+    getInventoriesByStoreVisitId(storeVisitid: any): Observable<any> {
+        return this.ApiService.get(this.Url + 'StoreVisit/GetInventories/' + storeVisitid);
     }
 
 }

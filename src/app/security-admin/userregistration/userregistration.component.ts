@@ -11,21 +11,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserregistrationComponent implements OnInit {
 
-    private companyId: any;
-    private roles: any;
-    private cities: any;
-    private user: any;
-    private userId: any;
+    public companyId: any;
+    public roles: any;
+    public cities: any;
+    public user: any;
+    public userId: any;
 
-    private userForm: FormGroup;
+    public userForm: FormGroup;
 
-    constructor(private route: ActivatedRoute,
-        private formBuilder: FormBuilder,
-        private adminService: HrmsService,
-        private systemAdminService: SystemAdministrationService,
-        private userService: UserService,
+    constructor(public route: ActivatedRoute,
+        public formBuilder: FormBuilder,
+        public adminService: HrmsService,
+        public systemAdminService: SystemAdministrationService,
+        public userService: UserService,
         public toastr: ToastrService,
-        private authService: AuthService) {
+        public authService: AuthService) {
 
         this.companyId = this.authService.getUserCompanyId();
 

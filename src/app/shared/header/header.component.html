@@ -1901,33 +1901,7 @@
 												</li>
 											</ul>
 										</li>
-										<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
-										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Reports
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
-											<ul class="m-menu__inner">
-												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link">
-														<span class="m-menu__link-text">
-															Shop Census Detail
-														</span>
-													</a>
-												</li>
-												<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link">
-														<span class="m-menu__link-text">
-															Shop Census Summary
-														</span>
-													</a>
-												</li>
-											</ul>
-										</li>
+									
 										<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
@@ -1971,6 +1945,33 @@
 												</li>
 											</ul>
 										</li>
+										<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" routerLinkActive="m-menu__item--active"
+										routerLinkActiveOptions="{ exact: true }">
+										   <h3 class="m-menu__heading m-menu__toggle">
+											   <span class="m-menu__link-text">
+												   
+											   </span>
+											   <i class="m-menu__ver-arrow la la-angle-right"></i>
+										   </h3>
+										   <ul class="m-menu__inner">
+											   <li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												aria-haspopup="true">
+												   <a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link">
+													   <span class="m-menu__link-text">
+														   Shop Census Detail
+													   </span>
+												   </a>
+											   </li>
+											   <li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item" data-redirect="true"
+												aria-haspopup="true">
+												   <a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link">
+													   <span class="m-menu__link-text">
+														   Shop Census Summary
+													   </span>
+												   </a>
+											   </li>
+										   </ul>
+									   </li>
 									</ul>
 								</div>
 							</div>

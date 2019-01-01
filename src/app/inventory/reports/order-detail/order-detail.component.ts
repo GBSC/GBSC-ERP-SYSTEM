@@ -170,7 +170,7 @@ export class OrderDetailComponent implements OnInit {
         const reportUrl = ko["observable"]("OrderDetail"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = 'http://localhost:57581/';
+        var host = `${environment.repotr_url}`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

@@ -153,6 +153,7 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
 import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
 import { AttendanceapproveComponent } from './attendance/attendanceapprove/attendanceapprove.component';
 import { CalendarComponent } from './attendance/calendar/calendar.component';
+import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -330,7 +331,8 @@ import { CalendarComponent } from './attendance/calendar/calendar.component';
         DependantsrelationComponent,
         BanksComponent,
         AttendanceapproveComponent,
-        CalendarComponent
+        CalendarComponent,
+        UpdateassignrosterComponent
     ],
 
     // providers: [IgxExcelExporterService],

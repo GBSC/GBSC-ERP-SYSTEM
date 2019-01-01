@@ -3,10 +3,9 @@ import { AttendancesetupService, EmployeeService } from '../../../../core';
 import { Employee } from '../../../../core/Models/HRM/employee';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
-
-
+// import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-assignroster',
     templateUrl: './assignroster.component.html',
@@ -38,7 +37,7 @@ export class AssignrosterComponent implements OnInit {
 
 
     constructor(public attendancesetupservice: AttendancesetupService,
-        public empservice: EmployeeService, private formBuilder: FormBuilder) {
+        public empservice: EmployeeService, private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({
             Dayoff: [''],
             Remarks: [''],
@@ -123,6 +122,7 @@ export class AssignrosterComponent implements OnInit {
             Dayoff: this.formatDate(new Date(currentDate)),
             Remarks: 'On'
         });
+        
         while (currentDate < endDate) {
             currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
             let a: any = {
@@ -216,6 +216,10 @@ export class AssignrosterComponent implements OnInit {
     // }
 
 
+    routeForUpdateAssignroster(id){
+        console.log(id);
+          this.router.navigate(['/hrm/attendance/attendancesetup/updateassignroster/'+id.key]);
+    }
 
-
+  
 }

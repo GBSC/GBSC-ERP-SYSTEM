@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
         this.UserService.getUser(this.accountService.getUserId()).subscribe(res => {
             this.User = res;
-            console.log(res, this.User);
+            // console.log(res, this.User);
         });
         this.availableModules = this.accountService.getAvailableModules();
         this.dataSource = this.accountService.accessibleModules;

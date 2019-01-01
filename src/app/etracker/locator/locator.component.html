@@ -194,11 +194,11 @@
       [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
 
       <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng"
-        [iconUrl]="currentLocationMarker" [label]="{ color: 'white',
-          fontFamily: 'Lato',
-          fontSize: '20px',
+        [iconUrl]="currentLocationMarker" [label]="{ color: 'black',
+          fontFamily: 'sans-serif',
+          fontSize: '14px',
           fontWeight: 'bold',
-          text: eTrackerUserService?.currentUser.userid+''}">
+          text: eTrackerUserService.currentUser?.fullName}">
         <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
           [placement]="right" [closeWhenOthersOpen]="false">
           <ng-template>
@@ -327,7 +327,7 @@
       [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
 
       <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng"
-        [iconUrl]="currentLocationMarker" [label]="{text: userSelected?.fullName, color: 'black', fontSize: '20px', fontWeight: 'bold'}">
+        [iconUrl]="currentLocationMarker" [label]="{text: eTrackerUserService.currentUser?.fullName, color: 'black', fontSize: '14px', fontWeight: 'bold'}">
         <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
           [placement]="right" [closeWhenOthersOpen]="false">
           <ng-template>
@@ -336,7 +336,7 @@
                 <h1>Description</h1>
               </div>
               <div class="info-body">
-                <p>Username: {{eTrackerUserService?.currentUser?.userid}}</p>
+                <p>Username: {{eTrackerUserService?.currentUser?.fullName}</p>
                 <p>Event</p>
                 <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
                 <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>

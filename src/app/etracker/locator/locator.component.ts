@@ -246,7 +246,9 @@ export class LocatorComponent {
         this.eTrackerUserService.locationHistory = [];
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
-        this.eTrackerUserService.setCurrentUser(e);
+        this.eTrackerUserService.setCurrentUser(e, this.DSFs);
+       
+
         console.log(this.eTrackerUserService.currentUser);
         this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
@@ -311,7 +313,7 @@ export class LocatorComponent {
             } else {
                 clearInterval(timer);
                 console.log('timer cleared');
-                this.eTrackerUserService.setCurrentUser(0);
+                this.eTrackerUserService.setCurrentUser(0, this.DSFs);
                 this.agmMap.setCenter(this.eTrackerUserService.currentUser);
                 this.sampleTracking = [];
 

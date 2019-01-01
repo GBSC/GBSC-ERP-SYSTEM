@@ -25,6 +25,7 @@ export class PackageTypeComponent implements OnInit {
     }
 
     AddPackageType(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddPackageType(value.data).subscribe(res => {
             this.InventoryService.GetPackageTypesByCompany(this.CompanyId).subscribe((res: PackageType) => {
                 this.PackageTypes = res;
@@ -33,6 +34,7 @@ export class PackageTypeComponent implements OnInit {
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 

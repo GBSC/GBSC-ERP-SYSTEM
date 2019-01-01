@@ -25,6 +25,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     AddItemCategory(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddInventoryItemCategory(value.data).subscribe(res => {
             this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: InventoryItemCategory) => {
                 this.ItemCategories = res;
@@ -37,6 +38,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 

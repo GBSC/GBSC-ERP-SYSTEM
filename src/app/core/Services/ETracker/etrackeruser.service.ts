@@ -21,9 +21,10 @@
 
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../api.service';
+import { Employee } from '../../Models/HRM/employee';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -59,8 +60,16 @@ export class eTrackerUserService {
         return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
     }
 
+    GetSalesUsersByCompany(companyId: number): Observable<Employee[]> {
+        return this.ApiService.get(this.Url + 'User/GetUsersByCompanyId/' + companyId);
+    }
+
     getAssignedSubsectionsBySection(sectionid, userid) {
         return this.ApiService.get(this.Url + 'Territory/GetAssignedSubsectionsBySection/' + sectionid + '/' + userid);
+    }
+
+    getUsersBySection(sectionid: number): Observable<Employee[]> {
+        return this.ApiService.get(this.Url + 'Territory/GetUsersBySection/' + sectionid);
     }
 
     assignSubsections(subsections) {

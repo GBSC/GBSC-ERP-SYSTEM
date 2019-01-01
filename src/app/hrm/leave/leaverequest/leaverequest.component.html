@@ -77,7 +77,9 @@
 
                 <div class="m-section">
                   <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="leaveDetail" (onRowInserted)="leaveRequestDetail($event)" (onRowUpdated)="updateLeaverequestDetail($event)">
+                    <dx-data-grid id="gridContainer" 
+                    [dataSource]="leaveDetail"
+                     (onRowInserted)="leaveRequestDetail($event)" (onRowUpdated)="updateLeaverequestDetail($event)">
                       <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                       </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -99,10 +101,11 @@
                       <dxi-column dataField="description" caption="Description"></dxi-column>
                       <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
                       <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="value" caption="Calculated Leave Value"></dxi-column>
-                      <dxi-column dataField="totalLeaveDetailValue" value="leaveBBB?.entitledQuantity" caption="Balance Leave Value">
-                      </dxi-column>
-                 
+                      <dxi-column dataField="value" caption="Leave Value"></dxi-column>
+                      <dxi-column dataField="totalLeaveDetailValue" caption="Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                      <!-- <dxi-column dataField="entitledQuantity" caption="Balance Leave Value"></dxi-column> -->
+                      <dxi-column dataField="totalLeave" caption="Total Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"> </dxi-column>
+                      
                     </dx-data-grid>
                   </div>
                 </div>

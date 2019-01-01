@@ -25,6 +25,7 @@ export class ProductTypeComponent implements OnInit {
     }
 
     AddProductType(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddProductType(value.data).subscribe(res => {
             this.InventoryService.GetProductTypesByCompany(this.CompanyId).subscribe((res: ProductType) => {
                 this.ProductTypes = res;
@@ -33,6 +34,7 @@ export class ProductTypeComponent implements OnInit {
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 

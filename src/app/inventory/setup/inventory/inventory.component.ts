@@ -32,9 +32,7 @@ export class InventoryComponent implements OnInit {
 
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
         this.InventoryService.GetInventoriesByCompany(this.CompanyId).subscribe((res: Inventory) => {
             this.Inventories = res;
             this.CheckUnassignedItems();
@@ -43,10 +41,12 @@ export class InventoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
     }
 
     AddInventory(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddInventory(value.data).subscribe(res => {
             this.InventoryService.GetInventoriesByCompany(this.CompanyId).subscribe((res: Inventory) => {
                 this.Inventories = res;

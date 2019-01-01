@@ -26,12 +26,14 @@ export class BrandComponent implements OnInit {
     }
 
     mergeBrand(value) {
+        value.companyId = this.CompanyId;
         this.newbrand = Object.assign(value.oldData, value.newData);
         //console.log(this.newbrand);
     }
 
     AddBrand(value) {
         //console.log(value);
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddBrand(value.data).subscribe(res => {
             this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
                 this.Brands = res;

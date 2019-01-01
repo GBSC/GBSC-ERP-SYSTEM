@@ -38,13 +38,6 @@ export class LeavetypebalanceComponent implements OnInit {
 
         this.data = this.leaveservice.prepareLeaveData(this.employees, this.LeaveType, this.empleavepolicy
             , this.LeavePolicies);
-        // this.groups = await this.hrSetupService.getAllGroups(); 
-
-        console.log(this.empleavepolicy);
-        console.log(this.LeavePolicies);
-        console.log(this.employees);
-
-
 
         this.employees = this.employees.map(user => {
             let u;

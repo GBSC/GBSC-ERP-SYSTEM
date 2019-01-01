@@ -34,6 +34,7 @@ export class LeaverequestComponent implements OnInit {
     public selectedLeaveTypes: any;
     public empId: any = null;
     public leaveBBB: any = null;
+    public data: any;
 
     @Input('leaveRequestId') id: number;
 
@@ -85,16 +86,22 @@ export class LeaverequestComponent implements OnInit {
                     delete b.leaveRequestId;
                     return b;
                 });
-                // console.log(this.leaveRequest.userId);
-                // this.empId = this.leaveRequest.userId; 
                 this.getLeaveBalance(this.leaveRequest.userId);
                 this.patchValues(this.leaveRequest);
             });
         }
+        this.data = this.leaveservice.prepareLeaveData(this.employees, this.leaveType, this.empleavePolicy, this.leavePolicy);
     }
 
     async leaveRequestDetail(value) {
+        console.log(value);
+
         let data = value.data;
+        data.leaveTypeId = this.leaveBBB.leaveTypeId;
+        data.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
+        data.totalleave = this.leaveBBB.entitledQuantity;
+        console.log(data);
+
         this.requestDetail.push(data);
     }
 
@@ -132,6 +139,8 @@ export class LeaverequestComponent implements OnInit {
 
         });
     }
+    //     formItem]="{editorOptions: { readOnly: true }}"
+    // [allowEditing]="false" [formItem]="{visible: false}"
 
 
 
@@ -162,6 +171,7 @@ export class LeaverequestComponent implements OnInit {
             }
         });
         console.log(this.leaveBBB);
+
         // let d = {
         //     totalLeaveDetailValue: this.leaveBBB.entitledQuantity
         // };

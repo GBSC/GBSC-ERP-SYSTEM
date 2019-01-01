@@ -77,36 +77,35 @@ export class ViewleaverequestComponent implements OnInit {
     updateLeaveRequest(e) {
         console.log(e);
 
-        if (e.data.isApproved) {
-            let leave = this.leaverequest.find(l => {
-                if (l.leaveRequestId === e.key) {
-                    return l;
-                }
-            })
-            console.log(leave);
-            leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
+        // if(e.data.isApproved) {
+        let leave = this.leaverequest.find(l => {
+            if (l.leaveRequestId === e.key) {
+                return l;
+            }
+        })
+        console.log(leave);
+        leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
+            if (e.data.isApproved) {
                 let g = d.totalLeaveDetailValue -= d.value;
                 console.log(g);
                 delete d.leaveRequestDetailId
                 return d;
-            });
+            }
+            return d;
+        });
 
-            this.empservice.updatedLeaves = e.key.leaveRequestDetails;
-            this.leaveservice.updateLeaveRequest(leave).subscribe(resp => {
-                this.toastr.success("Leave Request Updated");
-                this.router.navigate(['/hrm/leave/leaverequests']);
-
-            });
-            console.log('send Req', e.key);
-
-        }
-
+        this.empservice.updatedLeaves = leave.leaveRequestDetails;
+        this.leaveservice.updateLeaveRequest(leave).subscribe(resp => {
+            this.toastr.success("Leave Request Updated");
+            this.router.navigate(['/hrm/leave/leaverequests']);
+        });
 
     }
 
     addleaveRequest() {
         this.router.navigate(['/hrm/leave/createleaverequest']);
     }
+
 
     getSingleRowData(d) {
         this.leaveRequestId = d.key;

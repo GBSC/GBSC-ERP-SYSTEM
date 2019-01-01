@@ -25,6 +25,7 @@ export class ProductPackCategoryComponent implements OnInit {
     }
 
     AddPackCategory(value) {
+        value.data.companyId = this.CompanyId;
         this.InventoryService.AddPackCategory(value.data).subscribe(res => {
             this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: PackCategory) => {
                 this.PackCategories = res;
@@ -33,7 +34,7 @@ export class ProductPackCategoryComponent implements OnInit {
     }
 
     UpdateModel(value) {
-        //console.log(value);
+        value.companyId = this.CompanyId;
         this.UpdatedModel = { ...value.oldData, ...value.newData };
         //console.log(this.UpdatedModel);
     }

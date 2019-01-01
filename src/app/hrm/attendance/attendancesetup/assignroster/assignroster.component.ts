@@ -34,8 +34,6 @@ export class AssignrosterComponent implements OnInit {
 
 
 
-
-
     constructor(public attendancesetupservice: AttendancesetupService,
         public empservice: EmployeeService, private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({

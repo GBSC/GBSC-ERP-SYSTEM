@@ -68,13 +68,17 @@ export class eTrackerUserService {
                 return user;
             });
 
-            console.log(this.allUsers);
-            if (this.currentUser) {
-                let user = this.allUsers.find(u => u.userid == this.currentUser.userid);
-                this.realTimeTracking.next(user);
-            } else {
-                this.realTimeTracking.next(this.allUsers[0]);
-            }
+            console.log('users fetched', this.allUsers);
+
+
+            // console.log(this.allUsers);
+            // if (this.currentUser) {
+            //     let user = this.allUsers.find(u => u.userId == this.currentUser.userId);
+            //     this.realTimeTracking.next(user);
+            //     console.log(user);
+            // } else {
+            //     this.realTimeTracking.next(this.allUsers[0]);
+            // }
         });
     }
 
@@ -89,7 +93,7 @@ export class eTrackerUserService {
 
             console.log(shop);
 
-            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', String(this.currentUser.userid)).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
+            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', this.currentUser.userId).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
 
             visit_summary.subscribe((d: any) => {
                 console.log(d);
@@ -164,22 +168,24 @@ export class eTrackerUserService {
         }
     }
 
-    setCurrentUser(userIndex, DSFs) {
+    setCurrentUser(userIndex, DSFs, map) {
+        console.log(DSFs);
+        console.log('map',map);
+
         this.shopRouteTaken = [];
         this.visitedShops = [];
         this.clearFilteredShops();
-        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('user_id', '==', parseInt(userIndex))).valueChanges();
+        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('userId', '==', parseInt(userIndex))).valueChanges();
         currentUsers.subscribe(d => {
             console.log('current User', d);
             this.currentUser = d[0];
             this.currentUser.lat = parseFloat(this.currentUser.lat);
             this.currentUser.lng = parseFloat(this.currentUser.lng);
             this.realTimeTracking.next(this.currentUser);
-            let user = DSFs.find(u => u.userId == this.currentUser.user_id);
+            let user = DSFs.find(u => u.userId == this.currentUser.userId);
             this.currentUser.fullName = `${user.firstName} ${user.lastName}`;
-            console.log(DSFs);
-            console.log('eeeeeeeeeeee', user);
-            console.log('eeeeeeeeeeee', this.currentUser);
+            // map.setCenter(this.currentUser);
+
         });
         console.log(this.currentUser);
     }
@@ -194,36 +200,36 @@ export class eTrackerUserService {
         }
     }
 
-    addMockDataForLiveTracking() {
-        return [
-            { lat: 24.86218208911948, lng: 67.07455098524781 },
-            { lat: 24.862245363392216, lng: 67.07481384173127 },
-            { lat: 24.862328106623085, lng: 67.07514107123109 },
-            { lat: 24.86236704459494, lng: 67.07544147864076 },
-            { lat: 24.86222589438867, lng: 67.0757740725586 },
-            { lat: 24.862177221866375, lng: 67.07628369227143 },
-            { lat: 24.862352442856917, lng: 67.07676648989411 },
-            { lat: 24.862318372128218, lng: 67.07741022005769 },
-            { lat: 24.862045805960523, lng: 67.07749605074616 },
-            { lat: 24.861598017380675, lng: 67.07760870352479 },
-            { lat: 24.861048013971086, lng: 67.07753360167237 },
-            { lat: 24.860950667980067, lng: 67.07732438936921 },
-            { lat: 24.860838719995634, lng: 67.07696497336121 },
-            { lat: 24.86121350197994, lng: 67.07681476965638 },
-            { lat: 24.86152500821935, lng: 67.07668065920564 },
-            { lat: 24.8613351841981, lng: 67.07604765787812 },
-            { lat: 24.861023677480517, lng: 67.07562386885377 },
-            { lat: 24.86071216997818, lng: 67.07582235232087 },
-            { lat: 24.860710514533228, lng: 67.07582653677241 },
-            { lat: 24.860238384472684, lng: 67.07601429140345 },
-            { lat: 24.859883068908424, lng: 67.07591773187892 },
-            { lat: 24.85991714030814, lng: 67.07542420542018 },
-            { lat: 24.860214047822755, lng: 67.0749789587237 },
-            { lat: 24.860106966506237, lng: 67.07435668623225 },
-            { lat: 24.860321129046557, lng: 67.07412601625697 }
-        ];
+    // addMockDataForLiveTracking() {
+    //     return [
+    //         { lat: 24.86218208911948, lng: 67.07455098524781 },
+    //         { lat: 24.862245363392216, lng: 67.07481384173127 },
+    //         { lat: 24.862328106623085, lng: 67.07514107123109 },
+    //         { lat: 24.86236704459494, lng: 67.07544147864076 },
+    //         { lat: 24.86222589438867, lng: 67.0757740725586 },
+    //         { lat: 24.862177221866375, lng: 67.07628369227143 },
+    //         { lat: 24.862352442856917, lng: 67.07676648989411 },
+    //         { lat: 24.862318372128218, lng: 67.07741022005769 },
+    //         { lat: 24.862045805960523, lng: 67.07749605074616 },
+    //         { lat: 24.861598017380675, lng: 67.07760870352479 },
+    //         { lat: 24.861048013971086, lng: 67.07753360167237 },
+    //         { lat: 24.860950667980067, lng: 67.07732438936921 },
+    //         { lat: 24.860838719995634, lng: 67.07696497336121 },
+    //         { lat: 24.86121350197994, lng: 67.07681476965638 },
+    //         { lat: 24.86152500821935, lng: 67.07668065920564 },
+    //         { lat: 24.8613351841981, lng: 67.07604765787812 },
+    //         { lat: 24.861023677480517, lng: 67.07562386885377 },
+    //         { lat: 24.86071216997818, lng: 67.07582235232087 },
+    //         { lat: 24.860710514533228, lng: 67.07582653677241 },
+    //         { lat: 24.860238384472684, lng: 67.07601429140345 },
+    //         { lat: 24.859883068908424, lng: 67.07591773187892 },
+    //         { lat: 24.85991714030814, lng: 67.07542420542018 },
+    //         { lat: 24.860214047822755, lng: 67.0749789587237 },
+    //         { lat: 24.860106966506237, lng: 67.07435668623225 },
+    //         { lat: 24.860321129046557, lng: 67.07412601625697 }
+    //     ];
 
-    }
+    // }
 }
 
 class MapHelper {

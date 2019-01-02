@@ -18,14 +18,14 @@ export class CalendarComponent implements OnInit {
     public days = [];
     public remarks = [];
     public index = [];
-    public months =[];
-    public calendarForm : FormGroup;
+    public months = [];
+    public calendarForm: FormGroup;
     // public years = [];
     // public monthSelected = null;
-    constructor(public formBuilder : FormBuilder) { 
+    constructor(private formBuilder: FormBuilder) {
         this.calendarForm = this.formBuilder.group({
-            Date : [''],
-            Reamrks : ['']
+            Date: [''],
+            Reamrks: ['']
         });
     }
 
@@ -40,11 +40,11 @@ export class CalendarComponent implements OnInit {
         for (let i = 1; i <= 31; i++) {
             this.days.push(i);
         }
-        
+
         for (let i = 1; i <= 31; i++) {
             this.remarks.push(i);
         }
- 
+
 
         for (let i = 1; i <= 12; i++) {
             this.months.push(i);
@@ -56,12 +56,12 @@ export class CalendarComponent implements OnInit {
     }
 
 
-    // save(a , b , value , g){
-    //     console.log(a);
-    //     console.log(b);
-    //     console.log(value);
-    //     console.log(g)
-    // }
+    save(a, b, value, g) {
+        console.log(a);
+        console.log(b);
+        console.log(value);
+        console.log(g)
+    }
     // public selectPTOdays(dates: Date[]) {
     //     this.range = dates;
     // }

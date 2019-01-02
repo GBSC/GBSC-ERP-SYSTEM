@@ -4,7 +4,7 @@
             <div class="col-sm-2 col align-self-center"><h2 class="m-subheader-search__title">
                     Contact Number
                     <span class="m-subheader-search__desc">
-                        {{User.phone}}
+                        {{User?.phone}}
                     </span>
                 </h2></div>
             <div class="col-sm-4">
@@ -16,10 +16,10 @@
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name" style="color: #c4820a;">
-                                    {{User.fullName}}
+                                    {{User?.fullName}}
                                 </span>
                                 <a href="" class="m-card-profile__email m-link">
-                                   <b>Role :</b>  {{User.userLevel}}
+                                   <b>Role :</b>  {{User?.userLevel}}
                                 </a>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                     <h2 class="m-subheader-search__title">
                             Email Address
                             <span class="m-subheader-search__desc">
-                                    {{User.email}}
+                                    {{User?.email}}
                             </span>
                         </h2>
             </div>

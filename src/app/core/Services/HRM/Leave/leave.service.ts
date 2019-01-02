@@ -213,14 +213,14 @@ export class LeaveService {
 
         });
         let abc = []
-         fromGroup = fromGroup.filter(g => {
-            let y = fromEmp.find((em : any)=>{
-                if(g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
-                    console.log(g); 
-                return em;
-                } 
+        fromGroup = fromGroup.filter(g => {
+            let y = fromEmp.find((em: any) => {
+                if (g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
+                    console.log(g);
+                    return em;
+                }
             });
-            if(!y){
+            if (!y) {
                 return g;
             }
             abc.push(y);

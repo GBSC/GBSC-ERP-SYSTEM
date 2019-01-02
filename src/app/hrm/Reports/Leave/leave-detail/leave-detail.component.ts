@@ -1,8 +1,8 @@
 import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
-import { Html } from "devexpress-reporting/dx-web-document-viewer";
-import { environment } from '../../../../environments/environment';
+import { Html } from "devexpress-reporting/dx-web-document-viewer"; 
+import { environment } from '../../../../../environments/environment';
 
 @Component({
     selector: 'app-leave-detail',

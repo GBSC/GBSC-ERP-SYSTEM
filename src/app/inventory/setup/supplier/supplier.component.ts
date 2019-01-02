@@ -19,9 +19,8 @@ export class SupplierComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetSuppliersByCompany(this.CompanyId).subscribe((res: Supplier) => {
             this.Supplier = res;
         });

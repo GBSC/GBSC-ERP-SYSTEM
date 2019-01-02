@@ -19,9 +19,8 @@ export class CustomerWarehouseComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetCustomerWarehousesByCompany(this.CompanyId).subscribe((res: CustomerWarehouse) => {
             this.CustomerWarehouses = res;
         });

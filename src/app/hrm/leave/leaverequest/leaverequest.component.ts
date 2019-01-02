@@ -154,8 +154,6 @@ export class LeaverequestComponent implements OnInit {
 
 
     onSetCellValue(x, abc) {
-        console.log(this.leaveDetail);
-
         console.log(abc);
         console.log(this.employees);
         // console.log(LeaverequestComponent);

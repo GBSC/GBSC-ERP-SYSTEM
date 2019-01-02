@@ -31,6 +31,9 @@ export class EmployeeService {
         return this.employeereg;
     }
 
+    getAllEmployees(): Observable<any> {
+        return this.ApiService.get(`${this.baseUrl}/Users/GetUsers`);
+    }
     getManagers(): Observable<any> {
         return this.ApiService.get('SystemAdmin/api/HrSetup/GetUserCompanies');
     }

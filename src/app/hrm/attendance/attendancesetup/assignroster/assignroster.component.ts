@@ -3,8 +3,9 @@ import { AttendancesetupService, EmployeeService } from '../../../../core';
 import { Employee } from '../../../../core/Models/HRM/employee';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
-
+// import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-assignroster',
     templateUrl: './assignroster.component.html',
@@ -34,7 +35,7 @@ export class AssignrosterComponent implements OnInit {
 
 
     constructor(public attendancesetupservice: AttendancesetupService,
-        public empservice: EmployeeService, private formBuilder: FormBuilder) {
+        public empservice: EmployeeService, private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({
             Dayoff: [''],
             Remarks: [''],
@@ -59,6 +60,36 @@ export class AssignrosterComponent implements OnInit {
 
 
     }
+
+    // onClickMe(args: any) {
+    //       console.log(this);
+    //       const self : any = this;
+    //       console.log(self)
+    //       const filename = 'exportExcel.xlsx';
+    //        const json = JSON.stringify(self.spread.toJSON());
+    //       self.excelIO.save(json, function (blob) {
+    //       saveAs(blob, filename);
+    //   }, function (e) {
+    //       console.log(e);
+    //   });
+    //   }
+
+
+    onClickMe(value) {
+        console.log(value.data);
+        //     const self = args.data;
+        //     const filename = 'exportExcel.xlsx';
+        //     console.log(self);
+        //     //   const json = JSON.stringify(self.spread.toJSON());
+        //     //   console.log(json);
+        //     self.excelIO.save(self, function (blob) {
+        //       saveAs(blob, filename);
+        //   }, function (e) {
+        //       console.log(e);
+        //   });
+    }
+
+
     addOffDaysList(value) {
         this.calendarForm.value.Daysoffs = value;
         delete this.calendarForm.value.Dayoff;
@@ -85,7 +116,12 @@ export class AssignrosterComponent implements OnInit {
         var currentDate = new Date(formatDate.value);
         var endDate = new Date(todate.value);
         //   let counter = 0;
-        while (currentDate <= endDate) {
+        this.inputvaluelist.push({
+            Dayoff: this.formatDate(new Date(currentDate)),
+            Remarks: 'On'
+        });
+        
+        while (currentDate < endDate) {
             currentDate = new Date(currentDate.setDate(currentDate.getDate() + 1));
             let a: any = {
                 Dayoff: this.formatDate(new Date(currentDate)),
@@ -171,10 +207,17 @@ export class AssignrosterComponent implements OnInit {
         await this.attendancesetupservice.DeleteAsignRoster(value.key);
     }
 
-    exportRowData(value) {
-        console.log(value);
-        console.log(value.data)
-        console.log(value.key)
+
+
+    // public exportButtonHandler(value) {
+    //     this.excelExportService.exportData(value, new IgxExcelExporterOptions("ExportFileFromData"));
+    // }
+
+
+    routeForUpdateAssignroster(id){
+        console.log(id);
+          this.router.navigate(['/hrm/attendance/attendancesetup/updateassignroster/'+id.key]);
     }
 
+  
 }

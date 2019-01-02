@@ -34,6 +34,7 @@ import { UniversityComponent } from './hrmsSetup/university/university.component
 import { RootComponent } from './root/root.component';
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
 import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
+import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
 import { AttendanceflagComponent } from './attendance/attendancesetup/attendanceflag/attendanceflag.component';
 import { AttendancerequestapproverComponent } from './attendance/attendancesetup/attendancerequestapprover/attendancerequestapprover.component';
 import { AttendancerequesttypeComponent } from './attendance/attendancesetup/attendancerequesttype/attendancerequesttype.component';
@@ -237,6 +238,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         children: [
 
                             { path: 'assignroster', component: AssignrosterComponent },
+                            { path: 'updateassignroster/:id', component: UpdateassignrosterComponent },
                             { path: 'attendanceflag', component: AttendanceflagComponent },
                             { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
                             { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },

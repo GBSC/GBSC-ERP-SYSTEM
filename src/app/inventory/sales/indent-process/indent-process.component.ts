@@ -37,7 +37,7 @@ export class IndentProcessComponent implements OnInit {
 
   ProcessSelectedIndents() {
     this.dataGrid.instance.getSelectedRowsData().then((rowdata : any[]) => {
-
+      console.log(rowdata);
       let ProcessedIndents : any[] = [];
 
       rowdata.forEach(row => {

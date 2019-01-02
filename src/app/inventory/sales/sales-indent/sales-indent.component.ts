@@ -14,11 +14,11 @@ export class SalesIndentComponent implements OnInit {
 
     public IndentMasterForm : FormGroup;
 
-    private SalesIndentItems : any[] = [];
-    private InventoryItems : any;
-    private Distributors : any;
+    public SalesIndentItems : any[] = [];
+    public InventoryItems : any;
+    public Distributors : any;
 
-    constructor(public InventoryService: InventorysystemService, private Auth : AuthService, private FormBuilder : FormBuilder) {
+    constructor(public InventoryService: InventorysystemService, public Auth : AuthService, public FormBuilder : FormBuilder) {
         this.IndentMasterForm = this.FormBuilder.group({
             Date : [''],
             DistributorId : [''],
@@ -27,15 +27,15 @@ export class SalesIndentComponent implements OnInit {
     }
 
     async ngOnInit() {
-        // this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-        //     this.InventoryItems = res;
-        //     console.log(this.InventoryItems);
-        // });
-
-        this.InventoryService.GetInventoryItems().subscribe((res : any) => {
+        this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
             this.InventoryItems = res;
-            // console.log(this.InventoryItems);
+            console.log(this.InventoryItems);
         });
+
+        // this.InventoryService.GetInventoryItems().subscribe((res : any) => {
+        //     this.InventoryItems = res;
+        //     // console.log(this.InventoryItems);
+        // });
 
         this.InventoryService.GetDistributors().subscribe((res : any) => {
             this.Distributors = res;

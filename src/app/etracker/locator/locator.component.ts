@@ -29,7 +29,6 @@ export class LocatorComponent {
     public currentLocationMarker: any;
     public mapHelper: any;
     public showSpinner: boolean = false;
-    public mockCoordsForLiveTracking: any = [];
     public sampleTracking: any = [];
     public liveTracking: boolean = false;
     public shops: any = [];
@@ -101,10 +100,6 @@ export class LocatorComponent {
 
         this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
             this.DSFs = res;
-            console.log(res);
-            this.userSelected  = res.find(u => u.userId === this.eTrackerUserService.currentUser.userId)
-            this.userSelected.fullName = this.userSelected.firstName + ' ' + this.userSelected.lastName;
-            console.log(this.userSelected);
         });
 
         this.setDropboxValues();
@@ -123,7 +118,6 @@ export class LocatorComponent {
         this.nonProductiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarkerOther, 45);
         this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
 
-        this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
         this.shops = JSON.parse(localStorage.getItem('shops'));
         console.log(this.shops);
 
@@ -246,12 +240,13 @@ export class LocatorComponent {
         this.eTrackerUserService.locationHistory = [];
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
-        this.eTrackerUserService.setCurrentUser(e, this.DSFs);
+        this.eTrackerUserService.setCurrentUser(e, this.DSFs, this.agmMap);
        
 
         console.log(this.eTrackerUserService.currentUser);
-        this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
+
+    
 
     filterFromDate(e) {
         let date = new Date(e.target.value);
@@ -300,26 +295,6 @@ export class LocatorComponent {
         return `${this.createDate(seconds).substr(0, 16)}`
     }
 
-    showLiveTrackingSimulation() {
-        let counter = 0;
-        this.liveTracking = !this.liveTracking;
-
-        let timer = setInterval(() => {
-            if (counter < this.mockCoordsForLiveTracking.length && this.liveTracking) {
-                this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[counter];
-                this.eTrackerUserService.currentUser.userid = 0;
-                this.sampleTracking.push(this.eTrackerUserService.currentUser);
-                counter++;
-            } else {
-                clearInterval(timer);
-                console.log('timer cleared');
-                this.eTrackerUserService.setCurrentUser(0, this.DSFs);
-                this.agmMap.setCenter(this.eTrackerUserService.currentUser);
-                this.sampleTracking = [];
-
-            }
-        }, 1000);
-    }
 
     showLiveTracking() {
         this.liveTracking = !this.liveTracking;

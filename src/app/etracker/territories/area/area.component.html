@@ -20,7 +20,7 @@
               <dxo-paging [pageSize]="8"></dxo-paging>
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
               <dxi-column dataField="name" caption="Name"></dxi-column>
-              <dxi-column dataField="cityId"caption="Region" [visible]="true">
+              <dxi-column dataField="cityId"caption="City" [visible]="true">
                 <dxo-lookup [dataSource]="cities" valueExpr="cityId" displayExpr="name"></dxo-lookup>
               </dxi-column>           
               </dx-data-grid>

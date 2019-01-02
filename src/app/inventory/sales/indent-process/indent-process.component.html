@@ -1,0 +1,74 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Sales Indent Detail
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-button id="processButton" text="Process Selected Indents" type="default" (onClick)="ProcessSelectedIndents()"></dx-button>
+          <dx-data-grid id="UnprocessedIndentGrid" keyExpr="salesIndentId" [dataSource]="UnprocessedSalesIndents"
+            columnWidth="auto" [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
+            [showBorders]="true">
+            <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple" [deferred]="true"></dxo-selection>
+            <dxo-scrolling columnRenderingMode="virtuals"></dxo-scrolling>
+            <dxo-paging [pageSize]="7"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+            </dxo-pager>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxi-column dataField="date" dataType="date" format="shortdate" caption="Issue Date"></dxi-column>
+            <dxi-column dataField="salesIndentNumber" caption="No."></dxi-column>
+            <dxi-column dataField="customerName" caption="Customer"></dxi-column>
+            <dxi-column dataField="totalQuantity" caption="Total Qty"></dxi-column>
+            <dxi-column dataField="totalTradePrice" caption="Total TP"></dxi-column>
+            <dxi-column dataField="totalTradeOfferDiscount" caption="Total TO Discount"></dxi-column>
+            <dxi-column dataField="totalTradeOffer" caption="Total TO"></dxi-column>
+            <dxi-column dataField="storeId">
+              <dxo-lookup [dataSource]="Stores" displayExpr="name" valueExpr="storeId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="storeVisitId">
+              <dxo-lookup [dataSource]="StoreVisits" displayExpr="name" valueExpr="storeVisitId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="distributorId">
+              <dxo-lookup [dataSource]="Distributors" displayExpr="name" valueExpr="distributorId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+            <div *dxTemplate="let d of 'chartCellTemplate'">
+              <div class="chart-cell">
+                <dx-button icon="edit" (onClick)="EditIndent(d.data)"></dx-button> <!-- For Edit -->
+                <dx-button icon="delete" (onClick)="DeleteIndent(d.data)"></dx-button> <!-- For Delete -->
+                <dx-button icon="add" (onClick)="ProcessIndent(d.data)"></dx-button> <!-- For process -->
+              </div>
+            </div>
+            <div *dxTemplate="let IndentDetail of 'detail'">
+              <dx-data-grid [dataSource]="IndentDetail.data.salesIndentItems" [showBorders]="true" [columnAutoWidth]="true">
+                <dxi-column dataField="inventoryItemId">
+                  <dxo-lookup [dataSource]="InventoryItems" displayExpr="name" valueExpr="inventoryItemId">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                <dxi-column dataField="tradeOfferPricePerUnit" caption="TO Price"> </dxi-column>
+                <dxi-column dataField="totalTradeOfferPerItem" caption="TO Offer"></dxi-column>
+                <dxi-column dataField="totalTradePricePerItem" caption="Total TO"> </dxi-column>
+                <dxi-column dataField="itemGrossAmount" caption="Gross"> </dxi-column>
+                <dxi-column dataField="itemDiscountAmount" caption="Discount"> </dxi-column>
+                <dxi-column dataField="itemNetAmount" caption="Net"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

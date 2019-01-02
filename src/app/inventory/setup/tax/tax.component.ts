@@ -17,9 +17,8 @@ export class TaxComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetTaxesByCompany(this.CompanyId).subscribe((res: Tax) => {
             this.Taxes = res;
         });

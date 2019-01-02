@@ -33,9 +33,8 @@ export class DistributorComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetDistributorsByCompany(this.CompanyId).subscribe((res: Distributor) => {
             this.Distributors = res;
             this.CheckUnassignedTerritories();

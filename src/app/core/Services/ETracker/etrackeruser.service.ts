@@ -67,16 +67,17 @@ export class eTrackerUserService {
                     user.lng = Number.parseFloat(user.lng)
                 return user;
             });
-           
-        console.log(this.allUsers); 
-        if (this.currentUser) {
-          let user = this.allUsers.find(u => u.userid == this.currentUser.userid);
-          this.realTimeTracking.next(user);
-        } else {
-          this.realTimeTracking.next(this.allUsers[0]);
-        }
-      });
+
+            console.log(this.allUsers);
+            if (this.currentUser) {
+                let user = this.allUsers.find(u => u.userid == this.currentUser.userid);
+                this.realTimeTracking.next(user);
+            } else {
+                this.realTimeTracking.next(this.allUsers[0]);
+            }
+        });
     }
+
 
 
     fetchVisitedShops(dateRange) {
@@ -163,17 +164,24 @@ export class eTrackerUserService {
         }
     }
 
-    setCurrentUser(userIndex) {
+    setCurrentUser(userIndex, DSFs) {
         this.shopRouteTaken = [];
         this.visitedShops = [];
         this.clearFilteredShops();
-        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('userid', '==', parseInt(userIndex))).valueChanges();
+        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('user_id', '==', parseInt(userIndex))).valueChanges();
         currentUsers.subscribe(d => {
+            console.log('current User', d);
             this.currentUser = d[0];
             this.currentUser.lat = parseFloat(this.currentUser.lat);
             this.currentUser.lng = parseFloat(this.currentUser.lng);
             this.realTimeTracking.next(this.currentUser);
+            let user = DSFs.find(u => u.userId == this.currentUser.user_id);
+            this.currentUser.fullName = `${user.firstName} ${user.lastName}`;
+            console.log(DSFs);
+            console.log('eeeeeeeeeeee', user);
+            console.log('eeeeeeeeeeee', this.currentUser);
         });
+        console.log(this.currentUser);
     }
 
     createMarkerLabel(color, fontSize, fontFamily, fontWeight) {

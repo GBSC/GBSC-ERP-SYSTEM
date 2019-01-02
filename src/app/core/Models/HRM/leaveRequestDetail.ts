@@ -8,4 +8,5 @@ export class LeaveRequestDetail {
     totalLeaveDetailValue: string;
     isShortLeave: boolean;
     description: string;
+
 }

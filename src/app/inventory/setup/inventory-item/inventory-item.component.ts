@@ -69,10 +69,14 @@ export class InventoryItemComponent implements OnInit {
 
     AddInventoryItem(value) {
         value.data.companyId = this.CompanyId;
-        this.InventoryService.AddInventoryItem(value.data).subscribe();
-        this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
-            this.InventoryItems = res;
+        this.InventoryService.AddInventoryItem(value.data).subscribe(res => {
+            // console.log(res);
+            this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
+                this.InventoryItems = res;
+                // console.log(this.InventoryItems);
+            });
         });
+        
     }
 
     UpdateModel(value) {

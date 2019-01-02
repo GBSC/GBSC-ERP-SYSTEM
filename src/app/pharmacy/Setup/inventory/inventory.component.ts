@@ -73,7 +73,7 @@ export class InventoryComponent implements OnInit {
         });
     }
 
-    async UpdateInventory(value) {
+    async UpdateInventory() {
         await this.PharmacyService.UpdateInventory(this.UpdatedModel).toPromise();
         this.CheckUnassignedItems();
     }

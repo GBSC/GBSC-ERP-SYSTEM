@@ -10,15 +10,15 @@ import { PackCategory } from '../../../core/Models/Inventory/Setup/PackCategory'
 export class ProductPackCategoryComponent implements OnInit {
     public PackCategories: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: PackCategory) => {
             this.PackCategories = res;
         });

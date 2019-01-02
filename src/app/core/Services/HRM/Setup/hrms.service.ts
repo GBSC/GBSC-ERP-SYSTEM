@@ -19,6 +19,11 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
     }
 
+    getCountriesByCompanyId(compid : number) : Observable<any[]> {
+
+        return this.ApiService.get(this.setupUrl + '/GetCountriesByCompanyId/' + compid);
+    }
+
     // DEMO ONLY, you can find working methods below
     async addCountry(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
@@ -43,7 +48,7 @@ export class HrmsService {
         return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 
-    GetCitiesByCompanyId(companyId: any) : Observable<City[]> {
+    GetCitiesByCompanyId(companyId: any): Observable<City[]> {
         return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 

@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
-    private SystemAdmin_API_URL = "systemadmin/api/";
-    private Auth_Url = "authentication/api/";
+    public SystemAdmin_API_URL = "systemadmin/api/";
+    public Auth_Url = "authentication/api/";
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
 
     }
 
@@ -23,7 +23,7 @@ export class UserService {
         return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
     }
 
-    EditUser(user: any) : Observable<any> {
+    EditUser(user: any): Observable<any> {
         return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
     }
 
@@ -35,7 +35,7 @@ export class UserService {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
     }
 
-    changePassword(model : any) : Observable<string> {
+    changePassword(model: any): Observable<string> {
         return this.ApiService.post(this.Auth_Url + 'accounts/ChangePassword', model);
     }
 

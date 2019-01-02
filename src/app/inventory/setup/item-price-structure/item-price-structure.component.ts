@@ -10,9 +10,9 @@ import { ItemPriceStructure } from '../../../core/Models/Inventory/Setup/ItemPri
 export class ItemPriceStructureComponent implements OnInit {
     public ItemPriceStructures: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

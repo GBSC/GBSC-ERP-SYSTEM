@@ -8,6 +8,7 @@ import { LeaveOpening } from '../../../Models/HRM/leaveOpening';
 export class LeaveService {
 
     public baseUrl: string = "SystemAdmin/api";
+    public data: any = [];
 
     constructor(public ApiService: ApiService) { }
 
@@ -169,5 +170,67 @@ export class LeaveService {
 
     async DeleteLeaveClosing(leaveclosingId) {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveClosing/${leaveclosingId}`).toPromise();
+    }
+
+    prepareLeaveData(employees, LeaveType, empleavepolicy, LeavePolicies) {
+        console.log(employees)
+        console.log(LeaveType)
+        console.log(empleavepolicy)
+        console.log(LeavePolicies)
+        console.log('it worked');
+        let fromEmp = [];
+        let fromGroup = [];
+        employees.forEach(u => {
+
+            empleavepolicy.forEach(emplp => {
+                if (u.userId == emplp.userId) {
+
+                    fromEmp.push({
+                        userId: emplp.userId,
+                        fullName: u.fullName,
+                        leaveTypeId: emplp.leaveTypeId,
+                        title: LeaveType.find(lt => lt.leaveTypeId === emplp.leaveTypeId).title,
+                        entitledQuantity: emplp.entitledQuantity,
+                        employeeLeavePolicy: true
+                    });
+                }
+            })
+
+            LeavePolicies.forEach(lp => {
+                if (u.groupId === lp.groupId) {
+                    fromGroup.push({
+                        userId: u.userId,
+                        fullName: u.fullName,
+                        leaveTypeId: lp.leaveTypeId,
+                        title: LeaveType.find(lt => lt.leaveTypeId === lp.leaveTypeId).title,
+                        entitledQuantity: lp.entitledQuantity,
+                        employeeLeavePolicy: false
+                    });
+
+                }
+
+            });
+
+        });
+        let abc = []
+         fromGroup = fromGroup.filter(g => {
+            let y = fromEmp.find((em : any)=>{
+                if(g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
+                    console.log(g); 
+                return em;
+                } 
+            });
+            if(!y){
+                return g;
+            }
+            abc.push(y);
+        })
+        console.log(abc);
+        console.log(fromGroup);
+        console.log(fromEmp);
+        this.data = [...fromGroup, ...fromEmp]
+        console.log(this.data);
+        return this.data;
+        // console.log(LeaveType);
     }
 }

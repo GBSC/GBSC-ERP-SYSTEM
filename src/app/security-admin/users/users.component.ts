@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
     public selectedUserId: any;
     public registrationForm: FormGroup;
 
-    constructor(private userService: UserService, private authService: AuthService, formBuilder: FormBuilder) {
+    constructor(public userService: UserService, public authService: AuthService, formBuilder: FormBuilder) {
         this.companyId = this.authService.getUserCompanyId();
 
         this.registrationForm = formBuilder.group({

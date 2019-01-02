@@ -12,9 +12,10 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <dx-data-grid id="gridContainer"
-                    keyExpr="leaveRequestId" 
-                    [dataSource]="leaverequest" 
+                    <dx-data-grid id="gridContainer" 
+                    [dataSource]="leaverequest"  
+                    keyExpr="leaveRequestId"
+                    (onRowUpdated)="updateLeaveRequest($event)"
                     (onSelectionChanged)="selectionChanged($event)"
                     (onContentReady)="contentReady($event)"
                     (onToolbarPreparing)="onToolbarPreparing($event)"
@@ -23,9 +24,8 @@
                      [showBorders]="true">
                         
                     <dxo-selection mode="single"></dxo-selection>
-                        <!-- <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
-                            </dxo-editing> -->
-                        <dxo-paging [pageSize]="6"></dxo-paging>
+                     <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
+                        <dxo-paging [pageSize]="8"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
                         </dxo-pager>                
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -33,12 +33,12 @@
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 
 
-                        <dxi-column dataField="userId" caption="Employee" [width]="450">
-                            <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                        <dxi-column dataField="userId" caption="Employee" [width]="450" [allowEditing]="false"  [formItem]="{editorOptions: { readOnly: true }}">
+                            <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                        <dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column>
+                        <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false"  [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                           <div class="chart-cell">
@@ -61,8 +61,9 @@
                                   <dxi-column dataField="description" caption="Description"></dxi-column>
                                   <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
                                   <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
-                                  <dxi-column dataField="value" caption="Leave Value"></dxi-column>
-                                  <dxi-column dataField="totalLeaveDetailValue" caption="Total Leave Value"> </dxi-column>
+                                  <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
+                                  <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
+                                  <dxi-column value="" caption="Total"> </dxi-column>
                                 </dx-data-grid>
                         </div>
                     </dx-data-grid>

@@ -9,15 +9,15 @@ import { PackSize } from '../../../core/Models/Inventory/Setup/PackSize';
 export class ProductPackSizeComponent implements OnInit {
     public PackSizes: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
-        
+
         this.InventoryService.GetPackSizesByCompany(this.CompanyId).subscribe((res: PackSize) => {
             this.PackSizes = res;
         });

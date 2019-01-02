@@ -49,6 +49,8 @@ import { PurchaseReturnComponent } from './purchase/purchase-return/purchase-ret
 import { PurchaseReturnItemComponent } from './purchase/purchase-return-item/purchase-return-item.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 
 const routes: Routes = [
 
@@ -109,6 +111,13 @@ const routes: Routes = [
                     { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
                     { path: 'purchaseReturn', component: PurchaseReturnComponent },
                     { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
+                ]
+            },
+            {
+                path: "reports",
+                children: [
+                    { path: 'order-detail', component: OrderDetailComponent },
+                    { path: 'order-summary', component: OrderSummaryComponent },
                 ]
             }
         ]

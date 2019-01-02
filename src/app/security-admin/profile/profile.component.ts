@@ -10,32 +10,32 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    private userName : string = '';
-    private userLevel : string = '';
-    private UpdateUserProfileForm : FormGroup;
+    public userName : string = '';
+    public userLevel : string = '';
+    public UpdateUserProfileForm : FormGroup;
     private User : any;
     // private Cities : any[] = [];
     // private UserCity : any;
     // private Roles : any[] = [];
     // private UserRole : any;
 
-    private UpdatePasswordForm : FormGroup;
+    public UpdatePasswordForm : FormGroup;
 
-    constructor(private authservice : AuthService, private formBuilder : FormBuilder, private EmployeeService : EmployeeService, private HrmsService : HrmsService, private SystemAdminService : SystemAdministrationService, private UserService : UserService, private Toastr : ToastrService) {
+    constructor(private authservice: AuthService, private formBuilder: FormBuilder, private EmployeeService: EmployeeService, private HrmsService: HrmsService, private SystemAdminService: SystemAdministrationService, private UserService: UserService, private Toastr: ToastrService) {
         this.UpdateUserProfileForm = this.formBuilder.group({
-            FirstName : ['', Validators.required],
-            LastName : ['', Validators.required],
+            FirstName: ['', Validators.required],
+            LastName: ['', Validators.required],
             // City : [''],
-            ContactNumber : ['', Validators.required],
+            ContactNumber: ['', Validators.required],
             // Role : [''],
-            Email : ['']
+            Email: ['']
         });
 
         this.UpdatePasswordForm = this.formBuilder.group({
-            Username : [''],
-            CurrentPassword : [''],
-            NewPassword : [''],
-            ConfirmPassword : ['']
+            Username: [''],
+            CurrentPassword: [''],
+            NewPassword: [''],
+            ConfirmPassword: ['']
         });
 
     }
@@ -48,34 +48,34 @@ export class ProfileComponent implements OnInit {
         // this.HrmsService.GetCitiesByCompanyId(this.authservice.getUserCompanyId()).subscribe((res : any[]) => {
         //     this.Cities = res;
         //     console.log(res);
-            
-            // this.SystemAdminService.GetRolesByCompanyId(this.authservice.getUserCompanyId()).subscribe((res : any[]) => {
-            //     this.Roles = res;
-            // });
 
-            // console.log(this.SystemAdminService.getRolesByCompanyIdAsync(this.authservice.getUserCompanyId()));
-            // console.log(this.SystemAdminService.getRoles());
+        // this.SystemAdminService.GetRolesByCompanyId(this.authservice.getUserCompanyId()).subscribe((res : any[]) => {
+        //     this.Roles = res;
+        // });
 
-            // this.Roles.push(this.SystemAdminService.getRolesByCompanyIdAsync(this.authservice.getUserCompanyId()));
-            // console.log(this.Roles);
+        // console.log(this.SystemAdminService.getRolesByCompanyIdAsync(this.authservice.getUserCompanyId()));
+        // console.log(this.SystemAdminService.getRoles());
 
-            this.EmployeeService.GetEmployee(this.authservice.getUserId()).subscribe((res : Employee) => {
-                this.User = res;
-                // console.log(res);
+        // this.Roles.push(this.SystemAdminService.getRolesByCompanyIdAsync(this.authservice.getUserCompanyId()));
+        // console.log(this.Roles);
 
-                // this.UserCity = this.Cities.find(a => a.cityId == this.User.cityId);
-                // this.UserRole = this.Roles.find(a => a.roleId == this.User.roleId);
-                // console.log(this.UserRole);
+        this.EmployeeService.GetEmployee(this.authservice.getUserId()).subscribe((res: Employee) => {
+            this.User = res;
+            // console.log(res);
 
-                this.UpdateUserProfileForm.patchValue({
-                    FirstName : this.User.firstName,
-                    LastName : this.User.lastName,
-                    // City : this.User.cityId,
-                    ContactNumber : this.User.phone,
-                    // Role : this.UserRole.name,
-                    Email : this.User.email
-                });
+            // this.UserCity = this.Cities.find(a => a.cityId == this.User.cityId);
+            // this.UserRole = this.Roles.find(a => a.roleId == this.User.roleId);
+            // console.log(this.UserRole);
+
+            this.UpdateUserProfileForm.patchValue({
+                FirstName: this.User.firstName,
+                LastName: this.User.lastName,
+                // City : this.User.cityId,
+                ContactNumber: this.User.phone,
+                // Role : this.UserRole.name,
+                Email: this.User.email
             });
+        });
 
         // });
     }
@@ -87,13 +87,13 @@ export class ProfileComponent implements OnInit {
         this.User.phone = formvalue.ContactNumber;
         this.User.email = formvalue.Email;
         // console.log(this.User);
-        
+
         this.UserService.EditUser(this.User).subscribe(
-            (res : any) => {
+            (res: any) => {
                 // console.log(res);
                 this.Toastr.success("User profile updated successfully");
             },
-            (err : any) => {
+            (err: any) => {
                 this.Toastr.error("Unable to update user profile");
             }
         );
@@ -101,27 +101,27 @@ export class ProfileComponent implements OnInit {
 
     UpdatePassword(formvalue) {
         // console.log(formvalue);
-        
-        if(formvalue.Username != null && formvalue.Username != undefined 
-            && formvalue.CurrentPassword != null && formvalue.CurrentPassword != undefined 
+
+        if (formvalue.Username != null && formvalue.Username != undefined
+            && formvalue.CurrentPassword != null && formvalue.CurrentPassword != undefined
             && formvalue.NewPassword != null && formvalue.NewPassword != undefined
-            && formvalue.ConfirmPassword != null && formvalue.ConfirmPassword != undefined 
+            && formvalue.ConfirmPassword != null && formvalue.ConfirmPassword != undefined
             && formvalue.CurrentPassword != formvalue.NewPassword
             && formvalue.NewPassword === formvalue.ConfirmPassword) {
 
-            let a : any = {
-                Username : formvalue.Username,
-                OldPassword : formvalue.CurrentPassword,
-                NewPassword : formvalue.NewPassword
+            let a: any = {
+                Username: formvalue.Username,
+                OldPassword: formvalue.CurrentPassword,
+                NewPassword: formvalue.NewPassword
             };
 
             // console.log(a);
 
             this.UserService.changePassword(a).subscribe(
-                (res : string) => {
+                (res: string) => {
                     this.Toastr.success(res);
                 },
-                (err : string) => {
+                (err: string) => {
                     this.Toastr.error(err);
                 }
             );

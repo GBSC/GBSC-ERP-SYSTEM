@@ -21,8 +21,8 @@ export class ViewleaverequestComponent implements OnInit {
     public leaveRequest: any;
     public leaverequest: any;
     public leaveOpening: any;
-    public leaveDetail: any[] = []; 
-    
+    public leaveDetail: any[] = [];
+
     constructor(public toastr: ToastrService, public fb: FormBuilder, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public activatedRoute: ActivatedRoute, public leaveservice: LeaveService) { }
 
@@ -47,7 +47,7 @@ export class ViewleaverequestComponent implements OnInit {
     }
 
     // [formItem]="{editorOptions: { readOnly: true }}"
- 
+
     onToolbarPreparing(e) {
         e.toolbarOptions.items.unshift(
             {
@@ -74,33 +74,31 @@ export class ViewleaverequestComponent implements OnInit {
         console.log(e);
     }
 
-    updateLeaveRequest(e){
+    updateLeaveRequest(e) {
         console.log(e);
-          
-        if(e.data.isApproved) {
-            let leave = this.leaverequest.find(l=>{
-                if(l.leaveRequestId=== e.key){
-                    return l;
-                }
-            })
-            console.log(leave);
-            leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => { 
-                let g= d.totalLeaveDetailValue -= d.value;
+
+        // if(e.data.isApproved) {
+        let leave = this.leaverequest.find(l => {
+            if (l.leaveRequestId === e.key) {
+                return l;
+            }
+        })
+        console.log(leave);
+        leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
+            if (e.data.isApproved) {
+                let g = d.totalLeaveDetailValue -= d.value;
                 console.log(g);
                 delete d.leaveRequestDetailId
-                return d; 
-            });
-            
-            this.empservice.updatedLeaves = e.key.leaveRequestDetails;
-            this.leaveservice.updateLeaveRequest(leave).subscribe(resp => {
-                    this.toastr.success("Leave Request Updated");
-                    this.router.navigate(['/hrm/leave/leaverequests']);
-                
-                });
-                console.log('send Req', e.key);
-            
-        }
+                return d;
+            }
+            return d;
+        });
 
+        this.empservice.updatedLeaves = leave.leaveRequestDetails;
+        this.leaveservice.updateLeaveRequest(leave).subscribe(resp => {
+            this.toastr.success("Leave Request Updated");
+            this.router.navigate(['/hrm/leave/leaverequests']);
+        });
 
     }
 
@@ -108,8 +106,9 @@ export class ViewleaverequestComponent implements OnInit {
         this.router.navigate(['/hrm/leave/createleaverequest']);
     }
 
+
     getSingleRowData(d) {
-        this.leaveRequestId = d.key; 
+        this.leaveRequestId = d.key;
         this.router.navigate(['hrm/leave/update-leave-request/' + this.leaveRequestId]);
     }
 }

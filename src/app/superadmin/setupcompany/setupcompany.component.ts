@@ -67,8 +67,8 @@ export class SetupcompanyComponent implements OnInit {
             this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
                 this.company = company;
 
-                for (let module of company.modules) {
-                    this.checkModulesInstalled(module);
+                for (let modul of company.modules) {
+                    this.checkModulesInstalled(modul);
                 }
 
             })
@@ -77,6 +77,7 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     async onAddCompany(value) {
+        // console.log(value);
         this.superAdminService.addCompany(value).subscribe(resp => {
             console.log("Company Added");
             this.companyId = resp.companyID;
@@ -87,9 +88,9 @@ export class SetupcompanyComponent implements OnInit {
 
     async onAddModule(value) {
 
-        var module = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
+        var modue = { Name: value, CompanyId: this.companyId, Code: "000", ModuleId: 0 };
 
-        this.superAdminService.addModule(module).subscribe(s => {
+        this.superAdminService.addModule(modue).subscribe(s => {
 
             this.checkModulesInstalled(value);
         });

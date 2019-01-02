@@ -49,6 +49,7 @@ import { PurchaseReturnComponent } from './purchase/purchase-return/purchase-ret
 import { PurchaseReturnItemComponent } from './purchase/purchase-return-item/purchase-return-item.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
 import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 
@@ -89,10 +90,11 @@ const routes: Routes = [
                 path: "sales",
                 children: [
                     { path: 'dispatchnote', component: DeliveryNoteComponent },
-                    { path: 'deliveryOrder', component: DeliveryOrderComponent },
+                    { path: 'deliveryorder', component: DeliveryOrderComponent },
                     { path: 'deliveryorderitem', component: DeliveryOrderItemComponent },
                     { path: 'salesindent', component: SalesIndentComponent },
                     { path: 'salesindentitem', component: SalesIndentItemComponent },
+                    { path: 'salesindentprocess', component: IndentProcessComponent},
                     { path: 'salesinvoice', component: SalesInvoiceComponent },
                     { path: 'salesorder', component: SalesOrderComponent },
                     { path: 'salesorderitem', component: SalesOrderItemComponent },
@@ -104,13 +106,13 @@ const routes: Routes = [
                 path: "purchase",
                 children: [
                     { path: 'grn', component: GoodsreceiptComponent },
-                    { path: 'purchaseIndent', component: PurchaseIndentComponent },
-                    { path: 'purchaseIndentItem', component: PurchaseIndentItemComponent },
+                    { path: 'purchaseindent', component: PurchaseIndentComponent },
+                    { path: 'purchaseindentitem', component: PurchaseIndentItemComponent },
                     { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
                     { path: 'purchaseorder', component: PurchaseOrderComponent },
-                    { path: 'purchaseOrderItem', component: PurchaseOrderItemComponent },
-                    { path: 'purchaseReturn', component: PurchaseReturnComponent },
-                    { path: 'purchaseReturnItem', component: PurchaseReturnItemComponent }
+                    { path: 'purchaseorderitem', component: PurchaseOrderItemComponent },
+                    { path: 'purchasereturn', component: PurchaseReturnComponent },
+                    { path: 'purchasereturnitem', component: PurchaseReturnItemComponent }
                 ]
             },
             {

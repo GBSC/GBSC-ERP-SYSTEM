@@ -44,14 +44,14 @@ export class ShopStatusDetailComponent implements OnInit {
     public IsRsm: boolean = false;
     public IsZsm: boolean = false;
 
-    public regionId: any;
-    public cityId: any;
-    public areaId: any;
-    public territoryId: any;
-    public sectionId: any;
-    public subsectionId: any;
-    public distributorId: any;
-    public dsfId: any;
+    public regionId: number;
+    public cityId: number;
+    public areaId: number;
+    public territoryId: number;
+    public sectionId: number;
+    public subsectionId: number;
+    public distributorId: number;
+    public dsfId: number;
     public classification: any = '500 & Above';
     public category: any = 'LMT';
     public status: any = 'Stock Available Market';

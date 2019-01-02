@@ -17,9 +17,8 @@ export class TransportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetTransportsByCompany(this.CompanyId).subscribe((res: Transport) => {
             this.Transports = res;
         });

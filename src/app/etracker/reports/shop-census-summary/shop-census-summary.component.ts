@@ -106,9 +106,10 @@ export class ShopCensusSummaryComponent implements OnInit {
     ngAfterViewInit() {
 
         const reportUrl = ko["observable"]("ShopCensusSummary"),
-            container = this.renderer.createElement("div");
+        container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = `${environment.repotr_url}`;
+        // `${environment.repotr_url}`
+        var host = 'http://localhost:57581/' ;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

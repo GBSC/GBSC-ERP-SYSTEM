@@ -28805,7 +28805,8 @@ select.m-select2 {
     width: 700px;
     padding: 2rem 11rem; }
   .m-login.m-login--1 .m-login__content {
-    padding: 5rem 10rem 10rem 10rem;
+    padding: 0rem 0rem 5rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.20) 0%,rgba(0,0,0,0) 100%);
     background-attachment: fixed;
     background-size: cover; }
     .m-login.m-login--1 .m-login__content .m-login__welcome {

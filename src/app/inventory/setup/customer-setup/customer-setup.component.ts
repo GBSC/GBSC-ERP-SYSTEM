@@ -21,9 +21,8 @@ export class CustomerSetupComponent implements OnInit {
     constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) { }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetCustomersByCompany(this.CompanyId).subscribe((res: Customer) => {
             this.Customers = res;
         });

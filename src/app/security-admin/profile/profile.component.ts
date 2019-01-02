@@ -10,16 +10,16 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-    private userName: string = '';
-    private userLevel: string = '';
-    private UpdateUserProfileForm: FormGroup;
-    private User: any;
+    public userName : string = '';
+    public userLevel : string = '';
+    public UpdateUserProfileForm : FormGroup;
+    private User : any;
     // private Cities : any[] = [];
     // private UserCity : any;
     // private Roles : any[] = [];
     // private UserRole : any;
 
-    private UpdatePasswordForm: FormGroup;
+    public UpdatePasswordForm : FormGroup;
 
     constructor(private authservice: AuthService, private formBuilder: FormBuilder, private EmployeeService: EmployeeService, private HrmsService: HrmsService, private SystemAdminService: SystemAdministrationService, private UserService: UserService, private Toastr: ToastrService) {
         this.UpdateUserProfileForm = this.formBuilder.group({
@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
         this.userName = this.authservice.getProfileInfo().Username;
         this.userLevel = this.authservice.getProfileInfo().UserLevel;
-        console.log(this.authservice.getUser());
         // console.log(this.userLevel);
 
         // this.HrmsService.GetCitiesByCompanyId(this.authservice.getUserCompanyId()).subscribe((res : any[]) => {

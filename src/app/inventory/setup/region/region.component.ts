@@ -11,18 +11,17 @@ import { Region } from '../../../core/Models/Inventory/Setup/Region';
 export class RegionComponent implements OnInit {
     public Regions: any;
     public updatedmodel: Region;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
         // this.form = new FormGroup {
 
         // };
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetRegionsByCompany(this.CompanyId).subscribe((res: Region) => {
             this.Regions = res;
         });

@@ -11,6 +11,7 @@ export class PurchaseInvoiceComponent implements OnInit {
     public PurchaseOrder: any;
     public GRN: any;
     public PurchaseInvoice: any;
+    public supliers : any ;
 
     // constructor(public formBuilder: FormBuilder, public InventorysystemServiceobj: InventorysystemService) {
     //     this.PurchaseInvoiceForm = this.formBuilder.group(
@@ -35,10 +36,27 @@ export class PurchaseInvoiceComponent implements OnInit {
     constructor(public InventoryService: InventorysystemService) {
     }
 
-    async ngOnInit() {
-        this.PurchaseOrder = await this.InventoryService.GetPurchaseOrders();
-        this.GRN = await this.InventoryService.GetGRN();
-        this.PurchaseInvoice = await this.InventoryService.GetPurchaseInvoices();
+      ngOnInit() {
+         this.InventoryService.GetPurchaseOrders().subscribe(res=> {
+            this.PurchaseOrder = res;
+            console.log(this.PurchaseInvoice)
+        });
+        
+         this.InventoryService.GetGRN().subscribe(res=> {
+            this.GRN = res;
+            console.log(this.GRN)
+        });
+         this.InventoryService.GetPurchaseInvoices().subscribe(res=>{
+            this.PurchaseInvoice = res;
+            console.log(this.PurchaseInvoice)
+
+        });
+
+        this.InventoryService.GetSuppliers().subscribe(res=>{
+            this.supliers = res;
+            console.log(this.supliers);
+        })
+
     }
 
     async AddPurchaseInvoice(value) {

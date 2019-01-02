@@ -6,6 +6,9 @@ import { SetupService, HrmsService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
+import { Account } from '../../core/Models/Finance/Account';
+import { FinancialYear } from '../../core/Models/Finance/financialYear';
+import { TransactionAccount } from '../../core/Models/Finance/TransactionAccount';
 
 @Component({
     selector: 'app-voucher',
@@ -16,7 +19,6 @@ export class VoucherComponent implements OnInit {
 
     public debitTotal = 0;
     public creditTotal = 0;
-
     public departments: any;
     public financialYear: any;
     public Detail: any[] = [];
@@ -30,7 +32,7 @@ export class VoucherComponent implements OnInit {
     public isDisabled: any;
     @Input('voucherId') id: number;
 
-    constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+    constructor(public toastr: ToastrService, public router: Router, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
         public financeService: FinanceService, public HrmService: HrmsService) { }
 
     async ngOnInit() {
@@ -46,47 +48,43 @@ export class VoucherComponent implements OnInit {
             VoucherCode: [''],
             Date: [''],
             Description: [''],
-            ChequeNumber: [''],
-            Total: [''],
+            FinancialYearId: [''],
+            TotalDebitAmount: [''],
+            TotalCreditAmount: [''],
             IsFinal: [''],
             VoucherTypeId: ['']
 
         })
 
-        // this.Vouchers = await this.financeService.getVouchers();
-
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-        this.detailAccount = await this.financeSetupService.getDetailAccounts();
+        this.financeService.getTransactionAccounts().subscribe((res: TransactionAccount[]) => {
+            this.detailAccount = res;
+            console.log(this.detailAccount);
+        });
 
-        this.financialYear = await this.financeSetupService.getFinancialYears();
-
-        this.departments = await this.HrmService.getAllDepartments();
-
+        this.financeSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
+            this.financialYear = res.filter(a => a.isActive == true);
+        });
     }
 
     initItemRows() {
-        // let disCre = this.disableCredit;
-        // let disDec = this.disableDebit;
         return this.fb.group({
-            DetailAccountId: [''],
-            // DebitAmount: [{value: '', disabled: disDec}],
-            // CreditAmount: [{value: '', disabled: disCre}],
+            AccountId: [''],
             DebitAmount: [''],
             CreditAmount: [''],
             DepartmentName: [''],
             UniqueName: [''],
+            ChequeNumber: [''],
             Description: ['']
         });
     }
-    public disableDebit;
-    public disableCredit;
+
     sumDebit() {
         this.debitTotal = 0;
         const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
         for (let d of control) {
             this.debitTotal += (+d.value.DebitAmount);
-
         }
     }
 
@@ -95,7 +93,6 @@ export class VoucherComponent implements OnInit {
         const control = this.VoucherDetailForm.controls['VoucherDetails'].controls;
         for (let c of control) {
             this.creditTotal += (+c.value.CreditAmount);
-
         }
     }
 
@@ -103,9 +100,7 @@ export class VoucherComponent implements OnInit {
         const control: any = <FormArray>this.VoucherDetailForm.controls['VoucherDetails'];
         if ((e.keyCode === 9 || e.keyCode === 13)
             && e.target.value && (i == this.VoucherDetailForm.controls.VoucherDetails.controls.length - 1)) {
-            console.log(this.VoucherDetailForm.controls.VoucherDetails.controls)
             control.push(this.initItemRows());
-            console.log(control)
         }
     }
 
@@ -114,13 +109,39 @@ export class VoucherComponent implements OnInit {
         control.removeAt(index);
     }
 
-    async addVoucher(value) {
+    async addVoucher(value: any, detailsvalue: any) {
+
         if (this.creditTotal === this.debitTotal) {
 
-            this.VoucherForm.value.voucherDetails = this.VoucherDetailForm.value.VoucherDetails;
+            let VDs: VoucherDetail[] = [];
+            console.log(detailsvalue);
+
+            detailsvalue.VoucherDetails.forEach((element: any) => {
+                if (element.AccountId != null && element.AccountId != undefined && element.AccountId != '' && element.DebitAmount != null && element.DebitAmount != undefined && element.DebitAmount != '' && element.CreditAmount != null && element.CreditAmount != undefined && element.CreditAmount != '') {
+                    let a: any = {
+                        departmentName: element.DepartmentName,
+                        creditAmount: element.CreditAmount,
+                        debitAmount: element.DebitAmount,
+                        uniqueName: element.UniqueName,
+                        description: element.Description,
+                        chequeNumber: element.ChequeNumber,
+                        accountId: element.AccountId
+                    };
+                    VDs.push(a);
+                } else {
+                    this.toastr.error("Empty details removed!! Account, Credit Amount & Debit Amount are required.");
+                }
+            });
+
+            value.VoucherDetails = VDs;
+            value.TotalCreditAmount = this.creditTotal;
+            value.TotalDebitAmount = this.debitTotal;
+            let a: Date = new Date(value.Date);
+            value.Date = a.toLocaleDateString();
+            console.log(value);
             await this.financeService.addVoucher(value);
-            this.toastr.success("Successfuly! Voucher Added")
-            this.router.navigate(['finance/voucher-detail']);
+            this.toastr.success("Successfull! Voucher Added")
+            // this.router.navigate(['finance/voucher-detail']);
         }
         else {
             this.toastr.error("Credit Debit Amount not equal");

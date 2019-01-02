@@ -6142,7 +6142,7 @@ a.text-dark:focus, a.text-dark:hover {
   right: -1px; }
 
 .m-tooltip .tooltip-inner {
-  color: #6f727d;
+  color: black;
   background: white;
   -webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1) ;
   -moz-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1) ;
@@ -6370,8 +6370,8 @@ a.text-dark:focus, a.text-dark:hover {
 
 .btn-brand {
   color: #fff;
-  background-color: #716aca;
-  border-color: #716aca; }
+  background-color: #716aca !important;
+  border-color: #716aca !important; }
   .btn-brand:hover {
     color: #fff;
     background-color: #5853a8;
@@ -10850,7 +10850,7 @@ b, strong {
       text-decoration: none; }
 
 .m-nav-sticky {
-  background: #fff;
+  background: #3a3a3a;
   -webkit-box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ;
   -moz-box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ;
   box-shadow: 0px 0px 15px 1px rgba(69, 65, 78, 0.2) ; }
@@ -28805,7 +28805,8 @@ select.m-select2 {
     width: 700px;
     padding: 2rem 11rem; }
   .m-login.m-login--1 .m-login__content {
-    padding: 5rem 10rem 10rem 10rem;
+    padding: 0rem 0rem 5rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.20) 0%,rgba(0,0,0,0) 100%);
     background-attachment: fixed;
     background-size: cover; }
     .m-login.m-login--1 .m-login__content .m-login__welcome {

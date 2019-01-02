@@ -44,14 +44,14 @@ export class ShopStatusDetailComponent implements OnInit {
     public IsRsm: boolean = false;
     public IsZsm: boolean = false;
 
-    public regionId: any;
-    public cityId: any;
-    public areaId: any;
-    public territoryId: any;
-    public sectionId: any;
-    public subsectionId: any;
-    public distributorId: any;
-    public dsfId: any;
+    public regionId: number;
+    public cityId: number;
+    public areaId: number;
+    public territoryId: number;
+    public sectionId: number;
+    public subsectionId: number;
+    public distributorId: number;
+    public dsfId: number;
     public classification: any = '500 & Above';
     public category: any = 'LMT';
     public status: any = 'Stock Available Market';
@@ -109,7 +109,7 @@ export class ShopStatusDetailComponent implements OnInit {
         const reportUrl = ko["observable"]("ShopStatusDetail"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = 'http://localhost:57581/';
+        var host = `${environment.repotr_url}`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,
@@ -120,17 +120,28 @@ export class ShopStatusDetailComponent implements OnInit {
             callbacks: {
                 // For demonstration purposes. Get the "Search" action and hide it.  
                 ParametersSubmitted: (s, e) => this.ngZone.run(() => {
-                    e.Parameters.filter(function(p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "sectionid"; })[0].Value = this.sectionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "territoryid"; })[0].Value = this.territoryId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "areaid"; })[0].Value = this.areaId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "cityid"; })[0].Value = this.cityId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "regionid"; })[0].Value = this.regionId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "distributorid"; })[0].Value = this.distributorId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "userid"; })[0].Value = this.dsfId || "";
-                    e.Parameters.filter(function(p) { return p.Key == "category"; })[0].Value = this.category || "";
-                    e.Parameters.filter(function(p) { return p.Key == "classification"; })[0].Value = this.classification || "";
-                    e.Parameters.filter(function(p) { return p.Key == "noorderreason"; })[0].Value = this.status || "";
+                    if (this.subsectionId)
+                        e.Parameters.filter(function (p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId;
+                    if (this.sectionId)
+                        e.Parameters.filter(function (p) { return p.Key == "sectionid"; })[0].Value = this.sectionId;
+                    if (this.territoryId)
+                        e.Parameters.filter(function (p) { return p.Key == "territoryid"; })[0].Value = this.territoryId;
+                    if (this.areaId)
+                        e.Parameters.filter(function (p) { return p.Key == "areaid"; })[0].Value = this.areaId;
+                    if (this.cityId)
+                        e.Parameters.filter(function (p) { return p.Key == "cityid"; })[0].Value = this.cityId;
+                    if (this.regionId)
+                        e.Parameters.filter(function (p) { return p.Key == "regionid"; })[0].Value = this.regionId;
+                    if (this.distributorId)
+                        e.Parameters.filter(function (p) { return p.Key == "distributorid"; })[0].Value = this.distributorId;
+                    if (this.dsfId)
+                        e.Parameters.filter(function (p) { return p.Key == "userid"; })[0].Value = this.dsfId;
+                    if (this.category)
+                        e.Parameters.filter(function (p) { return p.Key == "category"; })[0].Value = this.category;
+                    if (this.classification)
+                        e.Parameters.filter(function (p) { return p.Key == "classification"; })[0].Value = this.classification;
+                    if (this.status)
+                        e.Parameters.filter(function (p) { return p.Key == "noorderreason"; })[0].Value = this.status;
                 })
             }
         }, this.control.nativeElement);

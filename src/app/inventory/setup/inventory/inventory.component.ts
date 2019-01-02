@@ -13,9 +13,9 @@ export class InventoryComponent implements OnInit {
     public UpdatedModel: any;
     public UnassignedItems: any;
     public DataSource: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }

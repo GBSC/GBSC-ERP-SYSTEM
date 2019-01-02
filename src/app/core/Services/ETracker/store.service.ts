@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class StoreService {
 
-    private Url = "etracker/api/";
+    public Url = "etracker/api/";
 
-    constructor(private http: HttpClient, private ApiService: ApiService) {
+    constructor(public http: HttpClient, public ApiService: ApiService) {
     }
 
     getAllStoresByCompany(companyId: any) {

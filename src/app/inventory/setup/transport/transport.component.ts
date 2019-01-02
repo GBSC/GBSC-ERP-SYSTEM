@@ -10,16 +10,15 @@ import { Transport } from '../../../core/Models/Inventory/Setup/Transport';
 export class TransportComponent implements OnInit {
     public Transports: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetTransportsByCompany(this.CompanyId).subscribe((res: Transport) => {
             this.Transports = res;
         });

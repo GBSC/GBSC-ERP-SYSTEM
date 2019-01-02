@@ -16,17 +16,16 @@ export class SalesPersonComponent implements OnInit {
     public Areas: any;
     public Territories: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
         this.getFilteredDistributors = this.getFilteredDistributors.bind(this);
         this.getFilteredTerritories = this.getFilteredTerritories.bind(this);
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetSalesPeopleByCompany(this.CompanyId).subscribe((res: SalesPerson) => {
             this.SalesPeople = res;
         });

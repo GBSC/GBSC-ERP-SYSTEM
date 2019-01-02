@@ -24,10 +24,9 @@ enum modules {
 export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
-    public accessibleFeatures: string[] = [];
-    private Username: string = '';
-    private UserLevel: string = '';
-
+    public accessibleFeatures : string[] = [];
+    public Username : string = '';
+    public UserLevel : string = '';
 
 
     constructor(public authService: AuthService) {
@@ -40,8 +39,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.accessableModules = this.authService.getAccessableModulesAndFeatures().modules;
         this.accessibleFeatures = this.authService.getAccessableModulesAndFeatures().features;
 
-        console.log(this.accessableModules);
-        console.log(this.accessibleFeatures);
+        // console.log(this.accessableModules);
+        // console.log(this.accessibleFeatures);
 
         this.Username = this.authService.getProfileInfo().Username;
         this.UserLevel = this.authService.getProfileInfo().UserLevel;

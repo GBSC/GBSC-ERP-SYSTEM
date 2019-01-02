@@ -21,14 +21,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BiochemistryComponent implements OnInit {
 
-    public consultants: Consultant;
+    public consultants: any;
     public patients: any;
-    public spouse: Spouse;
-    public patient: Patient;
+    public spouse: any;
+    public patient: any;
     public testDetail: BioChemistryTestDetail[];
-    public tests: BioChemistryTest;
+    public tests: any;
     public bioChemistry: any;
-    public units: TestUnit;
+    public units: any;
     public bioChemistryOutsiderForm: FormGroup;
     public id: any;
 

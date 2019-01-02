@@ -17,14 +17,14 @@ export class AttendanceruleComponent implements OnInit {
     public attendancerule: any;
     public LeaveTypes: any;
     public ruleofAttendannce: any;
-    private leaves: AttendanceRuleLeaveType[];
+    public leaves: AttendanceRuleLeaveType[];
     public RuleDetail: any[] = [];
     public attendanceRule: any;
     public attendanceflag: any;
     public groups: any;
     @Input('attendanceRuleId') id: number;
 
-    constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, public attendanceservice: AttendanceService,
+    constructor(public fb: FormBuilder, public activatedRoute: ActivatedRoute, public attendanceservice: AttendanceService,
         public attendancesetupservice: AttendancesetupService, public router: Router, public leavesetupservice: LeaveSetupService,
         public hrsetupservice: SetupService, public toastr: ToastrService, ) { }
 

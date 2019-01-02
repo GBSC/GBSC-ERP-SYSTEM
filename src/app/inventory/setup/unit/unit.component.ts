@@ -10,9 +10,9 @@ import { Unit } from '../../../core/Models/Inventory/Setup/Unit';
 export class UnitComponent implements OnInit {
     public Units: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

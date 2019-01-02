@@ -14,7 +14,7 @@ import { SystemAdministrationService } from '../../core';
 export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
-    private companyId: any;
+    public companyId: any;
 
     constructor(public systemAdmin: SystemAdministrationService) { }
 

@@ -124,10 +124,12 @@ export class RolesandprivilegesComponent implements OnInit {
         if (!this.role.Name) {
             alert('Role cannot be saved without a name');
         } else {
+            this.role.companyId = this.companyId;
+            console.log(this.role);
+            this.systemAdmin.saveNewRoleData(this.role);
+            // this.showPopup = false;
         }
-        this.role.companyId = this.companyId;
-        this.systemAdmin.saveNewRoleData(this.role);
-        this.showPopup = false;
+
     }
 
     toggleRights(permission, i) {
@@ -140,7 +142,9 @@ export class RolesandprivilegesComponent implements OnInit {
             return false
         }
     }
-
+    selectionChanged(){
+        
+    }
 
 
 }

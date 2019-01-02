@@ -122,12 +122,9 @@ import { OrderDetailComponent } from './reports/order-detail/order-detail.compon
         UnitComponent,
         DeliveryNoteComponent,
         InventoryMasterComponent,
-<<<<<<< HEAD
-        IndentProcessComponent
-=======
+        IndentProcessComponent,
         OrderSummaryComponent, 
         OrderDetailComponent
->>>>>>> etracker
     ]
 })
 export class InventoryModule { }

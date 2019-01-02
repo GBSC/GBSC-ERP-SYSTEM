@@ -155,6 +155,8 @@ import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance
 import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+import { LeaveDetailComponent } from './Reports/Leave/leave-detail/leave-detail.component';
+import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -317,11 +319,11 @@ import { UpdateassignrosterComponent } from './attendance/attendancesetup/update
         EmployeecardComponent,
         ListOfJoinnersComponent,
         ListOfLeaversComponent,
-        // LeaveDetailComponent,
+        LeaveDetailComponent,
         InOutDurationComponent,
         MissingentriesComponent,
         SalarypaymentComponent,
-        // MonthlyleaveComponent,
+        MonthlyleaveComponent,
         CreateAttendancerequestComponent,
         EmployeelistComponent,
         MonthlyOvertimeComponent,

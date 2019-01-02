@@ -19,9 +19,8 @@ export class CustomerPricePickLevelComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetPricePickLevelsByCompany(this.CompanyId).subscribe((res: CustomerPricePickLevel) => {
             this.CustomerPrices = res;
         });

@@ -18,9 +18,8 @@ export class CustomerBankComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetCustomerBanksByCompany(this.CompanyId).subscribe((res: CustomerBank) => {
             this.CustomerBanks = res;
         });

@@ -76,6 +76,14 @@ export class InventorysystemService {
         // return this.SalesIndent;
     }
 
+    GetUnprocessedSalesIndents(): Observable<SalesIndent[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedSalesIndents');
+    }
+
+    UpdateSalesIndents(indents : SalesIndent[]): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents');
+    }
+
     GetSalesIndentsByCompany(companyid: number): Observable<SalesIndent> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndentsByCompany/' + companyid);
         //this.SalesIndent = await this.http.get<SalesIndent>(this.API_URL + 'Sales/GetSalesIndents').toPromise();
@@ -83,21 +91,21 @@ export class InventorysystemService {
         // return this.SalesIndent;
     }
 
-    AddSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+    AddSalesIndent(SalesIndent: SalesIndent): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Sales/AddSalesIndent', SalesIndent);
         // let x = await this.http.post(this.API_URL + "Sales/AddSalesIndent", SalesIndent).toPromise();
         // console.log(x);
         // return x;
     }
 
-    UpdateSalesIndent(SalesIndent: SalesIndent): Observable<SalesIndent> {
+    UpdateSalesIndent(SalesIndent: SalesIndent): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndent', SalesIndent);
         // let a = await this.http.put(this.API_URL + 'Sales/UpdateSalesIndent', SalesIndent).toPromise();
         // console.log(a);
         // return a;
     }
 
-    DeleteSalesIndent(id): Observable<SalesIndent> {
+    DeleteSalesIndent(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Sales/DeleteSalesIndent/' + id);
         // let c = await this.http.delete(this.API_URL + 'Sales/DeleteSalesIndent/' + id).toPromise();
         // console.log(c);
@@ -153,7 +161,7 @@ export class InventorysystemService {
         // return this.SalesOrder;
     }
 
-    AddSalesOrder(SalesOrder: SalesOrder): Observable<SalesOrder> {
+    AddSalesOrder(SalesOrder: SalesOrder): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Sales/AddSalesOrder', SalesOrder);
         //return await this.ApiService.post(this.API_URL + 'Sales/AddSalesOrder', SalesOrder).toPromise();
         // let x = await this.http.post(this.API_URL + "Sales/AddSalesOrder", SalesOrder).toPromise();
@@ -161,7 +169,11 @@ export class InventorysystemService {
         // return x;
     }
 
-    UpdateSalesOrder(SalesOrder: SalesOrder): Observable<SalesIndent> {
+    AddSalesOrders(SalesOrders: SalesOrder[]): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Sales/AddSalesOrders', SalesOrders);
+    }
+
+    UpdateSalesOrder(SalesOrder: SalesOrder): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder);
         // let a = await this.http.put(this.API_URL + 'Sales/UpdateSalesOrder', SalesOrder).toPromise();
         // console.log(a);

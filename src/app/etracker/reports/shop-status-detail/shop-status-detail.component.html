@@ -150,7 +150,7 @@
               Shope Status
             </label>
             <select #ShopeStatus class="form-control m-input" (change)="onShopStatusSelect(ShopeStatus.value)">
-              <option *ngFor="let status of Statuses" [value]="mode">{{status}}</option>
+              <option *ngFor="let status of Statuses" [value]="status">{{status}}</option>
             </select> </div>
         </div>
       </div>

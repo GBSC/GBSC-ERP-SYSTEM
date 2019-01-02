@@ -2,15 +2,16 @@ import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inje
 import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
-import { environment } from '../../../../environments/environment';
+// import { environment } from '../../../../environments/environment';
+
 
 @Component({
-    selector: 'app-leave-detail',
+    selector: 'app-monthlyleave',
     encapsulation: ViewEncapsulation.None,
-    templateUrl: './leave-detail.component.html',
-    // styleUrls: ['./leave-detail.component.scss']
+    templateUrl: './monthlyleave.component.html',
+    // styleUrls: ['./monthlyleave.component.scss']
 })
-export class LeaveDetailComponent implements AfterViewInit {
+export class MonthlyleaveComponent implements AfterViewInit {
     @ViewChild('scripts')
     scripts: ElementRef;
 
@@ -21,10 +22,11 @@ export class LeaveDetailComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
-        const reportUrl = ko["observable"]("LeaveDetail"),
+        const reportUrl = ko["observable"]("MonthlyLeave"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = `${environment.repotr_url}`;
+        var host
+        //  = `${environment.repotr_url}`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

@@ -48,6 +48,9 @@ export class EmployeeCompanyComponent implements OnInit {
             LeavingDate: [''],
             ResignDate: [''],
             Approver: [''],
+            CountryId: [''],
+            CityId: [''],
+            BranchId: [''],
             UserId: [this.id]
 
         });

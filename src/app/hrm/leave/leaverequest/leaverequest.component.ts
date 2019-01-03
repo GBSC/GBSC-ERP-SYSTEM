@@ -139,8 +139,7 @@ export class LeaverequestComponent implements OnInit {
 
         });
     }
-    //     formItem]="{editorOptions: { readOnly: true }}"
-    // [allowEditing]="false" [formItem]="{visible: false}"
+ 
 
 
 

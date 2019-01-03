@@ -138,10 +138,10 @@
           </div>
           <div class="col-md-4">
               <div class="form-group m-form__group">
-                <label for="City" class="control-label">City</label>
-                <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''" name="City" id="city">
+                <label class="control-label">Department</label>
+                <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
                     <!-- <option value="" disabled selected>-- Select City --</option> -->
-                        <option *ngFor ="let cty of city" [value]="cty?.cityId">{{cty.name}}</option>
+                        <option *ngFor ="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
                     </select>
               </div>
             </div>

@@ -133,6 +133,9 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -153,7 +156,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'module', component: ModuleComponent },
 
             {
-                path: 'setup',
+                path: 'employeesetups', component: HrsetupMasterComponent,
                 children: [
 
                     { path: 'home', component: HrmSetupHomeComponent },
@@ -181,9 +184,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'leave',
                 children: [
                     {
-                        path: 'leavesetup',
+                        path: 'setups', component: LeavesetupMasterComponent,
                         children: [
-
+ 
                             { path: 'leavepurpose', component: LeavepurposeComponent },
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
@@ -234,7 +237,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'attendance',
                 children: [
                     {
-                        path: 'attendancesetup',
+                        path: 'setups', component: AttendancesetupMasterComponent,
                         children: [
 
                             { path: 'assignroster', component: AssignrosterComponent },
@@ -316,6 +319,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'pfpayment', component: PfPaymentComponent },
                             { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
                             { path: 'salarystructure', component: SalarystructureComponent },
+                            { path: 'update-salarystrucrure/:id', component: SalarystructureComponent },
                             { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
                             { path: 'usersalary', component: UsersalaryComponent }
 

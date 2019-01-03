@@ -35,7 +35,7 @@
           <div class="m-portlet__body">
             <dx-data-grid id="gridContainer"
               [dataSource]="compensationTransaction" keyExpr="compensationTransactionId">
-            <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">	
+            <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">	
               <dxo-popup title="Compensation Transaction" [showTitle]="true" [width]="750" [height]="550"></dxo-popup>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>

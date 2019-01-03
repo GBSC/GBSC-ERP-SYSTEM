@@ -19,7 +19,7 @@
                 (onRowUpdated)="EditGroup()"
                 (onRowRemoved)="deleteGroup($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Group" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>

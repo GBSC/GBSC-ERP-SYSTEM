@@ -113,7 +113,7 @@
                                             <div class="form-group m-form__group row">
                                                 <div class="col-lg-12">
                                                     <dx-data-grid id="gridContainer" [dataSource]="PurchaseOrderDetailsFormArray" (onRowRemoved)="RemovePurchaseOrderDetails($event)">
-                                                        <dxo-editing mode="popup" [allowDeleting]="true">
+                                                        <dxo-editing mode="popup" [allowDeleting]="false">
                                                         </dxo-editing>
                                                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                                                         <dxo-header-filter [visible]="true"></dxo-header-filter>

@@ -88,12 +88,12 @@ export class eTrackerUserService {
         this.visitedShops = [];
         this.shopRouteTaken = [];
         this.clearFilteredShops();
-        let shopsObserable = this.firebase.collection(`tbl_shops`).valueChanges();
+        let shopsObserable = this.firebase.collection('tbl_shops').valueChanges();
         shopsObserable.subscribe(shops => shops.forEach((shop: any) => {
 
             console.log(shop);
 
-            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', this.currentUser.userId).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
+            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', this.currentUser.user_Id).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
 
             visit_summary.subscribe((d: any) => {
                 console.log(d);
@@ -175,7 +175,7 @@ export class eTrackerUserService {
         this.shopRouteTaken = [];
         this.visitedShops = [];
         this.clearFilteredShops();
-        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('userId', '==', parseInt(userIndex))).valueChanges();
+        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('user_id', '==', parseInt(userIndex))).valueChanges();
         currentUsers.subscribe(d => {
             console.log('current User', d);
             this.currentUser = d[0];
@@ -183,7 +183,7 @@ export class eTrackerUserService {
             this.currentUser.lat = parseFloat(this.currentUser.lat);
             this.currentUser.lng = parseFloat(this.currentUser.lng);
             this.realTimeTracking.next(this.currentUser);
-            let user = DSFs.find(u => u.userId == this.currentUser.userId);
+            let user = DSFs.find(u => u.userId == this.currentUser.user_id);
             this.currentUser.fullName = `${user.firstName} ${user.lastName}`;
             // map.setCenter(this.currentUser);
 

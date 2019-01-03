@@ -37,7 +37,7 @@ export class SalesIndentComponent implements OnInit {
         //     // console.log(this.InventoryItems);
         // });
 
-        this.InventoryService.GetDistributors().subscribe((res : any) => {
+        this.InventoryService.getDistributorsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
             this.Distributors = res;
             // console.log(this.Distributors);
         });

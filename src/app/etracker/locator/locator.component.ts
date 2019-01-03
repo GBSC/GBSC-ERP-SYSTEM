@@ -44,7 +44,7 @@ export class LocatorComponent {
     public SectionDisable: boolean = true;
     public SubsectionDisable: boolean = true;
     public DsfDisable: boolean = true;
-
+    public mockCoordsForLiveTracking: any = [];
     public Regions: any;
     public Cities: any[] = [];
     public Areas: any;
@@ -65,6 +65,7 @@ export class LocatorComponent {
     public distributorId: any;
     public dsfId: any;
     public userSelected: any;
+    public mockUser : any =  { lat: 24.86218208911948, lng: 67.07455098524781 };
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
@@ -105,7 +106,7 @@ export class LocatorComponent {
         this.setDropboxValues();
 
 
-
+        this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
 
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');
@@ -297,6 +298,7 @@ export class LocatorComponent {
 
 
     showLiveTracking() {
+        this.sampleTracking = [];
         this.liveTracking = !this.liveTracking;
         this.sampleTracking = this.liveTrackingRouteCoords;
         console.log(this.liveTrackingRouteCoords);
@@ -316,6 +318,28 @@ export class LocatorComponent {
         this.showHideFilter = !this.showHideFilter;
     }
 
+    showLiveTrackingSimulation() {
+        let counter = 0;
+        this.liveTracking = !this.liveTracking;
+
+        let timer = setInterval(() => {
+            if (counter < this.mockCoordsForLiveTracking.length && this.liveTracking) {
+                this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[counter];
+                console.log(this.mockCoordsForLiveTracking)
+                // this.eTrackerUserService.currentUser.userId = 0;
+                this.sampleTracking.push(this.eTrackerUserService.currentUser);
+                counter++;
+            } else {
+                clearInterval(timer);
+                console.log('timer cleared');
+                this.eTrackerUserService.setCurrentUser(this.eTrackerUserService.addMockDataForLiveTracking()[0], this.DSFs, this.agmMap);
+                this.agmMap.setCenter(this.eTrackerUserService.currentUser);
+                this.sampleTracking = [];
+                this.liveTracking = false;
+
+            }
+        }, 1000);
+    }
 
 
 

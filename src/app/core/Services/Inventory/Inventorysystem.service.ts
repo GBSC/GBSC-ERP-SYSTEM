@@ -81,7 +81,7 @@ export class InventorysystemService {
     }
 
     UpdateSalesIndents(indents : SalesIndent[]): Observable<any> {
-        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents');
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents', indents);
     }
 
     GetSalesIndentsByCompany(companyid: number): Observable<SalesIndent> {

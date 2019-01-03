@@ -44,7 +44,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
         this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
 
-        this.systemAdmin.getPermissions();
+        // this.systemAdmin.getPermissions();
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
         this.role = {

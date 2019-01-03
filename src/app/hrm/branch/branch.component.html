@@ -11,7 +11,7 @@
              <div class="m-section">
                <div class="m-section__content">
                  <dx-data-grid id="gridContainer" [dataSource]="branches" (onRowInserted)="addBranches($event)" (onRowUpdated)="updateBranch($event)" (onRowRemoved)="deletBranch($event)">
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                   <dxo-header-filter [visible]="true"></dxo-header-filter>

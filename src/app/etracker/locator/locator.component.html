@@ -329,7 +329,7 @@
 
       <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng"
         [iconUrl]="currentLocationMarker" [label]="{text: eTrackerUserService.currentUser?.fullName, color: 'black', fontSize: '14px', fontWeight: 'bold'}">
-        <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+        <!-- <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
           [placement]="right" [closeWhenOthersOpen]="false">
           <ng-template>
             <div class="marker-info">
@@ -347,7 +347,7 @@
               </div>
             </div>
           </ng-template>
-        </agm-snazzy-info-window>
+        </agm-snazzy-info-window> -->
       </agm-marker>
 
       <agm-polyline *ngFor="let polyline of sampleTracking;let i = index;" [strokeColor]="'red'" [geodesic]="true"
@@ -397,4 +397,14 @@
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
+
+  <br>
+
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Live Location (Simulation)">
+    <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showLiveTrackingSimulation()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+
 </ul>

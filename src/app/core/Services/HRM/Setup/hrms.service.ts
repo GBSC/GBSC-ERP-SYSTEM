@@ -43,7 +43,7 @@ export class HrmsService {
         return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 
-    GetCitiesByCompanyId(companyId: any) : Observable<City[]> {
+    GetCitiesByCompanyId(companyId: any): Observable<City[]> {
         return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 

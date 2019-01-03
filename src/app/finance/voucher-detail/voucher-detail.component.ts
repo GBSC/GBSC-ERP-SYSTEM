@@ -20,15 +20,15 @@ import { VoucherType } from '../../core/Models/Finance/vouchertype';
 export class VoucherDetailComponent implements OnInit {
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
-    
-    public financialYears : any[];
-    public voucherTypes : any[];
+
+    public financialYears: any[];
+    public voucherTypes: any[];
     public unprocessedaccounts: TransactionAccount[] = [];
 
     private UnpostedVouchers: UnpostedVoucherViewModel[] = [];
     private PostedVouchers: PostedVoucherViewModel[] = [];
 
-    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService, private Toastr : ToastrService) { }
+    constructor(public financeSetupService: FinanceSetupService, public router: Router, public financeService: FinanceService, public SetupService: SetupService, private Toastr: ToastrService) { }
 
     async ngOnInit() {
 
@@ -42,7 +42,7 @@ export class VoucherDetailComponent implements OnInit {
             console.log(this.PostedVouchers);
         });
 
-        this.financeSetupService.GetVoucherTypes().subscribe((res : VoucherType[]) => {
+        this.financeSetupService.GetVoucherTypes().subscribe((res: VoucherType[]) => {
             this.voucherTypes = res;
         });
 
@@ -53,7 +53,7 @@ export class VoucherDetailComponent implements OnInit {
             });
         });
 
-        this.financeSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
+        this.financeSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
             this.financialYears = res.filter(a => a.isActive == true);
         });
     }
@@ -62,13 +62,13 @@ export class VoucherDetailComponent implements OnInit {
         this.router.navigate(['/finance/voucher']);
     }
 
-    EditVoucher(value : any) {
+    EditVoucher(value: any) {
         // console.log(value);
         this.router.navigate(['finance/update-voucher/' + value.unpostedVoucherId]);
     }
 
-    DeleteVoucher(value : any) {
-        this.financeService.deleteUnpostedVoucher(value.unpostedVoucherId).subscribe((res : any) => {
+    DeleteVoucher(value: any) {
+        this.financeService.deleteUnpostedVoucher(value.unpostedVoucherId).subscribe((res: any) => {
             this.financeService.getUnpostedVouchers().subscribe((res: UnpostedVoucherViewModel[]) => {
                 this.UnpostedVouchers = res;
                 console.log(this.UnpostedVouchers);
@@ -77,7 +77,7 @@ export class VoucherDetailComponent implements OnInit {
         });
     }
 
-    GetPostedVoucehrsByDateRange(fromdate : Date, todate : Date) {
+    GetPostedVoucehrsByDateRange(fromdate: Date, todate: Date) {
         this.financeService.getPostedVouchersByDateRange(fromdate, todate).subscribe((res: PostedVoucherViewModel[]) => {
             this.PostedVouchers = res;
             console.log(this.PostedVouchers);
@@ -85,28 +85,28 @@ export class VoucherDetailComponent implements OnInit {
     }
 
     PostSelectedVouchers() {
-        this.dataGrid.instance.getSelectedRowsData().then((rowData : any[]) => {
+        this.dataGrid.instance.getSelectedRowsData().then((rowData: any[]) => {
 
-            var postvs : UnpostedVoucherViewModel[] = [];
+            var postvs: UnpostedVoucherViewModel[] = [];
 
             rowData.forEach(element => {
-                var postv : any = {
-                    unpostedVoucherId : element.unpostedVoucherId,
-                    voucherId : element.voucherId,
-                    voucherCode : element.voucherCode,
-                    date : element.date,
-                    description : element.description,
-                    totalCreditAmount : element.totalCreditAmount,
-                    totalDebitAmount : element.totalDebitAmount,
-                    financialYearId : element.financialYear.financialYearId,
-                    voucherTypeId : element.voucherType.voucherTypeId,
-                    posted : true
+                var postv: any = {
+                    unpostedVoucherId: element.unpostedVoucherId,
+                    voucherId: element.voucherId,
+                    voucherCode: element.voucherCode,
+                    date: element.date,
+                    description: element.description,
+                    totalCreditAmount: element.totalCreditAmount,
+                    totalDebitAmount: element.totalDebitAmount,
+                    financialYearId: element.financialYear.financialYearId,
+                    voucherTypeId: element.voucherType.voucherTypeId,
+                    posted: true
                 };
 
                 postvs.push(postv);
             });
 
-            this.financeService.postUnpostedVouchers(postvs).subscribe((res : any) => {
+            this.financeService.postUnpostedVouchers(postvs).subscribe((res: any) => {
 
                 this.financeService.getUnpostedVouchers().subscribe((res: UnpostedVoucherViewModel[]) => {
                     this.UnpostedVouchers = res;
@@ -123,22 +123,22 @@ export class VoucherDetailComponent implements OnInit {
         });
     }
 
-    PostVoucher(value : any) {
-        
-        var postv : any = {
-            unpostedVoucherId : value.unpostedVoucherId,
-            voucherId : value.voucherId,
-            voucherCode : value.voucherCode,
-            date : value.date,
-            description : value.description,
-            totalCreditAmount : value.totalCreditAmount,
-            totalDebitAmount : value.totalDebitAmount,
-            financialYearId : value.financialYear.financialYearId,
-            voucherTypeId : value.voucherType.voucherTypeId,
-            posted : true
+    PostVoucher(value: any) {
+
+        var postv: any = {
+            unpostedVoucherId: value.unpostedVoucherId,
+            voucherId: value.voucherId,
+            voucherCode: value.voucherCode,
+            date: value.date,
+            description: value.description,
+            totalCreditAmount: value.totalCreditAmount,
+            totalDebitAmount: value.totalDebitAmount,
+            financialYearId: value.financialYear.financialYearId,
+            voucherTypeId: value.voucherType.voucherTypeId,
+            posted: true
         };
 
-        this.financeService.postUnpostedVoucher(postv).subscribe((res : any) => {
+        this.financeService.postUnpostedVoucher(postv).subscribe((res: any) => {
             this.financeService.getUnpostedVouchers().subscribe((res: UnpostedVoucherViewModel[]) => {
                 this.UnpostedVouchers = res;
                 console.log(this.UnpostedVouchers);
@@ -151,7 +151,7 @@ export class VoucherDetailComponent implements OnInit {
         });
     }
 
-    PrintVoucher(value : any) {
+    PrintVoucher(value: any) {
         console.log(value);
     }
 

@@ -9,8 +9,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class CalendarComponent implements OnInit {
 
     //   @ViewChild("calendar") public calendar: IgxCalendarComponent;
-//  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
-     public range = [];
+    //  @ViewChild(IgxSnackbarComponent) public snackbar: IgxSnackbarComponent;
+    public range = [];
 
     constructor() { }
 
@@ -37,6 +37,6 @@ export class CalendarComponent implements OnInit {
     //         this.snackbar.message = "PTO days submitted.";
     //     }
     //     this.snackbar.show();
-     // }
+    // }
 
 }

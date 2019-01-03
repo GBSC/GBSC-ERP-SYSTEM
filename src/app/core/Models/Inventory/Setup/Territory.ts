@@ -7,6 +7,6 @@ export interface Territory {
     isAssigned: boolean,
     areaId: number,
     area: Area,
-    distributorId : number,
+    distributorId: number,
     distributor: Distributor
 }

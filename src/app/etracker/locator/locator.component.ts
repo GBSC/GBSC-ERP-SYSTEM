@@ -36,7 +36,7 @@ export class LocatorComponent {
 
     ngOnInit() {
 
-        
+
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');
         console.log(simpleMarker);
@@ -59,7 +59,7 @@ export class LocatorComponent {
         this.eTrackerUserService.realTimeTracking.subscribe(data => {
             this.userLatestlocation = data;
             console.log('latestLoc', this.userLatestlocation);
-            if(data) {
+            if (data) {
                 this.liveTrackingRouteCoords.push(this.userLatestlocation);
                 this.eTrackerUserService.currentUser = this.userLatestlocation;
             }

@@ -58,12 +58,12 @@ export class VoucherComponent implements OnInit {
 
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-        this.financeService.getTransactionAccounts().subscribe((res : TransactionAccount[]) => {
+        this.financeService.getTransactionAccounts().subscribe((res: TransactionAccount[]) => {
             this.detailAccount = res;
             console.log(this.detailAccount);
         });
 
-        this.financeSetupService.GetFinancialYears().subscribe((res : FinancialYear[]) => {
+        this.financeSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
             this.financialYear = res.filter(a => a.isActive == true);
         });
     }
@@ -109,23 +109,23 @@ export class VoucherComponent implements OnInit {
         control.removeAt(index);
     }
 
-    async addVoucher(value : any, detailsvalue : any) {
+    async addVoucher(value: any, detailsvalue: any) {
 
         if (this.creditTotal === this.debitTotal) {
 
-            let VDs : VoucherDetail[] = [];
+            let VDs: VoucherDetail[] = [];
             console.log(detailsvalue);
-            
-            detailsvalue.VoucherDetails.forEach((element : any) => {
-                if(element.AccountId != null && element.AccountId != undefined && element.AccountId != '' && element.DebitAmount != null && element.DebitAmount != undefined && element.DebitAmount != '' && element.CreditAmount != null && element.CreditAmount != undefined && element.CreditAmount != '') {
-                    let a : any = {
-                        departmentName : element.DepartmentName,
-                        creditAmount : element.CreditAmount,
-                        debitAmount : element.DebitAmount,
-                        uniqueName : element.UniqueName,
-                        description : element.Description,
-                        chequeNumber : element.ChequeNumber,
-                        accountId : element.AccountId
+
+            detailsvalue.VoucherDetails.forEach((element: any) => {
+                if (element.AccountId != null && element.AccountId != undefined && element.AccountId != '' && element.DebitAmount != null && element.DebitAmount != undefined && element.DebitAmount != '' && element.CreditAmount != null && element.CreditAmount != undefined && element.CreditAmount != '') {
+                    let a: any = {
+                        departmentName: element.DepartmentName,
+                        creditAmount: element.CreditAmount,
+                        debitAmount: element.DebitAmount,
+                        uniqueName: element.UniqueName,
+                        description: element.Description,
+                        chequeNumber: element.ChequeNumber,
+                        accountId: element.AccountId
                     };
                     VDs.push(a);
                 } else {
@@ -136,7 +136,7 @@ export class VoucherComponent implements OnInit {
             value.VoucherDetails = VDs;
             value.TotalCreditAmount = this.creditTotal;
             value.TotalDebitAmount = this.debitTotal;
-            let a : Date = new Date(value.Date);
+            let a: Date = new Date(value.Date);
             value.Date = a.toLocaleDateString();
             console.log(value);
             await this.financeService.addVoucher(value);

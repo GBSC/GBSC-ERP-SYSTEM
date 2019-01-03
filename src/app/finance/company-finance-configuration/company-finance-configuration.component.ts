@@ -53,7 +53,7 @@ export class CompanyFinanceConfigurationComponent implements OnInit {
             equityAccountId : Number.parseInt(value.EquityAccountId)
         };
 
-        this.FinanceService.configureComanyFinanceDetails(a).subscribe(
+        this.FinanceService.configureCompanyFinanceDetails(a).subscribe(
             res => this.Toastr.success(res),
             err => this.Toastr.error(err)
         );

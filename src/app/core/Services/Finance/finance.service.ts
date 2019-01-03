@@ -358,8 +358,8 @@ export class FinanceService {
         return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
     }
 
-    configureComanyFinanceDetails(model: any): Observable<string> {
-        return this.ApiService.post(this.baseUrl + '/Finance/ConfigureComanyFinanceDetails', model);
+    configureCompanyFinanceDetails(model: any): Observable<string> {
+        return this.ApiService.post(this.baseUrl + '/Finance/ConfigureCompanyFinanceDetails', model);
     }
 
     getMasterAccountsByCompany(companyid: number): Observable<Account[]> {

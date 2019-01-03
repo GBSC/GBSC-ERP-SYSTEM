@@ -6,6 +6,7 @@ import { Account } from '../../core/Models/Finance/Account';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountViewModel } from '../../core/Models/Finance/AccountViewModel';
+import { AuthService } from '../../core';
 
 @Component({
     selector: 'app-finance-account',
@@ -23,7 +24,7 @@ export class FinanceAccountComponent implements OnInit {
 
     private IsUpdate: boolean = false;
 
-    constructor(private fb: FormBuilder, private FinanceService: FinanceService, private FinanceSetupService: FinanceSetupService, private Toastr: ToastrService) {
+    constructor(private fb: FormBuilder, public Auth : AuthService, private FinanceService: FinanceService, private FinanceSetupService: FinanceSetupService, private Toastr: ToastrService) {
 
     }
 
@@ -32,6 +33,11 @@ export class FinanceAccountComponent implements OnInit {
             console.log(res);
             this.Accounts = res;
         });
+
+        // this.FinanceService.getAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+        //     console.log(res);
+        //     this.Accounts = res;
+        // });
 
         this.FinanceSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
             console.log(res);
@@ -110,6 +116,7 @@ export class FinanceAccountComponent implements OnInit {
 
         if (this.IsUpdate === false) {
             var a: any = {
+                companyId : this.Auth.getUserCompanyId(),
                 parentAccountCode: value.ParentAccountCode,
                 parentAccountLevel: Number.parseInt(value.ParentAccountLevel),
                 isGeneralOrDetail: value.IsGeneralOrDetail,
@@ -120,12 +127,12 @@ export class FinanceAccountComponent implements OnInit {
             };
 
             this.RequestAccount = a;
-            console.log(this.RequestAccount);
+            // console.log(this.RequestAccount);
 
             this.FinanceService.addAccount(this.RequestAccount).subscribe((res: any) => {
-                console.log(res);
+                // console.log(res);
                 this.FinanceService.getAccounts().subscribe((res: Account[]) => {
-                    console.log(res);
+                    // console.log(res);
                     this.Accounts = res;
                     this.Toastr.success("Account Added Successfully");
                     this.AccountForm.reset();

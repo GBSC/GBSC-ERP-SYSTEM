@@ -19,17 +19,22 @@ export class CompanyFinanceConfigurationComponent implements OnInit {
 
         this.ConfigForm = this.FB.group({
             NTN: [''],
-            AssestsAccountId: [''],
-            ExpenseAccountId: [''],
-            RevenueAccountId: [''],
-            LiabilitiesAccountId: [''],
-            EquityAccountId: ['']
+            AssestsAccountId: [],
+            ExpenseAccountId: [],
+            RevenueAccountId: [],
+            LiabilitiesAccountId: [],
+            EquityAccountId: []
         });
 
     }
 
     ngOnInit() {
-        this.FinanceService.getMasterAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+        // this.FinanceService.getMasterAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+        //     this.MasterAccounts = res;
+        //     console.log(res);
+        // });
+
+        this.FinanceService.getAccounts().subscribe((res: Account[]) => {
             this.MasterAccounts = res;
             console.log(res);
         });
@@ -37,6 +42,21 @@ export class CompanyFinanceConfigurationComponent implements OnInit {
 
     onSubmit(value) {
         console.log(value);
+
+        let a : any = {
+            companyId : this.Auth.getUserCompanyId(),
+            nTN : value.NTN,
+            assestsAccountId : Number.parseInt(value.AssestsAccountId),
+            expenseAccountId : Number.parseInt(value.ExpenseAccountId),
+            revenueAccountId : Number.parseInt(value.RevenueAccountId),
+            liabilitiesAccountId : Number.parseInt(value.LiabilitiesAccountId),
+            equityAccountId : Number.parseInt(value.EquityAccountId)
+        };
+
+        this.FinanceService.configureComanyFinanceDetails(a).subscribe(
+            res => this.Toastr.success(res),
+            err => this.Toastr.error(err)
+        );
     }
 
 }

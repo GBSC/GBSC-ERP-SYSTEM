@@ -25,15 +25,15 @@
               <div class="form-group col-lg-4">
                   <label for="exampleSelect1"> Assests Account </label>
                 <select class="form-control m-input" formControlName="AssestsAccountId" type="number">
-                    <option selected disabled> Select Assests Account </option>
-                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode || account.description}} </option>
+                    <!-- <option selected disabled> Select Assests Account </option> -->
+                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode}} - {{account.description}} </option>
                 </select>
               </div>
               <div class="form-group col-lg-4">
                   <label for="exampleSelect1"> Expense Account </label>
                 <select class="form-control m-input" formControlName="ExpenseAccountId" type="number">
-                    <option selected disabled> Select Expense Account </option>
-                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode || account.description}} </option>
+                    <!-- <option selected disabled> Select Expense Account </option> -->
+                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode}} - {{account.description}} </option>
                 </select>
               </div>
             </div>
@@ -41,22 +41,22 @@
                 <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> Revenue Account </label>
                   <select class="form-control m-input" formControlName="RevenueAccountId" type="number">
-                      <option selected disabled> Select Revenue Account </option>
-                      <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode || account.description}} </option>
+                      <!-- <option selected disabled> Select Revenue Account </option> -->
+                      <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode}} - {{account.description}} </option>
                   </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> Liabilities Account </label>
                   <select class="form-control m-input" formControlName="LiabilitiesAccountId" type="number">
-                      <option selected disabled> Select Liabilities Account </option>
-                      <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode || account.description}} </option>
+                      <!-- <option selected disabled> Select Liabilities Account </option> -->
+                      <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode}} - {{account.description}} </option>
                   </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label for="exampleSelect1"> Equity Account </label>
                   <select class="form-control m-input" formControlName="EquityAccountId" type="number">
-                    <option selected disabled> Select Equity Account </option>
-                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode || account.description}} </option>
+                    <!-- <option selected disabled> Select Equity Account </option> -->
+                    <option *ngFor="let account of MasterAccounts" [value]="account.accountId"> {{account.accountCode}} - {{account.description}} </option>
                   </select>
                 </div>
               </div>

@@ -190,7 +190,7 @@
                 [dataSource]="InvoiceDetail" 
                 (onRowInserted)="addPurchaseInvoiceDetail($event)"
                 (onRowUpdated)="updatepurchaseInvoiceDetail($event)">
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                   <dxo-header-filter [visible]="true"></dxo-header-filter>

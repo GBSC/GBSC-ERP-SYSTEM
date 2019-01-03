@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-md-12"> 
     <dx-data-grid id="gridContainer" [dataSource]="PackCategories" keyExpr="packCategoryId" (onRowInserted)="AddPackCategory($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdatePackCategory()" (onRowRemoved)="DeletePackCategory($event)"> 
-      <dxo-editing  mode="row"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+      <dxo-editing  mode="row"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
         <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
         <dxo-popup title="Add Pack Category" [showTitle]="true" [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" ></dxo-popup>
       </dxo-editing>

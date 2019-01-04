@@ -158,6 +158,7 @@ import { UpdateassignrosterComponent } from './attendance/attendancesetup/update
 import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
 import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
 import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -341,7 +342,8 @@ import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-maste
         UpdateassignrosterComponent,
         LeavesetupMasterComponent,
         AttendancesetupMasterComponent,
-        HrsetupMasterComponent
+        HrsetupMasterComponent,
+        StopsalarydetailComponent
     ],
 
     // providers: [IgxExcelExporterService],

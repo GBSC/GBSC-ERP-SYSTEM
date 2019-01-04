@@ -37,7 +37,6 @@
         <div class="form-group m-form__group">
           <label for="employee_id">Date of Birth</label>
           <dx-date-box formControlName="DOB" [value]="Employee?.dob" displayFormat="dd/MM/yyyy" class="form-control m-input m-input--solid" type="date" width="100%"></dx-date-box>
-          <!-- <input class="form-control m-input m-input--solid" formControlName="DOB"  id="DOB" name="DateofBirth" placeholder="2018-03-23" aria-describedby="DateofBirth" type="date"> -->
         </div>
       </div>
       <div class="col-md-4">
@@ -61,7 +60,6 @@
     <div class="form-group m-form__group">
       <label for="" class="control-label">Cnic Expiry</label>
       <dx-date-box formControlName="CnicExpiry" class="form-control m-input m-input--solid" displayFormat="dd/MM/yyyy" [value]="Employee?.cnicExpiry" type="date" width="100%"></dx-date-box>
-      <!-- <input type="date" class="form-control m-input m-input--solid" id="ce" formControlName="CnicExpiry" [value]="Employee?.cnicExpiry" name="cnicexpiry" aria-describedby="CnicExpiry" placeholder="2025-03-23"> -->
     </div>
   </div>
   <div class="col-md-4">
@@ -131,7 +129,6 @@
                   <div class="form-group m-form__group">
                           <label for="Religion" class="control-label">Religion</label>
                           <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
-                              <!-- <option value="" disabled selected>-- Select Religion --</option> -->
                                   <option *ngFor ="let relg of religion" [value]="relg.religionId">{{relg.name}}</option>
                               </select>
                         </div>
@@ -140,7 +137,6 @@
               <div class="form-group m-form__group">
                 <label class="control-label">Department</label>
                 <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
-                    <!-- <option value="" disabled selected>-- Select City --</option> -->
                         <option *ngFor ="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
                     </select>
               </div>
@@ -198,11 +194,6 @@
     Submit
   </button>  
 </ng-template> 
-<!-- <div *ngIf="router.url === '/hrm/employee/registration'">
-    <button type="button">
-       Save
-      </button>        
-</div>  -->
 </div>
     </form>
   

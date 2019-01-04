@@ -19,7 +19,6 @@ export class EmployeeCompanyComponent implements OnInit {
     public groups: any;
     public managementlevel: any;
     public employeestatus: any;
-    public departments: any;
     public employees: any;
     public manager: any;
     public filterdemplyoee: any;
@@ -60,8 +59,6 @@ export class EmployeeCompanyComponent implements OnInit {
     async ngOnInit() {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
-
-        this.departments = await this.hrmService.getAllDepartments();
 
         this.designation = await this.SetupServiceobj.getAllDesignations();
 

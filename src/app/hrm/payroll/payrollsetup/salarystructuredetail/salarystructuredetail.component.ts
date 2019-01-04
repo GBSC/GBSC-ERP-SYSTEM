@@ -35,8 +35,6 @@ export class SalarystructuredetailComponent implements OnInit {
         this.allowance = await this.payrollsetupservice.getAllowances();
 
         this.salarystructures = await this.payrollsetupservice.getSalaryStructures();
-   console.log(this.salarystructures);
-   
     }
 
     onToolbarPreparing(e) {

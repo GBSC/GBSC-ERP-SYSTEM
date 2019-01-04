@@ -136,6 +136,7 @@ import { EmployeelistComponent } from './Reports/employeelist/employeelist.compo
 import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
 import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
 import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -349,6 +350,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     {
                         path: 'payrolladmin',
                         children: [
+                            { path: 'stopsalarydetail', component: StopsalarydetailComponent },
                             { path: 'stopsalary', component: StopsalaryComponent }
                         ]
                     },

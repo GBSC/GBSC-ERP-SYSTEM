@@ -86,7 +86,7 @@
                           </label>
                           <div class="col-lg-8">
                               <label class="m-checkbox">
-                           <input type="checkbox" (change)="check()" class="form-control m-input" formControlName="IsHourlyPay">
+                           <input type="checkbox" #testbool (change)="check(testbool.checked)" class="form-control m-input" formControlName="IsHourlyPay">
                            <span></span>
                           </label>
                           </div>
@@ -99,7 +99,7 @@
                               Per Hour Pay:
                           </label>
                           <div class="col-lg-8">
-                              <input type="number" class="form-control m-input" formControlName="PerHourPay" [disabled]="isDisabled">
+                              <input type="number" class="form-control m-input" formControlName="PerHourPay">
                           </div>
                         </div>
                       </div>  
@@ -123,7 +123,7 @@
                   <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer" [dataSource]="Detail" 
-                        keyExpr="salaryStructureDetailId" (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)" (onRowRemoved)="deleteSalaryStructureDetail($event)">
+                         (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)">
                           <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
                           </dxo-editing>
@@ -146,7 +146,7 @@
                           <dxi-column dataField="allowanceId" caption="Allowance">
                             <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
                           </dxi-column>
-                          <dxi-column dataField="value" caption="Value"></dxi-column>
+                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
                           <dxi-column dataField="formula" caption="Formula"></dxi-column>
                         </dx-data-grid>
                       </div>

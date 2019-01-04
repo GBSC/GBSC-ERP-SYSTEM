@@ -161,10 +161,9 @@ export class AssignrosterComponent implements OnInit {
     }
 
 
-    showInfo(employee) {
+    showInfo() {
         this.popupVisible = true;
     }
-
 
     selectionChangedHandler(e) {
         console.log(e);

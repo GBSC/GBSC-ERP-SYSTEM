@@ -1,16 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ConsultantService } from '../../sharedservices/consultant.service';
-import { Consultant } from '../../../models/consultant';
-import { Patient } from '../../../models/patient';
-import { PatientService } from '../../sharedservices/patient.service';
 import { DxSelectBoxComponent } from 'devextreme-angular';
-import { Spouse } from '../../../models/spouse';
-import { BioChemistryTestDetail } from '../../../models/biochemistrytestdetail';
-import { BioChemistryTest } from '../../../models/biochemistrytest';
-import { TestUnit } from '../../../models/testunit';
-import { BioChemistryService } from '../services/bio-chemistry.service';
+import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest';
+import { ConsultantService, PatientService } from '../../../core';
+import { Consultant } from '../../../core/Models/HIMS/consultant';
+import { Spouse } from '../../../core/Models/HIMS/spouse';
+import { Patient } from '../../../core/Models/HIMS/patient';
+import { BioChemistryTest } from '../../../core/Models/HIMS/biochemistrytest';
+import { TestUnit } from '../../../core/Models/HIMS/testunit';
+import { BioChemistryTestDetail } from '../../../core/Models/HIMS/biochemistrytestdetail';
+import { PatientBiochemistryTest } from '../../../core/Models/HIMS/patientbiochemistrytest';
+import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
+import { ActivatedRoute } from '@angular/router';
+import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
+import { ToastrService } from 'ngx-toastr';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-biochemistryontreatment',
@@ -19,98 +23,161 @@ import { PatientBiochemistryTest } from '../../../models/patientbiochemistrytest
 })
 export class BiochemistryontreatmentComponent implements OnInit {
 
-  private consultants: Consultant;
-  private patients: Patient;
-  private spouse : Spouse;
-  private patient : Patient;
-  private bioChemistryontreatmentForm : FormGroup;
-  private tests : BioChemistryTest;
-  private units : TestUnit;
-  private testDetail : BioChemistryTestDetail[];
+    public Editor = ClassicEditor;
 
-  public packg : any;
+    public consultants: any;
+    public treatments: any;
+    public clinicalRecord: any;
+    public patients: any;
+    public spouse: any;
+    public patient: any;
+    public bioChemistryontreatmentForm: FormGroup;
+    public tests: any;
+    public units: any;
+    public id: any;
+    public bioChemistry: any;
+    public RefRange: any;
+    public testDetail: BioChemistryTestDetail[];
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    public packg: any;
 
-
-  constructor(private formBuilder : FormBuilder, private consultantService: ConsultantService, private patientService: PatientService, private bioChemistryService : BioChemistryService) {
-
-    this.bioChemistryontreatmentForm = formBuilder.group({
-      'PatientId' : ['',Validators.required],
-      'ConsultantId' : ['', Validators.required],
-      'LMP' : [],
-      'IsRandom':[false] ,
-      'Treatment':['',Validators.required],
-      'Cycle':['',Validators.required],
-      'TreatmentType':['',Validators.required]    
-    });
-
-   }
-
-  ngOnInit() {
-
-    this.testDetail = [];
-
-    this.patientcb.onValueChanged.subscribe(res=>this.populatePatientDate(res.component.option("value")));
-
-    this.consultantService.getConsultants()
-      .subscribe(consultants => this.consultants = consultants)
-    
-    this.patientService.getPatient()
-    .subscribe(patients => this.patients = patients);
-
-      this.patientService.getPackage();
-      this.packg = this.patientService.package;
-
-    this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
-
-    this.bioChemistryService.getUnits().subscribe(units=> this.units = units);
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public treatmentService: TreatmentService,
+        public route: ActivatedRoute,
+        public toastr: ToastrService,
+        public clinicalrecordservice: PatientclinicalrecordService,
+        public bioChemistryService: BioChemistryService) {
 
-  }
+        this.bioChemistryontreatmentForm = formBuilder.group({
+            'CollectionDate': ['', Validators.required],
+            'LMP': ['', Validators.required],
+            'Other': [''],
+            'IsRandom': [false]
+        });
 
-  onsubmit(value)
-  {
+        this.bioChemistryontreatmentForm.disable();
 
-    let patientBioChemistryTest = new PatientBiochemistryTest();
+    }
 
-    console.log(value);
+    ngOnInit() {
 
-    // patientBioChemistryTest = {...patientBioChemistryTest, ...value};
+        this.testDetail = [];
 
-    // patientBioChemistryTest.IsOnTreatment = true;
-    // patientBioChemistryTest.BioChemistryTestDetails = this.testDetail;
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
 
-    // console.log(patientBioChemistryTest);
-  }
+            this.clinicalrecordservice.getPatientClinicalRecord(this.id).subscribe(resp => {
 
-  populatePatientDate(patientId)
-  {
-      this.patientService.getPatientWithPartner(patientId).subscribe(patient=>{   
-      this.patient = patient;
-      console.log(patient.partner);
-      this.spouse = patient.partner;
-      });
-  }
+                this.clinicalRecord = resp;
 
-  addBioChemistryTestDetail(value)
-  {
-    let data = value.data;
+                this.bioChemistryService
+                    .getPatientBioChemistryTestByClinicalRecordId(this.clinicalRecord.patientClinicalRecordId)
+                    .subscribe(resp => {
 
-    this.testDetail.push(data);
+                        this.bioChemistry = resp;
+                        this.testDetail = this.bioChemistry.bioChemistryTestDetails;
 
-    console.log(this.testDetail);
-  }
+                        this.patchValues(this.bioChemistry);
 
-  updateBioChemistryTestDetail(value)
-  {
-    let data = value.data;
+                    });
 
-    // this.testDetail.push(data);
+            })
 
-    console.log(this.testDetail);
-  }
+        })
+
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
+            this.bioChemistryontreatmentForm.enable();
+
+        });
+
+
+        this.consultantService.getConsultants().subscribe(consultants => this.consultants = consultants)
+
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
+
+        this.treatmentService.gettreatmenttypes().subscribe(resp => this.treatments = resp);
+
+        this.bioChemistryService.getTests().subscribe(tests => this.tests = tests);
+
+        this.bioChemistryService.getUnits().subscribe(units => this.units = units);
+
+
+
+    }
+
+    onsubmit(value) {
+
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.bioChemistryTestDetails = this.testDetail;
+
+        this.bioChemistryService.addPatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test saved!"));
+
+    }
+
+    onUpdate(value) {
+
+        value.bioChemistryTestOnTreatmentId = this.bioChemistry.bioChemistryTestOnTreatmentId;
+        value.patientClinicalRecordId = this.clinicalRecord.patientClinicalRecordId;
+        value.bioChemistryTestDetails = this.testDetail;
+
+        this.bioChemistryService.updatePatientBioChemistryTest(value).subscribe(resp => this.displayToast("Biochemistry test updated!"));
+
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+        });
+    }
+
+    onFocusedRowChanging(e) {
+        var rowsCount = e.component.getVisibleRows().length,
+            pageCount = e.component.pageCount(),
+            pageIndex = e.component.pageIndex();
+
+        if (e.event.key && e.prevRowIndex === e.newRowIndex) {
+            if (e.newRowIndex === rowsCount - 1 && pageIndex < pageCount - 1) {
+                e.component.pageIndex(pageIndex + 1).done(function() {
+                    e.component.option("focusedRowIndex", 0);
+                });
+            } else if (e.newRowIndex === 0 && pageIndex > 0) {
+                e.component.pageIndex(pageIndex - 1).done(function() {
+                    e.component.option("focusedRowIndex", rowsCount - 1);
+                });
+            }
+        }
+    }
+
+    onFocusedRowChanged(e) {
+
+        var data = e.row.data;
+
+        this.bioChemistryService.getTest(data.bioChemistryTestId).subscribe(resp => {
+
+            this.RefRange = resp.referenceRange;
+        })
+    }
+
+    displayToast(message) {
+
+        this.toastr.success(message);
+
+    }
+
+    patchValues(biochemistry) {
+        this.bioChemistryontreatmentForm.patchValue({
+            'CollectionDate': biochemistry.collectionDate,
+            'LMP': biochemistry.lmp,
+            'IsRandom': biochemistry.isRandom
+        })
+    }
 
 
 

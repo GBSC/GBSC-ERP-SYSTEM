@@ -1,435 +1,83 @@
-<div class="m-content">
-    <div class="row">
-        <div class="col-md-12"> 
-  <div class="m-portlet">
-    <div class="m-portlet__head">
-      <div class="m-portlet__head-caption">
-        <div class="m-portlet__head-title">
-          <h3 class="m-portlet__head-text">
-        Add Leave Policy
-          </h3>
-        </div>
-      </div>
-    </div>
-    <div class="m-portlet__body">
-    
-        <div class="row">
-            <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Group: </label>
-                  <div class="col-lg-8">
  
-                  <table class="table table-bordered m-input m-input--solid">
-                    <tr *ngFor="let g of groups">
-                      <td>
-                        <input type="checkbox" [checked]="g.checked">
-                      </td>
-                      <td>
-                        {{g.index}}
-                      </td>
-                      <td>
-                        {{g.name}}
-                      </td>
-                    </tr>
-                  </table>
-
-              </div>
-            </div>
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Policy Detail
+                </h3>
             </div>
           </div>
-          <div class="m--space-07"></div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
+            (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
+            <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+              <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">
+              </dxo-popup>
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-  <div class="row">
-          <div class="col-md-10">
-         
-              <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                   Leave Year:
-                  </label>
-                  <div class="col-lg-8">
-                  <select class="form-control m-input m-input--solid">
-                    <option>2018</option>
-                    <option>2017</option>
-                    <option>2016</option>
-                  </select>
-                 
-                  </div>
-                </div>
-           </div>
-  </div>
-  <div class="m--space-07"></div>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="6"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+
+            <dxi-column dataField="groupId" caption="Group">
+              <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveYearId" caption="Leave Year">
+              <dxo-lookup [dataSource]="leaveYears" displayExpr="name" valueExpr="leaveYearId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveTypeId" caption="Leave Policy">
+              <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
+              <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
+              <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
+            <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false"></dxi-column>
+            <dxi-column dataField="maximumAtATime" caption="maximum at a Time" [visible]="false"></dxi-column>
+            <dxi-column dataField="minimumAtATime" caption="minimum at a Time" [visible]="false"></dxi-column>
+            <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
+            <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
+            <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
+            <dxi-column dataField="encashmentApplicationLimit" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
+            <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
+            <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
+            <dxi-column dataField="isFileAttachmentRequired" dataType="boolean" [visible]="false"></dxi-column>
+            <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
+            <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
+            <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
+            <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
+            <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="allowOnZeroBalance" caption="Allow on Zero Balance" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+            <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
+            <dxi-column dataType="boolean" dataField="printOnPaySlip" caption="Print on Payslip" [visible]="false"></dxi-column>
+          </dx-data-grid>
+
+        </div>
+      </div>
  
-  <div class="row">
-      <div class="col-md-10">
-     
-          <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">
-               Periodic:
-              </label>
-              <div class="col-lg-8">
-                  <label class="m-checkbox">
-                      <input type="checkbox">
-                     From 
-                      <span></span>
-                      <input class="form-control m-input m-input--solid col-md-3" name="leaveperiodfrom" placeholder="12-02-2018" type="text">
-                      To 
-                      <input class="form-control m-input m-input--solid col-md-3" name="leaveperiodto" placeholder="12-02-2018" type="text">
-  
-                    </label> 
-              </div>
-            </div>
-       </div>
-</div>
-  <div class="m--space-07"></div>
-  
-  <div class="row">
-      <div class="col-md-10">
-     
-          <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">
-              Employee:
-              </label>
-              <div class="col-lg-8">
-              <select class="form-control m-input m-input--solid">
-                <option>ALi</option>
-                <option>Ahmed</option>
-                <option>Khalid</option>
-              </select>
-             
-              </div>
-            </div>
-       </div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-             Leave Type:
-            </label>
-            <div class="col-lg-8">
-            <select class="form-control m-input m-input--solid">
-              <option>Type 1</option>
-              <option>Type 2</option>
-              <option>Type 3</option>
-            </select>
-           
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-  
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="6" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="11" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="15" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="5" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-    
-<div class="row">
-      <div class="col-lg-10">
-          <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
-            <div class="col-lg-8">
-          <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="m--space-07"></div>
-
-    <div class="row">
-        <div class="col-lg-10">
-            <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">Day Continuation Restriction:  </label>
-              <div class="col-lg-8">
-           
-                  <select class="form-control m-input m-input--solid">
-                      <option value="disabled">Select Restriction </option>
-                      <option>Yes</option>
-                      <option>No</option>
-                    </select>
-          </div>
-        </div>
-        </div>
-      </div>
-      <div class="m--space-07"></div>
-
-      <div class="row">
-          <div class="col-md-10">
-         
-              <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                   For Males:
-                  </label>
-                  <div class="col-lg-8">
-                      <label class="m-checkbox">
-                          <input type="checkbox">
-                          <span></span>
-                        </label> 
-                  </div>
-                </div>
-           </div>
-    </div>
-    <div class="m--space-07"></div>
-
-    <div class="row">
-        <div class="col-md-10">
-       
-            <div class="form-group m-form__group row">
-                <label class="col-lg-4 col-form-label">
-                 For Females:
-                </label>
-                <div class="col-lg-8">
-                    <label class="m-checkbox">
-                        <input type="checkbox">
-                        <span></span>
-                      </label> 
-                </div>
-              </div>
-         </div>
-  </div>
-  <div class="m--space-07"></div>
-    
-      
-  <div class="row">
-      <div class="col-md-10">
-     
-          <div class="form-group m-form__group row">
-              <label class="col-lg-4 col-form-label">
-               For Married Only:
-              </label>
-              <div class="col-lg-8">
-                  <label class="m-checkbox">
-                      <input type="checkbox">
-                      <span></span>
-                    </label> 
-              </div>
-            </div>
-       </div>
-</div>
-<div class="m--space-10"></div>
-                        
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Leave Day Type:  </label>
-          <div class="col-lg-8">
-       
-              <select class="form-control m-input m-input--solid">
-                  <option value="disabled">Select Leave Type Day </option>
-                  <option>Working Days</option>
-                  <option>Other Days</option>
-                </select>
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Short Leave Allowed:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Allowed Only one in Service:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-                                  
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-            Job Period Based:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Eligibility Based on:  </label>
-          <div class="col-lg-8">
-       
-              <select class="form-control m-input m-input--solid">
-                  <option value="disabled">Select Eligibility </option>
-                  <option>Confirmed</option>
-                  <option>Confirmed</option>
-                </select>
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-           Is Month Based:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Allow Leave Request on Zero Balance:  </label>
-          <div class="col-lg-8">
-       
-              <select class="form-control m-input m-input--solid">
-                  <option value="disabled">Select Leave Request </option>
-                  <option>Yes</option>
-                  <option>No</option>
-                </select>
-      </div>
-    </div>
-    </div>
-  </div>
-
-<div class="m--space-10"></div>
-
-
-<div class="row">
-    <div class="col-md-10">
-   
-        <div class="form-group m-form__group row">
-            <label class="col-lg-4 col-form-label">
-           Active:
-            </label>
-            <div class="col-lg-8">
-                <label class="m-checkbox">
-                    <input type="checkbox">
-                    <span></span>
-                  </label> 
-            </div>
-          </div>
-     </div>
-</div>
-<div class="m--space-10"></div>
-
-<div class="row">
-    <div class="col-lg-10">
-        <div class="form-group m-form__group row">
-          <label class="col-lg-4 col-form-label">Leave Application Limit: </label>
-          <div class="col-lg-8">
-        <input class="form-control m-input m-input--solid" id="" name="daysqty" placeholder="3" aria-describedby="days" type="number">
-      </div>
-    </div>
-    </div>
-  </div>
-  <div class="m--space-07"></div>
-
-
-                 </div>
-             </div>
-          </div> 
-       </div>
-    </div>
+ 

@@ -1,65 +1,50 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../core/Models/HRM/employee';
+import { EmployeeQualification } from '../../../core/Models/HRM/employeeQualification';
+import { DataGrid } from 'primeng/primeng';
 
 @Component({
-    selector: 'app-qualification',
+    selector: 'app-employeequalification',
     templateUrl: './qualification.component.html',
     styleUrls: ['./qualification.component.css']
 })
-export class QualificationComponent implements OnInit {
-    @Output('setQualificationFormValue') setQualificationormValue = new EventEmitter();
+export class EmployeeQualificationComponent implements OnInit {
 
-    setQualificationFormValue: any;
-    public QualificationForm: any;
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
+    public degrees: any;
+    public qualifications: any;
 
-    addFieldValue() {
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
+
+    @Input('employeeId') id: number;
+
+
+    constructor(public employeeService: EmployeeService, public SetupServiceobj: SetupService,
+        public router: Router, public route: ActivatedRoute) {
     }
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
-
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
 
     async ngOnInit() {
 
-        // this.QualificationForm = this.fb.group({
-        //   School: ['', Validators.required],
-        //   EducationLevel: ['', Validators.required],
-        //   Timefrom: ['', Validators.required],
-        //   Timeto: ['', Validators.required],
-        //   Courses: ['', Validators.required],
-        //   Description: ['', Validators.required],
-        //   Grade: ['', Validators.required],
-        //   Course: ['', Validators.required]
-        // });
+        this.degrees = await this.SetupServiceobj.getAllDegrees();
 
-        await this.SetupServiceobj.getAllqualifications();
-        let qualifctn = this.SetupServiceobj.qualification;
-        console.log(qualifctn);
-
-        await this.SetupServiceobj.getAllDegrees();
-        let dgree = this.SetupServiceobj.degree;
-
-        await this.SetupServiceobj.getAllgrades();
-        let grde = this.SetupServiceobj.grades;
-
-        await this.SetupServiceobj.getAllUniversities();
-        let uni = this.SetupServiceobj.university;
-
+        this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
     }
 
-    getQualificationFormValue() {
-        this.setQualificationFormValue.emit(this.QualificationForm.value);
+    addQualification(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addQualification(value.data).subscribe(resp => console.log(resp));
     }
 
-    async addqualification() {
-        let qualification = await this.employee.adduserUniversities();
-        console.log(qualification);
+    updateQualification(value) {
+
+        let qualification = this.qualifications.find(x => x.universityId == value.key);
+
+        qualification = { ...qualification, ...value.data };
+
+        this.employeeService.updateQualification(qualification).subscribe(resp => console.log(resp));
     }
+
 }
+

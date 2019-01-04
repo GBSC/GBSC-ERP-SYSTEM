@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Relation } from '../models/relation,interface';
 
 @Component({
     selector: 'app-relations',
@@ -17,32 +10,29 @@ import { Relation } from '../models/relation,interface';
 })
 export class RelationComponent implements OnInit {
 
+    public updatingModel: any;
     public relation: any;
+
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
-
-
     async ngOnInit() {
-        await this.dataService.getAllRelation();
-        this.relation = this.dataService.relation;
-        // console.log(this.relation);
-        // this.dataService.GetAllRelation().subscribe((data)=>this.Relation=data);
+        this.relation = await this.dataService.getAllRelation();
     }
 
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addrelation(relation) {
-        this.dataService.addRelation(relation.data);
+    async addrelation(relation) {
+        await this.dataService.addRelation(relation.data);
+        this.relation = await this.dataService.getAllRelation();
     }
 
-    Editrelation(reltion) {
-        this.dataService.updateRelation(reltion);
+    relationUpdating(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    deleterelation(reltn) {
-        this.dataService.DeleteRelation(reltn.key);
+    async Editrelation() {
+        await this.dataService.updateRelation(this.updatingModel);
     }
 
-
+    async deleterelation(reltn) {
+        await this.dataService.DeleteRelation(reltn.key);
+    }
 }

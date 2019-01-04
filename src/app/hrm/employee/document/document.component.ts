@@ -1,8 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-document',
@@ -11,27 +9,41 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class DocumentComponent implements OnInit {
 
-    @Output('setdocumentsFormValue') setdocumentsFormValue = new EventEmitter();
+    public DocumentsByUserId: any;
+    @Input('employeeId') id: number;
     public documentForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder) { }
+
+    constructor(public fb: FormBuilder, public employee: EmployeeService) {
+    }
 
     async ngOnInit() {
-
-        // this.documentForm = this.fb.group({
-        //   AccountTitle: ['', Validators.required],
-        //   AccountNumber: ['', Validators.required],
-        //   BankName: ['', Validators.required],
-        //   BankCode: ['', Validators.required],
-        //   BankBranch: ['', Validators.required]
-        // }); 
-
+        this.DocumentsByUserId = this.employee.GetDocumentsByUserId(this.id);
     }
     async addDocuments() {
-        let doc = await this.employee.adduserDocuments();
-        console.log(doc);
     }
 
-    getDocumentsBankFormValue() {
-        this.setdocumentsFormValue.emit(this.documentForm.value);
+
+    public forimg: File[] = [];
+    public allDocs: File[] = [];
+
+    fileselect(event) {
+        this.forimg = event.target.files;
     }
+
+
+    async onupload() {
+
+        const y = new FormData();
+        let fileCount: number = this.forimg.length;
+        if (fileCount > 0) {
+            for (let i = 0; i < fileCount; i++) {
+                y.append('models', this.forimg[i]);
+            }
+        }
+    }
+
+    async  deleteUserDocument(value) {
+        let x = await this.employee.deleteUserDocument(value.key.userDocumentId)
+    }
+
 }

@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 
 @Component({
     selector: 'app-emergencycontact',
@@ -10,42 +9,38 @@ import { EmployeeService } from '../services/employee.service';
     styleUrls: ['./emergencycontact.component.css']
 })
 export class EmergencycontactComponent implements OnInit {
-    @Output('setdepndntFormValue') setDepndntFormValue = new EventEmitter();
+    public relations: any;
+    public dependantrelations: any;
+    pattern: any = /^\d{11}$/i;
 
-    public DependantForm: any;
-    public fieldArray: Array<any> = [];
-    public newAttribute: any = {};
+    @Input('employeeId') id: number;
 
+    constructor(public employeeService: EmployeeService, public SetupServiceobj: SetupService,
+        public router: Router, public route: ActivatedRoute) {
 
-
-    constructor(public fb: FormBuilder, public employee: EmployeeService, private SetupServiceobj: SetupService) { }
+    }
 
     async ngOnInit() {
 
-        await this.SetupServiceobj.getAllRelation();
-        let reltn = this.SetupServiceobj.relation;
+        this.employeeService.GetRelationsByUserId(this.id).subscribe(resp => this.relations = resp);
 
-        await this.SetupServiceobj.getAllCountries();
-        let countries = this.SetupServiceobj.country;
+        this.dependantrelations = await this.SetupServiceobj.getDependantsRelations();
 
-        this.employee.allDependentForm.push({ ...this.employee.DependantForm.value });
-        this.employee.firstForm = this.employee.allDependentForm[0];
-        await this.SetupServiceobj.getAllCities();
-        let cities = this.SetupServiceobj.city;
     }
 
-    addFieldValue() {
-        this.employee.allDependentForm.push({ ...this.employee.DependantForm.value });
-        console.log(this.employee.allDependentForm);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
-    }
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
+    addRelation(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addUserRelation(value.data).subscribe(resp => console.log(resp));
     }
 
-    getdepndntFormValue() {
-        console.log(this.DependantForm.value);
-        this.setDepndntFormValue.emit(this.DependantForm.value);
+    updateRelation(value) {
+
+        let relation = this.relations.find(r => r.relationId == value.key);
+
+        relation = { ...relation, ...value.data };
+
+        this.employeeService.updateUserRelation(relation).subscribe(resp => console.log(resp));
     }
+
 }

@@ -1,0 +1,32 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Pack Size</h3>
+      </div>
+    </div>
+  </div>
+
+
+<div class="m-portlet__body">
+<div class="row">
+  <div class="col-md-12"> 
+    <dx-data-grid id="gridContainer" [dataSource]="PackSizes" keyExpr="packSizeId" (onRowInserted)="AddPackSize($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdatePackSize()" (onRowRemoved)="DeletePackSize($event)"> 
+      <dxo-editing  mode="row"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">
+          <!-- [position]="{ my: 'center', at: 'center', of: window }"	 -->
+        <dxo-popup title="Add Pack Type" [showTitle]="true" [width]="'auto'" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true" ></dxo-popup>
+      </dxo-editing>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+      <dxi-column dataField="size" caption="Size">
+        <dxi-validation-rule type="required" message="Size required"></dxi-validation-rule>
+      </dxi-column>
+      </dx-data-grid>
+   </div>
+
+   
+</div>
+</div></div>

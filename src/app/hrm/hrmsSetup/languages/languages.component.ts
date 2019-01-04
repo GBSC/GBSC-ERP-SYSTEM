@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Language } from '../models/language,interface';
 
 @Component({
     selector: 'app-languages',
@@ -26,24 +19,22 @@ export class LanguageComponent implements OnInit {
 
     async ngOnInit() {
 
-        await this.dataService.getAllLanguages();
-        this.language = this.dataService.language;
-
-        // this.dataService.getAllLanguages().subscribe((data)=>this.languages=data);
-    } S
+        this.language = await this.dataService.getAllLanguages();
+    }
 
     // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
-    addLanguage(lang) {
-        this.dataService.addLanguage(lang.data);
+    async addLanguage(value) {
+        await this.dataService.addLanguage(value.data);
+        this.language = await this.dataService.getAllLanguages();
     }
 
-    EditLanguage(lng) {
-        this.dataService.updateLanguage(lng);
+    async EditLanguage(value) {
+        await this.dataService.updateLanguage(value);
     }
 
-    deleteLanguage(lnguge) {
-        this.dataService.DeleteLanguage(lnguge.key);
+    async deleteLanguage(value) {
+        await this.dataService.DeleteLanguage(value.key);
 
     }
 

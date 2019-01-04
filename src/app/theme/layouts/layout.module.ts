@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { DefaultComponent } from '../pages/default/default.component';
-import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { SubheaderTypeSearchComponent } from '../pages/subheader--type-search/subheader--type-search.component';
 import { AsideNavComponent } from './aside-nav/aside-nav.component';
-import { FooterComponent } from './footer/footer.component';
 import { QuickSidebarComponent } from './quick-sidebar/quick-sidebar.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { TooltipsComponent } from './tooltips/tooltips.component';
@@ -18,10 +16,8 @@ import { AsideLeftMinimizeDefaultEnabledComponent } from '../pages/aside-left-mi
 @NgModule({
     declarations: [
         DefaultComponent,
-        HeaderNavComponent,
         SubheaderTypeSearchComponent,
         AsideNavComponent,
-        FooterComponent,
         QuickSidebarComponent,
         ScrollTopComponent,
         TooltipsComponent,
@@ -31,10 +27,8 @@ import { AsideLeftMinimizeDefaultEnabledComponent } from '../pages/aside-left-mi
     ],
     exports: [
         DefaultComponent,
-        HeaderNavComponent,
         SubheaderTypeSearchComponent,
         AsideNavComponent,
-        FooterComponent,
         QuickSidebarComponent,
         ScrollTopComponent,
         TooltipsComponent,

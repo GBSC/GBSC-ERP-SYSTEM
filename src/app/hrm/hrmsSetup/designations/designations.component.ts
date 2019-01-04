@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Designation } from '../models/designation,interface';
+import { SetupService } from '../../../core';
 
 @Component({
     selector: 'app-designations',
@@ -19,34 +12,34 @@ export class DesignationComponent implements OnInit {
 
 
     public designatn: any;
+    public updatingModel: any;
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
 
     async ngOnInit() {
-        await this.dataService.getAllDesignations();
-        this.designatn = this.dataService.designation;
-        //console.log(this.designatn);
-        // this.dataService.getAllDesignations().subscribe((data)=>this.designation=data);
+        this.designatn = await this.dataService.getAllDesignations();
     }
 
 
+    async addDesignation(desg) {
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addDesignation(desg) {
-
-        this.dataService.addDesignation(desg.data);
+        await this.dataService.addDesignation(desg.data);
+        this.designatn = await this.dataService.getAllDesignations();
     }
 
-    EditDesignation(desig) {
+    EditingDesignation(value) {
 
-        this.dataService.updateDesignation(desig);
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
+    async EditDesignation() {
 
-    deleteDesignation(dsg) {
+        await this.dataService.updateDesignation(this.updatingModel);
+    }
 
-        this.dataService.DeleteDesignation(dsg.key);
+    async deleteDesignation(dsg) {
+
+        await this.dataService.DeleteDesignation(dsg.key);
     }
 }

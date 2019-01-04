@@ -1,7 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Validators, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-profilepic',
@@ -10,15 +12,18 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ProfilepicComponent implements OnInit {
     @Output('setBankFormValue') setpicFormValue = new EventEmitter();
-    public Profilepic: any;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, ) { }
-
     public selectedPic;
+    public Profilepic: FormGroup;
+    @Input('employeeId') id: number;
+
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
+    }
 
     async ngOnInit() {
-        // this.Profilepic = this.fb.group({
-        //   ProfileImg: ['', Validators.required]
-        // }); 
+        this.route.params.subscribe((params) => {
+            this.id = +params['id'];
+        });
+
     }
 
     getProfilepicFormValue() {
@@ -26,16 +31,19 @@ export class ProfilepicComponent implements OnInit {
     }
 
     getProfilePic(e) {
-        this.employee.selectedPic = e.target.files[0];
     }
 
-    // async addpic() {
+    public forevent: File = null;
 
-    //   let fomrData : any = new FormData();   
-    //   fomrData.append('myFile', this.selectedPic, this.selectedPic.name);
+    onfileselect(event) {
+        this.forevent = <File>event.target.files[0];
+    }
 
-    //   let usrdp = await this.employee.adduserProfilepic(FormData);
-    //   console.log(usrdp);
 
-    // }
+    onupload() {
+        const file = new FormData();
+        file.append('file', this.forevent);
+
+    }
+
 }

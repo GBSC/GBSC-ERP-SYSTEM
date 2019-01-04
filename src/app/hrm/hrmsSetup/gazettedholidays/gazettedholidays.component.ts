@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { GazettedHolidays } from '../models/gazettedholidays,interface';
 
 @Component({
     selector: 'app-gazettedholidays',
@@ -18,29 +15,31 @@ import { GazettedHolidays } from '../models/gazettedholidays,interface';
 export class GazettedHolidaysComponent implements OnInit {
 
     public holiday: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public modelUpdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
     async ngOnInit() {
-        await this.dataService.getAllGazettedHolidays();
-        this.holiday = this.dataService.gazetholidays;
-        console.log(this.holiday);
-        // this.dataService.getAllGazettedHolidays().subscribe((data)=>this.GazettedHolidays=data);
+        this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
 
-    addHolidays(holiday) {
-        this.dataService.addGazettedHolidays(holiday.data);
+    async addHolidays(value) {
+        await this.dataService.addGazettedHolidays(value.data);
+        this.holiday = await this.dataService.getAllGazettedHolidays();
     }
 
-    Editholiday(hday) {
-        this.dataService.updateGazettedHolidays(hday);
+    updatingholiday(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteholiday(holidays) {
-        this.dataService.DeleteGazettedHolidays(holidays.key);
+    async Editholiday() {
+        await this.dataService.updateGazettedHolidays(this.modelUpdating);
+    }
+
+    async deleteholiday(holidays) {
+        await this.dataService.DeleteGazettedHolidays(holidays.key);
     }
 
 }

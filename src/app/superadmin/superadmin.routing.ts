@@ -5,12 +5,13 @@ import { SetupcompanyComponent } from "./setupcompany/setupcompany.component";
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'superadmin',
+        path: '',
         component: RootComponent,
 
         children: [
 
-            { path: 'setupcompany', component: SetupcompanyComponent }
+            { path: 'setupcompany', component: SetupcompanyComponent },
+            { path: 'setupcompany/:id', component: SetupcompanyComponent }
         ]
     }
 

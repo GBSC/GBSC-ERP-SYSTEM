@@ -1,13 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Bank } from '../models/bank,interface';
+import { SetupService, EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-bank',
@@ -17,30 +12,34 @@ import { Bank } from '../models/bank,interface';
 export class BankComponent implements OnInit {
 
     public bank: any;
+    public modelUpdating: any;
+    public employee: any;
 
     constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
-
+        public dataService: SetupService, public empService: EmployeeService) { }
 
     async ngOnInit() {
 
-        await this.dataService.getAllBanks();
-        this.bank = this.dataService.bank;
-        console.log(this.bank);
+        this.bank = await this.dataService.getAllBanks();
 
+        this.employee = await this.empService.GetAllEmployees();
     }
 
-    addNewbank(bank) {
-        this.dataService.addbank(bank.data);
+    async addNewbank(bank) {
+        await this.dataService.addbank(bank.data);
+        this.bank = await this.dataService.getAllBanks();
     }
 
-    UpdateBank(bank) {
-
-        this.dataService.updateBank(bank)
+    bankUpdating(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData }
     }
 
-    deletebank(bnk) {
-        this.dataService.DeleteBank(bnk.key);
+    async UpdateBank() {
+        await this.dataService.updateBank(this.modelUpdating)
+    }
+
+    async deletebank(bnk) {
+        await this.dataService.DeleteBank(bnk.key);
     }
 
 

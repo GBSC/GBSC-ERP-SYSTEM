@@ -1,0 +1,45 @@
+ 
+				<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+					<div class="m-portlet__head-title">
+						<h3 class="m-portlet__head-text">Tax Schedule</h3>
+					</div>
+					</div>
+				</div>
+				<div class="m-portlet__body">
+					<div class="m-section">
+					<div class="m-section__content" >
+						<dx-data-grid id="gridContainer" [dataSource]="taxSchedule"
+						keyExpr="taxScheduleId"
+						 (onRowInserted)="addTaxSchedule($event)"
+							(onRowUpdated)="updateTaxSchedule()" 
+							(onRowUpdating)="updatingTaxSchedule($event)" 
+							(onRowRemoved)="deleteTaxSchedule($event)"> 
+
+							<dxo-editing  mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">	
+							</dxo-editing>
+							<dxo-filter-row [visible]="true"></dxo-filter-row>
+							<dxo-header-filter [visible]="true"></dxo-header-filter>
+							<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+							<dxo-paging [pageSize]="8"></dxo-paging>
+							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+							<dxi-column dataField="incomeTaxRuleId" caption="Tax Limit">
+								<dxo-lookup [dataSource]="incomeTaxrule" displayExpr="taxLimit" valueExpr="incomeTaxRuleId">
+								</dxo-lookup> 
+								</dxi-column>
+							<dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>
+							<dxi-column dataField="till" caption="Till" dataType="date" format="shortDate"></dxi-column> 
+							<dxi-column dataField="taxType" caption="Tax Type"></dxi-column> 
+							<dxi-column dataField="value" caption="Value"></dxi-column> 
+							<dxi-column dataField="applicabaleTo" caption="Applicabale To"></dxi-column> 
+						</dx-data-grid> 
+					</div>
+					</div>
+				</div>
+				</div>
+ 
+
+
+
+

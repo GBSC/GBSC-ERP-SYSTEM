@@ -1,0 +1,40 @@
+ 
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Attendance Request Approver</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="attendanceRequestapprover"
+               keyExpr="attendanceRequestApproverId"
+               (onRowInserted)="addRequestapprover($event)" 
+              (onRowUpdating)="updatingRequestapprover($event)"
+              (onRowUpdated)="updateRequestapprover()"
+                (onRowRemoved)="deleteRequestapprover($event)">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+ 
+                <dxi-column dataField="name" caption="Approver Name"></dxi-column>
+                <dxi-column dataField="userId" caption="Employee">
+                  <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
+                  </dxo-lookup> 
+            </dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    

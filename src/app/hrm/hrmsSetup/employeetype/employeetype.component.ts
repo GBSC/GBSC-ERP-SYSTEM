@@ -1,15 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
+import { SetupService } from '../../../core';
 
-import { EmployeeType } from '../models/employeetype,interface';
 
 
 @Component({
@@ -18,43 +11,32 @@ import { EmployeeType } from '../models/employeetype,interface';
     styleUrls: ['./employeetype.component.css']
 })
 export class EmployeeTypes implements OnInit {
+    public updatingModel: any;
     public emptype: any;
+
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        // this.dataService.getAllEmployeeTypes().subscribe((data)=>this.employeetype=data);
-        await this.dataService.getAllEmployeeTypes();
-        this.emptype = this.dataService.employeetype;
-        console.log(this.emptype);
+        this.emptype = await this.dataService.getAllEmployeeTypes();
     }
 
 
-
-    // GetAllCountries(){
-    //   this.dashboardService.getAllContries()
-    //   .subscribe((result : Country) => {
-    //      this.countries = result
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     //this.notificationService.printErrorMessage(error);
-    //   });
-    // }
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addemptype(emptype) {
-        this.dataService.addEmployeeType(emptype.data)
+    async addemptype(emptype) {
+        await this.dataService.addEmployeeType(emptype.data);
+        this.emptype = await this.dataService.getAllEmployeeTypes();
     }
 
-    Updateemptype(emptype) {
-        this.dataService.updateEmployeeType(emptype);
-
+    Updatingemptype(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    deleteEType(emptype) {
-        this.dataService.DeleteEmployeeType(emptype.key);
+    async Updateemptype() {
+        await this.dataService.updateEmployeeType(this.updatingModel);
+    }
+
+    async deleteEType(emptype) {
+        await this.dataService.DeleteEmployeeType(emptype.key);
 
     }
 

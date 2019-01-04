@@ -1,6 +1,4 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -13,11 +11,16 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="group" keyExpr="groupId" (onRowInserted)="addNewGroups($event)" (onRowUpdated)="EditGroup($event)"
+              <dx-data-grid id="gridContainer"
+               [dataSource]="group"
+                keyExpr="groupId" 
+                (onRowInserted)="addNewGroups($event)" 
+                (onRowUpdating)="groupUpdaing($event)"
+                (onRowUpdated)="EditGroup()"
                 (onRowRemoved)="deleteGroup($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Group" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Group" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -37,6 +40,4 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

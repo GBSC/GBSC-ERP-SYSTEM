@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,29 +10,29 @@ import { HttpClient } from '@angular/common/http';
 export class UniversityComponent implements OnInit {
 
     public university: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public universityupdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllUniversities();
-        this.university = this.dataService.university;
-        // console.log(this.university);
-        // this.dataService.GetAllRelation().subscribe((data)=>this.Relation=data);
+        this.university = await this.dataService.getAllUniversities();
     }
 
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    adduniversity(uni) {
-        this.dataService.adduniversity(uni.data);
+    async adduniversity(uni) {
+        await this.dataService.adduniversity(uni.data);
+        this.university = await this.dataService.getAllUniversities();
     }
 
-    Edituniversity(university) {
-        this.dataService.updateuniversity(university);
+    universityEditing(value) {
+        this.universityupdating = { ...value.oldData, ...value.newData };
     }
 
-    deleterelation(universty) {
-        this.dataService.Deleteuniversity(universty.key);
+    async Edituniversity() {
+        await this.dataService.updateuniversity(this.universityupdating);
+    }
+
+    async deleterelation(universty) {
+        await this.dataService.Deleteuniversity(universty.key);
     }
 
 }

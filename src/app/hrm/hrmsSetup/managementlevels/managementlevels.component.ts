@@ -1,14 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
-import { Observable } from 'rxjs/Observable';
+import { SetupService } from '../../../core';
 import { HttpClient } from '@angular/common/http';
-import { ManagementLevel } from '../models/managementlevel,interface';
 
 @Component({
     selector: 'app-managementlevels',
@@ -17,33 +9,31 @@ import { ManagementLevel } from '../models/managementlevel,interface';
 })
 export class ManagementLevelsComponent implements OnInit {
 
-
     public managlevel: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public modelUpdating: any;
 
-
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllManagementlevels();
-        this.managlevel = this.dataService.managementlevel;
-        // console.log(this.managlevel);
-        // this.dataService.getAllManagementlevels().subscribe((data)=>this.managementlevels=data);
+        this.managlevel = await this.dataService.getAllManagementlevels();
     }
 
 
-    addNewManagementLevels(mnglevel) {
+    async addNewManagementLevels(mnglevel) {
 
-        this.dataService.addManagementLevel(mnglevel.data);
+        await this.dataService.addManagementLevel(mnglevel.data);
+        this.managlevel = await this.dataService.getAllManagementlevels();
     }
 
-    EditManagementLevel(manglevel) {
-
-        this.dataService.updateManagementLevel(manglevel);
+    updatingMngLevel(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteManagementLevel(mng) {
+    async EditManagementLevel() {
+        await this.dataService.updateManagementLevel(this.modelUpdating);
+    }
 
-        this.dataService.DeleteManagementLevel(mng.key);
+    async deleteManagementLevel(mng) {
+        await this.dataService.DeleteManagementLevel(mng.key);
     }
 }

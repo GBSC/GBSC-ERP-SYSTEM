@@ -1,25 +1,26 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Banks</h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
+ 
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Bank</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-section">
+                    <div class="m-section__content">
+          
+                      <dx-data-grid id="gridContainer" 
+                      [dataSource]="bank" 
+                      keyExpr="bankId" 
+                      (onRowInserted)="addNewbank($event)" 
+                      (onRowUpdating)="bankUpdating($event)"
+                      (onRowUpdated)="UpdateBank()"
+                      (onRowRemoved)="deletebank($event)">
 
-              
-              <dx-data-grid id="gridContainer" [dataSource]="bank" keyExpr="bankId" (onRowInserted)="addNewbank($event)" (onRowUpdated)="UpdateBank($event)"
-                (onRowRemoved)="deletebank($event)">
-
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                  <dxo-popup title="Bank" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Bank" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -30,17 +31,21 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
 
-                <dxi-column dataField="bankTitle"></dxi-column>
-                <dxi-column dataField="uniqueId"></dxi-column>
-                <dxi-column dataField="secondApproverDesignation"></dxi-column>
-                <dxi-column dataField="accountNumber"></dxi-column>
-                <dxi-column dataField="swiftCode"></dxi-column>
-
+                <dxi-column dataField="userId" caption="Employee">         
+                  <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+              </dxi-column>
+                <dxi-column dataField="bankCode"></dxi-column> 
+                <dxi-column dataField="bankTitle"></dxi-column> 
+                <dxi-column dataField="accountName" [visible]="false"></dxi-column> 
+                <dxi-column dataField="accountNumber" [visible]="false"></dxi-column> 
+                <dxi-column dataField="routingCode" [visible]="false"></dxi-column> 
+                <dxi-column dataField="swiftCode" [visible]="false"></dxi-column> 
+                <dxi-column dataField="branch"></dxi-column> 
+                <dxi-column dataField="isActive" dataType="boolean"></dxi-column> 
               </dx-data-grid>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+           

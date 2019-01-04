@@ -1,0 +1,136 @@
+<div class="m-content"> 
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Master Payroll
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="MasterPayrollForm">
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Employee:
+                </label>
+                <select class="form-control m-input" formControlName="UserId">
+                  <option value="" disabled selected>-- Select Employee --</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Bank Transfer Code:
+                </label>
+                <input type="number" class="form-control m-input" formControlName="BankTransferCode" placeholder="0">
+              </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                  Currency:
+                </label>
+                <select class="form-control m-input" formControlName="CurrencyId">
+                  <option value="" disabled selected>-- Select Currency --</option>
+                  <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
+                </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                 Payroll Bank:
+                </label>
+                <select class="form-control m-input" formControlName="PayrollBankId">
+                  <option value="" disabled>-- Select Payroll Bank --</option>
+                  <option *ngFor="let pb of banksPayroll" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+ 
+            <div class="m--space-30"></div>
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Master Payroll Detail</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer"
+                        [dataSource]="masterDetail"
+                         (onRowInserted)="addMasterPayrolldetail($event)" 
+                         (onRowUpdated)="updateMasterpayrollDetail($event)">
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager> 
+                          <dxi-column dataField="value"></dxi-column>
+                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
+                          <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
+                   
+                          <dxi-column dataField="allowanceId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                          <dxi-column dataField="frequencyId" caption="Frequency">
+                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                          <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+                            <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
+                            </dxo-lookup> 
+                            </dxi-column>
+                 
+                        </dx-data-grid>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+            <div class="m--space-30"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-2"></div>
+                <div class="col-lg-6">
+                    <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(submitForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="submitForm(submitForm.value)">
+                      Submit
+                    </button>  
+                  </ng-template> 
+                  <button type="reset" class="btn btn-secondary">
+                      Reset
+                    </button>
+                  </div>
+              </div>
+            </div>  
+        </div>
+      </div>
+    </div>
+ 
+ 

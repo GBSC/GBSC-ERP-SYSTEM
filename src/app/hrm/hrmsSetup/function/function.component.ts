@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Function } from '../models/function,interface';
 
 @Component({
     selector: 'app-function',
@@ -17,31 +10,31 @@ import { Function } from '../models/function,interface';
 })
 export class FunctionComponent implements OnInit {
     public func: any;
+    public updatingModel: any;
 
     constructor(public httpClient: HttpClient,
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        // this.dataService.getAllFunctions().subscribe((data)=>this.funct=data);
-
-        await this.dataService.getAllFunctions();
-        this.func = this.dataService.function;
-        console.log(this.func);
-
+        this.func = await this.dataService.getAllFunctions();
     }
 
 
-    addNewfunction(func) {
-        this.dataService.addFunction(func.data);
+    async addNewfunction(func) {
+        await this.dataService.addFunction(func.data);
+        this.func = await this.dataService.getAllFunctions();
     }
 
-    Editfunction(fun) {
-
-        this.dataService.updatefunction(fun);
+    functionEditing(value) {
+        this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-    deletefunc(fnc) {
-        this.dataService.Deletefunction(fnc.key);
+    async Editfunction() {
+        await this.dataService.updatefunction(this.updatingModel);
+    }
+
+    async deletefunc(fnc) {
+        await this.dataService.Deletefunction(fnc.key);
     }
 
 }

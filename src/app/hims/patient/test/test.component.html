@@ -1,0 +1,21 @@
+<div class="m-portlet m-portlet--unair">
+  <div class="m-portlet__head">
+  <div class="m-portlet__head-caption">
+    <div class="m-portlet__head-title">
+        <span class="m-portlet__head-icon">
+            <i class="fa fa-calendar"></i>
+          </span> 
+      <h3 class="m-portlet__head-text">
+        Test 
+      </h3>
+    </div>
+  </div>
+  </div>
+  <div class="m-portlet__body">
+    <ul *ngFor="let TEST of patientVisitTest">
+      <li>
+        {{TEST.testName}} 
+       </li>
+    </ul>  
+  </div>
+  </div>

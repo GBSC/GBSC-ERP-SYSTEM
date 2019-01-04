@@ -1,35 +1,44 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-    <h4>Add New Bank Account</h4>
+           
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">User Banks</h3>
+            </div>
+          </div>
+          </div>
 
-</div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="banks"
+               keyExpr="bankId" 
+               (onRowInserted)="addBank($event)" (onRowUpdated)="updateBank($event)" >
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Employee Bank" [showTitle]="true" [width]="700" [height]="345">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-<form class="signup-form" [formGroup]="employee.EmpbankForm"> 
- 
-<div class="col-sm-6">
-    <div class="form-group m-form__group">
-      <label for="account_title">Account Title</label>
-      <input class="form-control m-input m-input--solid" formControlName="AccountTitle" placeholder="Account Title" name="account_title" type="text" value="" id="account_name">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+                <dxi-column dataField="accountName"></dxi-column>
+                <dxi-column dataField="accountNumber"></dxi-column>
+                <dxi-column dataField="bankTitle"></dxi-column>
+                <dxi-column dataField="bankCode"></dxi-column>
+                <dxi-column dataField="branch"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group m-form__group">
-      <label for="account_number">Account Number</label>
-      <input class="form-control m-input m-input--solid" formControlName="AccountNumber" placeholder="Account Number" name="account_number" type="text" value="" id="account_number">
-    </div>
-  </div>
-  
-  <div class="col-sm-6">
-    <div class="form-group m-form__group">
-        <label for="bank">Bank Name</label>
-        <input class="form-control m-input m-input--solid" formControlName="BankTitle" placeholder="Bank Name" name="bank_code" type="text" value="" id="name">
-       </div>
-    <div class="form-group m-form__group">
-      <label for="bank_code">Bank Code</label>
-      <input class="form-control m-input m-input--solid" formControlName="BankCode" placeholder="Bank Code" name="bank_code" type="text" value="" id="bank_code">
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="form-group m-form__group">
-      <label for="bank_branch">Bank Branch</label>
-      <input class="form-control m-input m-input--solid" formControlName="BankBranch" placeholder="Bank Branch" name="bank_branch" type="text" value="" id="bank_branch">
-    </div>
-  </div>
-  </form>
+  </div> 
+  </div>   

@@ -1,0 +1,124 @@
+
+      
+    
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Company Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#company" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-share"></i>
+                    <span class="m-nav__link-text">
+                      Company</span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#country" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Country
+                    </span>
+                  </a>
+                </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#city" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      City
+                    </span>
+                  </a>
+                </li>
+                    <li class="m-nav__item">
+                      <a class="m-nav__link" href="#branch" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                          Branch
+                        </span>
+                      </a>
+                    </li>
+                <li class="m-nav__item">
+                  <a class="m-nav__link" href="#department" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      Department
+                    </span>
+                  </a>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+          <div class="tab-content">
+            <div class="tab-pane active" id="company">
+              <div class="m-portlet">
+                <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                      <h3 class="m-portlet__head-text">Company</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__body">
+                  <div class="m-section">
+                    <div class="m-section__content">
+                      <dx-data-grid id="gridContainer" [dataSource]="companies"
+                      keyExpr="companyId"
+                       (onRowInserted)="addCompany($event)" 
+                       (onRowUpdating)="updatingCompany($event)" 
+                       (onRowUpdated)="updateCompany()" 
+                       (onRowRemoved)="deleteCompany($event)"> 
+                          <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="7"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                        <dxi-column dataField="name" caption="Name"></dxi-column>
+                        <dxi-column dataField="numberOfEmployees" caption="No of Employee"></dxi-column>
+                      </dx-data-grid>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="country">
+              <app-country></app-country>
+            </div>
+            <div class="tab-pane" id="city">
+              <app-city></app-city>
+            </div>
+            <div class="tab-pane" id="branch">
+              <app-branch></app-branch>
+            </div>
+            <div class="tab-pane" id="department">
+              <app-department></app-department>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

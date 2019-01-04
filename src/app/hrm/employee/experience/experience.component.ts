@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
-import { Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { EmployeeService } from '../../../core';
+import { EmployeeExperience } from '../../../core/Models/HRM/employeeExperience';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-experience',
@@ -10,35 +11,34 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ExperienceComponent implements OnInit {
 
-    @Output('setExpFormValue') setExpFormValue = new EventEmitter();
-    public experienceForm: any;
-    private fieldArray: Array<any> = [];
-    private newAttribute: any = {};
+    @Input('employeeId') id: number;
 
-    constructor(public employee: EmployeeService, public fb: FormBuilder) { }
+    public experiences: any;
+
+    constructor(public employeeService: EmployeeService) {
+
+    }
 
     async ngOnInit() {
 
-        this.employee.allExperiencexpForm.push({ ...this.employee.experienceForm.value });
-        this.employee.firstForm = this.employee.allExperiencexpForm[0];
+        this.employeeService.getWorkExperience(this.id).subscribe(resp => this.experiences = resp);
+
     }
 
-    addFieldValue() {
-        this.employee.allExperiencexpForm.push({ ...this.employee.experienceForm.value });
-        console.log(this.employee.allExperiencexpForm);
-        this.fieldArray.push(this.newAttribute)
-        this.newAttribute = {};
-    }
-    deleteFieldValue(index) {
-        this.fieldArray.splice(index, 1);
-    }
-    async addexpinfo() {
-        let exp = await this.employee.adduserexperience();
-        console.log(exp);
+
+    addWorkExperience(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addWorkExperience(value.data).subscribe(resp => console.log(resp));
     }
 
-    getexperienceFormValue() {
-        this.setExpFormValue.emit(this.experienceForm.value);
+    updateWorkExperience(value) {
+
+        let expereince = this.experiences.find(x => x.workExperienceId == value.key);
+
+        expereince = { ...expereince, ...value.data };
+
+        this.employeeService.updateWorkExperience(expereince).subscribe(resp => console.log(resp));
     }
 
 }

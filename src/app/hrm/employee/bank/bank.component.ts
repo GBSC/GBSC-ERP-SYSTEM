@@ -1,46 +1,45 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmployeeService, SetupService } from '../../../core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Employee } from '../../../core/Models/HRM/employee';
 
 @Component({
-    selector: 'app-bank',
+    selector: 'app-employeebank',
     templateUrl: './bank.component.html',
     styleUrls: ['./bank.component.css']
 })
-export class BankComponent implements OnInit {
-    @Output('setBankFormValue') setBankFormValue = new EventEmitter();
+export class EmployeeBankComponent implements OnInit {
 
-    public EmpbankForm: FormGroup;
-    // public EmpBankForm: FormGroup;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, private SetupServiceobj: SetupService) { }
+    public Employee: any;
+    public banks: any;
+
+    @Input('employeeId') id: number;
+
+    constructor(public employeeService: EmployeeService) {
+    }
 
     async ngOnInit() {
 
-
-        this.EmpbankForm = this.fb.group({
-            AccountTitle: ['', Validators.required],
-            AccountNumber: ['', Validators.required],
-            BankName: ['', Validators.required],
-            BankCode: ['', Validators.required],
-            BankBranch: ['', Validators.required]
-        });
+        this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
 
 
-        await this.SetupServiceobj.getAllBanks();
-        let bnk = this.SetupServiceobj.bank;
     }
 
-    getBankFormValue() {
-        this.setBankFormValue.emit(this.EmpbankForm.value);
+    addBank(value) {
+        value.data.userId = this.id;
+
+        this.employeeService.addBank(value.data).subscribe(resp => console.log(resp));
     }
 
-    async adduserbank() {
-        let usrbnk = await this.employee.adduserBank();
-        console.log(usrbnk);
+    updateBank(value) {
 
+        let bank = this.banks.find(x => x.bankId == value.key);
+
+        bank = { ...bank, ...value.data };
+
+        this.employeeService.updateBank(bank).subscribe(resp => console.log(resp));
     }
+
 
 }

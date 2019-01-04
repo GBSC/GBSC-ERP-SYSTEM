@@ -1,45 +1,39 @@
-<div class="m-content">
-  <div class="row">
-    <div class="col-xl-12">
+ 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Banks</h3>
+              <h3 class="m-portlet__head-text">Employee Type</h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
-            <div class="m-section__content">
+            <div class="m-section__content"> 
 
-
-            </div>
-
-            <dx-data-grid id="gridContainer" [dataSource]="emptype" keyExpr="employeeTypeId" (onRowInserted)="addemptype($event)" (onRowUpdated)="Updateemptype($event)"
+            <dx-data-grid id="gridContainer" 
+            [dataSource]="emptype"
+             keyExpr="employeeTypeId"
+              (onRowInserted)="addemptype($event)" 
+              (onRowUpdating)="Updatingemptype($event)"
+              (onRowUpdated)="Updateemptype()"
               (onRowRemoved)="deleteEType($event)">
-
-              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-
-                <dxo-popup title="Employee Type" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-popup title="Employee Type" [showTitle]="true" [width]="700" [height]="345">
                 </dxo-popup>
               </dxo-editing>
               <dxo-filter-row [visible]="true"></dxo-filter-row>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
-
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
               <dxo-paging [pageSize]="8"></dxo-paging>
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
               </dxo-pager>
-
               <dxi-column dataField="code"></dxi-column>
               <dxi-column dataField="name"></dxi-column>
               <dxi-column dataField="description"></dxi-column>
-
             </dx-data-grid>
+          </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+ 

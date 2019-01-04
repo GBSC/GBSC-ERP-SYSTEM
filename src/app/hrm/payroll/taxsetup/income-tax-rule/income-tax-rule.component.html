@@ -1,0 +1,49 @@
+
+ 
+        <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+          <div class="m-portlet__head-title">
+            <h3 class="m-portlet__head-text">Income Tax Rule</h3>
+          </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+          <div class="m-section__content" >
+            <dx-data-grid id="gridContainer" [dataSource]="incomeTax"
+            keyExpr="incomeTaxRuleId"
+             (onRowInserted)="addIncomeTaxRule($event)"
+              (onRowUpdated)="updateIncomeTaxRule()" 
+              (onRowUpdating)="UpdatingIncomeTaxRule($event)" 
+              (onRowRemoved)="deleteIncomeTaxRule($event)"> 
+
+              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
+                <dxo-popup title="Income Tax Rule" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
+              </dxo-editing>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-header-filter [visible]="true"></dxo-header-filter>
+              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+              <dxo-paging [pageSize]="8"></dxo-paging>
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+         
+                <dxi-column dataField="payrollYearId" caption="Payroll Year">
+                    <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId">
+                    </dxo-lookup>
+                  </dxi-column> 
+              <dxi-column dataField="personalExemption" caption="Personal Exemption"></dxi-column>
+              <dxi-column dataField="taxLimit" caption="Tax Limit"></dxi-column> 
+              <dxi-column dataField="ageLimit" caption="Age Limit"></dxi-column> 
+              <dxi-column dataField="exemptPercentage" caption="Exempt Percentage"></dxi-column> 
+              <dxi-column dataField="taxRebatePercentage" caption="Tax Rebate Percentage"></dxi-column> 
+              <dxi-column dataField="taxRebateAmount" caption="Tax Rebate Amount"></dxi-column> 
+            </dx-data-grid> 
+          </div>
+          </div>
+        </div>
+        </div>
+ 
+
+
+
+

@@ -1,77 +1,160 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SetupService } from '../../hrmsSetup/services/setup.service';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { EmployeeService } from '../services/employee.service';
+import { SetupService, EmployeeService, HrmsService } from '../../../core';
+
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-    selector: 'app-company',
+    selector: 'app-employeecompany',
     templateUrl: './company.component.html',
     styleUrls: ['./company.component.css']
 })
-export class CompanyComponent implements OnInit {
+export class EmployeeCompanyComponent implements OnInit {
 
-    @Output('setCompanyFormValue') setCompanyFormValue = new EventEmitter();
-
+    public isDisabled = true;
     public EmpCompanyForm: any;
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employee: EmployeeService) { }
+    public designation: any;
+    public employeetype: any;
+    public functions: any;
+    public groups: any;
+    public managementlevel: any;
+    public employeestatus: any;
+    public departments: any;
+    public employees: any;
+    public manager: any;
+    public filterdemplyoee: any;
+
+    @Input('employeeId') id: number;
+
+    @Output() updateMessage = new EventEmitter();
+
+    public EmployeeCompany: any;
+    public cempstatus: any;
+
+    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
+
+        this.EmpCompanyForm = this.fb.group({
+            ManagementLevelId: [''],
+            FunctionId: [''],
+            EmployeeStatusId: [''],
+            EmployeeTypeId: [''],
+            DesignationId: [''],
+            ContractStartDate: [''],
+            ContractEndDate: [''],
+            AppointmentDate: [''],
+            NextAppraisalDate: [''],
+            ConfirmationDueDate: [''],
+            ConfirmationDate: [''],
+            LeavingDate: [''],
+            ResignDate: [''],
+            Approver: [''],
+            UserId: [this.id]
+
+        });
+
+    }
 
     async ngOnInit() {
 
-        // this.EmpCompanyForm = this.fb.group({
-        //   Designaton: ['', Validators.required],
-        //   ManagementLevel: ['', Validators.required],
-        //   Function: ['', Validators.required],
-        //   Group: ['', Validators.required],
-        //   EmpStatus: ['', Validators.required],
-        //   EmpType: ['', Validators.required],
-        //   Shift: ['', Validators.required],
-        //   EmpGrade: ['', Validators.required] 
-        // }); 
+        this.functions = await this.SetupServiceobj.getAllFunctions();
+
+        this.departments = await this.hrmService.getAllDepartments();
+
+        this.designation = await this.SetupServiceobj.getAllDesignations();
+
+        this.managementlevel = await this.SetupServiceobj.getAllManagementlevels();
+
+        this.groups = await this.SetupServiceobj.getAllGroups();
+
+        this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
+
+        this.employees = await this.employeeService.GetAllEmployees();
+
+        this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
 
 
-        await this.SetupServiceobj.getAllFunctions();
-        let fnc = this.SetupServiceobj.function;
+        this.employeeService.getManagers().subscribe(res => {
+            this.manager = res;
+            console.log(this.manager);
+            // this.filterdemplyoee = this.employes.fil
+        })
 
-        await this.SetupServiceobj.getAllqualifications();
-        let qf = this.SetupServiceobj.qualification;
+        await this.SetupServiceobj.getEmployeeStatus();
+
+        this.route.params.subscribe((params) => {
+
+            this.id = +params['id'];
+
+            this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
+
+                this.EmployeeCompany = resp
+
+                this.patchValues(resp);
+            });
 
 
-        await this.SetupServiceobj.getAllManagementlevels();
-        let ml = this.SetupServiceobj.managementlevel;
+        });
 
-        await this.SetupServiceobj.getAllgrades();
-        let grd = this.SetupServiceobj.grades;
-
-        await this.SetupServiceobj.getAllDesignations();
-        let cdsg = this.SetupServiceobj.designation;
-
-        await this.SetupServiceobj.getAllManagementlevels();
-        let mnglevel = this.SetupServiceobj.managementlevel;
-
-        await this.SetupServiceobj.getAllShifts();
-        let cshft = this.SetupServiceobj.shift;
-
-        await this.SetupServiceobj.getAllGroups();
-        let grp = this.SetupServiceobj.group;
-
-        await this.SetupServiceobj.getAllEmployeeTypes();
-        let cemptype = this.SetupServiceobj.employeetype;
-
-        await this.SetupServiceobj.getAllEmployeeStatus();
-        let cempstatus = this.SetupServiceobj.employeestatus;
-    }
-    getcompanyFormValue() {
-        this.setCompanyFormValue.emit(this.EmpCompanyForm.value);
     }
 
-    doit(e) {
-        console.log(e.target.value)
+    check() {
+        this.isDisabled = !this.isDisabled;
+        return;
     }
 
-    async addcompanyinfo() {
-        let cmp = await this.employee.addusercompany();
-        console.log(cmp);
+    showSuccess(message) {
+
+        this.updateMessage.emit(message);
     }
 
+
+    async update(value) {
+
+        value.UserId = this.id;
+
+        if (this.EmployeeCompany.userCompanyId > 0) {
+
+            value.UserCompanyId = this.EmployeeCompany.userCompanyId;
+
+            this.employeeService.updateUserCompany(value).subscribe(c => {
+
+                this.showSuccess("Company Information Updated");
+
+            })
+        }
+        else {
+
+            this.employeeService.addUserCompany(value).subscribe(c => {
+
+                this.showSuccess("Company Information Added");
+
+            })
+
+        }
+    }
+
+
+    patchValues(company: any) {
+
+        this.EmpCompanyForm.patchValue({
+
+            DesignationId: company.designationId,
+            ManagementLevelId: company.managementlevelId,
+            FunctionId: company.functionId,
+            EmployeeStatusId: company.employeeStatusId,
+            EmployeeTypeId: company.employeeTypeId,
+            ShiftId: company.shiftId,
+            ContractStartDate: company.ContractStartDate,
+            ContractEndDate: company.contractEndDate,
+            AppointmentDate: company.appointmentDate,
+            NextAppraisalDate: company.nextAppraisalDate,
+            ConfirmationDueDate: company.confirmationDueDate,
+            ConfirmationDate: company.confirmationDate,
+            LeavingDate: company.leavingDate,
+            ResignDate: company.resignDate,
+            Approver: company.approver,
+            userId: this.id
+        });
+    }
 
 }

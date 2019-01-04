@@ -1,0 +1,130 @@
+<div class="m-content">
+
+  <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Goods Receipt Note</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <div class="m-section">
+              <div class="m-section__content">
+
+                <div class="form-group row">
+      
+                    <div class="form-group col-lg-3">
+                        <label>GRN #</label>
+                        <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Document ">
+                    </div>
+                    <div class="form-group col-lg-3"><label for="exampleInputEmail1">GRN Date </label>
+                      <div class="input-group date">
+                        <input class="form-control m-input" id="m_datepicker_2" type="text">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="la la-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label for="exampleSelect1"> Consultant </label>
+                        <select class="form-control m-input ng-pristine ng-invalid ng-touched">
+                            <option class="active" value="Roche Pakistan" >Roche Pakistan</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <label class="m-radio blankinput">
+                            <input type="radio" name="type">
+                            Local
+                            <span></span>
+                          </label>
+                    </div>
+                    <div class="form-group col-lg-2">
+                        <label></label>
+                        <label class="m-radio blankinput">
+                            <input type="radio"  name="type">
+                            Import
+                            <span></span>
+                          </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+      
+                    <div class="form-group col-lg-3">
+                        <label>Manual #</label>
+                        <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Document ">
+                    </div>
+                    <div class="form-group col-lg-3"><label for="exampleInputEmail1">Manual Date </label>
+                      <div class="input-group date">
+                        <input class="form-control m-input" id="m_datepicker_2" type="text">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="la la-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-lg-3">
+                        <label>PO NO</label>
+                        <input type="text" class="form-control m-input m-input--solid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Document ">
+                    </div>
+                    <div class="form-group col-lg-1">
+                        <label class="m-checkbox blankinput">
+                          <input type="checkbox" checked="checked">
+                          POST
+                          <span></span>
+                        </label>
+                    </div>
+                    <div class="form-group  col-lg-2">
+                      <label for="exampleInputEmail1"></label>
+                      <button class="btn btn-success blankinput" type="button"> POST </button>
+                    </div>
+                </div>
+
+                <br>      
+                <hr class="style1">
+                <br>  
+                           <div class="m-portlet__body">
+                  <div class="m-section">
+                    <div class="m-section__content" >
+                        <dx-data-grid id="gridContainer" [dataSource]=""> 
+                        <dxo-editing mode="row" [allowAdding]="true">
+                        </dxo-editing>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+                            <dxo-paging [pageSize]="5"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                            <dxi-column dataField="ManualCode" caption="Manual Code"></dxi-column>
+                            <dxi-column dataField="Discription" caption="Discription Of Item"></dxi-column>
+                            <dxi-column dataField="" caption="Pack Type"></dxi-column>
+                            <dxi-column dataField="" caption="Pack Size"></dxi-column>
+                            <dxi-column dataField="" caption="No. Pack Type"></dxi-column>  
+                            <dxi-column dataField="" caption="Qutatity"></dxi-column>
+                            <dxi-column dataField="" caption="Rate"></dxi-column>
+                            <dxi-column dataField="NetAmount" caption="Net Amount"></dxi-column>
+                            <dxo-summary>
+                                <dxi-total-item
+                                    column="NetAmount"
+                                    summaryType="sum"
+                                    type="decimal">
+                                </dxi-total-item>
+                            </dxo-summary> 
+                        </dx-data-grid>  
+                    </div>
+                  </div>
+                </div>  
+   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ 
+</div>

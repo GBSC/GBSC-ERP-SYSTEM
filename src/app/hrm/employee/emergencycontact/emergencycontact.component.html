@@ -1,200 +1,58 @@
-<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-  <h4>Add New Contact</h4>
-
-</div>
-
-<div *ngFor="let field of fieldArray; let i = index">
- <form class="" [formGroup]="employee.DependantForm"> 
-                <div class="row">
-                  <div class="col-md-5">
-                      <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                              Dependent Name
-                          </label>
-                          <input type="text" class="form-control m-input m-input--solid" formControlName="Name" id="InputFirstName" aria-describedby="emailHelp" placeholder="Dependant Name">
-                        <div class="m--space-07"></div>
-                      </div> 
-                  
-                  </div>
-                  <div class="col-md-7">
-                      <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Email
-                          </label>
-                          <input type="text" class="form-control m-input m-input--solid" formControlName="Email" id="InputFirstName" aria-describedby="emailHelp" placeholder="Email">
-                          <div class="m--space-07"></div>
-                          <!-- <input type="text" class="form-control m-input m-input--solid" id="InputFirstName" aria-describedby="emailHelp" placeholder="Personal"> -->
-                      </div> 
-                  </div>
-                </div>
+ <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+           
+ 
+                        <div class="m-portlet">
+                          <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                              <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">User Dependants</h3>
+                              </div>
+                            </div>
+                            </div>
                 
-                <div class="m--space-10"></div>
-                 
-                <div class="row">
-                     <div class="col-md-6">
-                            <div class="form-group">
-                             <input type="text" class="form-control m-input m-input--solid" formControlName="Country" id="Country" aria-describedby="emailHelp" placeholder="Country">   
-                                <!-- <select class="form-control m-input m-input--solid" name="Country"  id="country">
-                                            <option *ngFor ="let countries of SetupServiceobj.country " [value]="countries.id" >{{countries.name}}</option>
-                                        </select> -->
+                          <div class="m-portlet__body">
+                            <div class="m-section">
+                              <div class="m-section__content">
+                                <dx-data-grid id="gridContainer"
+                                 [dataSource]="relations"
+                                 keyExpr="relationId" 
+                                 [columnAutoWidth]="true"
+                                 (onRowInserted)="addRelation($event)" (onRowUpdated)="updateRelation($event)" >
+                                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                    <dxo-popup title="User Dependants" [showTitle]="true" [width]="850" [height]="450"></dxo-popup>
+                                  </dxo-editing>
+                                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+                  
+                                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                  <dxo-paging [pageSize]="6"></dxo-paging>
+                                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                  </dxo-pager> 
+                                  <dxi-column dataField="name"></dxi-column>
+                                  <dxi-column dataField="dependantsRelationId" caption="Dependants Relation">
+                                      <dxo-lookup [dataSource]="dependantrelations" displayExpr="name" valueExpr="dependantsRelationId">
+                                      </dxo-lookup>
+                                    </dxi-column>  
+                                  <dxi-column dataField="email"></dxi-column>
+                                  <dxi-column dataField="address"></dxi-column>
+                                  <dxi-column dataField="permanentAddress" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="phone">
+                                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                                    <dxi-validation-rule 
+                                        type="pattern"
+                                        [pattern]="pattern" message="Your phone must have &#34;(555) 555-5555&#34; format!"
+                                        ></dxi-validation-rule>
+                                  </dxi-column>
+                                  <dxi-column dataField="country"></dxi-column>
+                                  <dxi-column dataField="city" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="province" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="zipCode" [visible]="false"></dxi-column>
+                                  <dxi-column dataField="description" [visible]="false"></dxi-column>
+                                </dx-data-grid>
+                              </div>
                             </div>
                           </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                            <input type="text" class="form-control m-input m-input--solid" formControlName="City" id="City" aria-describedby="emailHelp" placeholder="City">
-                          <!-- <select class="form-control m-input m-input--solid" name="City"  id="city">
-                                <option *ngFor ="let cities of SetupServiceobj.city " [value]="cities.id" >{{cities.name}}</option>
-                            </select> -->
-                        </div>
-                    </div>
-                
-                  </div>
-                 <div class="row">   
-                        <div class="col-md-6">
-                                <div class="form-group">
-                                    <input class="form-control m-input m-input--solid" formControlName="State" placeholder="State / Province" name="state" type="text">
-                                  </div>
-                        
-                              </div>     
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input class="form-control m-input m-input--solid" formControlName="Zip" placeholder="Zip Code" name="zipcode" type="text"></div>
-                        </div>
-                        <!-- <div class="col-md-4">
-                            <div class="form-group"><input class="form-control m-input m-input--solid" placeholder="Home" name="home_phone" type="text"></div>
-                        </div> -->
-                      </div>
-                
-                      <div class="row"> 
-                            <div class="col-md-12">
-                            <div class="form-group m-form__group">
-                                  <label for="exampleInputEmail1">
-                                      Address
-                                  </label>
-                                  <textarea class="form-control m-input m-input--solid" formControlName="Address" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Address"></textarea>
-                                  <div class="m--space-07"></div>
-                                
-                              </div> 
-                            </div>
-                        </div>
-
-                        <div class="row"> 
-                                <div class="col-md-12">
-                                <div class="form-group m-form__group">
-                                      <label for="exampleInputEmail1">
-                                          Permanent Address
-                                      </label>
-                                      <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" id="" aria-describedby="" placeholder="Enter Address"></textarea>
-                                      <div class="m--space-07"></div>
-                                    
-                                  </div> 
-                                </div>
-                            </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group m-form__group">
-                            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
                         </div>
                       </div>
-                    </div>
-                </form>
+               
 
-    <button class="btn btn-default"  type="button" (click)="deleteFieldValue(i)">Delete</button>
-
-</div>
-
- 
-<form class="" [formGroup]="employee.DependantForm"> 
-<div class="row">
-  <div class="col-md-5">
-      <div class="form-group m-form__group">
-          <label for="exampleInputEmail1">
-              Dependent Name
-          </label>
-          <input type="text" class="form-control m-input m-input--solid" formControlName="Name" id="" aria-describedby="" placeholder="Dependant Name">
-        <div class="m--space-07"></div>
-      </div> 
-  
-  </div>
-  <div class="col-md-7">
-      <div class="form-group m-form__group">
-          <label for="exampleInputEmail1">
-            Email
-          </label>
-          <input type="text" class="form-control m-input m-input--solid" formControlName="Email" id="" aria-describedby="" placeholder="Email">
-          <div class="m--space-07"></div>
-          <!-- <input type="text" class="form-control m-input m-input--solid" id="InputFirstName" aria-describedby="emailHelp" placeholder="Personal"> -->
-      </div> 
-  </div>
-</div>
-
-<div class="m--space-10"></div>
- 
-<div class="row">
-     <div class="col-md-6">
-            <div class="form-group">
-             <input type="text" class="form-control m-input m-input--solid" formControlName="Country" id="" aria-describedby="" placeholder="Country">   
-                <!-- <select class="form-control m-input m-input--solid" name="Country"  id="country">
-                            <option *ngFor ="let countries of SetupServiceobj.country " [value]="countries.id" >{{countries.name}}</option>
-                        </select> -->
-            </div>
-          </div>
-    <div class="col-md-6">
-      <div class="form-group">
-            <input type="text" class="form-control m-input m-input--solid" formControlName="City" id="" aria-describedby="" placeholder="City">
-          <!-- <select class="form-control m-input m-input--solid" name="City"  id="city">
-                <option *ngFor ="let cities of SetupServiceobj.city " [value]="cities.id" >{{cities.name}}</option>
-            </select> -->
-        </div>
-    </div>
-
-  </div>
- <div class="row">   
-        <div class="col-md-6">
-                <div class="form-group">
-                    <input class="form-control m-input m-input--solid" formControlName="State" placeholder="State / Province" name="state" type="text">
-                  </div>
-        
-              </div>     
-        <div class="col-md-6">
-            <div class="form-group"><input class="form-control m-input m-input--solid" formControlName="Zip" placeholder="Zip Code" name="zipcode" type="text"></div>
-        </div>
-        <!-- <div class="col-md-4">
-            <div class="form-group"><input class="form-control m-input m-input--solid" placeholder="Home" name="home_phone" type="text"></div>
-        </div> -->
-      </div>
-
-      <div class="row"> 
-            <div class="col-md-12">
-            <div class="form-group m-form__group">
-                  <label for="exampleInputEmail1">
-                      Address
-                  </label>
-                  <textarea class="form-control m-input m-input--solid" formControlName="Address" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Address"></textarea>
-                  <div class="m--space-07"></div>
-                
-              </div> 
-            </div>
-        </div>
-
-      <div class="row">
-      <div class="col-md-12">
-        <div class="form-group m-form__group">
-              <label for="exampleInputEmail1">
-                  Address
-              </label>
-              <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" id="InputlastName" aria-describedby="emailHelp" placeholder="Enter Permanent Address"></textarea>
-              <div class="m--space-07"></div>
-            
-          </div> 
-        </div>
-    </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group m-form__group">
-            <button class="btn btn-default" type="button" (click)="addFieldValue()">Add More</button>
-        </div>
-      </div>
-    </div>
-</form>

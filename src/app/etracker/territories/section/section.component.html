@@ -1,0 +1,32 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Section</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="row">
+      <div class="col-md-12">
+        <dx-data-grid id="gridContainer" [dataSource]="sections" keyExpr="sectionId" (onRowInserted)="addSection($event)"
+          (onRowUpdated)="updateSection($event)" (onRowRemoved)="deleteSection($event)">
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+              <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
+            <dxo-popup title="Add Section" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false"
+              [closeOnOutsideClick]="true"></dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+          <dxi-column dataField="name" caption="Name"></dxi-column>
+          <dxi-column dataField="territoryId" caption="Territory" [visible]="true">
+            <dxo-lookup [dataSource]="territories" valueExpr="territoryId" displayExpr="name"></dxo-lookup>
+          </dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+</div>

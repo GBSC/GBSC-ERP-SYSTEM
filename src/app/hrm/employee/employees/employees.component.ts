@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../services/employee.service';
 import { Router } from '@angular/router';
+import { EmployeeService } from '../../../core';
 
 @Component({
     selector: 'app-employees',
@@ -9,14 +9,16 @@ import { Router } from '@angular/router';
 })
 export class EmployeesComponent implements OnInit {
 
-    emp: any;
+    public emp: any;
+    public userId: any;
+
+
     constructor(public employee: EmployeeService, public router: Router) { }
 
     async ngOnInit() {
 
         await this.employee.GetAllEmployees();
         this.emp = this.employee.employeereg;
-        console.log(this.emp);
     }
 
 
@@ -33,11 +35,13 @@ export class EmployeesComponent implements OnInit {
     }
 
     onadd() {
-        this.router.navigate(['employee/home'])
+        this.router.navigate(['hrm/employee/registration'])
     }
 
-    onupdate() {
 
-        this.router.navigate(['employee/home'])
+    getCurrentRowData(d) {
+        this.userId = d.key;
+        this.router.navigate(['hrm/employee/updateemployee/' + this.userId]);
+
     }
 }

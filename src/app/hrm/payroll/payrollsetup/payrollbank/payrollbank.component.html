@@ -1,0 +1,64 @@
+ 
+  
+<div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Payroll Bank Details
+          </h3>
+        </div> 
+      </div>
+    </div>
+    <div class="m-portlet__body">
+      <dx-data-grid id="gridContainer" [dataSource]="payrollBank" keyExpr="payrollBankId" 
+        (onRowInserted)="addPayrollBank($event)" 
+        (onRowUpdated)="updatePayrollBank()"
+        (onRowUpdating)="updatingPayrollBank($event)" 
+        (onRowRemoved)="deletePayrollBank($event)">
+        <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+          <dxo-popup title="Payroll Bank" [showTitle]="true" [width]="1100" [height]="620"></dxo-popup>
+        </dxo-editing>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-paging [pageSize]="8"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+        </dxo-pager>
+
+        <dxi-column dataField="bankTitle"></dxi-column>
+        <dxi-column dataField="accountNumber"> </dxi-column>
+        <dxi-column dataField="routingCode" [visible]="false"></dxi-column>
+        <dxi-column dataField="swiftCode" [visible]="false"></dxi-column>
+        <dxi-column dataField="remitType" [visible]="false"></dxi-column>
+        <dxi-column dataField="remitKey" [visible]="false"></dxi-column>
+        <dxi-column dataField="branchCode" [visible]="false"></dxi-column>
+        <dxi-column dataField="branch"></dxi-column>
+        <dxi-column dataField="branchContactNumber">
+          <dxi-validation-rule type="required"></dxi-validation-rule>
+          <dxi-validation-rule 
+              type="pattern"
+              [pattern]="pattern" message="Your phone must have &#34;021-36551480&#34; format!"
+              ></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="branchAddress" [visible]="false"></dxi-column>
+        <dxi-column dataField="branchEmplyeeName" caption="Branch Employee Name"></dxi-column>
+        <dxi-column dataField="branchEmplyeeDesignation" caption="Branch Employee Designation" [visible]="false"></dxi-column>
+        <dxi-column dataField="firstApproverName" [visible]="false"></dxi-column>
+        <dxi-column dataField="firstApproverDesignation" [visible]="false"></dxi-column>
+        <dxi-column dataField="secondApproverName" [visible]="false"></dxi-column>
+        <dxi-column dataField="secondApproverDesignation" [visible]="false"></dxi-column>
+        <dxi-column dataField="bankAdviceTemplateId" caption="Bank Advice Template" [visible]="false">
+          <dxo-lookup [dataSource]="bankAdviceTemplate" displayExpr="name" valueExpr="bankAdviceTemplateId"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="chequeTemplateId" caption="Cheque Template" [visible]="false">
+          <dxo-lookup [dataSource]="chequeTemplate" displayExpr="name" valueExpr="chequeTemplateId"></dxo-lookup>
+        </dxi-column>
+        <dxi-column dataField="costCentreCode" [visible]="false"></dxi-column>
+        <dxi-column dataField="glCode" [visible]="false"></dxi-column>
+        <dxi-column dataField="companyBank" dataType="boolean"></dxi-column>
+        <dxi-column dataField="active" dataType="boolean" [visible]="false"></dxi-column>
+      </dx-data-grid>
+    </div>
+  </div>

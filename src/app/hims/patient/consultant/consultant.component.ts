@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import { PatientService } from '../../patient/services/patient.services';
+import { PatientService } from '../../../core';
 
 
 @Component({
@@ -10,28 +9,34 @@ import { PatientService } from '../../patient/services/patient.services';
 })
 export class ConsultantComponent implements OnInit {
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     async  ngOnInit() {
 
         await this.PatientServiceobj.getConsultant();
-        let x = this.PatientServiceobj.consultant;
-        console.log(x);
+        this.PatientServiceobj.consultant;
+        console.log(this.PatientServiceobj.consultant);
+        //    console.log(x);
     }
 
     async addConsultant(value) {
-        console.log(value.key);
+        //    console.log(value.key);
         await this.PatientServiceobj.addConsultant(value.key);
+        await this.PatientServiceobj.getConsultant();
+        this.PatientServiceobj.consultant;
+
     }
 
     async updateConsultant(value) {
-        console.log(value.key);
+        //    console.log(value);
         await this.PatientServiceobj.updateConsultant(value.key)
+        this.PatientServiceobj.consultant;
     }
 
     async deleteConsultant(value) {
-        console.log(value.key.consultantId);
+        //   console.log(value.key.consultantId);
         await this.PatientServiceobj.deleteConsultant(value.key.consultantId);
+        this.PatientServiceobj.consultant;
     }
 
 }

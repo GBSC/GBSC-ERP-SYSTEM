@@ -1,0 +1,182 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text ">List All Roles</h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+              <ul class="m-portlet__nav">
+                  <li class="m-portlet__nav-item">
+                      <a class="m-portlet__nav-link m-portlet__nav-link--icon">
+                          <span class="m--font-bolder">
+                              Set New Role
+                            </span>
+                      </a>
+                    </li>
+                <li class="m-portlet__nav-item">
+                  <a (click)="createNewRole()" class="btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="Add New Role">
+                    <i class="fa fa-plus"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+                    <dx-data-grid id="gridContainer" [dataSource]="roles">
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-paging [pageSize]="5"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                      <dxi-column dataField="name" caption="Role"></dxi-column>
+                    </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add New Role
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="form-group col-lg-4">
+            <label>Role Name</label>
+            <input aria-describedby="emailHelp" class="form-control m-input m-input--solid" id="exampleInputEmail1" placeholder="Super Admin"
+              type="text">
+
+            <button class="btn btn-success blankinput pull-right" type="button"> Save </button>
+          </div>
+
+          <div class="form-group col-lg-4">
+            <dx-tree-view [items]="[]" [width]="320" showCheckBoxesMode="normal" (onItemSelectionChanged)="selectionChanged()">
+            </dx-tree-view>
+          </div>
+          <a data-toggle="modal" data-target="#m_modal_3">
+            Add/Edit/Delete
+          </a>
+
+          <div class="form-group col-lg-4">
+            <dx-tree-view id="selection-treeview" [items]="[]" [width]="320" showCheckBoxesMode="normal">
+            </dx-tree-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--begin::Modal-->
+<div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          New message
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">
+          Send message
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="roles-popup-container" *ngIf="showPopup">
+  <div class="main-container">
+
+    <div class="container">
+      <div class="main-header">
+        <h2>Create A Role</h2>
+      </div>
+      <div class="name-container">
+        <input type="text" id="name" class="form-control m-input" (change)="role.Name = $event.target.value" placeholder="Insert role name here...">
+      </div>
+      <div class="content-container">
+        <div class="right">
+          <div class="module" *ngFor="let module of modules;">
+
+            <div class="checkbox">
+              <img (click)="module.expanded = !module.expanded" [src]="!module.expanded? '/assets/images/baseline-add-24px.svg' : '/assets/images/baseline-remove-24px.svg'"
+                alt="">
+              <input type="checkbox" (change)="addThis($event, 'RoleModules', module, 'ModuleId')">
+              <p>{{module?.name}}</p>
+            </div>
+            <div class="parent" *ngIf="module?.expanded">
+              <div class="children" *ngFor="let feature of module.features; let i = index">
+                <div class="feature">
+                  <input #fet type="checkbox" (change)="addThis($event, 'RoleFeatures', feature, 'FeatureId')">
+                  <p>{{feature.name}}</p>
+                  <div *ngIf="fet.checked" (click)="setCurrentFeature(feature)">
+                    <p>Create/Edit/View/Delete</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="role-actions">
+        <button class="btn btn-primary" (click)="showPopup = false">Cancel</button>
+        <button class="btn btn-info" (click)="saveRole()">Save Role</button>
+      </div>
+    </div>
+    <div class="popup" *ngIf="popup">
+      <div class="popup-content">
+        <div class="p-header">
+          <p>Edit Feature Rights</p>
+        </div>
+        <div class="p-title">
+          <h2>{{currentFeature.name}}</h2>
+        </div>
+        <div class="p-rights">
+          <div class="rights-box" *ngFor="let permission of typeOfPermissions; let i = index">
+            <input type="checkbox" [checked]="toggleRights(permission, i).checked" (change)="addPermissions($event, permission)">
+            <p>{{permission}}</p>
+          </div>
+        </div>
+        <div class="p-actions">
+          <button  class="btn btn-primary" (click)="popup = false">Cancel</button>
+          <button class="btn btn-info" (click)="savePermissions()">Done</button>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </div>
+
+</div>
+
+<!--end::Modal-->

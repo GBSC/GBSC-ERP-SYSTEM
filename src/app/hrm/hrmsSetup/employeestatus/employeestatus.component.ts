@@ -1,16 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Department } from '../models/department.interface';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { EmployeeStatus } from '../models/employeeStatus,interface';
-
+import { SetupService } from '../../../core';
 @Component({
     selector: 'app-employeestatus',
     templateUrl: './employeestatus.component.html',
@@ -19,47 +10,32 @@ import { EmployeeStatus } from '../models/employeeStatus,interface';
 export class EmployeeStatuscomponent implements OnInit {
 
     public empstatus: any;
+    public modelUpdating: any;
 
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
 
 
     async ngOnInit() {
-
-        await this.dataService.getAllEmployeeStatus();
-        this.empstatus = this.dataService.employeestatus;
-        console.log(this.empstatus);
-
-        // this.dataService.getAllEmployeeStatus().subscribe((data)=>this.employeestatus=data);
+        this.empstatus = await this.dataService.getEmployeeStatus();
     }
 
 
-
-    // GetAllCountries(){
-    //   this.dashboardService.getAllContries()
-    //   .subscribe((result : Country) => {
-    //      this.countries = result
-    //   },
-    //   error => {
-    //     console.log(error);
-    //     //this.notificationService.printErrorMessage(error);
-    //   });
-    // }
-
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addNewempstatus(empstatus) {
-        this.dataService.addEmployeeStatus(empstatus.data);
+    async addNewempstatus(empstatus) {
+        await this.dataService.addEmployeeStatus(empstatus.data);
+        this.empstatus = await this.dataService.getEmployeeStatus();
     }
 
-    EmpstatusEdit(estatus) {
-        this.dataService.updateEmployeeStatus(estatus);
+    EditingEmpstatus(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteestatus(empstats) {
+    async EmpstatusEdit() {
+        await this.dataService.updateEmployeeStatus(this.modelUpdating);
+    }
 
-        this.dataService.DeleteEmployeeStatus(empstats.key);
+    async deleteestatus(empstats) {
+        await this.dataService.DeleteEmployeeStatus(empstats.key);
     }
 
 }

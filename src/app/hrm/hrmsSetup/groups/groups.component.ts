@@ -1,14 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Group } from '../models/group,interface';
 
 @Component({
     selector: 'app-groups',
@@ -18,29 +11,30 @@ import { Group } from '../models/group,interface';
 export class GroupComponent implements OnInit {
 
     public group: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public modelUpdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
 
-        await this.dataService.getAllGroups();
-        this.group = this.dataService.group;
-        // console.log(this.group);
-        // this.dataService.getAllGroups().subscribe((data)=>this.groups=data);
+        this.group = await this.dataService.getAllGroups();
     }
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
-    addNewGroups(grp) {
-        this.dataService.addGroup(grp.data);
+    async addNewGroups(grp) {
+        await this.dataService.addGroup(grp.data);
+        this.group = await this.dataService.getAllGroups();
     }
 
-    EditGroup(grop) {
-        this.dataService.updateGroup(grop);
+    async groupUpdaing(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteGroup(grup) {
-        this.dataService.DeleteGroup(grup.key);
+    async EditGroup() {
+        await this.dataService.updateGroup(this.modelUpdating);
+    }
+
+    async deleteGroup(grup) {
+        await this.dataService.DeleteGroup(grup.key);
     }
 
 }

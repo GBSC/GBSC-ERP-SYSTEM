@@ -1,13 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { SkillLevels } from '../models/skilllevel,interface';
 
 @Component({
     selector: 'app-skilllevels',
@@ -16,31 +10,30 @@ import { SkillLevels } from '../models/skilllevel,interface';
 })
 export class SkillLevelsComponent implements OnInit {
 
-
-
     public skill: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public updatingSkill: any;
 
-
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-        await this.dataService.getAllSkillLevels();
-        this.skill = this.dataService.skilllevels;
-        // console.log(this.skill);
-        // this.dataService.getAllSkillLevels().subscribe((data)=>this.skilllevels=data);
+        this.skill = await this.dataService.getAllSkillLevels();
     }
 
-    addNewskill(slevel) {
-        this.dataService.addSkillLevel(slevel.data);
+    async addNewskill(slevel) {
+        await this.dataService.addSkillLevel(slevel.data);
+        this.skill = await this.dataService.getAllSkillLevels();
     }
 
-    Editskill(skill) {
-        this.dataService.updateSkillLevel(skill);
+    skillEditing(value) {
+        this.updatingSkill = { ...value.oldData, ...value.newData };
     }
 
-    deleteskill(skillevel) {
-        this.dataService.DeleteSkillLevel(skillevel.key);
+    async Editskill() {
+        await this.dataService.updateSkillLevel(this.updatingSkill);
+    }
+
+    async deleteskill(skillevel) {
+        await this.dataService.DeleteSkillLevel(skillevel.key);
     }
 
 }

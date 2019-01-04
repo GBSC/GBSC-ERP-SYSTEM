@@ -1,0 +1,122 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Embryology Freeze Thaw</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form>
+            <div class="m-section">
+              <div class="m-section__content">
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="patient?.mrn" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-2" style="margin-top: 28px;">
+                  
+                    <button type="button" class="btn btn-primary">
+                     Assessment
+                    </button>
+                  
+                </div> -->
+
+                </div>
+
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="row">
+
+                  <h4>Embryo Freeze Details (Unthawed):</h4>
+                  <dx-data-grid id="gridContainer" [dataSource]="unthawedSamples">
+
+                    <dxo-paging [enabled]="true"></dxo-paging>
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false">
+                    </dxo-editing>
+
+                    <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
+                    <dxi-column dataField="freezeDate" caption="Freeze Date" dataType="date"></dxi-column>
+                    <dxi-column dataField="drawer" caption="Drawer"></dxi-column>
+                    <dxi-column dataField="cannister" caption="Cannister"></dxi-column>
+                    <dxi-column dataField="can" caption="Can"></dxi-column>
+                    <dxi-column dataField="topBottom" caption="Top/Bottom">
+                      <dxo-lookup [dataSource]="topBottomOptions" displayExpr="name" valueExpr="name">
+                      </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="dateCreated" caption="Date/Time" dataType="datetime"></dxi-column>
+                    <dxi-column dataField="cycleNo" caption="Cycle #"></dxi-column>
+                    <dxi-column dataField="embryoFreezeUnthawedId" caption="Action" [formItem]="{visible: false}"
+                      [allowEditing]="false" cellTemplate="cellTemplate"></dxi-column>
+                    <div *dxTemplate="let data of 'cellTemplate'">
+                      <a class="btn btn-primary" (click)="onThaw(data)">Thaw</a>
+                    </div>
+                  </dx-data-grid>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="row">
+
+                  <h4>Embryo Freeze Details (Thawed):</h4>
+                  <dx-data-grid id="gridContainer" [dataSource]="thawedSamples">
+
+                    <dxo-paging [enabled]="true"></dxo-paging>
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true">
+                    </dxo-editing>
+
+                    <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
+                    <dxi-column dataField="freezeDate" caption="Freeze Date" dataType="date"></dxi-column>
+                    <dxi-column dataField="drawer" caption="Drawer"></dxi-column>
+                    <dxi-column dataField="cannister" caption="Cannister"></dxi-column>
+                    <dxi-column dataField="can" caption="Can"></dxi-column>
+                    <dxi-column dataField="topBottom" caption="Top/Bottom">
+                      <dxo-lookup [dataSource]="topBottomOptions" displayExpr="name" valueExpr="name">
+                      </dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="dateCreated" caption="Date/Time" dataType="datetime"></dxi-column>
+                    <dxi-column dataField="cycleNo" caption="Cycle #"></dxi-column>
+
+                  </dx-data-grid>
+                </div>
+                <hr>
+
+              </div>
+
+              <div class="col-sm-2">
+                <button type="button" (click)="updateThawAssessment()" class="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

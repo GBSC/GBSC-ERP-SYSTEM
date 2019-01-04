@@ -1,13 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Religion } from '../models/religion,interface';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
-import { Observable } from 'rxjs/Observable';
+import { SetupService } from '../../../core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -18,29 +10,31 @@ import { HttpClient } from '@angular/common/http';
 export class ReligionComponent implements OnInit {
 
     public religion: any;
+    public modelUpdating: any;
 
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
-
     async ngOnInit() {
-        await this.dataService.getAllReligions();
-        this.religion = this.dataService.religion;
-        // console.log(this.religion);
-        // this.dataService.getAllReligions().subscribe((data)=>this.religion=data);
+
+        this.religion = await this.dataService.getAllReligions();
     }
 
 
-    addNewreligion(relig) {
-        this.dataService.addReligion(relig.data);
+    async addNewreligion(religon) {
+        await this.dataService.addReligion(religon.data);
+        this.religion = await this.dataService.getAllReligions();
     }
 
-    updatereligion(relign) {
-        console.log(relign);
-        this.dataService.updateReligion(relign);
+    updatingreligion(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deletereligion(relg) {
-        this.dataService.DeleteReligion(relg.key);
+    async updatereligion() {
+        await this.dataService.updateReligion(this.modelUpdating);
+    }
+
+    async deletereligion(religon) {
+        await this.dataService.DeleteReligion(religon.key);
     }
 
 }

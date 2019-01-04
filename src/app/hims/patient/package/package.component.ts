@@ -1,41 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import {PatientService} from '../../sharedservices/patient.service'
+import { PatientService } from '../../../core';
 
 @Component({
-  selector: 'app-package',
-  templateUrl: './package.component.html',
-  styleUrls: ['./package.component.scss']
+    selector: 'app-package',
+    templateUrl: './package.component.html',
+    styleUrls: ['./package.component.scss']
 })
 export class PackageComponent implements OnInit {
 
-  public packg : any;
+    public packg: any;
 
-  constructor(private PatientServiceobj : PatientService)
-   { }
+    constructor(public PatientServiceobj: PatientService) { }
 
- async ngOnInit() {
+    async ngOnInit() {
 
-  await this.PatientServiceobj.getPackage();
-  this.packg = this.PatientServiceobj.package;
-  console.log(this.packg)
-}
+        await this.PatientServiceobj.getPackage();
+        this.packg = this.PatientServiceobj.package;
+        console.log(this.packg)
+    }
 
-  async addpackage(value){
+    async addpackage(value) {
 
-    let x = await this.PatientServiceobj.addPackage(value.key);
-    console.log(x);
-  }
+        let x = await this.PatientServiceobj.addPackage(value.key);
+        await this.PatientServiceobj.getPackage();
+        this.packg = this.PatientServiceobj.package;
+        console.log(x);
+    }
 
-  async updatepackage(value){
-    let x = await this.PatientServiceobj.updatePackage(value.key);
-    console.log(x);    
-  }
+    async updatepackage(value) {
+        let x = await this.PatientServiceobj.updatePackage(value.key);
+        console.log(x);
+    }
 
-  async deletepackage(value){
+    async deletepackage(value) {
 
-    let x = await this.PatientServiceobj.daletePackage(value.key.packageId);
-    console.log(x);
-    
-  }
+        let x = await this.PatientServiceobj.daletePackage(value.key.packageId);
+        console.log(x);
+
+    }
 
 }

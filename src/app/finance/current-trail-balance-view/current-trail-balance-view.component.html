@@ -1,0 +1,48 @@
+<div class="m-content">
+  <div class="row">
+
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Voucher Detail
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+            <dx-data-grid id="gridContainer"
+            [dataSource]=""
+            [masterDetail]="{ enabled: true, template: 'detail' }"
+            keyExpr="ID"
+            [showBorders]="true">
+        
+            <dxi-column dataField="" [width]="70" caption="Title"></dxi-column>
+            <dxi-column dataField=""></dxi-column>
+            <dxi-column dataField=""></dxi-column>
+            <dxi-column dataField="" [width]="170"></dxi-column>
+            <dxi-column dataField="" [width]="125"></dxi-column>
+            <dxi-column dataField="" dataType="date"></dxi-column>
+        
+            <div *dxTemplate="">
+                <!-- <div class="master-detail-caption">{{employee.data.FirstName + " " + employee.data.LastName + "'s Tasks:"}}</div> -->
+                <dx-data-grid
+                    [dataSource]=""
+                    [showBorders]="true"
+                    [columnAutoWidth]="true">
+                        <dxi-column dataField=""></dxi-column>
+                        <dxi-column dataField="" dataType="date"></dxi-column>
+                        <dxi-column dataField="" dataType="date"></dxi-column>
+                        <dxi-column dataField=""></dxi-column>
+                        <dxi-column  dataType="boolean" caption="Completed"  ></dxi-column>
+                </dx-data-grid>
+            </div>
+        </dx-data-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

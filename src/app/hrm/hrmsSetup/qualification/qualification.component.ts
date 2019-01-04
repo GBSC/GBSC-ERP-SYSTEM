@@ -1,15 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
-import { HomeDetails } from '../models/home.details.interface';
-import { HrmsService } from '../services/hrms.service';
-import { Department } from '../models/department.interface';
-
-import { BehaviorSubject } from 'rxjs';
-
-import { SetupService } from '../services/setup.service';
+import { SetupService } from '../../../core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Qualification } from '../models/qualification,interface';
 
 @Component({
     selector: 'app-qualification',
@@ -24,18 +16,13 @@ export class QualificationComponent implements OnInit {
         public dataService: SetupService) { }
 
     async ngOnInit() {
-        //  this.dataService.getAllFunctions().subscribe((data)=>this.qualification=data);
-        await this.dataService.getAllqualifications();
-        this.qualification = this.dataService.qualification;
-        console.log(this.qualification);
-
+        this.qualification = await this.dataService.getAllqualifications();
     }
 
 
-    // If you don't need a filter or a pagination this can be simplified, you just use code from else block
-
     addNewqualification(qfc) {
         this.dataService.addQualification(qfc.data);
+        this.qualification = this.dataService.getAllqualifications();
 
     }
 

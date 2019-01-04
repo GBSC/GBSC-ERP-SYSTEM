@@ -32,6 +32,7 @@ import { VisitDetailComponent } from './reports/visit-detail/visit-detail.compon
 import { LocationReportComponent } from './reports/location-report/location-report.component';
 import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-diff-units.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
+import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
 
 @NgModule({
     imports: [
@@ -48,7 +49,7 @@ import { VisitSummaryReportComponent } from './reports/visit-summary-report/visi
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

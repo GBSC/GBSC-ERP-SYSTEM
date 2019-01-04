@@ -265,6 +265,10 @@ export class FinanceService {
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccounts');
     }
 
+    getAccountsByCompany(companyid : number): Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccountsByCompany/' + companyid);
+    }
+
     getAccount(id: number): Observable<Account> {
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccount/' + id);
     }
@@ -350,7 +354,15 @@ export class FinanceService {
         return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchersByDate', params);
     }
 
-    public FormatDate(date: Date) {
+    private FormatDate(date: Date) {
         return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+    }
+
+    configureCompanyFinanceDetails(model: any): Observable<string> {
+        return this.ApiService.post(this.baseUrl + '/Finance/ConfigureCompanyFinanceDetails', model);
+    }
+
+    getMasterAccountsByCompany(companyid: number): Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetMasterAccountsByCompany/' + companyid);
     }
 }

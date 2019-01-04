@@ -58,6 +58,7 @@ import { IndentProcessComponent } from './sales/indent-process/indent-process.co
 import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 import { SetMasterAccountsComponent } from './setup/set-master-accounts/set-master-accounts.component';
+import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 
 @NgModule({
     imports: [
@@ -123,7 +124,7 @@ import { SetMasterAccountsComponent } from './setup/set-master-accounts/set-mast
         InventoryMasterComponent,
         IndentProcessComponent,
         OrderSummaryComponent, 
-        OrderDetailComponent, SetMasterAccountsComponent
+        OrderDetailComponent, SetMasterAccountsComponent, GeneralSkuComponent
     ]
 })
 export class InventoryModule { }

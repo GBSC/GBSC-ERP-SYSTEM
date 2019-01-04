@@ -63,6 +63,10 @@ export class SystemAdministrationService {
     }
 
 
+    getFeaturePermission(featureName, moduleName, roleId) {
+        return this.ApiService
+            .get(this.API_URL + 'getFeaturePermission?feature=' + featureName + '&module=' + moduleName + '&roleId=' + roleId);
+    }
 
     async getPermissions() {
         let response = await this.ApiService.get(this.API_URL + 'getpermissions').toPromise();
@@ -90,7 +94,7 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
     }
 
-    getBranchesByComapnyId(compid : number) : Observable<Branch[]>{
+    getBranchesByComapnyId(compid: number): Observable<Branch[]> {
         return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
     }
 
@@ -110,7 +114,7 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
     }
 
-    getDepartmentsByCompanyId(compid : number) : Observable<Department[]> {
+    getDepartmentsByCompanyId(compid: number): Observable<Department[]> {
         return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 

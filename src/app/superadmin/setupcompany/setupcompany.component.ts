@@ -35,6 +35,14 @@ export class SetupcompanyComponent implements OnInit {
 
     public eTrackerInstalled: boolean;
 
+
+    public companymodules : any[] = [];
+
+    public modulefeatures : any[] = [];
+    public unassignedfeatures : any[] = [];
+    public assignedfeatures : any[] = [];
+    public companymoduleids : number[] = [];
+
     constructor(public route: ActivatedRoute, public formBuilder: FormBuilder, public superAdminService: SuperadminserviceService) {
 
         this.companyForm = this.formBuilder.group({
@@ -51,12 +59,22 @@ export class SetupcompanyComponent implements OnInit {
             'LastName': ['', Validators.required],
             'Phone': ['', Validators.required],
             'DOB': [new Date()]
-        })
+        });
+
+        
 
 
     }
 
     ngOnInit() {
+
+        // function comparer(otherArray){
+        //     return function(current){
+        //         return otherArray.filter(function(other){
+        //             return other.value == current.value && other.display == current.display
+        //         }).length == 0;
+        //     }
+        // }
 
 
         this.route.params.subscribe((params) => {
@@ -64,6 +82,8 @@ export class SetupcompanyComponent implements OnInit {
         });
 
         if (this.companyId) {
+            console.log(this.companyId);
+
             this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
                 this.company = company;
 
@@ -71,10 +91,76 @@ export class SetupcompanyComponent implements OnInit {
                     this.checkModulesInstalled(modul);
                 }
 
-            })
-        }
+                this.companymoduleids = company.moduleIds;
+                console.log(this.companymoduleids);
 
+                this.superAdminService.getAllModuleFeatures(this.companymoduleids).subscribe((res : any[]) => {
+                    this.modulefeatures = res;
+                    // console.log(this.modulefeatures);
+
+                    this.superAdminService.getFeaturesByModules(this.companymoduleids).subscribe((res : any[]) => {
+                        this.assignedfeatures = res;
+                        // console.log(this.assignedfeatures);
+                    });
+
+                    // var uniqueResultOne = this.modulefeatures.filter(function(obj) {
+                    //     return !this.assignedfeatures.some(function(obj2) {
+                    //         return obj.value.name == obj2.value.name;
+                    //     });
+                    // });
+
+                    // console.log(uniqueResultOne);
+
+                    
+
+                    //   console.log(this.modulefeatures.filter(comparer(this.assignedfeatures)));
+
+                    this.modulefeatures.forEach((feature : any) => {
+                        // console.log(this.assignedfeatures.find(a => a.name === feature.name));
+                        // console.log(this.assignedfeatures.find(a => a.name == feature.name));
+
+                        // console.log(this.assignedfeatures.find(a => a.name != feature.name));
+                        // console.log(this.assignedfeatures.find(a => a.name = feature.name));
+                        // console.log(this.assignedfeatures.find(a => a.name != feature.name));
+                        // console.log(this.assignedfeatures.find(a => a.name = feature.name));
+
+                        // if(this.assignedfeatures.find(a => a.name === feature.name) == 'undefined') {
+                        //     this.unassignedfeatures.push(feature);
+                        //     console.log(this.unassignedfeatures);
+                        // };
+                    });
+
+
+                     this.modulefeatures.filter(t=>{
+                        console.log('t');
+                        this.assignedfeatures = this.assignedfeatures.filter(x=>
+                            x.name == t.name
+                        );
+                        console.log(this.assignedfeatures)
+                    });
+                    // console.log(this.unassignedfeatures);
+
+                    this.superAdminService.getModulesByCompany(this.companyId).subscribe((res : any[]) => {
+                        this.companymodules = res;
+                        // console.log(this.companymodules);
+                    });
+
+                });
+            });
+        }
     }
+
+
+    
+    addFeature(value) {
+        console.log(value);
+        // this.superAdminService.addCompanyFeatures()
+    }
+
+    deleteFeature(value) {
+        console.log(value)
+    }
+
 
     async onAddCompany(value) {
         // console.log(value);

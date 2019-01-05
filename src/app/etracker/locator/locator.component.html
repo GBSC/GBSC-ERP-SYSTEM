@@ -26,7 +26,7 @@
           </span>
         </button>
 
-        <button *ngIf="showHideFilter" (click)="go($event)" class="btn btn-success m-btn m-btn--icon m-btn--pill" style="float: right; margin-right: 10px; border: solid 1px;">
+        <button *ngIf="showHideFilter" (click)="fetchDayStartEnd($event)" class="btn btn-success m-btn m-btn--icon m-btn--pill" style="float: right; margin-right: 10px; border: solid 1px;">
           <span style="color: white;">
             <i class="fa fa-search"></i>
             <span>
@@ -133,10 +133,10 @@
         <div class="col-sm-2">
           <div class="form-group m-form__group">
             <label>
-              From
+              Day Start
             </label>
-            <input class="form-control m-input" type="date" (change)="filterFromDate($event)">
-          </div>
+            <input class="form-control m-input" type="date" (change)="showDayStartEnd($event)">
+          </div> 
         </div>
         <div class="col-sm-2">
           <div class="form-group m-form__group">
@@ -157,25 +157,41 @@
             </label>
             <div class="m-checkbox-list">
               <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
-                <input type="checkbox" (change)="showVisitedShops($event)">
-                Fetch Visited Shops
+                <input type="checkbox" (change)="showTimeFilter($event)">
+                Filter By Time
                 <span></span>
               </label>
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
-          <label for="">Day Start/Day End</label>
-          <input type="date" (change)="showDayStartEnd($event)">
-          <label for="">Day Start Hours (Optional)</label>
-          <input type="number" name="hour" min="0" max="23" (change)="getHour($event, 'start')">
-          <label for="">Day Start Minutes (Optional)</label>
-          <input type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'start')">
-          <label for="">Day End Hours (Optional)</label>
-          <input type="number" name="hour" min="0" max="23" (change)="getHour($event, 'end')">
-          <label for="">Day End Minutes (Optional)</label>
-          <input type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'end')">
-          <button (click)="fetchDayStartEnd($event)">Fetch Day Start/End</button>
+        <div class="col-sm-4">
+        <div *ngIf="timeFilter"  class="row">
+         
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>Hour</label>
+              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'start')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>Minutes</label>
+              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'start')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>End Hours</label>
+              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'end')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>End Minutes</label>
+              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'end')">
+            </div>
+          </div>
+        </div>
         </div>
 
       </div>
@@ -251,7 +267,7 @@
   </agm-marker>
 
   <agm-marker *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
-    [iconUrl]="" [label]="{text: i === 0? 'Day Start' : i === (eTrackerUserService.dayStartEndData.length - 1) ? 'Day End' : ''+(i+1), fontSize: '30px' }">
+    [iconUrl]="dayStartEndMakrer" [label]="{text: ''+(i+1), fontSize: '30px' }">
     <agm-info-window>
       <strong>Time: {{getTime(loc.timestamp.seconds)}}</strong>
     </agm-info-window>
@@ -332,6 +348,13 @@
       <i class="fa fa-map-marker"></i>
     </button>
   </li> -->
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Show All Shops">
+    <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showAllShops()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Latest Location">
     <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
     (click)="showLiveTracking()">

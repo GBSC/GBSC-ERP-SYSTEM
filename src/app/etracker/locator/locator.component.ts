@@ -26,6 +26,7 @@ export class LocatorComponent {
     public historyMakrer: any;
     public shopmarker: any;
     public currentLocationMarker: any;
+    public dayStartEndMakrer: any;
     public mapHelper: any;
     public showSpinner: boolean = false;
     public mockCoordsForLiveTracking: any = [];
@@ -69,6 +70,7 @@ export class LocatorComponent {
     public dsfId: any;
     public userSelected: any;
     public mockUser : any =  { lat: 24.86218208911948, lng: 67.07455098524781 };
+    public timeFilter : boolean = false;
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
@@ -114,7 +116,7 @@ export class LocatorComponent {
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');
         console.log(simpleMarker);
-        this.eTrackerUserService.fetchAllUsers();
+        // this.eTrackerUserService.fetchAllUsers();
         this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 45);
         this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 45);
         this.productiveShopMarker = this.mapHelper.createMarker(this.mapHelper.productiveShopMarker, 45);
@@ -122,6 +124,7 @@ export class LocatorComponent {
         this.nonProductiveShopMarker = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarker, 45);
         this.nonProductiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarkerOther, 45);
         this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
+        this.dayStartEndMakrer = this.mapHelper.createMarker(this.mapHelper.dayStartEndMakrer, 45);
 
         this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
         this.shops = JSON.parse(localStorage.getItem('shops'));
@@ -260,32 +263,32 @@ export class LocatorComponent {
     }
 
 
-    filterFromDate(e) {
-        let date = new Date(e.target.value);
-        this.dateRange.fromDate = date.getDate();
-        // this.dateRange.from = date.getTime() / 1000;
-        this.dateRange.from = date;
-        console.log(this.dateRange);
-    }
+    // filterFromDate(e) {
+    //     let date = new Date(e.target.value);
+    //     this.dateRange.fromDate = date.getDate();
+    //     // this.dateRange.from = date.getTime() / 1000;
+    //     this.dateRange.from = date;
+    //     console.log(this.dateRange);
+    // }
 
-    filterToDate(e) {
-        let date = new Date(e.target.value);
-        this.dateRange.toDate = date.getDate();
-        // this.dateRange.to = date.getTime() / 1000;
-        this.dateRange.to = date;
-    }
+    // filterToDate(e) {
+    //     let date = new Date(e.target.value);
+    //     this.dateRange.toDate = date.getDate();
+    //     // this.dateRange.to = date.getTime() / 1000;
+    //     this.dateRange.to = date;
+    // }
 
     selectZoomLevel(e) {
         this.selectedZoom = Number.parseInt(e.target.value);
     }
 
     showVisitedShops(e) {
-        this.eTrackerUserService.fetchVisitedShops(this.dateRange);
+        this.eTrackerUserService.fetchVisitedShops(this.dayStartEnd);
     }
 
-    go() {
-        this.eTrackerUserService.drawUserLocation(this.dateRange);
-    }
+    // go() {
+    //     this.eTrackerUserService.drawUserLocation(this.dateRange);
+    // }
 
     createDate(seconds) {
         let date: any = new Date();
@@ -326,7 +329,8 @@ export class LocatorComponent {
     }
 
     showAllShops() {
-        this.eTrackerUserService.showAllShops();
+        this.eTrackerUserService.fetchVisitedShops(this.dayStartEnd);
+        // this.eTrackerUserService.showAllShops();
     }
 
 
@@ -363,25 +367,38 @@ export class LocatorComponent {
 
     showLiveTrackingSimulation() {
         let counter = 0;
+        let currentUser = this.eTrackerUserService.currentUser;
+        this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[0];
         this.liveTracking = !this.liveTracking;
 
         let timer = setInterval(() => {
             if (counter < this.mockCoordsForLiveTracking.length && this.liveTracking) {
                 this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[counter];
-                console.log(this.mockCoordsForLiveTracking)
-                // this.eTrackerUserService.currentUser.userId = 0;
+                console.log(this.mockCoordsForLiveTracking);
+
+                this.eTrackerUserService.currentUser.fullName = currentUser.fullName;
+
                 this.sampleTracking.push(this.eTrackerUserService.currentUser);
                 counter++;
             } else {
                 clearInterval(timer);
                 console.log('timer cleared');
-                this.eTrackerUserService.setCurrentUser(this.eTrackerUserService.addMockDataForLiveTracking()[0], this.DSFs, this.agmMap);
+                // this.eTrackerUserService.setCurrentUser(this.eTrackerUserService.addMockDataForLiveTracking()[0], this.DSFs, this.agmMap);
+                this.eTrackerUserService.currentUser = currentUser;
                 this.agmMap.setCenter(this.eTrackerUserService.currentUser);
                 this.sampleTracking = [];
                 this.liveTracking = false;
 
             }
         }, 1000);
+    }
+
+    showTimeFilter(e) {
+        if(e.target.checked) {
+            this.timeFilter = true;
+        }else {
+            this.timeFilter = false;
+        }
     }
 
 

@@ -13,16 +13,20 @@ import { Employee } from '../../Models/HRM/employee';
 export class eTrackerUserService {
 
     public Url = "etracker/api/";
+
     public allUsers: any = [];
     public locationHistory: any = [];
     public visitedShops: any = [];
-    public currentUser: any = null;
-    public mapHelper: MapHelper = MapHelper;
     public productiveShops: any = [];
     public nonProductiveShops: any = [];
     public shopRouteTaken = [];
+    public dayStartEndData: any = [];
+    public mapHelper: MapHelper = MapHelper;
     public showSpinner: boolean = false;
+    public currentUser: any = null;
     public realTimeTracking: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public allShops: boolean = false;
+
 
     constructor(public firebase: AngularFirestore, public http: HttpClient, public ApiService: ApiService) { }
 
@@ -85,90 +89,98 @@ export class eTrackerUserService {
 
 
     fetchVisitedShops(dateRange) {
-        this.visitedShops = [];
-        this.shopRouteTaken = [];
-        this.clearFilteredShops();
-        let shopsObserable = this.firebase.collection('tbl_shops').valueChanges();
+        this.clearOtherArrays();
+        let shopsObserable = this.firebase.collection(`tbl_shops`).valueChanges();
         shopsObserable.subscribe(shops => shops.forEach((shop: any) => {
-
-            console.log(shop);
-
-            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', this.currentUser.userId).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
-
-            visit_summary.subscribe((d: any) => {
-                console.log(d);
-                d.forEach(p => {
-                    p.lat = Number.parseFloat(p.lat),
-                        p.lng = Number.parseFloat(p.lng)
-                    this.visitedShops.push(p);
-                    return p;
-                })
-                console.log('visitedShops', this.visitedShops);
-            });
-
-
+    
+          console.log(shop);
+    
+          let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==',this.currentUser.userId).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
+    
+          visit_summary.subscribe((d: any) => {
+            console.log(d);
+            d.forEach((p, i) => {
+              p.lat = Number.parseFloat(p.lat);
+              p.lng = Number.parseFloat(p.lng);
+              this.visitedShops.push(p);
+              return p;
+            })
+            this.allShops = true;
+            console.log('visitedShops', this.visitedShops);
+          });
+    
+    
         }));
-
-    }
-
-    filterProductiveShops() {
+    
+      }
+    
+      filterProductiveShops() {
         this.clearFilteredShops();
         this.productiveShops = this.visitedShops.filter(shop => shop.productive);
         console.log('productive', this.productiveShops);
-    }
-    filterNonProductiveShops() {
+      }
+      filterNonProductiveShops() {
         this.clearFilteredShops();
         this.nonProductiveShops = this.visitedShops.filter(shop => !shop.productive);
         console.log('non productive', this.productiveShops);
-    }
-
-    clearFilteredShops() {
+      }
+    
+      showAllShops() {
+          this.clearFilteredShops();
+          this.allShops = !this.allShops;
+      }
+    
+      clearFilteredShops() {
         this.productiveShops = [];
         this.nonProductiveShops = [];
         this.shopRouteTaken = [];
-    }
-
-    showRouteTaken() {
+        this.allShops = false;
+      }
+    
+      showRouteTaken() {
         if (this.shopRouteTaken.length) {
-            this.shopRouteTaken = [];
+          this.shopRouteTaken = [];
         } else {
-            if (this.productiveShops.length) {
-                this.shopRouteTaken = this.productiveShops;
-            } else if (this.nonProductiveShops.length) {
-                this.shopRouteTaken = this.nonProductiveShops;
-            }
+          if (this.productiveShops.length) {
+            this.shopRouteTaken = this.productiveShops;
+          } else if (this.nonProductiveShops.length) {
+            this.shopRouteTaken = this.nonProductiveShops;
+          }else if(this.visitedShops.length && this.allShops) {
+            this.shopRouteTaken = this.visitedShops;
+          }
         }
-    }
-
-    drawUserLocation(dateRange) {
+      }
+    
+      drawUserLocation(dateRange) {
+        this.clearOtherArrays();
         this.locationHistory = [];
         this.showSpinner = true;
         let days = dateRange.toDate - dateRange.fromDate;
         if (days <= 30) {
-
-            let history = this.firebase.collection(
-                `tbl_users/${this.currentUser.userid}/user_history`, ref => ref.where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
-            history.subscribe(data => {
-                console.log(data);
-                if (data.length < 200) {
-                    this.locationHistory = data.map((h: any) => {
-                        h.lat = parseFloat(h.lat);
-                        h.lng = parseFloat(h.lng);
-                        return h;
-                    });
-                } else {
-                    alert('Data is too large to draw on map')
-                }
-                this.showSpinner = false;
-                console.log(data)
-            })
-
+    
+          let history = this.firebase.collection(
+            `tbl_users/${this.currentUser.userId}/user_history`, ref => ref.where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
+          history.subscribe(data => {
+            console.log(data);
+            if (data.length < 500) {
+              this.locationHistory = data.map((h: any) => {
+                h.lat = parseFloat(h.lat);
+                h.lng = parseFloat(h.lng);
+                return h;
+              });
+            } else {
+              alert('Data is too large to draw on map')
+            }
+            this.showSpinner = false;
+            console.log(data)
+          })
+    
         } else {
-            alert(`Please select days less than 4`)
+          alert(`Please select days less than 4`)
         }
-    }
-
-    setCurrentUser(userIndex, DSFs, map) {
+      }
+    
+      setCurrentUser(userIndex, DSFs, map) {
         console.log(DSFs);
         console.log('map',map);
 
@@ -190,16 +202,37 @@ export class eTrackerUserService {
         });
         console.log(this.currentUser);
     }
-
-    createMarkerLabel(color, fontSize, fontFamily, fontWeight) {
+    
+      createMarkerLabel(color, fontSize, fontFamily, fontWeight) {
         return {
-            color,
-            fontFamily,
-            fontSize,
-            fontWeight,
-            text: ''
+          color,
+          fontFamily,
+          fontSize,
+          fontWeight,
+          text: ''
         }
-    }
+      }
+    
+      fetchPerDayData(day) {
+        this.clearOtherArrays();
+        console.log(day, this.currentUser.userId);
+        let dayStartEnd = this.firebase.collection(
+          `tbl_users/${this.currentUser.userId}/user_history`, ref => ref.where('timestamp', '>=', day.start).where('timestamp', '<=', day.end)).valueChanges();
+    
+        dayStartEnd.subscribe(d => {
+          console.log(d);
+          this.dayStartEndData = d;
+        });
+      }
+    
+      clearOtherArrays() {
+        this.locationHistory = [];
+        this.visitedShops = [];
+        this.productiveShops = [];
+        this.nonProductiveShops = [];
+        this.shopRouteTaken = [];
+        this.dayStartEndData = [];
+      }
 
     addMockDataForLiveTracking() {
         return [
@@ -235,18 +268,19 @@ export class eTrackerUserService {
 
 class MapHelper {
 
-    static shopIcon: string = './assets/images/online-shop.gif';
+    static shopIcon: string = './assets/images/baseline-store_mall_directory-24px.svg';
     static CurrentLocationIcon: string = './assets/images/e7mkwk.gif';
-    static simpleIcon: string = './assets/images/e7mkwk.gif';
-    static productiveShopMarker: string = './assets/images/online-shop.gif';
-    static nonProductiveShopMarker: string = './assets/images/visit.png';
-    static nonProductiveShopMarkerOther: string = './assets/images/baseline-store_mall_directory-non-productive-other-24px.svg';
-
+    static simpleIcon: string = './assets/images/daystart-dayend.png';
+    static productiveShopMarker: string = './assets/images/productive-pjp.png';
+    static productiveShopMarkerOther: string = './assets/images/productive-other.png';
+    static nonProductiveShopMarker: string = './assets/images/none-productive-pjp.png';
+    static nonProductiveShopMarkerOther: string = './assets/images/none-productive-other.png';
+  
     static createMarker(url, size) {
-        return new MarkerIcon(url, size).init();
+      return new MarkerIcon(url, size).init();
     }
-
-}
+  
+  }
 
 class MarkerIcon {
     public url;

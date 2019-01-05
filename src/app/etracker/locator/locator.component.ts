@@ -16,11 +16,10 @@ import { City } from '../../core/Models/HRM/city';
 
 export class LocatorComponent {
     public showHideFilter: boolean = false;
-    public title: string = 'Angular Map';
     public userLatestlocation: any;
     public userLocationHistory: any[];
     public selectedUser: any;
-    public agmMap: any;
+    protected agmMap: any;
     public dateRange: any = {};
     public zoomLevels: any = [];
     public selectedZoom: any = 18;
@@ -29,13 +28,18 @@ export class LocatorComponent {
     public currentLocationMarker: any;
     public mapHelper: any;
     public showSpinner: boolean = false;
+    public mockCoordsForLiveTracking: any = [];
     public sampleTracking: any = [];
     public liveTracking: boolean = false;
     public shops: any = [];
     public productiveShopMarker: any;
+    public productiveShopMarkerOther: any;
     public nonProductiveShopMarker: any;
     public nonProductiveShopMarkerOther: any;
     public liveTrackingRouteCoords: any = [];
+    public dayStartEnd: any;
+    public hours: any = [];
+    public minutes: any = [];
     public DisableRegion: boolean = true;
     public DisableCity: boolean = true;
     public DisableArea: boolean = true;
@@ -44,7 +48,6 @@ export class LocatorComponent {
     public SectionDisable: boolean = true;
     public SubsectionDisable: boolean = true;
     public DsfDisable: boolean = true;
-    public mockCoordsForLiveTracking: any = [];
     public Regions: any;
     public Cities: any[] = [];
     public Areas: any;
@@ -115,10 +118,12 @@ export class LocatorComponent {
         this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 45);
         this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 45);
         this.productiveShopMarker = this.mapHelper.createMarker(this.mapHelper.productiveShopMarker, 45);
+        this.productiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.productiveShopMarkerOther, 45);
         this.nonProductiveShopMarker = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarker, 45);
         this.nonProductiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarkerOther, 45);
         this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
 
+        this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
         this.shops = JSON.parse(localStorage.getItem('shops'));
         console.log(this.shops);
 
@@ -135,11 +140,13 @@ export class LocatorComponent {
             }
         });
 
+
+
+
     }
 
-    mapReady(map) {
-        this.agmMap = map;
-        console.log(map);
+    toggleFilter() {
+        this.showHideFilter = !this.showHideFilter;
     }
 
     setDropboxValues() {
@@ -247,7 +254,11 @@ export class LocatorComponent {
         console.log(this.eTrackerUserService.currentUser);
     }
 
-    
+    mapReady(map) {
+        this.agmMap = map;
+        console.log(map);
+    }
+
 
     filterFromDate(e) {
         let date = new Date(e.target.value);
@@ -269,13 +280,7 @@ export class LocatorComponent {
     }
 
     showVisitedShops(e) {
-        if (e.target.checked) {
-            this.eTrackerUserService.fetchVisitedShops(this.dateRange);
-        } else {
-            this.eTrackerUserService.visitedShops = [];
-            this.eTrackerUserService.clearFilteredShops();
-            this.eTrackerUserService.shopRouteTaken = [];
-        }
+        this.eTrackerUserService.fetchVisitedShops(this.dateRange);
     }
 
     go() {
@@ -297,8 +302,16 @@ export class LocatorComponent {
     }
 
 
+    showDayStartEnd(e) {
+        let start = new Date(e.target.value);
+        let end = new Date(e.target.value);
+        start.setHours(0);
+        end.setHours(23);
+        this.dayStartEnd = { start, end }
+        console.log(this.dayStartEnd);
+    }
+
     showLiveTracking() {
-        this.sampleTracking = [];
         this.liveTracking = !this.liveTracking;
         this.sampleTracking = this.liveTrackingRouteCoords;
         console.log(this.liveTrackingRouteCoords);
@@ -311,12 +324,42 @@ export class LocatorComponent {
     showNonProductiveShops() {
         this.eTrackerUserService.filterNonProductiveShops();
     }
+
+    showAllShops() {
+        this.eTrackerUserService.showAllShops();
+    }
+
+
     showRouteTaken() {
         this.eTrackerUserService.showRouteTaken()
     }
-    toggleFilter() {
-        this.showHideFilter = !this.showHideFilter;
+
+
+    getHour(e, startEnd) {
+        let hours = e.target.value;
+        if (startEnd === 'start') {
+            this.dayStartEnd.start.setHours(hours);
+        } else {
+            this.dayStartEnd.end.setHours(hours);
+        }
     }
+
+    getMinutes(e, startEnd) {
+        let minutes = e.target.value;
+        if (startEnd === 'start') {
+            this.dayStartEnd.start.setMinutes(minutes);
+        } else {
+            this.dayStartEnd.end.setMinutes(minutes);
+        }
+        console.log(this.dayStartEnd);
+    }
+
+    fetchDayStartEnd() {
+        this.eTrackerUserService.fetchPerDayData(this.dayStartEnd);
+    }
+
+
+    
 
     showLiveTrackingSimulation() {
         let counter = 0;

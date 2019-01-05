@@ -10,6 +10,7 @@ import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
 import { Observable } from 'rxjs/Observable';
+import { compileNgModule } from '@angular/core/src/render3/jit/module';
 
 export class Product {
     id: string;
@@ -62,6 +63,9 @@ export class SystemAdministrationService {
 
     }
 
+    getfeaturesByCompany(companyId: number) {
+        return this.ApiService.get(this.API_URL + 'GetFeaturesByCompany/' + companyId);
+    }
 
     getFeaturePermission(featureName, moduleName, roleId) {
         return this.ApiService

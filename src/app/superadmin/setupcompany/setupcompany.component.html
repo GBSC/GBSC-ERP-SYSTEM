@@ -270,43 +270,34 @@
           </div>
           <hr>
           <div class="m-content">
-            <div class="row">
+            <div *ngIf="companyId" class="row">
               <div class="col-xl-12">
                 <div class="m-portlet">
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                       <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">Nonproductive Visit Reasons</h3>
+                        <h3 class="m-portlet__head-text">Installed Features</h3>
                       </div>
                     </div>
                   </div>
                   <div class="m-portlet__body">
                     <div class="m-section">
                       <div class="m-section__content">
-                        <dx-data-grid id="gridContainer" [dataSource]="modulefeatures">
+                        <dx-data-grid id="gridContainer" [dataSource]="features" (onRowInserted)="addFeature($event)"
+                          (onRowRemoved)="deleteFeature($event)">
+                          <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
+                          </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>
                           <dxo-paging [pageSize]="5"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                          <dxi-column dataField="moduleId" caption="Module" datatType="number" [visible]="true">
-                            <dxo-lookup [dataSource]="companymodules" valueExpr="moduleId" displayExpr="name"></dxo-lookup>
-                          </dxi-column>
                           <dxi-column dataField="name" caption="Feature"></dxi-column>
-
-                          <dxi-column caption="Action" cellTemplate="chartCellTemplate"></dxi-column>
-                          <div *dxTemplate="let d of 'chartCellTemplate'">
-                            <div class="chart-cell">
-                              <dx-button (click)="addFeature(d)" icon="add"></dx-button>
-                              <dx-button (click)="deleteFeature(d)" icon="delete"></dx-button>
-                            </div>
-                          </div>
+                          <dxi-column dataField="moduleId" caption="Module">
+                            <dxo-lookup [dataSource]="modules" displayExpr="name" valueExpr="moduleId">
+                            </dxo-lookup>
+                          </dxi-column>
                         </dx-data-grid>
-
-
-
-
                       </div>
-
                     </div>
                   </div>
                 </div>

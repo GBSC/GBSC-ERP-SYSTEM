@@ -11,7 +11,7 @@ export class InventoryMasterComponent implements OnInit {
     tabs: string[] = ['product-type', 'brand', 'product-category', 'unit', 'pack-category', 'pack-type', 'pack-size', 'package-type', 'inventory'];
     selectedTab = this.tabs[0];
 
-    constructor(private systemAdminService : SystemAdministrationService) { }
+    constructor() { }
 
     ngOnInit() {
     }

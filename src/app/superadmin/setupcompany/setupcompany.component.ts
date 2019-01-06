@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SuperadminserviceService } from '../../core/Services/SuperAdmin/superadminservice.service';
 import { ActivatedRoute } from '@angular/router';
+import { SystemAdministrationService } from '../../../app/core';
 
 
 @Component({
@@ -35,7 +36,16 @@ export class SetupcompanyComponent implements OnInit {
 
     public eTrackerInstalled: boolean;
 
-    constructor(public route: ActivatedRoute, public formBuilder: FormBuilder, public superAdminService: SuperadminserviceService) {
+    public features: any;
+
+    public modules: any;
+
+
+
+    constructor(public route: ActivatedRoute,
+        public formBuilder: FormBuilder,
+        public superAdminService: SuperadminserviceService,
+        public systemAdminService: SystemAdministrationService) {
 
         this.companyForm = this.formBuilder.group({
             'name': ['', Validators.required],
@@ -51,12 +61,14 @@ export class SetupcompanyComponent implements OnInit {
             'LastName': ['', Validators.required],
             'Phone': ['', Validators.required],
             'DOB': [new Date()]
-        })
+        });
+
+
 
 
     }
 
-    ngOnInit() {
+    async  ngOnInit() {
 
 
         this.route.params.subscribe((params) => {
@@ -64,17 +76,35 @@ export class SetupcompanyComponent implements OnInit {
         });
 
         if (this.companyId) {
+
             this.superAdminService.getCompanyInfo(this.companyId).subscribe(company => {
                 this.company = company;
-
                 for (let modul of company.modules) {
                     this.checkModulesInstalled(modul);
                 }
+            });
 
+            this.systemAdminService.getfeaturesByCompany(this.companyId).subscribe(resp => {
+                this.features = resp;
+            });
+
+            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp=>{
+                this.modules = resp;
             })
         }
-
     }
+
+
+
+    async addFeature(value) {
+        value.data.companyId = this.companyId;
+        let response = await this.systemAdminService.addFeature(value.data);
+    }
+
+    deleteFeature(value) {
+        console.log(value)
+    }
+
 
     async onAddCompany(value) {
         // console.log(value);

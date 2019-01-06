@@ -24,13 +24,9 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <!-- <dxi-column dataField="companyId" caption="Company">         
-                <dxo-lookup [dataSource]="company"displayExpr="name" valueExpr="companyId"></dxo-lookup>
-            </dxi-column> -->
                 <dxi-column dataField="countryId" caption="Country">         
                 <dxo-lookup [dataSource]="country" displayExpr="name" valueExpr="countryId"></dxo-lookup>
             </dxi-column>
-                <dxi-column dataField="code"></dxi-column>
                 <dxi-column dataField="name"></dxi-column>
               </dx-data-grid>
             </div>

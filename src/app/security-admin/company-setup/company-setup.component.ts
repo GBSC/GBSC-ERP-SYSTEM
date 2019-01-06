@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanySetupComponent implements OnInit {
 
-    tabs: string[] = ['country', 'city', 'department', 'branch'];
+    tabs: string[] = ['country', 'city', 'branch', 'department'];
     selectedTab = this.tabs[0];
 
     constructor() { }

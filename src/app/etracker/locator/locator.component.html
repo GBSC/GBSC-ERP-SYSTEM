@@ -150,21 +150,21 @@
             </select>
           </div>
         </div>
-        <div class="col-sm-2">
-          <div class="m-form__group form-group">
-            <label>
-              Shops
-            </label>
-            <div class="m-checkbox-list">
-              <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
-                <input type="checkbox" (change)="showTimeFilter($event)">
-                Filter By Time
-                <span></span>
+          <div class="col-sm-1">
+            <div class="m-form__group form-group">
+              <label>
+                Time
               </label>
+              <div class="m-checkbox-list">
+                <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
+                  <input type="checkbox" (change)="showTimeFilter($event)">
+                  Filter
+                  <span></span>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-4">
+        <div class="col-sm-5">
         <div *ngIf="timeFilter"  class="row">
          
           <div class="col-sm-3">

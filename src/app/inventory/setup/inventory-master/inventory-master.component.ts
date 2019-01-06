@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from 'src/app/core';
+import { SystemAdministrationService } from '../../../../../src/app/core';
 
 @Component({
     selector: 'app-inventory-master',

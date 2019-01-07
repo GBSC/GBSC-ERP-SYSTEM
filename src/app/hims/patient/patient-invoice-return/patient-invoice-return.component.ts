@@ -14,22 +14,6 @@ import { PatientInvoiceReturnItem } from '../../../core/Models/HIMS/PatientInvoi
 
 export class PatientInvoiceReturnComponent implements OnInit {
 
-<<<<<<< HEAD
-    private ReturnForm: FormGroup;
-    private CurrentDate: Date = new Date();
-    private PurchaseDate: Date = new Date();
-    private PatientInvoiceReturnItems: PatientInvoiceReturnItem[] = [];
-
-    private TotalGrossReturn: number = 0;
-    private TotalDiscountDeduction: number = 0;
-    private TotalNetReturn: number = 0;
-
-    private InvoiceId: number = null;
-    private PatientId: number = null;
-
-
-    private ReturnItem: any = {
-=======
     public ReturnForm: FormGroup;
     public CurrentDate: Date = new Date();
     public PurchaseDate: Date = new Date();
@@ -44,7 +28,6 @@ export class PatientInvoiceReturnComponent implements OnInit {
 
 
     public ReturnItem: any = {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
         Nature: '',
         Name: '',
         InvoiceType: '',
@@ -62,11 +45,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
         Remarks: '',
     };
 
-<<<<<<< HEAD
-    constructor(private PatientService: PatientService, private FormBuilder: FormBuilder, private Toastr: ToastrService) {
-=======
     constructor(public PatientService: PatientService, public FormBuilder: FormBuilder, public Toastr: ToastrService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
         this.ReturnForm = this.FormBuilder.group({
             InvoiceType: [''],
             ReturnDate: new Date(),

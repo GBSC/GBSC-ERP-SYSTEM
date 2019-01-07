@@ -10,14 +10,14 @@
                 <i class="la la-gear"></i>
               </span>
               <h3 class="m-portlet__head-text">
-                Form
+                Internal Requisition Request
               </h3>
             </div>
           </div>
 
         </div>
         <!--begin::Form-->
-        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="RequisitionForm">
+        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="RequisitionRequestForm">
           <div class="m-portlet__body">
             <div class="form-group row">
 
@@ -31,22 +31,19 @@
                 <label for="exampleInputEmail1"> Issue Date </label>
                 <input class="form-control m-input m-input--solid" formControlName="IssueDate" type="date">
               </div>
-              <div class="form-group col-lg-4">
-                <label for="exampleInputEmail1"> Remarks </label>
-                <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
-              </div>
             </div>
             <div class="form-group row">
               <div class="form-group col-lg-4">
                 <label for="exampleInputEmail1"> Total Quantity</label>
-                <input class="form-control m-input m-input--solid" formControlName="TotalQuantity" type="number" [value]="OrderQuantity">
+                <input class="form-control m-input m-input--solid" formControlName="TotalQuantity" type="number"
+                  [value]="OrderQuantity">
               </div>
-            </div>
-            <div class="form-group col-lg-4">
-              <div class="form-action pull-right ">
-                <button type="submit" (click)="saveOrder(RequisitionForm.value)" class="btn btn-primary m-btn m-btn--custom">
-                  Save
-                </button>
+              <div class="form-group col-lg-4">
+                <div class="form-action pull-right ">
+                  <button type="submit" (click)="saveRequest(RequisitionRequestForm.value)" class="btn btn-primary m-btn m-btn--custom">
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -68,7 +65,8 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="SalesOrderItems" (onRowInserted)="addItem($event)" (onRowRemoved)="removeItem($event)">
+              <dx-data-grid id="gridContainer" [dataSource]="SalesIndentItems" (onRowInserted)="addItem($event)"
+                (onRowRemoved)="removeItem($event)">
                 <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -76,16 +74,8 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
-                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"  ></dxo-lookup>
+                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="packSizeId" disabled caption="Pack Size" [visible]="true">
-                  <dxo-lookup [dataSource]="PackSizes" valueExpr="packSizeId" displayExpr="size"></dxo-lookup>
-                </dxi-column>
-                <dxi-column dataField="packTypeId" disabled caption="Pack Type" [visible]="true">
-                  <dxo-lookup [dataSource]="PackTypes" valueExpr="packTypeId" displayExpr="name"></dxo-lookup>
-                </dxi-column>
-                <!-- <dxi-column dataField="packSize" dataType="number" caption="Pack Size"></dxi-column>
-                <dxi-column dataField="packType" dataType="text" caption="Pack Type"></dxi-column> -->
                 <dxi-column dataField="quantity" dataType="number" caption="Quantity"></dxi-column>
               </dx-data-grid>
             </div>
@@ -96,5 +86,3 @@
   </div>
   <!-- <> -->
 </div>
-
-

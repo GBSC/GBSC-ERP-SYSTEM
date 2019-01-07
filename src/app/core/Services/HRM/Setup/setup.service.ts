@@ -137,11 +137,7 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-<<<<<<< HEAD
-    getAllDegrees() {
-=======
     async getAllDegrees() {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         return await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
     }

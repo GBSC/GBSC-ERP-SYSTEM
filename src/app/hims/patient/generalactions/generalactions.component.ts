@@ -93,22 +93,6 @@ export class GeneralactionsComponent implements OnInit {
     }
     public appointmentId: any;
     async startVisit(value) {
-<<<<<<< HEAD
-        if (this.currentconsultant.length) {
-            if (value.length == 0 || value == null || value == '') {
-                this.displayToastError("Please Select Consultant")
-            }
-            else {
-                await this.PatientServiceobj.AddVisits(this.id);
-                let x = this.currentconsultant.find(t => t.consultantId == value)
-                x.visitStatus = 'start';
-                this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
-                //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-                this.router.navigate(['/hims/patient/visits/' + this.id]);
-                console.log(x);
-                console.log(value)
-            }
-=======
         if (this.currentconsultant) {
             if (this.currentconsultant.length) {
                 if (value.length == 0 || value == null || value == '') {
@@ -124,7 +108,6 @@ export class GeneralactionsComponent implements OnInit {
                     console.log(x);
                     console.log(value)
                 }
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
             }
         }

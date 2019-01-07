@@ -24,6 +24,8 @@ import { IssuanceViewComponent } from './issuance-view/issuance-view.component';
 import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-view.component';
 import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
+import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
+import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
 
 
 
@@ -43,6 +45,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'return', component: ReturnmedicineComponent },
             { path: 'returnview', component: ReturnViewComponent },
             { path: 'prescriptionview', component: PrescriptionViewComponent },
+            { path: 'requisitionfulfilment', component: InternalRequisitionComponent },
+            { path: 'requisitionview', component: InternalRequisitionViewComponent },
 
             {
                 path: "setup",

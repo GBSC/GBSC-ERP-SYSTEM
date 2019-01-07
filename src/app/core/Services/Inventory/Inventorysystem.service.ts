@@ -76,6 +76,10 @@ export class InventorysystemService {
         // return this.SalesIndent;
     }
 
+    GetSalesIndent(id : number): Observable<SalesIndent> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndent/' + id);
+    }
+
     GetUnprocessedSalesIndents(): Observable<SalesIndent[]> {
         return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedSalesIndents');
     }
@@ -1112,6 +1116,26 @@ export class InventorysystemService {
         // this.Inventory = await this.http.get<Inventory>(this.API_URL + 'Setup/GetInventories').toPromise();
         // //console.log(this.Inventory);
         // return this.Inventory;
+    }
+
+    GetInventoryList(ids : number[]): Observable<Inventory[]> {
+        return this.ApiService.post(this.API_URL + 'Setup/GetInventoryList');
+    }
+
+    UpdateInventories(models : Inventory[]): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories');
+    }
+
+    GetUnprocessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedInternalRequisitionRequestsByCompany/' + companyid);
+    }
+
+    GetCurrentMonthProcessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Sales/GetCurrentMonthProcessedInternalRequisitionRequestsByCompany/' + companyid);
+    }
+
+    ProcessSalesIndentById(indentid : number) : Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Sales/ProcessSalesIndentById/' + indentid);
     }
 
     GetInventoriesByCompany(companyId: number): Observable<Inventory> {

@@ -10,18 +10,6 @@ import { BiopsyService } from '../../../../app/core/Services/HIMS/Lab/biopsy.ser
 })
 export class BiopsyRecordsComponent implements OnInit {
 
-<<<<<<< HEAD
-    private patients: any;
-    private spouse: any;
-    private patient: any;
-    private tests: any;
-    private id: any;
-
-    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
-
-    constructor(private biopsyService: BiopsyService,
-        private patientService: PatientService) {
-=======
     public patients: any;
     public spouse: any;
     public patient: any;
@@ -32,7 +20,6 @@ export class BiopsyRecordsComponent implements OnInit {
 
     constructor(public biopsyService: BiopsyService,
         public patientService: PatientService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.tests = [];
     }

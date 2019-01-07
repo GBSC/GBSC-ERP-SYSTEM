@@ -10,18 +10,6 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 })
 export class TvopuRecordsComponent implements OnInit {
 
-<<<<<<< HEAD
-    private patients: any;
-    private spouse: any;
-    private patient: any;
-    private tests: any;
-    private id: any;
-
-    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
-
-    constructor(private tvopuService: TvopuService,
-        private patientService: PatientService) {
-=======
     public patients: any;
     public spouse: any;
     public patient: any;
@@ -32,7 +20,6 @@ export class TvopuRecordsComponent implements OnInit {
 
     constructor(public tvopuService: TvopuService,
         public patientService: PatientService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.tests = [];
     }

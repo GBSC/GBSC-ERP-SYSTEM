@@ -32,11 +32,7 @@ export class UpdateVoucherComponent implements OnInit {
     public isDisabled: any;
     @Input('voucherId') id: number;
 
-<<<<<<< HEAD
-    constructor(private toastr: ToastrService, public router: Router, private fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
-=======
     constructor(public toastr: ToastrService, public router: Router, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
         public financeService: FinanceService, public SetupService: SetupService) { }
 
     async ngOnInit() {

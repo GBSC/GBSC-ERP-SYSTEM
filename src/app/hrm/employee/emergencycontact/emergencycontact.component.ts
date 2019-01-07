@@ -13,10 +13,6 @@ export class EmergencycontactComponent implements OnInit {
     public dependantrelations: any;
     pattern: any = /^\d{11}$/i;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
     @Input('employeeId') id: number;
 
     constructor(public employeeService: EmployeeService, public SetupServiceobj: SetupService,

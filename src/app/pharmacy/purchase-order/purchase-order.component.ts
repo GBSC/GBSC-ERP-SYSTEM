@@ -20,28 +20,6 @@ import { DISABLED } from '@angular/forms/src/model';
 })
 export class PurchaseOrderComponent implements OnInit {
 
-<<<<<<< HEAD
-    private PurchaseOrders: PurchaseOrder;
-    private NewPurchaseOrder: PurchaseOrder;
-    private Suppliers: Supplier;
-    private SelectedSupplier: Supplier;
-    private PurchaseOrderForm: FormGroup;
-    private PurchaseOrderDetailsForm: FormGroup;
-    private PurchaseOrderDetailsFormArray: any[] = [];
-    private InventoryItems: InventoryItem;
-    private SelectedInventoryItem: any;
-    private PurchaseOrderDetailsArray: any[] = [];
-    private FilteredInventoryItems: any;
-    private Currencies: Currency[];
-    private SelectedCurrency: Currency;
-    private TotalOrderAmount: number = 0;
-    private GrossAmount: number = 0;
-    private SalesTaxAmount: number = 0;
-    private DiscountAmount: number = 0;
-    private NetAmount: number = 0;
-    private TotalQuantity: number = 0;
-    private Inventories: Inventory[] = [];
-=======
     public PurchaseOrders: PurchaseOrder;
     public NewPurchaseOrder: PurchaseOrder;
     public Suppliers: Supplier;
@@ -62,16 +40,11 @@ export class PurchaseOrderComponent implements OnInit {
     public NetAmount: number = 0;
     public TotalQuantity: number = 0;
     public Inventories: Inventory[] = [];
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
     public fieldsenabled: boolean = true;
 
 
-<<<<<<< HEAD
-    constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder) {
-=======
     constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
         this.PurchaseOrderForm = this.FormBuilder.group({
             OrderNumber: [''],
             OrderDate: [''],

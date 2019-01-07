@@ -13,12 +13,6 @@ export class ProductTypeComponent implements OnInit {
     // @ViewChild(InventoryItemComponent) InventoryItemComponent : InventoryItemComponent;
 
     @Output() UpdateProductTypeInInventoryItemComponent = new EventEmitter<any>()
-<<<<<<< HEAD
-
-    private ProductTypes: ProductType;
-    private UpdatedModel: any;
-=======
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
     public ProductTypes: ProductType;
     public UpdatedModel: any;

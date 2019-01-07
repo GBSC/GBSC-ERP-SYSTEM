@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-=======
 import { City } from '../../../../core/Models/HRM/city';
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
 
 @Injectable()
@@ -77,6 +74,11 @@ export class HrmsService {
     GetAllDepartments() : Observable<any[]> {
 
         return this.ApiService.get(`${this.setupUrl}/GetDepartments`)
+    }
+
+    GetAllDepartmentsByCompany(companyid : number) : Observable<any[]> {
+
+        return this.ApiService.get(`${this.setupUrl}/GetDepartmentsByCompanyId/` + companyid)
     }
 
     // DEMO ONLY, you can find working methods below

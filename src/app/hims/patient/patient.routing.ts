@@ -101,12 +101,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'activevisits', component: ActiveVisitsComponent },
             { path: 'patientinvoicereturn', component: PatientInvoiceReturnComponent },
             { path: 'patientinvoicereturnview', component: InvoiceReturnViewComponent },
-<<<<<<< HEAD
-=======
             { path: 'dailysemenanalysis', component: DailySemenAnalysisComponent },
             { path: 'dailyprocedure', component: DailyProcedureComponent },
             { path: 'dailysemenanalysisview', component: DailySemenAnalysisViewComponent },
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},

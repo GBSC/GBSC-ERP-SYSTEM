@@ -313,9 +313,6 @@ import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
         GratuitydetailComponent,
-<<<<<<< HEAD
-
-=======
         AttendanceRuleDetailComponent,
         ReportviewerComponent,
         EmployeeDetailComponent,
@@ -341,7 +338,6 @@ import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave
         LeavebalanceComponent,
         LeaveledgerComponent,
         UpdateassignrosterComponent
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
     ],
 
     // providers: [IgxExcelExporterService],

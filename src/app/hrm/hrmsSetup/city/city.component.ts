@@ -36,21 +36,12 @@ export class CityComponent implements OnInit {
         this.updatingModel = { ...value.oldData, ...value.newData };
     }
 
-<<<<<<< HEAD
-    Updatecity() {
-        this.hrmService.updateCity(this.updatingModel)
-    }
-
-    deletecity(value) {
-        this.hrmService.deleteCity(value.key);
-=======
     async Updatecity() {
         await this.hrmService.updateCity(this.updatingModel)
     }
 
     async deletecity(value) {
         await this.hrmService.deleteCity(value.key);
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
     }
 
 }

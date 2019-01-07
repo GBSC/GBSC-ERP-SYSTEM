@@ -33,6 +33,7 @@ import { PurhcaseorderViewComponent } from './purhcaseorder-view/purhcaseorder-v
 import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
 import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
+import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import { InternalRequisitionComponent } from './internal-requisition/internal-re
         PurhcaseorderViewComponent,
         CurrencyComponent,
         PrescriptionViewComponent,
-        InternalRequisitionComponent
+        InternalRequisitionComponent,
+        InternalRequisitionViewComponent
     ],
     providers: [
         {

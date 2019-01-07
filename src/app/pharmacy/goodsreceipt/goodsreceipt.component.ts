@@ -42,17 +42,10 @@ export class GoodsreceiptComponent implements OnInit {
     public Grn: GRN;
     public Inventories: Inventory[] = [];
 
-<<<<<<< HEAD
-    private GrnItemSaveTrack: number[] = [];
-    private isDisable = false;
-
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
-=======
     public GrnItemSaveTrack: number[] = [];
     public isDisable = false;
 
     constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],

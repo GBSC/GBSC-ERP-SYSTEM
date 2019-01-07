@@ -46,6 +46,7 @@ import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-co
 import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
 import { LabsummaryReportviewerComponent } from './report-components/labsummary-reportviewer/labsummary-reportviewer.component';
 import { BiopsyReportviewerComponent } from './report-components/biopsy-reportviewer/biopsy-reportviewer.component';
+import { InternalRequisitionRequestComponent } from './internal-requisition-request/internal-requisition-request.component';
 
 
 
@@ -105,6 +106,7 @@ import { BiopsyReportviewerComponent } from './report-components/biopsy-reportvi
         BiochemistryOutsiderReportviewerComponent,
         LabsummaryReportviewerComponent,
         BiopsyReportviewerComponent,
+        InternalRequisitionRequestComponent,
     ]
 })
 export class LabModule { }

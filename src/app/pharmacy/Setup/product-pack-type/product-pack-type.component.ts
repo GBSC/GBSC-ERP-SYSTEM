@@ -11,12 +11,6 @@ import { InventoryItemComponent } from '../inventory-item/inventory-item.compone
 export class ProductPackTypeComponent implements OnInit {
 
     @Output() UpdatePackTypeInInventoryItemComponent = new EventEmitter<any>();
-<<<<<<< HEAD
-
-    private PackTypes: PackType;
-    private UpdatedModel: any;
-=======
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
     public PackTypes: PackType;
     public UpdatedModel: any;

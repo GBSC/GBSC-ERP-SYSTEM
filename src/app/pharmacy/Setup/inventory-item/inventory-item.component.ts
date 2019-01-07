@@ -23,19 +23,6 @@ export class InventoryItemComponent implements OnInit {
 
     @ViewChild(InventoryComponent) InventoryComponent: InventoryComponent;
 
-<<<<<<< HEAD
-    private InventoryItems: InventoryItem;
-    private Units: Unit;
-    private PackTypes: PackType;
-    private PackSizes: PackSize;
-    private PackCategories: PackCategory;
-    private ProductTypes: ProductType;
-    private InventoryItemCategories: InventoryItemCategory;
-    private PackageTypes: PackageType;
-    private UpdatedModel: InventoryItem;
-
-    constructor(private PharmacyService: PharmacyService) {
-=======
     public InventoryItems: InventoryItem;
     public Units: Unit;
     public PackTypes: PackType;
@@ -47,7 +34,6 @@ export class InventoryItemComponent implements OnInit {
     public UpdatedModel: InventoryItem;
 
     constructor(public PharmacyService: PharmacyService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
     }
 

@@ -1,0 +1,112 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Internal Requisitions</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="row">
+            <div class="col-md-12">
+            
+
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" #tetative href="#m_tabs_3_1">
+                    Unprocessed
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_3">
+                    Processed
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
+                  <dx-data-grid [dataSource]="UnprocessedRequests" (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true"
+                  showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true"
+                  [showBorders]="true">
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-filter-row [visible]="false"></dxo-filter-row>
+                  <dxo-header-filter [visible]="false"></dxo-header-filter>
+                  <dxo-paging [pageSize]="5"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                  <dxo-group-panel [visible]="true"></dxo-group-panel>
+                  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                  <dxo-selection mode="single"></dxo-selection>
+                  <dxi-column dataField="salesIndentNumber" caption="Code" [width]="230" [fixed]="true"></dxi-column>
+                  <dxi-column dataField="date" dataType="date" caption="Request Date"></dxi-column>
+                  <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
+                  <dxi-column dataField="totalQuantity" caption="Total Quantity"></dxi-column>
+                  <dxi-column dataField="customerName" caption="Department"></dxi-column>
+                  <div *dxTemplate="let item of 'detail'">
+                    <dx-data-grid [dataSource]="item.data.salesIndentItems" showBorders="true">
+                      <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
+                        <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                  <dxi-column caption="Action" cellTemplate="chartCellTemplate"></dxi-column>
+                  <div *dxTemplate="let u of 'chartCellTemplate'">
+                    <div class="chart-cell">
+                      <dx-button text="Process" (click)="processRequest(u)"></dx-button>
+                      <dx-button text="Delete" (click)="deleteRequest(u)"></dx-button>
+                      <dx-button text="Update" (click)="updateRequest(u)"></dx-button>
+                    </div>
+                  </div>
+                </dx-data-grid>
+                </div>
+                <!-- <here we are using final appointment tag start work> -->
+                <div class="tab-pane  active show" id="m_tabs_3_3" role="tabpanel">
+                  <!-- {{PatientServiceobj?.visitNatures | json}} -->
+                  <dx-data-grid [dataSource]="ProcessedRequests" (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true"
+                  showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true"
+                  [showBorders]="true">
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-filter-row [visible]="false"></dxo-filter-row>
+                  <dxo-header-filter [visible]="false"></dxo-header-filter>
+                  <dxo-paging [pageSize]="5"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                  <dxo-group-panel [visible]="true"></dxo-group-panel>
+                  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                  <dxo-selection mode="single"></dxo-selection>
+                  <dxi-column dataField="salesIndentNumber" caption="Code" [width]="230" [fixed]="true"></dxi-column>
+                  <dxi-column dataField="date" dataType="date" caption="Request Date"></dxi-column>
+                  <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
+                  <dxi-column dataField="totalQuantity" caption="Total Quantity"></dxi-column>
+                  <dxi-column dataField="customerName" caption="Department"></dxi-column>
+                  <div *dxTemplate="let item of 'detail'">
+                    <dx-data-grid [dataSource]="item.data.salesIndentItems" showBorders="true">
+                      <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
+                        <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                  <!-- <dxi-column caption="Action" cellTemplate="chartCellTemplate"></dxi-column>
+                  <div *dxTemplate="let u of 'chartCellTemplate'">
+                    <div class="chart-cell">
+                      <dx-button text="Process" (click)="processRequest(u)"></dx-button>
+                      <dx-button text="Delete" (click)="deleteRequest(u)"></dx-button>
+                      <dx-button text="Update" (click)="updateRequest(u)"></dx-button>
+                    </div>
+                  </div> -->
+                </dx-data-grid>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

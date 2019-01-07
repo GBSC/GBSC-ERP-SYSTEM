@@ -12,32 +12,18 @@ import { DxSelectBoxComponent } from 'devextreme-angular';
 })
 export class BiochemistryOutsiderComponent implements OnInit {
 
-<<<<<<< HEAD
-    private patients: any;
-    private spouse: Spouse;
-    private patient: any;
-    private tests: any;
-    private id: any;
-=======
     public patients: any;
     public spouse: Spouse;
     public patient: any;
     public tests: any;
     public id: any;
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
-<<<<<<< HEAD
-    constructor(private formBuilder: FormBuilder,
-        private bioChemistryOutsiderService: BiochemistryoutsiderService,
-        private patientService: PatientService) {
-=======
     constructor(public formBuilder: FormBuilder,
         public bioChemistryOutsiderService: BiochemistryoutsiderService,
         public patientService: PatientService) {
->>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.tests = [];
     }

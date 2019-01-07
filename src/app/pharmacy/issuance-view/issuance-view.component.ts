@@ -14,13 +14,13 @@ import { Router } from '@angular/router';
 })
 export class IssuanceViewComponent implements OnInit {
 
-    private SalesOrders: SalesOrder;
-    private DetailSO: SalesOrder;
-    private issuanceForm: FormGroup;
+    public SalesOrders: SalesOrder;
+    public DetailSO: SalesOrder;
+    public issuanceForm: FormGroup;
 
     public date: any;
 
-    constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, public router: Router) {
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public router: Router) {
         this.issuanceForm = this.formBuilder.group({
             issueDate: ['']
         });

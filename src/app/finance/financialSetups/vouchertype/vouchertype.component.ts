@@ -15,7 +15,7 @@ export class VouchertypeComponent implements OnInit {
     public VoucherTypeForm: any;
     public updateVoucherType: any;
 
-    constructor(private toastr: ToastrService, private fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 

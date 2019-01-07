@@ -19,57 +19,57 @@ import { Patient } from '../../../core/Models/HIMS/patient';
     styleUrls: ['./appointmentpaymentreceipt.component.scss']
 })
 export class AppointmentpaymentreceiptComponent implements OnInit {
-    private Consultants: Consultant[] = [];
-    private Tests: Test[] = [];
-    private Packages: Package[] = [];
-    private InventoryItems: InventoryItem[] = [];
+    public Consultants: Consultant[] = [];
+    public Tests: Test[] = [];
+    public Packages: Package[] = [];
+    public InventoryItems: InventoryItem[] = [];
 
-    private SelectedAppointment: any;
-    private InvoiceForm: FormGroup;
+    public SelectedAppointment: any;
+    public InvoiceForm: FormGroup;
 
-    private PatientInvoice: PatientInvoice;
-    private PatientInvoiceItem: any[] = [];
-    private PatientInvoiceItemsArrayForPost: PatientInvoiceItem[] = [];
+    public PatientInvoice: PatientInvoice;
+    public PatientInvoiceItem: any[] = [];
+    public PatientInvoiceItemsArrayForPost: PatientInvoiceItem[] = [];
 
-    private SelectedPatientPackage: any = {};
+    public SelectedPatientPackage: any = {};
 
-    private SelectedInvoiceItemUnitPrice: number;
-    private SelectedInvoiceItemNameId: number;
-    private SelectedInvoiceItemName: string;
+    public SelectedInvoiceItemUnitPrice: number;
+    public SelectedInvoiceItemNameId: number;
+    public SelectedInvoiceItemName: string;
 
-    private TotalGrossAmount: number = 0;
-    private TotalDiscountAmount: number = 0;
-    private TotalNetAmount: number = 0;
+    public TotalGrossAmount: number = 0;
+    public TotalDiscountAmount: number = 0;
+    public TotalNetAmount: number = 0;
 
-    private Index: number = 0;
+    public Index: number = 0;
 
-    private PatientPackage: PatientPackage;
-    private OldPatientPackage: PatientPackage = null;
-    private ContainsPackage: boolean = false;
-    private PatientIdForPackage: number = null;
-    private PatientPackageInvoiceItemIndexNumber: number = 0;
+    public PatientPackage: PatientPackage;
+    public OldPatientPackage: PatientPackage = null;
+    public ContainsPackage: boolean = false;
+    public PatientIdForPackage: number = null;
+    public PatientPackageInvoiceItemIndexNumber: number = 0;
 
-    private AppointmentDate: Date;
-    private NewBalance: number = 0;
-    private CurrentDate: Date = new Date();
+    public AppointmentDate: Date;
+    public NewBalance: number = 0;
+    public CurrentDate: Date = new Date();
 
-    private TempCreditCardPercentage: number = 0;
-    private TempBank: string = '';
-    private TempChequeNumber: string = '';
-    private TempCurrentPayment: number = 0;
-    private TempPaymentMethod: string = '';
+    public TempCreditCardPercentage: number = 0;
+    public TempBank: string = '';
+    public TempChequeNumber: string = '';
+    public TempCurrentPayment: number = 0;
+    public TempPaymentMethod: string = '';
 
-    private InvoiceType: string = '';
-    private DeletedKeyIndex: number = null;
+    public InvoiceType: string = '';
+    public DeletedKeyIndex: number = null;
 
-    private InvoiceItemNatureWithoutPackage: any[] = [
+    public InvoiceItemNatureWithoutPackage: any[] = [
         { id: 1, Name: "Consultation" },
         { id: 2, Name: "Lab Test" },
         { id: 3, Name: "Medicine" },
         { id: 5, Name: "Other" }
     ];
 
-    private InvoiceItemNature: any[] = [
+    public InvoiceItemNature: any[] = [
         { id: 1, Name: "Consultation" },
         { id: 2, Name: "Lab Test" },
         { id: 3, Name: "Medicine" },
@@ -77,13 +77,13 @@ export class AppointmentpaymentreceiptComponent implements OnInit {
         { id: 5, Name: "Other" }
     ];
 
-    private InvoiceItemNatureDataSource: any[] = this.InvoiceItemNature;
+    public InvoiceItemNatureDataSource: any[] = this.InvoiceItemNature;
 
     //Update
 
-    private SelectedPatient: any;
+    public SelectedPatient: any;
 
-    constructor(private PatientService: PatientService, private Toastr: ToastrService, private PharmacyService: PharmacyService, private ActivatedRoute: ActivatedRoute, private Router: Router, private FormBuilder: FormBuilder) {
+    constructor(public PatientService: PatientService, public Toastr: ToastrService, public PharmacyService: PharmacyService, public ActivatedRoute: ActivatedRoute, public Router: Router, public FormBuilder: FormBuilder) {
         this.InvoiceForm = this.FormBuilder.group({
             MRN: [''],
             Date: [],

@@ -8,10 +8,10 @@ import { ReturnReason } from '../../../core/Models/Pharmacy/ReturnReason';
     styleUrls: ['./return-reason.component.scss']
 })
 export class ReturnReasonComponent implements OnInit {
-    private ReturnReasons: ReturnReason;
-    private UpdatedModel: any;
+    public ReturnReasons: ReturnReason;
+    public UpdatedModel: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

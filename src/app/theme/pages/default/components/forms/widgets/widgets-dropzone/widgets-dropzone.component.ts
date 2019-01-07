@@ -11,7 +11,7 @@ declare let Dropzone: any;
 export class WidgetsDropzoneComponent implements OnInit, AfterViewInit {
 
 
-    constructor(private _script: ScriptLoaderService) {
+    constructor(public _script: ScriptLoaderService) {
 
     }
     ngOnInit() {

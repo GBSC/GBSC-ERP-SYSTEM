@@ -1,4 +1,4 @@
- 
+<div class="m-content">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -11,33 +11,26 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="leavetypebalance"
-               keyExpr="leaveTypeBalanceId"
-               (onRowInserted)="addleavetypebalance($event)" 
-               (onRowUpdated)="updateleavetypebalance($event)"
-                (onRowRemoved)="deleteleavetypebalance($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                </dxo-editing>
+               [dataSource]="data"> 
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-
+                <dxo-header-filter [visible]="true"></dxo-header-filter> 
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-paging [pageSize]="10"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <dxi-column dataField="balanceValue" caption="Balance Value"></dxi-column>
-                <dxi-column dataField="leaveTypeId" caption="Leave Type">
-                  <dxo-lookup [dataSource]="LeaveType" displayExpr="title" valueExpr="leaveTypeId">
+                <dxi-column dataField="userId" caption="Employee">
+                  <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                   </dxo-lookup> 
-                  </dxi-column>
-                  <dxi-column dataField="userId" caption="Employee">
-                    <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
-                    </dxo-lookup> 
+            </dxi-column>
+            <dxi-column dataField="leaveTypeId" caption="Leave Type">
+              <dxo-lookup [dataSource]="LeaveType" displayExpr="title" valueExpr="leaveTypeId">
+              </dxo-lookup> 
               </dxi-column>
+                <dxi-column dataField="entitledQuantity" caption="Balance Value"></dxi-column>
               </dx-data-grid>
             
           </div>
         </div>
       </div>
     </div>
- 
+ </div>

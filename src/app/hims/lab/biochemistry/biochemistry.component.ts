@@ -21,26 +21,26 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BiochemistryComponent implements OnInit {
 
-    private consultants: Consultant;
-    private patients: any;
-    private spouse: Spouse;
-    private patient: Patient;
-    private testDetail: BioChemistryTestDetail[];
-    private tests: BioChemistryTest;
-    private bioChemistry: any;
-    private units: TestUnit;
-    private bioChemistryOutsiderForm: FormGroup;
-    private id: any;
+    public consultants: any;
+    public patients: any;
+    public spouse: any;
+    public patient: any;
+    public testDetail: BioChemistryTestDetail[];
+    public tests: any;
+    public bioChemistry: any;
+    public units: any;
+    public bioChemistryOutsiderForm: FormGroup;
+    public id: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    constructor(private formBuilder: FormBuilder,
-        private bioChemistryOutsiderService: BiochemistryoutsiderService,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private bioChemistryService: BioChemistryService,
-        private toastr: ToastrService,
-        private route: ActivatedRoute, ) {
+    constructor(public formBuilder: FormBuilder,
+        public bioChemistryOutsiderService: BiochemistryoutsiderService,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public bioChemistryService: BioChemistryService,
+        public toastr: ToastrService,
+        public route: ActivatedRoute, ) {
 
         this.bioChemistryOutsiderForm = formBuilder.group({
             'PatientId': ['', Validators.required],

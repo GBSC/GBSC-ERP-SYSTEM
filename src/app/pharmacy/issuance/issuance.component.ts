@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IssuanceComponent implements OnInit {
 
+<<<<<<< HEAD
     private IssuanceForm: FormGroup;
     private InventoryItemForm: FormGroup;
 
@@ -49,6 +50,40 @@ export class IssuanceComponent implements OnInit {
     private Invs: Inventory[];
 
     constructor(private PharmacyService: PharmacyService, private FormBuilder: FormBuilder, private Toast: ToastrService) {
+=======
+    public IssuanceForm: FormGroup;
+    public InventoryItemForm: FormGroup;
+
+    public SelectedSalesIndent: SalesIndent;
+    public SelectedSalesIndentDetails: SalesIndentItem[] = [];
+
+    public SalesOrders: SalesOrder;
+    public InventoryItems: InventoryItem;
+    public Items: InventoryItem[] = [];
+    public aaa: InventoryItem[];
+    public FilteredItems: InventoryItem;
+    public GridDataSource: any;
+    public LookUpDataSource: any;
+    public SalesOrderItemForm: FormGroup;
+    public filterItems: InventoryItem[];
+
+    public customerdata: any = {};
+    public AllItems: any;
+    public AllCustomers: any;
+    public data: any = {};
+    public arraydata = [];
+    public StockQuantityarraydata: any[] = [];
+    public total: number = 0;
+    public desc: any;
+    public TotalQuantity: number = 0;
+    public ItemTotal: number = 0;
+    public ItemPackQuantity: number = 0;
+
+    public Inv: Inventory;
+    public Invs: Inventory[];
+
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
+>>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.IssuanceForm = this.FormBuilder.group({
             Department: [''],

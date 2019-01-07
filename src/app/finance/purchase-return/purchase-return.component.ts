@@ -24,7 +24,7 @@ export class PurchaseReturnComponent implements OnInit {
 
     @Input('purchaseReturnId') id: number;
 
-    constructor(public toastr: ToastrService, private fb: FormBuilder, public router: Router, private activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public router: Router, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
         public financeService: FinanceService) { }
 
     async ngOnInit() {

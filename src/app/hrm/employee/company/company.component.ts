@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SetupService, EmployeeService } from '../../../core';
+import { SetupService, EmployeeService, HrmsService } from '../../../core';
+
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmployeeCompanyComponent implements OnInit {
 
-    private isDisabled = true;
+    public isDisabled = true;
     public EmpCompanyForm: any;
     public designation: any;
     public employeetype: any;
@@ -18,6 +19,10 @@ export class EmployeeCompanyComponent implements OnInit {
     public groups: any;
     public managementlevel: any;
     public employeestatus: any;
+    public departments: any;
+    public employees: any;
+    public manager: any;
+    public filterdemplyoee: any;
 
     @Input('employeeId') id: number;
 
@@ -26,7 +31,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
             ManagementLevelId: [''],
@@ -53,6 +58,8 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
 
+        this.departments = await this.hrmService.getAllDepartments();
+
         this.designation = await this.SetupServiceobj.getAllDesignations();
 
         this.managementlevel = await this.SetupServiceobj.getAllManagementlevels();
@@ -61,7 +68,16 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
 
+        this.employees = await this.employeeService.GetAllEmployees();
+
         this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
+
+
+        this.employeeService.getManagers().subscribe(res => {
+            this.manager = res;
+            console.log(this.manager);
+            // this.filterdemplyoee = this.employes.fil
+        })
 
         await this.SetupServiceobj.getEmployeeStatus();
 

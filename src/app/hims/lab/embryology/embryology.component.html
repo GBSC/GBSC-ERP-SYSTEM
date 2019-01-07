@@ -46,7 +46,7 @@
                       <label for="exampleInputEmail1">
                         Date
                       </label>
-                      <dx-date-box [value]="embryology?.date" formControlName="CreateDate">
+                      <dx-date-box [value]="embryology?.createDate" formControlName="CreateDate">
                       </dx-date-box>
                     </div>
                   </div>
@@ -157,7 +157,7 @@
                     <dx-data-grid id="gridContainer" [dataSource]="embryologydetails" (onRowInserted)="rowInserted($event)"
                       (onRowUpdated)="rowUpdated($event)">
                       <dxo-paging [enabled]="true"></dxo-paging>
-                      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true">
                       </dxo-editing>
                       <dxi-column dataField="eggNumber" caption="Egg No."></dxi-column>
                       <dxi-column dataField="oocyteExam" caption="Oocyte Exam"></dxi-column>

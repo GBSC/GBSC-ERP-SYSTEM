@@ -1,3 +1,5 @@
+import { Role } from "./role";
+
 export interface Employee {
     FirstName: string,
     LastName: string,
@@ -18,7 +20,8 @@ export interface Employee {
     ReligionId: number,
     CityId: number,
     UserLanguages: Array<any>,
-    userId: any
-
-
+    userId: any,
+    roleId: number,
+    role: Role,
+    sectionId: number,
 }

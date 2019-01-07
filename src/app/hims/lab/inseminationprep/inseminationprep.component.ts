@@ -20,30 +20,30 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class InseminationprepComponent implements OnInit {
 
-    private inseminationPrepForm: FormGroup;
+    public inseminationPrepForm: FormGroup;
     public id: any;
-    private consultants: any;
-    private patients: any;
-    private spouse: any;
-    private patient: any;
-    private clinicalRecord: any;
-    private treatments: any;
+    public consultants: any;
+    public patients: any;
+    public spouse: any;
+    public patient: any;
+    public clinicalRecord: any;
+    public treatments: any;
     public total: any;
-    private insemenationPrep: any;
-    private prepForOptions: any;
-    private sampleTypeOptions: any;
-    private methods: any;
+    public insemenationPrep: any;
+    public prepForOptions: any;
+    public sampleTypeOptions: any;
+    public methods: any;
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
 
 
-    constructor(private inseminationPrepService: InseminationprepService,
-        private clinicalrecordservice: PatientclinicalrecordService,
-        private route: ActivatedRoute,
-        private treatmentService: TreatmentService,
-        private toastr: ToastrService,
-        private formBuilder: FormBuilder, private consultantService: ConsultantService, private patientService: PatientService) {
+    constructor(public inseminationPrepService: InseminationprepService,
+        public clinicalrecordservice: PatientclinicalrecordService,
+        public route: ActivatedRoute,
+        public treatmentService: TreatmentService,
+        public toastr: ToastrService,
+        public formBuilder: FormBuilder, public consultantService: ConsultantService, public patientService: PatientService) {
 
         this.inseminationPrepForm = formBuilder.group({
             'InsemenationDate': ['', Validators.required],

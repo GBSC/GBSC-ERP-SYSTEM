@@ -1,0 +1,175 @@
+ 
+<div class="m-content">
+	<div class="row">
+			<div class="col-xl-12">
+				<div class="m-portlet">
+				<div class="m-portlet__head">
+					<div class="m-portlet__head-caption">
+					<div class="m-portlet__head-title">
+						<h3 class="m-portlet__head-text">Submitted Attendance</h3>
+					</div>
+					</div>
+				</div>
+				<div class="m-portlet__body">
+					<div class="m-section">
+					<div class="m-section__content" >
+						<dx-data-grid id="gridContainer" [dataSource]="attendanceSummiteddata" (onRowUpdated)="updateattendancerequest($event)"> 
+
+							<dxo-editing mode="row"  [allowUpdating]="true"    [useIcons]="true">	
+								<dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
+							</dxo-editing>
+							<dxo-filter-row [visible]="true"></dxo-filter-row>
+							<dxo-header-filter [visible]="true"></dxo-header-filter>
+							<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+							<dxo-paging [pageSize]="8"></dxo-paging>
+							<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+				
+							<dxi-column dataField="userId" caption="Employee">
+									<dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+									</dxo-lookup>
+								</dxi-column> 
+							<dxi-column dataField="attendanceRequestTypeId" caption="Attendace Request Type">
+									<dxo-lookup [dataSource]="attendanceRequestTypes" displayExpr="name" valueExpr="attendanceRequestTypeId">
+									</dxo-lookup>
+								</dxi-column> 
+							<dxi-column dataField="assignRosterId" caption="Assign Roster">
+									<dxo-lookup [dataSource]="assignroster" displayExpr="year" valueExpr="assignRosterId">
+									</dxo-lookup>
+								</dxi-column> 
+							<dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">
+									<dxo-lookup [dataSource]="attendanceRequestApprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
+									</dxo-lookup>
+								</dxi-column> 
+
+							<dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column> 
+							<dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column> 
+							<!-- <dxi-column dataField="isSubmitted" caption="Submitted" dataType="boolean"></dxi-column>  -->
+							<dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>  
+						</dx-data-grid> 
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+  </div>
+ 
+    <div class="row">
+      
+      <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                  Attendace
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <ul class="nav nav-pills" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#m_tabs_3_1">
+                  Approved Attendace
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#m_tabs_3_3">
+                  Rejected Attendace
+                </a>
+              </li>
+              
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="m_tabs_3_1" role="tabpanel">
+                  <dx-data-grid id="gridContainer" [dataSource]="attendanceapprove"> 
+
+                      <dxo-editing mode="row" [useIcons]="true">	
+                        <dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+                
+                      <dxi-column dataField="userId" caption="Employee">
+                          <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="attendanceRequestTypeId" caption="Attendace Request Type">
+                          <dxo-lookup [dataSource]="attendanceRequestTypes" displayExpr="name" valueExpr="attendanceRequestTypeId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="assignRosterId" caption="Assign Roster">
+                          <dxo-lookup [dataSource]="assignroster" displayExpr="year" valueExpr="assignRosterId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">
+                          <dxo-lookup [dataSource]="attendanceRequestApprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
+                          </dxo-lookup>
+                        </dxi-column> 
+        
+                      <dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column> 
+                      <dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column> 
+                      <!-- <dxi-column dataField="isSubmitted" caption="Submitted" dataType="boolean"></dxi-column>  -->
+                      <!-- <dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>   -->
+                    </dx-data-grid> 
+               </div>
+              
+              <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
+                  <dx-data-grid id="gridContainer" [dataSource]="attendancereject"> 
+
+                      <dxo-editing mode="row"    [useIcons]="true">	
+                        <dxo-popup title="Attendance Request" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
+                      </dxo-editing>
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                      <dxo-paging [pageSize]="8"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+                
+                      <dxi-column dataField="userId" caption="Employee">
+                          <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="attendanceRequestTypeId" caption="Attendace Request Type">
+                          <dxo-lookup [dataSource]="attendanceRequestTypes" displayExpr="name" valueExpr="attendanceRequestTypeId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="assignRosterId" caption="Assign Roster">
+                          <dxo-lookup [dataSource]="assignroster" displayExpr="year" valueExpr="assignRosterId">
+                          </dxo-lookup>
+                        </dxi-column> 
+                      <dxi-column dataField="attendanceRequestApproverId" caption="Attendance Request Approver">
+                          <dxo-lookup [dataSource]="attendanceRequestApprover" displayExpr="name" valueExpr="attendanceRequestApproverId">
+                          </dxo-lookup>
+                        </dxi-column> 
+        
+                      <dxi-column dataField="requestDate" dataType="date" format="shortdate"></dxi-column> 
+                      <!-- <dxi-column dataField="isApproved" caption="Approved" dataType="boolean"></dxi-column>  -->
+                      <!-- <dxi-column dataField="isSubmitted" caption="Submitted" dataType="boolean"></dxi-column>  -->
+                      <dxi-column dataField="isRejected" caption="Rejected" dataType="boolean"></dxi-column>  
+                    </dx-data-grid> 
+               </div>
+              
+            </div>
+          </div>
+        </div>
+        <!--end::Portlet-->
+<!--begin::Portlet-->
+        
+        
+
+        
+        
+
+        
+        <!--end::Portlet-->
+      </div>
+    </div>
+   
+</div>
+

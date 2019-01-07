@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class BiochemistryoutsiderService {
 
-    private Url = "Hims/api/BioChemistryTestOutsider/"
+    public Url = "Hims/api/BioChemistryTestOutsider/"
 
-    constructor(private http: HttpClient, private ApiService: ApiService) { }
+    constructor(public http: HttpClient, public ApiService: ApiService) { }
 
     getBioChemistryTestOutsiders(): Observable<any> {
         return this.ApiService.get(this.Url + "GetAllBioChemistryTestOutsiders");

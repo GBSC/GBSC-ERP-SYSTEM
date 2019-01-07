@@ -11,14 +11,21 @@ import { SalesInvoice } from '../../Models/Finance/salesInvoice';
 import { SalesInvoiceDetail } from '../../Models/Finance/salesInvoiceDetail';
 import { SalesReturn } from '../../Models/Finance/salesReturn';
 import { SalesReturnDetail } from '../../Models/Finance/salesReturnDetail';
+import { Account } from '../../Models/Finance/Account';
+import { AccountViewModel } from '../../Models/Finance/AccountViewModel';
+import { UnpostedVoucher } from '../../Models/Finance/UnpostedVoucher';
+import { UnpostedVoucherViewModel } from '../../Models/Finance/UnpostedVoucherViewModel';
+import { PostedVoucherViewModel } from '../../Models/Finance/PostedVoucherViewModel';
+import { TransactionAccount } from '../../Models/Finance/TransactionAccount';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 
 export class FinanceService {
 
-    private baseUrl: string = "Finance/api";
+    public baseUrl: string = "Finance/api";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getPurchaseInvoices() {
 
@@ -135,6 +142,9 @@ export class FinanceService {
         return await this.ApiService.get(`${this.baseUrl}/Finance/GetVoucherDetails`).toPromise();
     }
 
+    getVoucherDetail(id): Observable<any> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetVoucherDetail/' + id);
+    }
     getVoucher(id): Observable<Voucher> {
 
         return this.ApiService.get(this.baseUrl + '/Finance/GetVoucher/' + id);
@@ -149,6 +159,10 @@ export class FinanceService {
 
         return await this.ApiService.put(`${this.baseUrl}/Finance/UpdateVoucherDetail`, VoucherDetail).toPromise();
 
+    }
+
+    updateVoucherDetails(value): Observable<VoucherDetail> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateVoucherDetails', value);
     }
 
     async DeleteVoucherDetail(id) {
@@ -245,4 +259,110 @@ export class FinanceService {
         return await this.ApiService.delete(`${this.baseUrl}/FinanceSales/DeleteFinanceSalesReturnDetail/${id}`).toPromise();
     }
 
+    //++++++++++++++++++++++Account Start++++++++++++++++++++++++++++++//
+
+    getAccounts(): Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccounts');
+    }
+
+    getAccountsByCompany(companyid : number): Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccountsByCompany/' + companyid);
+    }
+
+    getAccount(id: number): Observable<Account> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetAccount/' + id);
+    }
+
+    addAccount(newaccountviewmodel: AccountViewModel): Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/AddAccount', newaccountviewmodel);
+    }
+
+    updateAccount(account: Account): Observable<any> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateAccount', account);
+    }
+
+    deleteAccount(id: number): Observable<any> {
+        return this.ApiService.delete(this.baseUrl + '/Finance/DeleteAccount/' + id);
+    }
+
+    processAccountsForLedger(value): Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/ProcessAccountsForLedger', value);
+    }
+
+    getTransactionAccounts(): Observable<TransactionAccount[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetTransactionAccounts');
+    }
+
+    getTransactionAccountById(id: number): Observable<TransactionAccount> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetTransactionAccount/' + id)
+    }
+
+    updateTransactionAccount(model: TransactionAccount): Observable<any> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateTransactionAccount', model);
+    }
+
+    addTransactionAccounts(models: TransactionAccount[]): Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/AddTransactionAccounts', models);
+    }
+
+    deleteTransactionAccount(id: number): Observable<any> {
+        return this.ApiService.delete(this.baseUrl + '/Finance/DeleteTransactionAccount/' + id);
+    }
+
+    getUnpostedVouchers(): Observable<UnpostedVoucherViewModel[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetUnpostedVouchers');
+    }
+
+    getUnpostedVoucher(id: number): Observable<UnpostedVoucherViewModel> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetUnpostedVoucher/' + id);
+    }
+
+    updateUnpostedVoucher(value: UnpostedVoucherViewModel): Observable<any> {
+        return this.ApiService.put(this.baseUrl + '/Finance/UpdateUnpostedVoucher', value);
+    }
+
+    deleteUnpostedVoucher(id: number): Observable<any> {
+        return this.ApiService.delete(this.baseUrl + '/Finance/DeleteUnpostedVoucher/' + id)
+    }
+
+    postUnpostedVouchers(models: UnpostedVoucherViewModel[]): Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/PostUnpostedVouchers', models);
+    }
+
+    postUnpostedVoucher(model: UnpostedVoucherViewModel): Observable<any> {
+        return this.ApiService.post(this.baseUrl + '/Finance/PostUnpostedVoucher', model);
+    }
+
+    getPostedVouchers(): Observable<PostedVoucherViewModel[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchers');
+    }
+
+    getPostedVouchersByFinancialYear(id: number): Observable<PostedVoucherViewModel[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchersByFinancialYear/' + id);
+    }
+
+    getPostedVouchersByDateRange(fromdate: Date, todate: Date): Observable<PostedVoucherViewModel[]> {
+        let params = new HttpParams();
+        params.append("fromdate", this.FormatDate(fromdate));
+        params.append("todate", this.FormatDate(todate));
+        return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchersByDateRange', params);
+    }
+
+    getPostedVouchersByDate(date: Date): Observable<PostedVoucherViewModel[]> {
+        let params = new HttpParams();
+        params.append("date", date.toLocaleDateString());
+        return this.ApiService.get(this.baseUrl + '/Finance/GetPostedVouchersByDate', params);
+    }
+
+    private FormatDate(date: Date) {
+        return date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
+    }
+
+    configureCompanyFinanceDetails(model: any): Observable<string> {
+        return this.ApiService.post(this.baseUrl + '/Finance/ConfigureCompanyFinanceDetails', model);
+    }
+
+    getMasterAccountsByCompany(companyid: number): Observable<Account[]> {
+        return this.ApiService.get(this.baseUrl + '/Finance/GetMasterAccountsByCompany/' + companyid);
+    }
 }

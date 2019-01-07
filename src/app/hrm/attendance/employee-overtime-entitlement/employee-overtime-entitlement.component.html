@@ -56,9 +56,8 @@
                           <label>
                             Overtime Type:
                           </label>
-                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                            <option value="" disabled selected>-- Select Type --</option>
-                            <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                          <select class="form-control m-input" formControlName="OverTimeTypeId"> 
+                            <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                    </select>
                         </div>
                         <div class="col-lg-6">
@@ -97,9 +96,8 @@
                             <label>
                               Overtime Type:
                             </label>
-                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                              <option value="" disabled selected>-- Select Type --</option>
-                              <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                            <select class="form-control m-input" formControlName="OverTimeTypeId"> 
+                              <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                      </select>
                           </div>
                           <div class="col-lg-6">
@@ -155,9 +153,8 @@
                           <label>
                             Overtime Type:
                           </label>
-                          <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                            <option value="" disabled selected>-- Select Type --</option>
-                            <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                          <select class="form-control m-input" formControlName="OverTimeTypeId"> 
+                            <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                    </select>
                         </div>
                         <div class="col-lg-6">
@@ -196,9 +193,8 @@
                             <label>
                               Overtime Type:
                             </label>
-                            <select class="form-control m-input" formControlName="OverTimeTypeId" id="">
-                              <option value="" disabled selected>-- Select Type --</option>
-                              <option *ngFor ="let ot of OvertimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
+                            <select class="form-control m-input" formControlName="OverTimeTypeId"> 
+                              <option *ngFor ="let ot of OverTimeType" [value]="ot.overTimeTypeId" >{{ot.title}}</option>
                      </select>
                           </div>
                           <div class="col-lg-6">
@@ -312,7 +308,7 @@
                   (onRowUpdated)="updateempOvertimeEntitlement()"
                   (onRowUpdating)="updatingempEntitlement($event)"
                    [columnAutoWidth]="true" [showBorders]="true" [allowColumnReordering]="true">
-                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"></dxo-editing>
+                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true"></dxo-editing>
                       <dxi-column dataField="userId" caption="Employee">
                           <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
                           </dxo-lookup>

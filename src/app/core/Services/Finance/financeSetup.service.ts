@@ -6,6 +6,7 @@ import { MasterAccount } from '../../Models/Finance/masterAccount';
 import { DetailAccount } from '../../Models/Finance/detailAccount';
 import { SubAccount } from '../../Models/Finance/subAccount';
 import { SecondSubAccount } from '../../Models/Finance/secondSubAccount';
+import { Observable } from 'rxjs';
 
 export class Company {
     SNo: number;
@@ -32,9 +33,9 @@ let companies: Company[] = [{
 @Injectable()
 export class FinanceSetupService {
 
-    private baseUrl: string = "Finance/api";
+    public baseUrl: string = "Finance/api";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     getCompanies() {
         return companies;
@@ -43,6 +44,10 @@ export class FinanceSetupService {
     async getFinancialYears() {
 
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetFinancialYears`).toPromise();
+    }
+
+    GetFinancialYears(): Observable<FinancialYear[]> {
+        return this.ApiService.get(this.baseUrl + '/FinanceSetup/GetFinancialYears');
     }
 
     async addFinancialYear(financialYear: FinancialYear) {
@@ -63,6 +68,10 @@ export class FinanceSetupService {
     async getVoucherTypes() {
 
         return await this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`).toPromise();
+    }
+
+    GetVoucherTypes(): Observable<VoucherType[]> {
+        return this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`);
     }
 
     async addVoucherType(vouchertype: VoucherType) {

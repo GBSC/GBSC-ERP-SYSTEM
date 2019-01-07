@@ -20,16 +20,15 @@ export class EmployeeQualificationComponent implements OnInit {
     @Input('employeeId') id: number;
 
 
-    constructor(public employeeService: EmployeeService, private SetupServiceobj: SetupService,
-        public router: Router, private route: ActivatedRoute) {
+    constructor(public employeeService: EmployeeService, public SetupServiceobj: SetupService,
+        public router: Router, public route: ActivatedRoute) {
     }
 
     async ngOnInit() {
 
-        this.SetupServiceobj.getAllDegrees().subscribe(resp => this.degrees = resp);
+        this.degrees = await this.SetupServiceobj.getAllDegrees();
 
         this.employeeService.getQualifications(this.id).subscribe(resp => this.qualifications = resp);
-
     }
 
     addQualification(value) {

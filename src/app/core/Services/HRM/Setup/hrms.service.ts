@@ -2,20 +2,29 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
+=======
+import { City } from '../../../../core/Models/HRM/city';
+>>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
 
 @Injectable()
 
 export class HrmsService {
 
-    private setupUrl: string = "SystemAdmin/api/Setup";
+    public setupUrl: string = "SystemAdmin/api/Setup";
 
-    constructor(private ApiService: ApiService) {
+    constructor(public ApiService: ApiService) {
     }
 
     async getAllCountries() {
 
         return await this.ApiService.get(this.setupUrl + '/GetCountries').toPromise();
+    }
+
+    getCountriesByCompanyId(compid : number) : Observable<any[]> {
+
+        return this.ApiService.get(this.setupUrl + '/GetCountriesByCompanyId/' + compid);
     }
 
     // DEMO ONLY, you can find working methods below
@@ -24,7 +33,7 @@ export class HrmsService {
 
     }
 
-    async updateCountry(data) { 
+    async updateCountry(data) {
         return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
     }
 
@@ -37,12 +46,21 @@ export class HrmsService {
         return await this.ApiService.get(this.setupUrl + '/GetCities').toPromise();
     }
 
+    getCitiesByCompanyId(companyId: any) {
+
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
+    GetCitiesByCompanyId(companyId: any): Observable<City[]> {
+        return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
+    }
+
     async addCity(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
 
     }
 
-    async updateCity(data) { 
+    async updateCity(data) {
         return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
     }
 

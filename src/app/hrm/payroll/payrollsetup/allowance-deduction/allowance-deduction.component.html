@@ -34,7 +34,7 @@
                       Type:
                     </label>
                     <select class="form-control m-input" formControlName="Type" id="">
-                        <option value="" disabled selected>-- Select Type --</option>
+                        <!-- <option value="" disabled selected>-- Select Type --</option> -->
                        <option>Allowance</option>
                        <option>Deduction</option>
                </select>
@@ -44,7 +44,7 @@
                     Calculation Type:
                     </label> 
                         <select class="form-control m-input" formControlName="AllowanceCalculationTypeId" id="">
-                            <option value="" disabled selected>-- Select Allowance Calculation Type --</option>
+                            <!-- <option value="" disabled selected>-- Select Allowance Calculation Type --</option> -->
                             <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
                    </select>
                   </div>
@@ -94,7 +94,7 @@
                       </div>
                       <div class="col-lg-6">
                         <label class="">
-                          Repost Number:
+                          Report Order:
                         </label>
                         <input type="text" class="form-control m-input" formControlName="RepostNumber" placeholder="0">
                       </div>
@@ -215,8 +215,8 @@
           (onRowUpdated)="updateAllowanceDeduction()" 
           (onRowUpdating)="updatingAllowanceDeduction($event)" 
           (onRowRemoved)="deleteAllowanceDeduction($event)">
-          <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">	
-            <dxo-popup title="Allowance/Deduction" [showTitle]="true" [width]="850" [height]="600" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+          <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">	
+            <dxo-popup title="Allowance/Deduction" [showTitle]="true" [width]="850" [height]="600"></dxo-popup>
           </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>

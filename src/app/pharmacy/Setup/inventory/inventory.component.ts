@@ -11,13 +11,13 @@ import { Observable } from 'rxjs';
 })
 export class InventoryComponent implements OnInit {
 
-    private InventoryItems: InventoryItem;
-    private Inventories: Inventory;
-    private UpdatedModel: any;
-    private UnassignedItems: any;
-    private DataSource: any;
+    public InventoryItems: InventoryItem;
+    public Inventories: Inventory;
+    public UpdatedModel: any;
+    public UnassignedItems: any;
+    public DataSource: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }
@@ -73,7 +73,7 @@ export class InventoryComponent implements OnInit {
         });
     }
 
-    async UpdateInventory(value) {
+    async UpdateInventory() {
         await this.PharmacyService.UpdateInventory(this.UpdatedModel).toPromise();
         this.CheckUnassignedItems();
     }

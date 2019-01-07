@@ -13,8 +13,8 @@
               <dx-data-grid id="gridContainer" [dataSource]="qualification" keyExpr="qualificationId" (onRowInserted)="addNewqualification($event)"
                 (onRowUpdated)="EditNewqualification($event)" (onRowRemoved)="deletequalification($event)">
 
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Qualification" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Qualification" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

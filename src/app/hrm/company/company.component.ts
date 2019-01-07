@@ -11,7 +11,7 @@ export class CompanyComponent implements OnInit {
 
     public companies: any;
     public updatingcompany: any;
-    constructor(private SystemAdministrationServiceobj: SystemAdministrationService) {
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) {
 
     }
 

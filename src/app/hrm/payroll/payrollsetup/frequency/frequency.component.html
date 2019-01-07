@@ -13,7 +13,7 @@
 					<div class="m-section__content" >
 						<dx-data-grid id="gridContainer" [dataSource]="Frequency" keyExpr="frequencyId" (onRowInserted)="addFrequency($event)" (onRowUpdated)="updateFrequency($event)" (onRowRemoved)="deleteFrequency($event)"> 
 							<dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
-								<dxo-popup title="Frequency" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+								<dxo-popup title="Frequency" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>
 							<dxo-header-filter [visible]="true"></dxo-header-filter>

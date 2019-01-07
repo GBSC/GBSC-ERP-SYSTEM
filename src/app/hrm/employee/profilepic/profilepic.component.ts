@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { EmployeeService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,12 +12,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProfilepicComponent implements OnInit {
     @Output('setBankFormValue') setpicFormValue = new EventEmitter();
-    public Profilepic: any;
-    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, private route: ActivatedRoute) { }
-
     public selectedPic;
-
+    public Profilepic: FormGroup;
     @Input('employeeId') id: number;
+
+    constructor(public employee: EmployeeService, public fb: FormBuilder, public router: Router, public route: ActivatedRoute) {
+    }
 
     async ngOnInit() {
         this.route.params.subscribe((params) => {
@@ -33,9 +33,7 @@ export class ProfilepicComponent implements OnInit {
     getProfilePic(e) {
     }
 
-
-
-    private forevent: File = null;
+    public forevent: File = null;
 
     onfileselect(event) {
         this.forevent = <File>event.target.files[0];

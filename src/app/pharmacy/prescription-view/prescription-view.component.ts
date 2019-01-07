@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PharmacyService } from '../../core';
 import { SalesIndent } from '../../core/Models/Pharmacy/SalesIndent';
 import { SalesIndentViewModel } from '../../core/Models/Pharmacy/IndentViewModel';
+import { FormGroup , FormBuilder} from '@angular/forms';
 
 @Component({
     selector: 'app-prescription-view',
@@ -9,18 +10,24 @@ import { SalesIndentViewModel } from '../../core/Models/Pharmacy/IndentViewModel
     styleUrls: ['./prescription-view.component.scss']
 })
 export class PrescriptionViewComponent implements OnInit {
-    private Prescriptions: SalesIndent[] = [];
-    private PrescriptionsDetails: SalesIndentViewModel[] = [];
-    private PrescriptionsViews: SalesIndent[] = [];
+    public Prescriptions: SalesIndent[] = [];
+    public PrescriptionsDetails: SalesIndentViewModel[] = [];
+    public PrescriptionsViews: SalesIndent[] = [];
+    // public PresciptionForm : FormGroup
 
-    constructor(private PharmacyService: PharmacyService) {
+    public date : any ;
 
+    constructor(public PharmacyService: PharmacyService, public FormBuilder : FormBuilder) {
+        // this.PresciptionForm = this.FormBuilder.group({
+        //     Date : [''],
+
+        // });
     }
 
     async ngOnInit() {
 
-        let date = (new Date().getDate() + '-' + new Date().getMonth() + 1) + '-' + (new Date().getFullYear());
-        console.log("Date", date);
+        this.date = (new Date().getDate() + '-' + new Date().getMonth() + 1) + '-' + (new Date().getFullYear());
+        console.log("Date",  this.date );
 
         // this.PharmacyService.GetSalesIndentsByDay(date).subscribe((res : SalesIndent[]) => {
         // 	this.Prescriptions = res;
@@ -32,9 +39,9 @@ export class PrescriptionViewComponent implements OnInit {
         // 	console.log("PrescriptionsDetails", this.PrescriptionsDetails);
         // });
 
-        this.Prescriptions = await this.PharmacyService.GetSalesIndentsByDayAsync(date);
+        this.Prescriptions = await this.PharmacyService.GetSalesIndentsByDayAsync( this.date );
         console.log("Prescriptions", this.Prescriptions);
-        this.PrescriptionsDetails = await this.PharmacyService.GetSalesIndentDetailsByDayAsync(date);
+        this.PrescriptionsDetails = await this.PharmacyService.GetSalesIndentDetailsByDayAsync( this.date );
         console.log("PrescriptionsDetails", this.PrescriptionsDetails);
 
         this.Prescriptions.forEach(element => {

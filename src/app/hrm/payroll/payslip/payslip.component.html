@@ -118,7 +118,7 @@
                         <dx-data-grid id="gridContainer" [dataSource]="currentUserLoan" keyExpr="userLoanId" (onRowUpdated)="updateUserLoan()" (onRowUpdating)="Updatingloan($event)">
                           <!-- (onRowInserted)="userLoan($event)" -->
                           <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
-                            <dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                            <dxo-popup title="User Loan" [showTitle]="true" [width]="700" [height]="345">
                             </dxo-popup>
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>

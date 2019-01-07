@@ -8,13 +8,13 @@ import { PharmacyService } from '../../core';
 })
 export class IssuanceDetailComponent implements OnInit {
 
-    private PackType: any;
-    private SalesOrder: any;
-    private InventoryItem: any;
-    private Inventory: any;
-    private SalesOrderItem: any;
+    public PackType: any;
+    public SalesOrder: any;
+    public InventoryItem: any;
+    public Inventory: any;
+    public SalesOrderItem: any;
 
-    constructor(private PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

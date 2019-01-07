@@ -174,7 +174,7 @@
           <div class="tab-content">
             <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
               <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="tentativeAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -217,7 +217,7 @@
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
               <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
-                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345" [position]="{ my: 'center', at: 'center', of: window }"></dxo-popup>
+                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345"  ></dxo-popup>
                 </dxo-editing>
                 <dxo-selection mode="single"></dxo-selection>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>

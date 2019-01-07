@@ -81,7 +81,7 @@
                   <dx-data-grid id="gridContainer" [dataSource]="embryoFreezeDetails">
 
                     <dxo-paging [enabled]="true"></dxo-paging>
-                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true">
                     </dxo-editing>
                     <dxi-column dataField="embryoNumber" caption="Embryo No."></dxi-column>
                     <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
@@ -93,11 +93,6 @@
                       <dxo-lookup [dataSource]="topBottomOptions" displayExpr="name" valueExpr="name">
                       </dxo-lookup>
                     </dxi-column>
-                    <dxi-column dataField="freeFreeze" caption="Free Freeze">
-                      <dxo-lookup [dataSource]="freeFreezeOptions" displayExpr="name" valueExpr="name">
-                      </dxo-lookup>
-                    </dxi-column>
-
                   </dx-data-grid>
                 </div>
                 <hr>

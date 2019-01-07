@@ -20,13 +20,13 @@
                 <label>
                     Month Start Date:
                 </label> 
-                <dx-date-box formControlName="MonthStartDate" type="date" width="100%"></dx-date-box>
+                <dx-date-box formControlName="MonthStartDate" type="date" format="shortDate" width="100%"></dx-date-box>
                 </div>
                 <div class="col-lg-6">
                   <label class="">
                       Month End Date:
                   </label> 
-                  <dx-date-box formControlName="MonthEndDate" type="date" width="100%"></dx-date-box>
+                  <dx-date-box formControlName="MonthEndDate" type="date" format="shortDate" width="100%"></dx-date-box>
               </div>
             </div>
             <div class="form-group m-form__group row">
@@ -89,7 +89,7 @@
                     <label>
                       Stop Salary:
                     </label>
-                    <select class="form-control m-input" formControlName="StopSalaryId" id="">
+                    <select class="form-control m-input" formControlName="StopSalaryId">
                       <option value="" disabled selected>-- Select Stop Salary --</option>
                       <option *ngFor ="let stopSalary of stopSalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
                     </select>

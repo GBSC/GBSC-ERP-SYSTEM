@@ -9,10 +9,10 @@ import { PatientService } from '../../../core';
 })
 export class TestTypeComponent implements OnInit {
 
-    private TestTypes: TestType[] = [];
-    private UpdatedModel: TestType;
+    public TestTypes: TestType[] = [];
+    public UpdatedModel: TestType;
 
-    constructor(private PatientService: PatientService) {
+    constructor(public PatientService: PatientService) {
 
     }
 

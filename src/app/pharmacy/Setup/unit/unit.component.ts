@@ -12,11 +12,17 @@ import { InventoryItemComponent } from '../inventory-item/inventory-item.compone
 export class UnitComponent implements OnInit {
 
     @Output() UpdateUnitInInventoryItemComponent = new EventEmitter<any>();
+<<<<<<< HEAD
 
     private Units: Unit;
     private UpdatedModel: any;
+=======
+>>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
-    constructor(private PharmacyService: PharmacyService) {
+    public Units: Unit;
+    public UpdatedModel: any;
+
+    constructor(public PharmacyService: PharmacyService) {
 
     }
 

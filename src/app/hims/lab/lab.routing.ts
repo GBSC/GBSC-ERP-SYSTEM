@@ -28,7 +28,6 @@ import { EmbryoFreezeComponent } from './embryo-freeze/embryo-freeze.component';
 import { FreezepreparationComponent } from './freezepreparation/freezepreparation.component';
 import { ClinicalrecordsComponent } from './clinicalrecords/clinicalrecords.component';
 import { SemenanalysisComponent } from './semenanalysis/semenanalysis.component';
-import { ReportViewerComponent } from './report-viewer/report-viewer.component';
 import { BiochemistryOutsiderComponent } from './biochemistry-outsider/biochemistry-outsider.component';
 import { TvopuRecordsComponent } from './tvopu-records/tvopu-records.component';
 import { BiopsyRecordsComponent } from './biopsy-records/biopsy-records.component';
@@ -38,17 +37,22 @@ import { InsemenationRecordsComponent } from './insemenation-records/insemenatio
 import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
+import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-components/biochemistry-details-ontreatment-reportviewer/biochemistry-details-ontreatment-reportviewer.component';
+import { LabsummaryReportviewerComponent } from './report-components/labsummary-reportviewer/labsummary-reportviewer.component';
+import { BiopsyReportviewerComponent } from './report-components/biopsy-reportviewer/biopsy-reportviewer.component';
+import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
+import { BiochemistryOntreatmentReportviewerComponent } from './report-components/biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
+import { SemenAnalysisOutsiderReportviewerComponent } from './report-components/semen-analysis-outsider-reportviewer/semen-analysis-outsider-reportviewer.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
 
 
     {
-        path: 'lab',
+        path: '',
         component: RootComponent,
-        canActivate: [AuthGuardService, ModuleGuardService],
+        canActivate: [AuthGuardService],
         children: [
-            { path: 'report-viewer', component: ReportViewerComponent },
             { path: 'clinical-records', component: ClinicalrecordsComponent },
             { path: 'test-unit', component: TestunitComponent },
             { path: 'biochemistry-test', component: BiochemistrytestComponent },
@@ -96,6 +100,37 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'freeze-prep-records', component: FreezePrepRecordsComponent },
             { path: 'freeze-prep', component: FreezepreparationComponent },
             { path: 'freeze-prep/:id', component: FreezepreparationComponent },
+
+            //Reports
+            {
+                path: 'report',
+                children: [
+                    {
+                        path: 'biochemistry-details-ontreatment',
+                        component: BiochemistryDetailsOntreatmentReportviewerComponent
+                    },
+                    {
+                        path: 'biochemistry-ontreatment',
+                        component: BiochemistryOntreatmentReportviewerComponent
+                    },
+                    {
+                        path: 'biochemistry-outsider',
+                        component: BiochemistryOutsiderReportviewerComponent
+                    },
+                    {
+                        path: 'biopsy',
+                        component: BiopsyReportviewerComponent
+                    },
+                    {
+                        path: 'labsummary',
+                        component: LabsummaryReportviewerComponent
+                    },
+                    {
+                        path: 'semen-analysis',
+                        component: SemenAnalysisOutsiderReportviewerComponent
+                    }
+                ]
+            }
 
         ]
     }

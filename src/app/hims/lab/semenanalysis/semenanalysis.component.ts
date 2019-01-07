@@ -16,41 +16,41 @@ export class SemenanalysisComponent implements OnInit {
 
     @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-    private patient: any;
-    private spouse: any;
-    private patients: any;
-    private consultants: any;
-    private treatments: any;
-    private id: number;
-    private clinicalRecord: any;
-    private semenAnalysis: any;
+    public patient: any;
+    public spouse: any;
+    public patients: any;
+    public consultants: any;
+    public treatments: any;
+    public id: number;
+    public clinicalRecord: any;
+    public semenAnalysis: any;
 
-    private motileCount: number;
-    private immotileCount: number;
-    private totalCount: number;
-    private linear: number;
-    private nonLinear: number;
-    private nonProgresive: number;
-    private immotile: number;
-    private reportedLiner: number;
-    private reportedNonLinear: number;
-    private reportedNonProgressive: number;
-    private reportedImmotile: number;
-    private totalProgression: number;
-    private totalReportedProgression: number;
-
-
-    private semenAnalysisForm: FormGroup;
+    public motileCount: number;
+    public immotileCount: number;
+    public totalCount: number;
+    public linear: number;
+    public nonLinear: number;
+    public nonProgresive: number;
+    public immotile: number;
+    public reportedLiner: number;
+    public reportedNonLinear: number;
+    public reportedNonProgressive: number;
+    public reportedImmotile: number;
+    public totalProgression: number;
+    public totalReportedProgression: number;
 
 
-    constructor(private formBuilder: FormBuilder,
-        private consultantService: ConsultantService,
-        private patientService: PatientService,
-        private toastr: ToastrService,
-        private semenAnalysisService: SemenanalysisService,
+    public semenAnalysisForm: FormGroup;
+
+
+    constructor(public formBuilder: FormBuilder,
+        public consultantService: ConsultantService,
+        public patientService: PatientService,
+        public toastr: ToastrService,
+        public semenAnalysisService: SemenanalysisService,
         public router: Router,
-        private route: ActivatedRoute,
-        private clinicalrecordservice: PatientclinicalrecordService) {
+        public route: ActivatedRoute,
+        public clinicalrecordservice: PatientclinicalrecordService) {
 
         this.semenAnalysisForm = this.formBuilder.group({
             'ConsultantId': [''],
@@ -140,6 +140,7 @@ export class SemenanalysisComponent implements OnInit {
 
 
     submitForm(value) {
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.semenAnalysisService.addSemenAnalysis(value).subscribe(resp => {
             console.log(resp);
             this.displayToast("Semen Analysis Saved");
@@ -150,8 +151,8 @@ export class SemenanalysisComponent implements OnInit {
 
     updateForm(value) {
         value.semenAnalysisId = this.id;
+        value.reportedMotileCount = 100 - this.reportedImmotile;
         this.semenAnalysisService.updateSemenAnalysis(value).subscribe(resp => {
-            console.log(resp);
             this.displayToast("Semen Analysis Updated");
         });
     }

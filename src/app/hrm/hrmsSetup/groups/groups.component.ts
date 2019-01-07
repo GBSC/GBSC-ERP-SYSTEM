@@ -11,25 +11,30 @@ import { HttpClient } from '@angular/common/http';
 export class GroupComponent implements OnInit {
 
     public group: any;
-    constructor(public httpClient: HttpClient,
-        public dataService: SetupService) { }
+    public modelUpdating: any;
+
+    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
 
         this.group = await this.dataService.getAllGroups();
     }
 
-    addNewGroups(grp) {
-        this.dataService.addGroup(grp.data);
-        this.group = this.dataService.getAllGroups();
+    async addNewGroups(grp) {
+        await this.dataService.addGroup(grp.data);
+        this.group = await this.dataService.getAllGroups();
     }
 
-    EditGroup(grop) {
-        this.dataService.updateGroup(grop);
+    async groupUpdaing(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteGroup(grup) {
-        this.dataService.DeleteGroup(grup.key);
+    async EditGroup() {
+        await this.dataService.updateGroup(this.modelUpdating);
+    }
+
+    async deleteGroup(grup) {
+        await this.dataService.DeleteGroup(grup.key);
     }
 
 }

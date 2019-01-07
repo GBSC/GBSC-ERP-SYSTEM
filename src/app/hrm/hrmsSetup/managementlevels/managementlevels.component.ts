@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { SetupService } from '../../../core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -10,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ManagementLevelsComponent implements OnInit {
 
-
     public managlevel: any;
+    public modelUpdating: any;
+
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
@@ -19,19 +19,21 @@ export class ManagementLevelsComponent implements OnInit {
     }
 
 
-    addNewManagementLevels(mnglevel) {
+    async addNewManagementLevels(mnglevel) {
 
-        this.dataService.addManagementLevel(mnglevel.data);
-        this.managlevel = this.dataService.getAllManagementlevels();
+        await this.dataService.addManagementLevel(mnglevel.data);
+        this.managlevel = await this.dataService.getAllManagementlevels();
     }
 
-    EditManagementLevel(manglevel) {
-
-        this.dataService.updateManagementLevel(manglevel);
+    updatingMngLevel(value) {
+        this.modelUpdating = { ...value.oldData, ...value.newData };
     }
 
-    deleteManagementLevel(mng) {
+    async EditManagementLevel() {
+        await this.dataService.updateManagementLevel(this.modelUpdating);
+    }
 
-        this.dataService.DeleteManagementLevel(mng.key);
+    async deleteManagementLevel(mng) {
+        await this.dataService.DeleteManagementLevel(mng.key);
     }
 }

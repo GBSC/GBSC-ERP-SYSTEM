@@ -1,6 +1,6 @@
 export * from './Services/Auth/auth-guard.service';
 export * from './Services/Auth/module-guard.service';
-export * from './Services/Auth/service.service';
+export * from './Services/Auth/auth.service';
 export * from './Services/Dashboard/dashboard.service';
 //export * from './Services/Finance/finance.service';
 export * from './Services/HIMS/Lab/bio-chemistry.service';
@@ -20,3 +20,5 @@ export * from './Services/HRM/systemadministration.services';
 export * from './Services/Inventory/Inventorysystem.service';
 export * from './Services/Pharmacy/pharmacy.service';
 export * from './Services/SuperAdmin/superadminservice.service';
+export * from './Services/Security/user.service';
+export * from './Services/ETracker/etrackeruser.service';

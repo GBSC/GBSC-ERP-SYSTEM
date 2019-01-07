@@ -11,7 +11,7 @@ export class ActiveVisitsComponent implements OnInit {
     public activeVisits: any;
     public visitType: any;
 
-    constructor(private PatientServiceobj: PatientService) { }
+    constructor(public PatientServiceobj: PatientService) { }
 
     async ngOnInit() {
         this.activeVisits = await this.PatientServiceobj.getActiveVisits();

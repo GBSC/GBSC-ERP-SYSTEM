@@ -8,7 +8,7 @@ import { AuthGuardService } from '../core';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: 'employee',
+        path: '',
         component: RootComponent,
         canActivate: [AuthGuardService],
         children: [

@@ -1,0 +1,393 @@
+<div class="m-subheader-search">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2 class="m-subheader-search__title" style="text-align: left;">
+          Sales Person Journey
+          <span class="m-subheader-search__desc">
+            Report
+          </span>
+        </h2>
+      </div>
+      <div class="col-sm-6">
+        <button (click)="toggleFilter()" style="float: right; border: solid 1px;" class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
+          <span *ngIf="showHideFilter" style="color: white;">
+            <i class="la la-close"></i>
+            <span>
+              Hide
+            </span>
+          </span>
+
+          <span *ngIf="!showHideFilter" style="color: white;">
+            <i class="la la-sort"></i>
+            <span>
+              Show Filters
+            </span>
+          </span>
+        </button>
+
+        <button *ngIf="showHideFilter" (click)="fetchDayStartEnd($event)" class="btn btn-success m-btn m-btn--icon m-btn--pill" style="float: right; margin-right: 10px; border: solid 1px;">
+          <span style="color: white;">
+            <i class="fa fa-search"></i>
+            <span>
+              Search
+            </span>
+          </span>
+        </button>
+        <div class="form-group m-form__group" style="display: flex;float: right;margin-right: 40px;margin-top: 6px;margin-bottom: 0px;">
+          <label style="margin-right: 10px;">
+            Set Zoom
+          </label>
+          <input [value]="agmMap?.zoom" type="range" min="0" max="22" step="1" (change)="selectZoomLevel($event)">
+          <span style="margin-left: 10px;"> Current Zoom Level {{agmMap?.zoom}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showHideFilter" class="m-grid m-grid--ver-desktop m-grid--desktop">
+
+    <div class="col-sm-12">
+      <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Region
+            </label>
+            <select [disabled]="DisableRegion" #Region class="form-control m-input" (change)="onRegionChange(Region.value)">
+              <option class='option' disabled selected>Select Region</option>
+              <option class='option' *ngFor="let region of Regions" [value]="regionId || region?.regionId">{{region?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="m-form__group form-group">
+            <label>
+              City
+            </label>
+            <select [disabled]="DisableCity" #City class="form-control m-input" (change)="onCityChange(City.value)">
+              <option class='option' disabled selected>Select City</option>
+              <option class='option' *ngFor="let city of Cities" [value]="cityId || city?.cityId">{{city?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="m-form__group form-group">
+            <label>
+              Area
+            </label>
+            <select [disabled]="DisableArea" #Area class="form-control m-input" (change)="onAreaChange(Area.value)">
+              <option class='option' disabled selected>Select Area</option>
+              <option class='option' *ngFor="let area of Areas" [value]="areaId || area?.areaId">{{area?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Distributor
+            </label>
+            <select [disabled]="DistributorDisable" #Distributor class="form-control m-input" (change)="onDistributorChange(Distributor.value)">
+              <option class='option' disabled selected>Select Distributor</option>
+              <option class='option' *ngFor="let distributor of Distributors" [value]="distributorId || distributor?.distributorId">{{distributor?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Territory
+            </label>
+            <select [disabled]="TerritoryDisable" #Territory class="form-control m-input" (change)="onTerritoryChange(Territory.value)">
+              <option class='option' disabled selected>Select Region</option>
+              <option class='option' *ngFor="let territory of Territories" [value]="territoryId || territory?.territoryId">{{territory?.name}}</option>
+            </select> </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Section
+            </label>
+            <select [disabled]="SectionDisable" #Section class="form-control m-input" (change)="onSectionChange(Section.value)">
+              <option class='option' disabled selected>Select Section</option>
+              <option class='option' *ngFor="let section of Sections" [value]="sectionId || section?.sectionId">{{section?.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+
+
+        <div class="col-sm-2">
+          <div class="m-form__group form-group">
+            <label>
+              Sub Section
+            </label>
+            <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input" (change)="onSubsectionChange(SubSection.value)">
+              <option class='option' disabled selected>Select Subsection</option>
+              <option class='option' *ngFor="let subsection of Subsections" [value]="subsectionId || subsection?.subsectionId">{{subsection?.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Day Start
+            </label>
+            <input class="form-control m-input" type="date" (change)="showDayStartEnd($event)">
+          </div> 
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group m-form__group">
+            <label>
+              Select User
+            </label>
+            <select [disabled]="DsfDisable" #DSF class="form-control m-input" (change)="selectUser(DSF.value)">
+              <option class='option' disabled selected>Select DSF</option>
+              <option class='option' *ngFor="let dsf of DSFs" [value]="dsf?.userId">{{dsf?.firstName}}
+                {{dsf?.lastName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="m-form__group form-group">
+            <label>
+              Shops
+            </label>
+            <div class="m-checkbox-list">
+              <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
+                <input type="checkbox" (change)="showTimeFilter($event)">
+                Filter By Time
+                <span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+        <div *ngIf="timeFilter"  class="row">
+         
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>Hour</label>
+              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'start')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>Minutes</label>
+              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'start')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>End Hours</label>
+              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'end')">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>End Minutes</label>
+              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'end')">
+            </div>
+          </div>
+        </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<div class="m-portlet">
+  <div class="m-portlet__body  m-portlet__body--no-padding">
+
+    <p *ngIf="eTrackerUserService?.showSpinner" style="text-align: center;">loading...</p>
+
+    <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
+  [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
+
+  <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker"
+    [label]="{color: 'black', fontSize: '14px', fontWeight: 'bold',  text: eTrackerUserService.currentUser?.fullName }">
+    <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+      [placement]="right" [closeWhenOthersOpen]="false">
+      <ng-template>
+        <div class="marker-info">
+          <div class="info-header">
+            <h1>Description</h1>
+          </div>
+          <div class="info-body">
+            <p>Username: {{eTrackerUserService.currentUser?.fullName}}</p>
+            <p>Event</p>
+            <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+            <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+            <p>Customer</p>
+          </div>
+          <div class="info-footer">
+          </div>
+        </div>
+      </ng-template>
+    </agm-snazzy-info-window>
+  </agm-marker>
+
+  <agm-polyline *ngFor="let polyline of eTrackerUserService?.locationHistory;let i = index;" [strokeColor]="'red'" [geodesic]="true"
+    [strokeOpacity]="0.7">
+    <agm-polyline-point *ngFor="let point of eTrackerUserService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
+    </agm-polyline-point>
+  </agm-polyline>
+
+  <ng-container *ngIf="eTrackerUserService?.allShops">
+    <agm-marker *ngFor="let loc of eTrackerUserService?.visitedShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
+      [iconUrl]="loc?.productive? (loc.pjp? productiveShopMarker : productiveShopMarkerOther) : (loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther)" [label]="{text: ''+(+i+1)}">
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+    </agm-marker>
+  </ng-container>
+
+  <agm-marker *ngFor="let loc of eTrackerUserService?.productiveShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
+    [iconUrl]="loc.pjp? productiveShopMarker : productiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-marker *ngFor="let loc of eTrackerUserService.nonProductiveShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
+    [iconUrl]="loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-marker *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
+    [iconUrl]="dayStartEndMakrer" [label]="{text: ''+(i+1), fontSize: '30px' }">
+    <agm-info-window>
+      <strong>Time: {{getTime(loc.timestamp.seconds)}}</strong>
+    </agm-info-window>
+  </agm-marker>
+
+  <agm-polyline *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [strokeColor]="'red'" [geodesic]="true"
+    [strokeOpacity]="0.7">
+    <agm-polyline-point *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat" [longitude]="loc.lng">
+    </agm-polyline-point>
+  </agm-polyline>
+
+  <agm-polyline *ngFor="let polyline of eTrackerUserService?.shopRouteTaken;let i = index;" [strokeColor]="'red'" [geodesic]="true"
+    [strokeOpacity]="0.7">
+    <agm-polyline-point *ngFor="let point of eTrackerUserService?.shopRouteTaken" [latitude]="point.lat" [longitude]="point.lng">
+    </agm-polyline-point>
+  </agm-polyline>
+
+</agm-map>
+
+
+  </div>
+
+
+</div>
+
+
+<div *ngIf="liveTracking" class="live-tracking-panel">
+  <div class="live-tracking-overlay"></div>
+  <div class="live-tracking-map-view">
+      <button (click)="liveTracking = false" class="btn btn-outline-success m-btn m-btn--icon m-btn--outline-2x m-btn--pill"
+      style="margin: 9px 43%;border-color: white !important;color: white !important;">End Live Tracking</button>
+
+    <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
+      [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
+
+      <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker"
+        [label]="{text: eTrackerUserService.currentUser?.fullName, color: 'black', fontSize: '14px', fontWeight: 'bold'}">
+        <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+          [placement]="right" [closeWhenOthersOpen]="false">
+          <ng-template>
+            <div class="marker-info">
+              <div class="info-header">
+                <h1>Description</h1>
+              </div>
+              <div class="info-body">
+                <p>Username: {{eTrackerUserService?.currentUser?.userId}}</p>
+                <p>Event</p>
+                <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+                <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+                <p>Customer</p>
+              </div>
+              <div class="info-footer">
+              </div>
+            </div>
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
+
+      <agm-polyline *ngFor="let polyline of sampleTracking;let i = index;" [strokeColor]="'red'" [geodesic]="true"
+        [strokeOpacity]="0.7">
+        <agm-polyline-point *ngFor="let point of sampleTracking" [latitude]="point?.lat" [longitude]="point?.lng">
+        </agm-polyline-point>
+      </agm-polyline>
+
+    </agm-map>
+  </div>
+</div>
+
+<ul class="m-nav-sticky" style="margin-top: 30px;">
+
+  <!-- <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Cluster Events">
+    <button type="button" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Mobility Events">
+    <button type="button" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li> -->
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Show All Shops">
+    <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showAllShops()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Latest Location">
+    <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showLiveTracking()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" style="color: #70c405 !important;
+  border-color: #70c405 !important;" data-original-title="Productive Shops">
+    <button type="button" class="btn btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showProductiveShops()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Non-Productive Shops">
+    <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showNonProductiveShops()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Route Taken">
+    <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showRouteTaken()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+
+  <br>
+
+  <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Live Location (Simulation)">
+    <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+    (click)="showLiveTrackingSimulation()">
+      <i class="fa fa-map-marker"></i>
+    </button>
+  </li>
+
+</ul>

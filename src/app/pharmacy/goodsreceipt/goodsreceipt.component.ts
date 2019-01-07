@@ -17,35 +17,42 @@ import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 
 export class GoodsreceiptComponent implements OnInit {
 
-    private GoodReceiptNoteForm: FormGroup;
-    private GoodReceiptNoteItemsForm: FormGroup;
+    public GoodReceiptNoteForm: FormGroup;
+    public GoodReceiptNoteItemsForm: FormGroup;
 
-    private SelectedPurchaseOrder: PurchaseOrder;
-    private SelectedPurchaseOrderItems: any[] = [];
+    public SelectedPurchaseOrder: PurchaseOrder;
+    public SelectedPurchaseOrderItems: any[] = [];
 
-    private ExpectedAmount: number[] = [];
-    private PaymentAmount: number[] = [];
-    private DifferenceAmount: number[] = [];
+    public ExpectedAmount: number[] = [];
+    public PaymentAmount: number[] = [];
+    public DifferenceAmount: number[] = [];
 
-    private ExpectedQuantity: number[] = [];
-    private ReceivedQuantity: number[] = [];
-    private DifferenceQuantity: number[] = [];
+    public ExpectedQuantity: number[] = [];
+    public ReceivedQuantity: number[] = [];
+    public DifferenceQuantity: number[] = [];
 
-    private TotalExpectedQuantity: number = 0;
-    private TotalReceivedQuantity: number = 0;
-    private TotalDifferenceQuantity: number = 0;
-    private TotalExpectedAmount: number = 0;
-    private TotalPaymentAmount: number = 0;
-    private TotalDifferenceAmount: number = 0;
+    public TotalExpectedQuantity: number = 0;
+    public TotalReceivedQuantity: number = 0;
+    public TotalDifferenceQuantity: number = 0;
+    public TotalExpectedAmount: number = 0;
+    public TotalPaymentAmount: number = 0;
+    public TotalDifferenceAmount: number = 0;
 
-    private GrnItems: GRNItem[] = [];
-    private Grn: GRN;
-    private Inventories: Inventory[] = [];
+    public GrnItems: GRNItem[] = [];
+    public Grn: GRN;
+    public Inventories: Inventory[] = [];
 
+<<<<<<< HEAD
     private GrnItemSaveTrack: number[] = [];
     private isDisable = false;
 
     constructor(private PharmacyService: PharmacyService, private formBuilder: FormBuilder, private Toast: ToastrService) {
+=======
+    public GrnItemSaveTrack: number[] = [];
+    public isDisable = false;
+
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService) {
+>>>>>>> 989fc8cb58daeccd112ddd1a19627eb3494c5d9d
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],

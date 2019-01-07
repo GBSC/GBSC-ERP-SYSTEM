@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService, DashboardService } from '../../core';
+import { AuthService, DashboardService, eTrackerUserService } from '../../core';
+import { Employee } from '../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-dashboard',
@@ -10,15 +11,19 @@ import { AccountService, DashboardService } from '../../core';
 export class DashboardComponent implements OnInit {
     public dataSource: any = [];
     public availableModules = [];
-    constructor(service: DashboardService, private router: Router, private accountService: AccountService) {
+    public User : any;
+    constructor(service: DashboardService, public router: Router, public accountService: AuthService, public UserService : eTrackerUserService) {
         this.dataSource = service.getCompanies();
     }
 
 
     ngOnInit() {
+        this.UserService.getUser(this.accountService.getUserId()).subscribe(res => {
+            this.User = res;
+            // console.log(res, this.User);
+        });
         this.availableModules = this.accountService.getAvailableModules();
         this.dataSource = this.accountService.accessibleModules;
-
     }
 
     selectionChanged(e) {

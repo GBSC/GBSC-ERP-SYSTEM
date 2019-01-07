@@ -1,20 +1,35 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
+import { Shift } from '../../../Models/HRM/shift';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AttendancesetupService {
 
-    private baseUrl: string = "SystemAdmin/api/AttendanceSetup";
+    public baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
-    constructor(private ApiService: ApiService) { }
+    constructor(public ApiService: ApiService) { }
 
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
+    async getAsignRoster(id) {
+        return await this.ApiService.get(`${this.baseUrl}/GetAssignRoster/` + id).toPromise();
+
+    }
+
+    getAsignRosterById(id): Observable<any> {
+        return this.ApiService.get(this.baseUrl + '/GetAssignRoster/' + id);
+    }
+
     async addAsignRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();
+    }
+
+    UpdateAsignRoster(value):Observable<any>{
+        return  this.ApiService.post(`${this.baseUrl}/UpdateAssignRoster`, value);
     }
 
     async getdataToUpdate(attendanceId, attendanceUrl) {
@@ -23,9 +38,7 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
-
         return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
-
     }
 
     async DeleteAsignRoster(id) {
@@ -45,9 +58,7 @@ export class AttendancesetupService {
 
     async updateAttendanceFlag(data) {
 
-        let attendanceflag = await this.getdataToUpdate(data.key, 'GetAttendanceFlag');
-        attendanceflag = { ...attendanceflag, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, attendanceflag).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAttendanceFlag`, data).toPromise();
 
     }
 
@@ -192,6 +203,11 @@ export class AttendancesetupService {
     async getRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
     }
+
+    GetRosters():Observable<any>{
+        return   this.ApiService.get(`${this.baseUrl}/GetRosters`);
+
+    }
     async addRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
@@ -215,17 +231,22 @@ export class AttendancesetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
     }
+    GetShifts(): Observable<Shift> {
+        return this.ApiService.get(`${this.baseUrl}/GetShifts`);
+    }
+
+    getShift(id): Observable<Shift> {
+
+        return this.ApiService.get(this.baseUrl + '/GetShift/' + id);
+    }
 
     async addShift(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
     }
 
-    async updateShift(data) {
-
-        let shift = await this.getdataToUpdate(data.key, 'GetsSift');
-        shift = { ...shift, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateShift`, shift).toPromise();
+    updateShift(data: Shift): Observable<any> {
+        return this.ApiService.put(`${this.baseUrl}/UpdateShift`, data);
 
     }
 

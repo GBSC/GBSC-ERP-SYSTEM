@@ -14,9 +14,10 @@
                [dataSource]="attendanceflag"
                keyExpr="attendanceFlagId"
                (onRowInserted)="addattendanceflag($event)" 
-               (onRowUpdated)="updateattendanceflag($event)"
+               (onRowUpdating)="updatingattendanceflag($event)"
+               (onRowUpdated)="updateattendanceflag()"
                (onRowRemoved)="deleteattendanceflag($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

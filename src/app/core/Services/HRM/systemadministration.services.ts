@@ -9,6 +9,8 @@ import { Department } from '../../Models/HRM/department';
 import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
+import { Observable } from 'rxjs/Observable';
+import { compileNgModule } from '@angular/core/src/render3/jit/module';
 
 export class Product {
     id: string;
@@ -21,20 +23,20 @@ export class Product {
 @Injectable()
 export class SystemAdministrationService {
 
-    private readonly API_URL = "systemadmin/api/setup/";
+    public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
 
 
-    constructor(private ApiService: ApiService) {
+    constructor(public ApiService: ApiService) {
     }
 
     async saveNewRoleData(data) {
         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
-    async getData() {
+    async getModulesByCompanyId(companyId: any) {
 
-        let params = new HttpParams().set('companyId', '164');
+        let params = new HttpParams().set('companyId', companyId);
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
 
@@ -61,6 +63,14 @@ export class SystemAdministrationService {
 
     }
 
+    getfeaturesByCompany(companyId: number) {
+        return this.ApiService.get(this.API_URL + 'GetFeaturesByCompany/' + companyId);
+    }
+
+    getFeaturePermission(featureName, moduleName, roleId) {
+        return this.ApiService
+            .get(this.API_URL + 'getFeaturePermission?feature=' + featureName + '&module=' + moduleName + '&roleId=' + roleId);
+    }
 
     async getPermissions() {
         let response = await this.ApiService.get(this.API_URL + 'getpermissions').toPromise();
@@ -88,6 +98,10 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
     }
 
+    getBranchesByComapnyId(compid: number): Observable<Branch[]> {
+        return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
+    }
+
     async addBranches(branch: Branch) {
         return await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
     }
@@ -102,6 +116,10 @@ export class SystemAdministrationService {
 
     async getDepartments() {
         return await this.ApiService.get(this.API_URL + 'GetDepartments').toPromise();
+    }
+
+    getDepartmentsByCompanyId(compid: number): Observable<Department[]> {
+        return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
     async addDepartment(department: Department) {
@@ -120,6 +138,18 @@ export class SystemAdministrationService {
     async getRoles() {
         return await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
     }
+
+    getRolesByCompanyId(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
+    }
+
+    async getRolesByCompanyIdAsync(companyId: any) {
+        return await this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId).toPromise();
+    }
+
+    // GetRolesByCompanyId(companyId: number) : Observable<Role[]> {
+    //     return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
+    // }
 
     async addRole(role: Role) {
         return this.ApiService.post(this.API_URL + 'AddRole', role).toPromise();

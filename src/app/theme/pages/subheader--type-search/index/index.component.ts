@@ -11,7 +11,7 @@ import { ScriptLoaderService } from '../../../../_services/script-loader.service
 export class IndexComponent implements OnInit, AfterViewInit {
 
 
-    constructor(private _script: ScriptLoaderService) {
+    constructor(public _script: ScriptLoaderService) {
 
     }
     ngOnInit() {

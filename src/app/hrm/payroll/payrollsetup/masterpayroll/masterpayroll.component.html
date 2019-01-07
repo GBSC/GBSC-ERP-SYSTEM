@@ -1,4 +1,4 @@
- 
+<div class="m-content"> 
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -70,8 +70,7 @@
                         <dx-data-grid id="gridContainer"
                         [dataSource]="masterDetail"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
-                         (onRowUpdated)="updateMasterpayrollDetail()"
-                          (onRowRemoved)="deleteleavetypebalance($event)">
+                         (onRowUpdated)="updateMasterpayrollDetail($event)">
                           <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -132,6 +131,6 @@
             </div>  
         </div>
       </div>
-  
+    </div>
  
  

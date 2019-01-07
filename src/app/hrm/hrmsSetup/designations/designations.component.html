@@ -10,12 +10,17 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="designatn" keyExpr="designationId" (onRowInserted)="addDesignation($event)"
-                (onRowUpdated)="EditDesignation($event)" (onRowRemoved)="deleteDesignation($event)">
-                <dxo-export [enabled]="true" fileName="Designations"></dxo-export>
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="designatn" 
+               keyExpr="designationId"
+                (onRowInserted)="addDesignation($event)"
+                (onRowUpdating)="EditingDesignation($event)"
+                (onRowUpdated)="EditDesignation()"
+                 (onRowRemoved)="deleteDesignation($event)">
+                <!-- <dxo-export [enabled]="true" fileName="Designations"></dxo-export> -->
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
 
-                  <dxo-popup title="Designation" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-popup title="Designation" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -25,8 +30,8 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="code"></dxi-column>
+                <dxi-column dataField="name"></dxi-column>
                 <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>

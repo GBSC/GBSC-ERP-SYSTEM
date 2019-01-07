@@ -287,7 +287,7 @@ import { CityComponent } from './hrmsSetup/city/city.component';
         ViewCompensationTransactionComponent,
         MonthlyUserSalaryDetailComponent,
         GratuitydetailComponent,
-        
+
     ],
     exports: []
 

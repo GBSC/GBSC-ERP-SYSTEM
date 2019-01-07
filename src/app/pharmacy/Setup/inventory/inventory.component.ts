@@ -44,8 +44,8 @@ export class InventoryComponent implements OnInit {
         });
     }
 
-    AddNewInventoryItem(NewItem : InventoryItem) {
-        let a : any = this.InventoryItems;
+    AddNewInventoryItem(NewItem: InventoryItem) {
+        let a: any = this.InventoryItems;
         a.push(NewItem);
         this.InventoryItems = a;
         this.CheckUnassignedItems();

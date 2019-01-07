@@ -21,8 +21,8 @@ import { InventoryComponent } from '../inventory/inventory.component';
 
 export class InventoryItemComponent implements OnInit {
 
-    @ViewChild(InventoryComponent) InventoryComponent : InventoryComponent;
-    
+    @ViewChild(InventoryComponent) InventoryComponent: InventoryComponent;
+
     private InventoryItems: InventoryItem;
     private Units: Unit;
     private PackTypes: PackType;
@@ -50,10 +50,10 @@ export class InventoryItemComponent implements OnInit {
 
     async AddInventoryItem(value) {
         console.log(value);
-        let a : any = await this.PharmacyService.AddInventoryItem(value.data).toPromise();
+        let a: any = await this.PharmacyService.AddInventoryItem(value.data).toPromise();
         this.PharmacyService.GetInventoryItems().subscribe((res: InventoryItem) => {
             this.InventoryItems = res;
-            let b : any = res;
+            let b: any = res;
             this.InventoryComponent.AddNewInventoryItem(b.find(c => c.inventoryItemId === a.itemID));
         });
     }

@@ -4,50 +4,50 @@ import { EmbryologyService } from '../../../../app/core/Services/HIMS/Lab/embryo
 import { PatientService } from '../../../../app/core';
 
 @Component({
-  selector: 'app-embryology-records',
-  templateUrl: './embryology-records.component.html',
-  styleUrls: ['./embryology-records.component.scss']
+    selector: 'app-embryology-records',
+    templateUrl: './embryology-records.component.html',
+    styleUrls: ['./embryology-records.component.scss']
 })
 export class EmbryologyRecordsComponent implements OnInit {
 
-  private patients: any;
-  private spouse: any;
-  private patient: any;
-  private tests: any;
-  private id: any;
+    private patients: any;
+    private spouse: any;
+    private patient: any;
+    private tests: any;
+    private id: any;
 
-  @ViewChild("patientcb") patientcb: DxSelectBoxComponent
+    @ViewChild("patientcb") patientcb: DxSelectBoxComponent
 
-  constructor(private embryologyService: EmbryologyService,
-    private patientService: PatientService) {
+    constructor(private embryologyService: EmbryologyService,
+        private patientService: PatientService) {
 
-    this.tests = [];
-  }
+        this.tests = [];
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.patientcb.onValueChanged.subscribe(res => {
-      this.populatePatientDate(res.component.option("value"))
+        this.patientcb.onValueChanged.subscribe(res => {
+            this.populatePatientDate(res.component.option("value"))
 
-    });
-
-    this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
-
-  }
-
-  populatePatientDate(patientId) {
-    this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
-      this.patient = patient;
-      this.spouse = patient.partner;
-
-      this.embryologyService
-        .getAllPatientEmbryologiesByPatientId(this.patient.patientId).subscribe(resp => {
-          console.log(resp)
-          this.tests = resp;
         });
 
-    });
-  }
+        this.patientService.getPatientCb().subscribe(patients => this.patients = patients);
 
-  
+    }
+
+    populatePatientDate(patientId) {
+        this.patientService.getPatientWithPartner(patientId).subscribe(patient => {
+            this.patient = patient;
+            this.spouse = patient.partner;
+
+            this.embryologyService
+                .getAllPatientEmbryologiesByPatientId(this.patient.patientId).subscribe(resp => {
+                    console.log(resp)
+                    this.tests = resp;
+                });
+
+        });
+    }
+
+
 }

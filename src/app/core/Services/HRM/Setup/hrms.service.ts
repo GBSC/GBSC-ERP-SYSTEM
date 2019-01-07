@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -53,6 +54,11 @@ export class HrmsService {
     async getAllDepartments() {
 
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
+    }
+
+    GetAllDepartments() : Observable<any[]> {
+
+        return this.ApiService.get(`${this.setupUrl}/GetDepartments`)
     }
 
     // DEMO ONLY, you can find working methods below

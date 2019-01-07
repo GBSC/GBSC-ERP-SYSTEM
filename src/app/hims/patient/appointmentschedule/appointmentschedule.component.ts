@@ -139,8 +139,8 @@ export class AppointmentscheduleComponent implements OnInit {
         // this.getaptbyid = this.PatientServiceobj.getApptbyId;
         // console.log(this.getaptbyid);
         /////current day/////
-// console.log(this.currentpatient);
-//         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+        // console.log(this.currentpatient);
+        //         this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
 
 
 
@@ -197,13 +197,13 @@ export class AppointmentscheduleComponent implements OnInit {
 
     addrange() {
         let { value } = this.appointmenttestForm;
-        if(value.TestId == '' || value.TestId == null || value.TestId.lenght == 0){
+        if (value.TestId == '' || value.TestId == null || value.TestId.lenght == 0) {
             this.toastr.error('Please Select Test');
         }
-        else{
+        else {
             let test = this.tests.find(t => t.testId == value.TestId);
             console.log(value.TestId);
-             let doc = {
+            let doc = {
                 TestId: value.TestId,
                 TestName: test.testName
             }
@@ -231,16 +231,16 @@ export class AppointmentscheduleComponent implements OnInit {
         this.Tests.filter(t => {
             return delete t.TestName;
         });
-            console.log(value);
-          let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
-          console.log(value);
-          this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
-          console.log(value);
-          console.log(this.getaptbyid);
-          this.removeall();
-          console.log(value);
-          console.log(x);
-          return x;
+        console.log(value);
+        let x = await this.PatientServiceobj.UpdateAppointmentTests(this.currentpatient.appointmentId, value);
+        console.log(value);
+        this.getaptbyid = await this.PatientServiceobj.GetAppointmentTestByAppointmentId(this.currentpatient.appointmentId);
+        console.log(value);
+        console.log(this.getaptbyid);
+        this.removeall();
+        console.log(value);
+        console.log(x);
+        return x;
     }
 
     // refresh() {

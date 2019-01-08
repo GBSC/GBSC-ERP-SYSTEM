@@ -46,6 +46,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'returnview', component: ReturnViewComponent },
             { path: 'prescriptionview', component: PrescriptionViewComponent },
             { path: 'requisitionfulfilment', component: InternalRequisitionComponent },
+            { path: 'requisitionfulfilment/:id', component: InternalRequisitionComponent },
             { path: 'requisitionview', component: InternalRequisitionViewComponent },
 
             {

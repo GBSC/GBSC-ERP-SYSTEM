@@ -24,7 +24,9 @@ export class InternalRequisitionComponent implements OnInit {
 	public setPackType : any;
 	public setPackSize : any;
 	public Inventories : any;
-	public UpdatedInventories : any;
+	public UpdatedInventories : any[] = [];
+
+	public id : number = null;
 
 	public SelectedRequest : any;
 
@@ -38,52 +40,77 @@ export class InternalRequisitionComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log(this.Auth.getUser());
-
-		if(this.Rerouted.params['id']) {
-			this.InventoryService.GetSalesIndent(this.Rerouted.params['id']).subscribe((res : any) => {
-
-				let a = this.Departments.find(a => a.name == res.customerName);
-
-				this.RequisitionForm.patchValue({
-					IssueDate : res.issueDate,
-					Department : a.departmentId,
-					TotalQuantity : res.totalQuantity
-				});
-
-				res.salesIndentItems.forEach((item : any) => {
-					let a : any = {
-						InventoryItemId : item.inventoryItemId,
-						Quantity : item.quantity
-					};
-					this.SalesOrderItems.push(a);
-				});
-			})
-		}
-
+		
 		this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
 			this.InventoryItems = res;
-			console.log(this.InventoryItems);
+			// console.log(this.InventoryItems);
 		});
 
 		this.InventoryService.GetPackSizesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
 			this.PackSizes = res;
-			console.log(this.PackSizes);
+			// console.log(this.PackSizes);
 		});
 
 		this.InventoryService.GetPackTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
 			this.PackTypes = res;
-			console.log(this.PackTypes);
+			// console.log(this.PackTypes);
+		});
+
+		// this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.Departments = res;
+		// 	console.log(this.Departments);
+		// });
+
+		// this.InventoryService.GetInventoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.Inventories = res;
+		// 	console.log(this.Inventories);
+		// });
+
+		this.InventoryService.GetInventories().subscribe((res : any) => {
+			this.Inventories = res;
+			// console.log(this.Inventories);
 		});
 
 		this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
 			this.Departments = res;
-			console.log(this.Departments);
-		});
+			// console.log(this.Departments);
 
-		this.InventoryService.GetInventoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-			this.Inventories = res;
-			console.log(this.Inventories);
+			this.Rerouted.params.subscribe((params) => {
+				this.id = +params['id'];
+
+				if(this.id) {
+					this.InventoryService.GetSalesIndent(this.id).subscribe((res : any) => {
+
+						if(res.isProcessed == true) {
+							// console.log(res);
+							let a : any = this.Departments.find(a => a.name == res.customerName);
+							// console.log(a);
+							// this.SelectedDistributor = a.distributorId;
+			
+							this.RequisitionForm.patchValue({
+								IssueDate : res.issueDate,
+								Department : a.name || null,
+								TotalQuantity : res.totalQuantity
+							});
+			
+							res.salesIndentItems.forEach((item : any) => {
+								// console.log(item);
+								let a : any = {
+									inventoryItemId : item.inventoryItemId,
+									quantity : item.quantity
+								};
+								// console.log(a);
+								this.SalesOrderItems.push(a);
+								// console.log(this.SalesOrderItems);
+							});
+
+							this.toastr.success("Request details loaded successfully");
+						} else {
+							this.toastr.error("Request has already been processed");
+						}
+					});
+				}
+			});
 		});
 	}
 
@@ -106,7 +133,7 @@ export class InternalRequisitionComponent implements OnInit {
 
 	saveOrder(value) {
 
-		console.log(value);
+		// console.log(value);
 
 		this.SalesOrderItems.filter( a => {
 			delete a.packTypeId;
@@ -124,12 +151,18 @@ export class InternalRequisitionComponent implements OnInit {
 			UserId : this.Auth.getUserId()
 		};
 
-		console.log(a);
+		// console.log(a);
 
 		this.SalesOrderItems.forEach(element => {
 			let b : any = this.Inventories.find(a => a.inventoryItemId == element.inventoryItemId);
-			b.stockQuantity -= element.quantity;
-			this.UpdatedInventories.push(b);
+			// console.log(b);
+			if(b != undefined) {
+				// console.log(b);
+				b.stockQuantity -= Number.parseFloat(element.quantity);
+				// console.log(b);
+				this.UpdatedInventories.push(b);
+			}
+			// console.log(b);
 		});
 
 		this.InventoryService.AddSalesOrder(a).subscribe(
@@ -137,13 +170,14 @@ export class InternalRequisitionComponent implements OnInit {
 				this.toastr.success("Request Processed");
 				this.RequisitionForm.reset();
 				this.SalesOrderItems = [];
+				this.OrderQuantity = 0;
 				this.InventoryService.UpdateInventories(this.UpdatedInventories).subscribe(
 					(res : any) => this.toastr.success("Stock Updated"),
 					err => this.toastr.error("Unable to update stock")
 				);
 
-				if(this.Rerouted.params['id']) {
-					this.InventoryService.ProcessSalesIndentById(this.Rerouted.params['id']).subscribe(
+				if(this.id) {
+					this.InventoryService.ProcessSalesIndentById(this.id).subscribe(
 						(res : any) => this.toastr.success("Initial request updated"),
 						err => this.toastr.error("Unable to update initial request")
 					);

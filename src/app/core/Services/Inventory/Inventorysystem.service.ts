@@ -1119,11 +1119,11 @@ export class InventorysystemService {
     }
 
     GetInventoryList(ids : number[]): Observable<Inventory[]> {
-        return this.ApiService.post(this.API_URL + 'Setup/GetInventoryList');
+        return this.ApiService.post(this.API_URL + 'Setup/GetInventoryList', ids);
     }
 
     UpdateInventories(models : Inventory[]): Observable<any> {
-        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories');
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', models);
     }
 
     GetUnprocessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {

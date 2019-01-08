@@ -31,6 +31,7 @@ export class SystemAdministrationService {
     }
 
     async saveNewRoleData(data) {
+        console.log(data);
         return await this.ApiService.post(this.API_URL + 'addrole', data).toPromise();
     }
 
@@ -40,20 +41,23 @@ export class SystemAdministrationService {
 
         let response: any = await this.ApiService.get(this.API_URL + 'getmodules', params).toPromise();
 
+        console.log(response);
+        // localStorage.setItem('modulesFromApi', JSON.stringify(response));
+
         for (let m of response) {
             this.modules.push({
-                ModuleId: m.moduleId,
+                moduleId: m.moduleId,
                 name: m.name,
                 expanded: false,
                 features: m.features.map(f => {
                     return {
-                        FeatureId: f.featureId,
+                        featureId: f.featureId,
                         name: f.name,
-                        ModuleId: f.moduleId,
+                        moduleId: f.moduleId,
                         permissions: f.permissions.map(p => {
                             return {
-                                Attribute: p.attribute,
-                                FeatureId: p.featureId
+                                permissionName: p.attribute,
+                                featureId: p.featureId
                             }
                         })
                     }
@@ -140,7 +144,7 @@ export class SystemAdministrationService {
     }
 
     getRolesByCompanyId(companyId: any) {
-        return this.ApiService.get(this.API_URL + 'GetRolesByCompanyId/' + companyId);
+        return this.ApiService.get(this.API_URL + 'GetRolesByCompany/' + companyId);
     }
 
     async getRolesByCompanyIdAsync(companyId: any) {

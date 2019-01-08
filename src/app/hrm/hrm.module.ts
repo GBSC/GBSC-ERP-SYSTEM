@@ -159,6 +159,12 @@ import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/
 import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
 import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
 import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -343,7 +349,13 @@ import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydeta
         LeavesetupMasterComponent,
         AttendancesetupMasterComponent,
         HrsetupMasterComponent,
-        StopsalarydetailComponent
+        StopsalarydetailComponent,
+        PayrollsetupMasterComponent,
+        TaxsetupMasterComponent,
+        LoansetupMasterComponent,
+        OvertimesetupMasterComponent,
+        CompanysetupMasterComponent,
+        ViewfundsetupComponent
     ],
 
     // providers: [IgxExcelExporterService],

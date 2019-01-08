@@ -44,7 +44,7 @@ export class SalarystructuredetailComponent implements OnInit {
                 widget: 'dxButton',
                 options: {
                     icon: 'add',
-                    onClick: this.addleaveRequest.bind(this)
+                    onClick: this.addsalarystructure.bind(this)
                 }
             });
     }
@@ -64,13 +64,13 @@ export class SalarystructuredetailComponent implements OnInit {
     }
 
 
-    addleaveRequest() {
-        this.router.navigate(['/hrm/payroll/payrollsetup/salarystructure']);
+    addsalarystructure() {
+        this.router.navigate(['/hrm/payroll/salarystructure']); 
     }
 
 
     getData(d) {
         this.salaryStructureId = d.key;
-        this.router.navigate(['hrm/payroll/payrollsetup/update-salarystrucrure/' + this.salaryStructureId]);
+        this.router.navigate(['hrm/payroll/update-salarystrucrure/' + this.salaryStructureId]);
     }
 }

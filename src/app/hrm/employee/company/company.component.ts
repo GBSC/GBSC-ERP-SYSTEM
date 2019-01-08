@@ -75,7 +75,6 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeeService.getManagers().subscribe(res => {
             this.manager = res;
-            console.log(this.manager);
             // this.filterdemplyoee = this.employes.fil
         })
 

@@ -59,7 +59,7 @@ export class StopsalaryComponent implements OnInit {
       public dataToUpdate: any = null;
     
       selectionChanged(e) {
-        e.component.collapseAll(-0);
+        e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
         console.log(e);
       }

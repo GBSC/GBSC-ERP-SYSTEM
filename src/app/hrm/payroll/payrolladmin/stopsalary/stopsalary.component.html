@@ -15,8 +15,7 @@
 					<div class="m-section">
 					<div class="m-section__content" >
 						<dx-data-grid id="gridContainer" [dataSource]="StopSalary"
-						keyExpr="stopSalaryId"
-						 (onRowInserted)="addStopSalary($event)" 
+						keyExpr="stopSalaryId" 
 							(onSelectionChanged)="selectionChanged($event)"
 							(onContentReady)="contentReady($event)"
 							(onToolbarPreparing)="onToolbarPreparing($event)"
@@ -24,7 +23,7 @@
 							[columnAutoWidth]="true" 
 							 [showBorders]="true"> 
 
-							<dxo-selection mode="single"></dxo-selection>
+							<!-- <dxo-selection mode="single"></dxo-selection> -->
 							<dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">	
 							</dxo-editing>
 							<dxo-filter-row [visible]="true"></dxo-filter-row>

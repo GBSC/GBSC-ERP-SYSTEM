@@ -1840,6 +1840,26 @@ export class InventorysystemService {
         // return x;
     }
 
+    getGeneralSkus() : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUs');
+    }
+
+    getGeneralSkusByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUsByCompany/' + companyid);
+    }
+
+    addGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddGeneralSKU', model);
+    }
+
+    updateGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateGeneralSKU', model);
+    }
+
+    deleteGeneralSku(id : number) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteGeneralSKU/' + id);
+    }
+
     /***************************************For eTracker Reporting **********************************/
 
     getCitiesByUserAndRegion(regionid: number, userid: number) {

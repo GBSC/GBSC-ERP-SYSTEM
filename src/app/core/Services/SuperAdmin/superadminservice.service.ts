@@ -36,4 +36,20 @@ export class SuperadminserviceService {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'CompanySetup/GetCompanyInfo/' + companyid);
     }
 
+    getModulesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'Setup/GetModulesByCompany/' + companyid);
+    }
+
+    getFeaturesByModules(moduleids : number[]) : Observable<any[]> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/GetFeaturesByModules', moduleids);
+    }
+
+    getAllModuleFeatures(moduleids : number[]) : Observable<any[]> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/GetAllModuleFeatures', moduleids);
+    }
+
+    addCompanyFeatures(features : any[]) : Observable<any> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddCompanyFeatures', features);
+    }
+
 }

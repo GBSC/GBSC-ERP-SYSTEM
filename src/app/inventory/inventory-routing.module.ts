@@ -52,6 +52,7 @@ import { InventoryMasterComponent } from './setup/inventory-master/inventory-mas
 import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
 import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 
 const routes: Routes = [
 
@@ -83,7 +84,8 @@ const routes: Routes = [
                     { path: 'territory', component: TerritoryComponent },
                     { path: 'transport', component: TransportComponent },
                     { path: 'unit', component: UnitComponent },
-                    { path: 'inventory-master', component: InventoryMasterComponent }
+                    { path: 'inventory-master', component: InventoryMasterComponent },
+                    { path: 'generalsku', component: GeneralSkuComponent }
                 ]
             },
             {

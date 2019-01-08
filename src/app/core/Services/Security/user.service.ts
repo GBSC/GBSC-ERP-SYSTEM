@@ -35,6 +35,10 @@ export class UserService {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
     }
 
+    getPermissions(userId, feature, module) {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'UserPermissions/' + userId + '/' + feature + '/' + module);
+    }
+
     changePassword(model: any): Observable<string> {
         return this.ApiService.post(this.Auth_Url + 'accounts/ChangePassword', model);
     }

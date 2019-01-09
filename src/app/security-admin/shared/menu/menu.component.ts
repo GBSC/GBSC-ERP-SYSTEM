@@ -10,14 +10,8 @@ declare let mLayout: any;
     encapsulation: ViewEncapsulation.None,
 })
 export class MenuComponent implements OnInit, AfterViewInit {
-<<<<<<< HEAD
-
-    private accessibleFeatures: string[] = [];
-
-=======
     
     public accessibleFeatures : string[] = [];
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
     constructor(public route: ActivatedRoute, public router: Router, public AuthService: AuthService) { }
 
     ngOnInit() {

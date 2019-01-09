@@ -76,8 +76,6 @@ export class LocatorComponent {
 
     ngOnInit() {
 
-<<<<<<< HEAD
-=======
         this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
             this.Regions = res;
         });
@@ -114,7 +112,6 @@ export class LocatorComponent {
 
 
         this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
 
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');

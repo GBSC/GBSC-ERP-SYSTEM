@@ -29,15 +29,15 @@ export class CompanyFinanceConfigurationComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.FinanceService.getMasterAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
-        //     this.MasterAccounts = res;
-        //     console.log(res);
-        // });
-
-        this.FinanceService.getAccounts().subscribe((res: Account[]) => {
+        this.FinanceService.getMasterAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
             this.MasterAccounts = res;
             console.log(res);
         });
+
+        // this.FinanceService.getAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+        //     this.MasterAccounts = res;
+        //     console.log(res);
+        // });
     }
 
     onSubmit(value) {

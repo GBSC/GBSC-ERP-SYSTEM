@@ -25,15 +25,10 @@ export class eTrackerUserService {
     public showSpinner: boolean = false;
     public currentUser: any = null;
     public realTimeTracking: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-<<<<<<< HEAD
-
-    constructor(public firebase: AngularFirestore, private http: HttpClient, private ApiService: ApiService) { }
-=======
     public allShops: boolean = false;
 
 
     constructor(public firebase: AngularFirestore, public http: HttpClient, public ApiService: ApiService) { }
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
 
     getUser(userId: any) {
         return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
@@ -68,133 +63,6 @@ export class eTrackerUserService {
     }
 
 
-<<<<<<< HEAD
-    fetchAllUsers() {
-        let data = this.firebase.collection('tbl_users').valueChanges();
-        data.subscribe((data: any) => {
-            this.allUsers = data.map(user => {
-                user.lat = Number.parseFloat(user.lat),
-                    user.lng = Number.parseFloat(user.lng)
-                return user;
-            });
-            console.log(this.allUsers);
-            if (this.currentUser) {
-                let user = this.allUsers.find(u => u.userid == this.currentUser.userid);
-                this.realTimeTracking.next(user);
-            } else {
-                this.realTimeTracking.next(this.allUsers[0]);
-            }
-        });
-    }
-
-
-    fetchVisitedShops(dateRange) {
-        this.visitedShops = [];
-        this.shopRouteTaken = [];
-        this.clearFilteredShops();
-        let shopsObserable = this.firebase.collection(`tbl_shops`).valueChanges();
-        shopsObserable.subscribe(shops => shops.forEach((shop: any) => {
-
-            console.log(shop);
-
-            let visit_summary = this.firebase.collection(`/tbl_shops/${shop.shopId}/visit_summary`, ref => ref.where('userId', '==', String(this.currentUser.userid)).where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
-
-            visit_summary.subscribe((d: any) => {
-                console.log(d);
-                d.forEach(p => {
-                    p.lat = Number.parseFloat(p.lat),
-                        p.lng = Number.parseFloat(p.lng)
-                    this.visitedShops.push(p);
-                    return p;
-                })
-                console.log('visitedShops', this.visitedShops);
-            });
-
-
-        }));
-
-    }
-
-    filterProductiveShops() {
-        this.clearFilteredShops();
-        this.productiveShops = this.visitedShops.filter(shop => shop.productive);
-        console.log('productive', this.productiveShops);
-    }
-    filterNonProductiveShops() {
-        this.clearFilteredShops();
-        this.nonProductiveShops = this.visitedShops.filter(shop => !shop.productive);
-        console.log('non productive', this.productiveShops);
-    }
-
-    clearFilteredShops() {
-        this.productiveShops = [];
-        this.nonProductiveShops = [];
-        this.shopRouteTaken = [];
-    }
-
-    showRouteTaken() {
-        if (this.shopRouteTaken.length) {
-            this.shopRouteTaken = [];
-        } else {
-            if (this.productiveShops.length) {
-                this.shopRouteTaken = this.productiveShops;
-            } else if (this.nonProductiveShops.length) {
-                this.shopRouteTaken = this.nonProductiveShops;
-            }
-        }
-    }
-
-    drawUserLocation(dateRange) {
-        this.locationHistory = [];
-        this.showSpinner = true;
-        let days = dateRange.toDate - dateRange.fromDate;
-        if (days <= 30) {
-
-            let history = this.firebase.collection(
-                `tbl_users/${this.currentUser.userid}/user_history`, ref => ref.where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
-            history.subscribe(data => {
-                console.log(data);
-                if (data.length < 200) {
-                    this.locationHistory = data.map((h: any) => {
-                        h.lat = parseFloat(h.lat);
-                        h.lng = parseFloat(h.lng);
-                        return h;
-                    });
-                } else {
-                    alert('Data is too large to draw on map')
-                }
-                this.showSpinner = false;
-                console.log(data)
-            })
-
-        } else {
-            alert(`Please select days less than 4`)
-        }
-    }
-
-    setCurrentUser(userIndex) {
-        this.shopRouteTaken = [];
-        this.visitedShops = [];
-        this.clearFilteredShops();
-        let currentUsers = this.firebase.collection('tbl_users', ref => ref.where('userid', '==', parseInt(userIndex))).valueChanges();
-        currentUsers.subscribe(d => {
-            this.currentUser = d[0];
-            this.currentUser.lat = parseFloat(this.currentUser.lat);
-            this.currentUser.lng = parseFloat(this.currentUser.lng);
-            this.realTimeTracking.next(this.currentUser);
-        });
-    }
-
-    createMarkerLabel(color, fontSize, fontFamily, fontWeight) {
-        return {
-            color,
-            fontFamily,
-            fontSize,
-            fontWeight,
-            text: ''
-        }
-    }
-=======
     // fetchAllUsers() {
     //     let data = this.firebase.collection('tbl_users').valueChanges();
     //     data.subscribe((data: any) => {
@@ -365,7 +233,6 @@ export class eTrackerUserService {
         this.shopRouteTaken = [];
         this.dayStartEndData = [];
       }
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
 
     addMockDataForLiveTracking() {
         return [
@@ -401,15 +268,6 @@ export class eTrackerUserService {
 
 class MapHelper {
 
-<<<<<<< HEAD
-    static shopIcon: string = './assets/images/online-shop.gif';
-    static CurrentLocationIcon: string = './assets/images/e7mkwk.gif';
-    static simpleIcon: string = './assets/images/e7mkwk.gif';
-    static productiveShopMarker: string = './assets/images/online-shop.gif';
-    static nonProductiveShopMarker: string = './assets/images/visit.png';
-    static nonProductiveShopMarkerOther: string = './assets/images/baseline-store_mall_directory-non-productive-other-24px.svg';
-
-=======
     static shopIcon: string = './assets/images/baseline-store_mall_directory-24px.svg';
     static CurrentLocationIcon: string = './assets/images/e7mkwk.gif';
     static simpleIcon: string = './assets/images/daystart-dayend.png';
@@ -419,25 +277,15 @@ class MapHelper {
     static nonProductiveShopMarkerOther: string = './assets/images/none-productive-other.png';
     static dayStartEndMakrer: string = './assets/images/daystart-dayend.png';
   
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
     static createMarker(url, size) {
         return new MarkerIcon(url, size).init();
     }
-<<<<<<< HEAD
-
-}
-
-class MarkerIcon {
-    private url;
-    private size;
-=======
   
   }
 
 class MarkerIcon {
     public url;
     public size;
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
     constructor(url, size) {
         this.url = url;
         this.size = size;

@@ -24,16 +24,9 @@ enum modules {
 export class HeaderComponent implements OnInit, AfterViewInit {
 
     public accessableModules: string[] = [];
-<<<<<<< HEAD
-    public accessibleFeatures: string[] = [];
-    private Username: string = '';
-    private UserLevel: string = '';
-
-=======
     public accessibleFeatures : string[] = [];
     public Username : string = '';
     public UserLevel : string = '';
->>>>>>> d51916d9e93536b321defeab6962c14758a32089
 
 
     constructor(public authService: AuthService) {

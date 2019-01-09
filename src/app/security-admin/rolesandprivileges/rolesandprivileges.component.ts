@@ -1,5 +1,3 @@
-
-
 import { NgModule, Component, OnInit } from '@angular/core';
 import { SystemAdministrationService, AuthService } from '../../core';
 import { ToastrService } from 'ngx-toastr';
@@ -35,24 +33,6 @@ export class RolesandprivilegesComponent implements OnInit {
         console.log(this.companyId);
     }
 
-    createNewRole() {
-        this.role = {
-            roleName: '',
-            companyId: '',
-            roleModules: [],
-            roleFeatures: [],
-            rolePermissions: []
-
-        }
-      
-        this.showPopup = true;
-
-    }
-
-    getSelectedModules(e) {
-        console.log(e);
-    }
-
     ngOnInit() {
 
         this.fetchRoles();
@@ -61,7 +41,7 @@ export class RolesandprivilegesComponent implements OnInit {
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
         console.log(this.modules);
-       
+
     }
 
     fetchRoles() {
@@ -76,8 +56,29 @@ export class RolesandprivilegesComponent implements OnInit {
         console.log(this.role);
     }
 
+    createNewRole() {
+        this.editting = false;
+        this.requestSent = false;
+        this.role = {
+            roleName: '',
+            companyId: '',
+            roleModules: [],
+            roleFeatures: [],
+            rolePermissions: []
+
+        }
+
+        this.showPopup = true;
+
+    }
+
+    getSelectedModules(e) {
+        console.log(e);
+    }
+
     editRole(e) {
         this.editting = true;
+        this.requestSent = false;
         console.log(e);
         this.role = e.key;
         console.log(this.role);
@@ -135,7 +136,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
 
     moduleAlreadySelected(_module) {
-        return this.role.roleModules.find(m => m.moduleId === _module.moduleId);        
+        return this.role.roleModules.find(m => m.moduleId === _module.moduleId);
     }
     featuerAlreadySelected(feature) {
         return this.role.roleFeatures.find(f => f.featureId === feature.featureId);
@@ -161,6 +162,10 @@ export class RolesandprivilegesComponent implements OnInit {
     }
 
     async saveRole() {
+        if (this.roles.find(r => r.roleName === this.role.roleName) && !this.editting) {
+            this.toaster.warning("Role with this name already exists");
+            return;
+        }
         this.requestSent = true;
         console.log('roles', this.roles);
         console.log('role', this.role);
@@ -172,18 +177,23 @@ export class RolesandprivilegesComponent implements OnInit {
         } else {
             this.role.companyId = this.companyId;
             let response;
-
+            let alert;
             if (this.editting) {
                 console.log(this.role, 'update')
                 response = await this.systemAdmin.updateRole(this.role);
+                alert ='update'
             } else {
                 console.log(this.role);
                 response = await this.systemAdmin.saveNewRoleData(this.role);
-
+                alert = 'create'
             }
             console.log(response);
             if (response) {
-                this.toaster.success("Role Created Successfully");
+                if (alert === 'update') {
+                    this.toaster.success("Role Updated Successfully");
+                } else {
+                    this.toaster.success("Role Created Successfully");
+                }
                 this.editting = false;
                 this.fetchRoles();
                 this.resetRoleValues();
@@ -192,6 +202,7 @@ export class RolesandprivilegesComponent implements OnInit {
                 this.toaster.error("Error Creating Role");
             }
             this.showPopup = false;
+            this.editting = false;
             this.requestSent = false;
         }
 

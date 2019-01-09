@@ -43,14 +43,14 @@ export class CompanyFinanceConfigurationComponent implements OnInit {
     onSubmit(value) {
         console.log(value);
 
-        let a : any = {
-            companyId : this.Auth.getUserCompanyId(),
-            nTN : value.NTN,
-            assestsAccountId : Number.parseInt(value.AssestsAccountId),
-            expenseAccountId : Number.parseInt(value.ExpenseAccountId),
-            revenueAccountId : Number.parseInt(value.RevenueAccountId),
-            liabilitiesAccountId : Number.parseInt(value.LiabilitiesAccountId),
-            equityAccountId : Number.parseInt(value.EquityAccountId)
+        let a: any = {
+            companyId: this.Auth.getUserCompanyId(),
+            nTN: value.NTN,
+            assestsAccountId: Number.parseInt(value.AssestsAccountId),
+            expenseAccountId: Number.parseInt(value.ExpenseAccountId),
+            revenueAccountId: Number.parseInt(value.RevenueAccountId),
+            liabilitiesAccountId: Number.parseInt(value.LiabilitiesAccountId),
+            equityAccountId: Number.parseInt(value.EquityAccountId)
         };
 
         this.FinanceService.configureCompanyFinanceDetails(a).subscribe(

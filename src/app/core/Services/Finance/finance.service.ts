@@ -265,7 +265,7 @@ export class FinanceService {
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccounts');
     }
 
-    getAccountsByCompany(companyid : number): Observable<Account[]> {
+    getAccountsByCompany(companyid: number): Observable<Account[]> {
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccountsByCompany/' + companyid);
     }
 

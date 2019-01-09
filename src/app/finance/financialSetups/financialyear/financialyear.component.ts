@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
 import { AuthService } from '../../../core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-financialyear',
@@ -14,9 +15,9 @@ export class FinancialyearComponent implements OnInit {
     public financialYear: any;
     public updateFinancalyear: any;
 
-    constructor(public fb: FormBuilder, public Auth : AuthService, public financeService: FinanceSetupService) { }
+    constructor(public fb: FormBuilder, public Auth: AuthService, public financeService: FinanceSetupService, public toastr : ToastrService) { }
 
-    async ngOnInit() {
+    ngOnInit() {
 
         this.FinancialYearForm = this.fb.group({
             StartDate: [''],
@@ -24,14 +25,20 @@ export class FinancialyearComponent implements OnInit {
             IsActive: ['']
         });
 
-        this.financialYear = await this.financeService.getFinancialYears();
+        this.financeService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+            this.financialYear = res;
+        });
     }
 
-    async addFinancialyear() {
+    addFinancialyear() {
         this.FinancialYearForm.value.CompanyId = this.Auth.getUserCompanyId();
-        await this.financeService.addFinancialYear(this.FinancialYearForm.value);
-        this.financialYear = await this.financeService.getFinancialYears();
-        this.FinancialYearForm.reset();
+        this.financeService.AddFinancialYear(this.FinancialYearForm.value).subscribe((res : any) => {
+            this.financeService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+                this.financialYear = res;
+                this.FinancialYearForm.reset();
+            });
+            this.toastr.success("Saved");
+        });
     }
 
     updatingFinancialyear(value) {
@@ -39,14 +46,20 @@ export class FinancialyearComponent implements OnInit {
         this.updateFinancalyear = { ...value.oldData, ...value.newData };
     }
 
-    async updateFinancialyear() {
-
-        await this.financeService.updateFinancialYear(this.updateFinancalyear);
-        this.financialYear = await this.financeService.getFinancialYears();
+    updateFinancialyear() {
+        this.financeService.UpdateFinancialYear(this.updateFinancalyear).subscribe((res : any) => {
+            this.financeService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+                this.financialYear = res;
+                this.FinancialYearForm.reset();
+            });
+            this.toastr.success("Updated");
+        });
     }
 
-    async deleteFinancialyear(value) {
-        await this.financeService.DeleteFinancialYear(value.key);
+    deleteFinancialyear(value) {
+        this.financeService.deleteFinancialYear(value.key).subscribe((res : any) => {
+            this.toastr.success("Deleted");
+        });
     }
 
 }

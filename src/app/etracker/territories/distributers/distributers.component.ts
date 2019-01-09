@@ -87,8 +87,11 @@ export class DistributersComponent implements OnInit {
 
         value.companyId = this.companyId;
         var dist = { Distributor: value, TerritoryIds: this.value };
+        this.isEdit = false;
         this.inventoryService.AddDistributorWithTerritories(dist).subscribe(resp => {
-            console.log(resp);
+            this.inventoryService.GetDistributorsByCompany(this.companyId).subscribe(d => {
+                this.distributors = d;
+            });
         });
     }
 
@@ -97,8 +100,9 @@ export class DistributersComponent implements OnInit {
         value.companyId = this.companyId;
         value.distributorId = this.distributor.distributorId;
         var dist = { Distributor: value, TerritoryIds: this.value };
+        this.isEdit = false;
         this.inventoryService.UpdateDistributorWithTerritories(dist).subscribe(resp => {
-            console.log(resp);
+
         });
 
     }

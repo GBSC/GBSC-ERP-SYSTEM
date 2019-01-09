@@ -29,11 +29,10 @@ import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-cen
 import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-status-summary.component';
 import { ShopStatusDetailComponent } from './reports/shop-status-detail/shop-status-detail.component';
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
-import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
-import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 import { LocationReportComponent } from './reports/location-report/location-report.component';
 import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-diff-units.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
+import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
 
 @NgModule({
     imports: [
@@ -50,7 +49,7 @@ import { VisitSummaryReportComponent } from './reports/visit-summary-report/visi
         DevExtremeModule,
         DxDataGridModule
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, OrderSummaryComponent, OrderDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

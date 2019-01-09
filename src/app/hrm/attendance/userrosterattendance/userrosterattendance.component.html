@@ -19,7 +19,7 @@
                 (onRowUpdating)="updatingattendance($event)"
                 (onRowUpdated)="updateuserRosterattendance()"
                 (onRowRemoved)="deleteuserRosterattendance($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
@@ -41,7 +41,6 @@
                 <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
-                <!-- <dxi-column dataField="isPresent" dataType="boolean" caption="Is Present"></dxi-column> -->
                 <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave"></dxi-column>
                 <!-- <dxi-column dataField="hoursWorked" caption="Hours Worked"></dxi-column> -->
               </dx-data-grid>

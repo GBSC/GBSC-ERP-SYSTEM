@@ -56,12 +56,13 @@
 
 
                   <dx-data-grid id="gridContainer" keyExpr="secondSubAccountId" [dataSource]="secondSubAccount" 
-                  (onRowInserted)="addSecondSubaccount($event)" 
+                  (onRowInserted)="addSecondSubaccount()" 
                   (onRowUpdating)="updatingSecondSubaccount($event)"
                   (onRowUpdated)="updateSecondSubaccount()"
                   (onRowRemoved)="deleteSecondSubaccount($event)">
-                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="False" [useIcons]="true">
-                      <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" [position]="{ my: 'center', at: 'center', of: window }">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false"  [useIcons]="true">
+                      <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
+                      <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345" >
                       </dxo-popup>
                     </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>

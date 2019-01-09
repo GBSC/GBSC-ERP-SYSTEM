@@ -29,9 +29,9 @@ export class InventoryItemComponent implements OnInit {
     public InventoryItemCategories: any;
     public PackageTypes: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
@@ -69,10 +69,14 @@ export class InventoryItemComponent implements OnInit {
 
     AddInventoryItem(value) {
         value.data.companyId = this.CompanyId;
-        this.InventoryService.AddInventoryItem(value.data).subscribe();
-        this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
-            this.InventoryItems = res;
+        this.InventoryService.AddInventoryItem(value.data).subscribe(res => {
+            // console.log(res);
+            this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
+                this.InventoryItems = res;
+                // console.log(this.InventoryItems);
+            });
         });
+        
     }
 
     UpdateModel(value) {

@@ -4,6 +4,7 @@ import { ApiService } from '../api.service';
 import { environment } from '../../../../environments/environment';
 import { Company } from '../../Models/HRM/company';
 import { Module } from '../../Models/HRM/module';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SuperadminserviceService {
@@ -21,16 +22,34 @@ export class SuperadminserviceService {
         return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/AddCompany', company);
     }
 
-    addModule(module: Module) {
+    addModule(module: Module) : Observable<any>{
         return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddModuleWithAllFeatures', module);
+        // return this.http.post('http://localhost:58090/api/CompanySetup/AddModuleWithAllFeatures', module);
     }
 
     registerAdmin(admin: SystemAdminRegistrationViewModel) {
         return this.ApiService.post(this.AuthUrl + '/accounts', admin);
+        // return this.http.post('http://localhost:61161/api/accounts', admin);
     }
 
     getCompanyInfo(companyid: any) {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'CompanySetup/GetCompanyInfo/' + companyid);
+    }
+
+    getModulesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'Setup/GetModulesByCompany/' + companyid);
+    }
+
+    getFeaturesByModules(moduleids : number[]) : Observable<any[]> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'Setup/GetFeaturesByModules', moduleids);
+    }
+
+    getAllModuleFeatures(moduleids : number[]) : Observable<any[]> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/GetAllModuleFeatures', moduleids);
+    }
+
+    addCompanyFeatures(features : any[]) : Observable<any> {
+        return this.ApiService.post(this.SystemAdmin_API_URL + 'CompanySetup/AddCompanyFeatures', features);
     }
 
 }

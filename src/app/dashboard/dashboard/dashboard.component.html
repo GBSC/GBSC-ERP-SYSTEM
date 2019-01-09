@@ -1,11 +1,48 @@
 <div class="m-subheader-search">
-        <h2 class="m-subheader-search__title">
+    <div class="row">
+            <div class="col-sm-2 col align-self-end"></div>
+            <div class="col-sm-2 col align-self-center"><h2 class="m-subheader-search__title">
+                    Contact Number
+                    <span class="m-subheader-search__desc">
+                        {{User?.phone}}
+                    </span>
+                </h2></div>
+            <div class="col-sm-4">
+                    <div class="m-card-profile"> 
+                            <div class="m-card-profile__pic">
+                                <div class="m-card-profile__pic-wrapper">
+                                    <img src="../assets/app/media/img/users/user4.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="m-card-profile__details">
+                                <span class="m-card-profile__name" style="color: #c4820a;">
+                                    {{User?.fullName}}
+                                </span>
+                                <a href="" class="m-card-profile__email m-link">
+                                   <b>Role :</b>  {{User?.userLevel}}
+                                </a>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-sm-2 col align-self-center">
+                    <h2 class="m-subheader-search__title">
+                            Email Address
+                            <span class="m-subheader-search__desc">
+                                    {{User?.email}}
+                            </span>
+                        </h2>
+            </div>
+            <div class="col-sm-1"></div>
+    </div>
+  
+        
+        <!-- <h2 class="m-subheader-search__title">
             Recent Bookings
             <span class="m-subheader-search__desc">
                 Onling Bookings Management
             </span>
-        </h2>
-        <form class="m-form">
+        </h2> -->
+        <!-- <form class="m-form">
             <div class="m-grid m-grid--ver-desktop m-grid--desktop">
                 <div class="m-grid__item m-grid__item--middle">
                     <div class="m-input-icon m-input-icon--fixed m-input-icon--fixed-large m-input-icon--right">
@@ -43,135 +80,9 @@
     
     
             </div>
-        </form>
+        </form> -->
     </div>
 
 
-    <div class="m-portlet">
-            <div class="m-portlet__body  m-portlet__body--no-padding">
-                <div class="row m-row--no-padding m-row--col-separator-xl">
-                    <div class="col-xl-4">
-                        <!--begin:: Widgets/Stats2-1 -->
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title">
-                                            Member Profit
-                                        </h3>
-                                        <span class="m-widget1__desc">
-                                            Awerage Weekly Profit
-                                        </span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <span class="m-widget1__number m--font-brand">
-                                            +$17,800
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title">
-                                            Orders
-                                        </h3>
-                                        <span class="m-widget1__desc">
-                                            Weekly Customer Orders
-                                        </span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <span class="m-widget1__number m--font-danger">
-                                            +1,800
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title">
-                                            Issue Reports
-                                        </h3>
-                                        <span class="m-widget1__desc">
-                                            System bugs and issues
-                                        </span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <span class="m-widget1__number m--font-success">
-                                            -27,49%
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end:: Widgets/Stats2-1 -->
-                    </div>
-                    <div class="col-xl-4">
-                        <!--begin:: Widgets/Daily Sales-->
-                        <div class="m-widget14">
-                            <div class="m-widget14__header m--margin-bottom-30">
-                                <h3 class="m-widget14__title">
-                                    Daily Sales
-                                </h3>
-                                <span class="m-widget14__desc">
-                                    Check out each collumn for more details
-                                </span>
-                            </div>
-                            <div class="m-widget14__chart" style="height:120px;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                                <canvas id="m_chart_daily_sales" width="487" height="150" class="chartjs-render-monitor" style="display: block; height: 120px; width: 390px;"></canvas>
-                            </div>
-                        </div>
-                        <!--end:: Widgets/Daily Sales-->
-                    </div>
-                    <div class="col-xl-4">
-                        <!--begin:: Widgets/Profit Share-->
-                        <div class="m-widget14">
-                            <div class="m-widget14__header">
-                                <h3 class="m-widget14__title">
-                                    Profit Share
-                                </h3>
-                                <span class="m-widget14__desc">
-                                    Profit Share between customers
-                                </span>
-                            </div>
-                            <div class="row  align-items-center">
-                                <div class="col">
-                                    <div id="m_chart_profit_share" class="m-widget14__chart" style="height: 160px">
-                                        <div class="m-widget14__stat">
-                                            45
-                                        </div>
-                                    <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-donut" style="width: 100%; height: 100%;"><g class="ct-series custom"><path d="M150.54,108.314A66.5,66.5,0,0,0,90.369,13.5" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#716aca&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="133.70704650878906px 133.70704650878906px" stroke-dashoffset="-133.70704650878906px" stroke="#716aca"><animate attributeName="stroke-dashoffset" id="anim0" dur="1000ms" from="-133.70704650878906px" to="0px" fill="freeze" stroke="#716aca" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M39.13,122.389A66.5,66.5,0,0,0,150.638,108.104" class="ct-slice-donut" ct:value="32" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#00c5dc&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="133.93869018554688px 133.93869018554688px" stroke-dashoffset="-133.93869018554688px" stroke="#00c5dc"><animate attributeName="stroke-dashoffset" id="anim1" dur="1000ms" from="-133.93869018554688px" to="0px" fill="freeze" stroke="#00c5dc" begin="anim0.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g><g class="ct-series custom"><path d="M90.369,13.5A66.5,66.5,0,0,0,39.278,122.567" class="ct-slice-donut" ct:value="36" ct:meta="{&amp;quot;data&amp;quot;:{&amp;quot;color&amp;quot;:&amp;quot;#ffb822&amp;quot;}}" style="stroke-width: 17px;" stroke-dasharray="150.65415954589844px 150.65415954589844px" stroke-dashoffset="-150.65415954589844px" stroke="#ffb822"><animate attributeName="stroke-dashoffset" id="anim2" dur="1000ms" from="-150.65415954589844px" to="0px" fill="freeze" stroke="#ffb822" begin="anim1.end" calcMode="spline" keySplines="0.23 1 0.32 1" keyTimes="0;1"></animate></path></g></svg></div>
-                                </div>
-                                <div class="col">
-                                    <div class="m-widget14__legends">
-                                        <div class="m-widget14__legend">
-                                            <span class="m-widget14__legend-bullet m--bg-accent"></span>
-                                            <span class="m-widget14__legend-text">
-                                                37% Sport Tickets
-                                            </span>
-                                        </div>
-                                        <div class="m-widget14__legend">
-                                            <span class="m-widget14__legend-bullet m--bg-warning"></span>
-                                            <span class="m-widget14__legend-text">
-                                                47% Business Events
-                                            </span>
-                                        </div>
-                                        <div class="m-widget14__legend">
-                                            <span class="m-widget14__legend-bullet m--bg-brand"></span>
-                                            <span class="m-widget14__legend-text">
-                                                19% Others
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end:: Widgets/Profit Share-->
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+    
 

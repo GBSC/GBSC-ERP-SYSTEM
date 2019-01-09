@@ -30,7 +30,10 @@ import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/c
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
 import { FinanceAccountComponent } from './finance-account/finance-account.component';
+<<<<<<< HEAD
 import { CompanyFinanceConfigurationComponent } from './company-finance-configuration/company-finance-configuration.component';
+=======
+>>>>>>> d51916d9e93536b321defeab6962c14758a32089
 
 @NgModule({
     imports: [
@@ -69,8 +72,12 @@ import { CompanyFinanceConfigurationComponent } from './company-finance-configur
 
         DemoComponent,
         UpdateVoucherComponent,
+<<<<<<< HEAD
         FinanceAccountComponent,
         CompanyFinanceConfigurationComponent
+=======
+        FinanceAccountComponent
+>>>>>>> d51916d9e93536b321defeab6962c14758a32089
     ],
     providers: [FinanceSetupService, FinanceService]
 })

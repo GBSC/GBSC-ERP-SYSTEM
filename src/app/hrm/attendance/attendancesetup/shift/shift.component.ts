@@ -20,13 +20,13 @@ export class ShiftComponent implements OnInit {
     public flagType: any;
     public Flag: any[] = [];
     public attendanceflag: any;
-    private attendanceFlag: ShiftAttendanceFlag[];
+    public attendanceFlag: ShiftAttendanceFlag[];
     public AssignRosters: any;
 
     @Input('shiftsId') id: number;
 
-    constructor(public toastr: ToastrService, private fb: FormBuilder,
-        private activatedRoute: ActivatedRoute, public router: Router, public attendancesetupservice: AttendancesetupService) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder,
+        public activatedRoute: ActivatedRoute, public router: Router, public attendancesetupservice: AttendancesetupService) { }
 
     async ngOnInit() {
 

@@ -1,10 +1,4 @@
- 
-
-
-      
-    
-
- 
+  
       <div class="m-portlet">
           <div class="tab-content">
             <div class="tab-pane active" id="leaveType">
@@ -25,7 +19,7 @@
                        (onRowInserted)="addleavetype($event)" 
                       (onRowUpdated)="updateleavetype($event)"
                         (onRowRemoved)="deleteleavetype($event)">
-                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           <dxo-popup title="Leave Type" [showTitle]="true" [width]="700" [height]="345">
                           </dxo-popup>
                         </dxo-editing>

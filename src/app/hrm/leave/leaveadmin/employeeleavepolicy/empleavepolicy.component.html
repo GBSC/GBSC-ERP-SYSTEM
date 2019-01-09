@@ -68,7 +68,7 @@
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" [value]="selectedLeaveTypes?.entitledQuantity" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" [value]="selectedLeaveTypes?.entitledQuantity" type="text">
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" [value]="selectedLeaveTypes?.maximumAllowedBalance" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" [value]="selectedLeaveTypes?.maximumAllowedBalance" type="text">
                   </div>
                 </div>
               </div>
@@ -92,19 +92,18 @@
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime"[value]="selectedLeaveTypes?.maximumAtATime" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime"[value]="selectedLeaveTypes?.maximumAtATime" type="text">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="m--space-07"></div>
-
+            <div class="m--space-07"></div> 
             <div class="row">
               <div class="col-lg-10">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" [value]="selectedLeaveTypes?.minimumAtATime" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" [value]="selectedLeaveTypes?.minimumAtATime" type="text">
                   </div>
                 </div>
               </div>
@@ -116,7 +115,7 @@
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" [value]="selectedLeaveTypes?.minimumIntimationPeriod" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" [value]="selectedLeaveTypes?.minimumIntimationPeriod" type="text">
                   </div>
                 </div>
               </div>
@@ -128,7 +127,7 @@
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
                   <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" [value]="selectedLeaveTypes?.encashmentApplicationLimit" type="number">
+                    <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" [value]="selectedLeaveTypes?.encashmentApplicationLimit" type="text">
                   </div>
                 </div>
               </div>
@@ -161,15 +160,15 @@
                     Paid/UnPaid Qty /Half Paid:
                   </label>
                   <div class="col-md-3">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="PaidDaysQuantity" [value]="selectedLeaveTypes?.paidDaysQuantity">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="PaidDaysQuantity" [value]="selectedLeaveTypes?.paidDaysQuantity">
                   </div>
 
                   <div class="col-md-3">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="HalfPaidDaysQuantity" [value]="selectedLeaveTypes?.halfPaidDaysQuantity">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="HalfPaidDaysQuantity" [value]="selectedLeaveTypes?.halfPaidDaysQuantity">
                   </div>
 
                   <div class="col-md-2">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="UnPaidDaysQuantity" [value]="selectedLeaveTypes?.unPaidDaysQuantity">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="UnPaidDaysQuantity" [value]="selectedLeaveTypes?.unPaidDaysQuantity">
                   </div>
                 </div>
               </div>
@@ -206,7 +205,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="FileAttachmentDaysLimit" [value]="selectedLeaveTypes?.fileAttachmentDaysLimit">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="FileAttachmentDaysLimit" [value]="selectedLeaveTypes?.fileAttachmentDaysLimit">
                   </div>
                 </div>
               </div>
@@ -227,7 +226,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime" [value]="selectedLeaveTypes?.jobPeriodTime">
+                    <input type="text" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime" [value]="selectedLeaveTypes?.jobPeriodTime">
                   </div>
                 </div>
               </div>
@@ -247,11 +246,11 @@
                     </label>
                   </div>
                   <div class="col-md-4">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="BalanceBroughtForwardQuantity" [value]="selectedLeaveTypes?.balanceBroughtForwardQuantity">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="BalanceBroughtForwardQuantity" [value]="selectedLeaveTypes?.balanceBroughtForwardQuantity">
                   </div>
 
                   <div class="col-md-3">
-                    <input type="number" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity" [value]="selectedLeaveTypes?.balanceBroughtForwardValidity">
+                    <input type="text" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity" [value]="selectedLeaveTypes?.balanceBroughtForwardValidity">
                   </div>
                 </div>
               </div>
@@ -272,7 +271,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="number" class="form-control m-input m-input--solid" formControlName="EncashmentDays" [value]="selectedLeaveTypes?.encashmentDays">
+                    <input type="text" class="form-control m-input m-input--solid" formControlName="EncashmentDays" [value]="selectedLeaveTypes?.encashmentDays">
                   </div>
                 </div>
               </div>
@@ -428,7 +427,7 @@
         <div class="m-portlet__body">
           <dx-data-grid id="gridContainer" [dataSource]="empleavepolicy" keyExpr="leavePolicyEmployeeWiseId" (onRowUpdating)="updatingEmpleavepolicy($event)"
             (onRowUpdated)="updateEmpLeavePolicy()" (onRowRemoved)="deleteEmpleavePolicy($event)">
-            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Employee Leave Policy" [showTitle]="true" [width]="1200" [height]="545">
               </dxo-popup>
             </dxo-editing>

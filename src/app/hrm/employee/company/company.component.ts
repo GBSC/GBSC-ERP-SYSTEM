@@ -31,7 +31,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, private SetupServiceobj: SetupService, private hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, private route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
             ManagementLevelId: [''],

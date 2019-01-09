@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
-
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from '../inventory/shared/menu/menu.component';
-
 import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
 import { SupplierComponent } from './setup/supplier/supplier.component';
 import { PurchaseInvoiceComponent } from './purchase/purchase-invoice/purchase-invoice.component';
@@ -56,6 +54,10 @@ import { DeliveryNoteComponent } from './sales/delivery-note/delivery-note.compo
 
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { InventoryMasterComponent } from './setup/inventory-master/inventory-master.component';
+import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
+import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
+import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
+import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 
 @NgModule({
     imports: [
@@ -118,7 +120,11 @@ import { InventoryMasterComponent } from './setup/inventory-master/inventory-mas
         TransportComponent,
         UnitComponent,
         DeliveryNoteComponent,
-        InventoryMasterComponent
+        InventoryMasterComponent,
+        IndentProcessComponent,
+        OrderSummaryComponent, 
+        OrderDetailComponent, 
+        GeneralSkuComponent
     ]
 })
 export class InventoryModule { }

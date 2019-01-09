@@ -18,6 +18,7 @@ export class EmployeeService {
 
     public baseUrl: string = 'systemadmin/api';
     public employeereg;
+    public updatedLeaves;
 
 
     constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {
@@ -30,6 +31,9 @@ export class EmployeeService {
         return this.employeereg;
     }
 
+    getAllEmployees(): Observable<any> {
+        return this.ApiService.get(`${this.baseUrl}/Users/GetUsers`);
+    }
     getManagers(): Observable<any> {
         return this.ApiService.get('SystemAdmin/api/HrSetup/GetUserCompanies');
     }

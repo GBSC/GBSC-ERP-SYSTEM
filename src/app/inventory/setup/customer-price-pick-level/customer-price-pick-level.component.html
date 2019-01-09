@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-md-12"> 
     <dx-data-grid id="gridContainer" [dataSource]="CustomerPrices" keyExpr="customerPricePickLevelId" (onRowInserted)="AddCustomerPrice($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateCustomerPrice()" (onRowRemoved)="DeleteCustomerPrice($event)"> 
-      <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
+      <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
         <dxo-popup title="Add Price Pick Level" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
       </dxo-editing>
       <dxo-filter-row [visible]="true"></dxo-filter-row>

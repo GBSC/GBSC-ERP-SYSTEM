@@ -1,71 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" appunwraptag="" >
-	<head>
-		<meta charset="utf-8" />
-		<title>
-			GBSC ERP | Dashboard
-		</title>
-		<base href="/">
-		<meta name="description" content="Latest updates and statistic charts">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-		<script>
-			 WebFont.load({ google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},             active: function() {                 sessionStorage.fonts = true;             }           });         
-		</script>
-		<link href="./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="./assets/demo/demo7/base/style.bundle.css" rel="stylesheet" type="text/css" />
-		<!-- <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" /> -->
-			</head>
+<html lang="en" appunwraptag="">
 
-	<!-- <div class="m-page-loader m-page-loader--non-block" style="margin-left: -80px; margin-top: -20px;">
-	 <div class="m-blockui">
-			<span>
-				Please wait...
-			</span>
-			<span>
-				<div class="m-loader m-loader--brand"></div>
-			</span>
-		</div>  
-	</div> -->
-	<!-- end::Page loader -->         <!-- end::Body -->
-	<body class="m-page--loading-non-block m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default igx-typography"  ></body>	<!-- end::Body -->
- <script>
-	$(document).ready( function() {
-    	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
+<head>
+	<meta charset="utf-8" />
+	<title>
+		GBSC ERP | Dashboard
+	</title>
+	<base href="/">
+	<meta name="description" content="Latest updates and statistic charts">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+	<script>
+		WebFont.load({ google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] }, active: function () { sessionStorage.fonts = true; } });         
+	</script>
+	<link href="./assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="./assets/demo/demo7/base/style.bundle.css" rel="stylesheet" type="text/css" />
+	<style>
+	    div.gm-style > div > div > div > div > div > div > div
+{
+	margin-top: 65px !important;
+    padding: 3px 8px 3px 8px;
+	border-radius: 10px;
+}
 
-		$('.btn-file :file').on('fileselect', function(event, label) {
-		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
-		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
-	    
-		});
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-		        }
-		        
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
+	</style>
+	<!-- <link rel="shortcut icon" href="assets/demo/demo6/media/img/logo/favicon.ico" /> -->
+</head>
 
-		$("#imgInp").change(function(){
-		    readURL(this);
-		}); 	
-	});
-</script>
-	</html>
+<body class="m-page--loading-non-block m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default igx-typography"></body>
+<!-- end::Body -->
+
+</html>

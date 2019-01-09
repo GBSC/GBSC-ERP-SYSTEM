@@ -1,113 +1,95 @@
 <div class="m-content">
-    <div class="row">
-      <div class="col-xl-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">Sales Indent</h3>
-              </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Sales Indent</h3>
             </div>
           </div>
-          <div class="m-portlet__body">
-            <div class="m-section">
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <form [formGroup]="IndentMasterForm">
               <div class="m-section__content">
-  
-                  <div class="row">
-                      <div class="col-md-6"> 
-                          <div class="form-group m-form__group row">
-                              <label class="col-lg-4 col-form-label">
-                               Date:
-                              </label>
-                              <div class="col-lg-8">
-                                  <input class="form-control m-input" name="date" placeholder="12-02-2018" type="text">
-                             
-                              </div>
-                            </div>
-                       </div>
-  
-                       <div class="col-md-6"> 
-                          <div class="form-group m-form__group row">
-                              <label class="col-lg-4 col-form-label">
-                               Order No:
-                              </label>
-                              <div class="col-lg-8">
-                                  <input class="form-control m-input" disabled name="orderno" placeholder="25594" type="number">
-                             
-                              </div>
-                            </div>
-                       </div>
-              </div>
-  
-              <div class="row">
-                  <div class="col-md-6"> 
+
+                <div class="form-group m-form__group row">
+                      <label class="col-sm-2 col-form-label">
+                        Date:
+                      </label>
+                      <div class="col-sm-4">
+                        <input class="form-control m-input" name="date" placeholder="12-02-2018" type="date" formControlName="Date">
+                      </div> 
+                      <label class="col-sm-2 col-form-label">
+                        Customer Name :
+                      </label>
+                      <div class="col-sm-4">
+                        <input class="form-control m-input" name="shopkeeper" placeholder="John Smith" type="text"
+                          formControlName="CustomerName">
+                      </div>            
+                </div>
                       <div class="form-group m-form__group row">
-                          <label class="col-lg-4 col-form-label">
-                              Business Name:
-                          </label>
-                          <div class="col-lg-8">
-                              <input class="form-control m-input" name="shop" placeholder="Best Buy" type="text">
-                         
-                          </div>
+                        <label class="col-sm-2 col-form-label">
+                            Distributor:
+                        </label>
+                        <div class="col-sm-4">
+                          <select class="form-control m-input" formControlName="DistributorId">
+                            <option class='option' disabled selected>Select Distributor</option>
+                            <option class='option' *ngFor="let distributor of Distributors" value="{{distributor.distributorId}}">{{distributor?.name}}</option>
+                          </select>
                         </div>
-                   </div>
-  
-                   <div class="col-md-6"> 
-                      <div class="form-group m-form__group row">
-                          <label class="col-lg-4 col-form-label">
-                          Customer Name :
-                          </label>
-                          <div class="col-lg-8">
-                              <input class="form-control m-input" name="shopkeeper" placeholder="John Smith" type="text">
-                         
-                          </div>
-                        </div>
-                   </div>
-          </div>
-  
-          <div class="row">
-              <div class="col-md-6"> 
-                  <div class="form-group m-form__group row">
+                        <div class="col-sm-2">
+                          <button type="button" (click)="AddSalesIndent(IndentMasterForm.value)">Submit</button>
+                      </div>
+                      </div>
+                <div class="row">
+                  <!-- <div class="col-md-6">
+                    <div class="form-group m-form__group row">
                       <label class="col-lg-4 col-form-label">
-                       Sales Person:
+                        Sales Person:
                       </label>
                       <div class="col-lg-8">
-                          <input class="form-control m-input" name="salesperson" placeholder="Rollins Smith" type="text">
-                     
+                        <input class="form-control m-input" name="salesperson" placeholder="Rollins Smith" type="text"
+                          formControlName="SalesPerson">
+
                       </div>
                     </div>
-               </div> 
-      </div>
-   
-              <div class="m--space-07"></div>
-  
-  
-              <dx-data-grid id="gridContainer" [dataSource]="" keyExpr="" (onRowInserted)="AddSalesIndent($event)" (onRowUpdated)="UpdateSalesIndent($event)"
-              (onRowRemoved)="DeleteSalesIndent($event)">
-  
-              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-                <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345">
-                </dxo-popup>
+                  </div> -->
+                  <!-- <div class="col-md-6">
+                      <div class="form-group m-form__group row">
+                        <label class="col-lg-4 col-form-label">
+                            Sales Person:
+                        </label>
+                        <select class="form-control m-input" formControlName="SalesPersonId">
+                          <option class='option' disabled selected>Select Sales Person</option>
+                          <option class='option' *ngFor="let salesperson of SalesPeople" [value]="salesPersonId">{{salesperson?.name}}</option>
+                        </select>
+                      </div>
+                    </div> -->
+                  
+                </div>
+              </div>
+            </form>
+
+            <div class="m--space-07"></div>
+            <dx-data-grid id="gridContainer" [dataSource]="SalesIndentItems" keyExpr="" (onRowInserted)="AddIndent($event)">
+              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
               </dxo-editing>
-              <dxo-filter-row [visible]="true"></dxo-filter-row>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
-  
-              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
               <dxo-paging [pageSize]="8"></dxo-paging>
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
               </dxo-pager>
-  
-              <dxi-column dataField="code" caption="Item Code"></dxi-column>
-              <dxi-column dataField="name" caption="Item Name"></dxi-column>
-              <dxi-column dataField="description" caption="Quantity"></dxi-column>
-              <dxi-column dataField="description" caption="Trade Amount"></dxi-column>
-              <dxi-column dataField="description" caption="Trade Offer"></dxi-column>
-  
+              <dxi-column dataField="inventoryItemId">
+                <dxo-lookup [dataSource]="InventoryItems" displayExpr="name" valueExpr="inventoryItemId">
+                </dxo-lookup>
+              </dxi-column>
+              <dxi-column dataField="quantity" caption="Quantity" dataType="number"></dxi-column>
+              <dxi-column dataField="companyId" dataType="number" [visible]="false"></dxi-column>
             </dx-data-grid>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

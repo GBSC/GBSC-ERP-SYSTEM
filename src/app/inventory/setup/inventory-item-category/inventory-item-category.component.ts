@@ -10,9 +10,9 @@ import { InventoryItemCategory } from '../../../core/Models/Inventory/Setup/Inve
 export class InventoryItemCategoryComponent implements OnInit {
     public ItemCategories: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 

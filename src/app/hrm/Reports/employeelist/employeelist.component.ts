@@ -18,14 +18,15 @@ export class EmployeelistComponent implements AfterViewInit {
     @ViewChild("control")
     control: ElementRef
 
-    constructor(private renderer: Renderer2) { }
+    constructor(public renderer: Renderer2) { }
 
     ngAfterViewInit() {
 
         const reportUrl = ko["observable"]("EmployeeList"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
-        var host = `${environment.repotr_url}`;
+        // var host = `${environment.repotr_url}`;
+        var host = `http://localhost:57581/EmployeeList`;
         this.renderer.appendChild(this.scripts.nativeElement, container);
         ko.applyBindings({
             reportUrl,

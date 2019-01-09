@@ -7,6 +7,11 @@ agm-map {
     display: none;
   }
   
+  .btn-outline-accent:hover {
+    color: #fff;
+    background-color: #70c405 !important;
+    border-color: #70c405 !important;
+}
   
   .container{
     width: 200px;
@@ -99,7 +104,7 @@ agm-map {
     }
     
     .live-tracking-map-view{
-    height: 80%;
+    height: 90%;
     width: 90%;
     z-index: 100;
     }
@@ -111,3 +116,18 @@ agm-map {
     .live-tracking-map-view amg-amp{
     height: 100%;
     }
+    .live-track {
+      width: 100px;
+    height: 60px;
+    position: fixed;
+    bottom: 70px;
+    left: 220px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    padding-top: 0px;
+    z-index: 110;
+    border-radius: 100%;
+    }
+

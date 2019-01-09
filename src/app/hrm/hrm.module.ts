@@ -136,12 +136,10 @@ import { ReportviewerComponent } from './reportviewer/reportviewer.component';
 import { EmployeeDetailComponent } from './Reports/employee-detail/employee-detail.component';
 import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
 import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
-import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
-import { LeaveDetailComponent } from './Reports/leave-detail/leave-detail.component';
+import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component'; 
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
 import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
-import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
-import { MonthlyleaveComponent } from './Reports/monthlyleave/monthlyleave.component';
+import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component'; 
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
 import { MonthlyOvertimeComponent } from './Reports/monthly-overtime/monthly-overtime.component';
@@ -153,7 +151,13 @@ import { DependantsrelationComponent } from './hrmsSetup/dependantsrelation/depe
 import { BanksComponent } from './payroll/payrollsetup/banks/banks.component';
 import { AttendanceapproveComponent } from './attendance/attendanceapprove/attendanceapprove.component';
 import { CalendarComponent } from './attendance/calendar/calendar.component';
+import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance.component';
+import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
+import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+import { LeaveDetailComponent } from './Reports/Leave/leave-detail/leave-detail.component';
+import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave.component';
+// import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
     imports: [
@@ -330,8 +334,14 @@ import { CalendarComponent } from './attendance/calendar/calendar.component';
         DependantsrelationComponent,
         BanksComponent,
         AttendanceapproveComponent,
-        CalendarComponent
+        CalendarComponent,
+        LeavebalanceComponent,
+        LeaveledgerComponent,
+        UpdateassignrosterComponent
     ],
+
+    // providers: [IgxExcelExporterService],
+
     exports: [],
 
 

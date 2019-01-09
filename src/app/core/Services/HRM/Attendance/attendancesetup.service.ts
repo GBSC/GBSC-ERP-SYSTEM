@@ -28,15 +28,17 @@ export class AttendancesetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddAssignRoster`, data).toPromise();
     }
 
+    UpdateAsignRoster(value):Observable<any>{
+        return  this.ApiService.post(`${this.baseUrl}/UpdateAssignRoster`, value);
+    }
+
     async getdataToUpdate(attendanceId, attendanceUrl) {
         return await this.ApiService.get(`${this.baseUrl}/${attendanceUrl}/${attendanceId}`).toPromise();
     }
 
 
     async updateAsignRoster(data) {
-
         return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
-
     }
 
     async DeleteAsignRoster(id) {
@@ -201,6 +203,11 @@ export class AttendancesetupService {
     async getRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetRosters`).toPromise();
     }
+
+    GetRosters():Observable<any>{
+        return   this.ApiService.get(`${this.baseUrl}/GetRosters`);
+
+    }
     async addRoster(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddRoster`, data).toPromise();
@@ -223,6 +230,9 @@ export class AttendancesetupService {
     async getShifts() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetShifts`).toPromise();
+    }
+    GetShifts(): Observable<Shift> {
+        return this.ApiService.get(`${this.baseUrl}/GetShifts`);
     }
 
     getShift(id): Observable<Shift> {

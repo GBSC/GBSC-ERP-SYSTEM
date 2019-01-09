@@ -12,7 +12,7 @@
         <div class="m-portlet__body">
           <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
             (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
-            <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+            <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">
               </dxo-popup>
             </dxo-editing>
@@ -61,7 +61,7 @@
             <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
             <dxi-column dataField="isFileAttachmentRequired" dataType="boolean" [visible]="false"></dxi-column>
             <dxi-column dataField="fileAttachmentDaysLimit" [visible]="false"></dxi-column>
-            <dxi-column dataType="boolean" dataField="isShortLeaveAllowed"></dxi-column>
+            <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
             <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
             <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>

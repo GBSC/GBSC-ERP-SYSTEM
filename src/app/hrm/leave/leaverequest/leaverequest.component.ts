@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LeaveRequestDetail } from '../../../core/Models/HRM/leaveRequestDetail';
 import { LeaveRequest } from '../../../core/Models/HRM/leaveRequest';
 import { ToastrService } from 'ngx-toastr';
+import { Loginform } from '../../../core/Models/Auth/loginform';
 
 @Component({
     selector: 'app-leaverequest',
@@ -15,7 +16,6 @@ export class LeaverequestComponent implements OnInit {
 
     public leaveDetail: any[] = [];
     public leaveRequestForm: FormGroup;
-    // public leaverequestdetail: any;
     public leaveYear: any;
     public employees: any;
     public leaveType: any;
@@ -25,16 +25,27 @@ export class LeaverequestComponent implements OnInit {
     public leaverequest: any;
     public updatingRequest: any;
     public leaveOpening: any;
-    private requestDetail: LeaveRequestDetail[];
+    public requestDetail: LeaveRequestDetail[];
     public totalleave: any;
+    public leavePolicy: any;
     public empleavePolicy: any;
+
+    public getleavedata: any;
+    public selectedLeaveTypes: any;
+    public empId: any = null;
+    public leaveBBB: any = null;
+    public data: any;
 
     @Input('leaveRequestId') id: number;
 
     constructor(public toastr: ToastrService, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
-        public router: Router, public leaveservice: LeaveService) { }
+        public router: Router, public leaveservice: LeaveService) {
+
+        this.onSetCellValue = this.onSetCellValue.bind(this);
+    }
 
     async ngOnInit() {
+
 
         this.requestDetail = [];
 
@@ -61,6 +72,8 @@ export class LeaverequestComponent implements OnInit {
 
         this.empleavePolicy = await this.leaveservice.getLeavePolicyEmployee();
 
+        this.leavePolicy = await this.leavesetupservice.getLeavePolicies();
+
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
         });
@@ -73,13 +86,22 @@ export class LeaverequestComponent implements OnInit {
                     delete b.leaveRequestId;
                     return b;
                 });
+                this.getLeaveBalance(this.leaveRequest.userId);
                 this.patchValues(this.leaveRequest);
             });
         }
+        this.data = this.leaveservice.prepareLeaveData(this.employees, this.leaveType, this.empleavePolicy, this.leavePolicy);
     }
 
     async leaveRequestDetail(value) {
+        console.log(value);
+
         let data = value.data;
+        data.leaveTypeId = this.leaveBBB.leaveTypeId;
+        data.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
+        data.totalleave = this.leaveBBB.entitledQuantity;
+        console.log(data);
+
         this.requestDetail.push(data);
     }
 
@@ -117,27 +139,49 @@ export class LeaverequestComponent implements OnInit {
 
         });
     }
+    //     formItem]="{editorOptions: { readOnly: true }}"
+    // [allowEditing]="false" [formItem]="{visible: false}"
 
-    public getleavedata: any;
-    public selectedLeaveTypes = 45;
 
-    getLeaveBalance(userId, leaveTypeId) {
-        let selectedEmployee = this.employees.find(e => e.userId == userId)
-        this.getleavedata = this.empleavePolicy.find(e => e.groupId === selectedEmployee.groupId);
-        this.selectedLeaveTypes = this.empleavePolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.getleavedata.groupId);
 
+    getLeaveBalance(userId) {
+        // let selectedEmployee = this.employees.find(e => e.userId == userId);
+        // console.log(selectedEmployee);
+        // console.log(userId);
+        this.empId = userId;
     }
 
-    // getQuantitybyType(leaveTypeId) {
-    //     this.selectedLeaveTypes = this.leavepolicy.find(e => e.leaveTypeId == leaveTypeId && e.groupId == this.sample.groupId);
-    //     this.patchvalues(this.sample);
-    // }
 
+
+    onSetCellValue(x, abc) {
+        console.log(abc);
+        console.log(this.employees);
+        // console.log(LeaverequestComponent);
+        console.log(this.empId);
+
+        console.log(this.leaveservice.data);
+        // let d;
+        this.leaveservice.data.forEach(e => {
+            if (e.userId == this.empId) {
+                console.log("first condition", e);
+
+                if (e.leaveTypeId == abc) {
+                    this.leaveBBB = e;
+                }
+            }
+        });
+        console.log(this.leaveBBB);
+
+        // let d = {
+        //     totalLeaveDetailValue: this.leaveBBB.entitledQuantity
+        // };
+        // this.patchValues(d);   
+
+    }
 
     patchValues(request: any) {
 
         this.leaveRequestForm.patchValue({
-
             UserId: request.userId,
             IsApproved: request.isApproved,
             RequestDate: request.requestDate

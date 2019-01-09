@@ -22,6 +22,22 @@ export class UserrosterattendanceComponent implements OnInit {
         this.employee = await this.employeeService.GetAllEmployees();
 
         this.assignRoster = await this.attendanceSetupService.getAsignRosters();
+
+        this.userRosterattendance = this.userRosterattendance.map(r => {
+
+            this.employeeService.updatedLeaves.forEach(markleave => {
+                let attdate = new Date(r.attendanceDate);
+                let fromDate = new Date(markleave.dateFrom);
+                let tillDate = new Date(markleave.tillDate);
+
+                if (fromDate => attdate && tillDate <= attdate) {
+                    markleave.isOnLeave = true;
+                    return markleave;
+                }
+                return markleave;
+            })
+        });
+        console.log(this.userRosterattendance);
     }
 
     async adduserRosterattendance(value) {

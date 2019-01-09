@@ -11,21 +11,23 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserregistrationComponent implements OnInit {
 
-    private companyId: any;
-    private roles: any;
-    private cities: any;
-    private user: any;
-    private userId: any;
+    public companyId: any;
+    public roles: any;
+    public cities: any;
+    public user: any;
+    public userId: any;
 
-    private userForm: FormGroup;
+    public userForm: FormGroup;
 
-    constructor(private route: ActivatedRoute,
-        private formBuilder: FormBuilder,
-        private adminService: HrmsService,
-        private systemAdminService: SystemAdministrationService,
-        private userService: UserService,
+    public userTypes = ['Android', 'Desktop', 'Both'];
+
+    constructor(public route: ActivatedRoute,
+        public formBuilder: FormBuilder,
+        public adminService: HrmsService,
+        public systemAdminService: SystemAdministrationService,
+        public userService: UserService,
         public toastr: ToastrService,
-        private authService: AuthService) {
+        public authService: AuthService) {
 
         this.companyId = this.authService.getUserCompanyId();
 
@@ -36,6 +38,7 @@ export class UserregistrationComponent implements OnInit {
             'Phone': [],
             'RoleId': [],
             'Email': [],
+            'UserType': [],
             'Username': [],
             'Password': [],
             'ConfirmPassword': []
@@ -80,6 +83,7 @@ export class UserregistrationComponent implements OnInit {
         user.phone = value.Phone;
         user.cityId = value.CityId;
         user.roleId = value.RoleId;
+        user.userType = value.UserType;
 
         this.userService.editUser(user).subscribe(resp => this.displayToast("Account Updated"));
     }
@@ -106,6 +110,7 @@ export class UserregistrationComponent implements OnInit {
             'CityId': user.cityId,
             'Phone': user.phone,
             'RoleId': user.roleId,
+            'UserType': user.userType,
             'Email': user.email
         });
 

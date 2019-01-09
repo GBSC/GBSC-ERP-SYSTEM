@@ -18,7 +18,7 @@
                 (onRowInserted)="addflagExemption($event)" 
                 (onRowUpdated)="updateflagExemption($event)"
                 (onRowRemoved)="deleteflagExemption($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Attendance Flag" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>

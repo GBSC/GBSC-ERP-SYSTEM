@@ -1,3 +1,95 @@
-<p>
-  calendar works!
-</p>
+<!-- <select name="" id="">
+  <option *ngFor="let day of days" value="">{{day}}</option>  
+</select> -->
+<!-- <select name="" id="">
+  <option *ngFor="let month of months" value="">{{month}}</option>    
+</select>
+<select name="" id="">
+  <option *ngFor="let year of years" value="">{{year}}</option>    
+</select> -->
+<!-- <table>
+  <thead></thead>
+  <tbody>
+    <t
+  </tbody>
+</table>
+<input type="text" *ngFor=""> -->
+
+<div class="m-content">
+  <div class="row">
+    
+<div class="col-xl-12">
+  
+  
+  
+<!--begin::Portlet-->
+  <div class="m-portlet">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <h3 class="m-portlet__head-text">
+            Calendar
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+      <!--begin::Section-->
+      <div class="m-section">
+        <div class="m-section__content">
+          <form [formGroup]="calendarForm"> 
+              <select>
+                  <option *ngFor="let month of months" value="">{{month}}</option>  
+              </select> 
+          <table class="table table-bordered m-table m-table--border-success">
+            <thead>
+              <tr>
+                <th>
+                  Index 
+                </th>
+                <th>
+                Remarks  
+                </th>
+             
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr>
+ 
+                  <td>
+                      <input class="form-control m-input" type="text"  *ngFor="let day of days" value="day" formControlName="Date">
+                </td>
+                <td>
+                    <input class="form-control m-input" *ngFor="let remark of remarks" formControlName="Reamrks" value="remark" >
+                </td>
+                 
+              </tr> -->
+              <tr *ngFor="let day of days ;let i = index ">
+                <td>
+                  {{day}}
+                </td>
+                  <td>
+                    <input type="text"  value="day" formControlName="Date">
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- (click)="save(days , remarks , calendarForm.value ,remark)" -->
+          <button ></button>
+        </form>
+        </div>
+      </div>
+      <!--end::Section-->
+    </div>
+    <!--end::Form-->
+  </div>
+  <!--end::Portlet-->
+
+  
+  
+
+  
+
+</div>
+</div>
+</div>

@@ -10,16 +10,15 @@ export class TerritoryComponent implements OnInit {
     public Territories: any;
     public Areas: any;
     public UpdatedModel: any;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
     async ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.getTerritoriesByCompany(this.CompanyId).subscribe(t => this.Territories = t);
         this.InventoryService.getAreasByCompany(this.CompanyId).subscribe(a => this.Areas = a);
     }

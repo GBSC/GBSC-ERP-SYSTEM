@@ -12,14 +12,13 @@ export class CustomerAccountComponent implements OnInit {
     public CustomerAccounts: any;
     public CustomerTypes: any;
     public updatedmodel: CustomerAccount;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) { }
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) { }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+        
         this.InventoryService.GetCustomerAccountsByCompany(this.CompanyId).subscribe((res: CustomerAccount) => {
             this.CustomerAccounts = res;
         });

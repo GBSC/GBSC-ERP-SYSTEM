@@ -265,7 +265,11 @@ export class FinanceService {
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccounts');
     }
 
+<<<<<<< HEAD
     getAccountsByCompany(companyid: number): Observable<Account[]> {
+=======
+    getAccountsByCompany(companyid : number): Observable<Account[]> {
+>>>>>>> d51916d9e93536b321defeab6962c14758a32089
         return this.ApiService.get(this.baseUrl + '/Finance/GetAccountsByCompany/' + companyid);
     }
 
@@ -363,6 +367,10 @@ export class FinanceService {
     }
 
     getMasterAccountsByCompany(companyid: number): Observable<Account[]> {
+<<<<<<< HEAD
         return this.ApiService.get(this.baseUrl + '/Finance/GetMasterAccounts/' + companyid);
+=======
+        return this.ApiService.get(this.baseUrl + '/Finance/GetMasterAccountsByCompany/' + companyid);
+>>>>>>> d51916d9e93536b321defeab6962c14758a32089
     }
 }

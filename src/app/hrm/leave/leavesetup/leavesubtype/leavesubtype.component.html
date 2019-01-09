@@ -71,14 +71,14 @@
                             </span>
                           </a>
                         </li>
-                <li class="m-nav__item">
+                <!-- <li class="m-nav__item">
                           <a class="m-nav__link" href="#leaveTypeBalance" data-toggle="tab">
                             <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                             <span class="m-nav__link-text">
-                              Leave Type Balance
+                              Leave Balance
                             </span>
                           </a>
-                        </li>
+                        </li> -->
           
                 <li class="m-nav__item">
                           <a class="m-nav__link" href="#leaveApprover" data-toggle="tab">
@@ -133,7 +133,7 @@
                                 (onRowInserted)="addsubleave($event)" 
                                 (onRowUpdated)="updatesubleave($event)"
                                 (onRowRemoved)="deletesubleave($event)">
-                                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                    <dxo-popup title="Leave Sub Types" [showTitle]="true" [width]="700" [height]="345">
                                    </dxo-popup>
                                  </dxo-editing>
@@ -170,9 +170,9 @@
               <div class="tab-pane" id="leavePurpose">
                       <app-leavepurpose></app-leavepurpose>
                     </div>
-              <div class="tab-pane" id="leaveTypeBalance">
+              <!-- <div class="tab-pane" id="leaveTypeBalance">
                       <app-leavetypebalance></app-leavetypebalance>
-                    </div>
+                    </div> -->
               <div class="tab-pane" id="leaveApprover">
                       <app-leaveapprover></app-leaveapprover>
                     </div>

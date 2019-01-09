@@ -10,16 +10,15 @@ import { CustomerType } from '../../../core/Models/Inventory/Setup/CustomerType'
 export class CustomerTypeComponent implements OnInit {
     public CustomerTypes: any;
     public newCusTyp: CustomerType;
-    private CompanyId: number;
+    public CompanyId: number;
 
-    constructor(public InventoryService: InventorysystemService, private AuthService: AuthService) {
+    constructor(public InventoryService: InventorysystemService, public AuthService: AuthService) {
 
     }
 
     ngOnInit() {
-        this.AuthService.getUserCompanyId().subscribe((res: number) => {
-            this.CompanyId = res;
-        });
+        this.CompanyId = this.AuthService.getUserCompanyId();
+
         this.InventoryService.GetCustomerTypesByCompany(this.CompanyId).subscribe((res: CustomerType) => {
             this.CustomerTypes = res;
         });

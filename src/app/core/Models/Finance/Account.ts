@@ -20,6 +20,10 @@ export interface Account {
     totalCredit: number,
     totalDebit: number,
     oldAccountId: number,
+<<<<<<< HEAD
     totalTransactionsAgainstThisAccount: number,
     comapnyId: number
+=======
+    totalTransactionsAgainstThisAccount: number
+>>>>>>> d51916d9e93536b321defeab6962c14758a32089
 }

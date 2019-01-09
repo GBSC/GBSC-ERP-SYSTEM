@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SystemAdministrationService } from '../../core';
+import { SystemAdministrationService, AuthService, HrmsService } from '../../core';
+import { Branch } from '../../core/Models/HRM/branch';
+import { City } from '../../core/Models/HRM/city';
 
 @Component({
     selector: 'app-branch',
@@ -8,24 +10,32 @@ import { SystemAdministrationService } from '../../core';
 })
 export class BranchComponent implements OnInit {
     pattern: any = /^\d{3}-\d{8}$/i;
-    public com: any;
-    public branches: any;
+    public cities: any[] = [];
+    public branches: any[] = [];
 
-    constructor(public SystemAdministrationServiceobj: SystemAdministrationService) { }
+    constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public hrmService: HrmsService, public authService : AuthService) { }
 
     async ngOnInit() {
 
-        this.branches = await this.SystemAdministrationServiceobj.getBranches();
+        this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
 
-        this.com = await this.SystemAdministrationServiceobj.getCompanies();
+        this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
+            this.cities = res;
+        });
     }
 
     async addBranches(value) {
+        value.key.companyId = this.authService.getUserCompanyId();
         await this.SystemAdministrationServiceobj.addBranches(value.key);
-        this.branches = await this.SystemAdministrationServiceobj.getBranches();
+        this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
     }
 
     async updateBranch(value) {
+        value.key.companyId = this.authService.getUserCompanyId();
         await this.SystemAdministrationServiceobj.updateBranch(value.key);
     }
 

@@ -165,6 +165,7 @@ import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/l
 import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
 import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -355,7 +356,8 @@ import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/vie
         LoansetupMasterComponent,
         OvertimesetupMasterComponent,
         CompanysetupMasterComponent,
-        ViewfundsetupComponent
+        ViewfundsetupComponent,
+        AllowanceDeductionDetailComponent
     ],
 
     // providers: [IgxExcelExporterService],

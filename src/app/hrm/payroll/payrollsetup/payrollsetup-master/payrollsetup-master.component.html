@@ -12,9 +12,11 @@
           </div>
         </div>
         <div class="m-portlet__body" style="padding: 0px !important;">
-          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-            <div class="m-demo__preview">
-              <ul class="m-nav nav nav-tabs">
+            
+            <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+              <div class="m-demo__preview">
+                <ul class="m-nav nav nav-tabs">
+                  <div class="m-scrollable" data-scrollable="true" data-max-height="465">
                 <li class="m-nav__item" *ngFor="let tab of tabs;">
                   <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
                     <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
@@ -23,9 +25,12 @@
                     </span>
                   </a>
                 </li>
+              </div>
               </ul>
-            </div>
           </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -44,7 +49,7 @@
                     <app-allowancerate></app-allowancerate>
                   </div>
                   <div class="tab-pane" *ngIf="selectedTab === tabs[3]" id="{{selectedTab}}">
-                    <app-allowance-deduction></app-allowance-deduction>
+                    <app-allowance-deduction-detail></app-allowance-deduction-detail>
                   </div>
                   <div class="tab-pane" *ngIf="selectedTab === tabs[4]" id="{{selectedTab}}">
                     <app-allowancecalculationtype></app-allowancecalculationtype>

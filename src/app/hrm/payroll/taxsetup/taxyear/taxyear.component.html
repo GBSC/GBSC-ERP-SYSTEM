@@ -21,9 +21,9 @@
 											<dxo-paging [pageSize]="8"></dxo-paging>
 											<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
 
+											<dxi-column dataField="name" caption="Year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
 											<dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>
 											<dxi-column dataField="till" caption="Till" dataType="date" format="shortDate"></dxi-column>
-											<dxi-column dataField="name" caption="Name"></dxi-column>
 											<dxi-column dataField="isCurrent" caption="Current" dataType="boolean"></dxi-column>
 										</dx-data-grid>
 									</div>

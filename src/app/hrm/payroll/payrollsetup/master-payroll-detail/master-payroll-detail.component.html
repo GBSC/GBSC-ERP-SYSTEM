@@ -29,7 +29,7 @@
 
 
                       <dxi-column dataField="userId" caption="Employee" [width]="450">
-                          <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
+                          <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                           </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="bankTransferCode"></dxi-column>
@@ -49,10 +49,10 @@
                     </div>
 
                       <div *dxTemplate="let masterPayroll of 'detail'">
-                          <dx-data-grid [dataSource]="masterPayroll.data.MasterPayrollDetails" [showBorders]="true" [columnAutoWidth]="true">
+                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true" [columnAutoWidth]="true">
 
                               <dxi-column dataField="allowanceId" caption="Allowance">
-                                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="AllowanceId">
+                                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
                                   </dxo-lookup>
                                 </dxi-column>
                                 <dxi-column dataField="frequencyId" caption="Frequency">
@@ -71,4 +71,4 @@
                   </dx-data-grid>
               </div>
           </div>
-     
+      

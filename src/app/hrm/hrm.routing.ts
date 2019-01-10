@@ -143,6 +143,7 @@ import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/l
 import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
 import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -301,6 +302,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'allowance', component: AllowanceComponent },
                             { path: 'allowancearrear', component: AllowancearrearComponent },
                             { path: 'allowancededuction', component: AllowanceDeductionComponent },
+                            { path: 'allowancedeductiondetail', component: AllowanceDeductionDetailComponent },
                             { path: 'allowancecalculationtype', component: AllowancecalculationtypeComponent },
                             { path: 'allowancerate', component: AllowancerateComponent },
                             { path: 'bankadvicetemplate', component: BankAdviceTemplateComponent },

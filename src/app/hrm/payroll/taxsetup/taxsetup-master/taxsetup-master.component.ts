@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxsetupMasterComponent implements OnInit {
 
-  tabs: string[] = ['Tax Year', 'Income Tax Rules', 'Tax Benefit', 'Taxable Income Adjustment', 'Tax Adjustment Reason', 'Tax Relief', 'Tax Schedule'];
+  tabs: string[] = ['Tax Year', 'Income Tax Rules', 'Tax Adjustment Reason', 'Tax Benefit', 'Taxable Income Adjustment', 'Tax Relief', 'Tax Schedule'];
  selectedTab = this.tabs[0];
 
   constructor() { }

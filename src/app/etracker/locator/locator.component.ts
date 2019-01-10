@@ -19,7 +19,7 @@ export class LocatorComponent {
     public userLatestlocation: any;
     public userLocationHistory: any[];
     public selectedUser: any;
-    protected agmMap: any;
+    public agmMap: any;
     public dateRange: any = {};
     public zoomLevels: any = [];
     public selectedZoom: any = 18;

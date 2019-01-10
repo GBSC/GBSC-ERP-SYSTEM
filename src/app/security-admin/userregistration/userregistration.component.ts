@@ -59,7 +59,7 @@ export class UserregistrationComponent implements OnInit {
 
         this.adminService.getCitiesByCompanyId(this.companyId).subscribe(resp => this.cities = resp);
 
-        this.systemAdminService.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
+        this.systemAdminService.getDropdownRolesByCompany(this.companyId).subscribe(resp => this.roles = resp);
 
     }
 

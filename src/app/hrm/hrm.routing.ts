@@ -137,9 +137,7 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
-<<<<<<< HEAD
 import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
-=======
 import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
 import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
 import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
@@ -151,7 +149,6 @@ import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetu
 import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
 
->>>>>>> a392d835e7a08c63f5120ac38156fe68e1282fc3
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 

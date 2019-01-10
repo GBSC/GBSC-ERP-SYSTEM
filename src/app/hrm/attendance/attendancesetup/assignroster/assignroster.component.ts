@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AttendancesetupService, EmployeeService } from '../../../../core';
+import { AttendancesetupService, EmployeeService ,HrmsService} from '../../../../core';
 import { Employee } from '../../../../core/Models/HRM/employee';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { DefaultKeyValueDiffer } from '@angular/core/src/change_detection/differs/default_keyvalue_differ';
+ 
 // import { saveAs } from 'file-saver';
 @Component({
     selector: 'app-assignroster',
@@ -32,10 +33,13 @@ export class AssignrosterComponent implements OnInit {
     public offDaysDateList: any = [];
     public Daysoffs: any;
 
+    public departments : any;
+    public departmentId : any;
+
 
 
     constructor(public attendancesetupservice: AttendancesetupService,
-        public empservice: EmployeeService, private formBuilder: FormBuilder , public router : Router) {
+        public empservice: EmployeeService, public hrmsServiceobj : HrmsService , private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({
             Dayoff: [''],
             Remarks: [''],
@@ -45,18 +49,43 @@ export class AssignrosterComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.assignrosters = await this.attendancesetupservice.getAsignRosters();
-        console.log(this.assignrosters);
+        // this.assignrosters = await this.attendancesetupservice.getAsignRosters();
+        // console.log(this.assignrosters);
+        this.attendancesetupservice.GetAsignRosters().subscribe(res=>{
+            this.assignrosters = res;
+            console.log(this.assignrosters);
+        });
 
-        // this.rosterAsign = await this.attendancesetupservice.getAsignRoster( );
+ 
+        // this.roster = await this.attendancesetupservice.getRosters();
 
-        this.roster = await this.attendancesetupservice.getRosters();
+        this.attendancesetupservice.GetRosters().subscribe(res=>{
+            this.roster = res;
+            console.log(this.roster);
+        });
 
-        this.employee = await this.empservice.GetAllEmployees();
+        // this.employee = await this.empservice.GetAllEmployees();
 
 
 
-        this.shifts = await this.attendancesetupservice.getShifts();
+        // this.shifts = await this.attendancesetupservice.getShifts();
+
+        this.attendancesetupservice.GetShifts().subscribe(res=>{
+            this.shifts = res;
+            console.log(this.shifts);
+        });
+
+        this.empservice.getAllEmployees().subscribe(res=>{
+            this.employee = res;
+            console.log(this.employee);
+        });
+
+        this.hrmsServiceobj.GetAllDepartments().subscribe(res=>{
+            this.departments = res ;
+            console.log(this.departments);
+        });
+
+
 
 
     }
@@ -96,6 +125,16 @@ export class AssignrosterComponent implements OnInit {
 
     changeremarks(e, i) {
         this.inputvaluelist[i].Remarks = e.target.value
+    }
+
+
+    onDepartmentChange(value){
+        this.departmentId = value;
+        if(this.departmentId){
+            this.empservice.GetEmployeesByDepartmentId(this.departmentId).subscribe(res=> {
+                    this.employee = res;
+            });
+        }
     }
 
 

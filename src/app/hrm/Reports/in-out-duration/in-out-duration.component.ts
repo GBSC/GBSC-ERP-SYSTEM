@@ -3,7 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
-import { HrmsService  } from '../../../core/Services/HRM/Setup/hrms.service';
+import { HrmsService } from '../../../core/Services/HRM/Setup/hrms.service';
+import { EmployeeService } from '../../../core/Services/HRM/Employee/employee.service';
 
 @Component({
     selector: 'app-in-out-duration',
@@ -13,9 +14,9 @@ import { HrmsService  } from '../../../core/Services/HRM/Setup/hrms.service';
 })
 export class InOutDurationComponent  implements AfterViewInit {
     public showHideFilter: boolean = false;
-
-    public department : any;
-    public departmentId : any;
+    public User: boolean = true;
+    public department: any;
+    public departmentId: any;
 
     public users : any;
     public userId : any;
@@ -26,13 +27,15 @@ export class InOutDurationComponent  implements AfterViewInit {
     @ViewChild("control")
     control: ElementRef
   
-    constructor(public hrmsServiceobj : HrmsService,public renderer: Renderer2,public ngZone: NgZone) { }
-   async ngOnInit() {
+    constructor(public hrmsServiceobj: HrmsService, public employeeServiceobj : EmployeeService ,public renderer: Renderer2,public ngZone: NgZone) { }
+    ngOnInit() {
 
-this.department = await   this.hrmsServiceobj.getAllDepartments();
-console.log(this.department);
 
-  }
+        this.hrmsServiceobj.GetAllDepartments().subscribe(res => {
+            this.department = res;
+            console.log(this.department);
+        });
+    }
   
   
     ngAfterViewInit() {
@@ -50,21 +53,38 @@ console.log(this.department);
             },
             callbacks: {
               ParametersSubmitted: (s, e) => this.ngZone.run(() => {
-                if(this.departmentId)
+                if (this.departmentId)
                 e.Parameters.filter(function (p) { return p.Key == "departmentId"; })[0].Value = this.departmentId;
+                if (this.userId)
+                e.Parameters.filter(function (p) { return p.Key == "userId"; })[0].Value = this.userId;
                })
             }
         }, this.control.nativeElement);
     }
 
     
-  onDepartmentChange(value){
-    this.departmentId = value;
-    console.log(value)
-  }
-  toggleFilter() {
-    this.showHideFilter = !this.showHideFilter;
-}
+    onDepartmentChange(value) {
+        console.log(value);
+        this.departmentId = value;
+        if(this.departmentId){
+            this.employeeServiceobj.GetEmployeesByDepartmentId(this.departmentId).subscribe(res=>{
+                this.users = res;
+                if(this.users){
+                    this.User = false;
+                }
+                console.log(res);
+            });
+        }
+    }
+
+    onUserChange(value){
+        this.userId = value;
+        console.log(this.userId);
+    }
+    toggleFilter() {
+        this.showHideFilter = !this.showHideFilter;
+        
+    }
 
   
   }

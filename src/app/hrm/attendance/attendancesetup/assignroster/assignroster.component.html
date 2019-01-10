@@ -132,19 +132,29 @@
               [dragEnabled]="false"
               [closeOnOutsideClick]="true"
               [(visible)]="popupVisible">
+              
               <div *dxTemplate="let data of 'content'">
-                   
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label>
+                              Department
+                            </label>
+                           <select #Department class="form-control m-input" (change)="onDepartmentChange(Department.value)">
+                              <option class='option' disabled selected>Select Department</option>
+                              <option class='option' *ngFor="let dprt of departments" [value]="dprt.departmentId">{{dprt.name}}</option>
+                            </select> 
+                          </div>
+                        </div>
+                  </div>
                   <dx-data-grid id="gridContainer"
                   [dataSource]="employee"
                   keyExpr="userId"
                   [(selectedRowKeys)]="selectedRows"
                   (onSelectionChanged)="selectionChangedHandler($event)">
-                  <dxo-selection mode="multiple"></dxo-selection>
-        
+                  <dxo-selection mode="multiple"></dxo-selection>        
                    <dxo-filter-row [visible]="true"></dxo-filter-row>
-                   <dxo-header-filter [visible]="true"></dxo-header-filter>
-   
-                   <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>            
                    <dxo-paging [pageSize]="7"></dxo-paging>
                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                    </dxo-pager> 

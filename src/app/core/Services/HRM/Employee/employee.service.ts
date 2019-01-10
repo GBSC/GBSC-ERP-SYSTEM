@@ -34,6 +34,10 @@ export class EmployeeService {
     getAllEmployees(): Observable<any> {
         return this.ApiService.get(`${this.baseUrl}/Users/GetUsers`);
     }
+
+    GetEmployeesByDepartmentId(id : number) :Observable<any>{
+       return this.ApiService.get(`${this.baseUrl}/Users/GetUsersByDepartment/`+id);
+    }
     
     getManagers(): Observable<any> {
         return this.ApiService.get('SystemAdmin/api/Users/GetUsers');

@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation  ,NgZone } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation, NgZone } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
@@ -7,12 +7,12 @@ import { HrmsService } from '../../../core/Services/HRM/Setup/hrms.service';
 import { EmployeeService } from '../../../core/Services/HRM/Employee/employee.service';
 
 @Component({
-    selector: 'app-in-out-duration',
-    encapsulation: ViewEncapsulation.None,
-    templateUrl: './in-out-duration.component.html',
-    // styleUrls: ['./in-out-duration.component.scss']
+    selector: 'app-dailyattendanceandleave',
+    templateUrl: './dailyattendanceandleave.component.html',
+    styleUrls: ['./dailyattendanceandleave.component.css']
 })
-export class InOutDurationComponent  implements AfterViewInit {
+export class DailyattendanceandleaveComponent implements AfterViewInit {
+
     public showHideFilter: boolean = false;
     public User: boolean = true;
     public department: any;
@@ -23,11 +23,11 @@ export class InOutDurationComponent  implements AfterViewInit {
 
     @ViewChild('scripts')
     scripts: ElementRef;
-  
+
     @ViewChild("control")
     control: ElementRef
-  
-    constructor(public hrmsServiceobj: HrmsService, public employeeServiceobj : EmployeeService ,public renderer: Renderer2,public ngZone: NgZone) { }
+
+    constructor(public hrmsServiceobj: HrmsService, public employeeServiceobj : EmployeeService , public renderer: Renderer2, public ngZone: NgZone) { }
     ngOnInit() {
 
 
@@ -36,11 +36,11 @@ export class InOutDurationComponent  implements AfterViewInit {
             console.log(this.department);
         });
     }
-  
-  
+
+
     ngAfterViewInit() {
-  
-        const reportUrl = ko["observable"]("InOutDuration"),
+
+        const reportUrl = ko["observable"]("dailyattendanceandleave"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = `${environment.repotr_url}`;
@@ -52,17 +52,15 @@ export class InOutDurationComponent  implements AfterViewInit {
                 invokeAction: 'WebDocumentViewer/Invoke'
             },
             callbacks: {
-              ParametersSubmitted: (s, e) => this.ngZone.run(() => {
-                if (this.departmentId)
-                e.Parameters.filter(function (p) { return p.Key == "departmentId"; })[0].Value = this.departmentId;
-                if (this.userId)
-                e.Parameters.filter(function (p) { return p.Key == "userId"; })[0].Value = this.userId;
-               })
+                ParametersSubmitted: (s, e) => this.ngZone.run(() => {
+                    if (this.departmentId)
+                        e.Parameters.filter(function (p) { return p.Key == "departmentId"; })[0].Value = this.departmentId;
+                    if (this.userId)
+                    e.Parameters.filter(function (p) { return p.Key == "userId"; })[0].Value = this.userId;
+                })
             }
         }, this.control.nativeElement);
     }
-
-    
     onDepartmentChange(value) {
         console.log(value);
         this.departmentId = value;
@@ -85,6 +83,4 @@ export class InOutDurationComponent  implements AfterViewInit {
         this.showHideFilter = !this.showHideFilter;
         
     }
-
-  
-  }
+}

@@ -14,6 +14,10 @@ export class AttendancesetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
 
+    GetAsignRosters():Observable<any>{
+        return this.ApiService.get(`${this.baseUrl}/GetAssignRosters`);
+    }
+
     async getAsignRoster(id) {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRoster/` + id).toPromise();
 

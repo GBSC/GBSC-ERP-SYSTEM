@@ -75,20 +75,7 @@ export class AssignrosterComponent implements OnInit {
     //   }
 
 
-    onClickMe(value) {
-        console.log(value.data);
-        //     const self = args.data;
-        //     const filename = 'exportExcel.xlsx';
-        //     console.log(self);
-        //     //   const json = JSON.stringify(self.spread.toJSON());
-        //     //   console.log(json);
-        //     self.excelIO.save(self, function (blob) {
-        //       saveAs(blob, filename);
-        //   }, function (e) {
-        //       console.log(e);
-        //   });
-    }
-
+ 
 
     addOffDaysList(value) {
         this.calendarForm.value.Daysoffs = value;
@@ -219,5 +206,9 @@ export class AssignrosterComponent implements OnInit {
           this.router.navigate(['/hrm/attendance/attendancesetup/updateassignroster/'+id.key]);
     }
 
+
+    onClickMe(d){
+        this.router.navigate(['/hrm/attendance/attendancesetup/assignrosterexcelsheet/'+d.key]);
+    }
   
 }

@@ -1,9 +1,9 @@
-import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Renderer2, Input, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation  ,NgZone } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
-
+import { HrmsService  } from '../../../core/Services/HRM/Setup/hrms.service';
 
 @Component({
     selector: 'app-in-out-duration',
@@ -11,18 +11,33 @@ import { environment } from '../../../../environments/environment';
     templateUrl: './in-out-duration.component.html',
     // styleUrls: ['./in-out-duration.component.scss']
 })
-export class InOutDurationComponent implements AfterViewInit {
+export class InOutDurationComponent  implements AfterViewInit {
+    public showHideFilter: boolean = false;
+
+    public department : any;
+    public departmentId : any;
+
+    public users : any;
+    public userId : any;
+
     @ViewChild('scripts')
     scripts: ElementRef;
-
+  
     @ViewChild("control")
     control: ElementRef
+  
+    constructor(public hrmsServiceobj : HrmsService,public renderer: Renderer2,public ngZone: NgZone) { }
+   async ngOnInit() {
 
-    constructor(public renderer: Renderer2) { }
+this.department = await   this.hrmsServiceobj.getAllDepartments();
+console.log(this.department);
 
+  }
+  
+  
     ngAfterViewInit() {
-
-        const reportUrl = ko["observable"]("In/OutDuration"),
+  
+        const reportUrl = ko["observable"]("InOutDuration"),
             container = this.renderer.createElement("div");
         container.innerHTML = Html;
         var host = `${environment.repotr_url}`;
@@ -32,8 +47,24 @@ export class InOutDurationComponent implements AfterViewInit {
             requestOptions: {
                 host,
                 invokeAction: 'WebDocumentViewer/Invoke'
+            },
+            callbacks: {
+              ParametersSubmitted: (s, e) => this.ngZone.run(() => {
+                if(this.departmentId)
+                e.Parameters.filter(function (p) { return p.Key == "departmentId"; })[0].Value = this.departmentId;
+               })
             }
         }, this.control.nativeElement);
     }
 
+    
+  onDepartmentChange(value){
+    this.departmentId = value;
+    console.log(value)
+  }
+  toggleFilter() {
+    this.showHideFilter = !this.showHideFilter;
 }
+
+  
+  }

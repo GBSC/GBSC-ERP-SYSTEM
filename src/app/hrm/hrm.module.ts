@@ -138,7 +138,6 @@ import { EmployeecardComponent } from './Reports/employeecard/employeecard.compo
 import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component'; 
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
-import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component'; 
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
@@ -155,6 +154,11 @@ import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance
 import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
+import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component';
+import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
+import { DepartmentWiseAttendanceComponent } from './Reports/department-wise-attendance/department-wise-attendance.component';
+import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-attendance.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -319,7 +323,6 @@ import { UpdateassignrosterComponent } from './attendance/attendancesetup/update
         ListOfLeaversComponent,
         // LeaveDetailComponent,
         InOutDurationComponent,
-        MissingentriesComponent,
         SalarypaymentComponent,
         // MonthlyleaveComponent,
         CreateAttendancerequestComponent,
@@ -335,7 +338,12 @@ import { UpdateassignrosterComponent } from './attendance/attendancesetup/update
         CalendarComponent,
         LeavebalanceComponent,
         LeaveledgerComponent,
-        UpdateassignrosterComponent
+        UpdateassignrosterComponent,
+        AssignRosterExcelsheetComponent,
+        MissingEntriesComponent,
+        DailyattendanceandleaveComponent,
+        DepartmentWiseAttendanceComponent,
+        DailyAttendanceComponent
     ],
 
     // providers: [IgxExcelExporterService],

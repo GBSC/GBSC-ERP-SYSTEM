@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { City } from '../../../../core/Models/HRM/city';
 
 
@@ -70,6 +70,11 @@ export class HrmsService {
 
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
+
+      GetAllDepartments():Observable<any> {
+        return   this.ApiService.get(`${this.setupUrl}/GetDepartments`);
+    }
+
 
     // DEMO ONLY, you can find working methods below
     async addDepartment(data) {

@@ -38,15 +38,15 @@
         <dxo-paging [pageSize]="25"></dxo-paging>
         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[25, 50, 100]" [showInfo]="true">
         </dxo-pager>
-        <dxi-column dataField="accountCode"></dxi-column>
-        <dxi-column dataField="description"></dxi-column>
-        <dxi-column dataField="openingBalance"></dxi-column>
-        <dxi-column dataField="isGeneralOrDetail" dataType="boolean" caption="General Account"></dxi-column>
-        <dxi-column dataField="showInBalanceSheet" dataType="boolean" caption="In Balance Sheet"></dxi-column>
-        <dxi-column dataField="financialYearId">
+        <dxi-column dataField="accountCode" dataType="text" caption="Account Code"></dxi-column>
+        <dxi-column dataField="description" dataType="text" caption="Head"></dxi-column>
+        <dxi-column dataField="openingBalance" dataType="number" caption="Opening Balance"></dxi-column>
+        <!-- <dxi-column dataField="isGeneralOrDetail" dataType="boolean" caption="General Account"></dxi-column>
+        <dxi-column dataField="showInBalanceSheet" dataType="boolean" caption="Show in reports"></dxi-column>
+        <dxi-column dataField="financialYearId" dataType="text" caption="Financial Year">
           <dxo-lookup [dataSource]="FinancialYears" displayExpr="name" valueExpr="financialYearId">
           </dxo-lookup>
-        </dxi-column>
+        </dxi-column> -->
         <dxi-column caption="Action" [minWidth]="100" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
         <div *dxTemplate="let d of 'chartCellTemplate'">
           <div class="chart-cell">
@@ -75,53 +75,41 @@
             </div>
             <div class="modal-body">
               <form [formGroup]="AccountForm">
+                  <div class="m-form__group form-group row">
+                      <div class="col-sm-6">
+                        <div  class="m-checkbox-list">
+                          <label *ngIf="!IsUpdate" class="m-checkbox m-checkbox--check-bold">Bank Account
+                            <input type="checkbox" formControlName="IsBankAccount">
+                            <span></span>
+                          </label>
+                          <label class="m-checkbox m-checkbox--state-success">Show In Reports
+                            <input type="checkbox" formControlName="ShowInBalanceSheet">
+                            <span></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                 <div class="m-form__group form-group row">
                   <label class="col-3 col-form-label">
                     Account Type
                   </label>
-                  <div class="col-9">
+                  <div *ngIf="!IsUpdate" class="col-9">
                     <div class="m-radio-inline">
                       <label class="m-radio">
-                        <input type="radio" #Account value="true" formControlName="IsGeneralOrDetail">
+                        <input type="radio" checked="gchecked" (click)="isGeneral('true')" value="true" formControlName="IsGeneralOrDetail">
                         General
                         <span></span>
                       </label>
                       <label class="m-radio">
-                        <input type="radio" #Account value="false" formControlName="IsGeneralOrDetail">
+                        <input type="radio" checked="!gchecked" (click)="isGeneral('false')" value="false" formControlName="IsGeneralOrDetail">
                         Detail
                         <span></span>
                       </label>
                     </div>
                   </div>
-                  <div class="row form-group">
-                  <div class="col-sm-6">
-                    <div class="m-checkbox-list">
-                      <label class="m-checkbox">Bank Account
-                        <input type="checkbox" formControlName="IsBankAccount">
-                      </label>
-                      <label class="m-checkbox m-checkbox--state-success">Show In Balance Sheet
-                        <input type="checkbox" formControlName="ShowInBalanceSheet">
-                      </label>
-                    </div>
-                  </div>
                 </div>
+              
                   <div class="form-group">
-                    <!-- <div class="col-md-6">
-                      <div class="form-group m-form__group row">
-                        <label class="col-lg-4 col-form-label">
-                          Account Type
-                        </label>
-                        <div class="col-lg-8">
-                          <select class="form-control m-input" formControlName="MasterAccountType">
-                            <option [value]="">Asset</option>
-                            <option [value]="">Liability</option>
-                            <option [value]="">Expense</option>
-                            <option [value]="">Xyz</option>
-                            <option [value]="">Abc</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div> -->
                     <label for="recipient-name" class="form-control-label">
                       Parent Account Code:
                     </label>
@@ -133,7 +121,7 @@
                     </label>
                     <input type="text" disabled class="form-control" formControlName="ParentAccountLevel">
                   </div>
-                  <div class="form-group">
+                  <div *ngIf="!IsUpdate" class="form-group">
                     <label for="recipient-name" class="form-control-label">
                       Financial Year:
                     </label>
@@ -141,19 +129,18 @@
                       <option *ngFor="let year of FinancialYears" [value]="year.financialYearId">{{year.name}}</option>
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div *ngIf="!IsGeneral" class="form-group">
                     <label for="recipient-name" class="form-control-label">
                       Opening Balance:
                     </label>
-                    <input disable=Account type="text" class="form-control" formControlName="OpeningBalance">
+                    <input type="text" class="form-control" formControlName="OpeningBalance">
                   </div>
                   <div class="form-group">
                     <label for="message-text" class="form-control-label">
-                      Description:
+                      Head:
                     </label>
                     <textarea class="form-control" formControlName="Description"></textarea>
                   </div>
-                </div>
               </form>
             </div>
             <div class="modal-footer">

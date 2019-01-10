@@ -6,6 +6,7 @@ import { Account } from '../../core/Models/Finance/Account';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountViewModel } from '../../core/Models/Finance/AccountViewModel';
+import { AuthService } from '../../core';
 
 @Component({
     selector: 'app-finance-account',
@@ -14,37 +15,44 @@ import { AccountViewModel } from '../../core/Models/Finance/AccountViewModel';
 })
 
 export class FinanceAccountComponent implements OnInit {
-    public Accounts: Account[] = [];
-    public FinancialYears: FinancialYear[] = [];
-    public AccountForm: FormGroup;
+    private Accounts: Account[] = [];
+    private FinancialYears: FinancialYear[] = [];
+    private AccountForm: FormGroup;
 
-    public RequestAccount: AccountViewModel;
-    public UpdateAccount: Account;
+    private RequestAccount: AccountViewModel;
+    private UpdateAccount: Account;
 
-    public IsUpdate: boolean = false;
+    private IsUpdate: boolean = false;
+    public IsGeneral : boolean = true;
 
-    constructor(public fb: FormBuilder, public FinanceService: FinanceService, public FinanceSetupService: FinanceSetupService, public Toastr: ToastrService) {
+    constructor(private fb: FormBuilder, public Auth : AuthService, private FinanceService: FinanceService, private FinanceSetupService: FinanceSetupService, private Toastr: ToastrService) {
 
     }
 
     ngOnInit() {
-        this.FinanceService.getAccounts().subscribe((res: Account[]) => {
-            console.log(res);
+        // this.FinanceService.getAccounts().subscribe((res: Account[]) => {
+        //     console.log(res);
+        //     this.Accounts = res;
+        // });
+
+        // console.log(this.Auth.getUser());
+
+        this.FinanceService.getAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+            // console.log(res);
             this.Accounts = res;
         });
 
-        this.FinanceSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
-            console.log(res);
+        this.FinanceSetupService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res: FinancialYear[]) => {
+            // console.log(res);
             this.FinancialYears = res.filter(a => a.isActive == true);
         });
 
         this.AccountForm = this.fb.group({
-            ParentAccountCode: [''],
+            ParentAccountCode: [],
             ParentAccountLevel: [''],
             AccountCode: [''],
             IsBankAccount: [''],
             ShowInBalanceSheet: [''],
-            MasterAccountType: [''],
             IsGeneralOrDetail: [''],
             AccountLevel: [''],
             Description: [''],
@@ -55,14 +63,13 @@ export class FinanceAccountComponent implements OnInit {
     }
 
     addAccount(value) {
-        console.log(value);
+        // console.log(value);
         if (value.data.isGeneralOrDetail == false) {
             this.Toastr.error("Can't add child accounts for detail account");
             this.AccountForm.reset();
             return;
         }
 
-        console.log(value);
         this.IsUpdate = false;
 
         this.AccountForm.patchValue({
@@ -72,12 +79,18 @@ export class FinanceAccountComponent implements OnInit {
     }
 
     updateAccount(value) {
-        console.log(value);
+        // console.log(value);
         this.IsUpdate = true;
+        if(value.data.openingBalance != undefined && value.data.openingBalance != null && value.data.openingBalance != 0 && value.data.openingBalance != '' && value.data.openingBalance != ' ') {
+            this.IsGeneral = false;
+        } else {
+            this.IsGeneral = true;
+        }
 
         this.AccountForm.patchValue({
             ParentAccountCode: value.data.parentAccountCode,
             ParentAccountLevel: Number.parseInt(value.data.accountLevel) - 1,
+            IsBankAccount : value.data.isBankAccount,
             IsGeneralOrDetail: value.data.isGeneralOrDetail,
             AccountCode: value.data.accountCode,
             FinancialYearId: value.data.financialYearId,
@@ -87,17 +100,24 @@ export class FinanceAccountComponent implements OnInit {
     }
 
     deleteAccount() {
-
+        this.Toastr.error("Restricted");
     }
 
     ResetBools() {
         this.AccountForm.reset();
     }
 
+    isGeneral(value : string) {
+        if(value == 'true')
+            this.IsGeneral = true;
+        else
+            this.IsGeneral = false;
+    }
+
     SendRequest(value) {
         console.log(value);
 
-        if (value.ParentAccountCode == null || value.ParentAccountCode == "") {
+        if (value.ParentAccountCode == null || value.ParentAccountCode == "" || value.ParentAccountCode == " " || value.ParentAccountCode.length < 2) {
             delete value.parentAccountCode;
             delete value.OpeningBalance;
             value.ParentAccountLevel = 0;
@@ -110,25 +130,27 @@ export class FinanceAccountComponent implements OnInit {
 
         if (this.IsUpdate === false) {
             var a: any = {
-                parentAccountCode: value.ParentAccountCode,
+                companyId : this.Auth.getUserCompanyId(),
+                parentAccountCode: value.ParentAccountCode || null,
                 parentAccountLevel: Number.parseInt(value.ParentAccountLevel),
                 isGeneralOrDetail: value.IsGeneralOrDetail,
                 description: value.Description,
                 financialYearId: Number.parseInt(value.FinancialYearId),
-                openingBalance: Number.parseFloat(value.OpeningBalance)
+                openingBalance: Number.parseFloat(value.OpeningBalance),
+                showInBalanceSheet: value.ShowInBalanceSheet
             };
 
             this.RequestAccount = a;
-            console.log(this.RequestAccount);
+            // console.log(this.RequestAccount);
 
             this.FinanceService.addAccount(this.RequestAccount).subscribe((res: any) => {
-                console.log(res);
-                this.FinanceService.getAccounts().subscribe((res: Account[]) => {
-                    console.log(res);
+                // console.log(res);
+                this.FinanceService.getAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
+                    // console.log(res);
                     this.Accounts = res;
-                    this.Toastr.success("Account Added Successfully");
                     this.AccountForm.reset();
                 });
+                this.Toastr.success("Account Added Successfully");
             });
 
         } else if (this.IsUpdate === true) {
@@ -136,14 +158,16 @@ export class FinanceAccountComponent implements OnInit {
             let a: Account = this.Accounts.find(a => a.accountCode == value.AccountCode);
             a.description = value.Description;
             a.openingBalance = Number.parseFloat(value.OpeningBalance) || null;
+            a.showInBalanceSheet = value.ShowInBalanceSheet;
+            // a.isBankAccount = value.IsBankAccount;
 
             this.UpdateAccount = a;
-
+            // console.log(a);
             this.FinanceService.updateAccount(this.UpdateAccount).subscribe((res: any) => {
-                console.log(res);
-                this.FinanceService.getAccounts().subscribe((res: Account[]) => {
+                // console.log(res);
+                this.FinanceService.getAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Account[]) => {
                     this.Accounts = res;
-                    console.log(res);
+                    // console.log(res);
                     this.Toastr.success("Account information updated successfully");
                     this.AccountForm.reset();
                 });
@@ -151,5 +175,4 @@ export class FinanceAccountComponent implements OnInit {
 
         }
     }
-
 }

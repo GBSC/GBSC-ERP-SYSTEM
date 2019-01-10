@@ -278,7 +278,7 @@ class MapHelper {
     static dayStartEndMakrer: string = './assets/images/daystart-dayend.png';
   
     static createMarker(url, size) {
-      return new MarkerIcon(url, size).init();
+        return new MarkerIcon(url, size).init();
     }
   
   }

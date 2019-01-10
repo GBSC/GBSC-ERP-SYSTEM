@@ -8,38 +8,12 @@ import { SubAccount } from '../../Models/Finance/subAccount';
 import { SecondSubAccount } from '../../Models/Finance/secondSubAccount';
 import { Observable } from 'rxjs';
 
-export class Company {
-    SNo: number;
-    Description: string;
-}
-
-let companies: Company[] = [{
-    "SNo": 1,
-    "Description": "HRMS"
-}, {
-    "SNo": 2,
-    "Description": "Inventory System"
-}, {
-    "SNo": 3,
-    "Description": "HIMS"
-}, {
-    "SNo": 4,
-    "Description": "Lab"
-}, {
-    "SNo": 5,
-    "Description": "Finance"
-}];
-
 @Injectable()
 export class FinanceSetupService {
 
     public baseUrl: string = "Finance/api";
 
     constructor(public ApiService: ApiService) { }
-
-    getCompanies() {
-        return companies;
-    }
 
     async getFinancialYears() {
 
@@ -50,19 +24,34 @@ export class FinanceSetupService {
         return this.ApiService.get(this.baseUrl + '/FinanceSetup/GetFinancialYears');
     }
 
-    async addFinancialYear(financialYear: FinancialYear) {
+    GetFinancialYearsByCompany(companyid : number): Observable<FinancialYear[]> {
+        return this.ApiService.get(this.baseUrl + '/FinanceSetup/GetFinancialYearsByCompany/' + companyid);
+    }
 
+    async addFinancialYear(financialYear: FinancialYear) {
         return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddFinancialYear`, financialYear).toPromise();
     }
 
-    async updateFinancialYear(financialYear: FinancialYear) {
+    AddFinancialYear(financialYear: FinancialYear) : Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddFinancialYear`, financialYear);
+    }
 
+    async updateFinancialYear(financialYear: FinancialYear) {
         return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateFinancialYear`, financialYear).toPromise();
+    }
+
+    UpdateFinancialYear(financialYear: FinancialYear) : Observable<any> {
+
+        return this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateFinancialYear`, financialYear);
 
     }
 
     async DeleteFinancialYear(id) {
         return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteFinancialYear/${id}`).toPromise();
+    }
+
+    deleteFinancialYear(id)  : Observable<any> {
+        return this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteFinancialYear/${id}`);
     }
 
     async getVoucherTypes() {
@@ -74,19 +63,32 @@ export class FinanceSetupService {
         return this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypes`);
     }
 
-    async addVoucherType(vouchertype: VoucherType) {
+    GetVoucherTypesByCompany(companyid : number): Observable<VoucherType[]> {
+        return this.ApiService.get(`${this.baseUrl}/FinanceSetup/GetVoucherTypesByCompany/` + companyid);
+    }
 
+    async addVoucherType(vouchertype: VoucherType) {
         return await this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddVoucherType`, vouchertype).toPromise();
     }
 
+    AddVoucherType(vouchertype: VoucherType) : Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/FinanceSetup/AddVoucherType`, vouchertype);
+    }
+
     async updateVoucherType(vouchertype: VoucherType) {
-
         return await this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateVoucherType`, vouchertype).toPromise();
+    }
 
+    UpdateVoucherType(vouchertype: VoucherType) : Observable<any> {
+        return this.ApiService.put(`${this.baseUrl}/FinanceSetup/UpdateVoucherType`, vouchertype);
     }
 
     async DeleteVoucherType(id) {
         return await this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteVoucherType/${id}`).toPromise();
+    }
+
+    deleteVoucherType(id) : Observable<any> {
+        return this.ApiService.delete(`${this.baseUrl}/FinanceSetup/DeleteVoucherType/${id}`);
     }
 
     async getMasterAccounts() {

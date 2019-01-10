@@ -548,17 +548,19 @@ export class PayrollSetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`).toPromise();
     }
 
+     getSalaryStructure(id): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl +'/GetSalaryStructure/' + id);
+    }
+
 
     async addSalaryStructure(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddSalaryStructure`, data).toPromise();
     }
 
-    async updateSalaryStructure(data) {
-
-        let salarystructure = await this.getdataToUpdate(data.key, 'GetSalaryStructure');
-        salarystructure = { ...salarystructure, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateSalaryStructure`, salarystructure).toPromise();
+     updateSalaryStructure(data) : Observable<any> { 
+        return this.ApiService.put(`${this.baseUrl}/UpdateSalaryStructure`, data);
     }
 
     async deleteSalaryStructure(salarystructureId) {

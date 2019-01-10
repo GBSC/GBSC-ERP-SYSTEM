@@ -154,11 +154,24 @@ import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance
 import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+<<<<<<< HEAD
 import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
 import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component';
 import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
 import { DepartmentWiseAttendanceComponent } from './Reports/department-wise-attendance/department-wise-attendance.component';
 import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-attendance.component';
+=======
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+>>>>>>> a392d835e7a08c63f5120ac38156fe68e1282fc3
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -339,11 +352,24 @@ import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-atten
         LeavebalanceComponent,
         LeaveledgerComponent,
         UpdateassignrosterComponent,
+<<<<<<< HEAD
         AssignRosterExcelsheetComponent,
         MissingEntriesComponent,
         DailyattendanceandleaveComponent,
         DepartmentWiseAttendanceComponent,
         DailyAttendanceComponent
+=======
+        LeavesetupMasterComponent,
+        AttendancesetupMasterComponent,
+        HrsetupMasterComponent,
+        StopsalarydetailComponent,
+        PayrollsetupMasterComponent,
+        TaxsetupMasterComponent,
+        LoansetupMasterComponent,
+        OvertimesetupMasterComponent,
+        CompanysetupMasterComponent,
+        ViewfundsetupComponent
+>>>>>>> a392d835e7a08c63f5120ac38156fe68e1282fc3
     ],
 
     // providers: [IgxExcelExporterService],

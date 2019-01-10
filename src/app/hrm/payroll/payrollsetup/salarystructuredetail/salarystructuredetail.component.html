@@ -1,51 +1,75 @@
- 
-      <div class="m-portlet">
+
+
+
+    <div class="m-portlet">
         <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Salary Structure Detail</h3>
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                       Salary Structure & Detail
+                    </h3>
+                </div>
             </div>
-          </div>
         </div>
         <div class="m-portlet__body">
-          <div class="m-section">
-            <div class="m-section__content">
-
-              <dx-data-grid id="gridContainer" [dataSource]="salaryStructureDetail" 
-              keyExpr="salaryStructureDetailId" (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)" (onRowRemoved)="deleteSalaryStructureDetail($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
-                </dxo-editing>
+            <dx-data-grid id="gridContainer" 
+            [dataSource]="salarystructures"  
+            keyExpr="salaryStructureId" 
+            (onSelectionChanged)="selectionChanged($event)"
+            (onContentReady)="contentReady($event)"
+            (onToolbarPreparing)="onToolbarPreparing($event)"
+            [masterDetail]="{ enabled: true, template: 'detail' }"
+            [columnAutoWidth]="true" 
+             [showBorders]="true">
+                
+            <dxo-selection mode="single"></dxo-selection>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                </dxo-pager>                
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
-
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="8"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager>
 
-                <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                  <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
-                </dxi-column>
-  
-                <dxi-column dataField="benefitId" caption="Benefit">
-                  <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
-                </dxi-column>
-
-                <dxi-column dataField="allowanceId" caption="Allowance">
-                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
-                </dxi-column>
                 
-                <dxi-column dataField="salaryStructureId" caption="Salary Structure">
-                  <dxo-lookup [dataSource]="salarystructure" displayExpr="title" valueExpr="salaryStructureId"></dxo-lookup>
+                <dxi-column dataField="title"></dxi-column>
+                <dxi-column dataField="groupId" caption="Group" [width]="260">
+                    <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
+                    </dxo-lookup>
                 </dxi-column>
- 
-                <dxi-column dataField="value" caption="Value"></dxi-column>
-                <dxi-column dataField="formula" caption="Formula" dataType="boolean"></dxi-column>
-                <dxi-column dataField="baseSalary" caption="Base Salary"></dxi-column> 
-              </dx-data-grid>
-            </div>
-          </div>
+                <dxi-column dataField="payrollTypeId" caption="Payroll Type" [width]="260">
+                    <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId">
+                    </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="minimumSalary"></dxi-column>
+                <dxi-column dataField="maximumSalary"></dxi-column>
+                <dxi-column dataField="IsHourlyPay" dataType="boolean"></dxi-column>
+                <dxi-column dataField="PerHourPay"></dxi-column>
+                <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                <div *dxTemplate="let d of 'chartCellTemplate'">
+                  <div class="chart-cell">
+                      <dx-button (click)="getData(d)" icon="edit"></dx-button>
+                  </div>
+              </div>
+
+                <div *dxTemplate="let structure of 'detail'">
+                    <dx-data-grid [dataSource]="structure.data.salaryStructureDetails" [showBorders]="true">
+
+                        <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                          </dxi-column>
+            
+                          <dxi-column dataField="benefitId" caption="Benefit">
+                            <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                          </dxi-column>
+          
+                          <dxi-column dataField="allowanceId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+                          </dxi-column>
+                          <dxi-column dataField="value" caption="Value"></dxi-column>
+                          <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                        </dx-data-grid>
+                </div>
+            </dx-data-grid>
         </div>
-      </div>
+    </div>
  

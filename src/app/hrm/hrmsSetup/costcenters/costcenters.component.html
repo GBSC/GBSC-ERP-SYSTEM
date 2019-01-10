@@ -1,237 +1,38 @@
-  
-      <div class="m-content">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="m-portlet">
-              <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                    <h3 class="m-portlet__head-text">
-                      Hrm Setup
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <div class="m-portlet__body" style="padding: 0px !important;">
-                <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-                  <div class="m-demo__preview">
-                    <ul class="m-nav nav nav-tabs">
-                 
-                      <li class="m-nav__item">
-                        <a class="m-nav__link" href="#costcenter" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Cost Center
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#degree" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Degree
-                          </span>
-                        </a>
-                      </li>
-            <li class="m-nav__item">
-                        <a class="m-nav__link" href="#designation" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                          Designation
-                          </span>
-                        </a>
-                      </li>
-              
-                      <li class="m-nav__item">
-                        <a class="m-nav__link" href="#employeestatus" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Employee Status
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#employeetype" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Employee Type
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#function" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                         Function
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#holidays" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Holidays
-                          </span>
-                        </a>
-                      </li>
-        
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#group" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            Group
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#language" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Language
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#managementlevel" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Management Level
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#relation" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Relation
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#religion" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Religion
-                          </span>
-                        </a>
-                      </li>
-              <li class="m-nav__item">
-                        <a class="m-nav__link" href="#skilllevel" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                           Skill Levels
-                          </span>
-                        </a>
-                      </li>
-              <!-- <li class="m-nav__item">
-                        <a class="m-nav__link" href="#university" data-toggle="tab">
-                          <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-                          <span class="m-nav__link-text">
-                            University
-                          </span>
-                        </a>
-                      </li> -->
-      
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-9">
-            <!-- Tab panes -->
-            <div class="m-portlet">
-                <div class="tab-content">
-                  <div class="tab-pane active" id="bank">
-                    <div class="m-portlet">
-                      <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                          <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">Cost Center</h3>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="m-portlet__body">
-                        <div class="m-section">
-                          <div class="m-section__content">
-         
-                            <dx-data-grid id="gridContainer" 
-                            [dataSource]="costCenter" 
-                            keyExpr="costCenterId"
-                             (onRowInserted)="addNewCostCenter($event)"
-                              (onRowUpdating)="costcntrUpdating($event)" 
-                              (onRowUpdated)="editCostCenter()" 
-                              (onRowRemoved)="deleteCost($event)">
-              
-                              <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
-              
-                                <dxo-popup title="Cost Center" [showTitle]="true" [width]="700" [height]="345">
-                                </dxo-popup>
-                              </dxo-editing>
-                              <dxo-filter-row [visible]="true"></dxo-filter-row>
-                              <dxo-header-filter [visible]="true"></dxo-header-filter>
-              
-                              <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                              <dxo-paging [pageSize]="8"></dxo-paging>
-                              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                              </dxo-pager>
-              
-                              <dxi-column dataField="code"></dxi-column>
-                              <dxi-column dataField="name"></dxi-column>
-                              <dxi-column dataField="description"></dxi-column>
-              
-                            </dx-data-grid>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-             
-                  <div class="tab-pane" id="degree">
-                    <app-degree></app-degree>
-                  </div>
-            <div class="tab-pane" id="designation">
-                    <app-designations></app-designations>
-                  </div>
-            <div class="tab-pane" id="employeestatus">
-                    <app-employeestatus></app-employeestatus>
-                  </div>
-            <div class="tab-pane" id="employeetype">
-                    <app-employeetype></app-employeetype>
-                  </div>
-            <div class="tab-pane" id="function">
-                    <app-function></app-function>
-                  </div>
-            <div class="tab-pane" id="holidays">
-                    <app-gazettedholidays></app-gazettedholidays>
-                  </div>
-            <div class="tab-pane" id="group">
-                    <app-groups></app-groups>
-                  </div>
-            <div class="tab-pane" id="language">
-                    <app-languages></app-languages>
-                  </div>
-            <div class="tab-pane" id="managementlevel">
-                    <app-managementlevels></app-managementlevels>
-                  </div>
-            <div class="tab-pane" id="relation">
-                    <app-dependantsrelation></app-dependantsrelation>
-                  </div>
-            <div class="tab-pane" id="religion">
-                    <app-religion></app-religion>
-                  </div>
-            <div class="tab-pane" id="skilllevel">
-                    <app-skilllevels></app-skilllevels>
-                  </div>
-            <!-- <div class="tab-pane" id="university">
-                    <app-university></app-university>
-                  </div> -->
-             
-                </div>
-      
-            </div>
-          </div>
-        </div>
-      
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Cost Center</h3>
       </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="m-section">
+      <div class="m-section__content">
+
+        <dx-data-grid id="gridContainer" [dataSource]="costCenter" keyExpr="costCenterId" (onRowInserted)="addNewCostCenter($event)"
+          (onRowUpdating)="costcntrUpdating($event)" (onRowUpdated)="editCostCenter()" (onRowRemoved)="deleteCost($event)">
+
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+
+            <dxo-popup title="Cost Center" [showTitle]="true" [width]="700" [height]="345">
+            </dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+
+          <dxi-column dataField="code"></dxi-column>
+          <dxi-column dataField="name"></dxi-column>
+          <dxi-column dataField="description"></dxi-column>
+
+        </dx-data-grid>
+
+      </div>
+    </div>
+  </div>
+</div>

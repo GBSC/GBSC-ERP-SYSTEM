@@ -137,7 +137,21 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
+<<<<<<< HEAD
 import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
+=======
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+
+>>>>>>> a392d835e7a08c63f5120ac38156fe68e1282fc3
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -148,6 +162,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
+            { path: 'comoanysetups', component: CompanysetupMasterComponent },
             { path: 'branch', component: BranchComponent },
             { path: 'company', component: CompanyComponent },
             { path: 'country', component: CountryComponent },
@@ -157,7 +172,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'module', component: ModuleComponent },
 
             {
-                path: 'setup',
+                path: 'employeesetups', component: HrsetupMasterComponent,
                 children: [
 
                     { path: 'home', component: HrmSetupHomeComponent },
@@ -185,9 +200,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'leave',
                 children: [
                     {
-                        path: 'leavesetup',
+                        path: 'setups', component: LeavesetupMasterComponent,
                         children: [
-
+ 
                             { path: 'leavepurpose', component: LeavepurposeComponent },
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
@@ -238,7 +253,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'attendance',
                 children: [
                     {
-                        path: 'attendancesetup',
+                        path: 'setups', component: AttendancesetupMasterComponent,
                         children: [
 
                             { path: 'assignroster', component: AssignrosterComponent },
@@ -268,7 +283,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         ]
                     },
                     {
-                        path: 'overtime',
+                        path: 'overtimesetup', component: OvertimesetupMasterComponent,
                         children: [
                             { path: 'overtimeflag', component: OvertimeflagComponent },
                             { path: 'overtimetype', component: OvertimetypeComponent },
@@ -291,10 +306,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'payroll',
                 children: [
-                    {
-                        path: 'payrollsetup',
-                        children: [
-
+                   
+                            { path: 'payrollsetup', component: PayrollsetupMasterComponent},
                             { path: 'allowance', component: AllowanceComponent },
                             { path: 'allowancearrear', component: AllowancearrearComponent },
                             { path: 'allowancededuction', component: AllowanceDeductionComponent },
@@ -308,6 +321,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'currency', component: CurrencyComponent },
                             { path: 'frequency', component: FrequencyComponent },
                             { path: 'fundsetup', component: FundsetupComponent },
+                            { path: 'fundsetupdetail', component: ViewfundsetupComponent },
                             { path: 'gratuityslabgratuity', component: GratuitySlabGratuityComponent },
                             { path: 'gratuityslab', component: GratuityslabComponent },
                             { path: 'gratuitytype', component: GratuitytypeComponent },
@@ -322,35 +336,28 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'pfpayment', component: PfPaymentComponent },
                             { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
                             { path: 'salarystructure', component: SalarystructureComponent },
+                            { path: 'update-salarystrucrure/:id', component: SalarystructureComponent },
                             { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
-                            { path: 'usersalary', component: UsersalaryComponent }
-
-                        ]
-                    },
-                    {
-                        path: 'taxsetup',
-                        children: [
+                            { path: 'usersalary', component: UsersalaryComponent }, 
+                     
+                            {path: 'taxsetup', component: TaxsetupMasterComponent},
                             { path: 'incometaxrule', component: IncomeTaxRuleComponent },
                             { path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent },
                             { path: 'taxbenefit', component: TaxBenefitComponent },
                             { path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent },
                             { path: 'taxrelief', component: TaxreliefComponent },
                             { path: 'taxschedule', component: TaxscheduleComponent },
-                            { path: 'taxyear', component: TaxyearComponent },
-                        ]
-                    },
+                            { path: 'taxyear', component: TaxyearComponent }, 
 
-                    {
-                        path: 'loansetup',
-                        children: [
+                            {path: 'loansetup', component: LoansetupMasterComponent},
                             { path: 'loantype', component: LoantypeComponent },
-                            { path: 'userloan', component: UserloanComponent }
-                        ]
-                    },
+                            { path: 'userloan', component: UserloanComponent },
+                   
 
                     {
                         path: 'payrolladmin',
                         children: [
+                            { path: 'stopsalarydetail', component: StopsalarydetailComponent },
                             { path: 'stopsalary', component: StopsalaryComponent }
                         ]
                     },

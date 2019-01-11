@@ -16,7 +16,6 @@ import { City } from '../../core/Models/HRM/city';
 
 export class LocatorComponent {
     public showHideFilter: boolean = false;
-    public title: string = 'Angular Map';
     public userLatestlocation: any;
     public userLocationHistory: any[];
     public selectedUser: any;
@@ -27,6 +26,7 @@ export class LocatorComponent {
     public historyMakrer: any;
     public shopmarker: any;
     public currentLocationMarker: any;
+    public dayStartEndMakrer: any;
     public mapHelper: any;
     public showSpinner: boolean = false;
     public mockCoordsForLiveTracking: any = [];
@@ -34,9 +34,13 @@ export class LocatorComponent {
     public liveTracking: boolean = false;
     public shops: any = [];
     public productiveShopMarker: any;
+    public productiveShopMarkerOther: any;
     public nonProductiveShopMarker: any;
     public nonProductiveShopMarkerOther: any;
     public liveTrackingRouteCoords: any = [];
+    public dayStartEnd: any;
+    public hours: any = [];
+    public minutes: any = [];
     public DisableRegion: boolean = true;
     public DisableCity: boolean = true;
     public DisableArea: boolean = true;
@@ -45,7 +49,6 @@ export class LocatorComponent {
     public SectionDisable: boolean = true;
     public SubsectionDisable: boolean = true;
     public DsfDisable: boolean = true;
-
     public Regions: any;
     public Cities: any[] = [];
     public Areas: any;
@@ -66,6 +69,8 @@ export class LocatorComponent {
     public distributorId: any;
     public dsfId: any;
     public userSelected: any;
+    public mockUser : any =  { lat: 24.86218208911948, lng: 67.07455098524781 };
+    public timeFilter : boolean = false;
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
 
@@ -101,27 +106,25 @@ export class LocatorComponent {
 
         this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
             this.DSFs = res;
-            console.log(res);
-            this.userSelected  = res.find(u => u.userId === this.eTrackerUserService.currentUser.userId)
-            this.userSelected.fullName = this.userSelected.firstName + ' ' + this.userSelected.lastName;
-            console.log(this.userSelected);
         });
 
         this.setDropboxValues();
 
 
-
+        this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
 
         this.mapHelper = this.eTrackerUserService.mapHelper;
         let simpleMarker = this.eTrackerUserService.createMarkerLabel('black', '16', 'Lato', 'bold');
         console.log(simpleMarker);
-        this.eTrackerUserService.fetchAllUsers();
+        // this.eTrackerUserService.fetchAllUsers();
         this.historyMakrer = this.mapHelper.createMarker(this.mapHelper.simpleIcon, 45);
         this.shopmarker = this.mapHelper.createMarker(this.mapHelper.shopIcon, 45);
         this.productiveShopMarker = this.mapHelper.createMarker(this.mapHelper.productiveShopMarker, 45);
+        this.productiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.productiveShopMarkerOther, 45);
         this.nonProductiveShopMarker = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarker, 45);
         this.nonProductiveShopMarkerOther = this.mapHelper.createMarker(this.mapHelper.nonProductiveShopMarkerOther, 45);
         this.currentLocationMarker = this.mapHelper.createMarker(this.mapHelper.CurrentLocationIcon, 45);
+        this.dayStartEndMakrer = this.mapHelper.createMarker(this.mapHelper.dayStartEndMakrer, 45);
 
         this.mockCoordsForLiveTracking = this.eTrackerUserService.addMockDataForLiveTracking();
         this.shops = JSON.parse(localStorage.getItem('shops'));
@@ -140,11 +143,13 @@ export class LocatorComponent {
             }
         });
 
+
+
+
     }
 
-    mapReady(map) {
-        this.agmMap = map;
-        console.log(map);
+    toggleFilter() {
+        this.showHideFilter = !this.showHideFilter;
     }
 
     setDropboxValues() {
@@ -246,45 +251,44 @@ export class LocatorComponent {
         this.eTrackerUserService.locationHistory = [];
         this.sampleTracking = [];
         this.liveTrackingRouteCoords = [];
-        this.eTrackerUserService.setCurrentUser(e, this.DSFs);
+        this.eTrackerUserService.setCurrentUser(e, this.DSFs, this.agmMap);
        
 
         console.log(this.eTrackerUserService.currentUser);
-        this.agmMap.setCenter(this.eTrackerUserService.currentUser);
     }
 
-    filterFromDate(e) {
-        let date = new Date(e.target.value);
-        this.dateRange.fromDate = date.getDate();
-        // this.dateRange.from = date.getTime() / 1000;
-        this.dateRange.from = date;
-        console.log(this.dateRange);
+    mapReady(map) {
+        this.agmMap = map;
+        console.log(map);
     }
 
-    filterToDate(e) {
-        let date = new Date(e.target.value);
-        this.dateRange.toDate = date.getDate();
-        // this.dateRange.to = date.getTime() / 1000;
-        this.dateRange.to = date;
-    }
+
+    // filterFromDate(e) {
+    //     let date = new Date(e.target.value);
+    //     this.dateRange.fromDate = date.getDate();
+    //     // this.dateRange.from = date.getTime() / 1000;
+    //     this.dateRange.from = date;
+    //     console.log(this.dateRange);
+    // }
+
+    // filterToDate(e) {
+    //     let date = new Date(e.target.value);
+    //     this.dateRange.toDate = date.getDate();
+    //     // this.dateRange.to = date.getTime() / 1000;
+    //     this.dateRange.to = date;
+    // }
 
     selectZoomLevel(e) {
         this.selectedZoom = Number.parseInt(e.target.value);
     }
 
     showVisitedShops(e) {
-        if (e.target.checked) {
-            this.eTrackerUserService.fetchVisitedShops(this.dateRange);
-        } else {
-            this.eTrackerUserService.visitedShops = [];
-            this.eTrackerUserService.clearFilteredShops();
-            this.eTrackerUserService.shopRouteTaken = [];
-        }
+        this.eTrackerUserService.fetchVisitedShops(this.dayStartEnd);
     }
 
-    go() {
-        this.eTrackerUserService.drawUserLocation(this.dateRange);
-    }
+    // go() {
+    //     this.eTrackerUserService.drawUserLocation(this.dateRange);
+    // }
 
     createDate(seconds) {
         let date: any = new Date();
@@ -300,25 +304,14 @@ export class LocatorComponent {
         return `${this.createDate(seconds).substr(0, 16)}`
     }
 
-    showLiveTrackingSimulation() {
-        let counter = 0;
-        this.liveTracking = !this.liveTracking;
 
-        let timer = setInterval(() => {
-            if (counter < this.mockCoordsForLiveTracking.length && this.liveTracking) {
-                this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[counter];
-                this.eTrackerUserService.currentUser.userid = 0;
-                this.sampleTracking.push(this.eTrackerUserService.currentUser);
-                counter++;
-            } else {
-                clearInterval(timer);
-                console.log('timer cleared');
-                this.eTrackerUserService.setCurrentUser(0, this.DSFs);
-                this.agmMap.setCenter(this.eTrackerUserService.currentUser);
-                this.sampleTracking = [];
-
-            }
-        }, 1000);
+    showDayStartEnd(e) {
+        let start = new Date(e.target.value);
+        let end = new Date(e.target.value);
+        start.setHours(0);
+        end.setHours(23);
+        this.dayStartEnd = { start, end }
+        console.log(this.dayStartEnd);
     }
 
     showLiveTracking() {
@@ -334,13 +327,79 @@ export class LocatorComponent {
     showNonProductiveShops() {
         this.eTrackerUserService.filterNonProductiveShops();
     }
+
+    showAllShops() {
+        this.eTrackerUserService.fetchVisitedShops(this.dayStartEnd);
+        // this.eTrackerUserService.showAllShops();
+    }
+
+
     showRouteTaken() {
         this.eTrackerUserService.showRouteTaken()
     }
-    toggleFilter() {
-        this.showHideFilter = !this.showHideFilter;
+
+
+    getHour(e, startEnd) {
+        let hours = e.target.value;
+        if (startEnd === 'start') {
+            this.dayStartEnd.start.setHours(hours);
+        } else {
+            this.dayStartEnd.end.setHours(hours);
+        }
     }
 
+    getMinutes(e, startEnd) {
+        let minutes = e.target.value;
+        if (startEnd === 'start') {
+            this.dayStartEnd.start.setMinutes(minutes);
+        } else {
+            this.dayStartEnd.end.setMinutes(minutes);
+        }
+        console.log(this.dayStartEnd);
+    }
+
+    fetchDayStartEnd() {
+        this.eTrackerUserService.fetchPerDayData(this.dayStartEnd);
+    }
+
+
+    
+
+    showLiveTrackingSimulation() {
+        let counter = 0;
+        let currentUser = this.eTrackerUserService.currentUser;
+        this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[0];
+        this.liveTracking = !this.liveTracking;
+
+        let timer = setInterval(() => {
+            if (counter < this.mockCoordsForLiveTracking.length && this.liveTracking) {
+                this.eTrackerUserService.currentUser = this.mockCoordsForLiveTracking[counter];
+                console.log(this.mockCoordsForLiveTracking);
+
+                this.eTrackerUserService.currentUser.fullName = currentUser.fullName;
+
+                this.sampleTracking.push(this.eTrackerUserService.currentUser);
+                counter++;
+            } else {
+                clearInterval(timer);
+                console.log('timer cleared');
+                // this.eTrackerUserService.setCurrentUser(this.eTrackerUserService.addMockDataForLiveTracking()[0], this.DSFs, this.agmMap);
+                this.eTrackerUserService.currentUser = currentUser;
+                this.agmMap.setCenter(this.eTrackerUserService.currentUser);
+                this.sampleTracking = [];
+                this.liveTracking = false;
+
+            }
+        }, 1000);
+    }
+
+    showTimeFilter(e) {
+        if(e.target.checked) {
+            this.timeFilter = true;
+        }else {
+            this.timeFilter = false;
+        }
+    }
 
 
 

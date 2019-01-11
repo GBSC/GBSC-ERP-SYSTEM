@@ -6,7 +6,7 @@
 	<!-- BEGIN: Brand -->
 	<div class="m-brand  m-brand--skin-light">
 		<a routerLink="/index" class="m-brand__logo">
-			<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png" />
+			<img alt="" src="./assets/images/logo.png" />
 		</a>
 	</div>
 	<!-- END: Brand -->
@@ -57,7 +57,7 @@
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
-			<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item m-menu__item--submenu m-menu__item--submenu-fullheight m-menu__item--open-dropdown m-menu__item--hover"
+			<li class="m-menu__item m-menu__item--submenu m-menu__item--submenu-fullheight m-menu__item--open-dropdown m-menu__item--hover"
 			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 data-menu-submenu-toggle="click" data-redirect="true">
 				<a href="#" class="m-menu__link m-menu__toggle">
@@ -77,27 +77,27 @@
 								<a routerLink="/etracker/reports/location-report" class="m-menu__link "><span class="m-menu__link-text">Location
 										Report</span></a>
 							</li> -->
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item ">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Census Detail')" class="m-menu__item ">
 								<a routerLink="/etracker/reports/shop-census-detail" class="m-menu__link "><span class="m-menu__link-text">Shop
 										Census Detail</span></a>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Census Summary')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/shop-census-summary" class="m-menu__link "><span class="m-menu__link-text">Shop
 										Census Summary</span></a>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Status Detail')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/shop-status-detail" class="m-menu__link "><span class="m-menu__link-text">Shop
 										Status Detail</span></a>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Shop Status Summary')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/shop-status-summary" class="m-menu__link "><span class="m-menu__link-text">Shop
 										Status Summary</span></a>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Detail')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/visit-detail" class="m-menu__link "><span class="m-menu__link-text">Visit
 										Detail</span></a>
 							</li>
-							<li *ngIf="accessibleFeatures.includes('eTracker - Reports')" class="m-menu__item " aria-haspopup="true">
+							<li *ngIf="accessibleFeatures.includes('eTracker - Visit Summary')" class="m-menu__item " aria-haspopup="true">
 								<a routerLink="/etracker/reports/visit-summary" class="m-menu__link "><span class="m-menu__link-text">Visit
 										Summary</span></a>
 							</li>

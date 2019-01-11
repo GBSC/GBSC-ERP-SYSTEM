@@ -6520,10 +6520,10 @@ a.text-dark:focus, a.text-dark:hover {
       box-shadow: 0 0 0 0.2rem rgba(0, 197, 220, 0.5); }
 
 .btn-outline-accent {
-  color: #00c5dc !important;
+  color: #00c5dc;
     background-color: transparent;
     background-image: none;
-    border-color: #00c5dc !important; }
+    border-color: #00c5dc; }
   .btn-outline-accent:hover {
     color: #fff;
     background-color: #00c5dc;
@@ -10826,8 +10826,9 @@ b, strong {
 .m-nav-grid.m-nav-grid--skin-dark .m-nav-grid__row:last-child .m-nav-grid__item {
   border-bottom: 0; }
 
+
 .m-nav-sticky {
-  width: 40px;
+  width: 45px;
   position: fixed;
   top: 35%;
   right: 0;

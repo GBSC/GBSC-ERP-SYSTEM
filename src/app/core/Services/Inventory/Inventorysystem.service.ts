@@ -81,7 +81,7 @@ export class InventorysystemService {
     }
 
     UpdateSalesIndents(indents : SalesIndent[]): Observable<any> {
-        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents');
+        return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents', indents);
     }
 
     GetSalesIndentsByCompany(companyid: number): Observable<SalesIndent> {
@@ -1838,6 +1838,26 @@ export class InventorysystemService {
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteUnit/' + id).toPromise();
         // console.log(x);
         // return x;
+    }
+
+    getGeneralSkus() : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUs');
+    }
+
+    getGeneralSkusByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUsByCompany/' + companyid);
+    }
+
+    addGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Setup/AddGeneralSKU', model);
+    }
+
+    updateGeneralSku(model : any) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Setup/UpdateGeneralSKU', model);
+    }
+
+    deleteGeneralSku(id : number) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteGeneralSKU/' + id);
     }
 
     /***************************************For eTracker Reporting **********************************/

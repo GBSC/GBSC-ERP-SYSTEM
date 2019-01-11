@@ -11,7 +11,7 @@
       <div class="m-section__content">
         <dx-data-grid id="gridContainer" [dataSource]="branches" (onRowInserted)="addBranches($event)" (onRowUpdated)="updateBranch($event)"
           (onRowRemoved)="deletBranch($event)">
-          <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+          <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
           </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -19,7 +19,6 @@
           <dxo-paging [pageSize]="7"></dxo-paging>
           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
           <dxi-column dataField="name" caption="Branch Name"></dxi-column>
-          <dxi-column dataField="branchCode" caption="Branch Code"></dxi-column>
           <dxi-column dataField="address" caption="Address"></dxi-column>
           <dxi-column dataField="phone" caption="Phone"></dxi-column>
           <dxi-column dataField="cityId" caption="City" [width]="125">

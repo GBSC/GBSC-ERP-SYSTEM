@@ -2,6 +2,7 @@
 
 import { NgModule, Component, OnInit } from '@angular/core';
 import { SystemAdministrationService, AuthService } from '../../core';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,21 +17,8 @@ export class RolesandprivilegesComponent implements OnInit {
 
     public showPopup: boolean = false;
     public companyId: any;
-
-    constructor(public systemAdmin: SystemAdministrationService, public authService: AuthService) {
-
-        this.companyId = this.authService.getUserCompanyId();
-    }
-
-    createNewRole() {
-        this.showPopup = true;
-
-    }
-
-    getSelectedModules(e) {
-        console.log(e);
-    }
-
+    public editting: boolean = false;
+    public requestSent: boolean = false;
     public modules: any = [];
     public roles: any = [];
     public role: any;
@@ -39,60 +27,126 @@ export class RolesandprivilegesComponent implements OnInit {
     public typeOfPermissions: any = ['Read', 'Write', 'Update', 'Delete'];
     public moduleColums: any = [];
     public popup: boolean = false;
+    public mockRoles = [];
+
+    constructor(public systemAdmin: SystemAdministrationService, public authService: AuthService, public toaster: ToastrService) {
+
+        this.companyId = this.authService.getUserCompanyId();
+        console.log(this.companyId);
+    }
+
+    createNewRole() {
+        this.role = {
+            roleName: '',
+            companyId: '',
+            roleModules: [],
+            roleFeatures: [],
+            rolePermissions: []
+
+        }
+      
+        this.showPopup = true;
+
+    }
+
+    getSelectedModules(e) {
+        console.log(e);
+    }
 
     ngOnInit() {
 
-        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
+        this.fetchRoles();
 
-        this.systemAdmin.getPermissions();
+        // this.systemAdmin.getPermissions();
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
-        this.role = {
-            Name: '',
-            RoleModules: [],
-            RoleFeatures: [],
-            permissions: []
-
-        }
-
+        console.log(this.modules);
+       
     }
 
-
-    addThis(e, what, item, type) {
-        let ifAlready = this.checkIfAreadySelected(this.role[what], item, type);
-        if (e.target.checked && !ifAlready) {
-            this.role[what].push({ [type]: item[type] });
-        } else if (!e.target.checked) {
-            this.role[what] = this.removeIfUnchecked(this.role[what], item, type);
-        }
+    fetchRoles() {
+        this.systemAdmin.getRolesByCompanyId(this.companyId).subscribe(resp => {
+            console.log(resp);
+            this.roles = resp;
+        });
     }
 
-    addPermissions(e, item) {
-        let ifAlready = this.checkIfAreadySelected(this.currentFeature.permissions, { Attribute: item }, 'Attribute');
-        if (e.target.checked && !ifAlready) {
-            this.currentFeature.permissions.push({ Attribute: item, FeatureId: this.currentFeature.FeatureId, checked: true });
-        } else if (!e.target.checked) {
-            this.currentFeature.permissions = this.removeIfUnchecked(this.currentFeature.permissions, { Attribute: item }, 'Attribute');
-        }
+    editRoleName(e) {
+        this.role.roleName = e.target.value
+        console.log(this.role);
     }
 
-    checkIfAreadySelected(array, item, type) {
-        if (type === 'Attribute') {
-            return array.find(i => i[type] === item[type] && i.FeatureId === this.currentFeature.FeatureId);
+    editRole(e) {
+        this.editting = true;
+        console.log(e);
+        this.role = e.key;
+        console.log(this.role);
+        this.showPopup = true;
+    }
+
+    changeModule(e, _module) {
+        let mod = { moduleId: _module.moduleId };
+        if (!this.moduleAlreadySelected(mod)) {
+            this.role.roleModules.push(mod);
         } else {
-            return array.find(i => i[type] === item[type]);
+            this.removeModule(mod);
         }
     }
 
-    removeIfUnchecked(array, item, type) {
-        if (type === 'Attribute') {
-            return array.filter(i => i[type] !== item[type] && i.FeatureId !== this.currentFeature.FeatureId);
+    changeFeatures(e, feature) {
+        let fet = { featureId: feature.featureId }
+        if (!this.featuerAlreadySelected(fet)) {
+            this.role.roleFeatures.push(fet);
         } else {
-            return array.filter(i => i[type] !== item[type]);
+            this.removeFeature(fet);
         }
+    }
+
+    changePermissions(e, permission) {
+        let perm = { permissionName: permission, featureId: this.currentFeature.featureId };
+        if (!this.permissionAlreadySelected(perm)) {
+            this.role.rolePermissions.push(perm);
+        } else {
+            this.removePermission(perm);
+        }
+    }
+
+    removeModule(_module) {
+        this.role.roleModules = this.role.roleModules.filter(m => m.moduleId !== _module.moduleId);
+    }
+
+    removeFeature(feature) {
+        this.role.roleFeatures = this.role.roleFeatures.filter(f => f.featureId !== feature.featureId);
+    }
+
+    removePermission(permission) {
+        let index;
+        this.role.rolePermissions.find((p, i) => {
+            if (p.permissionName === permission.permissionName && p.featureId === permission.featureId) {
+                index = i;
+                return p;
+            }
+
+        });
+
+        this.role.rolePermissions.splice(index, 1);
+        console.log(this.role);
+    }
+
+
+    moduleAlreadySelected(_module) {
+        return this.role.roleModules.find(m => m.moduleId === _module.moduleId);        
+    }
+    featuerAlreadySelected(feature) {
+        return this.role.roleFeatures.find(f => f.featureId === feature.featureId);
+    }
+
+    permissionAlreadySelected(permission) {
+        return this.role.rolePermissions.find(p => p.permissionName === permission.permissionName && p.featureId === permission.featureId);
     }
 
     setCurrentFeature(feature) {
+        console.log(feature);
         this.popup = !this.popup;
         this.currentFeature = feature;
         if (this.currentFeature.permissions) {
@@ -103,48 +157,55 @@ export class RolesandprivilegesComponent implements OnInit {
     }
 
     savePermissions() {
-        this.currentFeature.permissions.forEach((p, i) => {
-            let pAlready = this.role.permissions.find(pr => {
-                if (pr.FeatureId === p.FeatureId && pr.Attribute === p.Attribute) {
-                    return pr;
-                }
-            });
-
-
-            if (!pAlready) {
-                this.role.permissions.push(p)
-
-            } else {
-            }
-        });
         this.popup = false;
     }
 
-    saveRole() {
-        if (!this.role.Name) {
-            alert('Role cannot be saved without a name');
+    async saveRole() {
+        this.requestSent = true;
+        console.log('roles', this.roles);
+        console.log('role', this.role);
+        console.log('modules', this.modules);
+        this.role.companyId = this.companyId;
+
+        if (!this.role.roleName) {
+            this.toaster.warning("Role cannot be saved without a name");
         } else {
             this.role.companyId = this.companyId;
-            console.log(this.role);
-            this.systemAdmin.saveNewRoleData(this.role);
-            // this.showPopup = false;
+            let response;
+
+            if (this.editting) {
+                console.log(this.role, 'update')
+                response = await this.systemAdmin.updateRole(this.role);
+            } else {
+                console.log(this.role);
+                response = await this.systemAdmin.saveNewRoleData(this.role);
+
+            }
+            console.log(response);
+            if (response) {
+                this.toaster.success("Role Created Successfully");
+                this.editting = false;
+                this.fetchRoles();
+                this.resetRoleValues();
+            }
+            else {
+                this.toaster.error("Error Creating Role");
+            }
+            this.showPopup = false;
+            this.requestSent = false;
         }
 
     }
 
-    toggleRights(permission, i) {
+    resetRoleValues() {
+        this.role = {
+            roleName: '',
+            companyId: '',
+            roleModules: [],
+            roleFeatures: [],
+            rolePermissions: []
 
-        let p = this.currentFeature.permissions.find(per => per.Attribute === permission);
-        if (p) {
-            p.checked = true;
-            return p;
-        } else {
-            return false
         }
     }
-    selectionChanged(){
-        
-    }
-
 
 }

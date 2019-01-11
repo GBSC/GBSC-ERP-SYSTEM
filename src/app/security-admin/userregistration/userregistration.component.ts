@@ -19,6 +19,8 @@ export class UserregistrationComponent implements OnInit {
 
     public userForm: FormGroup;
 
+    public userTypes = ['Android', 'Desktop', 'Both'];
+
     constructor(public route: ActivatedRoute,
         public formBuilder: FormBuilder,
         public adminService: HrmsService,
@@ -36,6 +38,7 @@ export class UserregistrationComponent implements OnInit {
             'Phone': [],
             'RoleId': [],
             'Email': [],
+            'UserType': [],
             'Username': [],
             'Password': [],
             'ConfirmPassword': []
@@ -56,7 +59,7 @@ export class UserregistrationComponent implements OnInit {
 
         this.adminService.getCitiesByCompanyId(this.companyId).subscribe(resp => this.cities = resp);
 
-        this.systemAdminService.getRolesByCompanyId(this.companyId).subscribe(resp => this.roles = resp);
+        this.systemAdminService.getDropdownRolesByCompany(this.companyId).subscribe(resp => this.roles = resp);
 
     }
 
@@ -80,6 +83,7 @@ export class UserregistrationComponent implements OnInit {
         user.phone = value.Phone;
         user.cityId = value.CityId;
         user.roleId = value.RoleId;
+        user.userType = value.UserType;
 
         this.userService.editUser(user).subscribe(resp => this.displayToast("Account Updated"));
     }
@@ -106,6 +110,7 @@ export class UserregistrationComponent implements OnInit {
             'CityId': user.cityId,
             'Phone': user.phone,
             'RoleId': user.roleId,
+            'UserType': user.userType,
             'Email': user.email
         });
 

@@ -60,7 +60,7 @@ export class VoucherComponent implements OnInit {
 
         this.financeService.getTransactionAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: TransactionAccount[]) => {
             this.detailAccount = res;
-            console.log(this.detailAccount);
+            // console.log(this.detailAccount);
         });
 
         this.financeSetupService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res: FinancialYear[]) => {
@@ -114,7 +114,7 @@ export class VoucherComponent implements OnInit {
         if (this.creditTotal === this.debitTotal) {
 
             let VDs: VoucherDetail[] = [];
-            console.log(detailsvalue);
+            // console.log(detailsvalue);
 
             detailsvalue.VoucherDetails.forEach((element: any) => {
                 if (element.AccountId != null && element.AccountId != undefined && element.AccountId != '' && element.DebitAmount != null && element.DebitAmount != undefined && element.DebitAmount != '' && element.CreditAmount != null && element.CreditAmount != undefined && element.CreditAmount != '') {
@@ -125,7 +125,8 @@ export class VoucherComponent implements OnInit {
                         uniqueName: element.UniqueName,
                         description: element.Description,
                         chequeNumber: element.ChequeNumber,
-                        accountId: element.AccountId
+                        accountId: element.AccountId,
+                        companyId : this.Auth.getUserCompanyId()
                     };
                     VDs.push(a);
                 } else {
@@ -136,10 +137,11 @@ export class VoucherComponent implements OnInit {
             value.VoucherDetails = VDs;
             value.TotalCreditAmount = this.creditTotal;
             value.TotalDebitAmount = this.debitTotal;
+            value.companyId = this.Auth.getUserCompanyId();
             let a: Date = new Date(value.Date);
             value.Date = a.toLocaleDateString();
-            console.log(value);
-            await this.financeService.addVoucher(value);
+            // console.log(value);
+            // await this.financeService.addVoucher(value);
             this.financeService.AddVoucher(value).subscribe((res : any) => {
                 this.toastr.success("Successfull! Voucher Added");
                 this.router.navigate(['finance/voucher-detail']);

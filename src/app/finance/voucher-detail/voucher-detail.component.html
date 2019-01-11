@@ -29,8 +29,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active show" id="m_tabs_3_3" role="tabpanel">
                             <dx-button id="postButton" text="Post selected vouchers" type="default" (onClick)="PostSelectedVouchers()"></dx-button>
-                            <dx-data-grid id="UnpostedVoucherGrid" keyExpr="unpostedVoucherId" [dataSource]="UnpostedVouchers" columnWidth="auto"
-                                [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
+                            <dx-data-grid id="UnpostedVoucherGrid" keyExpr="unpostedVoucherId" [dataSource]="UnpostedVouchers" [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
                                 [showBorders]="true">
                                 <dxo-selection [selectAllMode]="'allPages'" [showCheckBoxesMode]="'onClick'" mode="multiple" [deferred]="true"></dxo-selection>
                                 <dxo-scrolling columnRenderingMode="virtuals"></dxo-scrolling>
@@ -47,7 +46,7 @@
                                 <dxi-column dataField="totalCreditAmount" caption="Credit Amount"></dxi-column>
                                 <dxi-column dataField="totalDebitAmount" caption="Debit Amount"></dxi-column>
                                 <dxi-column dataField="description" caption="Description"></dxi-column>
-                                <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                                <dxi-column caption="Action" cellTemplate="chartCellTemplate"></dxi-column>
                                 <div *dxTemplate="let d of 'chartCellTemplate'">
                                     <div class="chart-cell">
                                         <dx-button icon="edit" (onClick)="EditVoucher(d.data)"></dx-button> <!-- For Edit -->
@@ -73,7 +72,7 @@
 
                         <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
                                 <dx-button id="getPostButton" text="Search" type="default"></dx-button>
-                                <dx-data-grid id="PostedVoucherGrid" keyExpr="postedVoucherId" [dataSource]="PostedVouchers" columnWidth="auto"
+                                <dx-data-grid id="PostedVoucherGrid" keyExpr="postedVoucherId" [dataSource]="PostedVouchers"
                                 [columnAutoWidth]="true" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'detail' }"
                                 [showBorders]="true">
                                 <dxo-scrolling columnRenderingMode="virtuals"></dxo-scrolling>
@@ -83,14 +82,14 @@
                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                                <dxi-column dataField="voucherCode" caption="Voucher Code"></dxi-column>
+                                <dxi-column dataField="voucherCode" caption="Voucher Code" [width]="110"></dxi-column>
                                 <dxi-column dataField="financialYear.name" caption="Financial Year"></dxi-column>
                                 <dxi-column dataField="voucherType.voucherCode" caption="Voucher Type"></dxi-column>
                                 <dxi-column dataField="date" dataType="date" format="shortdate" caption="Date"></dxi-column>
                                 <dxi-column dataField="totalCreditAmount" caption="Credit Amount"></dxi-column>
                                 <dxi-column dataField="totalDebitAmount" caption="Debit Amount"></dxi-column>
                                 <dxi-column dataField="description" caption="Description"></dxi-column>
-                                <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate"></dxi-column>
+                                <dxi-column caption="Action" cellTemplate="chartCellTemplate" [width]="80"></dxi-column>
                                 <div *dxTemplate="let d of 'chartCellTemplate'">
                                     <div class="chart-cell">
                                         <dx-button icon="edit" (onClick)="PrintVoucher(d.data)"></dx-button> <!-- For Print -->

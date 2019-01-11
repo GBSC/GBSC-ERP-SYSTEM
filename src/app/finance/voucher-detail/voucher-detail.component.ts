@@ -39,12 +39,17 @@ export class VoucherDetailComponent implements OnInit {
 
         this.financeService.getUnpostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: UnpostedVoucherViewModel[]) => {
             this.UnpostedVouchers = res;
-            console.log(this.UnpostedVouchers);
+            // console.log(this.UnpostedVouchers);
         });
 
-        this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+        // this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+        //     this.PostedVouchers = res;
+        //     console.log(this.PostedVouchers);
+        // });
+
+        this.financeService.getPostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
             this.PostedVouchers = res;
-            console.log(this.PostedVouchers);
+            // console.log(this.PostedVouchers);
         });
 
         this.financeSetupService.GetVoucherTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res: VoucherType[]) => {
@@ -76,16 +81,21 @@ export class VoucherDetailComponent implements OnInit {
         this.financeService.deleteUnpostedVoucher(value.unpostedVoucherId).subscribe((res: any) => {
             this.financeService.getUnpostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: UnpostedVoucherViewModel[]) => {
                 this.UnpostedVouchers = res;
-                console.log(this.UnpostedVouchers);
+                // console.log(this.UnpostedVouchers);
             });
             this.Toastr.success("Voucher Deleted");
         });
     }
 
     GetPostedVoucehrsByDateRange(fromdate: Date, todate: Date) {
-        this.financeService.getPostedVouchersByDateRangeAndCompany(fromdate, todate, this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+        // this.financeService.getPostedVouchersByDateRangeAndCompany(fromdate, todate, this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+        //     this.PostedVouchers = res;
+        //     console.log(this.PostedVouchers);
+        // });
+
+        this.financeService.getPostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
             this.PostedVouchers = res;
-            console.log(this.PostedVouchers);
+            // console.log(this.PostedVouchers);
         });
     }
 
@@ -96,6 +106,7 @@ export class VoucherDetailComponent implements OnInit {
 
             rowData.forEach(element => {
                 var postv: any = {
+                    companyId : this.Auth.getUserCompanyId(),
                     unpostedVoucherId: element.unpostedVoucherId,
                     voucherId: element.voucherId,
                     voucherCode: element.voucherCode,
@@ -115,12 +126,17 @@ export class VoucherDetailComponent implements OnInit {
 
                 this.financeService.getUnpostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: UnpostedVoucherViewModel[]) => {
                     this.UnpostedVouchers = res;
-                    console.log(this.UnpostedVouchers);
+                    // console.log(this.UnpostedVouchers);
                 });
 
-                this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+                // this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+                //     this.PostedVouchers = res;
+                //     console.log(this.PostedVouchers);
+                // });
+
+                this.financeService.getPostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
                     this.PostedVouchers = res;
-                    console.log(this.PostedVouchers);
+                    // console.log(this.PostedVouchers);
                 });
 
                 this.Toastr.success("Selected Vouchers Posted");
@@ -131,6 +147,7 @@ export class VoucherDetailComponent implements OnInit {
     PostVoucher(value: any) {
 
         var postv: any = {
+            companyId : this.Auth.getUserCompanyId(),
             unpostedVoucherId: value.unpostedVoucherId,
             voucherId: value.voucherId,
             voucherCode: value.voucherCode,
@@ -144,20 +161,25 @@ export class VoucherDetailComponent implements OnInit {
         };
 
         this.financeService.postUnpostedVoucher(postv).subscribe((res: any) => {
-            this.financeService.getUnpostedVouchers().subscribe((res: UnpostedVoucherViewModel[]) => {
+            this.financeService.getUnpostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: UnpostedVoucherViewModel[]) => {
                 this.UnpostedVouchers = res;
-                console.log(this.UnpostedVouchers);
+                // console.log(this.UnpostedVouchers);
             });
-            this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+            // this.financeService.getPostedVouchersByDateAndCompany(new Date(), this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
+            //     this.PostedVouchers = res;
+            //     console.log(this.PostedVouchers);
+            // });
+            this.financeService.getPostedVouchersByCompany(this.Auth.getUserCompanyId()).subscribe((res: PostedVoucherViewModel[]) => {
                 this.PostedVouchers = res;
-                console.log(this.PostedVouchers);
+                // console.log(this.PostedVouchers);
             });
+
             this.Toastr.success("Posted");
         });
     }
 
     PrintVoucher(value: any) {
-        console.log(value);
+        // console.log(value);
     }
 
 }

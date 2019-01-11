@@ -3,16 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './lab.routing';
 import { RootComponent } from './root/root.component';
-import { MenuComponent } from '../lab/shared/menu/menu.component';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
-
 import { DailyProcedureComponent } from '../lab/daily-procedure/daily-procedure.component';
+import { MenuComponent } from '../lab/shared/menu/menu.component';
 import { FileRecordComponent } from './file-record/file-record.component';
 import { ProceduresortestComponent } from './proceduresortest/proceduresortest.component';
 import { BiochemistryontreatmentComponent } from './biochemistryontreatment/biochemistryontreatment.component';
 import { SemensanalysislistComponent } from './semensanalysislist/semensanalysislist.component';
+import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
 import { BiochemistryComponent } from './biochemistry/biochemistry.component';
 import { BiopsyComponent } from './biopsy/biopsy.component';
 import { InseminationprepComponent } from './inseminationprep/inseminationprep.component';
@@ -42,6 +39,7 @@ import { InsemenationRecordsComponent } from './insemenation-records/insemenatio
 import { FreezePrepRecordsComponent } from './freeze-prep-records/freeze-prep-records.component';
 import { EmbryologyThawingRecordsComponent } from './embryology-thawing-records/embryology-thawing-records.component';
 import { InsemenationPrepRecordsComponent } from './insemenation-prep-records/insemenation-prep-records.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { BiochemistryOntreatmentReportviewerComponent } from './report-components/biochemistry-ontreatment-reportviewer/biochemistry-ontreatment-reportviewer.component';
 import { SemenAnalysisOutsiderReportviewerComponent } from './report-components/semen-analysis-outsider-reportviewer/semen-analysis-outsider-reportviewer.component';
 import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-components/biochemistry-details-ontreatment-reportviewer/biochemistry-details-ontreatment-reportviewer.component';

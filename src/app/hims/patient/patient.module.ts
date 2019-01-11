@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routing } from './patient.routing';
 import { RootComponent } from './root/root.component';
-
 import { RegistrationComponent } from '../patient/registration/registration.component';
 import { ActiveVisitsComponent } from '../patient/active-visits/active-visits.component';
 import { ProfileComponent } from './profile/profile.component';

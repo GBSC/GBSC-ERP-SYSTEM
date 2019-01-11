@@ -22,6 +22,7 @@
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
           <dxo-paging [pageSize]="8"></dxo-paging>
           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+          <dxi-column dataField="unitCode" caption="Code"></dxi-column>
           <dxi-column dataField="name" caption="Name"></dxi-column>
           <dxi-column dataField="description" caption="Description"></dxi-column>
         </dx-data-grid>

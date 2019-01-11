@@ -1,0 +1,96 @@
+<div class="m-content">
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Sub Account</h3>
+             </div>
+           </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+              <form [formGroup]="SubAccountForm">
+              <div class="form-group row">
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                       Sub Account Code
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="SubAccountCode" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Name
+                    </label>
+                    <input type="email" class="form-control m-input" formControlName="Name" placeholder="Name">
+                  </div>
+                </div>
+               
+                <div class="col-sm-4">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                        Master Account
+                    </label>
+                    <select class="form-control m-input" formControlName="MasterAccountId">
+                        <option value="" disabled selected>-- Select Master Account --</option>
+                        <option *ngFor="let subAccount of masterAccount" [value]="subAccount.masterAccountId">{{subAccount.name}}</option>
+                      </select>
+                  </div>
+                </div>
+
+                  <div class="col-sm-2" style="margin-top: 28px;">
+                      <button type="submit" (click)="addSubaccount()" class="btn btn-primary">
+                          Save
+                        </button>
+                  </div>
+              </div>
+              </form>
+
+              <div class="form-group row">
+                  <div class="m--space-07"></div>
+
+
+                  <dx-data-grid id="gridContainer"  keyExpr="subAccountId" [dataSource]="subAccount" 
+                  (onRowUpdating)="updatingSubaccount($event)"
+                  (onRowUpdated)="updateSubaccount()"
+                  (onRowRemoved)="deleteSubaccount($event)">
+                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false"  [useIcons]="true">
+                      <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
+                      <dxo-popup title="Language" [showTitle]="true" [width]="700" [height]="345">
+                      </dxo-popup>
+                    </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+      
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                  </dxo-pager>
+      
+                  <dxi-column dataField="subAccountCode" caption="SubAccount Code"></dxi-column>
+                  <dxi-column dataField="name" caption="Name"></dxi-column>        
+                  <dxi-column dataField="masterAccountId" caption="Master Account">
+                    <dxo-lookup [dataSource]="masterAccount" displayExpr="name" valueExpr="masterAccountId">
+                    </dxo-lookup>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>

@@ -1,0 +1,37 @@
+ 
+                      <div class="m-portlet">
+                        <div class="m-portlet__head">
+                          <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">Leave Sub Types</h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-portlet__body">
+                          <div class="m-section">
+                            <div class="m-section__content">
+                                <dx-data-grid id="gridContainer"
+                                [dataSource]="subleave"
+                                keyExpr="leaveSubTypeId"
+                                (onRowInserted)="addsubleave($event)" 
+                                (onRowUpdated)="updatesubleave($event)"
+                                (onRowRemoved)="deletesubleave($event)">
+                                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                   <dxo-popup title="Leave Sub Types" [showTitle]="true" [width]="700" [height]="345">
+                                   </dxo-popup>
+                                 </dxo-editing>
+                                 <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                 <dxo-header-filter [visible]="true"></dxo-header-filter>
+                 
+                                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                 <dxo-paging [pageSize]="6"></dxo-paging>
+                                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                 </dxo-pager>
+                                 <dxi-column dataField="name"></dxi-column>
+                                <dxi-column dataField="description"></dxi-column>
+                               </dx-data-grid>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    

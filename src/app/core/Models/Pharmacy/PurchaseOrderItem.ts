@@ -1,0 +1,36 @@
+import { Inventory } from "./Inventory";
+import { InventoryItem } from "./InventoryItem";
+
+export interface PurchaseOrderItem {
+    PurchaseOrderItemId: number,
+    PackType: string,
+    PackSize: string,
+    NumberPackType: string,
+    BatchNumber: string,
+    Quantity: number,
+    ExpiryDate: Date,
+    Rate: number,
+    ExchangeRate: number,
+    GrossAmount: number,
+    DiscountPercentage: number,
+    DiscountAmount: number,
+    AfterDiscountAmount: number,
+    GstPercentage: number,
+    GstAmount: number,
+    AfterGstAmount: number,
+    FreightPercentage: number,
+    FreightAmount: number,
+    DeliveryPercentage: number,
+    DeliveryAmount: number,
+    OtherPercentage: number,
+    OtherAmount: number,
+    NetAmount: number,
+    CostPrice: number,
+    RetailPrice: number,
+    GrandTotal: number,
+    InventoryItemId: number,
+    InventoryItem: InventoryItem,
+    InventoryId: number,
+    Inventory: Inventory,
+    PurchaseOrderId: number
+}

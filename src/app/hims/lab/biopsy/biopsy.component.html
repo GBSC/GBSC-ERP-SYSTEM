@@ -1,0 +1,269 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Biopsy</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-portlet__body">
+          <form [formGroup]="biopsyForm">
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="patient?.mrn" disabled> </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Treatment#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Cycle#
+                      </label>
+                      <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Treatment Type
+                      </label>
+                      <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId"
+                        fromControlName="PatientId" [value]="patientid" [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Biopsy Details</h4>
+                    <div class="row" style="margin-top: 30px;">
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleSelect1">
+                            Biopsy type
+                          </label>
+                          <select class="form-control m-input" id="exampleSelect3" [value]="biopsy?.biopsyType"
+                            formControlName="BiopsyType">
+                            <option>
+                              therapeutic
+                            </option>
+                            <option>
+                              diagnostic
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Collection No.
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="biopsy?.collectionnumber" formControlName="CollectionNumber">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleTextarea col-sm-3">
+                            Collection Date
+                          </label>
+
+                          <dx-date-box [value]="biopsy?.collectionDate" formControlName="CollectionDate"
+                            (ngModelChange)="searchBiopsyByCollectionDate($event)">
+                          </dx-date-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Procedure#
+                          </label>
+                          <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            [value]="biopsy?.procedureNumber" formControlName="ProcedureNumber">
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h5>PESA</h5>
+
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Time
+                          </label>
+                          <div class="col-10">
+                            <dx-date-box type="time" [value]="biopsy?.pesaTime" formControlName="PesaTime">
+                            </dx-date-box>
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Left
+                          </label>
+                          <div class="col-10">
+                            <input class="form-control m-input" type="text" [value]="biopsy?.pesaLeft" formControlName="PesaLeft"
+                              id="example-text-input">
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Right
+                          </label>
+                          <div class="col-10">
+                            <input class="form-control m-input" type="text" [value]="biopsy?.pesaRight" formControlName="PesaRight"
+                              id="example-text-input">
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Result
+                          </label>
+                          <div class="col-10">
+                            <select class="form-control m-input" id="exampleSelect1" [value]="biopsy?.pesaResult"
+                              formControlName="PesaResult">
+                              <option>
+                                Positive
+                              </option>
+                              <option>
+                                Negative
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <h5>TESE</h5>
+
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Time
+                          </label>
+                          <div class="col-10">
+                            <dx-date-box type="time" [value]="biopsy?.teseTime" formControlName="TeseTime">
+                            </dx-date-box>
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Left
+                          </label>
+                          <div class="col-10">
+                            <input class="form-control m-input" type="text" [value]="biopsy?.teseLeft" formControlName="TeseLeft"
+                              id="example-text-input">
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Right
+                          </label>
+                          <div class="col-10">
+                            <input class="form-control m-input" type="text" [value]="biopsy?.teseRight" formControlName="TeseRight"
+                              id="example-text-input">
+                          </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                          <label for="example-text-input" class="col-2 col-form-label">
+                            Result
+                          </label>
+                          <div class="col-10">
+                            <select class="form-control m-input" id="exampleSelect1" [value]="biopsy?.teseResult"
+                              formControlName="TeseResult">
+                              <option>
+                                Positive
+                              </option>
+                              <option>
+                                Negative
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-10">
+                    <div class="form-group m-form__group">
+                      <label for="exampleTextarea col-sm-3">
+                        Remarks
+                      </label>
+                      <textarea class="form-control m-input col-sm-9" id="exampleTextarea" rows="3" [value]="biopsy?.remarks"
+                        formControlName="Remarks"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <button *ngIf="biopsy" type="button" class="btn btn-primary" (click)="updateForm(biopsyForm.value)">
+                      Update
+                    </button>
+                    <button *ngIf="!biopsy" type="button" class="btn btn-primary" (click)="submitForm(biopsyForm.value)">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,560 @@
+<!-- <select   class="form-control selectpicker"  *ngIf="newOrPrevious === 'new'? false : true"  data-show-subtext="true" data-live-search="true" formControlName="PatientId" >
+    <option class="active" *ngFor="let patient of PatientServiceobj?.patients" >{{patient.firstName}}</option>
+</select>     -->
+
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">Daily Appointments </h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <div class="dropdown">
+                <button   class="btn btn-success" type="button" (click)="addFieldValue()">
+                    New Appointment
+                  </button> | 
+                  <button   class="btn btn-success" type="button" data-toggle="modal" data-target="#m_modal_1">
+                    Send SMS +
+                  </button>
+              <!-- <button aria-expanded="false" [disabled]="!appointmentForm.valid" aria-haspopup="true" class="btn btn-primary dropdown-toggle"
+                data-toggle="dropdown" id="dropdownMenu2" type="button">
+                <span _ngcontent-c21="">
+                  <i class="fa fa-cog"></i>
+                </span> Actions
+              </button> -->
+              <div aria-labelledby="dropdownMenu2" class="dropdown-menu">
+                <button class="dropdown-item" type="button" (click)="addFieldValue()">
+                  New Appointment
+                </button>
+                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#m_modal_1">
+                  Send SMS +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form class="m-form m-form--fit m-form--label-align-right ng-untouched ng-pristine ng-invalid" *ngIf="tentativeorfinal === 'tetative'?true  : false"
+            [formGroup]="appointmentForm">
+            <div class="m-portlet__body">
+              <div class="form-group row">
+                <div   class="form-group col-lg-3">
+                  <label for="exampleSelect1"> Consultant </label>
+                  <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" placeholder="All" formControlName="ConsultantId" required>
+                    <!-- <option disabled selected (click)="log($event)">All</option> -->
+                    <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
+                  </select>
+                </div>
+                <div class="form-group col-lg-3">
+                  <label for="exampleInputEmail1">Appointment Date</label>
+                  <input #date class="form-control m-input m-input--solid" [value]="currentdate | date : 'yyyy-MM-dd' || ''" formControlName="AppointmentDate"
+                    type="date" required>
+                </div> 
+                <div class="form-group col-lg-5"></div>
+                <div class="form-group  col-lg-1 ">
+                    <!-- <a href="#" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+                        <i class="fa fa-search"></i>
+                    </a> -->
+                  <button type="button"  class="btn btn-primary blankinput" (click)="GetAppointmentByConsultantNameAndDate(cid, date.value,appointmentForm.value)">Show</button>
+                </div>
+              </div>
+              <div *ngIf="showAddNewPatientRow">
+                <div class="form-group row">
+                  <div class="form-group col-lg-4">
+                    <label for="exampleInputEmail1">
+                      Patient Type
+                    </label>
+                    <select (change)="selectNewOrPrevious($event)" class="form-control m-input m-input--solid" formControlName="PatientType">
+                       <option value="Pervious"> Pervious</option>
+                      <option value="new">New</option>
+                    </select>
+                  </div>
+                  <div class="row-fluid">
+
+                  </div>
+                  <div class="form-group col-lg-4">
+                    <label for="exampleSelect1"> </label>
+                    Patient Name
+                   <!-- <dx-lookup class="field-customization" [items]="PatientServiceobj?.patients" displayExpr="fullName" valueExpr="patientId" [value]="PatientServiceobj?.patients[0].patientId"  formControlName="PatientId" title="Select Patient" fieldTemplate="field">
+                      <div *dxTemplate="let item of 'field'">
+                          <div class="custom-field">
+                                <div> {{item.firstName }} {{item.lastName}}</div>  
+                          </div>
+                      </div>
+                  </dx-lookup>   -->
+                    <dx-select-box [items]="PatientServiceobj?.patients" displayExpr="display" valueExpr="patientId" [searchEnabled]="true"
+                      *ngIf="newOrPrevious === 'new'? false : true" formControlName="PatientId" placeholder="" style="margin-top: 7px;">
+                    </dx-select-box> 
+
+
+                 <input [value]="patientById?.fullName  || ''"  style="margin-top: 2%;" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled>  
+
+
+                    <!-- <select  *ngIf="newOrPrevious === 'new'? true : false" class="form-control m-input m-input--solid" formControlName="PatientId">
+                      <option  [value]="patientById?.patientId" selected disabled >{{patientById?.fullName  || ''}}</option>
+                    </select>
+  -->
+                    <!-- <input [value]="patientForm.value.FirstName+' '+patientForm.value.LastName" *ngIf="newOrPrevious === 'new'? true : false"
+                      class="form-control m-input m-input--solid" formControlName="PatientId" disabled> -->
+                  </div>
+                  <div class="form-group col-lg-4">
+                      <label for="exampleInputEmail1"> Visit Nature </label>
+                      <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="VisitNatureId">
+                      </dx-select-box>
+                    </div>
+
+                    <div class="form-group col-lg-4">
+                      <label for="exampleInputEmail1"> Tentative Time </label>
+                      <input type="time" class="form-control m-input m-input--solid" #time [value]="currenttime | date : 'hh:mm:ss' || ''" formControlName="TentativeTime">
+                    </div>
+                  <!-- <div class="form-group col-lg-4">
+                    <label for="exampleInputEmail1"> Visit Status </label>
+                    <input class="form-control m-input m-input--solid" formControlName="VisitStatus">
+                  </div> -->
+                </div>
+                <div class="form-group row">
+                  <!-- <div class="form-group col-lg-4">
+                    <label for="exampleInputEmail1"> Visit Nature </label>
+                    <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="VisitNatureId">
+                    </dx-select-box>
+                  </div> -->
+                  <div class="form-group col-lg-4">
+                      <div class="m-form__group form-group">
+                          <label>
+                             Status
+                          </label>
+                          <div class="m-checkbox-list">
+                            <label class="m-checkbox m-checkbox--state-success">
+                              <input type="checkbox" formControlName="IsFinalAppointment">
+                              For Final Appointment
+                              <span></span>
+                            </label>
+                            
+                            
+                          </div>
+                        </div>
+                  </div>
+                  <div class="form-group col-lg-4"></div>
+                </div>
+                <div class="form-group row">
+                  <div class="form-group col-lg-12">
+                    <button type="submit" (click)="deleteFieldValue()" class="btn btn-primary">
+                      Cancle
+                    </button> |
+                    <button type="submit" (click)="addApointment(appointmentForm.value , cid , date.value , time.value)" class="btn btn-primary">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+            </div>
+          </form>
+          <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" #tetative href="#m_tabs_3_1">
+                Tentative Appointment
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_3">
+                Final Appointment
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" id="m_tabs_3_1" role="tabpanel">
+              <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="tentativeAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 300]" [showInfo]="true"></dxo-pager>
+                 <!-- <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>  -->
+                <dxi-column dataField="patientType" caption="Type" [width]="60"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+
+                <dxi-column dataField="patientId" caption="MRN #" [width]="125 "  [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                </dxi-column>
+
+                <dxi-column dataField="patientId" caption="Patients" [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                </dxi-column>
+
+                <dxi-column dataField="consultantId" caption="Consultant" >
+                    <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                </dxi-column>
+
+                <dxi-column dataField="patientId" caption="Phone No"   [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup >
+                </dxi-column>
+                <!-- <dxi-column dataField="patientId" caption="Alternet No" [width]="125"  [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
+                </dxi-column> -->
+              
+                <dxi-column dataField="finalTime" dataType="datetime"
+                 caption="Final Time"  [visible]="false"></dxi-column>
+                <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized" [visible]="false"></dxi-column>
+                <dxi-column dataField="appointmentDate" caption="Appointment Date"  dataType="date"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="tentativeTime" caption="Tentative Time"   dataType="datetime" format="shortTime" type="time" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="isCancelled" caption="Cancel" [visible]="false"  dataType="boolean" ></dxi-column>
+               
+                <!-- <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> -->
+              </dx-data-grid>
+            </div>
+            <!-- <here we are using final appointment tag start work> -->
+            <div class="tab-pane  active show" id="m_tabs_3_3" role="tabpanel">
+              <!-- {{PatientServiceobj?.visitNatures | json}} -->
+              <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
+                <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
+                  <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345"  ></dxo-popup>
+                </dxo-editing>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="index" caption="Token #" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
+                <dxi-column dataField="patientId" caption="MRN #" [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="mrn" valueExpr="patientId"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="patientId" caption="Patients" [allowEditing]="false" [formItem]="{visible: false}" >
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="consultantId" caption="Consultant" [allowEditing]="false" [formItem]="{visible: false}" >
+                    <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                  </dxi-column>
+                <dxi-column dataField="patientType" caption="P-Type" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="patientId" caption="Phone No" [allowEditing]="false" [formItem]="{visible: false}">
+                  <dxo-lookup [dataSource]="allpatients" displayExpr="phoneNumber" valueExpr="patientId"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="appointmentDate" caption="Appointment Date"  dataType="date"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                  <dxi-column dataField="finalTime" dataType="datetime" format="shortTime" caption="Final Time" [allowEditing]="false"
+                  [formItem]="{visible: false}"></dxi-column>
+
+                  <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                  <dxi-column dataField="visitNatureId" caption="Visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">
+                  <dxo-lookup [dataSource]="PatientServiceobj?.visitNatures" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" [visible]="false">
+                 </dxi-column>
+                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime"  [visible]="false"></dxi-column>
+                <dxi-column dataField="remarks" caption="Remarks"  [visible]="false"></dxi-column>
+                <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <div *dxTemplate="let d of 'chartCellTemplate'">
+                  <div class="chart-cell">
+                    <dx-button (click)="getCurrentRowData(d)" data-toggle="modal" data-target="#m_modal_3" icon="add"></dx-button>
+                    <dx-button (click)="ViewInvoice(d)"  icon="repeat"></dx-button>
+                    <!-- button for custom visit detail form -->
+                    <!-- <dx-button (click)="getCurrentRowDataForSetTime(d)" data-toggle="modal" data-target="#m_modal_4" icon="time"></dx-button> -->
+                  </div>
+                </div>
+
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div #popup class="popup modal" role="dialog" [style.display]="newOrPrevious === 'new' ? 'flex' : 'none'" (click)="hidePopup($event, popup)">
+  <div class="form">
+    <div class="" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="m-nav__link-icon flaticon-share"></i>
+          <span class="m-nav__link-text">
+            Add New Patient
+          </span>
+          <button (click)="hidepopup(popup)" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              ×
+            </span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="patientForm">
+            <div class="m-portlet__body">
+              <div class="form-group row">
+                <div class="form-group col-lg-4">
+                  <label for="exampleInputEmail1"> First Name </label>
+                  <input formControlName="FirstName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
+									<div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+										<div *ngIf="f.FirstName.errors.required">First Named is require</div>
+									</div>
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="exampleInputEmail1"> Last Name </label>
+                  <input formControlName="LastName" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
+									<div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+										<div *ngIf="f.LastName.errors.required">Last Name is require</div>
+									</div>
+               
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="exampleSelect1"> Gender </label>
+                  <select formControlName="Gender" class="form-control m-input ng-pristine ng-valid ng-touched" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }"> 
+                    <option class="active" value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+										<div *ngIf="f.Gender.errors.required">Gender is require</div>
+									</div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="form-group col-lg-4">
+                  <label for="exampleInputEmail1"> Date Of Birth </label>
+                  <input formControlName="DOB" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="date" [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
+									<div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+										<div *ngIf="f.DOB.errors.required">Date Of Birth is require</div>
+									</div>
+                
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="exampleInputEmail1"> CNIC </label>
+                  <input formControlName="NIC" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  (keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': submitted && f.NIC.errors }">
+									<div *ngIf="submitted && f.NIC.errors" class="invalid-feedback">
+										<div *ngIf="f.NIC.errors.required">NIC is require</div>
+										<div *ngIf="f.NIC.errors.minlength">NIC must be at least 13 characters</div>
+									</div>
+                </div>
+                <div class="form-group col-lg-4">
+                  <label for="exampleInputEmail1"> Phone Number </label>
+                  <input formControlName="PhoneNumber" class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"   (keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.PhoneNumber.errors }">
+									<div *ngIf="submitted && f.PhoneNumber.errors" class="invalid-feedback">
+										<div *ngIf="f.PhoneNumber.errors.required">PhoneNumber is require</div>
+										<div *ngIf="f.PhoneNumber.errors.minlength">PhoneNumber must be at least 11 characters</div>
+									</div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="form-group col-lg-12">
+                  <div class="form-action pull-right">
+                    <button type="submit" (click)="onAddPatient(patientForm.value , popup)" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="popup" class="overlay"></div>
+</div>
+<!-- strat model for send sms -->
+<div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="m-nav__link-icon flaticon-share"></i>
+        <span class="m-nav__link-text">
+          Send SMS
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-form m-form--fit m-form--label-align-right">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-12">
+                <label for="exampleSelect1"> Consultant </label>
+              </div>
+
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-4">
+                <label class="m-radio">
+                  <input type="radio" name="example_3" value="1"> Cancelled
+                  <span></span>
+                </label>
+              </div>
+              <div class="form-group col-lg-4">
+                <label class="m-radio">
+                  <input type="radio" name="example_3" value="1"> Done
+                  <span></span>
+                </label>
+              </div>
+              <div class="form-group col-lg-4">
+                <label class="m-radio">
+                  <input type="radio" name="example_3" value="1"> Reschedule
+                  <span></span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">
+              Send SMS
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end model for send sms -->
+<!-- start add visit -->
+<div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="m-nav__link-icon flaticon-share"></i>
+        <span class="m-nav__link-text">
+          Add Test
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="appointmenttestForm">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-10">
+                <label for="exampleSelect1"> Test </label>
+                <!-- (change)="currentSelectedValue($event)" -->
+                <select class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="TestId" >
+                  <option class="active" *ngFor="let test of PatientServiceobj?.testing" [value]="test.testId">{{test.testName}}</option>
+                </select>
+                <input #id class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid hide" [value]="currentpatient?.appointmentId"
+                  formControlName="AppointmentId" type="text">
+              </div>
+              <div class="form-group col-lg-2">
+                <button type="button" (click)="addrange()" class="btn btn-info blankinput">
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="m-section">
+              <div class="m-section__content">
+                <table class="table m-table m-table--head-separator-primary">
+                  <thead>
+                    <tr>
+                      <th>
+                        Test Name
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor=" let t of Tests; let i = index">
+                      <td>{{t.TestName}}</td>
+                      <td>
+                        <button type="button" (click)="remove(i)" class="btn btn-primary">-</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <dx-data-grid #appointmentgrid id="gridContainer" [dataSource]="getaptbyid?.appointmentTests">
+                  <dxo-load-panel [enabled]="true">
+                  </dxo-load-panel>
+                  <dxo-editing mode="row">
+                  </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+                  <dxo-paging [pageSize]="3"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                  <dxi-column dataField="testId" caption="Test Code" [allowEditing]="false" [formItem]="{visible: false}">
+                    <dxo-lookup [dataSource]="tests" displayExpr="testCode" valueExpr="testId"></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column dataField="testId" caption="Test Name" [allowEditing]="false" [formItem]="{visible: false}">
+                    <dxo-lookup [dataSource]="tests" displayExpr="testName" valueExpr="testId"></dxo-lookup>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="addappointmentTest(Tests)" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end add visit -->
+<!-- visit detail form start -->
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="m-nav__link-icon flaticon-share"></i>
+        <span class="m-nav__link-text">
+         Visit Detail
+        </span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="m-form m-form--fit m-form--label-align-right" [formGroup]="appointmentTimeForm">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Time In </label>
+                <input class="form-control m-input m-input--solid" type="time" formControlName="TimeIn">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Time Out </label>      
+                <input class="form-control m-input m-input--solid" type="time" formControlName="TimeOut">
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="exampleSelect1"> Remarks </label>
+                <input class="form-control m-input m-input--solid" 
+                  formControlName="Remarks" type="text">
+              </div>
+    
+            </div>
+            <div class="m-section">
+              <div class="m-section__content">
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="SetTimeInOut(appointmentTimeForm.value)" class="btn btn-primary">
+              Submit
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- visit detail form end -->

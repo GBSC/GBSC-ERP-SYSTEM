@@ -1,0 +1,176 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+  <h4>Company Information</h4>
+
+</div>
+<form class="signup-form" [formGroup]="EmpCompanyForm">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Designation</label>
+        <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="EmployeeCompany?.designationId">
+          <option> --- Select Designation ---</option>
+          <option *ngFor="let d of designation" [value]="d.designationId">{{d.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="m--space-07"></div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Function</label>
+        <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="EmployeeCompany?.functionId">
+
+          <option *ngFor="let fnc of functions" [value]="fnc.functionId">{{fnc.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="mlevel" class="control-label">Management Level</label>
+        <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="EmployeeCompany?.managementLevelId">
+          <option> --- Select Management Level ---</option>
+          <option *ngFor="let ml of managementlevel" [value]="ml.managementLevelId">{{ml.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Emptype">Employee Type</label>
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeTypeId" [value]="EmployeeCompany?.employeeTypeId">
+          <option *ngFor="let emptype of employeetype" [value]="emptype.employeeTypeId">{{emptype.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Empstatus">Employee Status</label>
+        <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId">
+          <option *ngFor="let cempstatus of employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="m--space-07"></div>
+  <div class="row">
+    <div class="col-md-4"> 
+            <div class="form-group m-form__group">
+              <label>
+                Appointment Date
+              </label>
+              <div class="input-group m-form__group">
+                <dx-date-box formControlName="AppointmentDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.appointmentDate" type="date">
+                </dx-date-box>
+              </div>
+            </div>  
+      </div>
+
+      <div class="col-md-4"> 
+          <div class="form-group m-form__group">
+            <label>
+              Confirmation Due Date
+            </label>
+            <div class="input-group m-form__group">
+              <dx-date-box formControlName="ConfirmationDueDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDueDate" type="date">
+              </dx-date-box>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4"> 
+            <div class="form-group m-form__group">
+              <label>
+                Confirmation Date (DOJ)
+              </label> 
+                <dx-date-box formControlName="ConfirmationDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDate" type="date">
+                </dx-date-box> 
+            </div>
+            </div>
+      </div>
+  <div class="m--space-07"></div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label for="employee_id">Next Appraisal Date</label>
+          <dx-date-box formControlName="NextAppraisalDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.nextAppraisalDate" type="date">
+          </dx-date-box>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group m-form__group">
+            <label>
+              Contract Start
+            </label>
+            <div class="input-group m-form__group"> 
+              <dx-date-box formControlName="ContractStartDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractStartDate" type="date">
+              </dx-date-box>
+            </div>
+          </div>
+        </div>
+        
+      <div class="col-md-4"> 
+          <div class="form-group m-form__group">
+            <label>
+              Contract End
+            </label>
+            <div class="input-group m-form__group"> 
+              <dx-date-box formControlName="ContractEndDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.contractEndDate" type="date">
+              </dx-date-box>
+            </div>
+          </div>
+          </div>
+
+      </div>
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <div class="form-group m-form__group">
+        <label>
+          Leaving Date
+        </label>
+        <div class="input-group m-form__group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                <input type="checkbox" (change)="check()">
+                <span></span>
+              </label>
+            </span>
+          </div>
+          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.leavingDate" type="date">
+          </dx-date-box>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="username"> Resign Date</label>
+        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.resignDate" type="date">
+        </dx-date-box>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="" class="control-label">Approver</label>
+        <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
+          placeholder="Approved By">
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+  <button class="btn btn-primary" (click)="update(EmpCompanyForm.value)">update</button>
+</form>

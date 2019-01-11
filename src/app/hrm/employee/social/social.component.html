@@ -1,0 +1,69 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+  <h4>Social Networking</h4>
+
+</div>
+<form class="signup-form" [formGroup]="SocialForm"> 
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="facebook_profile">Facebook Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="FacebookUrl" [value]="Employee?.facebookUrl" placeholder="Facebook Profile" name="facebook_link" type="text" value="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="facebook_profile">Twitter Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="TwitterUrl" [value]="Employee?.twitterUrl" placeholder="Twitter Profile" name="twitter_link" type="text" value="">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group">
+        <label for="twitter_profile">Blogger Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="BloggerProfile" [value]="Employee?.bloggerProfile" placeholder="Blogger Profile" name="blogger_link" type="text" value="">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="blogger_profile">Linkedin Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="LinkedinUrl" [value]="Employee?.linkedinUrl" placeholder="Linkedin Profile" name="linkdedin_link" type="text" value="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="blogger_profile">Google Plus Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="GooglePlusUrl" [value]="Employee?.googlePlusUrl" placeholder="Google Plus Profile" name="google_plus_link" type="text" value="">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="linkdedin_profile">Instagram Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="InstagramUrl" [value]="Employee?.instagramUrl" placeholder="Instagram Profile" name="instagram_link" type="text" value="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="linkdedin_profile">Pinterest Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="PinterestUrl" [value]="Employee?.pinterestUrl" placeholder="Pinterest Profile" name="pinterest_link" type="text" value="">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group">
+        <label for="linkdedin_profile">Youtube Profile</label>
+        <input class="form-control m-input m-input--solid" formControlName="YoutubeUrl" [value]="Employee?.youtubeUrl" placeholder="Youtube Profile" name="youtube_link" type="text" value="">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="router.url === '/hrm/employee/updateemployee/'+id">
+    <button class="btn btn-primary" (click)="update(SocialForm.value)">
+        update
+      </button>        
+</div>  
+  </form>

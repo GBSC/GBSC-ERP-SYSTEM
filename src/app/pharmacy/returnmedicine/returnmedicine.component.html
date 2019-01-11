@@ -1,0 +1,181 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+                <h3 class="m-portlet__head-text">
+                   Return Medicine
+                </h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <div class="dropdown">
+              <button routerLink="/pharmacy/returnview" class="btn btn-primary" type="button">
+                <span >
+                  <i class="fa fa-eye"></i>
+                </span> View
+              </button>
+            </div>
+          </div>
+        </div>   
+        <div class="m-portlet__body">
+          <!--begin::Form-->
+          <form class="m-form" [formGroup]="ReturnMedicineForm">
+           
+                  <div class="m-form m-form--fit m-form--label-align-right">
+                        <div class="form-group m-form__group row">
+                                <label for="example-text-input" class="col-5 col-form-label">
+                                        Issuance #
+                                    </label>
+                            <div class="form-group col-3">
+                               
+                                <input type="text" class="form-control m-input m-input--solid"  #box formControlName="SalesOrderNumber"  (keyup)="GetSelectedSalesOrderDetails(box.value, $event)">
+                            </div>
+                        </div>
+                  </div>
+                
+                  <div class="form-group row">
+                      <div class="form-group col-lg-3">
+                            <label for="exampleInputEmail1">
+                                MRN No
+                            </label>
+                            <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSelectedCustomerDetails(ReturnMedicineForm.value.MRN)"
+                                formControlName="MRN">
+                            <option *ngFor="let x of Customers" [value]="x?.crn">{{x?.crn}} </option>
+                      </select>
+                      </div>
+                        <div class="form-group col-lg-3">
+                            <label for="exampleInputEmail1">
+                                Return Reason
+                            </label>
+                            <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSelectedReturnReasonDetails(ReturnMedicineForm.value.ReturnReasonId)"
+                                formControlName="ReturnReasonId">
+                            <option *ngFor="let y of ReturnReasons" [value]="y?.returnReasonId">{{y?.reason}}</option>
+                        </select>
+                        </div>
+                      <div class="form-group col-lg-3">
+                          <label for="exampleInputEmail1">
+                              Return No
+                          </label>
+                          <input type="text" class="form-control m-input m-input--solid" formControlName="ReturnNumber" disabled>
+                      </div>
+                      <div class="form-group col-lg-3">
+                          <label for="exampleInputEmail1">
+                            Return Date
+                            </label>
+                          <div class="input-group date">
+                              <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate">
+                           </div>
+                      </div>
+                      
+                  </div>
+                  <div class="form-group row">
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                 P. Name
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="SelectedCustomer?.name || ''"
+                              disabled>
+                            </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                S. Name
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="SelectedCustomer?.shortName || ''"
+                              disabled>
+                          </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                 Remarks
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                          </div>
+                          <div class="form-group col-lg-3">
+                              <label for="exampleInputEmail1">
+                                  Department
+                              </label>
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                          </div>
+                      </div>       
+              
+          </form>
+
+
+          <form [formGroup]="ReturnMedicineDetailsForm">
+                        <div class="form-group m-form__group">
+                                <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+                                    <th>Manual Code</th>
+                                    <th>Description</th>
+                                    <th>Pack Type</th>
+                                    <th>Stock Quantity</th>
+                                    <th>Unit</th>
+                                    <th>Rate/Unit</th>
+                                    <th>Purchase Quantity</th>
+                                    <th>Return Quantity</th>
+                                    <th>Purchase Amount</th>
+                                    <th>Return Amount</th>
+                                    <th>Save</th>
+                                    <tr *ngFor="let a of SelectedSalesOrderDetails; let y of UpdateInventories; let i = index">
+                                        <td><input class="form-control m-input m-input--solid"
+                                                formControlName="ItemCode" [value]="a?.inventoryItem?.itemCode || ''" disabled></td>
+                                        <td><input class="form-control m-input m-input--solid"
+                                                formControlName="Description" [value]="a?.inventoryItem?.description || ''" disabled></td>
+                                        <td><input class="form-control m-input m-input--solid"
+                                                formControlName="PackType" [value]="a?.inventoryItem?.packType?.name || ''" disabled></td>
+                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                formControlName="StockQuantity" [value]="a?.inventoryItem?.inventory?.stockQuantity || 0" disabled></td>
+                                        <td><input class="form-control m-input m-input--solid"
+                                                formControlName="PerUnit" [value]="a?.inventoryItem?.unit?.name || ''" disabled></td> 
+                                        <td><input type="number" #Rate class="form-control m-input m-input--solid"
+                                            formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0" disabled></td>
+                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                formControlName="PurchaseQuantity" [value]="a?.orderUnitQuantity || 0" disabled></td>
+                                        <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" 
+                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
+                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                formControlName="PurchaseAmount" [value]="a?.itemTotalAmount" disabled></td>
+                                        <td><input type="number" class="form-control m-input m-input--solid"
+                                                formControlName="ReturnAmount" [value]="ReturnAmount[i] || 0" disabled></td>
+                                        <td>
+                                            <button type="button" (click)="CreateSalesReturnDetails(i, ReturnQuantity.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
+                                                <i class="la la-add"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
+                        <div class="form-group m-form__group row">
+
+                                <div class="col-lg-6">
+
+                                </div>
+                                <div class="col-lg-3">
+                                        <label>Total Return Quantity</label>
+                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalReturnQuantity || 0" disabled>
+                                </div>
+                                <div class="col-lg-3">
+                                        <label>Total Return Amount</label>
+                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalReturnAmount || 0" disabled>
+                                    </div>
+                        </div>
+
+                        <div class="form-group m-form__group">
+                                <div class="modal-footer">
+                                        <button class="btn btn-success" (click)="AddSalesReturn()">Submit</button>
+                                        <button class="btn btn-primary" (click)="ResetWholeForm()">Reset</button>
+                                </div>  
+                        </div>
+          </form>
+
+
+    </div>
+    </div>
+  </div>
+</div>
+
+</div>

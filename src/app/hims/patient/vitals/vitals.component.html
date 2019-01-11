@@ -1,0 +1,132 @@
+
+<div class="row">
+ 
+  <div class="col-lg-12">
+      <div class="m-portlet m-portlet--tab">
+					<div class="m-portlet__head">
+						<div class="m-portlet__head-caption">
+							<div class="m-portlet__head-title">
+								<span class="m-portlet__head-icon m--hide">
+									<i class="la la-gear"></i>
+								</span>
+								<h3 class="m-portlet__head-text">
+									Patient Vitals
+								</h3>
+							</div>
+						</div>
+					 </div>
+					<div class="m-portlet__body">
+						<!--begin::Section-->
+						<div class="m-section">
+              <div class="row">
+                <div class="col-lg-4">
+                    <h3 class="m-section__heading">
+                        Last Vitals
+                    </h3>
+                </div>
+                <div class="col-lg-8">
+                    <h3 class="m-section__heading">
+                        {{patientVital?.visit?.startTime | date:'M/d/yyyy HH:mm:ss'}}
+                    </h3>
+                </div>
+              </div>
+
+							<div class="m-section__content">
+								<div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+									<div class="m-demo__preview">
+										<p class="row">
+											<span  class="col-lg-8 m--font-boldest">
+                          Height(cm)
+                      </span>
+                      <span  class="col-lg-4">
+                          <h6 class="m--font-brand">
+                              {{patientVital?.height}} cm 
+                          </h6>
+                        </span>
+										</p>
+                    <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Weight(kg)
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.weight}} kg
+                            </h6>
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Temperature (C)
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.temperature}} C
+                            </h6> 
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Respiratory Rate
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.respiratoryRate}} / min
+                            </h6>  
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Pulse
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.pulse}} / min
+                            </h6>  
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Blood Pressure Systolic
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.bloodPressureUp}} 
+                            </h6>  
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Blood Pressure Diastolic
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.bloodPressureDown}} 
+                            </h6>  
+                          </span>
+                      </p>
+                      <p class="row">
+                        <span  class="col-lg-8 m--font-boldest">
+                            Blood Oxygen Saturation
+                        </span>
+                        <span  class="col-lg-4">
+                            <h6 class="m--font-brand">
+                                {{patientVital?.bloodOxygenSaturation}} %
+                              </h6>  
+                        </span>
+                      </p>
+                        
+										
+										
+										
+									</div>
+								</div>
+							</div>
+							
+							
+						</div>
+						<!--end::Section-->
+					</div>
+				</div>
+  </div>
+  
+</div>

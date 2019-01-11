@@ -1,0 +1,193 @@
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Attendance Rules
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="AttendanceRuleForm"> 
+            <div class="form-group m-form__group row">
+              <div class="col-lg-6">
+                <label>
+                 Group:
+                </label>
+                <select class="form-control m-input" formControlName="GroupId" id="">
+                    <option value="" disabled selected>-- Select Group --</option>
+                    <option *ngFor ="let group of groups" [value]="group.groupId" >{{group.name}}</option>
+           </select>
+              </div>
+              <div class="col-lg-6">
+                <label class="">
+                  Attendance Flag:
+                </label> 
+                    <select class="form-control m-input" formControlName="AttendanceFlagId" id="">
+                        <option value="" disabled selected>-- Select Attendance Flag --</option>
+                        <option *ngFor ="let flag of attendanceflag" [value]="flag.attendanceFlagId" >{{flag.title}}</option>
+               </select>
+              </div>
+            </div>
+
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6">
+                  <label>
+                   Action:
+                  </label>
+                  <select class="form-control m-input" formControlName="Action">
+                      <option value="" disabled selected>-- Select Action --</option>
+                      <option value="deductionofLeavesBasedOnFlagCount(Minute)"> Deduction of Leaves Based On Flag Count(Minutes) </option>
+                      <option value="deductionofLeavesBasedOnFlagCount "> Deduction of Leaves Based On Flag Count(s) </option>
+          </select>
+                </div>
+                <div class="col-lg-6">
+                  <label class="">
+                   Effect Frequency:
+                  </label>
+                  <select class="form-control m-input" id="" formControlName="EffectFrequency">
+                      <option value="" disabled selected>-- Select Effect Frequency --</option>
+                      <option value="once"> Once </option>
+                      <option value="once1"> Once 1 </option>
+          </select>
+                </div>
+              </div>
+
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label>
+                     Flag Count:
+                    </label>
+                    <input type="number" class="form-control m-input" formControlName="FlagCount" placeholder="0">
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                     Exempt Flag Count:
+                    </label>
+                    <input type="number" class="form-control m-input" formControlName="ExemptFlagCount" placeholder="0">
+                  </div>
+                </div>
+
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                      <label>
+                      Exempt Minutes:
+                      </label>
+                      <input type="number" class="form-control m-input" formControlName="ExemptMinutes" placeholder="0">
+                    </div>
+                    <div class="col-lg-6">
+                      <label class="">
+                      Conditional Exemption:
+                      </label>
+                      <select class="form-control m-input" id="" formControlName="ConditionalExemption">
+                          <option value="" disabled selected>-- Select Conditional Exemption --</option>
+                          <option value="conditionalExemption1"> Conditional Exemption 1 </option>
+                          <option value="conditionalExemption2"> Conditional Exemption 2 </option>
+                          <option value="conditionalExemption3"> Conditional Exemption 3 </option>
+                        </select>
+                    </div>
+                  </div>
+
+                  
+              <div class="form-group m-form__group row">
+                  <div class="col-lg-6">
+                    <label>
+                     Effect Quantity:
+                    </label> 
+                    <select class="form-control m-input" formControlName="EffectQuantity">
+                        <option value="" disabled selected>-- Select Effect Quantity --</option>
+                        <option value="0.5"> 0.5 </option>
+                        <option value="1"> 1 </option> 
+                      </select>
+                  </div>
+                  <div class="col-lg-6">
+                    <label class="">
+                    Effect Type:
+                    </label>
+                    <select class="form-control m-input" id="" formControlName="EffectType">
+                        <option value="" disabled selected>-- Select Effect Type --</option>
+                        <option value="negative"> Negative </option>
+                        <option value="positive"> Positive </option> 
+                      </select>
+                  </div>
+                </div>
+ 
+                <div class="row">
+                    <div class="col-xl-12">
+                      <div class="m-portlet">
+                        <div class="m-portlet__head">
+                          <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                              <h3 class="m-portlet__head-text">Leave Type</h3>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="m-portlet__body">
+                          <div class="m-section">
+                            <div class="m-section__content">
+                              <dx-data-grid id="gridContainer"
+                              [dataSource]="RuleDetail"
+                               keyExpr="attendanceRuleId"
+                               (onRowInserted)="attendanceRuleLeave($event)"
+                               (onRowUpdated)="updateattendancerule($event)" >
+                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                </dxo-editing>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                
+                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                                <dxo-paging [pageSize]="6"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                                </dxo-pager>  
+                                <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                                    <dxo-lookup [dataSource]="LeaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+                                    </dxo-lookup> 
+                                    </dxi-column>
+                              </dx-data-grid>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="m-separator m-separator"></div>
+
+                  <div class="row" >
+                    <div class="col-md-12">
+                      <div class="m-portlet__foot m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions" style="padding:19px;">
+                          <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                              <div *ngIf="isUpdate(); else create">
+                                <button class="btn btn-primary" (click)="update(AttendanceRuleForm.value)">
+                                    Update
+                                  </button>        
+                            </div> 
+                            <ng-template #create>
+                              <button class="btn btn-Success" (click)="addattendancerule(AttendanceRuleForm.value)">
+                                Submit
+                              </button>  
+                            </ng-template> 
+                            </div>
+                            <div class="col-lg-3"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+  </div>
+  

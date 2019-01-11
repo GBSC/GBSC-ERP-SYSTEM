@@ -1,0 +1,22 @@
+.pad_15{
+    margin-left: 15px;
+  }
+  .pad_8{
+    margin-left: 8px;
+  }
+
+.pad_130{
+margin-left: 130px;
+}
+
+
+.m-demo {
+  background: #f7f7fa;
+  margin-bottom: 20px;
+}
+
+.m-demo .m-demo__preview {
+  background: white;
+  border: 4px solid #f7f7fa;
+  padding: 30px;
+}

@@ -1,0 +1,135 @@
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Opening
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="leaveOpeningForm">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Employee:
+                  </label>
+                  <div class="col-lg-8">
+                    <select class="form-control m-input" formControlName="UserId" name="employee">
+                      <option value="" disabled selected>-- Select Employee --</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Leave Year:
+                  </label>
+                  <div class="col-lg-8">
+                    <select class="form-control m-input" formControlName="LeaveYearId">
+                      <option value="" disabled selected>-- Select Leave Year --</option>
+                      <option *ngFor="let leaveyear of leaveYear" [value]="leaveyear.leaveYearId">{{leaveyear.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Remarks:
+                  </label>
+                  <div class="col-lg-8">
+                    <textarea class="form-control m-input" formControlName="Remarks" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="m--space-10"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Opening Detail
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <dx-data-grid id="gridContainer" [dataSource]="leaveOpeningDetail" 
+          (onRowInserted)="addLeaveopenDetail($event)"
+            (onRowUpdated)="updateLeaveopenDetail($event)">
+            <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+            <dxi-column dataField="leaveTypeId" caption="Leave Type">
+              <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
+              </dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+            <dxi-column dataField="expiryDate" caption="Expiry Date" dataType="date" format="shortdate"></dxi-column>
+          </dx-data-grid>
+          <!-- <div class="m--space-50"></div> -->
+          <div class="m--space-10"></div>
+          <div class="m-portlet__foot m-portlet__foot--fit">
+            <div class="m-form__actions m-form__actions" style="padding:19px;">
+              <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+           
+                  <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(leaveOpeningForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="addleaveopening(leaveOpeningForm.value)">
+                      Submit
+                    </button>  
+                    <button type="reset" class="btn btn-secondary">
+                      Reset
+                    </button>
+                  </ng-template> 
+                </div>
+                  <div class="col-lg-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

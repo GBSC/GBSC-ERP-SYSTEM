@@ -1,0 +1,74 @@
+ 
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                          <h3 class="m-portlet__head-text">
+                              Master Payroll
+                          </h3>
+                      </div>
+                  </div>
+              </div>
+              <div class="m-portlet__body">
+                  <dx-data-grid id="gridContainer"
+                  keyExpr="masterPayrollId" 
+                  [dataSource]="masterPayroll"
+                  [columnAutoWidth]="true" 
+                  (onSelectionChanged)="selectionChanged($event)"
+                  (onContentReady)="contentReady($event)"
+                  (onToolbarPreparing)="onToolbarPreparing($event)"
+                  [masterDetail]="{ enabled: true, template: 'detail' }" [showBorders]="true">
+                      
+                  <dxo-selection mode="single"></dxo-selection>
+                      <dxo-paging [pageSize]="6"></dxo-paging>
+                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                      </dxo-pager>                
+                      <dxo-filter-row [visible]="true"></dxo-filter-row>
+                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+
+                      <dxi-column dataField="userId" caption="Employee" [width]="450">
+                          <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
+                          </dxo-lookup>
+                        </dxi-column>
+                        <dxi-column dataField="bankTransferCode"></dxi-column>
+                      <dxi-column dataField="currencyId" caption="Currency" [width]="450">
+                          <dxo-lookup [dataSource]="currency" displayExpr="name" valueExpr="currencyId">
+                          </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="bankId" caption="Bank" [width]="450">
+                          <dxo-lookup [dataSource]="banks" displayExpr="bankTitle" valueExpr="bankId">
+                          </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+                      <div *dxTemplate="let d of 'chartCellTemplate'">
+                        <div class="chart-cell">
+                            <dx-button (click)="getData(d)" icon="edit"></dx-button>
+                        </div>
+                    </div>
+
+                      <div *dxTemplate="let masterPayroll of 'detail'">
+                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true" [columnAutoWidth]="true">
+
+                              <dxi-column dataField="allowanceId" caption="Allowance">
+                                  <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
+                                  </dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="frequencyId" caption="Frequency">
+                                  <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
+                                  </dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+                                  <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
+                                  </dxo-lookup>
+                                </dxi-column>
+                                <dxi-column dataField="effectiveDate" caption="Effective Date" dataType="date" format="shortdate"></dxi-column>
+                                <dxi-column dataField="endDate" caption="End Date" dataType="date" format="shortdate"></dxi-column>
+                                <dxi-column dataField="value" caption="Value"></dxi-column>
+                              </dx-data-grid>
+                      </div>
+                  </dx-data-grid>
+              </div>
+          </div>
+      

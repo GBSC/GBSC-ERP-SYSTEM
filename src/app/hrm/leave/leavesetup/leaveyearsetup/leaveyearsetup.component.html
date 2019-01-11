@@ -1,0 +1,43 @@
+ 
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Leave Year </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+
+              <dx-data-grid id="gridContainer"
+               [dataSource]="leveyear" 
+               keyExpr="leaveYearId" 
+               (onRowInserted)="addleaveyear($event)" 
+               (onRowUpdating)="updatingLeaveyear($event)"
+               (onRowUpdated)="updateleaveyear()"
+                (onRowRemoved)="deleteleaveyear($event)">
+
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+
+
+                <dxi-column dataField="name" caption="Year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <!-- <dxi-column dataField="year" caption="Year" dataType="date" format="year"></dxi-column> -->
+                <dxi-column dataField="startDate" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataType="boolean" dataField="isCurrentYear"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+     

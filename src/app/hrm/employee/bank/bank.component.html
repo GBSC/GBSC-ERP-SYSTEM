@@ -1,0 +1,32 @@
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+        
+              <h4>User Banks</h4>
+          
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer"
+               [dataSource]="banks"
+               keyExpr="bankId" 
+               (onRowInserted)="addBank($event)" (onRowUpdated)="updateBank($event)" >
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Employee Bank" [showTitle]="true" [width]="700" [height]="345">
+                  </dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="6"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager> 
+                <dxi-column dataField="accountName"></dxi-column>
+                <dxi-column dataField="accountNumber"></dxi-column>
+                <dxi-column dataField="bankTitle"></dxi-column>
+                <dxi-column dataField="bankCode"></dxi-column>
+                <dxi-column dataField="branch"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+       

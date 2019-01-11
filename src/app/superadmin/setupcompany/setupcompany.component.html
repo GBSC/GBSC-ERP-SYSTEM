@@ -1,0 +1,431 @@
+<div appunwraptag="" class="m-subheader">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title m-subheader__title--separator">
+        Setup Company
+      </h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a class="m-nav__link m-nav__link--icon" href="#" ng-reflect-href="#">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          Home
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+              Tax Setup
+            </span>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a class="m-nav__link" href="" ng-reflect-href="">
+            <span class="m-nav__link-text">
+              Income Tax Rules
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div>
+
+    </div>
+  </div>
+</div>
+
+<div class="m-content">
+  <div class="row">
+
+
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Company Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <!--begin::Form-->
+        <div class="m-portlet__body">
+          <form class="m-form" [formGroup]="companyForm">
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="exampleInputEmail1">
+                        Company Logo
+                      </label>
+                  <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" style="background-image: url(./assets/demo/demo7/media/img/logo/logo.png);">
+                        </div>
+                    </div>
+                </div>
+                  </div>
+                <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Company Name
+                      </label>
+                      <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            Company Address
+                        </label>
+                        <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            No of Employees
+                        </label>
+                        <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
+                      </div>
+                    </div>
+                      <div class="col-2" style="padding-top: 27px;">
+                          <button type="submit" *ngIf="!companyId" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
+                            Submit
+                          </button>
+                          <div *ngIf="companyId" class="m-demo-icon">
+                            <div class="m-demo-icon__preview">
+                              <i class="la la-check-circle-o"></i>
+                            </div>
+                            <div class="m-demo-icon__class">
+                              Company Created
+                            </div>
+                          </div>
+          
+                        </div>
+            </div>
+
+
+
+              
+             
+          </form>
+          <hr>
+          <div class="row">
+
+            <div class="col-sm-12">
+              <h3 class="m-section__heading">
+                System Modules
+              </h3>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Human Resource Managment
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HrmInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Hospital Managment System
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HimsInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!HimsInstalled" (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Inventory Managment System
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!ImsInstalled" (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Payroll Managment System
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="PmsInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!PmsInstalled" (click)="onAddModule('Payroll Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Accounting System
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="AccountingSystemInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!AccountingSystemInstalled" (click)="onAddModule('Accounting System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Lab Information System
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!LisInstalled" (click)="onAddModule('Lab Information System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  Inventory
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!InventoryInstalled" (click)="onAddModule('Inventory')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  e-Tracker
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="eTrackerInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="m-content">
+            <div *ngIf="companyId" class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">Installed Features</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer" [dataSource]="features" (onRowInserted)="addFeature($event)"
+                          (onRowRemoved)="deleteFeature($event)">
+                          <dxo-editing mode="row" [allowAdding]="true" [useIcons]="true">
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+                          <dxo-paging [pageSize]="5"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                          <dxi-column dataField="name" caption="Feature"></dxi-column>
+                          <dxi-column dataField="moduleId" caption="Module">
+                            <dxo-lookup [dataSource]="modules" displayExpr="name" valueExpr="moduleId">
+                            </dxo-lookup>
+                          </dxi-column>
+                        </dx-data-grid>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <h3 class="m-section__heading">
+                System Admin User
+              </h3>
+              <form class="m-form" [formGroup]="systemAdminForm">
+                <div class="form-group m-form__group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        First Name
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="First Name" formControlName="FirstName">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Last Name
+                      </label>
+                      <input type="text" class="form-control m-input" id="Lname1" placeholder="Last Name"
+                        formControlName="LastName">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group m-form__group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date Of Birth
+                      </label>
+                      <dx-date-box formControlName="DOB">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        CNIC
+                      </label>
+                      <input type="text" class="form-control m-input" id="CNIC" placeholder="CNIC" formControlName="CNIC">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group m-form__group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Email
+                      </label>
+                      <input type="email" class="form-control m-input" placeholder="Email" formControlName="Email">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Phone No
+                      </label>
+                      <input type="text" class="form-control m-input" id="Phne" placeholder="Phone No" formControlName="Phone">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group m-form__group row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        User Name
+                      </label>
+                      <input type="text" class="form-control m-input" id="UName" placeholder="User Name"
+                        formControlName="UserName">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Password
+                      </label>
+                      <input type="text" class="form-control m-input" id="Password" placeholder="Password"
+                        formControlName="Password">
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="col-lg-12 m--align-right">
+                <button (click)="onSubmitRegistration(systemAdminForm.value)" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

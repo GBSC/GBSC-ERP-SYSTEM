@@ -1,0 +1,83 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Presciption View</h3>
+            </div>
+          </div>
+    
+        </div>
+        <div class="m-portlet__body">
+            <!-- <form class="m-form m-form--label-align-left- m-form--state-"  > -->
+              <div class="m-portlet__body">
+                  <div  class="row">
+                      <div class="col-md-3">
+                          <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                               Date :
+                              </label>
+                              <input type="date" #Date [value]="date || ''" class="form-control m-input">
+                            </div>
+                      </div>
+                      <div class="col-md-7"></div>
+                      <div  class="col-md-2">
+                          <div class="form-group m-form__group">
+                              <button type="button" (click)="onsubmit(Date.value)" class="btn btn-primary pull-right margin">Show</button>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+            <!-- </form> -->
+          <div class="row">
+            <div class="col-md-12">
+              <dx-data-grid [dataSource]="PrescriptionsViews" showBorders="true" [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="false"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+                 <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+                </dxo-editing>
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="salesIndentNumber" caption="Prescription Code"></dxi-column>
+                <dxi-column dataField="consultantName" caption="Consultant" [width]="'auto'"></dxi-column>
+                <dxi-column dataField="issueDate"  dataType="date" caption="Issue Date"></dxi-column>
+                <dxi-column dataField="customerCode" caption="MRN"></dxi-column>
+                <dxi-column dataField="customerName" caption="Patient"></dxi-column>
+                <dxi-column dataField="customerSecondName" caption="Spouse"></dxi-column>
+                <dxi-column dataField="totalQuantity" caption="Quantity"></dxi-column>
+                <dxi-column dataField="totalTradeOffer" caption="Cost Price"></dxi-column>
+                <dxi-column dataField="totalTradePrice" caption="Retail Price"></dxi-column>
+                 <div *dxTemplate="let order of 'detail'">
+                  <dx-data-grid [dataSource]="order.data.salesIndentItems" showBorders="true" columnAutoWidth="true">
+                    <dxi-column dataField="itemCode" caption="itemCode"></dxi-column>
+                    <dxi-column dataField="inventoryItemName" caption="inventoryItemName"></dxi-column>
+                    <dxi-column dataField="packSize" caption="packSize"></dxi-column>
+                    <dxi-column dataField="packTypeName" caption="packTypeName"></dxi-column>
+                    <dxi-column dataField="productTypeName" caption="productTypeName"></dxi-column>
+                    <dxi-column dataField="quantity" caption="quantity"></dxi-column>
+                    <dxi-column dataField="unitName" caption="unitName"></dxi-column>
+                    <dxi-column dataField="costPrice" caption="costPrice"></dxi-column>
+                    <dxi-column dataField="retailPrice" caption="retailPrice"></dxi-column>
+                    <dxi-column dataField="isPaid" caption="isPaid" dataType="bool"></dxi-column>
+                    <dxi-column dataField="totalTradeOfferPerItem" caption="totalTradeOfferPerItem"></dxi-column>
+                    <dxi-column dataField="totalTradePricePerItem" caption="totalTradePricePerItem"></dxi-column>
+                    <dxi-column dataField="tradeOfferPricePerUnit" caption="tradeOfferPricePerUnit"></dxi-column>
+                    <dxi-column dataField="treatmentStart"  dataType="date" caption="treatmentStart"></dxi-column>
+                    <dxi-column dataField="treatmentTimeInDays" caption="treatmentTimeInDays"></dxi-column>
+                    <dxi-column dataField="treatmentEnd"  dataType="date" caption="treatmentEnd"></dxi-column>
+                  </dx-data-grid>
+                </div>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

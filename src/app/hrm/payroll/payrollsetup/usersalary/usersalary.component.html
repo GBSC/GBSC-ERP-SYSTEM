@@ -1,0 +1,50 @@
+ 
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">User Salary</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+
+              <dx-data-grid id="gridContainer" [dataSource]="userSalary" 
+              keyExpr="userSalaryId" 
+              (onRowInserted)="addUserSalary($event)" 
+              (onRowUpdated)="updateUserSalary($event)" 
+              (onRowRemoved)="deleteUserSalary($event)">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="User Salary" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+
+                <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
+                  <dxo-lookup [dataSource]="incometaxRule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
+                </dxi-column>
+  
+                <dxi-column dataField="groupId" caption="Group">
+                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
+                </dxi-column>
+
+                <dxi-column dataField="userId" caption="Employee">
+                  <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId"></dxo-lookup>
+                </dxi-column> 
+                <dxi-column dataField="salary" caption="Salary"></dxi-column>
+                <dxi-column dataField="salaryDate" caption="Salary Date" dataType="date" format="shortdate"></dxi-column>
+                <dxi-column dataField="salaryMonth" caption="Salary Month" dataType="date" format="month"></dxi-column>
+                <dxi-column dataField="salaryYear" caption="Salary Year" dataType="date" format="year"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+ 

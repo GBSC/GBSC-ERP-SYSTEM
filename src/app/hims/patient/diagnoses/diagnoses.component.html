@@ -1,0 +1,22 @@
+
+<div class="m-portlet m-portlet--mobile">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+            <span class="m-portlet__head-icon">
+                <i class="fa fa-stethoscope"></i>
+              </span>
+          <h3 class="m-portlet__head-text">
+              DIAGNOSES
+          </h3>
+        </div>
+      </div>
+    </div>
+    <div class="m-portlet__body">
+        <ul *ngFor="let diagn of patientVisitDiagnoses">
+          <li>
+            {{diagn.name}} 
+           </li>
+        </ul>  
+    </div>
+  </div>

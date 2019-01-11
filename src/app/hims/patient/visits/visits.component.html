@@ -1,0 +1,319 @@
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Visits
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+                        <div class="" data-code-js="false" data-code-preview="true">
+                            <div class="m-demo__preview">
+                                <a (click)="onEndVisit()" class="col-md-2 btn btn-primary m-btn m-btn--custom m-btn--icon">
+                                    <span>
+                                        <i class="fa fa-power-off"></i>
+                                        <span>
+                                            End Visit
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Patient Vitals
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <app-patientvitals></app-patientvitals>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Visit Notes
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+
+                    <form [formGroup]="PatientVisitNoteForm">
+                        <!-- <h3 class="m--font-danger">Add Visit Note</h3> -->
+                        <div class="m--space-20"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group m-form__group">
+                                    <label for="exampleTextarea">
+                                        Clinical Note
+                                    </label>
+                                    <textarea formControlName="ClinicalNote" class="form-control m-input m-input--air" id="exampleTextarea" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m--space-10"></div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m--space-10"></div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6  col-sm-12">
+                                    <div class="m-form__actions">
+                                        <button (click)="addPatientVisitNote(PatientVisitNoteForm.value)" class="btn btn-primary m--pull-left" type="reset">
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6  col-sm-12">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                             Next  Appointments
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body portlet_pad">
+                    <form [formGroup]="PatientAppointmentForm">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="Timeframe"> Consultant </label>
+                                <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" formControlName="ConsultantId" required>
+                                    <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Clear"> Visit Nature </label>
+                                <dx-select-box [items]="visitNatures" displayExpr="nature" valueExpr="visitNatureId" [searchEnabled]="true" formControlName="visitNatureId">
+                                </dx-select-box>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Clear"> Tentative Time </label>
+                                <input class="form-control m-input m-input--solid ng-pristine ng-invalid ng-touched" formControlName="TentativeTime" type="datetime-local"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <div class="m-form__group form-group">
+                                    <label>
+                                       Status
+                                    </label>
+                                    <div class="m-checkbox-list">
+                                      <label class="m-checkbox m-checkbox--state-success">
+                                        <input type="checkbox" formControlName="IsFinalAppointment">
+                                        For Final Appointment
+                                        <span></span>
+                                      </label>                                      
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="m--space-20"></div>
+                        <div class="m-portlet__foot m-portlet__foot--fit">
+                            <div class="m--space-10"></div>
+                            <div class="form-group m-form__group row">
+                                <button (click)="addappointment(PatientAppointmentForm.value)" class="btn btn-primary m--pull-right">
+                                    Save
+                                </button>
+                                <div class="col-lg-6 col-sm-12">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row">
+        <div class="col-lg-12">
+            <div class="m-portlet">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon m--hide">
+                                <i class="la la-gear"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Prescription
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <app-visit-prescription></app-visit-prescription>
+            </div>
+        </div>
+    </div>
+     
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Visit Diagnoses
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <form [formGroup]="VisitDiagnosesForm">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <dx-select-box [items]="PatientServiceobj?.diagnoses" displayExpr="name" valueExpr="diagnosisId" [searchEnabled]="true" formControlName="DiagnosisId">
+                                </dx-select-box>
+                            </div>
+                            <div class="form-group col-lg-3">
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <button type="button" (click)="addrangeForDiagnosis()" class="btn btn-primary">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table m-table m-table--head-separator-primary">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Diagnose Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor=" let t of VisitDiagnoses; let i = index">
+                                            <td>{{t.DiagnosName}}</td>
+                                            <td>
+                                                <button type="button" (click)="removediagnosis(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                                                    <i class="la la-trash-o"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="m--space-10"></div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary">
+                                Reset
+                            </button>
+                            <button type="button" (click)="onAddvisitdiagnosis()" data-dismiss="modal" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="m-portlet m-portlet--unair">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <h3 class="m-portlet__head-text">
+                                Visit Test
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <form [formGroup]="VisitTestForm">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <dx-select-box [items]="PatientServiceobj?.testing" displayExpr="testName" valueExpr="testId" [searchEnabled]="true" formControlName="TestId">
+                                </dx-select-box>
+                            </div>
+                            <div class="form-group col-lg-3">
+                            </div>
+                            <div class="form-group col-lg-3">
+                                <button type="button" (click)="addrangeForTest()" class="btn btn-primary">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <div class="m-section">
+                            <div class="m-section__content">
+                                <table class="table m-table m-table--head-separator-primary">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Test Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor=" let t of VisitTests; let i = index">
+                                            <td>{{t.TestName}}</td>
+                                            <td>
+                                                <button type="button" (click)="removeTest(i)" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air">
+                                                    <i class="la la-trash-o"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="m--space-10"></div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary">
+                                Reset
+                            </button>
+                            <button type="button" (click)="onAddvisittest()" data-dismiss="modal" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

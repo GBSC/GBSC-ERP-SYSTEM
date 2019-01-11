@@ -1,0 +1,295 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Embryology</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="embryologyForm">
+            <div class="m-section">
+              <div class="m-section__content">
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="patient?.mrn" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" [value]="spouse?.display" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <dx-date-box [value]="embryology?.createDate" formControlName="CreateDate">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Cycle No.
+                      </label>
+                      <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Treatment#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="clinicalRecord?.typewiseTreatmentNumber" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Treatment Type
+                      </label>
+                      <dx-select-box [items]="treatments" displayExpr="name" valueExpr="treatmentTypeId" [value]="clinicalRecord?.treatmentTypeId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Embryologist
+                      </label>
+                      <dx-select-box [items]="embryologists" displayExpr="description" valueExpr="embryologistId"
+                        [value]="tvopu?.embryologistId" [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Embryo Date
+                      </label>
+                      <dx-date-box [value]="embryology?.embryodate" formControlName="EmbryoDate">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Time
+                      </label>
+                      <dx-date-box type="time" [value]="embryology?.time" formControlName="Time">
+                      </dx-date-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Staff
+                      </label>
+                      <input type="text" class="form-control m-input" aria-describedby="emailHelp" [value]="embryology?.staff"
+                        formControlName="Staff">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Verify
+                      </label>
+                      <input type="text" class="form-control m-input" aria-describedby="emailHelp" [value]="embryology?.verify"
+                        formControlName="Verify">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        TVOPU Ref.No
+                      </label>
+                      <input type="text" class="form-control m-input" [value]="id" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Embryology Details:</h4>
+                    <dx-data-grid id="gridContainer" [dataSource]="embryologydetails" (onRowInserted)="rowInserted($event)"
+                      (onRowUpdated)="rowUpdated($event)">
+                      <dxo-paging [enabled]="true"></dxo-paging>
+                      <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true">
+                      </dxo-editing>
+                      <dxi-column dataField="eggNumber" caption="Egg No."></dxi-column>
+                      <dxi-column dataField="oocyteExam" caption="Oocyte Exam"></dxi-column>
+                      <dxi-column dataField="spermConcentration" caption="Sperm CONC."></dxi-column>
+                      <dxi-column dataField="fertCheck" caption="FERT Check"></dxi-column>
+                      <dxi-column dataField="twentyFourHourCheck" caption="24Hr Check"></dxi-column>
+                      <dxi-column dataField="d2Check" caption="D2 Check"></dxi-column>
+                      <dxi-column dataField="d3Check" caption="D3 Check"></dxi-column>
+                      <dxi-column dataField="d4Check" caption="D4 Check"></dxi-column>
+                      <dxi-column dataField="d5Check" caption="D5 Check"></dxi-column>
+                      <dxi-column dataField="d6Check" caption="D6 Check"></dxi-column>
+                      <dxi-column dataField="fate" caption="Fate">
+                        <dxo-lookup [dataSource]="fateOptions" displayExpr="name" valueExpr="name">
+                        </dxo-lookup>
+                      </dxi-column>
+                      <dxi-column dataField="check" [width]="130" dataType="boolean"></dxi-column>
+                    </dx-data-grid>
+
+                    <hr>
+
+                    <h4>Fresh Embryo Transfer (ET)</h4>
+                    <div class="form-group m-form__group row" style="margin-top: 3em;">
+                      <label class="col-sm-1">
+                        Egg No.
+                      </label>
+                      <div class="col-sm-6">
+                        <input *ngIf="embryology" type="text" class="form-control m-input" [value]="embryology?.eggNumber"
+                          formControlName="EggNumber">
+                        <input *ngIf="!embryology" type="text" class="form-control m-input" [value]="eggNumber"
+                          formControlName="EggNumber" [(ngModel)]="eggNumber">
+                      </div>
+                      <div class="col-sm-2">
+                        <a [routerLink]="['/lab/embryo-freeze', clinicalRecord?.patientClinicalRecordId]" class="btn btn-success m-btn m-btn--custom">
+                          Freezing
+                        </a>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Date
+                          </label>
+                          <dx-date-box [value]="embryology?.freshEmbryoTransferDate" formControlName="FreshEmbryoTransferDate">
+                          </dx-date-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Time
+                          </label>
+                          <dx-date-box type="time" [value]="embryology?.freshEmbryoTransferTime" formControlName="FreshEmbryoTransferTime">
+                          </dx-date-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Cycle No.
+                          </label>
+                          <input type="number" [value]="clinicalRecord?.cycleNumber" class="form-control m-input" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" disabled> </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Consultant
+                          </label>
+                          <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="embryology?.consultantId"
+                            formControlName="ConsultantId" [searchEnabled]="true">
+                          </dx-select-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Embryologist
+                          </label>
+                          <dx-select-box [items]="embryologists" displayExpr="description" valueExpr="embryologistId"
+                            [value]="embryology?.embryologistId" formControlName="EmbryologistId" [searchEnabled]="true">
+                          </dx-select-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Status
+                          </label>
+                          <input type="text" class="form-control m-input" aria-describedby="emailHelp" [value]="embryology?.status"
+                            formControlName="Status">
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group m-form__group row" style="margin-top: 1em;">
+                      <label class="col-sm-1">
+                        Remarks
+                      </label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control m-input" aria-describedby="emailHelp" [value]="embryology?.remarks"
+                          formControlName="Remarks">
+                      </div>
+                      <div *ngIf="!embryology" class="col-sm-2">
+                        <button type="button" (click)="submitForm(embryologyForm.value)" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </div>
+                      <div *ngIf="embryology" class="col-sm-2">
+                        <button type="button" (click)="update(embryologyForm.value)" class="btn btn-primary">
+                          Update
+                        </button>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+                <hr>
+
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Embryology Freeze</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form [formGroup]="thawAssessmentForm">
+            <div class="m-section">
+              <div class="m-section__content">
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        MRN No.
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="{{patient?.mrn}}" disabled> </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient Name
+                      </label>
+                      <dx-select-box #patientcb [items]="patients" displayExpr="display" valueExpr="patientId" [value]="clinicalRecord?.patientId"
+                        [searchEnabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Spouse
+                      </label>
+                      <input type="text" class="form-control m-input" placeholder="{{spouse?.display}}" disabled="disabled">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <dx-date-box [value]="thawAssessment?.createDate" formControlName="CreateDate">
+                      </dx-date-box>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        TVOPU Ref.#
+                      </label>
+                      <input type="text" class="form-control m-input" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        [value]="tvopu?.tvopuId" disabled>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleSelect1">
+                        Doctor
+                      </label>
+                      <dx-select-box [items]="consultants" displayExpr="name" valueExpr="consultantId" [value]="clinicalRecord?.consultantId"
+                        [searchEnabled]="true" [disabled]="true">
+                      </dx-select-box>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="m-separator m-separator--dashed"></div>
+                <div class="row">
+
+                  <h4>Embryo Freeze Details:</h4>
+                  <dx-data-grid id="gridContainer" [dataSource]="embryoFreezeDetails">
+
+                    <dxo-paging [enabled]="true"></dxo-paging>
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true">
+                    </dxo-editing>
+                    <dxi-column dataField="embryoNumber" caption="Embryo No."></dxi-column>
+                    <dxi-column dataField="strawId" caption="Straw Id"></dxi-column>
+                    <dxi-column dataField="freezeDate" caption="Freeze Date" dataType="date"></dxi-column>
+                    <dxi-column dataField="drawer" caption="Drawer"></dxi-column>
+                    <dxi-column dataField="cannister" caption="Cannister"></dxi-column>
+                    <dxi-column dataField="can" caption="Can"></dxi-column>
+                    <dxi-column dataField="topBottom" caption="Top/Bottom">
+                      <dxo-lookup [dataSource]="topBottomOptions" displayExpr="name" valueExpr="name">
+                      </dxo-lookup>
+                    </dxi-column>
+                  </dx-data-grid>
+                </div>
+                <hr>
+
+              </div>
+
+              <div class="col-sm-2">
+                <button *ngIf="thawAssessment" type="button" (click)="updateForm(thawAssessmentForm.value)" class="btn btn-primary">
+                  Update
+                </button>
+                <button *ngIf="!thawAssessment" type="button" (click)="submitForm(thawAssessmentForm.value)" class="btn btn-primary">
+                    Submit
+                  </button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

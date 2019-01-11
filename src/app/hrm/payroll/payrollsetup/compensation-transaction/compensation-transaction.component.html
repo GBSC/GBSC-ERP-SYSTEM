@@ -1,0 +1,52 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">Compensation Transaction</h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <div class="m-section">
+      <div class="m-section__content">
+
+        <dx-data-grid id="gridContainer"
+         [dataSource]="compensationTransaction"
+          keyExpr="compensationTransactionId" 
+          (onRowInserted)="addCompensationTransaction($event)" 
+          (onRowUpdating)="updatingCompensationTransaction($event)" 
+          (onRowUpdated)="updateCompensationTransact()"
+          (onRowRemoved)="deleteCompensationTransaction($event)">
+          <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+            <dxo-popup title="Compensation Transaction" [showTitle]="true" [width]="750" [height]="550"></dxo-popup>
+          </dxo-editing>
+          <dxo-filter-row [visible]="true"></dxo-filter-row>
+          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+          <dxo-paging [pageSize]="8"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+
+          <dxi-column dataField="userId" caption="Employee">
+            <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="amount" caption="Amount"></dxi-column>
+          <dxi-column dataField="month" caption="Month" dataType="date" format="month"></dxi-column>
+
+          <dxi-column dataField="payrollyearId" caption="Payroll Year" [visible]="false">
+            <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="payrollTypeId" caption="Payroll Type">
+            <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="allowanceId" caption="Allowance">
+            <dxo-lookup [dataSource]="allowances" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+          </dxi-column>
+          <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+          <dxi-column dataField="isTaxableIncome" caption="Taxable Income" dataType="boolean"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+</div>

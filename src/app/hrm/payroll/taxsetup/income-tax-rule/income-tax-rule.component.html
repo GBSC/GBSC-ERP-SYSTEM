@@ -1,97 +1,215 @@
-
- <div class="m-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="m-portlet">
-          <div class="m-portlet__head">
-            <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                <h3 class="m-portlet__head-text">
-                  Income Tax Rule
-                </h3>
-              </div>
-            </div>
-          </div>
-          <div class="m-portlet__body">
-            <form [formGroup]="leaveRequestForm">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                      Payroll Year:
-                    </label>
-                    <div class="col-lg-8">
-                      <select class="form-control m-input" formControlName="PayrollYearId">
-                        <!-- <option value="" disabled selected>-- Select Employee --</option> -->
-                        <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="col-md-6">
-                  <div class="form-group m-form__group row">
-                    <label class="col-lg-4 col-form-label">
-                      Leave Request Date:
-                    </label>
-                    <div class="col-lg-8">
-                      <dx-date-box formControlName="RequestDate" type="date" format="dd/MM/yyyy" width="100%">
-                      </dx-date-box>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            
-        <div class="m-portlet">
+<div class="m-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
-          <div class="m-portlet__head-title">
-            <h3 class="m-portlet__head-text">Income Tax Rule</h3>
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Income Tax Rule
+              </h3>
+            </div>
           </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form [formGroup]="incomeTaxForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Payroll Year:
+                  </label>
+                  <div class="col-lg-8">
+                    <select class="form-control m-input" formControlName="PayrollYearId">
+                      <!-- <option value="" disabled selected>-- Select Employee --</option> -->
+                      <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Personal Exemption:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="text" formControlName="PersonalExemption">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Exempt Percentage:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="text" formControlName="ExemptPercentage">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Tax Limit:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="text" formControlName="TaxLimit">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Age Limit:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="text" formControlName="AgeLimit">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Tax Rebate Percentage:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="number" formControlName="TaxRebatePercentage">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group row">
+                  <label class="col-lg-4 col-form-label">
+                    Tax Rebate Amount:
+                  </label>
+                  <div class="col-lg-8">
+                    <input type="number" formControlName="TaxRebateAmount">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tax Schedule or Tax Relief -->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Tax Schedule</h3>
+            </div>
           </div>
         </div>
         <div class="m-portlet__body">
           <div class="m-section">
-          <div class="m-section__content" >
-            <dx-data-grid id="gridContainer" [dataSource]="incomeTax"
-            keyExpr="incomeTaxRuleId"
-             (onRowInserted)="addIncomeTaxRule($event)"
-              (onRowUpdated)="updateIncomeTaxRule()" 
-              (onRowUpdating)="UpdatingIncomeTaxRule($event)" 
-              (onRowRemoved)="deleteIncomeTaxRule($event)"> 
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer" [dataSource]="scheduleDetail" (onRowInserted)="addTaxSchedule($event)" (onRowUpdated)="updateTaxSchedule($event)"
+                (onRowRemoved)="deleteTaxSchedule($event)">
 
-              <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
-                <dxo-popup title="Income Tax Rule" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
-              </dxo-editing>
-              <dxo-filter-row [visible]="true"></dxo-filter-row>
-              <dxo-header-filter [visible]="true"></dxo-header-filter>
-              <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-              <dxo-paging [pageSize]="8"></dxo-paging>
-              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-         
-                <dxi-column dataField="payrollYearId" caption="Payroll Year">
-                    <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId">
-                    </dxo-lookup>
-                  </dxi-column> 
-              <dxi-column dataField="personalExemption" caption="Personal Exemption"></dxi-column>
-              <dxi-column dataField="taxLimit" caption="Tax Limit"></dxi-column> 
-              <dxi-column dataField="ageLimit" caption="Age Limit"></dxi-column> 
-              <dxi-column dataField="exemptPercentage" caption="Exempt Percentage"></dxi-column> 
-              <dxi-column dataField="taxRebatePercentage" caption="Tax Rebate Percentage"></dxi-column> 
-              <dxi-column dataField="taxRebateAmount" caption="Tax Rebate Amount"></dxi-column> 
-            </dx-data-grid> 
-          </div>
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="4"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                <dxi-column caption="Salary Range">
+                  <dxi-column dataField="from" caption="From"></dxi-column>
+                  <dxi-column dataField="to" caption="Till"></dxi-column>
+                </dxi-column>
+                <dxi-column dataField="taxType" caption="Tax Type">
+                  <dxo-lookup [dataSource]="taxTypeSource">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="value" caption="Value"></dxi-column>
+                <dxi-column dataField="fixedValue" caption="Fixed Value"></dxi-column>
+                <dxi-column dataField="applicabaleTo" caption="Applicabale To">
+                  <dxo-lookup [dataSource]="applicableToSource">
+                  </dxo-lookup>
+                </dxi-column>
+              </dx-data-grid>
+
+            </div>
           </div>
         </div>
+      </div>
+      <div class="m--space-50"></div>
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Tax Relief</h3>
+            </div>
+          </div>
         </div>
- 
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer" [dataSource]="reliefDetail" (onRowInserted)="addTaxRelief($event)" (onRowUpdating)="updateTaxRelief($event)"
+                (onRowRemoved)="deleteTaxRelief($event)">
 
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Tax Relief" [showTitle]="true" [width]="700" [height]="345"></dxo-popup>
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="4"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
 
+                <dxi-column caption="Salary Range">
+                  <dxi-column dataField="from" caption="From"></dxi-column>
+                  <dxi-column dataField="to" caption="Till"></dxi-column>
+                </dxi-column>
+                <dxi-column dataField="taxType" caption="Tax Type">
+                  <dxo-lookup [dataSource]="taxTypeSource">
+                  </dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="value" caption="Value"></dxi-column>
+                <dxi-column dataField="applicabaleTo" caption="Applicabale To">
+                  <dxo-lookup [dataSource]="applicableToSource">
+                  </dxo-lookup>
+                </dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="m-portlet__foot m-portlet__foot--fit">
+          <div class="m-form__actions m-form__actions" style="padding:19px;">
+            <div class="row">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-6">
+                <div *ngIf="isUpdate(); else create">
+                  <button class="btn btn-primary" (click)="updateIncomeTaxRule(incomeTaxForm.value)">
+                    Update
+                  </button>
+                </div>
+                <ng-template #create>
+                  <button class="btn btn-Success" (click)="addIncomeTaxRule(incomeTaxForm.value)">
+                    Submit
+                  </button>
+                </ng-template>
+              </div>
+              <div class="col-lg-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+</div>

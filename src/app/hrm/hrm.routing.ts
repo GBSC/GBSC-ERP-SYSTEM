@@ -149,6 +149,7 @@ import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetu
 import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
+import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -340,7 +341,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'usersalary', component: UsersalaryComponent }, 
                      
                             {path: 'taxsetup', component: TaxsetupMasterComponent},
+                            { path: 'incometaxrule-detail', component: IncometaxRuleDetailComponent },
                             { path: 'incometaxrule', component: IncomeTaxRuleComponent },
+                            { path: 'updateincometaxrule/:id', component: IncomeTaxRuleComponent },
                             { path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent },
                             { path: 'taxbenefit', component: TaxBenefitComponent },
                             { path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent },

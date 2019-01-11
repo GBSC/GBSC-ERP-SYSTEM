@@ -616,15 +616,19 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRules`).toPromise();
     }
+   
+    getIncomeTaxRule(id): Observable<any> {
 
+        return this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRule/` + id);
+    }
     async addIncomeTaxRule(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddIncomeTaxRule`, data).toPromise();
     }
 
-    async updateIncomeTaxRule(data) {
+    updateIncomeTaxRule(data) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data);
     }
 
     async Deleteincometaxrule(incometaxruleId) {

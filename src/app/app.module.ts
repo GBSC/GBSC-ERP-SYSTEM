@@ -77,10 +77,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         EtrackerModule,
         PharmacyModule,
         PatientModule,
-<<<<<<< HEAD
         UltraSoundModule,
-=======
->>>>>>> 9b5407aa41c9d59e6e5df68e9f3fdb5936292024
         LabModule,
         FinanceModule,
         SuperadminModule,

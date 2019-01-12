@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
+import { FWBInintialComponent } from './fwb-inintial/fwb-inintial.component';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ RootComponent,
   
 MenuComponent,
   
-UltraSoundPelvisComponent
+UltraSoundPelvisComponent,
+  
+FWBInintialComponent
 ],
 
 })

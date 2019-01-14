@@ -115,17 +115,16 @@ export class FinanceAccountComponent implements OnInit {
     }
 
     SendRequest(value) {
-        console.log(value);
 
         if (value.ParentAccountCode == null || value.ParentAccountCode == "" || value.ParentAccountCode == " " || value.ParentAccountCode.length < 2) {
             delete value.parentAccountCode;
-            delete value.OpeningBalance;
+            value.OpeningBalance = 0;
             value.ParentAccountLevel = 0;
             value.IsGeneralOrDetail = true;
         }
 
-        if (value.IsGeneralOrDetail == true) {
-            delete value.OpeningBalance;
+        if (value.IsGeneralOrDetail == 'true' || !value.OpeningBalance) {
+            value.OpeningBalance = 0;
         }
 
         if (this.IsUpdate === false) {

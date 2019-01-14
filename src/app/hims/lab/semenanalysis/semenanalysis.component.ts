@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../../app/core';
 import { Router, ActivatedRoute } from '@angular/router';

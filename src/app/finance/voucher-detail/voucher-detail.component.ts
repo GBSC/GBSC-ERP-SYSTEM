@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { Account } from '../../core/Models/Finance/Account';
 import { SetupService, AuthService } from '../../core';
 import { Router } from '@angular/router';
 import { UnpostedVoucherViewModel } from '../../core/Models/Finance/UnpostedVoucherViewModel';
 import { PostedVoucherViewModel } from '../../core/Models/Finance/PostedVoucherViewModel';
 import { FinancialYear } from '../../core/Models/Finance/financialYear';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { ToastrService } from 'ngx-toastr';
 import { TransactionAccount } from '../../core/Models/Finance/TransactionAccount';
 import { VoucherType } from '../../core/Models/Finance/vouchertype';

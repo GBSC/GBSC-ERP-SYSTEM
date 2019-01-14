@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { LocatorComponent } from './locator/locator.component';
 import { ETrackerRoutingModule } from './etracker.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+import {DxSelectBoxModule} from 'devextreme-angular/ui/select-box'
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
-import { RouterModule } from '@angular/router';
 import { SalesusersComponent } from './salesusers/salesusers.component';
 import { StoresComponent } from './stores/stores.component';
 import { StoresProfileComponent } from './stores-profile/stores-profile.component';
@@ -20,9 +21,6 @@ import { SubsectionComponent } from './territories/subsection/subsection.compone
 import { DistributersComponent } from './territories/distributers/distributers.component';
 import { TerritoryComponent } from './territories/territory/territory.component';
 import { TerritoryMasterComponent } from './territories/territory-master/territory-master.component';
-import { Select2Module } from 'ng2-select2';
-import { AgmCoreModule } from '@agm/core';
-import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { CityComponent } from './territories/city/city.component';
 import { ShopCensusSummaryComponent } from './reports/shop-census-summary/shop-census-summary.component';
 import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-census-detail.component';
@@ -33,6 +31,12 @@ import { LocationReportComponent } from './reports/location-report/location-repo
 import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-diff-units.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
 import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
+import { AgmCoreModule } from '@agm/core';
+import { Select2Module } from 'ng2-select2';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
+
 
 @NgModule({
     imports: [
@@ -46,8 +50,10 @@ import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule
+        DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule
     ],
     declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent],
     providers: [eTrackerUserService]

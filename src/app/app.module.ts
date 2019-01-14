@@ -1,13 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ThemeComponent } from './theme/theme.component';
-import { LayoutModule } from './theme/layouts/layout.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScriptLoaderService } from "./_services/script-loader.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
@@ -41,7 +38,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 //I keep the new line
 @NgModule({
     declarations: [
-        ThemeComponent,
         AppComponent,
         TitlePipe,
         HeaderComponent,
@@ -56,13 +52,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
         }),
-        LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        DevExtremeModule,
         HttpClientModule,
         CoreModule,
         AngularFireModule.initializeApp(environment.firebase),

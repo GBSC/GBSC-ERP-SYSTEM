@@ -1,7 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { InventorysystemService, AuthService } from '../../../core';
 import { DxDataGridComponent } from "devextreme-angular";
-import { ValidationStatesModule } from '../../../theme/pages/default/components/forms/validation/validation-states/validation-states.module';
 import { Area } from '../../../core/Models/Inventory/Setup/Area';
 import { Region } from '../../../core/Models/Inventory/Setup/Region';
 

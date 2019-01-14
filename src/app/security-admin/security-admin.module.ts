@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SecurityRoutingModule } from './security-admin-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { BranchComponent } from './branch/branch.component';
@@ -16,7 +17,9 @@ import { UserregistrationComponent } from './userregistration/userregistration.c
 import { UsersComponent } from './users/users.component';
 import { UserService } from '../core/Services/Security/user.service';
 import { ProfileComponent } from './profile/profile.component';
-import { CompanySetupComponent } from './company-setup/company-setup.component';
+import { DxTreeViewModule } from 'devextreme-angular/ui/tree-view';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 
 @NgModule({
@@ -26,8 +29,10 @@ import { CompanySetupComponent } from './company-setup/company-setup.component';
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule
+        DxDataGridModule,
+        DxTreeViewModule,
+        DxSelectBoxModule,
+        DxPopupModule
     ],
     declarations: [
         RootComponent,
@@ -40,9 +45,8 @@ import { CompanySetupComponent } from './company-setup/company-setup.component';
         BranchComponent,
         DepartmentComponent,
         RolesandprivilegesComponent,
-        ProfileComponent,
-        CompanySetupComponent
-    ],
+        ProfileComponent
+        ],
     providers: [UserService]
 })
 export class SecurityAdminModule { }

@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "stats":"npx webpack-bundle-analyzer dist/Gbsc-Erp/stats.json",
     "fix-memory-limit": "cross-env LIMIT=8192 increase-memory-limit",
     "build-prod": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --prod",
     "ng-custom-serve": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng serve"

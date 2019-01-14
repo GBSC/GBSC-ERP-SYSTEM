@@ -10,6 +10,7 @@ import { AuthGuardService } from '../core';
 import { UserregistrationComponent } from './userregistration/userregistration.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CompanySetupComponent } from './company-setup/company-setup.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,7 @@ const routes: Routes = [
         children: [
             { path: 'country', component: CountryComponent },
             { path: 'city', component: CityComponent },
+            { path: 'company', component: CompanySetupComponent },
             { path: 'branch', component: BranchComponent },
             { path: 'department', component: DepartmentComponent },
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },

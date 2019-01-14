@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DxTreeViewModule } from 'devextreme-angular/ui/tree-view';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { CompanySetupComponent } from './company-setup/company-setup.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         SettingsComponent,
         CountryComponent,
         CityComponent,
+        CompanySetupComponent,
         BranchComponent,
         DepartmentComponent,
         RolesandprivilegesComponent,

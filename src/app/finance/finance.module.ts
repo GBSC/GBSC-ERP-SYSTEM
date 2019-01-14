@@ -6,7 +6,8 @@ import { RootComponent } from './root/root.component';
 import { MenuComponent } from '../finance/shared/menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompanysetupComponent } from './companysetup/companysetup.component';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { FinanceSetupService } from '../core/Services/Finance/financeSetup.service';
 import { MasterAccountComponent } from './financialSetups/master-account/master-account.component';
 import { FinancialyearComponent } from './financialSetups/financialyear/financialyear.component';
@@ -31,6 +32,9 @@ import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
 import { FinanceAccountComponent } from './finance-account/finance-account.component';
 import { CompanyFinanceConfigurationComponent } from './company-finance-configuration/company-finance-configuration.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 @NgModule({
     imports: [
@@ -38,8 +42,10 @@ import { CompanyFinanceConfigurationComponent } from './company-finance-configur
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         routing
 
     ],

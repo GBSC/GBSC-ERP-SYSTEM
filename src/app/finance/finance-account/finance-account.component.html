@@ -89,11 +89,11 @@
                         </div>
                       </div>
                     </div>
-                <div class="m-form__group form-group row">
+                <div *ngIf="!IsUpdate" class="m-form__group form-group row">
                   <label class="col-3 col-form-label">
                     Account Type
                   </label>
-                  <div *ngIf="!IsUpdate" class="col-9">
+                  <div class="col-9">
                     <div class="m-radio-inline">
                       <label class="m-radio">
                         <input type="radio" checked="gchecked" (click)="isGeneral('true')" value="true" formControlName="IsGeneralOrDetail">

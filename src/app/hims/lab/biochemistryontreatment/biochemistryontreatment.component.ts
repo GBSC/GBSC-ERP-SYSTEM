@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { BioChemistryService } from '../../../core/Services/HIMS/Lab/bio-chemistry.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConsultantService, PatientService } from '../../../core';

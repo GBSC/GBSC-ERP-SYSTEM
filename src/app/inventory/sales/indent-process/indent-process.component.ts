@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { InventorysystemService, eTrackerUserService, AuthService } from '../../../core';
 import { ToastrService } from 'ngx-toastr';
 

@@ -15,17 +15,17 @@ import { AuthService } from '../../core';
 })
 
 export class FinanceAccountComponent implements OnInit {
-    private Accounts: Account[] = [];
-    private FinancialYears: FinancialYear[] = [];
-    private AccountForm: FormGroup;
+    public Accounts: Account[] = [];
+    public FinancialYears: FinancialYear[] = [];
+    public AccountForm: FormGroup;
 
-    private RequestAccount: AccountViewModel;
-    private UpdateAccount: Account;
+    public RequestAccount: AccountViewModel;
+    public UpdateAccount: Account;
 
-    private IsUpdate: boolean = false;
+    public IsUpdate: boolean = false;
     public IsGeneral : boolean = true;
 
-    constructor(private fb: FormBuilder, public Auth : AuthService, private FinanceService: FinanceService, private FinanceSetupService: FinanceSetupService, private Toastr: ToastrService) {
+    constructor(public fb: FormBuilder, public Auth : AuthService, public FinanceService: FinanceService, public FinanceSetupService: FinanceSetupService, public Toastr: ToastrService) {
 
     }
 

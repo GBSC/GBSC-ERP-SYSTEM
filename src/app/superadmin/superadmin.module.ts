@@ -5,16 +5,17 @@ import { routing } from './superadmin.routing';
 import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
-
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxDateBoxModule,
         routing
     ],
     declarations: [

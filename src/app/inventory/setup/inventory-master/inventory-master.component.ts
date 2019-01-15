@@ -8,7 +8,7 @@ import { SystemAdministrationService } from '../../../../../src/app/core';
 })
 export class InventoryMasterComponent implements OnInit {
 
-    tabs: string[] = ['product-type', 'brand', 'product-category', 'unit', 'pack-category', 'pack-type', 'pack-size', 'oil-type', 'products', 'general-sku'];
+    tabs: string[] = ['Product Type', 'Brand', 'Product Category', 'Unit', 'Pack Category', 'Pack Type', 'Pack Size', 'Oil Type', 'Products', 'General Sku'];
     selectedTab = this.tabs[0];
 
     constructor() { }

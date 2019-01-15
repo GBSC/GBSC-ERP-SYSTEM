@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GoogleMapsAPIWrapper, MapsAPILoader } from '@agm/core';
+import { Component } from '@angular/core';
 import { AuthService, InventorysystemService, eTrackerUserService } from '../../core';
 import { Region } from '../../core/Models/Inventory/Setup/Region';
 import { Area } from '../../core/Models/Inventory/Setup/Area';

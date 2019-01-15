@@ -1,6 +1,6 @@
 
 
-import { NgModule, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SystemAdministrationService, AuthService } from '../../core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -44,7 +44,7 @@ export class RolesandprivilegesComponent implements OnInit {
             rolePermissions: []
 
         }
-      
+
         this.showPopup = true;
 
     }
@@ -61,7 +61,7 @@ export class RolesandprivilegesComponent implements OnInit {
         this.systemAdmin.getModulesByCompanyId(this.companyId);
         this.modules = this.systemAdmin.modules;
         console.log(this.modules);
-       
+
     }
 
     fetchRoles() {
@@ -135,7 +135,7 @@ export class RolesandprivilegesComponent implements OnInit {
 
 
     moduleAlreadySelected(_module) {
-        return this.role.roleModules.find(m => m.moduleId === _module.moduleId);        
+        return this.role.roleModules.find(m => m.moduleId === _module.moduleId);
     }
     featuerAlreadySelected(feature) {
         return this.role.roleFeatures.find(f => f.featureId === feature.featureId);

@@ -92,6 +92,7 @@ export class FinanceAccountComponent implements OnInit {
             ParentAccountLevel: Number.parseInt(value.data.accountLevel) - 1,
             IsBankAccount : value.data.isBankAccount,
             IsGeneralOrDetail: value.data.isGeneralOrDetail,
+            ShowInBalanceSheet: value.data.showInBalanceSheet,
             AccountCode: value.data.accountCode,
             FinancialYearId: value.data.financialYearId,
             OpeningBalance: value.data.openingBalance,
@@ -115,17 +116,19 @@ export class FinanceAccountComponent implements OnInit {
     }
 
     SendRequest(value) {
-        console.log(value);
+        // console.log(value);
 
         if (value.ParentAccountCode == null || value.ParentAccountCode == "" || value.ParentAccountCode == " " || value.ParentAccountCode.length < 2) {
             delete value.parentAccountCode;
             delete value.OpeningBalance;
             value.ParentAccountLevel = 0;
             value.IsGeneralOrDetail = true;
+            value.IsBankAccount = false;
         }
 
         if (value.IsGeneralOrDetail == true) {
             delete value.OpeningBalance;
+            value.IsBankAccount = false;
         }
 
         if (this.IsUpdate === false) {
@@ -137,7 +140,8 @@ export class FinanceAccountComponent implements OnInit {
                 description: value.Description,
                 financialYearId: Number.parseInt(value.FinancialYearId),
                 openingBalance: Number.parseFloat(value.OpeningBalance),
-                showInBalanceSheet: value.ShowInBalanceSheet
+                showInBalanceSheet: value.ShowInBalanceSheet,
+                isBankAccount : value.IsBankAccount
             };
 
             this.RequestAccount = a;
@@ -159,7 +163,6 @@ export class FinanceAccountComponent implements OnInit {
             a.description = value.Description;
             a.openingBalance = Number.parseFloat(value.OpeningBalance) || null;
             a.showInBalanceSheet = value.ShowInBalanceSheet;
-            // a.isBankAccount = value.IsBankAccount;
 
             this.UpdateAccount = a;
             // console.log(a);

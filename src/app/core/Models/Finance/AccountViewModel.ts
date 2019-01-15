@@ -6,5 +6,6 @@ export interface AccountViewModel {
     accountLevel: number,
     description: string,
     financialYearId: number,
-    openingBalance: number
+    openingBalance: number,
+    isBankAccount: boolean
 }

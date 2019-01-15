@@ -1,6 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { InventorysystemService, AuthService } from '../../../core';
-import { DxDataGridComponent } from "devextreme-angular";
 import { Area } from '../../../core/Models/Inventory/Setup/Area';
 import { Region } from '../../../core/Models/Inventory/Setup/Region';
 

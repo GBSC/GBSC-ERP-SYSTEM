@@ -69,6 +69,7 @@ export class LocatorComponent {
     public dsfId: any;
     public userSelected: any;
     public mockUser : any =  { lat: 24.86218208911948, lng: 67.07455098524781 };
+    public khi : any =  { lat: 24.8607, lng: 67.0011 };
     public timeFilter : boolean = false;
 
     constructor(public eTrackerUserService: eTrackerUserService, public Auth: AuthService, public InventoryService: InventorysystemService) { }
@@ -145,6 +146,14 @@ export class LocatorComponent {
 
 
 
+    }
+
+    getLat() {
+        return !this.eTrackerUserService.currentUser? this.khi.lat : this.eTrackerUserService.currentUser.lat;
+    }
+    
+    getLng() {
+        return !this.eTrackerUserService.currentUser? this.khi.lng :  this.eTrackerUserService.currentUser.lng;
     }
 
     toggleFilter() {

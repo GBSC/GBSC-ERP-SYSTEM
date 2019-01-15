@@ -73,7 +73,7 @@
               </a>
             </li> -->
           </ul>
-       
+
 
         </div>
       </div>
@@ -97,26 +97,23 @@
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                     <div *ngIf="Storevisitdetails.length">
-                         <dx-data-grid id="gridContainer" [dataSource]="Storevisitdetails" [showBorders]="true"
-                       [masterDetail]="{ enabled: true, template: 'detail' }">    
-                        <dxo-scrolling mode="virtual"></dxo-scrolling>
-                         
-                        <dxi-column dataField="brandName" caption="Brand Name  " ></dxi-column>
-                        <div *dxTemplate="let type of 'detail'">
-                          <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
-                            <dxi-column dataField="productType" caption="Product Type"></dxi-column>
-                               <div *dxTemplate="let orderitems of 'sub-detail'">
-                                  <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
-                                      <dxi-column dataField="name" caption="Items"></dxi-column>
-                                  </dx-data-grid>
-                                </div>
-                          </dx-data-grid>
-                        </div>
-                    </dx-data-grid>  
-                  </div>
+                      <div *ngIf="Storevisitdetails.length">
+                        <dx-data-grid id="gridContainer" [dataSource]="Storevisitdetails" [showBorders]="true"
+                          [masterDetail]="{ enabled: true, template: 'detail' }">
+                          <dxo-scrolling mode="virtual"></dxo-scrolling>
 
-                    <div *ngIf="!Storevisitdetails.length">
+                          <dxi-column dataField="productType" caption="Product Type"></dxi-column>
+                          <div *dxTemplate="let orderitems of 'detail'">
+                            <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                              <dxi-column dataField="name" caption="Product"></dxi-column>
+                              <dxi-column dataField="unitPrice" caption="Price"></dxi-column>
+                              <dxi-column dataField="quantity" caption="Quantity"></dxi-column>
+                            </dx-data-grid>
+                          </div>
+                        </dx-data-grid>
+                      </div>
+
+                      <div *ngIf="!Storevisitdetails.length">
                         {{StoreNoOrderReason.reason}}
                       </div>
                       <!-- <dx-data-grid id="gridContainer" [dataSource]="storeVisits">
@@ -155,25 +152,25 @@
                 <div class="m-portlet__body">
                   <div class="row">
                     <div class="col-md-12">
-                    
-                         <dx-data-grid id="gridContainer" [dataSource]="StoreVisitInventories" [showBorders]="true"
-                       [masterDetail]="{ enabled: true, template: 'detail' }">    
+
+                      <dx-data-grid id="gridContainer" [dataSource]="StoreVisitInventories" [showBorders]="true"
+                        [masterDetail]="{ enabled: true, template: 'detail' }">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
-                         
-                        <dxi-column dataField="brandName" caption="Brand Name  " ></dxi-column>
+
+                        <dxi-column dataField="brandName" caption="Brand Name  "></dxi-column>
                         <div *dxTemplate="let type of 'detail'">
                           <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
                             <dxi-column dataField="productType" caption="Product Type"></dxi-column>
-                               <div *dxTemplate="let orderitems of 'sub-detail'">
-                                  <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
-                                      <dxi-column dataField="name" caption="Items"></dxi-column>
-                                  </dx-data-grid>
-                                </div>
+                            <div *dxTemplate="let orderitems of 'sub-detail'">
+                              <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                                <dxi-column dataField="name" caption="Items"></dxi-column>
+                              </dx-data-grid>
+                            </div>
                           </dx-data-grid>
                         </div>
-                    </dx-data-grid>  
-                
- 
+                      </dx-data-grid>
+
+
                     </div>
                   </div>
                 </div>

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule, DxSchedulerModule, DxButtonModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -157,6 +158,9 @@ import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.co
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
 import { LeaveDetailComponent } from './Reports/Leave/leave-detail/leave-detail.component';
 import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -165,8 +169,10 @@ import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         HttpClientModule,
         routing
     ],

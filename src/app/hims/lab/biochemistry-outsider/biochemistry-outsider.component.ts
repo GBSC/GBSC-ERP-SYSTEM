@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { BiochemistryoutsiderService } from '../../../../app/core/Services/HIMS/Lab/biochemistryoutsider.service';
 import { PatientService } from '../../../../app/core';
 import { Spouse } from '../../../../app/core/Models/HIMS/spouse';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 
 @Component({
     selector: 'app-biochemistry-outsider',

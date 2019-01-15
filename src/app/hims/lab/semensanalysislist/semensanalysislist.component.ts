@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { SemenanalysisService } from '../../../../app/core/Services/HIMS/Lab/semenanalysis.service';
 import { PatientService } from '../../../../app/core';
 

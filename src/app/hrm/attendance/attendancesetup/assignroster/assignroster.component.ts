@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AttendancesetupService, EmployeeService } from '../../../../core';
-import { Employee } from '../../../../core/Models/HRM/employee';
-import { DxTreeViewComponent } from 'devextreme-angular';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { DxTreeViewComponent } from 'devextreme-angular/ui/tree-view';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 // import { saveAs } from 'file-saver';

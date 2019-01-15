@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { eTrackerUserService, AuthService, InventorysystemService } from '../../../app/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Select2OptionData } from 'ng2-select2';
 import { ToastrService } from 'ngx-toastr';

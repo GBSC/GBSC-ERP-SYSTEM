@@ -143,6 +143,10 @@ export class SystemAdministrationService {
         return await this.ApiService.get(this.API_URL + 'GetRoles').toPromise();
     }
 
+    getDropdownRolesByCompany(companyId: any) {
+        return this.ApiService.get(this.API_URL + 'GetDropdownRolesByCompany/' + companyId);
+    }
+
     getRolesByCompanyId(companyId: any) {
         return this.ApiService.get(this.API_URL + 'GetRolesByCompany/' + companyId);
     }

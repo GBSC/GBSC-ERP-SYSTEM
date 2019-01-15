@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "stats": "npx webpack-bundle-analyzer dist/Gbsc-Erp/stats.json",
     "fix-memory-limit": "cross-env LIMIT=8192 increase-memory-limit",
     "build-prod": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --prod",
     "ng-custom-serve": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng serve"
@@ -51,17 +52,18 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.11.0",
+    "@angular-devkit/build-angular": "^0.12.0",
     "@angular/cli": "~7.1.4",
     "@angular/compiler-cli": "~7.1.0",
     "@angular/language-service": "~7.1.0",
-    "@types/node": "~8.9.4",
-    "ts-node": "~7.0.0",
-    "tslint": "~5.11.0",
-    "increase-memory-limit": "^1.0.3",
-    "cross-env": "^5.0.5",
     "@ckeditor/ckeditor5-angular": "^1.0.1",
     "@ckeditor/ckeditor5-build-classic": "^11.1.1",
+    "@types/node": "~8.9.4",
+    "cross-env": "^5.0.5",
+    "increase-memory-limit": "^1.0.3",
+    "source-map-explorer": "^1.6.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
     "typescript": "~3.1.6"
   }
 }

@@ -2,7 +2,7 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
-        <h3 class="m-portlet__head-text">Package Type</h3>
+        <h3 class="m-portlet__head-text">Oil Type</h3>
       </div>
     </div>
   </div>
@@ -13,14 +13,16 @@
   <div class="col-md-12"> 
     <dx-data-grid id="gridContainer" [dataSource]="PackageTypes" keyExpr="packageTypeId" (onRowInserted)="AddPackageType($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdatePackageType()" (onRowRemoved)="DeletePackageType($event)"> 
       <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
-        <dxo-popup title="Add Pack Type" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
+        <dxo-popup title="Add Oil Type" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
       </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
             <dxo-paging [pageSize]="10"></dxo-paging>
             <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
+            <dxi-column dataField="packageTypeCode" caption="Code"></dxi-column>
             <dxi-column dataField="name" caption="Name"></dxi-column>
+            <dxi-column dataField="class" caption="Material Class"></dxi-column>
           </dx-data-grid> 
       </div>
     </div>

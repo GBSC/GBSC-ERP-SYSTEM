@@ -5,7 +5,7 @@
        <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                <div class="m-portlet__head-title">
-                 <h3 class="m-portlet__head-text">General SQs</h3>
+                 <h3 class="m-portlet__head-text">General SKUs</h3>
                </div>
              </div>
            </div>
@@ -19,6 +19,7 @@
                    <dxo-header-filter [visible]="true"></dxo-header-filter>
                    <dxo-paging [pageSize]="5"></dxo-paging>
                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                   <dxi-column dataField="sKUCode" caption="Code"></dxi-column>
                    <dxi-column dataField="itemName" caption="Item"></dxi-column>
                    <dxi-column dataField="unit" caption="Unit"></dxi-column> 
                  </dx-data-grid>

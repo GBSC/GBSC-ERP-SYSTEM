@@ -44,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="showHideFilter" class="m-grid m-grid--ver-desktop m-grid--desktop">
+  <div [style.display]="showHideFilter? 'block' : 'none'" class="m-grid m-grid--ver-desktop m-grid--desktop">
 
     <div class="col-sm-12">
       <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
@@ -211,10 +211,10 @@
 
     <p *ngIf="eTrackerUserService?.showSpinner" style="text-align: center;">loading...</p>
 
-    <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
-  [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
+    <agm-map [zoom]="selectedZoom" [usePanning]="true" [latitude]="getLat()"
+  [longitude]="getLng()" (mapReady)="mapReady($event)">
 
-  <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker"
+  <agm-marker [latitude]="getLat()" [longitude]="getLng()" [iconUrl]="currentLocationMarker"
     [label]="{color: 'black', fontSize: '14px', fontWeight: 'bold',  text: eTrackerUserService.currentUser?.fullName }">
     <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
       [placement]="right" [closeWhenOthersOpen]="false">

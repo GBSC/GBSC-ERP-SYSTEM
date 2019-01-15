@@ -10,6 +10,9 @@ import { RootComponent } from './root/root.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
 import { FWBInintialComponent } from './fwb-inintial/fwb-inintial.component';
+import { SonologistComponent } from './Setup/sonologist/sonologist.component';
+import { UltraSoundPelvisDetailComponent } from './ultra-sound-pelvis-detail/ultra-sound-pelvis-detail.component';
+import { UltraSoundPelvisReportComponent } from './reports/ultra-sound-pelvis-report/ultra-sound-pelvis-report.component';
 
 
 @NgModule({
@@ -34,7 +37,13 @@ MenuComponent,
   
 UltraSoundPelvisComponent,
   
-FWBInintialComponent
+FWBInintialComponent,
+  
+SonologistComponent,
+  
+UltraSoundPelvisDetailComponent,
+  
+UltraSoundPelvisReportComponent
 ],
 
 })

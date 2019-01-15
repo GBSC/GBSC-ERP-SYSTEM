@@ -16,11 +16,19 @@
 			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
  				<a routerLink="/ultrasound/ultrasoundpelvis"  class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-search"></i>
-					<span class="m-menu__link-text"> Ultra Sound Pelvis
+					<span class="m-menu__link-text"> U-S-Pelvis
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
+			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/ultrasound/ultrasoundpelvisdetail"  class="m-menu__link m-menu__toggle">
+				  <i class="m-menu__link-icon flaticon-search"></i>
+				  <span class="m-menu__link-text"> U-S-Pelvis Detail
+				  </span>
+				  <i class="m-menu__ver-arrow la la-angle-right"></i>
+			  </a>
+		  </li>
 			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  data-menu-submenu-toggle="click" data-redirect="true">
 				<a routerLink="/ultrasound/fwbinitial"  class="m-menu__link m-menu__toggle">
 				   <i class="m-menu__link-icon flaticon-search"></i>
@@ -29,6 +37,124 @@
 				   <i class="m-menu__ver-arrow la la-angle-right"></i>
 			   </a>
 		   </li>
+		   <!-- setup strat -->
+			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+			   <a href="#" class="m-menu__link m-menu__toggle">
+				   <i class="m-menu__link-icon flaticon-menu"></i>
+				   <span class="m-menu__link-text">
+					   Setups
+				   </span>
+				   <i class="m-menu__ver-arrow la la-angle-right"></i>
+			   </a>
+			   <div class="m-menu__submenu">
+				   <span class="m-menu__arrow"></span>
+				   <div class="m-menu__wrapper">
+					   <ul class="m-menu__subnav">
+						   <li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+							aria-haspopup="true">
+							   <span class="m-menu__link">
+								   <span class="m-menu__link-text">
+									   Applications
+								   </span>
+							   </span>
+						   </li>
+						   <li class="m-menu__section">
+							   <h4 class="m-menu__section-text">
+								   Ultra-Sound Setup Forms
+							   </h4>
+							   <i class="m-menu__section-icon flaticon-more-v3"></i>
+						   </li>
+
+						   <!-- BEGIN: Company Setup -->
+						   <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+							aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+							   <a href="#" class="m-menu__link m-menu__toggle">
+								   <span class="m-menu__link-text">
+									Setup Forms
+								   </span>
+								   <i class="m-menu__ver-arrow la la-angle-right"></i>
+							   </a>
+							   <div class="m-menu__submenu">
+								   <span class="m-menu__arrow"></span>
+								   <ul class="m-menu__subnav">
+									    <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+										   <a routerLink="/ultrasound/setup/sonologist" class="m-menu__link">
+											   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												   <span></span>
+											   </i>
+											   <span class="m-menu__link-text">
+												Sonologist
+											   </span>
+										   </a>
+									   </li>
+								   </ul>
+							   </div>
+						   </li>
+					   </ul>
+				   </div>
+			   </div>
+		   </li>
+			<!-- setup end -->
+			  <!-- setup strat -->
+			  <li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			  aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
+				  <a href="#" class="m-menu__link m-menu__toggle">
+					  <i class="m-menu__link-icon flaticon-menu"></i>
+					  <span class="m-menu__link-text">
+						  Reports
+					  </span>
+					  <i class="m-menu__ver-arrow la la-angle-right"></i>
+				  </a>
+				  <div class="m-menu__submenu">
+					  <span class="m-menu__arrow"></span>
+					  <div class="m-menu__wrapper">
+						  <ul class="m-menu__subnav">
+							  <li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+							  aria-haspopup="true">
+								  <span class="m-menu__link">
+									  <span class="m-menu__link-text">
+										  Applications
+									  </span>
+								  </span>
+							  </li>
+							  <li class="m-menu__section">
+								  <h4 class="m-menu__section-text">
+									   
+								  </h4>
+								  <i class="m-menu__section-icon flaticon-more-v3"></i>
+							  </li>
+  
+							  <!-- BEGIN: Company Setup -->
+							  <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+							  aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
+								  <a href="#" class="m-menu__link m-menu__toggle">
+									  <span class="m-menu__link-text">
+									 Ultra Sound Reports
+									  </span>
+									  <i class="m-menu__ver-arrow la la-angle-right"></i>
+								  </a>
+								  <div class="m-menu__submenu">
+									  <span class="m-menu__arrow"></span>
+									  <ul class="m-menu__subnav">
+											<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+											  <a routerLink="/ultrasound/reports/ultrasoundpelvisreport" class="m-menu__link">
+												  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+													  <span></span>
+												  </i>
+												  <span class="m-menu__link-text">
+												  Ultra Sound Pelvis
+												  </span>
+											  </a>
+										  </li>
+									  </ul>
+								  </div>
+							  </li>
+						  </ul>
+					  </div>
+				  </div>
+			  </li>
+			  <!-- setup end -->
 		<!-- Reports end -->
 		</ul>
 	</div>

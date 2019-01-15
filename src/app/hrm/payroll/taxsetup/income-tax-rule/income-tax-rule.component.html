@@ -122,10 +122,8 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-paging [pageSize]="4"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
-                <dxi-column caption="Salary Range">
-                  <dxi-column dataField="from" caption="From"></dxi-column>
-                  <dxi-column dataField="to" caption="Till"></dxi-column>
-                </dxi-column>
+                  <dxi-column dataField="from" caption="Salary From"></dxi-column>
+                  <dxi-column dataField="to" caption="Salary Till"></dxi-column>
                 <dxi-column dataField="taxType" caption="Tax Type">
                   <dxo-lookup [dataSource]="taxTypeSource">
                   </dxo-lookup>
@@ -166,10 +164,8 @@
                 <dxo-paging [pageSize]="4"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
 
-                <dxi-column caption="Salary Range">
-                  <dxi-column dataField="from" caption="From"></dxi-column>
-                  <dxi-column dataField="to" caption="Till"></dxi-column>
-                </dxi-column>
+                  <dxi-column dataField="from" caption="Salary From"></dxi-column>
+                  <dxi-column dataField="to" caption="Salary Till"></dxi-column>
                 <dxi-column dataField="taxType" caption="Tax Type">
                   <dxo-lookup [dataSource]="taxTypeSource">
                   </dxo-lookup>
@@ -185,9 +181,8 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-12">
         <div class="m-portlet__foot m-portlet__foot--fit">
           <div class="m-form__actions m-form__actions" style="padding:19px;">
             <div class="row">
@@ -207,9 +202,6 @@
               <div class="col-lg-3"></div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> 
 
-  </div>
 </div>

@@ -13,7 +13,8 @@ export class UserloanComponent implements OnInit {
     public loanType: any;
     public Updateloan: any;
 
-    constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) { }
+    constructor(public payrollsetupservice: PayrollSetupService, public employeeservice: EmployeeService) {
+     }
 
     async ngOnInit() {
 
@@ -25,23 +26,19 @@ export class UserloanComponent implements OnInit {
     }
 
     async addUserLoan(value) {
-
         await this.payrollsetupservice.addUserLoan(value.data);
         this.UserLoan = await this.payrollsetupservice.getUserLoans();
     }
 
     Updatingloan(value) {
-
         this.Updateloan = { ...value.oldData, ...value.newData };
-    }
+    } 
 
     async updateUserLoan() {
-
         await this.payrollsetupservice.updateUserLoan(this.Updateloan);
-    }
+    } 
 
     async deleteUserLoan(value) {
-
         await this.payrollsetupservice.deleteUserLoan(value.key);
     }
 }

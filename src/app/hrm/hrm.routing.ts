@@ -171,9 +171,10 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'module', component: ModuleComponent },
 
             {
-                path: 'employeesetups', component: HrsetupMasterComponent,
+                path: 'employee',
                 children: [
-
+                    
+                    {path: 'employeesetups', component: HrsetupMasterComponent},
                     { path: 'home', component: HrmSetupHomeComponent },
                     { path: 'employeetype', component: EmployeeTypes },
                     { path: 'country', component: CountryComponent },
@@ -198,10 +199,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'leave',
                 children: [
-                    {
-                        path: 'setups', component: LeavesetupMasterComponent,
-                        children: [
- 
+                         
+                            {path: 'setups', component: LeavesetupMasterComponent},
                             { path: 'leavepurpose', component: LeavepurposeComponent },
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
@@ -211,9 +210,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'leaveeligibility', component: LeaveeligibilityComponent },
                             { path: 'leavesubtype', component: LeavesubtypeComponent },
                             { path: 'decimalroundmatrix', component: DecimalroundingmatrixComponent },
-                            { path: 'proratematrix', component: ProratematrixComponent }
-                        ]
-                    },
+                            { path: 'proratematrix', component: ProratematrixComponent },
                     {
                         path: 'leaveadmin',
                         children: [
@@ -251,10 +248,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'attendance',
                 children: [
-                    {
-                        path: 'setups', component: AttendancesetupMasterComponent,
-                        children: [
-
+                     
+                            { path: 'setups', component: AttendancesetupMasterComponent}, 
                             { path: 'assignroster', component: AssignrosterComponent },
                             { path: 'updateassignroster/:id', component: UpdateassignrosterComponent },
                             { path: 'assignrosterexcelsheet/:id', component: AssignRosterExcelsheetComponent },
@@ -269,9 +264,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'roster', component: RosterComponent },
                             { path: 'shift', component: ShiftComponent },
                             { path: 'updateshift/:id', component: ShiftComponent },
-                            { path: 'shifts', component: ViewShiftComponent }
-                        ]
-                    },
+                            { path: 'shifts', component: ViewShiftComponent },
+                        
                     {
                         path: 'attendanceadmin',
                         children: [

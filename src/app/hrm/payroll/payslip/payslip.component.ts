@@ -68,7 +68,7 @@ export class PayslipComponent implements OnInit {
     }
 
     GetUserloan(value) {
-        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)
+        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)     
     }
 
     Updatingloan(value) {

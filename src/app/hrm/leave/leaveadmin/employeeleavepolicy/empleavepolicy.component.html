@@ -14,188 +14,115 @@
         </div>
         <div class="m-portlet__body"> 
           <form [formGroup]="EmployeeleavePolicyForm"> 
-            <div class="row">
-              <div class="col-md-10">
+        
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                    <div class="col-lg-8"> 
+                  <label>
                     Employee:
-                  </label>
-                  <div class="col-lg-8"> 
-                      <select #lp class="form-control m-input m-input--solid" (change)="getLeavePolicy(lp.value)" formControlName="UserId">
+                  </label> 
+                      <select #lp class="form-control m-input" (change)="getLeavePolicy(lp.value)" formControlName="UserId">
                       <option *ngFor="let employee of employees; let i = index" [value]="employee.userId">{{employee.fullName}}</option>
                     </select> 
-                  </div>
+                    </div> 
                 </div>
-              </div> 
-            </div>
+               
 
-            <div class="row">
-              <div class="col-md-10"> 
+         
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                  <div class="col-lg-6">
+                  <label>
                     Leave Type:
                   </label>
-                  <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" #q (change)="getQuantitybyType(q.value)" formControlName="LeaveTypeId">
+                    <select class="form-control m-input" #q (change)="getQuantitybyType(q.value)" formControlName="LeaveTypeId">
                      <option>--- Select Leave Types ---</option>
                      <option *ngFor="let levetype of leaveTypes" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                     </select>
                   </div>
+
+                  <div class="col-lg-6">
+                  <label>
+                      Leave Year:
+                    </label> 
+                      <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" formControlName="LeaveYearId"> 
+                        </dx-select-box>
+                    </div> 
                 </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
+             <div class="m--space-30"></div>
 
-
-            <div class="row">
-              <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Leave Year:
-                  </label>
-                  <div class="col-lg-8">
-                    <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" formControlName="LeaveYearId"> 
-                      </dx-select-box>
+                  <div class="col-lg-4">
+                  <label>Entitled Qty (Days): </label>
+                    <input class="form-control m-input" formControlName="EntitledQuantity" [value]="selectedLeaveTypes?.entitledQuantity" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div> 
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Entitled Qty (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EntitledQuantity" [value]="selectedLeaveTypes?.entitledQuantity" type="text">
+                  <div class="col-lg-4">
+                  <label>Maximum Allowed Balance (Days): </label>
+                    <input class="form-control m-input" formControlName="MaximumAllowedBalance" [value]="selectedLeaveTypes?.maximumAllowedBalance" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Maximum Allowed Balance (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAllowedBalance" [value]="selectedLeaveTypes?.maximumAllowedBalance" type="text">
+                  <div class="col-lg-4">
+                  <label>Maximum Leave can be Taken at a time Balance (Days): </label>
+                    <input class="form-control m-input" formControlName="MaximumAtATime"[value]="selectedLeaveTypes?.maximumAtATime" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
+                </div> 
+            <div class="m--space-20"></div>
+           
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Maximum Leave can be Taken at a time Balance (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MaximumAtATime"[value]="selectedLeaveTypes?.maximumAtATime" type="text">
+                  <div class="col-lg-4">
+                  <label>Maximum Leave can be Taken at a time Balance (Days): </label>
+                    <input class="form-control m-input" formControlName="MaximumAtATime"[value]="selectedLeaveTypes?.maximumAtATime" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div> 
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Minimum Leave can be Taken at a time Balance (Days):</label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumAtATime" [value]="selectedLeaveTypes?.minimumAtATime" type="text">
+                  <div class="col-lg-4">
+                  <label>Minimum Leave can be Taken at a time Balance (Days):</label>
+                    <input class="form-control m-input" formControlName="MinimumAtATime" [value]="selectedLeaveTypes?.minimumAtATime" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Minimum Leave Intemation Period (Days): </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="MinimumIntimationPeriod" [value]="selectedLeaveTypes?.minimumIntimationPeriod" type="text">
+                  <div class="col-lg-4">
+                  <label>Minimum Leave Intemation Period (Days): </label>
+                    <input class="form-control m-input" formControlName="MinimumIntimationPeriod" [value]="selectedLeaveTypes?.minimumIntimationPeriod" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
+                </div> 
+            <div class="m--space-20"></div>  
 
-            <div class="row">
-              <div class="col-lg-10">
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Leave Encashment Application limit: </label>
-                  <div class="col-lg-8">
-                    <input class="form-control m-input m-input--solid" formControlName="EncashmentApplicationLimit" [value]="selectedLeaveTypes?.encashmentApplicationLimit" type="text">
+                  <div class="col-lg-4">
+                  <label>Leave Encashment Application limit: </label>
+                    <input class="form-control m-input" formControlName="EncashmentApplicationLimit" [value]="selectedLeaveTypes?.encashmentApplicationLimit" type="text">
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-07"></div>
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Leave Day Type: </label>
-                  <div class="col-lg-8">
-
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
+                  <div class="col-lg-4">
+                  <label>Leave Day Type: </label>
+                    <select class="form-control m-input" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
                       <option value="" disabled selected>-- Select Leave Type --</option>
                       <option *ngFor="let levedaytype of leaveDayType" [value]="levedaytype.leaveDayTypeId">{{levedaytype.name}}</option>
                     </select>
-
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="m--space-10"></div>
-
-            <div class="row">
-              <div class="col-md-10">
-
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Paid/UnPaid Qty /Half Paid:
-                  </label>
-                  <div class="col-md-3">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="PaidDaysQuantity" [value]="selectedLeaveTypes?.paidDaysQuantity">
-                  </div>
-
-                  <div class="col-md-3">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="HalfPaidDaysQuantity" [value]="selectedLeaveTypes?.halfPaidDaysQuantity">
-                  </div>
-
-                  <div class="col-md-2">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="UnPaidDaysQuantity" [value]="selectedLeaveTypes?.unPaidDaysQuantity">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="m--space-10"></div>
-
-
-            <div class="row">
-              <div class="col-lg-10">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Eligibility Based on: </label>
-                  <div class="col-lg-8">
-                    <select class="form-control m-input m-input--solid" formControlName="LeaveEligibilityId" name="" id="">
+                  <div class="col-lg-4">
+                  <label>Eligibility Based on: </label>
+                    <select class="form-control m-input" formControlName="LeaveEligibilityId" name="" id="">
                       <option value="" disabled selected>-- Select Leave Eligibility --</option>
                       <option *ngFor="let leveeligibility of leaveEligiblity" [value]="leveeligibility.leaveEligibilityId">{{leveeligibility.name}}</option>
                     </select>
                   </div>
+                </div> 
+            <div class="m--space-20"></div>
+ 
+                <div class="form-group m-form__group row">
+                  <div class="col-md-4">
+                      <label>Paid:</label>
+                    <input type="text" class="form-control m-input" formControlName="PaidDaysQuantity" [value]="selectedLeaveTypes?.paidDaysQuantity">
+                  </div> 
+                  <div class="col-md-4">
+                  <label>Half Paid:</label>
+                    <input type="text" class="form-control m-input" formControlName="HalfPaidDaysQuantity" [value]="selectedLeaveTypes?.halfPaidDaysQuantity">
+                  </div>
+                  <div class="col-md-4">
+                  <label>UnPaid Quantity:</label>
+                    <input type="text" class="form-control m-input" formControlName="UnPaidDaysQuantity" [value]="selectedLeaveTypes?.unPaidDaysQuantity">
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="m--space-10"></div>
+            <div class="m--space-20"></div> 
 
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                  <label>
                     File Attachement Required:
                   </label>
                   <div class="col-lg-1">
@@ -205,7 +132,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="FileAttachmentDaysLimit" [value]="selectedLeaveTypes?.fileAttachmentDaysLimit">
+                    <input type="text" class="form-control m-input" formControlName="FileAttachmentDaysLimit" [value]="selectedLeaveTypes?.fileAttachmentDaysLimit">
                   </div>
                 </div>
               </div>
@@ -216,7 +143,7 @@
               <div class="col-md-10">
 
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                  <label>
                     Job Period Based:
                   </label>
                   <div class="col-lg-1">
@@ -226,7 +153,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="JobPeriodTime" [value]="selectedLeaveTypes?.jobPeriodTime">
+                    <input type="text" class="form-control m-input" placeholder="In Month" formControlName="JobPeriodTime" [value]="selectedLeaveTypes?.jobPeriodTime">
                   </div>
                 </div>
               </div>
@@ -236,7 +163,7 @@
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                  <label>
                     Is Balance Brought Forward:
                   </label>
                   <div class="col-lg-1">
@@ -246,11 +173,11 @@
                     </label>
                   </div>
                   <div class="col-md-4">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="BalanceBroughtForwardQuantity" [value]="selectedLeaveTypes?.balanceBroughtForwardQuantity">
+                    <input type="text" class="form-control m-input" formControlName="BalanceBroughtForwardQuantity" [value]="selectedLeaveTypes?.balanceBroughtForwardQuantity">
                   </div>
 
                   <div class="col-md-3">
-                    <input type="text" class="form-control m-input m-input--solid" placeholder="In Month" formControlName="BalanceBroughtForwardValidity" [value]="selectedLeaveTypes?.balanceBroughtForwardValidity">
+                    <input type="text" class="form-control m-input" placeholder="In Month" formControlName="BalanceBroughtForwardValidity" [value]="selectedLeaveTypes?.balanceBroughtForwardValidity">
                   </div>
                 </div>
               </div>
@@ -261,7 +188,7 @@
               <div class="col-md-10">
 
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
+                  <label>
                     Leave is Encashable:
                   </label>
                   <div class="col-lg-1">
@@ -271,7 +198,7 @@
                     </label>
                   </div>
                   <div class="col-md-7">
-                    <input type="text" class="form-control m-input m-input--solid" formControlName="EncashmentDays" [value]="selectedLeaveTypes?.encashmentDays">
+                    <input type="text" class="form-control m-input" formControlName="EncashmentDays" [value]="selectedLeaveTypes?.encashmentDays">
                   </div>
                 </div>
               </div>
@@ -281,7 +208,7 @@
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">Day Continuation Restriction: </label>
+                  <label>Day Continuation Restriction: </label>
                   <div class="col-lg-3">
                     <label class="m-checkbox">
                       <input type="checkbox" formControlName="DayContinuationRestriction" [value]="selectedLeaveTypes?.dayContinuationRestriction">

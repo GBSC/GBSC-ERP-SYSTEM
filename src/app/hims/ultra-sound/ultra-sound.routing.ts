@@ -23,6 +23,7 @@ export const ultraSoundRouting: ModuleWithProviders = RouterModule.forChild([
               { path: 'ultrasoundpelvis', component: UltraSoundPelvisComponent },
               { path: 'ultrasoundpelvis/:id', component: UltraSoundPelvisComponent },
               { path: 'fwbinitial', component: FWBInintialComponent },
+              { path: 'fwbinitial/:id', component: FWBInintialComponent },
               { path: 'ultrasoundpelvisdetail', component: UltraSoundPelvisDetailComponent },
 
 

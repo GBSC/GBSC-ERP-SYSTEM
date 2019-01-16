@@ -26,7 +26,9 @@ export class UltraSoundPelvisReportComponent implements AfterViewInit {
 
     this.router.params.subscribe((params)=>{
       this.patientId = +params['id'];
-      this.ultraSoundDate = params['date'];
+     // this.ultraSoundDate = this.formatDate(new Date(params['date']));
+            this.ultraSoundDate =  params['date'];
+
       console.log(this.patientId);
       console.log(this.ultraSoundDate);
 
@@ -34,7 +36,9 @@ export class UltraSoundPelvisReportComponent implements AfterViewInit {
 
     });
    }
-
+   formatDate(date: Date) {
+    return  ( date.getMonth() +1)   + "/" + date.getDate()  + "/" +date.getFullYear();
+  }
   ngAfterViewInit() {
 
       const reportUrl = ko["observable"]("ultraSoundPelvisReport"),
@@ -42,8 +46,8 @@ export class UltraSoundPelvisReportComponent implements AfterViewInit {
       container.innerHTML = Html;
 
 
-        var host = `${environment.repotr_url}`;
-       //var host ='http://localhost:57581/'
+         var host = `${environment.repotr_url}`;
+        //var host ='http://localhost:57581/'
       this.renderer.appendChild(this.scripts.nativeElement, container);
       ko.applyBindings({
           reportUrl,

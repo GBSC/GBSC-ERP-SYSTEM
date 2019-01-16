@@ -41,16 +41,16 @@
                   <dxo-lookup [dataSource]="treatmentType" displayExpr="mrn" valueExpr="treatmentTypeId"></dxo-lookup>
                 </dxi-column>
 
-                <dxi-column caption="Update" cellTemplate="chartCellTemplate"  [width]="90"></dxi-column>
-                <div *dxTemplate="let d of 'chartCellTemplate'">
+                <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"  [width]="90"></dxi-column>
+                <div *dxTemplate="let x of 'chartCellTemplateupdate'">
                 <div class="chart-cell">
-                  <dx-button (click)="updateUltraSoundPelvis(d)"  icon="repeat"></dx-button>
+                  <dx-button (click)="updateUltraSoundPelvis(x)" class="icon"  icon="edit"></dx-button>
                 </div>
                 </div>      
                 <dxi-column caption="Report" cellTemplate="chartCellTemplate"  [width]="90"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">
                 <div class="chart-cell">
-                  <dx-button (click)="ultrasoundpelvisreport(d)"  icon="repeat"></dx-button>
+                  <dx-button (click)="ultrasoundpelvisreport(d)"  icon="doc"></dx-button>
                 </div>
                 </div>          
                </dx-data-grid>

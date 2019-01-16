@@ -43,6 +43,26 @@ export class UltraSoundService {
     return this.ApiService.put(this.API_URL+'UltraSound/UpdateUltraSoundPelvis',value);
   }
 
+
+  getFwbInitial():Observable<any>{
+    return this.ApiService.get(this.API_URL+'UltraSound/GetFwbInitials');
+  }
+
+  getFwbInitialById(id : number ): Observable <any>{
+    return this.ApiService.get(this.API_URL+'UltraSound/GetFwbInitial/'+id);
+  }
+
+  addFwbInitial(value):Observable<any>{
+    return this.ApiService.post(this.API_URL+'UltraSound/AddFwbInitial',value);
+  }
+
+  updateFwbInitial(value):Observable<any>{
+    return this.ApiService.put(this.API_URL+'UltraSound/UpdateFwbInitial',value);
+  }
+
+  deleteFwbInitial (id : number ) :Observable<any>{
+    return this.ApiService.delete(this.API_URL+'UltraSound/DeleteFwbInitial/'+id);
+  }
    
 }
  

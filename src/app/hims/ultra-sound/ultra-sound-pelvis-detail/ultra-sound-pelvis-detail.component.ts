@@ -50,8 +50,8 @@ export class UltraSoundPelvisDetailComponent implements OnInit {
      this.Router.navigate(['/ultrasound/ultrasoundpelvis']);
   }
 
-  updateUltraSoundPelvis(d){
-  let id  = d.key.ultraSoundPelvisId
+  updateUltraSoundPelvis(x){
+  let id  = x.key.ultraSoundPelvisId
      this.Router.navigate(['/ultrasound/ultrasoundpelvis/'+id]);
 
   }
@@ -63,7 +63,7 @@ export class UltraSoundPelvisDetailComponent implements OnInit {
   }
 
   formatDate(date: Date) {
-    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    return  ( date.getMonth() +1)   + "-" + date.getDate()  + "-" +date.getFullYear();
   }
 
 }

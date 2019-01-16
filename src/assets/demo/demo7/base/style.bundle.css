@@ -34403,7 +34403,7 @@ body.m-content--skin-light2 {
         padding: 0 3px; } }
 
 .m-subheader-search {
-  background: radial-gradient(ellipse at center, rgb(32, 85, 127) 0%,rgb(17, 71, 114) 86%,#e37125 73%,#e37125 70%,#e37125 100%);
+  background: radial-gradient(ellipse at center, rgb(32, 85, 127) 0%,rgb(17, 71, 114) 86%,#174b76 73%,#154872 70%,#164b75 100%);
   color: whitesmoke;
   padding: 10px 20px 10px 20px; }
   .m-subheader-search .m-subheader-search__title {

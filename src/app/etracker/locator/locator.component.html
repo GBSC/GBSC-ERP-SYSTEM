@@ -26,7 +26,8 @@
           </span>
         </button>
 
-        <button *ngIf="showHideFilter" (click)="fetchDayStartEnd($event)" class="btn btn-success m-btn m-btn--icon m-btn--pill" style="float: right; margin-right: 10px; border: solid 1px;">
+        <button *ngIf="showHideFilter" (click)="fetchDayStartEnd($event)" class="btn btn-success m-btn m-btn--icon m-btn--pill"
+          style="float: right; margin-right: 10px; border: solid 1px;">
           <span style="color: white;">
             <i class="fa fa-search"></i>
             <span>
@@ -122,7 +123,7 @@
         <div class="col-sm-2">
           <div class="m-form__group form-group">
             <label>
-              Sub Section
+              Subsection
             </label>
             <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input" (change)="onSubsectionChange(SubSection.value)">
               <option class='option' disabled selected>Select Subsection</option>
@@ -136,7 +137,7 @@
               Day Start
             </label>
             <input class="form-control m-input" type="date" (change)="showDayStartEnd($event)">
-          </div> 
+          </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group m-form__group">
@@ -150,48 +151,48 @@
             </select>
           </div>
         </div>
-          <div class="col-sm-1">
-            <div class="m-form__group form-group">
-              <label>
-                Time
+        <div class="col-sm-1">
+          <div class="m-form__group form-group">
+            <label>
+              Time
+            </label>
+            <div class="m-checkbox-list">
+              <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
+                <input type="checkbox" (change)="showTimeFilter($event)">
+                Filter
+                <span></span>
               </label>
-              <div class="m-checkbox-list">
-                <label class="m-checkbox m-checkbox--solid m-checkbox--state-success" style="color:white;">
-                  <input type="checkbox" (change)="showTimeFilter($event)">
-                  Filter
-                  <span></span>
-                </label>
-              </div>
-            </div>
-          </div>
-        <div class="col-sm-5">
-        <div *ngIf="timeFilter"  class="row">
-         
-          <div class="col-sm-3">
-            <div class="form-group m-form__group">
-              <label>Hour</label>
-              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'start')">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group m-form__group">
-              <label>Minutes</label>
-              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'start')">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group m-form__group">
-              <label>End Hours</label>
-              <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'end')">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group m-form__group">
-              <label>End Minutes</label>
-              <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'end')">
             </div>
           </div>
         </div>
+        <div class="col-sm-5">
+          <div *ngIf="timeFilter" class="row">
+
+            <div class="col-sm-3">
+              <div class="form-group m-form__group">
+                <label>Hour</label>
+                <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'start')">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group m-form__group">
+                <label>Minutes</label>
+                <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'start')">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group m-form__group">
+                <label>End Hours</label>
+                <input class="form-control m-input" type="number" name="hour" min="0" max="23" (change)="getHour($event, 'end')">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group m-form__group">
+                <label>End Minutes</label>
+                <input class="form-control m-input" type="number" name="hour" min="1" max="60" (change)="getMinutes($event, 'end')">
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -211,81 +212,83 @@
 
     <p *ngIf="eTrackerUserService?.showSpinner" style="text-align: center;">loading...</p>
 
-    <agm-map [zoom]="selectedZoom" [usePanning]="true" [latitude]="getLat()"
-  [longitude]="getLng()" (mapReady)="mapReady($event)">
+    <agm-map [zoom]="selectedZoom" [usePanning]="true" [latitude]="getLat()" [longitude]="getLng()" (mapReady)="mapReady($event)">
 
-  <agm-marker [latitude]="getLat()" [longitude]="getLng()" [iconUrl]="currentLocationMarker"
-    [label]="{color: 'black', fontSize: '14px', fontWeight: 'bold',  text: eTrackerUserService.currentUser?.fullName }">
-    <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
-      [placement]="right" [closeWhenOthersOpen]="false">
-      <ng-template>
-        <div class="marker-info">
-          <div class="info-header">
-            <h1>Description</h1>
-          </div>
-          <div class="info-body">
-            <p>Username: {{eTrackerUserService.currentUser?.fullName}}</p>
-            <p>Event</p>
-            <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
-            <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
-            <p>Customer</p>
-          </div>
-          <div class="info-footer">
-          </div>
-        </div>
-      </ng-template>
-    </agm-snazzy-info-window>
-  </agm-marker>
+      <agm-marker [latitude]="getLat()" [longitude]="getLng()" [iconUrl]="currentLocationMarker" [label]="{color: 'black', fontSize: '14px', fontWeight: 'bold',  text: eTrackerUserService.currentUser?.fullName }">
+        <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
+          [closeWhenOthersOpen]="false">
+          <ng-template>
+            <div class="marker-info">
+              <div class="info-header">
+                <h1>Description</h1>
+              </div>
+              <div class="info-body">
+                <p>Username: {{eTrackerUserService.currentUser?.fullName}}</p>
+                <p>Event</p>
+                <p>Time: {{getTime(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+                <p>Date: {{getDate(eTrackerUserService?.currentUser?.timestamp.seconds)}}</p>
+                <p>Customer</p>
+              </div>
+              <div class="info-footer">
+              </div>
+            </div>
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
 
-  <agm-polyline *ngFor="let polyline of eTrackerUserService?.locationHistory;let i = index;" [strokeColor]="'red'" [geodesic]="true"
-    [strokeOpacity]="0.7">
-    <agm-polyline-point *ngFor="let point of eTrackerUserService?.locationHistory" [latitude]="point.lat" [longitude]="point.lng">
-    </agm-polyline-point>
-  </agm-polyline>
+      <agm-polyline *ngFor="let polyline of eTrackerUserService?.locationHistory;let i = index;" [strokeColor]="'red'"
+        [geodesic]="true" [strokeOpacity]="0.7">
+        <agm-polyline-point *ngFor="let point of eTrackerUserService?.locationHistory" [latitude]="point.lat"
+          [longitude]="point.lng">
+        </agm-polyline-point>
+      </agm-polyline>
 
-  <ng-container *ngIf="eTrackerUserService?.allShops">
-    <agm-marker *ngFor="let loc of eTrackerUserService?.visitedShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
-      [iconUrl]="loc?.productive? (loc.pjp? productiveShopMarker : productiveShopMarkerOther) : (loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther)" [label]="{text: ''+(+i+1)}">
-      <agm-info-window>
-        <strong>InfoWindow content</strong>
-      </agm-info-window>
-    </agm-marker>
-  </ng-container>
+      <ng-container *ngIf="eTrackerUserService?.allShops">
+        <agm-marker *ngFor="let loc of eTrackerUserService?.visitedShops; let i = index" [latitude]="loc.lat"
+          [longitude]="loc.lng" [iconUrl]="loc?.productive? (loc.pjp? productiveShopMarker : productiveShopMarkerOther) : (loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther)"
+          [label]="{text: ''+(+i+1)}">
+          <agm-info-window>
+            <strong>InfoWindow content</strong>
+          </agm-info-window>
+        </agm-marker>
+      </ng-container>
 
-  <agm-marker *ngFor="let loc of eTrackerUserService?.productiveShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
-    [iconUrl]="loc.pjp? productiveShopMarker : productiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
-    </agm-info-window>
-  </agm-marker>
+      <agm-marker *ngFor="let loc of eTrackerUserService?.productiveShops; let i = index" [latitude]="loc.lat"
+        [longitude]="loc.lng" [iconUrl]="loc.pjp? productiveShopMarker : productiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+      </agm-marker>
 
-  <agm-marker *ngFor="let loc of eTrackerUserService.nonProductiveShops; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
-    [iconUrl]="loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
-    <agm-info-window>
-      <strong>InfoWindow content</strong>
-    </agm-info-window>
-  </agm-marker>
+      <agm-marker *ngFor="let loc of eTrackerUserService.nonProductiveShops; let i = index" [latitude]="loc.lat"
+        [longitude]="loc.lng" [iconUrl]="loc.pjp? nonProductiveShopMarker : nonProductiveShopMarkerOther" [label]="{text: ''+(+i+1)}">
+        <agm-info-window>
+          <strong>InfoWindow content</strong>
+        </agm-info-window>
+      </agm-marker>
 
-  <agm-marker *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat" [longitude]="loc.lng"
-    [iconUrl]="dayStartEndMakrer" [label]="{text: ''+(i+1), fontSize: '30px' }">
-    <agm-info-window>
-      <strong>Time: {{getTime(loc.timestamp.seconds)}}</strong>
-    </agm-info-window>
-  </agm-marker>
+      <agm-marker *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat"
+        [longitude]="loc.lng" [iconUrl]="dayStartEndMakrer" [label]="{text: ''+(i+1), fontSize: '30px' }">
+        <agm-info-window>
+          <strong>Time: {{getTime(loc.timestamp.seconds)}}</strong>
+        </agm-info-window>
+      </agm-marker>
 
-  <agm-polyline *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [strokeColor]="'red'" [geodesic]="true"
-    [strokeOpacity]="0.7">
-    <agm-polyline-point *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat" [longitude]="loc.lng">
-    </agm-polyline-point>
-  </agm-polyline>
+      <agm-polyline *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [strokeColor]="'red'"
+        [geodesic]="true" [strokeOpacity]="0.7">
+        <agm-polyline-point *ngFor="let loc of eTrackerUserService.dayStartEndData; let i = index" [latitude]="loc.lat"
+          [longitude]="loc.lng">
+        </agm-polyline-point>
+      </agm-polyline>
 
-  <agm-polyline *ngFor="let polyline of eTrackerUserService?.shopRouteTaken;let i = index;" [strokeColor]="'red'" [geodesic]="true"
-    [strokeOpacity]="0.7">
-    <agm-polyline-point *ngFor="let point of eTrackerUserService?.shopRouteTaken" [latitude]="point.lat" [longitude]="point.lng">
-    </agm-polyline-point>
-  </agm-polyline>
+      <agm-polyline *ngFor="let polyline of eTrackerUserService?.shopRouteTaken;let i = index;" [strokeColor]="'red'"
+        [geodesic]="true" [strokeOpacity]="0.7">
+        <agm-polyline-point *ngFor="let point of eTrackerUserService?.shopRouteTaken" [latitude]="point.lat"
+          [longitude]="point.lng">
+        </agm-polyline-point>
+      </agm-polyline>
 
-</agm-map>
+    </agm-map>
 
 
   </div>
@@ -297,16 +300,16 @@
 <div *ngIf="liveTracking" class="live-tracking-panel">
   <div class="live-tracking-overlay"></div>
   <div class="live-tracking-map-view">
-      <button (click)="liveTracking = false" class="btn btn-outline-success m-btn m-btn--icon m-btn--outline-2x m-btn--pill"
+    <button (click)="liveTracking = false" class="btn btn-outline-success m-btn m-btn--icon m-btn--outline-2x m-btn--pill"
       style="margin: 9px 43%;border-color: white !important;color: white !important;">End Live Tracking</button>
 
     <agm-map *ngIf="eTrackerUserService.currentUser" [zoom]="selectedZoom" [usePanning]="true" [latitude]="eTrackerUserService.currentUser?.lat"
       [longitude]="eTrackerUserService.currentUser?.lng" (mapReady)="mapReady($event)">
 
-      <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng" [iconUrl]="currentLocationMarker"
-        [label]="{text: eTrackerUserService.currentUser?.fullName, color: 'black', fontSize: '14px', fontWeight: 'bold'}">
+      <agm-marker [latitude]="eTrackerUserService.currentUser?.lat" [longitude]="eTrackerUserService.currentUser?.lng"
+        [iconUrl]="currentLocationMarker" [label]="{text: eTrackerUserService.currentUser?.fullName, color: 'black', fontSize: '14px', fontWeight: 'bold'}">
         <agm-snazzy-info-window [panOnOpen]="false" [maxHeight]="300" [maxWidth]="100" [padding]="0" [showCloseButton]="false"
-          [placement]="right" [closeWhenOthersOpen]="false">
+          [closeWhenOthersOpen]="false">
           <ng-template>
             <div class="marker-info">
               <div class="info-header">
@@ -350,33 +353,34 @@
   </li> -->
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Show All Shops">
     <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showAllShops()">
+      (click)="showAllShops()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
 
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Latest Location">
     <button type="button" class="btn btn-outline-warning m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showLiveTracking()">
+      (click)="showLiveTracking()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" style="color: #70c405 !important;
-  border-color: #70c405 !important;" data-original-title="Productive Shops">
+  border-color: #70c405 !important;"
+    data-original-title="Productive Shops">
     <button type="button" class="btn btn-outline-accent m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showProductiveShops()">
+      (click)="showProductiveShops()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Non-Productive Shops">
     <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showNonProductiveShops()">
+      (click)="showNonProductiveShops()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Route Taken">
     <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showRouteTaken()">
+      (click)="showRouteTaken()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>
@@ -385,7 +389,7 @@
 
   <li class="m-nav-sticky__item" data-toggle="m-tooltip" title="" data-placement="left" data-original-title="Live Location (Simulation)">
     <button type="button" class="btn btn-outline-danger m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-    (click)="showLiveTrackingSimulation()">
+      (click)="showLiveTrackingSimulation()">
       <i class="fa fa-map-marker"></i>
     </button>
   </li>

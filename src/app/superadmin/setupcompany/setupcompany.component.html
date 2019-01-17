@@ -172,27 +172,6 @@
               </div>
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
-                  Inventory Managment System
-                </label>
-                <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled">
-                    <span>
-                      <i class="la 	la-check"></i>
-                      <span>
-                        Installed
-                      </span>
-                    </span>
-                  </button>
-                  <button *ngIf="!ImsInstalled" (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
-                    <span>
-                      <i class="la la-archive"></i>
-                      <span>Install</span>
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div class="m-form__group form-group row">
-                <label class="col-4 col-form-label">
                   Payroll Managment System
                 </label>
                 <div class="col-1">
@@ -259,7 +238,7 @@
                   Inventory
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="InventoryInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -289,6 +268,27 @@
                     </span>
                   </button>
                   <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  e-Tracker Mobile
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="eTrackerMobileInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!eTrackerMobileInstalled" (click)="onAddModule('eTrackerMobile')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>

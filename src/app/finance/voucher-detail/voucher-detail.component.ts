@@ -101,7 +101,7 @@ export class VoucherDetailComponent implements OnInit {
 
     PostSelectedVouchers() {
         this.dataGrid.instance.getSelectedRowsData().then((rowData: any[]) => {
-
+            console.log(rowData);
             var postvs: UnpostedVoucherViewModel[] = [];
 
             rowData.forEach(element => {
@@ -140,7 +140,11 @@ export class VoucherDetailComponent implements OnInit {
                 });
 
                 this.Toastr.success("Selected Vouchers Posted");
-            });
+            },
+            (err : any) => {
+                this.Toastr.error(err);
+            }
+            );
         });
     }
 

@@ -157,15 +157,10 @@
                         [masterDetail]="{ enabled: true, template: 'detail' }">
                         <dxo-scrolling mode="virtual"></dxo-scrolling>
 
-                        <dxi-column dataField="brandName" caption="Brand Name  "></dxi-column>
-                        <div *dxTemplate="let type of 'detail'">
-                          <dx-data-grid [dataSource]="type.data.items" [showBorders]="true" [masterDetail]="{ enabled: true, template: 'sub-detail' }">
-                            <dxi-column dataField="productType" caption="Product Type"></dxi-column>
-                            <div *dxTemplate="let orderitems of 'sub-detail'">
-                              <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
-                                <dxi-column dataField="name" caption="Items"></dxi-column>
-                              </dx-data-grid>
-                            </div>
+                        <dxi-column dataField="brand" caption="Brand Name  "></dxi-column>
+                        <div *dxTemplate="let orderitems of 'detail'">
+                          <dx-data-grid [dataSource]="orderitems.data.items" [showBorders]="true">
+                            <dxi-column dataField="skuItem" caption="Items"></dxi-column>
                           </dx-data-grid>
                         </div>
                       </dx-data-grid>

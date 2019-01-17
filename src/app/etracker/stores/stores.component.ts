@@ -33,8 +33,8 @@ export class StoresComponent implements OnInit {
     }
 
     getLatLog(value) {
-        this.lat = value.data.latitude;
-        this.lng = value.data.longitude;
+        this.lat = +value.data.latitude;
+        this.lng = +value.data.longitude;
         console.log(value);
     }
 

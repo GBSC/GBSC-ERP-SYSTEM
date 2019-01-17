@@ -40,17 +40,20 @@
 					<ul class="m-menu__nav  m-menu__nav--submenu-arrow">
 						<li class="m-menu__item  m-menu__item--submenu" data-menu-submenu-toggle="click" data-redirect="true"
 						 aria-haspopup="true">
-							<a routerLink="/employee/dashboard" class="m-menu__link m-menu__toggle" style="background:#ededed">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-dashboard" style="color: #003b77;margin: 0 9px 0px 9px; font-size: 16px;"></i>
+							<a routerLink="/employee/dashboard" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here"><i class="fa fa-dashboard" style="font-size: 25px; color: black;"></i></span>
+								<span class="m-menu__link-text">
+								   Dashboard
+								</span>
 
 							</a>
 						</li>
 						<li *ngIf="accessableModules.includes('Security Admin')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background:#8c2424;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-lock" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-lock" style="font-size: 25px; color: black;"></i>
+								</span>
 								<span class="m-menu__link-text">
 									Security
 								</span>
@@ -60,14 +63,20 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
+										
 										<li *ngIf="accessableModules.includes('Security Admin')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Setup
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+											<div class="col-sm-12">
+												<a href="#" class="dashboard-stat dashboard-stat-v2 blue">
+													<div class="visual">
+														<i class="fa fa-flag"></i>
+													</div>
+													<div class="details">
+														<div class="desc"> Company Setup </div>
+													</div>
+												</a>
+											</div>
+
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Security Admin - Company Setup')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -82,12 +91,24 @@
 										</li>
 										<li *ngIf="accessibleFeatures.includes('Security Admin - Users')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
+											
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 purple">
+												<div class="visual">
+													<i class="fa fa-user-circle-o"></i>
+												</div>
+												<div class="details">
+													<div class="desc"> User Management </div>
+												</div>
+											</a>
+										</div>
+										 
+										 <!-- <h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													User Management
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+											</h3> -->
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Security Admin - User Registration')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -115,12 +136,24 @@
 										</li>
 										<li *ngIf="accessibleFeatures.includes('Security Admin - Roles and Privileges')" class="m-menu__item"
 										 routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
+										
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 okkar">
+												<div class="visual">
+													<i class="fa fa-eye"></i>
+												</div>
+												<div class="details">
+													<div class="desc"> Roles & Privileges </div>
+												</div>
+											</a>
+										</div>
+<!-- 										 
+										 <h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
 													Roles & Privileges
 												</span>
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+											</h3> -->
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Security Admin - Roles and Privileges')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -152,9 +185,10 @@
 
 						<li *ngIf="accessableModules.includes('Human Resource Management')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background:#003b77;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-user-circle" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-user-circle" style="font-size: 25px; color: black;"></i>
+								</span>
 								<span class="m-menu__link-text">
 									Human Resource
 								</span>
@@ -380,11 +414,12 @@
 
 						<li *ngIf="accessableModules.includes('Hospital Management System')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #0c7185;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+								</span>
 								<span class="m-menu__link-text">
-									Hospital Managment
+									Hospital
 								</span>
 							</a>
 							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
@@ -521,9 +556,10 @@
 
 						<li *ngIf="accessableModules.includes('Lab Information System')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background:  #483698;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-flask" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-flask" style="font-size: 25px; color: black;"></i>
+								</span>
 								<span class="m-menu__link-text">
 									Laboratory
 								</span>
@@ -791,9 +827,10 @@
 
 						<li *ngIf="accessableModules.includes('Coordination')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #9c25af;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+								</span>
 								<span class="m-menu__link-text">
 									Coordinator
 								</span>
@@ -907,9 +944,10 @@
 
 						<li *ngIf="accessableModules.includes('Pharmacy')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #775447;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+								<i class="fa fa-medkit" style="font-size: 25px; color: black;"></i>	
+								</span>
 								<span class="m-menu__link-text">
 									Pharmacy
 								</span>
@@ -1026,9 +1064,10 @@
 
 						<li *ngIf="accessableModules.includes('Payroll Management System')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #3173e9;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-money" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+								<i class="fa fa-money" style="font-size: 25px; color: black;"></i>	
+								</span>
 								<span class="m-menu__link-text">
 									Payroll
 								</span>
@@ -1291,9 +1330,11 @@
 
 						<li *ngIf="accessableModules.includes('Finance')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #4c4c4c;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-bank" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-bank" style="font-size: 25px; color: black;"></i>
+								</span>
+								
 								<span class="m-menu__link-text">
 									Finance
 								</span>
@@ -1569,9 +1610,11 @@
 
 						<li *ngIf="accessableModules.includes('Inventory')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a class="m-menu__link m-menu__toggle" style="background: #993d2d;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-medkit" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-linode" style="font-size: 25px; color: black;"></i>
+								</span>
+								
 								<span class="m-menu__link-text">
 									Inventory
 								</span>
@@ -1583,12 +1626,18 @@
 
 										<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Setups
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 black">
+												<div class="visual">
+													<i class="fa fa-cogs"></i>
+												</div>
+												<div class="details">
+													<div class="desc"> Setups </div>
+												</div>
+											</a>
+										</div>
+											
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -1601,69 +1650,23 @@
 														</span>
 													</a>
 												</li>
-												<!-- <li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/setup/customer" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Customer Setup
-														</span>
-													</a>
-												</li>
-												
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/setup/salesperson" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Logistics Setup
-														</span>
-													</a>
-												</li> -->
 											</ul>
 
 										</li>
-
-
-
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Sales
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 green">
+												<div class="visual">
+													<i class="fa fa-cart-plus "></i>
+												</div>
+												<div class="details">
+													<div class="desc"> Sales </div>
+												</div>
+											</a>
+										</div>
+										 
 											<ul class="m-menu__inner">
-
-												<!-- <li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/sales/dispatchnote" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Dispatch Note
-														</span>
-													</a>
-												</li> -->
-
-												<!-- <li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/sales/deliveryOrder" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Delivery Order
-														</span>
-													</a>
-												</li> -->
-
 												<li *ngIf="accessibleFeatures.includes('Inventory - Sales Indent')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
 													<a routerLink="/inventory/sales/salesindent" class="m-menu__link">
@@ -1726,88 +1729,19 @@
 
 											</ul>
 										</li>
-
-										<!-- <li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" routerLinkActive="m-menu__item--active"
-										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Purchase
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
-											<ul class="m-menu__inner">
-
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/purchase/grn" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																GRN
-														</span>
-													</a>
-												</li>
-
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/purchase/purchaseindent" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Purchase Indent
-														</span>
-													</a>
-												</li>
-
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/purchase/purchaseinvoice" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Purchase Invoice
-														</span>
-													</a>
-												</li>
-
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/purchase/purchaseorder" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Purchase Order
-														</span>
-													</a>
-												</li>
-
-												<li *ngIf="accessibleFeatures.includes('Inventory - Inventory Setup')" class="m-menu__item" data-redirect="true"
-												 aria-haspopup="true">
-													<a routerLink="/inventory/purchase/purchasereturn" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-																Purchase Return
-														</span>
-													</a>
-												</li>
-
-											</ul>
-										</li> -->
-
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Reports
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 purple">
+												<div class="visual">
+													<i class="fa fa-file-pdf-o"></i>
+												</div>
+												<div class="details">
+													<div class="desc"> Reports </div>
+												</div>
+											</a>
+										</div>	
+										 
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('Inventory - Order Summary Report')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -1830,7 +1764,15 @@
 
 											</ul>
 										</li>
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
 
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+
+										</li>
 
 									</ul>
 								</div>
@@ -1839,9 +1781,11 @@
 
 						<li *ngIf="accessableModules.includes('eTracker')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
-							<a href="#" class="m-menu__link m-menu__toggle" style="background: #005c89;">
-								<span class="m-menu__item-here"></span>
-								<i class="fa fa-hospital-o" style="color: white; margin-right: 9px; font-size: 16px;"></i>
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-map-marker " style="font-size: 25px; color: black;"></i>
+								</span>
+								
 								<span class="m-menu__link-text">
 									eTracker
 								</span>
@@ -1851,12 +1795,16 @@
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Tracking
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+											<div class="col-sm-12">
+												<a href="#" class="dashboard-stat dashboard-stat-v2 purple">
+													<div class="visual">
+														<i class="fa fa-map"></i>
+													</div>
+													<div class="details">
+														<div class="desc"> Tracking </div>
+													</div>
+												</a>
+											</div>
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('eTracker - Locator')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -1906,12 +1854,17 @@
 
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active"
 										 routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Reports
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
+										 <div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 okkar">
+												<div class="visual">
+													<i class="fa fa-file-pdf-o "></i>
+												</div>
+												<div class="details">
+													<div class="desc">Visit Reports </div>
+												</div>
+											</a>
+										</div>
+											
 											<ul class="m-menu__inner">
 												<li *ngIf="accessibleFeatures.includes('eTracker - Shop Status Detail')" class="m-menu__item" data-redirect="true"
 												 aria-haspopup="true">
@@ -1949,12 +1902,16 @@
 										</li>
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active"
 										routerLinkActiveOptions="{ exact: true }">
-										   <h3 class="m-menu__heading m-menu__toggle">
-											   <span class="m-menu__link-text">
-													Reports
-											   </span>
-											   <i class="m-menu__ver-arrow la la-angle-right"></i>
-										   </h3>
+										<div class="col-sm-12">
+											<a href="#" class="dashboard-stat dashboard-stat-v2 blue">
+												<div class="visual">
+													<i class="fa fa-file-pdf-o "></i>
+												</div>
+												<div class="details">
+													<div class="desc">Shops Reports </div>
+												</div>
+											</a>
+										</div>
 										   <ul class="m-menu__inner">
 											   <li *ngIf="accessibleFeatures.includes('eTracker - Shop Census Detail')" class="m-menu__item" data-redirect="true"
 												aria-haspopup="true">
@@ -1974,6 +1931,15 @@
 											   </li>
 										   </ul>
 									   </li>
+									   <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+										<h3 class="m-menu__heading m-menu__toggle">
+											<span class="m-menu__link-text">
+
+											</span>
+											<i class="m-menu__ver-arrow la la-angle-right"></i>
+										</h3>
+
+									</li>
 									</ul>
 								</div>
 							</div>

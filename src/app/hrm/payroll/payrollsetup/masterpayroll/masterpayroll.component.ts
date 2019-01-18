@@ -26,6 +26,7 @@ export class MasterpayrollComponent implements OnInit {
     public MasterPayrollForm: any;
     public allowance: any;
     public MasterDetailForm: any;
+    public userBank: any ={};
     public masterpayroll: any;
     public currency: any;
 
@@ -39,9 +40,10 @@ export class MasterpayrollComponent implements OnInit {
         this.payrollDetail = [];
 
         this.MasterPayrollForm = this.fb.group({
-            UserId: ['', Validators.required],
-            BankTransferCode: ['', Validators.required],
-            CurrencyId: ['', Validators.required]
+            UserId: [''],
+            BankTransferCode: [''],
+            CurrencyId: [''],
+            BankId: ['']
         });
 
         this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
@@ -104,6 +106,13 @@ export class MasterpayrollComponent implements OnInit {
             return false;
     }
 
+    GetEmployeeBank(id){ 
+         this.empservice.getBanks(id).subscribe(resp=>{
+            this.userBank = resp[0]  
+            console.log(resp); 
+        });
+    }
+
      updateMasterpayrollDetail(value) {
         console.log(value);
     }
@@ -124,7 +133,8 @@ export class MasterpayrollComponent implements OnInit {
 
             UserId: masterpayroll.userId,
             BankTransferCode: masterpayroll.bankTransferCode,
-            CurrencyId: masterpayroll.currencyId
+            CurrencyId: masterpayroll.currencyId,
+            BankId: masterpayroll.bankId
         })
 
     }

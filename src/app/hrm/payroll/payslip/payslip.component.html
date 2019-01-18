@@ -19,48 +19,58 @@
                 <label>
                   Employee:
                 </label>
-                <dx-select-box [items]="users" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true" #id (onValueChanged)="GetUserloan(id.value)"></dx-select-box>
+                <select #s class="form-control m-input" (change)="GetUserloan(s.value)" formControlName="UserId">
+                    <option value="" disabled selected>-- Select Employee --</option>
+                    <option *ngFor="let user of users" [value]="user.userId">{{user.fullName}}</option>
+                  </select>
               </div>
             </div>
             <div class="form-group m-form__group row">
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <label> From: </label>
                 <dx-date-box formControlName="From" type="date" format="dd/MM/yyyy" width="100%"></dx-date-box>
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-4">
                 <label>Till:</label>
                 <dx-date-box formControlName="Till" type="date" format="dd/MM/yyyy" width="100%"></dx-date-box>
               </div>
-              <div class="col-lg-3">
-                  <label> Payment Date: </label>
-                  <dx-date-box formControlName="PaymentDate" type="date" format="dd/MM/yyyy" width="100%"></dx-date-box>
-                </div>
+              <div class="col-md-4">
+                <label></label>
+           <button type="button" (click)="getattendancerequest(PayslipForm.value)" class="btn btn-primary button_get">
+             Get
+           </button> 
+          </div>
+             
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-3">
+                    <label> Payment Date: </label>
+                    <dx-date-box formControlName="PaymentDate" type="date" format="dd/MM/yyyy" width="100%"></dx-date-box>
+                  </div>
                 <div class="col-lg-3">
                     <label> Days:</label>
                     <input type="number" class="form-control m-input" formControlName="Days" placeholder="0">
                   </div>
-            </div>
-
-            <div class="form-group m-form__group row">
               <div class="col-lg-3">
                 <label>Hours:</label>
                 <input type="number" class="form-control m-input" formControlName="Hours" placeholder="0">
-              </div>
+              </div> 
+                  <div class="col-lg-3">
+                      <label>Tax Amount:</label>
+                      <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
+                    </div> 
+            </div>
+          
+            <div class="form-group m-form__group row">
                 <div class="col-lg-3">
                     <label> Gross Amount:</label>
                     <input type="number" class="form-control m-input" formControlName="GrossAmount" placeholder="0">
                   </div>
-                  <div class="col-lg-3">
-                      <label>Tax Amount:</label>
-                      <input type="number" class="form-control m-input" formControlName="TaxAmount" placeholder="0">
-                    </div>
-                    <div class="col-lg-3">
-                        <label> Net Amount: </label>
-                        <input type="number" class="form-control m-input" formControlName="NetAmount" placeholder="0">
-                      </div>
-            </div>
-          
-            <div class="form-group m-form__group row">
+                <div class="col-lg-3">
+                    <label> Net Amount: </label>
+                    <input type="number" class="form-control m-input" formControlName="NetAmount" placeholder="0">
+                  </div>
               <div class="col-lg-3">
                 <label> PF Deduction Amount:</label>
                 <input type="number" class="form-control m-input" formControlName="PfDeductionAmount" placeholder="0">

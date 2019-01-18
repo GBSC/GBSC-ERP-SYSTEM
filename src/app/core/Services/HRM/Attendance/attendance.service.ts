@@ -8,6 +8,7 @@ export class AttendanceService {
 
     public baseUrl: string = "SystemAdmin/api/Attendance";
     public baseUrl2: string = "SystemAdmin/api/AttendanceSetup";
+    public isOnLeaveDates: any = [];
 
     constructor(public ApiService: ApiService) { }
 

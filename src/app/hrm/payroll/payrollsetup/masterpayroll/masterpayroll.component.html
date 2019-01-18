@@ -15,34 +15,36 @@
 
             <div class="form-group m-form__group row">
               <div class="col-lg-6">
-                <label>
-                  Employee:
-                </label>
-                <select class="form-control m-input" formControlName="UserId">
+                <label>Employee: </label>
+                 <select #s class="form-control m-input" (change)="GetEmployeeBank(s.value)" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
-                  <option *ngFor="let user of users" [value]="user.userId">{{user.firstName}} {{user.lastName}}</option>
+                  <option *ngFor="let user of users" [value]="user.userId">{{user.fullName}}</option>
                 </select>
-              </div>
-              <div class="col-lg-6">
-                <label class="">
-                  Bank Transfer Code:
-                </label>
-                <input type="number" class="form-control m-input" formControlName="BankTransferCode" placeholder="0">
+                <!-- <dx-select-box [dataSource]="users" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true" #id (onValueChanged)="GetEmployeeBank(id.value)"></dx-select-box> -->
               </div>
             </div>
-
             <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                  Currency:
-                </label>
-                <select class="form-control m-input" formControlName="CurrencyId">
-                  <option value="" disabled selected>-- Select Currency --</option>
-                  <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
-                </select>
-              </div>
-            </div>
+                          <div class="col-lg-3">
+                            <label class="">
+                              Employee Bank:
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="BankId" [value]="userBank?.bankTitle || ''">
+                          </div>
+                          <div class="col-lg-3">
+                            <label class="">
+                              Account Number:
+                            </label>
+                            <input type="text" class="form-control m-input" [value]="userBank?.accountNumber || ''">
+                          </div>
+                          <div class="col-lg-3">
+                            <label class="">
+                              Bank Code:
+                            </label>
+                            <input type="text" class="form-control m-input" [value]="userBank?.bankCode || ''">
+                          </div>
+                        </div>
           </form>
+        
  
             <div class="m--space-30"></div>
             <div class="row">
@@ -71,25 +73,26 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager> 
-                          <dxi-column dataField="value"></dxi-column>
-                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
-                          <dxi-column dataField="endDate" dataType="date" format="shortDate"></dxi-column>
-                   
                           <dxi-column dataField="allowanceId" caption="Allowance">
                             <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
                             </dxo-lookup> 
-                            </dxi-column>
-                          <dxi-column dataField="frequencyId" caption="Frequency">
-                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
-                            </dxo-lookup> 
+                          </dxi-column>
+                          <dxi-column dataField="allowanceId" caption="Allowance">
+                              <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
+                              </dxo-lookup> 
                             </dxi-column>
                           <dxi-column dataField="payrollTypeId" caption="Payroll Type">
                             <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
                             </dxo-lookup> 
-                            </dxi-column>
-                 
+                          </dxi-column>
+                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
+                          <dxi-column dataField="frequencyId" caption="Frequency">
+                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
+                            </dxo-lookup> 
+                          </dxi-column>
+                          <dxi-column dataField="value"></dxi-column> 
                         </dx-data-grid>
-                      
+                        
                     </div>
                   </div>
                 </div>
@@ -102,8 +105,8 @@
             <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
               <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
-                  <div class="col-lg-2"></div>
-                <div class="col-lg-6">
+                  <div class="col-lg-4"></div>
+                <div class="col-lg-4">
                     <div *ngIf="isUpdate(); else create">
                       <button class="btn btn-primary" (click)="update(MasterPayrollForm.value)">
                           Update
@@ -113,11 +116,9 @@
                     <button class="btn btn-Success" (click)="submitForm(MasterPayrollForm.value)">
                       Submit
                     </button>  
-                  </ng-template> 
-                  <button type="reset" class="btn btn-secondary">
-                      Reset
-                    </button>
+                  </ng-template>  
                   </div>
+                  <div class="col-lg-4"></div>
               </div>
             </div>  
         </div>

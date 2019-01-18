@@ -21,7 +21,6 @@
                   </label>
                   <div class="col-lg-8">
                     <select #lb class="form-control m-input" (change)="getLeaveBalance(lb.value)" formControlName="UserId">
-                      <!-- <option value="" disabled selected>-- Select Employee --</option> -->
                       <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.fullName}}</option>
                     </select>
                   </div>

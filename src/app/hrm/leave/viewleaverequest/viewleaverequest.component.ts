@@ -125,9 +125,6 @@ export class ViewleaverequestComponent implements OnInit {
                         isOnLeaveDays.push(leaveType);
                         return markleave;
                     }
-                  
-
-                    
                     return markleave;
                 })
                   console.log( this.employeeService.updatedLeaves);

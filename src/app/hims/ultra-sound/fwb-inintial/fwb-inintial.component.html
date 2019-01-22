@@ -27,7 +27,7 @@
                       <label for="exampleInputEmail1">
                         Date
                       </label>
-                      <input type="date" class="form-control m-input"  formControlName="FwbInitialDate">
+                      <input type="date" class="form-control m-input"  formControlName="FwbInitialDate"  [value]="fwbInitialById?.fwbInitialDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -141,7 +141,7 @@
                       <label for="exampleInputEmail1">
                         ET Date
                       </label>
-                      <input type="date" class="form-control m-input" formControlName="ETDate">
+                      <input type="date" class="form-control m-input" formControlName="ETDate" [value]="fwbInitialById?.etDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
                   </div>
                   <div class="col-sm-2">
@@ -157,7 +157,7 @@
                       <label for="exampleInputEmail1">
                         LMP Date
                       </label>
-                      <input type="date" class="form-control m-input" formControlName="LMPDate">
+                      <input type="date" class="form-control m-input" formControlName="LMPDate" [value]="fwbInitialById?.lmpDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
                   </div>
                 </div>

@@ -6,6 +6,15 @@ import { UltraSoundPelvisDetailComponent } from './ultra-sound-pelvis-detail/ult
 import { FWBInintialComponent } from './fwb-inintial/fwb-inintial.component';
 import { SonologistComponent } from './Setup/sonologist/sonologist.component';
 import { UltraSoundPelvisReportComponent } from './reports/ultra-sound-pelvis-report/ultra-sound-pelvis-report.component';
+import { FwbInitialReportComponent } from './reports/fwb-initial-report/fwb-initial-report.component';
+import { FwbInitialDetailComponent } from './fwb-initial-detail/fwb-initial-detail.component';
+import { UltraSoundMasterComponent } from './ultra-sound-master/ultra-sound-master.component';
+import { UltraSoundMasterDetailComponent } from './ultra-sound-master-detail/ultra-sound-master-detail.component';
+
+
+
+
+
 
 
 
@@ -25,6 +34,10 @@ export const ultraSoundRouting: ModuleWithProviders = RouterModule.forChild([
               { path: 'fwbinitial', component: FWBInintialComponent },
               { path: 'fwbinitial/:id', component: FWBInintialComponent },
               { path: 'ultrasoundpelvisdetail', component: UltraSoundPelvisDetailComponent },
+              { path: 'fwbinitialdetail', component: FwbInitialDetailComponent },
+              { path: 'ultrasoundmaster', component: UltraSoundMasterComponent },
+              { path: 'ultrasoundmaster/:id', component: UltraSoundMasterComponent },
+              { path: 'ultrasoundmasterdetail', component: UltraSoundMasterDetailComponent },
 
 
               {
@@ -35,8 +48,11 @@ export const ultraSoundRouting: ModuleWithProviders = RouterModule.forChild([
             },
             {
                 path: 'reports',
-                children: [
-                    { path: 'ultrasoundpelvisreport/:id/:date', component: UltraSoundPelvisReportComponent }
+                children: [ 
+                    { path: 'ultrasoundpelvisreport/:id/:date', component: UltraSoundPelvisReportComponent },
+                    { path: 'fwbinitialreport/:id/:date', component: FwbInitialReportComponent }
+                 //   { path: 'fwbinitialreport/:id/:date', component: FwbInitialReportComponent }
+
                 ]
             }
         ]

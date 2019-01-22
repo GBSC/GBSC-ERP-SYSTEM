@@ -13,6 +13,11 @@ import { FWBInintialComponent } from './fwb-inintial/fwb-inintial.component';
 import { SonologistComponent } from './Setup/sonologist/sonologist.component';
 import { UltraSoundPelvisDetailComponent } from './ultra-sound-pelvis-detail/ultra-sound-pelvis-detail.component';
 import { UltraSoundPelvisReportComponent } from './reports/ultra-sound-pelvis-report/ultra-sound-pelvis-report.component';
+import { FwbInitialDetailComponent } from './fwb-initial-detail/fwb-initial-detail.component';
+import { FwbInitialReportComponent } from './reports/fwb-initial-report/fwb-initial-report.component';
+import { UltraSoundMasterComponent } from './ultra-sound-master/ultra-sound-master.component';
+import { UltraSoundMasterDetailComponent } from './ultra-sound-master-detail/ultra-sound-master-detail.component';
+import { UltraSoundMasterReportComponent } from './reports/ultra-sound-master-report/ultra-sound-master-report.component';
 
 
 @NgModule({
@@ -43,7 +48,17 @@ SonologistComponent,
   
 UltraSoundPelvisDetailComponent,
   
-UltraSoundPelvisReportComponent
+UltraSoundPelvisReportComponent,
+  
+FwbInitialDetailComponent,
+  
+FwbInitialReportComponent,
+  
+UltraSoundMasterComponent,
+  
+UltraSoundMasterDetailComponent,
+  
+UltraSoundMasterReportComponent
 ],
 
 })

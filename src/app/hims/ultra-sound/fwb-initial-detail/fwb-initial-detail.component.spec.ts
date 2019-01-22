@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FWBInintialComponent } from './fwb-inintial.component';
+import { FwbInitialDetailComponent } from './fwb-initial-detail.component';
 
-describe('FWBInintialComponent', () => {
-  let component: FWBInintialComponent;
-  let fixture: ComponentFixture<FWBInintialComponent>;
+describe('FwbInitialDetailComponent', () => {
+  let component: FwbInitialDetailComponent;
+  let fixture: ComponentFixture<FwbInitialDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FWBInintialComponent ]
+      declarations: [ FwbInitialDetailComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FWBInintialComponent);
+    fixture = TestBed.createComponent(FwbInitialDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

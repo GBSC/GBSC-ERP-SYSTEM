@@ -26,6 +26,7 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
 import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
 import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
 
 
 
@@ -48,7 +49,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'requisitionfulfilment', component: InternalRequisitionComponent },
             { path: 'requisitionfulfilment/:id', component: InternalRequisitionComponent },
             { path: 'requisitionview', component: InternalRequisitionViewComponent },
-
+            { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
             {
                 path: "setup",
                 children: [

@@ -268,6 +268,10 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
     }
 
+    GetInventoryItemsByCompany(companyId: number): Observable<InventoryItem> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItemsByCompany/' + companyId);
+    }
+
     GetInventoryItem(id: number): Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItem/' + id);
     }
@@ -313,6 +317,10 @@ export class PharmacyService {
     //Currency
     GetCurrency(): Observable<Currency[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrencies');
+    }
+
+    getInventoryCurrenciesByCompany(companyId : number): Observable<Currency[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrenciesByCompany/' + companyId);
     }
 
     AddCurrency(Currency: Currency): Observable<Currency> {
@@ -364,6 +372,10 @@ export class PharmacyService {
     //PackSize
     GetPackSizes(): Observable<PackSize> {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackSizes');
+    }
+
+    GetPackSizesByCompany(companyId: number): Observable<PackSize> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackSizesByCompany/' + companyId);
     }
 
     AddPackSize(PackSize: PackSize): Observable<PackSize> {
@@ -432,6 +444,10 @@ export class PharmacyService {
     //Supplier
     GetSuppliers(): Observable<Supplier> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
+    }
+
+    GetSuppliersByCompany(companyId: number): Observable<Supplier> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSuppliersByCompany/' + companyId);
     }
 
     AddSupplier(Supplier: Supplier): Observable<Supplier> {

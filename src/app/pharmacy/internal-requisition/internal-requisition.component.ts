@@ -96,6 +96,7 @@ export class InternalRequisitionComponent implements OnInit {
 							res.salesIndentItems.forEach((item : any) => {
 								// console.log(item);
 								let a : any = {
+									companyId : this.Auth.getUserCompanyId(),
 									inventoryItemId : item.inventoryItemId,
 									quantity : item.quantity
 								};

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { Inventory } from '../../../core/Models/Pharmacy/Inventory';
 import { InventoryItem } from '../../../core/Models/Pharmacy/InventoryItem';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class InventoryComponent implements OnInit {
     public UnassignedItems: any;
     public DataSource: any;
 
-    constructor(public PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
         this.onPopupShown = this.onPopupShown.bind(this);
         this.onPopupHide = this.onPopupHide.bind(this);
     }
@@ -65,6 +65,7 @@ export class InventoryComponent implements OnInit {
     }
 
     async AddInventory(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddInventory(value.data).toPromise();
         this.PharmacyService.GetInventories().subscribe(res => { this.Inventories = res; console.log(this.Inventories); });
         this.PharmacyService.GetInventoryItems().subscribe(res => {

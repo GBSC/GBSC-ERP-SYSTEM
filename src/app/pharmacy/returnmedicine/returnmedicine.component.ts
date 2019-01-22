@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PharmacyService } from '../../core';
+import { PharmacyService, AuthService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
 import { SalesOrderItem } from '../../core/Models/Pharmacy/SalesOrderItem';
@@ -34,7 +34,7 @@ export class ReturnmedicineComponent implements OnInit {
     public ReturnQuantity: number[] = [];
     public TotalReturnQuantity: number = 0;
 
-    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Toast: ToastrService, public Auth : AuthService) {
 
         this.ReturnMedicineForm = this.FormBuilder.group({
             MRN: [''],
@@ -139,7 +139,7 @@ export class ReturnmedicineComponent implements OnInit {
         this.ReturnMedicineDetailsForm.value.PackType = this.SelectedSalesOrderDetails[index].inventoryItem.packType.name;
         this.ReturnMedicineDetailsForm.value.PackSize = this.SelectedSalesOrderDetails[index].inventoryItem.packSize.size;
         this.ReturnMedicineDetailsForm.value.StockQuantity = this.SelectedSalesOrderDetails[index].inventory.stockQuantity;
-        this.ReturnMedicineDetailsForm.value.PerUnit = this.SelectedSalesOrderDetails[index].inventoryItem.unit.name;
+        this.ReturnMedicineDetailsForm.value.PerUnit = this.SelectedSalesOrderDetails[index].inventoryItem.measurementUnit.name;
         this.ReturnMedicineDetailsForm.value.Rate = this.SelectedSalesOrderDetails[index].inventoryItem.retailPrice;
         this.ReturnMedicineDetailsForm.value.PurchaseQuantity = this.SelectedSalesOrderDetails[index].orderUnitQuantity;
         this.ReturnMedicineDetailsForm.value.ReturnQuantity = Number.parseInt(returnquantity);
@@ -148,6 +148,7 @@ export class ReturnmedicineComponent implements OnInit {
         // console.log("ReturnMedicineDetailsForm", this.ReturnMedicineDetailsForm);
 
         var salesreturnitem: any = {
+            CompanyId : this.Auth.getUserCompanyId(),
             ReturnQuantity: Number.parseInt(returnquantity),
             ReturnAmount: this.ReturnMedicineDetailsForm.value.ReturnAmount,
             InventoryId: this.SelectedSalesOrderDetails[index].inventory.inventoryId,

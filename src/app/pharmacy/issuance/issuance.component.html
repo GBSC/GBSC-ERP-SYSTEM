@@ -190,7 +190,7 @@
                                 </label>
                                 <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="getcellvalue(InventoryItemForm.value.InventoryItemId)"
                                     formControlName="InventoryItemId">
-                                    <option *ngFor="let x of filterItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
+                                    <option *ngFor="let x of FilteredItems" [value]="x?.inventoryItemId">{{x?.itemCode}}
                                     </option>
                                 </select>
                             </div>

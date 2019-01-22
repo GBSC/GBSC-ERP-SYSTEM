@@ -34,6 +34,7 @@ import { CurrencyComponent } from './Setup/currency/currency.component';
 import { PrescriptionViewComponent } from './prescription-view/prescription-view.component';
 import { InternalRequisitionComponent } from './internal-requisition/internal-requisition.component';
 import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
+import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
 
 @NgModule({
     imports: [
@@ -74,7 +75,8 @@ import { InternalRequisitionViewComponent } from './internal-requisition-view/in
         CurrencyComponent,
         PrescriptionViewComponent,
         InternalRequisitionComponent,
-        InternalRequisitionViewComponent
+        InternalRequisitionViewComponent,
+        PurchaseInvoiceComponent
     ],
     providers: [
         {

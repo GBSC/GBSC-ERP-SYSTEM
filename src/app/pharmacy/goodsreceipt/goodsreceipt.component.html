@@ -112,10 +112,10 @@
                                                             formControlName="PackSize" [value]="a?.inventoryItem?.packSize?.size || 0"
                                                             disabled></td>
                                                     <td><input class="form-control m-input m-input--solid"
-                                                            formControlName="Unit" [value]="a?.inventoryItem?.unit?.name || ''"
+                                                            formControlName="MeasurementUnit" [value]="a?.inventoryItem?.measurementUnit?.name || ''"
                                                             disabled></td>
                                                     <td><input type="number" #Rate class="form-control m-input m-input--solid"
-                                                            formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0"
+                                                            formControlName="Rate" [value]="a?.inventoryItem?.unitPrice || 0"
                                                             disabled></td>
                                                     <td><input type="number" class="form-control m-input m-input--solid"
                                                             formControlName="ExpectedQuantity" [value]="a?.quantity || 0"

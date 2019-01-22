@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
-import { PharmacyService } from '../../core';
+import { PharmacyService, AuthService } from '../../core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { GRN } from '../../core/Models/Pharmacy/GRN';
 import { Supplier } from '../../core/Models/Pharmacy/Supplier';
@@ -45,7 +45,9 @@ export class GoodsreceiptComponent implements OnInit {
     public GrnItemSaveTrack: number[] = [];
     public isDisable = false;
 
-    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService) {
+    public PackSizes : any;
+
+    constructor(public PharmacyService: PharmacyService, public formBuilder: FormBuilder, public Toast: ToastrService, public Auth : AuthService) {
 
         this.GoodReceiptNoteForm = this.formBuilder.group({
             PurchaseOrderNumber: [''],
@@ -67,7 +69,7 @@ export class GoodsreceiptComponent implements OnInit {
             Description: [''],
             PackType: [''],
             PackSize: [''],
-            Unit: [''],
+            MeasurementUnit: [''],
             Rate: [],
             ExpectedAmount: [],
             PaymentAmount: [],
@@ -80,6 +82,9 @@ export class GoodsreceiptComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.PharmacyService.GetPackSizes().subscribe((res : any) => {
+            this.PackSizes = res;
+        });
     }
 
     GetSelectedPurchaseOrderDetails(ponumber, keycode) {
@@ -107,8 +112,14 @@ export class GoodsreceiptComponent implements OnInit {
         this.ExpectedQuantity[index] = <number>this.SelectedPurchaseOrderItems[index].quantity;
         this.DifferenceQuantity[index] = this.ExpectedQuantity[index] - this.ReceivedQuantity[index];
 
+        let a : any;
+        if(this.SelectedPurchaseOrderItems[index].packSizeId) {
+            a = this.PackSizes.find(a => a.packSizeId == this.SelectedPurchaseOrderItems[index].packSizeId);
+        }
+        console.log(a);
+
         this.ExpectedAmount[index] = <number>this.SelectedPurchaseOrderItems[index].grandTotal;
-        this.PaymentAmount[index] = <number>this.SelectedPurchaseOrderItems[index].inventoryItem.retailPrice * this.ReceivedQuantity[index];
+        this.PaymentAmount[index] = <number>this.SelectedPurchaseOrderItems[index].inventoryItem.unitPrice * (a.size || 1) * this.ReceivedQuantity[index];
         this.DifferenceAmount[index] = this.ExpectedAmount[index] - this.PaymentAmount[index];
 
         this.TotalReceivedQuantity = this.ReceivedQuantity.reduce(function(a, b) { return a + b; }, 0);
@@ -122,6 +133,7 @@ export class GoodsreceiptComponent implements OnInit {
     AddGrnItem(index) {
 
         var a: any = {
+            CompanyId : this.Auth.getUserCompanyId(),
             ReceivedQuantity: this.ReceivedQuantity[index],
             ExpectedQuantity: this.ExpectedQuantity[index],
             DifferenceQuantity: this.DifferenceQuantity[index],
@@ -134,11 +146,17 @@ export class GoodsreceiptComponent implements OnInit {
         this.GrnItems[index] = a;
         console.log("GrnItems", this.GrnItems);
 
-        var b: any = {
-            InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
-            StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
-            InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
-        };
+        if(this.SelectedPurchaseOrderItems[index].inventory != null && this.SelectedPurchaseOrderItems[index].inventory != undefined) {
+            var b: any = {
+                CompanyId : this.Auth.getUserCompanyId(),
+                InventoryId: this.SelectedPurchaseOrderItems[index].inventory.inventoryId,
+                StockQuantity: this.SelectedPurchaseOrderItems[index].inventory.stockQuantity + this.DifferenceQuantity[index],
+                InventoryItemId: this.SelectedPurchaseOrderItems[index].inventoryItem.inventoryItemId
+            };
+        } else {
+            var b : any = {};
+        }
+
         console.log("Inventory", b);
         this.Inventories[index] = b;
         console.log("Inventories", this.Inventories);
@@ -152,6 +170,7 @@ export class GoodsreceiptComponent implements OnInit {
     SubmitGRN() {
         if (this.GrnItemSaveTrack.reduce(function(a, b) { return a + b; }, 0) === this.SelectedPurchaseOrderItems.length) {
             var a: any = {
+                CompanyId : this.Auth.getUserCompanyId(),
                 GrnDate: this.GoodReceiptNoteForm.value.GrnDate || new Date().toISOString(),
                 PurchaseOrderId: this.SelectedPurchaseOrder.purchaseOrderId,
                 Remarks: this.GoodReceiptNoteForm.value.Remarks,

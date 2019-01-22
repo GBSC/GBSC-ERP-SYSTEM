@@ -48,7 +48,7 @@ export class UltraSoundMasterDetailComponent implements OnInit {
   ultraSoundMasterReport(d){
     let id = d.key.patientId;
     let date =  this.formatDate(new Date(d.key.ultraSoundMasterDate)) ;
-    this.Router.navigate(['/ultrasound/reports/ultrasoundpelvisreport/'+id+'/'+date]);
+    this.Router.navigate(['/ultrasound/reports/ultrasoundmasterreport/'+id+'/'+date]);
   }
 
   formatDate(date: Date) {
@@ -56,7 +56,6 @@ export class UltraSoundMasterDetailComponent implements OnInit {
   }
 
   addUltraSoundMaster(){
-    
     this.Router.navigate(['/ultrasound/ultrasoundmaster']);
   }
 

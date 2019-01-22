@@ -10,7 +10,7 @@ import { FwbInitialReportComponent } from './reports/fwb-initial-report/fwb-init
 import { FwbInitialDetailComponent } from './fwb-initial-detail/fwb-initial-detail.component';
 import { UltraSoundMasterComponent } from './ultra-sound-master/ultra-sound-master.component';
 import { UltraSoundMasterDetailComponent } from './ultra-sound-master-detail/ultra-sound-master-detail.component';
-
+import { UltraSoundMasterReportComponent } from './reports/ultra-sound-master-report/ultra-sound-master-report.component';
 
 
 
@@ -50,8 +50,8 @@ export const ultraSoundRouting: ModuleWithProviders = RouterModule.forChild([
                 path: 'reports',
                 children: [ 
                     { path: 'ultrasoundpelvisreport/:id/:date', component: UltraSoundPelvisReportComponent },
-                    { path: 'fwbinitialreport/:id/:date', component: FwbInitialReportComponent }
-                 //   { path: 'fwbinitialreport/:id/:date', component: FwbInitialReportComponent }
+                    { path: 'fwbinitialreport/:id/:date', component: FwbInitialReportComponent },
+                     { path: 'ultrasoundmasterreport/:id/:date', component: UltraSoundMasterReportComponent }
 
                 ]
             }

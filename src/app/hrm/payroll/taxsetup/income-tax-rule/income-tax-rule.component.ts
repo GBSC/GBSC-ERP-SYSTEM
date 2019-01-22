@@ -8,6 +8,8 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class IncomeTaxRuleComponent implements OnInit {
 
+    taxTypeSource = [ "Percentage", "Amount" ];
+    applicableToSource = [ "Male", "Female", "Both" ];
     public incomeTax: any;
     public payrollYears: any;
     public UpdateTaxRule: any;

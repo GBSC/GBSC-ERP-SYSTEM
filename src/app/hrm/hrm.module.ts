@@ -139,7 +139,6 @@ import { EmployeecardComponent } from './Reports/employeecard/employeecard.compo
 import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component'; 
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
-import { MissingentriesComponent } from './Reports/missingentries/missingentries.component';
 import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component'; 
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
@@ -161,6 +160,22 @@ import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
+import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component';
+import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
+import { DepartmentWiseAttendanceComponent } from './Reports/department-wise-attendance/department-wise-attendance.component';
+import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-attendance.component';
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -325,12 +340,9 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         EmployeecardComponent,
         ListOfJoinnersComponent,
         ListOfLeaversComponent,
-        LeaveDetailComponent,
-        InOutDurationComponent,
-        MissingentriesComponent,
+         InOutDurationComponent,
         SalarypaymentComponent,
-        MonthlyleaveComponent,
-        CreateAttendancerequestComponent,
+         CreateAttendancerequestComponent,
         EmployeelistComponent,
         MonthlyOvertimeComponent,
         UserrosterattendanceComponent,
@@ -343,7 +355,23 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         CalendarComponent,
         LeavebalanceComponent,
         LeaveledgerComponent,
-        UpdateassignrosterComponent
+        UpdateassignrosterComponent,
+        AssignRosterExcelsheetComponent,
+        MissingEntriesComponent,
+        DailyattendanceandleaveComponent,
+        DepartmentWiseAttendanceComponent,
+        DailyAttendanceComponent,
+        LeavesetupMasterComponent,
+        AttendancesetupMasterComponent,
+        HrsetupMasterComponent,
+        StopsalarydetailComponent,
+        PayrollsetupMasterComponent,
+        TaxsetupMasterComponent,
+        LoansetupMasterComponent,
+        OvertimesetupMasterComponent,
+        CompanysetupMasterComponent,
+        ViewfundsetupComponent,
+        AllowanceDeductionDetailComponent
     ],
 
     // providers: [IgxExcelExporterService],

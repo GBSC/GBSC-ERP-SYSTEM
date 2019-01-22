@@ -8,6 +8,8 @@ import { PayrollSetupService } from '../../../../core';
 })
 export class TaxscheduleComponent implements OnInit {
 
+    taxTypeSource = [ "Percentage", "Amount" ];
+    applicableToSource = [ "Male", "Female", "Both" ];
     public taxSchedule: any;
     public incomeTaxrule: any;
     public taxScheduling: any;

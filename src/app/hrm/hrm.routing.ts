@@ -34,6 +34,7 @@ import { UniversityComponent } from './hrmsSetup/university/university.component
 import { RootComponent } from './root/root.component';
 import { HrmSetupHomeComponent } from './hrmsSetup/home/home.component';
 import { AssignrosterComponent } from './attendance/attendancesetup/assignroster/assignroster.component';
+
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
 import { AttendanceflagComponent } from './attendance/attendancesetup/attendanceflag/attendanceflag.component';
 import { AttendancerequestapproverComponent } from './attendance/attendancesetup/attendancerequestapprover/attendancerequestapprover.component';
@@ -122,9 +123,12 @@ import { ReportviewerComponent } from './reportviewer/reportviewer.component';
 import { EmployeecardComponent } from './Reports/employeecard/employeecard.component';
  
 import { ListOfJoinnersComponent } from './Reports/list-of-joinners/list-of-joinners.component';
-import { MissingentriesComponent } from './Reports/missingentries/missingentries.component'; 
-import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
+import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component'; 
 import { InOutDurationComponent } from './Reports/in-out-duration/in-out-duration.component';
+import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
+import { DepartmentWiseAttendanceComponent } from './Reports/department-wise-attendance/department-wise-attendance.component';
+import { DailyAttendanceComponent } from './Reports/daily-attendance/daily-attendance.component';
+import { SalarypaymentComponent } from './Reports/salarypayment/salarypayment.component';
 import { CreateAttendancerequestComponent } from './attendance/create-attendancerequest/create-attendancerequest.component';
 import { CalendarComponent } from './attendance/calendar/calendar.component';
 import { UserrosterattendanceComponent } from './attendance/userrosterattendance/userrosterattendance.component';
@@ -133,6 +137,18 @@ import { LoansummaryComponent } from './Reports/Payroll/loansummary/loansummary.
 import { GrossSalaryComponent } from './Reports/Payroll/gross-salary/gross-salary.component';
 import { ListOfLeaversComponent } from './Reports/list-of-leavers/list-of-leavers.component';
 import { EmployeelistComponent } from './Reports/employeelist/employeelist.component';
+import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
+import { LeavesetupMasterComponent } from './leave/leavesetup/leavesetup-master/leavesetup-master.component';
+import { AttendancesetupMasterComponent } from './attendance/attendancesetup/attendancesetup-master/attendancesetup-master.component';
+import { HrsetupMasterComponent } from './hrmsSetup/hrsetup-master/hrsetup-master.component';
+import { StopsalarydetailComponent } from './payroll/payrolladmin/stopsalarydetail/stopsalarydetail.component';
+import { PayrollsetupMasterComponent } from './payroll/payrollsetup/payrollsetup-master/payrollsetup-master.component';
+import { TaxsetupMasterComponent } from './payroll/taxsetup/taxsetup-master/taxsetup-master.component';
+import { LoansetupMasterComponent } from './payroll/loansetup/loansetup-master/loansetup-master.component';
+import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetup-master/overtimesetup-master.component';
+import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
+import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
+import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -144,6 +160,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
         children: [
 
             { path: 'rolesandprivileges', component: RolesandprivilegesComponent },
+            { path: 'comoanysetups', component: CompanysetupMasterComponent },
             { path: 'branch', component: BranchComponent },
             { path: 'company', component: CompanyComponent },
             { path: 'country', component: CountryComponent },
@@ -153,7 +170,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'module', component: ModuleComponent },
 
             {
-                path: 'setup',
+                path: 'employeesetups', component: HrsetupMasterComponent,
                 children: [
 
                     { path: 'home', component: HrmSetupHomeComponent },
@@ -181,9 +198,9 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'leave',
                 children: [
                     {
-                        path: 'leavesetup',
+                        path: 'setups', component: LeavesetupMasterComponent,
                         children: [
-
+ 
                             { path: 'leavepurpose', component: LeavepurposeComponent },
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
@@ -234,11 +251,13 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                 path: 'attendance',
                 children: [
                     {
-                        path: 'attendancesetup',
+                        path: 'setups', component: AttendancesetupMasterComponent,
                         children: [
 
                             { path: 'assignroster', component: AssignrosterComponent },
                             { path: 'updateassignroster/:id', component: UpdateassignrosterComponent },
+                            { path: 'assignrosterexcelsheet/:id', component: AssignRosterExcelsheetComponent },
+
                             { path: 'attendanceflag', component: AttendanceflagComponent },
                             { path: 'attendancerequestapprover', component: AttendancerequestapproverComponent },
                             { path: 'attendancerequesttype', component: AttendancerequesttypeComponent },
@@ -262,7 +281,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                         ]
                     },
                     {
-                        path: 'overtime',
+                        path: 'overtimesetup', component: OvertimesetupMasterComponent,
                         children: [
                             { path: 'overtimeflag', component: OvertimeflagComponent },
                             { path: 'overtimetype', component: OvertimetypeComponent },
@@ -285,13 +304,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             {
                 path: 'payroll',
                 children: [
-                    {
-                        path: 'payrollsetup',
-                        children: [
-
+                   
+                            { path: 'payrollsetup', component: PayrollsetupMasterComponent},
                             { path: 'allowance', component: AllowanceComponent },
                             { path: 'allowancearrear', component: AllowancearrearComponent },
                             { path: 'allowancededuction', component: AllowanceDeductionComponent },
+                            { path: 'allowancedeductiondetail', component: AllowanceDeductionDetailComponent },
                             { path: 'allowancecalculationtype', component: AllowancecalculationtypeComponent },
                             { path: 'allowancerate', component: AllowancerateComponent },
                             { path: 'bankadvicetemplate', component: BankAdviceTemplateComponent },
@@ -302,6 +320,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'currency', component: CurrencyComponent },
                             { path: 'frequency', component: FrequencyComponent },
                             { path: 'fundsetup', component: FundsetupComponent },
+                            { path: 'fundsetupdetail', component: ViewfundsetupComponent },
                             { path: 'gratuityslabgratuity', component: GratuitySlabGratuityComponent },
                             { path: 'gratuityslab', component: GratuityslabComponent },
                             { path: 'gratuitytype', component: GratuitytypeComponent },
@@ -316,35 +335,28 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'pfpayment', component: PfPaymentComponent },
                             { path: 'salarycalculationtype', component: SalaryCalculationTypeComponent },
                             { path: 'salarystructure', component: SalarystructureComponent },
+                            { path: 'update-salarystrucrure/:id', component: SalarystructureComponent },
                             { path: 'salarystructuredetail', component: SalarystructuredetailComponent },
-                            { path: 'usersalary', component: UsersalaryComponent }
-
-                        ]
-                    },
-                    {
-                        path: 'taxsetup',
-                        children: [
+                            { path: 'usersalary', component: UsersalaryComponent }, 
+                     
+                            {path: 'taxsetup', component: TaxsetupMasterComponent},
                             { path: 'incometaxrule', component: IncomeTaxRuleComponent },
                             { path: 'taxadjustmentreason', component: TaxAdjustmentReasonComponent },
                             { path: 'taxbenefit', component: TaxBenefitComponent },
                             { path: 'taxableincomeadjustment', component: TaxableIncomeAdjustmentComponent },
                             { path: 'taxrelief', component: TaxreliefComponent },
                             { path: 'taxschedule', component: TaxscheduleComponent },
-                            { path: 'taxyear', component: TaxyearComponent },
-                        ]
-                    },
+                            { path: 'taxyear', component: TaxyearComponent }, 
 
-                    {
-                        path: 'loansetup',
-                        children: [
+                            {path: 'loansetup', component: LoansetupMasterComponent},
                             { path: 'loantype', component: LoantypeComponent },
-                            { path: 'userloan', component: UserloanComponent }
-                        ]
-                    },
+                            { path: 'userloan', component: UserloanComponent },
+                   
 
                     {
                         path: 'payrolladmin',
                         children: [
+                            { path: 'stopsalarydetail', component: StopsalarydetailComponent },
                             { path: 'stopsalary', component: StopsalaryComponent }
                         ]
                     },
@@ -367,8 +379,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'employeelist', component: EmployeelistComponent },
                     { path: 'joiners', component: ListOfJoinnersComponent },
                     { path: 'leavers', component: ListOfLeaversComponent }, 
-                    { path: 'in/outduration', component: InOutDurationComponent },
-                    { path: 'missingentries', component: MissingentriesComponent }, 
+                    { path: 'inoutduration', component: InOutDurationComponent },
+                    { path: 'missingentries', component: MissingEntriesComponent }, 
+                    { path: 'dailyattendanceandleave', component: DailyattendanceandleaveComponent }, 
+                    { path: 'departmentwiseattendance', component: DepartmentWiseAttendanceComponent }, 
+                    { path: 'dailyattendance', component: DailyAttendanceComponent }, 
                     { path: 'salarypayment', component: SalarypaymentComponent },
                     { path: 'gross-salary', component: GrossSalaryComponent },
                     { path: 'loansummary', component: LoansummaryComponent }

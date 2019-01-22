@@ -35,9 +35,10 @@ export class AreaComponent implements OnInit {
 
     }
 
-    updateArea(area) {
-        area.data.companyId = this.companyId;
-        this.inventoryService.UpdateArea(area.data)
+    updateArea(value) {
+        value.companyId = this.companyId;
+        let model = { ...value.oldData, ...value.newData };
+        this.inventoryService.UpdateArea(model)
             .subscribe(s => console.log(s));
 
     }

@@ -45,6 +45,7 @@ export class TerritoryComponent implements OnInit {
 
     deleteTerritory(territory) {
 
+        this.inventoryService.DeleteTerritory(territory.key).subscribe(resp => console.log('territory deleted'));
     }
 
 }

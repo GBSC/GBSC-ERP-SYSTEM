@@ -47,6 +47,8 @@ export class CityComponent implements OnInit {
 
     deleteCity(value) {
 
+        this.inventoryService.deleteCity(value.key).subscribe(resp=>console.log('City Deleted'));
+
     }
 
 }

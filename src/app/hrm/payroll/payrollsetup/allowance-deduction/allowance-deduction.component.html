@@ -14,34 +14,26 @@
           <form [formGroup]="AllowanceorDeductionForm"> 
 
               <div class="form-group m-form__group row">
-                  <div class="col-lg-3">
+                  <div class="col-lg-4">
                     <label>
                      Title:
                     </label>
                     <input type="text" class="form-control m-input" formControlName="Title" placeholder="Title">
                   </div>
-                  <div class="col-lg-3">
+                    <div class="col-lg-4">
+                      <label>
+                        Type:
+                      </label>
+                      <select class="form-control m-input" formControlName="Type"> 
+                        <option value="allowance">Allowance</option>
+                         <option value="deduction">Deduction</option>
+                 </select>
+                    </div> 
+                  <div class="col-lg-4">
                     <label class="">
                    Fixed Value:
                     </label>
                     <input type="number" class="form-control m-input" formControlName="FixedValue" placeholder="0">
-                  </div>
-                  <div class="col-lg-3">
-                    <label>
-                      Type:
-                    </label>
-                    <select class="form-control m-input" formControlName="Type" id="">
-                       <option>Allowance</option>
-                       <option>Deduction</option>
-               </select>
-                  </div>
-                  <div class="col-lg-3">
-                    <label class="">
-                    Calculation Type:
-                    </label> 
-                        <select class="form-control m-input" formControlName="AllowanceCalculationTypeId">
-                            <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
-                   </select>
                   </div>
                 </div>
 
@@ -81,39 +73,47 @@
                   </div>
 
                   <div class="form-group m-form__group row">
-                      <div class="col-lg-3">
+                      <div class="col-lg-4">
+                          <label class="">
+                          Calculation Type:
+                          </label> 
+                              <select class="form-control m-input" formControlName="AllowanceCalculationTypeId">
+                                  <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
+                         </select>
+                        </div>
+                      <div class="col-lg-4">
                         <label>
                           Calculation Sequence Number:
                         </label>
                         <input type="text" class="form-control m-input" formControlName="CalculationSequenceNumber" placeholder="0">
                       </div>
-                      <div class="col-lg-3">
+                      <div class="col-lg-4">
                         <label class="">
                           Report Order:
                         </label>
                         <input type="text" class="form-control m-input" formControlName="RepostNumber" placeholder="0">
                       </div>
-                      <div class="col-lg-3">
-                        <label>
-                       Gl Code(Allowance):
-                        </label>
-                        <input type="text" class="form-control m-input" formControlName="GlCodeAllowance" placeholder="0">
-                      </div>
-                      <div class="col-lg-3">
-                        <label class="">
-                        Gl Code (Deduction):
-                        </label>
-                        <input type="text" class="form-control m-input" formControlName="GlCodeDeduction" placeholder="0">
-                      </div>
                     </div>
  
             <div class="form-group m-form__group row">
-                <div class="col-lg-3">
-                  <label class="">
-                      Default Cost Center:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="DefaultCostCenter" placeholder="0">
-                </div>
+                <div class="col-lg-4">
+                    <label>
+                   Gl Code(Allowance):
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="GlCodeAllowance" placeholder="0">
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="">
+                    Gl Code (Deduction):
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="GlCodeDeduction" placeholder="0">
+                  </div>
+                  <div class="col-lg-4">
+                      <label class="">
+                          Default Cost Center:
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="DefaultCostCenter" placeholder="0">
+                    </div>
               </div>
 
               <div class="m--space-30"></div>

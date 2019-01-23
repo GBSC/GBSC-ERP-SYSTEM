@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PayrollSetupService, EmployeeService } from '../../../../core';
+import { PayrollSetupService, EmployeeService, SetupService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
 import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
@@ -28,12 +28,14 @@ export class MasterpayrollComponent implements OnInit {
     public MasterDetailForm: any;
     public userBank: any ={};
     public masterpayroll: any;
+    public group: any;
+    public getAllowances: any;
+    public employee: any;
     public currency: any;
-
     @Input('masterPayrollId') id: number;
 
     constructor(public fb: FormBuilder, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute,
-        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService) { }
+        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService, public setupService: SetupService) { }
 
     async ngOnInit() {
 
@@ -106,11 +108,24 @@ export class MasterpayrollComponent implements OnInit {
             return false;
     }
 
-    GetEmployeeBank(id){ 
-         this.empservice.getBanks(id).subscribe(resp=>{
-            this.userBank = resp[0]  
-            console.log(resp); 
+    getAllowance(id){ 
+        console.log(id);
+        
+         this.empservice.GetEmployee(id).subscribe(resp=>{
+            this.employee = resp;  
+            if(this.employee){
+                this.payrollsetupservice.GetSalaryStructures().subscribe(sc=>{
+                    console.log(sc);
+
+                this.getAllowances = sc.find(t=>  t.groupId == this.employee.groupId )
+
+                console.log(this.getAllowances);
+
+                });
+            }
+            console.log(this.employee); 
         });
+ 
     }
 
      updateMasterpayrollDetail(value) {

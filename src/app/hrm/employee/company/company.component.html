@@ -165,8 +165,12 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
-          placeholder="Approved By">
+        <select class="form-control m-input m-input--solid" formControlName="Approver" [value]="EmployeeCompany?.Approver">
+            <option *ngFor="let approver of employees" [value]="approver.userId">{{approver.fullName}}</option>
+          </select>
+        <!-- <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
+          placeholder="Approved By"> -->
+
       </div>
     </div>
   </div>

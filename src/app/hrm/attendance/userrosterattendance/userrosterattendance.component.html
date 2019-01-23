@@ -35,7 +35,7 @@
                       </dxo-lookup>
                     </dxi-column>  
                             <dxi-column dataField="userId" caption="Employee">
-                              <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
+                              <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                               </dxo-lookup>
                               </dxi-column>
                 <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>

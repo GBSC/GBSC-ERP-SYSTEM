@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PayrollsetupMasterComponent implements OnInit {
 
-  tabs: string[] = ['Allowance', 'Allowance Arrear', 'Allowance Rate', 'Allowance/Deduction',
+  tabs: string[] = ['Allowance Arrear', 'Allowance/Deduction', 'Allowance Rate',
   'Allowance Calculation Type', 'Bank Advice Template', 'Benefit', 'Cheque Template', 'Compensation Transaction','Currency',
    'Frequency', 'Fund Setup', 'Gratuity Type', 'Gratuity Slab','Gratuity-Slab-Gratuity', 
    'Leaving Reason', 'Payroll', 'Payroll Type', 'Payroll Year', 'Payroll Bank', 'Master Payroll', 'PF Payment',

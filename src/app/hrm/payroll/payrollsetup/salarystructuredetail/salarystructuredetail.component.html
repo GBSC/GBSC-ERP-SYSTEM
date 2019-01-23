@@ -65,6 +65,11 @@
                           <dxi-column dataField="allowanceId" caption="Allowance">
                             <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
                           </dxi-column>
+
+                          <dxi-column dataField="allowanceId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="type" valueExpr="allowanceId"></dxo-lookup>
+                          </dxi-column>
+
                           <dxi-column dataField="value" caption="Value"></dxi-column>
                           <dxi-column dataField="formula" caption="Formula"></dxi-column>
                         </dx-data-grid>

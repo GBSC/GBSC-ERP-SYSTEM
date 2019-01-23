@@ -543,6 +543,10 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryCalculationType/${id}`).toPromise();
     }
 
+    GetSalaryStructures():Observable<any>{
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`)
+        }
+
     async getSalaryStructures() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`).toPromise();

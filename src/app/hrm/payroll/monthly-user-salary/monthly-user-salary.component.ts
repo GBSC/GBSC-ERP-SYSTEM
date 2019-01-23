@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
+import { PayrollService, EmployeeService, PayrollSetupService, AttendanceService } from '../../../core';
 import { UserRosterAttendance } from '../../../core/Models/HRM/userRosterAttendance';
 import { MonthlyUserSalary } from '../../../core/Models/HRM/monthlyUserSalary';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -28,7 +28,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     @Input('monthlyUserSalaryId') id: number;
 
-    constructor(public fb: FormBuilder, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
+    constructor(public fb: FormBuilder, public attendanceService: AttendanceService, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
         public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
@@ -122,6 +122,28 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
         });
     }
+
+    public employeeData: any = [];
+
+    formatDate(date: Date) {
+        return (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+    }
+    days
+    getattendancerequest(value) {
+        console.log(value);  
+        
+        this.MonthlyUserSalaryForm.value.MonthStartDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthStartDate))
+        this.MonthlyUserSalaryForm.value.MonthEndDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthEndDate))
+        this.attendanceService.getUserAttendancesbyIddate(value.UserId, value.MonthStartDate, value.MonthEndDate).subscribe(res => {
+            this.employeeData = res;
+            console.log(this.employeeData);
+            for (let d of this.employeeData.length) {
+                this.days += (d.value.Days);
+                console.log(d); 
+            }  
+        }) 
+    }
+
 
     patchValues(monthlysalary: any) {
 

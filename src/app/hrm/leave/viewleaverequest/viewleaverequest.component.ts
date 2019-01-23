@@ -20,6 +20,8 @@ export class ViewleaverequestComponent implements OnInit {
     public leaveApprovr: any;
     public leaveRequest: any;
     public leaverequest: any;
+    public requestedLeaves: any;
+    public approvedLeaves: any;
     public leaveOpening: any;
     public userRosterattendance: any;
     public leaveDetail: any[] = [];
@@ -44,9 +46,10 @@ export class ViewleaverequestComponent implements OnInit {
         this.leaveYear = await this.leavesetupservice.getLeaveYears();
 
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
+                
+        this.requestedLeaves = this.leaverequest.filter(t => (t.isApproved == null || t.isApproved == false));
 
-
-
+        this.approvedLeaves = this.leaverequest.filter(t => (t.isApproved == true));
     }
 
     // [formItem]="{editorOptions: { readOnly: true }}"
@@ -89,7 +92,7 @@ export class ViewleaverequestComponent implements OnInit {
         console.log(leave);
         leave.leaveRequestDetails = leave.leaveRequestDetails.map(d => {
             if (e.data.isApproved) {
-                let g = d.totalLeaveDetailValue -= d.value;
+                let g = +(d.totalLeaveDetailValue -= d.value);
                 console.log(g);
                 delete d.leaveRequestDetailId
                 return d;
@@ -108,7 +111,7 @@ export class ViewleaverequestComponent implements OnInit {
 
             console.log( this.employeeService.updatedLeaves);
 
-                this.employeeService.updatedLeaves.forEach(markleave => {
+                this.employeeService.updatedLeaves.forEach(async markleave => {
                     let leaveType : any = {};
                     leaveType.id = markleave.leaveTypeId;
                     leaveType.days = [];
@@ -120,6 +123,7 @@ export class ViewleaverequestComponent implements OnInit {
                         for(fromDate; fromDate <= tillDate; fromDate.setDate(fromDate.getDate()+1)){
                             // console.log(fromDate);
                             let d = new Date(fromDate);
+                           
                             leaveType.days.push(d);
                         }
                         isOnLeaveDays.push(leaveType);
@@ -129,10 +133,30 @@ export class ViewleaverequestComponent implements OnInit {
                 })
                   console.log( this.employeeService.updatedLeaves);
                   console.log(isOnLeaveDays);
+                  isOnLeaveDays.forEach(ld => {
+                      ld.days.forEach(async d => {
+                          let checkIn = new Date(d);
+                          checkIn.setHours(9);
+                          let checkOut = new Date(d);
+                          checkOut.setHours(18);
+                          console.log('chekciN', checkIn)
+                          console.log('checktou', checkOut)
+                          console.log('d', d)
+                        //   console.log('d', d.set)
+                          let mL = {
+                            checkInTime: checkIn,
+                            checkOutTime: checkOut,
+                            isOnLeave: true,
+                            userId: leave.userId 
+                        };
+                         await this.attendanceservice.addUserRosterAttendance(mL);
+                      })
+                  })
                   this.attendanceservice.isOnLeaveDates = isOnLeaveDays;
 
-        }
+        } 
 
+        this.requestedLeaves = this.leaverequest.filter(t => (t.isApproved == null || t.isApproved == false));
     }
 
     addleaveRequest() {

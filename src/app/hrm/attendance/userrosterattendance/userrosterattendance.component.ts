@@ -28,7 +28,13 @@ export class UserrosterattendanceComponent implements OnInit {
     }
 
     async adduserRosterattendance(value) {
+        console.log(value);
+        console.log(value.data);
+        
+        if(value.data.checkInTime != null && value.data.checkOutTime != null){
 
+            value.data.isPresent = true
+        }
         await this.attendanceservice.addUserRosterAttendance(value.data);
         console.log(value.data);
         

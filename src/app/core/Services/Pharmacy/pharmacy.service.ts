@@ -217,6 +217,27 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrderItem/' + id);
     }
 
+    //PurchaseInvoice
+    GetPurchaseInvoices(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoices');
+    }
+
+    GetPurchaseInvoicesByCompany(companyId: number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByCompany/' + companyId);
+    }
+
+    AddPurchaseInvoice(PurchaseInvoice: any): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseInvoice', PurchaseInvoice);
+    }
+
+    UpdatePurchaseInvoice(PurchaseInvoice: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseInvoice', PurchaseInvoice);
+    }
+
+    DeletePurchaseInvoice(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseInvoice/' + id);
+    }
+
     //GRN
     GetGRN(): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNs');
@@ -231,11 +252,11 @@ export class PharmacyService {
     }
 
     DeleteGRN(id: number): Observable<GRN> {
-        return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN' + id);
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN/' + id);
     }
 
     GetGrnDetailsByCode(code: string): Observable<GRN> {
-        return this.ApiService.get(this.API_URL + 'Sales/GetGrnDetailsByCode/' + code);
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGrnDetailsByCode/' + code);
     }
 
     //Inventory
@@ -548,5 +569,13 @@ export class PharmacyService {
 
     GetGRNsByMonth(date): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/' + date);
+    }
+
+    GetPurchaseInvoicesByMonth(date): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByMonth/' + date);
+    }
+
+    GetPurchaseInvoicesByMonthAndCompany(date, companyid): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByMonthAndCompany/' + date + '/' + companyid);
     }
 }

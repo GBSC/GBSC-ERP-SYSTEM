@@ -16,101 +16,102 @@
           </div>
           <div class="m-portlet__head-tools">
             <div class="dropdown">
-              <button routerLink="/pharmacy/grnView" class="btn btn-primary" type="button">
+              <button routerLink="/pharmacy/purchaseinvoiceview" class="btn btn-primary" type="button">
                 <span>
                   <i class="fa fa-eye"></i>
-                </span> Purchase Invoice
+                </span> Invoice View
               </button>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
           <!--begin::Form-->
-          <form class="m-form" [formGroup]="">
-
-
+          <form class="m-form" [formGroup]="PurchaseInvoiceForm">
             <div class="form-group row">
               <div class="form-group col-lg-3">
                 <label>
                   GRN Code
                 </label>
-                <input type="text" class="form-control m-input m-input--solid" #GRNCode (keyup)="GetSelectedGRNDetails(GRNCode.value, $event)"
+                <input type="text" class="form-control m-input m-input--solid" #GRNCode (keyup)="getGRNDetails(GRNCode.value, $event)"
                   formControlName="GRNCode">
-              </div>
-              <div class="form-group col-lg-3">
-                <label>
-                  Invoice Date
-                </label>
-                <div class="input-group date">
-                  <input type="date" class="form-control m-input m-input--solid" disabled formControlName="PurchaseInvoiceDate"
-                    [value]="SelectedPurchaseOrder?.orderDate | date: 'yyyy-MM-dd' || ''">
-                </div>
-              </div>
-              <div class="form-group col-lg-3">
-                <label>
-                  Supplier
-                </label>
-                <input type="text" class="form-control m-input m-input--solid" disabled formControlName="Supplier"
-                  [value]="SelectedPurchaseOrder?.supplier?.name || ''">
               </div>
               <div class="form-group col-lg-3">
                 <label>
                   GRN Date
                 </label>
                 <div class="input-group date">
-                  <input type="date" class="form-control m-input m-input--solid" formControlName="GrnDate">
+                  <input type="date" class="form-control m-input m-input--solid" disabled formControlName="GRNDate"
+                    [value]="GRN?.grnDate | date: 'yyyy-MM-dd' || ''">
+                </div>
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  GRN Remarks
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" disabled formControlName="GRNRemarks"
+                  [value]="GRN?.remarks || ''">
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  Invoice Date
+                </label>
+                <div class="input-group date">
+                  <input type="date" class="form-control m-input m-input--solid" formControlName="InvoiceDate">
                 </div>
               </div>
             </div>
             <div class="form-group row">
               <div class="form-group col-lg-3">
                 <label>
-                  Origin
+                  Payment Amount
+                </label>
+                <input type="number" class="form-control m-input m-input--solid" disabled formControlName="PaymentAmount"
+                  [value]="GRN?.totalPaymentAmount || ''">
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  Received Quantity
                 </label>
                 <div class="input-group date">
-                  <input type="text" class="form-control m-input m-input--solid" disabled formControlName="Origin"
-                    [value]="SelectedPurchaseOrder?.origin || ''">
+                  <input type="number" class="form-control m-input m-input--solid" disabled formControlName="ReceivedQuantity"
+                    [value]="GRN?.totalReceivedQuantity || ''">
                 </div>
               </div>
               <div class="form-group col-lg-3">
                 <label>
-                  Remarks
+                  Vendor Bill #
                 </label>
-                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+                <input type="text" class="form-control m-input m-input--solid" formControlName="VendorBillNumber"
+                  [value]="GRN?.vendorBillNumber || ''">
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-md-12">
+              <dx-data-grid [dataSource]="GRNItems" showBorders="true" [columnAutoWidth]="true" [showBorders]="true">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="inventoryItemId" caption="Product" [fixed]="true">
+                  <dxo-lookup [dataSource]="Products" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="receivedQuantity" caption="Received Quantity"></dxi-column>
+                <dxi-column dataField="rate" caption="Rate"></dxi-column>
+                <dxi-column dataField="packSize" dataType="number" caption="Pack Size"></dxi-column>
+                <dxi-column dataField="paymentAmount" dataType="number" caption="Payment Amount"></dxi-column>
+              </dx-data-grid>
+            </div>
+
+            <div class="form-group m-form__group">
+              <div class="modal-footer">
+                <button class="btn btn-success" (click)="SubmitPIN(PurchaseInvoiceForm.value)">Submit</button>
               </div>
             </div>
 
-          </form>
-
-          <div class="row">
-            <div class="col-md-12">
-              <dx-data-grid [dataSource]="" [remoteOperations]="true" showBorders="true" [columnAutoWidth]="true"
-                [showBorders]="true">
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-filter-row [visible]="false"></dxo-filter-row>
-                <dxo-header-filter [visible]="false"></dxo-header-filter>
-                <dxo-paging [pageSize]="5"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
-                <dxo-selection mode="single"></dxo-selection>
-                <dxi-column dataField="returnNumber" caption="Return Number" [width]="230" [fixed]="true"></dxi-column>
-                <dxi-column dataField="salesOrder.salesOrderCode" caption="Sales Order Code"></dxi-column>
-                <dxi-column dataField="returnDate" dataType="date" caption="Return Date"></dxi-column>
-                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
-                <dxi-column dataField="totalReturnAmount" caption="Total ReturnAmount"></dxi-column>
-                <dxi-column dataField="returnReason.name" caption="Return Reason Name"></dxi-column>
-                <dxi-column dataField="salesOrder.contactPerson" caption="Sales Order Contact Person"></dxi-column>
-                <dxi-column dataField="salesOrder.againstLotNumber" caption="Sales Order Lot Number"></dxi-column>
-                <dxi-column dataField="salesOrder.slipNumber" caption="Sales Order Slip Number"></dxi-column>
-
-              </dx-data-grid>
-            </div>
           </div>
-
-
         </div>
       </div>
       <!--end::Portlet-->
     </div>
   </div>
-
 </div>

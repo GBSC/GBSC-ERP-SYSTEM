@@ -44,6 +44,7 @@ export class SectionComponent implements OnInit {
 
     deleteSection(value) {
 
+        this.inventoryService.DeleteSection(value.key).subscribe(resp=> console.log('Section Deleted'));
     }
 
 }

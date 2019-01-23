@@ -11,7 +11,7 @@
       <div class="col-md-12">
         <dx-data-grid id="gridContainer" [dataSource]="subsections" keyExpr="subsectionId" (onRowInserted)="addSubsection($event)"
           (onRowUpdating)="updateSubsection($event)" (onRowRemoved)="deleteSubsection($event)">
-          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+          <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
               <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
             <dxo-popup title="Add Subsection" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false"
               [closeOnOutsideClick]="true" ></dxo-popup>

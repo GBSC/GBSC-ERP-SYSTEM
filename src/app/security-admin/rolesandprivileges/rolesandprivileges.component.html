@@ -29,7 +29,9 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="roles">
+                    <dx-data-grid id="gridContainer" [dataSource]="roles" (onRowRemoved)="deleteRole($event)">
+                        <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true">
+                          </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
                       <dxo-paging [pageSize]="8"></dxo-paging>

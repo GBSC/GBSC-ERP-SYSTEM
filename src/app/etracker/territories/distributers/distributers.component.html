@@ -48,7 +48,9 @@
             New Distributor
           </span>
         </span></button>
-        <dx-data-grid id="gridContainer" [dataSource]="distributors" keyExpr="distributorId">
+        <dx-data-grid id="gridContainer" [dataSource]="distributors" keyExpr="distributorId" (onRowRemoved)="deleteDistributor($event)">
+            <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" [useIcons]="true">
+              </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>

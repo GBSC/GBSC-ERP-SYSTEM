@@ -1099,6 +1099,10 @@ export class InventorysystemService {
         // return y;
     }
 
+    deleteDistributor(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteDistributor/' + id);
+    }
+
     DeleteDistributor(id): Observable<Distributor> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteDistributor/' + id);
         // let x = await this.http.delete(this.API_URL + 'Setup/DeleteDistributor/' + id).toPromise();
@@ -1531,7 +1535,6 @@ export class InventorysystemService {
     deleteCity(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCity/' + id);
     }
-
 
     //Section
     GetSections(): Observable<any> {

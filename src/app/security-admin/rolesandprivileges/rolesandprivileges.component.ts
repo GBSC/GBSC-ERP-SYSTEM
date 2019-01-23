@@ -221,4 +221,9 @@ export class RolesandprivilegesComponent implements OnInit {
         }
     }
 
+    async deleteRole(value){
+
+       await this.systemAdmin.deletRole(value.key);
+    }
+
 }

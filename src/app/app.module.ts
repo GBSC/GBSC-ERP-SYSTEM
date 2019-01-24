@@ -16,6 +16,7 @@ import { PharmacyModule } from './pharmacy/pharmacy.module';
 import { CoreModule } from './core/core.module';
 import { PatientModule } from './hims/patient/patient.module';
 import { UltraSoundModule } from './hims/ultra-sound/ultra-sound.module';
+import { OTModule } from './hims/OT/ot.module';
 import { LabModule } from './hims/lab/lab.module';
 import { FinanceModule } from './finance/finance.module';
 import { SuperadminModule } from './superadmin/superadmin.module';
@@ -72,8 +73,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         PharmacyModule,
         PatientModule,
         UltraSoundModule,
-        LabModule,
-        FinanceModule,
+        OTModule ,
+        LabModule ,
+        FinanceModule ,
         SuperadminModule,
         DashboardModule,
         HrmModule,

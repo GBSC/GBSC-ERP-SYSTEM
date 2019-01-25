@@ -3,7 +3,6 @@ import { PayrollSetupService, SetupService } from '../../../../core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
     selector: 'app-salarystructure',
@@ -78,6 +77,12 @@ export class SalarystructureComponent implements OnInit {
         }
     }
 
+    displayExpree(data) {
+        console.log(data);
+        
+        // return data.firstname + ' , ' + data.lastname;
+    }
+
     async addSalaryStructureDetail(value) {
         let data = value.data;
         this.StructureDetail.push(data);
@@ -104,14 +109,14 @@ export class SalarystructureComponent implements OnInit {
         return this.isDisabled;
     }
 
-    async updateSalaryStructureDetail(value) {
+     updateSalaryStructureDetail(value) {
         console.log(value);
     }
 
-    async updateSalaryStructure(value) {
+     updateSalaryStructure(value) {
         value.salaryStructureId = this.id;
         value.salaryStructureDetails = this.Detail;
-        this.payrollsetupservice.updateSalaryStructure(value).subscribe(resp => {
+         this.payrollsetupservice.updateSalaryStructure(value).subscribe(resp => {
             this.toastr.success("Salary Structure or Detail Updated");
             this.router.navigate(['/hrm/payroll/salarystructuredetail']);
         });

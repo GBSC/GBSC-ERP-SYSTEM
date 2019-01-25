@@ -14,7 +14,7 @@
           <form [formGroup]="MasterPayrollForm">
 
             <div class="form-group m-form__group row">
-              <div class="col-lg-6">
+              <div class="col-lg-4">
                 <label>Employee: </label>
                  <select #s class="form-control m-input" (change)="getAllowance(s.value)" formControlName="UserId">
                   <option value="" disabled selected>-- Select Employee --</option>
@@ -22,27 +22,18 @@
                 </select>
                 <!-- <dx-select-box [dataSource]="users" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true" #id (onValueChanged)="GetEmployeeBank(id.value)"></dx-select-box> -->
               </div>
+              <div class="col-lg-4">
+                <label>Basic Salary: </label>
+                <input type="number" [value]="calcallowances" class="form-control m-input">
+              </div>
+              <div class="col-lg-4">
+                  <label></label>
+                <button type="button" (click)="updateSalary(MasterPayrollForm.value)" class="btn btn-primary button_get">
+                  Get
+                </button> 
+              </div>
             </div>
-            <!-- <div class="form-group m-form__group row">
-                          <div class="col-lg-3">
-                            <label class="">
-                              Employee Bank:
-                            </label>
-                            <input type="text" class="form-control m-input" formControlName="BankId" [value]="userBank?.bankTitle || ''">
-                          </div>
-                          <div class="col-lg-3">
-                            <label class="">
-                              Account Number:
-                            </label>
-                            <input type="text" class="form-control m-input" [value]="userBank?.accountNumber || ''">
-                          </div>
-                          <div class="col-lg-3">
-                            <label class="">
-                              Bank Code:
-                            </label>
-                            <input type="text" class="form-control m-input" [value]="userBank?.bankCode || ''">
-                          </div>
-                        </div> -->
+            
           </form>
         
  
@@ -61,7 +52,7 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="getAllowances?.salaryStructureDetails"
+                        [dataSource]="datasource"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
                          (onRowUpdated)="updateMasterpayrollDetail($event)">
                           <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
@@ -73,24 +64,22 @@
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager> 
-                          <dxi-column dataField="allowanceId" caption="Allowance">
-                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
-                            </dxo-lookup> 
+
+                          <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
                           </dxi-column>
-                          <dxi-column dataField="allowanceId" caption="Allowance">
-                              <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId">
-                              </dxo-lookup> 
-                            </dxi-column>
-                          <dxi-column dataField="payrollTypeId" caption="Payroll Type">
-                            <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
-                            </dxo-lookup> 
+            
+                          <dxi-column dataField="benefitId" caption="Benefit">
+                            <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                           </dxi-column>
-                          <dxi-column dataField="effectiveDate" dataType="date" format="shortDate"></dxi-column>
-                          <dxi-column dataField="frequencyId" caption="Frequency">
-                            <dxo-lookup [dataSource]="frequency" displayExpr="name" valueExpr="frequencyId">
-                            </dxo-lookup> 
+          
+                          <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                           </dxi-column>
-                          <dxi-column dataField="value"></dxi-column> 
+
+                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                          <dxi-column dataField="formula" caption="Formula"></dxi-column>
+
                         </dx-data-grid>
                         
                     </div>

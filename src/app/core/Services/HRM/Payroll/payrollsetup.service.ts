@@ -525,6 +525,20 @@ export class PayrollSetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`).toPromise();
     }
 
+    getSalaryCalculationTypesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.baseUrl + '/GetSalaryCalculationTypesByCompany/' + companyid);
+    }
+
+    
+     GetSalaryCalculationTypes() {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`);
+    }
+
+    getSalaryCalculationTypesById(id) {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationType/`+id);
+    }
 
     async addSalaryCalculationType(data) {
 

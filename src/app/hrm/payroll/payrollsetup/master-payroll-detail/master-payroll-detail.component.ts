@@ -31,7 +31,7 @@ export class MasterPayrollDetailComponent implements OnInit {
 
         this.currency = await this.payrollSetupService.getCurrencies();
 
-        this.allowance = await this.payrollSetupService.getAllowances();
+        this.allowance = await this.payrollSetupService.getAllowanceDeductions();
 
         this.banks = await this.setupService.getAllBanks();
 

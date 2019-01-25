@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PayrollSetupService, EmployeeService, SetupService } from '../../../../core';
+import { PayrollSetupService, EmployeeService, SetupService, AuthService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
 import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MasterpayrollComponent implements OnInit {
 
     public masterPayroll: any;
+    public allowanceValue: any;
     public payrollMaster: any;
     public masterDetail: any[] = [];
     public users: any;
@@ -21,31 +22,44 @@ export class MasterpayrollComponent implements OnInit {
     public masterdetailupdating: any;
     public masterPayrollDetail: any;
     public payrollDetail: MasterPayrollDetail[];
+    public salaryCalculationtype: any;
+    public benefit: any;
     public banksPayroll: any;
     public payrollType: any;
     public MasterPayrollForm: any;
     public allowance: any;
     public MasterDetailForm: any;
-    public userBank: any ={};
+    public userBank: any = {};
     public masterpayroll: any;
     public group: any;
-    public getAllowances: any;
+    public getAllowances: any = [];
     public employee: any;
     public currency: any;
+    public calculationttypes : any[] = [];
     @Input('masterPayrollId') id: number;
 
+    public datasource: any[] = [];
+
     constructor(public fb: FormBuilder, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute,
-        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService, public setupService: SetupService) { }
+        public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService, public setupService: SetupService,
+        public Auth : AuthService) {
+
+            this.MasterPayrollForm = this.fb.group({
+                UserId: [''],
+                BankTransferCode: [''],
+                CurrencyId: [''],
+                BankId: ['']
+            });
+
+        }
 
     async ngOnInit() {
 
         this.payrollDetail = [];
 
-        this.MasterPayrollForm = this.fb.group({
-            UserId: [''],
-            BankTransferCode: [''],
-            CurrencyId: [''],
-            BankId: ['']
+        console.log(this.Auth.getUserCompanyId());
+        this.payrollsetupservice.getSalaryCalculationTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+            this.calculationttypes = res;
         });
 
         this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
@@ -54,9 +68,13 @@ export class MasterpayrollComponent implements OnInit {
 
         this.users = await this.empservice.GetAllEmployees();
 
+        this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
+
         this.currency = await this.payrollsetupservice.getCurrencies();
 
-        this.allowance = await this.payrollsetupservice.getAllowances();
+        this.allowance = await this.payrollsetupservice.getAllowanceDeductions();
+
+        this.benefit = await this.payrollsetupservice.getBenefits();
 
         this.banksPayroll = await this.payrollsetupservice.getPayrollBanks();
 
@@ -76,7 +94,7 @@ export class MasterpayrollComponent implements OnInit {
                     delete b.masterPayrollId;
                     console.log(b);
                     return b;
-                    
+
                 });
                 this.patchValues(this.masterpayroll);
             });
@@ -84,7 +102,7 @@ export class MasterpayrollComponent implements OnInit {
     }
 
 
-     addMasterPayrolldetail(value) {
+    addMasterPayrolldetail(value) {
         let data = value.data;
         this.payrollDetail.push(data);
     }
@@ -107,34 +125,66 @@ export class MasterpayrollComponent implements OnInit {
         else
             return false;
     }
+    public SalaryCalculationTypesById: any;
+    getAllowance(id) {
+        this.empservice.GetEmployee(id).subscribe(resp => {
+            this.employee = resp;
+            if (this.employee) {
+                this.payrollsetupservice.GetSalaryStructures().subscribe(sc => {
+                    this.getAllowances = sc.find(t => t.groupId == this.employee.groupId);
+                    console.log(this.getAllowances);
+                    console.log(this.getAllowances.salaryStructureDetails);
+                    this.getAllowances.salaryStructureDetails.forEach(element => {
+                        console.log(element.salaryCalculationTypeId);
+                      
+                        this.calculationttypes.filter(res =>{
+                            (res.name == '% of Gross')
+                            console.log(res);
+                            
+                            this.allowanceValue = this.getAllowances.minimumSalary * Number.parseFloat(element.value) / 100;
+                            console.log(this.allowanceValue);
+                        })
+                        console.log(this.calculationttypes); 
 
-    getAllowance(id){ 
-        console.log(id);
-        
-         this.empservice.GetEmployee(id).subscribe(resp=>{
-            this.employee = resp;  
-            if(this.employee){
-                this.payrollsetupservice.GetSalaryStructures().subscribe(sc=>{
-                    console.log(sc);
+                            let a: any = {
+                                salaryCalculationTypeId: element.salaryCalculationTypeId,
+                                benefitId: element.benefitId,
+                                allowanceDeductionId: element.allowanceDeductionId,
+                                value: this.allowanceValue,
+                                formula: element.formula
+                            };
 
-                this.getAllowances = sc.find(t=>  t.groupId == this.employee.groupId )
+                            console.log(a);
+                            console.log(element);
 
-                console.log(this.getAllowances);
+                            this.datasource.push(a);
 
-                });
+                            console.log(this.datasource);
+                        }); 
+
+                    });
+
+             
             }
-            console.log(this.employee); 
+            // this.calcallowances = 0;
+            // let c =  this.datasource.filter(w => w.value);
+            // for (let d of c) {
+            //     this.calcallowances += (+d.value.DebitAmount);
+            //     console.log(this.calcallowances);
+            // }
+            // console.log(this.calcallowances);
         });
- 
-    }
 
-     updateMasterpayrollDetail(value) {
+    }
+ public calcallowances : any;
+
+    updateMasterpayrollDetail(value) {
         console.log(value);
     }
 
-     update(value) { 
+    update(value) {
         value.masterPayrollId = this.id;
-        value.MasterPayrollDetails = this.masterDetail; 
+        value.MasterPayrollDetails = this.masterDetail;
         this.payrollsetupservice.updateMasterPayroll(value).subscribe(resp => {
             this.toastr.success("Master Payroll Updated");
             this.router.navigate(['/hrm/payroll/masterpayrolldetail']);

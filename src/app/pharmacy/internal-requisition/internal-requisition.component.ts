@@ -30,6 +30,7 @@ export class InternalRequisitionComponent implements OnInit {
 	public TotalOrderQuantity: number = 0;
 
 	public id: number = null;
+	public SelectedIndentId : number = null;
 
 	public SelectedRequest: any;
 
@@ -47,7 +48,7 @@ export class InternalRequisitionComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
+		console.log(this.Auth.getUserCompanyId());
 		this.InventoryService.GetInventoryItems().subscribe((res: any) => {
 			this.InventoryItems = res;
 			// console.log(this.InventoryItems);
@@ -103,6 +104,7 @@ export class InternalRequisitionComponent implements OnInit {
 								// this.SelectedDistributor = a.distributorId;
 
 								this.RequestDate = new Date(res.issueDate);
+								this.SelectedIndentId = Number.parseInt(res.salesIndentId);
 
 								this.RequisitionForm.patchValue({
 									IndentNumber : res.salesIndentNumber,
@@ -126,7 +128,7 @@ export class InternalRequisitionComponent implements OnInit {
 										inventoryItemId: Number.parseInt(item.inventoryItemId),
 										stockQuantity: stockQuantity || 0,
 										requestQuantity: Number.parseInt(item.quantity),
-										quantity: 0,
+										orderUnitQuantity: 0,
 									};
 									// console.log(a);
 									this.SalesOrderItems.push(a);
@@ -193,7 +195,8 @@ export class InternalRequisitionComponent implements OnInit {
 			SalesOrderItems: this.SalesOrderItems,
 			IsInternalOrder: true,
 			CompanyId: this.Auth.getUserCompanyId(),
-			UserId: this.Auth.getUserId()
+			UserId: this.Auth.getUserId(),
+			SalesIndentId : this.SelectedIndentId
 		};
 
 		// console.log(a);
@@ -221,10 +224,13 @@ export class InternalRequisitionComponent implements OnInit {
 					err => this.toastr.error("Unable to update stock")
 				);
 
-				if (this.id) {
-					this.InventoryService.ProcessSalesIndentById(this.id).subscribe(
-						(res: any) => this.toastr.success("Initial request updated"),
-						err => this.toastr.error("Unable to update initial request")
+				if (this.SelectedIndentId) {
+					this.InventoryService.ProcessSalesIndentById(this.SelectedIndentId).subscribe(
+						(res: any) => {
+							this.toastr.success("Initial request updated");
+							this.SelectedIndentId = null;
+						},
+							err => this.toastr.error("Unable to update initial request")
 					);
 				}
 			},

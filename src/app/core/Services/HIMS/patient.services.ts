@@ -101,6 +101,14 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'patients/getpatients');
     }
 
+    getPatientsWithPartners(): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientsWithPartners');
+    }
+
+    getPatientsWithPartnersByCompany(companyid : number): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientsWithPartnersByComany/' + companyid);
+    }
+
     getPatientWithPartner(PatientId: number): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'patients/getpatientwithpartner/' + PatientId);
     }

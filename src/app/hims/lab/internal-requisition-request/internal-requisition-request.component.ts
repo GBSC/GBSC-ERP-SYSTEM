@@ -11,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 export class InternalRequisitionRequestComponent implements OnInit {
 
   public InventoryItems : any;
-  public Departments : any;
+	public Departments : any;
+	public Branches : any;
   public RequisitionRequestForm : FormGroup;
   public OrderQuantity : number = 0;
   public SalesIndentItems : any[] = [];
@@ -22,22 +23,43 @@ export class InternalRequisitionRequestComponent implements OnInit {
 			IssueDate : [''],
 			Remarks : [''],
 			Department : [''],
-			TotalQuantity : ['']
+			TotalQuantity : [''],
+			Branch:['']
 		});
 
   }
 
   ngOnInit() {
 
-    this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+    // this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.InventoryItems = res;
+		// 	console.log(this.InventoryItems);
+		// });
+
+		this.InventoryService.GetInventoryItems().subscribe((res : any) => {
 			this.InventoryItems = res;
-			console.log(this.InventoryItems);
+			// console.log(this.InventoryItems);
 		});
 
-		this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-			this.Departments = res;
-			console.log(this.Departments);
-		});
+		// this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.Departments = res;
+		// 	console.log(this.Departments);
+		// });
+
+		this.HrService.GetAllDepartments().subscribe((res : any) => {
+				this.Departments = res;
+				// console.log(this.Departments);
+			});
+
+		// this.HrService.GetBranchesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.Branches = res;
+		// 	console.log(this.Branches);
+		// });
+
+		this.HrService.GetBranches().subscribe((res : any) => {
+				this.Branches = res;
+				// console.log(this.Branches);
+			});
 
   }
 
@@ -60,7 +82,8 @@ export class InternalRequisitionRequestComponent implements OnInit {
 		let a : any = {
       IssueDate : value.IssueDate,
       Date : new Date(),
-			CustomerName : value.Department,
+			DepartmentName : value.Department,
+			BranchName : value.Branch,
       TotalQuantity : this.OrderQuantity,
       IsInternalOrder : true,
       SalesIndentItems : this.SalesIndentItems,
@@ -68,12 +91,13 @@ export class InternalRequisitionRequestComponent implements OnInit {
 			UserId : this.Auth.getUserId()
 		};
 
-		console.log(a);
+		// console.log(a);
 
 		this.InventoryService.AddSalesIndent(a).subscribe(
 			res => {
         this.toastr.success("Request Added");
-        this.RequisitionRequestForm.reset();
+				this.RequisitionRequestForm.reset();
+				this.OrderQuantity = 0;
         this.SalesIndentItems = [];
       },
 			err => this.toastr.error("Error. Try again")

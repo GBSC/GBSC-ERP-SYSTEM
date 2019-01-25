@@ -13,157 +13,201 @@ import { ActivatedRoute } from '@angular/router';
 
 export class InternalRequisitionComponent implements OnInit {
 
-	public InventoryItems : any;
-	public PackSizes : any;
-	public PackTypes : any;
-	public SalesOrder : any;
-	public SalesOrderItems : any[] = [];
-	public Departments : any[] = [];
-	public RequisitionForm : FormGroup;
-	public OrderQuantity : number = 0;
-	public setPackType : any;
-	public setPackSize : any;
-	public Inventories : any;
-	public UpdatedInventories : any[] = [];
+	public InventoryItems: any;
+	// public PackSizes : any;
+	// public PackTypes : any;
+	public SalesOrder: any;
+	public SalesOrderItems: any[] = [];
+	// public Departments : any[] = [];
+	// public Branches : any[] = [];
+	public RequisitionForm: FormGroup;
+	// public setPackType : any;
+	// public setPackSize : any;
+	public Inventories: any;
+	public UpdatedInventories: any[] = [];
 
-	public id : number = null;
+	public RequestDate : Date;
+	public TotalOrderQuantity: number = 0;
 
-	public SelectedRequest : any;
+	public id: number = null;
 
-	constructor(public InventoryService : InventorysystemService, public HrService : HrmsService, public FormBuilder : FormBuilder, public Auth : AuthService, public toastr : ToastrService, private Rerouted : ActivatedRoute) {
+	public SelectedRequest: any;
+
+	constructor(public InventoryService: InventorysystemService, public HrService: HrmsService, public FormBuilder: FormBuilder, public Auth: AuthService, public toastr: ToastrService, private Rerouted: ActivatedRoute) {
 		this.RequisitionForm = this.FormBuilder.group({
-			IssueDate : [''],
-			Remarks : [''],
-			Department : [''],
-			TotalQuantity : ['']
+			IndentNumber: [''],
+			IssueDate: [''],
+			RequestDate: Date,
+			Remarks: [''],
+			Department: [''],
+			Branch: [''],
+			TotalRequestQuantity: [''],
+			TotalOrderQuantity : ['']
 		});
 	}
 
 	ngOnInit() {
-		
-		this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+
+		this.InventoryService.GetInventoryItems().subscribe((res: any) => {
 			this.InventoryItems = res;
 			// console.log(this.InventoryItems);
-		});
 
-		this.InventoryService.GetPackSizesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-			this.PackSizes = res;
-			// console.log(this.PackSizes);
-		});
+		// this.InventoryService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any) => {
+		// 	this.InventoryItems = res;
+		// 	console.log(this.InventoryItems);
 
-		this.InventoryService.GetPackTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-			this.PackTypes = res;
-			// console.log(this.PackTypes);
-		});
 
-		// this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-		// 	this.Departments = res;
-		// 	console.log(this.Departments);
-		// });
+			// this.InventoryService.GetPackSizesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+			// 	this.PackSizes = res;
+			// 	// console.log(this.PackSizes);
+			// });
 
-		// this.InventoryService.GetInventoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-		// 	this.Inventories = res;
-		// 	console.log(this.Inventories);
-		// });
+			// this.InventoryService.GetPackTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+			// 	this.PackTypes = res;
+			// 	// console.log(this.PackTypes);
+			// });
 
-		this.InventoryService.GetInventories().subscribe((res : any) => {
-			this.Inventories = res;
-			// console.log(this.Inventories);
-		});
+			// this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+			// 	this.Departments = res;
+			// 	console.log(this.Departments);
+			// });
 
-		this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
-			this.Departments = res;
-			// console.log(this.Departments);
+			// this.InventoryService.GetInventoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+			// 	this.Inventories = res;
+			// 	console.log(this.Inventories);
+			// });
 
-			this.Rerouted.params.subscribe((params) => {
-				this.id = +params['id'];
+			this.InventoryService.GetInventories().subscribe((res: any) => {
+				this.Inventories = res;
+				// console.log(this.Inventories);
 
-				if(this.id) {
-					this.InventoryService.GetSalesIndent(this.id).subscribe((res : any) => {
 
-						if(res.isProcessed == true) {
-							// console.log(res);
-							let a : any = this.Departments.find(a => a.name == res.customerName);
-							// console.log(a);
-							// this.SelectedDistributor = a.distributorId;
-			
-							this.RequisitionForm.patchValue({
-								IssueDate : res.issueDate,
-								Department : a.name || null,
-								TotalQuantity : res.totalQuantity
-							});
-			
-							res.salesIndentItems.forEach((item : any) => {
-								// console.log(item);
-								let a : any = {
-									companyId : this.Auth.getUserCompanyId(),
-									inventoryItemId : item.inventoryItemId,
-									quantity : item.quantity
-								};
+				// this.HrService.GetBranchesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+				// 	this.Branches = res;
+
+				// 	this.HrService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+				// 		this.Departments = res;
+				// console.log(this.Departments);
+
+				this.Rerouted.params.subscribe((params) => {
+					this.id = +params['id'];
+
+					if (this.id) {
+						this.InventoryService.GetSalesIndent(this.id).subscribe((res: any) => {
+
+							if (res.isProcessed != true && res.IsInternalOrder == true) {
+								// console.log(res);
+								// let a : any = this.Departments.find(d => d.name == res.departmentName);
+								// let b : any = this.Branches.find(d => d.name == res.branchName);
 								// console.log(a);
-								this.SalesOrderItems.push(a);
-								// console.log(this.SalesOrderItems);
-							});
+								// this.SelectedDistributor = a.distributorId;
 
-							this.toastr.success("Request details loaded successfully");
-						} else {
-							this.toastr.error("Request has already been processed");
-						}
-					});
-				}
+								this.RequestDate = new Date(res.issueDate);
+
+								this.RequisitionForm.patchValue({
+									IndentNumber : res.salesIndentNumber,
+									// RequestDate: res.issueDate,
+									TotalRequestQuantity: Number.parseInt(res.totalQuantity) || 0,
+									Branch: res.branchName || null,
+									Department: res.departmentName || null
+								});
+
+								res.salesIndentItems.forEach((item: any) => {
+									// console.log(item);
+
+									let c: any = this.Inventories.find(d => d.inventoryItemId == item.inventoryItemId);
+									let stockQuantity: number = 0;
+									if (c != undefined) {
+										stockQuantity = Number.parseInt(c.stockQuantity);
+									}
+
+									let a: any = {
+										companyId: this.Auth.getUserCompanyId(),
+										inventoryItemId: Number.parseInt(item.inventoryItemId),
+										stockQuantity: stockQuantity || 0,
+										requestQuantity: Number.parseInt(item.quantity),
+										quantity: 0,
+									};
+									// console.log(a);
+									this.SalesOrderItems.push(a);
+									// console.log(this.SalesOrderItems);
+								});
+
+								this.toastr.success("Request details loaded successfully");
+							} else {
+								this.toastr.error("Request has already been processed");
+							}
+						});
+					}
+				});
 			});
 		});
+		// 	});
+		// });
 	}
 
-	addItem(value) {
-		// console.log(value);
-		let aa : any = this.InventoryItems.find(a => a.inventoryItemId == value.data.inventoryItemId);
-		// let ba : any = this.PackTypes.find(a => a.packTypeId == aa.packTypeId);
-		// let ca : any = this.PackSizes.find(a => a.packSizeId == aa.packSizeId);
-		// // console.log(a);
-		// value.data.packType = ba.name;
-		// value.data.packSize = ca.size;
-		value.data.packTypeId = aa.packTypeId;
-		value.data.packSizeId = aa.packSizeId;
-		this.OrderQuantity += Number.parseInt(value.data.quantity);
+	// addItem(value) {
+	// 	console.log(value);
+	// 	// let aa: any = this.InventoryItems.find(a => a.inventoryItemId == value.data.inventoryItemId);
+	// 	// let ba : any = this.PackTypes.find(a => a.packTypeId == aa.packTypeId);
+	// 	// let ca : any = this.PackSizes.find(a => a.packSizeId == aa.packSizeId);
+	// 	// console.log(aa);
+	// 	// value.data.packType = ba.name;
+	// 	// value.data.packSize = ca.size;
+	// 	// value.data.packTypeId = aa.packTypeId;
+	// 	// value.data.packSizeId = aa.packSizeId;
+	// 	this.TotalOrderQuantity += Number.parseInt(value.data.quantity);
+	// }
+
+	updateItem() {
+		this.TotalOrderQuantity = 0;
+		this.SalesOrderItems.forEach(element => {
+			this.TotalOrderQuantity += element.quantity;
+		});
 	}
 
 	removeItem(value) {
-		this.OrderQuantity -= Number.parseInt(value.data.quantity);
+		this.TotalOrderQuantity -= Number.parseInt(value.data.quantity);
 	}
 
 	saveOrder(value) {
 
 		// console.log(value);
 
-		this.SalesOrderItems.filter( a => {
+		this.SalesOrderItems.filter(a => {
 			delete a.packTypeId;
 			delete a.packSizeId;
 			delete a.__KEY__;
+			delete a.requestQuantity;
+			delete a.stockQuantity;
 		});
-		
-		let a : any = {
-			IssueDate : value.IssueDate,
-			Remarks : value.Remarks,
-			ContactPerson : value.Department,
-			TotalQuantity : this.OrderQuantity,
-			SalesOrderItems : this.SalesOrderItems,
-			CompanyId : this.Auth.getUserCompanyId(),
-			UserId : this.Auth.getUserId()
+
+		// console.log(this.SalesOrderItems);
+
+		let a: any = {
+			IssueDate: new Date(value.IssueDate),
+			Remarks: value.Remarks,
+			DepartmentName: value.Department,
+			BranchName: value.Branch,
+			TotalQuantity: this.TotalOrderQuantity,
+			SalesOrderItems: this.SalesOrderItems,
+			IsInternalOrder: true,
+			CompanyId: this.Auth.getUserCompanyId(),
+			UserId: this.Auth.getUserId()
 		};
 
 		// console.log(a);
 
 		this.SalesOrderItems.forEach(element => {
-			let b : any = this.Inventories.find(a => a.inventoryItemId == element.inventoryItemId);
+			let b: any = this.Inventories.find(a => a.inventoryItemId == element.inventoryItemId);
 			// console.log(b);
-			if(b != undefined) {
+			if (b != undefined) {
 				// console.log(b);
-				b.stockQuantity -= Number.parseFloat(element.quantity);
+				b.stockQuantity -= Number.parseInt(element.quantity);
 				// console.log(b);
 				this.UpdatedInventories.push(b);
 			}
-			// console.log(b);
+			// console.log(this.UpdatedInventories);
 		});
 
 		this.InventoryService.AddSalesOrder(a).subscribe(
@@ -171,15 +215,15 @@ export class InternalRequisitionComponent implements OnInit {
 				this.toastr.success("Request Processed");
 				this.RequisitionForm.reset();
 				this.SalesOrderItems = [];
-				this.OrderQuantity = 0;
+				this.TotalOrderQuantity = 0;
 				this.InventoryService.UpdateInventories(this.UpdatedInventories).subscribe(
-					(res : any) => this.toastr.success("Stock Updated"),
+					(res: any) => this.toastr.success("Stock Updated"),
 					err => this.toastr.error("Unable to update stock")
 				);
 
-				if(this.id) {
+				if (this.id) {
 					this.InventoryService.ProcessSalesIndentById(this.id).subscribe(
-						(res : any) => this.toastr.success("Initial request updated"),
+						(res: any) => this.toastr.success("Initial request updated"),
 						err => this.toastr.error("Unable to update initial request")
 					);
 				}

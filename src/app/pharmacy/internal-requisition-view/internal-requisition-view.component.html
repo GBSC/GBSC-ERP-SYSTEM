@@ -16,12 +16,12 @@
 
               <ul class="nav nav-pills" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link" data-toggle="tab" #tetative href="#m_tabs_3_1">
+                  <a class="nav-link active show" data-toggle="tab" #tetative href="#m_tabs_3_1">
                     Unprocessed
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_3">
+                  <a class="nav-link" data-toggle="tab" href="#m_tabs_3_3">
                     Processed
                   </a>
                 </li>
@@ -38,17 +38,18 @@
                     <dxo-group-panel [visible]="true"></dxo-group-panel>
                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                     <dxo-selection mode="single"></dxo-selection>
-                    <dxi-column dataField="salesIndentNumber" dataType="text" caption="Code"></dxi-column>
-                    <dxi-column dataField="date" dataType="date" caption="Request Date"></dxi-column>
+                    <dxi-column dataField="salesIndentNumber" dataType="text" caption="Request Number"></dxi-column>
+                    <dxi-column dataField="departmentName" dataType="text" caption="Department"></dxi-column>
+                    <dxi-column dataField="branchName" dataType="text" caption="Branch"></dxi-column>
+                    <dxi-column dataField="Date" dataType="date" caption="Request Date"></dxi-column>
                     <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
                     <dxi-column dataField="totalQuantity" dataType="number" caption="Total Quantity"></dxi-column>
-                    <dxi-column dataField="customerName" dataType="text" caption="Department"></dxi-column>
                     <div *dxTemplate="let item of 'detail'">
                       <dx-data-grid [dataSource]="item.data.salesIndentItems" showBorders="true">
                         <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
                           <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
                         </dxi-column>
-                        <dxi-column dataField="quantity" dataType="number" caption="Quantity"></dxi-column>
+                        <dxi-column dataField="quantity" dataType="number" caption="Request Quantity"></dxi-column>
                       </dx-data-grid>
                     </div>
                     <dxi-column caption="Action" cellTemplate="chartCellTemplate"></dxi-column>
@@ -72,12 +73,13 @@
                     <dxo-group-panel [visible]="true"></dxo-group-panel>
                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                     <dxo-selection mode="single"></dxo-selection>
-                    <dxi-column dataField="salesIndentNumber" dataType="text" caption="Code"></dxi-column>
+                    <dxi-column dataField="salesIndentNumber" dataType="text" caption="Request Number"></dxi-column>
+                    <dxi-column dataField="departmentName" dataType="text" caption="Department"></dxi-column>
+                    <dxi-column dataField="branchName" dataType="text" caption="Branch"></dxi-column>
                     <dxi-column dataField="date" dataType="date" caption="Request Date"></dxi-column>
                     <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
                     <dxi-column dataField="processedDate" dataType="date" caption="Processed Date"></dxi-column>
                     <dxi-column dataField="totalQuantity" dataType="number" caption="Total Quantity"></dxi-column>
-                    <dxi-column dataField="customerName" dataType="text" caption="Department"></dxi-column>
                     <div *dxTemplate="let item of 'detail'">
                       <dx-data-grid [dataSource]="item.data.salesIndentItems" showBorders="true">
                         <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">

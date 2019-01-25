@@ -92,7 +92,14 @@ export class HrmsService {
     }
 
     async DeleteDepartment(data) {
-
         return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
+    }
+
+    GetBranchesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranchesByCompanyId/` + companyid)
+    }
+
+    GetBranches() : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranches`)
     }
 }

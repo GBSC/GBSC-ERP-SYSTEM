@@ -14,39 +14,53 @@
               </h3>
             </div>
           </div>
-
         </div>
         <!--begin::Form-->
         <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="RequisitionForm">
           <div class="m-portlet__body">
             <div class="form-group row">
-
               <div class="form-group col-lg-4">
-                <label for="exampleSelect1"> Department </label>
-                <dx-select-box [items]="Departments" displayExpr="name" valueExpr="name" [searchEnabled]="true" 
-                  formControlName="Department" [value]="SelectedDistributor">
-                </dx-select-box>
+                <label for="exampleInputEmail1"> Request Number </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="IndentNumber" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Branch </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="Branch" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Department </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="Department" type="text">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Request Date </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="RequestDate" [value]="RequestDate | date : 'yyyy-MM-dd' || ''" type="date">
               </div>
               <div class="form-group col-lg-4">
                 <label for="exampleInputEmail1"> Issue Date </label>
                 <input class="form-control m-input m-input--solid" formControlName="IssueDate" type="date">
               </div>
               <div class="form-group col-lg-4">
-                <label for="exampleInputEmail1"> Remarks </label>
-                <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
+                <label for="exampleInputEmail1"> Request Quantity</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="TotalRequestQuantity" type="number">
               </div>
             </div>
             <div class="form-group row">
               <div class="form-group col-lg-4">
-                <label for="exampleInputEmail1"> Total Quantity</label>
-                <input class="form-control m-input m-input--solid" formControlName="TotalQuantity" type="number" [value]="OrderQuantity">
+                <label for="exampleInputEmail1"> Issue Quantity</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="TotalOrderQuantity" [value]="TotalOrderQuantity" type="number">
               </div>
-            </div>
-            <div class="form-group col-lg-4">
-              <div class="form-action pull-right ">
-                <button type="submit" (click)="saveOrder(RequisitionForm.value)" class="btn btn-primary m-btn m-btn--custom">
-                  Save
-                </button>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Remarks </label>
+                <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <div class="form-action pull-right ">
+                  <button type="submit" (click)="saveOrder(RequisitionForm.value)" class="btn btn-primary m-btn m-btn--custom">
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -68,25 +82,22 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="SalesOrderItems" (onRowInserted)="addItem($event)" (onRowRemoved)="removeItem($event)">
-                <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true">
+              <dx-data-grid id="gridContainer" [dataSource]="SalesOrderItems" (onRowUpdated)="updateItem()" (onRowRemoved)="removeItem($event)">
+                <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
-                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"  ></dxo-lookup>
+                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
                 </dxi-column>
-                <!-- <dxi-column dataField="packSizeId" disabled caption="Pack Size" [visible]="true">
-                  <dxo-lookup [dataSource]="PackSizes" valueExpr="packSizeId" displayExpr="size"></dxo-lookup>
-                </dxi-column>
-                <dxi-column dataField="packTypeId" disabled caption="Pack Type" [visible]="true">
-                  <dxo-lookup [dataSource]="PackTypes" valueExpr="packTypeId" displayExpr="name"></dxo-lookup>
+                <!-- <dxi-column dataField="inventoryId" caption="Stock" [visible]="true">
+                  <dxo-lookup [dataSource]="Inventories" valueExpr="inventoryId" displayExpr="name"></dxo-lookup>
                 </dxi-column> -->
-                <!-- <dxi-column dataField="packSize" dataType="number" caption="Pack Size"></dxi-column>
-                <dxi-column dataField="packType" dataType="text" caption="Pack Type"></dxi-column> -->
-                <dxi-column dataField="quantity" dataType="number" caption="Quantity"></dxi-column>
+                <dxi-column dataField="stockQuantity" dataType="number" caption="Stock"></dxi-column>
+                <dxi-column dataField="requestQuantity" dataType="number" caption="Request Quantity"></dxi-column>
+                <dxi-column dataField="quantity" dataType="number" caption="Issue Quantity"></dxi-column>
               </dx-data-grid>
             </div>
           </div>
@@ -96,5 +107,3 @@
   </div>
   <!-- <> -->
 </div>
-
-

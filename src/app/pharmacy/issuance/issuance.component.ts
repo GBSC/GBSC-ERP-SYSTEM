@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 
-import { PharmacyService, AuthService } from '../../core';
+import { PharmacyService, AuthService, PatientService, HrmsService } from '../../core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { SalesOrder } from '../../core/Models/Pharmacy/SalesOrder';
@@ -44,13 +44,15 @@ export class IssuanceComponent implements OnInit {
     public ItemTotal: number = 0;
     public ItemPackQuantity: number = 0;
 
+    public AllDepartments : any;
+
     public Inv: Inventory;
     public Invs: Inventory[];
 
     public PackSizes : any;
     public SelectedPackSize : number = 1;
 
-    constructor(public PharmacyService: PharmacyService, public Auth : AuthService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
+    constructor(public PharmacyService: PharmacyService, public HRService : HrmsService, public HimsService : PatientService, public Auth : AuthService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
 
         this.IssuanceForm = this.FormBuilder.group({
             Department: [''],
@@ -95,7 +97,31 @@ export class IssuanceComponent implements OnInit {
         //     this.filterItems = this.AllItems;
         // });
 
-        this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
+        //this.PharmacyService.getCustomers().subscribe(result => this.AllCustomers = result);
+
+        this.HimsService.getPatientsWithPartners().subscribe((res : any) => {
+            this.AllCustomers = res;
+            // console.log(this.AllCustomers);
+        });
+
+        // this.HimsService.getPatientsWithPartnersByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+        //     this.AllCustomers = res;
+        //     // console.log(this.AllCustomers);
+        // });
+
+        this.HRService.GetAllDepartments().subscribe((res : any) => {
+            this.AllDepartments = res;
+            // console.log(this.AllDepartments);
+        });
+
+        // this.HRService.GetAllDepartmentsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+        //     this.AllDepartments = res;
+        //     // console.log(this.AllDepartments);
+        // });
+
+        // this.HimsService.getPatientsWithPartnersByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+        //     this.AllCustomers = res;
+        // });
 
         this.PharmacyService.GetPackSizes().subscribe((res : any) => {
             this.PackSizes = res;
@@ -103,7 +129,9 @@ export class IssuanceComponent implements OnInit {
     }
 
     getcellvalueForCustomer(value) {
-        this.customerdata = this.AllCustomers.find(x => x.crn == value);
+        // console.log(value);
+        this.customerdata = this.AllCustomers.find(x => x.mrn == value);
+        // console.log(this.customerdata);
     }
 
     getcellvalue(value) {
@@ -123,9 +151,13 @@ export class IssuanceComponent implements OnInit {
     public issuanceformvalue: any;
 
     onsubmit(value) {
-        this.IssuanceForm.value.CRN = this.customerdata.crn || '';
-        this.IssuanceForm.value.PatientName = this.customerdata.name || '';
-        this.IssuanceForm.value.SpouseName = this.customerdata.contactName || '';
+        let partnername : string = '';
+        if(this.customerdata.partner) {
+            partnername = this.customerdata.partner.display || '';
+        }
+        this.IssuanceForm.value.CRN = this.customerdata.mrn || '';
+        this.IssuanceForm.value.PatientName = this.customerdata.fullName || '';
+        this.IssuanceForm.value.SpouseName = partnername || '';
     }
 
     GetSelectedSalesIndentDetails(value, event) {
@@ -236,6 +268,11 @@ export class IssuanceComponent implements OnInit {
         this.IssuanceForm.value.SalesOrderItems = this.arraydata;
         this.IssuanceForm.value.OrderAmount = this.total;
 
+        let approvalstatus : boolean = false;
+        if(this.IssuanceForm.value.Status == true) {
+            approvalstatus = true;
+        }
+
         var a: any = {
             IssueDate: this.IssuanceForm.value.IssuanceDate,
             Remarks: this.IssuanceForm.value.Remarks,
@@ -250,21 +287,32 @@ export class IssuanceComponent implements OnInit {
             OrderAmount: this.total,
             // AgainstLotNumber = MRN/CRN
             AgainstLotNumber: this.IssuanceForm.value.CRN,
-            CompanyId : this.Auth.getUserCompanyId()
+            CompanyId : this.Auth.getUserCompanyId(),
+            UserId : this.Auth.getUserId(),
+            IsInternalOrder : false,
+            IsIssued : true,
+            IsProcessed : true,
+            IsApproved : approvalstatus
         };
 
+        console.log(a);
+
         this.PharmacyService.AddSalesOrder(a).subscribe(r => {
+            console.log(r);
             if(this.StockQuantityarraydata.length > 0) {
                 this.PharmacyService.UpdateInventories(this.StockQuantityarraydata).subscribe(res => {
-                    console.log(res);
+                    // console.log(res);
+                    this.StockQuantityarraydata = [];
+                    this.IssuanceForm.value.SalesOrderItems = {};
+                    this.IssuanceForm.reset();
+                    this.InventoryItemForm.reset();
+                    this.total = 0;
+                    this.arraydata = [];
                 });
             }
         });
 
-        this.IssuanceForm.reset();
-        this.InventoryItemForm.reset();
-        this.IssuanceForm.value.SalesOrderItems.reset();
-        this.total = 0;
+        
     }
 
 

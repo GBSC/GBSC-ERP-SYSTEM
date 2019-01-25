@@ -29,7 +29,12 @@ export class InternalRequisitionViewComponent implements OnInit {
       console.log(this.ProcessedRequests);
     });
 
-    this.InvService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+    // this.InvService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
+		// 	this.InventoryItems = res;
+		// 	console.log(this.InventoryItems);
+    // });
+
+    this.InvService.GetInventoryItems().subscribe((res : any) => {
 			this.InventoryItems = res;
 			console.log(this.InventoryItems);
     });
@@ -55,12 +60,13 @@ export class InternalRequisitionViewComponent implements OnInit {
 
 			let b : any = {
         InventoryItemId : item.inventoryItemId,
-        Quantity : item.quantity
+        Quantity : item.quantity,
+        CompanyId : this.Auth.getUserCompanyId()
       };
       c.push(b);
 
       let d : any = this.Inventories.find(f => f.inventoryItemId == item.inventoryItemId);
-      if(d) {
+      if(d != undefined) {
         d.stockQuantity -= item.quantity;
         e.push(d);
       }
@@ -70,7 +76,8 @@ export class InternalRequisitionViewComponent implements OnInit {
     let a : any = {
       IssueDate : value.data.IssueDate,
 			Remarks : 'Quick Process',
-			ContactPerson : value.data.customerName,
+      DepartmentName : value.data.departmentName,
+      BranchName : value.data.branchName,
 			TotalQuantity : value.data.totalQuantity,
 			SalesOrderItems : c,
 			CompanyId : this.Auth.getUserCompanyId(),

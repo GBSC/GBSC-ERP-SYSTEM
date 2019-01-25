@@ -57,6 +57,17 @@
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
 			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Visit Reason')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/reasons" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-map"></i>
+					<span class="m-menu__link-text">
+						Visit Reason
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
 			<li class="m-menu__item m-menu__item--submenu m-menu__item--submenu-fullheight m-menu__item--open-dropdown m-menu__item--hover"
 			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 data-menu-submenu-toggle="click" data-redirect="true">

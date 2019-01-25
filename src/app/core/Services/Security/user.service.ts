@@ -28,7 +28,7 @@ export class UserService {
     }
 
     deleteuser(userId: any) {
-        return this.ApiService.delete(this.Auth_Url + 'Users/DeleteUser/' + userId);
+        return this.ApiService.delete(this.SystemAdmin_API_URL + 'Users/DeleteUser/' + userId);
     }
 
     getUsersByCompany(comapnyId: number) {

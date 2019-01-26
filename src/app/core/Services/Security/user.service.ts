@@ -27,6 +27,10 @@ export class UserService {
         return this.ApiService.put(this.Auth_Url + 'accounts/UpdateProfile', user);
     }
 
+    deleteuser(userId: any) {
+        return this.ApiService.delete(this.SystemAdmin_API_URL + 'Users/DeleteUser/' + userId);
+    }
+
     getUsersByCompany(comapnyId: number) {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUsersByCompany/' + comapnyId);
     }

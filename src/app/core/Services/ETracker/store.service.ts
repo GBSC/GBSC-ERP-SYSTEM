@@ -19,6 +19,10 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'Store/GetStore/' + storeId + "/" + companyId);
     }
 
+    deleteStore(storeId: any) {
+        return this.ApiService.delete(this.Url + 'Store/DeleteStore/' + storeId);
+    }
+
     getStoreVisits(storeId: any) {
         return this.ApiService.get(this.Url + 'StoreVisit/GetVisits/' + storeId);
     }

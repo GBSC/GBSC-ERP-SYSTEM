@@ -46,6 +46,7 @@ export class SubsectionComponent implements OnInit {
 
     deleteSubsection(value) {
 
+        this.inventoryService.DeleteSubsection(value.key).subscribe(resp=>console.log('Subsection Deleted'));
     }
 
 }

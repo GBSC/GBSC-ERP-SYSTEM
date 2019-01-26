@@ -45,10 +45,8 @@ export class AreaComponent implements OnInit {
 
     deleteArea(area) {
 
-        console.log(area);
-
-        // this.inventoryService.DeleteArea(area.data)
-        //     .subscribe(s => console.log(s));
+        this.inventoryService.DeleteArea(area.key)
+            .subscribe(s => console.log('Area Deleted'));
 
     }
 

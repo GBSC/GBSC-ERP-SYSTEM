@@ -38,6 +38,10 @@ export class StoresComponent implements OnInit {
         console.log(value);
     }
 
+    deleteStore(value){
+        this.storeService.deleteStore(value.key).subscribe(resp=>console.log('Store deleted'));
+    }
+
 
 
 }

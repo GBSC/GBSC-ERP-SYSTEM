@@ -17,7 +17,9 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="stores" keyExpr="storeId">
+          <dx-data-grid id="gridContainer" [dataSource]="stores" (onRowRemoved)="deleteStore($event)" keyExpr="storeId">
+              <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" [useIcons]="true">
+                </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
 

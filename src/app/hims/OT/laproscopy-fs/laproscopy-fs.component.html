@@ -1,11 +1,11 @@
-<div class="m-content">
+<!-- <div class="m-content">
   <div class="row">
     <div class="col-xl-12">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Patient Case Registration</h3>
+              <h3 class="m-portlet__head-text">Laproscopy SP</h3>
             </div>
           </div>
         </div>
@@ -30,17 +30,7 @@
                       <input type="date" class="form-control m-input" formControlName="OtPatientCaseDate" [value]="patientCaseById?.otPatientCaseDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
                   </div>
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Data Nature
-                      </label>
-                      <select class="form-control m-input" formControlName="DateNature">
-                        <option value="New">New</option>
-                        <option value="Previous">Previous</option>
-                      </select>
-                    </div>
-                  </div>
+                   
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
@@ -50,69 +40,82 @@
                       </dx-select-box>
                     </div>
                   </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          File No
+                        </label>
+                        <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.mrn || ''">
+                      </div>
+                  </div>
                 
                 </div>
                 <div class="row">
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              Gender
-                            </label>
-                            <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.gender || ''">
-                          </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                              File No
-                            </label>
-                            <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.mrn || ''">
-                          </div>
-                    </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Type
+                      </label>
+                      <select class="form-control m-input" formControlName="AnesthesiaType">
+                          <option value="General">General</option>
+                          <option value="Local">Local</option>
+                          <option value="Spinal">Spinal</option>
+                        </select>
+                      </div>
+                  </div>
                     <div class="col-sm-3">
                         <div class="form-group m-form__group">
                           <label for="exampleInputEmail1">
                             Procedure
                           </label>
-                          <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
-                          </dx-select-box>
+                          <dx-select-box [items]="procedure" displayExpr="procedureName" valueExpr="procedureId"   [searchEnabled]="true" formControlName="ProcedureId"> 
+                            </dx-select-box>
                           </div>
                       </div>
                       <div class="col-sm-3">
                         <div class="form-group m-form__group">
                           <label for="exampleInputEmail1">
-                            Time Start
+                            Surgeon
                           </label>
-                          <input type="time" class="form-control m-input" formControlName="TimeStart"  [value]="patientCaseById?.timeStart | date : 'hh:mm:ss' || ''">
+                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="SurgeonId" > 
+                            </dx-select-box>
                         </div>
                       </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Surgeon 2
+                          </label>
+                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="DoneById"> 
+                          </dx-select-box>
+                        </div>
+                      </div>
+                     
                 </div>
                 <div class="row">
             
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Time End
+                        LMP Date
                       </label>
-                      <input type="time" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
+                      <input type="date" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Surgeon
+                        Anesthetic
                       </label>
-                      <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="SurgeonId" > 
-                        </dx-select-box>
+                      <input type="text" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
                     </div>
                   </div>
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Done By
+                        Diagnoses
                       </label>
-                      <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="DoneById"> 
-                      </dx-select-box>
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="Comments"></textarea>
                     </div>
                   </div>
                 </div>
@@ -201,4 +204,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

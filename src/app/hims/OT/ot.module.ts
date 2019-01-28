@@ -11,6 +11,14 @@ import { MenuComponent } from './shared/menu/menu.component';
  import { PatientCaseComponent } from './patient-case/patient-case.component';
 import { PatientCaseDetailComponent } from './detail/patient-case-detail/patient-case-detail.component';
 import { PatientCaseRepotComponent } from './report/patient-case-repot/patient-case-repot.component';
+import { MedicineRequestComponent } from './OtSteup/medicine-request/medicine-request.component';
+import { OtTerminologiesComponent } from './OtSteup/ot-terminologies/ot-terminologies.component';
+import { OtProcedureComponent } from './OtSteup/ot-procedure/ot-procedure.component';
+import { OtEquipmentComponent } from './OtSteup/ot-equipment/ot-equipment.component';
+import { LaproscopySpComponent } from './laproscopy-sp/laproscopy-sp.component';
+import { LaproscopyFsComponent } from './laproscopy-fs/laproscopy-fs.component';
+import { LaproscopySpDetailComponent } from './detail/laproscopy-sp-detail/laproscopy-sp-detail.component';
+import { LaproscopySpReportComponent } from './report/laproscopy-sp-report/laproscopy-sp-report.component';
 //import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
 
 
@@ -43,6 +51,30 @@ PatientCaseDetailComponent,
   
    
 PatientCaseRepotComponent,
+  
+   
+MedicineRequestComponent,
+  
+   
+OtTerminologiesComponent,
+  
+   
+OtProcedureComponent,
+  
+   
+OtEquipmentComponent,
+  
+   
+LaproscopySpComponent,
+  
+   
+LaproscopyFsComponent,
+  
+   
+LaproscopySpDetailComponent,
+  
+   
+LaproscopySpReportComponent,
   
  
 ],

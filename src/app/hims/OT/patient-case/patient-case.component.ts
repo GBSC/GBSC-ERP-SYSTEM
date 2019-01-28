@@ -24,6 +24,8 @@ export class PatientCaseComponent implements OnInit {
   public id : any;
   public patientCaseById : any;
 
+  public otProcedure : any;
+
   public IsUpdate : boolean = false;
 
 
@@ -36,7 +38,7 @@ export class PatientCaseComponent implements OnInit {
       TimeStart :[''],
       TimeEnd :[''],
       PatientId :[''],
-      ProcedureId:[''],
+      OtProcedureId:[''],
       SurgeonId:[''],
       DoneById:[''],
       Other :[''],
@@ -71,7 +73,7 @@ export class PatientCaseComponent implements OnInit {
                 TimeStart : this.patientCaseById.timeStart,
                 TimeEnd : this.patientCaseById.timeEnd,
                 PatientId : this.patientCaseById.patientId,
-                ProcedureId: this.patientCaseById.procedureId,
+                OtProcedureId: this.patientCaseById.otProcedureId,
                 SurgeonId: this.patientCaseById.surgeonId,
                 DoneById: this.patientCaseById.doneById,
                 Other : this.patientCaseById.other,
@@ -103,6 +105,11 @@ export class PatientCaseComponent implements OnInit {
         this.procedure = res;
         console.log(this.procedure);
       });
+
+      this.OTServiceObj.getOtProcedures().subscribe(res =>{
+        this.otProcedure = res;
+        console.log(this.otProcedure);
+    });
 
   }
  

@@ -55,7 +55,7 @@ export class PatientCaseDetailComponent implements OnInit {
  }
 
  patientCasereport(x){
-  let id  = x.key.otPatientCaseId;
+  let id  = x.key.patientId;
   let date =  this.formatDate(new Date(x.key.otPatientCaseDate)) ;
 
   this.Router.navigate(['/ot/report/patientcaserepot/'+id+'/'+date]);

@@ -6,11 +6,12 @@ import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-patient-case-repot',
-  templateUrl: './patient-case-repot.component.html',
-  styleUrls: ['./patient-case-repot.component.css']
+  selector: 'app-laproscopy-sp-report',
+  templateUrl: './laproscopy-sp-report.component.html',
+  styleUrls: ['./laproscopy-sp-report.component.css']
 })
-export class PatientCaseRepotComponent implements AfterViewInit {
+
+export class LaproscopySpReportComponent implements AfterViewInit {
   @ViewChild('scripts')
   scripts: ElementRef;
 
@@ -18,7 +19,7 @@ export class PatientCaseRepotComponent implements AfterViewInit {
   control: ElementRef;
 
   public patientId : any;
-  public otPatientCaseDate : any;
+  public laproscopySpDate : any;
 
   constructor(public renderer: Renderer2,public ngZone: NgZone , public router : ActivatedRoute) { }
 
@@ -26,11 +27,11 @@ export class PatientCaseRepotComponent implements AfterViewInit {
 
     this.router.params.subscribe((params)=>{
       this.patientId = +params['id'];
-       this.otPatientCaseDate = this.formatDate(new Date(params['date']));
+       this.laproscopySpDate = this.formatDate(new Date(params['date']));
           //  this.fwbInitialDate =  params['date'];
 
       console.log(this.patientId);
-      console.log(this.otPatientCaseDate);
+      console.log(this.laproscopySpDate);
 
 
 
@@ -41,7 +42,7 @@ export class PatientCaseRepotComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
 
-      const reportUrl = ko["observable"]("OtPatientCaseRegistration"),
+      const reportUrl = ko["observable"]("LaproscopySpReport"),
           container = this.renderer.createElement("div");
       container.innerHTML = Html;
 
@@ -58,8 +59,8 @@ export class PatientCaseRepotComponent implements AfterViewInit {
             ParametersSubmitted: (s, e) => this.ngZone.run(() => {
                 if(this.patientId)
                 e.Parameters.filter(function (p) { return p.Key == "patientId"; })[0].Value = this.patientId;
-                if(this.otPatientCaseDate)
-                e.Parameters.filter(function (p) { return p.Key == "date"; })[0].Value = this.otPatientCaseDate;
+                if(this.laproscopySpDate)
+                e.Parameters.filter(function (p) { return p.Key == "date"; })[0].Value = this.laproscopySpDate;
             })
           }
       }, this.control.nativeElement);

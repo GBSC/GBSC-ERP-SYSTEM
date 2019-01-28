@@ -5,13 +5,13 @@ import { OTService } from '../../../../core/Services/HIMS/ot.service';
 
 
 @Component({
-  selector: 'app-laproscopy-sp-detail',
-  templateUrl: './laproscopy-sp-detail.component.html',
-  styleUrls: ['./laproscopy-sp-detail.component.css']
+  selector: 'app-laproscopy-fs-detail',
+  templateUrl: './laproscopy-fs-detail.component.html',
+  styleUrls: ['./laproscopy-fs-detail.component.css']
 })
-export class LaproscopySpDetailComponent implements OnInit {
+export class LaproscopyFsDetailComponent implements OnInit {
 
-  public laproscopySpDetail : any
+  public laproscopyFsDetail : any
   public patient :any;
   public consultant : any;
   public procedure : any;
@@ -19,7 +19,7 @@ export class LaproscopySpDetailComponent implements OnInit {
   constructor( public Router: Router, public patientserviceobj : PatientService , public otserviceobj : OTService) { }
 
   ngOnInit() {
-
+    
     this.patientserviceobj.getPatientObservable().subscribe(res=>{
       this.patient = res;
       console.log(this.patient);
@@ -36,29 +36,27 @@ export class LaproscopySpDetailComponent implements OnInit {
       console.log(this.procedure);
     });
 
-    this.otserviceobj.getLaproscopySp().subscribe(res =>{
-      this.laproscopySpDetail = res;
-      console.log(this.laproscopySpDetail)
+    this.otserviceobj.getLaproscopyFs().subscribe(res =>{
+      this.laproscopyFsDetail = res;
+      console.log(this.laproscopyFsDetail)
     });
 
-
   }
 
-  
-  addLaproscopySp(){
-    this.Router.navigate(['/ot/laproscopysp']);
+  addLaproscopyFs(){
+    this.Router.navigate(['/ot/laproscopyfs']);
   }
 
-  updateLaproscopySp(x){
-    let id  = x.key.laproscopySpId
-    this.Router.navigate(['/ot/laproscopysp/'+id]);
+  updateLaproscopyFs(x){
+    let id  = x.key.laproscopyFSId
+    this.Router.navigate(['/ot/laproscopyfs/'+id]);
   }
 
-  laproscopySpreport(x){
+  laproscopyFsreport(x){
     let id  = x.key.patientId;
-    let date =  this.formatDate(new Date(x.key.laproscopySpDate)) ;
+    let date =  this.formatDate(new Date(x.key.laproscopyFsDate)) ;
 
-    this.Router.navigate(['/ot/report/laproscopyspreport/'+id+'/'+date]);
+    this.Router.navigate(['/ot/report/laproscopyfsreport/'+id+'/'+date]);
   }
 
 

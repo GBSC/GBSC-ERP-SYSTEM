@@ -127,6 +127,46 @@ export class OTService {
       return this.ApiService.delete(this.API_URL+'OT/DeleteLaproscopySp/'+id);
   }
 
+  getLaproscopyFs():Observable<any>{
+      return this.ApiService.get(this.API_URL+'OT/GetLaproscopyFses');
+  }
+
+  getLaproscopyFsById(id : number):Observable<any>{
+      return this.ApiService.get(this.API_URL+'OT/GetLaproscopyFs/'+id);
+  }
+
+  addLaproscopyFs(value):Observable<any>{
+      return this.ApiService.post(this.API_URL+'OT/AddLaproscopyFs',value);
+  }
+
+  updateLaproscopyFs(value):Observable<any>{
+      return this.ApiService.put(this.API_URL+'OT/UpdateLaproscopyFs',value);
+  }
+
+  deleteLaproscopy(id):Observable<any>{
+      return this.ApiService.delete(this.API_URL+'OT/DeleteLaproscopyFs/'+id);
+  }
+
+
+  getHystroscopy():Observable<any>{
+    return this.ApiService.get(this.API_URL+'OT/GetHystroscopys');
+  }
+
+  getHystroscopyById(id : number):Observable<any>{
+    return this.ApiService.get(this.API_URL+'OT/GetHystroscopy/'+id);
+  }
+
+  addHystroscopy(value):Observable<any>{
+        return this.ApiService.post(this.API_URL+'OT/AddHystroscopy',value);
+  }
+
+  updateHystroscopy(value):Observable<any>{
+        return this.ApiService.put(this.API_URL+'OT/UpdateHystroscopy',value);
+  }
+
+  deleteHystroscopy(id):Observable<any>{
+        return this.ApiService.delete(this.API_URL+'OT/DeleteHystroscopy/'+id);
+  }
 
 
   

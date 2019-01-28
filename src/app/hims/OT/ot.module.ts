@@ -19,6 +19,10 @@ import { LaproscopySpComponent } from './laproscopy-sp/laproscopy-sp.component';
 import { LaproscopyFsComponent } from './laproscopy-fs/laproscopy-fs.component';
 import { LaproscopySpDetailComponent } from './detail/laproscopy-sp-detail/laproscopy-sp-detail.component';
 import { LaproscopySpReportComponent } from './report/laproscopy-sp-report/laproscopy-sp-report.component';
+import { LaproscopyFsDetailComponent } from './detail/laproscopy-fs-detail/laproscopy-fs-detail.component';
+import { LaproscopyFsReportComponent } from './report/laproscopy-fs-report/laproscopy-fs-report.component';
+import { HystroscopyComponent } from './hystroscopy/hystroscopy.component';
+import { HystroscopyDetailComponent } from './detail/hystroscopy-detail/hystroscopy-detail.component';
 //import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
 
 
@@ -75,6 +79,18 @@ LaproscopySpDetailComponent,
   
    
 LaproscopySpReportComponent,
+  
+   
+LaproscopyFsDetailComponent,
+  
+   
+LaproscopyFsReportComponent,
+  
+   
+HystroscopyComponent,
+  
+   
+HystroscopyDetailComponent,
   
  
 ],

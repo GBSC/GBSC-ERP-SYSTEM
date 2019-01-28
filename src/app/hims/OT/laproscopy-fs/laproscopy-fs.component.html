@@ -1,16 +1,16 @@
-<!-- <div class="m-content">
+<div class="m-content">
   <div class="row">
     <div class="col-xl-12">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Laproscopy SP</h3>
+              <h3 class="m-portlet__head-text">Laproscopy FS</h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
-          <form [formGroup]="patientCaseForm">
+          <form [formGroup]="laproscopyfsForm">
             <div class="m-section">
               <div class="m-section__content">
                 <div class="row">
@@ -19,7 +19,7 @@
                       <label for="exampleInputEmail1">
                         Document #
                       </label>
-                      <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="patientCaseById?.otPatientCaseId || ''">
+                      <input type="text" class="form-control m-input" disabled="patientDisabledFields"   formControlName="LaproscopyFSId" >
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -27,7 +27,7 @@
                       <label for="exampleInputEmail1">
                         Date
                       </label>
-                      <input type="date" class="form-control m-input" formControlName="OtPatientCaseDate" [value]="patientCaseById?.otPatientCaseDate |  date : 'yyyy-MM-dd' || ''">
+                      <input type="date" class="form-control m-input" formControlName="LaproscopyFsDate" [value]="laproscopyfsById?.laproscopyFsDate |  date : 'yyyy-MM-dd' || ''">
                     </div>
                   </div>
                    
@@ -51,24 +51,13 @@
                 
                 </div>
                 <div class="row">
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          Type
-                      </label>
-                      <select class="form-control m-input" formControlName="AnesthesiaType">
-                          <option value="General">General</option>
-                          <option value="Local">Local</option>
-                          <option value="Spinal">Spinal</option>
-                        </select>
-                      </div>
-                  </div>
+         
                     <div class="col-sm-3">
                         <div class="form-group m-form__group">
                           <label for="exampleInputEmail1">
                             Procedure
                           </label>
-                          <dx-select-box [items]="procedure" displayExpr="procedureName" valueExpr="procedureId"   [searchEnabled]="true" formControlName="ProcedureId"> 
+                          <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
                             </dx-select-box>
                           </div>
                       </div>
@@ -86,113 +75,143 @@
                           <label for="exampleInputEmail1">
                             Surgeon 2
                           </label>
-                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="DoneById"> 
-                          </dx-select-box>
+                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="Surgeon2Id" > 
+                            </dx-select-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            LMP Date
+                          </label>
+                          <input type="date" class="form-control m-input"  formControlName="LMPDate" [value]="laproscopyfsById?.lmpDate |  date : 'yyyy-MM-dd' || ''"> 
                         </div>
                       </div>
                      
                 </div>
                 <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Anesthetic
+                          </label>
+                          <input type="text" class="form-control m-input"  formControlName="Anesthetic">
+                        </div>
+                      </div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                       Type
+                      </label>
+                      <select class="form-control m-input" formControlName="Type">
+                        <option value="New">New</option>
+                        <option value="Previous">Previous</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
             
-                  <div class="col-sm-3">
+                
+                  <div class="col-sm-12">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        LMP Date
+                          Diagnoses
                       </label>
-                      <input type="date" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="Diagnosis"></textarea>
+                  </div> 
+                  </div>
+              
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Indications
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="Indications">
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Anesthetic
+                        Heading 1
                       </label>
-                      <input type="text" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
+                      <input type="text" class="form-control m-input" formControlName="Heading1">
+                    </div>
+                  </div>                
+                </div>
+                <div class="row">  
+                  <div class="col-sm-12">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Operations Note 1
+                      </label>
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="OperationsNote1"></textarea>
+                  </div> 
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Heading 2
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="Heading2">
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Diagnoses
+                        Operations Note 2
+                      </label>
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="OperationsNote2"></textarea>
+                    </div>
+                  </div>                
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Heading 3
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="Heading3">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Operations Note 3
+                      </label>
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote3"></textarea>
+                    </div>
+                  </div>                
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Comments
                       </label>
                       <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="Comments"></textarea>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-6">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Other
+                        Operations Note 4
                       </label>
-                      <input type="text" class="form-control m-input" formControlName="Other">
+                      <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="OperationsNote4"></textarea>
                     </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          AnesthesiaType
-                      </label>
-                      <select class="form-control m-input" formControlName="AnesthesiaType">
-                          <option value="General">General</option>
-                          <option value="Local">Local</option>
-                          <option value="Spinal">Spinal</option>
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          Anestetic
-                      </label>
-                      <input type="text" class="form-control m-input" formControlName="Anestetic">
-                    </div>
-                  </div>
-                  <div class="col-sm-3">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                          ScrubAssistant
-                      </label>
-                      <input type="text" class="form-control m-input" formControlName="ScrubAssistant">
-                    </div>
-                  </div>
-                
-                </div>
-           
-         
-                <div class="row">
-                    <div class="col-sm-3">
-                      <div class="form-group m-form__group">
-                        <label for="exampleInputEmail1">
-                            OT Assistant
-                        </label>
-                        <input type="text" class="form-control m-input" formControlName="OtAssistant">
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                              Nurse
-                          </label>
-                          <input type="text" class="form-control m-input" formControlName="Nurse">
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-                          <div class="form-group m-form__group">
-                            <label for="exampleInputEmail1">
-                                Remarks
-                            </label>
-                            <input type="text" class="form-control m-input" formControlName="Remarks">
-                          </div>
-                        </div>
+                  </div>                
                 </div>
               
                 <div class="row">
                   <div class="col-sm-2">
-                      <button class="btn btn-primary" *ngIf="router.url === '/ot/patientcase/'+id"    (click)="updatePatientCase(patientCaseForm.value)">
+                      <button class="btn btn-primary" *ngIf="router.url === '/ot/laproscopyfs/'+id"    (click)="updateLaproscopyFs(laproscopyfsForm.value)">
                         Update
                       </button>
-                    <button class="btn btn-primary"  *ngIf="router.url === '/ot/patientcase'" (click)="addPatientCase(patientCaseForm.value)">
+                    <button class="btn btn-primary"  *ngIf="router.url === '/ot/laproscopyfs'" (click)="addLaproscopyFs(laproscopyfsForm.value)">
                       Submit
                     </button>
                   </div>
@@ -204,4 +223,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

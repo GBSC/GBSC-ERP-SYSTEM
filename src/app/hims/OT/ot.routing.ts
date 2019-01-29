@@ -10,6 +10,8 @@ import { RootComponent } from './root/root.component';
  import { PatientCaseRepotComponent } from './report/patient-case-repot/patient-case-repot.component';
  import { LaproscopySpReportComponent } from './report/laproscopy-sp-report/laproscopy-sp-report.component';
  import { LaproscopyFsReportComponent } from './report/laproscopy-fs-report/laproscopy-fs-report.component';
+ import { HystroscopyReportComponent } from './report/hystroscopy-report/hystroscopy-report.component';
+
 
  import { MedicineRequestComponent } from './OtSteup/medicine-request/medicine-request.component';
  import { OtEquipmentComponent } from './OtSteup/ot-equipment/ot-equipment.component';
@@ -60,7 +62,8 @@ export const OTRouting: ModuleWithProviders = RouterModule.forChild([
                 children: [
                     { path: 'patientcaserepot/:id/:date', component: PatientCaseRepotComponent },
                     { path: 'laproscopyspreport/:id/:date', component: LaproscopySpReportComponent },
-                    { path: 'laproscopyfsreport/:id/:date', component: LaproscopyFsReportComponent }
+                    { path: 'laproscopyfsreport/:id/:date', component: LaproscopyFsReportComponent },
+                    { path: 'hystroscopyreport/:id/:date', component: HystroscopyReportComponent }
 
 
                 ]

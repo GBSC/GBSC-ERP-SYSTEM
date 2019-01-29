@@ -43,7 +43,7 @@ export class HystroscopyDetailComponent implements OnInit {
     let id  = x.key.patientId;
     let date =  this.formatDate(new Date(x.key.hystroscopyDate)) ;
 
-    this.Router.navigate(['/ot/report/laproscopyspreport/'+id+'/'+date]);
+    this.Router.navigate(['/ot/report/hystroscopyreport/'+id+'/'+date]);
   }
 
 

@@ -5,12 +5,13 @@ import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-laproscopy-fs-report',
-  templateUrl: './laproscopy-fs-report.component.html',
-  styleUrls: ['./laproscopy-fs-report.component.css']
+  selector: 'app-hystroscopy-report',
+  templateUrl: './hystroscopy-report.component.html',
+  styleUrls: ['./hystroscopy-report.component.css']
 })
-export class LaproscopyFsReportComponent implements AfterViewInit {
+export class HystroscopyReportComponent implements AfterViewInit {
   @ViewChild('scripts')
   scripts: ElementRef;
 
@@ -18,7 +19,7 @@ export class LaproscopyFsReportComponent implements AfterViewInit {
   control: ElementRef;
 
   public patientId : any;
-  public laproscopyFsDate : any;
+  public hystroscopyDate : any;
 
   constructor(public renderer: Renderer2,public ngZone: NgZone , public router : ActivatedRoute) { }
 
@@ -26,11 +27,11 @@ export class LaproscopyFsReportComponent implements AfterViewInit {
 
     this.router.params.subscribe((params)=>{
       this.patientId = +params['id'];
-       this.laproscopyFsDate = this.formatDate(new Date(params['date']));
+       this.hystroscopyDate = this.formatDate(new Date(params['date']));
           //  this.fwbInitialDate =  params['date'];
 
       console.log(this.patientId);
-      console.log(this.laproscopyFsDate);
+      console.log(this.hystroscopyDate);
 
 
 
@@ -41,7 +42,7 @@ export class LaproscopyFsReportComponent implements AfterViewInit {
   }
   ngAfterViewInit() {
 
-      const reportUrl = ko["observable"]("LaproscopyFsReport1"),
+      const reportUrl = ko["observable"]("HystroscopyReport"),
           container = this.renderer.createElement("div");
       container.innerHTML = Html;
 
@@ -57,9 +58,9 @@ export class LaproscopyFsReportComponent implements AfterViewInit {
           },callbacks: {
             ParametersSubmitted: (s, e) => this.ngZone.run(() => {
                 if(this.patientId)
-                e.Parameters.filter(function (p) { return p.Key == "PatientId"; })[0].Value = this.patientId;
-                if(this.laproscopyFsDate)
-                e.Parameters.filter(function (p) { return p.Key == "date"; })[0].Value = this.laproscopyFsDate;
+                e.Parameters.filter(function (p) { return p.Key == "patientId"; })[0].Value = this.patientId;
+                if(this.hystroscopyDate)
+                e.Parameters.filter(function (p) { return p.Key == "date"; })[0].Value = this.hystroscopyDate;
             })
           }
       }, this.control.nativeElement);

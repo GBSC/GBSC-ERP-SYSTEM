@@ -23,6 +23,7 @@ import { LaproscopyFsDetailComponent } from './detail/laproscopy-fs-detail/lapro
 import { LaproscopyFsReportComponent } from './report/laproscopy-fs-report/laproscopy-fs-report.component';
 import { HystroscopyComponent } from './hystroscopy/hystroscopy.component';
 import { HystroscopyDetailComponent } from './detail/hystroscopy-detail/hystroscopy-detail.component';
+import { HystroscopyReportComponent } from './report/hystroscopy-report/hystroscopy-report.component';
 //import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
 
 
@@ -91,6 +92,9 @@ HystroscopyComponent,
   
    
 HystroscopyDetailComponent,
+  
+   
+HystroscopyReportComponent,
   
  
 ],

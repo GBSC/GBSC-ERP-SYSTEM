@@ -34,13 +34,14 @@
                    <dxi-column dataField="patientId" caption="Patient Name">
                     <dxo-lookup [dataSource]="patient" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
                   </dxi-column>
+                  <dxi-column dataField="hystroscopyDate" caption="Date" dataType="date" format="shortDate"></dxi-column>
+
                   <!-- <dxi-column dataField="consultantId" caption="Consultant">
                     <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
                   </dxi-column> -->
                   <!-- <dxi-column dataField="patientId" caption="Treatment Type">
                     <dxo-lookup [dataSource]="treatmentType" displayExpr="mrn" valueExpr="treatmentTypeId"></dxo-lookup>
                   </dxi-column> -->
-  
                   <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"  [width]="90"></dxi-column>
                   <div *dxTemplate="let x of 'chartCellTemplateupdate'">
                   <div class="chart-cell">

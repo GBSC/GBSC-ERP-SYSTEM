@@ -1,3 +1,176 @@
-<p>
-  pharmacy-purchase-return works!
-</p>
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Purchase Return
+              </h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <div class="dropdown">
+              <!-- <button routerLink="/pharmacy/returnview" class="btn btn-primary" type="button">
+                <span>
+                  <i class="fa fa-eye"></i>
+                </span> View
+              </button> -->
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <!--begin::Form-->
+          <form class="m-form" [formGroup]="ReturnMedicineForm">
+            <div class="m-form m-form--fit m-form--label-align-right">
+              <div class="form-group m-form__group row">
+                <label for="example-text-input" class="col-5 col-form-label">
+                  GRN #
+                </label>
+                <div class="form-group col-3">
+                  <input type="text" class="form-control m-input m-input--solid" #box formControlName="GRNNumber"
+                    (keyup)="GetGrnDetails(box.value, $event)">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  GRN Date
+                </label>
+                <input type="date" class="form-control m-input m-input--solid" formControlName="GRNDate" [value]="SelectedSalesOrder?.againstLotNumber || ''" disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Return #
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="ReturnNumber" [value]="SelectedSalesOrder?.againstLotNumber || ''"
+                  disabled>
+                </select>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Return Date
+                </label>
+                <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" [value]="CurrentDate || ''">
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Return Reason
+                </label>
+                <select class="form-control m-input ng-pristine ng-valid ng-touched" formControlName="ReturnReasonId">
+                  <option *ngFor="let y of ReturnReasons" [value]="y?.returnReasonId">{{y?.reason}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Supplier Code
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="SupplierCode" [value]="SelectedSalesOrder?.contactPerson || ''"
+                  disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Supplier Name
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="SupplierName" [value]="SelectedSalesOrder?.contactPersonNumber || ''"
+                  disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Supplier Contact
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="SupplierContact"
+                  [value]="SelectedSalesOrder?.contactPersonNumber || ''" disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Remarks
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="Remarks">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Purchased Quantity
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="TotalPurchasedQuantity"
+                  [value]="SelectedSalesOrder?.contactPerson || ''" disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Return Quantity
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="TotalReturnQuantity"
+                  [value]="SelectedSalesOrder?.contactPersonNumber || ''" disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Paid Amount
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="TotalPaidAmount"
+                  [value]="SelectedSalesOrder?.contactPersonNumber || ''" disabled>
+              </div>
+              <div class="form-group col-lg-3">
+                <label for="exampleInputEmail1">
+                  Refund Amount
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="TotalRefundAmount"
+                  [value]="SelectedSalesOrder?.contactPersonNumber || ''" disable>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+              <div class="col-md-12">
+                <dx-data-grid [dataSource]="grnview"  (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true" showBorders="true"
+                  [masterDetail]="{ enabled: true, template: 'detail' }"
+                  [columnAutoWidth]="true" [showBorders]="true">
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-filter-row [visible]="false"></dxo-filter-row>
+                  <dxo-header-filter [visible]="false"></dxo-header-filter>
+                  <dxo-paging [pageSize]="5"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                  <dxo-group-panel [visible]="true"></dxo-group-panel>
+                   <!-- <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="false">
+                  </dxo-editing> -->
+                  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                  <dxo-selection mode="single"></dxo-selection>
+                  <dxi-column dataField="grnNumber" caption="Number" [width]="230" [fixed]="true"></dxi-column>
+                   <dxi-column dataField="grnDate" dataType="date" caption="Date"></dxi-column>
+                  <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+                  <dxi-column dataField="totalExpectedAmount" caption="Total Expected Amount"></dxi-column>
+                  <dxi-column dataField="totalPaymentAmount" caption="Total Paid Amount"></dxi-column>
+                  <dxi-column dataField="totalDifferenceAmount" caption="Total Difference Amount"></dxi-column>
+                  <dxi-column dataField="totalReceivedQuantity" caption="Total Received Quantity"></dxi-column>
+                  <dxi-column dataField="totalExpectedQuantity" caption="Total Expected Quantity"></dxi-column>
+                  <dxi-column dataField="totalDifferenceQuantity" caption="TotalDifferenceQuantity"></dxi-column>
+                  <dxi-column dataField="purchaseOrder.orderNumber" caption="Order Number"></dxi-column>
+                  <div *dxTemplate="let order of 'detail'">
+                    <dx-data-grid [dataSource]="order.data.grnItems" showBorders="true">
+                      <dxi-column dataField="inventoryItem.itemCode" caption="ItemCode"></dxi-column>
+                      <dxi-column dataField="inventoryItem.description" caption="Description"></dxi-column>
+                      <dxi-column dataField="inventoryItem.packType.name" caption="PackType"></dxi-column>
+                      <dxi-column dataField="inventoryItem.packSize.size" caption="PackSize"></dxi-column>
+                      <dxi-column dataField="inventoryItem.measurementUnit.name" caption="PerUnit"></dxi-column>
+                      <dxi-column dataField="expectedAmount" caption="Expected Amount"></dxi-column>
+                      <dxi-column dataField="paymentAmount" caption="Payment Amount"></dxi-column>
+                      <dxi-column dataField="differenceAmount" caption="Difference Amount"></dxi-column>
+                       <dxi-column dataField="receivedQuantity" caption="Received Quantity"></dxi-column>
+                      <dxi-column dataField="differenceQuantity" caption="Difference Quantity"></dxi-column>
+                    </dx-data-grid>
+                  </div>
+                </dx-data-grid>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

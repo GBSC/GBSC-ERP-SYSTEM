@@ -446,8 +446,12 @@ export class PharmacyService {
     }
 
     //ReturnReason
-    GetReturnReasons(): Observable<ReturnReason> {
+    GetReturnReasons(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasons');
+    }
+
+    GetReturnReasonsByCompany(companyid : number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasonsByCompany/' + companyid);
     }
 
     AddReturnReason(ReturnReason: ReturnReason): Observable<ReturnReason> {
@@ -467,7 +471,7 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
     }
 
-    GetSuppliersByCompany(companyId: number): Observable<Supplier> {
+    GetSuppliersByCompany(companyId: number): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliersByCompany/' + companyId);
     }
 

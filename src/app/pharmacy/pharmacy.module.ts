@@ -36,6 +36,7 @@ import { InternalRequisitionComponent } from './internal-requisition/internal-re
 import { InternalRequisitionViewComponent } from './internal-requisition-view/internal-requisition-view.component';
 import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
 import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
+import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
 
 @NgModule({
     imports: [
@@ -78,7 +79,8 @@ import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-i
         InternalRequisitionComponent,
         InternalRequisitionViewComponent,
         PurchaseInvoiceComponent,
-        PurchaseInvoiceViewComponent
+        PurchaseInvoiceViewComponent,
+        PharmacyPurchaseReturnComponent
     ],
     providers: [
         {

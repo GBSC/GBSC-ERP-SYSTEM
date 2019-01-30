@@ -255,7 +255,7 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN/' + id);
     }
 
-    GetGrnDetailsByCode(code: string): Observable<GRN> {
+    GetGrnDetailsByCode(code: string): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGrnDetailsByCode/' + code);
     }
 
@@ -289,7 +289,7 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
     }
 
-    GetInventoryItemsByCompany(companyId: number): Observable<InventoryItem> {
+    GetInventoryItemsByCompany(companyId: number): Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItemsByCompany/' + companyId);
     }
 
@@ -463,7 +463,7 @@ export class PharmacyService {
     }
 
     //Supplier
-    GetSuppliers(): Observable<Supplier> {
+    GetSuppliers(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
     }
 

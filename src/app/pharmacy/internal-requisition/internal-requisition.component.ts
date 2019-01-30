@@ -48,7 +48,7 @@ export class InternalRequisitionComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log(this.Auth.getUserCompanyId());
+		// console.log(this.Auth.getUserCompanyId());
 		this.InventoryService.GetInventoryItems().subscribe((res: any) => {
 			this.InventoryItems = res;
 			// console.log(this.InventoryItems);

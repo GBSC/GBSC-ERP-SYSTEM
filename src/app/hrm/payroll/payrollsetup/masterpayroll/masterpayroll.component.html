@@ -20,7 +20,6 @@
                   <option value="" disabled selected>-- Select Employee --</option>
                   <option *ngFor="let user of users" [value]="user.userId">{{user.fullName}}</option>
                 </select>
-                <!-- <dx-select-box [dataSource]="users" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true" #id (onValueChanged)="GetEmployeeBank(id.value)"></dx-select-box> -->
               </div>
               <div class="col-lg-4">
                 <label>Basic Salary: </label>
@@ -44,7 +43,7 @@
                   <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
                       <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">Master Payroll Detail</h3>
+                        <h3 class="m-portlet__head-text">Allowance</h3>
                       </div>
                     </div>
                   </div>
@@ -53,6 +52,7 @@
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
                         [dataSource]="datasource"
+                        [showBorders]="true"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
                          (onRowUpdated)="updateMasterpayrollDetail($event)">
                           <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
@@ -78,6 +78,9 @@
                           </dxi-column>
 
                           <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                          <dxo-summary> 
+                            <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
+                        </dxo-summary>
                           <dxi-column dataField="formula" caption="Formula"></dxi-column>
 
                         </dx-data-grid>
@@ -85,6 +88,56 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">Deduction</h3>
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body">
+              <div class="m-section">
+                <div class="m-section__content">
+                  <dx-data-grid id="gridContainerallowance"
+                  [dataSource]="a2"
+                  [showBorders]="true"
+                   (onRowInserted)="addMasterPayrolldetail($event)" 
+                   (onRowUpdated)="updateMasterpayrollDetail($event)">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="6"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager> 
+
+                    <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                      <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                    </dxi-column>
+      
+                    <dxi-column dataField="benefitId" caption="Benefit">
+                      <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                    </dxi-column>
+    
+                    <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                      <dxo-lookup [dataSource]="deduction" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                    <dxo-summary> 
+                      <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
+                  </dxo-summary>
+                    <dxi-column dataField="formula" caption="Formula"></dxi-column>
+
+                  </dx-data-grid>
+                  
               </div>
             </div>
           </div>

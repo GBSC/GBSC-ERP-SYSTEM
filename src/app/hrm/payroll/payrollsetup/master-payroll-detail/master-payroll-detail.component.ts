@@ -13,9 +13,11 @@ export class MasterPayrollDetailComponent implements OnInit {
     public employees: any;
     public masterPayroll: any;
     public currency: any;
+    public benefit: any;
     public allowance: any;
     public banks: any;
     public payrollType: any;
+    public salaryCalculationtype: any;
     public frequency: any;
 
 
@@ -29,13 +31,11 @@ export class MasterPayrollDetailComponent implements OnInit {
 
         this.employees = await this.employeeService.GetAllEmployees();
 
-        this.currency = await this.payrollSetupService.getCurrencies();
-
         this.allowance = await this.payrollSetupService.getAllowanceDeductions();
+        
+        this.salaryCalculationtype = await this.payrollSetupService.getSalaryCalculationTypes();
 
-        this.banks = await this.setupService.getAllBanks();
-
-        this.frequency = await this.payrollSetupService.getFrequencies();
+        this.benefit = await this.payrollSetupService.getBenefits();
 
         this.payrollType = await this.payrollSetupService.getPayrollTypes();
     }

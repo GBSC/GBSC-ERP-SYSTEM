@@ -129,7 +129,7 @@ export class GoodsreceiptComponent implements OnInit {
 
         var a: any = {
             CompanyId : this.Auth.getUserCompanyId(),
-            ReceivedQuantity: this.ReceivedQuantity[index],
+            ReceivedQuantity: this.ReceivedQuantity[index] * Number.parseInt(this.SelectedPurchaseOrderItems[index].packSize),
             ExpectedQuantity: this.ExpectedQuantity[index],
             DifferenceQuantity: this.DifferenceQuantity[index],
             ExpectedAmount: this.ExpectedAmount[index],

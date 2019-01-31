@@ -12,15 +12,16 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
 
   public InventoryItems : any[] = [];
   public SelectedGRN : any;
-  public Suppliers : any[] = [];
-  public SelectedSupplier : any;
+  // public Suppliers : any[] = [];
+  public Supplier : any;
+  // public SelectedSupplier : any;
   public ReturnReasons : any[] = [];
 
   public TotalReturnQuantity : number = 0;
   public TotalRefundAmount : number = 0;
   public CurrentDate : Date = new Date((new Date()).toLocaleString());
 
-  public Datasource : any;
+  public Datasource : any[] = [];
 
   public PurchaseReturnForm : FormGroup;
 
@@ -38,7 +39,7 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
       Remarks : [''],
       TotalReturnQuantity : [''],
       TotalRefundAmount : [''],
-      ReturnReasonId : ['']
+      ReturnReasonId : []
     });
   }
 
@@ -52,14 +53,6 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
     //   this.InventoryItems = res;
     // });
 
-    this.PharmacyService.GetSuppliers().subscribe((res : any[]) => {
-      this.Suppliers = res;
-    });
-
-    // this.PharmacyService.GetSuppliersByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
-    //   this.Suppliers = res;
-    // });
-
     this.PharmacyService.GetReturnReasons().subscribe((res : any[]) => {
       this.ReturnReasons = res;
     });
@@ -71,22 +64,75 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
 
   GetGrnDetails(code : string, event) {
     if (event.key === "Enter") {
-      // this.ResetGrid();
-      this.PharmacyService.GetGrnDetailsByCode(code).subscribe((res : any) => {
+      this.ResetWholeForm();
+      this.PharmacyService.GetGrnDetailsWithSupplierByCode(code).subscribe((res : any) => {
+      // this.PharmacyService.GetGrnDetailsWithSupplierByCodeAndCompany(code, this.Auth.getUserCompanyId()).subscribe((res : any) => {
         if(res != null) {
-          this.SelectedGRN = res;
-          console.log(this.SelectedGRN);
+          this.SelectedGRN = res.grn;
+          this.Supplier = res.supplier;
           this.Toastr.success("Details retrieved");
-          // this.SelectedGRN.grnItems.forEach(element => {
-          //   var a : any = {
-
-          //   };
-          // });
+          this.SelectedGRN.grnItems.forEach(element => {
+            var a : any = {
+              inventoryItemId : element.inventoryItemId,
+              rate : element.rate,
+              packSize : element.packSize,
+              purchaseQuantity : element.receivedQuantity,
+              paidAmount : element.paymentAmount,
+              returnQuantity : 0,
+              refundAmount : 0
+            };
+            this.Datasource.push(a);
+          });
         } else {
-          this.Toastr.error('Return already exists for selected GRN!', 'Error!');
+          this.Toastr.error('Inavlid GRN Number OR Return already exists for selected GRN!', 'Error!');
         }
       });
     }
+  }
+
+  UpdatingItem(event) {
+    if(event.newData.returnQuantity) {
+      event.newData.refundAmount = event.newData.returnQuantity * event.oldData.rate * event.oldData.packSize;
+      this.TotalReturnQuantity = this.TotalReturnQuantity - event.oldData.returnQuantity + event.newData.returnQuantity;
+      this.TotalRefundAmount = this.TotalRefundAmount - (event.oldData.refundAmount) + (event.newData.refundAmount);
+    }
+  }
+
+  submitReturn(formvalue) {
+
+    this.Datasource.filter(a => {
+      delete a.rate;
+      delete a.packSize;
+      delete a.purchaseQuantity;
+      delete a.paidAmount;
+    });
+
+    let a : any = {
+      CompanyId : this.Auth.getUserCompanyId(),
+      ReturnDate : formvalue.ReturnDate || this.CurrentDate,
+      Remarks : formvalue.Remarks,
+      TotalReturnAmount : this.TotalRefundAmount,
+      TotalReturnQuantity : this.TotalReturnQuantity,
+      ReturnReasonId : Number.parseInt(formvalue.ReturnReasonId),
+      GRNId : this.SelectedGRN.grnId,
+      PurchaseReturnItems : this.Datasource
+    }
+
+    console.log(a);
+
+    this.PharmacyService.addPurchaseReturn(a).subscribe((res : any) => {
+      this.Toastr.success("Return Added");
+      this.ResetWholeForm();
+    });
+  }
+
+  ResetWholeForm() {
+    this.PurchaseReturnForm.reset();
+    this.Supplier = null;
+    this.SelectedGRN = null;
+    this.TotalRefundAmount = 0;
+    this.TotalReturnQuantity = 0;
+    this.Datasource = [];
   }
 
 }

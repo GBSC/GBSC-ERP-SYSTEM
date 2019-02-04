@@ -24,6 +24,8 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
   public Datasource : any[] = [];
 
   public PurchaseReturnForm : FormGroup;
+  public grnDate : Date = new Date();
+  public returnDate : Date = new Date();
 
   constructor(public PharmacyService : PharmacyService, public Auth : AuthService, public Toastr : ToastrService, public Formbuilder : FormBuilder) {
     this.PurchaseReturnForm = this.Formbuilder.group({
@@ -69,6 +71,8 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
       // this.PharmacyService.GetGrnDetailsWithSupplierByCodeAndCompany(code, this.Auth.getUserCompanyId()).subscribe((res : any) => {
         if(res != null) {
           this.SelectedGRN = res.grn;
+          this.grnDate = res.grn.grnDate;
+          this.returnDate = new Date();
           this.Supplier = res.supplier;
           this.Toastr.success("Details retrieved");
           this.SelectedGRN.grnItems.forEach(element => {
@@ -92,9 +96,14 @@ export class PharmacyPurchaseReturnComponent implements OnInit {
 
   UpdatingItem(event) {
     if(event.newData.returnQuantity) {
+      if(event.newData.returnQuantity > event.oldData.purchaseQuantity) {
+        this.Toastr.error("Returned quantity can't be greater than purchased quantity");
+        event.newData.returnQuantity = Number.parseInt(event.oldData.purchaseQuantity);
+      }
       event.newData.refundAmount = event.newData.returnQuantity * event.oldData.rate * event.oldData.packSize;
       this.TotalReturnQuantity = this.TotalReturnQuantity - event.oldData.returnQuantity + event.newData.returnQuantity;
       this.TotalRefundAmount = this.TotalRefundAmount - (event.oldData.refundAmount) + (event.newData.refundAmount);
+      this.Toastr.success("Item return added successfully");
     }
   }
 

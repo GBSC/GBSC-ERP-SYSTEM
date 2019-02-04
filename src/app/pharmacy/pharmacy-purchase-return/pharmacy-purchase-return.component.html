@@ -42,8 +42,9 @@
                 <label for="exampleInputEmail1">
                   GRN Date
                 </label>
-                <input type="date" class="form-control m-input m-input--solid" formControlName="GRNDate" [value]="SelectedGRN?.grnDate | date: 'yyyy-MM-dd' || ''"
-                  disabled>
+                <!-- <input type="date" class="form-control m-input m-input--solid" formControlName="GRNDate" [value]="SelectedGRN?.grnDate | date: 'dd-MMM-yyyy' || ''"
+                  disabled> -->
+                <dx-date-box displayFormat="dd MMM yyyy" [(value)]="grnDate" formControlName="GRNDate" [disabled]="true"></dx-date-box>
               </div>
               <div class="form-group col-lg-3">
                 <label for="exampleInputEmail1">
@@ -55,7 +56,8 @@
                 <label for="exampleInputEmail1">
                   Return Date
                 </label>
-                <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" [value]="CurrentDate | date: 'yyyy-MM-dd' || ''">
+                <!-- <input type="date" class="form-control m-input m-input--solid" formControlName="ReturnDate" [value]="CurrentDate | date: 'dd MMM yyyy' || ''"> -->
+                <dx-date-box displayFormat="dd MMM yyyy" [(value)]="returnDate" formControlName="ReturnDate"></dx-date-box>
               </div>
               <div class="form-group col-lg-3">
                 <label for="exampleInputEmail1">

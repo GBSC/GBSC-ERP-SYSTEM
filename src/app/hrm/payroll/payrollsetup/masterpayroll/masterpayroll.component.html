@@ -23,12 +23,12 @@
               </div>
               <div class="col-lg-4">
                 <label>Basic Salary: </label>
-                <input type="number" [value]="calcallowances" class="form-control m-input">
+                <input type="number" #totalsalary [value]="totalAllowanceAndDeduction" class="form-control m-input">
               </div>
               <div class="col-lg-4">
                   <label></label>
-                <button type="button" (click)="updateSalary(MasterPayrollForm.value)" class="btn btn-primary button_get">
-                  Get
+                <button type="button" (click)="updateSalary(totalsalary.value, s.value)" class="btn btn-primary button_get">
+                  Update
                 </button> 
               </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="datasource"
+                        [dataSource]="allowance2"
                         [showBorders]="true"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
                          (onRowUpdated)="updateMasterpayrollDetail($event)">
@@ -92,6 +92,57 @@
             </div>
           </div>
 
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">Deduction</h3>
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body">
+              <div class="m-section">
+                <div class="m-section__content">
+                  <dx-data-grid id="gridContainerallowance"
+                  [dataSource]="deduction2"
+                  [showBorders]="true"
+                   (onRowInserted)="addMasterPayrolldetail($event)" 
+                   (onRowUpdated)="updateMasterpayrollDetail($event)">
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="6"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                    </dxo-pager> 
+
+                    <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
+                      <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                    </dxi-column>
+      
+                    <dxi-column dataField="benefitId" caption="Benefit">
+                      <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
+                    </dxi-column>
+    
+                    <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                      <dxo-lookup [dataSource]="deduction" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                    </dxi-column>
+
+                    <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                    <dxo-summary> 
+                      <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
+                  </dxo-summary>
+                    <dxi-column dataField="formula" caption="Formula"></dxi-column>
+
+                  </dx-data-grid>
+                  
+              </div>
+            </div>
+          </div>
+
+            <div class="m--space-30"></div>
 
     </div>
  

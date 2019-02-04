@@ -23,12 +23,12 @@
               </div>
               <div class="col-lg-4">
                 <label>Basic Salary: </label>
-                <input type="number" [value]="calcallowances" class="form-control m-input">
+                <input type="number" #totalsalary [value]="totalAllowanceAndDeduction" class="form-control m-input">
               </div>
               <div class="col-lg-4">
                   <label></label>
-                <button type="button" (click)="updateSalary(MasterPayrollForm.value)" class="btn btn-primary button_get">
-                  Get
+                <button type="button" (click)="updateSalary(totalsalary.value, s.value)" class="btn btn-primary button_get">
+                  Update
                 </button> 
               </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="m-section">
                       <div class="m-section__content">
                         <dx-data-grid id="gridContainer"
-                        [dataSource]="datasource"
+                        [dataSource]="allowance2"
                         [showBorders]="true"
                          (onRowInserted)="addMasterPayrolldetail($event)" 
                          (onRowUpdated)="updateMasterpayrollDetail($event)">
@@ -104,7 +104,7 @@
               <div class="m-section">
                 <div class="m-section__content">
                   <dx-data-grid id="gridContainerallowance"
-                  [dataSource]="a2"
+                  [dataSource]="deduction2"
                   [showBorders]="true"
                    (onRowInserted)="addMasterPayrolldetail($event)" 
                    (onRowUpdated)="updateMasterpayrollDetail($event)">

@@ -130,7 +130,7 @@ export class LeaverequestComponent implements OnInit {
         console.log(value);
     }
 
-    async update(value) {
+     update(value) {
         value.leaveRequestId = this.id;
         value.LeaveRequestDetails = this.leaveDetail;
         this.leaveservice.updateLeaveRequest(value).subscribe(resp => {
@@ -139,8 +139,7 @@ export class LeaverequestComponent implements OnInit {
 
         });
     }
-    //     formItem]="{editorOptions: { readOnly: true }}"
-    // [allowEditing]="false" [formItem]="{visible: false}"
+ 
 
 
 

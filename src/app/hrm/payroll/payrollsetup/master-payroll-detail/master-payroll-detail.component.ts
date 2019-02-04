@@ -64,11 +64,11 @@ export class MasterPayrollDetailComponent implements OnInit {
     }
 
     addmasterpayroll() {
-        this.router.navigate(['/hrm/payroll/payrollsetup/masterpayroll']);
+        this.router.navigate(['/hrm/payroll/masterpayroll']);
     }
 
     getData(d) {
         this.masterPayrollId = d.key;
-        this.router.navigate(['hrm/payroll/payrollsetup/updatemasterpayroll/' + this.masterPayrollId]);
+        this.router.navigate(['hrm/payroll/updatemasterpayroll/' + this.masterPayrollId]);
     }
 }

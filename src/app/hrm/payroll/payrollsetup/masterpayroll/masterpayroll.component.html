@@ -41,15 +41,6 @@
                   <option *ngFor="let currency of currency" [value]="currency.currencyId">{{currency.name}}</option>
                 </select>
               </div>
-              <div class="col-lg-6">
-                <label class="">
-                 Payroll Bank:
-                </label>
-                <select class="form-control m-input" formControlName="PayrollBankId">
-                  <option value="" disabled>-- Select Payroll Bank --</option>
-                  <option *ngFor="let pb of banksPayroll" [value]="pb.payrollBankId">{{pb.bankTitle}}</option>
-                </select>
-              </div>
             </div>
           </form>
  
@@ -114,12 +105,12 @@
                   <div class="col-lg-2"></div>
                 <div class="col-lg-6">
                     <div *ngIf="isUpdate(); else create">
-                      <button class="btn btn-primary" (click)="update(submitForm.value)">
+                      <button class="btn btn-primary" (click)="update(MasterPayrollForm.value)">
                           Update
                         </button>        
                   </div> 
                   <ng-template #create>
-                    <button class="btn btn-Success" (click)="submitForm(submitForm.value)">
+                    <button class="btn btn-Success" (click)="submitForm(MasterPayrollForm.value)">
                       Submit
                     </button>  
                   </ng-template> 

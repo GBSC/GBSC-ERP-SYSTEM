@@ -41,8 +41,7 @@ export class MasterpayrollComponent implements OnInit {
         this.MasterPayrollForm = this.fb.group({
             UserId: ['', Validators.required],
             BankTransferCode: ['', Validators.required],
-            CurrencyId: ['', Validators.required],
-            PayrollBankId: ['', Validators.required]
+            CurrencyId: ['', Validators.required]
         });
 
         this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
@@ -69,9 +68,11 @@ export class MasterpayrollComponent implements OnInit {
                 this.masterpayroll = resp;
                 let a = this.masterpayroll.masterPayrollDetails;
                 this.masterDetail = a.filter(b => {
-                    delete b.masterPayrollDetailId;
+                    delete b.masterPayrollDetailsId;
                     delete b.masterPayrollId;
+                    console.log(b);
                     return b;
+                    
                 });
                 this.patchValues(this.masterpayroll);
             });
@@ -79,7 +80,7 @@ export class MasterpayrollComponent implements OnInit {
     }
 
 
-    async addMasterPayrolldetail(value) {
+     addMasterPayrolldetail(value) {
         let data = value.data;
         this.payrollDetail.push(data);
     }
@@ -88,7 +89,9 @@ export class MasterpayrollComponent implements OnInit {
         let masterPayroll = new MasterPayroll();
         masterPayroll = { ...masterPayroll, ...value };
         masterPayroll.MasterPayrollDetails = this.payrollDetail;
-        let x = await this.payrollsetupservice.addMasterPayroll(masterPayroll);
+        await this.payrollsetupservice.addMasterPayroll(masterPayroll);
+        this.toastr.success("Successfully! Master Payroll Add");
+        this.router.navigate(['/hrm/payroll/payrollsetup/masterpayrolldetail']);
 
     }
 
@@ -101,17 +104,16 @@ export class MasterpayrollComponent implements OnInit {
             return false;
     }
 
-    async updateMasterpayrollDetail(value) {
+     updateMasterpayrollDetail(value) {
         console.log(value);
     }
 
-    async update(value) {
+     update(value) { 
         value.masterPayrollId = this.id;
-        value.MasterPayrollDetails = this.masterDetail;
-        console.log(value);
+        value.MasterPayrollDetails = this.masterDetail; 
         this.payrollsetupservice.updateMasterPayroll(value).subscribe(resp => {
             this.toastr.success("Master Payroll Updated");
-            this.router.navigate(['/hrm/payroll/payrollsetup/masterpayrolldetail']);
+            this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
 
         });
     }
@@ -122,8 +124,7 @@ export class MasterpayrollComponent implements OnInit {
 
             UserId: masterpayroll.userId,
             BankTransferCode: masterpayroll.bankTransferCode,
-            CurrencyId: masterpayroll.currencyId,
-            PayrollBankId: masterpayroll.payrollBankId
+            CurrencyId: masterpayroll.currencyId
         })
 
     }

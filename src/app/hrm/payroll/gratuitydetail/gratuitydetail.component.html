@@ -57,7 +57,7 @@
         </div>
 
         <div *dxTemplate="let gratuitySlab of 'detail'">
-          <dx-data-grid [dataSource]="gratuitySlab.data.gratuitySlabGratuities" [showBorders]="true" [columnAutoWidth]="true">
+          <dx-data-grid [dataSource]="gratuitySlab.data.gratuitySlabGratuities" [showBorders]="true">
 
             <dxi-column dataField="gratuitySlabId" caption="Gratuity Slab">
               <dxo-lookup [dataSource]="gratuitySlabs" displayExpr="title" valueExpr="gratuitySlabId">

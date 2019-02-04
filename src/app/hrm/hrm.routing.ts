@@ -150,6 +150,7 @@ import { CompanysetupMasterComponent } from './companysetup-master/companysetup-
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
+import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -363,6 +364,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'gratuitydetail', component: GratuitydetailComponent },
                     { path: 'monthlyusersalary', component: MonthlyUserSalaryComponent },
                     { path: 'monthly-usersalary-detail', component: MonthlyUserSalaryDetailComponent },
+                    { path: 'salaryprocess', component: MonthlySalaryProcessComponent },
                     { path: 'updatemonthlysalary/:id', component: MonthlyUserSalaryComponent },
                     { path: 'payslip', component: PayslipComponent }
                 ]

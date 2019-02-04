@@ -231,10 +231,8 @@ export class MasterpayrollComponent implements OnInit {
                         }
                     });
                     console.log(this.deduction2);
-
-
-
                     console.log(this.deduction2);
+                    
                     this.caldeduction = 0;
                     for (let d of this.deduction2) {
                         this.caldeduction += (+d.value);

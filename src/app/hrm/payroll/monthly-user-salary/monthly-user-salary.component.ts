@@ -16,6 +16,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
     public MonthlyUserSalaryForm: any
     public rosterAttendance: UserRosterAttendance[];
     public rosterattendance: any[] = [];
+    public roster: any;
     public stopSalary: any;
     public paySlip: any;
     public monthlysalary: any;
@@ -29,7 +30,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
     @Input('monthlyUserSalaryId') id: number;
 
-    constructor(public fb: FormBuilder, public attendanceService: AttendanceService, public attendanceSetupService: AttendancesetupService,  public payrollservice: PayrollService, public Employeeservice: EmployeeService,
+    constructor(public fb: FormBuilder, public attendanceService: AttendanceService, public attendanceSetupService: AttendancesetupService, public payrollservice: PayrollService, public Employeeservice: EmployeeService,
         public payrollsetupservice: PayrollSetupService, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute) { }
 
     async ngOnInit() {
@@ -61,7 +62,13 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
         this.monthlySalary = await this.payrollservice.getMonthlySalaries();
 
-        this.userSalary = await this.payrollsetupservice.getUserSalaries();  
+        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+
+        this.attendanceSetupService.GetAsignRosters().subscribe(resp => {
+            this.roster = resp;
+            console.log(this.roster);
+
+        })
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
@@ -121,8 +128,8 @@ export class MonthlyUserSalaryComponent implements OnInit {
             this.router.navigate(['/hrm/payroll/monthly-usersalary-detail']);
 
         });
-    } 
- 
+    }
+
 
     public employeeData: any = [];
 
@@ -130,36 +137,23 @@ export class MonthlyUserSalaryComponent implements OnInit {
         return (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
     }
 
-    days
-    
-    public roster : any;
     getattendancerequest(value) {
-        console.log(value);  
-        
         this.MonthlyUserSalaryForm.value.MonthStartDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthStartDate))
         this.MonthlyUserSalaryForm.value.MonthEndDate = this.formatDate(new Date(this.MonthlyUserSalaryForm.value.MonthEndDate))
         this.attendanceService.getUserAttendancesbyIddate(value.UserId, value.MonthStartDate, value.MonthEndDate).subscribe(res => {
             this.employeeData = res;
             console.log(this.employeeData);
-             
-            console.log(''); 
-            // for (let d of this.employeeData) {
-            //     this.days += (d.value.Days);
-            //     console.log(d); 
-            // }  
-        }) 
-        this.attendanceSetupService.GetAsignRosters().subscribe(resp => {
-            this.roster = resp;
-            console.log(this.roster);
-            console.log(value);
+        });
 
-            if(value.userId === this.roster.userAssignRosters.userId){
-                let g =this.roster.daysoffs[0] === 'on'
-                console.log(g);
-                
-            }
-             
-       })
+        this.attendanceSetupService.getAssignRosterByUser(value.UserId, value.MonthStartDate, value.MonthEndDate).subscribe(r => {
+            console.log(r);
+            // console.log( r.assignRoster); 
+            
+            console.log( r.assignRoster);
+            console.log(r.daysoffs);
+            this.roster = r.assignRoster
+
+        });
     }
 
     patchValues(monthlysalary: any) {

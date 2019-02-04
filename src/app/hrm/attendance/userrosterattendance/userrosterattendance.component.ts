@@ -21,9 +21,7 @@ export class UserrosterattendanceComponent implements OnInit {
         this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
         console.log(this.userRosterattendance);
                 
-        this.employee = await this.employeeService.GetAllEmployees();
-
-        this.assignRoster = await this.attendanceSetupService.getAsignRosters();
+        this.employee = await this.employeeService.GetAllEmployees(); 
  
     }
 

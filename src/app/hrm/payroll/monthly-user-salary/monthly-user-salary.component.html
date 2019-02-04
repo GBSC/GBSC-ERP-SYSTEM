@@ -14,7 +14,7 @@
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="MonthlyUserSalaryForm">
+          <form class="signup-form" [formGroup]="MonthlyUserSalaryForm">
             <div class="form-group m-form__group row">
               <div class="col-lg-4">
                 <label>Employee:</label>
@@ -168,13 +168,8 @@
                           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                           <dxo-paging [pageSize]="6"></dxo-paging>
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                          </dxo-pager>
-                          <!-- <dxi-column dataField="userId" caption="Employee">
-                            <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
-                            </dxo-lookup>
-                          </dxi-column> -->
+                          </dxo-pager> 
                           <dxi-column dataField="attendanceDate" dataType="date" format="shortDate" caption="Attendance Date"></dxi-column>
-                          <dxi-column dataField="isPresent" dataType="boolean" caption="Present"></dxi-column>
                           <dxi-column dataField="checkInTime" dataType="datetime" format="shortTime" caption="Chekin Time"></dxi-column>
                           <dxi-column dataField="checkOutTime" dataType="datetime" format="shortTime" caption="CheckOut Time"></dxi-column>
                         </dx-data-grid>

@@ -66,12 +66,13 @@ export class SalarystructureComponent implements OnInit {
 
                 this.salaryStructure = resp;
                 let a = this.salaryStructure.salaryStructureDetails;
-                this.Detail = a.map(b => {
-                    delete b.salaryStructureDetailId;
+                this.Detail = a.filter(b => {
                     delete b.salaryStructureId;
+                    delete b.salaryStructureDetailId;
+                    console.log(b);
+                    
                     return b;
-                });
-                console.log(this.Detail);
+                }); 
                 this.patchValues(this.salaryStructure);
             });
         }
@@ -109,7 +110,7 @@ export class SalarystructureComponent implements OnInit {
         return this.isDisabled;
     }
 
-     updateSalaryStructureDetail(value) {
+    async updateSalaryStructureDetail(value) {
         console.log(value);
     }
 

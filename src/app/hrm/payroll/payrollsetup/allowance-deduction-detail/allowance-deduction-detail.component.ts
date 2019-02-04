@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AllowanceDeductionDetailComponent implements OnInit {
 
-  lookupDataSource = ["Allowance", "Deduction"];
+  lookupDataSource = ["allowance", "deduction"];
   public allowancededuction: any;
   public allowanceCalculationTypes: any;
   public updatingdeduction: any;

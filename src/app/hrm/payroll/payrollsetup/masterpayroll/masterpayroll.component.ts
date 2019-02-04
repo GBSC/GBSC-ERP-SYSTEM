@@ -123,36 +123,29 @@ export class MasterpayrollComponent implements OnInit {
                 this.payrollsetupservice.GetSalaryStructures().subscribe(sc => {
                     this.getAllowances = sc.find(t => t.groupId == this.employee.groupId);
                     this.getAllowances.salaryStructureDetails.forEach(element => {
-                        this.calculationttypes.filter(res => {
-                            (res.name == '% of Gross')
-                            this.allowanceValue = this.getAllowances.minimumSalary * Number.parseFloat(element.value) / 100;
+                    this.calculationttypes.filter(res => {
+                        console.log(res);
+                         (element.salaryCalculationTypeId == res.salaryCalculationTypeId && res.name === '% of Gross')
+                          element.value= this.getAllowances.minimumSalary * Number.parseFloat(element.value) / 100;
+                        // element.value = this.getAllowances.minimumSalary * Number.parseFloat(element.value) / 100;
+                           
                         }) 
+                        
 
                         let a: any = {
                             salaryCalculationTypeId: element.salaryCalculationTypeId,
                             benefitId: element.benefitId,
-                            allowanceDeductionId: element.allowanceDeductionId,
-                            value: this.allowanceValue,
+                            allowanceDeductionId: element.allowanceDeductionId, 
+                            value:   element.value,
                             formula: element.formula
                         }; 
                         this.datasource.push(a);
                     console.log(this.datasource);
-
-                    
-                    this.calcallowances = 0;
-                    for (let d of this.datasource) {
-                        this.calcallowances += (+d.value);
-                    }
+ 
                 });
                 console.log(this.datasource);
                 console.log(this.allowances);
-        //         this.datasource.filter(a => {
-        //    this.allowances.find(e =>  (e.allowanceDeductionId ===  a.allowanceDeductionId && e.type === 'Allowance' ))
-               
-        //           this.allowance.push(a);
-        //            console.log(a);
-        //           console.log(this.allowance);
-        //      });
+       
             this.allowances.filter(a => {
             this.datasource.filter(d =>{
                 (d.allowanceDeductionId ===  a.allowanceDeductionId && a.type === 'Allowance')
@@ -161,10 +154,7 @@ export class MasterpayrollComponent implements OnInit {
             })
                 console.log(this.allowance);
                
-                    //  this.a2.push(this.allowance);
-                //     console.log(a);
-                //    console.log(this.a2);
-              });
+           });
 
             });
             

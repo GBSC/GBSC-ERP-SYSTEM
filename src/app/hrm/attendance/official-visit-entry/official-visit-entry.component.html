@@ -19,7 +19,7 @@
                 (onRowUpdating)="updatingVisitentry($event)"
                 (onRowUpdated)="updateVisitentry()"
                 (onRowRemoved)="deleteofficialVisitentry($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="Official Visit Entry" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>

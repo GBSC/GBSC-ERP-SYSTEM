@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SystemAdministrationService } from '../../../../../src/app/core';
 
 @Component({
     selector: 'app-inventory-master',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryMasterComponent implements OnInit {
 
-    tabs: string[] = ['product-type', 'brand', 'product-category', 'unit', 'pack-category', 'pack-type', 'pack-size', 'package-type', 'inventory'];
+    tabs: string[] = ['Product Type', 'Brand', 'Product Category', 'Unit', 'Pack Category', 'Pack Type', 'Pack Size', 'Oil Type', 'Products', 'General Sku'];
     selectedTab = this.tabs[0];
 
     constructor() { }

@@ -1,0 +1,127 @@
+.dashboard-stat {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 9px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.dashboard-stat.dashboard-stat-v2 .visual {
+    padding-top: 1px;
+    margin-bottom: 38px;
+}
+.dashboard-stat .visual {
+    width: 80px;
+    height: 33px;
+    display: block;
+    float: left;
+    padding-top: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    line-height: 22px;
+}
+
+.dashboard-stat .visual>i {
+    margin-left: 4px;
+    font-size: 55px;
+    line-height: 65px; 
+}
+.dashboard-stat .details {
+    position: absolute;
+    right: 15px;
+    padding-right: 15px;
+    top: 25px;
+}
+
+.dashboard-stat .details .desc {
+    text-align: right;
+    font-size: 16px;
+    letter-spacing: 0;
+    font-weight: 300;
+}
+
+.dashboard-stat.blue {
+    background-color: #01617a;
+}
+
+.dashboard-stat.blue .visual>i {
+    color: #FFF;
+    opacity: .1;
+    filter: alpha(opacity=20);
+}
+
+.dashboard-stat.blue .details .desc {
+    color: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.dashboard-stat.black {
+    background-color: #1b1b1b;
+}
+
+.dashboard-stat.black .visual>i {
+    color: #FFF;
+    opacity: .1;
+    filter: alpha(opacity=20);
+}
+
+.dashboard-stat.black .details .desc {
+    color: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+
+.dashboard-stat.okkar {
+    background-color: #bb4b01;
+}
+
+.dashboard-stat.okkar .visual>i {
+    color: #FFF;
+    opacity: .1;
+    filter: alpha(opacity=20);
+}
+
+.dashboard-stat.okkar .details .desc {
+    color: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.dashboard-stat.purple {
+    background-color: #540d6b;
+}
+
+.dashboard-stat.purple .visual>i {
+    color: #FFF;
+    opacity: .1;
+    filter: alpha(opacity=20);
+}
+
+.dashboard-stat.purple .details .desc {
+    color: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.dashboard-stat.green {
+    background-color: #164614;
+}
+
+.dashboard-stat.green .visual>i {
+    color: #FFF;
+    opacity: .1;
+    filter: alpha(opacity=20);
+}
+
+.dashboard-stat.green .details .desc {
+    color: #FFF;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+
+
+
+

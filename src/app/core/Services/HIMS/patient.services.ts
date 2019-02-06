@@ -145,6 +145,10 @@ export class PatientService {
         return await this.ApiService.get(this.API_URL + 'patients/GetPatient/' + id).toPromise();
     }
 
+    getPatientById(id : number):Observable<any>{
+        return this.ApiService.get(this.API_URL + 'patients/GetPatient/' + id)
+    }
+
     async updatePatient(patient: Patient) {
         return await this.ApiService.put(this.API_URL + 'patients/UpdatePatient', patient).toPromise();
     }

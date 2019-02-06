@@ -9,7 +9,7 @@
   <div class="m-portlet__body">
     <div class="row">
       <div class="col-md-12">
-          <dx-data-grid id="gridContainer" [dataSource]="areas" keyExpr="areaId" (onRowInserted)="addArea($event)" (onRowUpdated)="updateArea($event)" (onRowRemoved)="deleteArea($event)"> 
+          <dx-data-grid id="gridContainer" [dataSource]="areas" keyExpr="areaId" (onRowInserted)="addArea($event)" (onRowUpdating)="updateArea($event)" (onRowRemoved)="deleteArea($event)"> 
               <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="true"[allowAdding]="true"[useIcons]="true">	
                   <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
                 <dxo-popup title="Add Area" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
@@ -20,7 +20,7 @@
               <dxo-paging [pageSize]="8"></dxo-paging>
               <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
               <dxi-column dataField="name" caption="Name"></dxi-column>
-              <dxi-column dataField="cityId"caption="Region" [visible]="true">
+              <dxi-column dataField="cityId"caption="City" [visible]="true">
                 <dxo-lookup [dataSource]="cities" valueExpr="cityId" displayExpr="name"></dxo-lookup>
               </dxi-column>           
               </dx-data-grid>

@@ -147,7 +147,7 @@
 			<div class="m-section">
 				<div class="m-section__content">
 					<dx-data-grid id="gridContainer" [dataSource]="PatientInvoiceItem" (onRowInserted)="AddInvoiceDetail($event)" (onRowRemoved)="DeleteInvoiceDetail($event)">
-						<dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+						<dxo-editing mode="popup" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
 						</dxo-editing>
 						<dxo-paging [pageSize]="5"></dxo-paging>
 						<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>

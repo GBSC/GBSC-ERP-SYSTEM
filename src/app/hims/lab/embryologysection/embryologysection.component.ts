@@ -3,7 +3,7 @@ import { ConsultantService, PatientService } from '../../../../app/core';
 import { ActivatedRoute } from '@angular/router';
 import { TreatmentService } from '../../../../app/core/Services/HIMS/treatment.service';
 import { PatientclinicalrecordService } from '../../../../app/core/Services/HIMS/patientclinicalrecord.service';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 
 @Component({
     selector: 'app-embryologysection',

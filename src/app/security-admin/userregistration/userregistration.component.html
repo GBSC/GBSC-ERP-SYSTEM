@@ -71,6 +71,15 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group m-form__group">
+                  <label for="City" class="control-label">User Type</label>
+                  <select class="form-control m-input m-input--solid" formControlName="UserType" [value]="user?.userType">
+                    <!-- <option value="" disabled selected>-- Select City --</option> -->
+                    <option *ngFor="let usertype of userTypes" [value]="usertype">{{usertype}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group m-form__group">
                   <label for="email" class="control-label">Email</label>
                   <input type="email" class="form-control m-input m-input--solid" formControlName="Email" [value]="user?.email"
                     name="email" aria-describedby="emailHelp">

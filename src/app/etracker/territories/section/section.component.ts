@@ -34,9 +34,9 @@ export class SectionComponent implements OnInit {
 
     updateSection(value) {
 
-        value.data.sectionId = value.key;
-        value.data.companyId = this.companyId;
-        this.inventoryService.UpdateSection(value.data).subscribe(resp => {
+        value.companyId = this.companyId;
+        let model = { ...value.oldData, ...value.newData };
+        this.inventoryService.UpdateSection(model).subscribe(resp => {
             console.log(resp);
         });
 
@@ -44,6 +44,7 @@ export class SectionComponent implements OnInit {
 
     deleteSection(value) {
 
+        this.inventoryService.DeleteSection(value.key).subscribe(resp=> console.log('Section Deleted'));
     }
 
 }

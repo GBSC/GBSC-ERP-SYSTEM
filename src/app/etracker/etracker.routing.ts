@@ -23,6 +23,7 @@ import { ShopStatusDetailComponent } from './reports/shop-status-detail/shop-sta
 import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-status-summary.component';
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
+import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
 
 const routes: Routes = [
     {
@@ -41,6 +42,7 @@ const routes: Routes = [
             { path: 'territory-management', component: TerritoryMasterComponent },
             { path: 'distributers', component: DistributersComponent },
             { path: 'order-taking', component: OrderTakingComponent },
+            { path: 'reasons', component: NonProductiveReasonComponent },
             {
                 path: "reports",
                 children: [

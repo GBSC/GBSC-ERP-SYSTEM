@@ -9,7 +9,7 @@
     <div class="m-portlet__body">
       <div class="row">
         <div class="col-md-12">
-            <dx-data-grid id="gridContainer" [dataSource]="territories" keyExpr="territoryId" (onRowInserted)="addTerritory($event)" (onRowUpdated)="updateTerritory($event)" (onRowRemoved)="deleteTerritory($event)"> 
+            <dx-data-grid id="gridContainer" [dataSource]="territories" keyExpr="territoryId" (onRowInserted)="addTerritory($event)" (onRowUpdating)="updateTerritory($event)" (onRowRemoved)="deleteTerritory($event)"> 
                 <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
                     <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
                   <dxo-popup title="Add Territory" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>

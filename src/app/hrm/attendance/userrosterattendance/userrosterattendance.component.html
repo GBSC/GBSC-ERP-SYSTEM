@@ -19,7 +19,7 @@
                 (onRowUpdating)="updatingattendance($event)"
                 (onRowUpdated)="updateuserRosterattendance()"
                 (onRowRemoved)="deleteuserRosterattendance($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>

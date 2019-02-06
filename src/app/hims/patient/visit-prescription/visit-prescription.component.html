@@ -9,7 +9,7 @@
                
 
               <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)"  (onRowRemoved)="DeletePrescription($event)"> 
-                    <dxo-editing  mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"> </dxo-editing>
+                    <dxo-editing  mode="row" [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true"> </dxo-editing>
                     <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
                     <!-- <dxo-header-filter [visible]="true"></dxo-header-filter> -->
                     <!-- <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel> -->
@@ -54,7 +54,7 @@
                   <button type="submit" (click)="onSubmit()" class="btn btn-primary">Save</button>
                 </div>
               <!-- <dx-data-grid id="gridContainer" [dataSource]="Prescriptions" keyExpr="salesIndentItemId" (onEditorPrepared)="onEditorPrepared($event)" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddPrescription($event)" (onRowUpdating)="UpdatingModel($event)" (onRowUpdated)="UpdatePrescription()" (onRowRemoved)="DeletePrescription($event)">
-                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="true" [useIcons]="true">
+                  <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true"   [allowDeleting]="false" [useIcons]="true">
               </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>

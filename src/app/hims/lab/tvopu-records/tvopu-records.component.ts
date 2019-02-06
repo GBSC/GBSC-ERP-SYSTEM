@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TvopuService } from '../../../../app/core/Services/HIMS/Lab/tvopu.service';
 import { PatientService } from '../../../../app/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 
 @Component({
     selector: 'app-tvopu-records',

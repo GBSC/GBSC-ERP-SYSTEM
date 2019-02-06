@@ -23,6 +23,7 @@ import { CurrentTrailBalanceViewComponent } from './current-trail-balance-view/c
 import { DemoComponent } from './demo/demo.component';
 import { UpdateVoucherComponent } from './update-voucher/update-voucher.component';
 import { FinanceAccountComponent } from './finance-account/finance-account.component';
+import { CompanyFinanceConfigurationComponent } from './company-finance-configuration/company-finance-configuration.component';
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
 
@@ -42,7 +43,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'vouchertype', component: VouchertypeComponent },
                     { path: 'controlaccount', component: SubAccountComponent },
                     { path: 'secondsubaccount', component: SecondSubAccountComponent },
-
+                    { path: 'companyconfiguration', component: CompanyFinanceConfigurationComponent }
                 ]
             },
             { path: 'demo', component: DemoComponent },

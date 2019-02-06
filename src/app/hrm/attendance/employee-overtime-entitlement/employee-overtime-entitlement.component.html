@@ -308,7 +308,7 @@
                   (onRowUpdated)="updateempOvertimeEntitlement()"
                   (onRowUpdating)="updatingempEntitlement($event)"
                    [columnAutoWidth]="true" [showBorders]="true" [allowColumnReordering]="true">
-                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true"></dxo-editing>
+                      <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true"></dxo-editing>
                       <dxi-column dataField="userId" caption="Employee">
                           <dxo-lookup [dataSource]="employeeservice?.employeereg" displayExpr="firstName" valueExpr="userId">
                           </dxo-lookup>

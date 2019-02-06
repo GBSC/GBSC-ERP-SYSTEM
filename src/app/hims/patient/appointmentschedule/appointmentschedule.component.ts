@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { DxDataGridModule, DxLoadPanelModule, DxDataGridComponent, DxTemplateModule } from 'devextreme-angular';
-import popup from 'devextreme/ui/popup';
-import { find } from 'rxjs/operator/find';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { PatientService } from '../../../core';
 import { ToastrService } from 'ngx-toastr';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { ArrayType } from '@angular/compiler/src/output/output_ast';
 
 
 

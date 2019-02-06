@@ -38,41 +38,46 @@ export class InventoryItemComponent implements OnInit {
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
 
-        this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
+        this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: any) => {
             this.InventoryItems = res;
         });
-        this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
+        this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: any) => {
             this.Brands = res;
         });
-        this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: Unit) => {
+        this.InventoryService.GetUnitsByCompany(this.CompanyId).subscribe((res: any) => {
             this.Units = res;
         });
-        this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: PackType) => {
+        this.InventoryService.GetPackTypesByCompany(this.CompanyId).subscribe((res: any) => {
             this.PackTypes = res;
         });
-        this.InventoryService.GetPackSizesByCompany(this.CompanyId).subscribe((res: PackSize) => {
+        this.InventoryService.GetPackSizesByCompany(this.CompanyId).subscribe((res: any) => {
             this.PackSizes = res;
         });
-        this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: PackCategory) => {
+        this.InventoryService.GetPackCategoriesByCompany(this.CompanyId).subscribe((res: any) => {
             this.PackCategories = res;
         });
-        this.InventoryService.GetProductTypesByCompany(this.CompanyId).subscribe((res: ProductType) => {
+        this.InventoryService.GetProductTypesByCompany(this.CompanyId).subscribe((res: any) => {
             this.ProductTypes = res;
         });
-        this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: InventoryItemCategory) => {
+        this.InventoryService.GetInventoryItemCategoriesByCompany(this.CompanyId).subscribe((res: any) => {
             this.InventoryItemCategories = res;
         });
-        this.InventoryService.GetPackageTypesByCompany(this.CompanyId).subscribe((res: PackageType) => {
+        this.InventoryService.GetPackageTypesByCompany(this.CompanyId).subscribe((res: any) => {
             this.PackageTypes = res;
         });
     }
 
     AddInventoryItem(value) {
         value.data.companyId = this.CompanyId;
-        this.InventoryService.AddInventoryItem(value.data).subscribe();
-        this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
-            this.InventoryItems = res;
+        console.log(value.data);
+        this.InventoryService.AddInventoryItem(value.data).subscribe(res => {
+            // console.log(res);
+            this.InventoryService.GetInventoryItemsByCompany(this.CompanyId).subscribe((res: InventoryItem) => {
+                this.InventoryItems = res;
+                console.log(this.InventoryItems);
+            });
         });
+        
     }
 
     UpdateModel(value) {

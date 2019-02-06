@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { InventorysystemService, eTrackerUserService, AuthService } from '../../../core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,13 +12,13 @@ export class IndentProcessComponent implements OnInit {
 
   @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
   
-  private UnprocessedSalesIndents : any[];
-  private Stores : any = [];
-  private StoreVisits : any = [];
-  private Distributors : any;
-  private InventoryItems : any;
+  public UnprocessedSalesIndents : any[];
+  public Stores : any = [];
+  public StoreVisits : any = [];
+  public Distributors : any;
+  public InventoryItems : any;
 
-  constructor(private InventoryService : InventorysystemService, private eTrackerService : eTrackerUserService, private Auth : AuthService, private Toastr : ToastrService) { }
+  constructor(public InventoryService : InventorysystemService, public eTrackerService : eTrackerUserService, public Auth : AuthService, public Toastr : ToastrService) { }
 
   ngOnInit() {
     this.InventoryService.GetInventoryItems().subscribe( res => {
@@ -37,7 +37,7 @@ export class IndentProcessComponent implements OnInit {
 
   ProcessSelectedIndents() {
     this.dataGrid.instance.getSelectedRowsData().then((rowdata : any[]) => {
-
+      console.log(rowdata);
       let ProcessedIndents : any[] = [];
 
       rowdata.forEach(row => {

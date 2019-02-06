@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { FinanceSetupService } from '../../core/Services/Finance/financeSetup.service';
 import { FinanceService } from '../../core/Services/Finance/finance.service';
-import { SetupService, HrmsService } from '../../core';
+import { SetupService, HrmsService, AuthService } from '../../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VoucherDetail } from '../../core/Models/Finance/voucherDetail';
@@ -32,7 +32,7 @@ export class VoucherComponent implements OnInit {
     public isDisabled: any;
     @Input('voucherId') id: number;
 
-    constructor(public toastr: ToastrService, public router: Router, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
+    constructor(public Auth : AuthService, public toastr: ToastrService, public router: Router, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public financeSetupService: FinanceSetupService,
         public financeService: FinanceService, public HrmService: HrmsService) { }
 
     async ngOnInit() {
@@ -58,12 +58,12 @@ export class VoucherComponent implements OnInit {
 
         this.voucherType = await this.financeSetupService.getVoucherTypes();
 
-        this.financeService.getTransactionAccounts().subscribe((res: TransactionAccount[]) => {
+        this.financeService.getTransactionAccountsByCompany(this.Auth.getUserCompanyId()).subscribe((res: TransactionAccount[]) => {
             this.detailAccount = res;
             console.log(this.detailAccount);
         });
 
-        this.financeSetupService.GetFinancialYears().subscribe((res: FinancialYear[]) => {
+        this.financeSetupService.GetFinancialYearsByCompany(this.Auth.getUserCompanyId()).subscribe((res: FinancialYear[]) => {
             this.financialYear = res.filter(a => a.isActive == true);
         });
     }
@@ -140,8 +140,10 @@ export class VoucherComponent implements OnInit {
             value.Date = a.toLocaleDateString();
             console.log(value);
             await this.financeService.addVoucher(value);
-            this.toastr.success("Successfull! Voucher Added")
-            // this.router.navigate(['finance/voucher-detail']);
+            this.financeService.AddVoucher(value).subscribe((res : any) => {
+                this.toastr.success("Successfull! Voucher Added");
+                this.router.navigate(['finance/voucher-detail']);
+            });
         }
         else {
             this.toastr.error("Credit Debit Amount not equal");

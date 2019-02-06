@@ -160,7 +160,7 @@
                       <dx-data-grid id="gridContainer" [dataSource]="InventoryItems" keyExpr="inventoryItemId"
                         (onRowInserted)="AddInventoryItem($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventoryItem()"
                         (onRowRemoved)="DeleteInventoryItem($event)">
-                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                        <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true"
                           [useIcons]="true">
                           <!-- [position]="{ my: 'center', at: 'center', of: window }" -->
                           <dxo-popup title="Add Product" [showTitle]="true" [width]="'auto'" [height]="'auto'"

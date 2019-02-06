@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { eTrackerUserService, AuthService, InventorysystemService } from '../../../app/core';
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Select2OptionData } from 'ng2-select2';
 import { ToastrService } from 'ngx-toastr';
@@ -139,7 +139,6 @@ export class SalesusersComponent implements OnInit {
         this.userService.getUser(this.userId).subscribe(resp => {
             this.sectionId = resp.sectionId;
             this.userLevel = resp.userLevel;
-            console.log(this.sectionId);
         });
     }
 
@@ -229,6 +228,7 @@ export class SalesusersComponent implements OnInit {
     onAssignSubsections(userId, sectionId) {
         this.userId = userId;
 
+        console.log(this.userId);
         this.inventoryService.getSectionsByCompany(this.companyId).subscribe(resp => {
             this.sections = resp;
             this.sectionId = sectionId;

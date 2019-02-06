@@ -74,7 +74,7 @@
 
             <div class="m--space-07"></div>
             <dx-data-grid id="gridContainer" [dataSource]="SalesIndentItems" keyExpr="" (onRowInserted)="AddIndent($event)">
-              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+              <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
               </dxo-editing>
               <dxo-header-filter [visible]="true"></dxo-header-filter>
               <dxo-paging [pageSize]="8"></dxo-paging>

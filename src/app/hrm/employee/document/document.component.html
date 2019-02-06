@@ -38,7 +38,7 @@
 </form> -->
 
 <dx-data-grid id="gridContainer" [dataSource]="DocumentsByUserId" (onRowRemoved)="deleteUserDocument($event)"> 
-  <dxo-editing mode="row" [allowDeleting]="true">
+  <dxo-editing mode="row" [allowDeleting]="false">
 </dxo-editing>
 <dxo-filter-row [visible]="true"></dxo-filter-row>
 <dxo-header-filter [visible]="true"></dxo-header-filter>

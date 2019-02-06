@@ -33,9 +33,13 @@ export class StoresComponent implements OnInit {
     }
 
     getLatLog(value) {
-        this.lat = value.data.latitude;
-        this.lng = value.data.longitude;
+        this.lat = +value.data.latitude;
+        this.lng = +value.data.longitude;
         console.log(value);
+    }
+
+    deleteStore(value){
+        this.storeService.deleteStore(value.key).subscribe(resp=>console.log('Store deleted'));
     }
 
 

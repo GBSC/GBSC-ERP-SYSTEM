@@ -35,7 +35,7 @@ export class HrmsService {
     }
 
     async DeleteCountry(countryId) {
-        return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/${countryId}').toPromise();
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCountry/'+countryId).toPromise();
     }
 
     async getAllCities() {
@@ -62,7 +62,7 @@ export class HrmsService {
     }
 
     async deleteCity(cityId) {
-        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/${cityId}').toPromise();
+        return await this.ApiService.delete(this.setupUrl + '/DeleteCity/'+cityId).toPromise();
     }
 
 

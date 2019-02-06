@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RootComponent } from './root/root.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from '../inventory/shared/menu/menu.component';
-import { DxButtonModule, DxDataGridModule, DevExtremeModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { SupplierComponent } from './setup/supplier/supplier.component';
 import { PurchaseInvoiceComponent } from './purchase/purchase-invoice/purchase-invoice.component';
 import { PurchaseOrderComponent } from './purchase/purchase-order/purchase-order.component';
@@ -57,6 +58,10 @@ import { InventoryMasterComponent } from './setup/inventory-master/inventory-mas
 import { IndentProcessComponent } from './sales/indent-process/indent-process.component';
 import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
+import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 @NgModule({
     imports: [
@@ -65,8 +70,10 @@ import { OrderDetailComponent } from './reports/order-detail/order-detail.compon
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
-        DxDataGridModule
+        DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule
     ],
     declarations: [
         RootComponent,
@@ -122,7 +129,8 @@ import { OrderDetailComponent } from './reports/order-detail/order-detail.compon
         InventoryMasterComponent,
         IndentProcessComponent,
         OrderSummaryComponent, 
-        OrderDetailComponent
+        OrderDetailComponent, 
+        GeneralSkuComponent
     ]
 })
 export class InventoryModule { }

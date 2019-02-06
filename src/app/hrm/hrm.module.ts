@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './hrm.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { DevExtremeModule, DxSchedulerModule, DxButtonModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UniversityComponent } from './hrmsSetup/university/university.component';
 import { CountryComponent } from './hrmsSetup/country/country.component';
@@ -154,6 +155,11 @@ import { LeavebalanceComponent } from './Reports/Leave/leavebalance/leavebalance
 import { LeaveledgerComponent } from './Reports/Leave/leaveledger/leaveledger.component';
 
 import { UpdateassignrosterComponent } from './attendance/attendancesetup/updateassignroster/updateassignroster.component';
+import { LeaveDetailComponent } from './Reports/Leave/leave-detail/leave-detail.component';
+import { MonthlyleaveComponent } from './Reports/Leave/monthlyleave/monthlyleave.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 import { AssignRosterExcelsheetComponent } from './Reports/assign-roster-excelsheet/assign-roster-excelsheet.component';
 import { MissingEntriesComponent } from './Reports/missing-entries/missing-entries.component';
 import { DailyattendanceandleaveComponent } from './Reports/dailyattendanceandleave/dailyattendanceandleave.component';
@@ -180,8 +186,10 @@ import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/
         FormsModule,
         ReactiveFormsModule,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule,
         HttpClientModule,
         routing
     ],
@@ -334,11 +342,9 @@ import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/
         EmployeecardComponent,
         ListOfJoinnersComponent,
         ListOfLeaversComponent,
-        // LeaveDetailComponent,
-        InOutDurationComponent,
+         InOutDurationComponent,
         SalarypaymentComponent,
-        // MonthlyleaveComponent,
-        CreateAttendancerequestComponent,
+         CreateAttendancerequestComponent,
         EmployeelistComponent,
         MonthlyOvertimeComponent,
         UserrosterattendanceComponent,

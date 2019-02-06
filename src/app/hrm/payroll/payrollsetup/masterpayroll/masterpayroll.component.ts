@@ -5,6 +5,7 @@ import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDe
 import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
     selector: 'app-masterpayroll',
@@ -29,6 +30,7 @@ export class MasterpayrollComponent implements OnInit {
     public deduction2: any[] = [];
     public calcallowances: any;
     public caldeduction: any;
+    public calfixAmmount : any;
     public totalAllowanceAndDeduction: any;
 
     public masterpayroll: any;
@@ -45,7 +47,9 @@ export class MasterpayrollComponent implements OnInit {
         public Auth: AuthService) {
 
         this.MasterPayrollForm = this.fb.group({
-            UserId: ['']
+            UserId: [''],
+            Salary:[''],
+ 
 
         });
 
@@ -68,7 +72,7 @@ export class MasterpayrollComponent implements OnInit {
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
         this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
-
+        console.log(        this.allowances  )
         //  this.allowance = this.allowances.filter(s => s.type == 'Allowance');
         //  console.log(this.allowance);
 
@@ -104,14 +108,18 @@ export class MasterpayrollComponent implements OnInit {
 
     }
 
-    async submitForm(value) {
+      submitForm(value , salary) {
 
-        let masterPayroll = new MasterPayroll();
-        masterPayroll = { ...masterPayroll, ...value };
-        masterPayroll.MasterPayrollDetails = this.payrollDetail && this.datasource;
-        await this.payrollsetupservice.addMasterPayroll(masterPayroll);
-        this.toastr.success("Successfully! Master Payroll Add");
-        this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
+          this.MasterPayrollForm.value.Salary = salary;
+          console.log(value)
+          console.log(this.getAllowances.salaryStructureDetails);
+
+         // let masterPayroll = new MasterPayroll();
+        // masterPayroll = { ...masterPayroll, ...value };
+        // masterPayroll.MasterPayrollDetails = this.payrollDetail && this.datasource;
+        // await this.payrollsetupservice.addMasterPayroll(masterPayroll);
+        // this.toastr.success("Successfully! Master Payroll Add");
+        // this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
     }
 
     isUpdate(): boolean {
@@ -128,6 +136,11 @@ export class MasterpayrollComponent implements OnInit {
     public calculationvalueForupdate: any;
     public getAllos: any;
     public dataSource2: any = [];
+    public fixedType: any;    
+    public fixedType2: any=[];
+    public countFixedType : any;
+
+
     getAllowance(id) {
         this.empservice.GetEmployee(id).subscribe(resp => {
             this.employee = resp;
@@ -169,7 +182,7 @@ export class MasterpayrollComponent implements OnInit {
 
                     console.log(this.datasource);
                     //   console.log(this.getAllowances.salaryStructureDetails);
-
+                   
                     for (let x of this.datasource) {
                         let a = this.getAllowances.salaryStructureDetails.find((b, i) => {
                             if (b.salaryStructureDetailId === x.salaryStructureDetailId) {
@@ -178,6 +191,16 @@ export class MasterpayrollComponent implements OnInit {
                         })
                     }
                     console.log(this.getAllowances.salaryStructureDetails);
+
+                    this.fixedType2 = [];
+                    this.calculationttypes.filter(x=>{
+                        this.fixedType = this.getAllowances.salaryStructureDetails.find(t=> t.salaryCalculationTypeId == x.salaryCalculationTypeId && x.name === 'Fixed Value')
+                        if( this.fixedType  != undefined ){
+                            this.fixedType2.push(this.fixedType)
+                        }
+                        
+                    });
+                   
 
                     this.getcal2 = [];
                     this.datasource = [];
@@ -215,9 +238,21 @@ export class MasterpayrollComponent implements OnInit {
                         this.caldeduction += (+d.value);
                     }
                     console.log(this.caldeduction);
-                    this.totalAllowanceAndDeduction = this.calcallowances - this.caldeduction;
-                    console.log(this.totalAllowanceAndDeduction);
+                    this.totalAllowanceAndDeduction      =  this.calcallowances - this.caldeduction;
+                    
 
+                    
+                    console.log(this.fixedType2)
+
+
+                    this.countFixedType = 0;
+                    for (let d of this.fixedType2) {
+                        this.countFixedType += (+d.value);
+                    }
+                    console.log(this.countFixedType);
+                    console.log( this.totalAllowanceAndDeduction );
+                    this.totalAllowanceAndDeduction  =   this.totalAllowanceAndDeduction - this.countFixedType;
+                    console.log(this.totalAllowanceAndDeduction );
                 });
 
 
@@ -298,8 +333,24 @@ export class MasterpayrollComponent implements OnInit {
 
                     });
 
-                    console.log(this.datasource);
-                    //   console.log(this.getAllowances.salaryStructureDetails);
+                for (let x of this.datasource) {
+                    let a = this.getAllowances.salaryStructureDetails.find((b, i) => {
+                        if (b.salaryStructureDetailId === x.salaryStructureDetailId) {
+                            this.getAllowances.salaryStructureDetails[i] = x
+                        }
+                    })
+                }
+
+                this.fixedType2 = [];
+                    this.calculationttypes.filter(x=>{
+                        this.fixedType = this.getAllowances.salaryStructureDetails.find(t=> t.salaryCalculationTypeId == x.salaryCalculationTypeId && x.name === 'Fixed Value')
+                        if( this.fixedType  != undefined ){
+                            this.fixedType2.push(this.fixedType)
+                        }
+                        
+                    });
+
+                console.log(this.getAllowances.salaryStructureDetails);
 
                     for (let x of this.datasource) {
                         let a = this.getAllowances.salaryStructureDetails.find((b, i) => {
@@ -351,11 +402,27 @@ export class MasterpayrollComponent implements OnInit {
                     console.log(this.caldeduction);
 
 
-                    this.totalAllowanceAndDeduction = this.calcallowances - this.caldeduction;
+                this.calfixAmmount = 0;
 
-                    console.log(this.totalAllowanceAndDeduction);
+                // for (let x of this.deduction2) {
+                //     this.caldeduction += (+d.value);
+                // }
 
-                });
+                this.totalAllowanceAndDeduction      =  this.calcallowances - this.caldeduction;
+
+
+                    console.log(this.fixedType2)
+
+
+                    this.countFixedType = 0;
+                    for (let d of this.fixedType2) {
+                        this.countFixedType += (+d.value);
+                    }
+                    console.log(this.countFixedType);
+                    console.log( this.totalAllowanceAndDeduction );
+                    this.totalAllowanceAndDeduction  =   this.totalAllowanceAndDeduction - this.countFixedType;
+                    console.log(this.totalAllowanceAndDeduction );
+            });
 
 
 

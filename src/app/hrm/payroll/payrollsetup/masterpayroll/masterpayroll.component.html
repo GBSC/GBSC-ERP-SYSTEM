@@ -23,7 +23,7 @@
               </div>
               <div class="col-lg-4">
                 <label>Basic Salary: </label>
-                <input type="number" #totalsalary [value]="totalAllowanceAndDeduction" class="form-control m-input">
+                <input type="number" #totalsalary [value]="totalAllowanceAndDeduction" class="form-control m-input" formControlName="Salary" >
               </div>
               <div class="col-lg-4">
                   <label></label>
@@ -74,7 +74,7 @@
                           </dxi-column>
           
                           <dxi-column dataField="allowanceDeductionId" caption="Allowance">
-                            <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                            <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                           </dxi-column>
 
                           <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
@@ -127,7 +127,7 @@
                     </dxi-column>
     
                     <dxi-column dataField="allowanceDeductionId" caption="Allowance">
-                      <dxo-lookup [dataSource]="deduction" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                      <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                     </dxi-column>
 
                     <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
@@ -144,6 +144,27 @@
 
             <div class="m--space-30"></div>
 
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
+                <div class="row">
+                  <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(MasterPayrollForm.value)">
+                          Update
+                        </button>        
+                  </div> 
+                  <ng-template #create>
+                    <button class="btn btn-Success" (click)="submitForm(MasterPayrollForm.value ,totalsalary.value)">
+                      Submit
+                    </button>  
+                  </ng-template>  
+                  </div>
+                  <div class="col-lg-4"></div>
+              </div>
+            </div>  
+        </div>
+      </div>
     </div>
  
  

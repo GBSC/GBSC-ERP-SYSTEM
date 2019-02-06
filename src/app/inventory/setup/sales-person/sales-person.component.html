@@ -95,7 +95,7 @@
                 <div class="row">
                   <div class="col-md-12"> 
                       <dx-data-grid id="gridContainer" [dataSource]="SalesPeople" keyExpr="salesPersonId" (onEditorPreparing)="onEditorPreparing($event)" (onRowInserted)="AddSalesPerson($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateSalesPerson()" (onRowRemoved)="DeleteSalesPerson($event)"> 
-                          <dxo-editing  mode="popup"[allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">	
+                          <dxo-editing  mode="popup"[allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">	
                             <dxo-popup title="Add Sales Person" [showTitle]="true" [width]="500" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>

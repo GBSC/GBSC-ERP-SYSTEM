@@ -4,7 +4,7 @@ import { PharmacyService, PatientService } from '../../../core';
 import { SalesIndentItem } from '../../../core/Models/Pharmacy/SalesIndentItem';
 import { Patient } from '../../../core/Models/HIMS/patient';
 import { ActivatedRoute } from '@angular/router';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular/ui/data-grid';
 import { SalesIndent } from '../../../core/Models/Pharmacy/SalesIndent';
 
 @Component({

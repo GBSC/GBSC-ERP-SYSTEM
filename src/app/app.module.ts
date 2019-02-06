@@ -1,13 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ThemeComponent } from './theme/theme.component';
-import { LayoutModule } from './theme/layouts/layout.module';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScriptLoaderService } from "./_services/script-loader.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DevExtremeModule } from 'devextreme-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './LowerCaseUrlSerializer';
@@ -18,6 +15,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { PharmacyModule } from './pharmacy/pharmacy.module';
 import { CoreModule } from './core/core.module';
 import { PatientModule } from './hims/patient/patient.module';
+import { UltraSoundModule } from './hims/ultra-sound/ultra-sound.module';
+import { OTModule } from './hims/OT/ot.module';
 import { LabModule } from './hims/lab/lab.module';
 import { FinanceModule } from './finance/finance.module';
 import { SuperadminModule } from './superadmin/superadmin.module';
@@ -41,7 +40,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 //I keep the new line
 @NgModule({
     declarations: [
-        ThemeComponent,
         AppComponent,
         TitlePipe,
         HeaderComponent,
@@ -56,13 +54,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
         }),
-        LayoutModule,
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        DevExtremeModule,
         HttpClientModule,
         CoreModule,
         AngularFireModule.initializeApp(environment.firebase),
@@ -76,8 +72,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
         EtrackerModule,
         PharmacyModule,
         PatientModule,
-        LabModule,
-        FinanceModule,
+        UltraSoundModule,
+        OTModule ,
+        LabModule ,
+        FinanceModule ,
         SuperadminModule,
         DashboardModule,
         HrmModule,

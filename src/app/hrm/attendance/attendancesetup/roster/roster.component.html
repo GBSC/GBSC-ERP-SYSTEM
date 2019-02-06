@@ -12,7 +12,7 @@
                         <div class="m-section__content">
                           <dx-data-grid id="gridContainer" [dataSource]="roster" keyExpr="rosterId" (onRowInserted)="addroster($event)" (onRowUpdated)="updateroster($event)"
                             (onRowRemoved)="deleteroster($event)">
-                            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
+                            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             </dxo-editing>
                             <dxo-filter-row [visible]="true"></dxo-filter-row>
                             <dxo-header-filter [visible]="true"></dxo-header-filter>

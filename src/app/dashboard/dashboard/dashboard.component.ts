@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, DashboardService, eTrackerUserService } from '../../core';
-import { Employee } from '../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,8 +10,8 @@ import { Employee } from '../../core/Models/HRM/employee';
 export class DashboardComponent implements OnInit {
     public dataSource: any = [];
     public availableModules = [];
-    private User : Employee;
-    constructor(service: DashboardService, public router: Router, public accountService: AuthService, private UserService : eTrackerUserService) {
+    public User : any;
+    constructor(service: DashboardService, public router: Router, public accountService: AuthService, public UserService : eTrackerUserService) {
         this.dataSource = service.getCompanies();
     }
 

@@ -30,11 +30,10 @@
       </dxo-pager>
 
       <dxi-column dataField="title"></dxi-column>
-      <!-- <dxi-column dataField="type"> </dxi-column> -->
       <dxi-column dataField="type" caption="Allowance/Deduction">
         <dxo-lookup [dataSource]="lookupDataSource"></dxo-lookup>
     </dxi-column>
-      <dxi-column dataField="allowanceCalculationTypeId"caption="Allowance Calculation Type" [width]="250">
+      <dxi-column dataField="allowanceCalculationTypeId"caption="Calculation Type">
         <dxo-lookup [dataSource]="allowanceCalculationTypes" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>
     </dxi-column>
       <dxi-column dataField="fixedValue" caption="Fixed Value" [visible]="false"></dxi-column>

@@ -525,6 +525,20 @@ export class PayrollSetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`).toPromise();
     }
 
+    getSalaryCalculationTypesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.baseUrl + '/GetSalaryCalculationTypesByCompany/' + companyid);
+    }
+
+    
+     GetSalaryCalculationTypes() {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`);
+    }
+
+    getSalaryCalculationTypesById(id) {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationType/`+id);
+    }
 
     async addSalaryCalculationType(data) {
 
@@ -542,6 +556,10 @@ export class PayrollSetupService {
 
         return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryCalculationType/${id}`).toPromise();
     }
+
+    GetSalaryStructures():Observable<any>{
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`)
+        }
 
     async getSalaryStructures() {
 
@@ -616,15 +634,19 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRules`).toPromise();
     }
+   
+    getIncomeTaxRule(id): Observable<any> {
 
+        return this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRule/` + id);
+    }
     async addIncomeTaxRule(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddIncomeTaxRule`, data).toPromise();
     }
 
-    async updateIncomeTaxRule(data) {
+    updateIncomeTaxRule(data) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data);
     }
 
     async Deleteincometaxrule(incometaxruleId) {

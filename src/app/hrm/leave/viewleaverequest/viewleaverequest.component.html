@@ -1,72 +1,120 @@
-
 <div class="m-content">
 
-            <div class="m-portlet">
-                <div class="m-portlet__head">
-                    <div class="m-portlet__head-caption">
-                        <div class="m-portlet__head-title">
-                            <h3 class="m-portlet__head-text">
-                                Leave Requests
-                            </h3>
-                        </div>
-                    </div>
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        Leave Request/Approved
+                    </h3>
                 </div>
-                <div class="m-portlet__body">
-                    <dx-data-grid id="gridContainer" 
-                    [dataSource]="leaverequest"  
-                    keyExpr="leaveRequestId"
-                    (onRowUpdated)="updateLeaveRequest($event)"
-                    (onSelectionChanged)="selectionChanged($event)"
-                    (onContentReady)="contentReady($event)"
-                    (onToolbarPreparing)="onToolbarPreparing($event)"
-                    [masterDetail]="{ enabled: true, template: 'detail' }"
-                    [columnAutoWidth]="true" 
-                     [showBorders]="true">
-                        
-                    <dxo-selection mode="single"></dxo-selection>
-                     <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
-                        <dxo-paging [pageSize]="8"></dxo-paging>
+            </div>
+        </div>
+        <div class="m-portlet__body">
+
+            <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#m_tabs_3_1">
+                        Leave Requests
+                    </a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#m_tabs_3_3">
+                        Approved Leaves
+                    </a>
+                </li> 
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="m_tabs_3_1" role="tabpanel">
+                    <dx-data-grid id="gridContainer" [dataSource]="requestedLeaves" keyExpr="leaveRequestId" (onRowUpdated)="updateLeaveRequest($event)"
+                        (onSelectionChanged)="selectionChanged($event)" (onContentReady)="contentReady($event)" (onToolbarPreparing)="onToolbarPreparing($event)"
+                        [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
+                        <dxo-paging [pageSize]="4"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
-                        </dxo-pager>                
+                        </dxo-pager>
                         <dxo-filter-row [visible]="true"></dxo-filter-row>
                         <dxo-header-filter [visible]="true"></dxo-header-filter>
                         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-
-
                         <dxi-column dataField="userId" caption="Employee" [width]="300" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}">
                             <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                        <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false"  [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                        <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
-                          <div class="chart-cell">
-                              <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
-                          </div>
-                      </div>
-
+                            <div class="chart-cell">
+                                <dx-button (click)="getSingleRowData(d)" icon="edit"></dx-button>
+                            </div>
+                        </div>
                         <div *dxTemplate="let leaveRequest of 'detail'">
                             <dx-data-grid [dataSource]="leaveRequest.data.leaveRequestDetails" [showBorders]="true">
 
                                 <dxi-column dataField="leaveYearId" caption="Leave Year">
                                     <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
                                     </dxo-lookup>
-                                  </dxi-column>
-                                  <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                                </dxi-column>
+                                <dxi-column dataField="leaveTypeId" caption="Leave Type">
                                     <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
                                     </dxo-lookup>
-                                  </dxi-column>
-                                  <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
-                                  <dxi-column dataField="description" caption="Description"></dxi-column>
-                                  <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                                  <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
-                                  <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
-                                  <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
-                                  <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
-                                </dx-data-grid>
+                                </dxi-column>
+                                <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
+                                <dxi-column dataField="description" caption="Description"></dxi-column>
+                                <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
+                                <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
+                                <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
+                                <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
+                            </dx-data-grid>
                         </div>
                     </dx-data-grid>
                 </div>
+                <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
+                        <dx-data-grid id="gridContainer" [dataSource]="approvedLeaves" [repaintChangesOnly]="true" keyExpr="leaveRequestId" (onRowUpdated)="updateLeaveRequest($event)"
+                            (onSelectionChanged)="selectionChanged($event)" (onContentReady)="contentReady($event)" (onToolbarPreparing)="onToolbarPreparing($event)"
+                            [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxo-paging [pageSize]="8"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+                            </dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-header-filter [visible]="true"></dxo-header-filter>
+                            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+
+
+                            <dxi-column dataField="userId" caption="Employee" [width]="300" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}">
+                                <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
+                                </dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
+                            <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                            <div *dxTemplate="let leaveRequest of 'detail'">
+                                <dx-data-grid [dataSource]="leaveRequest.data.leaveRequestDetails" [showBorders]="true">
+
+                                    <dxi-column dataField="leaveYearId" caption="Leave Year">
+                                        <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="leaveTypeId" caption="Leave Type">
+                                        <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
+                                    <dxi-column dataField="description" caption="Description"></dxi-column>
+                                    <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
+                                    <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                    <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
+                                    <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
+                                    <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </dx-data-grid>
+                </div>
             </div>
-       </div>
+        </div>
+    </div>
+</div>

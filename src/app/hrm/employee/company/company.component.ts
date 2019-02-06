@@ -86,7 +86,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
             this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
 
-                this.EmployeeCompany = resp
+                this.EmployeeCompany = resp                
 
                 this.patchValues(resp);
             });

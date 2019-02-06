@@ -143,9 +143,10 @@
                             <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                           </dxi-column>
           
-                          <dxi-column dataField="allowanceId" caption="Allowance">
-                            <dxo-lookup [dataSource]="allowance" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+                          <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                            <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                           </dxi-column>
+
                           <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
                           <dxi-column dataField="formula" caption="Formula"></dxi-column>
                         </dx-data-grid>

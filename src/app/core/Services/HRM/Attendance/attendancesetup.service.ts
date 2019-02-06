@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Shift } from '../../../Models/HRM/shift';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AttendancesetupService {
@@ -13,6 +14,20 @@ export class AttendancesetupService {
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
     }
+
+     getAssignRosterByUser(id : number, fromdate : string, todate : string) : Observable<any> {
+        console.log(fromdate);
+        console.log(todate);
+
+        let params = new HttpParams();
+        params = params.append("fromdate", fromdate);
+        params = params.append("todate", todate);
+
+        console.log(params);
+
+        
+        return this.ApiService.get(`${this.baseUrl}/GetAssignedRostersByUser/` + id, params);
+     }
 
     GetAsignRosters():Observable<any>{
         return this.ApiService.get(`${this.baseUrl}/GetAssignRosters`);

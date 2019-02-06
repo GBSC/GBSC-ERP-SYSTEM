@@ -241,12 +241,12 @@ export class AssignrosterComponent implements OnInit {
 
     routeForUpdateAssignroster(id){
         console.log(id);
-          this.router.navigate(['/hrm/attendance/attendancesetup/updateassignroster/'+id.key]);
+          this.router.navigate(['/hrm/attendance/updateassignroster/'+id.key]);
     }
 
 
     onClickMe(d){
-        this.router.navigate(['/hrm/attendance/attendancesetup/assignrosterexcelsheet/'+d.key]);
+        this.router.navigate(['/hrm/attendance/assignrosterexcelsheet/'+d.key]);
     }
   
 }

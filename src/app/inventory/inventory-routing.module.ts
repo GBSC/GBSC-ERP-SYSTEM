@@ -31,7 +31,7 @@ import { ItemPriceStructureComponent } from './setup/item-price-structure/item-p
 import { ModeOfPaymentComponent } from './setup/mode-of-payment/mode-of-payment.component';
 import { PackageTypeComponent } from './setup/package-type/package-type.component';
 import { TerritoryComponent } from './setup/territory/territory.component';
-import { TransportComponent } from './setup/transport/transport.component';
+import { VehiclesComponent } from './setup/vehicles/vehicles.component';
 import { DistributorComponent } from './setup/distributor/distributor.component';
 import { RegionComponent } from './setup/region/region.component';
 import { ReturnReasonComponent } from './setup/return-reason/return-reason.component';
@@ -53,6 +53,7 @@ import { IndentProcessComponent } from './sales/indent-process/indent-process.co
 import { OrderDetailComponent } from './reports/order-detail/order-detail.component';
 import { OrderSummaryComponent } from './reports/order-summary/order-summary.component';
 import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
+import { DeliveryManComponent } from './setup/delivery-man/delivery-man.component';
 
 const routes: Routes = [
 
@@ -82,10 +83,11 @@ const routes: Routes = [
                     { path: 'supplier', component: SupplierComponent },
                     { path: 'tax', component: TaxComponent },
                     { path: 'territory', component: TerritoryComponent },
-                    { path: 'transport', component: TransportComponent },
+                    { path: 'vehicles', component: VehiclesComponent },
                     { path: 'unit', component: UnitComponent },
                     { path: 'inventory-master', component: InventoryMasterComponent },
-                    { path: 'generalsku', component: GeneralSkuComponent }
+                    { path: 'generalsku', component: GeneralSkuComponent },
+                    { path: 'delivery-man', component: DeliveryManComponent }
                 ]
             },
             {

@@ -1,6 +1,4 @@
 <div class="m-content">
-	<div class="row">
-		<div class="col-lg-12">
 			<!--begin::Portlet-->
 			<div class="m-portlet">
 				<div class="m-portlet__head">
@@ -14,72 +12,103 @@
 							</h3>
 						</div>
 					</div>
-					<div class="m-portlet__head-tools">
-						<div class="dropdown">
-							<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
-							 type="button">
-								<span _ngcontent-c21="">
-									<i class="fa fa-cog"></i>
-								</span> Actions
-							</button>
-							<div aria-labelledby="dropdownMenu2" class="dropdown-menu">
-								<button class="dropdown-item" type="button">
-									Go Back
-								</button>
-								<button class="dropdown-item" type="button">
-									Another action
-								</button>
-								<button class="dropdown-item" type="button">
-									Something else here
-								</button>
-							</div>
-						</div>
-					</div>
 				</div>
 				<!--begin::Form-->
 				<form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
 					<div class="m-portlet__body">
-						<div class="form-group row">
-							<div class="form-group col-lg-4">
-									<label for="exampleInputEmail1"> Date Of Birth </label>
-									<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="date" >
-							</div>		
-						</div>
-						<div class="form-group row">
-							<div class="form-group col-lg-4">
-								<label for="exampleInputEmail1">  Supplier :</label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  type="text" >
- 
-							</div>
-							<div class="form-group col-lg-4">
-								<label for="exampleInputEmail1"> P.O No :</label>
-								<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" type="number">
-							</div>
-							<div class="form-group col-lg-4">
-									<label for="exampleSelect1"> P/O Type </label>
-									<select class="form-control m-input ng-pristine ng-valid ng-touched" >
-										<option value="A">Abc</option>
-										<option value="Multan">XYZ</option>
-									</select>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="form-group col-lg-4">
-								<label for="exampleTextarea">
-									Remarks
-								</label>
-								<textarea class="form-control m-input" id="exampleTextarea" rows="4"></textarea>
-							</div>
-						</div>
+							<div class="form-group row">
 
-						<div class="form-group row">
-							<div class="form-group col-lg-12">
-								<div class="form-action pull-right" >
-									<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
-										Add
-									</button>
+									<div class="form-group col-sm-2">
+										<label for="exampleInputEmail1">Date</label>
+										<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" formControlName="issueDate" type="date">
+									</div>
+									<div class="form-group col-sm-2">
+										<label for="exampleInputEmail1">PO # </label>
+										<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+									</div>
+									<div class="form-group col-sm-3">
+										<label for="exampleInputEmail1">Distributor</label>
+										<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+									</div>
+									<div class="form-group col-sm-2">
+										<label for="exampleInputEmail1">Delivery Date</label>
+										<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" formControlName="issueDate" type="date">
+									</div>
+									<div class="form-group col-sm-3">
+											<div class="m-form__group form-group">
+												<label for="">Demand By</label>
+												<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+											</div>
+									</div>
+									
 								</div>
-							</div>
-						</div>
+								<div class="row">
+										<div class="form-group col-sm-3">
+												<label for="exampleInputEmail1">Company Sales Person</label>
+												<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+										</div>
+										<div class="form-group col-sm-3">
+												<label for="exampleInputEmail1">Ref No</label>
+												<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+										</div>
+										<div class="form-group col-sm-4">
+												<label for="exampleInputEmail1">Remarks</label>
+												<input class="form-control m-input m-input--solid ng-pristine ng-valid ng-touched" type="text">
+										</div>
+										<div class="form-group col-sm-2">
+												<label for="exampleInputEmail1"></label>
+												<button style="margin-top: 28px;" type="button" class="btn btn-primary btn-sm m-btn m-btn--custom">
+														Submit
+													</button>
+										</div>
+		
+								</div>
+
+								<div class="row">
+	<div class="col-sm-12">
+			<dx-data-grid 
+			id="gridContainer" 
+			[dataSource]="orders"
+			keyExpr="ID"
+			[repaintChangesOnly]="true"
+			[showColumnLines]="true"
+			[showRowLines]="true"
+			[showBorders]="true"
+			[rowAlternationEnabled]="true"
+			>
+		
+			<dxo-editing
+				mode="batch"
+				[allowAdding]="true"
+				[allowUpdating]="true"
+				[allowDeleting]="true">
+			</dxo-editing>
+		
+			<dxi-column dataField="ID" [width]="100" caption="Product ID"></dxi-column>
+			<dxi-column dataField="Product"></dxi-column>
+			<dxi-column dataField="Sale Unit" [width]="100"></dxi-column>
+			<dxi-column dataField="Qty" [width]="60"></dxi-column>
+			<dxi-column dataField="Mes Qty" [width]="70"></dxi-column>
+			<dxi-column dataField="LRD" dataType="boolean" caption="Cancel"></dxi-column>
+			<dxi-column dataField="LRD" dataType="boolean" caption="Complete"></dxi-column>
+		
+			<dxo-summary [recalculateWhileEditing]="true">
+				<dxi-total-item
+					column="OrderNumber"
+					summaryType="count">
+				</dxi-total-item>
+				<dxi-total-item
+					column="SaleAmount"
+					summaryType="sum"
+					valueFormat="currency">
+				</dxi-total-item>
+			</dxo-summary>
+		
+		</dx-data-grid>
+	</div>
+</div>
 					</div>
+					</form>
+					</div>
+
 		

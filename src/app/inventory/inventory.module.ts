@@ -39,7 +39,6 @@ import { ReturnReasonComponent } from './setup/return-reason/return-reason.compo
 import { SalesPersonComponent } from './setup/sales-person/sales-person.component';
 import { TaxComponent } from './setup/tax/tax.component';
 import { TerritoryComponent } from './setup/territory/territory.component';
-import { TransportComponent } from './setup/transport/transport.component';
 import { PurchaseIndentComponent } from './purchase/purchase-indent/purchase-indent.component';
 import { PurchaseIndentItemComponent } from './purchase/purchase-indent-item/purchase-indent-item.component';
 import { PurchaseOrderItemComponent } from './purchase/purchase-order-item/purchase-order-item.component';
@@ -62,6 +61,8 @@ import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { VehiclesComponent } from './setup/vehicles/vehicles.component';
+import { DeliveryManComponent } from './setup/delivery-man/delivery-man.component';
 
 @NgModule({
     imports: [
@@ -123,14 +124,13 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         SupplierComponent,
         TaxComponent,
         TerritoryComponent,
-        TransportComponent,
         UnitComponent,
         DeliveryNoteComponent,
         InventoryMasterComponent,
         IndentProcessComponent,
         OrderSummaryComponent, 
         OrderDetailComponent, 
-        GeneralSkuComponent
+        GeneralSkuComponent, VehiclesComponent, DeliveryManComponent
     ]
 })
 export class InventoryModule { }

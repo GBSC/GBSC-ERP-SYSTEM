@@ -1,0 +1,55 @@
+<div class="m-content">
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption col-sm-8">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Delivery Man</h3>
+             </div>
+           </div>
+           
+           <div class="m-portlet__head-caption col-sm-4">
+
+            <div class="m-portlet__head-title">
+ 
+             </div>
+          </div>
+         </div>
+         <div class="m-portlet__body">
+           <div class="m-section">
+             <div class="m-section__content">
+              <div class="row">
+                <div class="col-sm-12">
+                  <dx-data-grid id="gridContainer" [dataSource]="InventoryItems" keyExpr="inventoryItemId"
+                  (onRowInserted)="AddInventoryItem($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventoryItem()"
+                  (onRowRemoved)="DeleteInventoryItem($event)" [columnAutoWidth]="true">
+                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                      [useIcons]="true">
+                      <dxo-popup title="Add Delivery Man" [showTitle]="true" [width]="1000" [height]="'auto'" [width]="'auto'"
+                          [dragEnabled]="false" [closeOnOutsideClick]="false"></dxo-popup>
+                  </dxo-editing>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxo-header-filter [visible]="true"></dxo-header-filter>
+                  <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                  <dxo-paging [pageSize]="8"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                  <dxi-column dataField="Date" datatType="Date" caption="Entry Date" [fixed]="true"></dxi-column>
+                  <dxi-column dataField="text" datatType="text" caption="DMID" [fixed]="true"></dxi-column>
+                  <dxi-column dataField="Distributor" caption="Distributor" datatType="text" [visible]="true">
+                      <dxo-lookup [dataSource]="Distributor" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column dataField="text" datatType="text" caption="Delivery Man" [fixed]="true"></dxi-column>
+                  <dxi-column dataField="text" datatType="text" caption="Remarks" [fixed]="true"></dxi-column>
+
+              </dx-data-grid>
+                </div>
+                
+              </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

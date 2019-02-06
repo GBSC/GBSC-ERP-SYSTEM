@@ -23,7 +23,7 @@ export class IncometaxRuleDetailComponent implements OnInit {
 
     this.incomeTax = await this.payrollsetupservice.getIncomeTaxRules();
 
-    this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+    this.payrollsetupservice.getPayrollYears().subscribe(resp => {this.payrollYears = resp; })
 
     this.taxSchedule = await this.payrollsetupservice.getTaxSchedules();
   }

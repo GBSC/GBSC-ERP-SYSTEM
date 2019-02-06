@@ -134,7 +134,7 @@ export class MasterpayrollComponent implements OnInit {
     public getcal2: any[] = [];
     public calculationvalue: any;
     public calculationvalueForupdate: any;
-    public getAllos : any;
+    public getAllos: any;
     public dataSource2: any = [];
     public fixedType: any;    
     public fixedType2: any=[];
@@ -232,7 +232,7 @@ export class MasterpayrollComponent implements OnInit {
                     });
                     console.log(this.deduction2);
                     console.log(this.deduction2);
-                    
+
                     this.caldeduction = 0;
                     for (let d of this.deduction2) {
                         this.caldeduction += (+d.value);
@@ -287,54 +287,51 @@ export class MasterpayrollComponent implements OnInit {
 
     }
 
- public c : any;
- public c2 : any=[];
- public calculationvalueforupdate: any;
- public datasourceForUpdate: any = [];
+    public c: any;
+    public c2: any = [];
+    public calculationvalueforupdate: any;
+    public datasourceForUpdate: any = [];
 
- updateSalary(value, id){
-    console.log(value );
-    console.log(id)
-    this.empservice.GetEmployee(id).subscribe(resp => {
-        this.employee = resp;
-        if (this.employee) {
-            this.payrollsetupservice.GetSalaryStructures().subscribe(sc => {
-                this.getAllowances = sc.find(t => t.groupId == this.employee.groupId);
-                console.log(this.getAllowances);
-                this.getAllos = this.getAllowances;
-                this.calculationttypes.filter(element => {
-                    this.getcal = this.getAllowances.salaryStructureDetails.filter(e => e.salaryCalculationTypeId === element.salaryCalculationTypeId && element.name === '% of Gross')
-                    //console.log( this.getcal);
-                    //    console.log(...this.getcal);
-                    if (this.getcal != undefined && this.getcal != []) {
-                        this.getcal2.push(...this.getcal)
-                    }
-                    //console.log(this.getcal2);
-                });
-                console.log(this.getcal2);
+    updateSalary(value, id) {
+        console.log(value);
+        console.log(id)
+        this.empservice.GetEmployee(id).subscribe(resp => {
+            this.employee = resp;
+            if (this.employee) {
+                this.payrollsetupservice.GetSalaryStructures().subscribe(sc => {
+                    this.getAllowances = sc.find(t => t.groupId == this.employee.groupId);
+                    console.log(this.getAllowances);
+                    this.getAllos = this.getAllowances;
+                    this.calculationttypes.filter(element => {
+                        this.getcal = this.getAllowances.salaryStructureDetails.filter(e => e.salaryCalculationTypeId === element.salaryCalculationTypeId && element.name === '% of Gross')
+                        //console.log( this.getcal);
+                        //    console.log(...this.getcal);
+                        if (this.getcal != undefined && this.getcal != []) {
+                            this.getcal2.push(...this.getcal)
+                        }
+                        //console.log(this.getcal2);
+                    });
+                    console.log(this.getcal2);
 
-                this.getcal2.forEach(element => {
-                    this.calculationvalue = value * Number.parseFloat(element.value) / 100;
-                    //  console.log(this.calculationvalue);
-
-
-                    let a: any = {
-                        salaryStructureDetailId: element.salaryStructureDetailId,
-                        salaryStructureId: element.salaryStructureId,
-                        salaryCalculationTypeId: element.salaryCalculationTypeId,
-                        benefitId: element.benefitId,
-                        allowanceDeductionId: element.allowanceDeductionId,
-                        value: this.calculationvalue,
-                        formula: element.formula
-                    };
-                    this.datasource.push(a);
+                    this.getcal2.forEach(element => {
+                        this.calculationvalue = value * Number.parseFloat(element.value) / 100;
+                        //  console.log(this.calculationvalue);
 
 
+                        let a: any = {
+                            salaryStructureDetailId: element.salaryStructureDetailId,
+                            salaryStructureId: element.salaryStructureId,
+                            salaryCalculationTypeId: element.salaryCalculationTypeId,
+                            benefitId: element.benefitId,
+                            allowanceDeductionId: element.allowanceDeductionId,
+                            value: this.calculationvalue,
+                            formula: element.formula
+                        };
+                        this.datasource.push(a);
 
-                });
 
-                console.log(this.datasource);
-                //   console.log(this.getAllowances.salaryStructureDetails);
+
+                    });
 
                 for (let x of this.datasource) {
                     let a = this.getAllowances.salaryStructureDetails.find((b, i) => {
@@ -355,45 +352,54 @@ export class MasterpayrollComponent implements OnInit {
 
                 console.log(this.getAllowances.salaryStructureDetails);
 
-                this.getcal2 = [];
-                this.datasource = [];
-
-                this.allowance2 = [];
-                this.allowances.filter(a => {
-                    this.allowance = this.getAllowances.salaryStructureDetails.find(e => ((e.allowanceDeductionId === a.allowanceDeductionId) && (a.type === 'allowance' || a.type === 'Allowance')))
-                    if (this.allowance != undefined) {
-                        console.log(this.allowance);
-
-                        this.allowance2.push(this.allowance);
+                    for (let x of this.datasource) {
+                        let a = this.getAllowances.salaryStructureDetails.find((b, i) => {
+                            if (b.salaryStructureDetailId === x.salaryStructureDetailId) {
+                                this.getAllowances.salaryStructureDetails[i] = x
+                            }
+                        })
                     }
-                });
-                console.log(this.allowance2);
-                this.calcallowances = 0;
-                for (let d of this.allowance2) {
-                    this.calcallowances += (+d.value);
-                }
+                    console.log(this.getAllowances.salaryStructureDetails);
 
-                console.log(this.calcallowances);
+                    this.getcal2 = [];
+                    this.datasource = [];
 
-                this.deduction2 = [];
+                    this.allowance2 = [];
+                    this.allowances.filter(a => {
+                        this.allowance = this.getAllowances.salaryStructureDetails.find(e => ((e.allowanceDeductionId === a.allowanceDeductionId) && (a.type === 'allowance' || a.type === 'Allowance')))
+                        if (this.allowance != undefined) {
+                            console.log(this.allowance);
 
-                this.allowances.filter(a => {
-                    this.deduction = this.getAllowances.salaryStructureDetails.find(e => ((e.allowanceDeductionId === a.allowanceDeductionId) && (a.type === 'deduction' || a.type === 'Deduction')))
-                    if (this.deduction != undefined) {
-                        this.deduction2.push(this.deduction);
+                            this.allowance2.push(this.allowance);
+                        }
+                    });
+                    console.log(this.allowance2);
+                    this.calcallowances = 0;
+                    for (let d of this.allowance2) {
+                        this.calcallowances += (+d.value);
                     }
-                });
-                console.log(this.deduction2);
+
+                    console.log(this.calcallowances);
+
+                    this.deduction2 = [];
+
+                    this.allowances.filter(a => {
+                        this.deduction = this.getAllowances.salaryStructureDetails.find(e => ((e.allowanceDeductionId === a.allowanceDeductionId) && (a.type === 'deduction' || a.type === 'Deduction')))
+                        if (this.deduction != undefined) {
+                            this.deduction2.push(this.deduction);
+                        }
+                    });
+                    console.log(this.deduction2);
 
 
 
-                console.log(this.deduction2);
-                this.caldeduction = 0;
-                for (let d of this.deduction2) {
-                    this.caldeduction += (+d.value);
-                }
+                    console.log(this.deduction2);
+                    this.caldeduction = 0;
+                    for (let d of this.deduction2) {
+                        this.caldeduction += (+d.value);
+                    }
 
-                console.log(this.caldeduction);
+                    console.log(this.caldeduction);
 
 
                 this.calfixAmmount = 0;
@@ -421,9 +427,9 @@ export class MasterpayrollComponent implements OnInit {
 
 
 
-        }
+            }
 
-    });
+        });
 
     }
 

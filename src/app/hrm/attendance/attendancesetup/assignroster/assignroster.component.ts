@@ -193,6 +193,8 @@ export class AssignrosterComponent implements OnInit {
 
     selectionChangedHandler(e) {
         console.log(e);
+        console.log(this.rosterData);
+        
         this.rosterData.UserAssignRosters = e.selectedRowsData.map(u => {
             return {
                 userId: u.userId,

@@ -18,8 +18,7 @@ export class ViewfundsetupComponent implements OnInit {
 
     this.fundSetup = await this.payrollsetupservice.getFundSetups();
 
-    this.payrollYears = await this.payrollsetupservice.getPayrollYears();
-
+    this.payrollsetupservice.getPayrollYears().subscribe(resp => {this.payrollYears = resp; })
   }
 
   onToolbarPreparing(e) {

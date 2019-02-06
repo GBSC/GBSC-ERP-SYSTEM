@@ -477,15 +477,15 @@ export class PayrollSetupService {
     }
 
 
-    async getPayrollYears() {
+     getPayrollYears() : Observable<any> {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetPayrollYears`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetPayrollYears`);
     }
 
 
-    async addPayrollYear(data) {
+     addPayrollYear(data) : Observable<any> {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddPayrollYear`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddPayrollYear`, data);
     }
 
     async updatePayrollYear(data) {

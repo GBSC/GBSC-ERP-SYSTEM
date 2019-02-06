@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PayrollService } from '../../../core';
+import { PayrollService, PayrollSetupService } from '../../../core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,25 +9,32 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MonthlySalaryProcessComponent implements OnInit {
 
-  public SalaryProcessForm : FormGroup;
-  public payrollProcess : any;
+  public SalaryProcessForm: FormGroup;
+  public payrollYears: any;
+  public payrollProcess: any;
 
-  constructor(public payrollService: PayrollService, public fb:FormBuilder) {
+  constructor(public payrollService: PayrollService, public payrollSetupService: PayrollSetupService, public fb: FormBuilder) {
 
     this.SalaryProcessForm = this.fb.group({
 
-      PayrollYearId : [''],
-      SalaryMonth : ['']
+      PayrollYearId: [''],
+      SalaryMonth: ['']
     })
 
-   }
+  }
 
   ngOnInit() {
 
-      this.payrollService.getSalaryProcess().subscribe(resp => {
-        this.payrollProcess = resp;
-       console.log(this.payrollProcess);
-     })
-     
-    }
+    this.payrollSetupService.getPayrollYears().subscribe(resp => {
+      this.payrollYears = resp;
+      console.log(this.payrollYears);
+    })
+
+    this.payrollService.getSalaryProcess().subscribe(resp => {
+      this.payrollProcess = resp;
+      console.log(this.payrollProcess);
+    })
+
+  }
+  
 }

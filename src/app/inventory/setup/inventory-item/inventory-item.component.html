@@ -30,7 +30,7 @@
                         <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
                     </dxi-column>
                     <dxi-column dataField="isActive" dataType="boolean" caption="is Active" [visible]="false"></dxi-column>
-                    <dxi-column dataField="itemCode" datatType="text" caption="Code"></dxi-column>
+                    <dxi-column dataField="itemCode" datatType="text" dataType="number" caption="Code"></dxi-column>
                     <dxi-column dataField="brandId" caption="Product Brand" datatType="text" [visible]="false">
                         <dxo-lookup [dataSource]="Brands" valueExpr="brandId" displayExpr="name"></dxo-lookup>
                     </dxi-column>

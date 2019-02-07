@@ -375,7 +375,9 @@ import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/
         ViewfundsetupComponent,
         AllowanceDeductionDetailComponent,
         IncometaxRuleDetailComponent,
-        MonthlySalaryProcessComponent
+        MonthlySalaryProcessComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent
     ],
 
     // providers: [IgxExcelExporterService],

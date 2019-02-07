@@ -374,7 +374,7 @@ export class PayrollSetupService {
 
     getMasterPayroll(id): Observable<MasterPayroll> {
 
-        return this.ApiService.get(this.baseUrl + '/GetMasterPayroll' + id);
+        return this.ApiService.get(this.baseUrl + '/GetMasterPayroll/' + id);
     }
 
     async addMasterPayroll(data) {
@@ -477,15 +477,15 @@ export class PayrollSetupService {
     }
 
 
-    async getPayrollYears() {
+     getPayrollYears() : Observable<any> {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetPayrollYears`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetPayrollYears`);
     }
 
 
-    async addPayrollYear(data) {
+     addPayrollYear(data) : Observable<any> {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddPayrollYear`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddPayrollYear`, data);
     }
 
     async updatePayrollYear(data) {
@@ -525,6 +525,20 @@ export class PayrollSetupService {
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`).toPromise();
     }
 
+    getSalaryCalculationTypesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(this.baseUrl + '/GetSalaryCalculationTypesByCompany/' + companyid);
+    }
+
+    
+     GetSalaryCalculationTypes() {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationTypes`);
+    }
+
+    getSalaryCalculationTypesById(id) {
+
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryCalculationType/`+id);
+    }
 
     async addSalaryCalculationType(data) {
 
@@ -543,9 +557,18 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryCalculationType/${id}`).toPromise();
     }
 
+    GetSalaryStructures():Observable<any>{
+        return  this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`)
+        }
+
     async getSalaryStructures() {
 
         return await this.ApiService.get(`${this.baseUrl}/GetSalaryStructures`).toPromise();
+    }
+
+     getSalaryStructure(id): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl +'/GetSalaryStructure/' + id);
     }
 
 
@@ -554,11 +577,8 @@ export class PayrollSetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddSalaryStructure`, data).toPromise();
     }
 
-    async updateSalaryStructure(data) {
-
-        let salarystructure = await this.getdataToUpdate(data.key, 'GetSalaryStructure');
-        salarystructure = { ...salarystructure, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateSalaryStructure`, salarystructure).toPromise();
+     updateSalaryStructure(data) : Observable<any> { 
+        return this.ApiService.put(`${this.baseUrl}/UpdateSalaryStructure`, data);
     }
 
     async deleteSalaryStructure(salarystructureId) {
@@ -614,15 +634,19 @@ export class PayrollSetupService {
 
         return await this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRules`).toPromise();
     }
+   
+    getIncomeTaxRule(id): Observable<any> {
 
+        return this.ApiService.get(`${this.baseUrl}/GetIncomeTaxRule/` + id);
+    }
     async addIncomeTaxRule(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/AddIncomeTaxRule`, data).toPromise();
     }
 
-    async updateIncomeTaxRule(data) {
+    updateIncomeTaxRule(data) : Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateIncomeTaxRule`, data);
     }
 
     async Deleteincometaxrule(incometaxruleId) {

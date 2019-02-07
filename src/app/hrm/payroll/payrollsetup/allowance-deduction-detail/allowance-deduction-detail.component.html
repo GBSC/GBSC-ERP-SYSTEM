@@ -1,0 +1,55 @@
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">
+          Allowance/Deduction Details
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body">
+    <dx-data-grid id="gridContainer"
+     [dataSource]="allowancededuction"
+      keyExpr="allowanceDeductionId"
+      (onToolbarPreparing)="onToolbarPreparing($event)"
+      [columnAutoWidth]="true" 
+      [showBorders]="true"
+      (onRowUpdated)="updateAllowanceDeduction()" 
+      (onRowUpdating)="updatingAllowanceDeduction($event)" 
+      (onRowRemoved)="deleteAllowanceDeduction($event)">
+    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">	
+      <dxo-popup title="Allowance/Deduction" [showTitle]="true" [width]="850" [height]="600"></dxo-popup>
+    </dxo-editing>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dxo-paging [pageSize]="8"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+      </dxo-pager>
+
+      <dxi-column dataField="title"></dxi-column>
+      <dxi-column dataField="type" caption="Allowance/Deduction">
+        <dxo-lookup [dataSource]="lookupDataSource"></dxo-lookup>
+    </dxi-column>
+      <dxi-column dataField="allowanceCalculationTypeId"caption="Calculation Type">
+        <dxo-lookup [dataSource]="allowanceCalculationTypes" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>
+    </dxi-column>
+      <dxi-column dataField="fixedValue" caption="Fixed Value" [visible]="false"></dxi-column>
+      <dxi-column dataField="valueExpressionPayment" caption="Value Expression Payment"></dxi-column>
+      <dxi-column dataField="valueExpressionPaymentFrom" caption="Value Expression Payment From" [visible]="false"></dxi-column>
+      <dxi-column dataField="valueExpressionForecast" caption="Value Expression Forecast" ></dxi-column>
+       <dxi-column dataField="calculationSequenceNumber" caption="Calculation Sequence Number"[visible]="false"></dxi-column>
+      <dxi-column dataField="repostNumber" caption="Repost Number"></dxi-column> 
+      <dxi-column dataField="glCodeAllowance" caption="Gl Code Allowance"[visible]="false"></dxi-column>
+      <dxi-column dataField="glCodeDeduction" caption="Gl Code Deduction"[visible]="false"></dxi-column>
+      <dxi-column dataField="defaultCostCenter" caption="Default Cost Center"></dxi-column>
+      <dxi-column dataField="isBaseAllowance" caption="Base Allowance" dataType="boolean"></dxi-column>
+      <dxi-column dataField="isOneTimeAllowance" caption="One Time Allowance" dataType="boolean"></dxi-column>
+      <dxi-column dataField="isGrossSalary" caption="Gross Salary" dataType="boolean" [visible]="false"></dxi-column>
+      <dxi-column dataField="isProrated" caption="Prorated" dataType="boolean" [visible]="false"></dxi-column>
+    </dx-data-grid>
+
+  </div>
+</div>

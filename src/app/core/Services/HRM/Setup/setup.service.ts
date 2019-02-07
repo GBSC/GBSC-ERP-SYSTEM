@@ -212,6 +212,11 @@ export class SetupService {
     async getAllGroups() {
         return await this.ApiService.get(`${this.hrUrl}/GetGroups`).toPromise();
     }
+
+    getGroup(id) : Observable<any> {
+        return this.ApiService.get(`${this.hrUrl}/GetGroup/` + id);
+    }
+
     async addGroup(data) {
 
         return await this.ApiService.post(`${this.hrUrl}/AddGroup`, data).toPromise();

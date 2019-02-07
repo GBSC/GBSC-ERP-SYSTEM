@@ -7,6 +7,8 @@ import { PayrollSetupService } from '../../../../core';
     styleUrls: ['./allowancerate.component.css']
 })
 export class AllowancerateComponent implements OnInit {
+    
+    public allowance: any;
     public allowances: any;
     public allowancerate: any;
 
@@ -15,9 +17,10 @@ export class AllowancerateComponent implements OnInit {
     async ngOnInit() {
 
         this.allowancerate = await this.payrollsetupservice.getAllowanceRates();
+        
+        this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
 
-        this.allowances = await this.payrollsetupservice.getAllowances();
-
+        this.allowance = await this.allowances.filter(a => (a.type === "Allowance"));
     }
 
     async addAllowanceRate(value) {

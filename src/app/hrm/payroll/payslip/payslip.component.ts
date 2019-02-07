@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PayrollService, EmployeeService, PayrollSetupService } from '../../../core';
+import { PayrollService, EmployeeService, PayrollSetupService, AttendanceService } from '../../../core';
 import { UserLoanPayslip } from '../../../core/Models/HRM/userLoanPayslip';
 import { PaySlip } from '../../../core/Models/HRM/payslip';
 
@@ -22,25 +22,25 @@ export class PayslipComponent implements OnInit {
     public userLoans: any;
 
     constructor(public fb: FormBuilder, public payrollservice: PayrollService,
-        public Employeeservice: EmployeeService, public payrollsetupservice: PayrollSetupService) { }
+        public Employeeservice: EmployeeService, public attendanceService: AttendanceService, public payrollsetupservice: PayrollSetupService) { }
 
     async ngOnInit() {
 
         this.userloan = [];
 
         this.PayslipForm = this.fb.group({
-            From: ['', Validators],
-            Till: ['', Validators],
-            PaymentDate: ['', Validators],
-            Hours: ['', Validators],
-            Days: ['', Validators],
-            GrossAmount: ['', Validators],
-            TaxAmount: ['', Validators],
-            PfDeductionAmount: ['', Validators],
-            LoanDeductionAmount: ['', Validators],
-            NetAmount: ['', Validators],
-            MonthlyUserSalaryId: ['', Validators],
-            UserId: ['', Validators]
+            From: [''],
+            Till: [''],
+            PaymentDate: [''],
+            Hours: [''],
+            Days: [''],
+            GrossAmount: [''],
+            TaxAmount: [''],
+            PfDeductionAmount: [''],
+            LoanDeductionAmount: [''],
+            NetAmount: [''],
+            MonthlyUserSalaryId: [''],
+            UserId: ['']
         });
 
         this.PaySlip = await this.payrollservice.getPayslips();
@@ -68,7 +68,47 @@ export class PayslipComponent implements OnInit {
     }
 
     GetUserloan(value) {
-        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)
+        this.currentUserLoan = this.userLoans.filter(ul => ul.userId == value)     
+    }
+
+    // leftAmount
+    // sumDebit() {
+    //     this.leftAmount = 0;
+    //     this.attendanceService.getUserAttendancesbyIddate
+    //     for (let d of control) {
+    //         this.debitTotal += (+d.value.DebitAmount);
+    //     }
+    // }
+    public employeeData: any = [];
+
+    formatDate(date: Date) {
+        return (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+    }
+    days
+    getattendancerequest(value) {
+        console.log(value);
+        this.PayslipForm.value.From = this.formatDate(new Date(this.PayslipForm.value.From))
+        this.PayslipForm.value.Till = this.formatDate(new Date(this.PayslipForm.value.Till))
+        this.attendanceService.getUserAttendancesbyIddate(value.UserId, value.From, value.Till).subscribe(res => {
+            this.employeeData = res;
+            console.log(this.employeeData);
+            for (let d of this.employeeData.length) {
+                this.days += (d.value.Days);
+                console.log(d); 
+            } 
+            console.log(this.employeeData);
+              
+            // this.employeeData.forEach(element => {
+            //     console.log(element.assignRosterId);
+            //     this.attendanceSetupservice.getAsignRosterById(element.assignRosterId).subscribe(res => {
+            //         this.employeeAsignRosters = res;
+            //         console.log(this.employeeAsignRosters)
+            //     })
+            // });
+
+        })
+        console.log(this.employeeData);
+        console.log(value);
     }
 
     Updatingloan(value) {

@@ -22,7 +22,7 @@ export class ViewCompensationTransactionComponent implements OnInit {
 
         this.compensationTransaction = await this.payrollsetupservice.getCompensationTransactions();
 
-        this.payrollYears = await this.payrollsetupservice.getPayrollYears();
+        this.payrollsetupservice.getPayrollYears().subscribe(resp => {this.payrollYears = resp; })
 
         this.employees = await this.employeeservice.GetAllEmployees();
 

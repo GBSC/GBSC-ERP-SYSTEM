@@ -47,7 +47,7 @@
                   <div class="col-lg-8">
                     <select  class="form-control m-input" formControlName="UserId">
                       <option value="" disabled selected>-- Select Employee --</option>
-                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.firstName}} {{employee.lastName}}</option>
+                      <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.fullName}}</option>
                     </select>
                   </div>
                 </div>

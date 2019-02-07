@@ -13,22 +13,8 @@
         </select>
       </div>
     </div>
-
-    <!-- <div class="col-md-6">
-      <div class="form-group m-form__group">
-        <label for="Designation" class="control-label">Department</label>
-        <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="EmployeeCompany?.departmentId">
-          <option> --- Select Department ---</option>
-          <option *ngFor="let dep of departments" [value]="d.departmentId">{{d.name}}</option>
-        </select>
-      </div>
-    </div> -->
-
   </div>
-
   <div class="m--space-07"></div>
-
-
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
@@ -69,7 +55,6 @@
       <div class="form-group m-form__group">
         <label for="Empstatus">Employee Status</label>
         <select class="form-control m-input m-input--solid" formControlName="EmployeeStatusId" [value]="EmployeeCompany?.employeeStatusId">
-          <!-- <option value="" disabled selected>-- Select Employee Status --</option> -->
           <option *ngFor="let cempstatus of employeestatus" [value]="cempstatus.employeeStatusId">{{cempstatus.name}}</option>
         </select>
       </div>
@@ -104,7 +89,7 @@
         <div class="col-md-4"> 
             <div class="form-group m-form__group">
               <label>
-                Confirmation Date
+                Confirmation Date (DOJ)
               </label> 
                 <dx-date-box formControlName="ConfirmationDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.confirmationDate" type="date">
                 </dx-date-box> 
@@ -180,11 +165,12 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="" class="control-label">Approver</label>
-        <select class="form-control m-input m-input--solid" formControlName="Approver" [value]="EmployeeCompany?.approver">
-          <option *ngFor="let emp of employees" [value]="emp.userId">{{emp.fullName}}</option>
-        </select>
+        <select class="form-control m-input m-input--solid" formControlName="Approver" [value]="EmployeeCompany?.Approver">
+            <option *ngFor="let approver of employees" [value]="approver.userId">{{approver.fullName}}</option>
+          </select>
         <!-- <input type="text" formControlName="Approver" [value]="EmployeeCompany?.approver" class="form-control m-input m-input--solid"
           placeholder="Approved By"> -->
+
       </div>
     </div>
   </div>

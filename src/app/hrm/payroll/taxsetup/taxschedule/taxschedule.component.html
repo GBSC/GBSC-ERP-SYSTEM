@@ -28,11 +28,18 @@
 								<dxo-lookup [dataSource]="incomeTaxrule" displayExpr="taxLimit" valueExpr="incomeTaxRuleId">
 								</dxo-lookup> 
 								</dxi-column>
-							<dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>
-							<dxi-column dataField="till" caption="Till" dataType="date" format="shortDate"></dxi-column> 
-							<dxi-column dataField="taxType" caption="Tax Type"></dxi-column> 
-							<dxi-column dataField="value" caption="Value"></dxi-column> 
-							<dxi-column dataField="applicabaleTo" caption="Applicabale To"></dxi-column> 
+								<dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>
+								<dxi-column dataField="till" caption="Till" dataType="date" format="shortDate"></dxi-column> 
+									<dxi-column dataField="taxType" caption="Tax Type">
+										<dxo-lookup [dataSource]="taxTypeSource">
+										</dxo-lookup> 
+										</dxi-column>
+								<dxi-column dataField="value" caption="Value"></dxi-column> 
+								<dxi-column dataField="fixedValue" caption="Fixed Value"></dxi-column> 
+											<dxi-column dataField="applicabaleTo" caption="Applicabale To">
+												<dxo-lookup [dataSource]="applicableToSource">
+												</dxo-lookup> 
+												</dxi-column>
 						</dx-data-grid> 
 					</div>
 					</div>

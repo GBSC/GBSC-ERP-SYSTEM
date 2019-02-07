@@ -1,90 +1,3 @@
-<div class="m-content">
-	<div class="row">
-		<div class="col-lg-3">
-			<div class="m-portlet">
-				<div class="m-portlet__head">
-					<div class="m-portlet__head-caption">
-						<div class="m-portlet__head-title">
-							<h3 class="m-portlet__head-text">
-								Tax Setups
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div class="m-portlet__body" style="padding: 0px !important;">
-					<div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
-						<div class="m-demo__preview">
-							<ul class="m-nav nav nav-tabs">
-									<li class="m-nav__item">
-											<a class="m-nav__link" href="#taxyear" data-toggle="tab">
-												<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-												<span class="m-nav__link-text">
-													Tax Year
-												</span>
-											</a>
-										</li>
-										
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#incometaxrule" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-share"></i>
-										<span class="m-nav__link-text">
-											Income Tax Rule
-										</span>
-									</a>
-								</li>
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#taxableincomeadjustment" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-										<span class="m-nav__link-text">
-											Taxable Income Adjustment
-										</span>
-									</a>
-								</li>
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#taxadjustmentreason" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-										<span class="m-nav__link-text">
-											Tax Adjustment Reason
-										</span>
-									</a>
-								</li>
-								
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#taxbenefit" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-										<span class="m-nav__link-text">
-											Tax Benefit
-										</span>
-									</a>
-								</li>
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#taxrelief" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-										<span class="m-nav__link-text">
-											Tax Relief
-										</span>
-									</a>
-								</li>
-								<li class="m-nav__item">
-									<a class="m-nav__link" href="#taxschedule" data-toggle="tab">
-										<i class="m-nav__link-icon flaticon-cogwheel-2"></i>
-										<span class="m-nav__link-text">
-											Tax Schedule
-										</span>
-									</a>
-								</li>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-9">
-			<!-- Tab panes -->
-			<div class="m-portlet">
-				<div class="tab-content">
-					<div class="tab-pane active" id="taxyear">
 
 						<div class="m-portlet">
 							<div class="m-portlet__head">
@@ -108,41 +21,13 @@
 											<dxo-paging [pageSize]="8"></dxo-paging>
 											<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
 
+											<dxi-column dataField="name" caption="Year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
 											<dxi-column dataField="from" caption="From" dataType="date" format="shortDate"></dxi-column>
 											<dxi-column dataField="till" caption="Till" dataType="date" format="shortDate"></dxi-column>
-											<dxi-column dataField="name" caption="Name"></dxi-column>
 											<dxi-column dataField="isCurrent" caption="Current" dataType="boolean"></dxi-column>
 										</dx-data-grid>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-
-
-					<div class="tab-pane" id="incometaxrule">
-						<app-income-tax-rule></app-income-tax-rule>
-					</div>
-					<div class="tab-pane" id="taxadjustmentreason">
-						<app-tax-adjustment-reason></app-tax-adjustment-reason>
-					</div>
-					<div class="tab-pane" id="taxbenefit">
-						<app-tax-benefit></app-tax-benefit>
-					</div>
-					<div class="tab-pane" id="taxableincomeadjustment">
-						<app-taxable-income-adjustment></app-taxable-income-adjustment>
-					</div>
-					<div class="tab-pane" id="taxrelief">
-						<app-taxrelief></app-taxrelief>
-					</div>
-					<div class="tab-pane" id="taxschedule">
-						<app-taxschedule></app-taxschedule>
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-</div>
+					 

@@ -7,6 +7,7 @@ import { InventoryItem } from '../../core/Models/Pharmacy/InventoryItem';
 import { Currency } from '../../core/Models/Pharmacy/Currency';
 import { Inventory } from '../../core/Models/Pharmacy/Inventory';
 import { DxDateBoxModule } from 'devextreme-angular';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-purchase-order',
@@ -40,7 +41,7 @@ export class PurchaseOrderComponent implements OnInit {
     public SelectItemPackSize : number = 1;
     public fieldsenabled: boolean = true;
 
-    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Auth : AuthService) {
+    constructor(public PharmacyService: PharmacyService, public FormBuilder: FormBuilder, public Auth : AuthService, public toastr : ToastrService) {
         this.PurchaseOrderForm = this.FormBuilder.group({
             OrderNumber: [''],
             OrderDate: [''],
@@ -252,7 +253,10 @@ export class PurchaseOrderComponent implements OnInit {
         this.PharmacyService.AddPurchaseOrder(this.NewPurchaseOrder).subscribe(res => console.log(res));
         this.PharmacyService.UpdateInventories(this.Inventories).subscribe(res => console.log(res));
 
-        this.ResetWholeForm()
+        this.ResetWholeForm();
+
+        this.toastr.success("Saved");
+
     }
 
 }

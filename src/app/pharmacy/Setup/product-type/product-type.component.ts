@@ -22,7 +22,10 @@ export class ProductTypeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => this.ProductTypes = res);
+        this.PharmacyService.GetProductTypes().subscribe((res: ProductType) => {
+            this.ProductTypes = res;
+            console.log(this.ProductTypes);
+        });
     }
 
     async AddProductType(value) {

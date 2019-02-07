@@ -39,7 +39,8 @@ export class PharmacyService {
 
     }
 
-    //SalesIndent
+    //SalesIndent 
+   // purchaseInvoic    //SalesIndent 
     GetSalesIndents(): Observable<SalesIndent> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndents');
     }
@@ -226,7 +227,7 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByCompany/' + companyId);
     }
 
-    AddPurchaseInvoice(PurchaseInvoice: any): Observable<any> {
+    AddPurchaseInvoice(PurchaseInvoice ): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseInvoice', PurchaseInvoice);
     }
 
@@ -520,6 +521,11 @@ export class PharmacyService {
     getPurchaseReturns() : Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturns');
     }
+
+    GetPurchaseReturnsByMonth(date): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturnsByMonth/'+date);
+    }
+
 
     getPurchaseReturn(id : number) : Observable<any> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturn/' + id);

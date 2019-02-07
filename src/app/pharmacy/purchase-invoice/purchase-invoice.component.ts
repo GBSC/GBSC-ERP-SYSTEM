@@ -12,6 +12,7 @@ export class PurchaseInvoiceComponent implements OnInit {
 
   public GRN : any;
   public GRNItems : any;
+  public Currency : any;
   public PurchaseInvoiceForm : FormGroup;
 
   public Products : any;
@@ -24,6 +25,7 @@ export class PurchaseInvoiceComponent implements OnInit {
       GRNRemarks : [''],
       VendorBillNumber: [''],
       InvoiceDate: [''],
+      CurrencyId:[],
       PaymentAmount: [],
       ReceivedQuantity: []
     });
@@ -40,6 +42,10 @@ export class PurchaseInvoiceComponent implements OnInit {
       this.Products = res;
       console.log(this.Products);
     });
+    this.PharmacyService.GetCurrency().subscribe(res=>{
+      this.Currency = res;
+      console.log(this.Currency);
+		})
   }
 
   getGRNDetails(code, keycode) {
@@ -64,11 +70,13 @@ export class PurchaseInvoiceComponent implements OnInit {
     console.log(value);
     var a : any = {
       CompanyId : this.Auth.getUserCompanyId(),
-      InvoiceDate : new Date(value.InvoiceDate),
+      InvoiceDate :  value.InvoiceDate ,
       GRNId : this.GRN.grnId,
+      CurrencyId : value.CurrencyId,
       PurchaseOrderId : this.GRN.purchaseOrderId,
       VendorBillNumber : this.GRN.vendorBillNumber
     };
+    console.log(a);
 
     this.PharmacyService.AddPurchaseInvoice(a).subscribe(
       (res : any) => {

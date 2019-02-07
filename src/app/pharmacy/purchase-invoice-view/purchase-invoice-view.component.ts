@@ -12,6 +12,7 @@ export class PurchaseInvoiceViewComponent implements OnInit {
 
 	public Invoices : any;
 	public Products : any;
+	public Currency : any;
 	public InvoiceViewForm : FormGroup;
 
   	constructor(public PharmacyService : PharmacyService, public Auth : AuthService, public formBuilder: FormBuilder, public router: Router) {
@@ -27,6 +28,8 @@ export class PurchaseInvoiceViewComponent implements OnInit {
 			// console.log(this.Invoices);
 		});
 
+	
+
 		// this.PharmacyService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
 		// 	this.Products = res;
 		// 	console.log(this.Products);
@@ -39,6 +42,8 @@ export class PurchaseInvoiceViewComponent implements OnInit {
 		// this.PharmacyService.GetPurchaseInvoicesByMonth(this.formatDate(new Date())).subscribe((res : any) => {
 		// 	this.Invoices = res;
 		// });
+
+
 	}
 
   	formatDate(date: Date) {

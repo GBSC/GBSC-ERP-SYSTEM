@@ -29,6 +29,7 @@ import { InternalRequisitionViewComponent } from './internal-requisition-view/in
 import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.component';
 import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
 import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
+import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
 
 
 
@@ -54,6 +55,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'purchaseinvoice', component: PurchaseInvoiceComponent },
             { path: 'purchaseinvoiceview', component: PurchaseInvoiceViewComponent },
             { path: 'purchasereturn', component: PharmacyPurchaseReturnComponent },
+            { path: 'purchasereturnview', component: PurchaseReturnViewComponent },
+
             {
                 path: "setup",
                 children: [

@@ -84,6 +84,18 @@
                 <input type="text" class="form-control m-input m-input--solid" formControlName="VendorBillNumber"
                   [value]="GRN?.vendorBillNumber || ''">
               </div>
+
+              <div class="form-group col-lg-2">
+                <label for="exampleInputEmail1">
+                    Currency
+                </label>
+                <select class="form-control m-input ng-pristine ng-valid ng-touched"
+                    formControlName="CurrencyId">
+                    <option *ngFor="let x of Currency" [value]="x?.inventoryCurrencyId">{{x?.name}}
+                    </option>
+                </select>
+            </div>
+
             </div>
           </form>
           <div class="row">

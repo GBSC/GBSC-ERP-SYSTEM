@@ -6434,10 +6434,10 @@ a.text-dark:focus, a.text-dark:hover {
       box-shadow: 0 0 0 0.2rem rgba(196, 197, 214, 0.5); }
 
 .btn-outline-metal {
-  color: #656565 !important;
+  color: #ffffff !important;
     background-color: transparent;
     background-image: none;
-    border-color: #656565 !important; }
+    border-color: #ef7900 !important; }
   .btn-outline-metal:hover {
     color: #4d4d4d;
     background-color: #4d4d4d;
@@ -10452,7 +10452,7 @@ b, strong {
         margin: 0;
         padding: 0;
         vertical-align: middle;
-        font-size: 1rem; }
+        font-size: 13px; }
       .m-nav .m-nav__item > .m-nav__link .m-nav__link-title {
         display: table-cell;
         height: 100%;
@@ -11484,8 +11484,8 @@ b, strong {
   .m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link:hover, .m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link.active,
   .m-tabs-line.m-tabs-line--primary a.m-tabs__link:hover,
   .m-tabs-line.m-tabs-line--primary a.m-tabs__link.active {
-    color: #5867dd;
-    border-bottom: 1px solid #5867dd; }
+    color: #fff;
+    border-bottom: 0px solid #5867dd; }
     .m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link:hover > i, .m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link.active > i,
     .m-tabs-line.m-tabs-line--primary a.m-tabs__link:hover > i,
     .m-tabs-line.m-tabs-line--primary a.m-tabs__link.active > i {
@@ -16543,7 +16543,7 @@ code {
         .m-portlet .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text {
           display: table-cell;
           vertical-align: middle;
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           font-weight: 500;
           font-family: Roboto; }
           .m-portlet .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text small {
@@ -29779,7 +29779,7 @@ body.m-page--boxed {
     margin-right: auto; } }
 
 .m-body .m-content {
-  padding: 30px 30px; }
+  padding: 15px 15px; }
 
 .m-content--skin-light .m-body {
   background-color: #ffffff; }
@@ -30617,7 +30617,7 @@ body.m-content--skin-light2 {
       text-align: center;
       line-height: 0; }
       .m-brand .m-brand__logo img {
-        max-width: 170px; } }
+        max-width: 110px; } }
 
 @media (max-width: 992px) {
   .m-brand {

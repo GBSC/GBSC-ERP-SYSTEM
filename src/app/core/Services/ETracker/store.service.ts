@@ -27,6 +27,10 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'StoreVisit/GetVisits/' + storeId);
     }
 
+    getStoreVisitById(id):Observable<any>{
+       return this.ApiService.get(this.Url + 'StoreVisit/GetStoreVisit/' + id);
+    }
+
 
     getOrdersByStoreVisitId(storeVisitid: any): Observable<any> {
         return this.ApiService.get(this.Url + 'StoreVisit/GetOrders/' + storeVisitid);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PayrollSetupService } from '../../../../core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-allowance-deduction',
@@ -8,12 +9,13 @@ import { PayrollSetupService } from '../../../../core';
     styleUrls: ['./allowance-deduction.component.css']
 })
 export class AllowanceDeductionComponent implements OnInit {
+
     public allowancededuction: any;
     public allowanceCalculationTypes: any;
     public AllowanceorDeductionForm: FormGroup;
-    public updatingdeduction: any;
+ 
 
-    constructor(public fb: FormBuilder, public payrollSetupService: PayrollSetupService) { }
+    constructor(public fb: FormBuilder, public payrollSetupService: PayrollSetupService, public router: Router) { }
 
     async ngOnInit() {
 
@@ -48,16 +50,7 @@ export class AllowanceDeductionComponent implements OnInit {
     async addAllowanceDeduction() {
         await this.payrollSetupService.addAllowanceDeduction(this.AllowanceorDeductionForm.value);
         this.allowancededuction = await this.payrollSetupService.getAllowanceDeductions();
+        this.router.navigate(['/hrm/payroll/allowancedeductiondetail']);
     }
 
-    updatingAllowanceDeduction(value) {
-        this.updatingdeduction = { ...value.oldData, ...value.newData };
-    }
-    async updateAllowanceDeduction() {
-        await this.payrollSetupService.updateAllowanceDeduction(this.updatingdeduction);
-    }
-
-    async deleteAllowanceDeduction(value) {
-        await this.payrollSetupService.DeleteAllowanceDeduction(value.key);
-    }
 }

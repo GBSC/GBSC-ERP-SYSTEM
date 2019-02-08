@@ -24,12 +24,8 @@
 								<dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
 								<dxo-paging [pageSize]="8"></dxo-paging>
 								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-                <dxi-column dataField="groupId" caption="Group">
-                    <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
-                    </dxo-lookup> 
-                    </dxi-column>
                     <dxi-column dataField="userId" caption="Employee">
-                      <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId">
+                      <dxo-lookup [dataSource]="users" displayExpr="fullName" valueExpr="userId">
                       </dxo-lookup> 
                     </dxi-column>
                         <dxi-column dataField="taxYearId" caption="Tax Year">
@@ -40,12 +36,8 @@
                             <dxo-lookup [dataSource]="payrollType" displayExpr="name" valueExpr="payrollTypeId">
                             </dxo-lookup> 
                             </dxi-column>
-                        <dxi-column dataField="taxAdjustmentReasonId" caption="Tax Adjustment Reason">
-                            <dxo-lookup [dataSource]="taxAdjustmentReason" displayExpr="name" valueExpr="taxAdjustmentReasonId">
-                            </dxo-lookup> 
-                            </dxi-column>
                 <dxi-column dataField="addAmount" caption="Add Amount"></dxi-column>
-								<dxi-column dataField="deductAmount" caption="Deduct Amount"></dxi-column> 
+								<dxi-column dataField="deductAmount" caption="Less Amount"></dxi-column> 
 								<dxi-column dataField="remarks" caption="Remarks"></dxi-column> 
 						  </dx-data-grid> 
 						</div>

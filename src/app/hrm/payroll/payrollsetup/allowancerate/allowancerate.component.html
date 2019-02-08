@@ -20,11 +20,10 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
-
-                <dxi-column dataField="allowanceId" caption="Allowance">
-                  <dxo-lookup [dataSource]="allowances" displayExpr="name" valueExpr="allowanceId">
+                <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+                  <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId">
                   </dxo-lookup>
-                </dxi-column>
+                </dxi-column>  
                 <dxi-column dataField="allowanceRateValue" caption="Allowance Rate"></dxi-column>
                 <dxi-column dataField="effectiveDate" caption="Effective Date" dataType="date" format="shortDate"></dxi-column>
               </dx-data-grid>

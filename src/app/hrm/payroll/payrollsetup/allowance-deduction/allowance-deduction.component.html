@@ -1,4 +1,4 @@
- 
+<div class="m-content">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -14,39 +14,26 @@
           <form [formGroup]="AllowanceorDeductionForm"> 
 
               <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-4">
                     <label>
                      Title:
                     </label>
                     <input type="text" class="form-control m-input" formControlName="Title" placeholder="Title">
                   </div>
-                  <div class="col-lg-6">
+                    <div class="col-lg-4">
+                      <label>
+                        Type:
+                      </label>
+                      <select class="form-control m-input" formControlName="Type"> 
+                        <option value="allowance">Allowance</option>
+                         <option value="deduction">Deduction</option>
+                 </select>
+                    </div> 
+                  <div class="col-lg-4">
                     <label class="">
                    Fixed Value:
                     </label>
                     <input type="number" class="form-control m-input" formControlName="FixedValue" placeholder="0">
-                  </div>
-                </div>
-
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Type:
-                    </label>
-                    <select class="form-control m-input" formControlName="Type" id="">
-                        <!-- <option value="" disabled selected>-- Select Type --</option> -->
-                       <option>Allowance</option>
-                       <option>Deduction</option>
-               </select>
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                    Calculation Type:
-                    </label> 
-                        <select class="form-control m-input" formControlName="AllowanceCalculationTypeId" id="">
-                            <!-- <option value="" disabled selected>-- Select Allowance Calculation Type --</option> -->
-                            <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
-                   </select>
                   </div>
                 </div>
 
@@ -86,42 +73,47 @@
                   </div>
 
                   <div class="form-group m-form__group row">
-                      <div class="col-lg-6">
+                      <div class="col-lg-4">
+                          <label class="">
+                          Calculation Type:
+                          </label> 
+                              <select class="form-control m-input" formControlName="AllowanceCalculationTypeId">
+                                  <option *ngFor ="let calculationtype of allowanceCalculationTypes" [value]="calculationtype.allowanceCalculationTypeId" >{{calculationtype.name}}</option>
+                         </select>
+                        </div>
+                      <div class="col-lg-4">
                         <label>
                           Calculation Sequence Number:
                         </label>
                         <input type="text" class="form-control m-input" formControlName="CalculationSequenceNumber" placeholder="0">
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-lg-4">
                         <label class="">
                           Report Order:
                         </label>
                         <input type="text" class="form-control m-input" formControlName="RepostNumber" placeholder="0">
                       </div>
                     </div>
-
-                    <div class="form-group m-form__group row">
-                        <div class="col-lg-6">
-                          <label>
-                         Gl Code(Allowance):
-                          </label>
-                          <input type="text" class="form-control m-input" formControlName="GlCodeAllowance" placeholder="0">
-                        </div>
-                        <div class="col-lg-6">
-                          <label class="">
-                          Gl Code (Deduction):
-                          </label>
-                          <input type="text" class="form-control m-input" formControlName="GlCodeDeduction" placeholder="0">
-                        </div>
-                      </div>
  
             <div class="form-group m-form__group row">
-                <div class="col-lg-12">
-                  <label class="">
-                      Default Cost Center:
-                  </label>
-                  <input type="text" class="form-control m-input" formControlName="DefaultCostCenter" placeholder="0">
-                </div>
+                <div class="col-lg-4">
+                    <label>
+                   Gl Code(Allowance):
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="GlCodeAllowance" placeholder="0">
+                  </div>
+                  <div class="col-lg-4">
+                    <label class="">
+                    Gl Code (Deduction):
+                    </label>
+                    <input type="text" class="form-control m-input" formControlName="GlCodeDeduction" placeholder="0">
+                  </div>
+                  <div class="col-lg-4">
+                      <label class="">
+                          Default Cost Center:
+                      </label>
+                      <input type="text" class="form-control m-input" formControlName="DefaultCostCenter" placeholder="0">
+                    </div>
               </div>
 
               <div class="m--space-30"></div>
@@ -174,9 +166,7 @@
                         </div>
                 </div>
                 <div class="m--space-50"></div>
-
                 <div class="m-separator m-separator"></div> 
-
                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                   <div class="m-form__actions m-form__actions--solid">
                     <div class="row">
@@ -197,56 +187,6 @@
           </form>
         </div>
       </div>
- 
-
- 
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">
-                Allowance Details
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="allowancededuction" keyExpr="allowanceDeductionId"
-          (onRowUpdated)="updateAllowanceDeduction()" 
-          (onRowUpdating)="updatingAllowanceDeduction($event)" 
-          (onRowRemoved)="deleteAllowanceDeduction($event)">
-          <dxo-editing  mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">	
-            <dxo-popup title="Allowance/Deduction" [showTitle]="true" [width]="850" [height]="600"></dxo-popup>
-          </dxo-editing>
-          <dxo-filter-row [visible]="true"></dxo-filter-row>
-            <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-            <dxo-paging [pageSize]="8"></dxo-paging>
-            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-            </dxo-pager>
- 
-            <dxi-column dataField="title"></dxi-column>
-            <dxi-column dataField="type"> </dxi-column>
-            <dxi-column dataField="allowanceCalculationTypeId"caption="Allowance Calculation Type" [width]="250">
-              <dxo-lookup [dataSource]="allowanceCalculationTypes" displayExpr="name" valueExpr="allowanceCalculationTypeId"></dxo-lookup>
-          </dxi-column>
-            <dxi-column dataField="fixedValue" caption="Fixed Value" [visible]="false"></dxi-column>
-            <dxi-column dataField="valueExpressionPayment" caption="Value Expression Payment"></dxi-column>
-            <dxi-column dataField="valueExpressionPaymentFrom" caption="Value Expression Payment From" [visible]="false"></dxi-column>
-            <dxi-column dataField="valueExpressionForecast" caption="Value Expression Forecast" ></dxi-column>
-             <dxi-column dataField="calculationSequenceNumber" caption="Calculation Sequence Number"[visible]="false"></dxi-column>
-            <dxi-column dataField="repostNumber" caption="Repost Number"></dxi-column> 
-            <dxi-column dataField="glCodeAllowance" caption="Gl Code Allowance"[visible]="false"></dxi-column>
-            <dxi-column dataField="glCodeDeduction" caption="Gl Code Deduction"[visible]="false"></dxi-column>
-            <dxi-column dataField="defaultCostCenter" caption="Default Cost Center"></dxi-column>
-            <dxi-column dataField="isBaseAllowance" caption="Base Allowance" dataType="boolean"></dxi-column>
-            <dxi-column dataField="isOneTimeAllowance" caption="One Time Allowance" dataType="boolean"></dxi-column>
-            <dxi-column dataField="isGrossSalary" caption="Gross Salary" dataType="boolean" [visible]="false"></dxi-column>
-            <dxi-column dataField="isProrated" caption="Prorated" dataType="boolean" [visible]="false"></dxi-column>
-          </dx-data-grid>
-
-        </div>
-      </div>
+  </div>
  
   

@@ -1,0 +1,324 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">UltraSound (Master)</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-portlet__body">
+          <form [formGroup]="ultraSoundMasterForm">
+            <div class="m-section">
+              <div class="m-section__content">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Document #
+                      </label>
+                      <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="ultraSoundMasterById?.ultraSoundMasterId || ''" >
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Date
+                      </label>
+                      <input type="date" class="form-control m-input" formControlName="UltraSoundMasterDate" [value]="ultraSoundMasterById?.ultraSoundMasterDate |  date : 'yyyy-MM-dd' || ''">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        File No
+                      </label>
+                      <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.mrn  || ''">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Patient
+                      </label>
+                      <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-2">
+                      <div class="m-section__content">
+                          <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                            <div class="m-demo__preview m-demo__preview--btn">
+                              <a href="#" class="btn btn-accent m-btn m-btn--icon m-btn--icon-only">
+                                <i class="fa flaticon-clock"></i>
+                              </a>
+                              <a href="#" class="btn btn-metal m-btn m-btn--icon m-btn--icon-only">
+                                <i class="fa flaticon-calendar-2"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Patient Name 
+                        </label>
+                        <input type="text" class="form-control m-input" disabled="patientDisabledFields"  [value]="pattientById?.display  || ''">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          D.O.B 
+                        </label>
+                        <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.dob |  date : 'yyyy-MM-dd' || ''">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          LMP
+                        </label>
+                        <input type="date" class="form-control m-input" formControlName="LMP" [value]="ultraSoundMasterById?.lmp |  date : 'yyyy-MM-dd' || ''">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Geat Age
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="GeatAge">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              C-Facts
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="CFacts">
+                          </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                ET Date
+                            </label>
+                            <input type="date" class="form-control m-input" formControlName="EtDate" [value]="ultraSoundMasterById?.etDate |  date : 'yyyy-MM-dd' || ''"> 
+                          </div>
+                    </div>
+  
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Consultant 
+                          </label>
+                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
+                          </dx-select-box>
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                           Sonologist
+                          </label>
+                          <dx-select-box [items]="sonologists" displayExpr="name" valueExpr="sonologistId" [searchEnabled]="true" formControlName="SonologistId"> 
+                          </dx-select-box>
+                        </div>
+                      </div>
+                      
+                      <div class="col-sm-8">
+                         
+                      </div>    
+                    </div>
+                <hr>
+                <h3 >                  
+                  UltraSound Detail
+                </h3>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          No of Foetus
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="NoofFoetus">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Foetal Heart Beat
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="FoetalHeartBeat">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Foetal Movement
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="FoetalMovement">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Lie of Foetus
+                        </label>
+                        <input type="text" class="form-control m-input" formControlName="LieOfFoetus">
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Amniotic Fluid
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="AmnioticFluid">                   
+                          </div>
+                      </div>
+                      <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Placnetal Locallisation
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="PlacnetalLocallisation">
+                          </div>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Presentation
+                          </label>
+                          <input type="text" class="form-control m-input"  formControlName="Presentation"> 
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            Placental Grade
+                          </label>
+                          <input type="text" class="form-control m-input"  formControlName="PlacentalGrade">
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            BPD
+                          </label>
+                          <input type="text" class="form-control m-input" formControlName="Bpd">
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                           HC
+                          </label>
+                          <input type="text" class="form-control m-input"  formControlName="Hc"> 
+                        </div>
+                      </div>
+                      <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              AC
+                            </label>
+                            <input type="text" class="form-control m-input"  formControlName="Ac">
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              FL
+                            </label>
+                            <input type="text" class="form-control m-input"  formControlName="Fl">
+                          </div>
+                        </div>
+                    </div>
+                  
+
+               
+                    <div class="row">
+                      <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                  AFI
+                              </label>
+                              <input type="text" class="form-control m-input"  formControlName="Afi">
+                          </div> 
+                        </div>
+                      <div class="col-sm-2">
+                          <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                GS
+                              </label>
+                              <input type="text" class="form-control m-input" formControlName="Gs">
+                            </div> 
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  CRL
+                                 </label>
+                                <input type="text" class="form-control m-input" formControlName="Crl">
+                              </div> 
+                          </div>
+                           
+                          <div class="col-sm-2">
+                              <div class="form-group m-form__group">
+                                  <label for="exampleInputEmail1">
+                                    EBW
+                                   </label>
+                                  <input type="text" class="form-control m-input" formControlName="Ebw">
+                                </div> 
+                            </div>
+                           
+                  </div>
+
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group m-form__group">
+                                  <label for="exampleInputEmail1">
+                                      Comments
+                                  </label>
+                                  <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="Comments"></textarea>
+                              </div> 
+                            </div>
+                          <div class="col-sm-6">
+                               
+                            </div>
+                          
+                          
+                          
+                      </div>
+
+                <div class="row">
+                  <div class="col-sm-2">
+                    <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundmaster/'+id" (click)="updateUltraSoundMaster(ultraSoundMasterForm.value)">
+                      Update
+                    </button>
+                    <button class="btn btn-primary" type="button"  *ngIf="router.url === '/ultrasound/ultrasoundmaster'" (click)="addUltraSoundMaster(ultraSoundMasterForm.value)">
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,27 +1,27 @@
+<div class="row">
 <div class="m-content">
   <div class="row">
     <div class="col-lg-3">
       <div class="m-portlet m-portlet--full-height  ">
         <div class="m-portlet__body">
           <div class="m-card-profile">
-            <div class="m-card-profile__title m--hide">
+            <!-- <div class="m-card-profile__title">
               Your Profile
-            </div>
-            <!-- <div class="m-card-profile__pic">
-              <div class="m-card-profile__pic-wrapper">
+            </div> -->
+            <div class="m-card-profile__pic">
+              <div class="m-card-profile__pic-wrapper" style="margin: 0rem auto;">
                 <img src="../assets/app/media/img/users/user4.jpg" alt="">
               </div>
-            </div> -->
-            <!-- <div class="m-card-profile__details">
-              <span class="m-card-profile__name">
-                Mark Andre
+            </div>
+             <div class="m-card-profile__details">
+              <span class="m-card-profile__name" style="padding-bottom: 15px;">
+                <!-- New store Name -->
               </span>
-              <a href="" class="m-card-profile__email m-link">
-                mark.andre@gmail.com
-              </a>
-            </div> -->
+              <div class="visit-lable">Visit Start: <span>{{storeVisit?.startTime}}</span></div>
+              <div class="visit-lable">Visit End: <span>{{storeVisit?.endTime}}</span></div>
+            </div>
           </div>
-          <div class="m-portlet__body-separator"></div>
+          <div class="m-portlet__body-separator" style="margin: 15px -2.2rem; border-bottom: 3px solid #e37125;"></div>
           <ul class="m-nav nav nav-tabs">
 
             <li class="m-nav__item">
@@ -78,7 +78,7 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" style="padding-left:0px;">
       <!-- Tab panes -->
       <div class="m-portlet">
         <div class="">
@@ -90,6 +90,7 @@
                 <div class="m-portlet__head">
                   <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="flaticon-cart"></i></span>
                       <h3 class="m-portlet__head-text">Order Taking</h3>
                     </div>
                   </div>
@@ -145,6 +146,7 @@
                 <div class="m-portlet__head">
                   <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="flaticon-cart"></i></span>
                       <h3 class="m-portlet__head-text">Inventory Taking</h3>
                     </div>
                   </div>
@@ -177,4 +179,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

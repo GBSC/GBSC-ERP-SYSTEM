@@ -12,6 +12,10 @@ export class PayrollService {
 
     constructor(public ApiService: ApiService) { }
 
+    getSalaryProcess() : Observable <any> {
+        return this.ApiService.get(`${this.baseUrl}/GetMonthlySalaryPosting`);
+    }
+
     async getStopSalaries() {
         return await this.ApiService.get(`${this.baseUrl}/GetStopSalaries`).toPromise();
     }

@@ -1,0 +1,52 @@
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Fund Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <dx-data-grid id="gridContainer" 
+          (onToolbarPreparing)="onToolbarPreparing($event)"
+          [dataSource]="fundSetup"
+           keyExpr="fundSetupId">
+            <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+              <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620"></dxo-popup>
+            </dxo-editing>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter> 
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+            <dxo-paging [pageSize]="8"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+            </dxo-pager>
+ 
+            <dxi-column dataField="payrollYearId" caption="Payroll Year">
+              <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
+            </dxi-column>
+            <dxi-column dataField="pfEmployerContribution" caption="PF Employer Contribution"></dxi-column>
+            <dxi-column dataField="pfEmployeeContribution" caption="PF Employee Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="taxableAmountLimit"></dxi-column>
+            <dxi-column dataField="minServicePeriod" [visible]="false"></dxi-column>
+            <dxi-column dataField="applicableFrom"></dxi-column>
+            <dxi-column dataField="eobiMinimumSalary" caption="EOBI Minimum Salary" [visible]="false"></dxi-column>
+            <dxi-column dataField="eobiEmployerContribution" caption="EOBI Employer Contribution"></dxi-column>
+            <dxi-column dataField="eobiEmployeeContribution" caption="EOBI Employee Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="maximumContribution" caption="EOBI Maximum Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="exemptAge" caption="EOBI Exempt Age"></dxi-column>
+            <dxi-column dataField="sessiMinimumSalary" caption="SESSI Minimum Salary" [visible]="false"></dxi-column>
+            <dxi-column dataField="sessiEmployerContribution" caption="SESSI Employer Contribution"></dxi-column>
+            <dxi-column dataField="sessiEmployeeContribution" caption="SESSI Employee Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiMinimumSalary" caption="PESSI Minimum Salary" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiEmployerContribution" caption="PESSI Employer Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="pessiEmployeeContribution" caption="PESSI Employee Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="iessiMinimumSalary" caption="IESSI Minimum Salary" [visible]="false"></dxi-column>
+            <dxi-column dataField="iessiEmployerContribution" caption="IESSI Employer Contribution" [visible]="false"></dxi-column>
+            <dxi-column dataField="iessiEmployeeContribution" caption="IESSI Employee Contribution" [visible]="false"></dxi-column>
+          </dx-data-grid>
+
+        </div>
+      </div>
+ 

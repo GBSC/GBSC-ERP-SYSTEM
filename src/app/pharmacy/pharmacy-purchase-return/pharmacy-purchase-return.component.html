@@ -27,14 +27,18 @@
           <!--begin::Form-->
           <form class="m-form" [formGroup]="PurchaseReturnForm">
             <div class="m-form m-form--fit m-form--label-align-right">
-              <div class="form-group m-form__group row">
-                <label for="example-text-input" class="col-5 col-form-label">
-                  GRN #
-                </label>
-                <div class="form-group col-3">
-                  <input type="text" class="form-control m-input m-input--solid" #box formControlName="GRNNumber" [value]="SelectedGRN?.grnNumber || ''"
-                    (keyup)="GetGrnDetails(box.value, $event)">
-                </div>
+              <div class="form-group row">
+                  <div class="form-group col-lg-3">
+                      <label for="exampleInputEmail1">
+                          GRN #
+                      </label>
+                      <!-- <input type="date" class="form-control m-input m-input--solid" formControlName="GRNDate" [value]="SelectedGRN?.grnDate | date: 'dd-MMM-yyyy' || ''"
+                        disabled> -->
+                        <div class="form-group">
+                            <input type="text" class="form-control m-input m-input--solid" #box formControlName="GRNNumber" [value]="SelectedGRN?.grnNumber || ''"
+                              (keyup)="GetGrnDetails(box.value, $event)">
+                          </div>
+                        </div>
               </div>
             </div>
             <div class="form-group row">

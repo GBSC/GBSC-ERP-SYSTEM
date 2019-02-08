@@ -30,12 +30,14 @@ import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.co
 import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
 import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
 import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
+import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales-report.component';
+
 
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
     {
-        path: '',
+        path: 'pharmacy',
         component: RootComponent,
         children: [
             { path: '', component: HomeComponent },
@@ -72,6 +74,12 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'supplier', component: SupplierComponent },
                     { path: 'unit', component: UnitComponent },
                     { path: 'currency', component: CurrencyComponent }
+                ]
+            },
+            {
+                path: "report",
+                children: [
+                    { path: 'cashsale', component: CashSalesReportComponent },
                 ]
             }
         ]

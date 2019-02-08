@@ -38,6 +38,7 @@ import { PurchaseInvoiceComponent } from './purchase-invoice/purchase-invoice.co
 import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-invoice-view.component';
 import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
 import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
+import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales-report.component';
 
 @NgModule({
     imports: [
@@ -82,7 +83,8 @@ import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-ret
         PurchaseInvoiceComponent,
         PurchaseInvoiceViewComponent,
         PharmacyPurchaseReturnComponent,
-        PurchaseReturnViewComponent
+        PurchaseReturnViewComponent,
+        CashSalesReportComponent
     ],
     providers: [
         {

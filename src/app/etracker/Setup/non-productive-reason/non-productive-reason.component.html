@@ -1,3 +1,6 @@
+<div class="row">
+
+
 <div class="m-content">
     <div class="row">
      <div class="col-xl-12">
@@ -5,6 +8,7 @@
        <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                <div class="m-portlet__head-title">
+                  <span class="m-portlet__head-icon"><i class="flaticon-information"></i></span>
                  <h3 class="m-portlet__head-text">Visit Reasons</h3>
                </div>
              </div>
@@ -20,6 +24,7 @@
                    <dxo-paging [pageSize]="5"></dxo-paging>
                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
                    <dxi-column dataField="reason" caption="Reason"></dxi-column>
+                   <dxi-column dataField="shopStatusSummary" caption="Shop Status Summary"></dxi-column>
                    <dxi-column dataField="priority" caption="Priority"></dxi-column>  
                  </dx-data-grid>
                </div>
@@ -30,3 +35,4 @@
         </div>
        </div>
      </div>
+    </div>

@@ -90,7 +90,7 @@ export class ShiftComponent implements OnInit {
         console.log(shifts);
         await this.attendancesetupservice.addShift(shifts);
         this.toastr.success("Shift Added");
-        this.router.navigate(['/hrm/attendance/attendancesetup/shifts']);
+        this.router.navigate(['/hrm/attendance/shifts']);
     }
 
 

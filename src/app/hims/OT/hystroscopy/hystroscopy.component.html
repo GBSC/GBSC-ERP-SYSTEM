@@ -1,0 +1,212 @@
+<div class="m-content">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">Hystroscopy</h3>
+              </div>
+            </div>
+          </div>
+          <div class="m-portlet__body">
+            <form [formGroup]="hystroscopyForm">
+              <div class="m-section">
+                <div class="m-section__content">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Document #
+                        </label>
+                        <input type="text" class="form-control m-input" disabled="patientDisabledFields" formControlName="HystroscopyId" >
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Date
+                        </label>
+                        <input type="date" class="form-control m-input" formControlName="HystroscopyDate" [value]="hystroscopyById?.hystroscopyDate |  date : 'yyyy-MM-dd' || ''">
+                      </div>
+                    </div>
+                     
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Patient
+                        </label>
+                        <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
+                        </dx-select-box>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                            File No
+                          </label>
+                          <input type="text" class="form-control m-input" disabled="patientDisabledFields" [value]="pattientById?.mrn || ''">
+                        </div>
+                    </div>
+                  
+                  </div>
+                  <div class="row">
+           
+                      <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Procedure
+                            </label>
+                            <dx-select-box [items]="otProcedure" displayExpr="name" valueExpr="otProcedureId"   [searchEnabled]="true" formControlName="OtProcedureId"> 
+                              </dx-select-box>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Surgeon
+                            </label>
+                            <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId" > 
+                              </dx-select-box>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              LMP Date
+                            </label>
+                            <input type="date" class="form-control m-input" formControlName="LmpDate" [value]="hystroscopyById?.lmpDate |  date : 'yyyy-MM-dd' || ''"> 
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                Anesthetic
+                              </label>
+                              <input type="text" class="form-control m-input" formControlName="Anesthetic" >
+                            </div>
+                          </div>
+                       
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                              Indications
+                            </label>
+                            <input type="text" class="form-control m-input" formControlName="Indications" >
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                               Type
+                              </label>
+                              <select class="form-control m-input" formControlName="Type">
+                                <option value="New">New</option>
+                                <option value="Previous">Previous</option>
+                              </select>
+                            </div>
+                          </div>
+                        <div class="col-sm-3"></div>
+                     
+                  </div>
+               
+                  
+                  <div class="row">  
+                    <div class="col-sm-6">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            Operations Note 1 (Vulva)
+                        </label>
+                        <textarea class="form-control m-input" id="exampleTextarea" rows="3" formControlName="OperationsNote1"></textarea>
+                    </div> 
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Operations Note 2 (Vagina)
+                          </label>
+                          <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote2"></textarea>
+                      </div> 
+                      </div>
+                  </div>
+                       
+                  <div class="row">  
+                      <div class="col-sm-6">
+                        <div class="form-group m-form__group">
+                          <label for="exampleInputEmail1">
+                              Operations Note 3 (Cervix)
+                          </label>
+                          <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote3"></textarea>
+                      </div> 
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Operations Note 4 (Uterus)
+                            </label>
+                            <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote4"></textarea>
+                        </div> 
+                        </div>
+                    </div>
+
+                    <div class="row">  
+                        <div class="col-sm-6">
+                          <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                                Operations Note 5 (Left Adnexa)
+                            </label>
+                            <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote5"></textarea>
+                        </div> 
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group m-form__group">
+                              <label for="exampleInputEmail1">
+                                  Operations Note 6 (Right Adnexa)
+                              </label>
+                              <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="OperationsNote6"></textarea>
+                          </div> 
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-sm-6">
+                              <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                  Findings
+                                </label>
+                                <input type="text" class="form-control m-input"  formControlName="Findings">
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group m-form__group">
+                                    <label for="exampleInputEmail1">
+                                        Comments
+                                    </label>
+                                    <textarea class="form-control m-input" id="exampleTextarea" rows="3"  formControlName="Comments"></textarea>
+                                </div> 
+                            </div>
+                         
+                      </div>
+
+                
+                  <div class="row">
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary" *ngIf="router.url === '/ot/hystroscopy/'+id"    (click)="updatehystroscopy(hystroscopyForm.value)">
+                          Update
+                        </button>
+                      <button class="btn btn-primary"  *ngIf="router.url === '/ot/hystroscopy'" (click)="addhystroscopy(hystroscopyForm.value)">
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

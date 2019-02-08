@@ -19,7 +19,6 @@ export class EmployeeCompanyComponent implements OnInit {
     public groups: any;
     public managementlevel: any;
     public employeestatus: any;
-    public departments: any;
     public employees: any;
     public manager: any;
     public filterdemplyoee: any;
@@ -48,6 +47,9 @@ export class EmployeeCompanyComponent implements OnInit {
             LeavingDate: [''],
             ResignDate: [''],
             Approver: [''],
+            CountryId: [''],
+            CityId: [''],
+            BranchId: [''],
             UserId: [this.id]
 
         });
@@ -57,8 +59,6 @@ export class EmployeeCompanyComponent implements OnInit {
     async ngOnInit() {
 
         this.functions = await this.SetupServiceobj.getAllFunctions();
-
-        this.departments = await this.hrmService.getAllDepartments();
 
         this.designation = await this.SetupServiceobj.getAllDesignations();
 
@@ -75,7 +75,6 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeeService.getManagers().subscribe(res => {
             this.manager = res;
-            console.log(this.manager);
             // this.filterdemplyoee = this.employes.fil
         })
 
@@ -87,7 +86,7 @@ export class EmployeeCompanyComponent implements OnInit {
 
             this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
 
-                this.EmployeeCompany = resp
+                this.EmployeeCompany = resp                
 
                 this.patchValues(resp);
             });

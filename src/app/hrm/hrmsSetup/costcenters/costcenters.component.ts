@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { SetupService } from '../../../core';
+import { SetupService, AuthService } from '../../../core';
 
 @Component({
     selector: 'app-costcenters',
@@ -13,7 +13,7 @@ export class CostCenterComponent implements OnInit {
     public costCenter: any;
     public modelUpdating: any;
 
-    constructor(public httpClient: HttpClient, public dataService: SetupService) { }
+    constructor(public httpClient: HttpClient, public dataService: SetupService, public auth : AuthService) { }
 
     async ngOnInit() {
         this.costCenter = await this.dataService.getAllCostCenter();
@@ -22,7 +22,6 @@ export class CostCenterComponent implements OnInit {
     async addNewCostCenter(cc) {
         await this.dataService.addCostCenter(cc.data);
         this.costCenter = await this.dataService.getAllCostCenter();
-
     }
 
     costcntrUpdating(value) {

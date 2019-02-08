@@ -1,0 +1,64 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Leave Setup
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body" style="padding: 0px !important;">
+          <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
+            <div class="m-demo__preview">
+              <ul class="m-nav nav nav-tabs">
+                <li class="m-nav__item" *ngFor="let tab of tabs;">
+                  <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
+                    <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                    <span class="m-nav__link-text">
+                      {{tab}}
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <!-- Tab panes -->
+      <div class="m-portlet">
+          <div class="tab-content">
+            <div class="tab-pane" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
+                    <app-leaveyearsetup></app-leaveyearsetup>
+                  </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[1]" id="{{selectedTab}}">
+                    <app-leavepurpose></app-leavepurpose>
+                  </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[2]" id="{{selectedTab}}">
+              <app-leavesubtype></app-leavesubtype>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[3]" id="{{selectedTab}}">
+              <app-leavetype></app-leavetype>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[4]" id="{{selectedTab}}">
+              <app-leavedaytype></app-leavedaytype>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[5]" id="{{selectedTab}}">
+              <app-leaveeligibility></app-leaveeligibility>
+            </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[6]" id="{{selectedTab}}">
+                    <app-leavepolicy></app-leavepolicy>
+                  </div>
+            <div class="tab-pane" *ngIf="selectedTab === tabs[7]" id="{{selectedTab}}">
+                    <app-leaveapprover></app-leaveapprover>
+                  </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

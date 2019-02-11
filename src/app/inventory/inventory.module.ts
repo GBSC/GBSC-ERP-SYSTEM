@@ -62,6 +62,7 @@ import { GeneralSkuComponent } from './setup/general-sku/general-sku.component';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
+import { GeneralBrandComponent } from './setup/general-brand/general-brand.component';
 
 @NgModule({
     imports: [
@@ -99,6 +100,7 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         SalesReturnItemComponent,
         AreaComponent,
         BrandComponent,
+        GeneralBrandComponent,
         ComissionComponent,
         CustomerAccountComponent,
         CustomerBankComponent,
@@ -130,7 +132,7 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         IndentProcessComponent,
         OrderSummaryComponent, 
         OrderDetailComponent, 
-        GeneralSkuComponent
+        GeneralSkuComponent, GeneralBrandComponent
     ]
 })
 export class InventoryModule { }

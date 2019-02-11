@@ -100,6 +100,7 @@ import { GeneralBrandComponent } from './setup/general-brand/general-brand.compo
         SalesReturnItemComponent,
         AreaComponent,
         BrandComponent,
+        GeneralBrandComponent,
         ComissionComponent,
         CustomerAccountComponent,
         CustomerBankComponent,

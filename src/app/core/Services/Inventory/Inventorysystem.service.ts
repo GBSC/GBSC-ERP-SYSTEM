@@ -784,6 +784,18 @@ export class InventorysystemService {
         // return this.Brand;
     }
 
+    GetGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralBrands/' + companyId);
+
+    }
+
+    GetNonGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetNonGeneralBrands/' + companyId);
+        // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
+        // //console.log(this.Brand);
+        // return this.Brand;
+    }
+
     AddBrand(Brand: Brand): Observable<Brand> {
         return this.ApiService.post(this.API_URL + 'Setup/AddBrand', Brand);
         // let x = await this.http.post(this.API_URL + 'Setup/AddBrand', Brand).toPromise();

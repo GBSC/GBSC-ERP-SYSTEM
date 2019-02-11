@@ -3,12 +3,11 @@ import { InventorysystemService, AuthService } from '../../../core';
 import { Brand } from '../../../core/Models/Inventory/Setup/Brand';
 
 @Component({
-    selector: 'app-brand',
-    templateUrl: './brand.component.html',
-    styleUrls: ['./brand.component.scss']
+  selector: 'app-general-brand',
+  templateUrl: './general-brand.component.html',
+  styleUrls: ['./general-brand.component.css']
 })
-
-export class BrandComponent implements OnInit {
+export class GeneralBrandComponent implements OnInit {
     public Brands: any;
     public newbrand: Brand;
     public CompanyId: number;
@@ -19,7 +18,7 @@ export class BrandComponent implements OnInit {
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
 
-        this.InventoryService.GetGeneralBrands(this.CompanyId).subscribe((res: Brand) => {
+        this.InventoryService.GetNonGeneralBrands(this.CompanyId).subscribe((res: Brand) => {
             this.Brands = res;
         });
         //console.log(this.Brands);

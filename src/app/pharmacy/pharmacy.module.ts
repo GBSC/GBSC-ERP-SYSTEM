@@ -39,6 +39,11 @@ import { PurchaseInvoiceViewComponent } from './purchase-invoice-view/purchase-i
 import { PharmacyPurchaseReturnComponent } from './pharmacy-purchase-return/pharmacy-purchase-return.component';
 import { PurchaseReturnViewComponent } from './purchase-return-view/purchase-return-view.component';
 import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales-report.component';
+import { CreditSalesComponent } from './Reports/credit-sales/credit-sales.component';
+import { GoodsReceiveNoteComponent } from './Reports/goods-receive-note/goods-receive-note.component';
+import { GrnTabularComponent } from './Reports/grn-tabular/grn-tabular.component';
+import { MonthlyCashSaleReportComponent } from './Reports/monthly-cash-sale-report/monthly-cash-sale-report.component';
+import { SupplierWisePurchaseComponent } from './Reports/supplier-wise-purchase/supplier-wise-purchase.component';
 
 @NgModule({
     imports: [
@@ -84,7 +89,12 @@ import { CashSalesReportComponent } from './Reports/cash-sales-report/cash-sales
         PurchaseInvoiceViewComponent,
         PharmacyPurchaseReturnComponent,
         PurchaseReturnViewComponent,
-        CashSalesReportComponent
+        CashSalesReportComponent,
+        CreditSalesComponent,
+        GoodsReceiveNoteComponent,
+        GrnTabularComponent,
+        MonthlyCashSaleReportComponent,
+        SupplierWisePurchaseComponent
     ],
     providers: [
         {

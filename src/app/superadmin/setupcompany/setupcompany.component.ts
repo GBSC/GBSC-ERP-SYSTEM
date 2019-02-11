@@ -24,8 +24,6 @@ export class SetupcompanyComponent implements OnInit {
 
     public HrmInstalled: boolean;
 
-    public ImsInstalled: boolean;
-
     public PmsInstalled: boolean;
 
     public AccountingSystemInstalled: boolean;
@@ -35,6 +33,8 @@ export class SetupcompanyComponent implements OnInit {
     public InventoryInstalled: boolean;
 
     public eTrackerInstalled: boolean;
+
+    public eTrackerMobileInstalled: boolean;
 
     public features: any;
 
@@ -133,9 +133,6 @@ export class SetupcompanyComponent implements OnInit {
         else if (value == "Human Resource Management") {
             this.HrmInstalled = true;
         }
-        else if (value == "Inventory Management System") {
-            this.ImsInstalled = true;
-        }
         else if (value == "Payroll Management System") {
             this.PmsInstalled = true;
         }
@@ -150,6 +147,9 @@ export class SetupcompanyComponent implements OnInit {
         }
         else if (value == "eTracker") {
             this.eTrackerInstalled = true;
+        }
+        else if (value == "eTrackerMobile") {
+            this.eTrackerMobileInstalled = true;
         }
     }
 

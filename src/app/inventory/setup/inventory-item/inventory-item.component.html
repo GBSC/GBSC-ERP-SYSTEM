@@ -1,64 +1,79 @@
 <div class="m-portlet">
     <div class="m-portlet__head">
-      <div class="m-portlet__head-caption">
-        <div class="m-portlet__head-title">
-          <h3 class="m-portlet__head-text">Product Inventory</h3>
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon"><i class="flaticon-share"></i></span> 
+                <h3 class="m-portlet__head-text">Products</h3>
+            </div>
         </div>
-      </div>
     </div>
-  
-  
-  <div class="m-portlet__body">
-  <div class="row">
-    <div class="col-md-12"> 
-      <dx-data-grid id="gridContainer" [dataSource]="InventoryItems" keyExpr="inventoryItemId" (onRowInserted)="AddInventoryItem($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventoryItem()" (onRowRemoved)="DeleteInventoryItem($event)"> 
-        <dxo-editing  mode="popup"[allowUpdating]="true"[allowDeleting]="false"[allowAdding]="true"[useIcons]="true">	
-          <dxo-popup title="Add Product" [showTitle]="true" [width]="1000" [height]="'auto'" [dragEnabled]="false" [closeOnOutsideClick]="true"></dxo-popup>
-        </dxo-editing>
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-header-filter [visible]="true"></dxo-header-filter>
-        <dxo-search-panel  [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-paging [pageSize]="8"></dxo-paging>
-        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
-        <dxi-column dataField="name" datatType="text" caption="Name"></dxi-column>
-        <dxi-column dataField="itemCode" datatType="text" caption="Code"></dxi-column>
-        <dxi-column dataField="description" datatType="text" caption="Description" [visible]="false"></dxi-column>
-        <dxi-column dataField="unitPrice" datatType="number" caption="Unit Price"></dxi-column>
-        <dxi-column dataField="packTypeInPackageType" datatType="number" caption="PackType In PackageType" [visible]="false"></dxi-column>
-        <!-- <dxi-column dataField="dose" caption="Dose" [visible]="false"></dxi-column> -->
-        <dxi-column dataField="minLevel" datatType="number" caption="Minimum Level" [visible]="false"></dxi-column>
-        <dxi-column dataField="costPrice" datatType="number" caption="Cost Price" [visible]="false"></dxi-column>
-        <dxi-column dataField="retailPrice" datatType="number" caption="Retail Price" [visible]="false"></dxi-column>
-        <dxi-column dataField="purchaseDate" caption="Purchase Date" dataType="date" format="shortDate"></dxi-column>
-        <dxi-column dataField="tradeOfferAmount" datatType="number" caption="Trade Offer Amount" [visible]="false"></dxi-column>
-        <dxi-column dataField="brandId" caption="Brand" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="Brands" valueExpr="brandId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="unitId"caption="Unit" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="packTypeId"caption="Pack Type" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="PackTypes" valueExpr="packTypeId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="packSizeId"caption="Pack Size" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="PackSizes" valueExpr="packSizeId" displayExpr="size"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="packCategoryId"caption="Pack Category" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="PackCategories" valueExpr="packCategoryId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="productTypeId"caption="Product Type" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="ProductTypes" valueExpr="productTypeId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="inventoryItemCategoryId"caption="Product Category" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="InventoryItemCategories" valueExpr="inventoryItemCategoryId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
-        <dxi-column dataField="packageTypeId"caption="Package Type" datatType="text" [visible]="false">
-            <dxo-lookup [dataSource]="PackageTypes" valueExpr="packageTypeId" displayExpr="name"></dxo-lookup>
-        </dxi-column>
 
-        </dx-data-grid> 
-     </div>
-  
-     
-  </div>
-  </div></div>
+
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-md-12">
+                <dx-data-grid id="gridContainer" [dataSource]="InventoryItems" keyExpr="inventoryItemId"
+                    (onRowInserted)="AddInventoryItem($event)" (onRowUpdating)="UpdateModel($event)" (onRowUpdated)="UpdateInventoryItem()"
+                    (onRowRemoved)="DeleteInventoryItem($event)" [columnAutoWidth]="true">
+                    <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"
+                        [useIcons]="true">
+                        <dxo-popup title="Add Product" [showTitle]="true" [width]="1000" [height]="'auto'" [width]="'auto'"
+                            [dragEnabled]="false" [closeOnOutsideClick]="false"></dxo-popup>
+                    </dxo-editing>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                    <dxo-paging [pageSize]="8"></dxo-paging>
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                    <dxi-column dataField="name" datatType="text" caption="Name" [fixed]="true"></dxi-column>
+                    <dxi-column dataField="isCp" dataType="boolean" caption="is Cp" [visible]="false"></dxi-column>
+                    <dxi-column dataField="parentProductId" caption="Parent Product" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="isActive" dataType="boolean" caption="is Active" [visible]="false"></dxi-column>
+                    <dxi-column dataField="itemCode" datatType="text" dataType="number" caption="Code"></dxi-column>
+                    <dxi-column dataField="brandId" caption="Product Brand" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="Brands" valueExpr="brandId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="measurementUnitId" caption="Measurement Unit" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="rateUnitId" caption="Rate Unit" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="salesUnitId" caption="Sales Unit" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="packageUnitId" caption="Package Unit" datatType="text" [visible]="false">
+                        <dxo-lookup [dataSource]="Units" valueExpr="unitId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="muInRu" datatType="number" caption="MU in RU" [visible]="false"></dxi-column>
+                    <dxi-column dataField="muInPu" datatType="number" caption="MU in PU" [visible]="false"></dxi-column>
+                    <dxi-column dataField="muInSu" datatType="number" caption="MU in SU" [visible]="false"></dxi-column>
+                    <dxi-column dataField="packTypeId" caption="Pack Type" datatType="text">
+                        <dxo-lookup [dataSource]="PackTypes" valueExpr="packTypeId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="packSizeId" caption="Pack Size" datatType="text">
+                        <dxo-lookup [dataSource]="PackSizes" valueExpr="packSizeId" displayExpr="size"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="packCategoryId" caption="Pack Category" datatType="text">
+                        <dxo-lookup [dataSource]="PackCategories" valueExpr="packCategoryId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="productTypeId" caption="Product Type" datatType="text">
+                        <dxo-lookup [dataSource]="ProductTypes" valueExpr="productTypeId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="inventoryItemCategoryId" caption="Product Category" datatType="text">
+                        <dxo-lookup [dataSource]="InventoryItemCategories" valueExpr="inventoryItemCategoryId"
+                            displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="packageTypeId" caption="Oil Type" datatType="text">
+                        <dxo-lookup [dataSource]="PackageTypes" valueExpr="packageTypeId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+
+                </dx-data-grid>
+            </div>
+
+
+        </div>
+    </div>
+</div>

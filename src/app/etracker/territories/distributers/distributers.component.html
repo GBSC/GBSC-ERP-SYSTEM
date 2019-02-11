@@ -2,6 +2,7 @@
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
       <div class="m-portlet__head-title">
+          <span class="m-portlet__head-icon"><i class="flaticon-share"></i></span>
         <h3 class="m-portlet__head-text">Distributors</h3>
       </div>
     </div>
@@ -42,13 +43,15 @@
             </div>
           </div>
         </form>
-        <button type="button" class="btn btn-brand m-btn m-btn--icon m-btn--wide" (click)="isEdit=true"><span>
+        <button style="margin-bottom: 10px;" class="btns btn--white" (click)="isEdit=true" ><span>
           <i class="flaticon-plus"></i>
           <span>
             New Distributor
           </span>
         </span></button>
-        <dx-data-grid id="gridContainer" [dataSource]="distributors" keyExpr="distributorId">
+        <dx-data-grid id="gridContainer" [dataSource]="distributors" keyExpr="distributorId" (onRowRemoved)="deleteDistributor($event)">
+            <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" [useIcons]="true">
+              </dxo-editing>
           <dxo-filter-row [visible]="true"></dxo-filter-row>
           <dxo-header-filter [visible]="true"></dxo-header-filter>
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>

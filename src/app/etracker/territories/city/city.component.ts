@@ -37,15 +37,17 @@ export class CityComponent implements OnInit {
     }
 
     updateCity(value) {
-        value.data.cityId = value.key;
-        value.data.companyId = this.companyId;
-        this.inventoryService.updateCity(value.data).subscribe(resp => {
+        value.companyId = this.companyId;
+        let model = { ...value.oldData, ...value.newData };
+        this.inventoryService.updateCity(model).subscribe(resp => {
             console.log(resp);
         });
 
     }
 
     deleteCity(value) {
+
+        this.inventoryService.deleteCity(value.key).subscribe(resp=>console.log('City Deleted'));
 
     }
 

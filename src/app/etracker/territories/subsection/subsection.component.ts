@@ -37,15 +37,16 @@ export class SubsectionComponent implements OnInit {
     }
 
     updateSubsection(value) {
-        value.data.subsectionId = value.key;
-        value.data.companyId = this.companyId;
-        this.inventoryService.UpdateSubsection(value.data).subscribe(resp => {
+        value.companyId = this.companyId;
+        let model = { ...value.oldData, ...value.newData };
+        this.inventoryService.UpdateSubsection(model).subscribe(resp => {
             console.log(resp);
         });
     }
 
     deleteSubsection(value) {
 
+        this.inventoryService.DeleteSubsection(value.key).subscribe(resp=>console.log('Subsection Deleted'));
     }
 
 }

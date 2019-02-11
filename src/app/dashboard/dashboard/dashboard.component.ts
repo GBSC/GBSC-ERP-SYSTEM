@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, DashboardService, eTrackerUserService } from '../../core';
-import { Employee } from '../../core/Models/HRM/employee';
 
 @Component({
     selector: 'app-dashboard',

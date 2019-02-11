@@ -107,6 +107,10 @@ export class DistributersComponent implements OnInit {
 
     }
 
+    deleteDistributor(value){
+        this.inventoryService.deleteDistributor(value.key).subscribe(resp=>console.log('Distributor Deleted'));
+    }
+
     patchValues(distributor) {
         this.distributorForm.patchValue({
             'Name': distributor.name,

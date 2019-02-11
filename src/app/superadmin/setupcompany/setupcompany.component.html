@@ -62,34 +62,64 @@
         <!--begin::Form-->
         <div class="m-portlet__body">
           <form class="m-form" [formGroup]="companyForm">
-            <div class="form-group m-form__group row">
-              <label for="example-search-input" class="col-2 col-form-label">
-                Company Name
-              </label>
-              <div class="col-3">
-                <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
-              </div>
-              <label for="example-search-input" class="col-2 col-form-label">
-                No of Employees
-              </label>
-              <div class="col-2">
-                <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
-              </div>
-              <div class="col-3">
-                <button type="submit" *ngIf="!companyId" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
-                  Submit
-                </button>
-                <div *ngIf="companyId" class="m-demo-icon">
-                  <div class="m-demo-icon__preview">
-                    <i class="la la-check-circle-o"></i>
-                  </div>
-                  <div class="m-demo-icon__class">
-                    Company Created
-                  </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="exampleInputEmail1">
+                        Company Logo
+                      </label>
+                  <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview">
+                        <div id="imagePreview" style="background-image: url(./assets/demo/demo7/media/img/logo/logo.png);">
+                        </div>
+                    </div>
                 </div>
-
-              </div>
+                  </div>
+                <div class="col-sm-4">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                          Company Name
+                      </label>
+                      <input class="form-control m-input" type="text" [value]="company?.name" formControlName="name">
+                    </div>
+                    <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            Company Address
+                        </label>
+                        <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
+                      </div>
+                  </div>
+                  <div class="col-sm-3">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                            No of Employees
+                        </label>
+                        <input class="form-control m-input" type="text" [value]="company?.numberOfEmployees" formControlName="numberOfEmployees">
+                      </div>
+                    </div>
+                      <div class="col-2" style="padding-top: 27px;">
+                          <button type="submit" *ngIf="!companyId" class="btn btn-brand" (click)="onAddCompany(companyForm.value)">
+                            Submit
+                          </button>
+                          <div *ngIf="companyId" class="m-demo-icon">
+                            <div class="m-demo-icon__preview">
+                              <i class="la la-check-circle-o"></i>
+                            </div>
+                            <div class="m-demo-icon__class">
+                              Company Created
+                            </div>
+                          </div>
+          
+                        </div>
             </div>
+
+
+
+              
+             
           </form>
           <hr>
           <div class="row">
@@ -133,27 +163,6 @@
                     </span>
                   </button>
                   <button *ngIf="!HimsInstalled" (click)="onAddModule('Hospital Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
-                    <span>
-                      <i class="la la-archive"></i>
-                      <span>Install</span>
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div class="m-form__group form-group row">
-                <label class="col-4 col-form-label">
-                  Inventory Managment System
-                </label>
-                <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="ImsInstalled">
-                    <span>
-                      <i class="la 	la-check"></i>
-                      <span>
-                        Installed
-                      </span>
-                    </span>
-                  </button>
-                  <button *ngIf="!ImsInstalled" (click)="onAddModule('Inventory Management System')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -229,7 +238,7 @@
                   Inventory
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="LisInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="InventoryInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -259,6 +268,27 @@
                     </span>
                   </button>
                   <button *ngIf="!eTrackerInstalled" (click)="onAddModule('eTracker')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    <span>
+                      <i class="la la-archive"></i>
+                      <span>Install</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="m-form__group form-group row">
+                <label class="col-4 col-form-label">
+                  e-Tracker Mobile
+                </label>
+                <div class="col-1">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="eTrackerMobileInstalled">
+                    <span>
+                      <i class="la 	la-check"></i>
+                      <span>
+                        Installed
+                      </span>
+                    </span>
+                  </button>
+                  <button *ngIf="!eTrackerMobileInstalled" (click)="onAddModule('eTrackerMobile')" class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>

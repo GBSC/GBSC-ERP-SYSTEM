@@ -34,7 +34,7 @@ export class PurhcaseorderViewComponent implements OnInit {
         this.date = this.formatDate(new Date());
         this.PharmacyService.GetPurchaseOrdersByMonth(this.formatDate(new Date())).subscribe((res: any) => {
             this.PurchaseOrder = res;
-            // console.log(this.PurchaseOrder);
+              console.log(this.PurchaseOrder);
             // console.log(this.formatDate(new Date()));
         });
 

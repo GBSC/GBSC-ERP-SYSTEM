@@ -51,6 +51,8 @@ export class IssuanceComponent implements OnInit {
 
     public PackSizes : any;
     public SelectedPackSize : number = 1;
+    public packTypes : any;
+    public packType : any;
 
     constructor(public PharmacyService: PharmacyService, public HRService : HrmsService, public HimsService : PatientService, public Auth : AuthService, public FormBuilder: FormBuilder, public Toast: ToastrService) {
 
@@ -90,6 +92,8 @@ export class IssuanceComponent implements OnInit {
 
 
     ngOnInit() {
+
+
         this.PharmacyService.GetInventoryItems().subscribe((result: any) => { this.InventoryItems = result; this.FilteredItems = this.InventoryItems; });
         
         // this.PharmacyService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
@@ -126,6 +130,12 @@ export class IssuanceComponent implements OnInit {
         this.PharmacyService.GetPackSizes().subscribe((res : any) => {
             this.PackSizes = res;
         });
+
+
+        this.PharmacyService.GetPackTypes().subscribe(res=>{
+            this.packTypes = res;
+            console.log(this.packTypes);
+        });
     }
 
     getcellvalueForCustomer(value) {
@@ -134,8 +144,14 @@ export class IssuanceComponent implements OnInit {
         // console.log(this.customerdata);
     }
 
+
+
     getcellvalue(value) {
         this.data = this.InventoryItems.find(x => x.inventoryItemId == value);
+        console.log(this.data);
+
+         this.packType = this.packTypes.find(x=> x.packTypeId == this.data.packTypeId)
+        console.log(this.packType);
         let a : any = this.PackSizes.find(c => c.packSizeId == this.data.packSizeId);
         this.SelectedPackSize = a.size;
     }
@@ -180,7 +196,7 @@ export class IssuanceComponent implements OnInit {
 
     onsubmitInventeryDetail(value) {
         let data = value;
-
+        console.log(data);
         if (!this.data.packType) {
             this.InventoryItemForm.value.PackType = '';
             this.InventoryItemForm.value.PackTypeId = null;

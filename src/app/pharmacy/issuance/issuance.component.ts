@@ -94,7 +94,9 @@ export class IssuanceComponent implements OnInit {
     ngOnInit() {
 
 
-        this.PharmacyService.GetInventoryItems().subscribe((result: any) => { this.InventoryItems = result; this.FilteredItems = this.InventoryItems; });
+        this.PharmacyService.GetInventoryItems().subscribe((result: any) => { 
+            this.InventoryItems = result; this.FilteredItems = this.InventoryItems;
+         });
         
         // this.PharmacyService.GetInventoryItemsByCompany(this.Auth.getUserCompanyId()).subscribe((res : any) => {
         //     this.AllItems = res;

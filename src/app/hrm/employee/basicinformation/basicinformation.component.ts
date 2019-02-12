@@ -18,6 +18,7 @@ export class BasicinformationComponent implements OnInit {
     public city: any;
     public Employee: any;
     public groups: any;
+    public departments: any;
 
     @Input('employeeId') id: number;
 
@@ -47,6 +48,7 @@ export class BasicinformationComponent implements OnInit {
             CityId: [''],
             ReligionId: [''],
             GroupId: [''],
+            DepartmentId: [''],
             Address: [''],
             PermanentAddress: [''],
             FullName: ['']
@@ -66,6 +68,8 @@ export class BasicinformationComponent implements OnInit {
     async ngOnInit() {
 
         this.religion = await this.SetupServiceobj.getAllReligions();
+        
+        this.departments = await this.hrmService.getAllDepartments();
 
         this.language = await this.SetupServiceobj.getAllLanguages();
 
@@ -118,6 +122,7 @@ export class BasicinformationComponent implements OnInit {
             GroupId: employee.groupId,
             CityId: employee.cityId,
             ReligionId: employee.religionId,
+            DepartmentId: employee.departmentId,
             Address: employee.address,
             PermanentAddress: employee.permanentAddress
         });

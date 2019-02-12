@@ -1,5 +1,6 @@
 export interface ProductType {
     productTypeId: number,
     name: string,
-    class: string
+    class: string,
+    productTypeCode : string
 }

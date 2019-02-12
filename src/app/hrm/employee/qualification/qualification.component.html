@@ -1,12 +1,7 @@
- 
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">Education Detail</h3>
-            </div>
-          </div>
-        </div>
+<div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
+
+              <h4>Education Detail</h4>
+            
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
@@ -26,16 +21,16 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="name"></dxi-column> 
-                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="grade"></dxi-column>
-                <dxi-column dataField="courses"></dxi-column>
-                <dxi-column dataField="description"></dxi-column>
+                <dxi-column dataField="name" caption="Institute"></dxi-column> 
                 <dxi-column dataField="degreeId" caption="Degree">
                     <dxo-lookup [dataSource]="degrees" displayExpr="name" valueExpr="degreeId">
                     </dxo-lookup> 
               </dxi-column> 
+              <dxi-column dataField="grade"></dxi-column>
+                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
+                <dxi-column dataField="courses" caption="Faculty"></dxi-column>
+                <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>
           </div>

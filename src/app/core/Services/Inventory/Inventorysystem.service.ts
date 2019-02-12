@@ -788,6 +788,18 @@ export class InventorysystemService {
         // return this.Brand;
     }
 
+    GetGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetGeneralBrands/' + companyId);
+
+    }
+
+    GetNonGeneralBrands(companyId: number): Observable<Brand> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetNonGeneralBrands/' + companyId);
+        // this.Brand = await this.http.get<Brand>(this.API_URL + 'Setup/GetBrands').toPromise();
+        // //console.log(this.Brand);
+        // return this.Brand;
+    }
+
     AddBrand(Brand: Brand): Observable<Brand> {
         return this.ApiService.post(this.API_URL + 'Setup/AddBrand', Brand);
         // let x = await this.http.post(this.API_URL + 'Setup/AddBrand', Brand).toPromise();
@@ -1101,6 +1113,10 @@ export class InventorysystemService {
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateDistributor', Distributor).toPromise();
         // console.log(y);
         // return y;
+    }
+
+    deleteDistributor(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Setup/DeleteDistributor/' + id);
     }
 
     DeleteDistributor(id): Observable<Distributor> {
@@ -1555,7 +1571,6 @@ export class InventorysystemService {
     deleteCity(id): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteCity/' + id);
     }
-
 
     //Section
     GetSections(): Observable<any> {

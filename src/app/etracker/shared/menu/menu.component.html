@@ -6,7 +6,7 @@
 	<!-- BEGIN: Brand -->
 	<div class="m-brand  m-brand--skin-light">
 		<a routerLink="/index" class="m-brand__logo">
-			<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png" />
+			<img alt="" src="./assets/images/logo.png" />
 		</a>
 	</div>
 	<!-- END: Brand -->
@@ -53,6 +53,17 @@
 					<i class="m-menu__link-icon flaticon-map"></i>
 					<span class="m-menu__link-text">
 						Territory
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+			</li>
+			<li *ngIf="accessibleFeatures.includes('eTracker - Visit Reason')" class="m-menu__item  m-menu__item--submenu"
+			 aria-haspopup="true" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
+			 data-menu-submenu-toggle="click" data-redirect="true">
+				<a routerLink="/etracker/reasons" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-information"></i>
+					<span class="m-menu__link-text">
+						Visit Reason
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>

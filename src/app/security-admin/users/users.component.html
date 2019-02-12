@@ -1,65 +1,67 @@
-
-
 <div class="m-content">
-    <div class="row">
-        <div class="col-md-12">
-<div class="m-portlet">
-  <div class="m-portlet__head">
-    <div class="m-portlet__head-caption">
-      <div class="m-portlet__head-title">
-        <h3 class="m-portlet__head-text">Users</h3>
-      </div>
-    </div>
-    <div class="m-portlet__head-tools">
-        <ul class="m-portlet__nav">
-            <li class="m-portlet__nav-item">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Users</h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+              <li class="m-portlet__nav-item">
                 <a class="m-portlet__nav-link m-portlet__nav-link--icon">
-                    <span class="m--font-bolder">
-                       Add New User: 
-                      </span>
+                  <span class="m--font-bolder" style="color:white;">
+                    Add New User:
+                  </span>
                 </a>
               </li>
-          <li class="m-portlet__nav-item">
-            <a [routerLink]="['/security/user-registration']" class="btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="Add New Role" data-original-title="Add New Role">
-              <i class="fa fa-user-plus"></i>
-            </a>
-          </li>
+              <li class="m-portlet__nav-item">
+                <a [routerLink]="['/security/user-registration']" class="btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                  title="Add New Role" data-original-title="Add New Role">
+                  <i class="fa fa-user-plus"></i>
+                </a>
+              </li>
 
-        </ul>
-      </div>
-  </div>
-  <div class="m-portlet__body">
-    <div class="m-section">
-      <div class="m-section__content">
-        <dx-data-grid id="gridContainer" [dataSource]="users" keyExpr="userId">
-          <dxo-filter-row [visible]="true"></dxo-filter-row>
-          <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-          <dxo-paging [pageSize]="8"></dxo-paging>
-          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-          </dxo-pager>
-          <dxi-column dataField="firstName"></dxi-column>
-          <dxi-column dataField="lastName"></dxi-column>
-          <dxi-column dataField="phone"></dxi-column>
-          <dxi-column dataField="email"></dxi-column>
-          <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="110" ></dxi-column>
-          <div *dxTemplate="let data of 'cellTemplate'">
-            <a *ngIf="!data.data.hasAccount" title="Create Account" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-              data-toggle="modal" data-target="#m_modal_4" (click)="setSelectedUserId(data.value)">
-                <i class="fa fa-user-plus"></i>
-            </a>
-            <a href="" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" title="View" [routerLink]="['/security/user-registration', data.value]">
-                  <i class="fa fa-eye"></i>
-            </a>
+            </ul>
           </div>
-        </dx-data-grid>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer" [dataSource]="users" keyExpr="userId" (onRowRemoved)="DeleteUser($event)">
+                <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="8"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                </dxo-pager>
+                <dxi-column dataField="firstName"></dxi-column>
+                <dxi-column dataField="lastName"></dxi-column>
+                <dxi-column dataField="phone"></dxi-column>
+                <dxi-column dataField="email"></dxi-column>
+                <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="110"></dxi-column>
+                <div *dxTemplate="let data of 'cellTemplate'">
+                  <a *ngIf="!data.data.hasAccount" title="Create Account" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                    data-toggle="modal" data-target="#m_modal_4" (click)="setSelectedUserId(data.value)">
+                    <i class="fa fa-user-plus"></i>
+                  </a>
+                  <a href="" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                    title="View" [routerLink]="['/security/user-registration', data.value]">
+                    <i class="fa fa-eye"></i>
+                  </a>
+                </div>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </div>
 
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -77,45 +79,44 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="registrationForm">
-            <div class="row">
-              <div class="col-sm-6">
-                  <div class="form-group m-form__group">
-                      <label for="email">Email address</label>
-                      <input type="email" class="form-control" id="email" formControlName="Email">
-                    </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group m-form__group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" formControlName="Email">
               </div>
-              <div class="col-sm-6">
-                  <div class="form-group m-form__group">
-                      <label for="username">Login Id</label>
-                      <input type="text" class="form-control" id="username" formControlName="Username">
-                    </div>
-                </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                        <label for="password">Password</label>
-                        <input type="text" class="form-control" id="password" formControlName="Password">
-                      </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group m-form__group">
-                        <label for="confirmpassword">Confirm Password</label>
-                        <input type="text" class="form-control" id="confirmpassword">
-                      </div>
-                  </div>
+            <div class="col-sm-6">
+              <div class="form-group m-form__group">
+                <label for="username">Login Id</label>
+                <input type="text" class="form-control" id="username" formControlName="Username">
               </div>
-        <div class="modal-footer">
-          <button  type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-brand"
-          data-dismiss="modal">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group m-form__group">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" formControlName="Password">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group m-form__group">
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="text" class="form-control" id="confirmpassword">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-brand"
+              data-dismiss="modal">
               Submit
-          </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            close
-          </button>
-        </div></form>
+            </button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              close
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
-  

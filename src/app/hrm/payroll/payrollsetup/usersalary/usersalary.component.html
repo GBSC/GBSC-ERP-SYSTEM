@@ -30,10 +30,6 @@
                 <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
                   <dxo-lookup [dataSource]="incometaxRule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
                 </dxi-column>
-  
-                <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
-                </dxi-column>
 
                 <dxi-column dataField="userId" caption="Employee">
                   <dxo-lookup [dataSource]="users" displayExpr="firstName" valueExpr="userId"></dxo-lookup>

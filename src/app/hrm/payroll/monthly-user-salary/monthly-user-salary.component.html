@@ -7,207 +7,205 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-               Monthly User Salary
+                Monthly User Salary
               </h3>
             </div>
           </div>
         </div>
         <div class="m-portlet__body">
 
-          <form [formGroup]="MonthlyUserSalaryForm"> 
+          <form class="signup-form" [formGroup]="MonthlyUserSalaryForm">
             <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>
-                    Month Start Date:
-                </label> 
+              <div class="col-lg-4">
+                <label>Employee:</label>
+                <select #s class="form-control m-input" formControlName="UserId">
+                  <option value="" disabled selected>-- Select Employee --</option>
+                  <option *ngFor="let user of employees" [value]="user.userId">{{user.fullName}}</option>
+                </select>
+              </div>
+
+              <div class="col-lg-3">
+                <label>Month Start Date:</label>
                 <dx-date-box formControlName="MonthStartDate" type="date" format="shortDate" width="100%"></dx-date-box>
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                      Month End Date:
-                  </label> 
-                  <dx-date-box formControlName="MonthEndDate" type="date" format="shortDate" width="100%"></dx-date-box>
               </div>
-            </div>
+              <div class="col-lg-3">
+                <label class=""> Month End Date: </label>
+                <dx-date-box formControlName="MonthEndDate" type="date" format="shortDate" width="100%"></dx-date-box>
+              </div>
+              <div class="col-md-2">
+                <label></label>
+                <button type="button" (click)="getattendancerequest(MonthlyUserSalaryForm.value)" class="btn btn-primary button_get">
+                  Get  
+                </button>
+              </div>
+              
+            </div> 
             <div class="form-group m-form__group row">
-              <div class="col-lg-6">
+              <div class="col-lg-3">
                 <label>
-                    Total Working Days In Month:
-                </label> 
+                  Total Working Days In Month:
+                </label>
                 <input type="text" class="form-control m-input" formControlName="TotalWorkingDaysInMonth" placeholder="0">
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                      Present Days:
-                  </label> 
-                  <input type="text" class="form-control m-input" formControlName="PresentDays" placeholder="0">
               </div>
-            </div>
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
+              <div class="col-lg-3">
+                <label class="">
+                  Present Days:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="PresentDays" placeholder="0">
+              </div>
+              <div class="col-lg-3">
                 <label>
-                    Leave Days:
-                </label> 
+                  Leave Days:
+                </label>
                 <input type="text" class="form-control m-input" formControlName="LeaveDays" placeholder="0">
-                </div>
-                <div class="col-lg-6">
-                  <label class="">
-                      Absent Days:
-                  </label> 
-                  <input type="text" class="form-control m-input" formControlName="AbsentDays" placeholder="0">
+              </div>
+              <div class="col-lg-3">
+                <label class="">
+                  Absent Days:
+                </label>
+                <input type="text" class="form-control m-input" formControlName="AbsentDays" placeholder="0">
               </div>
             </div>
-            
 
             <div class="form-group m-form__group row">
-              <div class="col-lg-12">
+              <div class="col-lg-3">
                 <label>
-                    OverTime Hours:
-                </label> 
+                  OverTime Hours:
+                </label>
                 <input type="number" class="form-control m-input" formControlName="OvertimeHours" placeholder="0">
-                </div>
+              </div>
             </div>
 
+            <!-- <div class="row">
+                <div class="col-lg-4">
+                  <div class="input-group m-form__group">
+                  <label>
+                      Stop From:
+                    </label>
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                        <input type="checkbox" (change)="check()">
+                        <span></span>
+                      </label>
+                    </span>
+                  </div>
+                  <dx-date-box formControlName="StopFrom" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                </div> 
+                </div>
+                <div class="col-lg-4">
+                    <label class="">
+                        Stop Till:
+                      </label>
+                      <dx-date-box formControlName="StopTill" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                </div>
+              </div> -->
+
+              <div class="row">
+                <div class="col-md-4">
             
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
+                  <div class="form-group m-form__group">
+                    <label>
+                      Stop From
+                    </label>
+                    <div class="input-group m-form__group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
+                            <input type="checkbox" (change)="check()">
+                            <span></span>
+                          </label>
+                        </span>
+                      </div>
+                      <dx-date-box formControlName="StopFrom" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                    </div>
+                  </div>
+            
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group m-form__group">
+                    <label for="username"> Stop Till</label>
+                    <dx-date-box formControlName="StopTill" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                  </div>
+                </div> 
+              </div>
+
+            <!-- <div class="form-group m-form__group row">
+             
+              <div class="col-lg-4">
                 <label>
                   Stop From:
-                    </label>
-                    <dx-date-box formControlName="StopFrom" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                </label>
+                <dx-date-box formControlName="StopFrom" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+              </div>
+              <div class="col-lg-4">
+                <label class="">
+                  Stop Till:
+                </label>
+                <dx-date-box formControlName="StopTill" [disabled]="isDisabled" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+              </div>
+            </div> -->
+
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="m-portlet">
+                  <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">User Roster Attendance</h3>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      Stop Till:
-                    </label>
-                    <dx-date-box formControlName="StopTill" width="100%" type="date" displayFormat="dd/MM/yyyy"></dx-date-box>
+                  <div class="m-portlet__body">
+                    <div class="m-section">
+                      <div class="m-section__content">
+                        <dx-data-grid id="gridContainer" [dataSource]="employeeData" (onRowInserted)="RosterAttendance($event)" (onRowUpdated)="updateRosterAttendance($event)">
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                          </dxo-editing>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+                          <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                          <dxo-paging [pageSize]="6"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager> 
+                          <dxi-column dataField="attendanceDate" dataType="date" format="shortDate" caption="Attendance Date"></dxi-column>
+                          <dxi-column dataField="checkInTime" dataType="datetime" format="shortTime" caption="Chekin Time"></dxi-column>
+                          <dxi-column dataField="checkOutTime" dataType="datetime" format="shortTime" caption="CheckOut Time"></dxi-column>
+                        </dx-data-grid>
+
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div class="form-group m-form__group row">
-                  <div class="col-lg-6">
-                    <label>
-                      Stop Salary:
-                    </label>
-                    <select class="form-control m-input" formControlName="StopSalaryId">
-                      <option value="" disabled selected>-- Select Stop Salary --</option>
-                      <option *ngFor ="let stopSalary of stopSalary" [value]="stopSalary.stopSalaryId" >{{stopSalary.action}}</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-6">
-                    <label class="">
-                      User Salary:
-                    </label>
-                    <select class="form-control m-input" formControlName="UserSalaryId" id="">
-                          <option value="" disabled selected>-- Select User Salary --</option>
-                          <option *ngFor ="let userSalary of userSalary" [value]="userSalary.userSalaryId" >{{userSalary.salary}}</option>
-                        </select>
-                    </div>
-                  </div>
-                  
-                  <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
-                      <label>
-                        Pf Payment:
-                      </label>
-                      <select class="form-control m-input" formControlName="PfPaymentId" id="">
-                        <option value="" disabled selected>-- Select Pf Payment --</option>
-                        <option *ngFor ="let pfpayment of pfPayment" [value]="pfpayment.pfPaymentId" >{{pfpayment.lastestTotalPfAmount}}</option>
-                      </select>
-                    </div>
-                    <div class="col-lg-6">
-                      <label class="">
-                        Payslip:
-                      </label>
-                      <select class="form-control m-input" formControlName="PaySlipId" id="">
-                        <option value="" disabled selected>-- Select Gross Amount --</option>
-                        <option *ngFor ="let Payslip of paySlip" [value]="Payslip.paySlipid" >{{Payslip.grossAmount}}</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group m-form__group row">
-      
-                    <div class="col-lg-12">
-                      <label class="">
-                        Pay Roll:
-                      </label>
-                      <select class="form-control m-input" formControlName="PayrollId" id="">
-                        <option value="" disabled selected>-- Select Payroll --</option>
-                        <option *ngFor ="let payroll of payroll" [value]="payroll.payrollId" >{{payroll.monthlySalary}}</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                
+              </div>
+            </div>
+            <div class="m--space-50"></div>
+            <div class="m-separator m-separator"></div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
-                    <div class="col-xl-12">
-                      <div class="m-portlet">
-                        <div class="m-portlet__head">
-                          <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                              <h3 class="m-portlet__head-text">User Roster Attendance</h3>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="m-portlet__body">
-                          <div class="m-section">
-                            <div class="m-section__content">
-                              <dx-data-grid id="gridContainer"
-                              [dataSource]="rosterattendance"
-                               (onRowInserted)="RosterAttendance($event)" 
-                               (onRowUpdated)="updateRosterAttendance($event)" >
-                                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                </dxo-editing>
-                                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                
-                                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                                <dxo-paging [pageSize]="6"></dxo-paging>
-                                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                                </dxo-pager>  
-                                <dxi-column dataField="userId" caption="Employee">
-                                  <dxo-lookup [dataSource]="employees" displayExpr="firstName" valueExpr="userId">
-                                  </dxo-lookup> 
-                                </dxi-column>
-                                <dxi-column dataField="attendanceDate" dataType="date" format="shortDate" caption="Attendance Date"></dxi-column>
-                                <dxi-column dataField="isPresent" dataType="boolean" caption="Present"></dxi-column>
-                                <dxi-column dataField="checkInTime" dataType="datetime" format="shortTime" caption="Chekin Time"></dxi-column>
-                                <dxi-column dataField="checkOutTime" dataType="datetime" format="shortTime" caption="CheckOut Time"></dxi-column>
-                              </dx-data-grid>
-                            
-                          </div>
-                        </div>
-                      </div>
+                  <div class="col-lg-4"></div>
+                  <div class="col-lg-4">
+                    <div *ngIf="isUpdate(); else create">
+                      <button class="btn btn-primary" (click)="update(MonthlyUserSalaryForm.value)">
+                        Update
+                      </button>
                     </div>
+                    <ng-template #create>
+                      <button type="submit" class="btn btn-Success" (click)="addMonthlySalary(MonthlyUserSalaryForm.value)">
+                        Submit
+                      </button>
+                    </ng-template>
                   </div>
+                  <div class="col-lg-4"></div>
                 </div>
-                  <div class="m--space-50"></div> 
-                  <div class="m-separator m-separator"></div>
-      
-                  <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                    <div class="m-form__actions m-form__actions--solid">
-                      <div class="row">
-                        <div class="col-lg-4"></div>
-                        <div class="col-lg-4">
-                            <div *ngIf="isUpdate(); else create">
-                                <button class="btn btn-primary" (click)="update(MonthlyUserSalaryForm.value)">
-                                    Update
-                                  </button>        
-                            </div> 
-                            <ng-template #create>
-                          <button type="submit" class="btn btn-Success" (click)="addMonthlySalary(MonthlyUserSalaryForm.value)">
-                            Submit
-                          </button> 
-                          </ng-template>
-                        </div>
-                        <div class="col-lg-4"></div>
-                      </div>
-                    </div>
-                  </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
     </div>
-  </div> 
   </div>
-  
+</div>

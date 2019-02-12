@@ -1,4 +1,5 @@
 export interface InventoryItemCategory {
     inventoryItemCategoryId: number,
-    name: string
+    name: string,
+    inventoryItemCategoryCode : string
 }

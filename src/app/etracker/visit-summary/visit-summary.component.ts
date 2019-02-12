@@ -18,6 +18,7 @@ export class VisitSummaryComponent implements OnInit {
     public Storevisitdetails: any = [];
     public StoreVisitInventories: any = [];
     public StoreNoOrderReason: any = {};
+    public storeVisit : any;
 
     constructor(public authService: AuthService, public storeService: StoreService, public route: ActivatedRoute) {
         this.companyId = this.authService.getUserCompanyId();
@@ -31,12 +32,15 @@ export class VisitSummaryComponent implements OnInit {
 
             console.log(this.companyId);
 
+            this.storeService.getStoreVisitById(this.storeId).subscribe(res=>{
+                this.storeVisit = res;
+                console.log(this.storeVisit);
+            })
+
             this.storeService.getStore(this.storeId, this.companyId).subscribe(s => {
                 this.store = s;
                 console.log(this.store)
             });
-
-
 
             this.storeService.getStoreVisits(this.storeId).subscribe(s => {
                 this.storeVisits = s;

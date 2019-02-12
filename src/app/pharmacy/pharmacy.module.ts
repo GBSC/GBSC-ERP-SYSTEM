@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { routing } from './pharmacy.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DxButtonModule, DevExtremeModule, DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { GoodsreceiptComponent } from './goodsreceipt/goodsreceipt.component';
 import { HomeComponent } from './home/home.component';
 import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
@@ -44,6 +45,9 @@ import { GoodsReceiveNoteComponent } from './Reports/goods-receive-note/goods-re
 import { GrnTabularComponent } from './Reports/grn-tabular/grn-tabular.component';
 import { MonthlyCashSaleReportComponent } from './Reports/monthly-cash-sale-report/monthly-cash-sale-report.component';
 import { SupplierWisePurchaseComponent } from './Reports/supplier-wise-purchase/supplier-wise-purchase.component';
+import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
+import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
+import { DxPopupModule } from 'devextreme-angular/ui/popup';
 
 @NgModule({
     imports: [
@@ -52,8 +56,10 @@ import { SupplierWisePurchaseComponent } from './Reports/supplier-wise-purchase/
         ReactiveFormsModule,
         routing,
         DxButtonModule,
-        DevExtremeModule,
         DxDataGridModule,
+        DxSelectBoxModule,
+        DxDateBoxModule,
+        DxPopupModule
     ],
     declarations: [
         HomeComponent,

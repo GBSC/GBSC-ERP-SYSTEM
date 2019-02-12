@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FinanceSetupService } from '../../../core/Services/Finance/financeSetup.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../core';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class VouchertypeComponent implements OnInit {
     public VoucherTypeForm: any;
     public updateVoucherType: any;
 
-    constructor(public toastr: ToastrService, public fb: FormBuilder, public financeService: FinanceSetupService) { }
+    constructor(public toastr: ToastrService, public Auth: AuthService, public fb: FormBuilder, public financeService: FinanceSetupService) { }
 
     async ngOnInit() {
 
@@ -24,29 +25,36 @@ export class VouchertypeComponent implements OnInit {
             Name: ['']
         });
 
-        this.voucherType = await this.financeService.getVoucherTypes();
+        this.financeService.GetVoucherTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+            this.voucherType =  res;
+        });
     }
 
-    async addVouchertype() {
-
-        await this.financeService.addVoucherType(this.VoucherTypeForm.value);
-        this.toastr.success("New Voucher Type Saved");
-        this.voucherType = await this.financeService.getVoucherTypes();
-        this.VoucherTypeForm.reset();
+    addVouchertype() {
+        this.VoucherTypeForm.value.CompanyId = this.Auth.getUserCompanyId();
+        this.financeService.AddVoucherType(this.VoucherTypeForm.value).subscribe((res : any) => {
+            this.financeService.GetVoucherTypesByCompany(this.Auth.getUserCompanyId()).subscribe((res : any[]) => {
+                this.voucherType =  res;
+            });
+            this.toastr.success("New Voucher Type Saved");
+            this.VoucherTypeForm.reset();
+        });
     }
 
-    async updatingVouchertype(value) {
+    updatingVouchertype(value) {
 
         this.updateVoucherType = { ...value.oldData, ...value.newData };
     }
-    async updateVouchertype() {
-
-        await this.financeService.updateVoucherType(this.updateVoucherType);
+    updateVouchertype() {
+        this.financeService.UpdateVoucherType(this.updateVoucherType).subscribe((res : any) => {
+            this.toastr.success("Updated");
+        });
     }
 
-    async deleteVouchertype(value) {
-
-        await this.financeService.DeleteVoucherType(value.key);
+    deleteVouchertype(value) {
+        this.financeService.deleteVoucherType(value.key).subscribe((res : any) => {
+            this.toastr.success("Deleted");
+        });
     }
 
 }

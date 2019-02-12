@@ -21,7 +21,6 @@
                   </label>
                   <div class="col-lg-8">
                     <select #lb class="form-control m-input" (change)="getLeaveBalance(lb.value)" formControlName="UserId">
-                      <!-- <option value="" disabled selected>-- Select Employee --</option> -->
                       <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.fullName}}</option>
                     </select>
                   </div>
@@ -128,10 +127,7 @@
                       <ng-template #create>
                         <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
                           Submit
-                        </button>
-                        <button type="reset" class="btn btn-secondary">
-                          Reset
-                        </button>
+                        </button> 
                       </ng-template>
                     </div>
                     <div class="col-lg-3"></div>

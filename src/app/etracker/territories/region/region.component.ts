@@ -38,6 +38,8 @@ export class RegionComponent implements OnInit {
 
     deleteRegion(region) {
 
+        this.inventoryService.DeleteRegion(region.key).subscribe(resp=>console.log('Region Deleted'));
+
     }
 
 }

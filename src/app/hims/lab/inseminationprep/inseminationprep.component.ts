@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import validator from 'devextreme/ui/validator';
 
-import { DxSelectBoxComponent } from 'devextreme-angular';
+import { DxSelectBoxComponent } from 'devextreme-angular/ui/select-box';
 import { InseminationprepService } from '../../../core/Services/HIMS/Lab/inseminationprep.service';
 import { ConsultantService, PatientService } from '../../../core';
 import { Consultant } from '../../../core/Models/HIMS/consultant';

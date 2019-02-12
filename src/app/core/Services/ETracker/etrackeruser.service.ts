@@ -62,32 +62,6 @@ export class eTrackerUserService {
         return this.ApiService.post(this.Url + 'User/AssignSubsections', subsections);
     }
 
-
-    // fetchAllUsers() {
-    //     let data = this.firebase.collection('tbl_users').valueChanges();
-    //     data.subscribe((data: any) => {
-    //         this.allUsers = data.map(user => {
-    //             user.lat = Number.parseFloat(user.lat),
-    //                 user.lng = Number.parseFloat(user.lng)
-    //             return user;
-    //         });
-
-    //         console.log('users fetched', this.allUsers);
-
-
-    //         // console.log(this.allUsers);
-    //         // if (this.currentUser) {
-    //         //     let user = this.allUsers.find(u => u.userId == this.currentUser.userId);
-    //         //     this.realTimeTracking.next(user);
-    //         //     console.log(user);
-    //         // } else {
-    //         //     this.realTimeTracking.next(this.allUsers[0]);
-    //         // }
-    //     });
-    // }
-
-
-
     fetchVisitedShops(day) {
         this.clearOtherArrays();
         let shopsObserable = this.firebase.collection(`tbl_shops`).valueChanges();
@@ -150,36 +124,7 @@ export class eTrackerUserService {
           }
         }
       }
-    
-      // drawUserLocation(dateRange) {
-      //   this.clearOtherArrays();
-      //   this.locationHistory = [];
-      //   this.showSpinner = true;
-      //   let days = dateRange.toDate - dateRange.fromDate;
-      //   if (days <= 30) {
-    
-      //     let history = this.firebase.collection(
-      //       `tbl_users/${this.currentUser.userId}/user_history`, ref => ref.where('timestamp', '>=', dateRange.from).where('timestamp', '<=', dateRange.to)).valueChanges();
-      //     history.subscribe(data => {
-      //       console.log(data);
-      //       if (data.length < 500) {
-      //         this.locationHistory = data.map((h: any) => {
-      //           h.lat = parseFloat(h.lat);
-      //           h.lng = parseFloat(h.lng);
-      //           return h;
-      //         });
-      //       } else {
-      //         alert('Data is too large to draw on map')
-      //       }
-      //       this.showSpinner = false;
-      //       console.log(data)
-      //     })
-    
-      //   } else {
-      //     alert(`Please select days less than 4`)
-      //   }
-      // }
-    
+        
       setCurrentUser(userIndex, DSFs, map) {
         console.log(DSFs);
         console.log('map',map);
@@ -278,7 +223,7 @@ class MapHelper {
     static dayStartEndMakrer: string = './assets/images/daystart-dayend.png';
   
     static createMarker(url, size) {
-      return new MarkerIcon(url, size).init();
+        return new MarkerIcon(url, size).init();
     }
   
   }

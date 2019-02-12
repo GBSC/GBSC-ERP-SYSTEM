@@ -19,7 +19,7 @@ export class BrandComponent implements OnInit {
     ngOnInit() {
         this.CompanyId = this.AuthService.getUserCompanyId();
 
-        this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
+        this.InventoryService.GetNonGeneralBrands(this.CompanyId).subscribe((res: Brand) => {
             this.Brands = res;
         });
         //console.log(this.Brands);
@@ -27,6 +27,7 @@ export class BrandComponent implements OnInit {
 
     mergeBrand(value) {
         value.companyId = this.CompanyId;
+        value.isGeneralBrand = false;
         this.newbrand = Object.assign(value.oldData, value.newData);
         //console.log(this.newbrand);
     }
@@ -34,6 +35,7 @@ export class BrandComponent implements OnInit {
     AddBrand(value) {
         //console.log(value);
         value.data.companyId = this.CompanyId;
+        value.data.isGeneralBrand = false;
         this.InventoryService.AddBrand(value.data).subscribe(res => {
             this.InventoryService.GetBrandsByCompany(this.CompanyId).subscribe((res: Brand) => {
                 this.Brands = res;

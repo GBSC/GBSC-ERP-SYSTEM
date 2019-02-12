@@ -1,0 +1,65 @@
+<div class="m-content">
+    <div class="row">
+       <div class="col-xl-12">
+         <div class="m-portlet">
+           <div class="m-portlet__head">
+             <div class="m-portlet__head-caption col-sm-8">
+               <div class="m-portlet__head-title">
+                 <h3 class="m-portlet__head-text">Patient Case Detail</h3>
+               </div>
+             </div>
+             
+             <div class="m-portlet__head-caption col-sm-4">
+  
+              <div class="m-portlet__head-title">
+                  <div class="m-demo__preview m-demo__preview--btn margin">
+                      <a  (click)="addPatientCase()" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+                          <i class="la la-plus"></i>
+                        </a>
+                </div>
+               </div>
+            </div>
+           </div>
+           <div class="m-portlet__body">
+             <div class="m-section">
+               <div class="m-section__content">
+                 <dx-data-grid id="gridContainer" [dataSource]="patientCaseDetail"> 
+                     <dxo-editing mode="row" [allowDeleting]="true" [useIcons]="true">
+                 </dxo-editing>
+                   <dxo-filter-row [visible]="true"></dxo-filter-row>
+                   <dxo-header-filter [visible]="true"></dxo-header-filter>
+                   <dxo-paging [pageSize]="5"></dxo-paging>
+                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+  
+                   <dxi-column dataField="patientId" caption="Patient Name">
+                    <dxo-lookup [dataSource]="patient" displayExpr="fullName" valueExpr="patientId"></dxo-lookup>
+                  </dxi-column>
+                  <dxi-column dataField="otPatientCaseDate" caption="Date" dataType="date" format="shortDate"></dxi-column>
+
+                  <!-- <dxi-column dataField="consultantId" caption="Consultant">
+                    <dxo-lookup [dataSource]="consultant" displayExpr="name" valueExpr="consultantId"></dxo-lookup>
+                  </dxi-column> -->
+                  <!-- <dxi-column dataField="patientId" caption="Treatment Type">
+                    <dxo-lookup [dataSource]="treatmentType" displayExpr="mrn" valueExpr="treatmentTypeId"></dxo-lookup>
+                  </dxi-column> -->
+  
+                  <dxi-column caption="Update" cellTemplate="chartCellTemplateupdate"  [width]="90"></dxi-column>
+                  <div *dxTemplate="let x of 'chartCellTemplateupdate'">
+                  <div class="chart-cell">
+                    <dx-button (click)="updatePatientCase(x)" class="icon"  icon="edit"></dx-button>
+                  </div>
+                  </div>      
+                  <dxi-column caption="Report" cellTemplate="chartCellTemplate"  [width]="90"></dxi-column>
+                  <div *dxTemplate="let d of 'chartCellTemplate'">
+                  <div class="chart-cell">
+                    <dx-button (click)="patientCasereport(d)"  icon="doc"></dx-button>
+                  </div>
+                  </div>  
+                 </dx-data-grid>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>

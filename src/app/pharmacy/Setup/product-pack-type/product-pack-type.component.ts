@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { PackType } from '../../../core/Models/Pharmacy/PackType';
 import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
@@ -15,7 +15,7 @@ export class ProductPackTypeComponent implements OnInit {
     public PackTypes: PackType;
     public UpdatedModel: any;
 
-    constructor(public PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
@@ -24,6 +24,7 @@ export class ProductPackTypeComponent implements OnInit {
     }
 
     async AddPackType(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddPackType(value.data).toPromise();
         this.PharmacyService.GetPackTypes().subscribe((res: PackType) => {
             this.PackTypes = res;

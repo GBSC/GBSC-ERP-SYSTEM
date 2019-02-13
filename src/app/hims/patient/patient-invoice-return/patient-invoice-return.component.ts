@@ -81,7 +81,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
                         this.InvoiceId = res.patientInvoiceId;
                         if (res.patientInvoiceItems.length > 0) {
                             res.patientInvoiceItems.forEach((PatientInvoiceItem: any) => {
-                                if (PatientInvoiceItem.isPaid === true) {
+                                // if (PatientInvoiceItem.isPaid === true) {   -----------
                                     let ReturnItem: any = {
                                         Nature: PatientInvoiceItem.nature || '',
                                         Name: PatientInvoiceItem.name || '',
@@ -101,7 +101,7 @@ export class PatientInvoiceReturnComponent implements OnInit {
                                     // console.log(ReturnItem);
                                     this.PatientInvoiceReturnItems.push(ReturnItem);
                                     // console.log(this.PatientInvoiceReturnItems);
-                                }
+                                // }
                             });
                         }
 

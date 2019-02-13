@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { PharmacyService } from '../../../core';
+import { PharmacyService, AuthService } from '../../../core';
 import { InventoryItemCategory } from '../../../core/Models/Pharmacy/InventoryItemCategory';
 import { InventoryItemComponent } from '../inventory-item/inventory-item.component';
 
@@ -15,7 +15,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     public ItemCategories: InventoryItemCategory;
     public UpdatedModel: any;
 
-    constructor(public PharmacyService: PharmacyService) {
+    constructor(public PharmacyService: PharmacyService, public Auth : AuthService) {
 
     }
 
@@ -24,6 +24,7 @@ export class InventoryItemCategoryComponent implements OnInit {
     }
 
     async AddItemCategory(value) {
+        value.data.companyId = this.Auth.getUserCompanyId();
         await this.PharmacyService.AddInventoryItemCategory(value.data).toPromise();
         this.PharmacyService.GetInventoryItemCategories().subscribe((res: InventoryItemCategory) => {
             this.ItemCategories = res;

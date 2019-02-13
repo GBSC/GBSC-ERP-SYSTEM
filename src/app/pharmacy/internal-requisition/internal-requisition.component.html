@@ -1,0 +1,109 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Form
+              </h3>
+            </div>
+          </div>
+        </div>
+        <!--begin::Form-->
+        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" [formGroup]="RequisitionForm">
+          <div class="m-portlet__body">
+            <div class="form-group row">
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Request Number </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="IndentNumber" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Branch </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="Branch" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Department </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="Department" type="text">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Request Date </label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="RequestDate" [value]="RequestDate | date : 'yyyy-MM-dd' || ''" type="date">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Issue Date </label>
+                <input class="form-control m-input m-input--solid" formControlName="IssueDate" type="date">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Request Quantity</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="TotalRequestQuantity" type="number">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Issue Quantity</label>
+                <input class="form-control m-input m-input--solid" disabled formControlName="TotalOrderQuantity" [value]="TotalOrderQuantity" type="number">
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="exampleInputEmail1"> Remarks </label>
+                <input class="form-control m-input m-input--solid" formControlName="Remarks" type="text">
+              </div>
+              <div class="form-group col-lg-4">
+                <div class="form-action pull-right ">
+                  <button type="submit" (click)="saveOrder(RequisitionForm.value)" class="btn btn-primary m-btn m-btn--custom">
+                    Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <> -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text"> Add Products </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div class="m-section">
+            <div class="m-section__content">
+              <dx-data-grid id="gridContainer" [dataSource]="SalesOrderItems" (onRowUpdated)="updateItem()" (onRowRemoved)="removeItem($event)">
+                <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+                </dxo-editing>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="inventoryItemId" caption="Product" [visible]="true">
+                  <dxo-lookup [dataSource]="InventoryItems" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                </dxi-column>
+                <!-- <dxi-column dataField="inventoryId" caption="Stock" [visible]="true">
+                  <dxo-lookup [dataSource]="Inventories" valueExpr="inventoryId" displayExpr="name"></dxo-lookup>
+                </dxi-column> -->
+                <dxi-column dataField="stockQuantity" dataType="number" caption="Stock"></dxi-column>
+                <dxi-column dataField="requestQuantity" dataType="number" caption="Request Quantity"></dxi-column>
+                <dxi-column dataField="orderUnitQuantity" dataType="number" caption="Issue Quantity"></dxi-column>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <> -->
+</div>

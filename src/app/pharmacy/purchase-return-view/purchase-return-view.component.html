@@ -1,0 +1,71 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Purchase Returns</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form class="m-form m-form--label-align-left- m-form--state-"  [formGroup]="purchaseReturnViewForm">
+            <div class="m-portlet__body">
+                <div  class="row">
+                    <div class="col-md-3">
+                        <div class="form-group m-form__group">
+                            <label for="exampleInputEmail1">
+                             Date :
+                            </label>
+                            <input type="month" formControlName="returnViewdate" [value]="date || ''" class="form-control m-input">
+                          </div>
+                    </div>
+                    <div class="col-md-7"></div>
+                    <div  class="col-md-2">
+                        <div class="form-group m-form__group">
+                            <button type="button" (click)="onsubmit(purchaseReturnViewForm.value)" class="btn btn-primary pull-right margin">Show</button>
+                          </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+     
+          <div class="row">
+            <div class="col-md-12">
+              <dx-data-grid [dataSource]="purchaseReturns"  (onToolbarPreparing)="onToolbarPreparing($event)" [remoteOperations]="true" showBorders="true"
+               [masterDetail]="{ enabled: true, template: 'detail' }"
+                [columnAutoWidth]="true" [showBorders]="true">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="false"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="returnNumber" caption="Return Number" [width]="230" [fixed]="true"></dxi-column>
+                 <dxi-column dataField="returnDate" dataType="date" caption="Return Date"></dxi-column>
+                <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
+                <dxi-column dataField="totalReturnAmount" caption="Total ReturnAmount"></dxi-column>
+                <dxi-column dataField="returnReason.name" caption="Return Reason Name"></dxi-column>
+                <dxi-column dataField="totalReturnQuantity" caption="Total Return Quantity"></dxi-column>
+                  <div *dxTemplate="let order of 'detail'">
+                  <dx-data-grid [dataSource]="order.data.purchaseReturnItems" showBorders="true">
+                    <dxi-column dataField="returnQuantity" caption="Return Quantity"></dxi-column>
+                    <dxi-column dataField="returnAmount" caption="Return Amount"></dxi-column>
+                    <dxi-column dataField="inventoryItem.itemCode" caption="ItemCode"></dxi-column>
+                    <dxi-column dataField="inventoryItem.description" caption="Description"></dxi-column>
+                    <dxi-column dataField="inventoryItem.packType.name" caption="PackType"></dxi-column>
+                    <dxi-column dataField="inventoryItem.packSize.size" caption="PackSize"></dxi-column>
+                   </dx-data-grid>
+                </div> 
+              </dx-data-grid>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

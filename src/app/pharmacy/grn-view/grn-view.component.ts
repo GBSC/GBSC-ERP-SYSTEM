@@ -41,8 +41,9 @@ export class GrnViewComponent implements OnInit {
     // GetGrnDetails(value) {
     //     this.PharmacyService.GetGrnDetailsByCode(value.data.grnNumber).subscribe((res: GRN) => this.DetailGRN = res);
     // }
+    
     onsubmit(value) {
-        this.PharmacyService.GetGRNsByMonth(value.grnDate).subscribe((res: GRN) => {
+        this.PharmacyService.GetGRNsByMonth(this.formatDate(new Date(value.grnDate))).subscribe((res: GRN) => {
             this.grnview = res;
         });
     }

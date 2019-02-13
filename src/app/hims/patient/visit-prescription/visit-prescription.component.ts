@@ -19,7 +19,7 @@ export class VisitPrescriptionComponent implements OnInit {
     public InventoryItems: InventoryItem;
     public InventoryItemDataSource: InventoryItem;
     public FilteredInventoryItems: any;
-    public SelectedInventoryItem: InventoryItem;
+    public SelectedInventoryItem: any;
 
     public CurrentPatient: any;
     // public CurrentPatientID : number;
@@ -100,7 +100,7 @@ export class VisitPrescriptionComponent implements OnInit {
         var b: any = {
             quantity: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays),
             tradeOfferPricePerUnit: Number.parseFloat(this.SelectedInventoryItem.retailPrice),
-            totalTradeOfferPerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.costPrice),
+            totalTradeOfferPerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.unitPrice),
             totalTradePricePerItem: Number.parseInt(value.data.dosage) * Number.parseInt(value.data.treatmentTimeInDays) * Number.parseFloat(this.SelectedInventoryItem.retailPrice),
             inventoryItemId: <number>value.data.inventoryItemId,
             treatmentStart: value.data.treatmentStart,

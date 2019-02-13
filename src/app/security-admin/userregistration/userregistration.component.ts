@@ -84,7 +84,7 @@ export class UserregistrationComponent implements OnInit {
 
         this.userService.editUser(user).subscribe(resp => {
             this.displayToast("Account Updated")
-            if (this.username) {
+            if (this.username && value.Password) {
                 let passChangeModel = { username: this.username, password: value.Password }
                 this.userService.changePasswordAdmin(passChangeModel).subscribe(res => {
 

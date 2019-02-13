@@ -27,8 +27,8 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'StoreVisit/GetVisits/' + storeId);
     }
 
-    getStoreVisitById(id):Observable<any>{
-       return this.ApiService.get(this.Url + 'StoreVisit/GetStoreVisit/' + id);
+    getStoreVisitById(id): Observable<any> {
+        return this.ApiService.get(this.Url + 'StoreVisit/GetStoreVisit/' + id);
     }
 
 
@@ -61,7 +61,7 @@ export class StoreService {
     }
 
     //Reports
-    shopCensusDetailReport(companyId: number): Observable<any> {
-        return this.ApiService.get(this.Url + 'Report/GetShopCensusDetail/' + companyId);
+    shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
     }
 }

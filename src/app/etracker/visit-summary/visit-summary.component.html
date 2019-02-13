@@ -17,8 +17,8 @@
               <span class="m-card-profile__name" style="padding-bottom: 15px;">
                 <!-- New store Name -->
               </span>
-              <div class="visit-lable">Visit Start: <span>{{storeVisit?.startTime}}</span></div>
-              <div class="visit-lable">Visit End: <span>{{storeVisit?.endTime}}</span></div>
+              <div class="visit-lable">Visit Start: <span>{{storeVisit?.startTime | date:'short' }}</span></div>
+              <div class="visit-lable">Visit End: <span>{{storeVisit?.endTime | date:'short' }}</span></div>
             </div>
           </div>
           <div class="m-portlet__body-separator" style="margin: 15px -2.2rem; border-bottom: 3px solid #e37125;"></div>

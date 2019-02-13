@@ -15,6 +15,7 @@ export class UserregistrationComponent implements OnInit {
     public roles: any;
     public cities: any;
     public user: any;
+    public username: any;
     public userId: any;
 
     public userForm: FormGroup;
@@ -50,12 +51,9 @@ export class UserregistrationComponent implements OnInit {
 
         this.route.params.subscribe((params) => {
             this.userId = +params['id'];
-
-
             if (this.userId)
                 this.setValues();
-
-        })
+        });
 
         this.adminService.getCitiesByCompanyId(this.companyId).subscribe(resp => this.cities = resp);
 
@@ -76,7 +74,6 @@ export class UserregistrationComponent implements OnInit {
     update(value) {
 
         let user = this.user;
-
         user.firstName = value.FirstName;
         user.lastName = value.LastName;
         user.email = value.Email;
@@ -85,7 +82,19 @@ export class UserregistrationComponent implements OnInit {
         user.roleId = value.RoleId;
         user.userType = value.UserType;
 
-        this.userService.editUser(user).subscribe(resp => this.displayToast("Account Updated"));
+        this.userService.editUser(user).subscribe(resp => {
+            this.displayToast("Account Updated")
+            if (this.username) {
+                let passChangeModel = { username: this.username, password: value.Password }
+                this.userService.changePasswordAdmin(passChangeModel).subscribe(res => {
+
+                    if (res == "Password Changed")
+                        this.displayToast("Password Updated1");
+                    else
+                        this.errorToast("Password not changed!");
+                })
+            }
+        });
     }
 
     setValues() {
@@ -93,12 +102,19 @@ export class UserregistrationComponent implements OnInit {
         this.userService.getUser(this.userId).subscribe(resp => {
             this.user = resp
             this.patchValues(this.user);
+            this.userService.getUsernameByUserId(this.user.userId).subscribe(u => {
+                this.username = u;
+            })
         }
         );
     }
 
     public displayToast(message) {
         this.toastr.success(message);
+    }
+
+    public errorToast(message){
+        this.toastr.error(message);
     }
 
 
@@ -113,7 +129,6 @@ export class UserregistrationComponent implements OnInit {
             'UserType': user.userType,
             'Email': user.email
         });
-
     }
 
 }

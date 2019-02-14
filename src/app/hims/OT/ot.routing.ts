@@ -6,11 +6,13 @@ import { RootComponent } from './root/root.component';
  import { LaproscopySpDetailComponent } from './detail/laproscopy-sp-detail/laproscopy-sp-detail.component';
  import { LaproscopyFsDetailComponent } from './detail/laproscopy-fs-detail/laproscopy-fs-detail.component';
  import { HystroscopyDetailComponent } from './detail/hystroscopy-detail/hystroscopy-detail.component';
+ import {  MedicineRequestDetailComponent } from './detail/medicine-request-detail/medicine-request-detail.component';
 
  import { PatientCaseRepotComponent } from './report/patient-case-repot/patient-case-repot.component';
  import { LaproscopySpReportComponent } from './report/laproscopy-sp-report/laproscopy-sp-report.component';
  import { LaproscopyFsReportComponent } from './report/laproscopy-fs-report/laproscopy-fs-report.component';
  import { HystroscopyReportComponent } from './report/hystroscopy-report/hystroscopy-report.component';
+ import { MedicineRequestReportComponent } from './report/medicine-request-report/medicine-request-report.component';
 
 
  import { MedicineRequestComponent } from './OtSteup/medicine-request/medicine-request.component';
@@ -53,7 +55,8 @@ export const OTRouting: ModuleWithProviders = RouterModule.forChild([
                     { path: 'patientcasedetail', component: PatientCaseDetailComponent },
                     { path: 'laproscopysp', component: LaproscopySpDetailComponent },
                     { path: 'hystroscopydetail', component: HystroscopyDetailComponent },
-                    { path: 'laproscopyfsdetail', component: LaproscopyFsDetailComponent }
+                    { path: 'laproscopyfsdetail', component: LaproscopyFsDetailComponent },
+                    { path: 'medicinerequestdetail', component: MedicineRequestDetailComponent }
 
                 ]
             },
@@ -63,7 +66,8 @@ export const OTRouting: ModuleWithProviders = RouterModule.forChild([
                     { path: 'patientcaserepot/:id/:date', component: PatientCaseRepotComponent },
                     { path: 'laproscopyspreport/:id/:date', component: LaproscopySpReportComponent },
                     { path: 'laproscopyfsreport/:id/:date', component: LaproscopyFsReportComponent },
-                    { path: 'hystroscopyreport/:id/:date', component: HystroscopyReportComponent }
+                    { path: 'hystroscopyreport/:id/:date', component: HystroscopyReportComponent },
+                    { path: 'medicinerequestreport/:date', component: MedicineRequestReportComponent }
 
 
                 ]

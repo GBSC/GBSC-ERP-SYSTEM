@@ -27,8 +27,10 @@ export class MasterPayrollDetailComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.masterPayroll = await this.payrollSetupService.getMasterPayrolls();
-        console.log(this.masterPayroll)
+        this.payrollSetupService.getMasterPayrolls().subscribe(r=>{
+            this.masterPayroll = r
+            console.log(this.masterPayroll)
+        });
 
         this.employees = await this.employeeService.GetAllEmployees();
 

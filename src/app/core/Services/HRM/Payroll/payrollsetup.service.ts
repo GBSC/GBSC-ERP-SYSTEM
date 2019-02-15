@@ -367,9 +367,9 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteLeavingReason/${leavingreasonId}`).toPromise();
     }
 
-    async getMasterPayrolls() {
+     getMasterPayrolls(): Observable<any> {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetMasterPayrolls`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetMasterPayrolls`);
     }
 
     getMasterPayroll(id): Observable<MasterPayroll> {
@@ -377,9 +377,9 @@ export class PayrollSetupService {
         return this.ApiService.get(this.baseUrl + '/GetMasterPayroll/' + id);
     }
 
-    async addMasterPayroll(data) {
+     addMasterPayroll(data) : Observable<any> {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddMasterPayroll`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddMasterPayroll`, data);
     }
 
     updateMasterPayroll(data: MasterPayroll): Observable<any> {
@@ -606,28 +606,6 @@ export class PayrollSetupService {
     async deleteSalaryStructureDetail(salarystructuredetailId) {
 
         return await this.ApiService.delete(`${this.baseUrl}/DeleteSalaryStructureDetail/${salarystructuredetailId}`).toPromise();
-    }
-
-    async getUserSalaries() {
-
-        return await this.ApiService.get(`${this.baseUrl}/GetUserSalaries`).toPromise();
-    }
-
-    async addUserSalary(data) {
-
-        return await this.ApiService.post(`${this.baseUrl}/AddUserSalary`, data).toPromise();
-    }
-
-    async updateUserSalary(data) {
-
-        let usersalary = await this.getdataToUpdate(data.key, 'GetUserSalary');
-        usersalary = { ...usersalary, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateUserSalary`, usersalary).toPromise();
-    }
-
-    async deleteUserSalary(usersalaryId) {
-
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteUserSalary/${usersalaryId}`).toPromise();
     }
 
     async getIncomeTaxRules() {

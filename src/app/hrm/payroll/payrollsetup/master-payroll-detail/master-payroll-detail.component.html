@@ -30,6 +30,7 @@
                           <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                           </dxo-lookup>
                         </dxi-column>
+                        <dxi-column dataField="salary" caption="Salary"> </dxi-column>
                       <dxi-column caption="Action" [minWidth]="30" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                       <div *dxTemplate="let d of 'chartCellTemplate'">
                         <div class="chart-cell">
@@ -49,7 +50,7 @@
                                 <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                               </dxi-column>
                               <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
-                              <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                              <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
      
                               </dx-data-grid>
                       </div>

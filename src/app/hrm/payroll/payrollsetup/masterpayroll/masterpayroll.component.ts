@@ -37,6 +37,7 @@ export class MasterpayrollComponent implements OnInit {
     public getAllowances: any = [];
     public employee: any;
     public calculationttypes: any;
+    public payrollYears: any;
 
     @Input('masterPayrollId') id: number;
 
@@ -49,7 +50,8 @@ export class MasterpayrollComponent implements OnInit {
         this.MasterPayrollForm = this.fb.group({
             UserId: [''],
             Salary:[''],
- 
+            PayrollYearId: [''],
+            masterPayrollDetails : this.fb.array([])
 
         });
 
@@ -65,19 +67,21 @@ export class MasterpayrollComponent implements OnInit {
             console.log(this.calculationttypes);
         });
 
-        this.masterPayroll = await this.payrollsetupservice.getMasterPayrolls();
+        this.payrollsetupservice.getPayrollYears().subscribe((res: any) => {
+            this.payrollYears = res;
+            console.log(this.payrollYears);
+        });
+
+         this.payrollsetupservice.getMasterPayrolls().subscribe(rsp => {
+            this.masterPayroll = rsp
+         });
 
         this.users = await this.empservice.GetAllEmployees();
 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
         this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
-        console.log(        this.allowances  )
-        //  this.allowance = this.allowances.filter(s => s.type == 'Allowance');
-        //  console.log(this.allowance);
-
-        // this.deduction = this.allowances.filter(s => s.type == 'Deduction');
-        // console.log(this.deduction);
+        console.log(this.allowances) 
 
         this.benefit = await this.payrollsetupservice.getBenefits();
 
@@ -108,18 +112,15 @@ export class MasterpayrollComponent implements OnInit {
 
     }
 
-      submitForm(value , salary) {
-
+      submitForm(value , salary) { 
           this.MasterPayrollForm.value.Salary = salary;
           console.log(value)
           console.log(this.getAllowances.salaryStructureDetails);
-
-         // let masterPayroll = new MasterPayroll();
-        // masterPayroll = { ...masterPayroll, ...value };
-        // masterPayroll.MasterPayrollDetails = this.payrollDetail && this.datasource;
-        // await this.payrollsetupservice.addMasterPayroll(masterPayroll);
-        // this.toastr.success("Successfully! Master Payroll Add");
-        // this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
+          this.MasterPayrollForm.value.masterPayrollDetails = this.getAllowances.salaryStructureDetails 
+          console.log(value)
+         this.payrollsetupservice.addMasterPayroll(value).subscribe(resp=>{ console.log(resp); });
+        this.toastr.success("Successfully! Master Payroll Add");
+        this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
     }
 
     isUpdate(): boolean {
@@ -206,6 +207,7 @@ export class MasterpayrollComponent implements OnInit {
                     this.datasource = [];
 
                     this.allowance2 = [];
+                    console.log(this.getAllowances.salaryStructureDetails);
                     this.allowances.filter(a => {
                         this.allowance = this.getAllowances.salaryStructureDetails.find(e => ((e.allowanceDeductionId === a.allowanceDeductionId) && (a.type === 'allowance' || a.type === 'Allowance')))
                         if (this.allowance != undefined) {

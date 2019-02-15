@@ -12,10 +12,7 @@
           <dx-data-grid id="gridContainer" 
           (onToolbarPreparing)="onToolbarPreparing($event)"
           [dataSource]="fundSetup"
-           keyExpr="fundSetupId"
-            (onRowUpdated)="updateFundSetup()"
-            (onRowUpdating)="updatingFundSetup($event)"
-             (onRowRemoved)="deleteFundSetup($event)">
+           keyExpr="fundSetupId">
             <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Fund Setup" [showTitle]="true" [width]="1100" [height]="620"></dxo-popup>
             </dxo-editing>

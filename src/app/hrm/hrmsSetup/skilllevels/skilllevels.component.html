@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="skill" 
                keyExpr="skillLevelId"
+               [showBorders]="true"
                 (onRowInserted)="addNewskill($event)"
                 (onRowUpdating)="skillEditing($event)"
                 (onRowUpdated)="Editskill()"

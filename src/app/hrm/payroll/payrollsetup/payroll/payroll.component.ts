@@ -18,7 +18,9 @@ export class PayrollComponent implements OnInit {
 
         this.payRoll = await this.payrollsetupservice.getPayrolls();
 
-        this.MasterpayRoll = await this.payrollsetupservice.getMasterPayrolls();
+         this.payrollsetupservice.getMasterPayrolls().subscribe(resp => {
+            this.MasterpayRoll = resp
+         });
 
         this.employees = await this.employeeservice.GetAllEmployees();
     }

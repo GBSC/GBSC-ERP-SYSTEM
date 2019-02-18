@@ -8,17 +8,33 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ApiService {
+
+    public user: any;
+
     constructor(
         public http: HttpClient,
         // public jwtService: JwtService
-    ) { }
+    ) {
+        this.user = JSON.parse(localStorage.getItem('user'));
+    }
 
     public formatErrors(error: any) {
         return _throw(error.error);
     }
 
     get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
-        console.log(`${environment.api_url}${path}`);
+        let queryId = null;
+        if (this.user) {
+            if (this.user.assignedId.branchId)
+                params.append("branchId", this.user.assignedId.branchId);
+            if (this.user.assignedId.cityId)
+                params.append("cityId", this.user.assignedId.cityId);
+            if (this.user.assignedId.cityId)
+                params.append("countryId", this.user.assignedId.countryId);
+            if (this.user.assignedId.cityId)
+                params.append("companyId", this.user.assignedId.companyId);
+        }
+
         return this.http.get(`${environment.api_url}${path}`, { params })
             .pipe(catchError(this.formatErrors));
     }

@@ -1,0 +1,36 @@
+<div class="m-content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">
+                Salary Process
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+
+          <form class="signup-form" [formGroup]="SalaryProcessForm">
+            <div class="form-group m-form__group row">
+              <div class="col-lg-3">
+                <label>Payroll Year:</label>
+                <input #month type="month" formControlName="SalaryDate">
+              </div>
+ 
+              <div class="col-lg-3">
+                <label></label>
+                <button type="button" (click)="onProcess(SalaryProcessForm.value,month.value)"  class="btn btn-primary button_get">
+                  Process  
+                </button>
+              </div> 
+            </div>  
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

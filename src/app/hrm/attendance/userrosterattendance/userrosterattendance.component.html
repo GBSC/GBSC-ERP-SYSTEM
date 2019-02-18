@@ -29,19 +29,15 @@
                 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager> 
-                    <dxi-column dataField="assignRosterId" caption="Assign Roster">
-                      <dxo-lookup [dataSource]="assignRoster" displayExpr="year" valueExpr="assignRosterId">
-                      </dxo-lookup>
-                    </dxi-column>  
+                </dxo-pager>  
                             <dxi-column dataField="userId" caption="Employee">
-                              <dxo-lookup [dataSource]="employee" displayExpr="firstName" valueExpr="userId">
+                              <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                               </dxo-lookup>
                               </dxi-column>
                 <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
-                <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave"></dxi-column>
+                <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <!-- <dxi-column dataField="hoursWorked" caption="Hours Worked"></dxi-column> -->
               </dx-data-grid>
             </div>

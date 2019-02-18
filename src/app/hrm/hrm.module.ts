@@ -176,6 +176,8 @@ import { OvertimesetupMasterComponent } from './attendance/overtime/overtimesetu
 import { CompanysetupMasterComponent } from './companysetup-master/companysetup-master.component';
 import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/viewfundsetup.component';
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
+import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
+import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -265,6 +267,8 @@ import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowa
         ProratematrixComponent,
         LeaveclosingComponent,
         LeaveapprovalComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent,
 
         /* Employee Registration */
 
@@ -371,7 +375,11 @@ import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowa
         OvertimesetupMasterComponent,
         CompanysetupMasterComponent,
         ViewfundsetupComponent,
-        AllowanceDeductionDetailComponent
+        AllowanceDeductionDetailComponent,
+        IncometaxRuleDetailComponent,
+        MonthlySalaryProcessComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent
     ],
 
     // providers: [IgxExcelExporterService],

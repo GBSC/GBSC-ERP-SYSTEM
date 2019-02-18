@@ -47,6 +47,7 @@ import { BiochemistryDetailsOntreatmentReportviewerComponent } from './report-co
 import { BiochemistryOutsiderReportviewerComponent } from './report-components/biochemistry-outsider-reportviewer/biochemistry-outsider-reportviewer.component';
 import { LabsummaryReportviewerComponent } from './report-components/labsummary-reportviewer/labsummary-reportviewer.component';
 import { BiopsyReportviewerComponent } from './report-components/biopsy-reportviewer/biopsy-reportviewer.component';
+import { InternalRequisitionRequestComponent } from './internal-requisition-request/internal-requisition-request.component';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
@@ -111,6 +112,7 @@ import { DxPopupModule } from 'devextreme-angular/ui/popup';
         BiochemistryOutsiderReportviewerComponent,
         LabsummaryReportviewerComponent,
         BiopsyReportviewerComponent,
+        InternalRequisitionRequestComponent,
     ]
 })
 export class LabModule { }

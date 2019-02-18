@@ -23,7 +23,7 @@
          <div class="m-portlet__body">
            <div class="m-section">
              <div class="m-section__content">
-               <dx-data-grid id="gridContainer" [dataSource]="laproscopyFsDetail"  (onRowRemoved)="deleteSonologist($event)"> 
+               <dx-data-grid id="gridContainer" [dataSource]="laproscopyFsDetail"> 
                    <dxo-editing mode="row" [allowDeleting]="true" [useIcons]="true">
                </dxo-editing>
                  <dxo-filter-row [visible]="true"></dxo-filter-row>

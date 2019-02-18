@@ -14,6 +14,7 @@
             <dx-data-grid id="gridContainer" 
             [dataSource]="emptype"
              keyExpr="employeeTypeId"
+             [showBorders]="true"
               (onRowInserted)="addemptype($event)" 
               (onRowUpdating)="Updatingemptype($event)"
               (onRowUpdated)="Updateemptype()"

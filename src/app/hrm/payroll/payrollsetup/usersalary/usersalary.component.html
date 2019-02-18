@@ -12,10 +12,7 @@
             <div class="m-section__content">
 
               <dx-data-grid id="gridContainer" [dataSource]="userSalary" 
-              keyExpr="userSalaryId" 
-              (onRowInserted)="addUserSalary($event)" 
-              (onRowUpdated)="updateUserSalary($event)" 
-              (onRowRemoved)="deleteUserSalary($event)">
+              keyExpr="userSalaryId">
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                   <dxo-popup title="User Salary" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
                 </dxo-editing>
@@ -29,10 +26,6 @@
 
                 <dxi-column dataField="incomeTaxRuleId" caption="Income Tax Rule">
                   <dxo-lookup [dataSource]="incometaxRule" displayExpr="personalExemption" valueExpr="incomeTaxRuleId"></dxo-lookup>
-                </dxi-column>
-  
-                <dxi-column dataField="groupId" caption="Group">
-                  <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId"></dxo-lookup>
                 </dxi-column>
 
                 <dxi-column dataField="userId" caption="Employee">

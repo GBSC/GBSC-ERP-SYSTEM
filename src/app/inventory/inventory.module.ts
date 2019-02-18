@@ -63,6 +63,7 @@ import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
 import { VehiclesComponent } from './setup/vehicles/vehicles.component';
 import { DeliveryManComponent } from './setup/delivery-man/delivery-man.component';
+import { GeneralBrandComponent } from './setup/general-brand/general-brand.component';
 
 @NgModule({
     imports: [
@@ -100,6 +101,7 @@ import { DeliveryManComponent } from './setup/delivery-man/delivery-man.componen
         SalesReturnItemComponent,
         AreaComponent,
         BrandComponent,
+        GeneralBrandComponent,
         ComissionComponent,
         CustomerAccountComponent,
         CustomerBankComponent,
@@ -130,7 +132,7 @@ import { DeliveryManComponent } from './setup/delivery-man/delivery-man.componen
         IndentProcessComponent,
         OrderSummaryComponent, 
         OrderDetailComponent, 
-        GeneralSkuComponent, VehiclesComponent, DeliveryManComponent
+        GeneralSkuComponent, VehiclesComponent, DeliveryManComponent, GeneralBrandComponent
     ]
 })
 export class InventoryModule { }

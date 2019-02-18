@@ -113,9 +113,7 @@ export class LeaverequestComponent implements OnInit {
         this.leaveRequestForm.reset();
         this.toastr.success("Leave Request Added");
         this.router.navigate(['/hrm/leave/leaverequests']);
-
-    }
-
+    } 
 
     isUpdate(): boolean {
 
@@ -138,28 +136,16 @@ export class LeaverequestComponent implements OnInit {
             this.router.navigate(['/hrm/leave/leaverequests']);
 
         });
-    }
- 
+    } 
 
-
-
-    getLeaveBalance(userId) {
-        // let selectedEmployee = this.employees.find(e => e.userId == userId);
-        // console.log(selectedEmployee);
-        // console.log(userId);
+    getLeaveBalance(userId) { 
         this.empId = userId;
-    }
-
-
-
+    } 
     onSetCellValue(x, abc) {
         console.log(abc);
-        console.log(this.employees);
-        // console.log(LeaverequestComponent);
-        console.log(this.empId);
-
-        console.log(this.leaveservice.data);
-        // let d;
+        console.log(this.employees); 
+        console.log(this.empId); 
+        console.log(this.leaveservice.data); 
         this.leaveservice.data.forEach(e => {
             if (e.userId == this.empId) {
                 console.log("first condition", e);
@@ -169,13 +155,7 @@ export class LeaverequestComponent implements OnInit {
                 }
             }
         });
-        console.log(this.leaveBBB);
-
-        // let d = {
-        //     totalLeaveDetailValue: this.leaveBBB.entitledQuantity
-        // };
-        // this.patchValues(d);   
-
+        console.log(this.leaveBBB);  
     }
 
     patchValues(request: any) {

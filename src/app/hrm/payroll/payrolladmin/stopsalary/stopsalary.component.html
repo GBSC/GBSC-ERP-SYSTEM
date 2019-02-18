@@ -17,8 +17,7 @@
 						<dx-data-grid id="gridContainer" [dataSource]="StopSalary"
 						keyExpr="stopSalaryId" 
 							(onSelectionChanged)="selectionChanged($event)"
-							(onContentReady)="contentReady($event)"
-							(onToolbarPreparing)="onToolbarPreparing($event)"
+							(onContentReady)="contentReady($event)" 
 							[masterDetail]="{ enabled: true, template: 'detail' }"
 							[columnAutoWidth]="true" 
 							 [showBorders]="true"> 
@@ -57,11 +56,9 @@
 										</dxo-lookup>
 									  </dxi-column> 
 									  </dx-data-grid>
-								 
 							  </div>
 							  <div *dxTemplate="let stopsalary of 'detail'">
 									<dx-data-grid [dataSource]="stopsalary.data.userStopSalaries" [showBorders]="true">
-				 
 										<dxi-column dataField="userId" caption="Employees">
 											<dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
 											</dxo-lookup>
@@ -91,7 +88,7 @@
 							 <dxo-header-filter [visible]="true"></dxo-header-filter>
 			 
 							 <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-							 <dxo-paging [pageSize]="7"></dxo-paging>
+							 <dxo-paging [pageSize]="5"></dxo-paging>
 							 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
 							 </dxo-pager> 
 							 <dxi-column dataField="fullName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 

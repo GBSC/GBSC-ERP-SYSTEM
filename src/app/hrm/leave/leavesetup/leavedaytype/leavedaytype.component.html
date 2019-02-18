@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="leveDayType"
                keyExpr="leaveDayTypeId"
+               [showBorders]="true"
                (onRowInserted)="addleavedaytype($event)" 
               (onRowUpdating)="updatingleavedaytype($event)"
               (onRowUpdated)="updateleavedaytype()"

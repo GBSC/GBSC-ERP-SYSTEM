@@ -45,7 +45,7 @@
                 </dxo-editing>
                 <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                 <dxo-selection mode="single"></dxo-selection>
-                <dxi-column dataField="salesOrderCode" caption="Code" [width]="230" [fixed]="true"></dxi-column>
+                <dxi-column dataField="salesOrderCode" dataType="number" caption="Code" [width]="230" [fixed]="true"></dxi-column>
                 <dxi-column dataField="issueDate" dataType="date" caption="Issue Date"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
                 <dxi-column dataField="againstLotNumber" caption="MRN"></dxi-column>
@@ -59,7 +59,7 @@
                     <dxi-column dataField="inventoryItem.itemCode" caption="ItemCode"></dxi-column>
                     <dxi-column dataField="inventoryItem.packType.name" caption="PackType"></dxi-column>
                     <dxi-column dataField="inventoryItem.packSize.size" caption="PackSize"></dxi-column>
-                    <dxi-column dataField="inventoryItem.unit.name" caption="PerUnit"></dxi-column>
+                    <dxi-column dataField="inventoryItem.measurementUnit.name" caption="PerUnit"></dxi-column>
                     <dxi-column dataField="inventoryItem.retailPrice" caption="Price/Unit"></dxi-column>
                     <dxi-column dataField="orderUnitQuantity" caption="Quantity"></dxi-column>
                     <dxi-column dataField="itemTotalAmount" caption="Total Amount"></dxi-column>

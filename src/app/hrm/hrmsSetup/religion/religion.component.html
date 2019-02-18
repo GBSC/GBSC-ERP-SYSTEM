@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer" 
               [dataSource]="religion" 
               keyExpr="religionId" 
+              [showBorders]="true"
               (onRowInserted)="addNewreligion($event)"
                (onRowUpdating)="updatingreligion($event)"
                (onRowUpdated)="updatereligion()"

@@ -1,10 +1,11 @@
 export class MasterPayrollDetail {
- 
-    value: number;
-    effectiveDate: Date;
-    endDate: Date;
-    allowanceId: number;
-    frequencyId: number;
-    payrollTypeId: number;
-    masterPayrollId: number;
+
+    value : number
+    formula : string
+    salaryCalculationTypeId : number
+    benefitId: number
+    allowanceDeductionId: number
+    masterPayrollId : number
+
+
 }

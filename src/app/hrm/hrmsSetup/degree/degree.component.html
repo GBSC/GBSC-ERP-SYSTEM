@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer" 
               [dataSource]="degrees"
                keyExpr="degreeId" 
+               [showBorders]="true"
                (onRowInserted)="addNewDegree($event)"
                 (onRowUpdating)="Editingdegree($event)"
                 (onRowUpdated)="Editdegree()"

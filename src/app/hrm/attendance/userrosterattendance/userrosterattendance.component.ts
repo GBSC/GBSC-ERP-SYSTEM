@@ -19,31 +19,23 @@ export class UserrosterattendanceComponent implements OnInit {
     async ngOnInit() {
 
         this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
-
-        this.employee = await this.employeeService.GetAllEmployees();
-
-        this.assignRoster = await this.attendanceSetupService.getAsignRosters();
-
-        // this.userRosterattendance = this.userRosterattendance.map(r => {
-
-        //     this.employeeService.updatedLeaves.forEach(markleave => {
-        //         let attdate = new Date(r.attendanceDate);
-        //         let fromDate = new Date(markleave.dateFrom);
-        //         let tillDate = new Date(markleave.tillDate);
-
-        //         if (fromDate => attdate && tillDate <= attdate) {
-        //             markleave.isOnLeave = true;
-        //             return markleave;
-        //         }
-        //         return markleave;
-        //     })
-        // });
-        // console.log(this.userRosterattendance);
+        console.log(this.userRosterattendance);
+                
+        this.employee = await this.employeeService.GetAllEmployees(); 
+ 
     }
 
     async adduserRosterattendance(value) {
+        console.log(value);
+        console.log(value.data);
+        
+        if(value.data.checkInTime != null && value.data.checkOutTime != null){
 
+            value.data.isPresent = true
+        }
         await this.attendanceservice.addUserRosterAttendance(value.data);
+        console.log(value.data);
+        
         this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
     }
 

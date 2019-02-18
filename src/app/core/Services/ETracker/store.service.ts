@@ -27,6 +27,10 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'StoreVisit/GetVisits/' + storeId);
     }
 
+    getStoreVisitById(id): Observable<any> {
+        return this.ApiService.get(this.Url + 'StoreVisit/GetStoreVisit/' + id);
+    }
+
 
     getOrdersByStoreVisitId(storeVisitid: any): Observable<any> {
         return this.ApiService.get(this.Url + 'StoreVisit/GetOrders/' + storeVisitid);
@@ -40,19 +44,24 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'StoreVisit/GetInventories/' + storeVisitid);
     }
 
-    getNonproductiveStoreVisitReasonsByCompany(companyid : number) : Observable<any[]> {
+    getNonproductiveStoreVisitReasonsByCompany(companyid: number): Observable<any[]> {
         return this.ApiService.get(this.Url + 'StoreVisit/GetNonproductiveVisitReasonsByCompany/' + companyid);
     }
 
-    addNonProductiveStoreVisitReason(model : any) : Observable<any> {
+    addNonProductiveStoreVisitReason(model: any): Observable<any> {
         return this.ApiService.post(this.Url + 'StoreVisit/AddNonproductiveVisitReason', model);
     }
 
-    updateNonProductiveStoreVisitReason(model : any) : Observable<any> {
+    updateNonProductiveStoreVisitReason(model: any): Observable<any> {
         return this.ApiService.put(this.Url + 'StoreVisit/UpdateNonproductiveVisitReason', model);
     }
 
-    deleteNonProductiveStoreVisitReason(id : number) : Observable<any> {
+    deleteNonProductiveStoreVisitReason(id: number): Observable<any> {
         return this.ApiService.delete(this.Url + 'StoreVisit/DeleteNonproductiveVisitReason/' + id);
+    }
+
+    //Reports
+    shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
     }
 }

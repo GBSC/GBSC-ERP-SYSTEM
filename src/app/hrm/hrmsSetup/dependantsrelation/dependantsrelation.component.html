@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
               [dataSource]="dependantsRelation" 
               keyExpr="dependantsRelationId" 
+              [showBorders]="true"
               (onRowInserted)="addDependantRelation($event)"
                (onRowUpdating)="DependantRelationUpdating($event)"
                (onRowUpdated)="editDependantRelation()"

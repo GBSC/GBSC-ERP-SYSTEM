@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./allowance-deduction.component.css']
 })
 export class AllowanceDeductionComponent implements OnInit {
+
     public allowancededuction: any;
     public allowanceCalculationTypes: any;
     public AllowanceorDeductionForm: FormGroup;

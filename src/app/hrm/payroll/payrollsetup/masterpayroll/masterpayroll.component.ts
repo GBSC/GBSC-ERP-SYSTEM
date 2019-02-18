@@ -121,6 +121,10 @@ export class MasterpayrollComponent implements OnInit {
          this.payrollsetupservice.addMasterPayroll(value).subscribe(resp=>{ console.log(resp); });
         this.toastr.success("Successfully! Master Payroll Add");
         this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
+        this.payrollsetupservice.getMasterPayrolls().subscribe(r=>{
+            this.masterPayroll = r
+            console.log(this.masterPayroll)
+        });
     }
 
     isUpdate(): boolean {

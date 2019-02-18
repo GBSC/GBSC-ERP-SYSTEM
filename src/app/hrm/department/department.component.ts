@@ -15,7 +15,9 @@ export class DepartmentComponent implements OnInit {
 
         this.deprt = await this.SystemAdministrationServiceobj.getDepartments();
 
-        this.branch = await this.SystemAdministrationServiceobj.getBranches();
+         this.SystemAdministrationServiceobj.getBranches().subscribe(res => {
+            this.branch = res
+         });
     }
 
 

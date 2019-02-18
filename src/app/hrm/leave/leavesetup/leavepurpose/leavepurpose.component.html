@@ -11,7 +11,7 @@
           <div class="m-section">
             <div class="m-section__content">
 
-              <dx-data-grid id="gridContainer" [dataSource]="leavePurpose" keyExpr="leavePurposeId" (onRowInserted)="addleavepurpose($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="leavePurpose" keyExpr="leavePurposeId" [showBorders]="true" (onRowInserted)="addleavepurpose($event)"
                 (onRowUpdating)="updatingleavepurpose($event)" 
                 (onRowUpdated)="updateleavepurpose()" 
                 (onRowRemoved)="deleteleavepurpose($event)">

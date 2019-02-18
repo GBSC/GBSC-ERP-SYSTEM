@@ -10,6 +10,7 @@
                                  [dataSource]="relations"
                                  keyExpr="relationId" 
                                  [columnAutoWidth]="true"
+                                 [showBorders]="true"
                                  (onRowInserted)="addRelation($event)" (onRowUpdated)="updateRelation($event)" >
                                   <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                                     <dxo-popup title="User Dependants" [showTitle]="true" [width]="850" [height]="450"></dxo-popup>

@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer" 
               [dataSource]="func"
                keyExpr="functionId"
+               [showBorders]="true"
                 (onRowInserted)="addNewfunction($event)" 
                 (onRowUpdating)="functionEditing($event)"
                 (onRowUpdated)="Editfunction()"

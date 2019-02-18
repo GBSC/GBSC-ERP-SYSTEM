@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="empstatus"
                 keyExpr="employeeStatusId" 
+                [showBorders]="true"
                 (onRowInserted)="addNewempstatus($event)"
                 (onRowUpdating)="EditingEmpstatus($event)"
                 (onRowUpdated)="EmpstatusEdit()"

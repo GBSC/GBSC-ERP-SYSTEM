@@ -14,6 +14,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="group"
                 keyExpr="groupId" 
+                [showBorders]="true"
                 (onRowInserted)="addNewGroups($event)" 
                 (onRowUpdating)="groupUpdaing($event)"
                 (onRowUpdated)="EditGroup()"

@@ -8,6 +8,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="qualifications"
                keyExpr="universityId" 
+               [showBorders]="true"
                (onRowInserted)="addQualification($event)"
                (onRowUpdated)="updateQualification($event)">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">

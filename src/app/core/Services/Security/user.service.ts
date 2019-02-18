@@ -35,6 +35,11 @@ export class UserService {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUsersByCompany/' + comapnyId);
     }
 
+    getUsernameByUserId(userId : number)
+    {
+        return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUsernameByUserId/' + userId);
+    }
+
     getUser(userId: any) {
         return this.ApiService.get(this.SystemAdmin_API_URL + 'Users/GetUser/' + userId);
     }
@@ -45,6 +50,10 @@ export class UserService {
 
     changePassword(model: any): Observable<string> {
         return this.ApiService.post(this.Auth_Url + 'accounts/ChangePassword', model);
+    }
+
+    changePasswordAdmin(model: any): Observable<string> {
+        return this.ApiService.post(this.Auth_Url + 'accounts/ChangePasswordAdmin', model);
     }
 
 }

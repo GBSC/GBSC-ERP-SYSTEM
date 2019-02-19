@@ -10,6 +10,9 @@ export class DailySemenAnalysisViewComponent implements OnInit {
 
 
     public dailySemenAnalysis: any;
+    public Procedure : any;
+    public consultants : any;
+    public patients : any;
 
     constructor(public PatientServiceObj: PatientService, public router: Router) { }
 
@@ -17,7 +20,25 @@ export class DailySemenAnalysisViewComponent implements OnInit {
         this.PatientServiceObj.getDailySemenAnalysis().subscribe(res => {
             this.dailySemenAnalysis = res;
             console.log(this.dailySemenAnalysis)
+        });
+
+        this.PatientServiceObj.getProcedure().subscribe(res => {
+            this.Procedure = res;
+            console.log(this.Procedure)
+        });
+
+        this.PatientServiceObj.GetConsultants().subscribe(res=>{
+            this.consultants = res;
+            console.log(this.consultants);
+        });
+
+        this.PatientServiceObj.getPatientObservable().subscribe(res=>{
+                this.patients  = res;
+                console.log(this.patients);
         })
+
+
+
     }
 
 

@@ -13,7 +13,8 @@
 
               <dx-data-grid id="gridContainer"
                [dataSource]="leveyear" 
-               keyExpr="leaveYearId" 
+               keyExpr="leaveYearId"
+               [showBorders]="true" 
                (onRowInserted)="addleaveyear($event)" 
                (onRowUpdating)="updatingLeaveyear($event)"
                (onRowUpdated)="updateleaveyear()"

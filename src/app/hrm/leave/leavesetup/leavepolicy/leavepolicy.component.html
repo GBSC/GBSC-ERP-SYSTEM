@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
+          <dx-data-grid id="gridContainer" [dataSource]="LeavePolicies" keyExpr="leavePolicyId" [showBorders]="true" (onRowInserted)="addleavepolicy($event)" (onRowUpdated)="updateLeavePolicy()"
             (onRowUpdating)="updatingleavepolicy($event)" (onRowRemoved)="deleteleavePolicy($event)">
             <dxo-editing mode="popup" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
               <dxo-popup title="Leave Policy" [showTitle]="true" [width]="1200" [height]="630">

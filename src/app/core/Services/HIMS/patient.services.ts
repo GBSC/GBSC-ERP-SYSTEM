@@ -186,6 +186,10 @@ export class PatientService {
         return await this.ApiService.delete(this.API_URL + 'patients/DeletePatientDocument/' + id).toPromise();
     }
 
+   deletePatientDocument(id):Observable<any> {
+        return   this.ApiService.delete(this.API_URL + 'patients/DeletePatientDocument/' + id);
+    }
+
     async updatePatientRef(Reference: Reference) {
         return await this.ApiService.put(this.API_URL + 'patients/UpdatePatientReference', Reference).toPromise();
     }
@@ -547,6 +551,9 @@ export class PatientService {
         return this.visitNatures
     }
 
+    getVisitNatures():Observable<any> {
+        return  this.ApiService.get(this.API_URL + 'HimsSetup/GetVisitNatures');
+    }
 
     async AddVisitNature(visitNature: VisitNature) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddVisitNature', visitNature).toPromise();

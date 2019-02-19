@@ -25,13 +25,15 @@ export class ApiService {
     get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
         let queryId = null;
         if (this.user) {
+            console.log(this.user);
+            
             if (this.user.assignedId.branchId)
                 params.append("branchId", this.user.assignedId.branchId);
             if (this.user.assignedId.cityId)
                 params.append("cityId", this.user.assignedId.cityId);
-            if (this.user.assignedId.cityId)
+            if (this.user.assignedId.countryId)
                 params.append("countryId", this.user.assignedId.countryId);
-            if (this.user.assignedId.cityId)
+            if (this.user.assignedId.companyId)
                 params.append("companyId", this.user.assignedId.companyId);
         }
 

@@ -21,6 +21,7 @@ export class BankComponent implements OnInit {
     async ngOnInit() {
 
         this.bank = await this.dataService.getAllBanks();
+        console.log(this.bank);
 
         this.employee = await this.empService.GetAllEmployees();
     }

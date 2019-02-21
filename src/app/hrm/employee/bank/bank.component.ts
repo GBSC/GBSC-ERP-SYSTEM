@@ -23,6 +23,10 @@ export class EmployeeBankComponent implements OnInit {
 
         this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
 
+        this.employeeService.getBank().subscribe(resp =>{
+            console.log(resp);
+            
+        });
 
     }
 

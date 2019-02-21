@@ -56,9 +56,11 @@ export class DailySemenAnalysisComponent implements OnInit {
     addDailySemenAnalysis(value) {
         console.log(this.DailySemenAnalysisForm.value);
         this.DailySemenAnalysisForm.value.DailySemenAnalysisProcedures = this.Procedurearray
+        console.log(value);
         this.PatientServiceobj.addDailySemenAnalysis(value).subscribe(res => {
             console.log(res);
         });
+
         this.DailySemenAnalysisForm.reset();
         this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }

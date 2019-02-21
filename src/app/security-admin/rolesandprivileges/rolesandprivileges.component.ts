@@ -222,7 +222,7 @@ export class RolesandprivilegesComponent implements OnInit {
     }
 
     async deleteRole(value){
-
+        console.log(value.key);
        await this.systemAdmin.deletRole(value.key);
     }
 

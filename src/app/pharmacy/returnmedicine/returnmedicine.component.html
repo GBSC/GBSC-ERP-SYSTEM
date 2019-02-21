@@ -44,10 +44,7 @@
                             <label for="exampleInputEmail1">
                                 MRN No
                             </label>
-                            <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetSelectedCustomerDetails(ReturnMedicineForm.value.MRN)"
-                                formControlName="MRN">
-                            <option *ngFor="let x of Customers" [value]="x?.crn">{{x?.crn}} </option>
-                      </select>
+                            <input type="text" class="form-control m-input m-input--solid" formControlName="MRN" [value]="SelectedSalesOrder?.againstLotNumber || ''">
                       </div>
                         <div class="form-group col-lg-3">
                             <label for="exampleInputEmail1">
@@ -79,14 +76,14 @@
                               <label for="exampleInputEmail1">
                                  P. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="SelectedCustomer?.name || ''"
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="PatientName" [value]="SelectedSalesOrder?.contactPerson || ''"
                               disabled>
                             </div>
                           <div class="form-group col-lg-3">
                               <label for="exampleInputEmail1">
                                 S. Name
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="SelectedCustomer?.shortName || ''"
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="SpouseName" [value]="SelectedSalesOrder?.contactPersonNumber || ''"
                               disabled>
                           </div>
                           <div class="form-group col-lg-3">
@@ -99,7 +96,8 @@
                               <label for="exampleInputEmail1">
                                   Department
                               </label>
-                              <input type="text" class="form-control m-input m-input--solid" formControlName="Department">
+                              <input type="text" class="form-control m-input m-input--solid" formControlName="Department" [value]="SelectedSalesOrder?.DepartmentName || ''"
+                              disabled>
                           </div>
                       </div>       
               
@@ -132,15 +130,15 @@
                                         <td><input class="form-control m-input m-input--solid"
                                                 formControlName="PerUnit" [value]="a?.inventoryItem?.unit?.name || ''" disabled></td> 
                                         <td><input type="number" #Rate class="form-control m-input m-input--solid"
-                                            formControlName="Rate" [value]="a?.inventoryItem?.retailPrice || 0" disabled></td>
+                                            formControlName="Rate" [value]="a?.inventoryItem?.unitPrice || 0" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
                                                 formControlName="PurchaseQuantity" [value]="a?.orderUnitQuantity || 0" disabled></td>
                                         <td><input type="number" #ReturnQuantity class="form-control m-input m-input--solid" 
-                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
+                                                formControlName="ReturnQuantity" min="0" max="a?.orderUnitQuantity || 1" [value]="ReturnQuantity[i] || 0" (keyup)="CalculateReturnAmount(ReturnQuantity.value, Rate.value, i)"></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
-                                                formControlName="PurchaseAmount" [value]="a?.itemTotalAmount" disabled></td>
+                                                formControlName="PurchaseAmount" [value]="a?.itemTotalAmount || 0" disabled></td>
                                         <td><input type="number" class="form-control m-input m-input--solid"
-                                                formControlName="ReturnAmount" [value]="ReturnAmount[i] || 0" disabled></td>
+                                                formControlName="ReturnAmount" [value]="ReturnAmount[i] || 0" disabled></td>  
                                         <td>
                                             <button type="button" (click)="CreateSalesReturnDetails(i, ReturnQuantity.value)" class="btn btn-success m-btn m-btn--icon m-btn--icon-only">
                                                 <i class="la la-add"></i>

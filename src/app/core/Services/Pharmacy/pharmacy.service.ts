@@ -39,7 +39,8 @@ export class PharmacyService {
 
     }
 
-    //SalesIndent
+    //SalesIndent 
+   // purchaseInvoic    //SalesIndent 
     GetSalesIndents(): Observable<SalesIndent> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndents');
     }
@@ -217,6 +218,27 @@ export class PharmacyService {
         return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseOrderItem/' + id);
     }
 
+    //PurchaseInvoice
+    GetPurchaseInvoices(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoices');
+    }
+
+    GetPurchaseInvoicesByCompany(companyId: number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByCompany/' + companyId);
+    }
+
+    AddPurchaseInvoice(PurchaseInvoice ): Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseInvoice', PurchaseInvoice);
+    }
+
+    UpdatePurchaseInvoice(PurchaseInvoice: any): Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseInvoice', PurchaseInvoice);
+    }
+
+    DeletePurchaseInvoice(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseInvoice/' + id);
+    }
+
     //GRN
     GetGRN(): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNs');
@@ -231,11 +253,19 @@ export class PharmacyService {
     }
 
     DeleteGRN(id: number): Observable<GRN> {
-        return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN' + id);
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeleteGRN/' + id);
     }
 
-    GetGrnDetailsByCode(code: string): Observable<GRN> {
-        return this.ApiService.get(this.API_URL + 'Sales/GetGrnDetailsByCode/' + code);
+    GetGrnDetailsByCode(code: string): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGrnDetailsByCode/' + code);
+    }
+
+    GetGrnDetailsWithSupplierByCode(code: string): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGrnDetailsWithSupplierByCode/' + code);
+    }
+
+    GetGrnDetailsWithSupplierByCodeAndCompany(code: string, companyid : number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetGrnDetailsWithSupplierByCodeAndCompany/' + code + '/' + companyid);
     }
 
     //Inventory
@@ -266,6 +296,10 @@ export class PharmacyService {
     //InventoryItem
     GetInventoryItems(): Observable<InventoryItem> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItems');
+    }
+
+    GetInventoryItemsByCompany(companyId: number): Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryItemsByCompany/' + companyId);
     }
 
     GetInventoryItem(id: number): Observable<InventoryItem> {
@@ -313,6 +347,10 @@ export class PharmacyService {
     //Currency
     GetCurrency(): Observable<Currency[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrencies');
+    }
+
+    getInventoryCurrenciesByCompany(companyId : number): Observable<Currency[]> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetInventoryCurrenciesByCompany/' + companyId);
     }
 
     AddCurrency(Currency: Currency): Observable<Currency> {
@@ -366,6 +404,10 @@ export class PharmacyService {
         return this.ApiService.get(this.API_URL + 'Setup/GetPackSizes');
     }
 
+    GetPackSizesByCompany(companyId: number): Observable<PackSize> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetPackSizesByCompany/' + companyId);
+    }
+
     AddPackSize(PackSize: PackSize): Observable<PackSize> {
         return this.ApiService.post(this.API_URL + 'Setup/AddPackSize', PackSize);
     }
@@ -413,8 +455,12 @@ export class PharmacyService {
     }
 
     //ReturnReason
-    GetReturnReasons(): Observable<ReturnReason> {
+    GetReturnReasons(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasons');
+    }
+
+    GetReturnReasonsByCompany(companyid : number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetReturnReasonsByCompany/' + companyid);
     }
 
     AddReturnReason(ReturnReason: ReturnReason): Observable<ReturnReason> {
@@ -430,8 +476,12 @@ export class PharmacyService {
     }
 
     //Supplier
-    GetSuppliers(): Observable<Supplier> {
+    GetSuppliers(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Setup/GetSuppliers');
+    }
+
+    GetSuppliersByCompany(companyId: number): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Setup/GetSuppliersByCompany/' + companyId);
     }
 
     AddSupplier(Supplier: Supplier): Observable<Supplier> {
@@ -465,6 +515,32 @@ export class PharmacyService {
 
     getCustomers(): Observable<Customer> {
         return this.ApiService.get(this.API_URL + 'Setup/GetCustomers');
+    }
+
+    //Purchase Return
+    getPurchaseReturns() : Observable<any[]> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturns');
+    }
+
+    GetPurchaseReturnsByMonth(date): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturnsByMonth/'+date);
+    }
+
+
+    getPurchaseReturn(id : number) : Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseReturn/' + id);
+    }
+
+    addPurchaseReturn(model) : Observable<any> {
+        return this.ApiService.post(this.API_URL + 'Purchase/AddPurchaseReturn', model);
+    }
+
+    updatePurchaseReturn(model) : Observable<any> {
+        return this.ApiService.put(this.API_URL + 'Purchase/UpdatePurchaseReturn', model);
+    }
+
+    deletePurchaseReturn(id : number) : Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'Purchase/DeletePurchaseReturn/' + id);
     }
 
 
@@ -532,5 +608,13 @@ export class PharmacyService {
 
     GetGRNsByMonth(date): Observable<GRN> {
         return this.ApiService.get(this.API_URL + 'Purchase/GetGRNsByMonth/' + date);
+    }
+
+    GetPurchaseInvoicesByMonth(date): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByMonth/' + date);
+    }
+
+    GetPurchaseInvoicesByMonthAndCompany(date, companyid): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'Purchase/GetPurchaseInvoicesByMonthAndCompany/' + date + '/' + companyid);
     }
 }

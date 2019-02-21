@@ -86,8 +86,8 @@
                                 <label for="exampleInputEmail1">
                                     Exchange Rate
                                 </label>
-                                <input type="text" class="form-control m-input m-input--solid" formControlName="ExchangeRate"
-                                    [value]="SelectedCurrency?.exchangeRate || ''" disabled>
+                                <input type="text" #ExchangeRate class="form-control m-input m-input--solid"
+                                    formControlName="ExchangeRate" [value]="SelectedCurrency?.exchangeRate || ''">
                             </div>
                             <div class="form-group col-lg-8">
                                 <label for="exampleInputEmail1">
@@ -102,70 +102,71 @@
 
 
                     <div class="row">
-                            <div class="m-portlet__body">
-                                <div class="m-section">
-                                    <div class="m-section__content">
-        
-                                        <div>
-                                            <button type="button" data-toggle="modal" data-target="#m_modal_6" class="btn btn-success pull-right margin"><i
-                                                    class="fa fa-plus"></i>
-                                            </button>
-                                            <div class="form-group m-form__group row">
-                                                <div class="col-lg-12">
-                                                    <dx-data-grid id="gridContainer" [dataSource]="PurchaseOrderDetailsFormArray" (onRowRemoved)="RemovePurchaseOrderDetails($event)">
-                                                        <dxo-editing mode="popup" [allowDeleting]="false">
-                                                        </dxo-editing>
-                                                        <dxo-filter-row [visible]="true"></dxo-filter-row>
-                                                        <dxo-header-filter [visible]="true"></dxo-header-filter>
-                                                        <dxo-paging [pageSize]="5"></dxo-paging>
-                                                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]"
-                                                            [showInfo]="true"></dxo-pager>
-                                                        <dxi-column dataField="ManualCode" caption="Manual Code"></dxi-column>
-                                                        <dxi-column dataField="Description" caption="Description"></dxi-column>
-                                                        <dxi-column dataField="PackType" caption="Pack Type"></dxi-column>
-                                                        <dxi-column dataField="StockQuantity" caption="Stock Quantity"></dxi-column>
-                                                        <dxi-column dataField="OrderQuantity" caption="Order Quantity"></dxi-column>
-                                                        <dxi-column dataField="BonusQuantity" caption="Bonus Quantity"></dxi-column>
-                                                        <dxi-column dataField="PerUnit" caption="Per Unit"></dxi-column>
-                                                        <dxi-column dataField="Rate" caption="Rate"></dxi-column>
-                                                        <dxi-column dataField="GrossAmount" caption="Gross Amount"></dxi-column>
-                                                        <dxi-column dataField="DiscountPercentage" caption="Discount Percentage"></dxi-column>
-                                                        <dxi-column dataField="DiscountAmount" caption="Discount Amount"></dxi-column>
-                                                        <dxi-column dataField="SalesTaxPercentage" caption="Sales Tax Percentage"></dxi-column>
-                                                        <dxi-column dataField="SalesTaxAmount" caption="Sales Tax Amount"></dxi-column>
-                                                        <dxi-column dataField="NetAmount" caption="Net Amount"></dxi-column>
+                        <div class="m-portlet__body">
+                            <div class="m-section">
+                                <div class="m-section__content">
 
-                                                    </dx-data-grid>
-        
+                                    <div>
+                                        <button type="button" data-toggle="modal" data-target="#m_modal_6" class="btn btn-success pull-right margin"><i
+                                                class="fa fa-plus"></i>
+                                        </button>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-12">
+                                                <dx-data-grid id="gridContainer" [dataSource]="PurchaseOrderDetailsFormArray"
+                                                    (onRowRemoved)="RemovePurchaseOrderDetails($event)">
+                                                    <dxo-editing mode="popup" [allowDeleting]="false">
+                                                    </dxo-editing>
+                                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                                    <dxo-paging [pageSize]="5"></dxo-paging>
+                                                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]"
+                                                        [showInfo]="true"></dxo-pager>
+                                                    <dxi-column dataField="ManualCode" caption="Manual Code"></dxi-column>
+                                                    <dxi-column dataField="Description" caption="Description"></dxi-column>
+                                                    <dxi-column dataField="PackType" caption="Pack Type"></dxi-column>
+                                                    <dxi-column dataField="StockQuantity" caption="Stock Quantity"></dxi-column>
+                                                    <dxi-column dataField="OrderQuantity" caption="Order Quantity"></dxi-column>
+                                                    <dxi-column dataField="BonusQuantity" caption="Bonus Quantity"></dxi-column>
+                                                    <dxi-column dataField="PerUnit" caption="Per Unit"></dxi-column>
+                                                    <dxi-column dataField="Rate" caption="Rate"></dxi-column>
+                                                    <dxi-column dataField="GrossAmount" caption="Gross Amount"></dxi-column>
+                                                    <dxi-column dataField="DiscountPercentage" caption="Discount Percentage"></dxi-column>
+                                                    <dxi-column dataField="DiscountAmount" caption="Discount Amount"></dxi-column>
+                                                    <dxi-column dataField="SalesTaxPercentage" caption="Sales Tax Percentage"></dxi-column>
+                                                    <dxi-column dataField="SalesTaxAmount" caption="Sales Tax Amount"></dxi-column>
+                                                    <dxi-column dataField="NetAmount" caption="Net Amount"></dxi-column>
+
+                                                </dx-data-grid>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6"></div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group m-form__group row">
+                                                    <label for="example-text-input" class="col-4 col-form-label">
+                                                        Total Quantity
+                                                    </label>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control m-input m-input--solid"
+                                                            [value]="TotalQuantity" disabled> </div>
+                                                </div>
+
+                                                <div class="form-group m-form__group row">
+                                                    <label for="example-text-input" class="col-4 col-form-label">
+                                                        Total Amount
+                                                    </label>
+                                                    <div class="col-6">
+                                                        <input type="number" class="form-control m-input m-input--solid"
+                                                            [value]="TotalOrderAmount" disabled> </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                    <div class="col-lg-6"></div>
-                                                <div class="col-lg-6">
-                                                        <div class="form-group m-form__group row">
-                                                                <label for="example-text-input" class="col-4 col-form-label">
-                                                                        Pack Qty
-                                                                </label>
-                                                                <div class="col-6">
-                                                                        <input type="number" class="form-control m-input m-input--solid" [value]="TotalQuantity"
-                                                                        disabled>                                                </div>
-                                                            </div>
-                
-                                                            <div class="form-group m-form__group row">
-                                                                    <label for="example-text-input" class="col-4 col-form-label">
-                                                                            Total Amount
-                                                                    </label>
-                                                                    <div class="col-6">
-                                                                            <input type="number" class="form-control m-input m-input--solid" [value]="TotalOrderAmount"
-                                                                            disabled>                                                    </div>
-                                                                </div>
-                                                </div>
-                                            </div>
-                                           
+                                        </div>
 
 
-                                    
-                                           <!--  <div class="form-group m-form__group row">
+
+
+                                        <!--  <div class="form-group m-form__group row">
                                                     <div class="col-lg-10"></div>
                                                     <div class="col-lg-2">
                                                         
@@ -173,16 +174,16 @@
                                                     </div>
                                                     <div class="col-lg-10"></div>
                                                 </div> -->
-                                        </div>
-        
-                                        <!-- </form> -->
-                                        <div class="modal-footer">
-                                                <button class="btn btn-success"  (click)="SubmitPurchaseOrder()">Save</button>
-                                            </div>
+                                    </div>
+
+                                    <!-- </form> -->
+                                    <div class="modal-footer">
+                                        <button class="btn btn-success" (click)="SubmitPurchaseOrder()">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
 
@@ -191,11 +192,11 @@
 
                     <hr>
 
-                 
+
 
                     <!--end::Portlet-->
-                
-                 
+
+
                 </div>
             </div>
         </div>
@@ -227,8 +228,8 @@
                                 <label for="exampleInputEmail1">
                                     Manual Code
                                 </label>
-                                <select class="form-control m-input ng-pristine ng-valid ng-touched"
-                                    (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)" formControlName="ManualCode">
+                                <select class="form-control m-input ng-pristine ng-valid ng-touched" (change)="GetItemDetails(PurchaseOrderDetailsForm.value.ManualCode)"
+                                    formControlName="ManualCode">
                                     <option *ngFor="let x of FilteredInventoryItems" [value]="x?.itemCode">
                                         {{x?.itemCode}}
                                     </option>
@@ -274,7 +275,7 @@
                                     Order Quantity
                                 </label>
                                 <input type="number" #OrderQuantity class="form-control m-input m-input--solid"
-                                    formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)">
+                                    formControlName="OrderQuantity" (keyup)="CalculateGrossAmount(ExchangeRate.value || 0, OrderQuantity.value || 0, BonusQuantity.value || 0)">
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -283,7 +284,7 @@
                                     Bonus Quantity
                                 </label>
                                 <input type="number" #BonusQuantity class="form-control m-input m-input--solid"
-                                    formControlName="BonusQuantity" (keyup)="CalculateGrossAmount(OrderQuantity.value || 0, BonusQuantity.value || 0)">
+                                    formControlName="BonusQuantity" (keyup)="CalculateGrossAmount(ExchangeRate.value || 0, OrderQuantity.value || 0, BonusQuantity.value || 0)">
                             </div>
                         </div>
                     </div>
@@ -303,18 +304,18 @@
                                     Rate
                                 </label>
                                 <input type="number" class="form-control m-input m-input--solid" formControlName="Rate"
-                                    [value]="SelectedInventoryItem?.retailPrice || ''" disabled>
+                                    [value]="SelectedInventoryItem?.unitPrice || ''" disabled>
                             </div>
                         </div>
                         <div class="col-sm-4">
-                                <div class="form-group m-form__group">
-                                    <label for="exampleInputEmail1">
-                                        Sales Tax %
-                                    </label>
-                                    <input type="number" #SalesTaxPercentage class="form-control m-input m-input--solid"
-                                        formControlName="SalesTaxPercentage" (keyup)="CalculateSalesTaxAmount(SalesTaxPercentage.value || 0)">
-                                </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Sales Tax %
+                                </label>
+                                <input type="number" #SalesTaxPercentage class="form-control m-input m-input--solid"
+                                    formControlName="SalesTaxPercentage" (keyup)="CalculateSalesTaxAmount(SalesTaxPercentage.value || 0)">
                             </div>
+                        </div>
 
                     </div>
 
@@ -329,40 +330,34 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                                <div class="form-group m-form__group">
-                                    <label for="exampleInputEmail1">
-                                        Gross Amount
-                                    </label>
-                                    <input type="number" class="form-control m-input m-input--solid" formControlName="GrossAmount"
-                                        [value]="GrossAmount" disabled>
-                                </div>
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Gross Amount
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="GrossAmount"
+                                    [value]="GrossAmount" disabled>
                             </div>
-                            <div class="col-sm-4">
-                                    <div class="form-group m-form__group">
-                                        <label for="exampleInputEmail1">
-                                            Sales Tax Amount
-                                        </label>
-                                        <input type="number" class="form-control m-input m-input--solid" formControlName="SalesTaxAmount"
-                                            [value]="SalesTaxAmount" disabled>
-                                    </div>
-                                </div>
-                       
-
-                        
-
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Sales Tax Amount
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="SalesTaxAmount"
+                                    [value]="SalesTaxAmount" disabled>
+                            </div>
+                        </div>
                     </div>
-
-
                     <div class="form-group row">
-                            <div class="col-sm-4">
-                                    <div class="form-group m-form__group">
-                                        <label for="exampleInputEmail1">
-                                            Discount Amount
-                                        </label>
-                                        <input type="number" class="form-control m-input m-input--solid" formControlName="DiscountAmount"
-                                            [value]="DiscountAmount" disabled>
-                                    </div>
-                                </div>
+                        <div class="col-sm-4">
+                            <div class="form-group m-form__group">
+                                <label for="exampleInputEmail1">
+                                    Discount Amount
+                                </label>
+                                <input type="number" class="form-control m-input m-input--solid" formControlName="DiscountAmount"
+                                    [value]="DiscountAmount" disabled>
+                            </div>
+                        </div>
                         <div class="col-sm-4">
                             <div class="form-group m-form__group">
                                 <label for="exampleInputEmail1">
@@ -381,7 +376,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
-                <button class="btn btn-success"  (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)">Save</button>
+                <button class="btn btn-success" (click)="AddPurchaseOrderDetails(PurchaseOrderDetailsForm.value)">Save</button>
             </div>
         </div>
     </div>

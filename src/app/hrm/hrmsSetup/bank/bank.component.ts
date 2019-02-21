@@ -28,6 +28,8 @@ export class BankComponent implements OnInit {
 
     async addNewbank(bank) {
         await this.dataService.addbank(bank.data);
+        console.log(bank.data);
+        
         this.bank = await this.dataService.getAllBanks();
     }
 
@@ -37,11 +39,13 @@ export class BankComponent implements OnInit {
 
     async UpdateBank() {
         await this.dataService.updateBank(this.modelUpdating)
+         
     }
 
     async deletebank(bnk) {
         await this.dataService.DeleteBank(bnk.key);
     }
+
 
 
 }

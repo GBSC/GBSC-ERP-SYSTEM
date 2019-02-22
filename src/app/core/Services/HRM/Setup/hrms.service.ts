@@ -71,10 +71,15 @@ export class HrmsService {
         return await this.ApiService.get(`${this.setupUrl}/GetDepartments`).toPromise();
     }
 
-      GetAllDepartments():Observable<any> {
-        return   this.ApiService.get(`${this.setupUrl}/GetDepartments`);
+    GetAllDepartments() : Observable<any[]> {
+
+        return this.ApiService.get(`${this.setupUrl}/GetDepartments`)
     }
 
+    GetAllDepartmentsByCompany(companyid : number) : Observable<any[]> {
+
+        return this.ApiService.get(`${this.setupUrl}/GetDepartmentsByCompanyId/` + companyid)
+    }
 
     // DEMO ONLY, you can find working methods below
     async addDepartment(data) {
@@ -87,7 +92,14 @@ export class HrmsService {
     }
 
     async DeleteDepartment(data) {
-
         return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
+    }
+
+    GetBranchesByCompany(companyid : number) : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranchesByCompanyId/` + companyid)
+    }
+
+    GetBranches() : Observable<any[]> {
+        return this.ApiService.get(`${this.setupUrl}/GetBranches`)
     }
 }

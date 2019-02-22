@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="designatn" 
                keyExpr="designationId"
+               [showBorders]="true"
                 (onRowInserted)="addDesignation($event)"
                 (onRowUpdating)="EditingDesignation($event)"
                 (onRowUpdated)="EditDesignation()"

@@ -62,7 +62,7 @@ export class MonthlyUserSalaryComponent implements OnInit {
 
         this.monthlySalary = await this.payrollservice.getMonthlySalaries();
 
-        this.userSalary = await this.payrollsetupservice.getUserSalaries();
+        this.userSalary = await this.payrollservice.getUserSalaries();
 
         this.attendanceSetupService.GetAsignRosters().subscribe(resp => {
             this.roster = resp;

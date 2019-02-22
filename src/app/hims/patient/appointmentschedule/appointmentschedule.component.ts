@@ -178,6 +178,8 @@ export class AppointmentscheduleComponent implements OnInit {
 
     formateDateAndTime(date: Date) {
         return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "T" + date.getHours() + ":" + date.getMinutes();
+        // let dateFormat = require('dateformat');
+
     }
 
     calculateCellValue(data) {
@@ -504,17 +506,17 @@ export class AppointmentscheduleComponent implements OnInit {
                 console.log('1', value.key);
             }
 
-            else {
-                console.log(value);
-                let finaltime = this.formateDateAndTime(new Date(value.key.finalTime));
-                console.log(value);
-                console.log(finaltime)
-                value.key.finalTime = finaltime;
-                value.key.appointmentDate = value.key.finalTime;
-                value.key.isCancelled = 'false';
-                console.log(value.key.finalTime);
-                console.log('2', value.key);
-            }
+            // else {
+            //     console.log(value);
+            //     let finaltime = this.formateDateAndTime(new Date(value.key.finalTime));
+            //     console.log(value);
+            //     console.log(finaltime)
+            //     value.key.finalTime = finaltime;
+            //     value.key.appointmentDate = value.key.finalTime;
+            //     value.key.isCancelled = 'false';
+            //     console.log(value.key.finalTime);
+            //     console.log('2', value.key);
+            // }
 
             // this.InvoiceForm.value.appointmentId = value.key.appointmentId;
             // this.consultantfee =   this.consultant.find(t=> t.consultantId ==  value.key.consultantId);

@@ -190,8 +190,13 @@ export class RegistrationComponent implements OnInit {
             console.log(this.getreferncdata);
         });
 
-        await this.PatientServiceobj.GetVisitNatures();
-        this.visitnature = this.PatientServiceobj.visitNatures;
+        // await this.PatientServiceobj.GetVisitNatures();
+        // this.visitnature = this.PatientServiceobj.visitNatures;
+
+        this.PatientServiceobj.getVisitNatures().subscribe(res =>{
+            this.visitnature = res;
+            console.log(this.visitnature);
+        });
     }
 
     async addreference(value) {
@@ -457,10 +462,19 @@ export class RegistrationComponent implements OnInit {
     }
 
 
-    async deleteDocument(id, i) {
-        //    console.log(i)
-        await this.PatientServiceobj.deleteDocument(id);
-        this.documents.splice(i, 1)
+    // async deleteDocument(id, i) {
+    //          console.log(i)
+    //     await this.PatientServiceobj.deleteDocument(id);
+    //     this.documents.splice(i, 1)
+    // }
+    
+    deleteDocument(id , i ){
+        console.log(id);
+        this.PatientServiceobj.deletePatientDocument(id).subscribe(res=>{
+            console.log(res);
+ 
+              this.documents.splice(i, 1)
+        });
     }
 
 

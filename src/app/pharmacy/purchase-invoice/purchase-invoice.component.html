@@ -1,0 +1,129 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Purchase Invoice
+              </h3>
+            </div>
+          </div>
+          <div class="m-portlet__head-tools">
+            <div class="dropdown">
+              <button routerLink="/pharmacy/purchaseinvoiceview" class="btn btn-primary" type="button">
+                <span>
+                  <i class="fa fa-eye"></i>
+                </span> Invoice View
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <!--begin::Form-->
+          <form class="m-form" [formGroup]="PurchaseInvoiceForm">
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label>
+                  GRN Code
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" #GRNCode (keyup)="getGRNDetails(GRNCode.value, $event)"
+                  formControlName="GRNCode">
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  GRN Date
+                </label>
+                <div class="input-group date">
+                  <input type="date" class="form-control m-input m-input--solid" disabled formControlName="GRNDate"
+                    [value]="GRN?.grnDate | date: 'yyyy-MM-dd' || ''">
+                </div>
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  GRN Remarks
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" disabled formControlName="GRNRemarks"
+                  [value]="GRN?.remarks || ''">
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  Invoice Date
+                </label>
+                <div class="input-group date">
+                  <input type="date" class="form-control m-input m-input--solid" formControlName="InvoiceDate">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-lg-3">
+                <label>
+                  Payment Amount
+                </label>
+                <input type="number" class="form-control m-input m-input--solid" disabled formControlName="PaymentAmount"
+                  [value]="GRN?.totalPaymentAmount || ''">
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  Received Quantity
+                </label>
+                <div class="input-group date">
+                  <input type="number" class="form-control m-input m-input--solid" disabled formControlName="ReceivedQuantity"
+                    [value]="GRN?.totalReceivedQuantity || ''">
+                </div>
+              </div>
+              <div class="form-group col-lg-3">
+                <label>
+                  Vendor Bill #
+                </label>
+                <input type="text" class="form-control m-input m-input--solid" formControlName="VendorBillNumber"
+                  [value]="GRN?.vendorBillNumber || ''">
+              </div>
+
+              <div class="form-group col-lg-2">
+                <label for="exampleInputEmail1">
+                    Currency
+                </label>
+                <select class="form-control m-input ng-pristine ng-valid ng-touched"
+                    formControlName="CurrencyId">
+                    <option *ngFor="let x of Currency" [value]="x?.inventoryCurrencyId">{{x?.name}}
+                    </option>
+                </select>
+            </div>
+
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-md-12">
+              <dx-data-grid [dataSource]="GRNItems" showBorders="true" [columnAutoWidth]="true" [showBorders]="true">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxi-column dataField="inventoryItemId" caption="Product" [fixed]="true">
+                  <dxo-lookup [dataSource]="Products" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                </dxi-column>
+                <dxi-column dataField="receivedQuantity" caption="Received Quantity"></dxi-column>
+                <dxi-column dataField="rate" caption="Rate"></dxi-column>
+                <dxi-column dataField="packSize" dataType="number" caption="Pack Size"></dxi-column>
+                <dxi-column dataField="paymentAmount" dataType="number" caption="Payment Amount"></dxi-column>
+              </dx-data-grid>
+            </div>
+
+            <div class="form-group m-form__group">
+              <div class="modal-footer">
+                <button class="btn btn-success" (click)="SubmitPIN(PurchaseInvoiceForm.value)">Submit</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--end::Portlet-->
+    </div>
+  </div>
+</div>

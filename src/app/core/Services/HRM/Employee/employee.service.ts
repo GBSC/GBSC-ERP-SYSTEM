@@ -166,7 +166,6 @@ export class EmployeeService {
     //Employee Banks
 
     getBank(): Observable<any> {
-
         return this.ApiService.get(this.baseUrl + '/HrSetup/GetBanks');
     }
 

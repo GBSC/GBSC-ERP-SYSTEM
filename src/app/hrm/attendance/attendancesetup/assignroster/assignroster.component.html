@@ -9,49 +9,6 @@
   <div class="m-portlet__body">
     <div class="m-section">
       <div class="m-section__content">
-
-        <!-- <dx-data-grid id="gridContainer"
-               [dataSource]="assignrosters"
-               keyExpr="assignRosterId"
-               (onRowInserted)="addassignroster($event)"
-               (onRowUpdating)="updatingAssignroster($event)"
-               (onRowUpdated)="updateassignroster()"
-               (onRowRemoved)="deleteassignroster($event)">
-               <dxo-export [enabled]="true" fileName="Employees" [allowExportSelectedData]="true"></dxo-export>
-               <dxo-selection mode="multiple"></dxo-selection>
-               <dxo-group-panel [visible]="true"></dxo-group-panel>
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                </dxo-editing>
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-
-                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                <dxo-paging [pageSize]="7"></dxo-paging>
-                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                </dxo-pager> 
-                <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
-                <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column> 
-                <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column> 
-                <dxi-column dataType="boolean" dataField="isDefaultRoster" caption ="Default Roster"></dxi-column> 
-                <dxi-column dataField="rosterId" caption="Roster">
-                    <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
-                    </dxo-lookup> 
-                    </dxi-column> 
-                    <dxi-column dataField="shiftsId" caption="Shift">
-                      <dxo-lookup [dataSource]="shifts" displayExpr="shiftTitle" valueExpr="shiftsId">
-                      </dxo-lookup> 
-                      </dxi-column>     
-                    <dxi-column caption="Employee" [minWidth]="225" cellTemplate="chartCellTemplate"  [formItem]="{visible: false}"></dxi-column>
-                    <div *dxTemplate="let d of 'chartCellTemplate'">
-                      <div class="chart-cell">
-                          <dx-button text="Off Days"  (click)="openOffDayModel()" data-toggle="modal" data-target="#m_modal_3"></dx-button>
-                          <dx-button text="Select User" (onClick)="showInfo(employee)"></dx-button>
-                      </div>
-                  </div> 
-
-              </dx-data-grid> -->
-
-
         <dx-data-grid id="gridContainer" [dataSource]="assignrosters" keyExpr="assignRosterId" (onRowInserted)="addassignroster($event)"
           [masterDetail]="{ enabled: true, template: 'detail' }" [masterDetail]="{ enabled: true, template: 'sub-detail' }"
           (onRowRemoved)="deleteassignroster($event)">

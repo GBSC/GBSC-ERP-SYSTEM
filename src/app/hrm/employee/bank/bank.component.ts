@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService, SetupService } from '../../../core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Employee } from '../../../core/Models/HRM/employee';
+import { ApiService } from '../../../core/Services/api.service'
 
 @Component({
     selector: 'app-employeebank',
@@ -16,17 +17,12 @@ export class EmployeeBankComponent implements OnInit {
 
     @Input('employeeId') id: number;
 
-    constructor(public employeeService: EmployeeService) {
+    constructor(public employeeService: EmployeeService , public ApiServiceobj : ApiService) {
     }
 
-    async ngOnInit() {
-
+     ngOnInit() {
+         
         this.employeeService.getBanks(this.id).subscribe(resp => this.banks = resp);
-
-        this.employeeService.getBank().subscribe(resp =>{
-            console.log(resp);
-            
-        });
 
     }
 

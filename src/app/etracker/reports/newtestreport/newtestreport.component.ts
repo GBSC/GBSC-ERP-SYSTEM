@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
-import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 import { AuthService } from '../../../../app/core';
 
 
@@ -11,53 +8,29 @@ import { AuthService } from '../../../../app/core';
   templateUrl: './newtestreport.component.html',
   styleUrls: ['./newtestreport.component.css']
 })
-export class NewtestreportComponent implements OnInit {
+export class newtestreport implements OnInit {
 
-  pivotGridDataSource: any;
-  showDataFields: boolean = true;
-  showRowFields: boolean = true;
-  showColumnFields: boolean = true;
-  showFilterFields: boolean = true;
+  title = 'app';
+  columnDefs = [
+    {headerName: 'Make', field: 'make' },
+    {headerName: 'Model', field: 'model' },
+    {headerName: 'Price', field: 'price'}
+];
 
-  companyId : number;
-  userId : number;
+rowData = [
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxter', price: 72000 }
+];
 
-  constructor(public storeService: StoreService, public authService : AuthService) {
-    this.companyId = authService.getUserCompanyId();
-    this.userId = authService.getUserId();
+
+  constructor() {
+
    }
 
   ngOnInit() {
 
-    this.storeService.shopCensusDetailReport(this.companyId, this.userId).subscribe(res => {
-      this.pivotGridDataSource = new PivotGridDataSource({
-        fields: [{
-          caption: "Region",
-          width: 120,
-          dataField: "region",
-          area: "row"
-        }, {
-          caption: "City",
-          dataField: "city",
-          width: 150,
-          area: "row"
-        }, 
-        {
-          caption: "Store",
-          dataField: "storeName",
-          width: 150,
-          area: "row"
-        },
-        {
-          dataField: "createDate",
-          dataType: "date",
-          area: "filter"
-        }],
-        store: res
-      });
-    });
-
+    
   }
-
-
 }
+

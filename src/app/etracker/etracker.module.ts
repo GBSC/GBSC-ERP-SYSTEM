@@ -36,9 +36,11 @@ import { Select2Module } from 'ng2-select2';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { DxDateBoxModule } from 'devextreme-angular/ui/date-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
-import { NewtestreportComponent } from './reports/newtestreport/newtestreport.component';
 import { DxCheckBoxModule } from 'devextreme-angular/ui/check-box';
 import { DxPivotGridModule } from 'devextreme-angular/ui/pivot-grid';
+import { newtestreport } from "./reports/newtestreport/newtestreport";
+import { AgGridModule } from 'ag-grid-angular';
+
 
 
 @NgModule({
@@ -58,9 +60,10 @@ import { DxPivotGridModule } from 'devextreme-angular/ui/pivot-grid';
         DxCheckBoxModule,
         DxSelectBoxModule,
         DxDateBoxModule,
-        DxPopupModule
+        DxPopupModule,
+        AgGridModule.withComponents([])
     ],
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, NewtestreportComponent],
+    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, newtestreport],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

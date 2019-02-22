@@ -1,4 +1,29 @@
-<dx-pivot-grid id="censusDetail"
+
+
+
+
+
+
+
+
+
+
+
+<ag-grid-angular 
+style="width: 500px; height: 500px;" 
+class="ag-theme-balham"
+[rowData]="rowData | async"
+[columnDefs]="columnDefs"
+rowSelection="multiple"
+>
+</ag-grid-angular>
+
+
+
+
+
+<!-- <dx-pivot-grid id="censusDetail"
+
     [allowSortingBySummary]="true"
     [allowSorting]="true"
     [allowFiltering]="true"
@@ -43,4 +68,4 @@
           text="Show Filter Fields"
           [(value)]="showFilterFields"></dx-check-box>
     </div>
-</div>
+</div> -->

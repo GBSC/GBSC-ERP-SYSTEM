@@ -21,12 +21,15 @@ export class BankComponent implements OnInit {
     async ngOnInit() {
 
         this.bank = await this.dataService.getAllBanks();
+        console.log(this.bank);
 
         this.employee = await this.empService.GetAllEmployees();
     }
 
     async addNewbank(bank) {
         await this.dataService.addbank(bank.data);
+        console.log(bank.data);
+        
         this.bank = await this.dataService.getAllBanks();
     }
 
@@ -36,11 +39,13 @@ export class BankComponent implements OnInit {
 
     async UpdateBank() {
         await this.dataService.updateBank(this.modelUpdating)
+         
     }
 
     async deletebank(bnk) {
         await this.dataService.DeleteBank(bnk.key);
     }
+
 
 
 }

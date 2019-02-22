@@ -151,6 +151,7 @@ import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/vie
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
+import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -385,7 +386,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'dailyattendance', component: DailyAttendanceComponent }, 
                     { path: 'salarypayment', component: SalarypaymentComponent },
                     { path: 'gross-salary', component: GrossSalaryComponent },
-                    { path: 'loansummary', component: LoansummaryComponent }
+                    { path: 'loansummary', component: LoansummaryComponent },
+                    { path: 'payrollprocess', component: MonthlyPayrollProcessComponent }
                 ]
             }
         ]

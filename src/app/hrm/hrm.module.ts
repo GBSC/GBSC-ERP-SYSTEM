@@ -267,6 +267,8 @@ import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/
         ProratematrixComponent,
         LeaveclosingComponent,
         LeaveapprovalComponent,
+        LeaveDetailComponent,
+        MonthlyleaveComponent,
 
         /* Employee Registration */
 

@@ -101,6 +101,14 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'patients/getpatients');
     }
 
+    getPatientsWithPartners(): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientsWithPartners');
+    }
+
+    getPatientsWithPartnersByCompany(companyid : number): Observable<Patient> {
+        return this.ApiService.get(this.API_URL + 'patients/GetPatientsWithPartnersByComany/' + companyid);
+    }
+
     getPatientWithPartner(PatientId: number): Observable<Patient> {
         return this.ApiService.get(this.API_URL + 'patients/getpatientwithpartner/' + PatientId);
     }
@@ -176,6 +184,10 @@ export class PatientService {
 
     async deleteDocument(id) {
         return await this.ApiService.delete(this.API_URL + 'patients/DeletePatientDocument/' + id).toPromise();
+    }
+
+   deletePatientDocument(id):Observable<any> {
+        return   this.ApiService.delete(this.API_URL + 'patients/DeletePatientDocument/' + id);
     }
 
     async updatePatientRef(Reference: Reference) {
@@ -539,6 +551,9 @@ export class PatientService {
         return this.visitNatures
     }
 
+    getVisitNatures():Observable<any> {
+        return  this.ApiService.get(this.API_URL + 'HimsSetup/GetVisitNatures');
+    }
 
     async AddVisitNature(visitNature: VisitNature) {
         return await this.ApiService.post(this.API_URL + 'HimsSetup/AddVisitNature', visitNature).toPromise();

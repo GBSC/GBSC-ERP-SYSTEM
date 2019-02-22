@@ -13,6 +13,7 @@
               <dx-data-grid id="gridContainer"
               [dataSource]="relation" 
               keyExpr="relationId" 
+              [showBorders]="true"
               (onRowInserted)="addrelation($event)"
                (onRowUpdating)="relationUpdating($event)"
                (onRowUpdated)="Editrelation()"

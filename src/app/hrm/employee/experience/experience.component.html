@@ -8,7 +8,8 @@
               <div class="m-section__content">
                 <dx-data-grid id="gridContainer"
                  [dataSource]="experiences"
-                 keyExpr="workExperienceId" 
+                 keyExpr="workExperienceId"
+                 [showBorders]="true" 
                  (onRowInserted)="addWorkExperience($event)"
                 (onRowUpdated)="updateWorkExperience($event)">
                   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
 import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
+import { AuthService } from '../../../../app/core';
 
 
 
@@ -18,11 +19,17 @@ export class NewtestreportComponent implements OnInit {
   showColumnFields: boolean = true;
   showFilterFields: boolean = true;
 
-  constructor(public storeService: StoreService) { }
+  companyId : number;
+  userId : number;
+
+  constructor(public storeService: StoreService, public authService : AuthService) {
+    this.companyId = authService.getUserCompanyId();
+    this.userId = authService.getUserId();
+   }
 
   ngOnInit() {
 
-    this.storeService.shopCensusDetailReport(198).subscribe(res => {
+    this.storeService.shopCensusDetailReport(this.companyId, this.userId).subscribe(res => {
       this.pivotGridDataSource = new PivotGridDataSource({
         fields: [{
           caption: "Region",
@@ -34,14 +41,17 @@ export class NewtestreportComponent implements OnInit {
           dataField: "city",
           width: 150,
           area: "row"
-        }, {
+        }, 
+        {
+          caption: "Store",
+          dataField: "storeName",
+          width: 150,
+          area: "row"
+        },
+        {
           dataField: "createDate",
           dataType: "date",
-          area: "column"
-        }, {
-          dataField: "storeName",
-          dataType: "string",
-          area: "data"
+          area: "filter"
         }],
         store: res
       });

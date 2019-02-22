@@ -1,0 +1,72 @@
+<div class="m-content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <h3 class="m-portlet__head-text">Purchase Invoice View</h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <form class="m-form m-form--label-align-left- m-form--state-" [formGroup]="InvoiceViewForm">
+            <div class="m-portlet__body">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group m-form__group">
+                    <label for="exampleInputEmail1">
+                      Date :
+                    </label>
+                    <input type="month" formControlName="InvoiceDate" class="form-control m-input">
+                  </div>
+                </div>
+                <div class="col-md-7"></div>
+                <div class="col-md-2">
+                  <div class="form-group m-form__group">
+                    <button type="button" (click)="onsubmit(InvoiceViewForm.value)" class="btn btn-primary pull-right margin">Show</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-md-12">
+              <dx-data-grid [dataSource]="Invoices" (onToolbarPreparing)="onToolbarPreparing($event)" showBorders="true"
+                [masterDetail]="{ enabled: true, template: 'detail' }" [columnAutoWidth]="true" [showBorders]="true">
+                <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+                <dxo-filter-row [visible]="false"></dxo-filter-row>
+                <dxo-header-filter [visible]="false"></dxo-header-filter>
+                <dxo-paging [pageSize]="5"></dxo-paging>
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[3, 5, 30]" [showInfo]="true"></dxo-pager>
+                <dxo-group-panel [visible]="true"></dxo-group-panel>
+                <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                <dxo-selection mode="single"></dxo-selection>
+                <dxi-column dataField="invoiceNumber" caption="Invoice #" [fixed]="true"></dxi-column>
+                <dxi-column dataField="invoiceDate" dataType="date" caption="Invoice Date"></dxi-column>
+                <dxi-column dataField="vendorBillNumber" caption="Vendor Bill #"></dxi-column>
+                <dxi-column dataField="grnCode" caption="GRN #"></dxi-column>
+                <dxi-column dataField="grnDate" caption="GRN Date"></dxi-column>
+                <dxi-column dataField="grnRemarks" caption="GRN Remarks"></dxi-column>
+                <dxi-column dataField="totalPayable" caption="Payment Amount"></dxi-column>
+                <dxi-column dataField="totalQuantity" caption="Total Quantity"></dxi-column>
+                <div *dxTemplate="let order of 'detail'">
+                  <dx-data-grid [dataSource]="order.data.grnItems" showBorders="true">
+                    <dxi-column dataField="inventoryItemId" caption="Product" [fixed]="true">
+                      <dxo-lookup [dataSource]="Products" valueExpr="inventoryItemId" displayExpr="name"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="receivedQuantity" caption="Received Quantity"></dxi-column>
+                    <dxi-column dataField="rate" caption="Rate"></dxi-column>
+                    <dxi-column dataField="packSize" dataType="number" caption="Pack Size"></dxi-column>
+                    <dxi-column dataField="paymentAmount" dataType="number" caption="Payment Amount"></dxi-column>
+                  </dx-data-grid>
+                </div>
+              </dx-data-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -47,8 +47,8 @@ export class FwbInitialReportComponent  implements AfterViewInit {
       container.innerHTML = Html;
 
 
-        // var host = `${environment.repotr_url}`;
-         var host ='http://localhost:57581/'
+          var host = `${environment.repotr_url}`;
+        // var host ='http://localhost:57581/'
       this.renderer.appendChild(this.scripts.nativeElement, container);
       ko.applyBindings({
           reportUrl,

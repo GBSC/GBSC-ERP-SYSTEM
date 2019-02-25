@@ -28,9 +28,7 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
 
         this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
-            this.users = resp;
-            console.log(this.users);
-            
+            this.users = resp;  
         })
 
     }

@@ -29,6 +29,8 @@ export class UsersComponent implements OnInit {
 
         this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
             this.users = resp;
+            console.log(this.users);
+            
         })
 
     }

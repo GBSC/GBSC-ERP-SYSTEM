@@ -11,7 +11,7 @@ export class HrmsService {
 
     public setupUrl: string = "SystemAdmin/api/Setup";
 
-    constructor(public ApiService: ApiService) {
+    constructor(public ApiService: ApiService,public httpService : Http) {
     }
 
     async getAllCountries() {
@@ -23,8 +23,7 @@ export class HrmsService {
 
         return this.ApiService.get(this.setupUrl + '/GetCountriesByCompanyId/' + compid);
     }
-
-    // DEMO ONLY, you can find working methods below
+ 
     async addCountry(data) {
         return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
 

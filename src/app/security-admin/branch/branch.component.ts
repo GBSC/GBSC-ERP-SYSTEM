@@ -27,6 +27,8 @@ export class BranchComponent implements OnInit {
     }
 
     async addBranches(value) {
+        console.log(value);
+        
         value.key.companyId = this.authService.getUserCompanyId();
         await this.SystemAdministrationServiceobj.addBranches(value.key);
         this.SystemAdministrationServiceobj.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {

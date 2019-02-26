@@ -565,6 +565,202 @@
 							</div>
 						</li>
 
+						<li *ngIf="accessableModules.includes('Ultra Sound')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+								</span>
+								<span class="m-menu__link-text">
+									Ultra Sound
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Ultra Sound
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/ultrasoundpelvis" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															U-S Pelvis
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/ultrasoundmaster" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-user"></i>
+														<span class="m-menu__link-text">
+															U-S Master
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hims/patient/registration" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-clipboard"></i>
+														<span class="m-menu__link-text">
+															Register Patient
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/fwbinitial" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-graphic-1"></i>
+														<span class="m-menu__link-text">
+															FWB Initial
+														</span>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+									 
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Setup Configuration
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/setup/sonologist" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Sonologist
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li *ngIf="accessableModules.includes('Operation Theater')" class="m-menu__item  m-menu__item--submenu"
+						data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+						   <a href="#" class="m-menu__link m-menu__toggle">
+							   <span class="m-menu__item-here">
+								   <i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+							   </span>
+							   <span class="m-menu__link-text">
+								Operation Theater
+							   </span>
+						   </a>
+						   <div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+							   <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+							   <div class="m-menu__subnav">
+								   <ul class="m-menu__content">
+									   <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+										   <h3 class="m-menu__heading m-menu__toggle">
+											   <span class="m-menu__link-text">
+												Operation Theater
+											   </span>
+											   <i class="m-menu__ver-arrow la la-angle-right"></i>
+										   </h3>
+										   <ul class="m-menu__inner">
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/patientcase" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-map"></i>
+													   <span class="m-menu__link-text">
+														Patient Case
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/laproscopysp" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-user"></i>
+													   <span class="m-menu__link-text">
+														Laproscopy(S-P)
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/laproscopyfs" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-clipboard"></i>
+													   <span class="m-menu__link-text">
+														Laproscopy (F-S)
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/hystroscopy" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-graphic-1"></i>
+													   <span class="m-menu__link-text">
+														Hystroscopy
+													   </span>
+												   </a>
+											   </li>
+
+										   </ul>
+									   </li>
+									
+									   <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+										   <h3 class="m-menu__heading m-menu__toggle">
+											   <span class="m-menu__link-text">
+												   Setup Configuration
+											   </span>
+											   <i class="m-menu__ver-arrow la la-angle-right"></i>
+										   </h3>
+										   <ul class="m-menu__inner">
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/otsetup/medicinerequest" class="m-menu__link">
+													   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														   <span></span>
+													   </i>
+													   <span class="m-menu__link-text">
+														Medicine Request
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otequipment" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Equipment
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otprocedure" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Procedure
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otterminologies" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Terminologies
+													</span>
+												</a>
+											</li>
+										   </ul>
+									   </li>
+								   </ul>
+							   </div>
+						   </div>
+					   </li>
+
 						<li *ngIf="accessableModules.includes('Lab Information System')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
 							<a href="#" class="m-menu__link m-menu__toggle">

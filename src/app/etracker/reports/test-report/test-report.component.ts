@@ -7,7 +7,7 @@ import { AuthService } from '../../../../app/core';
   
  import { HttpClient } from '@angular/common/http';
    import { AgGridNg2 } from 'ag-grid-angular';
-   import "ag-grid-enterprise";
+     import "ag-grid-enterprise";
 
 
 @Component({
@@ -53,7 +53,7 @@ export class TestReportComponent implements OnInit {
       {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Store Name', field: 'storeName' , aggFunc: "count",filter: false, enableValue: true },
- 
+      {headerName: 'Serial Number', field: 'serialNumber' , aggFunc: "sum",filter: false, enableValue: true  }
          ]; 
         this.defaultColDef = {
           width: 100,

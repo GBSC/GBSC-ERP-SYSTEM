@@ -1,0 +1,71 @@
+<!-- <ag-grid-angular 
+    #agGrid
+    style="width: 500px; height: 500px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    rowSelection="multiple"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    >
+</ag-grid-angular> -->
+
+<!-- 
+<div style="height: 100%; padding-top: 35px; box-sizing: border-box;">
+  <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 100%;"
+    class="ag-theme-balham"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [sideBar]="sideBar"
+    [rowData]="rowData"
+   ></ag-grid-angular>
+</div> -->
+
+<div class="m-content">
+  <div class="row">
+     <div class="col-xl-12">
+       <div class="m-portlet">
+         <div class="m-portlet__head">
+           <div class="m-portlet__head-caption">
+             <div class="m-portlet__head-title">
+               <h3 class="m-portlet__head-text">Add OT Terminologies</h3>
+             </div>
+           </div>
+         </div>
+         <div class="m-portlet__body">
+            <ag-grid-angular
+                 #agGrid
+                 style="width: 100%; height: 100%;"
+                 id="myGrid"
+                 class="ag-theme-balham"
+                 [columnDefs]="columnDefs"
+                 [defaultColDef]="defaultColDef"
+                 [autoGroupColumnDef]="autoGroupColumnDef"     
+                 [sideBar]="true"
+                 [rowData]="rowData"
+                ></ag-grid-angular>
+<!-- 
+   [rowModelType]="rowModelType"
+           <div class="m-section">
+             <div class="m-section__content">
+              <div style="height: 100%; padding-top: 35px; box-sizing: border-box;">
+                 <ag-grid-angular
+                  #agGrid
+                  style="width: 100%; height: 100%;"
+                  class="ag-theme-balham"
+                  [columnDefs]="columnDefs"
+                  [defaultColDef]="defaultColDef"
+                  [sideBar]="sideBar"
+                  [rowData]="rowData"
+                 ></ag-grid-angular>  
+
+                
+              </div> 
+             </div>
+           </div> -->
+         </div>
+       </div> 
+     </div>
+   </div>
+</div>

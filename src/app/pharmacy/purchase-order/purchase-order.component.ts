@@ -100,11 +100,13 @@ export class PurchaseOrderComponent implements OnInit {
         // console.log(value);
         var a: any = this.InventoryItems;
         this.SelectedInventoryItem = a.find(x => x.itemCode == value);
+        console.log(this.SelectedInventoryItem);
         let b : any = this.PackSize.find(a => a.packSizeId == this.SelectedInventoryItem.packSizeId);
+        console.log(b)
         if(b) {
             this.SelectItemPackSize = b.size;
         }
-        // console.log(this.SelectedInventoryItem);
+          console.log(this.SelectedInventoryItem);
     }
 
     CalculateGrossAmount(exchangerate, ordervalue, bonusvalue) {

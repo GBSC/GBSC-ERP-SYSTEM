@@ -37,7 +37,8 @@ export class TestReportComponent implements OnInit {
  
   constructor(public storeService: StoreService, public authService : AuthService) {
     this.companyId = authService.getUserCompanyId();
-    // this.userId = authService.getUserId();
+      this.userId = authService.getUserId();
+      console.log(this.userId);
  
     this.columnDefs  = [
       { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  },

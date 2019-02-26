@@ -77,12 +77,7 @@ export class SalarystructureComponent implements OnInit {
             });
         }
     }
-
-    displayExpree(data) {
-        console.log(data);
-        
-        // return data.firstname + ' , ' + data.lastname;
-    }
+ 
 
     async addSalaryStructureDetail(value) {
         let data = value.data;

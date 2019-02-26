@@ -39,7 +39,7 @@
                         <label>
                         Start Time:
                         </label>
-                        <input type="time" class="form-control m-input" formControlName="StartTime" placeholder="00:00">
+                        <input type="time" class="form-control m-input" formControlName="StartTime" [value]="shift?.startTime | date:'HH:mm:ss'" placeholder="00:00">
                         <!-- <dx-date-box formControlName="StartTime" type="time" width="100%"></dx-date-box> -->
                       </div>
                       <div class="col-lg-6">

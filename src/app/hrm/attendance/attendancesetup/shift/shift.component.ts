@@ -33,24 +33,24 @@ export class ShiftComponent implements OnInit {
         this.attendanceFlag = [];
 
         this.ShiftForm = this.fb.group({
-            ShiftCode: ['', Validators],
-            ShiftTitle: ['', Validators],
-            StartTime: ['', Validators],
-            EndTime: ['', Validators],
-            GraceTime: ['', Validators],
-            IsMultiple: ['', Validators],
-            OverTimeStartTime: ['', Validators],
-            MinimumOverTime: ['', Validators],
-            InTimeShiftThreshold: ['', Validators],
+            ShiftCode: [''],
+            ShiftTitle: [''],
+            StartTime: [''],
+            EndTime: [''],
+            GraceTime: [''],
+            IsMultiple: [''],
+            OverTimeStartTime: [''],
+            MinimumOverTime: [''],
+            InTimeShiftThreshold: [''],
             OutTimeShiftThreshold: [''],
-            OverTimeRate: ['', Validators],
-            Description: ['', Validators],
-            ShiftHours: ['', Validators]
+            OverTimeRate: [''],
+            Description: [''],
+            ShiftHours: ['']
 
         });
 
         this.shift = await this.attendancesetupservice.getShifts();
-
+        console.log(this.shift);
         this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
 
         this.flagType = await this.attendancesetupservice.getFlagTypes();
@@ -75,6 +75,10 @@ export class ShiftComponent implements OnInit {
                 this.patchValues(this.shifts);
             });
         }
+    }
+
+    formatDate(date: Date) {
+        return (date.getHours() + 1) + "-" + date.getMinutes() + "-" + date.getMilliseconds();
     }
 
     async addAttendanceFlag(value) {
@@ -137,9 +141,9 @@ export class ShiftComponent implements OnInit {
             MinimumOverTime: shift.minimumOverTime,
             InTimeShiftThreshold: shift.inTimeShiftThreshold,
             OutTimeShiftThreshold: shift.outTimeShiftThreshold,
-            OverTimeRate: shift.OverTimeRate,
-            Description: shift.Description,
-            ShiftHours: shift.ShiftHours
+            OverTimeRate: shift.overTimeRate,
+            Description: shift.description,
+            ShiftHours: shift.shiftHours
 
         })
 

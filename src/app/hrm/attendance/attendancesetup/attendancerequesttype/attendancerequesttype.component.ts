@@ -11,14 +11,20 @@ export class AttendancerequesttypeComponent implements OnInit {
     public attendanceRequesttype: any;
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
-    async ngOnInit() {
+     ngOnInit() {
 
-        this.attendanceRequesttype = await this.attendancesetupservice.getAttendanceRequestTypes();
+    this.attendancesetupservice.getAttendanceRequestTypes().subscribe(res => {
+        this.attendanceRequesttype = res;
+    });
     }
 
-    async addRequesttype(value) {
-        this.attendancesetupservice.addAttendanceRequestType(value.data);
-        this.attendanceRequesttype = await this.attendancesetupservice.getAttendanceRequestTypes();
+    addRequesttype(value) {
+         this.attendancesetupservice.addAttendanceRequestType(value.data).subscribe(r => {
+              console.log(r);
+         });
+         this.attendancesetupservice.getAttendanceRequestTypes().subscribe(res => {
+            this.attendanceRequesttype = res;
+        });
     }
 
     async updateRequesttype(value) {

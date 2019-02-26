@@ -65,9 +65,9 @@ export class AttendancesetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAssignRoster/${id}`).toPromise();
     }
 
-    async getAttendanceFlags() {
+     getAttendanceFlags() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetAttendanceFlags`);
     }
     async addAttendanceFlag(data) {
 
@@ -107,13 +107,14 @@ export class AttendancesetupService {
     }
 
 
-    async getAttendanceRequestTypes() {
+     getAttendanceRequestTypes() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetAttendanceRequestTypes`);
     }
-    async addAttendanceRequestType(data) {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data).toPromise();
+     addAttendanceRequestType(data) {
+
+        return this.ApiService.post(`${this.baseUrl}/AddAttendanceRequestType`, data);
 
     }
 
@@ -195,14 +196,14 @@ export class AttendancesetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteFlagType/${id}`).toPromise();
     }
 
-    async getFlagValues() {
+     getFlagValues() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetFlagValues`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetFlagValues`);
 
     }
-    async addFlagValue(data) {
+     addFlagValue(data) {
 
-        return await this.ApiService.post(`${this.baseUrl}/Addflagvalue`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/Addflagvalue`, data);
     }
 
     async updateFlagValue(data) {
@@ -233,11 +234,9 @@ export class AttendancesetupService {
 
     }
 
-    async updateRoster(data) {
-
-        let roster = await this.getdataToUpdate(data.key, 'Getroster');
-        roster = { ...roster, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateRoster`, roster).toPromise();
+   updateRoster(data) {
+ 
+        return this.ApiService.put(`${this.baseUrl}/UpdateRoster`, data);
 
     }
 
@@ -300,11 +299,8 @@ export class AttendancesetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddOverTimeFlag`, data).toPromise();
     }
 
-    async updateOvertimeFlag(data) {
-
-        let overtimeflag = await this.getdataToUpdate(data.key, 'GetOverTimeFlag');
-        overtimeflag = { ...overtimeflag, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, overtimeflag).toPromise();
+    async updateOvertimeFlag(data) { 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateOverTimeFlag`, data).toPromise();
 
     }
 

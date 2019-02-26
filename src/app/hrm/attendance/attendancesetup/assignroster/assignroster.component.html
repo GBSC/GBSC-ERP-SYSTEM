@@ -10,7 +10,9 @@
     <div class="m-section">
       <div class="m-section__content">
         <dx-data-grid id="gridContainer" [dataSource]="assignrosters" keyExpr="assignRosterId" (onRowInserted)="addassignroster($event)"
-          [masterDetail]="{ enabled: true, template: 'detail' }" [masterDetail]="{ enabled: true, template: 'sub-detail' }"
+          [masterDetail]="{ enabled: true, template: 'detail' }" [masterDetail]="{ enabled: true, template: 'sub-detail' }"    
+          [columnAutoWidth]="true" 
+          [showBorders]="true"
           (onRowRemoved)="deleteassignroster($event)">
           <dxo-selection mode="multiple"></dxo-selection>
           <dxo-group-panel [visible]="true"></dxo-group-panel>

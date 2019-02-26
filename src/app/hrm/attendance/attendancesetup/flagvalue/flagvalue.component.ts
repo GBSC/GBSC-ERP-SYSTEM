@@ -12,14 +12,18 @@ export class FlagvalueComponent implements OnInit {
     public flagvalue: any;
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
-    async ngOnInit() {
+     ngOnInit() {
 
-        this.flagvalue = await this.attendancesetupservice.getFlagValues();
+         this.attendancesetupservice.getFlagValues().subscribe(resp =>{
+            this.flagvalue = resp
+         });
     }
 
-    async addflagvalue(value) {
-        this.attendancesetupservice.addFlagValue(value.data);
-        this.flagvalue = await this.attendancesetupservice.getFlagValues();
+     addflagvalue(value) {
+        this.attendancesetupservice.addFlagValue(value.data).subscribe(r => {console.log(r); });
+        this.attendancesetupservice.getFlagValues().subscribe(resp =>{
+            this.flagvalue = resp
+         });
     }
 
     async updateflagvalue(value) {

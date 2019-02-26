@@ -72,12 +72,6 @@ export class EmployeeCompanyComponent implements OnInit {
 
         this.employeestatus = await this.SetupServiceobj.getEmployeeStatus();
 
-
-        this.employeeService.getManagers().subscribe(res => {
-            this.manager = res;
-            // this.filterdemplyoee = this.employes.fil
-        })
-
         await this.SetupServiceobj.getEmployeeStatus();
 
         this.route.params.subscribe((params) => {

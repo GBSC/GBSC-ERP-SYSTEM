@@ -41,7 +41,7 @@
                   <div class="col-sm-2">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Pat Id
+                        Patient
                       </label>
                       <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>

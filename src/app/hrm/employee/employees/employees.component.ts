@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmployeeService } from '../../../core';
+import { EmployeeService, UserService, AuthService } from '../../../core';
 
 @Component({
     selector: 'app-employees',
@@ -9,17 +9,26 @@ import { EmployeeService } from '../../../core';
 })
 export class EmployeesComponent implements OnInit {
 
-    public emp: any;
+    public users: any;
     public userId: any;
+    public companyId: any;
+    public emp: any;
 
 
-    constructor(public employee: EmployeeService, public router: Router) { }
+    constructor(public userService: UserService, public authService: AuthService, public employee: EmployeeService, public router: Router) { }
 
-    async ngOnInit() {
+     async ngOnInit() {
 
-        await this.employee.GetAllEmployees();
-        this.emp = this.employee.employeereg;
-    }
+        
+        this.companyId = this.authService.getUserCompanyId();
+
+        this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
+            this.users = resp;
+        })
+        // this.emp =  await this.employee.GetAllEmployees();
+        // console.log(this.emp);
+        
+     }
 
 
     onToolbarPreparing(e) {
@@ -36,12 +45,10 @@ export class EmployeesComponent implements OnInit {
 
     onadd() {
         this.router.navigate(['hrm/employee/registration'])
-    }
-
+    } 
 
     getCurrentRowData(d) {
         this.userId = d.key;
-        this.router.navigate(['hrm/employee/updateemployee/' + this.userId]);
-
+        this.router.navigate(['hrm/employee/updateemployee/' + this.userId]); 
     }
 }

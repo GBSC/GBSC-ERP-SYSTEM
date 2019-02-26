@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HrsetupMasterComponent implements OnInit {
 
-  tabs: string[] = ['Group', 'Employee Type', 'Employee Status', 'Function', 'Religion', 'Degree', 'Designation', 'Gazetted Holidays', 'Cost Center', 'Management Level', 'Relation', 'Bank'];
+  tabs: string[] = ['Group', 'Employee Type', 'Employee Status', 'Function', 'Religion', 'Degree', 'Designation', 'Gazetted Holidays', 'Cost Center', 'Management Level', 'Relation'];
  selectedTab = this.tabs[0];
 
   constructor() { }

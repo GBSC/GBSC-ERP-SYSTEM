@@ -3,6 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
 import { Observable, observable } from 'rxjs';
 import { City } from '../../../../core/Models/HRM/city';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -10,8 +11,8 @@ import { City } from '../../../../core/Models/HRM/city';
 export class HrmsService {
 
     public setupUrl: string = "SystemAdmin/api/Setup";
-
-    constructor(public ApiService: ApiService,public httpService : Http) {
+    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup";
+    constructor(public ApiService: ApiService,public httpService : HttpClient) {
     }
 
     async getAllCountries() {
@@ -25,12 +26,13 @@ export class HrmsService {
     }
  
     async addCountry(data) {
-        return await this.ApiService.post(this.setupUrl + '/AddCountry', data).toPromise();
+        // return await this.httpService.post('http://localhost:58090/api/setup/AddCountry', data).toPromise();
+        return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
 
     }
 
     async updateCountry(data) {
-        return await this.ApiService.put(this.setupUrl + '/UpdateCountry', data).toPromise();
+        return await this.httpService.put(this.setupUrl2 + '/UpdateCountry', data).toPromise();
     }
 
     async DeleteCountry(countryId) {
@@ -52,12 +54,13 @@ export class HrmsService {
     }
 
     async addCity(data) {
-        return await this.ApiService.post(this.setupUrl + '/AddCity', data).toPromise();
+        // return await this.httpService.post('http://localhost:58090/api/setup/AddCity', data).toPromise();
+        return await this.httpService.post(this.setupUrl2 + '/AddCity', data).toPromise();
 
     }
 
     async updateCity(data) {
-        return await this.ApiService.put(this.setupUrl + '/UpdateCity', data).toPromise();
+        return await this.httpService.put(this.setupUrl2 + '/UpdateCity', data).toPromise();
     }
 
     async deleteCity(cityId) {
@@ -78,20 +81,6 @@ export class HrmsService {
     GetAllDepartmentsByCompany(companyid : number) : Observable<any[]> {
 
         return this.ApiService.get(`${this.setupUrl}/GetDepartmentsByCompanyId/` + companyid)
-    }
-
-    // DEMO ONLY, you can find working methods below
-    async addDepartment(data) {
-
-        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data).toPromise();
-    }
-
-    async updateDepartment(data) {
-        return await this.ApiService.post(`${this.setupUrl}/addDepartment`, data.key).toPromise();
-    }
-
-    async DeleteDepartment(data) {
-        return await this.ApiService.get(`${this.setupUrl}/DeleteDepartment` + data.key).toPromise();
     }
 
     GetBranchesByCompany(companyid : number) : Observable<any[]> {

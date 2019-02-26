@@ -43,7 +43,7 @@ export class ApiService {
             body.departmentId = this.user.assignedId.departmentId;
             body.branchId = this.user.assignedId.branchId;
             body.cityId = this.user.assignedId.cityId;
-            body.countryId = this.user.assignedId.countryId || 0;
+            body.countryId = this.user.assignedId.countryId;
         }
         return this.http.put(
             `${environment.api_url}${path}`,
@@ -58,7 +58,7 @@ export class ApiService {
             body.departmentId = this.user.assignedId.departmentId;
             body.branchId = this.user.assignedId.branchId;
             body.cityId = this.user.assignedId.cityId;
-            body.countryId = this.user.assignedId.countryId || 0;
+            body.countryId = this.user.assignedId.countryId;
         }
         return this.http.post(
             `${environment.api_url}${path}`,

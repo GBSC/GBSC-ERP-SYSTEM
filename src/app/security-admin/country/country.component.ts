@@ -25,7 +25,6 @@ export class CountryComponent implements OnInit {
 
     async addNewCountry(Country) {   
         Country.data.companyId = this.authService.getUserCompanyId();
-        Country.data.countryId = 0;    
         await this.hrmService.addCountry(Country.data);
         this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
             this.countries = res;

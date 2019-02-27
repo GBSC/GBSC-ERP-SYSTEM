@@ -44,6 +44,8 @@
                  [autoGroupColumnDef]="autoGroupColumnDef"     
                  [sideBar]="true"
                  [rowData]="rowData"
+                (gridReady)="onGridReady()"
+                (columnRowGroupChanged)="onColumnRowGroupChanged($event)"
                 ></ag-grid-angular>
 <!-- 
    [rowModelType]="rowModelType"

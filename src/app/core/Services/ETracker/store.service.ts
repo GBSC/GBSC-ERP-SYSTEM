@@ -60,8 +60,10 @@ export class StoreService {
         return this.ApiService.delete(this.Url + 'StoreVisit/DeleteNonproductiveVisitReason/' + id);
     }
 
-    //Reports
+    Reports
     shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
         return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
     }
+  
+
 }

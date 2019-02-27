@@ -41,6 +41,13 @@ export class TestReportComponent implements OnInit {
       console.log(this.userId);
  
     this.columnDefs  = [
+       {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true  },
+      {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true },
+      {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true },
+      {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true },
+      {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true },
+      {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true },
+
       { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true },
       {headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   },
@@ -48,12 +55,19 @@ export class TestReportComponent implements OnInit {
       {headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true},
       {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true },
+      {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
+      {headerName: 'Visit Day', field: 'day'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true },
       {headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Store Name', field: 'storeName' , aggFunc: "count",filter: false, enableValue: true },
-      {headerName: 'Serial Number', field: 'serialNumber' , aggFunc: "sum",filter: false, enableValue: true  }
+      {headerName: 'Create Date', field: 'createDate' ,  filter: false, enableValue: true },
+      {headerName: 'Close Date', field: 'endTime' ,  filter: false, enableValue: true },
+      {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
+      {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true  },
+      {headerName: 'shopMode', field: 'shopMode'    ,enableRowGroup: true,  enablePivot: true  },
+       {headerName: 'Image Link', field: 'imageLink' ,  filter: false, enableValue: true },
+       {  headerName: 'Total', valueGetter: 'data.serialNumber + data.contactNumber * data.cnic / 1000' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true }
+
          ]; 
         this.defaultColDef = {
           width: 100,
@@ -84,20 +98,59 @@ export class TestReportComponent implements OnInit {
  
 
      ngOnInit() {
+      // console.log('asdas');
+      // console.log(this.companyId);
+      // console.log(this.userId);
+      // let usrId = 350;
+      // console.log(usrId)
+      //     this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
+      //        this.rowData = res;
+      //       console.log(this.rowData);
+      //     });
+    }
+public abc : any = [];
+    onGridReady(){
       console.log('asdas');
       console.log(this.companyId);
       console.log(this.userId);
-      let usrId = 332;
+      let usrId = 350;
       console.log(usrId)
           this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
-            // console.log(res);
-            this.rowData = res;
-            console.log(this.rowData);      
+             this.rowData = res;
+            console.log(this.rowData);
           });
     }
 
-    
+    onColumnRowGroupChanged(value){
+      console.log(value)
+      // console.log('asdas');
+      // console.log(this.companyId);
+      // console.log(this.userId);
+      // let usrId = 350;
+      // console.log(usrId)
+      //     this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
+      //        this.rowData = res;
+      //       console.log(this.rowData);
+      //       this.rowData.forEach(element => {
+      //         if(element.storeName){
+      //           console.log(element.storeName.length)
+      //         //  let x =  element.serialNumber;
+      //         //  this.abc.push(x);
+      //         //  console.log(this.abc);
+      //            }
+      //       });
+      //     });
+    }
 
+    
+    // persentage (){
+    //   console.log(this.rowData);
+    //   this.rowData.forEach(element => {
+    //       console.log(element);
+    //     let x =  element.serialNumber *100/2
+    //     console.log(x);
+    //   });
+    // }
   // autoGroupColumnDef = {
   //     headerName: 'Store Name',
   //     field: 'storeName',

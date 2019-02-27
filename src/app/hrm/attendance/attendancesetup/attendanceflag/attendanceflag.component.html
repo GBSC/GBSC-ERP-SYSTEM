@@ -11,8 +11,7 @@
           <div class="m-section">
             <div class="m-section__content">
               <dx-data-grid id="gridContainer"
-               [dataSource]="attendanceflag"
-               keyExpr="attendanceFlagId"
+               [dataSource]="attendanceflag" 
                (onRowInserted)="addattendanceflag($event)" 
                (onRowUpdating)="updatingattendanceflag($event)"
                (onRowUpdated)="updateattendanceflag()"

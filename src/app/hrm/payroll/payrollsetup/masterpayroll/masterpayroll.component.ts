@@ -66,7 +66,7 @@ export class MasterpayrollComponent implements OnInit {
             console.log(this.calculationttypes);
         });
 
-        // this.users = await this.empservice.GetAllEmployees();
+        this.users = await this.empservice.GetAllEmployees();
         
         this.payrollsetupservice.getPayrollYears().subscribe((res: any) => {
             this.payrollYears = res;
@@ -75,14 +75,8 @@ export class MasterpayrollComponent implements OnInit {
 
          this.payrollsetupservice.getMasterPayrolls().subscribe(rsp => {
             this.masterPayroll = rsp
-         });
+         }); 
 
-
-         this.companyId = this.Auth.getUserCompanyId();
-
-         this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
-             this.users = resp;
-         }) 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
         this.allowances = await this.payrollsetupservice.getAllowanceDeductions();

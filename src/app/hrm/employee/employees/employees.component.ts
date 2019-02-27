@@ -10,8 +10,7 @@ import { EmployeeService, UserService, AuthService } from '../../../core';
 export class EmployeesComponent implements OnInit {
 
     public users: any;
-    public userId: any;
-    public companyId: any;
+    public userId: any; 
     public emp: any;
 
 
@@ -19,14 +18,8 @@ export class EmployeesComponent implements OnInit {
 
      async ngOnInit() {
 
-        
-        this.companyId = this.authService.getUserCompanyId();
-
-        this.userService.getUsersByCompany(this.companyId).subscribe(resp => {
-            this.users = resp;
-        })
-        // this.emp =  await this.employee.GetAllEmployees();
-        // console.log(this.emp);
+        this.emp =  await this.employee.GetAllEmployees();
+        console.log(this.emp);
         
      }
 

@@ -23,7 +23,7 @@ export class EmployeeService {
 
     //Employee
     async GetAllEmployees() {
-        return await this.HttpService.get(`${this.baseUrl2}/Users/GetUsers`).toPromise();
+        return await this.ApiService.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
     }
 
     getAllEmployees(): Observable<any> {

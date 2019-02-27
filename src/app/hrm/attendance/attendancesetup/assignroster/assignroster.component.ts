@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AttendancesetupService, EmployeeService ,HrmsService} from '../../../../core';
+import { AttendancesetupService, EmployeeService ,HrmsService, AuthService, UserService} from '../../../../core';
 import { Employee } from '../../../../core/Models/HRM/employee';
 import { DxTreeViewComponent } from 'devextreme-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -34,11 +34,11 @@ export class AssignrosterComponent implements OnInit {
     public Daysoffs: any;
 
     public departments : any;
-    public departmentId : any;
+    public departmentId : any; 
 
 
 
-    constructor(public attendancesetupservice: AttendancesetupService,
+    constructor(public userService : UserService, public authService: AuthService, public attendancesetupservice: AttendancesetupService,
         public empservice: EmployeeService, public hrmsServiceobj : HrmsService , private formBuilder: FormBuilder , public router : Router) {
         this.calendarForm = this.formBuilder.group({
             Dayoff: [''],
@@ -79,6 +79,7 @@ export class AssignrosterComponent implements OnInit {
             this.employee = res;
             console.log(this.employee);
         });
+
 
         this.hrmsServiceobj.GetAllDepartments().subscribe(res=>{
             this.departments = res ;

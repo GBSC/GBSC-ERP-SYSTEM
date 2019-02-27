@@ -70,8 +70,7 @@ export class BasicinformationComponent implements OnInit {
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
             console.log(resp); 
             this.showSuccess("Basic Information Updated");
-        });
-        console.log(value);
+        }); 
         
     }
 

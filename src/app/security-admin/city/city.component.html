@@ -10,7 +10,8 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="city" keyExpr="cityId" (onRowInserted)="addcity($event)" 
+              <dx-data-grid id="gridContainer" [dataSource]="city" keyExpr="cityId" 
+              (onRowInserted)="addcity($event)" 
               (onRowUpdating)="UpdatingCity($event)"
               (onRowUpdated)="Updatecity()"
                 (onRowRemoved)="deletecity($event)">

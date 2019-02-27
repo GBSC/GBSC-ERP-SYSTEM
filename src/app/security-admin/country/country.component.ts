@@ -23,21 +23,22 @@ export class CountryComponent implements OnInit {
     }
 
 
-    async addNewCountry(Country) {
-        // console.log(Country);
+    async addNewCountry(Country) {   
         Country.data.companyId = this.authService.getUserCompanyId();
         await this.hrmService.addCountry(Country.data);
         this.hrmService.getCountriesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : any[]) => {
             this.countries = res;
-        });
+        }); 
     }
 
-    UpdatingCountry(value) {
+
+    UpdatingCountry(value) { 
         this.updatingModel = { ...value.oldData, ...value.newData };
         this.updatingModel.companyId = this.authService.getUserCompanyId();
     }
 
     async UpdateCountry() {
+        console.log(this.updatingModel); 
         await this.hrmService.updateCountry(this.updatingModel);
     }
 

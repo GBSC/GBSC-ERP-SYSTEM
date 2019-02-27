@@ -69,6 +69,7 @@ export class SalarystructureComponent implements OnInit {
                     return b;
                 }); 
                 this.patchValues(this.salaryStructure);
+                
             });
         }
     }

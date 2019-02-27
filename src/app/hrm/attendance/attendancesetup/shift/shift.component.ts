@@ -6,6 +6,7 @@ import { Shift } from '../../../../core/Models/HRM/shift';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftAttendanceFlag } from '../../../../core/Models/HRM/userRosterAttendanceAttendanceFlag';
+import { log } from 'util';
 
 @Component({
     selector: 'app-shift',
@@ -51,7 +52,9 @@ export class ShiftComponent implements OnInit {
 
         this.shift = await this.attendancesetupservice.getShifts();
         console.log(this.shift);
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+         this.attendancesetupservice.getAttendanceFlags().subscribe(rsp => {
+            this.attendanceflag = rsp
+        });
 
         this.flagType = await this.attendancesetupservice.getFlagTypes();
 
@@ -107,13 +110,14 @@ export class ShiftComponent implements OnInit {
             return false;
     }
 
-    async updateAttendanceFlag(value) {
+     updateAttendanceFlag(value) {
         console.log(value);
     }
 
     update(value) {
         value.shiftsId = this.id;
         value.shiftAttendanceFlags = this.Flag;
+        console.log(value)
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
             this.toastr.success("Shift Updated");
 

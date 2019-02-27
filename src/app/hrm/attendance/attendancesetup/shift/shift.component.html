@@ -175,12 +175,16 @@
                 <div class="row">
                   <div class="col-lg-4"></div>
                   <div class="col-lg-4">
+                      <div *ngIf="isUpdate(); else create">
+                          <button class="btn btn-primary" (click)="update(ShiftForm.value)">
+                              Update
+                            </button>        
+                      </div> 
+                      <ng-template #create>
                     <button type="reset" class="btn btn-brand" (click)="addshift(ShiftForm.value)">
                       Submit
                     </button>
-                    <button type="reset" class="btn btn-secondary">
-                      Cancel
-                    </button>
+                  </ng-template> 
                   </div>
                   <div class="col-lg-4"></div>
                 </div>

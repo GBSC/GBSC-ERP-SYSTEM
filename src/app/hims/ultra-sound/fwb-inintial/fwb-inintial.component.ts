@@ -116,11 +116,13 @@ export class FWBInintialComponent implements OnInit {
   getPatientById(value){
     this.patientserviceobj.getPatientById(value).subscribe(res=>{
       this.pattientById = res;
+      console.log(this.pattientById );
     });
   }
 
   addfwbInitial(value){
     delete this.fwbInitialForm.value.FwbInitialId;
+    console.log(value);
     this.ultraSoundServiceobj.addFwbInitial(value).subscribe(res=> {
       console.log(res);
     });

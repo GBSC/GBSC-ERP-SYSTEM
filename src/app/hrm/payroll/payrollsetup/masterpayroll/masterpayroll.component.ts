@@ -93,8 +93,7 @@ export class MasterpayrollComponent implements OnInit {
                 let a = this.masterpayroll.masterPayrollDetails;
                 this.masterDetail = a.filter(b => {
                     delete b.masterPayrollDetailsId;
-                    delete b.masterPayrollId;
-                    console.log(b);
+                    delete b.masterPayrollId; 
                     return b;
 
                 });

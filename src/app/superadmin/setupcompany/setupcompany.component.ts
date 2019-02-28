@@ -36,6 +36,14 @@ export class SetupcompanyComponent implements OnInit {
 
     public eTrackerMobileInstalled: boolean;
 
+    public OTInstalled: boolean;
+
+    public PharmacyInstalled: boolean;
+
+    public Ultrasound: boolean;
+
+    public Finance: boolean;
+
     public features: any;
 
     public modules: any;
@@ -88,7 +96,7 @@ export class SetupcompanyComponent implements OnInit {
                 this.features = resp;
             });
 
-            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp=>{
+            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp => {
                 this.modules = resp;
             })
         }
@@ -127,6 +135,7 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     checkModulesInstalled(value) {
+        
         if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
@@ -150,6 +159,18 @@ export class SetupcompanyComponent implements OnInit {
         }
         else if (value == "eTrackerMobile") {
             this.eTrackerMobileInstalled = true;
+        }
+        else if (value == "OT") {
+            this.OTInstalled = true;
+        }
+        else if (value == "Ultrasound") {
+            this.Ultrasound = true;
+        }
+        else if (value == "Pharmacy") {
+            this.PharmacyInstalled = true;
+        }
+        else if (value == "Finance") {
+            this.Finance = true;
         }
     }
 

@@ -25,7 +25,7 @@ export class PurchaseInvoiceComponent implements OnInit {
       GRNRemarks : [''],
       VendorBillNumber: [''],
       InvoiceDate: [''],
-      CurrencyId:[],
+      CurrencyId:[''],
       PaymentAmount: [],
       ReceivedQuantity: []
     });
@@ -78,15 +78,15 @@ export class PurchaseInvoiceComponent implements OnInit {
     };
     console.log(a);
 
-    this.PharmacyService.AddPurchaseInvoice(a).subscribe(
-      (res : any) => {
-        this.toastr.success("Invoice Added");
-        this.PurchaseInvoiceForm.reset();
-        this.GRN = null;
-        this.GRNItems = null;
-      },
-      (err : any) => this.toastr.error("Error!!")
-    );
+    // this.PharmacyService.AddPurchaseInvoice(a).subscribe(
+    //   (res : any) => {
+    //     this.toastr.success("Invoice Added");
+    //     this.PurchaseInvoiceForm.reset();
+    //     this.GRN = null;
+    //     this.GRNItems = null;
+    //   },
+    //   (err : any) => this.toastr.error("Error!!")
+    // );
   }
 
 }

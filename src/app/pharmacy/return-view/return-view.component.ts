@@ -37,6 +37,7 @@ export class ReturnViewComponent implements OnInit {
         this.date = this.formatDate(new Date());
         this.PharmacyService.GetSalesReturnsByMonth(this.formatDate(new Date())).subscribe((res: SalesReturn) => {
             this.SalesReturns = res;
+            console.log(this.SalesReturns);
         });
         // console.log(this.formatDate(new Date()));
     }

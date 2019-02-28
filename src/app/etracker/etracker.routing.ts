@@ -24,7 +24,6 @@ import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-s
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
 import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
-import { newtestreport } from "./reports/newtestreport/newtestreport";
 import { TestReportComponent } from "./reports/test-report/test-report.component";
 
 
@@ -57,9 +56,7 @@ const routes: Routes = [
                     { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
                     { path: 'visit-detail', component: VisitDetailComponent },
                     { path: 'visit-summary', component: VisitSummaryReportComponent },
-                    { path: 'test-report', component: newtestreport},
                     { path: 'testrepo', component: TestReportComponent}
-
                 ]
             }
         ]

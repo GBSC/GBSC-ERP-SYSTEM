@@ -205,7 +205,7 @@
                   Finance
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="FinanceInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" >
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -213,7 +213,7 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!FinanceInstalled" (click)="onAddModule('Finance')"
+                  <button (click)="onAddModule('Finance')"
                     class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
@@ -253,7 +253,7 @@
                   Ultrasounds
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="UltrasoundInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -261,7 +261,7 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!UltrasoundInstalled" (click)="onAddModule('Ulstrasound')"
+                  <button (click)="onAddModule('Ulstrasound')"
                     class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>

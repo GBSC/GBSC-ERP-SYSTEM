@@ -65,9 +65,9 @@ export class TestReportComponent implements OnInit {
       {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'shopMode', field: 'shopMode'    ,enableRowGroup: true,  enablePivot: true  },
-       {headerName: 'Image Link', field: 'imageLink' ,  filter: false, enableValue: true },
+      {headerName: 'Image Link', field: 'imageLink' ,  filter: false, enableValue: true },
        {  headerName: 'Total', valueGetter: 'data.serialNumber + data.contactNumber * data.cnic / 1000' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true }
-
+ 
          ]; 
         this.defaultColDef = {
           width: 100,

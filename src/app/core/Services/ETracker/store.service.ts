@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export class StoreService {
 
     public Url = "etracker/api/";
-
+    public Ur2l = "localhost:44360/api/";
     constructor(public http: HttpClient, public ApiService: ApiService) {
     }
 
@@ -64,6 +64,13 @@ export class StoreService {
     shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
         return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
     }
+
+    shopCensusSummary(companyId: number, userId: number): Observable<any> {
+        return     this.http.get(this.Ur2l + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+      //  return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+    }
+
+    
   
 
 }

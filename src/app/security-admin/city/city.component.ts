@@ -45,16 +45,18 @@ export class CityComponent implements OnInit {
         this.updatingModel.companyId = this.authService.getUserCompanyId();
     }
 
-    async Updatecity() {
-        console.log(this.updatingModel);
-        
-        await this.hrmService.updateCity(this.updatingModel)
+     Updatecity() {
+        console.log(this.updatingModel); 
+         this.hrmService.updateCity(this.updatingModel).subscribe(res => {
+             console.log(res);
+         })
     }
 
-    async deletecity(value) {
-        console.log(value);
-        
-        await this.hrmService.deleteCity(value.key);
+    deletecity(value) {
+        console.log(value); 
+         this.hrmService.deleteCity(value.data.cityId).subscribe(r => {
+             console.log(r); 
+         });
     }
 
 }

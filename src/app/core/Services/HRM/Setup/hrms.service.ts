@@ -53,18 +53,17 @@ export class HrmsService {
         return this.ApiService.get(this.setupUrl + '/GetCitiesByCompanyId/' + companyId)
     }
 
-    async addCity(data) {
-        // return await this.httpService.post('http://localhost:58090/api/setup/AddCity', data).toPromise();
+    async addCity(data) { 
         return await this.httpService.post(this.setupUrl2 + '/AddCity', data).toPromise();
 
     }
 
-    async updateCity(data) {
-        return await this.httpService.put(this.setupUrl2 + '/UpdateCity', data).toPromise();
+    updateCity(data) {
+        return this.httpService.put(this.setupUrl2 + '/UpdateCity', data);
     }
 
-    async deleteCity(cityId) {
-        return await this.httpService.delete(this.setupUrl2 + '/DeleteCity/'+cityId).toPromise();
+    deleteCity(cityId) {
+        return this.httpService.delete(this.setupUrl2 + '/DeleteCity/'+ cityId);
     }
 
 

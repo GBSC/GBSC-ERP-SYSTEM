@@ -127,16 +127,16 @@ export class SystemAdministrationService {
         return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
-    async addDepartment(department: Department) {
-        return await this.httpService.post(this.setupUrl2 + 'AddDepartment', department).toPromise();
+     addDepartment(department): Observable <any> {
+        return this.httpService.post(this.setupUrl2 + 'AddDepartment', department);
     }
 
-    async updateDepartment(department: Department) {
-        return await this.httpService.put(this.setupUrl2 + 'UpdateDepartment', department).toPromise();
+     updateDepartment(department) : Observable <any>{
+        return this.httpService.put( 'http://localhost:58090/api/setup/UpdateDepartment', department);
     }
 
-    async deletDepartment(id) {
-        return await this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id).toPromise();
+     deletDepartment(id) {
+        return this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id);
     }
 
 

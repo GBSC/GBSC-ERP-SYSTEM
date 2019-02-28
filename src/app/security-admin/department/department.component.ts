@@ -10,6 +10,7 @@ import { Branch } from '../../core/Models/HRM/branch';
 export class DepartmentComponent implements OnInit {
     public deprt: any;
     public branch: any;
+    public updatingModel: any;
 
     constructor(public SystemAdministrationServiceobj: SystemAdministrationService, public authService : AuthService) { }
 
@@ -34,12 +35,20 @@ export class DepartmentComponent implements OnInit {
         });
     }
 
-    async updateDepartment(value) {
-        value.key.companyId = this.authService.getUserCompanyId();
-        await this.SystemAdministrationServiceobj.updateDepartment(value.key);
+    updatingDepartment(value){
+
+        this.updatingModel = {...value.oldData, ...value.newData};
+        this.updatingModel.companyId = this.authService.getUserCompanyId(); 
+    }
+
+    async updateDepartment() { 
+        
+        await this.SystemAdministrationServiceobj.updateDepartment(this.updatingModel);
     }
     async deletDepartment(value) {
-        await this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId);
+        console.log(value);
+        
+        // await this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId);
     }
 
 }

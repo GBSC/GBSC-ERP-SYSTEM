@@ -116,7 +116,7 @@ export class SystemAdministrationService {
     }
 
      deletBranch(id): Observable<any> {
-        return this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id);
+        return this.httpService.delete(this.setupUrl2 + 'DeleteBranch/' + id);
     }
 
     async getDepartments() {
@@ -132,11 +132,11 @@ export class SystemAdministrationService {
     }
 
     async updateDepartment(department: Department) {
-        return await this.ApiService.put(this.API_URL + 'UpdateDepartment', department).toPromise();
+        return await this.httpService.put(this.setupUrl2 + 'UpdateDepartment', department).toPromise();
     }
 
     async deletDepartment(id) {
-        return await this.ApiService.delete(this.API_URL + 'DeleteDepartment/' + id).toPromise();
+        return await this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id).toPromise();
     }
 
 

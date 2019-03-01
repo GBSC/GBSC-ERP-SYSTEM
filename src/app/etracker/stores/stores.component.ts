@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../app/core';
 import { StoreService } from '../../../app/core/Services/ETracker/store.service';
 import { AgmCoreModule } from '@agm/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class StoresComponent implements OnInit {
     public zoom: number = 18;
 
 
-    constructor(public authService: AuthService, public storeService: StoreService) {
+    constructor(public authService: AuthService, public storeService: StoreService, public router: Router) {
         this.companyId = this.authService.getUserCompanyId();
     }
 
@@ -38,8 +39,12 @@ export class StoresComponent implements OnInit {
         console.log(value);
     }
 
-    deleteStore(value){
-        this.storeService.deleteStore(value.key).subscribe(resp=>console.log('Store deleted'));
+    editStarting(event) {
+        this.router.navigate(['etracker/shop-edit/', event.key])
+    }
+
+    deleteStore(value) {
+        this.storeService.deleteStore(value.key).subscribe(resp => console.log('Store deleted'));
     }
 
 

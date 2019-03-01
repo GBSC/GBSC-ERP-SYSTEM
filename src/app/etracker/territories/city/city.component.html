@@ -11,7 +11,7 @@
     <div class="m-section">
       <div class="m-section__content">
         <dx-data-grid id="gridContainer" [dataSource]="cities" keyExpr="cityId" (onRowInserted)="addCity($event)"
-          (onRowUpdating)="updateCity($event)" (onRowRemoved)="deleteCity($event)">
+          (onRowUpdating)="updateCity($event)"  (onRowRemoved)="deleteCity($event)">
 
           <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [useIcons]="true">
           </dxo-editing>

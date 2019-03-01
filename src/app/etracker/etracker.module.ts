@@ -64,11 +64,7 @@ import { ShopEditComponent } from './shop-edit/shop-edit.component';
         DxPopupModule,
         AgGridModule.withComponents([])
     ],
-<<<<<<< HEAD
-    declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, TestReportComponent],
-=======
     declarations: [RootComponent, MenuComponent, LocatorComponent, SalesusersComponent, StoresComponent, ShopEditComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, newtestreport, TestReportComponent],
->>>>>>> etracker
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

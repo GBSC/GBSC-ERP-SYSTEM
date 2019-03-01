@@ -20,7 +20,7 @@ export class ShopEditComponent {
 
   subsections: any[];
 
-  shop = { activeStatus: true };
+  shop;
 
   pjp = [];
 

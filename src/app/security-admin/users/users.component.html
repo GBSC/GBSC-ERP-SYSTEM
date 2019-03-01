@@ -47,28 +47,20 @@
                 <dxi-column dataField="lastName"></dxi-column>
                 <dxi-column dataField="phone"></dxi-column>
                 <dxi-column dataField="email"></dxi-column>
-                <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="110"></dxi-column>
+                <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="160"></dxi-column>
                 <div *dxTemplate="let data of 'cellTemplate'">
-                  <a *ngIf="!data.data.hasAccount" title="Create Account"
-                    class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
-                    data-toggle="modal" data-target="#m_modal_3" (click)="setSelectedUserId(data.value)">
-                    <i class="fa fa-user-plus"></i>
-                  </a>
                   <a href=""
                     class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
                     title="View" [routerLink]="['/security/user-registration', data.value]">
                     <i class="fa fa-eye"></i>
                   </a>
-                  <button data-toggle="modal" data-target="#m_modal_4" title="Assign Distributer"
-                    (click)="onUserSelect(data.value)"
-                    class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+                  <button title="Assign Distributer" (click)="onUserSelect(data.value)" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-toggle="modal" data-target="#m_modal_4">
                     <i class="fa fa-address-card-o"></i>
                   </button>
-                  <button [disabled]="!data.data.territory" data-toggle="modal" data-target="#m_modal_5"
-                    title="Assign Subsections" (click)="onAssignSubsections(data.value, data.data.sectionId)"
-                    class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
-                    <i class="fa	fa-street-view"></i>
-                  </button>
+                  <button [disabled]="!data.data.territory" data-toggle="modal" data-target="#m_modal_5" title="Assign Subsections"
+                  (click)="onAssignSubsections(data.value, data.data.sectionId)" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+                  <i class="fa	fa-street-view"></i>
+                </button>
                 </div>
               </dx-data-grid>
             </div>
@@ -79,63 +71,6 @@
   </div>
 </div>
 
-<div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-          Add Account
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            &times;
-          </span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="registrationForm">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group m-form__group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" formControlName="Email">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group m-form__group">
-                <label for="username">Login Id</label>
-                <input type="text" class="form-control" id="username" formControlName="Username">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group m-form__group">
-                <label for="password">Password</label>
-                <input type="text" class="form-control" id="password" formControlName="Password">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group m-form__group">
-                <label for="confirmpassword">Confirm Password</label>
-                <input type="text" class="form-control" id="confirmpassword">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" (click)="submitRegisterUserForm(registrationForm.value)" class="btn btn-brand"
-              data-dismiss="modal">
-              Submit
-            </button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              close
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
 
   <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -220,7 +155,6 @@
     </div>
   </div>
 
-
   <div class="modal fade" id="m_modal_5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -231,7 +165,7 @@
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">
-              &times;
+
             </span>
           </button>
         </div>
@@ -275,3 +209,8 @@
       </div>
     </div>
   </div>
+
+
+
+
+  

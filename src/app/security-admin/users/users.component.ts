@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Select2OptionData } from 'ng2-select2';
 import { DxSelectBoxComponent } from 'devextreme-angular';
 import { UserLevelStatus } from '../../../app/etracker/salesusers/salesusers.component';
-
+ 
 @Component({
     selector: 'app-users',
     templateUrl: './users.component.html',

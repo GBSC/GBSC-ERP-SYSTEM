@@ -41,7 +41,7 @@ export class CityComponent implements OnInit {
     }
 
     UpdatingCity(value) {
-        this.updatingModel = { ...value.oldData, ...value.newData };
+        this.updatingModel = { ...value.oldData, ...value.newData }; 
         this.updatingModel.companyId = this.authService.getUserCompanyId();
     }
 
@@ -54,7 +54,7 @@ export class CityComponent implements OnInit {
 
     deletecity(value) {
         console.log(value); 
-         this.hrmService.deleteCity(value.data.cityId).subscribe(r => {
+         this.hrmService.deleteCity(value.key.cityId).subscribe(r => {
              console.log(r); 
          });
     }

@@ -66,8 +66,8 @@ export class StoreService {
     }
 
     shopCensusSummary(companyId: number, userId: number): Observable<any> {
-        return     this.http.get(this.Ur2l + `Report/GetShopCensusSummary/${companyId}/${userId}`);
-      //  return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+       // return     this.http.get(this.Ur2l + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+         return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}`);
     }
 
     

@@ -28,7 +28,9 @@ export class TestReportComponent implements OnInit {
   companyId : number;
   userId : number ;
   public rowData : any;
+  public rowData2 : any;
   public columnDefs  : any;
+  public bottomOptions : any;
   public defaultColDef : any;
   public sideBar : any;
 
@@ -65,9 +67,11 @@ export class TestReportComponent implements OnInit {
       {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true  },
       {headerName: 'shopMode', field: 'shopMode'    ,enableRowGroup: true,  enablePivot: true  },
-      {headerName: 'Image Link', field: 'imageLink' ,  filter: false, enableValue: true },
-       {  headerName: 'Total', valueGetter: 'data.serialNumber + data.contactNumber * data.cnic / 1000' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true }
- 
+      {headerName: 'Image Link', field: 'imageLink' ,  filter: false, enableValue: true } ,
+      {  headerName: 'Total Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false },
+      {  headerName: 'Total Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false },
+      {  headerName: 'Total Closed', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false }
+
          ]; 
         this.defaultColDef = {
           width: 100,
@@ -77,6 +81,11 @@ export class TestReportComponent implements OnInit {
           filter: true
         };    
         this.autoGroupColumnDef = { width: 150 };
+
+        this.bottomOptions  = [
+          {  headerName: 'Total Shop', field: 'shopNameCount',  aggFunc: 'sum', editable: false }
+
+        ];
         // this.rowModelType = "serverSide";
         // this.sideBar = "columns";
         //      this.rowModelType = "serverSide";
@@ -118,11 +127,15 @@ public abc : any = [];
           this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
+         this.rowData2 =    this.rowData.filter(t=> t.shopNameCount);
+         console.log(this.rowData2);
           });
+
     }
 
-    onColumnRowGroupChanged(value){
-      console.log(value)
+    onColumnRowGroupChanged(value2){
+      // console.log(value)
+      console.log(value2);
       // console.log('asdas');
       // console.log(this.companyId);
       // console.log(this.userId);

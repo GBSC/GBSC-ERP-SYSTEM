@@ -75,7 +75,69 @@
           </span>
         </button>
       </div>
+      <div class="modal-body">
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-sm-4">
+            <dx-select-box #userlevelcb [items]="userLevels" displayExpr="value" valueExpr="value" [value]="userLevel"
+              [searchEnabled]="true">
+            </dx-select-box>
+          </div>
+          <div class="col-sm-8 m-form m-form--fit m-form--label-align-right">
+            <div *ngIf="userLevelStatus == 1" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                Region
+              </label>
+              <select2 class="col-8" [data]="regionOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+            </div>
 
+            <div *ngIf="userLevelStatus == 2" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                City
+              </label>
+              <select2 class="col-8" [data]="cityOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+            </div>
+            <div *ngIf="userLevelStatus == 3" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                Area
+              </label>
+              <select2 class="col-8" [data]="areaOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+            </div>
+            <div *ngIf="userLevelStatus == 4" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                Territory
+              </label>
+              <select2 class="col-8" [data]="territoryOptions" [options]="options" [width]="300" [value]="value"
+                (valueChanged)="changed($event)"></select2>
+            </div>
+
+            <div *ngIf="userLevelStatus == 5" class="form-group m-form__group row">
+              <label class="col-4" style="padding-top: 6px;">
+                Sections
+              </label>
+              <select #mySelect class="form-control" id="section" class="col-8"  (change)="sectionChange(mySelect.value)" [value]="sectionId">
+                <option *ngFor="let section of sections" [value]="section.sectionId">{{section.name}}</option>
+              </select>
+              <!-- <dx-select-box #sectioncb class="col-8" [items]="sections" displayExpr="name" valueExpr="sectionId"
+              [value]="sectionId" [searchEnabled]="true">
+            </dx-select-box> -->
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary active" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-brand"  data-dismiss="modal" (click)="assignUserLevel()">
+            Save
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -94,7 +156,43 @@
           </span>
         </button>
       </div>
-
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group m-form__group">
+              <label for="exampleSelect1">
+                Section
+              </label>
+              <dx-select-box #sectioncb2 [items]="sections" displayExpr="name" valueExpr="sectionId" [value]="sectionId"
+                [searchEnabled]="true">
+              </dx-select-box>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="m-form__group form-group row">
+          <label class="col-3 col-form-label">
+            Subsection
+          </label>
+          <div class="col-9">
+            <div class="m-checkbox-list">
+              <label *ngFor="let subsection of assignedSubsections; index as i" class="m-checkbox">
+                <input type="checkbox" [checked]="subsection?.isAssigned" (change)="onSubsectionSelect($event, i)">
+                {{subsection?.name}}
+                <span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary active" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-brand" data-dismiss="modal" (click)="assignSubsectionsOnSubmit()">
+            Save
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

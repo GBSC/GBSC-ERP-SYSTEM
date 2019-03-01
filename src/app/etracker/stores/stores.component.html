@@ -17,9 +17,11 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <dx-data-grid id="gridContainer" [dataSource]="stores" (onRowRemoved)="deleteStore($event)" keyExpr="storeId">
-              <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false" [useIcons]="true">
-                </dxo-editing>
+          <dx-data-grid id="gridContainer" [dataSource]="stores" (onEditingStart)="editStarting($event)"
+            (onRowRemoved)="deleteStore($event)" keyExpr="storeId">
+            <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false"
+              [useIcons]="true">
+            </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
 
@@ -34,10 +36,12 @@
             <dxi-column dataField="salesPerson"></dxi-column>
             <dxi-column dataField="storeId" caption="Action" cellTemplate="cellTemplate" [width]="100"></dxi-column>
             <div *dxTemplate="let data of 'cellTemplate'">
-              <a title="Store Profile" [routerLink]="['/etracker/store-profile', data.value]" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+              <a title="Store Profile" [routerLink]="['/etracker/store-profile', data.value]"
+                class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
                 <i class="fa fa-drivers-license"></i>
               </a>
-               <a data-toggle="modal" data-target="#m_modal_4" title="Map" (click)="getLatLog(data)" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
+              <a data-toggle="modal" data-target="#m_modal_4" title="Map" (click)="getLatLog(data)"
+                class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill">
                 <i class="fa fa-map-marker"></i>
               </a>
             </div>
@@ -50,7 +54,8 @@
 </div>
 
 
-<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content" style="height: 675px">
       <div class="modal-header">
@@ -64,12 +69,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <agm-map [latitude]="lat" [longitude]="lng" [usePanning]="true"   [zoom]="zoom" style="height: 545px">
-              <agm-marker [latitude]="lat" [longitude]="lng" >
-                  <agm-info-window>Börk</agm-info-window>
-              </agm-marker>
-        </agm-map>  
-           
-        </div>
+        <agm-map [latitude]="lat" [longitude]="lng" [usePanning]="true" [zoom]="zoom" style="height: 545px">
+          <agm-marker [latitude]="lat" [longitude]="lng">
+            <agm-info-window>Börk</agm-info-window>
+          </agm-marker>
+        </agm-map>
+
+      </div>
     </div>
   </div>

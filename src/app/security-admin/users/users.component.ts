@@ -113,8 +113,6 @@ export class UsersComponent implements OnInit {
             this.users = u;
         });
 
-        this.sectioncb2.onValueChanged.subscribe(res => this.onSectionChange(res.component.option("value")));
-
         this.userlevelcb.onValueChanged.subscribe(res => this.onUserLevelChange(res.component.option("value")));
 
         this.userService1.getUsersByCompany(this.companyId).subscribe(resp => {
@@ -150,10 +148,6 @@ export class UsersComponent implements OnInit {
     DeleteUser(value) {
 
         this.userService1.deleteuser(value.key).subscribe(resp => console.log("User Deleted"));
-    }
-
-    sectionChange(value) {
-        this.sectionId = value;
     }
 
     onUserSelect(userId) {
@@ -247,40 +241,6 @@ export class UsersComponent implements OnInit {
 
     }
 
-    onAssignSubsections(userId, sectionId) {
-        this.userId = userId;
-
-        console.log(this.userId);
-        this.inventoryService.getSectionsByCompany(this.companyId).subscribe(resp => {
-            this.sections = resp;
-            this.sectionId = sectionId;
-
-            if (this.sectionId)
-                this.userService.getAssignedSubsectionsBySection(this.sectionId, this.userId).subscribe(resp => {
-                    this.assignedSubsections = resp;
-                });
-        });
-    }
-
-    onSectionChange(id) {
-        this.sectionId = id;
-        if (this.sectionId)
-            this.userService.getAssignedSubsectionsBySection(this.sectionId, this.userId).subscribe(resp => {
-                this.assignedSubsections = resp;
-            });
-    }
-
-    onSubsectionSelect(e, i) {
-        this.assignedSubsections[i].userId = this.userId;
-        this.assignedSubsections[i].isAssigned = e.target.checked;
-    }
-
-    assignSubsectionsOnSubmit() {
-        this.userService.assignSubsections(this.assignedSubsections).subscribe(resp => {
-            console.log(resp);
-        })
-        this.displayToastSuccess("Saved");
-    }
 
     displayToastSuccess(message) {
         this.toastr.success(message);

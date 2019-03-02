@@ -6,6 +6,7 @@ import { Shift } from '../../../../core/Models/HRM/shift';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShiftAttendanceFlag } from '../../../../core/Models/HRM/userRosterAttendanceAttendanceFlag';
+import { log } from 'util';
 
 @Component({
     selector: 'app-shift',
@@ -33,25 +34,27 @@ export class ShiftComponent implements OnInit {
         this.attendanceFlag = [];
 
         this.ShiftForm = this.fb.group({
-            ShiftCode: ['', Validators],
-            ShiftTitle: ['', Validators],
-            StartTime: ['', Validators],
-            EndTime: ['', Validators],
-            GraceTime: ['', Validators],
-            IsMultiple: ['', Validators],
-            OverTimeStartTime: ['', Validators],
-            MinimumOverTime: ['', Validators],
-            InTimeShiftThreshold: ['', Validators],
+            ShiftCode: [''],
+            ShiftTitle: [''],
+            StartTime: [''],
+            EndTime: [''],
+            GraceTime: [''],
+            IsMultiple: [''],
+            OverTimeStartTime: [''],
+            MinimumOverTime: [''],
+            InTimeShiftThreshold: [''],
             OutTimeShiftThreshold: [''],
-            OverTimeRate: ['', Validators],
-            Description: ['', Validators],
-            ShiftHours: ['', Validators]
+            OverTimeRate: [''],
+            Description: [''],
+            ShiftHours: ['']
 
         });
 
         this.shift = await this.attendancesetupservice.getShifts();
-
-        this.attendanceflag = await this.attendancesetupservice.getAttendanceFlags();
+        console.log(this.shift);
+         this.attendancesetupservice.getAttendanceFlags().subscribe(rsp => {
+            this.attendanceflag = rsp
+        });
 
         this.flagType = await this.attendancesetupservice.getFlagTypes();
 
@@ -75,6 +78,10 @@ export class ShiftComponent implements OnInit {
                 this.patchValues(this.shifts);
             });
         }
+    }
+
+    formatDate(date: Date) {
+        return (date.getHours() + 1) + "-" + date.getMinutes() + "-" + date.getMilliseconds();
     }
 
     async addAttendanceFlag(value) {
@@ -103,13 +110,14 @@ export class ShiftComponent implements OnInit {
             return false;
     }
 
-    async updateAttendanceFlag(value) {
+     updateAttendanceFlag(value) {
         console.log(value);
     }
 
     update(value) {
         value.shiftsId = this.id;
         value.shiftAttendanceFlags = this.Flag;
+        console.log(value)
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
             this.toastr.success("Shift Updated");
 
@@ -137,9 +145,9 @@ export class ShiftComponent implements OnInit {
             MinimumOverTime: shift.minimumOverTime,
             InTimeShiftThreshold: shift.inTimeShiftThreshold,
             OutTimeShiftThreshold: shift.outTimeShiftThreshold,
-            OverTimeRate: shift.OverTimeRate,
-            Description: shift.Description,
-            ShiftHours: shift.ShiftHours
+            OverTimeRate: shift.overTimeRate,
+            Description: shift.description,
+            ShiftHours: shift.shiftHours
 
         })
 

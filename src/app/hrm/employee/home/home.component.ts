@@ -11,7 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class EmployeeHomeComponent implements OnInit {
-
+    tabs: string[] = ['Basic Information', 'Employee Company Information', 'Employee Qualification',
+     'Work Experience', 'Employee Dependants', ' Employee Bank Account', 'Social Networking'];
+   selectedTab = this.tabs[0];
     public id: number;
 
     constructor(public toastr: ToastrService, public employeeService: EmployeeService, public router: Router, public activatedRoute: ActivatedRoute) { }

@@ -13,6 +13,7 @@
                                 <dx-data-grid id="gridContainer"
                                 [dataSource]="subleave"
                                 keyExpr="leaveSubTypeId"
+                                [showBorders]="true"
                                 (onRowInserted)="addsubleave($event)" 
                                 (onRowUpdated)="updatesubleave($event)"
                                 (onRowRemoved)="deletesubleave($event)">

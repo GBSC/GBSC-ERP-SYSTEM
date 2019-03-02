@@ -1,34 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
 import { HrmsService } from '../Setup/hrms.service';
 import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
 import { Employee } from '../../../Models/HRM/employee';
 import { EmployeeCompany } from '../../../Models/HRM/employeeCompany';
-import { EmployeeSocial } from '../../../Models/HRM/employeeSocial';
-import { EmployeeQualification } from '../../../Models/HRM/employeeQualification';
-import { EmployeeBank } from '../../../Models/HRM/employeeBank';
-import { EmployeeExperience } from '../../../Models/HRM/employeeExperience';
-import { EmployeeDependant } from '../../../Models/HRM/employeeDependant';
+import { EmployeeSocial } from '../../../Models/HRM/employeeSocial'; 
 
 @Injectable()
 export class EmployeeService {
 
-    public baseUrl: string = 'systemadmin/api';
-    public employeereg;
+    public baseUrl: string = 'systemadmin/api'; 
+    public baseUrl2: string = 'http://gbsc-erp.azurewebsites.net/SystemAdmin/api'; 
     public updatedLeaves;
 
 
-    constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService) {
+    constructor(public service: HrmsService, public fb: FormBuilder, public ApiService: ApiService, public HttpService: HttpClient) {
 
     }
 
     //Employee
     async GetAllEmployees() {
-        this.employeereg = await this.ApiService.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
-        return this.employeereg;
+        return await this.ApiService.get(`${this.baseUrl}/Users/GetUsers`).toPromise();
     }
 
     getAllEmployees(): Observable<any> {
@@ -50,13 +45,13 @@ export class EmployeeService {
 
     updateEmployeeBasicInfo(Employee: Employee): Observable<any> {
 
-        return this.ApiService.put(this.baseUrl + '/Users/UpdateUserBasicInfo', Employee);
+        return this.HttpService.put(this.baseUrl2 + '/Users/UpdateUserBasicInfo', Employee);
     }
 
 
-    addEmployee(employee): Observable<any> {
-
-        return this.ApiService.post(`${this.baseUrl}/Users/AddUser`, employee);
+    addEmployee(employee : Employee): Observable<any> {
+ 
+        return this.HttpService.post(`${this.baseUrl2}/Users/AddUser`, employee);
 
     }
 
@@ -164,6 +159,10 @@ export class EmployeeService {
 
 
     //Employee Banks
+
+    getBank(): Observable<any> {
+        return this.ApiService.get(this.baseUrl + '/HrSetup/GetBanks');
+    }
 
     getBanks(userId): Observable<any> {
 

@@ -7,23 +7,38 @@ import { AttendancesetupService } from '../../../../core';
     styleUrls: ['./flagvalue.component.scss']
 })
 export class FlagvalueComponent implements OnInit {
-
-
+ 
+    public UpdatingModel: any;
     public flagvalue: any;
+
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
-    async ngOnInit() {
+     ngOnInit() {
 
-        this.flagvalue = await this.attendancesetupservice.getFlagValues();
+         this.attendancesetupservice.getFlagValues().subscribe(resp =>{
+            this.flagvalue = resp
+         });
     }
 
-    async addflagvalue(value) {
-        this.attendancesetupservice.addFlagValue(value.data);
-        this.flagvalue = await this.attendancesetupservice.getFlagValues();
+     addflagvalue(value) {
+         console.log(value.data);
+         
+        this.attendancesetupservice.addFlagValue(value.data).subscribe(r => {console.log(r); 
+            this.attendancesetupservice.getFlagValues().subscribe(resp =>{
+                this.flagvalue = resp  });
+        });
     }
 
-    async updateflagvalue(value) {
-        this.attendancesetupservice.updateFlagValue(value);
+    updatingflagvalue(value) {
+
+        this.UpdatingModel = {...value.oldData, ...value.newData};
+    }
+
+     updateflagvalue() {
+        this.attendancesetupservice.updateFlagValue(this.UpdatingModel).subscribe(fv => {
+            console.log(fv);
+            
+        });
     }
 
     async deleteflagvalue(value) {

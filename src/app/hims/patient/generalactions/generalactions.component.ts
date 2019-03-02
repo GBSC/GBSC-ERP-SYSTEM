@@ -61,6 +61,7 @@ export class GeneralactionsComponent implements OnInit {
 
         this.currentPatient = this.PatientServiceobj.GetPatientAppointmentsByPatientId(this.id).subscribe(Patient => {
             this.Patient = Patient
+            console.log(this.Patient);
             if (this.Patient.appointments.length) {
                 this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'pendding');
                 console.log('if')

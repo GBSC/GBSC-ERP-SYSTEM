@@ -14,7 +14,8 @@
                [dataSource]="attendanceRequesttype"
                keyExpr="attendanceRequestTypeId"
                (onRowInserted)="addRequesttype($event)" 
-              (onRowUpdated)="updateRequesttype($event)"
+              (onRowUpdating)="updatingRequesttype($event)"
+              (onRowUpdated)="updateRequesttype()"
                 (onRowRemoved)="deleteRequesttype($event)">
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                 </dxo-editing>

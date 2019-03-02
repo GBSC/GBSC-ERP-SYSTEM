@@ -15,7 +15,7 @@
             <div class="m-section">
               <div class="m-section__content">
                 <div class="row">
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
                         Document #
@@ -23,32 +23,25 @@
                       <input type="text" class="form-control m-input" disabled="patientDisabledFields" >
                     </div>
                   </div>
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                        Date
-                      </label>
-                      <input type="date" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.dob |  date : 'yyyy-MM-dd' || ''" >
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        File No
-                      </label>
-                      <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.mrn  || ''" >
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="form-group m-form__group">
-                      <label for="exampleInputEmail1">
-                        Pat Id
+                        Patient
                       </label>
                       <dx-select-box [items]="patients" displayExpr="fullName" valueExpr="patientId" #patientId (onValueChanged)="getPatientById(patientId.value)" [searchEnabled]="true" formControlName="PatientId"> 
                       </dx-select-box>
                     </div>
                   </div>
-                  <div class="col-sm-2"></div>
+                  <div class="col-sm-3">
+                    <div class="form-group m-form__group">
+                      <label for="exampleInputEmail1">
+                        Consultant 
+                      </label>
+                      <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
+                      </dx-select-box>
+                    </div>
+                  </div>
+                  <div class="col-sm-1"></div>
                   <div class="col-sm-2">
                       <div class="m-section__content">
                           <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
@@ -66,38 +59,54 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-2">
+                    <!-- <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Patient Name 
                         </label>
                         <input type="text" class="form-control m-input"  disabled="patientDisabledFields" >
                       </div>
+                    </div> -->
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          D.O.B
+                        </label>
+                        <input type="date" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.dob |  date : 'yyyy-MM-dd' || ''" >
+                      </div>
                     </div>
                     <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          File No
+                        </label>
+                        <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  [value]="pattientById?.mrn  || ''" >
+                      </div>
+                    </div>
+                    <!-- <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           D.O.B
                         </label>
                         <input type="text" class="form-control m-input"   disabled="patientDisabledFields"  [value]="pattientById?.dob  || ''" >
                       </div>
-                    </div>
-                    <div class="col-sm-2">
+                    </div> -->
+                    <!-- <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Treatment No
                         </label>
                         <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  >
                       </div>
-                    </div>
-                    <div class="col-sm-2">
+                    </div> -->
+                    <!-- <div class="col-sm-2">
                       <div class="form-group m-form__group">
                         <label for="exampleInputEmail1">
                           Cycle No
                         </label>
                         <input type="text" class="form-control m-input"  disabled="patientDisabledFields"  >
                       </div>
-                    </div>
+                    </div> -->
                     <div class="col-sm-2">
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
@@ -108,53 +117,47 @@
                           </div>
                     </div>
                     <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          Treatment Day
+                        </label>
+                        <input type="text" class="form-control m-input"formControlName="TreatmentDay" >
+                      </div>
+                    </div>
+                    <!-- <div class="col-sm-2">
                         <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
                                 TVOP Date
                             </label>
                             <input type="date" class="form-control m-input"  disabled="patientDisabledFields"  >
                           </div>
+                    </div> -->
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          LMP Date
+                        </label>
+                        <input type="date" class="form-control m-input" formControlName="LMP" [value]="ultraSoundPelvisById?.lmp | date : 'yyyy-MM-dd' || ''">
+                      </div>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="form-group m-form__group">
+                        <label for="exampleInputEmail1">
+                          ET On
+                        </label>
+                        <input type="date" class="form-control m-input" formControlName="EtOn" [value]="ultraSoundPelvisById?.etOn | date : 'yyyy-MM-dd' || ''">
+                      </div>
                     </div>
   
                   </div>
-                  <div class="row">
-                      <div class="col-sm-2">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Consultant 
-                          </label>
-                          <dx-select-box [items]="consultant" displayExpr="name" valueExpr="consultantId" [searchEnabled]="true" formControlName="ConsultantId"> 
-                          </dx-select-box>
-                        </div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            LMP Date
-                          </label>
-                          <input type="date" class="form-control m-input" formControlName="LMP" [value]="ultraSoundPelvisById?.lmp | date : 'yyyy-MM-dd' || ''">
-                        </div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            ET On
-                          </label>
-                          <input type="date" class="form-control m-input" formControlName="EtOn" [value]="ultraSoundPelvisById?.etOn | date : 'yyyy-MM-dd' || ''">
-                        </div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="form-group m-form__group">
-                          <label for="exampleInputEmail1">
-                            Treatment Day
-                          </label>
-                          <input type="text" class="form-control m-input"formControlName="TreatmentDay" >
-                        </div>
-                      </div>
+                  <!-- <div class="row">
+                    
+                      
+                  
                       <div class="col-sm-4">
                          
                       </div>    
-                    </div>
+                    </div> -->
                 <hr>
                 <h3 >
 
@@ -169,7 +172,7 @@
                         <label for="exampleInputEmail1">
                           US # 
                         </label>
-                        <input type="date" class="form-control m-input" >
+                        <input type="text" class="form-control m-input" disabled="patientDisabledFields">
                       </div>
                     </div>
                     <div class="col-sm-2">
@@ -311,7 +314,7 @@
                         <div class="col-sm-2">
                           <div class="form-group m-form__group">
                             <label for="exampleInputEmail1">
-                               No of Pollicies
+                               No of Policies
                             </label>
                             <input type="text" class="form-control m-input" formControlName="NoOfFolliciesRightOvary">
                           </div>

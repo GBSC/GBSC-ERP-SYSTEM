@@ -13,6 +13,7 @@
                   <dx-data-grid id="gridContainer"
                   keyExpr="masterPayrollId" 
                   [dataSource]="masterPayroll"
+                  [showBorders]="true"
                   [columnAutoWidth]="true" 
                   (onSelectionChanged)="selectionChanged($event)"
                   (onContentReady)="contentReady($event)"
@@ -30,6 +31,7 @@
                           <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                           </dxo-lookup>
                         </dxi-column>
+                        <dxi-column dataField="salary" caption="Salary"> </dxi-column>
                       <dxi-column caption="Action" [minWidth]="30" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                       <div *dxTemplate="let d of 'chartCellTemplate'">
                         <div class="chart-cell">
@@ -38,7 +40,7 @@
                     </div>
 
                       <div *dxTemplate="let masterPayroll of 'detail'">
-                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true" [columnAutoWidth]="true">
+                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true">
                             <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
                                 <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
                               </dxi-column>
@@ -49,7 +51,7 @@
                                 <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                               </dxi-column>
                               <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
-                              <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                              <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
      
                               </dx-data-grid>
                       </div>

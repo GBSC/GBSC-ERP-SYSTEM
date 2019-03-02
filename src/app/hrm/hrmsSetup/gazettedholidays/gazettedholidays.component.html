@@ -10,7 +10,10 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="holiday" keyExpr="gazettedHolidaysId" (onRowInserted)="addHolidays($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="holiday" 
+              keyExpr="gazettedHolidaysId"
+              [showBorders]="true"
+               (onRowInserted)="addHolidays($event)"
                 (onRowUpdating)="updatingholiday($event)"
                 (onRowUpdated)="Editholiday()"
                  (onRowRemoved)="deleteholiday($event)">

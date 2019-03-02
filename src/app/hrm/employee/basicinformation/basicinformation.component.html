@@ -3,197 +3,244 @@
 
 </div>
 
-<form class="signup-form" [formGroup]="EmpbasicForm"> 
-<div class="row">
-      <div class="col-md-6">
+<form class="signup-form" [formGroup]="EmpbasicForm">
+  <div class="row">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
-            <label class="control-label">
-                First Name <em class="required_label">*</em> 
-            </label>
-            <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" placeholder="First Name">
-          
-        </div> 
-      </div>
-      <div class="col-md-6">
-      <div class="form-group m-form__group">
-            <label class="control-label">
-                Last Name <em class="required_label">*</em> 
-            </label>
-            <input type="text"  formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid" placeholder="Last Name">
-        </div> 
-      </div>
-</div>
-<div class="m--space-10"></div>
-<div class="row">
+        <label class="control-label">
+          First Name <em class="required_label">*</em>
+        </label>
+        <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid"
+          placeholder="First Name">
 
-  <div class="col-md-4">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label class="control-label">
+          Last Name <em class="required_label">*</em>
+        </label>
+        <input type="text" formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid"
+          placeholder="Last Name">
+      </div>
+    </div>
+  </div>
+  <div class="m--space-10"></div>
+  <div class="row">
+
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label class="control-label">Father Name</label>
-        <input type="text" formControlName="FatherName" [value]="Employee?.fatherName" class="form-control m-input m-input--solid" id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
+        <input type="text" formControlName="FatherName" [value]="Employee?.fatherName" class="form-control m-input m-input--solid"
+          id="fathername" name="fathername" aria-describedby="emailHelp" placeholder="Enter Father Name">
       </div>
     </div>
 
     <div class="col-md-4">
-        <div class="form-group m-form__group">
-          <label for="employee_id">Date of Birth</label>
-          <dx-date-box formControlName="DOB" [value]="Employee?.dob" displayFormat="dd/MM/yyyy" class="form-control m-input m-input--solid" type="date" width="100%"></dx-date-box>
-        </div>
+      <div class="form-group m-form__group">
+        <label for="employee_id">Date of Birth</label>
+        <dx-date-box formControlName="DOB" [value]="Employee?.dob" displayFormat="dd/MM/yyyy" class="form-control m-input m-input--solid"
+          type="date" width="100%"></dx-date-box>
       </div>
-      <div class="col-md-4">
-          <div class="form-group m-form__group">
-            <label for="employee_id">Place of Birth</label>
-            <input class="form-control m-input m-input--solid" formControlName="POB" id="POB" name="pob" [value]="Employee?.pob" placeholder="eg.Karachi" aria-describedby="PlaceofBirth" type="text">
-          </div>
-        </div> 
     </div>
-<div class="m--space-10"></div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="employee_id">Place of Birth</label>
+        <input class="form-control m-input m-input--solid" formControlName="POB" id="POB" name="pob" [value]="Employee?.pob" placeholder="eg.Karachi"
+          aria-describedby="PlaceofBirth" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="m--space-10"></div>
 
-<div class="row">
-          
-  <div class="col-md-4">
-    <div class="form-group m-form__group">
-      <label class="control-label">Cnic <em class="required_label">*</em>  </label>
-      <input class="form-control m-input m-input--solid" maxlength="13" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526" type="text">
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label class="control-label">Cnic <em class="required_label">*</em> </label>
+        <input class="form-control m-input m-input--solid" maxlength="13" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526"
+          type="text">
+      </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group m-form__group">
-      <label for="" class="control-label">Cnic Expiry</label>
-      <dx-date-box formControlName="CnicExpiry" class="form-control m-input m-input--solid" displayFormat="dd/MM/yyyy" [value]="Employee?.cnicExpiry" type="date" width="100%"></dx-date-box>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="" class="control-label">Cnic Expiry</label>
+        <dx-date-box formControlName="CnicExpiry" class="form-control m-input m-input--solid" displayFormat="dd/MM/yyyy" [value]="Employee?.cnicExpiry"
+          type="date" width="100%"></dx-date-box>
+      </div>
     </div>
-  </div>
-  <div class="col-md-4">
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="email" class="control-label">Email</label>
-        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email" name="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email"
+          name="email" aria-describedby="emailHelp" placeholder="Enter Email">
       </div>
     </div>
-</div>
-<div class="m--space-07"></div>
+  </div>
+  <div class="m--space-07"></div>
 
 
-<div class="row">
-          <div class="col-md-4">
-            <div class="form-group m-form__group">
-              <label for="employee_id">Blood Group</label>
-              <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup || ''" name="BloodGroup" id="BloodGroup">
-                  <option value="" disabled selected>-- Select Blood Group --</option>
-                      <option>A</option>
-                      <option>B</option>
-                      <option>O</option>
-                      <option>A+</option>
-                      <option>A-</option>
-                      <option>B+</option>
-                      <option>B-</option>
-                      <option>O+</option>
-                      <option>O-</option>
-                
-                  </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group m-form__group">
-              <label for="gender">Gender</label>
-              <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender" id="Gender">
-                  <option value="" disabled selected>-- Select Gender --</option>
-                  <option>  Female </option>
-                      <option>Male</option>
-                      
-                  </select>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group m-form__group">
-              <label for="Designation" class="control-label">Marital Status</label>
-              <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''" name="MaritalStatus" id="MaritalStatus">
-                  <option value="" disabled selected>-- Select Marital Status --</option>
-                  <option>Married</option>
-                  <option>Single</option>
-                  </select>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="employee_id">Blood Group</label>
+        <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup || ''" name="BloodGroup"
+          id="BloodGroup">
+          <option value="" disabled selected>-- Select Blood Group --</option> 
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>O+</option>
+          <option>O-</option>
 
-        <div class="m--space-07"></div>
-
-        <div class="row">
-          <div class="col-md-4">
-                  <div class="form-group m-form__group">
-                          <label class="control-label">Group</label>
-                          <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''">
-                                  <option *ngFor ="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
-                              </select>
-                        </div>
-          </div>
-          <div class="col-md-4">
-                  <div class="form-group m-form__group">
-                          <label for="Religion" class="control-label">Religion</label>
-                          <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''" id="Religion">
-                                  <option *ngFor ="let relg of religion" [value]="relg.religionId">{{relg.name}}</option>
-                              </select>
-                        </div>
-          </div>
-          <div class="col-md-4">
-              <div class="form-group m-form__group">
-                <label class="control-label">Department</label>
-                <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
-                        <option *ngFor ="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
-                    </select>
-              </div>
-            </div>
-        </div>
-
-        <div class="m--space-07"></div>
-
-        <div class="row">
-              <div class="col-md-6">
-                      <div class="form-group m-form__group">
-                        <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
-                        <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone" [value]="Employee?.phone || ''" id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                          <div class="form-group m-form__group">
-                            <label for="Contact-Number">Home</label>
-                            <input class="form-control m-input m-input--solid" maxlength="12" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
-                          </div>
-                        </div>
-        </div>
-        <div class="m--space-07"></div>
-
-        <div class="row">
-            <div class="col-md-12">
-                  <div class="form-group m-form__group">
-                          <label for="exampleTextarea">
-                          Address
-                          </label>
-                          <textarea class="form-control m-input m-input--solid" formControlName="Address" name="Address" [value]="Employee?.address || ''" id="Address" rows="3" placeholder="Test Address"></textarea>
-                      </div> 
-            </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-                <div class="form-group m-form__group">
-                        <label for="exampleTextarea">
-                       Permanent Address
-                        </label>
-                        <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" [value]="Employee?.permanentAddress || ''" name="Address" id="Address2" rows="3" placeholder="Test Address 2"></textarea>
-                    </div> 
-          </div>
+        </select>
       </div>
-<div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="gender">Gender</label>
+        <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender" id="Gender">
+          <option value="" disabled selected>-- Select Gender --</option>
+          <option> Female </option>
+          <option>Male</option>
 
-<div *ngIf="isUpdate(); else create">
-    <button class="btn btn-primary" (click)="update(EmpbasicForm.value)">
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label for="Designation" class="control-label">Marital Status</label>
+        <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''"
+          name="MaritalStatus" id="MaritalStatus">
+          <option value="" disabled selected>-- Select Marital Status --</option>
+          <option>Married</option>
+          <option>Single</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="m--space-07"></div>
+
+  <div class="row">
+    <!-- <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label class="control-label">Company</label>
+        <select class="form-control m-input m-input--solid" formControlName="CompanyId" [value]="Employee?.name || ''">
+          <option *ngFor="let cmp of companies" [value]="cmp?.companyId">{{cmp.name}}</option>
+        </select>
+      </div>
+    </div> -->
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label class="control-label">Department</label>
+        <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
+          <option *ngFor="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label class="control-label">Branch</label>
+        <select class="form-control m-input m-input--solid" formControlName="BranchId" [value]="Employee?.name || ''">
+          <option *ngFor="let brnch of branches" [value]="brnch?.branchId">{{brnch.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-3">
+          <div class="form-group m-form__group">
+            <label class="control-label">Country</label>
+            <select class="form-control m-input m-input--solid" formControlName="CountryId" [value]="Employee?.name || ''">
+              <option *ngFor="let country of countries" [value]="country?.countryId">{{country.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group m-form__group">
+            <label class="control-label">City</label>
+            <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''">
+              <option *ngFor="let city of cities" [value]="city?.cityId">{{city.name}}</option>
+            </select>
+          </div>
+        </div>
+    <div class="col-md-3">
+      <div class="form-group m-form__group">
+        <label class="control-label">Group</label>
+        <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''">
+          <option *ngFor="let grp of groups" [value]="grp?.groupId">{{grp.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group m-form__group">
+        <label for="Religion" class="control-label">Religion</label>
+        <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''"
+          id="Religion">
+          <option *ngFor="let relg of religion" [value]="relg?.religionId">{{relg.name}}</option>
+        </select>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="m--space-07"></div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
+        <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone" [value]="Employee?.phone || ''"
+          id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group m-form__group">
+        <label for="Contact-Number">Home</label>
+        <input class="form-control m-input m-input--solid" maxlength="12" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''"
+          name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
+      </div>
+    </div>
+  </div>
+  <div class="m--space-07"></div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group">
+        <label for="exampleTextarea">
+          Address
+        </label>
+        <textarea class="form-control m-input m-input--solid" formControlName="Address" name="Address" [value]="Employee?.address || ''"
+          id="Address" rows="3" placeholder="Test Address"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group m-form__group">
+        <label for="exampleTextarea">
+          Permanent Address
+        </label>
+        <textarea class="form-control m-input m-input--solid" formControlName="PermanentAddress" [value]="Employee?.permanentAddress || ''"
+          name="Address" id="Address2" rows="3" placeholder="Test Address 2"></textarea>
+      </div>
+    </div>
+  </div>
+  <div>
+
+    <div *ngIf="isUpdate(); else create">
+      <button class="btn btn-primary" (click)="update(EmpbasicForm.value)">
         update
-      </button>        
-</div> 
-<ng-template #create>
-  <button class="btn btn-primary" (click)="Formsubmit(EmpbasicForm.value)">
-    Submit
-  </button>  
-</ng-template> 
-</div>
-    </form>
-  
+      </button>
+    </div>
+    <ng-template #create>
+      <button class="btn btn-primary" (click)="Formsubmit(EmpbasicForm.value)">
+        Submit
+      </button>
+    </ng-template>
+  </div>
+</form>

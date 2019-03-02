@@ -108,7 +108,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             // { path: 'patientinvoiceview/:mrn', component: PatientInvoiceViewComponent },
             // { path: 'appointmentpaymentreceipt/:id', component: AppointmentpaymentreceiptComponent},
             {
-                path: 'patient',
+                path: 'setup',
                 children: [
                     { path: 'testcategory', component: TestCategoryComponent },
                     { path: 'testtype', component: TestTypeComponent },

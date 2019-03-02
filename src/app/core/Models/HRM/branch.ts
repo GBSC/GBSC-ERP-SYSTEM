@@ -5,5 +5,7 @@ export interface Branch {
     BranchCode: string,
     Address: string,
     Phone: string,
+    CountryId: number,
+    CityId: number,
     CompanyId: number,
 }

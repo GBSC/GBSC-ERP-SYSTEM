@@ -9,7 +9,10 @@
   <div class="m-portlet__body">
     <div class="m-section">
       <div class="m-section__content">
-        <dx-data-grid id="gridContainer" [dataSource]="branches" (onRowInserted)="addBranches($event)" (onRowUpdated)="updateBranch($event)"
+        <dx-data-grid id="gridContainer" [dataSource]="branches" keyExpr="branchId" 
+        (onRowInserted)="addBranches($event)" 
+        (onRowUpdating)="updatingBranch($event)"
+        (onRowUpdated)="updateBranch()"
           (onRowRemoved)="deletBranch($event)">
           <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
           </dxo-editing>
@@ -21,7 +24,7 @@
           <dxi-column dataField="name" caption="Branch Name"></dxi-column>
           <dxi-column dataField="address" caption="Address"></dxi-column>
           <dxi-column dataField="phone" caption="Phone"></dxi-column>
-          <dxi-column dataField="cityId" caption="City" [width]="125">
+          <dxi-column dataField="cityId" caption="City">
             <dxo-lookup [dataSource]="cities" displayExpr="name" valueExpr="cityId">
             </dxo-lookup>
           </dxi-column>

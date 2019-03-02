@@ -21,7 +21,7 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
                 <dxi-column dataField="allowanceDeductionId" caption="Allowance">
-                  <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId">
+                  <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId">
                   </dxo-lookup>
                 </dxi-column>  
                 <dxi-column dataField="allowanceRateValue" caption="Allowance Rate"></dxi-column>

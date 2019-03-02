@@ -3,17 +3,47 @@ import { ApiService } from '../../api.service';
 import { Observable } from 'rxjs';
 import { MonthlyUserSalary } from '../../../Models/HRM/monthlyUserSalary';
 import { Gratuity } from '../../../Models/HRM/gratuity';
-
+import { HttpParams, HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PayrollService {
 
     public baseUrl: string = "SystemAdmin/api/Payroll";
 
-    constructor(public ApiService: ApiService) { }
+    constructor(public ApiService: ApiService, private http: HttpClient) { }
 
-    getSalaryProcess() : Observable <any> {
-        return this.ApiService.get(`${this.baseUrl}/GetMonthlySalaryPosting`);
+     getUserSalaries() : Observable<any> {
+
+        return this.ApiService.get(`${this.baseUrl}/GetUserSalaries`);
+    }
+
+     addUserSalary(data) : Observable<any> {
+        console.log(data); 
+        return this.ApiService.post(`${this.baseUrl}/AddUserSalary`, data);
+    }
+
+    async updateUserSalary(data) {
+ 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateUserSalary`, data).toPromise();
+    }
+
+    async deleteUserSalary(usersalaryId) {
+
+        return await this.ApiService.delete(`${this.baseUrl}/DeleteUserSalary/${usersalaryId}`).toPromise();
+    }
+
+    getMonthlyRecord(payrollyear) : Observable <any> {
+        console.log(payrollyear); 
+        let params = new HttpParams(); 
+        params = params.append("payrollyear", payrollyear);
+        console.log(params);
+        // return this.http.get(`http://localhost:58090/api/Payroll/GetMonthlyDetail?` + params);
+        return this.ApiService.get(`${this.baseUrl}/GetMonthlyDetail?` + params);
+    }
+
+    
+     addMonthlyRecords(data) : Observable <any> {
+        return this.ApiService.post(`${this.baseUrl}/AddMonthlyUserProcess`, data);
     }
 
     async getStopSalaries() {

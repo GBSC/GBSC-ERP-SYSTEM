@@ -25,9 +25,10 @@ export class SystemAdministrationService {
 
     public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
+    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
 
 
-    constructor(public ApiService: ApiService) {
+    constructor(public ApiService: ApiService, public httpService : HttpClient) {
     }
 
     async saveNewRoleData(data) {
@@ -98,24 +99,24 @@ export class SystemAdministrationService {
     }
 
 
-    async getBranches() {
-        return await this.ApiService.get(this.API_URL + 'GetBranches').toPromise();
+     getBranches(): Observable<any> {
+        return this.ApiService.get(this.API_URL + 'GetBranches');
     }
 
     getBranchesByComapnyId(compid: number): Observable<Branch[]> {
         return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
     }
 
-    async addBranches(branch: Branch) {
-        return await this.ApiService.post(this.API_URL + 'AddBranch', branch).toPromise();
+     addBranch(branch: Branch): Observable<any> {
+        return this.httpService.post(this.setupUrl2 + 'AddBranch', branch);
     }
 
-    async updateBranch(branch: Branch) {
-        return await this.ApiService.put(this.API_URL + 'UpdateBranch', branch).toPromise();
+    updateBranch(branch: Branch):Observable<any> {
+        return this.httpService.put(this.setupUrl2 + 'UpdateBranch', branch);
     }
 
-    async deletBranch(id) {
-        return await this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id).toPromise();
+     deletBranch(id): Observable<any> {
+        return this.ApiService.delete(this.API_URL + 'DeleteBranch/' + id);
     }
 
     async getDepartments() {
@@ -127,7 +128,7 @@ export class SystemAdministrationService {
     }
 
     async addDepartment(department: Department) {
-        return await this.ApiService.post(this.API_URL + 'AddDepartment', department).toPromise();
+        return await this.httpService.post(this.setupUrl2 + 'AddDepartment', department).toPromise();
     }
 
     async updateDepartment(department: Department) {

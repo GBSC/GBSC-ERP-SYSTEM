@@ -66,9 +66,7 @@ export class LeavepolicyComponent implements OnInit {
 
 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
-
-        this.leaveYears = await this.leavesetupservice.getLeaveYears();
-
+        
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
 
         this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();

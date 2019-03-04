@@ -86,10 +86,7 @@
         <label for="employee_id">Blood Group</label>
         <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup || ''" name="BloodGroup"
           id="BloodGroup">
-          <option value="" disabled selected>-- Select Blood Group --</option>
-          <option>A</option>
-          <option>B</option>
-          <option>O</option>
+          <option value="" disabled selected>-- Select Blood Group --</option> 
           <option>A+</option>
           <option>A-</option>
           <option>B+</option>
@@ -127,15 +124,15 @@
   <div class="m--space-07"></div>
 
   <div class="row">
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="form-group m-form__group">
         <label class="control-label">Company</label>
         <select class="form-control m-input m-input--solid" formControlName="CompanyId" [value]="Employee?.name || ''">
           <option *ngFor="let cmp of companies" [value]="cmp?.companyId">{{cmp.name}}</option>
         </select>
       </div>
-    </div>
-    <div class="col-md-4">
+    </div> -->
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label class="control-label">Department</label>
         <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
@@ -143,7 +140,7 @@
         </select>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label class="control-label">Branch</label>
         <select class="form-control m-input m-input--solid" formControlName="BranchId" [value]="Employee?.name || ''">

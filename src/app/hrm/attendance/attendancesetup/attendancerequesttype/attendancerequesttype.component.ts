@@ -8,21 +8,35 @@ import { AttendancesetupService } from '../../../../core';
 })
 export class AttendancerequesttypeComponent implements OnInit {
 
+    public updatingModel: any;
     public attendanceRequesttype: any;
+
     constructor(public attendancesetupservice: AttendancesetupService) { }
 
-    async ngOnInit() {
+     ngOnInit() {
 
-        this.attendanceRequesttype = await this.attendancesetupservice.getAttendanceRequestTypes();
+    this.attendancesetupservice.getAttendanceRequestTypes().subscribe(res => {
+        this.attendanceRequesttype = res;
+    });
     }
 
-    async addRequesttype(value) {
-        this.attendancesetupservice.addAttendanceRequestType(value.data);
-        this.attendanceRequesttype = await this.attendancesetupservice.getAttendanceRequestTypes();
+    addRequesttype(value) {
+         this.attendancesetupservice.addAttendanceRequestType(value.data).subscribe(r => {
+              this.attendancesetupservice.getAttendanceRequestTypes().subscribe(res => {
+                this.attendanceRequesttype = res;
+            });
+         }); 
     }
 
-    async updateRequesttype(value) {
-        this.attendancesetupservice.updateAttendanceRequestType(value);
+     updatingRequesttype(value) {
+        this.updatingModel = {...value.oldData, ...value.newData};
+    }
+
+    updateRequesttype() {
+        this.attendancesetupservice.updateAttendanceRequestType(this.updatingModel).subscribe(rt => {
+            console.log(rt);
+            
+        });
     }
 
     async deleteRequesttype(value) {

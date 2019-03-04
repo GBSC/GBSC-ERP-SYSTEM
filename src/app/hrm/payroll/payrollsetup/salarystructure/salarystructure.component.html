@@ -122,7 +122,7 @@
   
                   <div class="m-section">
                       <div class="m-section__content">
-                        <dx-data-grid id="gridContainer" [dataSource]="Detail" 
+                        <dx-data-grid id="gridContainer" [dataSource]="Detail" [showBorders]="true"
                          (onRowInserted)="addSalaryStructureDetail($event)" (onRowUpdated)="updateSalaryStructureDetail($event)">
                           <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             <dxo-popup title="Salary Structure Detail" [showTitle]="true" [width]="750" [height]="545"></dxo-popup>
@@ -148,7 +148,7 @@
                           </dxi-column>
 
                           <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
-                          <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                          <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
                         </dx-data-grid>
                       </div>
                     </div>

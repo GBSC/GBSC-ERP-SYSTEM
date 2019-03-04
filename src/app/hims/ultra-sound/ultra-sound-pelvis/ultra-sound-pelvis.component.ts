@@ -28,6 +28,7 @@ export class UltraSoundPelvisComponent implements OnInit {
   public ultraSoundPelvisForm : FormGroup;
   public id : any;
   public ultraSoundPelvisById : any;
+  public patientDob : any;
   constructor(public treatmentServiceobj : TreatmentService, public patientserviceobj : PatientService, 
     public ultraSoundServiceobj : UltraSoundService, public formBuilder: FormBuilder , public route : ActivatedRoute, public router: Router) { 
 
@@ -139,6 +140,10 @@ this.id = +params['id'];
   getPatientById(value){
     this.patientserviceobj.getPatientById(value).subscribe(res=>{
       this.pattientById = res;
+      console.log(this.pattientById);
+      // if(this.pattientById.dob != null || this.pattientById.dob != '' ){
+        
+      // }
     });
   }
 

@@ -34,14 +34,14 @@
           <dxi-column dataField="amount" caption="Amount"></dxi-column>
           <dxi-column dataField="month" caption="Month" dataType="date" format="month"></dxi-column>
 
-          <dxi-column dataField="payrollyearId" caption="Payroll Year" [visible]="false">
-            <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollyearId"></dxo-lookup>
+          <dxi-column dataField="payrollYearId" caption="Payroll Year" [visible]="false">
+            <dxo-lookup [dataSource]="payrollYears" displayExpr="name" valueExpr="payrollYearId"></dxo-lookup>
           </dxi-column>
           <dxi-column dataField="payrollTypeId" caption="Payroll Type">
             <dxo-lookup [dataSource]="payrollTypes" displayExpr="name" valueExpr="payrollTypeId"></dxo-lookup>
           </dxi-column>
-          <dxi-column dataField="allowanceId" caption="Allowance">
-            <dxo-lookup [dataSource]="allowances" displayExpr="name" valueExpr="allowanceId"></dxo-lookup>
+          <dxi-column dataField="allowanceDeductionId" caption="Allowance">
+            <dxo-lookup [dataSource]="allowances" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
           </dxi-column>
           <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
           <dxi-column dataField="isTaxableIncome" caption="Taxable Income" dataType="boolean"></dxi-column>

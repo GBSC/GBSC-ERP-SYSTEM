@@ -1,11 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PayrollSetupService, EmployeeService, SetupService, AuthService } from '../../../../core';
+import { PayrollSetupService, EmployeeService, SetupService, AuthService, UserService } from '../../../../core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail';
-import { MasterPayroll } from '../../../../core/Models/HRM/masterPayroll';
+import { MasterPayrollDetail } from '../../../../core/Models/HRM/masterPayrollDetail'; 
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, Router } from '@angular/router';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { ActivatedRoute, Router } from '@angular/router'; 
 
 @Component({
     selector: 'app-masterpayroll',
@@ -32,6 +30,7 @@ export class MasterpayrollComponent implements OnInit {
     public caldeduction: any;
     public calfixAmmount : any;
     public totalAllowanceAndDeduction: any;
+    public companyId: any;
 
     public masterpayroll: any;
     public getAllowances: any = [];
@@ -43,7 +42,7 @@ export class MasterpayrollComponent implements OnInit {
 
     public datasource: any = [];
 
-    constructor(public fb: FormBuilder, public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute,
+    constructor(public fb: FormBuilder, public userService: UserService,public toastr: ToastrService, public router: Router, public activatedRoute: ActivatedRoute,
         public payrollsetupservice: PayrollSetupService, public empservice: EmployeeService, public setupService: SetupService,
         public Auth: AuthService) {
 
@@ -67,6 +66,8 @@ export class MasterpayrollComponent implements OnInit {
             console.log(this.calculationttypes);
         });
 
+        this.users = await this.empservice.GetAllEmployees();
+        
         this.payrollsetupservice.getPayrollYears().subscribe((res: any) => {
             this.payrollYears = res;
             console.log(this.payrollYears);
@@ -74,9 +75,7 @@ export class MasterpayrollComponent implements OnInit {
 
          this.payrollsetupservice.getMasterPayrolls().subscribe(rsp => {
             this.masterPayroll = rsp
-         });
-
-        this.users = await this.empservice.GetAllEmployees();
+         }); 
 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
@@ -94,8 +93,7 @@ export class MasterpayrollComponent implements OnInit {
                 let a = this.masterpayroll.masterPayrollDetails;
                 this.masterDetail = a.filter(b => {
                     delete b.masterPayrollDetailsId;
-                    delete b.masterPayrollId;
-                    console.log(b);
+                    delete b.masterPayrollId; 
                     return b;
 
                 });
@@ -121,6 +119,10 @@ export class MasterpayrollComponent implements OnInit {
          this.payrollsetupservice.addMasterPayroll(value).subscribe(resp=>{ console.log(resp); });
         this.toastr.success("Successfully! Master Payroll Add");
         this.router.navigate(['/hrm/payroll/masterpayrolldetail']);
+        this.payrollsetupservice.getMasterPayrolls().subscribe(r=>{
+            this.masterPayroll = r
+            console.log(this.masterPayroll)
+        });
     }
 
     isUpdate(): boolean {

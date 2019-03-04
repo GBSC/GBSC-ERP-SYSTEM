@@ -94,7 +94,7 @@
                       <label for="exampleInputEmail1">
                         Time End
                       </label>
-                      <input type="time" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'hh:mm:ss' || ''">
+                      <input type="time" class="form-control m-input"  formControlName="TimeEnd" [value]="patientCaseById?.timeEnd | date : 'HH:mm:ss' || ''">
                     </div>
                   </div>
                   <div class="col-sm-3">
@@ -128,7 +128,7 @@
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                          AnesthesiaType
+                          Anesthesia Type
                       </label>
                       <select class="form-control m-input" formControlName="AnesthesiaType">
                           <option value="General">General</option>
@@ -140,7 +140,7 @@
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                          Anestetic
+                          Anesthetic
                       </label>
                       <input type="text" class="form-control m-input" formControlName="Anestetic">
                     </div>
@@ -148,7 +148,7 @@
                   <div class="col-sm-3">
                     <div class="form-group m-form__group">
                       <label for="exampleInputEmail1">
-                          ScrubAssistant
+                          Scrub Assistant
                       </label>
                       <input type="text" class="form-control m-input" formControlName="ScrubAssistant">
                     </div>

@@ -24,6 +24,8 @@ import { LaproscopyFsReportComponent } from './report/laproscopy-fs-report/lapro
 import { HystroscopyComponent } from './hystroscopy/hystroscopy.component';
 import { HystroscopyDetailComponent } from './detail/hystroscopy-detail/hystroscopy-detail.component';
 import { HystroscopyReportComponent } from './report/hystroscopy-report/hystroscopy-report.component';
+import { MedicineRequestDetailComponent } from './detail/medicine-request-detail/medicine-request-detail.component';
+import { MedicineRequestReportComponent } from './report/medicine-request-report/medicine-request-report.component';
 //import { UltraSoundPelvisComponent } from './ultra-sound-pelvis/ultra-sound-pelvis.component';
 
 
@@ -95,6 +97,12 @@ HystroscopyDetailComponent,
   
    
 HystroscopyReportComponent,
+  
+   
+MedicineRequestDetailComponent,
+  
+   
+MedicineRequestReportComponent,
   
  
 ],

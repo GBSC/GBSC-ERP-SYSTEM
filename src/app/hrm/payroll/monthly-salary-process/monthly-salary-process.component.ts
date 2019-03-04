@@ -55,28 +55,17 @@ export class MonthlySalaryProcessComponent implements OnInit {
   }
 
   onProcess(date, value) {
-    console.log(value);
-    // console.log(this.MonthYearformat(new Date(Date.now())))
-    // console.log(this.MonthYearformat(new Date(value));
-    console.log(this.MonthYearformat(new Date(value)));
-
+ 
     let d;
     this.payrollService.getMonthlyRecord(value).subscribe(resp => {
       this.payrollProcess = resp;
-
-      this.payrollYears = this.payrollYears.find(f=> {
-        console.log(f.from);
-        console.log(value)
-        this.MonthYearformat(new Date(f.from)) == value
-
-      } )
-      console.log(this.payrollYears);
       
       let salaryMonth = +value.split("-")[1]
       let salaryYear = +value.split("-")[0]
       d = {
         // salary:,
         ProcessDate: new Date(Date.now()),
+        // salary : usalary.salary,
         salaryMonth: salaryMonth,
         salaryYear: salaryYear,
         salaryDate: date.SalaryDate,
@@ -90,18 +79,12 @@ export class MonthlySalaryProcessComponent implements OnInit {
           console.log(this.addUserSalary);
           console.log(value);
         })
+        this.toastr.success("Successfully ! Payroll Process")
       } else {
         this.toastr.info("Invalid! Payroll Not Process")
       }
 
-    })
-
-
-  }
-
-  
-  MonthYearformat(date: Date) {
-    return date.getFullYear() + "-" +  (date.getMonth() + 1);
-  }
+    }) 
+  } 
 
 }

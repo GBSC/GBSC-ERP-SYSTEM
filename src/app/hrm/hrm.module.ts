@@ -178,6 +178,7 @@ import { ViewfundsetupComponent } from './payroll/payrollsetup/viewfundsetup/vie
 import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowance-deduction-detail/allowance-deduction-detail.component';
 import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
+import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -379,7 +380,8 @@ import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/
         IncometaxRuleDetailComponent,
         MonthlySalaryProcessComponent,
         LeaveDetailComponent,
-        MonthlyleaveComponent
+        MonthlyleaveComponent,
+        MonthlyPayrollProcessComponent
     ],
 
     // providers: [IgxExcelExporterService],

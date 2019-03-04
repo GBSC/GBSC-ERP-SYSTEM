@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
 import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';

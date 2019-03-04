@@ -17,161 +17,131 @@
           </div>
         </div>
         <div class="m-portlet__body">
-          <form  [formGroup]="StoreEditForm">
-          <div class="row">
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Shop Name</label>
-                  <input class="form-control m-input m-input--solid" formControlName="Iqbal General Store">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Shop Keeper</label>
-                  <input class="form-control m-input m-input--solid" formControlName="Irfan Ali Khan">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Contact No</label>
-                  <input class="form-control m-input m-input--solid" formControlName="Contact Number">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">landline</label>
-                  <input class="form-control m-input m-input--solid" formControlName="landline">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Address</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Street</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">City</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">landMark</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Subsection</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Category</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">Classification</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-                <div class="form-group col-lg-3">
-                  <label for="exampleInputEmail1">CNIC</label>
-                  <input class="form-control m-input m-input--solid" [value]="distributor?.address" formControlName="Address">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-sm-3">
-                  <div class="m-form__group form-group">
-                    <label for="">
-                      Store Status
-                    </label>
-                    <div class="m-radio-inline">
-                      <label class="m-radio">
-                        <input type="radio" name="example_3" value="1">
-                        Active
-                        <span></span>
-                      </label>
-                      <label class="m-radio">
-                        <input type="radio" name="example_3" value="2">
-                        Inactive
-                        <span></span>
-                      </label>
-                  
-                    </div>
-                
+          <form [formGroup]="form" (submit)="submit(form.value)">
+            <div class="row">
+              <div class="col-sm-10">
+                <div class="row">
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Shop Name</label>
+                    <input class="form-control m-input m-input--solid" formControlName='ShopName' [value]='shop?.shopName'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Shop Keeper</label>
+                    <input class="form-control m-input m-input--solid" fromControlName='ShopKeeper' [value]='shop?.shopKeeper'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Contact No</label>
+                    <input class="form-control m-input m-input--solid" fromControlName='ContactNo' [value]='shop?.contactNo'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">landline</label>
+                    <input class="form-control m-input m-input--solid" fromControlName='Landline' [value]='shop?.landline'>
                   </div>
                 </div>
-                <div class="col-sm-4">
-                  <button style="margin-bottom: 0px;margin-top: 20px;" class="btns btn--white" (click)="isEdit=true" ><span>
-                    <i class="flaticon-edit-1"></i>
-                    <span>
-                      Edit Store
-                    </span>
-                  </span></button>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-2">
-              <div class="row">
-                <div class="form-group col-lg-12">
-                  <div class="m-form__group form-group">
-                    <label for="">
-                      Select Days
-                    </label>
-                    <div class="m-checkbox-list">
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Monday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Tuesday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Wednesday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Thursday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Friday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Saturday
-                        <span></span>
-                      </label>
-                      <label class="m-checkbox">
-                        <input type="checkbox">
-                        Sunday
-                        <span></span>
-                      </label>
-                    </div>
-                    
+                <div class="row">
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input class="form-control m-input m-input--solid" fromControlName='Address' [value]='shop?.address'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Street</label>
+                    <input class="form-control m-input m-input--solid" formControlName='Street' [value]='shop?.street'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">City</label>
+                    <input class="form-control m-input m-input--solid" formControlName='City' [value]='shop?.city'>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">landMark</label>
+                    <input class="form-control m-input m-input--solid" formControlName='Landmark' [value]='shop?.landmark'>
                   </div>
                 </div>
-                
-              </div>
-           
+                <div class="row">
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Subsection</label>
+                    <dx-select-box [items]="subsections" [searchEnabled]="true" displayExpr='name' formControlName='SubsectionId'
+                      [value]='shop?.subsectionId' valueExpr='subsectionId'>
+                    </dx-select-box>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Category</label>
+                    <dx-select-box [items]="shopCategories" [searchEnabled]="true" formControlName='Category'
+                      [value]='shop?.category'>
+                    </dx-select-box>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">Classification</label>
+                    <dx-select-box [items]="shopClassifications" [searchEnabled]="true" formControlName='Classification'
+                      [value]='shop?.classification'>
+                    </dx-select-box>
+                  </div>
+                  <div class="form-group col-lg-3">
+                    <label for="exampleInputEmail1">CNIC</label>
+                    <input class="form-control m-input m-input--solid" formControlName='CNIC' 
+                    [value]='shop?.cnic'>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-3">
+                    <div class="m-form__group form-group">
+                      <label for="">
+                        Store Status
+                      </label>
+                      <div class="m-radio-inline">
+                        <label class="m-radio">
+                          <input type="radio" [checked]='shop?.activeStatus'>
+                          Active
+                          <span></span>
+                        </label>
+                        <label class="m-radio">
+                          <input type="radio" [checked]='!shop?.activeStatus'>
+                          Inactive
+                          <span></span>
+                        </label>
 
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <button type="submit" style="margin-bottom: 0px;margin-top: 20px;" class="btns btn--white"><span>
+                        <i class="flaticon-edit-1"></i>
+                        <span>
+                          Edit Store
+                        </span>
+                      </span></button>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-2">
+                <div class="row">
+                  <div class="form-group col-lg-12">
+                    <div class="m-form__group form-group">
+                      <label for="">
+                        Select Days
+                      </label>
+                      <div class="m-checkbox-list">
+                        <label *ngFor="let day of pjp; let i=index" class="m-checkbox">
+                          <input type="checkbox" [checked]='day.selected' (change)='addRemoveVisitDay($event, i)' />
+                          {{pjp[i].day}}
+                          <span></span>
+                        </label>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
             </div>
-          </div>
-          
-            
-            
-            
-          
-           
           </form>
+
 
         </div>
       </div>
     </div>
   </div>
 </div>
-
-

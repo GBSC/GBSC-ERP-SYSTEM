@@ -15,8 +15,22 @@ export class StoreService {
         return this.ApiService.get(this.Url + 'Store/GetStoresWithChildren/' + companyId);
     }
 
-    getStore(storeId: any, companyId: any) {
-        return this.ApiService.get(this.Url + 'Store/GetStore/' + storeId + "/" + companyId);
+    getStore(storeId: any) {
+        return this.ApiService.get(this.Url + 'Store/GetStore/' + storeId);
+    }
+
+    updateStore(store) {
+
+        return this.ApiService.put(this.Url + 'store/updatestore', store);
+    }
+
+    getStorePjp(storeId): Observable<any> {
+
+        return this.ApiService.get(this.Url + 'Store/GetPjpByStoreId/' + storeId);
+    }
+
+    updatePjp(pjp, storeId: any) {
+        return this.ApiService.put(this.Url + 'store/updatepjp/' + storeId, pjp);
     }
 
     deleteStore(storeId: any) {

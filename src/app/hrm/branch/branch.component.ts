@@ -23,7 +23,7 @@ export class BranchComponent implements OnInit {
     }
 
     async addBranches(value) {
-        await this.SystemAdministrationServiceobj.addBranches(value.key);
+        await this.SystemAdministrationServiceobj.addBranch(value.key);
         this.SystemAdministrationServiceobj.getBranches().subscribe(res => {this.branches = res });  
       }
 

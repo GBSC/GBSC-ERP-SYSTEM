@@ -13,7 +13,7 @@ export class OfficialVisitEntryComponent implements OnInit {
     public officialVisitentry: any;
     public updatingOfficialEntry: any;
 
-    constructor(public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
+    constructor(public sysAdminService: SystemAdministrationService,public attendanceservice: AttendanceService, public companyservice: SystemAdministrationService,
         public empservice: EmployeeService) { }
 
     async ngOnInit() {
@@ -22,7 +22,7 @@ export class OfficialVisitEntryComponent implements OnInit {
 
         this.employee = await this.empservice.GetAllEmployees();
 
-        this.companyservice.getBranches().subscribe(resp => {
+        this.sysAdminService.getBranches().subscribe(resp => {
             this.branches = resp
         });
     }
@@ -34,7 +34,7 @@ export class OfficialVisitEntryComponent implements OnInit {
         this.officialVisitentry = await this.attendanceservice.getOfficialVisitEntries();
     }
 
-    async updatingVisitentry(value) {
+     updatingVisitentry(value) {
         this.updatingOfficialEntry = { ...value.oldData, ...value.newData };
     }
 

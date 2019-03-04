@@ -10,8 +10,28 @@ export class OTService {
 
   constructor(public ApiService: ApiService) { }
 
+  getInvMedicineRequests():Observable<any>{
+      return this.ApiService.get(this.API_URL+'OT/GetInvMedicineRequests');
+  }
+
+  getInvMedicineRequestById(id):Observable<any>{
+      return this.ApiService.get(this.API_URL+'OT/GetInvMedicineRequest/'+id);
+  }
+
+  updateInvMedicineRequest(value):Observable<any>{
+      return this.ApiService.put(this.API_URL+'OT/UpdateInvMedicineRequest',value);
+  }
+
+  addInvMedicineRequest(value):Observable<any>{
+      return this.ApiService.post(this.API_URL+'OT/AddInvMedicineRequest',value);
+  }
+
   getPatientCase():Observable<any>{
       return this.ApiService.get(this.API_URL+'OT/GetOtPatientCases');
+  }
+
+  deleteInvMedicineRequest(id):Observable<any>{
+      return this.ApiService.delete(this.API_URL+'OT/DeleteInvMedicineRequest/'+id);
   }
 
   getPatientCaseById(id):Observable<any>{

@@ -13,6 +13,7 @@
                   <dx-data-grid id="gridContainer"
                   keyExpr="masterPayrollId" 
                   [dataSource]="masterPayroll"
+                  [showBorders]="true"
                   [columnAutoWidth]="true" 
                   (onSelectionChanged)="selectionChanged($event)"
                   (onContentReady)="contentReady($event)"
@@ -39,7 +40,7 @@
                     </div>
 
                       <div *dxTemplate="let masterPayroll of 'detail'">
-                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true" [columnAutoWidth]="true">
+                          <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true">
                             <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
                                 <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
                               </dxi-column>

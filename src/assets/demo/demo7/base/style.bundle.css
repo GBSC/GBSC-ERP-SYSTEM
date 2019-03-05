@@ -19283,10 +19283,10 @@ body.m-portlet--fullscreen {
 
 .m-widget24 .m-widget24__item .m-widget24__stats {
   float: right;
-  margin-right: 1.8rem;
-  margin-top: -1.43rem;
-  font-size: 1.75rem;
-  font-weight: 600; }
+    margin-right: 1.8rem;
+    margin-top: -3rem;
+    font-size: 1.75rem;
+    font-weight: 600; }
 
 .m-widget24 .m-widget24__item .progress {
   margin-top: 2.14rem;

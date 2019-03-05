@@ -30,6 +30,21 @@ export class eTrackerUserService {
 
     constructor(public firebase: AngularFirestore, public http: HttpClient, public ApiService: ApiService) { }
 
+    // updateDataWithTimeStamp() {
+    //   let shops = this.firebase.collection('/tbl_shops').valueChanges();
+    //   console.log(shops);
+      
+    //   shops.subscribe((s:any) => {
+    //    let vs = this.firebase.collection('/tbl_shops/' + s.shopId + '/visit_summary').valueChanges();
+
+    //     vs.subscribe((v: any) => {
+    //       v.timestamp = new Date(v.timestamp);
+    //       this.firebase.collection('/tbl_shops/'+s.shopId + '/visit_summary').doc(v.visitId).set(v);
+    //     })
+    //   });
+      
+    // }
+
     getUser(userId: any) {
         return this.ApiService.get(this.Url + 'User/GetUser/' + userId);
     }

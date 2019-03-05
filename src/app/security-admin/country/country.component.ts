@@ -43,10 +43,9 @@ export class CountryComponent implements OnInit {
     }
 
     async deleteCountry(countr) {
-        await this.hrmService.DeleteCountry(countr.key);
+        console.log(countr);
+        
+        await this.hrmService.DeleteCountry(countr.key.countryId);
     }
-
-
-
-
+ 
 }

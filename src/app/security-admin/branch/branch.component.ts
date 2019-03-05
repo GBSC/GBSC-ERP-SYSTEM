@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SystemAdministrationService, AuthService, HrmsService } from '../../core';
 import { Branch } from '../../core/Models/HRM/branch';
 import { City } from '../../core/Models/HRM/city';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
     selector: 'app-branch',
@@ -51,7 +52,11 @@ export class BranchComponent implements OnInit {
         });
     }
 
-    async deletBranch(value) {
-        await this.SystemAdministrationServiceobj.deletBranch(value.key.branchId);
+     deletBranch(value) {
+        console.log(value)
+         this.SystemAdministrationServiceobj.deletBranch(value.key).subscribe(res => {
+            console.log(res);
+            
+        });
     }
 }

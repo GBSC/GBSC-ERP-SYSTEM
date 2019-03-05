@@ -152,6 +152,7 @@ import { AllowanceDeductionDetailComponent } from './payroll/payrollsetup/allowa
 import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-detail/incometax-rule-detail.component';
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
 import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -171,6 +172,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
             { path: 'department', component: DepartmentComponent },
             { path: 'feature', component: FeatureComponent },
             { path: 'module', component: ModuleComponent },
+            
 
             {
                 path: 'employee',
@@ -296,7 +298,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'rostermapping', component: RostermappingComponent },
                 ]
             },
-
+            
+            { path: 'dashboard', component: DashboardComponent },
 
             {
                 path: 'payroll',
@@ -390,6 +393,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                     { path: 'payrollprocess', component: MonthlyPayrollProcessComponent }
                 ]
             }
+
+            
         ]
     }
 ])

@@ -28,7 +28,9 @@
               "node_modules/devextreme/dist/css/dx.common.css",
               "node_modules/devextreme/dist/css/dx.light.css",
               "node_modules/devexpress-reporting/css/web-document-viewer-light.min.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ag-grid-community/src/styles/ag-grid.scss",
+              "node_modules/ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss"
             ],
             "scripts": []
           },

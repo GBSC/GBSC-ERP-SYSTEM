@@ -1,17 +1,4 @@
-// import { Component, OnInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
-// import { AuthService, InventorysystemService, eTrackerUserService } from '../../../core';
-// import { Region } from '../../../core/Models/Inventory/Setup/Region';
-// import { Area } from '../../../core/Models/Inventory/Setup/Area';
-// import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
-// import { Territory } from '../../../core/Models/Inventory/Setup/Territory';
-// import { Employee } from '../../../core/Models/HRM/employee';
-// import { City } from '../../../core/Models/HRM/city';
-
-// import * as ko from "knockout";
-// import { Html } from "devexpress-reporting/dx-web-document-viewer";
-// import { environment } from '../../../../environments/environment';
-
-import { Component, OnInit ,ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
 import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
@@ -24,11 +11,11 @@ import { AuthService } from '../../../../app/core';
 
 
 @Component({
-    selector: 'app-shop-census-detail',
-    templateUrl: './shop-census-detail.component.html',
-    styleUrls: ['./shop-census-detail.component.scss']
+  selector: 'app-test-report',
+  templateUrl: './test-report.component.html',
+  styleUrls: ['./test-report.component.css']
 })
-export class ShopCensusDetailComponent implements OnInit {
+export class TestReportComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridNg2;
 
 
@@ -137,7 +124,7 @@ public abc : any = [];
       console.log(this.userId);
       let usrId = 350;
       console.log(usrId)
-          this.storeService.shopCensusDetailReport(this.companyId,this.userId).subscribe(res => {
+          this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
          this.rowData2 =    this.rowData.filter(t=> t.shopNameCount);

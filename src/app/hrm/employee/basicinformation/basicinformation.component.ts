@@ -6,6 +6,7 @@ import { Employee } from '../../../core/Models/HRM/employee';
 import { City } from '../../../core/Models/HRM/city';
 import { Branch } from '../../../core/Models/HRM/branch';
 import { Department } from '../../../core/Models/HRM/department';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-basicinformation',
@@ -20,11 +21,11 @@ export class BasicinformationComponent implements OnInit {
     public language: any;
     public cities: any;
     public Employee: any;
-    public groups: any;
-    public departments: any;
+    public groups: any; 
     public branches: any;
     public companies: any;
     public countries: any;
+    submitted = false;
 
     @Input('employeeId') id: number;
 
@@ -34,17 +35,17 @@ export class BasicinformationComponent implements OnInit {
     public EmpbasicForm: FormGroup;
 
     constructor(public employeeService: EmployeeService, public sysAdminService: SystemAdministrationService,public authService : AuthService,
-        public fb: FormBuilder, public hrmService: HrmsService,public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
+        public fb: FormBuilder, public toster: ToastrService, public hrmService: HrmsService,public SetupServiceobj: SetupService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpbasicForm = this.fb.group({
-            FirstName: [''],
-            LastName: [''],
+            FirstName: ['',Validators.required],
+            LastName: ['',Validators.required],
             FatherName: [''],
-            Email: [''],
-            Cnic: [''],
+            Email: ['',  Validators.email],
+            Cnic: ['', [Validators.required, Validators.minLength(13)]],
             CnicExpiry: [''],
-            Phone: [''],
-            HomePhone: [''],
+            Phone: ['', [Validators.required, Validators.minLength(11)]],
+            HomePhone: ['', Validators.minLength(12)],
             DOB: [''],
             POB: [''],
             BloodGroup: [''],
@@ -77,10 +78,6 @@ export class BasicinformationComponent implements OnInit {
     async ngOnInit() {
 
         this.religion = await this.SetupServiceobj.getAllReligions();
-        
-        this.sysAdminService.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
-            this.departments = res;
-        }); 
 
         this.groups = await this.SetupServiceobj.getAllGroups();
 
@@ -137,8 +134,7 @@ export class BasicinformationComponent implements OnInit {
             BloodGroup: employee.bloodGroup,
             MaritalStatus: employee.maritalStatus,
             Gender: employee.gender,
-            GroupId: employee.groupId,
-            CompanyId: employee.companyId,
+            GroupId: employee.groupId, 
             CountryId: employee.countryId,
             CityId: employee.cityId,
             BranchId: employee.branchId,
@@ -149,11 +145,16 @@ export class BasicinformationComponent implements OnInit {
         });
     }
 
+    get f() { return this.EmpbasicForm.controls; }
+
     async Formsubmit(value) {
+        this.submitted = true;
+        if (this.EmpbasicForm.invalid) { 
+            this.toster.error("Fill All Required Fields");  
+        }
+        // this.employeeService.addEmployee(value).subscribe(resp => {
 
-        this.employeeService.addEmployee(value).subscribe(resp => {
-
-            this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
-        })
+        //     this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
+        // })
     }
 }

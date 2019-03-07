@@ -4,8 +4,7 @@ import { LeaveSetupService, EmployeeService, LeaveService } from '../../../core'
 import { Router, ActivatedRoute } from '@angular/router';
 import { LeaveRequestDetail } from '../../../core/Models/HRM/leaveRequestDetail';
 import { LeaveRequest } from '../../../core/Models/HRM/leaveRequest';
-import { ToastrService } from 'ngx-toastr';
-import { Loginform } from '../../../core/Models/Auth/loginform';
+import { ToastrService } from 'ngx-toastr'; 
 
 @Component({
     selector: 'app-leaverequest',
@@ -16,6 +15,7 @@ export class LeaverequestComponent implements OnInit {
 
     public leaveDetail: any[] = [];
     public leaveRequestForm: FormGroup;
+    public leaveRequestDetailForm: FormGroup;
     public leaveYear: any;
     public employees: any;
     public leaveType: any;
@@ -35,6 +35,7 @@ export class LeaverequestComponent implements OnInit {
     public empId: any = null;
     public leaveBBB: any = null;
     public data: any;
+    public popupVisible = false;
 
     @Input('leaveRequestId') id: number;
 
@@ -42,19 +43,30 @@ export class LeaverequestComponent implements OnInit {
         public router: Router, public leaveservice: LeaveService) {
 
         this.onSetCellValue = this.onSetCellValue.bind(this);
-    }
-
-    async ngOnInit() {
-
-
-        this.requestDetail = [];
 
         this.leaveRequestForm = this.fb.group({
             UserId: ['', Validators],
             IsApproved: ['', Validators],
             RequestDate: ['', Validators]
         });
+       
+        this.leaveRequestDetailForm = this.fb.group({
+            LeaveYearId: [''],
+            LeaveTypeId: [''],
+            DateFrom: [''],
+            DateTill: [''],
+            IsShortLeave: [''],
+            FirstSecondHalf: [''],
+            Value: ['', Validators],
+            TotalLeaveDetailValue: [''],
+            TotalLeave: [''],
+        });
+    }
 
+    async ngOnInit() {
+
+
+        this.requestDetail = [];
 
         // this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
 
@@ -92,11 +104,15 @@ export class LeaverequestComponent implements OnInit {
         }
         this.data = this.leaveservice.prepareLeaveData(this.employees, this.leaveType, this.empleavePolicy, this.leavePolicy);
     }
-
+        openPopup(value){
+            
+            this.popupVisible = true;
+        }
     async leaveRequestDetail(value) {
         console.log(value);
-
         let data = value.data;
+        console.log(value.data);
+        
         data.leaveTypeId = this.leaveBBB.leaveTypeId;
         data.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
         data.totalleave = this.leaveBBB.entitledQuantity;

@@ -4,7 +4,7 @@
 </div>
 <form class="signup-form" [formGroup]="EmpCompanyForm">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Designation</label>
         <select class="form-control m-input m-input--solid" formControlName="DesignationId" [value]="EmployeeCompany?.designationId">
@@ -13,10 +13,34 @@
         </select>
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="form-group m-form__group">
+        <label class="control-label">Department</label>
+        <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="EmployeeCompany?.name || ''">
+          <option *ngFor="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group m-form__group">
+          <label class="control-label">Branch</label>
+          <select class="form-control m-input m-input--solid" formControlName="BranchId" [value]="EmployeeCompany?.branchId || ''">
+            <option *ngFor="let brnch of branches" [value]="brnch?.branchId">{{brnch.name}}</option>
+          </select>
+        </div>
+      </div>
   </div>
   <div class="m--space-07"></div>
   <div class="row">
-    <div class="col-md-6">
+      <div class="col-md-4">
+          <div class="form-group m-form__group">
+            <label class="control-label">Group</label>
+            <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="EmployeeCompany?.groupId || ''">
+              <option *ngFor="let grp of groups" [value]="grp?.groupId">{{grp.name}}</option>
+            </select>
+          </div>
+        </div>
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Function</label>
         <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="EmployeeCompany?.functionId">
@@ -25,7 +49,7 @@
         </select>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
         <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="EmployeeCompany?.managementLevelId">

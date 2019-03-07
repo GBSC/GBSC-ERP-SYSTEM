@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { SetupService, EmployeeService, HrmsService } from '../../../core';
+import { SetupService, EmployeeService, HrmsService, SystemAdministrationService, AuthService } from '../../../core';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { Department } from '../../../core/Models/HRM/department';
+import { Branch } from '../../../core/Models/HRM/branch';
 
 @Component({
     selector: 'app-employeecompany',
@@ -21,6 +23,8 @@ export class EmployeeCompanyComponent implements OnInit {
     public employeestatus: any;
     public employees: any;
     public manager: any;
+    public branches: any;
+    public departments: any;
     public filterdemplyoee: any;
 
     @Input('employeeId') id: number;
@@ -30,7 +34,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public EmployeeCompany: any;
     public cempstatus: any;
 
-    constructor(public fb: FormBuilder, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
+    constructor(public fb: FormBuilder, public sysAdminService : SystemAdministrationService, public authService : AuthService, public SetupServiceobj: SetupService, public hrmService: HrmsService, public employeeService: EmployeeService, public router: Router, public route: ActivatedRoute) {
 
         this.EmpCompanyForm = this.fb.group({
             ManagementLevelId: [''],
@@ -49,6 +53,8 @@ export class EmployeeCompanyComponent implements OnInit {
             Approver: [''],
             CountryId: [''],
             CityId: [''],
+            DepartmentId: [''],
+            GroupId: [''],
             BranchId: [''],
             UserId: [this.id]
 
@@ -67,6 +73,14 @@ export class EmployeeCompanyComponent implements OnInit {
         this.groups = await this.SetupServiceobj.getAllGroups();
 
         this.employeetype = await this.SetupServiceobj.getAllEmployeeTypes();
+
+        this.sysAdminService.getBranchesByComapnyId(this.authService.getUserCompanyId()).subscribe((res : Branch[]) => {
+            this.branches = res;
+        });
+
+        this.sysAdminService.getDepartmentsByCompanyId(this.authService.getUserCompanyId()).subscribe((res : Department[]) => {
+            this.departments = res;
+        }); 
 
         this.employees = await this.employeeService.GetAllEmployees();
 
@@ -102,18 +116,24 @@ export class EmployeeCompanyComponent implements OnInit {
 
 
     async update(value) {
+console.log(value);
 
         value.UserId = this.id;
 
         if (this.EmployeeCompany.userCompanyId > 0) {
 
             value.UserCompanyId = this.EmployeeCompany.userCompanyId;
-
-            this.employeeService.updateUserCompany(value).subscribe(c => {
-
+            // if(value.ConfirmationDueDate >= value.AppointmentDate && value.ConfirmationDate >= value.ConfirmationDueDate && 
+            //     value.LeavingDate >= value.AppointmentDate && value.ResignDate >= value.AppointmentDate && value.ResignDate >= value.LeavingDate)
+            // {
+                this.employeeService.updateUserCompany(value).subscribe(c => { 
                 this.showSuccess("Company Information Updated");
-
+                console.log(c); 
             })
+        // }
+        // else{
+        //     alert("wrong")
+        // }
         }
         else {
 
@@ -122,7 +142,6 @@ export class EmployeeCompanyComponent implements OnInit {
                 this.showSuccess("Company Information Added");
 
             })
-
         }
     }
 
@@ -136,6 +155,8 @@ export class EmployeeCompanyComponent implements OnInit {
             FunctionId: company.functionId,
             EmployeeStatusId: company.employeeStatusId,
             EmployeeTypeId: company.employeeTypeId,
+            DepartmentId: company.departmentId,
+            BranchId: company.branchId,
             ShiftId: company.shiftId,
             ContractStartDate: company.ContractStartDate,
             ContractEndDate: company.contractEndDate,

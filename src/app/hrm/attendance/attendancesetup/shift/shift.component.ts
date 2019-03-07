@@ -120,7 +120,7 @@ export class ShiftComponent implements OnInit {
         console.log(value)
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
             this.toastr.success("Shift Updated");
-
+            this.router.navigate(['/hrm/attendance/shifts']);
         });
     }
     async updateshift(value) {

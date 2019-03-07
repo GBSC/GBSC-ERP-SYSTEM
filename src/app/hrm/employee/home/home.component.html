@@ -18,13 +18,19 @@
             <div class="m-demo" data-code-html="true" data-code-js="false" data-code-preview="true">
               <div class="m-demo__preview">
                 <ul class="m-nav nav nav-tabs">
-                  <li  class="m-nav__item" *ngFor="let tab of tabs;">
+                  <li class="m-nav__item" *ngFor="let tab of tabs;"> 
                     <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
                       <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
                       <span class="m-nav__link-text">
                         {{tab}}
                       </span>
-                    </a>
+                    </a> 
+                      <!-- <a class="m-nav__link" (click)="selectedTab = tab" href="#{{tab}}" data-toggle="tab">
+                        <i class="m-nav__link-icon flaticon-cogwheel-2"></i>
+                        <span class="m-nav__link-text">
+                          {{tab}}
+                        </span>
+                      </a>  -->
                   </li>
                 
                 </ul>
@@ -40,10 +46,10 @@
       <div class="col-lg-9">
         <div class="m-portlet">
           <div class="m-portlet__body">
-            <div class="tab-content">
+            <div class="tab-content">  
             <div class="tab-pane active" id="BInformation" *ngIf="selectedTab === tabs[0]" id="{{selectedTab}}">
               <app-basicinformation [employeeId]="id" (updateMessage)='displayToast($event)'></app-basicinformation>
-             </div>
+             </div>  
             <!-- <div class="tab-pane" id="PPicture" *ngIf="id"><app-profilepic [employeeId]="id"></app-profilepic></div> -->
               <div class="tab-pane" id="EmployeeCInfo" *ngIf="selectedTab === tabs[1]" id="{{selectedTab}}">
                 <app-employeecompany [employeeId]="id" (updateMessage)='displayToast($event)'></app-employeecompany>

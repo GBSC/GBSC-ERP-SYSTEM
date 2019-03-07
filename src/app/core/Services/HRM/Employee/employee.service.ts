@@ -63,12 +63,12 @@ export class EmployeeService {
 
     addUserCompany(UserCompany): Observable<any> {
 
-        return this.ApiService.post(`${this.baseUrl}/Users/AddUserCompany`, UserCompany);
+        return this.HttpService.post(`${this.baseUrl2}/Users/AddUserCompany`, UserCompany);
     }
 
     updateUserCompany(UserCompany): Observable<any> {
 
-        return this.ApiService.post(`${this.baseUrl}/Users/UpdateUserCompany`, UserCompany);
+        return this.HttpService.post(`${this.baseUrl2}/Users/UpdateUserCompany`, UserCompany);
     }
 
 

@@ -10,7 +10,8 @@
 				<div class="m-portlet__body">
 					<div class="m-section">
 					<div class="m-section__content" >
-						<dx-data-grid id="gridContainer" [dataSource]="taxRelief"
+						<dx-data-grid id="gridContainer"
+						 [dataSource]="taxRelief"
 						keyExpr="taxReliefId"
 						 (onRowInserted)="addTaxRelief($event)"
 							(onRowUpdated)="updateTaxRelief()" 

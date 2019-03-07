@@ -49,16 +49,16 @@
 
               <div *dxTemplate="let attendanceFlag of 'detail'">
                   <dx-data-grid [dataSource]="attendanceFlag.data.shiftAttendanceFlags" [showBorders]="true">
+                    <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                        <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                        </dxo-lookup>
+                      </dxi-column>
                     <dxi-column dataField="flagTypeId" caption="Flag Type">
                         <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
                       <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
-                          <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                            <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
-                            </dxo-lookup>
-                          </dxi-column>
                       <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
                       </dx-data-grid>
               </div>

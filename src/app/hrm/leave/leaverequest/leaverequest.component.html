@@ -61,6 +61,22 @@
             </div> -->
           </form>
           <div class="m--space-30"></div>
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="pull-right">
+                <dx-button class="button-info" text="Details" (onClick)="openPopup($event)">
+                </dx-button>
+                <!-- <div class="m-menu__link m-menu__toggle" (onClick)="leaveRequestDetail($event)">
+                  <i class="m-menu__link-icon flaticon-add"></i>
+                  <span class="m-menu__link-text">Create New
+                  </span>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-md-12">
               <div class="m-portlet">
@@ -76,36 +92,87 @@
 
                 <div class="m-section">
                   <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" 
-                    [dataSource]="leaveDetail"
-                     (onRowInserted)="leaveRequestDetail($event)" (onRowUpdated)="updateLeaverequestDetail($event)">
-                      <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
-                      </dxo-editing>
-                      <dxo-filter-row [visible]="true"></dxo-filter-row>
-                      <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dx-popup class="popup" [width]="900" [height]="350" [showTitle]="true" title="Leave Request Detail" [dragEnabled]="false" [closeOnOutsideClick]="true"
+                      [(visible)]="popupVisible">
+                      <div *dxTemplate="let data of 'content'">
 
-                      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-                      <dxo-paging [pageSize]="8"></dxo-paging>
-                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
-                      </dxo-pager>
-                      <dxi-column dataField="leaveYearId" caption="Leave Year">
-                        <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
-                        </dxo-lookup>
-                      </dxi-column>
-                      <dxi-column dataField="leaveTypeId" caption="Leave Type" [setCellValue]="onSetCellValue">
-                        <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
-                        </dxo-lookup>
-                      </dxi-column> 
-                      <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
-                      <dxi-column dataField="description" caption="Description"></dxi-column>
-                      <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="value" caption="Leave Value"></dxi-column>
-                      <dxi-column dataField="totalLeaveDetailValue" caption="Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
-                      <!-- <dxi-column dataField="entitledQuantity" caption="Balance Leave Value"></dxi-column> -->
-                      <dxi-column dataField="totalLeave" caption="Total Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"> </dxi-column>
-                      
-                    </dx-data-grid>
+                        <form [formGroup]="leaveRequestDetailForm">
+
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label"> Leave Year </label>
+                                <select class="form-control m-input" formControlName="LeaveYearId">
+                                    <option *ngFor="let ly of leaveYear" [value]="ly.leaveYearId">{{ly.name}}</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label">  Leave Type </label>
+                                <select #lv class="form-control m-input" (onChange)="onSetCellValue(lv.value)" formControlName="LeaveTypeId">
+                                    <option *ngFor="let lt of leaveType" [value]="lt.leaveTypeId">{{lt.title}}</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-form__group">
+                                  <label class="control-label"> Is Short Leave  </label>
+                                    <div class="m-checkbox-list">
+                                        <label class="m-checkbox m-checkbox--state-success">
+                                          <input type="checkbox" formControlName="IsShortLeave"> 
+                                          <span></span>
+                                        </label>
+                                      </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label"> Date From </label>
+                                <dx-date-box formControlName="DateFrom" type="date" format="dd/MM/yyyy" width="100%">
+                                </dx-date-box>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label">  Date Till </label>
+                                <dx-date-box formControlName="DateTill" type="date" format="dd/MM/yyyy" width="100%">
+                                </dx-date-box>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-form__group">
+                                  <label class="control-label"> Leave Value </label>
+                                          <input type="number" formControlName="Value" class="form-control m-input">                                          <span></span>
+                                    
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label"> Total LeaveDetail Value </label>
+                                <input type="number" formControlName="TotalLeaveDetailValue" class="form-control m-input">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group m-form__group">
+                                <label class="control-label">  Entitled Quantity </label>
+                                <input type="number" formControlName="EntitledQuantity" class="form-control m-input">
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group m-form__group">
+                                  <label class="control-label"> Total Leave Balance </label>
+                                  <input type="number" formControlName="TotalLeave" class="form-control m-input">                                    
+                                </div>
+                              </div>
+                          </div>
+                        </form>
+                      </div>
+                    </dx-popup>
                   </div>
                 </div>
               </div>
@@ -127,7 +194,7 @@
                       <ng-template #create>
                         <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
                           Submit
-                        </button> 
+                        </button>
                       </ng-template>
                     </div>
                     <div class="col-lg-3"></div>

@@ -56,7 +56,7 @@ export class DepartmentComponent implements OnInit {
     }
      deletDepartment(value) {
         console.log(value); 
-           this.SystemAdministrationServiceobj.deletDepartment(value.key).subscribe(rep => {
+           this.SystemAdministrationServiceobj.deletDepartment(value.key.departmentId).subscribe(rep => {
               console.log(rep); 
           });
     }

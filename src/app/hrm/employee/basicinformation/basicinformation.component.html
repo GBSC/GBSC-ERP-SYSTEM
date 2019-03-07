@@ -3,25 +3,25 @@
 
 </div>
 
-<form class="signup-form" [formGroup]="EmpbasicForm">
+<form class="signup-form" id="m_form" [formGroup]="EmpbasicForm">
   <div class="row">
     <div class="col-md-6">
       <div class="form-group m-form__group">
-        <label class="control-label">
-          First Name <em class="required_label">*</em>
-        </label>
-        <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid"
-          placeholder="First Name">
-
+        <label class="control-label"> First Name <em class="required_label">*</em> </label>
+        <input type="text" formControlName="FirstName" [value]="Employee?.firstName || ''" class="form-control m-input m-input--solid" placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
+        <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+          <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+        </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group m-form__group">
-        <label class="control-label">
-          Last Name <em class="required_label">*</em>
-        </label>
-        <input type="text" formControlName="LastName" [value]="Employee?.lastName || ''" class="form-control m-input m-input--solid"
-          placeholder="Last Name">
+        <label class="control-label">  Last Name <em class="required_label">*</em> </label>
+        <input type="text" formControlName="LastName" [value]="Employee?.LastName || ''" class="form-control m-input m-input--solid"
+          placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
+          <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+            <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+        </div>
       </div>
     </div>
   </div>
@@ -53,28 +53,34 @@
   </div>
   <div class="m--space-10"></div>
 
-  <div class="row">
-
+  <div class="row"> 
     <div class="col-md-4">
       <div class="form-group m-form__group">
-        <label class="control-label">Cnic <em class="required_label">*</em> </label>
-        <input class="form-control m-input m-input--solid" maxlength="13" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526"
-          type="text">
+        <label class="control-label">CNIC<em class="required_label">*</em> </label>
+        <input class="form-control m-input m-input--solid" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526"
+          type="text" [ngClass]="{ 'is-invalid': submitted && f.Cnic.errors }">
+          <div *ngIf="submitted && f.Cnic.errors" class="invalid-feedback">
+            <div *ngIf="f.Cnic.errors.required">CNIC is required</div>
+            <div *ngIf="f.Cnic.errors.minlength">CNIC must be at least 13 characters</div>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
-        <label for="" class="control-label">Cnic Expiry</label>
+        <label for="" class="control-label">CNIC Expiry</label>
         <dx-date-box formControlName="CnicExpiry" class="form-control m-input m-input--solid" displayFormat="dd/MM/yyyy" [value]="Employee?.cnicExpiry"
           type="date" width="100%"></dx-date-box>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
-        <label for="email" class="control-label">Email</label>
+        <label for="email" class="control-label">Email </label>
         <input type="email" class="form-control m-input m-input--solid" formControlName="Email" id="email" [value]="Employee?.email"
-          name="email" aria-describedby="emailHelp" placeholder="Enter Email">
-      </div>
+          name="email" aria-describedby="emailHelp" placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
+          <div *ngIf="submitted && f.Email.errors" class="invalid-feedback"> 
+            <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+        </div>
+        </div>
     </div>
   </div>
   <div class="m--space-07"></div>
@@ -87,12 +93,14 @@
         <select class="form-control m-input m-input--solid" formControlName="BloodGroup" [value]="Employee?.bloodGroup || ''" name="BloodGroup"
           id="BloodGroup">
           <option value="" disabled selected>-- Select Blood Group --</option> 
-          <option>A+</option>
-          <option>A-</option>
-          <option>B+</option>
-          <option>B-</option>
-          <option>O+</option>
-          <option>O-</option>
+          <option value="A+">A Positive(A+)</option>
+          <option value="A-">A Negative(A-)</option>
+          <option value="B+">B Positive(B+)</option>
+          <option value="B-">B Negative(B-)</option>
+          <option value="O+">O Positive(O+)</option>
+          <option value="O-">O Negative(O-)</option>
+          <option value="AB+">AB Positive(AB+)</option>
+          <option value="AB-">AB Negative(AB-)</option>
 
         </select>
       </div>
@@ -101,7 +109,7 @@
       <div class="form-group m-form__group">
         <label for="gender">Gender</label>
         <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender" id="Gender">
-          <option value="" disabled selected>-- Select Gender --</option>
+          <option value="" selected>-- Select Gender --</option>
           <option> Female </option>
           <option>Male</option>
 
@@ -113,42 +121,15 @@
         <label for="Designation" class="control-label">Marital Status</label>
         <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''"
           name="MaritalStatus" id="MaritalStatus">
-          <option value="" disabled selected>-- Select Marital Status --</option>
-          <option>Married</option>
-          <option>Single</option>
+          <option value="" selected>-- Select Marital Status --</option>
+          <option value="Single">Single</option>
+          <option value="Married">Married</option>
         </select>
       </div>
     </div>
   </div>
 
   <div class="m--space-07"></div>
-
-  <div class="row">
-    <!-- <div class="col-md-4">
-      <div class="form-group m-form__group">
-        <label class="control-label">Company</label>
-        <select class="form-control m-input m-input--solid" formControlName="CompanyId" [value]="Employee?.name || ''">
-          <option *ngFor="let cmp of companies" [value]="cmp?.companyId">{{cmp.name}}</option>
-        </select>
-      </div>
-    </div> -->
-    <div class="col-md-6">
-      <div class="form-group m-form__group">
-        <label class="control-label">Department</label>
-        <select class="form-control m-input m-input--solid" formControlName="DepartmentId" [value]="Employee?.name || ''">
-          <option *ngFor="let dep of departments" [value]="dep?.departmentId">{{dep.name}}</option>
-        </select>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group m-form__group">
-        <label class="control-label">Branch</label>
-        <select class="form-control m-input m-input--solid" formControlName="BranchId" [value]="Employee?.name || ''">
-          <option *ngFor="let brnch of branches" [value]="brnch?.branchId">{{brnch.name}}</option>
-        </select>
-      </div>
-    </div>
-  </div>
 
   <div class="row">
       <div class="col-md-3">
@@ -193,15 +174,19 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
-        <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone" [value]="Employee?.phone || ''"
-          id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text">
+        <input class="form-control m-input m-input--solid" formControlName="Phone" [value]="Employee?.phone || ''"
+          id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text" [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }">
+          <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
+            <div *ngIf="f.Phone.errors.required">Contact Number is required</div>
+            <div *ngIf="f.Phone.errors.minlength">Contact must be at least 13 characters</div>
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Contact-Number">Home</label>
-        <input class="form-control m-input m-input--solid" maxlength="12" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''"
+        <input class="form-control m-input m-input--solid" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''"
           name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
       </div>
     </div>

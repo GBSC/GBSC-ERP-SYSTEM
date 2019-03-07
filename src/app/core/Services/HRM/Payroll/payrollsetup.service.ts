@@ -693,19 +693,19 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteTaxBenefit/${taxbenefitId}`).toPromise();
     }
 
-    async getTaxReliefs() {
+     getTaxReliefs() {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetTaxReliefs`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetTaxReliefs`);
     }
 
-    async addTaxRelief(data) {
+     addTaxRelief(data) {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddTaxRelief`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddTaxRelief`, data);
     }
 
-    async updateTaxRelief(data) {
+    updateTaxRelief(data) {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdateTaxRelief`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdateTaxRelief`, data);
     }
 
     async deleteTaxRelief(taxreliefId) {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EmployeeService, LeaveSetupService, SetupService } from '../../../../core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-leavepolicy',
@@ -18,8 +19,9 @@ export class LeavepolicyComponent implements OnInit {
     public leaveTypes: any;
     public updatingleavePolicy: any;
     public LeavePolicies: any;
+    public isPopupVisible: boolean = true;
 
-    constructor(public fb: FormBuilder, public leavesetupservice: LeaveSetupService,
+    constructor(public fb: FormBuilder, public toster: ToastrService, public leavesetupservice: LeaveSetupService,
         public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
 
     async ngOnInit() {
@@ -78,9 +80,20 @@ export class LeavepolicyComponent implements OnInit {
     }
 
     async addleavepolicy(value) {
-        await this.leavesetupservice.addLeavePolicy(value.data);
-        this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
-    }
+        console.log(value);
+        
+        console.log(value.data.maximumAllowedBalance);
+        
+        if(value.data.maximumAllowedBalance <= value.data.entitledQuantity && value.data.maximumAtATime <= value.data.entitledQuantity 
+            && value.data.minimumAtATime <= value.data.entitledQuantity){  
+            await this.leavesetupservice.addLeavePolicy(value.data);
+            this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();    
+            this.toster.success("Successfully! Leave Policy Add")
+        }
+        else{
+            this.toster.info("error!");
+        } 
+  }
 
     updatingleavepolicy(value) {
         this.updatingleavePolicy = { ...value.oldData, ...value.newData };

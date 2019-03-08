@@ -93,6 +93,9 @@ export class VisitSummaryReportComponent implements OnInit {
   ngOnInit() {
         }
 
+        onColumnRowGroupChanged(value){
+          console.log(value)
+      }
         onGridReady(){
             console.log('asdas');
             console.log(this.companyId);
@@ -100,7 +103,7 @@ export class VisitSummaryReportComponent implements OnInit {
             let usrId = 350;
             console.log(usrId)
 
-            this.storeService.visitSummaryDetail(this.companyId,this.userId ).subscribe(res => {
+            this.storeService.visitSummaryDetail(this.companyId , this.userId ).subscribe(res => {
               this.rowData = res;
              console.log(this.rowData);
            });

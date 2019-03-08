@@ -98,31 +98,31 @@ export class ShopCensusSummaryComponent implements OnInit {
           console.log(this.userId);
      
         this.columnDefs  = [
-          {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true  },
+          {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true   ,hide :true },
         //   {headerName: '252', field: 'x' ,  filter: false, enableValue: true  },
-          {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true },
-          {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true },
-          {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true },
-          {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true },
-          {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true },
+          {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true   ,hide :true},
+          {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true ,hide :true},
+          {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true   ,hide :true},
+          {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true  ,hide :true},
+          {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true  ,hide :true},
 
-          { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true },
-          {headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   },
-          {headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true},
-          {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true },
-          {headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true },
-          {headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true  },
+          { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true ,hide :true},
+          {headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   ,hide :true },
+          {headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true ,hide :true},
+          {headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true ,hide :true},
+          {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true  ,hide :true},
+          {headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true ,hide :true },
+          {headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
+          {headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
           {  headerName: 'Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Close', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
-          {  headerName: 'Total Persent', valueGetter: 'data.activeStore/(data.activeStore+data.close)*100' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
+          {  headerName: 'Total Persent', valueGetter: ' (data.activeStore *100 ) / (data.activeStore + data.close)' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
 
              ]; 
 
@@ -150,7 +150,7 @@ export class ShopCensusSummaryComponent implements OnInit {
       let usrId = 350;
       console.log(usrId)
 
-          this.storeService.shopCensusSummary(this.companyId,this.userId).subscribe(res => {
+          this.storeService.shopCensusSummary(this.companyId,usrId).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
           });

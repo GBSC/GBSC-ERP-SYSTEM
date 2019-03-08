@@ -23,25 +23,30 @@
                 <div class="row">
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Shop Name</label>
-                    <input class="form-control m-input m-input--solid" formControlName='ShopName' [value]='shop?.shopName'>
+                    <input class="form-control m-input m-input--solid" formControlName='ShopName'
+                      [value]='shop?.shopName'>
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Shop Keeper</label>
-                    <input class="form-control m-input m-input--solid" fromControlName='ShopKeeper' [value]='shop?.shopKeeper'>
+                    <input class="form-control m-input m-input--solid" fromControlName='ShopKeeper'
+                      [value]='shop?.shopKeeper'>
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Contact No</label>
-                    <input class="form-control m-input m-input--solid" fromControlName='ContactNo' [value]='shop?.contactNo'>
+                    <input class="form-control m-input m-input--solid" fromControlName='ContactNo'
+                      [value]='shop?.contactNo'>
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">landline</label>
-                    <input class="form-control m-input m-input--solid" fromControlName='Landline' [value]='shop?.landline'>
+                    <input class="form-control m-input m-input--solid" fromControlName='Landline'
+                      [value]='shop?.landline'>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Address</label>
-                    <input class="form-control m-input m-input--solid" fromControlName='Address' [value]='shop?.address'>
+                    <input class="form-control m-input m-input--solid" fromControlName='Address'
+                      [value]='shop?.address'>
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Street</label>
@@ -53,14 +58,15 @@
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">landMark</label>
-                    <input class="form-control m-input m-input--solid" formControlName='Landmark' [value]='shop?.landmark'>
+                    <input class="form-control m-input m-input--solid" formControlName='Landmark'
+                      [value]='shop?.landmark'>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">Subsection</label>
-                    <dx-select-box [items]="subsections" [searchEnabled]="true" displayExpr='name' formControlName='SubsectionId'
-                      [value]='shop?.subsectionId' valueExpr='subsectionId'>
+                    <dx-select-box [items]="subsections" [searchEnabled]="true" displayExpr='name'
+                      formControlName='SubsectionId' [value]='shop?.subsectionId' valueExpr='subsectionId'>
                     </dx-select-box>
                   </div>
                   <div class="form-group col-lg-3">
@@ -77,8 +83,7 @@
                   </div>
                   <div class="form-group col-lg-3">
                     <label for="exampleInputEmail1">CNIC</label>
-                    <input class="form-control m-input m-input--solid" formControlName='CNIC' 
-                    [value]='shop?.cnic'>
+                    <input class="form-control m-input m-input--solid" formControlName='CNIC' [value]='shop?.cnic'>
                   </div>
                 </div>
                 <div class="row">
@@ -89,12 +94,12 @@
                       </label>
                       <div class="m-radio-inline">
                         <label class="m-radio">
-                          <input type="radio" [checked]='shop?.activeStatus'>
+                          <input type="radio" [value]="shop?.activeStatus" formControlName="ActiveStatus">
                           Active
                           <span></span>
                         </label>
                         <label class="m-radio">
-                          <input type="radio" [checked]='!shop?.activeStatus'>
+                          <input type="radio" [value]="!shop?.activeStatus" formControlName="ActiveStatus">
                           Inactive
                           <span></span>
                         </label>
@@ -103,11 +108,10 @@
 
                     </div>
                   </div>
-                  <div class="col-sm-4">
-                    <button type="submit" style="margin-bottom: 0px;margin-top: 20px;" class="btns btn--white"><span>
-                        <i class="flaticon-edit-1"></i>
+                  <div class=" col-sm-4">
+                    <button type="submit" class="btn btn-success"><span>
                         <span>
-                          Edit Store
+                          Update
                         </span>
                       </span></button>
                   </div>

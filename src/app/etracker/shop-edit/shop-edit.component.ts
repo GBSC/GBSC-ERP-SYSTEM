@@ -54,6 +54,7 @@ export class ShopEditComponent {
 
     this.form = this.fb.group({
       ShopName: [''],
+      ActiveStatus: [''],
       ShopKeeper: [''],
       ContactNo: [''],
       Landline: [''],
@@ -95,6 +96,7 @@ export class ShopEditComponent {
 
     this.form.patchValue({
       ShopName: shop.shopName,
+      ActiveStatus: shop.activeStatus,
       ShopKeeper: shop.shopKeeper,
       ContactNo: shop.contactNo,
       Landline: shop.landline,
@@ -116,7 +118,7 @@ export class ShopEditComponent {
 
   submit(value) {
 
-    var model = { ...this.shop, ...value};
+    var model = { ...this.shop, ...value };
 
     this.storeService.updateStore(model).subscribe(res => {
 
@@ -125,7 +127,7 @@ export class ShopEditComponent {
     });
 
     this.storeService.updatePjp(this.pjp, this.storeId).subscribe(res => {
-      
+
       this.displayToast('Pjp Updated!');
 
     });

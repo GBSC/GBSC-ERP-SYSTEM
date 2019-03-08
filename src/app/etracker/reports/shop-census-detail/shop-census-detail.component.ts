@@ -137,7 +137,7 @@ public abc : any = [];
       console.log(this.userId);
       let usrId = 350;
       console.log(usrId)
-          this.storeService.shopCensusDetailReport(this.companyId,usrId).subscribe(res => {
+          this.storeService.shopCensusDetailReport(this.companyId,this.userId).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
          this.rowData2 =    this.rowData.filter(t=> t.shopNameCount);

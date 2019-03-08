@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
             'DOB': [''],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': [''],
+            'NIC': ['' , Validators.pattern('[6-9]\\d{9}]')],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']
@@ -86,14 +86,14 @@ export class RegistrationComponent implements OnInit {
             'Occupation': [''],
             'NIC': ['', [Validators.required, Validators.minLength(13)]],
             'Gender': ['', Validators.required],
-            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)]],
+            'PhoneNumber': ['', [Validators.required, Validators.minLength(11)] , Validators.pattern('[6-9]\\d{9}]')],
             'OfficeAddress': [''],
             'ResidenceAddress': [''],
             'Remarks': [''],
             'OfficeTel': [''],
             'ForeignAddress': [''],
-            'Country': ['', Validators.required],
-            'City': ['', Validators.required],
+            'Country': ['Pakistan', Validators.required],
+            'City': ['Karachi', Validators.required],
             'State': [''],
             'PostalCode': [''],
             'Initial': [''],
@@ -268,7 +268,7 @@ export class RegistrationComponent implements OnInit {
         // value.partner = this.addpartnet;
         // value.patientReference = this.addReference;
 
-        this.patientId = await this.PatientServiceobj.addPatient(value);
+         this.patientId = await this.PatientServiceobj.addPatient(value);
         //  console.log(this.patientId);
         this.displayToastSuccess("Patient Registered");
         //  this.patientForm.reset();

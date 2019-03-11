@@ -70,7 +70,7 @@ export class RegistrationComponent implements OnInit {
             'DOB': [''],
             'PlaceOfBirth': [''],
             'Occupation': [''],
-            'NIC': ['' , Validators.pattern('[6-9]\\d{9}]')],
+            'NIC': ['' ],
             'PhoneNumber': ['', Validators.required],
             'PatientId': [''],
             'PartnerId': ['']

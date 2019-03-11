@@ -159,6 +159,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
         this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+        console.log(this.finalizedAppointments);
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
 
 

@@ -30,6 +30,7 @@ import { AuthService } from '../../../../app/core';
 export class ShopCensusSummaryComponent implements OnInit {
     @ViewChild('agGrid') agGrid: AgGridNg2;
 
+  public showHideFilter: boolean = false;
 
   pivotGridDataSource: any;
   showDataFields: boolean = true;
@@ -143,136 +144,22 @@ export class ShopCensusSummaryComponent implements OnInit {
         }
 
         public abc : any = [];
-    onGridReady(){
+    onGridReady(fromdate , todate){
       console.log('asdas');
       console.log(this.companyId);
       console.log(this.userId);
       let usrId = 350;
       console.log(usrId)
 
-          this.storeService.shopCensusSummary(this.companyId,this.userId ).subscribe(res => {
+          this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate , todate).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
           });
-          
-        // this.rowData = [
-        //     {
-        //     serialNumber: 1,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 2,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 0,
-        //     close: 1
-        //     },
-        //     {
-        //     serialNumber: 3,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 4,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 5,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 0,
-        //     close: 1
-        //     },
-        //     {
-        //     serialNumber: 6,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Shan Gbsc Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     }
-        //     ]
-        // console.log(this.rowData);
     }
+
+    toggleFilter() {
+      this.showHideFilter = !this.showHideFilter;
+  }
 
     onColumnRowGroupChanged(value){
         console.log(value)

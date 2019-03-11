@@ -133,7 +133,71 @@
 <div #control style="width:100%; height: 1000px">
   <div data-bind="dxReportViewer: $data"></div>
 </div> -->
-
+<div class="m-subheader-search">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2 class="m-subheader-search__title" style="text-align: left;">
+            Detail
+            <span class="m-subheader-search__desc">
+              Report
+            </span>
+          </h2>
+        </div>
+        <div class="col-sm-6">
+          <button (click)="toggleFilter()" style="float: right; border: solid 1px;" class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
+            <span *ngIf="showHideFilter">
+              <i class="la la-close"></i>
+              <span>
+                Hide
+              </span>
+            </span>
+  
+            <span *ngIf="!showHideFilter">
+              <i class="la la-sort"></i>
+              <span>
+                Show Filters
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showHideFilter" class="m-grid m-grid--ver-desktop m-grid--desktop">
+  
+      <div class="col-sm-12">
+        <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                From Date
+              </label>
+              <input class="form-control m-input m-input--solid" #fromDate type="date">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group m-form__group">
+              <label>
+                To Date
+              </label>
+              <input class="form-control m-input m-input--solid"  #toDate type="date">
+            </div>
+          </div>
+          <div class="col-sm-3"></div>
+          <div class="col-sm-3">
+              <div class="form-action pull-right">
+                <button type="submit" (click)="onGridReady(fromDate.value , toDate.value )" class="btn btn-primary m-btn m-btn--custom">
+                  Show
+                </button>
+              </div>
+          </div>
+  
+        </div>
+    
+      </div>
+    </div>
+  </div>
 <div class="m-content">
   <div class="row">
      <div class="col-xl-12">

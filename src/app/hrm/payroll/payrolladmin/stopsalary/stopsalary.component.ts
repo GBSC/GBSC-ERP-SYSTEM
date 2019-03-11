@@ -8,6 +8,7 @@ import { PayrollService, PayrollSetupService, EmployeeService } from '../../../.
 })
 export class StopsalaryComponent implements OnInit {
 
+    // public lookupDataSource = ["Stop", "Terminate"];
     public PayrollType: any;
     public employee: any;
     public StopSalary: any;

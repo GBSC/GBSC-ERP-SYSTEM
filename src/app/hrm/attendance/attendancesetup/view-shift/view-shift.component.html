@@ -1,4 +1,7 @@
- 
+<div class="m-content">
+
+    <div class="row">
+      <div class="col-md-12">
   <div class="m-portlet">
       <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -32,14 +35,17 @@
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
  
               <dxi-column dataField="shiftTitle"></dxi-column>
+              <dxi-column dataField="shiftHours"></dxi-column>
               <dxi-column dataField="startTime" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="endTime" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="graceTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="isMultiple" dataType="boolean"></dxi-column>
               <dxi-column dataField="overTimeStartTime" dataType="datetime" format="shorttime"></dxi-column>
-              <dxi-column dataField="minimumOverTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="minimumOverTime"></dxi-column>
               <dxi-column dataField="inTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="outTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
-              <dxi-column dataField="isMultiple" dataType="boolean"></dxi-column>
+              <dxi-column dataField="overTimeRate"></dxi-column>
+              <dxi-column dataField="description"></dxi-column>
               <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
               <div *dxTemplate="let d of 'chartCellTemplate'">
                 <div class="chart-cell">
@@ -65,5 +71,8 @@
           </dx-data-grid>
       </div>
   </div>
- 
+ </div>
+ </div>
+ </div>
+
  

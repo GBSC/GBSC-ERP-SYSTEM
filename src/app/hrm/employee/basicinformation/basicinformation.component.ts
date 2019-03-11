@@ -68,10 +68,12 @@ export class BasicinformationComponent implements OnInit {
     update(value) {
         console.log(value); 
         value.UserId = this.id; 
+        value.CompanyId = this.authService.getUserCompanyId(); 
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
             console.log(resp); 
             this.showSuccess("Basic Information Updated");
         }); 
+        console.log(value); 
         
     }
 
@@ -152,9 +154,9 @@ export class BasicinformationComponent implements OnInit {
         if (this.EmpbasicForm.invalid) { 
             this.toster.error("Fill All Required Fields");  
         }
-        // this.employeeService.addEmployee(value).subscribe(resp => {
-
-        //     this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
-        // })
+        value.CompanyId = this.authService.getUserCompanyId(); 
+        this.employeeService.addEmployee(value).subscribe(resp => { 
+            this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
+        })
     }
 }

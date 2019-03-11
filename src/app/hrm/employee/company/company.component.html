@@ -32,15 +32,15 @@
   </div>
   <div class="m--space-07"></div>
   <div class="row">
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
           <div class="form-group m-form__group">
             <label class="control-label">Group</label>
             <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="EmployeeCompany?.groupId || ''">
               <option *ngFor="let grp of groups" [value]="grp?.groupId">{{grp.name}}</option>
             </select>
           </div>
-        </div>
-    <div class="col-md-4">
+        </div> -->
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Designation" class="control-label">Function</label>
         <select class="form-control m-input m-input--solid" formControlName="FunctionId" [value]="EmployeeCompany?.functionId">
@@ -49,7 +49,7 @@
         </select>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="mlevel" class="control-label">Management Level</label>
         <select class="form-control m-input m-input--solid" formControlName="ManagementLevelId" [value]="EmployeeCompany?.managementLevelId">
@@ -158,31 +158,22 @@
       </div>
 
   <div class="row">
-    <div class="col-md-4">
-
+   <div class="col-md-4"> 
       <div class="form-group m-form__group">
         <label>
           Leaving Date
         </label>
         <div class="input-group m-form__group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <label class="m-checkbox m-checkbox--single m-checkbox--state m-checkbox--state-success">
-                <input type="checkbox" (change)="check()">
-                <span></span>
-              </label>
-            </span>
-          </div>
-          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.leavingDate" type="date">
+          <dx-date-box formControlName="LeavingDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.leavingDate" type="date">
           </dx-date-box>
         </div>
       </div>
-
     </div>
+
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="username"> Resign Date</label>
-        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [disabled]="isDisabled" [value]="EmployeeCompany?.resignDate" type="date">
+        <dx-date-box formControlName="ResignDate" displayFormat="dd/MM/yyyy" [value]="EmployeeCompany?.resignDate" type="date">
         </dx-date-box>
       </div>
     </div>

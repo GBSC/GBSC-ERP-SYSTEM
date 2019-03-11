@@ -113,22 +113,15 @@
                       <dxo-lookup [dataSource]="shift" displayExpr="shiftTitle" valueExpr="employeeAsignRosters.shiftsId" ></dxo-lookup>
                     </dxi-column>
                     <dxi-column dataField="employeeAsignRosters.shiftsId" caption="StratTime" [allowEditing]="false">
-                        <dxo-lookup [dataSource]="shift" displayExpr="startTime" valueExpr="employeeAsignRosters.shiftsId" ></dxo-lookup>
+                        <dxo-lookup [dataSource]="shift" displayExpr="startTime" valueExpr="employeeAsignRosters.shiftsId"></dxo-lookup>
                     </dxi-column>
                      <dxi-column dataField="employeeAsignRosters.shiftsId" caption="End Time" [allowEditing]="false">
-                        <dxo-lookup [dataSource]="shift" displayExpr="endTime" valueExpr="employeeAsignRosters.shiftsId"  dataType="date" ></dxo-lookup>
+                        <dxo-lookup [dataSource]="shift" displayExpr="endTime" valueExpr="employeeAsignRosters.shiftsId"></dxo-lookup>
                     </dxi-column>
                     <dxi-column  dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                     <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
                      <dxi-column dataField="attendanceDate"  dataType="date" format="shortdate"></dxi-column>
-                    <!--<dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="Schedule Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="In Date"  dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataField="In Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="Out Date" dataType="date" format="shortdate"></dxi-column>
-                    <dxi-column dataField="Out Time"  dataType="datetime" format="shorttime"></dxi-column>
-                    <dxi-column dataField="Remarks" caption="Remarks"></dxi-column> -->
-                  </dx-data-grid>
+                     </dx-data-grid>
      
               </div>
             </div>

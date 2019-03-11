@@ -119,24 +119,41 @@ export class EmployeeCompanyComponent implements OnInit {
 console.log(value);
 
         value.UserId = this.id;
-
+        value.CompanyId = this.authService.getUserCompanyId(); 
         if (this.EmployeeCompany.userCompanyId > 0) {
 
             value.UserCompanyId = this.EmployeeCompany.userCompanyId;
-            // if(value.ConfirmationDueDate >= value.AppointmentDate && value.ConfirmationDate >= value.ConfirmationDueDate && 
-            //     value.LeavingDate >= value.AppointmentDate && value.ResignDate >= value.AppointmentDate && value.ResignDate >= value.LeavingDate)
+            console.log(value.ConfirmationDueDate);
+            
+            // if(
+            //     value.ConfirmationDueDate >= value.AppointmentDate 
+            // && value.ConfirmationDate >= value.ConfirmationDueDate 
+            // && value.ConfirmationDate >= value.AppointmentDate
+            // && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate)),
+
+            // console.log("equal cond", this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))),
+            // console.log(this.formatDate(new Date(value.LeavingDate))),
+            
+            // console.log(value.AppointmentDate),
+            // console.log(value.LeavingDate),
+            // console.log(value.ResignDate)
+            // //     &&value.ResignDate >= value.AppointmentDate && value.ResignDate >= value.LeavingDate
+            // )
             // {
                 this.employeeService.updateUserCompany(value).subscribe(c => { 
                 this.showSuccess("Company Information Updated");
                 console.log(c); 
+                console.log(value);
+                
             })
+        //     alert("Update")
         // }
         // else{
         //     alert("wrong")
         // }
         }
         else {
-
+            value.CompanyId = this.authService.getUserCompanyId(); 
             this.employeeService.addUserCompany(value).subscribe(c => {
 
                 this.showSuccess("Company Information Added");
@@ -145,6 +162,9 @@ console.log(value);
         }
     }
 
+    formatDate(date: Date) {
+        return  ( date.getFullYear() +"-" + date.getMonth() +1)   + "-" + date.getDate();
+      }
 
     patchValues(company: any) {
 

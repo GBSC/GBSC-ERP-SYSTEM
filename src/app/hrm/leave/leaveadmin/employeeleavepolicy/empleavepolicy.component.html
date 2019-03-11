@@ -21,7 +21,7 @@
                     Employee:
                   </label> 
                       <select #lp class="form-control m-input" (change)="getLeavePolicy(lp.value)" formControlName="UserId">
-                      <option *ngFor="let employee of employees; let i = index" [value]="employee.userId">{{employee.fullName}}</option>
+                      <option *ngFor="let employee of employees; let i = index" [value]="employee?.userId">{{employee.fullName}}</option>
                     </select> 
                     </div> 
                 </div>

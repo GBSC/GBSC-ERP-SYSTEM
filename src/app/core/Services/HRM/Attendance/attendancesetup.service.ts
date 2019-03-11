@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Shift } from '../../../Models/HRM/shift';
 import { Observable } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AttendancesetupService {
 
     public baseUrl: string = "SystemAdmin/api/AttendanceSetup";
 
-    constructor(public ApiService: ApiService) { }
+    constructor(public ApiService: ApiService, public http: HttpClient) { }
 
     async getAsignRosters() {
         return await this.ApiService.get(`${this.baseUrl}/GetAssignRosters`).toPromise();
@@ -57,7 +57,8 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
+        return await this.http.put(`http://localhost:58090/api/Attendancesetup/UpdateAssignRoster`, data).toPromise();
+        // return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
     }
 
     async DeleteAsignRoster(id) {
@@ -256,7 +257,7 @@ export class AttendancesetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddShift`, data).toPromise();
     }
 
-    updateShift(data: Shift): Observable<any> {
+    updateShift(data): Observable<any> {
         return this.ApiService.put(`${this.baseUrl}/UpdateShift`, data);
 
     }

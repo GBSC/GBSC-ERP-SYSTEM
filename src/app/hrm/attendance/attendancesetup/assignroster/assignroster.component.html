@@ -1,3 +1,7 @@
+
+<div class="m-content"> 
+    <div class="row">
+      <div class="col-md-12">
 <div class="m-portlet">
   <div class="m-portlet__head">
     <div class="m-portlet__head-caption">
@@ -23,7 +27,7 @@
 
           <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
           <dxo-paging [pageSize]="7"></dxo-paging>
-          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20, 30]" [showInfo]="true">
           </dxo-pager>
           <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
           <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column>
@@ -58,16 +62,16 @@
             </div>
           </div>
           <div *dxTemplate="let x of 'detail'">
-            <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true">
+            <dx-data-grid [dataSource]="x.data.userAssignRosters" [showBorders]="true" [columnAutoWidth]="true">
               <dxo-paging [pageSize]="5"></dxo-paging>
-              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+              <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20,30]" [showInfo]="true">
               </dxo-pager>
               <dxi-column dataField="userId" caption="Users">
                 <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                 </dxo-lookup>
               </dxi-column>
             </dx-data-grid>
-            <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true">
+            <dx-data-grid [dataSource]="x.data.daysoffs" [showBorders]="true" [columnAutoWidth]="true">
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
                 <dxo-header-filter [visible]="true"></dxo-header-filter>
                 <dxo-paging [pageSize]="5"></dxo-paging>
@@ -123,7 +127,10 @@
     </div>
   </div>
 </div>
-
+  </div>
+    </div>
+      </div>
+    
 <div class="modal fade" id="m_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

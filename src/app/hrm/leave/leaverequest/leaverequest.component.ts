@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LeaveRequestDetail } from '../../../core/Models/HRM/leaveRequestDetail';
 import { LeaveRequest } from '../../../core/Models/HRM/leaveRequest';
 import { ToastrService } from 'ngx-toastr'; 
+import { queryRefresh } from '@angular/core/src/render3';
 
 @Component({
     selector: 'app-leaverequest',
@@ -157,7 +158,23 @@ export class LeaverequestComponent implements OnInit {
     getLeaveBalance(userId) { 
         this.empId = userId;
     } 
-    onSetCellValue(x, abc) {
+    // onSetCellValue(x, abc) {
+    //     console.log(abc);
+    //     console.log(this.employees); 
+    //     console.log(this.empId); 
+    //     console.log(this.leaveservice.data); 
+    //     this.leaveservice.data.forEach(e => {
+    //         if (e.userId == this.empId) {
+    //             console.log("first condition", e);
+
+    //             if (e.leaveTypeId == abc) {
+    //                 this.leaveBBB = e;
+    //             }
+    //         }
+    //     });
+    //     console.log(this.leaveBBB);  
+    // }
+    onSetCellValue(abc) {
         console.log(abc);
         console.log(this.employees); 
         console.log(this.empId); 
@@ -167,13 +184,22 @@ export class LeaverequestComponent implements OnInit {
                 console.log("first condition", e);
 
                 if (e.leaveTypeId == abc) {
-                    this.leaveBBB = e;
+                    this.leaveBBB = e;  
+                }
+                if(this.leaveBBB.entitledQuantity == null || this.leaveBBB.entitledQuantity == undefined){
+                    this.leaveBBB.entitledQuantity = 0;
                 }
             }
         });
         console.log(this.leaveBBB);  
+        console.log(this.leaveBBB.entitledQuantity);  
     }
 
+    countDays(value){
+        console.log(value.DateFrom);
+        console.log(value.DateTill);
+        
+    }
     patchValues(request: any) {
 
         this.leaveRequestForm.patchValue({

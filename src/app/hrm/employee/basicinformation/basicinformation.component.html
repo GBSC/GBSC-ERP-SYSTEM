@@ -108,20 +108,19 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label for="gender">Gender</label>
-        <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender" id="Gender">
-          <option value="" selected>-- Select Gender --</option>
-          <option> Female </option>
-          <option>Male</option>
-
+        <select class="form-control m-input m-input--solid" formControlName="Gender" [value]="Employee?.gender" name="Gender">
+          <option value="" disabled selected>-- Select Gender --</option>
+          <option value="Male">Male</option>
+          <option value="Female"> Female </option> 
         </select>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group m-form__group">
-        <label for="Designation" class="control-label">Marital Status</label>
+        <label class="control-label">Marital Status</label>
         <select class="form-control m-input m-input--solid" formControlName="MaritalStatus" [value]="Employee?.maritalStatus || ''"
           name="MaritalStatus" id="MaritalStatus">
-          <option value="" selected>-- Select Marital Status --</option>
+          <option value="" disabled selected>-- Select Marital Status --</option>
           <option value="Single">Single</option>
           <option value="Married">Married</option>
         </select>
@@ -144,6 +143,7 @@
           <div class="form-group m-form__group">
             <label class="control-label">City</label>
             <select class="form-control m-input m-input--solid" formControlName="CityId" [value]="Employee?.name || ''">
+              <option disabled selected>-- Select City --</option>
               <option *ngFor="let city of cities" [value]="city?.cityId">{{city.name}}</option>
             </select>
           </div>
@@ -178,7 +178,7 @@
           id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text" [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }">
           <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
             <div *ngIf="f.Phone.errors.required">Contact Number is required</div>
-            <div *ngIf="f.Phone.errors.minlength">Contact must be at least 13 characters</div>
+            <div *ngIf="f.Phone.errors.minlength">Contact must be at least 11 characters</div> 
         </div>
       </div>
     </div>

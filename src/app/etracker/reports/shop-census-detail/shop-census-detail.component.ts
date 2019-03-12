@@ -134,7 +134,7 @@ export class ShopCensusDetailComponent implements OnInit {
     //     });
   }
   public abc: any = [];
-  onGridReady(fromdate, todate) {
+  onGridReady(fromdate, todate ,params) {
     console.log(fromdate);
     console.log(todate);
 
@@ -143,10 +143,18 @@ export class ShopCensusDetailComponent implements OnInit {
     let usrId = 350;
     console.log(usrId)
 
-    this.storeService.shopCensusDetailReport(this.companyId, this.userId, fromdate, todate).subscribe(res => {
+    this.storeService.shopCensusDetailReport(this.companyId, this.userId, '0001-01-01', '2020-01-01').subscribe(res => {
       this.rowData = res;
       console.log(this.rowData);
+      // if(this.rowData.length){
+      //   console.log('sssss'); 
+      //   console.log(params)
+      //   this.gridApi = params.api;
+      //   params.api.expandAll()
+      // }
     });
+
+
 
 
   }
@@ -185,39 +193,87 @@ export class ShopCensusDetailComponent implements OnInit {
   // //   // }, 2000);
   //   }
 
+  // printData() {
+  //    var divToPrint=document.getElementById("printTable");
+  //  let  newWin = window.open("");
+  //    newWin.document.write(divToPrint.outerHTML);
+  //    newWin.print();
+  //    newWin.close();
+  // }
+    //   onBtPrint(param) {
+    //   var params = {
+    //     //skipHeader: getBooleanValue("#skipHeader"),
+    //     columnGroups: this.getBooleanValue("#columnGroups"),
+        
+    //     skipFooters: this.getBooleanValue("#skipFooters"),
+    //     skipGroups: this.getBooleanValue("#skipGroups"),
+    //     skipPinnedTop: this.getBooleanValue("#skipPinnedTop"),
+    //     skipPinnedBottom: this.getBooleanValue("#skipPinnedBottom"),
+    //     allColumns: this.getBooleanValue("#allColumns"),
+    //     onlySelected: this.getBooleanValue("#onlySelected"),
+    //     suppressQuotes: this.getBooleanValue("#suppressQuotes")//,
+    //     //fileName: document.querySelector("#fileName").nodeValue,
+    //    // columnSeparator: document.querySelector("#columnSeparator").nodeValue
+    //   };
+  
+    //   this.gridApi = param.api;
 
-    // onBtPrint() {
-    //   var gridApi = this.gridApi;
-    //   this.setPrinterFriendly(gridApi);
-    //   setTimeout(function() {
-    //     print();
-    //     this.setNormal(gridApi);
-    //   }, 2000);
+    //   param.api.expandAll();
+    //   console.log(params)
+    //   console.log(this.gridApi)
+
+      
+    // //   let divToPrint =document.getElementById("printableArea");
+    // //   console.log(divToPrint);
+    // // let  newWin= window.open("");
+    // //      newWin.document.write();
+    // //   newWin.print();
+    // //   newWin.close();
+
+    //  // this.gridApi.exportDataAsCsv(params); 
+    //    print();
+    //  // console.log(  this.gridApi.exportDataAsCsv(params))
+    //   // this.gridApi.setDomLayout(params);
+    //    // param.api.print();
+            
+    // } 
+
+      getBooleanValue(cssSelector) {
+        console.log(cssSelector)
+       return document.querySelector(cssSelector).checked === true;
+    }
+    
+
+
+
+    // setNormal(api) {
+    //   var eGridDiv = document.querySelector("myGrid");
+    //   eGridDiv.style.width = "600px";
+    //   eGridDiv.style.height = "200px";
+    //   api.setDomLayout(null);
     // }
 
+//     onBtPrint(value , value2 ,printea, value3){
+//     console.log(value);
+//     console.log(value2);
+//     console.log(printea);
+//     console.log(value3);
+//     console.log(   this.gridApi );
+//     console.log(   this.gridColumnApi );
+// //    var divToPrint = document.getElementById("printableArea");
+// //   let  newWin =  window.open("");
+// //    newWin.document.write(divToPrint.outerHTML);
+// //    newWin.print();
+// //    newWin.close();
+//   }
 
-    setPrinterFriendly(api) {
-      var eGridDiv = document.getElementById("myGrid");
-      eGridDiv.style.width = "";
-      eGridDiv.style.height = "";
-      api.setDomLayout("print");
-    }
-
-    setNormal(api) {
-      var eGridDiv = document.getElementById("myGrid");
-      eGridDiv.style.width = "600px";
-      eGridDiv.style.height = "200px";
-      api.setDomLayout(null);
-    }
-
-//   onBtPrint()
-// {
-//    var divToPrint = document.getElementById("printableArea");
-//   let  newWin =  window.open("");
-//    newWin.document.write(divToPrint.outerHTML);
-//    newWin.print();
-//    newWin.close();
-// }
+  // public xy : any;
+  // start(param){
+  //   console.log(param)
+  //     this.gridApi = param.api;
+  //     this.gridColumnApi = param.columnApi;
+  //     param.api.expandAll();
+  // }
 
 
 
@@ -250,5 +306,32 @@ export class ShopCensusDetailComponent implements OnInit {
   //         checkbox: true
   //     }
   // };
+
+
+  onBtPrint(param) {
+
+    this.gridApi = param.api;
+    console.log(this.gridApi)
+   param.api.expandAll();
+    var gridApi = this.gridApi;
+    
+    this.setPrinterFriendly(gridApi)
+    print();
+       this.setNormal(gridApi);
+    
+  }
+  
+  setPrinterFriendly(api) {
+    api.setDomLayout("print");
+  }
+
+  setNormal(api) {
+    var eGridDiv = document.getElementById("#printableArea")
+     eGridDiv.style.width = "1300px";
+    eGridDiv.style.height = "700px";
+    api.setDomLayout(null);
+  }
+  
+
 
 }

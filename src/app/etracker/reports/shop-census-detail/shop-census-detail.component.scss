@@ -4,11 +4,43 @@
     /* border-color: #c4c5d6; */
 }
 
-.my-grid{
-    width: "";
-    height:""
-}
+ 
 
 .margin{
     margin-top: 25px;
 }
+
+.dispy{
+    display: none;
+}
+
+
+ 
+@media print {
+
+    .m-body * {
+        visibility: hidden;
+      }
+      
+    .m-subheader-search * {
+      visibility: hidden;
+    }
+    .ag-side-bar *{
+        visibility: hidden;
+    }
+    .m-footer{
+        visibility: hidden;
+    }
+
+    // #myGrid, #myGrid * {
+    //   visibility: visible;
+    // }
+    // #myGrid {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    // }
+
+
+    
+  }

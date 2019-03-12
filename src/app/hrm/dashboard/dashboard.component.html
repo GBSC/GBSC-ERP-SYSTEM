@@ -100,4 +100,30 @@
       </div>
     </div>
   </div>
+
+
+  <div class="m-portlet ">
+    <div class="m-portlet__body  m-portlet__body--no-padding">
+      <div class="row">
+        <div class="col-sm-4">
+            <dx-chart
+            id="chart"
+            [dataSource]="userData"
+            palette="soft">
+            <dxo-title 
+                text="Age Breakdown of Facebook Users in the U.S."
+                subtitle="as of January 2017">
+            </dxo-title>
+            <dxo-common-series-settings 
+                argumentField="age"
+                type="bar"
+                valueField="number"
+                [ignoreEmptyPoints]="true">
+            </dxo-common-series-settings>
+            <dxo-series-template nameField="age"></dxo-series-template>
+        </dx-chart>
+        </div>
+        </div>
+        </div>
+        </div>
 </div>

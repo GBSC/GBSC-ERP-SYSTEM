@@ -59,34 +59,34 @@ export class ShopCensusDetailComponent implements OnInit {
     console.log(this.userId);
 
     this.columnDefs = [
-      { headerName: 'Serial Number', field: 'serialNumber', filter: false, enableValue: true },
-      { headerName: 'Store Name', field: 'storeName', filter: false, enableValue: true },
-      { headerName: 'Shop keeper Name', field: 'shopkeeperName', filter: false, enableValue: true },
-      { headerName: 'Contact', field: 'contactNumber', filter: false, enableValue: true },
-      { headerName: 'Address', field: 'address', filter: false, enableValue: true },
-      { headerName: 'N.I.C', field: 'cnic', filter: false, enableValue: true },
+      { headerName: '#S.No', field: 'serialNumber',  width: 30 ,filter: false, enableValue: true },
+      { headerName: 'Store Name', field: 'storeName',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Shop keeper Name', field: 'shopkeeperName',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Contact', field: 'contactNumber',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Address', field: 'address',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'N.I.C', field: 'cnic',  width: 100 , filter: false, enableValue: true },
 
-      { headerName: "Region", field: "region", enableRowGroup: true, enablePivot: true },
-      { headerName: 'City', field: 'city', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Area', field: 'area', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Distributor', field: 'distributor', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Territory', field: 'territory', enableRowGroup: true, enablePivot: true },
-      { headerName: 'section', field: 'section', enableRowGroup: true, enablePivot: true, rowGroup: true },
-      { headerName: 'Subsection', field: 'subsection', enableRowGroup: true, enablePivot: true, rowGroup: true },
-      { headerName: 'DSF', field: 'dsf', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Visit Day', field: 'day', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Store category', field: 'category', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Store classification', field: 'classification', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Create User', field: 'createUser', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Create Date', field: 'createDate', filter: false, enableValue: true },
-      { headerName: 'Close Date', field: 'endTime', filter: false, enableValue: true },
-      { headerName: 'Registration Year', field: 'registrationYear', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Registration Month', field: 'registrationMonth', enableRowGroup: true, enablePivot: true },
-      { headerName: 'shopMode', field: 'shopMode', enableRowGroup: true, enablePivot: true },
-      { headerName: 'Image Link', field: 'imageLink', filter: false, enableValue: true },
-      { headerName: 'Total Shop', valueGetter: 'data.shopNameCount', cellClass: 'total-col', aggFunc: 'sum', editable: false },
-      { headerName: 'Total Active', valueGetter: 'data.activeStore', cellClass: 'total-col', aggFunc: 'sum', editable: false },
-      { headerName: 'Total Closed', valueGetter: 'data.close', cellClass: 'total-col', aggFunc: 'sum', editable: false }
+      { headerName: "Region", field: "region",  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'City', field: 'city',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Area', field: 'area',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Distributor', field: 'distributor',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Territory', field: 'territory',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'section', field: 'section',  width: 100 , enableRowGroup: true, enablePivot: true, rowGroup: true },
+      { headerName: 'Subsection', field: 'subsection',  width: 100 , enableRowGroup: true, enablePivot: true, rowGroup: true },
+      { headerName: 'DSF', field: 'dsf',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Visit Day', field: 'day',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Store category', field: 'category',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Store classification', field: 'classification',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Create User', field: 'createUser',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Create Date', field: 'createDate',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Close Date', field: 'endTime',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Registration Year', field: 'registrationYear',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Registration Month', field: 'registrationMonth',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'shopMode', field: 'shopMode',  width: 100 , enableRowGroup: true, enablePivot: true },
+      { headerName: 'Image Link', field: 'imageLink',  width: 100 , filter: false, enableValue: true },
+      { headerName: 'Total Shop', valueGetter: 'data.shopNameCount',  width: 50 , cellClass: 'total-col', aggFunc: 'sum', editable: false },
+      { headerName: 'Total Active', valueGetter: 'data.activeStore',  width: 50 , cellClass: 'total-col', aggFunc: 'sum', editable: false },
+      { headerName: 'Total Closed', valueGetter: 'data.close',  width: 50 , cellClass: 'total-col', aggFunc: 'sum', editable: false }
 
     ];
     this.defaultColDef = {
@@ -142,17 +142,15 @@ export class ShopCensusDetailComponent implements OnInit {
     console.log(this.userId);
     let usrId = 350;
     console.log(usrId)
+    console.log('0001-01-01')   
+     console.log('2020-01-01')
 
-    this.storeService.shopCensusDetailReport(this.companyId, this.userId, '0001-01-01', '2020-01-01').subscribe(res => {
-      this.rowData = res;
-      console.log(this.rowData);
-      // if(this.rowData.length){
-      //   console.log('sssss'); 
-      //   console.log(params)
-      //   this.gridApi = params.api;
-      //   params.api.expandAll()
-      // }
-    });
+     
+
+      this.storeService.shopCensusDetailReport(this.companyId, this.userId, '0001-01-01', '2020-01-01').subscribe(res => {
+         this.rowData = res;
+        console.log(this.rowData);
+       });
 
 
 
@@ -312,26 +310,30 @@ export class ShopCensusDetailComponent implements OnInit {
 
     this.gridApi = param.api;
     console.log(this.gridApi)
-   param.api.expandAll();
+    param.api.expandAll();
     var gridApi = this.gridApi;
     
     this.setPrinterFriendly(gridApi)
     print();
-       this.setNormal(gridApi);
+      this.setNormal(gridApi);
     
   }
   
   setPrinterFriendly(api) {
+     var eGridDiv = document.getElementById("myGrid");
+    eGridDiv.style.width = "1050px";
+    eGridDiv.style.height = "100%";
     api.setDomLayout("print");
   }
 
-  setNormal(api) {
-    var eGridDiv = document.getElementById("#printableArea")
-     eGridDiv.style.width = "1300px";
-    eGridDiv.style.height = "700px";
-    api.setDomLayout(null);
-  }
   
 
+  setNormal(api) {
+    var eGridDiv = document.getElementById("printableArea");
+    eGridDiv.style.width = "1050px";
+    eGridDiv.style.height = "200px";
+    api.setDomLayout(null);
+    api.collapseAll();
+  }
 
 }

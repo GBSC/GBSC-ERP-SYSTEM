@@ -267,7 +267,7 @@
     <div class="row">
        <div class="col-xl-12">
          <div class="m-portlet">
-           <div class="m-portlet__head">
+           <div class="m-portlet__head headdd">
              <div class="m-portlet__head-caption">
                <div class="m-portlet__head-title">
                  <h3 class="m-portlet__head-text">Shop Census Detail</h3>
@@ -280,7 +280,7 @@
               <div #printea id="printableArea">
               <ag-grid-angular
                    #agGrid
-                   style="width: 100%; height: 100%;"
+                   style="width: 1050px; height: 200px;"
                    id="myGrid"
                    class="ag-theme-balham my-grid"
                    [columnDefs]="columnDefs"
@@ -296,13 +296,11 @@
                    <!-- (gridReady)="onGridReadySec($event)" -->
            </div>
            <!-- <button type="submit" (click)="onBtPrint(agGrid , myGrid ,printea, printableArea)" class="btn btn-primary m-btn m-btn--custom"> -->
-            <button type="submit" (click)="onBtPrint(agGrid)" class="btn btn-primary m-btn m-btn--custom">
+            <button type="submit" (click)="onBtPrint(agGrid)" class="btn btn-primary m-btn m-btn--custom btnd">
               Print
             </button>
           </div>
-          <div
-          style="position: absolute; top: 0px; left: 0px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 13px;"
-        >
+          <div style="position: absolute; top: 0px; left: 0px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 13px;">
           <div  class="dispy" style="padding-bottom: 4px;">
             <label> File Name: <input type="text" id="fileName" /> </label>
             <label style="margin-left: 20px;">

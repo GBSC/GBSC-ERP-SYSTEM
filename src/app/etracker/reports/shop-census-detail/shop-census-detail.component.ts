@@ -13,12 +13,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
-import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 import { AuthService } from '../../../../app/core';
-
-
-import { HttpClient } from '@angular/common/http';
 import { AgGridNg2 } from 'ag-grid-angular';
 import "ag-grid-enterprise";
 
@@ -324,14 +319,18 @@ export class ShopCensusDetailComponent implements OnInit {
     eGridDiv.style.width = "1050px";
     eGridDiv.style.height = "100%";
     api.setDomLayout("print");
+    var eGridDiv = document.getElementById("#myGrid")
+    eGridDiv.style.width = "";  
+    eGridDiv.style.height = "";
   }
 
   
+ 
 
   setNormal(api) {
-    var eGridDiv = document.getElementById("printableArea");
-    eGridDiv.style.width = "1050px";
-    eGridDiv.style.height = "200px";
+    var eGridDiv = document.getElementById("#myGrid")
+     eGridDiv.style.width = "1300px";
+    eGridDiv.style.height = "600px";
     api.setDomLayout(null);
     api.collapseAll();
   }

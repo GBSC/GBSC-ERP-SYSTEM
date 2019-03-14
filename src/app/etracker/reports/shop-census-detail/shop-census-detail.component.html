@@ -263,7 +263,7 @@
       </div>
     </div>
 
-  <div class="m-content">
+  <!-- <div class="m-content">
     <div class="row">
        <div class="col-xl-12">
          <div class="m-portlet">
@@ -288,72 +288,473 @@
                    [autoGroupColumnDef]="autoGroupColumnDef"     
                    [sideBar]="true"
                    [rowData]="rowData"
+
                    [pagination]="true"
-                   (cellClicked)="start($event)"
+                  
+                  
+                   (displayedColumnsChanged)="displayedColumnsChanged($event)"
+                   (getAllGridColumns)="getAllGridColumns($event)"
                    ></ag-grid-angular>
-                   <!-- (columnValueChanged)="onColumnRowGroupChanged($event)" -->
-                   <!-- (gridReady)="onGridReady()" -->
-                   <!-- (gridReady)="onGridReadySec($event)" -->
            </div>
-           <!-- <button type="submit" (click)="onBtPrint(agGrid , myGrid ,printea, printableArea)" class="btn btn-primary m-btn m-btn--custom"> -->
-            <button type="submit" (click)="onBtPrint(agGrid)" class="btn btn-primary m-btn m-btn--custom btnd">
+            <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="btn btn-primary m-btn m-btn--custom btnd">
               Print
             </button>
           </div>
-          <div style="position: absolute; top: 0px; left: 0px; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 13px;">
-          <div  class="dispy" style="padding-bottom: 4px;">
-            <label> File Name: <input type="text" id="fileName" /> </label>
-            <label style="margin-left: 20px;">
-              Separator <input type="text" style="width: 20px;" id="columnSeparator" />
-            </label>
-            <label style="margin-left: 20px;"> <button (click)="onBtExport()">Export to CSV</button> </label>
-          </div>
-    
-          <table class="dispy">
-            <tbody>
-              <tr>
-                <td valign="top">
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="columnGroups" /> Column groups </label>
-                  <br />
-                  <label style="margin-right: 20px;">
-                    <input type="checkbox" id="useSpecificColumns" /> Specify Columns
-                  </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="allColumns" /> All Columns </label> <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="onlySelected" /> Only Selected </label>
-                </td>
-                <td valign="top">
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="customHeader" /> Custom Header </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="customFooter" /> Custom Footer </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="skipHeader" /> Skip Header </label> <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="skipFooters" /> Skip Footers </label>
-                </td>
-                <td valign="top">
-                  <label style="margin-right: 20px;">
-                    <input type="checkbox" id="useCellCallback" /> Use Cell Callback
-                  </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="suppressQuotes" /> Suppress Quotes </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="skipGroups" /> Skip Groups </label> <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="skipGroupR" /> Skip Group R </label>
-                </td>
-                <td valign="top">
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="processHeaders" /> Format Headers </label>
-                  <br />
-                  <label style="margin-right: 20px;"> <input type="checkbox" id="skipPinnedTop" /> Skip Pinned Top </label>
-                  <br />
-                  <label style="margin-right: 20px;">
-                    <input type="checkbox" id="skipPinnedBottom" /> Skip Pinned Bottom
-                  </label>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-         </div> 
+        </div> 
        </div>
      </div>
-  </div>
+     <div class="row"   > 
+        <div class="col-xl-12">
+					
+                <div class="m-portlet">
+                    <div class="m-portlet__head">
+                      <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                          <h3 class="m-portlet__head-text">
+                            Responsive tables
+                            
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="m-portlet__body">
+                 
+                      <div class="m-section">
+                    <div class="m-section__content">
+                      <div class="table-responsive" id="printTable">
+                         <p style="margin-top: 0;
+                         text-align: center;
+                         color: #e07026;
+                         font-family: fantasy;
+                         font-size: 22px;
+                         margin-bottom: 1rem;">Eva</p>
+                         <p style="margin-top: 0;
+                         text-align: center;
+                         color: #e07026;
+                         font-family: fantasy;
+                         font-size: 20;
+                         margin-bottom: 1rem;">Shop Census Detail</p>
+                         <p style="margin-top: 0;
+                         text-align: center;
+                         color: #e07026;
+                         font-family: fantasy;
+                         font-size: 17;
+                         margin-bottom: 1rem;">Report</p>
+                        <table class="table table-bordered" border="1" cellpadding="3"  >
+                     
+                          <thead style=" font-size: 10px;
+                          background-color: bisque;
+                          color: brown;">
+                                <tr>
+                                  <th>
+                                    Group
+                                  </th>
+                                  <th>
+                                      ShopName
+                                  </th>
+                                  <th>
+                                      ShopKeeperName
+                                  </th>
+                                  <th>
+                                      Contact
+                                  </th>
+                                  <th>
+                                      Address
+        
+                                    </th>
+                                    <th>
+                                        CNIC
+        
+                                    </th>
+                                    <th>
+                                        Region
+        
+                                    </th>
+                                    <th>
+                                        Area
+                                    </th>
+                                    <th>
+                                        City
+        
+                                      </th>
+                                      <th>
+                                          Distributor(Current)
+                                      </th>
+                                      <th>
+                                          Territory
+        
+                                      </th>
+                                      <th>
+                                          Section 
+        
+                                      </th>
+                                      <th>
+                                          SubSection
+        
+            
+                                        </th>
+                                        <th>
+                                            DSF
+        
+            
+                                        </th>
+                                        <th>
+                                            VisitDay
+        
+            
+                                        </th>
+                                        <th>
+                                            Category
+        
+                                        </th>
+                                        <th>
+                                            Classification
+        
+        
+                                        </th>
+                                        <th>
+                                            Create_User
+        
+        
+                                        </th>
+                                        <th>
+                                            Create-Date
+        
+        
+                                        </th>
+                                        <th>
+                                            Close-User
+        
+        
+                                        </th>
+                                        <th>
+                                            Close-Date
+        
+        
+                                        </th>
+                                        <th>
+                                            Shop-Mode
+        
+        
+                                        </th>
+
+                                        <th>
+                                            Image
+                                        </th>
+                                     
+                                </tr>
+                              </thead>
+                          <tbody *ngFor="let data of Data" style="font-size: 9px;
+                          text-align: center;">
+                            <tr >
+                              <td>{{data.Group}}</td>
+                              <td>{{data.serialNumber}}</td>
+                              <td>{{data.shopkeeperName}}</td>
+                              <td>{{data.contactNumber}}</td>
+                              <td>{{data.address}}</td>
+                              <td>{{data.cnic}}</td>
+                              <td>{{data.region}}</td>
+                              <td>{{data.area}}</td>
+                              <td>{{data.city}}</td>
+                              <td>{{data.distributor}}</td>
+                              <td>{{data.territory}}</td>
+                              <td>{{data.section}}</td>
+                              <td>{{data.subsection}}</td>
+                              <td>{{data.dsf}}</td>
+                              <td>{{data.day}}</td>
+                              <td>{{data.category}}</td>
+                              <td>{{data.classification}}</td>
+                              <td>{{data.createUser}}</td>
+                              <td>{{data.startTime}}</td>
+                              <td>{{data.createUser}}</td>
+                              <td>{{data.endTime}}</td>
+                              <td>{{data.shopMode}}</td>
+                              <td>{{data.imageLink}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			</div>
+     </div>
+  </div> -->
+ 
+
+  <!-- model strat -->
+  <div class="modal fade" id="m_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+      <!-- <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+                Are You Sure For This 
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                ×
+              </span>
+            </button>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" (click)="btn()" data-dismiss="modal" >
+             Yes
+            </button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  <!-- model end -->
+
+
+  <div class="m-content">
+      <div class="row">
+        
+        <div class="col-lg-12">
+          <!--begin::Portlet-->
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                    Pills
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="m-portlet__body">
+              <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
+                    Grid
+                  </a>
+                </li>
+            
+                <li class="nav-item">
+                  <a class="nav-link " data-toggle="tab" href="#m_tabs_3_3">
+                    View
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane  active show" id="m_tabs_3_1" role="tabpanel">
+                    <div #printea>
+                        <ag-grid-angular
+                             #agGrid
+                             style="width: 1050px; height: 200px;"
+                             id="myGrid"
+                             class="ag-theme-balham my-grid"
+                             [columnDefs]="columnDefs"
+                             [defaultColDef]="defaultColDef"
+                             [autoGroupColumnDef]="autoGroupColumnDef"     
+                             [sideBar]="true"
+                             [rowData]="rowData"
+          
+                             [pagination]="true"
+                            
+                            
+                             (displayedColumnsChanged)="displayedColumnsChanged($event)"
+                             (getAllGridColumns)="getAllGridColumns($event)"
+                             ></ag-grid-angular>
+                             <!-- (columnPinned)="onColumnPinned($event)"
+                             (columnVisible)="onColumnVisible($event)"
+                             (columnResized)="onColumnResized($event)"
+                             (columnMoved)="onColumnMoved($event)"
+                             (columnRowGroupChanged)="onColumnRowGroupChanged($event)"
+                             (columnPivotChanged)="onColumnPivotChanged($event)"
+                             (newColumnsLoaded)="onNewColumnsLoaded($event)" -->
+                             <!-- (columnValueChanged)="onColumnRowGroupChanged($event)" -->
+                             <!-- (gridReady)="onGridReady()" -->
+                             <!-- (gridReady)="onGridReadySec($event)" -->
+                     </div>
+                     <!-- <button type="submit" (click)="onBtPrint(agGrid , myGrid ,printea, printableArea)" class="btn btn-primary m-btn m-btn--custom"> -->
+                      <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="btn btn-primary m-btn m-btn--custom btnd">
+                        Print
+                      </button>
+                 </div>
+                 
+                <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
+                    <div class="m-section">
+                        <div class="m-section__content">
+                          <div class="table-responsive" id="printTable">
+                             <p style="margin-top: 0;
+                             text-align: center;
+                             color: #e07026;
+                             font-family: fantasy;
+                             font-size: 22px;
+                             margin-bottom: 1rem;">Eva</p>
+                             <p style="margin-top: 0;
+                             text-align: center;
+                             color: #e07026;
+                             font-family: fantasy;
+                             font-size: 20;
+                             margin-bottom: 1rem;">Shop Census Detail</p>
+                             <p style="margin-top: 0;
+                             text-align: center;
+                             color: #e07026;
+                             font-family: fantasy;
+                             font-size: 17;
+                             margin-bottom: 1rem;">Report</p>
+                            <table class="table table-bordered" border="1" cellpadding="3"  >
+                         
+                              <thead style=" font-size: 10px;
+                              background-color: bisque;
+                              color: brown;">
+                                    <tr>
+                                      <th>
+                                        Group
+                                      </th>
+                                      <th>
+                                          ShopName
+                                      </th>
+                                      <th>
+                                          ShopKeeperName
+                                      </th>
+                                      <th>
+                                          Contact
+                                      </th>
+                                      <th>
+                                          Address
+            
+                                        </th>
+                                        <th>
+                                            CNIC
+            
+                                        </th>
+                                        <th>
+                                            Region
+            
+                                        </th>
+                                        <th>
+                                            Area
+                                        </th>
+                                        <th>
+                                            City
+            
+                                          </th>
+                                          <th>
+                                              Distributor(Current)
+                                          </th>
+                                          <th>
+                                              Territory
+            
+                                          </th>
+                                          <th>
+                                              Section 
+            
+                                          </th>
+                                          <th>
+                                              SubSection
+            
+                
+                                            </th>
+                                            <th>
+                                                DSF
+            
+                
+                                            </th>
+                                            <th>
+                                                VisitDay
+            
+                
+                                            </th>
+                                            <th>
+                                                Category
+            
+                                            </th>
+                                            <th>
+                                                Classification
+            
+            
+                                            </th>
+                                            <th>
+                                                Create_User
+            
+            
+                                            </th>
+                                            <th>
+                                                Create-Date
+            
+            
+                                            </th>
+                                            <th>
+                                                Close-User
+            
+            
+                                            </th>
+                                            <th>
+                                                Close-Date
+            
+            
+                                            </th>
+                                            <th>
+                                                Shop-Mode
+            
+            
+                                            </th>
+    
+                                            <th>
+                                                Image
+                                            </th>
+                                         
+                                    </tr>
+                                  </thead>
+                              <tbody *ngFor="let data of Data" style="font-size: 9px;
+                              text-align: center;">
+                                <tr >
+                                  <td>{{data.Group}}</td>
+                                  <td>{{data.serialNumber}}</td>
+                                  <td>{{data.shopkeeperName}}</td>
+                                  <td>{{data.contactNumber}}</td>
+                                  <td>{{data.address}}</td>
+                                  <td>{{data.cnic}}</td>
+                                  <td>{{data.region}}</td>
+                                  <td>{{data.area}}</td>
+                                  <td>{{data.city}}</td>
+                                  <td>{{data.distributor}}</td>
+                                  <td>{{data.territory}}</td>
+                                  <td>{{data.section}}</td>
+                                  <td>{{data.subsection}}</td>
+                                  <td>{{data.dsf}}</td>
+                                  <td>{{data.day}}</td>
+                                  <td>{{data.category}}</td>
+                                  <td>{{data.classification}}</td>
+                                  <td>{{data.createUser}}</td>
+                                  <td>{{data.startTime}}</td>
+                                  <td>{{data.createUser}}</td>
+                                  <td>{{data.endTime}}</td>
+                                  <td>{{data.shopMode}}</td>
+                                  <td>{{data.imageLink}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                           
+                          </div>
+                        </div>
+                      </div>
+                 </div>
+               
+              </div>
+            </div>
+          </div>
+          <!--end::Portlet-->
+  <!--begin::Portlet-->
+          
+          
+  
+          
+          
+  
+          
+          <!--end::Portlet-->
+        </div>
+      </div>
+    </div>
+
+ 

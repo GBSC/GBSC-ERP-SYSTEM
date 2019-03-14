@@ -23,7 +23,7 @@
     .m-subheader-search * {
       visibility: hidden;
     }
-    .ag-side-bar {
+    .ag-theme-balham .ag-side-bar .ag-side-buttons {
         display: none !important;
         flex-direction: row-reverse;
     }
@@ -50,7 +50,7 @@
         visibility: hidden;
     }
     #myGrid{
-        margin-top: -400px;
+        margin-top: -350px;
         margin-left: -50px;
         // width: 1350px;
     }
@@ -67,3 +67,5 @@
 
     
   }
+
+ 

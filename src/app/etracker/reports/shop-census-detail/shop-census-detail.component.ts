@@ -12,7 +12,7 @@
 // import { environment } from '../../../../environments/environment';
 
 import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
-import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
+import { DxPivotGridModule, DxCheckBoxModule, DxDataGridComponent } from 'devextreme-angular';
 import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 import { AuthService } from '../../../../app/core';
 
@@ -32,7 +32,7 @@ import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
 import query from 'devextreme/data/query';
 import DevExpress from 'devexpress-reporting/dx-web-document-viewer'
-
+ 
 
 @Component({
   selector: 'app-shop-census-detail',
@@ -739,32 +739,36 @@ export class ShopCensusDetailComponent implements OnInit {
   // };
 
   public Data = [];
-  public totalShop = [] ;
-  public tShop = 0;
-  onBtPrint(param , value) {
+    onBtPrint(param , value) {
 
     this.Data = []
     this.gridApi = param.api;
     
     this.gridApi.forEachNode(res => 
          {
-           if(res.key){
+          
+           if(res.key  , res.aggData){
            let Group = res.key
-           let c = {Group}
+            let dd = res.aggData;
+            console.log(dd)
+           let c = {
+             Group : Group,
+             TotalShop : " TotalShop   " + dd[0],
+             TotalActive : " TotalActive   " + dd[1],
+             TotalClosed : " TotalClosed   " + dd[2]
+            }
            this.Data.push(c)
+        
            }
-           else{
+           if(res.data){
             this.Data.push( res.data)
-            this.totalShop.push(+parseInt( res.data.shopNameCount) )
-
            }
+            
+             
         }
       );
       console.log( this.Data)
-
-      console.log(  this.totalShop)
-      // this.tShop =  +parseInt(this.totalShop)
-      // console.log(this.tShop )
+ 
 
       return  this.Data;
  
@@ -802,7 +806,10 @@ export class ShopCensusDetailComponent implements OnInit {
      newWin.close();
     
   }
-
+  
+  export(){
+    this.gridApi.exportDataAsCsv();
+  }
 
  
   

@@ -529,7 +529,7 @@
               </div>
             </div>
             <div class="m-portlet__body">
-              <ul class="nav nav-pills" role="tablist">
+              <ul class="nav nav-tabs nav-fill" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active show" data-toggle="tab" href="#m_tabs_3_1">
                     Grid
@@ -575,13 +575,19 @@
                      </div>
                      <!-- <button type="submit" (click)="onBtPrint(agGrid , myGrid ,printea, printableArea)" class="btn btn-primary m-btn m-btn--custom"> -->
                       <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="btn btn-primary m-btn m-btn--custom btnd">
-                        Print
+                        Preview
                       </button>
                  </div>
                  
                 <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
                     <div class="m-section">
                         <div class="m-section__content">
+                            <a (click)="btn()" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only">
+                                <i class="la la-print"></i>
+                              </a>
+                              <a (click)="export()" class="btn btn-accent m-btn m-btn--icon m-btn--icon-only">
+                                  <i class="la la-save"></i>
+                                </a>
                           <div class="table-responsive" id="printTable">
                              <p style="margin-top: 0;
                              text-align: center;
@@ -607,8 +613,18 @@
                               background-color: bisque;
                               color: brown;">
                                     <tr>
-                                      <th>
+                                      <th  >
                                         Group
+                                      </th>
+                                      
+                                      <th>
+                                          Active
+                                      </th>
+                                      <th>
+                                          Closed
+                                      </th>
+                                      <th>
+                                          Total Shop
                                       </th>
                                       <th>
                                           ShopName
@@ -636,6 +652,7 @@
                                         </th>
                                         <th>
                                             City
+
             
                                           </th>
                                           <th>
@@ -702,6 +719,7 @@
                                             <th>
                                                 Image
                                             </th>
+                                           
                                          
                                     </tr>
                                   </thead>
@@ -709,6 +727,9 @@
                               text-align: center;">
                                 <tr >
                                   <td>{{data.Group}}</td>
+                                  <td>{{data.TotalActive}}</td>
+                                  <td>{{data.TotalClosed}}</td>
+                                  <td>{{data.TotalShop}}</td>
                                   <td>{{data.serialNumber}}</td>
                                   <td>{{data.shopkeeperName}}</td>
                                   <td>{{data.contactNumber}}</td>

@@ -159,6 +159,7 @@ export class AppointmentscheduleComponent implements OnInit {
 
         this.tentativeAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == false && a.isCancelled == false).map((a, i) => { a.index = i + 1; return a });
         this.finalizedAppointments = this.appointmentbydate.filter(a => a.isFinalAppointment == true).map((a, i) => { a.index = i + 1; return a });
+        console.log(this.finalizedAppointments);
         this.PatientType = [{ value: "new", display: "New" }, { value: "previous", display: "Previous" }];
 
 
@@ -361,7 +362,9 @@ export class AppointmentscheduleComponent implements OnInit {
                             this.appointmentForm.value.IsCancelled = 'false';
                         }
                         console.log(value);
-                        await this.PatientServiceobj.addAppointment(value);
+
+
+                          await this.PatientServiceobj.addAppointment(value);
 
 
                         //let tr = await this.PatientServiceobj.addAppointment(value);
@@ -402,7 +405,9 @@ export class AppointmentscheduleComponent implements OnInit {
                         this.appointmentForm.value.IsCancelled = 'false';
                     }
                     console.log(value);
+
                     await this.PatientServiceobj.addAppointment(value);
+
                     // let tr = await this.PatientServiceobj.addAppointment(value);
                     // console.log(tr);
                     // value.AppointmentId = tr.appointmentID;
@@ -617,19 +622,15 @@ export class AppointmentscheduleComponent implements OnInit {
         }
     }
 
-    selectNewOrPrevious(e) {
-        console.log(e.target.value);
-        this.newOrPrevious = e.target.value;
-        console.log(this.appointmentForm.value.PatientId);
-        if (this.appointmentForm.value.PatientId) {
-            this.appointmentForm.value.PatientId = '';
-        }
-
-        console.log(this.appointmentForm.value.PatientId);
-
-
-        // console.log(this.newOrPrevious);
-    }
+    // selectNewOrPrevious(e) {
+    //     console.log(e.target.value);
+    //     this.newOrPrevious = e.target.value;
+    //     console.log(this.appointmentForm.value.PatientId);
+    //     if (this.appointmentForm.value.PatientId) {
+    //         this.appointmentForm.value.PatientId = '';
+    //     }
+    //     console.log(this.appointmentForm.value.PatientId);
+    // }
 
     hidePopup(e, popup) {
         if (e.target.id === 'popup') {

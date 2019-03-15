@@ -613,7 +613,7 @@
                               background-color: bisque;
                               color: brown;">
                                     <tr>
-                                      <th  >
+                                      <th>
                                         Group
                                       </th>
                                       
@@ -726,11 +726,10 @@
                               <tbody *ngFor="let data of Data" style="font-size: 9px;
                               text-align: center;">
                                 <tr >
-                                  <td>{{data.Group}}</td>
+                                  <td *ngIf="data?.Group">{{data.Group}}</td>
                                   <td>{{data.TotalActive}}</td>
                                   <td>{{data.TotalClosed}}</td>
                                   <td>{{data.TotalShop}}</td>
-                                  <td>{{data.serialNumber}}</td>
                                   <td>{{data.shopkeeperName}}</td>
                                   <td>{{data.contactNumber}}</td>
                                   <td>{{data.address}}</td>
@@ -754,6 +753,40 @@
                                   <td>{{data.imageLink}}</td>
                                 </tr>
                               </tbody>
+                              <tfoot style="    font-size: 10px;
+                              background-color: bisque;
+                              color: brown;">
+                                <tr>
+                                  
+                                      <td>Total Shop</td>
+                                      <td>{{TShop}}</td>
+                                      <td></td>
+                                      <td>Total Active</td>
+                                      <td>{{totalActiveshop}}</td>
+                                      <td></td>
+                                      <td>Total Active</td>
+                                      <td>{{totalCloseshop}}</td>
+                                      <td></td>
+                                      <td>Active Persent</td>
+                                      <td>{{ActivePersent}}</td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                   
+                                </tr>
+                              </tfoot>
                             </table>
                            
                           </div>

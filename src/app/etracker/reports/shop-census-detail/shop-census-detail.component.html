@@ -234,7 +234,7 @@
                 <label>
                   From Date
                 </label>
-                <input class="form-control m-input m-input--solid" #fromDate type="date">
+                <input class="form-control m-input m-input--solid" #fromDate type="date" [value]="currentdate | date : 'yyyy-MM-dd' || ''" >
               </div>
             </div>
             <div class="col-sm-3">
@@ -242,7 +242,7 @@
                 <label>
                   To Date
                 </label>
-                <input class="form-control m-input m-input--solid"  #toDate type="date">
+                <input class="form-control m-input m-input--solid"  #toDate type="date" [value]="currentdate | date : 'yyyy-MM-dd' || ''" >
               </div>
             </div>
             <div class="col-sm-3"></div>
@@ -250,6 +250,9 @@
                 <div class="form-action pull-right">
                   <button type="submit" (click)="onGridReady( fromDate.value , toDate.value , agGrid    )" class="btn btn-primary m-btn m-btn--custom margin">
                     Show
+                  </button> | 
+                  <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="btn btn-primary m-btn m-btn--custom btnd">
+                    Preview
                   </button>
                   <!-- <button type="submit" (click)="onBtPrint(printableArea)" class="btn btn-primary m-btn m-btn--custom">
                       Print
@@ -523,7 +526,7 @@
               <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                   <h3 class="m-portlet__head-text">
-                    Pills
+                    Shop Census Detail
                   </h3>
                 </div>
               </div>
@@ -574,9 +577,7 @@
                              <!-- (gridReady)="onGridReadySec($event)" -->
                      </div>
                      <!-- <button type="submit" (click)="onBtPrint(agGrid , myGrid ,printea, printableArea)" class="btn btn-primary m-btn m-btn--custom"> -->
-                      <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="btn btn-primary m-btn m-btn--custom btnd">
-                        Preview
-                      </button>
+                  
                  </div>
                  
                 <div class="tab-pane" id="m_tabs_3_3" role="tabpanel">
@@ -726,10 +727,11 @@
                               <tbody *ngFor="let data of Data" style="font-size: 9px;
                               text-align: center;">
                                 <tr >
-                                  <td *ngIf="data?.Group">{{data.Group}}</td>
+                                  <td>{{data.Group}}</td>
                                   <td>{{data.TotalActive}}</td>
                                   <td>{{data.TotalClosed}}</td>
                                   <td>{{data.TotalShop}}</td>
+                                  <td>{{data.storeName}}</td>
                                   <td>{{data.shopkeeperName}}</td>
                                   <td>{{data.contactNumber}}</td>
                                   <td>{{data.address}}</td>

@@ -64,6 +64,9 @@ export class ShopCensusDetailComponent implements OnInit {
   public autoGroupColumnDef: any;
   public rowModelType: any;
 
+  public currentdate: any;
+
+
   constructor(public storeService: StoreService, public authService: AuthService) {
     this.companyId = authService.getUserCompanyId();
     this.userId = authService.getUserId();
@@ -134,6 +137,8 @@ export class ShopCensusDetailComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.currentdate = this.formatDate(new Date());
     // console.log('asdas');
     // console.log(this.companyId);
     // console.log(this.userId);
@@ -144,6 +149,11 @@ export class ShopCensusDetailComponent implements OnInit {
     //       console.log(this.rowData);
     //     });
   }
+
+  formatDate(date: Date) {
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+}
+
   public abc: any = [];
   onGridReady(fromdate, todate ,params) {
     console.log(fromdate);

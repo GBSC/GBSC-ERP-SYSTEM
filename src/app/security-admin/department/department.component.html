@@ -12,7 +12,8 @@
                <div class="m-section__content">
                  <dx-data-grid id="gridContainer" [dataSource]="deprt" 
                  (onRowInserted)="addDepartment($event)" 
-                 (onRowUpdated)="updateDepartment($event)" 
+                 (onRowUpdating)="updatingDepartment($event)" 
+                 (onRowUpdated)="updateDepartment()" 
                  (onRowRemoved)="deletDepartment($event)">
                   <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
                   </dxo-editing>

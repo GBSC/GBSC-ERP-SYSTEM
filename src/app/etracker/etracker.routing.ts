@@ -24,7 +24,10 @@ import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-s
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
 import { NonProductiveReasonComponent } from './Setup/non-productive-reason/non-productive-reason.component';
-import { NewtestreportComponent } from './reports/newtestreport/newtestreport.component';
+import { TestReportComponent } from "./reports/test-report/test-report.component";
+import { OrderSummaryDetailComponent } from "./reports/order-summary-detail/order-summary-detail.component";
+import { ShopEditComponent } from './shop-edit/shop-edit.component';
+
 
 const routes: Routes = [
     {
@@ -34,6 +37,7 @@ const routes: Routes = [
             { path: 'locator', component: LocatorComponent },
             { path: 'users', component: SalesusersComponent },
             { path: 'stores', component: StoresComponent },
+            { path: 'shop-edit/:id', component: ShopEditComponent },
             { path: 'store-profile/:id', component: StoresProfileComponent },
             { path: 'visit-summary/:id', component: VisitSummaryComponent },
             { path: 'area', component: AreaComponent },
@@ -55,9 +59,8 @@ const routes: Routes = [
                     { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
                     { path: 'visit-detail', component: VisitDetailComponent },
                     { path: 'visit-summary', component: VisitSummaryReportComponent },
-                    { path: 'test-report', component: NewtestreportComponent },
-
-
+                    { path: 'testrepo', component: TestReportComponent},
+                    { path: 'ordersummary', component: OrderSummaryDetailComponent}
                 ]
             }
         ]

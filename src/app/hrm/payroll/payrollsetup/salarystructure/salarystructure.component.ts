@@ -56,33 +56,24 @@ export class SalarystructureComponent implements OnInit {
         this.groups = await this.setupservice.getAllGroups();
 
         this.activatedRoute.params.subscribe(params => {
-            this.id = params['id'];
-            console.log(this.id);
-
+            this.id = params['id']; 
         });
         if (this.isUpdate() === true) {
             this.payrollsetupservice.getSalaryStructure(this.id).subscribe(resp => {
-                console.log(this.id);
 
                 this.salaryStructure = resp;
                 let a = this.salaryStructure.salaryStructureDetails;
                 this.Detail = a.filter(b => {
                     delete b.salaryStructureId;
-                    delete b.salaryStructureDetailId;
-                    console.log(b);
-                    
+                    delete b.salaryStructureDetailId; 
                     return b;
                 }); 
                 this.patchValues(this.salaryStructure);
+                
             });
         }
     }
-
-    displayExpree(data) {
-        console.log(data);
-        
-        // return data.firstname + ' , ' + data.lastname;
-    }
+ 
 
     async addSalaryStructureDetail(value) {
         let data = value.data;

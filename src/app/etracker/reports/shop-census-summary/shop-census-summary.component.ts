@@ -10,6 +10,17 @@ import { City } from '../../../core/Models/HRM/city';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
+// import { Component, OnInit ,ViewChild  } from '@angular/core';
+  import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
+// import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
+// import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
+// import { AuthService } from '../../../../app/core';
+
+  
+//  import { HttpClient } from '@angular/common/http';
+//    import { AgGridNg2 } from 'ag-grid-angular';
+//      import "ag-grid-enterprise";
+
 
 @Component({
     selector: 'app-shop-census-summary',
@@ -17,6 +28,26 @@ import { environment } from '../../../../environments/environment';
     styleUrls: ['./shop-census-summary.component.scss']
 })
 export class ShopCensusSummaryComponent implements OnInit {
+   // @ViewChild('agGrid') agGrid: AgGridNg2;
+
+  // public showHideFilter: boolean = false;
+
+  // pivotGridDataSource: any;
+  // showDataFields: boolean = true;
+  // showRowFields: boolean = true;
+  // showColumnFields: boolean = true;
+  // showFilterFields: boolean = true;
+
+    companyId : number;
+    userId : number ;
+  // public rowData : any;
+  // public columnDefs  : any;
+  // public defaultColDef : any;
+  // public sideBar : any;
+
+  // public autoGroupColumnDef : any;
+  // public rowModelType : any;
+  // public gridApi: any;
 
     public showHideFilter: boolean = false;
     public DisableRegion: boolean = true;
@@ -35,6 +66,7 @@ export class ShopCensusSummaryComponent implements OnInit {
     public Territories: any;
     public Sections: any[] = [];
     public Subsections: any[] = [];
+    public Store : any;
     public DSFs: any;
     public Classifications: any[] = ['500 & Above', '250 to 499', '100 to 249', 'Less then 100'];
     public Categories: any[] = ['LMT', 'V/S', 'Retail']
@@ -63,13 +95,85 @@ export class ShopCensusSummaryComponent implements OnInit {
 
     @ViewChild("control")
     control: ElementRef
+  //   constructor(public storeService: StoreService, public authService : AuthService) {
+  //       this.companyId = authService.getUserCompanyId();
+  //         this.userId = authService.getUserId();
+  //         console.log(this.userId);
+     
+  //       this.columnDefs  = [
+  //         {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true   ,hide :true },
+  //       //   {headerName: '252', field: 'x' ,  filter: false, enableValue: true  },
+  //         {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true   ,hide :true},
+  //         {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true ,hide :true},
+  //         {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true   ,hide :true},
+  //         {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true  ,hide :true},
+  //         {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true  ,hide :true},
 
-    constructor(public renderer: Renderer2, public ngZone: NgZone, public Auth: AuthService, public InventoryService: InventorysystemService, public eTrackerUserService: eTrackerUserService) { }
+  //         {  headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+  //         {  headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true ,hide :true},
+  //         {  headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   ,hide :true },
+  //         {  headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true ,hide :true},
+  //         {  headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+  //         {  headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true ,hide :true},
+  //         {  headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true  ,hide :true},
+  //         {  headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true ,hide :true },
+  //         {  headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+  //         {  headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+  //         {  headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+  //         {  headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
+  //         {  headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
+  //         {  headerName: 'Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
+  //         {  headerName: 'Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
+  //         {  headerName: 'Close', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
+  //         {  headerName: 'Total Persent', valueGetter: ' (data.activeStore *100 ) / (data.activeStore + data.close)' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
+
+  //            ]; 
+
+  //           this.defaultColDef = {
+  //             width: 100,
+  //             allowedAggFuncs: ["sum", "min", "max", "random" , "count" ,  "avg" , "round"],
+  //             sortable: true,
+  //             resizable: true,
+  //             filter: true
+  //           };    
+  //           this.autoGroupColumnDef = { width: 150 };
+  //       }
+  //       public x : any = [];
+  //       ngOnInit() {
+
+ 
+
+  //       }
+
+  //       public abc : any = [];
+  //   onGridReady(fromdate , todate){
+  //     console.log('asdas');
+  //     console.log(this.companyId);
+  //     console.log(this.userId);
+  //     let usrId = 350;
+  //     console.log(usrId)
+
+  //         this.storeService.shopCensusSummary(this.companyId,this.userId ,  '0001-01-01', '2020-01-01').subscribe(res => {
+  //            this.rowData = res;
+  //           console.log(this.rowData);
+  //         });
+  //   }
+
+  //   toggleFilter() {
+  //     this.showHideFilter = !this.showHideFilter;
+  // }
+
+  //   onColumnRowGroupChanged(value){
+  //       console.log(value)
+  //   }
+
+      constructor( public StoreServiceobj : StoreService , public renderer: Renderer2, public ngZone: NgZone, public Auth: AuthService, public InventoryService: InventorysystemService, public eTrackerUserService: eTrackerUserService) { }
 
     ngOnInit() {
 
         this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
             this.Regions = res;
+            console.log(this.Regions)
         });
 
         this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res: City[]) => {
@@ -99,6 +203,11 @@ export class ShopCensusSummaryComponent implements OnInit {
         this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
             this.DSFs = res;
         });
+
+        this.StoreServiceobj.getAllStoresByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
+          this.Store= res;
+          console.log(this.Store)
+      });
 
         this.setDropboxValues();
     }
@@ -251,4 +360,37 @@ export class ShopCensusSummaryComponent implements OnInit {
     toggleFilter() {
         this.showHideFilter = !this.showHideFilter;
     }
+    // onBtPrint(param) {
+    //   console.log(param);
+    //   this.gridApi = param.api;
+    //   console.log(this.gridApi)
+    //   param.api.expandAll();
+    //   var gridApi = this.gridApi;
+      
+    //   this.setPrinterFriendly(gridApi)
+    //   print();
+    //     this.setNormal(gridApi);
+      
+    // }
+    
+    // setPrinterFriendly(api) {
+    //    var eGridDiv = document.getElementById("myGrid");
+    //   eGridDiv.style.width = "1050px";
+    //   eGridDiv.style.height = "100%";
+    //   api.setDomLayout("print");
+    //   var eGridDiv = document.getElementById("#myGrid")
+    //   eGridDiv.style.width = "";  
+    //   eGridDiv.style.height = "";
+    // }
+  
+    
+   
+  
+    // setNormal(api) {
+    //   var eGridDiv = document.getElementById("#myGrid")
+    //    eGridDiv.style.width = "1300px";
+    //   eGridDiv.style.height = "600px";
+    //   api.setDomLayout(null);
+    //   api.collapseAll();
+    // }
 }

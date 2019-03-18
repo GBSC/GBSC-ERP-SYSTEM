@@ -10,7 +10,12 @@
                   <div class="m-portlet__body">
                       <div class="m-section">
                         <div class="m-section__content">
-                          <dx-data-grid id="gridContainer" [dataSource]="roster" keyExpr="rosterId" (onRowInserted)="addroster($event)" (onRowUpdated)="updateroster($event)"
+                          <dx-data-grid id="gridContainer" 
+                          [dataSource]="roster" 
+                          keyExpr="rosterId"
+                           (onRowInserted)="addroster($event)" 
+                           (onRowUpdated)="updateroster()"
+                           (onRowUpdating)="updatingroster($event)"
                             (onRowRemoved)="deleteroster($event)">
                             <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                             </dxo-editing>

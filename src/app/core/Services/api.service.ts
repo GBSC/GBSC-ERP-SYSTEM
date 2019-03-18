@@ -15,6 +15,7 @@ export class ApiService {
         // public jwtService: JwtService
     ) {
         this.user = JSON.parse(localStorage.getItem('user'));
+       
     }
 
     public formatErrors(error: any) {
@@ -52,6 +53,7 @@ export class ApiService {
 
 
     post(path: string, body: any = {}): Observable<any> {
+        console.log(this.user)
         if(this.user){
             body.companyId = this.user.assignedId.companyId;
             body.departmentId = this.user.assignedId.departmentId;

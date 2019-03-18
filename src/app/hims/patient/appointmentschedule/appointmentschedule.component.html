@@ -48,7 +48,7 @@
                 <div   class="form-group col-lg-3">
                   <label for="exampleSelect1"> Consultant </label>
                   <select #cid class="form-control m-input ng-pristine ng-invalid ng-touched" placeholder="All" formControlName="ConsultantId" required>
-                    <!-- <option disabled selected (click)="log($event)">All</option> -->
+                   <option disabled selected (click)="log($event)">All</option>  
                     <option *ngFor="let consultant of PatientServiceobj?.consultant" [value]="consultant.consultantId">{{consultant.name}}</option>
                   </select>
                 </div>

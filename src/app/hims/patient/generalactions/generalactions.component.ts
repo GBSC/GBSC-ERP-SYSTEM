@@ -1,5 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-import { PatientService } from '../../../core';
+import { PatientService, AuthService } from '../../../core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Patient } from '../../../core/Models/HIMS/patient';
@@ -32,7 +32,7 @@ export class GeneralactionsComponent implements OnInit {
     public visitStatus = 'start';
     public visitstatusend = 'end';
 
-    constructor(public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
+    constructor(public authService : AuthService, public toastr: ToastrService, public PatientServiceobj: PatientService, public router: Router, public route: ActivatedRoute) { }
 
     async  ngOnInit() {
 
@@ -100,14 +100,21 @@ export class GeneralactionsComponent implements OnInit {
                     this.displayToastError("Please Select Consultant")
                 }
                 else {
-                    await this.PatientServiceobj.AddVisits(this.id);
-                    let x = this.currentconsultant.find(t => t.consultantId == value)
-                    x.visitStatus = 'start';
-                    this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
-                    //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
-                    this.router.navigate(['/hims/patient/visits/' + this.id]);
-                    console.log(x);
-                    console.log(value)
+
+                    console.log(this.id)
+                    console.log( this.authService.getUserCompanyId());
+                    
+                      await this.PatientServiceobj.AddVisits(this.id);
+
+                      let x = this.currentconsultant.find(t => t.consultantId == value)
+                      x.visitStatus = 'start';
+                      console.log(x)
+                      this.appointmentId = await this.PatientServiceobj.updateAppointment(x);
+
+                            //    //  //  //  sessionStorage.setItem('appointmentId', JSON.stringify(this.appointmentId));
+                     this.router.navigate(['/hims/patient/visits/' + this.id]);
+                     console.log(x);
+                     console.log(value)
                 }
 
             }

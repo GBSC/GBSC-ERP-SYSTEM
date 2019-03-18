@@ -314,8 +314,9 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultant/' + id);
     }
 
-    async addConsultant(consultant: Consultant) {
-        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', consultant).toPromise();
+    async  addConsultant(value) {
+        console.log(value)
+          return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', value).toPromise();
     }
 
     async updateConsultant(consultant: Consultant) {
@@ -369,8 +370,10 @@ export class PatientService {
     }
 
     GetActiveVisits()  :Observable <any> {
+
+        console.log( this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits'))
+        console.log( this.API_URL + '/Visits/GetActiveVisits')
         return  this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits');
-    
     }
 
     async getActiveVisitsTesting() {

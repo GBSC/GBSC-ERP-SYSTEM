@@ -112,7 +112,7 @@ export class RegistrationComponent implements OnInit {
         })
     }
 
-    async ngOnInit() {
+      ngOnInit() {
 
         //  console.log(this.router.url);
 
@@ -120,7 +120,7 @@ export class RegistrationComponent implements OnInit {
             this.id = +params['id'];
             this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
-                //   console.log(this.Patient)
+                    console.log(Patient)
                 if (Patient) {
                     this.patientForm.patchValue({
                         RegCity: Patient.regCity,
@@ -151,6 +151,7 @@ export class RegistrationComponent implements OnInit {
 
                     });
                     if (Patient.partner) {
+                        console.log(Patient.partner)
                         this.partnerForm.patchValue({
                             FirstName: Patient.partner.firstName,
                             MiddleName: Patient.partner.middleName,
@@ -174,12 +175,12 @@ export class RegistrationComponent implements OnInit {
             });
         });
 
-        await this.PatientServiceobj.getPatient();
-        let x = this.PatientServiceobj.patients;
+        // await this.PatientServiceobj.getPatient();
+        // let x = this.PatientServiceobj.patients;
 
 
-        await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
-        let y = this.PatientServiceobj.patientData;
+        // await this.PatientServiceobj.getpatientForupdating(this.partnerDetails);
+        // let y = this.PatientServiceobj.patientData;
 
         this.PatientServiceobj.getPatientDocumentByPatientId(this.id).subscribe((document) => {
             this.documents = document;

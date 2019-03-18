@@ -593,6 +593,7 @@ export class ShopCensusDetailComponent implements OnInit {
       close: 0
       }
       ]
+      this.gridApi.expandAll();
 
   }
 

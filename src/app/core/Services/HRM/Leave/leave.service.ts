@@ -183,13 +183,17 @@ export class LeaveService {
         employees.forEach(u => {
 
             empleavepolicy.forEach(emplp => {
-                if (u.userId == emplp.userId) {
+                let et = LeaveType.find(lt =>lt.leaveTypeId === emplp.leaveTypeId)
+                if (u.userId == emplp.userId) { 
 
                     fromEmp.push({
                         userId: emplp.userId,
+                        gender: u.gender,
                         fullName: u.fullName,
                         leaveTypeId: emplp.leaveTypeId,
-                        title: LeaveType.find(lt => lt.leaveTypeId === emplp.leaveTypeId).title,
+                        isMale: emplp.isMale,
+                        isFemale: emplp.isFemale,
+                        title: et? et.title:'',
                         entitledQuantity: emplp.entitledQuantity,
                         employeeLeavePolicy: true
                     });
@@ -197,12 +201,16 @@ export class LeaveService {
             })
 
             LeavePolicies.forEach(lp => {
+                let t = LeaveType.find(lt => lt.leaveTypeId === lp.leaveTypeId);
                 if (u.groupId === lp.groupId) {
                     fromGroup.push({
                         userId: u.userId,
                         fullName: u.fullName,
+                        gender: u.gender,
                         leaveTypeId: lp.leaveTypeId,
-                        title: LeaveType.find(lt => lt.leaveTypeId === lp.leaveTypeId).title,
+                        isMale: lp.isMale,
+                        isFemale: lp.isFemale,
+                        title: t? t.title:'',
                         entitledQuantity: lp.entitledQuantity,
                         employeeLeavePolicy: false
                     });
@@ -214,9 +222,14 @@ export class LeaveService {
         });
         let abc = []
         fromGroup = fromGroup.filter(g => {
+            console.log("G", g);
+            
             let y = fromEmp.find((em: any) => {
+                console.log("emfrom", em);
+                
                 if (g.leaveTypeId == em.leaveTypeId && g.userId == em.userId) {
                     console.log(g);
+                    // if(em.gender === 'Male')
                     return em;
                 }
             });

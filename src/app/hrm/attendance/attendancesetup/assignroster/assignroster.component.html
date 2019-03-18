@@ -30,8 +30,8 @@
           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20, 30]" [showInfo]="true">
           </dxo-pager>
           <dxi-column dataField="year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-          <dxi-column dataField="fromDate" dataType="date" format="shortDate"></dxi-column>
-          <dxi-column dataField="toDate" dataType="date" format="shortDate"></dxi-column>
+          <dxi-column dataField="fromDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
+          <dxi-column dataField="toDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
           <dxi-column dataType="boolean" dataField="isDefaultRoster" caption="Default Roster"></dxi-column>
           <dxi-column dataField="rosterId" caption="Roster">
             <dxo-lookup [dataSource]="roster" displayExpr="name" valueExpr="rosterId">
@@ -77,7 +77,7 @@
                 <dxo-paging [pageSize]="5"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="shortDate"></dxi-column>
+              <dxi-column dataField="dayoff" caption="Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
               <dxi-column dataField="remarks" caption="Remarks"></dxi-column>
             </dx-data-grid>
           </div>

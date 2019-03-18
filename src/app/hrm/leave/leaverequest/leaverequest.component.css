@@ -1,3 +1,7 @@
 .label_visiblity{
     visibility: hidden;
 }
+.required_label {
+    content:"*";
+    color:red;
+  }

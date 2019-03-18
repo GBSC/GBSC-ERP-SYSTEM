@@ -34,7 +34,7 @@
                               <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                               </dxo-lookup>
                               </dxi-column>
-                <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="attendanceDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>

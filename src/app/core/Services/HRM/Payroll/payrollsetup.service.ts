@@ -34,38 +34,34 @@ export class PayrollSetupService {
         return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowance/${allowanceId}`).toPromise();
     }
 
-    async getAllowanceArrears() {
+    getAllowanceArrears() : Observable <any> {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAllowanceArrears`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetAllowanceArrears`);
     }
 
 
-    async addAllowanceArrear(data) {
+    addAllowanceArrear(data) : Observable <any> {
 
-        return await this.ApiService.post(`${this.baseUrl}/AddAllowanceArrear`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddAllowanceArrear`, data);
     }
 
-    async updateAllowanceArrear(data) {
-
-        let allowancearrear = await this.getdataToUpdate(data.key, 'GetAllowanceArrear');
-        allowancearrear = { ...allowancearrear, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateAllowanceArrear`, allowancearrear).toPromise();
+    updateAllowanceArrear(data) : Observable <any> { 
+        return this.ApiService.put(`${this.baseUrl}/UpdateAllowanceArrear`, data);
     }
 
-    async deleteAllowanceArrear(allowancearrearId) {
+     deleteAllowanceArrear(allowancearrearId) : Observable <any> {
 
-        return await this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceArrear/${allowancearrearId}`).toPromise();
+        return this.ApiService.delete(`${this.baseUrl}/DeleteAllowanceArrear/${allowancearrearId}`);
     }
 
-    async getAllowanceDeductions() {
+     getAllowanceDeductions() : Observable <any> {
 
-        return await this.ApiService.get(`${this.baseUrl}/GetAllowancedeductions`).toPromise();
+        return this.ApiService.get(`${this.baseUrl}/GetAllowancedeductions`);
     }
 
+     addAllowanceDeduction(data) : Observable<any> {
 
-    async addAllowanceDeduction(data) {
-
-        return await this.ApiService.post(`${this.baseUrl}/AddAllowanceDeduction`, data).toPromise();
+        return this.ApiService.post(`${this.baseUrl}/AddAllowanceDeduction`, data);
     }
 
     async updateAllowanceDeduction(data) {

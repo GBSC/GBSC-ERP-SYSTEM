@@ -56,7 +56,7 @@ export class BasicinformationComponent implements OnInit {
             BranchId: [''],
             CityId: [''],
             ReligionId: [''],
-            GroupId: [''],
+            GroupId: ['', Validators.required],
             DepartmentId: [''],
             Address: [''],
             PermanentAddress: [''],
@@ -67,6 +67,11 @@ export class BasicinformationComponent implements OnInit {
 
     update(value) {
         console.log(value); 
+        this.submitted = true;
+        if (this.EmpbasicForm.invalid) { 
+            this.toster.error("Fill All Required Fields");  
+        }
+        else{ 
         value.UserId = this.id; 
         value.CompanyId = this.authService.getUserCompanyId(); 
         this.employeeService.updateEmployeeBasicInfo(value).subscribe(resp => {
@@ -74,7 +79,7 @@ export class BasicinformationComponent implements OnInit {
             this.showSuccess("Basic Information Updated");
         }); 
         console.log(value); 
-        
+        }
     }
 
     async ngOnInit() {
@@ -82,6 +87,8 @@ export class BasicinformationComponent implements OnInit {
         this.religion = await this.SetupServiceobj.getAllReligions();
 
         this.groups = await this.SetupServiceobj.getAllGroups();
+        console.log(this.groups);
+        
 
         this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
             this.cities = res;
@@ -153,10 +160,12 @@ export class BasicinformationComponent implements OnInit {
         this.submitted = true;
         if (this.EmpbasicForm.invalid) { 
             this.toster.error("Fill All Required Fields");  
-        }
+        } 
+        else{
         value.CompanyId = this.authService.getUserCompanyId(); 
         this.employeeService.addEmployee(value).subscribe(resp => { 
             this.router.navigate(['hrm/employee/updateemployee/' + resp.userID]);
         })
-    }
+    } 
+}
 }

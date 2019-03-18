@@ -43,7 +43,7 @@
                             </dxo-lookup>
                         </dxi-column>
                         <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                        <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                        <dxi-column dataField="requestDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                         <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
                         <div *dxTemplate="let d of 'chartCellTemplate'">
                             <div class="chart-cell">
@@ -63,11 +63,10 @@
                                 </dxi-column>
                                 <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
                                 <dxi-column dataField="description" caption="Description"></dxi-column>
-                                <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                                <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                                <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
                                 <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
-                                <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
-                                <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>
+                                <dxi-column dataField="totalLeaveDetailValue"> </dxi-column> 
                             </dx-data-grid>
                         </div>
                     </dx-data-grid>
@@ -91,7 +90,7 @@
                                 </dxo-lookup>
                             </dxi-column>
                             <dxi-column dataField="isApproved" dataType="boolean"></dxi-column>
-                            <dxi-column dataField="requestDate" dataType="date" format="shortdate" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
+                            <dxi-column dataField="requestDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                             <div *dxTemplate="let leaveRequest of 'detail'">
                                 <dx-data-grid [dataSource]="leaveRequest.data.leaveRequestDetails" [showBorders]="true">
 
@@ -105,8 +104,8 @@
                                     </dxi-column>
                                     <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
                                     <dxi-column dataField="description" caption="Description"></dxi-column>
-                                    <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                                    <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
+                                    <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                                    <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
                                     <dxi-column dataField="value" caption="Avail Leave"></dxi-column>
                                     <dxi-column dataField="totalLeaveDetailValue" caption="Remaining"> </dxi-column>
                                     <dxi-column dataField="totalLeave" caption="Total"> </dxi-column>

@@ -1,12 +1,11 @@
 export class LeaveRequestDetail {
 
-    leaveRequestId: number;
-    value: string;
+    leaveRequestId: number; 
     dateFrom: Date;
-    dateTill: Date;
-    firstSecondHalf: string;
-    totalLeaveDetailValue: string;
-    isShortLeave: boolean;
+    dateTill: Date; 
+    totalLeaveDetailValue: number;
+    totalLeave: number; 
+    value: number; 
     description: string;
 
 }

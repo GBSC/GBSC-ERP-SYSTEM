@@ -367,11 +367,13 @@
             <dxi-column dataField="userId" caption="Employee">
               <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
               </dxo-lookup>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-column>
 
             <dxi-column dataField="leaveYearId" caption="Leave Year">
               <dxo-lookup [dataSource]="leaveyear" displayExpr="name" valueExpr="leaveYearId">
               </dxo-lookup>
+              <dxi-validation-rule type="required"></dxi-validation-rule>
             </dxi-column>
             <dxi-column dataField="leaveTypeId" caption="Leave">
               <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
@@ -391,7 +393,9 @@
             <dxi-column dataType="date" dataField="periodicFrom" format="shortdate" [visible]="false"></dxi-column>
             <dxi-column dataType="date" dataField="periodicTill" format="shortdate" [visible]="false"></dxi-column>
 
-            <dxi-column dataField="entitledQuantity" [visible]="false"></dxi-column>
+            <dxi-column dataField="entitledQuantity" [visible]="false">
+              <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
             <dxi-column dataField="maximumAllowedBalance" [visible]="false"></dxi-column>
             <dxi-column dataField="maximumAtATime" [visible]="false"></dxi-column>
             <dxi-column dataField="minimumAtATime" [visible]="false"></dxi-column>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService, LeaveSetupService, SetupService } from '../../../../core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./leavepolicy.component.css']
 })
 export class LeavepolicyComponent implements OnInit {
-    public leavePolicyForm: FormGroup;
+    public leavePolicyForm: any;
     public groups: any;
     public leavepolicy: any;
     public leveDayTypes: any;
@@ -20,57 +20,60 @@ export class LeavepolicyComponent implements OnInit {
     public updatingleavePolicy: any;
     public LeavePolicies: any;
     public isPopupVisible: boolean = true;
+    submitted = false; 
 
-    constructor(public fb: FormBuilder, public toster: ToastrService, public leavesetupservice: LeaveSetupService,
-        public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) { }
+    constructor(public toastr: ToastrService, public fb: FormBuilder, public toster: ToastrService, public leavesetupservice: LeaveSetupService,
+        public empservice: EmployeeService, public hrsetupservice: SetupService, public router: Router) {
+            this.leavePolicyForm = this.fb.group({
+                LeaveYearId: ['', Validators.required],
+                GroupId: ['', Validators.required],
+                LeaveTypeId: ['', Validators.required],
+                LeaveDayTypeId: [''],
+                LeaveEligibilityId: [''],
+                IsProcessed: [''],
+                EntitledQuantity: ['', Validators.required],
+                MaximumAllowedBalance: [''],
+                MaximumAtATime: [''],
+                MinimumAtATime: [''],
+                DayContinuationRestriction: [''],
+                MinimumIntimationPeriod: [''],
+                IsEncashable: [''],
+                EncashmentDays: [''],
+                EncashmentApplicationLimit: [''],
+                IsMale: [''],
+                IsFemale: [''],
+                IsMarried: [''],
+                IsBalanceBroughtForward: [''],
+                BalanceBroughtForwardQuantity: [''],
+                BalanceBroughtForwardValidity: [''],
+                IsFileAttachmentRequired: [''],
+                FileAttachmentDaysLimit: [''],
+                IsShortLeaveAllowed: [''],
+                ShortLeaveLimit: [''],
+                IsAllowedOnlyOnceInService: [''],
+                IsJobPeriodBased: [''],
+                JobPeriodTime: [''],
+                PaidDaysQuantity: [''],
+                HalfPaidDaysQuantity: [''],
+                UnPaidDaysQuantity: [''],
+                IsProrated: [''],
+                IsMonthBased: [''],
+                AllowOnZeroBalance: [''],
+                IsActive: [''],
+                ApplicationLimit: [''],
+                PrintOnPaySlip: ['']
+    
+            });
+         }
 
     async ngOnInit() {
-        this.leavePolicyForm = this.fb.group({
-            LeaveYearId: [''],
-            GroupId: [''],
-            LeaveTypeId: [''],
-            LeaveDayTypeId: [''],
-            LeaveEligibilityId: [''],
-            IsProcessed: [''],
-            EntitledQuantity: [''],
-            MaximumAllowedBalance: [''],
-            MaximumAtATime: [''],
-            MinimumAtATime: [''],
-            DayContinuationRestriction: [''],
-            MinimumIntimationPeriod: [''],
-            IsEncashable: [''],
-            EncashmentDays: [''],
-            EncashmentApplicationLimit: [''],
-            IsMale: [''],
-            IsFemale: [''],
-            IsMarried: [''],
-            IsBalanceBroughtForward: [''],
-            BalanceBroughtForwardQuantity: [''],
-            BalanceBroughtForwardValidity: [''],
-            IsFileAttachmentRequired: [''],
-            FileAttachmentDaysLimit: [''],
-            IsShortLeaveAllowed: [''],
-            ShortLeaveLimit: [''],
-            IsAllowedOnlyOnceInService: [''],
-            IsJobPeriodBased: [''],
-            JobPeriodTime: [''],
-            PaidDaysQuantity: [''],
-            HalfPaidDaysQuantity: [''],
-            UnPaidDaysQuantity: [''],
-            IsProrated: [''],
-            IsMonthBased: [''],
-            AllowOnZeroBalance: [''],
-            IsActive: [''],
-            ApplicationLimit: [''],
-            PrintOnPaySlip: ['']
-
-        });
-
-
+ 
         this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();
         
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
-
+        
+        this.leaveYears = await this.leavesetupservice.getLeaveYears();
+            
         this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();
 
         this.leaveEligibility = await this.leavesetupservice.getLeaveEligibilities();
@@ -79,22 +82,26 @@ export class LeavepolicyComponent implements OnInit {
 
     }
 
-    async addleavepolicy(value) {
-        console.log(value);
-        
-        console.log(value.data.maximumAllowedBalance);
-        
-        if(value.data.maximumAllowedBalance <= value.data.entitledQuantity && value.data.maximumAtATime <= value.data.entitledQuantity 
-            && value.data.minimumAtATime <= value.data.entitledQuantity){  
-            await this.leavesetupservice.addLeavePolicy(value.data);
-            this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();    
-            this.toster.success("Successfully! Leave Policy Add")
+    async addleavepolicy(value) { 
+        this.submitted = true;
+        if (this.leavePolicyForm.invalid) {
+            this.toastr.error("Fill All Required Fields");
         }
         else{
-            this.toster.info("error!");
-        } 
-  }
+        if(value.MaximumAllowedBalance <= value.EntitledQuantity && value.MaximumAtATime <= value.EntitledQuantity 
+            && value.MinimumAtATime <= value.EntitledQuantity){  
+            await this.leavesetupservice.addLeavePolicy(value);
+            this.LeavePolicies = await this.leavesetupservice.getLeavePolicies();    
+            this.toster.success("Successfully! Leave Policy Add")
+            } 
+            else{
 
+                this.toster.info("Something went wrong!");
+            } 
+            
+        }
+  }
+    
     updatingleavepolicy(value) {
         this.updatingleavePolicy = { ...value.oldData, ...value.newData };
 
@@ -107,4 +114,7 @@ export class LeavepolicyComponent implements OnInit {
 
         await this.leavesetupservice.deleteLeavPolicy(value.key);
     }
+
+    get lp() { return this.leavePolicyForm.controls; }
+
 }

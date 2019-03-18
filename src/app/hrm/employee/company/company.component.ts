@@ -26,6 +26,7 @@ export class EmployeeCompanyComponent implements OnInit {
     public branches: any;
     public departments: any;
     public filterdemplyoee: any;
+    submitted = false;
 
     @Input('employeeId') id: number;
 
@@ -125,10 +126,10 @@ console.log(value);
             value.UserCompanyId = this.EmployeeCompany.userCompanyId;
             console.log(value.ConfirmationDueDate);
             
-            // if(
-            //     value.ConfirmationDueDate >= value.AppointmentDate 
-            // && value.ConfirmationDate >= value.ConfirmationDueDate 
-            // && value.ConfirmationDate >= value.AppointmentDate
+            if(
+                value.ConfirmationDueDate >= value.AppointmentDate 
+            && value.ConfirmationDate >= value.ConfirmationDueDate 
+            && value.ConfirmationDate >= value.AppointmentDate
             // && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate)),
 
             // console.log("equal cond", this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))),
@@ -138,19 +139,19 @@ console.log(value);
             // console.log(value.LeavingDate),
             // console.log(value.ResignDate)
             // //     &&value.ResignDate >= value.AppointmentDate && value.ResignDate >= value.LeavingDate
-            // )
-            // {
+             )
+              {
                 this.employeeService.updateUserCompany(value).subscribe(c => { 
                 this.showSuccess("Company Information Updated");
                 console.log(c); 
                 console.log(value);
                 
             })
-        //     alert("Update")
-        // }
-        // else{
-        //     alert("wrong")
-        // }
+            alert("Update")
+        }
+        else{
+            alert("wrong")
+        }
         }
         else {
             value.CompanyId = this.authService.getUserCompanyId(); 

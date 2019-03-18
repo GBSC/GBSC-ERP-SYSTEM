@@ -34,7 +34,9 @@ export class MasterPayrollDetailComponent implements OnInit {
 
         this.employees = await this.employeeService.GetAllEmployees();
 
-        this.allowance = await this.payrollSetupService.getAllowanceDeductions();
+        this.payrollSetupService.getAllowanceDeductions().subscribe(rsp => {
+            this.allowance = rsp;
+        });
         
         this.salaryCalculationtype = await this.payrollSetupService.getSalaryCalculationTypes();
 

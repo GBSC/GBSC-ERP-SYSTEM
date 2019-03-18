@@ -57,11 +57,11 @@
     <div class="col-md-4">
       <div class="form-group m-form__group">
         <label class="control-label">CNIC<em class="required_label">*</em> </label>
-        <input class="form-control m-input m-input--solid" formControlName="Cnic" [value]="Employee?.cnic" placeholder="4240154865526"
+        <input class="form-control m-input m-input--solid" formControlName="Cnic" maxlength="13" [value]="Employee?.cnic" placeholder="4240154865526"
           type="text" [ngClass]="{ 'is-invalid': submitted && f.Cnic.errors }">
           <div *ngIf="submitted && f.Cnic.errors" class="invalid-feedback">
             <div *ngIf="f.Cnic.errors.required">CNIC is required</div>
-            <div *ngIf="f.Cnic.errors.minlength">CNIC must be at least 13 characters</div>
+            <div *ngIf="f.Cnic.errors.minlength">CNIC must be at least 13 characters</div> 
         </div>
       </div>
     </div>
@@ -150,10 +150,13 @@
         </div>
     <div class="col-md-3">
       <div class="form-group m-form__group">
-        <label class="control-label">Group</label>
-        <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''">
+        <label class="control-label">Group  <em class="required_label">*</em> </label>
+        <select class="form-control m-input m-input--solid" formControlName="GroupId" [value]="Employee?.name || ''" [ngClass]="{ 'is-invalid': submitted && f.GroupId.errors }">
           <option *ngFor="let grp of groups" [value]="grp?.groupId">{{grp.name}}</option>
         </select>
+        <div *ngIf="submitted && f.GroupId.errors" class="invalid-feedback">
+            <div *ngIf="f.GroupId.errors.required">Employee Group is required</div>  
+        </div>
       </div>
     </div>
     <div class="col-md-3">
@@ -162,7 +165,7 @@
         <select class="form-control m-input m-input--solid" formControlName="ReligionId" name="religion" [value]="Employee?.name || ''"
           id="Religion">
           <option *ngFor="let relg of religion" [value]="relg?.religionId">{{relg.name}}</option>
-        </select>
+        </select> 
       </div>
     </div>
     
@@ -174,11 +177,11 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Contact-Number">Contact Number <em class="required_label">*</em></label>
-        <input class="form-control m-input m-input--solid" formControlName="Phone" [value]="Employee?.phone || ''"
+        <input class="form-control m-input m-input--solid" maxlength="11" formControlName="Phone" [value]="Employee?.phone || ''"
           id="ContactNumber" name="ContactNumber" placeholder="Contact Number" aria-describedby="Contact_Number" type="text" [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }">
           <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
-            <div *ngIf="f.Phone.errors.required">Contact Number is required</div>
-            <div *ngIf="f.Phone.errors.minlength">Contact must be at least 11 characters</div> 
+            <div *ngIf="f.Phone.errors.required">Mobile Number is required</div>
+            <div *ngIf="f.Phone.errors.minlength">Mobile must be at least 11 characters</div>  
         </div>
       </div>
     </div>
@@ -186,9 +189,12 @@
     <div class="col-md-6">
       <div class="form-group m-form__group">
         <label for="Contact-Number">Home</label>
-        <input class="form-control m-input m-input--solid" formControlName="HomePhone" id="ContactNumber" [value]="Employee?.homePhone || ''"
-          name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text">
-      </div>
+        <input class="form-control m-input m-input--solid" formControlName="HomePhone" maxlength="12" [value]="Employee?.homePhone || ''" name="ContactNumber" placeholder="Home Contact" aria-describedby="Contact_Number" type="text" [ngClass]="{ 'is-invalid': submitted && f.HomePhone.errors }">
+          <div *ngIf="submitted && f.HomePhone.errors" class="invalid-feedback">
+              <div *ngIf="f.HomePhone.errors.required">Contact Number is required</div>
+              <div *ngIf="f.HomePhone.errors.minlength">Contact must be at least 12 characters</div>  
+          </div>
+        </div>
     </div>
   </div>
   <div class="m--space-07"></div>

@@ -49,7 +49,7 @@ export class ViewleaverequestComponent implements OnInit {
                 
         this.requestedLeaves = this.leaverequest.filter(t => (t.isApproved == null || t.isApproved == false));
 
-        this.approvedLeaves = this.leaverequest.filter(t => (t.isApproved == true));
+        this.approvedLeaves = this.leaverequest.filter(t => (t.isApproved == true));        
     }
 
     // [formItem]="{editorOptions: { readOnly: true }}"

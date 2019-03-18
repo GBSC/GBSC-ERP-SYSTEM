@@ -15,7 +15,7 @@
 					<div class="m-section">
 					<div class="m-section__content" >
 						<dx-data-grid id="gridContainer" [dataSource]="StopSalary"
-						keyExpr="stopSalaryId" 
+							keyExpr="stopSalaryId" 
 							(onSelectionChanged)="selectionChanged($event)"
 							(onContentReady)="contentReady($event)" 
 							[masterDetail]="{ enabled: true, template: 'detail' }"
@@ -97,21 +97,21 @@
 							 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
 							 </dxo-pager> 
 							 <dxi-column dataField="fullName" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> 
-						   </dx-data-grid>
-						   <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-							  <div class="m-form__actions m-form__actions--solid">
-								<div class="row">
-								  <div class="col-lg-4"></div>
-								  <div class="col-lg-4">
-									<button class="btn btn-success"  (click)="addselecteduser()">
-									  Submit
-									</button> 
+						   </dx-data-grid> 
+						</div>
+						<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+								<div class="m-form__actions m-form__actions--solid">
+								  <div class="row">
+									<div class="col-lg-4"></div>
+									<div class="col-lg-4">
+									  <button class="btn btn-success"  (click)="addselecteduser()">
+										Submit
+									  </button> 
+									</div>
+									<div class="col-lg-4"></div>
 								  </div>
-								  <div class="col-lg-4"></div>
 								</div>
 							  </div>
-							</div>
-						</div>
 					</dx-popup>
 					</div>
 					</div>

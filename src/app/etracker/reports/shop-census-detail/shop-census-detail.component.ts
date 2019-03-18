@@ -739,6 +739,22 @@ export class ShopCensusDetailComponent implements OnInit {
   // };
 
   public Data = [];
+
+
+  public sumTotalShop = [ ];
+  public TShop = 0;
+
+
+  public sumTotalActiveshop = [ ];
+  public totalActiveshop = 0;
+
+  
+  public sumTotalCloseshop = [ ];
+  public totalCloseshop = 0;
+
+  public ActivePersent = 0;
+
+
     onBtPrint(param , value) {
 
     this.Data = []
@@ -762,14 +778,43 @@ export class ShopCensusDetailComponent implements OnInit {
            }
            if(res.data){
             this.Data.push( res.data)
+
+            this.sumTotalShop.push(res.data.shopNameCount)
+            this.sumTotalActiveshop.push(res.data.activeStore)
+            this.sumTotalCloseshop.push(res.data.close)
            }
+
+
             
              
         }
       );
       console.log( this.Data)
- 
+        console.log(this.sumTotalShop)
 
+      for (let index = 0; index < this.sumTotalShop.length; index++) {
+
+        this.TShop += (this.sumTotalShop[index])
+      }
+
+
+      
+      for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+
+        this.totalActiveshop += (this.sumTotalActiveshop[index])
+      }
+
+      for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+
+        this.totalCloseshop += (this.sumTotalCloseshop[index])
+      }
+
+      console.log(this.TShop);
+
+
+      this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
+ 
+      console.log(this.ActivePersent);
       return  this.Data;
  
 

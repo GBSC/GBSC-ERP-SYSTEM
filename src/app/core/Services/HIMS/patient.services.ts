@@ -368,6 +368,11 @@ export class PatientService {
         return this.ActiveVisits;
     }
 
+    GetActiveVisits()  :Observable <any> {
+        return  this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits');
+    
+    }
+
     async getActiveVisitsTesting() {
         this.ActiveVisits = await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise();
         return this.ActiveVisits;

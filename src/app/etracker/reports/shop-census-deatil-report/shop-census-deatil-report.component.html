@@ -1,0 +1,203 @@
+<div class="table-responsive" id="printTable">
+  <p style="margin-top: 0;
+  text-align: center;
+  color: #e07026;
+  font-family: fantasy;
+  font-size: 22px;
+  margin-bottom: 1rem;">Eva</p>
+  <p style="margin-top: 0;
+  text-align: center;
+  color: #e07026;
+  font-family: fantasy;
+  font-size: 20;
+  margin-bottom: 1rem;">Shop Census Detail</p>
+  <p style="margin-top: 0;
+  text-align: center;
+  color: #e07026;
+  font-family: fantasy;
+  font-size: 17;
+  margin-bottom: 1rem;">Report</p>
+ <table class="table table-bordered" border="1" cellpadding="3"  >
+
+   <thead style=" font-size: 10px;
+   background-color: bisque;
+   color: brown;">
+         <tr>
+           <th>
+             
+           </th>
+           
+           <th>
+               Active
+           </th>
+           <th>
+               Closed
+           </th>
+           <th>
+               Total Shop
+           </th>
+           <th>
+               ShopName
+           </th>
+           <th>
+               ShopKeeperName
+           </th>
+           <th>
+               Contact
+           </th>
+           <th>
+               Address
+
+             </th>
+             <th>
+                 CNIC
+
+             </th>
+             <th>
+                 Region
+
+             </th>
+             <th>
+                 Area
+             </th>
+             <th>
+                 City
+
+
+               </th>
+               <th>
+                   Distributor(Current)
+               </th>
+               <th>
+                   Territory
+
+               </th>
+               <th>
+                   Section 
+
+               </th>
+               <th>
+                   SubSection
+
+
+                 </th>
+                 <th>
+                     DSF
+
+
+                 </th>
+                 <th>
+                     VisitDay
+
+
+                 </th>
+                 <th>
+                     Category
+
+                 </th>
+                 <th>
+                     Classification
+
+
+                 </th>
+                 <th>
+                     Create_User
+
+
+                 </th>
+                 <th>
+                     Create-Date
+
+
+                 </th>
+                 <th>
+                     Close-User
+
+
+                 </th>
+                 <th>
+                     Close-Date
+
+
+                 </th>
+                 <th>
+                     Shop-Mode
+
+
+                 </th>
+
+                 <th>
+                     Image
+                 </th>
+                
+              
+         </tr>
+       </thead>
+   <tbody *ngFor="let data of Data" style="font-size: 9px;
+   text-align: center;">
+     <tr >
+       <td>{{data.Group}}</td>
+       <td>{{data.TotalActive}}</td>
+       <td>{{data.TotalClosed}}</td>
+       <td>{{data.TotalShop}}</td>
+       <td>{{data.storeName}}</td>
+       <td>{{data.shopkeeperName}}</td>
+       <td>{{data.contactNumber}}</td>
+       <td>{{data.address}}</td>
+       <td>{{data.cnic}}</td>
+       <td>{{data.region}}</td>
+       <td>{{data.area}}</td>
+       <td>{{data.city}}</td>
+       <td>{{data.distributor}}</td>
+       <td>{{data.territory}}</td>
+       <td>{{data.section}}</td>
+       <td>{{data.subsection}}</td>
+       <td>{{data.dsf}}</td>
+       <td>{{data.day}}</td>
+       <td>{{data.category}}</td>
+       <td>{{data.classification}}</td>
+       <td>{{data.createUser}}</td>
+       <td>{{data.startTime}}</td>
+       <td>{{data.createUser}}</td>
+       <td>{{data.endTime}}</td>
+       <td>{{data.shopMode}}</td>
+       <td>{{data.imageLink}}</td>
+     </tr>
+   </tbody>
+   <tfoot style="    font-size: 10px;
+   background-color: bisque;
+   color: brown;">
+     <tr>
+       
+           <td>Total Shop</td>
+           <td></td>
+           <td></td>
+           <td>Total Active</td>
+           <td></td>
+           <td></td>
+           <td>Total Active</td>
+           <td></td>
+           <td></td>
+           <td>Active Persent</td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+           <td></td>
+        
+     </tr>
+   </tfoot>
+ </table>
+
+</div>

@@ -566,7 +566,10 @@
                       </button>
                     </li>
                   <li class="m-portlet__nav-item">
-                      <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-toggle="m-tooltip" data-placement="bottom" data-original-title="Preview" onclick="window.open('')">
+                      <!-- <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-toggle="m-tooltip" data-placement="bottom" data-original-title="Preview" onclick="window.open('http://localhost:4200/#/reports/shop-status-detail-report')">
+                        <i class="fa fa-eye"></i>
+                      </button> -->
+                      <button type="submit" (click)="onBtPrint(agGrid , rowData)" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill" data-toggle="m-tooltip" data-placement="bottom" data-original-title="Preview" >
                         <i class="fa fa-eye"></i>
                       </button>
                     </li>
@@ -583,7 +586,7 @@
                 </ul>
               </div>
             </div>
-            <div class="m-portlet__body">
+            <div class="m-portlet__body" >
 
               <div>
                   <div #printea>
@@ -883,5 +886,6 @@
         </div>
       </div>
     </div>
+  
 
  

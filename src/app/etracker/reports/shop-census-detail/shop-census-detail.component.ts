@@ -36,7 +36,7 @@ import DevExpress from 'devexpress-reporting/dx-web-document-viewer'
 
 @Component({
   selector: 'app-shop-census-detail',
-  templateUrl: './shop-census-detail.component.html',
+  templateUrl: './shop-census-detail.component.html' ,
   styleUrls: ['./shop-census-detail.component.scss']
 })
 export class ShopCensusDetailComponent implements OnInit {
@@ -66,6 +66,7 @@ export class ShopCensusDetailComponent implements OnInit {
 
   public currentdate: any;
 
+  public dayone ="dali";
 
   constructor(public storeService: StoreService, public authService: AuthService) {
     this.companyId = authService.getUserCompanyId();
@@ -593,13 +594,13 @@ export class ShopCensusDetailComponent implements OnInit {
       close: 0
       }
       ]
-      this.gridApi.expandAll();
+     // this.gridApi.expandAll();
 
   }
 
    
 
-  onCellValueChanged(item  ) {
+  onCellValueChanged(item) {
     console.log(item);
     item.newOrModified="Modified";
     console.log(item);
@@ -749,7 +750,7 @@ export class ShopCensusDetailComponent implements OnInit {
   //     }
   // };
 
-  public Data = [];
+  public Data : any = [] ;
 
 
   public sumTotalShop = [ ];
@@ -826,10 +827,12 @@ export class ShopCensusDetailComponent implements OnInit {
       this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
  
       console.log(this.ActivePersent);
-      return  this.Data;
+
+      sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
+      window.open('http://localhost:4200/#/reports/shop-status-detail-report')
+        // return  this.Data;
  
-
-
+ 
     // console.log(param);
   
     //   this.gridApi = param.api;
@@ -853,6 +856,8 @@ export class ShopCensusDetailComponent implements OnInit {
       // this.setNormal(gridApi);
       // console.log(value)
   }
+
+ 
 
   btn(){
     var divToPrint=document.getElementById("printTable");

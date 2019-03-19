@@ -194,21 +194,21 @@
                 <!-- <dxi-column dataField="patientId" caption="Alternet No" [width]="125"  [allowEditing]="false" [formItem]="{visible: false}">
                   <dxo-lookup [dataSource]="allpatients" displayExpr="officeTel" valueExpr="patientId"></dxo-lookup>
                 </dxi-column> -->
-              
-                <dxi-column dataField="finalTime" dataType="datetime"
-                 caption="Final Time"  [visible]="false"></dxi-column>
+                <!-- format="dd-MM-yyyy HH:mm:ss"   [format="{ date: 'shortDateShortTime' }"  -->
+                <dxi-column dataField="finalTime" dataType="datetime"  caption="Final Time"  [visible]="false"></dxi-column>
                 <dxi-column dataField="isFinalAppointment" dataType="boolean" caption="Finalized" [visible]="false"></dxi-column>
                 <dxi-column dataField="appointmentDate" caption="Appointment Date"  dataType="date"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="tentativeTime" caption="Tentative Time"   dataType="datetime" format="shortTime" type="time" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="isCancelled" caption="Cancel" [visible]="false"  dataType="boolean" ></dxi-column>
-               
+                 
+          
                 <!-- <dxi-column dataField="visitStatus" caption="Status" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column> -->
               </dx-data-grid>
             </div>
             <!-- <here we are using final appointment tag start work> -->
             <div class="tab-pane  active show" id="m_tabs_3_3" role="tabpanel">
               <!-- {{PatientServiceobj?.visitNatures | json}} -->
-              <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointment($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
+              <dx-data-grid id="gridContiner" [dataSource]="finalizedAppointments" (onRowUpdated)="updateAppointmentfinal($event)" (onRowRemoved)="deleteAppointment($event)" style="border-top: 1px solid #888888;">
                 <dxo-editing mode="popup" [allowUpdating]="true" [useIcons]="true">
                   <dxo-popup title="Patient Type" [showTitle]="true" [width]="750" [height]="345"  ></dxo-popup>
                 </dxo-editing>
@@ -239,9 +239,9 @@
                   <dxi-column dataField="visitNatureId" caption="Visit Nature" [allowEditing]="false" [formItem]="{visible: false}" [width]="125">
                   <dxo-lookup [dataSource]="PatientServiceobj?.visitNatures" displayExpr="nature" valueExpr="visitNatureId"></dxo-lookup>
                 </dxi-column>
-                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime" format="shortTime" [visible]="false">
+                <dxi-column dataField="timeIn" caption="Time In" dataType="datetime"   [visible]="false">
                  </dxi-column>
-                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime" format="shortTime"  [visible]="false"></dxi-column>
+                <dxi-column dataField="timeOut" caption="Time Out"  dataType="datetime"   [visible]="false"></dxi-column>
                 <dxi-column dataField="remarks" caption="Remarks"  [visible]="false"></dxi-column>
                 <dxi-column caption="Add Test" cellTemplate="chartCellTemplate"  [width]="90" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <div *dxTemplate="let d of 'chartCellTemplate'">

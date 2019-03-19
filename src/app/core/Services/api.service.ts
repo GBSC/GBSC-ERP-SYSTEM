@@ -36,6 +36,17 @@ export class ApiService {
         return this.http.get(`${environment.api_url}${path}`, { params })
             .pipe(catchError(this.formatErrors));
     }
+    
+    Get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+
+        if (this.user && params.keys().length == 0) {
+            params = new HttpParams()
+                .set("companyId", this.user.assignedId.companyId)
+        }
+
+        return this.http.get(`${environment.api_url}${path}`, { params })
+            .pipe(catchError(this.formatErrors));
+    }
 
     put(path: string, body: any = {}): Observable<any> {
         if(this.user){

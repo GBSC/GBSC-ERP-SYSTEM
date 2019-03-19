@@ -63,7 +63,7 @@ export class GeneralactionsComponent implements OnInit {
             this.Patient = Patient
             console.log(this.Patient);
             if (this.Patient.appointments.length) {
-                this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'pendding');
+                this.currentconsultant = this.Patient.appointments.filter(t => this.formatDate(new Date(t.appointmentDate)) === this.formatDate(new Date()) && t.isFinalAppointment == true && t.visitStatus == 'Pending');
                 console.log('if')
                 // console.log(this.currentconsultant);
                 // console.log(this.consultants);

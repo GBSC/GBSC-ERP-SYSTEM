@@ -209,7 +209,7 @@
 							<div class="form-group col-lg-2">
 								 <label for="exampleSelect1"> Reference By </label>
  
-								<dx-select-box [items]="getreferncdata" displayExpr="referredBy" valueExpr="patientReferenceId" [searchEnabled]="true" formControlName="patientReferenceId"  > 
+								<dx-select-box [items]="getreferncdata" displayExpr="referredBy" valueExpr="patientReferenceId"   [searchEnabled]="true" formControlName="patientReferenceId"  > 
 								</dx-select-box>
 							</div>
 							<div class="form-group col-lg-1" style="margin-top: 3%;">
@@ -292,7 +292,7 @@
 																	<div class="form-group m-form__group row">
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> First Name </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="FirstName" type="text"
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.firstName   || ''"  formControlName="FirstName" type="text"
 																			 [ngClass]="{ 'is-invalid': spousesubmitted && s.FirstName.errors }">
 																			<div *ngIf="spousesubmitted && s.FirstName.errors" class="invalid-feedback">
 																				<div *ngIf="s.FirstName.errors.required">First Name is required</div>
@@ -300,11 +300,11 @@
 																		</div>
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> Middle Name </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="MiddleName" type="text">
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.middleName   || ''" formControlName="MiddleName" type="text">
 																		</div>
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> Last Name </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="LastName" type="text"
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  [value]="Patient?.partner?.lastName   || ''"  formControlName="LastName" type="text"
 																			 [ngClass]="{ 'is-invalid': spousesubmitted && s.LastName.errors }">
 																			<div *ngIf="spousesubmitted && s.LastName.errors" class="invalid-feedback">
 																				<div *ngIf="s.LastName.errors.required">Last Name is required</div>
@@ -314,11 +314,11 @@
 																	<div class="form-group m-form__group row">
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> Occupation </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="Occupation" type="text">
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.occupation   || ''"  formControlName="Occupation" type="text">
 																		</div>
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> CNIC </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.nic   || ''"  formControlName="NIC" type="text"(keypress)="keyPress($event)" maxlength="13" [ngClass]="{ 'is-invalid': spousesubmitted && s.NIC.errors }">
 																			<div *ngIf="spousesubmitted && s.NIC.errors" class="invalid-feedback">
 																				<div *ngIf="s.NIC.errors.required">CNIC is required</div>
 																				<div *ngIf="s.NIC.errors.minlength">CNIC must be at least 13 characters</div>
@@ -326,7 +326,7 @@
 																		</div>
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> Contact No </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PhoneNumber" type="text"
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid"  [value]="Patient?.partner?.phoneNumber   || ''"  formControlName="PhoneNumber" type="text"
 																			(keypress)="keyPress($event)" maxlength="11" [ngClass]="{ 'is-invalid': spousesubmitted && s.PhoneNumber.errors }">
 																			<div *ngIf="spousesubmitted && s.PhoneNumber.errors" class="invalid-feedback">
 																				<div *ngIf="s.PhoneNumber.errors.required">Phone Number is required</div>
@@ -341,7 +341,7 @@
 																		</div>
 																		<div class="form-group col-lg-4">
 																			<label for="exampleInputEmail1"> Place of Birth </label>
-																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" formControlName="PlaceOfBirth" type="text">
+																			<input class="form-control m-input m-input--solid ng-untouched ng-pristine ng-invalid" [value]="Patient?.partner?.placeOfBirth   || ''"  formControlName="PlaceOfBirth" type="text">
 																		</div>
 																	</div>
 																</div>

@@ -287,12 +287,12 @@ export class PatientService {
     }
 
     async getConsultantIdAndTentiveTime(id, date) {
-        this.ConsultantIdAndTentiveTime = await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+        this.ConsultantIdAndTentiveTime = await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
         return this.ConsultantIdAndTentiveTime;
     }
 
     async GetAppointmentByConsultantNameAndDate(id, date) {
-        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+        return await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
 
     public AppointmentByDate: any;

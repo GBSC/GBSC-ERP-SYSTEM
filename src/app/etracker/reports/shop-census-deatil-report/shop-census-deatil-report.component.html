@@ -31,30 +31,25 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="table-responsive" id="printTable">
-                        <p style="margin-top: 0;
-                                text-align: center;
-                                color: #e07026;
-                                font-family: fantasy;
-                                font-size: 22px;
-                                margin-bottom: 1rem;">Eva</p>
-                        <p style="margin-top: 0;
-                                text-align: center;
-                                color: #e07026;
-                                font-family: fantasy;
-                                font-size: 20;
-                                margin-bottom: 1rem;">Shop
-                            Census Detail</p>
-                        <p style="margin-top: 0;
-                                text-align: center;
-                                color: #e07026;
-                                font-family: fantasy;
-                                font-size: 17;
-                                margin-bottom: 1rem;">Report</p>
-                        <table class="table table-bordered" border="1" cellpadding="3">
-
-                            <thead style="     font-size: 13px;
-                            background-color: #95d9b6;
-                            color: #000000;">
+                        <div class="row">
+                            <div class="col-sm-6" style="display: inline-grid;">
+                                    <img src="./assets/images/logo.png"/>
+                            </div>
+                            <div class="col-sm-6" style="
+                            text-align: right;
+                            height: 95px;
+                        ">
+                                    <h2 class="name">Shop Census Detail</h2>
+                                        <div><strong>From Date:</strong> 12/03/2018</div>
+                                        <div><strong>To Date:</strong> 12/03/2019</div>
+                                        <div></div>
+                            </div>
+                        </div>
+                       
+                        <table class="table table-bordered table-hover dt-responsive display" cellspacing="0" border="1" cellpadding="1">
+                            <thead style="font-size: 13px;
+                            background-color: #4f4f4f;
+                            color: #ffffff;">
                                 <tr>
                                     <th>
 
@@ -166,10 +161,10 @@
 
                                 </tr>
                             </thead>
-                            <tbody *ngFor="let data of Data" style="    font-size: 11px;
+                            <tbody *ngFor="let data of Data" style="font-size: 11px;
                             text-align: left;
                             color: black;">
-                                <tr>
+                                <tr >
                                     <td>{{data.Group}}</td>
                                     <td>{{data.TotalActive}}</td>
                                     <td>{{data.TotalClosed}}</td>
@@ -198,9 +193,9 @@
                                     <td>{{data.imageLink}}</td>
                                 </tr>
                             </tbody>
-                            <tfoot style="     font-size: 13px;
-                            background-color: #95d9b6;
-                            color: #000000;">
+                            <tfoot style="font-size: 13px;
+                            background-color:#4f4f4f;
+                            color:#fff;">
                                 <tr>
 
                                     <td></td>
@@ -236,6 +231,8 @@
                         </table>
 
                     </div>
+
+                    
                 </div>
             </div>
         </div>

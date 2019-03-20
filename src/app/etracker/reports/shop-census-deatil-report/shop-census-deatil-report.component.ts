@@ -79,4 +79,15 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   export(){
     // this.Data.exportDataAsCsv();
   }
+  print(gridContainer){
+    gridContainer.print(); 
+  }
+
+
+
+
+
+
+
+
 }

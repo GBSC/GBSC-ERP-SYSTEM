@@ -152,7 +152,7 @@ export class ShopCensusSummaryComponent implements OnInit {
       let usrId = 350;
       console.log(usrId)
 
-          this.storeService.shopCensusSummary(210,350 , fromdate, todate).subscribe(res => {
+          this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
           });
@@ -480,6 +480,8 @@ export class ShopCensusSummaryComponent implements OnInit {
     // toggleFilter() {
     //     this.showHideFilter = !this.showHideFilter;
     // }
-
+    export(){
+      this.gridApi.exportDataAsCsv();
+    }
    
 }

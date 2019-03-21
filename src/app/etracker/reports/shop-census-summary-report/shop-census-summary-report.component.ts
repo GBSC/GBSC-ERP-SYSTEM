@@ -103,7 +103,7 @@ export class ShopCensusSummaryReportComponent implements OnInit {
     let newWin= window.open("");
      newWin.document.write(divToPrint.innerHTML);
      newWin.print();
-     newWin.close();
+     newWin.close();  
   }
 
 }

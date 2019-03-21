@@ -777,10 +777,10 @@ public toDate : any;
 
 
     onBtPrint(param , value) {
-
+      console.log(param)
     this.Data = []
     this.gridApi = param.api;
-    
+    console.log(this.gridApi)
     this.gridApi.forEachNode(res => 
          {
           

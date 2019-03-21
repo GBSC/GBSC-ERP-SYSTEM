@@ -1,0 +1,113 @@
+.btn-outline-metal:hover {
+    color: #212529;
+    background-color: #4a4a4a !important;
+    /* border-color: #c4c5d6; */
+}
+
+#example1 {
+    empty-cells: hide !important;
+    border-collapse: separate;
+    } 
+.margin{
+    margin-top: 25px;
+}
+
+.dispy{
+    display: none;
+}
+.table-bordered{
+    border: 1px solid #060606;
+}
+ 
+ @media print {
+.tbl{
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+
+}
+.img{
+    display: block;
+}
+.mytd{
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #f4f5f8;
+}
+    /* .m-body * {
+        visibility: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      #printTable {
+       font-family: Arial, Helvetica, sans-serif;
+      }
+    .m-subheader-search * {
+      visibility: hidden;
+    }
+    .ag-theme-balham .ag-side-bar .ag-side-buttons {
+        display: none !important;
+        flex-direction: row-reverse;
+    }
+    .m-header--fixed-mobile .m-header{
+        visibility: hidden;
+    }
+    .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed).m-aside-left--minimize .m-footer {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    display: none;
+    -o-transition: none;
+    transition: none;
+    margin-left: 0px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 0;
+}
+
+    .btnd{
+        visibility: hidden;
+    }
+    .headdd{
+        visibility: hidden;
+    }
+    #myGrid{
+        margin-top: -350px;
+        margin-left: -50px;
+          width: 1350px;
+    }
+  */
+ 
+
+    
+  }
+
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+
+th:first-child + th + th,
+td:first-child + td + td {
+  display:none;
+} 
+
+tr.group,
+tr.group:hover {
+    background-color: #ddd !important;
+}
+ 
+
+table td {
+    empty-cells:hide !important;
+}
+table td > *:empty {
+    display:none !important;
+}
+
+#example1 {
+    empty-cells: hide !important;
+    border-collapse: separate;
+    }

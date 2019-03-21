@@ -35,8 +35,12 @@
 }
     /* .m-body * {
         visibility: hidden;
+        font-family: Arial, Helvetica, sans-serif;
       }
-      
+
+      #printTable {
+       font-family: Arial, Helvetica, sans-serif;
+      }
     .m-subheader-search * {
       visibility: hidden;
     }
@@ -77,4 +81,19 @@
     
   }
 
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+
+th:first-child + th + th,
+td:first-child + td + td {
+  display:none;
+} 
+
+tr.group,
+tr.group:hover {
+    background-color: #ddd !important;
+}
  

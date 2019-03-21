@@ -118,4 +118,15 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     document.body.appendChild(x);
     x.click();
   }
+  print(gridContainer){
+    gridContainer.print(); 
+  }
+
+
+
+
+
+
+
+
 }

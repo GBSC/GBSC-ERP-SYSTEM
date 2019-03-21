@@ -841,7 +841,7 @@ public toDate : any;
       console.log(this.formDate);
       console.log(this.toDate);
       console.log(this.gridApi);
-      window.open('http://localhost:4200/#/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+      window.open('http://eva.gbscsolutions.com/#/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
         // return  this.Data;
  
  

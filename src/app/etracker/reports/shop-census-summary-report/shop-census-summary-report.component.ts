@@ -3,16 +3,13 @@ import { GridApi } from 'ag-grid-community';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../../app/core/Services/HRM/Employee/employee.service';
 
-
 @Component({
-  selector: 'app-shop-census-deatil-report',
-  templateUrl: './shop-census-deatil-report.component.html',
-  styleUrls: ['./shop-census-deatil-report.component.css']
+  selector: 'app-shop-census-summary-report',
+  templateUrl: './shop-census-summary-report.component.html',
+  styleUrls: ['./shop-census-summary-report.component.css']
 })
-export class ShopCensusDeatilReportComponent implements OnInit {
-  @Input() gridApi: string;
+export class ShopCensusSummaryReportComponent implements OnInit {
   public Data = [];
-// @Input("dayone") dayone : string;
   public sumTotalShop = [ ];
   public TShop = 0;
 
@@ -29,9 +26,13 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   public usrid : any
   public frmDate : any
   public toDate : any
-  constructor( public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
   public usr : any;
+  constructor(public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
+
   ngOnInit() {
+   
+
+
 
     this.route.params.subscribe((params)=>{
       this.usrid = +params['id'];
@@ -45,9 +46,6 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     console.log(this.usrid)
     console.log(this.frmDate)
     console.log(this.toDate)
-    console.log(this.gridApi)
-    // this.Data = []
-    
     this.employeeServiceObj.GetEmployee(this.usrid).subscribe(res => {
       this.usr = res;
       console.log(this.usr)
@@ -56,21 +54,20 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
 
+    this.Data.forEach(element => {
+      if(element.shopNameCount){
+       this.sumTotalShop.push(element.shopNameCount)
+      }
+      if(element.shopNameCount){
+       this.sumTotalActiveshop.push(element.activeStore)
+      }
+      if(element.shopNameCount){
+       this.sumTotalCloseshop.push(element.close)
+      }
+     
+    });
 
-     this.Data.forEach(element => {
-       if(element.shopNameCount){
-        this.sumTotalShop.push(element.shopNameCount)
-       }
-       if(element.shopNameCount){
-        this.sumTotalActiveshop.push(element.activeStore)
-       }
-       if(element.shopNameCount){
-        this.sumTotalCloseshop.push(element.close)
-       }
-      
-     });
-
-     for (let index = 0; index < this.sumTotalShop.length; index++) {
+    for (let index = 0; index < this.sumTotalShop.length; index++) {
 
       this.TShop += (this.sumTotalShop[index])
     }
@@ -96,9 +93,10 @@ export class ShopCensusDeatilReportComponent implements OnInit {
 
     
     this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
+
+
+
   }
-
-
 
   btn(){
     var divToPrint=document.getElementById("printTable");
@@ -107,32 +105,5 @@ export class ShopCensusDeatilReportComponent implements OnInit {
      newWin.print();
      newWin.close();
   }
-
-  
-  export(){
-    var CsvString = "";
-      this.Data.forEach(function(RowItem, RowIndex) {
-      RowItem.forEach(function(ColItem, ColIndex) {
-        CsvString += ColItem + ',';
-      });
-      CsvString += "\r\n";
-    });
-    CsvString = "data:application/csv," + encodeURIComponent(CsvString);
-    var x = document.createElement("A");
-    x.setAttribute("href", CsvString );
-    x.setAttribute("download","somedata.csv");
-    document.body.appendChild(x);
-    x.click();
-  }
-  print(gridContainer){
-    gridContainer.print(); 
-  }
-
-
-
-
-
-
-
 
 }

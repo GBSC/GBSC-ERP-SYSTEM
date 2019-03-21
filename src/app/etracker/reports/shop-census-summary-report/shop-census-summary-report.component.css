@@ -4,8 +4,10 @@
     /* border-color: #c4c5d6; */
 }
 
- 
-
+#example1 {
+    empty-cells: hide !important;
+    border-collapse: separate;
+    } 
 .margin{
     margin-top: 25px;
 }
@@ -99,9 +101,13 @@ tr.group:hover {
  
 
 table td {
-    background-color:olive;
-    empty-cells:hide;
+    empty-cells:hide !important;
 }
 table td > *:empty {
-    display:none;
+    display:none !important;
 }
+
+#example1 {
+    empty-cells: hide !important;
+    border-collapse: separate;
+    }

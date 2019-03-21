@@ -100,4 +100,156 @@
       </div>
     </div>
   </div>
+
+
+  <div class="m-portlet ">
+    <div class="m-portlet__body  m-portlet__body--no-padding">
+      <div class="row m-row--col-separator-xl">
+        <div class="col-sm-4" style="padding:20px;">
+          <dx-chart
+          id="chart"
+          [dataSource]="dataSource">
+          <dxo-title text="Avg. Salary">
+              <dxo-subtitle text="(in millions tonnes)"></dxo-subtitle>
+              <dxo-font [size]="20"></dxo-font>
+          </dxo-title>
+          <dxi-series valueField="young" name="0-14"></dxi-series>
+          <dxi-series valueField="middle" name="15-64"></dxi-series>
+          <dxi-series valueField="older" name="65 and older"></dxi-series>
+          <dxi-value-axis position="right">
+              <dxo-title text="millions"></dxo-title>
+          </dxi-value-axis>
+          <dxo-common-series-settings
+              argumentField="state"
+              type="stackedBar">
+          </dxo-common-series-settings>
+          <dxo-legend
+              verticalAlignment="bottom"
+              horizontalAlignment="center"
+              itemTextPosition="top">
+          </dxo-legend>
+          <dxo-export [enabled]="true"></dxo-export>
+          <dxo-tooltip
+              [enabled]="true"
+              location="edge"
+              [customizeTooltip]="customizeTooltip">
+          </dxo-tooltip>
+      </dx-chart>
+        </div>
+        <div class="col-sm-8"  style="padding:20px;">
+          <dx-chart
+    id="chart"
+    [dataSource]="productionData"
+    palette="violet">
+    <dxo-common-series-settings
+        argumentField="country"
+        type="bar"
+        valueField="oil">
+    </dxo-common-series-settings>
+    <dxo-series-template
+        nameField="year"
+        [customizeSeries]="customizeSeries">
+    </dxo-series-template>
+    <dxo-title text="Oil Production">
+        <dxo-font [size]="20"></dxo-font>
+        <dxo-subtitle text="(in millions tonnes)"></dxo-subtitle>
+    </dxo-title>
+    <dxo-legend 
+        verticalAlignment="bottom"
+        horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-chart>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="m-portlet ">
+            <div class="m-portlet__body  m-portlet__body--no-padding">
+              <div class="row m-row--col-separator-xl">
+                <div class="col-sm-3" style="padding:20px;">
+                    <dx-pie-chart class="pie"
+                    palette="Soft Pastel"
+                    sizeGroup="piesGroup"
+                    [dataSource]="waterLandRatio1">
+                    <dxo-title text="Avg. Salary">
+                        <dxo-font [size]="20"></dxo-font>
+                    </dxo-title>
+          <dxi-series argumentField="name"
+                      valueField="area">
+              <dxo-label [visible]="true" format="percent"></dxo-label>
+          </dxi-series>
+          <dxo-legend verticalAlignment="bottom"
+                      horizontalAlignment="center"
+                      itemTextPosition="right"
+                      [rowCount]="2">
+          </dxo-legend>
+      </dx-pie-chart>
+                
+                </div>
+                <div class="col-sm-3" style="padding:20px;">
+                    <dx-pie-chart class="pie"
+                    palette="Soft Pastel"
+                    sizeGroup="piesGroup"
+                    [dataSource]="waterLandRatio2">
+                    <dxo-title text="Avg. Salary">
+                        <dxo-font [size]="20"></dxo-font>
+                    </dxo-title>
+          <dxi-series argumentField="name"
+                      valueField="area">
+              <dxo-label [visible]="true" format="percent"></dxo-label>
+          </dxi-series>
+          <dxo-legend verticalAlignment="bottom"
+                      horizontalAlignment="center"
+                      itemTextPosition="right"
+                      [rowCount]="2">
+          </dxo-legend>
+      </dx-pie-chart>
+                  </div>
+                  <div class="col-sm-3" style="padding:20px;">
+                      <dx-pie-chart class="pie"
+                      palette="Soft Pastel"
+                      sizeGroup="piesGroup"
+                      [dataSource]="waterLandRatio2">
+                      <dxo-title text="Avg. Salary">
+                          <dxo-font [size]="20"></dxo-font>
+                      </dxo-title>
+            <dxi-series argumentField="name"
+                        valueField="area">
+                <dxo-label [visible]="true" format="percent"></dxo-label>
+            </dxi-series>
+            <dxo-legend verticalAlignment="bottom"
+                        horizontalAlignment="center"
+                        itemTextPosition="right"
+                        [rowCount]="2">
+            </dxo-legend>
+        </dx-pie-chart>
+                
+                    </div>
+                    <div class="col-sm-3" style="padding:20px;">
+                        <dx-pie-chart class="pie"
+                        palette="Soft Pastel"
+                        sizeGroup="piesGroup"
+                        [dataSource]="waterLandRatio2">
+                        <dxo-title text="Avg. Salary">
+                            <dxo-font [size]="20"></dxo-font>
+                        </dxo-title>
+              <dxi-series argumentField="name"
+                          valueField="area">
+                  <dxo-label [visible]="true" format="percent"></dxo-label>
+              </dxi-series>
+              <dxo-legend verticalAlignment="bottom"
+                          horizontalAlignment="center"
+                          itemTextPosition="right"
+                          [rowCount]="2">
+              </dxo-legend>
+          </dx-pie-chart>
+                
+                      </div>
+              
+                </div>
+                </div>
+                </div>
+
 </div>

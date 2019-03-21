@@ -12,6 +12,7 @@ import { Module } from '../../Models/HRM/module';
 import { Observable } from 'rxjs/Observable';
 import { compileNgModule } from '@angular/core/src/render3/jit/module';
 
+
 export class Product {
     id: string;
     text: string;
@@ -20,15 +21,21 @@ export class Product {
     items?: Product[];
 }
 
+    
+
+
+
 @Injectable()
 export class SystemAdministrationService {
+
 
     public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
     public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
 
 
-    constructor(public ApiService: ApiService, public httpService : HttpClient) {
+
+    constructor(public ApiService: ApiService, public httpService: HttpClient) {
     }
 
     async saveNewRoleData(data) {
@@ -99,7 +106,7 @@ export class SystemAdministrationService {
     }
 
 
-     getBranches(): Observable<any> {
+    getBranches(): Observable<any> {
         return this.ApiService.get(this.API_URL + 'GetBranches');
     }
 
@@ -107,15 +114,15 @@ export class SystemAdministrationService {
         return this.ApiService.get(this.API_URL + 'GetBranchesByCompanyId/' + compid);
     }
 
-     addBranch(branch: Branch): Observable<any> {
+    addBranch(branch: Branch): Observable<any> {
         return this.httpService.post(this.setupUrl2 + 'AddBranch', branch);
     }
 
-    updateBranch(branch: Branch):Observable<any> {
+    updateBranch(branch: Branch): Observable<any> {
         return this.httpService.put(this.setupUrl2 + 'UpdateBranch', branch);
     }
 
-     deletBranch(id): Observable<any> {
+    deletBranch(id): Observable<any> {
         return this.httpService.delete(this.setupUrl2 + 'DeleteBranch/' + id);
     }
 
@@ -127,15 +134,15 @@ export class SystemAdministrationService {
         return this.ApiService.get(this.API_URL + 'GetDepartmentsByCompanyId/' + compid);
     }
 
-     addDepartment(department): Observable <any> {
+    addDepartment(department): Observable<any> {
         return this.httpService.post(this.setupUrl2 + 'AddDepartment', department);
     }
 
-     updateDepartment(department) : Observable <any>{
-        return this.httpService.put( 'http://localhost:58090/api/setup/UpdateDepartment', department);
+    updateDepartment(department): Observable<any> {
+        return this.httpService.put('http://localhost:58090/api/setup/UpdateDepartment', department);
     }
 
-     deletDepartment(id) {
+    deletDepartment(id) {
         return this.httpService.delete(this.setupUrl2 + 'DeleteDepartment/' + id);
     }
 
@@ -222,3 +229,6 @@ export class SystemAdministrationService {
     }
 
 }
+
+
+

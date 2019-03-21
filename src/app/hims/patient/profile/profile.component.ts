@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
             this.id = +params['id'];
             let x = this.PatientServiceobj.GetPatientDetailPatientId(this.id).subscribe((Patient: any) => {
                 this.Patient = Patient;
+                console.log(this.Patient)
                 // console.log(this.visitnature)
 
                 this.vistnatr = this.visitnature.find(t => t.visitNatureId === Patient.visitNatureId);

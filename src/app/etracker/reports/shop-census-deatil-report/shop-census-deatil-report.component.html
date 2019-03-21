@@ -20,18 +20,30 @@
                                     <i class="fa fa-print"></i>
                                 </a>
                             </li>
-                            <!-- <li class="m-portlet__nav-item">
+                              <li class="m-portlet__nav-item">
                                 <a (click)="export()" class="m-portlet__nav-link btn btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
                                     data-toggle="m-tooltip" data-placement="bottom" data-original-title="Export Excel">
                                     <i class="fa fa-file-excel-o"></i>
                                 </a>
-                            </li> -->
+                            </li>  
                         </ul>
                     </div>
                 </div>
                 <div class="m-portlet__body">
                     <div class="table-responsive" id="printTable">
-                        <p style="margin-top: 0;
+                            <div class="row">
+                                    <div class="col-sm-6" style="display: inline-grid;">
+                                            <img  class="img" src="./assets/images/logo.png"/>
+                                    </div>
+                                    <div class="col-sm-6" style="text-align: right; padding: 20px;">
+                                            <h2 class="name">Shop Census Detail</h2>
+                                            <div><strong>User Name:</strong> {{usr?.fullName}}</div>
+                                                <div><strong>From Date:</strong>{{frmDate}}</div>
+                                                <div><strong>To Date:</strong>{{toDate}}</div>
+                                                <div></div>
+                                    </div>
+                                </div>
+                        <!-- <p style="margin-top: 0;
                                 text-align: center;
                                 color: #e07026;
                                 font-family: fantasy;
@@ -49,11 +61,11 @@
                                 color: #e07026;
                                 font-family: fantasy;
                                 font-size: 17;
-                                margin-bottom: 1rem;">Report</p>
+                                margin-bottom: 1rem;">Report</p> -->
                         <table class="table table-bordered" border="1" cellpadding="3">
 
                             <thead style="     font-size: 13px;
-                            background-color: #95d9b6;
+                            background-color: #868282;
                             color: #000000;">
                                 <tr>
                                     <th>
@@ -170,7 +182,7 @@
                             text-align: left;
                             color: black;">
                                 <tr>
-                                    <td>{{data.Group}}</td>
+                                    <td style="font-weight: bold;">{{data.Group}}</td>
                                     <td>{{data.TotalActive}}</td>
                                     <td>{{data.TotalClosed}}</td>
                                     <td>{{data.TotalShop}}</td>
@@ -198,7 +210,7 @@
                                     <td>{{data.imageLink}}</td>
                                 </tr>
                             </tbody>
-                            <tfoot style="     font-size: 13px;
+                            <!-- <tfoot style="     font-size: 13px;
                             background-color: #95d9b6;
                             color: #000000;">
                                 <tr>
@@ -232,8 +244,39 @@
                                     <td>{{ActivePersent}}</td>
 
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
+                        <tr class="table table-hover tbl">
+
+                            <td class="mytd">Total Shop</td>
+                            <td>{{TShop}}</td>
+                            <td></td>
+                            <td>Total Active</td>
+                            <td>{{totalActiveshop}}</td>
+                            <td></td>
+                            <td>Total Active</td>
+                            <td>{{totalCloseshop}}</td>
+                            <td></td>
+                            <td>Active Persent</td>
+                            <td>{{ActivePersent}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+
+                        </tr>
 
                     </div>
                 </div>

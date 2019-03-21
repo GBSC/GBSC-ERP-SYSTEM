@@ -71,6 +71,7 @@ export class ShopCensusDetailComponent implements OnInit {
   constructor(public storeService: StoreService, public authService: AuthService) {
     this.companyId = authService.getUserCompanyId();
     this.userId = authService.getUserId();
+
     console.log(this.userId);
 
     this.columnDefs = [
@@ -136,10 +137,15 @@ export class ShopCensusDetailComponent implements OnInit {
     //   console.log(this.sideBar);
   }
 
-
+public usr : any;
   ngOnInit() {
-
+    console.log(this.userId);
     this.currentdate = this.formatDate(new Date());
+
+    // this.employeeServiceObj.GetEmployee(this.userId).subscribe(res => {
+    //   this.usr = res;
+    //   console.log(this.usr)
+    // })
     // console.log('asdas');
     // console.log(this.companyId);
     // console.log(this.userId);
@@ -154,19 +160,19 @@ export class ShopCensusDetailComponent implements OnInit {
   formatDate(date: Date) {
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 }
+public formDate : any;
 
+public toDate : any;
   public abc: any = [];
   onGridReady(fromdate, todate ,params) {
-    console.log(fromdate);
-    console.log(todate);
-
+    this.formDate = fromdate 
+    this.toDate = todate
     console.log(this.companyId);
     console.log(this.userId);
     let usrId = 350;
     console.log(usrId)
-    console.log('0001-01-01')   
-     console.log('2020-01-01')
-      this.storeService.shopCensusDetailReport(this.companyId, this.userId,fromdate, todate).subscribe(res => {
+
+      this.storeService.shopCensusDetailReport(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
          this.rowData = res;
         console.log(this.rowData);
       });
@@ -784,9 +790,9 @@ export class ShopCensusDetailComponent implements OnInit {
             console.log(dd)
            let c = {
              Group : Group,
-             TotalShop : " TotalShop   " + dd[0],
-             TotalActive : " TotalActive   " + dd[1],
-             TotalClosed : " TotalClosed   " + dd[2]
+             TotalShop : dd[0],
+             TotalActive : dd[1],
+             TotalClosed : dd[2]
             }
            this.Data.push(c)
         
@@ -832,7 +838,10 @@ export class ShopCensusDetailComponent implements OnInit {
       console.log(this.ActivePersent);
 
       sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
-      window.open('http://localhost:4200/#/reports/shop-status-detail-report')
+      console.log(this.formDate);
+      console.log(this.toDate);
+      console.log(this.gridApi);
+      window.open('http://localhost:4200/#/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
         // return  this.Data;
  
  

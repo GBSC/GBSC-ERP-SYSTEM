@@ -57,7 +57,7 @@ const routes: Routes = [
                     { path: 'shop-census-detail', component: ShopCensusDetailComponent },
                     { path: 'shop-census-summary', component: ShopCensusSummaryComponent },
                     { path: 'shop-status-detail', component: ShopStatusDetailComponent },
-                    { path: 'shop-status-detail-report', component: ShopCensusDeatilReportComponent },
+                    { path: 'shop-status-detail-report/:id/:fdate/:tdate', component: ShopCensusDeatilReportComponent },
                     { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
                     { path: 'visit-detail', component: VisitDetailComponent },
                     { path: 'visit-summary', component: VisitSummaryReportComponent },

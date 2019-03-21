@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,ViewChild } from '@angular/core';
+import { GridApi } from 'ag-grid-community';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from '../../../../app/core/Services/HRM/Employee/employee.service';
+
 
 @Component({
   selector: 'app-shop-census-deatil-report',
@@ -6,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./shop-census-deatil-report.component.css']
 })
 export class ShopCensusDeatilReportComponent implements OnInit {
-
+  @Input() gridApi: string;
   public Data = [];
 // @Input("dayone") dayone : string;
   public sumTotalShop = [ ];
@@ -21,10 +25,33 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   public totalCloseshop = 0;
 
   public ActivePersent = 0;
-  constructor() { }
 
+  public usrid : any
+  public frmDate : any
+  public toDate : any
+  constructor( public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
+  public usr : any;
   ngOnInit() {
+
+    this.route.params.subscribe((params)=>{
+      this.usrid = +params['id'];
+      this.frmDate = params['fdate'];
+      this.toDate = params['tdate'];
+      console.log(this.usrid)
+      console.log(this.frmDate)
+      console.log(this.toDate)
+    })
+
+    console.log(this.usrid)
+    console.log(this.frmDate)
+    console.log(this.toDate)
+    console.log(this.gridApi)
     // this.Data = []
+    
+    this.employeeServiceObj.GetEmployee(this.usrid).subscribe(res => {
+      this.usr = res;
+      console.log(this.usr)
+    })
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
 
@@ -72,11 +99,23 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   btn(){
     var divToPrint=document.getElementById("printTable");
     let newWin= window.open("");
-     newWin.document.write(divToPrint.outerHTML);
+     newWin.document.write(divToPrint.innerHTML);
      newWin.print();
      newWin.close();
   }
   export(){
-    // this.Data.exportDataAsCsv();
+    var CsvString = "";
+      this.Data.forEach(function(RowItem, RowIndex) {
+      RowItem.forEach(function(ColItem, ColIndex) {
+        CsvString += ColItem + ',';
+      });
+      CsvString += "\r\n";
+    });
+    CsvString = "data:application/csv," + encodeURIComponent(CsvString);
+    var x = document.createElement("A");
+    x.setAttribute("href", CsvString );
+    x.setAttribute("download","somedata.csv");
+    document.body.appendChild(x);
+    x.click();
   }
 }

@@ -21,12 +21,14 @@ export class ShopCensusSummaryReportComponent implements OnInit {
   public sumTotalCloseshop = [ ];
   public totalCloseshop = 0;
 
+  public sumTotalPersent = [ ];
   public ActivePersent = 0;
 
   public usrid : any
   public frmDate : any
   public toDate : any
   public usr : any;
+  public myData2 =[];
   constructor(public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
 
   ngOnInit() {
@@ -53,17 +55,28 @@ export class ShopCensusSummaryReportComponent implements OnInit {
 
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
+       
+    console.log( this.Data[0].secGroup) 
+    let mainData =              this.Data[0].secGroup
+    console.log( mainData)
 
-    this.Data.forEach(element => {
-      if(element.shopNameCount){
-       this.sumTotalShop.push(element.shopNameCount)
+    this.myData2 =   this.Data.filter(t=>t.secGroup == mainData)
+    console.log( this.myData2)
+
+    this.myData2.forEach(element => {
+      console.log(element)
+      if(element.mainTotalShop){
+       this.sumTotalShop.push(element.mainTotalShop)
       }
-      if(element.shopNameCount){
-       this.sumTotalActiveshop.push(element.activeStore)
+      if(element.mainTotalActive){
+       this.sumTotalActiveshop.push(element.mainTotalActive)
       }
-      if(element.shopNameCount){
-       this.sumTotalCloseshop.push(element.close)
+      if(element.mainTotalClosed){
+       this.sumTotalCloseshop.push(element.mainTotalClosed)
       }
+      if(element.mainTotalPersent){
+        this.sumTotalPersent.push(element.mainTotalPersent)
+       }
      
     });
 
@@ -84,6 +97,11 @@ export class ShopCensusSummaryReportComponent implements OnInit {
       this.totalCloseshop += (this.sumTotalCloseshop[index])
     }
 
+    for (let index = 0; index < this.sumTotalPersent.length; index++) {
+
+      this.ActivePersent += (this.sumTotalPersent[index])
+    }
+
 
      console.log( this.sumTotalShop)
      console.log(this.TShop);
@@ -92,7 +110,7 @@ export class ShopCensusSummaryReportComponent implements OnInit {
     // console.log(this.dayone)
 
     
-    this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
+    // this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
 
 
 

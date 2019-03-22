@@ -8,7 +8,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                Shop Census Detail
+                                Shop Census Summary
                             </h3>
                         </div>
                     </div>
@@ -71,28 +71,33 @@
                                     <th>
                                           Group
                                     </th>
-
                                     <th>
-                                        Active
+                                       SubGroup
+                                  </th>
+                                    <th>
+                                        TotalShop 
                                     </th>
                                     <th>
-                                        Closed
+                                        Active  
                                     </th>
                                     <th>
-                                        TotalShop
+                                       Closed
                                     </th>
-                                   
+                                    <th>
+                                        Active %
+                                     </th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let data of Data" style="font-size: 11px;
                             text-align: left;
                             color: black;">
                                 <tr>
-                                    <td style="font-weight: bold;">{{data.Group}}</td>
-                                    <td>{{data.TotalActive}}</td>
-                                    <td>{{data.TotalClosed}}</td>
-                                    <td>{{data.TotalShop}}</td>
-                                    
+                                    <td  >{{data.mainGroup}}</td>
+                                    <td  >{{data.secGroup}}</td>
+                                    <td>{{data.mainTotalShop}}</td>
+                                    <td>{{data.mainTotalActive}}</td>
+                                    <td>{{data.mainTotalClosed}}</td>
+                                    <td>{{data.mainTotalPersent}}</td>
                                 </tr>
                             </tbody>
                             <!-- <tfoot style="     font-size: 13px;
@@ -140,7 +145,7 @@
                             <td>Total Active</td>
                             <td>{{totalActiveshop}}</td>
                             <td></td>
-                            <td>Total Active</td>
+                            <td>Total Closed</td>
                             <td>{{totalCloseshop}}</td>
                             <td></td>
                             <td>Active Percent</td>

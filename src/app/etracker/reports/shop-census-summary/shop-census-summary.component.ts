@@ -152,7 +152,7 @@ export class ShopCensusSummaryComponent implements OnInit {
       let usrId = 350;
       console.log(usrId)
 
-          this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
+          this.storeService.shopCensusSummary(210,350 , fromdate, todate).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
           });
@@ -197,24 +197,51 @@ export class ShopCensusSummaryComponent implements OnInit {
   
       this.gridApi.forEachNode(res => 
            {
-            
-             if(res.key  , res.aggData){
-             let Group = res.key
-              let dd = res.aggData;
-              console.log(dd)
-             let c = {
-               Group : Group,
-               TotalShop : dd[0],
-               TotalActive : dd[1],
-               TotalClosed : dd[2],
-               ActivePercent :  Math.round(   dd[3].value )
-              }
-             this.Data.push(c)
-              console.log(this.Data)
+             console.log(res)
+             if(res.leafGroup == false ){
+                 let mainGroup =       res.aggData 
+                 let mainGroupKey =  res.key
+
+                 mainGroup = {
+                  mainGroup : mainGroupKey,
+                  mainTotalShop : mainGroup[0],
+                  mainTotalActive : mainGroup[1],
+                  mainTotalClosed : mainGroup[2],
+                  mainTotalPersent :  Math.round  ((mainGroup[1] *100 ) / (mainGroup[1] +  mainGroup[2]))
+                 }
+                 this.Data.push(mainGroup)
              }
-             if(res.data){
-              this.Data.push( res.data)
-             }  
+             if(res.leafGroup == true ){
+              let subGroup =       res.aggData 
+              let subGroupKey =  res.key
+
+              subGroup = {
+               secGroup : subGroupKey,
+               mainTotalShop : subGroup[0],
+               mainTotalActive : subGroup[1],
+               mainTotalClosed : subGroup[2],
+               mainTotalPersent :  Math.round  ((subGroup[1] *100 ) / (subGroup[1] +  subGroup[2]))
+              }
+              this.Data.push(subGroup)
+          }
+
+          //    if(res.key ){
+          //     let subGroup =  res.aggData
+          //     let subGroupKey =  res.key
+          //     subGroup = {
+          //       Group : subGroupKey,
+          //       subTotalShop : subGroup[0],
+          //       subTotalActive : subGroup[1],
+          //       subTotalClosed : subGroup[2],
+          //       subTotalPersent :  Math.round  ((subGroup[1] *100 ) / (subGroup[1] +  subGroup[2]))
+          //     }
+              
+          // }
+
+
+
+            
+             
             //  if(res.data){
             // //   this.Data.push( res.data)
   

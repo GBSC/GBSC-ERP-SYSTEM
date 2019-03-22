@@ -4,10 +4,8 @@
     /* border-color: #c4c5d6; */
 }
 
-#example1 {
-    empty-cells: hide !important;
-    border-collapse: separate;
-    } 
+ 
+
 .margin{
     margin-top: 25px;
 }
@@ -34,6 +32,10 @@
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #f4f5f8;
+}
+
+#printTable{
+    width: 1350px;
 }
     /* .m-body * {
         visibility: hidden;
@@ -99,15 +101,3 @@ tr.group:hover {
     background-color: #ddd !important;
 }
  
-
-table td {
-    empty-cells:hide !important;
-}
-table td > *:empty {
-    display:none !important;
-}
-
-#example1 {
-    empty-cells: hide !important;
-    border-collapse: separate;
-    }

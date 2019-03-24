@@ -57,8 +57,8 @@ export class AttendancesetupService {
 
 
     async updateAsignRoster(data) {
-        return await this.http.put(`http://localhost:58090/api/Attendancesetup/UpdateAssignRoster`, data).toPromise();
-        // return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
+        // return await this.http.put(`http://localhost:58090/api/Attendancesetup/UpdateAssignRoster`, data).toPromise();
+        return await this.ApiService.put(`${this.baseUrl}/UpdateAssignRoster`, data).toPromise();
     }
 
     async DeleteAsignRoster(id) {

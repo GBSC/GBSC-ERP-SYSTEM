@@ -33,8 +33,8 @@ export class ViewleaverequestComponent implements OnInit {
     async ngOnInit() {
         this.leaverequestdetail = await this.leaveservice.getLeaveRequestDetails();
 
-        this.leaverequest = await this.leaveservice.getAllleaverequest();
-
+        this.leaverequest = await this.leaveservice.getAllleaverequest(); 
+             
         this.leaveOpening = await this.leaveservice.getLeaveOpening();
 
         this.employees = await this.empservice.GetAllEmployees();
@@ -76,13 +76,10 @@ export class ViewleaverequestComponent implements OnInit {
 
     selectionChanged(e) {
         e.component.collapseAll(-0);
-        e.component.expandRow(e.currentSelectedRowKeys[0]);
-        console.log(e);
+        e.component.expandRow(e.currentSelectedRowKeys[0]); 
     }
 
-    updateLeaveRequest(e) {
-        console.log(e);
-
+    updateLeaveRequest(e) { 
         // if(e.data.isApproved) {
         let leave = this.leaverequest.find(l => {
             if (l.leaveRequestId === e.key) {

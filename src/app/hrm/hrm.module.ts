@@ -180,8 +180,8 @@ import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
 import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { IgxExcelExporterService } from "igniteui-angular";
-
+import { DxSchedulerModule } from 'devextreme-angular';
+ 
 @NgModule({
     imports: [
         CommonModule,
@@ -191,6 +191,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         DxDataGridModule,
         DxSelectBoxModule,
         DxDateBoxModule,
+        DxSchedulerModule,
         DxPopupModule,
         HttpClientModule,
         routing

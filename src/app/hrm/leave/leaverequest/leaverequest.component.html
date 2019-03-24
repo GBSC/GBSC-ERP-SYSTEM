@@ -28,40 +28,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <!-- <div class="col-md-6">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Leave Request Date:
-                  </label>
-                  <div class="col-lg-8">
-                    <dx-date-box  [disabled]="true" formControlName="RequestDate" type="date" format="dd/MM/yyyy" width="100%">
-                    </dx-date-box>
-                  </div>
-                </div>
-              </div> -->
-
-
-            </div>
-
-            <!-- <div class="row"> 
-              <div class="col-md-6">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Is Approved:
-                  </label>
-                  <div class="col-lg-8">
-                    <div class="m-checkbox-list">
-                      <label class="m-checkbox m-checkbox--state-success">
-                        <input type="checkbox" formControlName="IsApproved"> 
-                        <span></span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
+              </div>  
+            </div> 
           </form>
           <div class="m--space-30"></div>
           <hr>
@@ -93,10 +61,17 @@
                     </div>
                   </div>
                 </div>
-
+ 
                 <div class="m-section">
                   <div class="m-section__content">
-                    <dx-data-grid id="gridContainer" [dataSource]="requestDetail" (onRowUpdated)="updateLeaverequestDetail($event)">
+                    <dx-data-grid id="gridContainer" 
+                    [dataSource]="requestDetail"
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                    [masterDetail]="{ enabled: true, template: 'detail' }"
+                    [showBorders]="true"
+                    (onRowUpdated)="updateLeaverequestDetail($event)">
+                    <dxo-selection mode="single"></dxo-selection>
                       <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                       </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -115,12 +90,17 @@
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="description" caption="Description"></dxi-column>
-                      <dxi-column dataField="dateFrom" caption="From Date" displayFormat="dd/MM/YYYY" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="dateTill" caption="To Date" displayFormat="dd/MM/YYYY" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="value" value="availed" caption="Leave Value"></dxi-column>
+                        <dxi-column dataField="value" value="availed" caption="Leave Value"></dxi-column>
                       <dxi-column dataField="totalLeaveDetailValue" caption="Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
                       <dxi-column dataField="totalLeave" caption="Total Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}">
                       </dxi-column>
+                      
+                      <div *dxTemplate="let leave of 'detail'">
+                        <dx-data-grid [dataSource]="leave.data.leaveDays" [showBorders]="true">
+                            <dxi-column dataField="leaveDate" dataType="date" format="EEEE, dd/MM/yyyy"> </dxi-column>
+                            <dxi-column dataField="status"> </dxi-column>
+                             </dx-data-grid>
+                    </div>
 
                     </dx-data-grid>
                   </div>
@@ -183,8 +163,8 @@
             <div class="col-md-3">
               <div class="form-group m-form__group">
                 <label class="control-label"> Leave Year <em class="required_label">*</em> </label>
-                <select class="form-control m-input" formControlName="leaveYearId" [ngClass]="{ 'is-invalid': submitted && rd.leaveYearId.errors }">
-                  <option *ngFor="let ly of leaveYears" [value]="ly.leaveYearId">{{ly.name}}</option>
+                <select class="form-control m-input" disabled  formControlName="leaveYearId" [ngClass]="{ 'is-invalid': submitted && rd.leaveYearId.errors }">
+                  <option selected *ngFor="let ly of leaveYears" [value]="ly.leaveYearId">{{ly.name}}</option>
                 </select>
                 <div *ngIf="submitted && rd.leaveYearId.errors" class="invalid-feedback">
                   <div *ngIf="rd.leaveYearId.errors.required">Leave Yaer required</div>
@@ -195,7 +175,7 @@
               <div class="form-group m-form__group">
                 <label class="control-label"> Leave Type <em class="required_label">*</em> </label>
                 <select #lv class="form-control m-input" (change)="onSetCellValue(lv.value)" formControlName="leaveTypeId" [ngClass]="{ 'is-invalid': submitted && rd.leaveTypeId.errors }">
-                  <option *ngFor="let lt of leaveType" [value]="lt.leaveTypeId">{{lt.title}}</option>
+                  <option *ngFor="let lt of leaveType" [value]="lt.leaveTypeId" selected>{{lt.title}}</option>
                 </select>
                 <div *ngIf="submitted && rd.leaveTypeId.errors" class="invalid-feedback">
                   <div *ngIf="rd.leaveTypeId.errors.required">Leave Type required</div>
@@ -226,22 +206,47 @@
 
           <div class="form-group row">
             <div class="form-group col-lg-4">
-              <label for="exampleInputEmail1"> From Date </label>
-              <input class="form-control m-input m-input--solid" type="date" #fromdate>
-            </div>
+              <label for="exampleInputEmail1"> Leave Date </label>
+              <!-- <input class="form-control m-input m-input--solid" type="date" #fromdate> -->
+              <dx-date-box #leaveDate type="date" format="dd/MM/yyyy" width="100%">
+              </dx-date-box>         
+               </div> 
             <div class="form-group col-lg-4">
-              <label for="exampleInputEmail1"> To Date </label>
-              <input class="form-control m-input m-input--solid" type="date" #todate>
-            </div>
-            <div class="form-group col-lg-4">
-              <button type="button" (click)="addLeaveDays(fromdate , todate)" class="btn btn-primary">
-                Add Days
+              <button type="button" (click)="addLeaveDays(leaveDate.value)" class="btn btn-primary btn_days">
+                Add Leave Date
               </button>
             </div>
           </div>
 
         
         </form>
+      </div>
+
+      <div class="m-content">
+      <div class="m-section">
+        <div class="m-section__content">
+      <dx-data-grid id="gridContainer" [dataSource]="leaveDates" (onRowUpdated)="updateLeaveDay($event)">
+          <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+            </dxo-editing>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-paging [pageSize]="3"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+        </dxo-pager>
+         <dxi-column dataField="leaveDate" caption="Leave Date" dataType="date" format="EEEE, dd/MM/yyyy"></dxi-column>
+         <!-- <dxi-column dataField="status" caption="Status"> -->
+            <dxi-column dataField="status" caption="Status">
+                <dxo-lookup [dataSource]="lookupDataSource">
+                </dxo-lookup>
+            </dxi-column>
+         <!-- </dxi-column> -->
+         <dxo-summary>
+          <dxi-total-item column="leaveDate" summaryType="count"> </dxi-total-item> 
+      </dxo-summary> 
+      </dx-data-grid>  
+      </div>
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -255,4 +260,4 @@
     </div>
   </div>
 </div>
-</div>
+</div> 

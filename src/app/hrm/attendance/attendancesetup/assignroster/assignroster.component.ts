@@ -84,27 +84,8 @@ export class AssignrosterComponent implements OnInit {
             console.log(this.departments);
         });
 
-
-
-
     }
-
-    // onClickMe(args: any) {
-    //       console.log(this);
-    //       const self : any = this;
-    //       console.log(self)
-    //       const filename = 'exportExcel.xlsx';
-    //        const json = JSON.stringify(self.spread.toJSON());
-    //       self.excelIO.save(json, function (blob) {
-    //       saveAs(blob, filename);
-    //   }, function (e) {
-    //       console.log(e);
-    //   });
-    //   }
-
-
- 
-
+    
     addOffDaysList(value) {
         this.calendarForm.value.Daysoffs = value;
         delete this.calendarForm.value.Dayoff;

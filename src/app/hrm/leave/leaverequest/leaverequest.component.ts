@@ -5,8 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LeaveRequestDetail } from '../../../core/Models/HRM/leaveRequestDetail';
 import { LeaveRequest } from '../../../core/Models/HRM/leaveRequest';
 import { ToastrService } from 'ngx-toastr';
-import { queryRefresh } from '@angular/core/src/render3';
-import { Dialog } from 'primeng/primeng';
 
 @Component({
     selector: 'app-leaverequest',
@@ -15,7 +13,9 @@ import { Dialog } from 'primeng/primeng';
 })
 export class LeaverequestComponent implements OnInit {
 
+    lookupDataSource = [ "On Leave", "Cancel Leave" ];
     public leaveRequestForm: FormGroup;
+    public leaveDaysForm: FormGroup;
     public leaveRequestDetailForm: any;
     public leaveYears: any;
     public employees: any;
@@ -24,7 +24,7 @@ export class LeaverequestComponent implements OnInit {
     public leaveTypeBalances: any;
     public leaveApprovr: any;
     public leaverequest: any;
-    public requestDetail: LeaveRequestDetail[];
+    public requestDetail: any[];
     public totalLeave: any;
     public leavePolicy: any;
     public empleavePolicy: any;
@@ -38,7 +38,7 @@ export class LeaverequestComponent implements OnInit {
 
     @Input('leaveRequestId') id: number;
 
-    constructor(public toastr: ToastrService, public authService : AuthService, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
+    constructor(public toastr: ToastrService, public authService: AuthService, public fb: FormBuilder, public activatedRoute: ActivatedRoute, public leavesetupservice: LeaveSetupService, public empservice: EmployeeService,
         public router: Router, public leaveservice: LeaveService) {
 
         this.onSetCellValue = this.onSetCellValue.bind(this);
@@ -46,7 +46,8 @@ export class LeaverequestComponent implements OnInit {
         this.leaveRequestForm = this.fb.group({
             UserId: ['', Validators.required],
             IsApproved: [''],
-            RequestDate: ['']
+            RequestDate: [''],
+            leaveRequestDetails: this.fb.array([])
         });
 
         this.leaveRequestDetailForm = this.fb.group({
@@ -59,8 +60,10 @@ export class LeaverequestComponent implements OnInit {
             value: [''],
             totalLeaveDetailValue: [''],
             totalLeave: [''],
-            description: ['']
+            description: [''],
+            leaveDays: this.fb.array([])
         });
+
     }
 
     async ngOnInit() {
@@ -75,12 +78,15 @@ export class LeaverequestComponent implements OnInit {
         this.leaveApprovr = await this.leavesetupservice.getLeaveApprovers();
 
         this.leaveYears = await this.leavesetupservice.getLeaveYears();
-
+        console.log(this.leaveYears);
+        this.leaveYears = this.leaveYears.filter(c => c.isCurrentYear == true);
+        console.log(this.leaveYears);
+        
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
-        this.empleavePolicy = await this.leaveservice.getLeavePolicyEmployee(); 
+        this.empleavePolicy = await this.leaveservice.getLeavePolicyEmployee();
 
-        this.leavePolicy = await this.leavesetupservice.getLeavePolicies(); 
+        this.leavePolicy = await this.leavesetupservice.getLeavePolicies();
 
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id'];
@@ -102,67 +108,83 @@ export class LeaverequestComponent implements OnInit {
         this.data = this.leaveservice.prepareLeaveData(this.employees, this.leaveType, this.empleavePolicy, this.leavePolicy);
     }
 
-    public valueList : any = []
+    public leaveDates: any = []
+ 
+    public count : any;
 
-    addLeaveDays(fromDate, toDate){
-        var sDate = new Date(fromDate.value)
-        var eDate = new Date(toDate.value)
-        this.valueList.push({
-            
-        })
+    addLeaveDays(value) {
+        var dateOfLeave = this.formatDate(new Date(value));
+        let data = {
+            leaveDate: dateOfLeave,
+            status: "On Leave"
+        }
+
+        let availedDay ;
+        this.leaverequest.forEach(l => 
+            {
+                console.log(l);
+                console.log(this.empId);
+                
+                 if(l.userId == this.empId){
+
+                    l.leaveRequestDetails.forEach(lday => {
+                            console.log(lday); 
+                        console.log(this.leaveBBB.leaveTypeId);
+                        
+                        if(lday.leaveTypeId == this.leaveBBB.leaveTypeId){
+                                console.log(lday.leaveDays);
+                                
+                            availedDay = lday.leaveDays.find(c => this.formatDate(new Date(c.leaveDate)) == dateOfLeave);
+                        }
+                    })
+                 }
+            })
+        
+        let selectedDay = this.leaveDates.find(c => this.formatDate(new Date(c.leaveDate)) == dateOfLeave);
+        if(selectedDay || availedDay) {
+                this.toastr.info("Day Already Selected or Availed")
+                return;
+        }
+
+        this.leaveDates.push(data);
+        console.log(this.leaveDates);
+        console.log(data);
+         this.count = this.leaveDates.filter(c => c.status === 'On Leave').length;
+                console.log( this.count);
+                this.availed = this.count;
     }
 
+
     async leaveRequestDetail(value) {
-        console.log(value);  
-        console.log(this.leaveBBB);
-        
+        console.log(value);
+
         value.leaveTypeId = this.leaveBBB.leaveTypeId;
         value.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
         value.totalLeave = this.leaveBBB.entitledQuantity;
         value.value = this.availed;
         value.totalLeaveDetailValue = this.approvedOrNot;
-        value.CompanyId = this.authService.getUserCompanyId(); 
-        console.log(this.leaveBBB);
+        value.CompanyId = this.authService.getUserCompanyId();
+        value.leaveDays = this.leaveDates;
+        this.requestDetail.push(value);
+        console.log(value);
 
-        this.leaverequest.filter(f => { 
-                
-            if(this.leaveBBB.userId == f.userId ){  
-                            f.leaveRequestDetails.filter(rd => {  
-                                                            
-                                if (this.formatDate(new Date(value.dateFrom)) >= this.formatDate(new Date(rd.dateFrom)) && this.formatDate( new Date(value.dateTill)) <= this.formatDate(new Date(rd.dateTill))) {
-
-                                            this.toastr.info("Already Availed Leaves")
-                                        }  
-                                        else{
-                                            this.requestDetail.push(value);
-                                            // value.totalLeaveDetailValue = this.approvedOrNot;
-                                            // popup.style.display = "none";
-                                            console.log(value);
-                                            // alert("oK")
-                                        }                       
-                            })  
-                    }
-                 
-                }
-    ) 
- 
     }
 
-    async addLeaveRequest(value) {
+    addLeaveRequest(value) {
         this.submitted = true;
         if (this.leaveRequestForm.invalid && this.leaveRequestDetailForm.invalid) {
             this.toastr.error("Fill All Required Fields");
         }
         else {
-            let request = new LeaveRequest();
-            request = { ...request, ...value };
-            request.LeaveRequestDetails = this.requestDetail;
-            console.log(value);
-            console.log(request);
+
+            this.leaveRequestForm.value.leaveRequestDetails = this.requestDetail;
             if (this.requestDetail.length) {
-                await this.leaveservice.addLeaveRequest(request);
-                this.toastr.success("Leave Request Added");
-                this.router.navigate(['/hrm/leave/leaverequests']);
+                this.leaveservice.addLeaveRequest(value).subscribe(r => {
+
+                    this.toastr.success("Leave Request Added");
+                    this.router.navigate(['/hrm/leave/leaverequests']);
+                });
+                console.log(value);
             }
             else {
                 this.toastr.error("Please Add Leave Detail")
@@ -179,6 +201,12 @@ export class LeaverequestComponent implements OnInit {
             return false;
     }
 
+    updateLeaveDay(value) {
+        console.log(value);
+        this.count = this.leaveDates.filter(c => c.status === 'On Leave').length;
+        this.availed = this.count;
+    }
+
     async updateLeaverequestDetail(value) {
         console.log(value);
     }
@@ -193,7 +221,16 @@ export class LeaverequestComponent implements OnInit {
 
         });
         console.log(value);
+    }
 
+    contentReady(e) {
+        if (!e.component.getSelectedRowKeys().length)
+            e.component.selectRowsByIndexes(-1);
+    }
+
+    selectionChanged(e) {
+        e.component.collapseAll(-0);
+        e.component.expandRow(e.currentSelectedRowKeys[0]);
     }
 
     getLeaveBalance(userId) {
@@ -228,9 +265,7 @@ export class LeaverequestComponent implements OnInit {
                 console.log(appLeave)
                 if (appLeave) {
 
-                    // console.log(this.leaveBBB.entitledQuantity)
                     this.approvedOrNot = appLeave.totalLeave;
-                    // this.approvedOrNot = this.leaveBBB.entitledQuantity;
                 }
             }
         }
@@ -269,26 +304,30 @@ export class LeaverequestComponent implements OnInit {
 
     countDays(e) {
 
-        let from = new Date(this.leaveRequestDetailForm.value.dateFrom);
-        let till = new Date(this.leaveRequestDetailForm.value.dateTill);
+        let from = new Date(this.data.leaveDate);
+        // let till = new Date(this.leaveRequestDetailForm.value.dateTill);
 
         let dayFrom = from.getDate();
-        let dayTo = till.getDate();
+        // let dayTo = till.getDate();
 
         let monthFrom = from.getMonth();
-        let monthTo = till.getMonth();
+        // let monthTo = till.getMonth();
 
         this.availed = 0;
-
-        if (monthFrom === monthTo) {
-            this.availed = (dayTo - dayFrom) + 1;
-        } else if (monthTo > monthFrom) {
-            for (let i = 0; i <= (monthTo - monthFrom); i++) {
-                this.availed += this.getMonthDays(monthFrom + i);
-            }
-            this.availed = (this.availed - dayFrom) - (this.getMonthDays(till.getMonth()) - dayTo) + 1;
+        for (let i = 0; i <= (monthFrom); i++) {
+            this.availed += this.getMonthDays(monthFrom + i);
         }
+        this.availed = (this.availed - dayFrom) - (this.getMonthDays(from.getMonth())) + 1;
+        // if (monthFrom) {
+        //     this.availed = (dayFrom) + 1;
+        // } else if (monthTo > monthFrom) {
+        //     for (let i = 0; i <= (monthTo - monthFrom); i++) {
+        //         this.availed += this.getMonthDays(monthFrom + i);
+        //     }
+        //     this.availed = (this.availed - dayFrom) - (this.getMonthDays(till.getMonth()) - dayTo) + 1;
+        // }
     }
+
     getMonthDays(month) {
         let thirty = [3, 5, 8, 11];
         if (month === 1) {

@@ -94,11 +94,11 @@ export class LeaveService {
 
     }
 
-    async addLeaveRequest(data) {
-        return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data).toPromise();
+    addLeaveRequest(data): Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveRequest`, data);
     }
 
-    updateLeaveRequest(data: LeaveRequest): Observable<any> {
+    updateLeaveRequest(data): Observable<any> {
 
         return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
     }
@@ -108,6 +108,32 @@ export class LeaveService {
     async DeleteLeaveRequest(leaverequestId) {
         return await this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`).toPromise();
     }
+
+    
+    getLeaveDays() {
+        return this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveDays`);
+
+    }
+
+    getLeaveDaysById(id): Observable<any> {
+
+        return this.ApiService.get(this.baseUrl + '/Leave/GetLeaveDays/' + id);
+
+    }
+
+     addLeaveDay(data): Observable<any> {
+        return this.ApiService.post(`${this.baseUrl}/Leave/AddLeaveDay`, data);
+    }
+
+    updateLeaveDay(data): Observable<any> {
+
+        return this.ApiService.put(`${this.baseUrl}/Leave/UpdateLeaveRequest`, data);
+    }
+ 
+    DeleteLeaveDay(leaverequestId): Observable<any> {
+        return this.ApiService.delete(`${this.baseUrl}/Leave/DeleteLeaveRequest/${leaverequestId}`);
+    }
+
 
     async getLeaveRequestDetails() {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeaveRequestDetails`).toPromise();

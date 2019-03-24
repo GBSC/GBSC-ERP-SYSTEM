@@ -7,5 +7,6 @@ export class LeaveRequestDetail {
     totalLeave: number; 
     value: number; 
     description: string;
+    LeaveDays: any[];
 
 }

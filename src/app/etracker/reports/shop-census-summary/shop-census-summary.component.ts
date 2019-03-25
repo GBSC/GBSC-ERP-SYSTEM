@@ -1,25 +1,25 @@
-// import { Component, OnInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
-// import { AuthService, InventorysystemService, eTrackerUserService } from '../../../core';
-// import { Region } from '../../../core/Models/Inventory/Setup/Region';
-// import { Area } from '../../../core/Models/Inventory/Setup/Area';
-// import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
-// import { Territory } from '../../../core/Models/Inventory/Setup/Territory';
-// import { Employee } from '../../../core/Models/HRM/employee';
-// import { City } from '../../../core/Models/HRM/city';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, NgZone } from '@angular/core';
+import { AuthService, InventorysystemService, eTrackerUserService } from '../../../core';
+import { Region } from '../../../core/Models/Inventory/Setup/Region';
+import { Area } from '../../../core/Models/Inventory/Setup/Area';
+import { Distributor } from '../../../core/Models/Inventory/Setup/Distributor';
+import { Territory } from '../../../core/Models/Inventory/Setup/Territory';
+import { Employee } from '../../../core/Models/HRM/employee';
+import { City } from '../../../core/Models/HRM/city';
 
-// import * as ko from "knockout";
-// import { Html } from "devexpress-reporting/dx-web-document-viewer";
-// import { environment } from '../../../../environments/environment';
-import { Component, OnInit ,ViewChild  } from '@angular/core';
-import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
-import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
-import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
-import { AuthService } from '../../../../app/core';
+import * as ko from "knockout";
+import { Html } from "devexpress-reporting/dx-web-document-viewer";
+import { environment } from '../../../../environments/environment';
+// import { Component, OnInit ,ViewChild  } from '@angular/core';
+  import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
+// import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
+// import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
+// import { AuthService } from '../../../../app/core';
 
   
- import { HttpClient } from '@angular/common/http';
-   import { AgGridNg2 } from 'ag-grid-angular';
-     import "ag-grid-enterprise";
+//  import { HttpClient } from '@angular/common/http';
+//    import { AgGridNg2 } from 'ag-grid-angular';
+//      import "ag-grid-enterprise";
 
 
 @Component({
@@ -28,101 +28,104 @@ import { AuthService } from '../../../../app/core';
     styleUrls: ['./shop-census-summary.component.scss']
 })
 export class ShopCensusSummaryComponent implements OnInit {
-    @ViewChild('agGrid') agGrid: AgGridNg2;
+   // @ViewChild('agGrid') agGrid: AgGridNg2;
 
+  // public showHideFilter: boolean = false;
 
-  pivotGridDataSource: any;
-  showDataFields: boolean = true;
-  showRowFields: boolean = true;
-  showColumnFields: boolean = true;
-  showFilterFields: boolean = true;
+  // pivotGridDataSource: any;
+  // showDataFields: boolean = true;
+  // showRowFields: boolean = true;
+  // showColumnFields: boolean = true;
+  // showFilterFields: boolean = true;
 
-  companyId : number;
-  userId : number ;
-  public rowData : any;
-  public columnDefs  : any;
+    companyId : number;
+    userId : number ;
+    public rowData : any;
+    public columnDefs  : any;
   public defaultColDef : any;
   public sideBar : any;
 
   public autoGroupColumnDef : any;
   public rowModelType : any;
+   public gridApi: any;
 
-    // public showHideFilter: boolean = false;
-    // public DisableRegion: boolean = true;
-    // public DisableCity: boolean = true;
-    // public DisableArea: boolean = true;
-    // public DistributorDisable: boolean = true;
-    // public TerritoryDisable: boolean = true;
-    // public SectionDisable: boolean = true;
-    // public SubsectionDisable: boolean = true;
-    // public DsfDisable: boolean = true;
+    public showHideFilter: boolean = false;
+    public DisableRegion: boolean = true;
+    public DisableCity: boolean = true;
+    public DisableArea: boolean = true;
+    public DistributorDisable: boolean = true;
+    public TerritoryDisable: boolean = true;
+    public SectionDisable: boolean = true;
+    public SubsectionDisable: boolean = true;
+    public DsfDisable: boolean = true;
 
-    // public Regions: any;
-    // public Cities: any[] = [];
-    // public Areas: any;
-    // public Distributors: any;
-    // public Territories: any;
-    // public Sections: any[] = [];
-    // public Subsections: any[] = [];
-    // public DSFs: any;
-    // public Classifications: any[] = ['500 & Above', '250 to 499', '100 to 249', 'Less then 100'];
-    // public Categories: any[] = ['LMT', 'V/S', 'Retail']
+    public Regions: any;
+    public Cities: any[] = [];
+    public Areas: any;
+    public Distributors: any;
+    public Territories: any;
+    public Sections: any[] = [];
+    public Subsections: any[] = [];
+    public Store : any;
+    public DSFs: any;
+    public Classifications: any[] = ['500 & Above', '250 to 499', '100 to 249', 'Less then 100'];
+    public Categories: any[] = ['LMT', 'V/S', 'Retail']
 
 
-    // public IsAdmin: boolean = false;
-    // public IsRsm: boolean = false;
-    // public IsZsm: boolean = false;
+    public IsAdmin: boolean = false;
+    public IsRsm: boolean = false;
+    public IsZsm: boolean = false;
 
-    // public regionId: any;
-    // public cityId: any;
-    // public areaId: any;
-    // public territoryId: any;
-    // public sectionId: any;
-    // public subsectionId: any;
-    // public distributorId: any;
-    // public dsfId: any;
-    // public classification: any = '500 & Above';
-    // public category: any = 'LMT';
+    public regionId: any;
+    public cityId: any;
+    public areaId: any;
+    public territoryId: any;
+    public sectionId: any;
+    public subsectionId: any;
+    public distributorId: any;
+    public dsfId: any;
+    public classification: any = '500 & Above';
+    public category: any = 'LMT';
 
-    // public startDate: any;
-    // public endDate: any;
+    public startDate: any;
+    public endDate: any;
 
-    // @ViewChild('scripts')
-    // scripts: ElementRef;
+    @ViewChild('scripts')
+    scripts: ElementRef;
 
-    // @ViewChild("control")
-    // control: ElementRef
+    @ViewChild("control")
+    control: ElementRef
     constructor(public storeService: StoreService, public authService : AuthService) {
         this.companyId = authService.getUserCompanyId();
           this.userId = authService.getUserId();
           console.log(this.userId);
      
         this.columnDefs  = [
-          {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true  },
+          {headerName: 'Serial Number', field: 'serialNumber' ,  filter: false, enableValue: true   ,hide :true },
         //   {headerName: '252', field: 'x' ,  filter: false, enableValue: true  },
-          {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true },
-          {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true },
-          {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true },
-          {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true },
-          {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true },
+          {headerName: 'Store Name', field: 'storeName' ,  filter: false, enableValue: true   ,hide :true},
+          {headerName: 'Shop keeper Name', field: 'shopkeeperName' ,  filter: false, enableValue: true ,hide :true},
+          {headerName: 'Contact', field: 'contactNumber' ,  filter: false, enableValue: true   ,hide :true},
+          {headerName: 'Address', field: 'address' ,  filter: false, enableValue: true  ,hide :true},
+          {headerName: 'N.I.C', field: 'cnic' ,  filter: false, enableValue: true  ,hide :true},
 
-          { headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true },
-          {headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   },
-          {headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true},
-          {headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true },
-          {headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true },
-          {headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true  },
-          {headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true  },
+          {  headerName: "Region",field: "region"    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {  headerName: 'City', field: 'city'      ,enableRowGroup: true,  enablePivot: true ,hide :true},
+          {  headerName: 'Area', field: 'area'     ,enableRowGroup: true,  enablePivot: true   ,hide :true },
+          {  headerName: 'Distributor', field: 'distributor'     ,enableRowGroup: true,  enablePivot: true ,hide :true},
+          {  headerName: 'Territory', field: 'territory'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {  headerName: 'section', field: 'section', enableRowGroup: true,  enablePivot: true,  rowGroup: true ,hide :true},
+          {  headerName: 'Subsection', field: 'subsection' ,enableRowGroup: true,  enablePivot: true,  rowGroup: true  ,hide :true},
+          {  headerName: 'Store category', field: 'category'    ,enableRowGroup: true,  enablePivot: true ,hide :true },
+          {  headerName: 'Store classification', field: 'classification'     ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {  headerName: 'DSF', field: 'dsf'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {  headerName: 'Registration Year', field: 'registrationYear'    ,enableRowGroup: true,  enablePivot: true  ,hide :true},
+          {  headerName: 'Registration Month', field: 'registrationMonth'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
+          {  headerName: 'Create User', field: 'createUser'    ,enableRowGroup: true,  enablePivot: true   ,hide :true},
           {  headerName: 'Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Close', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
-          {  headerName: 'Total Persent', valueGetter: 'data.activeStore/(data.activeStore+data.close)*100' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
+          {  headerName: 'Total Persent', valueGetter: ' (data.activeStore *100 ) / (data.activeStore + data.close)' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
 
              ]; 
 
@@ -136,154 +139,185 @@ export class ShopCensusSummaryComponent implements OnInit {
             this.autoGroupColumnDef = { width: 150 };
         }
         public x : any = [];
-        ngOnInit() {
-
- 
-
-        }
+     
 
         public abc : any = [];
-    onGridReady(){
-      console.log('asdas');
+    onGridReady(fromdate , todate){
+        this.formDate = fromdate 
+        this.toDate = todate
+      console.log(fromdate)
+      console.log(todate)
       console.log(this.companyId);
       console.log(this.userId);
       let usrId = 350;
       console.log(usrId)
 
-          this.storeService.shopCensusSummary(this.companyId,usrId).subscribe(res => {
+          this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
           });
-          
-        // this.rowData = [
-        //     {
-        //     serialNumber: 1,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 2,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 0,
-        //     close: 1
-        //     },
-        //     {
-        //     serialNumber: 3,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 4,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     },
-        //     {
-        //     serialNumber: 5,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Aron Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 0,
-        //     close: 1
-        //     },
-        //     {
-        //     serialNumber: 6,
-        //     region: "Karachi Region",
-        //     city: "Karachi",
-        //     area: "Aron Area",
-        //     distributor: "Aron Distributor",
-        //     territory: "Aron Territory",
-        //     section: "Aron Section",
-        //     subsection: "Shan Gbsc Subsection",
-        //     category: "W/S",
-        //     classification: "500 above",
-        //     dsf: "Aron Paul",
-        //     registrationYear: "2019",
-        //     registrationMonth: "02",
-        //     createUser: "Aron Paul",
-        //     shopNameCount: 1,
-        //     activeStore: 1,
-        //     close: 0
-        //     }
-        //     ]
-        // console.log(this.rowData);
     }
+
+    toggleFilter() {
+      this.showHideFilter = !this.showHideFilter;
+  }
 
     onColumnRowGroupChanged(value){
         console.log(value)
     }
 
-    // constructor(public renderer: Renderer2, public ngZone: NgZone, public Auth: AuthService, public InventoryService: InventorysystemService, public eTrackerUserService: eTrackerUserService) { }
+    ngOnInit() {
+          
+    }
+    public formDate : any;
 
+    public toDate : any;
+    public Data : any = [] ;
+
+
+    public sumTotalShop = [ ];
+    public TShop = 0;
+  
+  
+    public sumTotalActiveshop = [ ];
+    public totalActiveshop = 0;
+  
+    
+    public sumTotalCloseshop = [ ];
+    public totalCloseshop = 0;
+  
+    public ActivePersent = 0;
+  
+  
+      onBtPrint(param , value) {
+             console.log(param)
+             this.Data = []
+             this.gridApi = param.api;
+    console.log(this.gridApi)
+  
+      this.gridApi.forEachNode(res => 
+           {
+             console.log(res)
+             if(res.leafGroup == false ){
+                 let mainGroup =       res.aggData 
+                 let mainGroupKey =  res.key
+
+                 mainGroup = {
+                  mainGroup : mainGroupKey,
+                  mainTotalShop : mainGroup[0],
+                  mainTotalActive : mainGroup[1],
+                  mainTotalClosed : mainGroup[2],
+                  mainTotalPersent :  Math.round  ((mainGroup[1] *100 ) / (mainGroup[1] +  mainGroup[2]))
+                 }
+                 this.Data.push(mainGroup)
+             }
+             if(res.leafGroup == true ){
+              let subGroup =       res.aggData 
+              let subGroupKey =  res.key
+
+              subGroup = {
+               secGroup : subGroupKey,
+               mainTotalShop : subGroup[0],
+               mainTotalActive : subGroup[1],
+               mainTotalClosed : subGroup[2],
+               mainTotalPersent :  Math.round  ((subGroup[1] *100 ) / (subGroup[1] +  subGroup[2]))
+              }
+              this.Data.push(subGroup)
+          }
+
+          //    if(res.key ){
+          //     let subGroup =  res.aggData
+          //     let subGroupKey =  res.key
+          //     subGroup = {
+          //       Group : subGroupKey,
+          //       subTotalShop : subGroup[0],
+          //       subTotalActive : subGroup[1],
+          //       subTotalClosed : subGroup[2],
+          //       subTotalPersent :  Math.round  ((subGroup[1] *100 ) / (subGroup[1] +  subGroup[2]))
+          //     }
+              
+          // }
+
+
+
+            
+             
+            //  if(res.data){
+            // //   this.Data.push( res.data)
+  
+            // //   this.sumTotalShop.push(res.data.shopNameCount)
+            // //   this.sumTotalActiveshop.push(res.data.activeStore)
+            // //  this.sumTotalCloseshop.push(res.data.close)
+            //  }
+  
+  
+              
+               
+          }
+        );
+        console.log( this.Data)
+        //   console.log(this.sumTotalShop)
+  
+        // for (let index = 0; index < this.sumTotalShop.length; index++) {
+  
+        //   this.TShop += (this.sumTotalShop[index])
+        // }
+  
+  
+        
+        // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+  
+        //   this.totalActiveshop += (this.sumTotalActiveshop[index])
+        // }
+  
+        // for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+  
+        //   this.totalCloseshop += (this.sumTotalCloseshop[index])
+        // }
+  
+        // console.log(this.TShop);
+  
+  
+        // this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
+   
+        // console.log(this.ActivePersent);
+  
+        sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
+        console.log(this.formDate);
+        console.log(this.toDate);
+        console.log(this.gridApi);
+        window.open('http://localhost:4200/#/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+      }
+  
+   
+    setPrinterFriendly(api) {
+       var eGridDiv = document.getElementById("myGrid");
+      eGridDiv.style.width = "1050px";
+      eGridDiv.style.height = "100%";
+      api.setDomLayout("print");
+      var eGridDiv = document.getElementById("#myGrid")
+      eGridDiv.style.width = "";  
+      eGridDiv.style.height = "";
+    }
+  
+    
+   
+  
+    setNormal(api) {
+      var eGridDiv = document.getElementById("#myGrid")
+       eGridDiv.style.width = "1300px";
+      eGridDiv.style.height = "600px";
+      api.setDomLayout(null);
+      api.collapseAll();
+    }
+
+    //   constructor( public StoreServiceobj : StoreService , public renderer: Renderer2, public ngZone: NgZone, public Auth: AuthService, public InventoryService: InventorysystemService, public eTrackerUserService: eTrackerUserService) { }
+     
     // ngOnInit() {
 
     //     this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
     //         this.Regions = res;
+    //         console.log(this.Regions)
     //     });
 
     //     this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res: City[]) => {
@@ -314,8 +348,16 @@ export class ShopCensusSummaryComponent implements OnInit {
     //         this.DSFs = res;
     //     });
 
+    //     this.StoreServiceobj.getAllStoresByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
+    //       this.Store= res;
+    //       console.log(this.Store)
+    //   });
+
     //     this.setDropboxValues();
     // }
+
+
+
 
     // ngAfterViewInit() {
 
@@ -465,4 +507,8 @@ export class ShopCensusSummaryComponent implements OnInit {
     // toggleFilter() {
     //     this.showHideFilter = !this.showHideFilter;
     // }
+    export(){
+      this.gridApi.exportDataAsCsv();
+    }
+   
 }

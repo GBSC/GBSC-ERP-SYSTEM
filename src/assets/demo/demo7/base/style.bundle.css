@@ -16576,7 +16576,7 @@ code {
           display: table-cell;
           vertical-align: middle;
           text-align: center;
-          padding: 0 5px; }
+          padding: 0 0px; }
           .m-portlet .m-portlet__head .m-portlet__head-tools .m-portlet__nav .m-portlet__nav-item.m-portlet__nav-item--last {
             padding-right: 0; }
           .m-portlet .m-portlet__head .m-portlet__head-tools .m-portlet__nav .m-portlet__nav-item .m-portlet__nav-link {
@@ -30618,7 +30618,7 @@ body.m-content--skin-light2 {
       text-align: center;
       line-height: 0; }
       .m-brand .m-brand__logo img {
-        max-width: 110px; } }
+        max-width: 160px; } }
 
 @media (max-width: 992px) {
   .m-brand {

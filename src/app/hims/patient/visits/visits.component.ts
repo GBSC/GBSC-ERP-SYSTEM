@@ -66,7 +66,8 @@ export class VisitsComponent implements OnInit {
             'IsCancelled': [false],
             'VisitStatus': ['pendding'],
             'VisitId': ['', Validators.required],
-            'AppointmentDate': ['']
+            'AppointmentDate': [''],
+            'FinalTime':['']
         });
 
         this.VisitDiagnosesForm = this.formBuilder.group({
@@ -176,8 +177,11 @@ export class VisitsComponent implements OnInit {
         this.PatientAppointmentForm.value.PatientId = this.id;
         this.PatientAppointmentForm.value.VisitId = this.visitid;
         this.PatientAppointmentForm.value.AppointmentDate = value.TentativeTime;
+        if(value.IsFinalAppointment == true){
+            this.PatientAppointmentForm.value.FinalTime = value.AppointmentDate
+        }
         console.log(value);
-         await this.PatientServiceobj.addAppointment(value);
+           await this.PatientServiceobj.addAppointment(value);
 
         console.log(value);
         // console.log(this.visitid);

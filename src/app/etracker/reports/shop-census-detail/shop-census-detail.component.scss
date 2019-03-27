@@ -4,7 +4,9 @@
     /* border-color: #c4c5d6; */
 }
 
- 
+#myGrid{
+    height: 650px;
+}
 
 .margin{
     margin-top: 25px;
@@ -52,6 +54,7 @@
     #myGrid{
         margin-top: -350px;
         margin-left: -50px;
+        height: 600px;
         // width: 1350px;
     }
     // #myGrid, #myGrid * {

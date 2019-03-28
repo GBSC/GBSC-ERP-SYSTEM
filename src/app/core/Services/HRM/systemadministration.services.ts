@@ -25,6 +25,7 @@ export class SystemAdministrationService {
 
     public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
+    // public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
     public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
 
 

@@ -12,6 +12,7 @@ export class HrmsService {
 
     public setupUrl: string = "SystemAdmin/api/Setup";
     public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup";
+    
     constructor(public ApiService: ApiService,public httpService : HttpClient) {
     }
 

@@ -93,95 +93,109 @@ export class VisitSummaryReportComponent implements OnInit {
   ngOnInit() {
         }
 
+        onColumnRowGroupChanged(value){
+          console.log(value)
+      }
         onGridReady(){
             console.log('asdas');
             console.log(this.companyId);
             console.log(this.userId);
             let usrId = 350;
             console.log(usrId)
-            this.rowData = [
-                {
-                  "region": "Karachi Region",
-                  "city": "Karachi",
-                  "area": "Aron Area",
-                  "distributor": "Aron Distributor",
-                  "territory": "Aron Territory",
-                  "section": "Aron Section",
-                  "subsection": "Aron Subsection",
-                  "dsf": "Aron Paul",
-                  "visitMonth": "03",
-                  "visitDay": "05",
-                  "visitDate": "05-03-2019",
-                  "endTime": null,
-                  "visitedShop": 0.0,
-                  "notProductive": 3.0,
-                  "notVisited": 4.0,
-                  "outOfPjpVisited": 11.0,
-                  "pjpShops": 25.0,
-                  "productive": 2.0
-                },
-                {
-                  "region": "Karachi Region",
-                  "city": "Karachi",
-                  "area": "Aron Area",
-                  "distributor": "Aron Distributor",
-                  "territory": "Aron Territory",
-                  "section": "Aron Section",
-                  "subsection": "Aron Subsection",
-                  "dsf": "Aron Paul",
-                  "visitMonth": "03",
-                  "visitDay": "05",
-                  "visitDate": "05-03-2019",
-                  "endTime": null,
-                  "visitedShop": 0.0,
-                  "notProductive": 254.0,
-                  "notVisited": 245.0,
-                  "outOfPjpVisited": 1187.0,
-                  "pjpShops": 2875.0,
-                  "productive": 21.0
-                },
-                {
-                  "region": "Karachi Region",
-                  "city": "Karachi",
-                  "area": "Aron Area",
-                  "distributor": "Aron Distributor",
-                  "territory": "Aron Territory",
-                  "section": "Aron Section",
-                  "subsection": "Aron Subsection",
-                  "dsf": "Aron Paul",
-                  "visitMonth": "03",
-                  "visitDay": "06",
-                  "visitDate": "06-03-2019",
-                  "endTime": "06-03-2019",
-                  "visitedShop": 53.0,
-                  "notProductive": 7.0,
-                  "notVisited": 5.0,
-                  "outOfPjpVisited": 8.0,
-                  "pjpShops": 50.0,
-                  "productive": 38.0
-                },
-                {
-                  "region": "Karachi Region",
-                  "city": "Karachi",
-                  "area": "Aron Area",
-                  "distributor": "Aron Distributor",
-                  "territory": "Aron Territory",
-                  "section": "Aron Section",
-                  "subsection": "Aron Subsection",
-                  "dsf": "Aron Paul",
-                  "visitMonth": "03",
-                  "visitDay": "06",
-                  "visitDate": "06-03-2019",
-                  "endTime": null,
-                  "visitedShop": 0.0,
-                  "notProductive": 12.0,
-                  "notVisited": 32.0,
-                  "outOfPjpVisited": 32.0,
-                  "pjpShops": 3.0,
-                  "productive": 33.0
-                }
-              ]
-                // this.storeService.shopCensusSummary(this.companyId,usrId).subscribe(res => {
+
+            this.storeService.visitSummaryDetail(this.companyId , this.userId ).subscribe(res => {
+              this.rowData = res;
+             console.log(this.rowData);
+           });
+
+
+            // this.rowData = [
+            //     {
+            //       "region": "Karachi Region",
+            //       "city": "Karachi",
+            //       "area": "Aron Area",
+            //       "distributor": "Aron Distributor",
+            //       "territory": "Aron Territory",
+            //       "section": "Aron Section",
+            //       "subsection": "Aron Subsection",
+            //       "dsf": "Aron Paul",
+            //       "visitMonth": "03",
+            //       "visitDay": "05",
+            //       "visitDate": "05-03-2019",
+            //       "endTime": null,
+            //       "visitedShop": 0.0,
+            //       "notProductive": 3.0,
+            //       "notVisited": 4.0,
+            //       "outOfPjpVisited": 11.0,
+            //       "pjpShops": 25.0,
+            //       "productive": 2.0
+            //     },
+            //     {
+            //       "region": "Karachi Region",
+            //       "city": "Karachi",
+            //       "area": "Aron Area",
+            //       "distributor": "Aron Distributor",
+            //       "territory": "Aron Territory",
+            //       "section": "Aron Section",
+            //       "subsection": "Aron Subsection",
+            //       "dsf": "Aron Paul",
+            //       "visitMonth": "03",
+            //       "visitDay": "05",
+            //       "visitDate": "05-03-2019",
+            //       "endTime": null,
+            //       "visitedShop": 0.0,
+            //       "notProductive": 254.0,
+            //       "notVisited": 245.0,
+            //       "outOfPjpVisited": 1187.0,
+            //       "pjpShops": 2875.0,
+            //       "productive": 21.0
+            //     },
+            //     {
+            //       "region": "Karachi Region",
+            //       "city": "Karachi",
+            //       "area": "Aron Area",
+            //       "distributor": "Aron Distributor",
+            //       "territory": "Aron Territory",
+            //       "section": "Aron Section",
+            //       "subsection": "Aron Subsection",
+            //       "dsf": "Aron Paul",
+            //       "visitMonth": "03",
+            //       "visitDay": "06",
+            //       "visitDate": "06-03-2019",
+            //       "endTime": "06-03-2019",
+            //       "visitedShop": 53.0,
+            //       "notProductive": 7.0,
+            //       "notVisited": 5.0,
+            //       "outOfPjpVisited": 8.0,
+            //       "pjpShops": 50.0,
+            //       "productive": 38.0
+            //     },
+            //     {
+            //       "region": "Karachi Region",
+            //       "city": "Karachi",
+            //       "area": "Aron Area",
+            //       "distributor": "Aron Distributor",
+            //       "territory": "Aron Territory",
+            //       "section": "Aron Section",
+            //       "subsection": "Aron Subsection",
+            //       "dsf": "Aron Paul",
+            //       "visitMonth": "03",
+            //       "visitDay": "06",
+            //       "visitDate": "06-03-2019",
+            //       "endTime": null,
+            //       "visitedShop": 0.0,
+            //       "notProductive": 12.0,
+            //       "notVisited": 32.0,
+            //       "outOfPjpVisited": 32.0,
+            //       "pjpShops": 3.0,
+            //       "productive": 33.0
+            //     }
+            //   ]
+                
+              
+              
+              
+              // this.storeService.shopCensusSummary(this.companyId,usrId).subscribe(res => {
                 //    this.rowData = res;
                 //   console.log(this.rowData);
                 // });

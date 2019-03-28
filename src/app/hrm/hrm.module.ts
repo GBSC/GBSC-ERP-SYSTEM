@@ -182,6 +182,10 @@ import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payrol
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DxSchedulerModule } from 'devextreme-angular';
  
+import { DxChartModule } from 'devextreme-angular/ui/chart';
+import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+// import { IgxExcelExporterService } from "igniteui-angular";
+
 @NgModule({
     imports: [
         CommonModule,
@@ -194,6 +198,8 @@ import { DxSchedulerModule } from 'devextreme-angular';
         DxSchedulerModule,
         DxPopupModule,
         HttpClientModule,
+        DxChartModule,
+        DxPieChartModule,
         routing
     ],
     declarations: [

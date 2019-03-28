@@ -35,7 +35,7 @@
                 (onRowUpdating)="updatingattendance($event)"
                 (onRowUpdated)="updateuserRosterattendance()"
                 (onRowRemoved)="deleteuserRosterattendance($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
                   <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
@@ -83,7 +83,7 @@
         <form [formGroup]="userAttendanceForm">
 
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-12">
               <div class="form-group m-form__group">
                 <label class="control-label"> Employee <em class="required_label">*</em> </label>
                 <select #em class="form-control m-input" (change)="setAssignRoster(em.value)" formControlName="userId">
@@ -91,33 +91,35 @@
                 </select>
               </div>
             </div>
-            <div class="col-md-3">
+            </div>
+            <div class="row">
+              <div class="col-md-12"> 
               <div class="form-group m-form__group">
                 <label class="control-label"> CheckIn Time </label>
                 <dx-date-box formControlName="checkInTime" type="datetime" displayFormat="shortTime" width="100%">
                 </dx-date-box>
               </div>
             </div>
-            <div class="col-md-3">
+            </div>
+            <div class="row">
+              <div class="col-md-12"> 
               <div class="form-group m-form__group">
                 <label for="exampleInputEmail1">Check Out Time </label>
                 <dx-date-box formControlName="checkOutTime" type="datetime" displayFormat="shortTime" width="100%">
                 </dx-date-box>
               </div>
             </div> 
+            </div>
+          </form>
           </div>   
- 
-        </form>
       </div> 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
           Close
-        </button>
- 
+        </button> 
         <button type="button" class="btn btn-primary" (click)="adduserRosterattendance(userAttendanceForm.value)">
           Save
         </button>
       </div>
     </div>
-  </div>
-</div>
+  </div> 

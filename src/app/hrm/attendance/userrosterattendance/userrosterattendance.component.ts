@@ -14,6 +14,7 @@ export class UserrosterattendanceComponent implements OnInit {
     public userAttendanceForm: any;
     public updatingModel: any;
     public userRosterattendance: any;
+    public userRosterId : any;
 
     constructor(public fb: FormBuilder, public attendanceservice: AttendanceService, public attendanceSetupService: AttendancesetupService,
         public employeeService: EmployeeService) {
@@ -41,18 +42,15 @@ export class UserrosterattendanceComponent implements OnInit {
         });
 
     }
-
-    public userRosterId : any;
+ 
     setAssignRoster(e) { 
         this.assignRoster.forEach(ar => {  
         return ar.userAssignRosters.forEach(g => {
                 if(g.userId == e){ 
                     console.log(g);
                     
-                    this.userRosterId = g.assignRosterId;
-
-                    console.log(this.userRosterId);
-                    
+                    this.userRosterId = g.assignRosterId; 
+                    console.log(this.userRosterId); 
                     return;
                 }
             });
@@ -68,10 +66,11 @@ export class UserrosterattendanceComponent implements OnInit {
             value.isPresent = true
         }
         console.log(this.userRosterId);
+        value.assignRosterId = this.userRosterId
+        console.log(value);
         
         // await this.attendanceservice.addUserRosterAttendance(value);
-        // console.log(value);
-
+        // console.log(value); 
         // this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
     }
 

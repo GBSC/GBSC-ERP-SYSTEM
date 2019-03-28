@@ -10,6 +10,7 @@ import { City } from '../../../core/Models/HRM/city';
 import * as ko from "knockout";
 import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
+import { Select2OptionData } from 'ng2-select2/ng2-select2.interface';
 
 @Component({
     selector: 'app-visit-detail',
@@ -28,7 +29,7 @@ export class VisitDetailComponent implements OnInit {
     public SubsectionDisable: boolean = true;
     public DsfDisable: boolean = true;
 
-    public Regions: any;
+    public Regions: any[] = [];
     public Cities: any[] = [];
     public Areas: any;
     public Distributors: any;
@@ -57,6 +58,10 @@ export class VisitDetailComponent implements OnInit {
     public startDate: any;
     public endDate: any;
 
+    public options: Select2Options;
+    public regionOptions: Array<Select2OptionData> = [];
+    public selectedRegions: string[] = [];
+
     @ViewChild('scripts')
     scripts: ElementRef;
 
@@ -67,39 +72,50 @@ export class VisitDetailComponent implements OnInit {
 
     ngOnInit() {
 
-        this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
-            this.Regions = res;
+        this.options = {
+            multiple: true
+        }
+
+        this.eTrackerUserService.populateReportFilters(this.Auth.getUserId()).subscribe((res) => {
+            res.forEach(element => {
+                if(!(this.Regions.includes(r=>r.regionId == element.regionId)))
+                {
+                    this.Regions.push({regionId: element.regionId, name: element.regionName});
+                }
+            });
+
+            console.log(this.Regions);
         });
 
-        this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res: City[]) => {
-            this.Cities = res;
-        });
+        // this.InventoryService.getCitiesByCompany(this.Auth.getUserCompanyId()).subscribe((res: City[]) => {
+        //     this.Cities = res;
+        // });
 
-        this.InventoryService.getAreasByCompany(this.Auth.getUserCompanyId()).subscribe((res: Area[]) => {
-            this.Areas = res;
-        });
+        // this.InventoryService.getAreasByCompany(this.Auth.getUserCompanyId()).subscribe((res: Area[]) => {
+        //     this.Areas = res;
+        // });
 
-        this.InventoryService.getDistributorsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Distributor[]) => {
-            this.Distributors = res;
-        });
+        // this.InventoryService.getDistributorsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Distributor[]) => {
+        //     this.Distributors = res;
+        // });
 
-        this.InventoryService.getTerritoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res: Territory[]) => {
-            this.Territories = res;
-        });
+        // this.InventoryService.getTerritoriesByCompany(this.Auth.getUserCompanyId()).subscribe((res: Territory[]) => {
+        //     this.Territories = res;
+        // });
 
-        this.InventoryService.getSectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
-            this.Sections = res;
-        });
+        // this.InventoryService.getSectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
+        //     this.Sections = res;
+        // });
 
-        this.InventoryService.getSubsectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
-            this.Subsections = res;
-        });
+        // this.InventoryService.getSubsectionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: any[]) => {
+        //     this.Subsections = res;
+        // });
 
-        this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
-            this.DSFs = res;
-        });
+        // this.eTrackerUserService.getSalesUsersByCompany(this.Auth.getUserCompanyId()).subscribe((res: Employee[]) => {
+        //     this.DSFs = res;
+        // });
 
-        this.setDropboxValues();
+        // this.setDropboxValues();
     }
 
     ngAfterViewInit() {
@@ -118,29 +134,35 @@ export class VisitDetailComponent implements OnInit {
             callbacks: {
                 // For demonstration purposes. Get the "Search" action and hide it.  
                 ParametersSubmitted: (s, e) => this.ngZone.run(() => {
-                    if(this.subsectionId)
-                    e.Parameters.filter(function (p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId;
-                    if(this.sectionId)
-                    e.Parameters.filter(function (p) { return p.Key == "sectionid"; })[0].Value = this.sectionId;
-                    if(this.territoryId)
-                    e.Parameters.filter(function (p) { return p.Key == "territoryid"; })[0].Value = this.territoryId;
-                    if(this.areaId)
-                    e.Parameters.filter(function (p) { return p.Key == "areaid"; })[0].Value = this.areaId;
-                    if(this.cityId)
-                    e.Parameters.filter(function (p) { return p.Key == "cityid"; })[0].Value = this.cityId;
-                    if(this.regionId)
-                    e.Parameters.filter(function (p) { return p.Key == "regionid"; })[0].Value = this.regionId;
-                    if(this.distributorId)
-                    e.Parameters.filter(function (p) { return p.Key == "distributorid"; })[0].Value = this.distributorId;
-                    if(this.dsfId)
-                    e.Parameters.filter(function (p) { return p.Key == "userid"; })[0].Value = this.dsfId;
-                    if(this.category)
-                    e.Parameters.filter(function (p) { return p.Key == "category"; })[0].Value = this.category;
-                    if(this.classification)
-                    e.Parameters.filter(function (p) { return p.Key == "classification"; })[0].Value = this.classification;
+                    if (this.subsectionId)
+                        e.Parameters.filter(function (p) { return p.Key == "subsectionid"; })[0].Value = this.subsectionId;
+                    if (this.sectionId)
+                        e.Parameters.filter(function (p) { return p.Key == "sectionid"; })[0].Value = this.sectionId;
+                    if (this.territoryId)
+                        e.Parameters.filter(function (p) { return p.Key == "territoryid"; })[0].Value = this.territoryId;
+                    if (this.areaId)
+                        e.Parameters.filter(function (p) { return p.Key == "areaid"; })[0].Value = this.areaId;
+                    if (this.cityId)
+                        e.Parameters.filter(function (p) { return p.Key == "cityid"; })[0].Value = this.cityId;
+                    if (this.regionId)
+                        e.Parameters.filter(function (p) { return p.Key == "regionid"; })[0].Value = this.regionId;
+                    if (this.distributorId)
+                        e.Parameters.filter(function (p) { return p.Key == "distributorid"; })[0].Value = this.distributorId;
+                    if (this.dsfId)
+                        e.Parameters.filter(function (p) { return p.Key == "userid"; })[0].Value = this.dsfId;
+                    if (this.category)
+                        e.Parameters.filter(function (p) { return p.Key == "category"; })[0].Value = this.category;
+                    if (this.classification)
+                        e.Parameters.filter(function (p) { return p.Key == "classification"; })[0].Value = this.classification;
                 })
             }
         }, this.control.nativeElement);
+    }
+
+
+    onChangeRegions(data: { value: string[] }) {
+        this.selectedRegions = data.value;
+        console.log("Selected Regions: ", this.selectedRegions);
     }
 
     setDropboxValues() {

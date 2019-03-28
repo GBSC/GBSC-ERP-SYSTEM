@@ -32,11 +32,12 @@ import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
 import query from 'devextreme/data/query';
 import DevExpress from 'devexpress-reporting/dx-web-document-viewer'
+import { ToastrService } from 'ngx-toastr';
  
 
 @Component({
   selector: 'app-shop-census-detail',
-  templateUrl: './shop-census-detail.component.html',
+  templateUrl: './shop-census-detail.component.html' ,
   styleUrls: ['./shop-census-detail.component.scss']
 })
 export class ShopCensusDetailComponent implements OnInit {
@@ -64,9 +65,14 @@ export class ShopCensusDetailComponent implements OnInit {
   public autoGroupColumnDef: any;
   public rowModelType: any;
 
-  constructor(public storeService: StoreService, public authService: AuthService) {
+  public currentdate: any;
+
+  public dayone ="dali";
+
+  constructor(public storeService: StoreService, public authService: AuthService , public toastr: ToastrService ) {
     this.companyId = authService.getUserCompanyId();
     this.userId = authService.getUserId();
+
     console.log(this.userId);
 
     this.columnDefs = [
@@ -132,8 +138,15 @@ export class ShopCensusDetailComponent implements OnInit {
     //   console.log(this.sideBar);
   }
 
-
+public usr : any;
   ngOnInit() {
+    console.log(this.userId);
+    this.currentdate = this.formatDate(new Date());
+
+    // this.employeeServiceObj.GetEmployee(this.userId).subscribe(res => {
+    //   this.usr = res;
+    //   console.log(this.usr)
+    // })
     // console.log('asdas');
     // console.log(this.companyId);
     // console.log(this.userId);
@@ -144,451 +157,55 @@ export class ShopCensusDetailComponent implements OnInit {
     //       console.log(this.rowData);
     //     });
   }
+
+  formatDate(date: Date) {
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+}
+public formDate : any ='';
+
+public toDate : any  ='';
   public abc: any = [];
   onGridReady(fromdate, todate ,params) {
     console.log(fromdate);
     console.log(todate);
-
-    console.log(this.companyId);
-    console.log(this.userId);
-    let usrId = 350;
-    console.log(usrId)
-    console.log('0001-01-01')   
-     console.log('2020-01-01')
-    // this.storeService.shopCensusDetailReport(this.companyId, this.userId, '0001-01-01', '2020-01-01').subscribe(res => {
-    //    this.rowData = res;
-    //   console.log(this.rowData);
-    // });
-
-
-    this.rowData = [
-      {
-      serialNumber: 1,
-      storeName: "Shan 13-3-2019",
-      shopkeeperName: "Tyregtr",
-      contactNumber: "79797979797",
-      address: "hshssjj",
-      cnic: "9494464994949",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "Retail",
-      classification: "Less then 100",
-      day: "Wednesday",
-      createDate: "2019-03-13T13:33:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\image-3a9097cc-c97d-42c3-a885-6b98c102f3d2.jpg",
-      startTime: "13-03-2019",
-      endTime: "13-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 2,
-      storeName: "Ghani",
-      shopkeeperName: "Yasir",
-      contactNumber: "88555555555",
-      address: "Dhshs gbsv",
-      cnic: "7657657657657",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "Retail",
-      classification: "Less then 100",
-      day: "Tuesday",
-      createDate: "2019-03-05T16:34:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\image-b0e43053-8f62-4f22-88bc-c3e048af44e7.jpg",
-      startTime: "05-03-2019",
-      endTime: "05-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 3,
-      storeName: "Yala gala",
-      shopkeeperName: "Rafiq",
-      contactNumber: "94994446464",
-      address: "Jssks ksskskka ",
-      cnic: "7673734357657",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "Retail",
-      classification: "Less then 100",
-      day: "Tuesday",
-      createDate: "2019-03-05T16:17:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\image-90e789f3-9169-4667-9fbd-c5f769c5754f.jpg",
-      startTime: "05-03-2019",
-      endTime: "05-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Closed",
-      shopNameCount: 1,
-      activeStore: 0,
-      close: 1
-      },
-      {
-      serialNumber: 4,
-      storeName: "J.shan",
-      shopkeeperName: "Unnecessary",
-      contactNumber: "64649499446",
-      address: "Bjjaba gbsc",
-      cnic: "6464646464664",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "Retail",
-      classification: "Less then 100",
-      day: "Tuesday",
-      createDate: "2019-03-05T16:17:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\image-346cbfaa-7819-4bba-92fd-69f32f376ee2.jpg",
-      startTime: "05-03-2019",
-      endTime: "05-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 5,
-      storeName: "First Form",
-      shopkeeperName: "formfor",
-      contactNumber: "23423423423",
-      address: "test address",
-      cnic: "",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "LMT",
-      classification: "500 & Above",
-      day: "Wednesday, Tuesday, Monday",
-      createDate: "2019-03-05T15:39:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\Screen Shot 2019-02-08 at 6.14.31 PM.png",
-      startTime: "05-03-2019",
-      endTime: "05-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 6,
-      storeName: "Rest Form",
-      shopkeeperName: "Shamss",
-      contactNumber: "23232323232",
-      address: "test",
-      cnic: "",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Shan Gbsc Subsection",
-      dsf: "Aron Paul",
-      category: "LMT",
-      classification: "500 & Above",
-      day: "Thursday, Wednesday, Tuesday, Monday",
-      createDate: "2019-03-05T15:39:00",
-      createUser: "Aron Paul",
-      imageLink: "StoreImages\Store_350\Screen Shot 2019-02-08 at 6.14.31 PM.png",
-      startTime: "05-03-2019",
-      endTime: "05-03-2019",
-      registrationYear: "2019",
-      registrationMonth: "03",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 7,
-      storeName: "Ten Desk",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday, Monday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Closed",
-      shopNameCount: 1,
-      activeStore: 0,
-      close: 1
-      },
-      {
-      serialNumber: 8,
-      storeName: "PingTen Desk",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 9,
-      storeName: "PingTen",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 10,
-      storeName: "Mest Oil Shop",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Closed",
-      shopNameCount: 1,
-      activeStore: 0,
-      close: 1
-      },
-      {
-      serialNumber: 11,
-      storeName: "Rest House",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Aron Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 12,
-      storeName: "Irfan Test122",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Shan Gbsc Subsection",
-      dsf: "Aron Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Aron Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Active",
-      shopNameCount: 1,
-      activeStore: 1,
-      close: 0
-      },
-      {
-      serialNumber: 13,
-      storeName: "Irfan Test12",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Shan Gbsc Subsection",
-      dsf: "Gabby Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Gabby Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Closed",
-      shopNameCount: 1,
-      activeStore: 0,
-      close: 0
-      },
-      {
-      serialNumber: 14,
-      storeName: "Irfan Test1",
-      shopkeeperName: "Irfan Test",
-      contactNumber: "48",
-      address: "Cv",
-      cnic: "58",
-      distributor: "Aron Distributor",
-      city: "Karachi",
-      area: "Aron Area",
-      region: "Karachi Region",
-      territory: "Aron Territory",
-      section: "Aron Section",
-      subsection: "Shan Gbsc Subsection",
-      dsf: "Dale Paul",
-      category: "W/S",
-      classification: "500 above",
-      day: "Sunday, Friday, Thursday, Wednesday, Tuesday",
-      createDate: "2019-02-26T14:25:57",
-      createUser: "Dale Paul",
-      imageLink: null,
-      startTime: "26-02-2019",
-      endTime: "26-02-2019",
-      registrationYear: "2019",
-      registrationMonth: "02",
-      shopMode: "Closed",
-      shopNameCount: 1,
-      activeStore: 0,
-      close: 0
-      }
-      ]
+        if(fromdate == '' &&  todate == ''){
+          fromdate = '1-1-0001';
+          todate = this.currentdate;
+          this.formDate = fromdate;
+          this.toDate = todate
+          console.log(fromdate);
+          console.log(todate);
+          this.storeService.shopCensusDetailReport(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+            this.rowData = res;
+           console.log(this.rowData);
+         });    
+        
+    }
+    else if(fromdate != '' &&  todate != ''){
+      this.formDate = fromdate 
+      this.toDate = todate
+      console.log(this.companyId);
+      console.log(this.userId);
+      let usrId = 350;
+      console.log(usrId)
+  
+        this.storeService.shopCensusDetailReport(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+           this.rowData = res;
+          console.log(this.rowData);
+        });  
+ 
+    }
+    else{
+      this.toastr.error("please Selet Both Dates")
+    }
+      
+      // this.gridApi.expandAll();
 
   }
 
    
 
-  onCellValueChanged(item  ) {
+  onCellValueChanged(item) {
     console.log(item);
     item.newOrModified="Modified";
     console.log(item);
@@ -738,65 +355,95 @@ export class ShopCensusDetailComponent implements OnInit {
   //     }
   // };
 
-  public Data = [];
-    onBtPrint(param , value) {
-
-    this.Data = []
-    this.gridApi = param.api;
-    
-    this.gridApi.forEachNode(res => 
-         {
-          
-           if(res.key  , res.aggData){
-           let Group = res.key
-            let dd = res.aggData;
-            console.log(dd)
-           let c = {
-             Group : Group,
-             TotalShop : " TotalShop   " + dd[0],
-             TotalActive : " TotalActive   " + dd[1],
-             TotalClosed : " TotalClosed   " + dd[2]
-            }
-           this.Data.push(c)
-        
-           }
-           if(res.data){
-            this.Data.push( res.data)
-           }
-            
-             
-        }
-      );
-      console.log( this.Data)
- 
-
-      return  this.Data;
- 
+  public Data : any = [] ;
 
 
-    // console.log(param);
+  public sumTotalShop = [ ];
+  public TShop = 0;
+
+
+  public sumTotalActiveshop = [ ];
+  public totalActiveshop = 0;
+
   
-    //   this.gridApi = param.api;
-    //   let rowData = [];
-    //   this.gridApi.forEachNode(node => 
-    //      {
-    //       if(node.data == undefined){
-    //          console.log('hello')
-    //       }
-    //     rowData.push(node.data)}
-    //   );
-    //   console.log(rowData)
-    //   return rowData;
+  public sumTotalCloseshop = [ ];
+  public totalCloseshop = 0;
+
+  public ActivePersent = 0;
+
+
+    onBtPrint(param , value) {
+ 
+  console.log(param)
+  this.Data = []
+  this.gridApi = param.api;
+  console.log(this.gridApi)
+  this.gridApi.forEachNode(res => 
+       {
+        
+         if(res.key  , res.aggData){
+         let Group = res.key
+          let dd = res.aggData;
+          console.log(dd)
+         let c = {
+           Group : Group,
+           TotalShop : dd[0],
+           TotalActive : dd[1],
+           TotalClosed : dd[2]
+          }
+         this.Data.push(c)
       
-      // console.log(this.gridApi)
-      // param.api.expandAll();
-      // var gridApi = this.gridApi;
+         }
+         if(res.data){
+          this.Data.push( res.data)
+
+          this.sumTotalShop.push(res.data.shopNameCount)
+          this.sumTotalActiveshop.push(res.data.activeStore)
+          this.sumTotalCloseshop.push(res.data.close)
+         }
+
+
+          
+           
+      }
+    );
+    console.log( this.Data)
+      console.log(this.sumTotalShop)
+
+    for (let index = 0; index < this.sumTotalShop.length; index++) {
+
+      this.TShop += (this.sumTotalShop[index])
+    }
+
+
     
-      // this.setPrinterFriendly(gridApi)
-      // print( );
-      // this.setNormal(gridApi);
-      // console.log(value)
+    for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+
+      this.totalActiveshop += (this.sumTotalActiveshop[index])
+    }
+
+    for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+
+      this.totalCloseshop += (this.sumTotalCloseshop[index])
+    }
+
+    console.log(this.TShop);
+
+
+    this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
+
+    console.log(this.ActivePersent);
+
+    sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
+    console.log(this.formDate);
+    console.log(this.toDate);
+    console.log(this.gridApi);
+    window.open('http://localhost:4200/#/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+ 
+ 
   }
+
+ 
 
   btn(){
     var divToPrint=document.getElementById("printTable");
@@ -807,7 +454,9 @@ export class ShopCensusDetailComponent implements OnInit {
     
   }
   
-  export(){
+  export(param){
+    this.gridApi =   param.api;
+    console.log( this.gridApi)
     this.gridApi.exportDataAsCsv();
   }
 
@@ -872,7 +521,7 @@ export class ShopCensusDetailComponent implements OnInit {
   setNormal(api) {
     var eGridDiv = document.getElementById("myGrid");
     eGridDiv.style.width = "1050px";
-    eGridDiv.style.height = "200px";
+    eGridDiv.style.height = "600px";
     api.setDomLayout(null);
     api.collapseAll();
   }

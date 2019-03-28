@@ -32,6 +32,10 @@ export class SetupcompanyComponent implements OnInit {
 
     public InventoryInstalled: boolean;
 
+    public FinanceInstalled : boolean;
+
+    public UltrasoundInstalled : boolean;
+
     public eTrackerInstalled: boolean;
 
     public eTrackerMobileInstalled: boolean;
@@ -39,10 +43,6 @@ export class SetupcompanyComponent implements OnInit {
     public OTInstalled: boolean;
 
     public PharmacyInstalled: boolean;
-
-    public Ultrasound: boolean;
-
-    public Finance: boolean;
 
     public features: any;
 
@@ -117,7 +117,7 @@ export class SetupcompanyComponent implements OnInit {
     async onAddCompany(value) {
         // console.log(value);
         this.superAdminService.addCompany(value).subscribe(resp => {
-            console.log("Company Added");
+            console.log(resp);
             this.companyId = resp.companyID;
             this.superAdminService.addModule({ Name: "Security Admin", CompanyId: this.companyId, Code: "000", ModuleId: 0 }).subscribe();
         });
@@ -164,13 +164,13 @@ export class SetupcompanyComponent implements OnInit {
             this.OTInstalled = true;
         }
         else if (value == "Ultrasound") {
-            this.Ultrasound = true;
+            this.UltrasoundInstalled = true;
         }
         else if (value == "Pharmacy") {
             this.PharmacyInstalled = true;
         }
         else if (value == "Finance") {
-            this.Finance = true;
+            this.FinanceInstalled = true;
         }
     }
 

@@ -11,6 +11,7 @@ import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
 import { Observable } from 'rxjs/Observable';
 import { compileNgModule } from '@angular/core/src/render3/jit/module';
+import { environment } from '../../../../environments/environment.prod';
 
 
 export class Product {
@@ -31,8 +32,7 @@ export class SystemAdministrationService {
 
     public readonly API_URL = "systemadmin/api/setup/";
     public modules: any = [];
-    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup/";
-
+    public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup/";
 
 
     constructor(public ApiService: ApiService, public httpService: HttpClient) {
@@ -139,7 +139,7 @@ export class SystemAdministrationService {
     }
 
     updateDepartment(department): Observable<any> {
-        return this.httpService.put('http://localhost:58090/api/setup/UpdateDepartment', department);
+        return this.httpService.put(this.setupUrl2 + 'UpdateDepartment', department);
     }
 
     deletDepartment(id) {

@@ -132,7 +132,7 @@ export class SystemAdministrationService {
     }
 
      updateDepartment(department) : Observable <any>{
-        return this.httpService.put( 'http://localhost:58090/api/setup/UpdateDepartment', department);
+        return this.httpService.put( this.setupUrl2 + 'UpdateDepartment', department);
     }
 
      deletDepartment(id) {

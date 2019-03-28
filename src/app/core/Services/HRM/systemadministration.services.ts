@@ -35,10 +35,6 @@ export class SystemAdministrationService {
     public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup/";
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fdb67bea2dd510d3a17b330207333df9ab615422
     constructor(public ApiService: ApiService, public httpService: HttpClient) {
     }
 
@@ -143,7 +139,7 @@ export class SystemAdministrationService {
     }
 
     updateDepartment(department): Observable<any> {
-        return this.httpService.put('http://localhost:58090/api/setup/UpdateDepartment', department);
+        return this.httpService.put(this.setupUrl2 + 'UpdateDepartment', department);
     }
 
     deletDepartment(id) {

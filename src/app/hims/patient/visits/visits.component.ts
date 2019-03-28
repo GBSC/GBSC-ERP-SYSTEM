@@ -64,7 +64,7 @@ export class VisitsComponent implements OnInit {
             'TentativeTime': ['', Validators.required],
             'IsFinalAppointment': [false],
             'IsCancelled': [false],
-            'VisitStatus': ['pendding'],
+            'VisitStatus': ['Pending'],
             'VisitId': ['', Validators.required],
             'AppointmentDate': [''],
             'FinalTime':['']

@@ -82,7 +82,7 @@
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                       </dxo-pager>
                       <dxi-column dataField="leaveYearId" caption="Leave Year">
-                        <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
+                        <dxo-lookup [dataSource]="leaveYears" displayExpr="name" valueExpr="leaveYearId">
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="leaveTypeId" caption="Leave Type" [setCellValue]="onSetCellValue">

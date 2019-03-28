@@ -34,7 +34,7 @@ export class AllowancearrearComponent implements OnInit {
         this.updatingModel = {...value.oldData, ...value.newData};
     }
 
-     updateAllowanceArrear() {
+    updateallowancearrear() {
          this.payrollsetupservice.updateAllowanceArrear(this.updatingModel).subscribe(rep => {
              console.log(rep);
              

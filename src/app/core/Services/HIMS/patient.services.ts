@@ -287,18 +287,17 @@ export class PatientService {
     }
 
     async getConsultantIdAndTentiveTime(id, date) {
-        this.ConsultantIdAndTentiveTime = await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+        this.ConsultantIdAndTentiveTime = await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
         return this.ConsultantIdAndTentiveTime;
     }
 
     async GetAppointmentByConsultantNameAndDate(id, date) {
-        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
+        return await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByConsultantNameAndDate/' + id + '/' + date).toPromise();
     }
 
     public AppointmentByDate: any;
     async getAppointmentByDate(date) {
-        return await this.ApiService.get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
-
+        return await this.ApiService.Get(this.API_URL + 'Appointments/GetAppointmentByDate/' + date).toPromise();
     }
 
     GetConsultants(): Observable<Consultant[]> {
@@ -314,8 +313,9 @@ export class PatientService {
         return this.ApiService.get(this.API_URL + 'HimsSetup/GetConsultant/' + id);
     }
 
-    async addConsultant(consultant: Consultant) {
-        return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', consultant).toPromise();
+    async  addConsultant(value) {
+        console.log(value)
+          return await this.ApiService.post(this.API_URL + 'HimsSetup/AddConsultant', value).toPromise();
     }
 
     async updateConsultant(consultant: Consultant) {
@@ -366,6 +366,13 @@ export class PatientService {
     async getActiveVisits() {
         this.ActiveVisits = <Visits>(await this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits').toPromise());
         return this.ActiveVisits;
+    }
+
+    GetActiveVisits()  :Observable <any> {
+
+        console.log( this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits'))
+        console.log( this.API_URL + '/Visits/GetActiveVisits')
+        return  this.ApiService.get(this.API_URL + '/Visits/GetActiveVisits');
     }
 
     async getActiveVisitsTesting() {

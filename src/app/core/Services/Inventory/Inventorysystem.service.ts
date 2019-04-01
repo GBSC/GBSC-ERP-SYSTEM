@@ -55,6 +55,7 @@ import { Unit } from '../../Models/Inventory/Setup/Unit';
 import { componentFactoryName } from '@angular/compiler';
 import { Transport } from '../../Models/Inventory/Setup/Transport';
 import { City } from '../../Models/HRM/city';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable()
@@ -76,7 +77,7 @@ export class InventorysystemService {
         // return this.SalesIndent;
     }
 
-    GetSalesIndent(id : number): Observable<SalesIndent> {
+    GetSalesIndent(id: number): Observable<SalesIndent> {
         return this.ApiService.get(this.API_URL + 'Sales/GetSalesIndent/' + id);
     }
 
@@ -84,7 +85,7 @@ export class InventorysystemService {
         return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedSalesIndents');
     }
 
-    UpdateSalesIndents(indents : SalesIndent[]): Observable<any> {
+    UpdateSalesIndents(indents: SalesIndent[]): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Sales/UpdateSalesIndents', indents);
     }
 
@@ -1134,23 +1135,23 @@ export class InventorysystemService {
         // return this.Inventory;
     }
 
-    GetInventoryList(ids : number[]): Observable<Inventory[]> {
+    GetInventoryList(ids: number[]): Observable<Inventory[]> {
         return this.ApiService.post(this.API_URL + 'Setup/GetInventoryList', ids);
     }
 
-    UpdateInventories(models : Inventory[]): Observable<any> {
+    UpdateInventories(models: Inventory[]): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateInventories', models);
     }
 
-    GetUnprocessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+    GetUnprocessedInternalRequisitionRequestsByCompany(companyid: number): Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Sales/GetUnprocessedInternalRequisitionRequestsByCompany/' + companyid);
     }
 
-    GetCurrentMonthProcessedInternalRequisitionRequestsByCompany(companyid : number) : Observable<any[]> {
+    GetCurrentMonthProcessedInternalRequisitionRequestsByCompany(companyid: number): Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Sales/GetCurrentMonthProcessedInternalRequisitionRequestsByCompany/' + companyid);
     }
 
-    ProcessSalesIndentById(indentid : number) : Observable<any> {
+    ProcessSalesIndentById(indentid: number): Observable<any> {
         return this.ApiService.get(this.API_URL + 'Sales/ProcessSalesIndentById/' + indentid);
     }
 
@@ -1526,15 +1527,15 @@ export class InventorysystemService {
         return this.ApiService.get(this.API_URL + 'Setup/GetRegionsByUser/' + userId);
     }
 
-    AddRegion(Region: Region): Observable<Region> {
-        return this.ApiService.post(this.API_URL + 'Setup/AddRegion', Region);
+    AddRegion(Region: Region): Observable<any> {
+        return this.http.post(environment.api_url + this.API_URL + 'Setup/AddRegion', Region);
         // let x = await this.http.post(this.API_URL + 'Setup/AddRegion', Region).toPromise();
         // console.log(x);
         // return x;
     }
 
-    UpdateRegion(Region: Region): Observable<Region> {
-        return this.ApiService.put(this.API_URL + 'Setup/UpdateRegion', Region);
+    UpdateRegion(Region: Region): Observable<any> {
+        return this.http.put(environment.api_url + this.API_URL + 'Setup/AddRegion', Region);
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateRegion', Region).toPromise();
         // console.log(y);
         // return y;
@@ -1561,11 +1562,11 @@ export class InventorysystemService {
     }
 
     addCity(City: any): Observable<any> {
-        return this.ApiService.post(this.API_URL + 'Setup/AddCity', City);
+        return this.http.post(environment.api_url + this.API_URL + 'Setup/AddCity', City);
     }
 
     updateCity(City: any): Observable<any> {
-        return this.ApiService.put(this.API_URL + 'Setup/UpdateCity', City);
+        return this.http.put(environment.api_url + this.API_URL + 'Setup/UpdateCity', City);
     }
 
     deleteCity(id): Observable<any> {
@@ -1879,23 +1880,23 @@ export class InventorysystemService {
         // return x;
     }
 
-    getGeneralSkus() : Observable<any[]> {
+    getGeneralSkus(): Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUs');
     }
 
-    getGeneralSkusByCompany(companyid : number) : Observable<any[]> {
+    getGeneralSkusByCompany(companyid: number): Observable<any[]> {
         return this.ApiService.get(this.API_URL + 'Setup/GetGeneralSKUsByCompany/' + companyid);
     }
 
-    addGeneralSku(model : any) : Observable<any> {
+    addGeneralSku(model: any): Observable<any> {
         return this.ApiService.post(this.API_URL + 'Setup/AddGeneralSKU', model);
     }
 
-    updateGeneralSku(model : any) : Observable<any> {
+    updateGeneralSku(model: any): Observable<any> {
         return this.ApiService.put(this.API_URL + 'Setup/UpdateGeneralSKU', model);
     }
 
-    deleteGeneralSku(id : number) : Observable<any> {
+    deleteGeneralSku(id: number): Observable<any> {
         return this.ApiService.delete(this.API_URL + 'Setup/DeleteGeneralSKU/' + id);
     }
 

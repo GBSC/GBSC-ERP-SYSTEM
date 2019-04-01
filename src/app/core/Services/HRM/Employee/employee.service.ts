@@ -40,10 +40,11 @@ export class EmployeeService {
 
     GetEmployee(id): Observable<Employee> {
         return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
+        // return this.HttpService.get('http://localhost:58090/api/Users/GetUser/' + id);
     }
 
 
-    updateEmployeeBasicInfo(Employee: Employee): Observable<any> {
+    updateEmployeeBasicInfo(Employee: any): Observable<any> {
 
         return this.HttpService.put(this.baseUrl2 + '/Users/UpdateUserBasicInfo', Employee);
     }
@@ -63,12 +64,12 @@ export class EmployeeService {
 
     addUserCompany(UserCompany): Observable<any> {
 
-        return this.ApiService.post(`${this.baseUrl}/Users/AddUserCompany`, UserCompany);
+        return this.HttpService.post(`${this.baseUrl2}/Users/AddUserCompany`, UserCompany);
     }
 
     updateUserCompany(UserCompany): Observable<any> {
 
-        return this.ApiService.post(`${this.baseUrl}/Users/UpdateUserCompany`, UserCompany);
+        return this.HttpService.post(`${this.baseUrl2}/Users/UpdateUserCompany`, UserCompany);
     }
 
 

@@ -18,6 +18,7 @@ export interface Employee {
     Address: string,
     PermanentAddress: string,
     ReligionId: number,
+    GroupId: number,
     cityId: number,
     countryId: number,
     companyId: number,

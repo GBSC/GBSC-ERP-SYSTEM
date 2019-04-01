@@ -9,9 +9,8 @@ import { Feature } from '../core/Models/HRM/feature';
 @Injectable()
 export class SuperadminserviceService {
 
-    private SystemAdmin_API_URL = "http://gbsc-erp.azurewebsites.net/systemadmin/api/";
-
-    private Account_API_URL = "http://gbsc-erp.azurewebsites.net/authentication/api/"
+    private SystemAdmin_API_URL = "http://evasalesforcedev.azurewebsites.net/systemadmin/api/";
+    private Account_API_URL = "http://evasalesforcedev.azurewebsites.net/authentication/api/"
 
     constructor(private http: HttpClient, public ApiService : ApiService) {
 

@@ -37,6 +37,7 @@ export class MasterpayrollComponent implements OnInit {
     public employee: any;
     public calculationttypes: any;
     public payrollYears: any;
+    submitted = false;
 
     @Input('masterPayrollId') id: number;
 
@@ -47,9 +48,9 @@ export class MasterpayrollComponent implements OnInit {
         public Auth: AuthService) {
 
         this.MasterPayrollForm = this.fb.group({
-            UserId: [''],
+            UserId: ['', Validators.required],
             Salary:[''],
-            PayrollYearId: [''],
+            PayrollYearId: ['',Validators.required],
             masterPayrollDetails : this.fb.array([])
 
         });
@@ -79,7 +80,9 @@ export class MasterpayrollComponent implements OnInit {
 
         this.salaryCalculationtype = await this.payrollsetupservice.getSalaryCalculationTypes();
 
-        this.allowances = await this.payrollsetupservice.getAllowanceDeductions();
+        this.payrollsetupservice.getAllowanceDeductions().subscribe(rep => {
+            this.allowances = rep
+        });
         console.log(this.allowances) 
 
         this.benefit = await this.payrollsetupservice.getBenefits();
@@ -111,6 +114,10 @@ export class MasterpayrollComponent implements OnInit {
     }
 
       submitForm(value , salary) { 
+        this.submitted = true;
+        if (this.MasterPayrollForm.invalid) {
+            this.toastr.error("Fill All Required Fields");
+        }
           this.MasterPayrollForm.value.Salary = salary;
           console.log(value)
           console.log(this.getAllowances.salaryStructureDetails);
@@ -281,6 +288,9 @@ export class MasterpayrollComponent implements OnInit {
 
         });
     }
+
+    get m() { return this.MasterPayrollForm.controls; }
+
 
     patchValues(masterpayroll: any) {
 

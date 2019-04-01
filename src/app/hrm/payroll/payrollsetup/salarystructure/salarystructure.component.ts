@@ -48,9 +48,10 @@ export class SalarystructureComponent implements OnInit {
 
         this.benefit = await this.payrollsetupservice.getBenefits();
 
-        this.allowance = await this.payrollsetupservice.getAllowanceDeductions();
-
-
+        this.payrollsetupservice.getAllowanceDeductions().subscribe(rsp => {
+            this.allowance = rsp
+        });
+ 
         this.payrollTypes = await this.payrollsetupservice.getPayrollTypes();
 
         this.groups = await this.setupservice.getAllGroups();

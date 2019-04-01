@@ -753,15 +753,15 @@ export class InventorysystemService {
         return this.ApiService.get(this.API_URL + 'Setup/GetAreasByUser/' + userId);
     }
 
-    AddArea(Area: Area): Observable<Area> {
-        return this.ApiService.post(this.API_URL + 'Setup/AddArea', Area);
+    AddArea(Area: Area): Observable<any> {
+        return this.http.post(environment.api_url + this.API_URL + 'Setup/AddArea', Area);
         // let x = await this.http.post(this.API_URL + 'Setup/AddArea', Area).toPromise();
         // console.log(x);
         // return x;
     }
 
-    UpdateArea(Area: Area): Observable<Area> {
-        return this.ApiService.put(this.API_URL + 'Setup/UpdateArea', Area);
+    UpdateArea(Area: Area): Observable<any> {
+        return this.http.put(environment.api_url + this.API_URL + 'Setup/UpdateArea', Area);
         // let y = await this.http.put(this.API_URL + 'Setup/UpdateArea', Area).toPromise();
         // console.log(y);
         // return y;

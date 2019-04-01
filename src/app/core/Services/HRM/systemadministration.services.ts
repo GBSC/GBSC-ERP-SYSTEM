@@ -35,10 +35,6 @@ export class SystemAdministrationService {
     public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup/";
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fdb67bea2dd510d3a17b330207333df9ab615422
     constructor(public ApiService: ApiService, public httpService: HttpClient) {
     }
 

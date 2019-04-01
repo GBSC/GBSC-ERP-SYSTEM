@@ -15,6 +15,12 @@
 .dispy{
     display: none;
 }
+
+.ag-theme-balham .ag-tool-panel-wrapper .ag-column-drop {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    height: 100px;
+}
  
  @media print {
 

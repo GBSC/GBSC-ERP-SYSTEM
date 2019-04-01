@@ -12,6 +12,8 @@ import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
 // import { Component, OnInit ,ViewChild  } from '@angular/core';
   import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
+  import { ToastrService } from 'ngx-toastr';
+
 // import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
 // import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 // import { AuthService } from '../../../../app/core';
@@ -95,7 +97,7 @@ export class ShopCensusSummaryComponent implements OnInit {
 
     @ViewChild("control")
     control: ElementRef
-    constructor(public storeService: StoreService, public authService : AuthService) {
+    constructor(public storeService: StoreService, public authService : AuthService ,  public toastr: ToastrService ) {
         this.companyId = authService.getUserCompanyId();
           this.userId = authService.getUserId();
           console.log(this.userId);
@@ -141,22 +143,54 @@ export class ShopCensusSummaryComponent implements OnInit {
         public x : any = [];
      
 
-        public abc : any = [];
+        public formDate : any ='';
+
+        public toDate : any  ='';
+        public currentdate: any;
+          public abc: any = [];
     onGridReady(fromdate , todate){
+
+      if(fromdate == '' &&  todate == ''){
+        fromdate = '1-1-0001';
+        todate = this.currentdate;
+        this.formDate = fromdate;
+        this.toDate = todate
+        this.storeService.shopCensusSummary(this.companyId,this.userId , this.formDate,  this.toDate).subscribe(res => {
+          this.rowData = res;
+         console.log(this.rowData);
+       });
+      }
+      else if(fromdate != '' &&  todate != ''){
         this.formDate = fromdate 
         this.toDate = todate
-      console.log(fromdate)
-      console.log(todate)
-      console.log(this.companyId);
-      console.log(this.userId);
-      let usrId = 350;
-      console.log(usrId)
+        this.storeService.shopCensusSummary(this.companyId,this.userId ,  this.formDate, this.toDate).subscribe(res => {
+          this.rowData = res;
+         console.log(this.rowData);
+       });
+      }
 
-          this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
-             this.rowData = res;
-            console.log(this.rowData);
-          });
+      else{
+        this.toastr.error("please Selet Both Dates")
+      }
+      //   this.formDate = fromdate 
+      //   this.toDate = todate
+      // console.log(fromdate)
+      // console.log(todate)
+      // console.log(this.companyId);
+      // console.log(this.userId);
+      // let usrId = 350;
+      // console.log(usrId)
+
+      //     this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
+      //        this.rowData = res;
+      //       console.log(this.rowData);
+      //     });
     }
+
+    formatDate(date: Date) {
+      return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  }
+  
 
     toggleFilter() {
       this.showHideFilter = !this.showHideFilter;
@@ -168,10 +202,9 @@ export class ShopCensusSummaryComponent implements OnInit {
 
     ngOnInit() {
           
+    this.currentdate = this.formatDate(new Date());
     }
-    public formDate : any;
-
-    public toDate : any;
+ 
     public Data : any = [] ;
 
 

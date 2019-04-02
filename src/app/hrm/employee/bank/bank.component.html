@@ -21,11 +21,23 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="accountName"></dxi-column>
-                <dxi-column dataField="accountNumber"></dxi-column>
-                <dxi-column dataField="bankTitle"></dxi-column>
+                <dxi-column dataField="accountName">
+                  <dxi-validation-rule type="required" message="Account Name is required">
+                  </dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="accountNumber">
+                  <dxi-validation-rule type="required" message="Account Number is required">
+                  </dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="bankTitle">
+                  <dxi-validation-rule type="required" message="Bank Name is required">
+                  </dxi-validation-rule>
+                </dxi-column>
                 <dxi-column dataField="bankCode"></dxi-column>
-                <dxi-column dataField="branch"></dxi-column>
+                <dxi-column dataField="branch">
+                  <dxi-validation-rule type="required" message="Bank Branch Name is required">
+                  </dxi-validation-rule>
+                </dxi-column>
               </dx-data-grid>
             </div>
           </div>

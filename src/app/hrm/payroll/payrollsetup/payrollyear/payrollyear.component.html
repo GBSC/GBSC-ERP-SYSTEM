@@ -23,8 +23,12 @@
 								<dxo-paging [pageSize]="8"></dxo-paging>
 								<dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]"[showInfo]="true"></dxo-pager>
 								<dxi-column dataField="name" caption="Payroll Year" [allowEditing]="false"></dxi-column>
-								<dxi-column dataField="from" caption="Start Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
-								<dxi-column dataField="till"caption="End Date" dataType="date" format="dd/MM/yyyy"></dxi-column>
+								<dxi-column dataField="from" caption="Start Date" dataType="date" format="dd/MM/yyyy">
+									<dxi-validation-rule type="required" message="Start Date is required"></dxi-validation-rule>
+								</dxi-column>
+								<dxi-column dataField="till"caption="End Date" dataType="date" format="dd/MM/yyyy">
+									<dxi-validation-rule type="required" message="End Date is required"></dxi-validation-rule>
+								</dxi-column>
 								<dxi-column dataField="isCurrent"caption="Is Current Payroll Year" dataType="boolean"></dxi-column>
 							  </dx-data-grid> 
 						</div>

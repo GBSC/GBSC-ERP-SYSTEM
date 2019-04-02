@@ -1,7 +1,7 @@
  
            
  <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-                                <h4>User Dependants</h4>
+                                <h4>Employee Dependants</h4>
                 
                           <div class="m-portlet__body">
                             <div class="m-section">
@@ -11,9 +11,10 @@
                                  keyExpr="relationId" 
                                  (onRowInserted)="addRelation($event)" 
                                  (onRowUpdated)="updateRelation($event)"  
+                                 [columnAutoWidth]="true"
                                  [showBorders]="true">
-                                  <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                                    <dxo-popup title="User Dependants" [showTitle]="true" [width]="850" [height]="450"></dxo-popup>
+                                  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                                    <dxo-popup title="Employee Dependant" [showTitle]="true" [width]="850" [height]="450"></dxo-popup>
                                   </dxo-editing>
                                   <dxo-filter-row [visible]="true"></dxo-filter-row>
                                   <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -22,21 +23,20 @@
                                   <dxo-paging [pageSize]="6"></dxo-paging>
                                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                                   </dxo-pager> 
-                                  <dxi-column dataField="name"></dxi-column>
+                                  <dxi-column dataField="name">
+                                    <dxi-validation-rule type="required" message="Dependant Name is required"></dxi-validation-rule>
+                                  </dxi-column>
                                   <dxi-column dataField="dependantsRelationId" caption="Dependants Relation">
                                       <dxo-lookup [dataSource]="dependantrelations" displayExpr="name" valueExpr="dependantsRelationId">
                                       </dxo-lookup>
+                                      <dxi-validation-rule type="required" message="Dependant Relation is required"></dxi-validation-rule>
                                     </dxi-column>  
                                   <dxi-column dataField="email"></dxi-column>
                                   <dxi-column dataField="address"></dxi-column>
                                   <dxi-column dataField="permanentAddress" [visible]="false"></dxi-column>
                                   <dxi-column dataField="phone">
-                                    <dxi-validation-rule type="required"></dxi-validation-rule>
-                                    <dxi-validation-rule 
-                                        type="pattern"
-                                        [pattern]="pattern" message="Your phone must have &#34;(555) 555-5555&#34; format!"
-                                        ></dxi-validation-rule>
-                                  </dxi-column>
+                                    <dxi-validation-rule type="required" message="Dependant Phone is required"></dxi-validation-rule>
+                                   </dxi-column>
                                   <dxi-column dataField="country"></dxi-column>
                                   <dxi-column dataField="city" [visible]="false"></dxi-column>
                                   <dxi-column dataField="province" [visible]="false"></dxi-column>

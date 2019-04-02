@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
 import { Employee } from '../../../Models/HRM/employee';
 import { EmployeeCompany } from '../../../Models/HRM/employeeCompany';
 import { EmployeeSocial } from '../../../Models/HRM/employeeSocial'; 
+import { environment } from '../../../../../environments/environment.prod';
 
 @Injectable()
 export class EmployeeService {
 
-    public baseUrl: string = 'systemadmin/api'; 
-    public baseUrl2: string = 'http://gbsc-erp.azurewebsites.net/SystemAdmin/api'; 
+    public baseUrl: string = 'systemadmin/api';   
+    public baseUrl2: string = environment.api_url + 'SystemAdmin/api'; 
     public updatedLeaves;
 
 
@@ -40,8 +41,7 @@ export class EmployeeService {
 
     GetEmployee(id): Observable<Employee> {
         return this.ApiService.get(this.baseUrl + '/Users/GetUser/' + id);
-        // return this.HttpService.get('http://localhost:58090/api/Users/GetUser/' + id);
-    }
+     }
 
 
     updateEmployeeBasicInfo(Employee: any): Observable<any> {

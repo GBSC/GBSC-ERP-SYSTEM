@@ -16,12 +16,14 @@ export class DegreeComponent implements OnInit {
     constructor(public httpClient: HttpClient, public dataService: SetupService) { }
 
     async ngOnInit() {
-        this.degrees = await this.dataService.getAllDegrees();
+        this.dataService.getDegrees().subscribe(rsp =>  this.degrees = rsp); 
     }
 
-    async addNewDegree(dgree) {
-        await this.dataService.addDegree(dgree.data);
-        this.degrees = await this.dataService.getAllDegrees();
+    addNewDegree(dgree) {
+        this.dataService.addDegree(dgree.data).subscribe(resp =>{ console.log(resp); 
+            this.dataService.getDegrees().subscribe(rsp =>  this.degrees = rsp); 
+        }); 
+       
     }
 
     Editingdegree(value) {

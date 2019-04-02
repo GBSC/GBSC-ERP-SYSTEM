@@ -32,9 +32,10 @@
 
 
                 <dxi-column dataField="name" caption="Year" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
-                <!-- <dxi-column dataField="year" caption="Year" dataType="date" format="year"></dxi-column> -->
-                <dxi-column dataField="startDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
-                <dxi-column dataField="endDate" dataType="date" format="dd/MM/yyyy"></dxi-column>
+                 <dxi-column dataField="startDate" dataType="date" format="dd/MM/yyyy">
+                  <dxi-validation-rule type="required" message="Start date is required"></dxi-validation-rule></dxi-column>
+                <dxi-column dataField="endDate" dataType="date" format="dd/MM/yyyy">
+                  <dxi-validation-rule type="required" message="End Date is required"></dxi-validation-rule></dxi-column>
                 <dxi-column dataType="boolean" dataField="isCurrentYear"></dxi-column>
               </dx-data-grid>
             </div>

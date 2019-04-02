@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { HttpClient, HttpParams } from '@angular/common/http';
+ import 'rxjs/add/operator/map';
 import { ApiService } from '../api.service';
 import { Company } from '../../Models/HRM/company';
 import { Branch } from '../../Models/HRM/branch';
@@ -10,8 +9,7 @@ import { Role } from '../../Models/HRM/role';
 import { Feature } from '../../Models/HRM/feature';
 import { Module } from '../../Models/HRM/module';
 import { Observable } from 'rxjs/Observable';
-import { compileNgModule } from '@angular/core/src/render3/jit/module';
-import { environment } from '../../../../environments/environment.prod';
+ import { environment } from '../../../../environments/environment.prod';
 
 
 export class Product {
@@ -21,11 +19,7 @@ export class Product {
     selected?: boolean;
     items?: Product[];
 }
-
-    
-
-
-
+ 
 @Injectable()
 export class SystemAdministrationService {
 

@@ -69,9 +69,9 @@ export class UserrosterattendanceComponent implements OnInit {
         value.assignRosterId = this.userRosterId
         console.log(value);
         
-        // await this.attendanceservice.addUserRosterAttendance(value);
-        // console.log(value); 
-        // this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
+        await this.attendanceservice.addUserRosterAttendance(value);
+        console.log(value); 
+        this.userRosterattendance = await this.attendanceservice.getUserRosterAttendances();
     }
 
     async updatingattendance(value) {

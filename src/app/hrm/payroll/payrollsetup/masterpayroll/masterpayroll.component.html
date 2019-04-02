@@ -16,13 +16,10 @@
             <div class="form-group m-form__group row">
               <div class="col-lg-3">
                 <label>Employee: </label>
-                 <select class="form-control m-input" formControlName="PayrollYearId" [ngClass]="{ 'is-invalid': submitted && m.PayrollYearId.errors }">
+                 <select class="form-control m-input" formControlName="PayrollYearId">
                   <option value="" disabled selected>-- Select Payroll Year --</option>
                   <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
-                </select>
-                <div *ngIf="submitted && m.PayrollYearId.errors" class="invalid-feedback">
-                  <div *ngIf="m.PayrollYearId.errors.required">Select Payroll Year</div>
-                </div>
+                </select> 
               </div>
               <div class="col-lg-3">
                 <label>Employee: </label>
@@ -142,8 +139,7 @@
                     <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
                     <dxo-summary> 
                       <dxi-total-item column="value" summaryType="sum"></dxi-total-item>
-                  </dxo-summary>
-                    <dxi-column dataField="formula" caption="Formula"></dxi-column>
+                  </dxo-summary> 
 
                   </dx-data-grid>
                   

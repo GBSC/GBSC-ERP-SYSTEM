@@ -142,16 +142,14 @@ export class ShopStatusDetailComponent implements OnInit {
 
     public abc : any = [];
     onGridReady(){
-      console.log('asdas');
-      console.log(this.companyId);
-      console.log(this.userId);
-      let usrId = 350;
-      console.log(usrId)
-          this.storeService.shopStatusDetail(this.companyId,usrId).subscribe(res => {
+      console.log(this.companyId)
+      console.log(this.userId )
+      console.log( '1-1-0001')
+      console.log('1-1-2020')
+          this.storeService.shopStatusDetail(this.companyId,this.userId , '1-1-0001','1-1-2020').subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
-         this.rowData2 =    this.rowData.filter(t=> t.shopNameCount);
-         console.log(this.rowData2);
+        
           });
 
     }

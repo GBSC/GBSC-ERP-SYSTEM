@@ -370,77 +370,112 @@ public toDate : any  ='';
   public totalCloseshop = 0;
 
   public ActivePersent = 0;
+  public groupSummary : any  = {};
 
 
     onBtPrint(param , value) {
  
-  console.log(param)
-  this.Data = []
-  this.gridApi = param.api;
-  console.log(this.gridApi)
-  this.gridApi.forEachNode(res => 
-       {
+      console.log(param)
+      this.Data = []
+      this.gridApi = param.api;
+      console.log(this.gridApi)
+      this.groupSummary = {}
+      console.log(this.groupSummary)
+      this.gridApi.forEachNode(res => 
+     
+    {
+       console.log(res)
+
+         if(res.leafGroup == false){
+           console.log(this.groupSummary)
+          if(this.groupSummary !== {}) {
+            this.Data.push(this.groupSummary)
+           }   
+   
         
-         if(res.key  , res.aggData){
-         let Group = res.key
-          let dd = res.aggData;
-          console.log(dd)
-         let c = {
-           Group : Group,
-           TotalShop : dd[0],
-           TotalActive : dd[1],
-           TotalClosed : dd[2]
+            let Group = res.key
+            let dd = res.aggData;
+            console.log(Group)
+            // this.Data.push(groupSummary)
+          let  c = {
+            Group : Group  // ,
+              // TotalShop : dd[0],
+              // TotalActive : dd[1],
+              // TotalClosed : dd[2]                     
+           }
+
+           this.groupSummary = {
+              TotalShop : dd[0]+" "+"TotalShop",
+              TotalActive :dd[1]+" "+"TotalActive",
+              TotalClosed :dd[2]+" "+"TotalClosed"                     
+           }
+
+          this.Data.push(c)
+
           }
-         this.Data.push(c)
-      
-         }
+
+          if(res.leafGroup == true){
+            let Group = res.key
+            let x= {
+              subGroup : Group,
+            }
+             this.Data.push(x)
+          }
+
+         
+
+         
          if(res.data){
           this.Data.push( res.data)
-
-          this.sumTotalShop.push(res.data.shopNameCount)
-          this.sumTotalActiveshop.push(res.data.activeStore)
-          this.sumTotalCloseshop.push(res.data.close)
+          
+          // this.sumTotalShop.push(res.data.shopNameCount)
+          // this.sumTotalActiveshop.push(res.data.activeStore)
+          // this.sumTotalCloseshop.push(res.data.close)
          }
-
-
+            
           
            
-      }
-    );
+      },
+      
+    ) ;
+    if(this.groupSummary !== {}) {
+      this.Data.push(this.groupSummary)
+     }   
+
     console.log( this.Data)
-      console.log(this.sumTotalShop)
+     
+   
+    //   console.log(this.sumTotalShop)
 
-    for (let index = 0; index < this.sumTotalShop.length; index++) {
+    // for (let index = 0; index < this.sumTotalShop.length; index++) {
 
-      this.TShop += (this.sumTotalShop[index])
-    }
+    //   this.TShop += (this.sumTotalShop[index])
+    // }
 
 
     
-    for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
 
-      this.totalActiveshop += (this.sumTotalActiveshop[index])
-    }
+    //   this.totalActiveshop += (this.sumTotalActiveshop[index])
+    // }
 
-    for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
 
-      this.totalCloseshop += (this.sumTotalCloseshop[index])
-    }
+    //   this.totalCloseshop += (this.sumTotalCloseshop[index])
+    // }
 
-    console.log(this.TShop);
+    // console.log(this.TShop);
 
 
-    this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
+    // this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
 
-    console.log(this.ActivePersent);
+    // console.log(this.ActivePersent);
 
     sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
     console.log(this.formDate);
     console.log(this.toDate);
     console.log(this.gridApi);
-    window.open('http://localhost:4200/#/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
- 
- 
+    window.open('http://erp.gbscsolutions.com/#/etracker/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
   }
 
  

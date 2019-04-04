@@ -170,7 +170,7 @@ public toDate : any  ='';
   onGridReady(fromdate, todate ,params) {
     console.log(fromdate);
     console.log(todate);
-        if(fromdate == '' &&  todate == ''){
+        if(fromdate == '' &&  todate != ''){
           fromdate = '1-1-0001';
           todate = this.currentdate;
           this.formDate = fromdate;

@@ -58,9 +58,11 @@ export class ShopCensusSummaryReportComponent implements OnInit {
        
     console.log( this.Data[0].secGroup) 
     let mainData =              this.Data[0].secGroup
+    console.log('Main 1')
     console.log( mainData)
-
+    
     this.myData2 =   this.Data.filter(t=>t.secGroup == mainData)
+    console.log('Main 2')
     console.log( this.myData2)
 
     this.myData2.forEach(element => {

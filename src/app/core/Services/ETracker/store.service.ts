@@ -84,8 +84,8 @@ export class StoreService {
          return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}/${fromDate}/${todate}`);
     }
 
-    shopStatusDetail(companyId: number, userId: number): Observable<any> {
-          return this.ApiService.get(this.Url + `Report/GetShopStatusDetail/${companyId}/${userId}`);
+    shopStatusDetail(companyId: number, userId: number, fromdate ,todate): Observable<any> {
+          return this.ApiService.get(this.Url + `Report/GetShopStatusDetail/${companyId}/${userId}/${fromdate}/${todate}`);
      }
 
 

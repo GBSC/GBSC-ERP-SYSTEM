@@ -137,6 +137,7 @@
           
                           <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
                             <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
+                            <dxi-validation-rule type="required" message="Salary Calculation Type is required"></dxi-validation-rule>
                           </dxi-column>
             
                           <dxi-column dataField="benefitId" caption="Benefit">
@@ -145,9 +146,12 @@
           
                           <dxi-column dataField="allowanceDeductionId" caption="Allowance">
                             <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
+                            <dxi-validation-rule type="required" message="Allowance/Deduction is required"></dxi-validation-rule>
                           </dxi-column>
 
-                          <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
+                          <dxi-column dataField="value" caption="Value/Percentage">
+                            <dxi-validation-rule type="required" message="Percentage or Value is required"></dxi-validation-rule>
+                          </dxi-column>
                           <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
                         </dx-data-grid>
                       </div>

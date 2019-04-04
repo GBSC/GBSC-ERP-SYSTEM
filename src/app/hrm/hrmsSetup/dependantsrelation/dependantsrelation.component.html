@@ -28,7 +28,9 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
                 <dxi-column dataField="code"></dxi-column>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                  <dxi-validation-rule type="required" message="Relation Title is required"></dxi-validation-rule>
+                </dxi-column>
                 <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>

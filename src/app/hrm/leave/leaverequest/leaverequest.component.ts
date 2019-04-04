@@ -121,19 +121,12 @@ export class LeaverequestComponent implements OnInit {
 
         let availedDay ;
         this.leaverequest.forEach(l => 
-            {
-                console.log(l);
-                console.log(this.empId);
-                
+            { 
                  if(l.userId == this.empId){
 
-                    l.leaveRequestDetails.forEach(lday => {
-                            console.log(lday); 
-                        console.log(this.leaveBBB.leaveTypeId);
+                    l.leaveRequestDetails.forEach(lday => { 
                         
-                        if(lday.leaveTypeId == this.leaveBBB.leaveTypeId){
-                                console.log(lday.leaveDays);
-                                
+                        if(lday.leaveTypeId == this.leaveBBB.leaveTypeId){  
                             availedDay = lday.leaveDays.find(c => this.formatDate(new Date(c.leaveDate)) == dateOfLeave);
                         }
                     })
@@ -146,18 +139,13 @@ export class LeaverequestComponent implements OnInit {
                 return;
         }
 
-        this.leaveDates.push(data);
-        console.log(this.leaveDates);
-        console.log(data);
+        this.leaveDates.push(data); 
          this.count = this.leaveDates.filter(c => c.status === 'On Leave').length;
-                console.log( this.count);
                 this.availed = this.count;
     }
 
 
-    async leaveRequestDetail(value) {
-        console.log(value);
-
+    async leaveRequestDetail(value) { 
         value.leaveTypeId = this.leaveBBB.leaveTypeId;
         value.totalLeaveDetailValue = this.leaveBBB.entitledQuantity;
         value.totalLeave = this.leaveBBB.entitledQuantity;

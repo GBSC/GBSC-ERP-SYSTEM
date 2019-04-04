@@ -13,7 +13,7 @@
       <div class="col-lg-12">
         <div class="pull-right"> 
           <a class="m-menu__link m-menu__toggle">
-            <i class="m-menu__link-icon flaticon-add" data-toggle="modal" data-target="#m_modal_1_2"></i>
+            <i class="m-menu__link-icon flaticon-add" data-toggle="modal" data-target="#m_modal_4"></i>
             <span class="m-menu__link-text">Add Policy
             </span>
           </a>
@@ -93,8 +93,8 @@
   </div>
 </div>
 
-<!--begin::Modal-->
-<div class="modal fade" id="m_modal_1_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--beginModal-->
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,12 +108,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-max-height="200">
+        <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-max-height="200">         
           <form [formGroup]="leavePolicyForm">
 
             <div class="form-group m-form__group row">
               <div class="col-lg-8">
-                <label> Group:</label>
+                <label> Group</label>
                 <select class="form-control m-input" formControlName="GroupId" [ngClass]="{ 'is-invalid': submitted && lp.GroupId.errors }">
                   <option *ngFor="let grp of groups" [value]="grp.groupId">{{grp.name}}</option>
                 </select>
@@ -128,11 +128,11 @@
             <div class="form-group m-form__group row">
               <div class="col-lg-6">
                 <label>
-                  Leave Type:
+                  Leave Type
                 </label>
                 <select class="form-control m-input" formControlName="LeaveTypeId" [ngClass]="{ 'is-invalid': submitted && lp.LeaveTypeId.errors }">
                   <option>--- Select Leave Types ---</option>
-                  <option *ngFor="let levetype of leaveTypes">{{levetype.title}}</option>
+                  <option *ngFor="let levetype of leaveTypes" [value]="levetype.leaveTypeId">{{levetype.title}}</option>
                 </select>
                 <div *ngIf="submitted && lp.LeaveTypeId.errors" class="invalid-feedback">
                   <div *ngIf="lp.LeaveTypeId.errors.required">Leave Type required</div>
@@ -141,13 +141,13 @@
 
               <div class="col-lg-6">
                 <label>
-                  Leave Year:
+                  Leave Year
                 </label>
                 <!-- <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" formControlName="LeaveYearId"> 
                           </dx-select-box> -->
                 <select class="form-control m-input" formControlName="LeaveYearId" [ngClass]="{ 'is-invalid': submitted && lp.LeaveYearId.errors }">
                   <option>--- Select Leave Year ---</option>
-                  <option *ngFor="let ly of leaveYears">{{ly.name}}</option>
+                  <option *ngFor="let ly of leaveYears" [value]="ly.leaveYearId">{{ly.name}}</option>
                 </select>
                 <div *ngIf="submitted && lp.LeaveYearId.errors" class="invalid-feedback">
                   <div *ngIf="lp.LeaveYearId.errors.required">Leave Year required</div>
@@ -157,81 +157,63 @@
             <div class="m--space-30"></div>
 
             <div class="form-group m-form__group row">
-              <div class="col-lg-4">
-                <label>Entitled Qty (Days): </label>
+              <div class="col-lg-3">
+                <label>Entitled Qty (Days) </label>
                 <input class="form-control m-input" formControlName="EntitledQuantity" type="text" [ngClass]="{ 'is-invalid': submitted && lp.EntitledQuantity.errors }">
                 <div *ngIf="submitted && lp.EntitledQuantity.errors" class="invalid-feedback">
-                  <div *ngIf="lp.EntitledQuantity.errors.required">Leave Type required</div>
+                  <div *ngIf="lp.EntitledQuantity.errors.required">entitled Quantity is required</div>
                 </div>
               </div>
-              <div class="col-lg-4">
-                <label>Maximum Allowed Balance (Days): </label>
+              <div class="col-lg-3">
+                <label>Maximum Allowed</label>
                 <input class="form-control m-input" formControlName="MaximumAllowedBalance" type="text">
               </div>
-              <div class="col-lg-4">
-                <label>Maximum Leave can be Taken at a time Balance (Days): </label>
+              <div class="col-lg-3">
+                <label>Maximum can be Taken</label>
                 <input class="form-control m-input" formControlName="MaximumAtATime" type="text">
               </div>
-            </div>
-            <div class="m--space-20"></div>
-
-            <div class="form-group m-form__group row">
-              <div class="col-lg-6">
-                <label>Minimum Leave can be Taken at a time Balance (Days):</label>
+              <div class="col-lg-3">
+                <label>Minimum can be Taken</label>
                 <input class="form-control m-input" formControlName="MinimumAtATime" type="text">
               </div>
-              <div class="col-lg-6">
-                <label>Minimum Leave Intemation Period (Days): </label>
-                <input class="form-control m-input" formControlName="MinimumIntimationPeriod" type="text">
-              </div>
             </div>
             <div class="m--space-20"></div>
 
-            <div class="form-group m-form__group row">
+            <div class="form-group m-form__group row"> 
               <div class="col-lg-4">
-                <label>Leave Encashment Application limit: </label>
+                <label>Minimum Intemation Period </label>
+                <input class="form-control m-input" formControlName="MinimumIntimationPeriod" type="text">
+              </div>
+              <div class="col-lg-4">
+                <label>Encashment Application limit </label>
                 <input class="form-control m-input" formControlName="EncashmentApplicationLimit" type="text">
-              </div>
-              <div class="col-lg-4">
-                <label>Leave Day Type: </label>
-                <select class="form-control m-input" formControlName="LeaveDayTypeId" name="leavedaytype" id="">
-                  <option value="" disabled selected>-- Select Leave Type --</option>
-                  <option *ngFor="let levedaytype of leveDayTypes" [value]="levedaytype?.leaveDayTypeId">{{levedaytype.name}}</option>
-                </select>
-              </div>
-              <div class="col-lg-4">
-                <label>Eligibility Based on: </label>
-                <select class="form-control m-input" formControlName="LeaveEligibilityId" name="" id="">
-                  <option value="" disabled selected>-- Select Leave Eligibility --</option>
-                  <option *ngFor="let leveeligibility of leaveEligibility" [value]="leveeligibility?.leaveEligibilityId">{{leveeligibility.name}}</option>
-                </select>
-              </div>
+              </div> 
             </div>
-            <div class="m--space-20"></div>
+            <div class="m--space-20"></div> 
 
             <div class="form-group m-form__group row">
               <div class="col-md-4">
-                <label>Paid:</label>
+                <label>Paid</label>
                 <input type="text" class="form-control m-input" formControlName="PaidDaysQuantity">
               </div>
               <div class="col-md-4">
-                <label>Half Paid:</label>
+                <label>Half Paid</label>
                 <input type="text" class="form-control m-input" formControlName="HalfPaidDaysQuantity">
               </div>
               <div class="col-md-4">
-                <label>UnPaid Quantity:</label>
+                <label>UnPaid Quantity</label>
                 <input type="text" class="form-control m-input" formControlName="UnPaidDaysQuantity">
               </div>
             </div>
-            <div class="m--space-20"></div>
+            <div class="m--space-10"></div>
 
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label>
-                    File Attachement Required:
+                  <label class="col-md-4 col-form-label">
+                    File Attachement Required
                   </label>
-                  <div class="col-lg-1">
+                  <div class="col-md-1">
                     <label class="m-checkbox">
                       <input type="checkbox" formControlName="IsFileAttachmentRequired">
                       <span></span>
@@ -249,8 +231,8 @@
               <div class="col-md-10">
 
                 <div class="form-group m-form__group row">
-                  <label>
-                    Job Period Based:
+                  <label class="col-md-4 col-form-label">
+                    Job Period Based
                   </label>
                   <div class="col-lg-1">
                     <label class="m-checkbox">
@@ -269,8 +251,8 @@
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label>
-                    Is Balance Brought Forward:
+                  <label class="col-md-4 col-form-label">
+                    Is Balance Brought Forward
                   </label>
                   <div class="col-lg-1">
                     <label class="m-checkbox">
@@ -294,8 +276,8 @@
               <div class="col-md-10">
 
                 <div class="form-group m-form__group row">
-                  <label>
-                    Leave is Encashable:
+                  <label class="col-md-4 col-form-label">
+                    Leave is Encashable
                   </label>
                   <div class="col-lg-1">
                     <label class="m-checkbox">
@@ -314,7 +296,7 @@
             <div class="row">
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
-                  <label>Day Continuation Restriction: </label>
+                  <label class="col-md-4 col-form-label">Day Continuation Restriction </label>
                   <div class="col-lg-3">
                     <label class="m-checkbox">
                       <input type="checkbox" formControlName="DayContinuationRestriction">
@@ -325,7 +307,7 @@
                   <div class="m--space-07"></div>
 
                   <label class="col-md-3 col-form-label">
-                    For Males:
+                    For Males
                   </label>
                   <div class="col-md-2">
                     <label class="m-checkbox">
@@ -343,7 +325,7 @@
 
                 <div class="form-group m-form__group row">
                   <label class="col-md-4 col-form-label">
-                    For Females:
+                    For Females
                   </label>
                   <div class="col-md-3">
                     <label class="m-checkbox">
@@ -353,7 +335,7 @@
                   </div>
 
                   <label class="col-md-3 col-form-label">
-                    For Married Only:
+                    For Married Only
                   </label>
                   <div class="col-md-2">
                     <label class="m-checkbox">
@@ -371,7 +353,7 @@
 
                 <div class="form-group m-form__group row">
                   <label class="col-md-4 col-form-label">
-                    Short Leave Allowed:
+                    Short Leave Allowed
                   </label>
                   <div class="col-md-3">
                     <label class="m-checkbox">
@@ -383,7 +365,7 @@
                   <div class="m--space-10"></div>
 
                   <label class="col-md-3 col-form-label">
-                    Allowed Only one in Service:
+                    Allowed Only one in Service
                   </label>
                   <div class="col-lg-2">
                     <label class="m-checkbox">
@@ -400,7 +382,7 @@
               <div class="col-md-10">
                 <div class="form-group m-form__group row">
                   <label class="col-md-4 col-form-label">
-                    Is Prorated:
+                    Is Prorated
                   </label>
                   <div class="col-md-3">
                     <label class="m-checkbox">
@@ -410,7 +392,7 @@
                   </div>
 
                   <label class="col-md-3 col-form-label">
-                    Is Active:
+                    Is Active
                   </label>
                   <div class="col-md-2">
                     <label class="m-checkbox">
@@ -425,6 +407,7 @@
             <div class="m--space-10"></div>
           </form>
         </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -437,4 +420,4 @@
     </div>
   </div>
 </div>
-<!--end::Modal-->
+<!--endModal-->

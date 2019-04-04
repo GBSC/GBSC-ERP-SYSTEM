@@ -27,9 +27,7 @@ export class LeavepolicyComponent implements OnInit {
             this.leavePolicyForm = this.fb.group({
                 LeaveYearId: ['', Validators.required],
                 GroupId: ['', Validators.required],
-                LeaveTypeId: ['', Validators.required],
-                LeaveDayTypeId: [''],
-                LeaveEligibilityId: [''],
+                LeaveTypeId: ['', Validators.required], 
                 IsProcessed: [''],
                 EntitledQuantity: ['', Validators.required],
                 MaximumAllowedBalance: [''],
@@ -72,17 +70,14 @@ export class LeavepolicyComponent implements OnInit {
         
         this.leaveTypes = await this.leavesetupservice.getLeaveTypes();
         
-        this.leaveYears = await this.leavesetupservice.getLeaveYears();
-            
-        this.leveDayTypes = await this.leavesetupservice.getLeaveDayTypes();
-
-        this.leaveEligibility = await this.leavesetupservice.getLeaveEligibilities();
-
+        this.leaveYears = await this.leavesetupservice.getLeaveYears(); 
         this.groups = await this.hrsetupservice.getAllGroups();
 
     }
 
     async addleavepolicy(value) { 
+        console.log(value);
+        
         this.submitted = true;
         if (this.leavePolicyForm.invalid) {
             this.toastr.error("Fill All Required Fields");

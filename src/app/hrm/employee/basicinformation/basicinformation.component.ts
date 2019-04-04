@@ -84,12 +84,12 @@ export class BasicinformationComponent implements OnInit {
 
     async ngOnInit() {
 
-        this.religion = await this.SetupServiceobj.getAllReligions();
-
+        this.SetupServiceobj.getReligions().subscribe(rp =>{
+            this.religion = rp;  
+        }); 
+ 
         this.groups = await this.SetupServiceobj.getAllGroups();
-        console.log(this.groups);
-        
-
+          
         this.hrmService.GetCitiesByCompanyId(this.authService.getUserCompanyId()).subscribe((res : City[]) => {
             this.cities = res;
         }); 

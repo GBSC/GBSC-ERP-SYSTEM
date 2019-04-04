@@ -28,13 +28,10 @@
                         <dxo-paging [pageSize]="6"></dxo-paging>
                         <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                         </dxo-pager> 
-                        <dxi-column dataField="title"></dxi-column>
-                        <dxi-column dataField="prefix"></dxi-column>
-                        <!-- <dxi-column dataField="leaveSubTypeId" caption="Sub Type">         
-                            <dxo-lookup [dataSource]="levesubtype" displayExpr="name" valueExpr="leaveSubTypeId"></dxo-lookup>
-                        </dxi-column> -->
-                        <!-- <dxi-column dataField="dayCost"></dxi-column>
-                        <dxi-column dataField="dayPrice"></dxi-column> -->
+                        <dxi-column dataField="title">
+                          <dxi-validation-rule type="required" message="Leave Type Title is required"></dxi-validation-rule>
+                        </dxi-column>
+                        <dxi-column dataField="prefix"></dxi-column> 
                         <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
                       </dx-data-grid>
                     </div>

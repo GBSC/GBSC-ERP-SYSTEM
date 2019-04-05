@@ -93,8 +93,8 @@ export class StoreService {
         return this.ApiService.get(this.Url + `Report/GetOrderSummaryDetail/${companyId}/${userId}`);
      }
     
-     visitSummaryDetail(companyId: number, userId: number): Observable<any> {
-        return this.ApiService.get(this.Url + `Report/GetVisitSummaryDetail/${companyId}/${userId}`);
+     visitSummaryDetail(companyId: number, userId: number ,fromdate ,todate): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetVisitSummaryDetail/${companyId}/${userId}/${fromdate}/${todate}`);
      }
 
 }

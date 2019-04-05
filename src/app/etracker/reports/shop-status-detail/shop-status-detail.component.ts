@@ -167,16 +167,19 @@ export class ShopStatusDetailComponent implements OnInit {
 
 public toDate : any  ='';
   public abc: any = [];
+ 
+
   onGridReady(fromdate, todate ,params) {
     console.log(fromdate);
     console.log(todate);
         if(fromdate == '' &&  todate != ''){
           fromdate = '1-1-0001';
-          todate = this.currentdate;
+          console.log(todate);
+          todate = todate
           this.formDate = fromdate;
           this.toDate = todate
           console.log(fromdate);
-          console.log(todate);
+         
           this.storeService.shopStatusDetail(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
             this.rowData = res;
            console.log(this.rowData);
@@ -197,6 +200,20 @@ public toDate : any  ='';
         });  
  
     }
+    else if(fromdate == '' &&  todate == ''){
+      this.formDate = '1-1-0001' 
+      this.toDate = this.currentdate
+      console.log(this.companyId);
+      console.log(this.userId);
+      let usrId = 350;
+      console.log(usrId)
+  
+        this.storeService.shopStatusDetail(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+           this.rowData = res;
+          console.log(this.rowData);
+        });  
+ 
+    }
     else{
       this.toastr.error("please Selet Both Dates")
     }
@@ -204,7 +221,69 @@ public toDate : any  ='';
       // this.gridApi.expandAll();
 
   }
+  public Data : any = [] ;
+  public gridApi: any;
+  public groupSummary : any  = {};
 
+  onBtPrint(param , value) {
+ 
+    console.log(param)
+    this.Data = []
+    this.gridApi = param.api;
+    console.log(this.gridApi)
+    this.groupSummary = {}
+    console.log(this.groupSummary)
+    this.gridApi.forEachNode(res => 
+   
+  {
+     console.log(res)
+       if(res.leafGroup == false){
+         console.log(this.groupSummary)
+        if(this.groupSummary !== {}) {
+          this.Data.push(this.groupSummary)
+         }   
+          let Group = res.key
+          let dd = res.aggData;
+          console.log(Group)
+          // this.Data.push(groupSummary)
+        let  c = {
+          Group : Group                  
+         }
+         this.groupSummary = {
+            TotalShop : dd[0]+" "+"TotalShop",
+            TotalActive :dd[1]+" "+"TotalActive",
+            TotalClosed :dd[2]+" "+"TotalClosed"                     
+         }
+        this.Data.push(c)
+        }
+        if(res.leafGroup == true){
+          let Group = res.key
+          let x= {
+            subGroup : Group,
+          }
+           this.Data.push(x)
+        }
+       if(res.data){
+        this.Data.push( res.data)
+       }
+    },
+    
+  ) ;
+  if(this.groupSummary !== {}) {
+    this.Data.push(this.groupSummary)
+   }   
+  console.log( this.Data)
+  sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
+  console.log(this.formDate);
+  console.log(this.toDate);
+  console.log(this.gridApi);
+  window.open('http://localhost:4200/#/etracker/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+}
+  export(param){
+    this.gridApi =   param.api;
+    console.log( this.gridApi)
+    this.gridApi.exportDataAsCsv();
+  }
 
   // ngOnInit() {
 

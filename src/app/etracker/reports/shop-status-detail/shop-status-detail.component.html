@@ -234,17 +234,14 @@
          <div class="m-portlet__body">
             <div #printea>
             <ag-grid-angular
-            #agGrid
-                           
-            
-                 style="width: 100%; height: 100%;"
-                 id="myGrid"
-                 class="ag-theme-balham"
-                 [columnDefs]="columnDefs"
-                 [defaultColDef]="defaultColDef"
-                 [autoGroupColumnDef]="autoGroupColumnDef"     
-                 [sideBar]="true"
-                 [rowData]="rowData"
+                  #agGrid
+                  id="myGrid"
+                  class="ag-theme-balham my-grid"
+                  [columnDefs]="columnDefs"
+                  [defaultColDef]="defaultColDef"
+                  [autoGroupColumnDef]="autoGroupColumnDef"     
+                  [sideBar]="true"
+                  [rowData]="rowData"
                  
                  ></ag-grid-angular>
                 </div>

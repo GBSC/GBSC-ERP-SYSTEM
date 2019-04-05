@@ -11,7 +11,6 @@ import { EmployeeDependant } from '../../../core/Models/HRM/employeeDependant';
 export class EmergencycontactComponent implements OnInit {
     public relations: any;
     public dependantrelations: any;
-    pattern: any = /^\d{11}$/i;
 
     @Input('employeeId') id: number;
 

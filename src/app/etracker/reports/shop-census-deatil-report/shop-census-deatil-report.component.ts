@@ -58,14 +58,14 @@ export class ShopCensusDeatilReportComponent implements OnInit {
 
 
      this.Data.forEach(element => {
-       if(element.shopNameCount){
-        this.sumTotalShop.push(element.shopNameCount)
+       if(element.TotalShop){
+        this.sumTotalShop.push(parseInt( element.TotalShop , 10))
        }
-       if(element.shopNameCount){
-        this.sumTotalActiveshop.push(element.activeStore)
+       if(element.TotalActive){
+        this.sumTotalActiveshop.push( parseInt( element.TotalActive,10))
        }
-       if(element.shopNameCount){
-        this.sumTotalCloseshop.push(element.close)
+       if(element.TotalClosed){
+        this.sumTotalCloseshop.push( parseInt( element.TotalClosed,10))
        }
       
      });

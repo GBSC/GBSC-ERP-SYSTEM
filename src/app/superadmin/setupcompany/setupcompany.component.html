@@ -154,10 +154,10 @@
 
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
-                  Human Resource Managment
+                  Hospital Management System
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HrmInstalled">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" *ngIf="HimsInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -165,7 +165,7 @@
                       </span>
                     </span>
                   </button>
-                  <button *ngIf="!HrmInstalled" (click)="onAddModule('Human Resource Management')"
+                  <button *ngIf="!HimsInstalled" (click)="onAddModule('Hospital Management System')"
                     class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
                     <span>
                       <i class="la la-archive"></i>
@@ -174,7 +174,6 @@
                   </button>
                 </div>
               </div>
-
 
               <div class="m-form__group form-group row">
                 <label class="col-4 col-form-label">
@@ -205,7 +204,7 @@
                   Finance
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon" >
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon"  *ngIf="FinanceInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -214,7 +213,7 @@
                     </span>
                   </button>
                   <button (click)="onAddModule('Finance')"
-                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon"  *ngIf="!FinanceInstalled">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>
@@ -253,7 +252,7 @@
                   Ultrasounds
                 </label>
                 <div class="col-1">
-                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon">
+                  <button class="btn btn-success btn-sm m-btn 	m-btn m-btn--icon"   *ngIf="UltrasoundInstalled">
                     <span>
                       <i class="la 	la-check"></i>
                       <span>
@@ -261,8 +260,8 @@
                       </span>
                     </span>
                   </button>
-                  <button (click)="onAddModule('Ulstrasound')"
-                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon">
+                  <button (click)="onAddModule('Ultrasound')"
+                    class="btn btn-primary btn-sm m-btn  m-btn m-btn--icon"   *ngIf="!UltrasoundInstalled">
                     <span>
                       <i class="la la-archive"></i>
                       <span>Install</span>

@@ -12,6 +12,8 @@ import { Html } from "devexpress-reporting/dx-web-document-viewer";
 import { environment } from '../../../../environments/environment';
 // import { Component, OnInit ,ViewChild  } from '@angular/core';
   import { StoreService } from '../../../../app/core/Services/ETracker/store.service';
+  import { ToastrService } from 'ngx-toastr';
+
 // import { DxPivotGridModule, DxCheckBoxModule } from 'devextreme-angular';
 // import PivotGridDataSource from 'devextreme/ui/pivot_grid/data_source';
 // import { AuthService } from '../../../../app/core';
@@ -95,7 +97,7 @@ export class ShopCensusSummaryComponent implements OnInit {
 
     @ViewChild("control")
     control: ElementRef
-    constructor(public storeService: StoreService, public authService : AuthService) {
+    constructor(public storeService: StoreService, public authService : AuthService ,  public toastr: ToastrService ) {
         this.companyId = authService.getUserCompanyId();
           this.userId = authService.getUserId();
           console.log(this.userId);
@@ -125,7 +127,7 @@ export class ShopCensusSummaryComponent implements OnInit {
           {  headerName: 'Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Close', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
-          {  headerName: 'Total Persent', valueGetter: ' (data.activeStore *100 ) / (data.activeStore + data.close)' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
+          {  headerName: 'Total Persent', valueGetter: '(data.activeStore *100 ) /  (data.activeStore + data.close) ' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
 
              ]; 
 
@@ -141,22 +143,74 @@ export class ShopCensusSummaryComponent implements OnInit {
         public x : any = [];
      
 
-        public abc : any = [];
+        public formDate  ='';
+
+        public toDate    ='';
+        public currentdate: any;
+          public abc: any = [];
     onGridReady(fromdate , todate){
-        this.formDate = fromdate 
+
+      if(fromdate == '' &&  todate != ''){
+        fromdate = '1-1-0001';
+        console.log(todate);
+        todate = todate
+        this.formDate = fromdate;
         this.toDate = todate
-      console.log(fromdate)
-      console.log(todate)
+        console.log(fromdate);
+        this.storeService.shopCensusSummary(this.companyId,this.userId , this.formDate,  this.toDate).subscribe(res => {
+          this.rowData = res;
+         console.log(this.rowData);
+       });
+      }
+      else if(fromdate != '' &&  todate != ''){
+        this.formDate = fromdate 
+      this.toDate = todate
       console.log(this.companyId);
       console.log(this.userId);
       let usrId = 350;
       console.log(usrId)
-
-          this.storeService.shopCensusSummary(210,350 , fromdate, todate).subscribe(res => {
+        this.storeService.shopCensusSummary(this.companyId,this.userId ,  this.formDate, this.toDate).subscribe(res => {
+          this.rowData = res;
+         console.log(this.rowData);
+       });
+      }
+      else if(fromdate == '' &&  todate == ''){
+        this.formDate = '1-1-0001' 
+        this.toDate = this.currentdate
+        console.log(this.companyId);
+        console.log(this.userId);
+        let usrId = 350;
+        console.log(usrId)
+    
+          this.storeService.shopCensusSummary(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
              this.rowData = res;
             console.log(this.rowData);
-          });
+          });  
+   
+      }
+
+      else{
+        this.toastr.error("please Selet Both Dates")
+      }
+      //   this.formDate = fromdate 
+      //   this.toDate = todate
+      // console.log(fromdate)
+      // console.log(todate)
+      // console.log(this.companyId);
+      // console.log(this.userId);
+      // let usrId = 350;
+      // console.log(usrId)
+
+      //     this.storeService.shopCensusSummary(this.companyId,this.userId , fromdate, todate).subscribe(res => {
+      //        this.rowData = res;
+      //       console.log(this.rowData);
+      //     });
     }
+
+    formatDate(date: Date) {
+      return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  }
+  
 
     toggleFilter() {
       this.showHideFilter = !this.showHideFilter;
@@ -168,10 +222,9 @@ export class ShopCensusSummaryComponent implements OnInit {
 
     ngOnInit() {
           
+    this.currentdate = this.formatDate(new Date());
     }
-    public formDate : any;
-
-    public toDate : any;
+ 
     public Data : any = [] ;
 
 
@@ -286,7 +339,7 @@ export class ShopCensusSummaryComponent implements OnInit {
         console.log(this.formDate);
         console.log(this.toDate);
         console.log(this.gridApi);
-        window.open('http://eva.gbscsolutions.com/#/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+        window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
       }
   
    
@@ -507,8 +560,12 @@ export class ShopCensusSummaryComponent implements OnInit {
     // toggleFilter() {
     //     this.showHideFilter = !this.showHideFilter;
     // }
-    export(){
-      this.gridApi.exportDataAsCsv();
-    }
-   
+
+
+    export(param){
+    this.gridApi =   param.api;
+    console.log( this.gridApi)
+    this.gridApi.exportDataAsCsv();
+  }
+
 }

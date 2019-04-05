@@ -11,9 +11,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class EmployeeHomeComponent implements OnInit {
-    tabs: string[] = ['Basic Information', 'Employee Company Information', 'Employee Qualification',
+    tabs: string[] = ['Personal Information', 'Employee Company Information', 'Employee Qualification',
      'Work Experience', 'Employee Dependants', ' Employee Bank Account', 'Social Networking'];
-   selectedTab = this.tabs[0];
+     selectedTab = this.tabs[0];
     public id: number;
 
     constructor(public toastr: ToastrService, public employeeService: EmployeeService, public router: Router, public activatedRoute: ActivatedRoute) { }
@@ -23,9 +23,7 @@ export class EmployeeHomeComponent implements OnInit {
         // get URL parameters
         this.activatedRoute.params.subscribe(params => {
             this.id = params['id']; // --> Name must match wanted parameter 
-        });
-
-
+        });  
     }
 
     displayToast(message) {

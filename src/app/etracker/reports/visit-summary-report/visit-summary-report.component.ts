@@ -97,13 +97,9 @@ export class VisitSummaryReportComponent implements OnInit {
           console.log(value)
       }
         onGridReady(){
-            console.log('asdas');
             console.log(this.companyId);
-            console.log(this.userId);
-            let usrId = 350;
-            console.log(usrId)
-
-            this.storeService.visitSummaryDetail(this.companyId , this.userId ).subscribe(res => {
+            console.log(this.userId)
+            this.storeService.visitSummaryDetail(this.companyId , this.userId  , '1-1-0001','1-1-2020').subscribe(res => {
               this.rowData = res;
              console.log(this.rowData);
            });

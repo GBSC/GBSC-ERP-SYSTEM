@@ -17,50 +17,38 @@
               <div class="col-md-6">
                 <div class="form-group m-form__group row">
                   <label class="col-lg-4 col-form-label">
-                    Requestioner:
+                  Requestioner: <em class="required_label">*</em>
                   </label>
                   <div class="col-lg-8">
-                    <select #lb class="form-control m-input" (change)="getLeaveBalance(lb.value)" formControlName="UserId">
+                    <select #lb class="form-control m-input" (change)="getLeaveBalance(lb.value)" formControlName="UserId" [ngClass]="{ 'is-invalid': submitted && r.UserId.errors }">
                       <option *ngFor="let employee of employees" [value]="employee.userId">{{employee.fullName}}</option>
                     </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Leave Request Date:
-                  </label>
-                  <div class="col-lg-8">
-                    <dx-date-box formControlName="RequestDate" type="date" format="dd/MM/yyyy" width="100%">
-                    </dx-date-box>
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-
-            <!-- <div class="row"> 
-              <div class="col-md-6">
-                <div class="form-group m-form__group row">
-                  <label class="col-lg-4 col-form-label">
-                    Is Approved:
-                  </label>
-                  <div class="col-lg-8">
-                    <div class="m-checkbox-list">
-                      <label class="m-checkbox m-checkbox--state-success">
-                        <input type="checkbox" formControlName="IsApproved"> 
-                        <span></span>
-                      </label>
+                    <div *ngIf="submitted && r.UserId.errors" class="invalid-feedback">
+                      <div *ngIf="r.UserId.errors.required">Select Employee for Further Process</div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div> -->
+              </div>  
+            </div> 
           </form>
           <div class="m--space-30"></div>
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="pull-right">
+                <!-- <a  class="btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only" >
+											<i class="la la-plus" data-toggle="modal" data-target="#m_modal_4"></i>
+										</a>  -->
+                <a class="m-menu__link m-menu__toggle">
+                  <i class="m-menu__link-icon flaticon-add" data-toggle="modal" data-target="#m_modal_4"></i>
+                  <span class="m-menu__link-text">Add Detail
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <div class="col-md-12">
               <div class="m-portlet">
@@ -73,13 +61,18 @@
                     </div>
                   </div>
                 </div>
-
+ 
                 <div class="m-section">
                   <div class="m-section__content">
                     <dx-data-grid id="gridContainer" 
-                    [dataSource]="leaveDetail"
-                     (onRowInserted)="leaveRequestDetail($event)" (onRowUpdated)="updateLeaverequestDetail($event)">
-                      <dxo-editing mode="row" [allowAdding]="true" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+                    [dataSource]="requestDetail"
+                    (onSelectionChanged)="selectionChanged($event)"
+                    (onContentReady)="contentReady($event)"
+                    [masterDetail]="{ enabled: true, template: 'detail' }"
+                    [showBorders]="true"
+                    (onRowUpdated)="updateLeaverequestDetail($event)">
+                    <dxo-selection mode="single"></dxo-selection>
+                      <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
                       </dxo-editing>
                       <dxo-filter-row [visible]="true"></dxo-filter-row>
                       <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -89,28 +82,33 @@
                       <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                       </dxo-pager>
                       <dxi-column dataField="leaveYearId" caption="Leave Year">
-                        <dxo-lookup [dataSource]="leaveYear" displayExpr="name" valueExpr="leaveYearId">
+                        <dxo-lookup [dataSource]="leaveYears" displayExpr="name" valueExpr="leaveYearId">
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="leaveTypeId" caption="Leave Type" [setCellValue]="onSetCellValue">
                         <dxo-lookup [dataSource]="leaveType" displayExpr="title" valueExpr="leaveTypeId">
                         </dxo-lookup>
-                      </dxi-column> 
-                      <dxi-column dataType="boolean" dataField="isShortLeave"></dxi-column>
+                      </dxi-column>
                       <dxi-column dataField="description" caption="Description"></dxi-column>
-                      <dxi-column dataField="dateFrom" caption="From Date" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="dateTill" caption="To Date" dataType="date" format="shortdate"></dxi-column>
-                      <dxi-column dataField="value" caption="Leave Value"></dxi-column>
+                        <dxi-column dataField="value" value="availed" caption="Leave Value"></dxi-column>
                       <dxi-column dataField="totalLeaveDetailValue" caption="Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"></dxi-column>
-                      <!-- <dxi-column dataField="entitledQuantity" caption="Balance Leave Value"></dxi-column> -->
-                      <dxi-column dataField="totalLeave" caption="Total Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}"> </dxi-column>
+                      <dxi-column dataField="totalLeave" caption="Total Balance" [allowEditing]="false" [formItem]="{editorOptions: { readOnly: true }}">
+                      </dxi-column>
                       
+                      <div *dxTemplate="let leave of 'detail'">
+                        <dx-data-grid [dataSource]="leave.data.leaveDays" [showBorders]="true">
+                            <dxi-column dataField="leaveDate" dataType="date" format="EEEE, dd/MM/yyyy"> </dxi-column>
+                            <dxi-column dataField="status"> </dxi-column>
+                             </dx-data-grid>
+                    </div>
+
                     </dx-data-grid>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div class="m--space-50"></div>
           <div class="row">
             <div class="col-md-12">
@@ -127,7 +125,7 @@
                       <ng-template #create>
                         <button class="btn btn-Success" (click)="addLeaveRequest(leaveRequestForm.value)">
                           Submit
-                        </button> 
+                        </button>
                       </ng-template>
                     </div>
                     <div class="col-lg-3"></div>
@@ -143,3 +141,123 @@
   </div>
 
 </div>
+<div class="container">
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="padding-top: 100px">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add Leave Detail
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="leaveRequestDetailForm">
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Leave Year <em class="required_label">*</em> </label>
+                <select class="form-control m-input" disabled  formControlName="leaveYearId" [ngClass]="{ 'is-invalid': submitted && rd.leaveYearId.errors }">
+                  <option selected *ngFor="let ly of leaveYears" [value]="ly.leaveYearId">{{ly.name}}</option>
+                </select>
+                <div *ngIf="submitted && rd.leaveYearId.errors" class="invalid-feedback">
+                  <div *ngIf="rd.leaveYearId.errors.required">Leave Yaer required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Leave Type <em class="required_label">*</em> </label>
+                <select #lv class="form-control m-input" (change)="onSetCellValue(lv.value)" formControlName="leaveTypeId" [ngClass]="{ 'is-invalid': submitted && rd.leaveTypeId.errors }">
+                  <option *ngFor="let lt of leaveType" [value]="lt.leaveTypeId" selected>{{lt.title}}</option>
+                </select>
+                <div *ngIf="submitted && rd.leaveTypeId.errors" class="invalid-feedback">
+                  <div *ngIf="rd.leaveTypeId.errors.required">Leave Type required</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Leave Days </label>
+                <input type="number" disabled formControlName="value" [value]="availed" class="form-control m-input">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Leave Balance </label>
+                <input type="number" disabled formControlName="totalLeaveDetailValue" [value]="approvedOrNot" class="form-control m-input">
+              </div>
+            </div>
+          </div> 
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Description </label>
+                <textarea formControlName="description" class="form-control m-input"></textarea>
+              </div>
+            </div> 
+          </div>
+
+          <div class="form-group row">
+            <div class="form-group col-lg-4">
+              <label for="exampleInputEmail1"> Leave Date </label>
+              <!-- <input class="form-control m-input m-input--solid" type="date" #fromdate> -->
+              <dx-date-box #leaveDate type="date" format="dd/MM/yyyy" width="100%">
+              </dx-date-box>         
+               </div> 
+            <div class="form-group col-lg-4">
+              <button type="button" (click)="addLeaveDays(leaveDate.value)" class="btn btn-primary btn_days">
+                Add Leave Date
+              </button>
+            </div>
+          </div>
+
+        
+        </form>
+      </div>
+
+      <div class="m-content">
+      <div class="m-section">
+        <div class="m-section__content">
+      <dx-data-grid id="gridContainer" [dataSource]="leaveDates" (onRowUpdated)="updateLeaveDay($event)">
+          <dxo-editing mode="row" [allowAdding]="false" [allowUpdating]="true" [allowDeleting]="false" [useIcons]="true">
+            </dxo-editing>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-paging [pageSize]="3"></dxo-paging>
+        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+        </dxo-pager>
+         <dxi-column dataField="leaveDate" caption="Leave Date" dataType="date" format="EEEE, dd/MM/yyyy"></dxi-column>
+         <!-- <dxi-column dataField="status" caption="Status"> -->
+            <dxi-column dataField="status" caption="Status">
+                <dxo-lookup [dataSource]="lookupDataSource">
+                </dxo-lookup>
+            </dxi-column>
+         <!-- </dxi-column> -->
+         <dxo-summary>
+          <dxi-total-item column="leaveDate" summaryType="count"> </dxi-total-item> 
+      </dxo-summary> 
+      </dx-data-grid>  
+      </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+ 
+        <button type="button" class="btn btn-primary" (click)="leaveRequestDetail(leaveRequestDetailForm.value)">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div> 

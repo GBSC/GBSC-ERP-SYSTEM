@@ -23,6 +23,8 @@ export class ShiftComponent implements OnInit {
     public attendanceflag: any;
     public attendanceFlag: ShiftAttendanceFlag[];
     public AssignRosters: any;
+    submitted = false;
+
 
     @Input('shiftsId') id: number;
 
@@ -35,9 +37,9 @@ export class ShiftComponent implements OnInit {
 
         this.ShiftForm = this.fb.group({
             ShiftCode: [''],
-            ShiftTitle: [''],
-            StartTime: [''],
-            EndTime: [''],
+            ShiftTitle: ['', Validators.required],
+            StartTime: ['', Validators.required],
+            EndTime: ['', Validators.required],
             GraceTime: [''],
             IsMultiple: [''],
             OverTimeStartTime: [''],
@@ -46,13 +48,14 @@ export class ShiftComponent implements OnInit {
             OutTimeShiftThreshold: [''],
             OverTimeRate: [''],
             Description: [''],
-            ShiftHours: ['']
+            ShiftHours: [''],
+            ShiftAttendanceFlags: this.fb.array([])
 
         });
 
         this.shift = await this.attendancesetupservice.getShifts();
         console.log(this.shift);
-         this.attendancesetupservice.getAttendanceFlags().subscribe(rsp => {
+        this.attendancesetupservice.getAttendanceFlags().subscribe(rsp => {
             this.attendanceflag = rsp
         });
 
@@ -87,17 +90,25 @@ export class ShiftComponent implements OnInit {
     async addAttendanceFlag(value) {
         let data = value.data;
         this.attendanceFlag.push(data);
+        console.log(data);
+        console.log(value);
 
     }
 
+    get f() { return this.ShiftForm.controls; }
+
     async addshift(value) {
-        let shifts = new Shift();
-        shifts = { ...shifts, ...value };
-        shifts.ShiftAttendanceFlags = this.attendanceFlag;
-        console.log(shifts);
-        await this.attendancesetupservice.addShift(shifts);
-        this.toastr.success("Shift Added");
-        this.router.navigate(['/hrm/attendance/shifts']);
+        this.submitted = true;
+        if (this.ShiftForm.invalid) {
+            this.toastr.error("Fill All Required Fields");
+        }
+        else {
+            this.ShiftForm.value.ShiftAttendanceFlags = this.attendanceFlag;
+            console.log(value)
+            await this.attendancesetupservice.addShift(value);
+            this.toastr.success("Shift Added");
+            this.router.navigate(['/hrm/attendance/shifts']);
+        }
     }
 
 
@@ -110,21 +121,18 @@ export class ShiftComponent implements OnInit {
             return false;
     }
 
-     updateAttendanceFlag(value) {
+    updateAttendanceFlag(value) {
         console.log(value);
     }
 
     update(value) {
         value.shiftsId = this.id;
-        value.shiftAttendanceFlags = this.Flag;
-        console.log(value)
+        this.ShiftForm.value.ShiftAttendanceFlags = this.Flag;
         this.attendancesetupservice.updateShift(value).subscribe(resp => {
+            console.log(resp)
             this.toastr.success("Shift Updated");
-
+            this.router.navigate(['/hrm/attendance/shifts']);
         });
-    }
-    async updateshift(value) {
-        this.attendancesetupservice.updateShift(value);
     }
 
     async deleteshift(value) {

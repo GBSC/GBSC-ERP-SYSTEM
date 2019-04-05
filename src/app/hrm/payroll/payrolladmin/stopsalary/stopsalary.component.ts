@@ -8,6 +8,7 @@ import { PayrollService, PayrollSetupService, EmployeeService } from '../../../.
 })
 export class StopsalaryComponent implements OnInit {
 
+    // public lookupDataSource = ["Stop", "Terminate"];
     public PayrollType: any;
     public employee: any;
     public StopSalary: any;
@@ -35,13 +36,12 @@ export class StopsalaryComponent implements OnInit {
         this.popupVisible = true;
     }
 
-    selectionChangedHandler(e) { 
+    selectionChangedHandler(e) {
         console.log(e);
-        
+
         this.userData.UserStopSalaries = e.selectedRowsData.map(u => {
             return {
-                userId: u.userId,
-
+                userId: u.userId
             };
         });
         if (!this.selectionChangedBySelectbox) {
@@ -51,18 +51,18 @@ export class StopsalaryComponent implements OnInit {
         this.selectionChangedBySelectbox = false;
     }
 
-      contentReady(e) {
+    contentReady(e) {
         if (!e.component.getSelectedRowKeys().length)
-          e.component.selectRowsByIndexes(-1);
-      }
-    
-      public dataToUpdate: any = null;
-    
-      selectionChanged(e) {
+            e.component.selectRowsByIndexes(-1);
+    }
+
+    public dataToUpdate: any = null;
+
+    selectionChanged(e) {
         e.component.collapseAll(-1);
         e.component.expandRow(e.currentSelectedRowKeys[0]);
         console.log(e);
-      }
+    }
 
     addselecteduser() {
         this.popupVisible = false;

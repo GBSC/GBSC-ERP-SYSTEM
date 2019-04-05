@@ -10,7 +10,8 @@
         </h2>
       </div>
       <div class="col-sm-6">
-        <button (click)="toggleFilter()" style="float: right; border: solid 1px;" class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
+        <button (click)="toggleFilter()" style="float: right; border: solid 1px;"
+          class="btn btn-outline-metal m-btn m-btn--icon m-btn--pill">
           <span *ngIf="showHideFilter">
             <i class="la la-close"></i>
             <span>
@@ -38,10 +39,9 @@
             <label>
               Region
             </label>
-            <select [disabled]="DisableRegion" #Region class="form-control m-input" (change)="onRegionChange(Region.value)">
-              <option class='option' disabled selected>Select Region</option>
-              <option class='option' *ngFor="let region of Regions" [value]="regionId || region?.regionId">{{region?.name}}</option>
-            </select>
+            <select2 class="col-8" [data]="regionOptions" [options]="options" [width]="300" [value]="value"
+              (valueChanged)="onChangeRegions($event)">
+            </select2>
           </div>
         </div>
         <div class="col-sm-3">
@@ -51,7 +51,8 @@
             </label>
             <select [disabled]="DisableCity" #City class="form-control m-input" (change)="onCityChange(City.value)">
               <option class='option' disabled selected>Select City</option>
-              <option class='option' *ngFor="let city of Cities" [value]="cityId || city?.cityId">{{city?.name}}</option>
+              <option class='option' *ngFor="let city of Cities" [value]="cityId || city?.cityId">{{city?.name}}
+              </option>
             </select>
           </div>
         </div>
@@ -71,9 +72,11 @@
             <label>
               Distributor
             </label>
-            <select [disabled]="DistributorDisable" #Distributor class="form-control m-input" (change)="onDistributorChange(Distributor.value)">
+            <select [disabled]="DistributorDisable" #Distributor class="form-control m-input"
+              (change)="onDistributorChange(Distributor.value)">
               <option class='option' disabled selected>Select Distributor</option>
-              <option class='option' *ngFor="let distributor of Distributors" [value]="distributorId || distributor?.distributorId">{{distributor?.name}}</option>
+              <option class='option' *ngFor="let distributor of Distributors"
+                [value]="distributorId || distributor?.distributorId">{{distributor?.name}}</option>
             </select>
           </div>
         </div>
@@ -85,9 +88,11 @@
             <label>
               Territory
             </label>
-            <select [disabled]="TerritoryDisable" #Territory class="form-control m-input" (change)="onTerritoryChange(Territory.value)">
+            <select [disabled]="TerritoryDisable" #Territory class="form-control m-input"
+              (change)="onTerritoryChange(Territory.value)">
               <option class='option' disabled selected>Select Region</option>
-              <option class='option' *ngFor="let territory of Territories" [value]="territoryId || territory?.territoryId">{{territory?.name}}</option>
+              <option class='option' *ngFor="let territory of Territories"
+                [value]="territoryId || territory?.territoryId">{{territory?.name}}</option>
             </select> </div>
         </div>
 
@@ -96,9 +101,11 @@
             <label>
               Section
             </label>
-            <select [disabled]="SectionDisable" #Section class="form-control m-input" (change)="onSectionChange(Section.value)">
+            <select [disabled]="SectionDisable" #Section class="form-control m-input"
+              (change)="onSectionChange(Section.value)">
               <option class='option' disabled selected>Select Section</option>
-              <option class='option' *ngFor="let section of Sections" [value]="sectionId || section?.sectionId">{{section?.name}}</option>
+              <option class='option' *ngFor="let section of Sections" [value]="sectionId || section?.sectionId">
+                {{section?.name}}</option>
             </select>
           </div>
         </div>
@@ -107,9 +114,11 @@
             <label>
               Subsection
             </label>
-            <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input" (change)="onSubsectionChange(SubSection.value)">
+            <select [disabled]="SubsectionDisable" #SubSection class="form-control m-input"
+              (change)="onSubsectionChange(SubSection.value)">
               <option class='option' disabled selected>Select Subsection</option>
-              <option class='option' *ngFor="let subsection of Subsections" [value]="subsectionId || subsection?.subsectionId">{{subsection?.name}}</option>
+              <option class='option' *ngFor="let subsection of Subsections"
+                [value]="subsectionId || subsection?.subsectionId">{{subsection?.name}}</option>
             </select>
           </div>
         </div>
@@ -130,8 +139,10 @@
             <label>
               Classifications
             </label>
-            <select #Classification class="form-control m-input" (change)="onClassificationSelect(Classification.value)">
-              <option *ngFor="let classification of Classifications" [value]="classification">{{classification}}</option>
+            <select #Classification class="form-control m-input"
+              (change)="onClassificationSelect(Classification.value)">
+              <option *ngFor="let classification of Classifications" [value]="classification">{{classification}}
+              </option>
             </select>
           </div>
         </div>
@@ -149,6 +160,6 @@
   </div>
 </div>
 <div #scripts></div>
-  <div #control style="width:100%; height: 1000px">
-    <div data-bind="dxReportViewer: $data"></div>
-  </div>
+<div #control style="width:100%; height: 1000px">
+  <div data-bind="dxReportViewer: $data"></div>
+</div>

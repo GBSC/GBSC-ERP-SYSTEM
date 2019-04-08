@@ -29,7 +29,9 @@
                 </dxo-pager>
 
                 <dxi-column dataField="code"></dxi-column>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                  <dxi-validation-rule type="required" message="Employee Status Title is required"></dxi-validation-rule>
+                </dxi-column>
                 <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>

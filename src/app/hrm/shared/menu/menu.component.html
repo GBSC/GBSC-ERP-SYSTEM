@@ -20,7 +20,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-users"></i>
 					<span class="m-menu__link-text">
 						Employee
 					</span>
@@ -88,7 +88,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-settings-1"></i>
 					<span class="m-menu__link-text">
 						Setups
 					</span>
@@ -180,7 +180,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-logout"></i>
 					<span class="m-menu__link-text">
 						Leave
 					</span>
@@ -298,7 +298,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-time-2"></i>
 					<span class="m-menu__link-text">
 						Attendance
 					</span>
@@ -334,7 +334,7 @@
 								<div class="m-menu__submenu">
 									<span class="m-menu__arrow"></span>
 									<ul class="m-menu__subnav">
-										<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+										<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 											<a routerLink="attendance/attendanceadmin/attendanceflagexemption" class="m-menu__link">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
@@ -343,7 +343,7 @@
 													Attendance Flag Exemption
 												</span>
 											</a>
-										</li>
+										</li> -->
 
 										<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 											<a routerLink="attendance/attendanceadmin/attendanceruledetail" class="m-menu__link">
@@ -359,6 +359,27 @@
 								</div>
 							</li>
  
+							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+								<a routerLink="attendance/shifts" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Shift
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+								<a routerLink="attendance/assignroster" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Assign Roster
+									</span>
+								</a>
+							</li>
+
 							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 								<a routerLink="attendance/create-attendance-request" class="m-menu__link">
 									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
@@ -413,7 +434,7 @@
 								</a>
 							</li>
 
-							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+							<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 								<a routerLink="attendance/overtime-entitlement" class="m-menu__link">
 									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 										<span></span>
@@ -422,9 +443,9 @@
 										Overtime Entitlement
 									</span>
 								</a>
-							</li>
+							</li> -->
 
-							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+							<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 								<a routerLink="attendance/employee-overtime-entitlement" class="m-menu__link">
 									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 										<span></span>
@@ -433,30 +454,7 @@
 										Employee Overtime Entitlement
 									</span>
 								</a>
-							</li>
-
-							<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-								<a routerLink="attendance/rostercopy" class="m-menu__link">
-									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-										<span></span>
-									</i>
-									<span class="m-menu__link-text">
-										Roster Copy
-									</span>
-								</a>
-							</li>
-
-							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-								<a routerLink="attendance/rostermapping" class="m-menu__link">
-									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-										<span></span>
-									</i>
-									<span class="m-menu__link-text">
-										Roster Mapping
-									</span>
-								</a>
-							</li> -->
-
+							</li> --> 
 						</ul>
 					</div>
 				</div>
@@ -470,7 +468,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			 aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 				<a href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-menu"></i>
+					<i class="m-menu__link-icon flaticon-coins"></i>
 					<span class="m-menu__link-text">
 						Payroll
 					</span>
@@ -500,16 +498,7 @@
 								<div class="m-menu__submenu">
 									<span class="m-menu__arrow"></span>
 									<ul class="m-menu__subnav">
-										<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-											<a routerLink="payroll/payrollsetup/salarystructuredetail" class="m-menu__link">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
-													dEMO
-												</span>
-											</a>
-										</li> -->
+							 
 										<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 											<a routerLink="payroll/payrolladmin/stopsalary" class="m-menu__link">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
@@ -525,7 +514,7 @@
 								</div>
 							</li>
 
-							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+							<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 								<a routerLink="payroll/gratuitydetail" class="m-menu__link">
 									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 										<span></span>
@@ -534,7 +523,7 @@
 										Gratuity
 									</span>
 								</a>
-							</li>
+							</li> -->
 
 
 							<!-- <li class="m-menu__item" aria-haspopup="true" data-redirect="true">
@@ -548,6 +537,16 @@
 								</a>
 							</li> -->
 							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
+								<a routerLink="payroll/masterpayrolldetail" class="m-menu__link">
+									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+										<span></span>
+									</i>
+									<span class="m-menu__link-text">
+										Master Payroll
+									</span>
+								</a>
+							</li>
+							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
 								<a routerLink="payroll/salaryprocess" class="m-menu__link">
 									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 										<span></span>
@@ -556,17 +555,7 @@
 										Salary Process
 									</span>
 								</a>
-							</li>
-							<li class="m-menu__item" aria-haspopup="true" data-redirect="true">
-								<a routerLink="payroll/payslip" class="m-menu__link">
-									<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-										<span></span>
-									</i>
-									<span class="m-menu__link-text">
-										Payslip
-									</span>
-								</a>
-							</li>
+							</li> 
 
 						</ul>
 					</div>
@@ -579,7 +568,7 @@
 			<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 			aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-dropdown-toggle-class="m-aside-menu-overlay--on">
 			   <a href="#" class="m-menu__link m-menu__toggle">
-				   <i class="m-menu__link-icon flaticon-menu"></i>
+				   <i class="m-menu__link-icon flaticon-interface"></i>
 				   <span class="m-menu__link-text">
 					   Reports
 				   </span>

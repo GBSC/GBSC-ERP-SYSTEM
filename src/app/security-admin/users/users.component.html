@@ -49,8 +49,11 @@
                 <dxi-column dataField="email"></dxi-column>
                 <dxi-column dataField="userId" caption="Action" cellTemplate="cellTemplate" [width]="160"></dxi-column>
                 <div *dxTemplate="let data of 'cellTemplate'">
-                  <a href=""
-                    class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                  <!-- <a *ngIf="!data.data.hasAccount" title="Create Account" class="btn btn-outline-success m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
+                    data-toggle="modal" data-target="#m_modal_4" (click)="setSelectedUserId(data.value)">
+                    <i class="fa fa-user-plus"></i>
+                  </a> -->
+                  <a href="" class="btn btn-outline-brand m-btn m-btn--icon m-btn--icon-only m-btn--outline-2x m-btn--pill"
                     title="View" [routerLink]="['/security/user-registration', data.value]">
                     <i class="fa fa-eye"></i>
                   </a>

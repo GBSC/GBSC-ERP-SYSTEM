@@ -15,6 +15,7 @@ export class ApiService {
         // public jwtService: JwtService
     ) {
         this.user = JSON.parse(localStorage.getItem('user'));
+       
     }
 
     public formatErrors(error: any) {
@@ -30,6 +31,17 @@ export class ApiService {
                 .set("branchId", this.user.assignedId.branchId)
                 .set("cityId", this.user.assignedId.cityId)
                 .set("countryId", this.user.assignedId.countryId)
+        }
+
+        return this.http.get(`${environment.api_url}${path}`, { params })
+            .pipe(catchError(this.formatErrors));
+    }
+    
+    Get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+
+        if (this.user && params.keys().length == 0) {
+            params = new HttpParams()
+                .set("companyId", this.user.assignedId.companyId)
         }
 
         return this.http.get(`${environment.api_url}${path}`, { params })
@@ -52,6 +64,7 @@ export class ApiService {
 
 
     post(path: string, body: any = {}): Observable<any> {
+        console.log(this.user)
         if(this.user){
             body.companyId = this.user.assignedId.companyId;
             body.departmentId = this.user.assignedId.departmentId;

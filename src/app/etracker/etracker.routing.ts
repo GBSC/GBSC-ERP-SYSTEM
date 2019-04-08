@@ -20,6 +20,9 @@ import { ProductDiffUnitsComponent } from './reports/product-diff-units/product-
 import { ShopCensusDetailComponent } from './reports/shop-census-detail/shop-census-detail.component';
 import { ShopCensusSummaryComponent } from './reports/shop-census-summary/shop-census-summary.component';
 import { ShopStatusDetailComponent } from './reports/shop-status-detail/shop-status-detail.component';
+import { ShopStatusDeailReportComponent } from './reports/shop-status-deail-report/shop-status-deail-report.component';
+import { ShopCensusDeatilReportComponent } from './reports/shop-census-deatil-report/shop-census-deatil-report.component';
+import { ShopCensusSummaryReportComponent } from './reports/shop-census-summary-report/shop-census-summary-report.component';
 import { ShopStatusSummaryComponent } from './reports/shop-status-summary/shop-status-summary.component';
 import { VisitDetailComponent } from './reports/visit-detail/visit-detail.component';
 import { VisitSummaryReportComponent } from './reports/visit-summary-report/visit-summary-report.component';
@@ -56,6 +59,9 @@ const routes: Routes = [
                     { path: 'shop-census-detail', component: ShopCensusDetailComponent },
                     { path: 'shop-census-summary', component: ShopCensusSummaryComponent },
                     { path: 'shop-status-detail', component: ShopStatusDetailComponent },
+                    { path: 'shop-status-detail-report/:id/:fdate/:tdate', component: ShopStatusDeailReportComponent},
+                    { path: 'shop-census-detail-report/:id/:fdate/:tdate', component: ShopCensusDeatilReportComponent },
+                    { path: 'shop-census-summary-report/:id/:fdate/:tdate', component: ShopCensusSummaryReportComponent },
                     { path: 'shop-status-summary', component: ShopStatusSummaryComponent },
                     { path: 'visit-detail', component: VisitDetailComponent },
                     { path: 'visit-summary', component: VisitSummaryReportComponent },

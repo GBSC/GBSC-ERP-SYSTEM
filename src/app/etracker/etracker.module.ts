@@ -42,6 +42,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { TestReportComponent } from './reports/test-report/test-report.component';
 import { OrderSummaryDetailComponent } from './reports/order-summary-detail/order-summary-detail.component';
 import { ShopEditComponent } from './shop-edit/shop-edit.component';
+import { ShopCensusDeatilReportComponent } from './reports/shop-census-deatil-report/shop-census-deatil-report.component';
+import { ShopCensusSummaryReportComponent } from './reports/shop-census-summary-report/shop-census-summary-report.component';
+import { ShopStatusDeailReportComponent } from './reports/shop-status-deail-report/shop-status-deail-report.component';
 
 
 
@@ -65,7 +68,7 @@ import { ShopEditComponent } from './shop-edit/shop-edit.component';
         DxPopupModule,
         AgGridModule.withComponents([])
     ],
-    declarations: [RootComponent, MenuComponent, OrderSummaryDetailComponent, LocatorComponent, SalesusersComponent, StoresComponent, ShopEditComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, TestReportComponent],
+    declarations: [RootComponent, MenuComponent, OrderSummaryDetailComponent, LocatorComponent, SalesusersComponent, StoresComponent, ShopEditComponent, StoresProfileComponent, VisitSummaryComponent, OrderTakingComponent, TerritoryComponent, RegionComponent, AreaComponent, SectionComponent, SubsectionComponent, DistributersComponent, TerritoryMasterComponent, CityComponent, ShopCensusSummaryComponent, ShopCensusDetailComponent, ShopStatusSummaryComponent, ShopStatusDetailComponent, VisitDetailComponent, LocationReportComponent, ProductDiffUnitsComponent, VisitSummaryReportComponent, NonProductiveReasonComponent, TestReportComponent, ShopCensusDeatilReportComponent, ShopCensusSummaryReportComponent, ShopStatusDeailReportComponent],
     providers: [eTrackerUserService]
 })
 export class EtrackerModule { }

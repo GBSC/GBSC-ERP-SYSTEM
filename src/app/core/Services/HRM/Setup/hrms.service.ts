@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { City } from '../../../../core/Models/HRM/city';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment.prod';
 
 
 @Injectable()
@@ -11,7 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class HrmsService {
 
     public setupUrl: string = "SystemAdmin/api/Setup";
-    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup";
+    public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup";
+    
     constructor(public ApiService: ApiService,public httpService : HttpClient) {
     }
 
@@ -58,11 +59,13 @@ export class HrmsService {
 
     }
 
-    updateCity(data) {
+    updateCity(data) : Observable<any> {
         return this.httpService.put(this.setupUrl2 + '/UpdateCity', data);
     }
 
-    deleteCity(cityId) {
+    deleteCity(cityId): Observable<any>  {
+        console.log(cityId);
+        
         return this.httpService.delete(this.setupUrl2 + '/DeleteCity/'+ cityId);
     }
 

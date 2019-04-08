@@ -1,7 +1,6 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
-           
- 
-                <h4>Working Experience</h4>
+            
+                <h4>Working Experience Detail</h4>
  
           <div class="m-portlet__body">
             <div class="m-section">
@@ -9,11 +8,12 @@
                 <dx-data-grid id="gridContainer"
                  [dataSource]="experiences"
                  keyExpr="workExperienceId"
+                 [columnAutoWidth]="true"
                  [showBorders]="true" 
                  (onRowInserted)="addWorkExperience($event)"
                 (onRowUpdated)="updateWorkExperience($event)">
-                  <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                    <dxo-popup title="Work Experience" [showTitle]="true" [width]="700" [height]="345">
+                  <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                    <dxo-popup title="Work Experience Detail" [showTitle]="true" [width]="700" [height]="345">
                     </dxo-popup>
                   </dxo-editing>
                   <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -23,10 +23,14 @@
                   <dxo-paging [pageSize]="6"></dxo-paging>
                   <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                   </dxo-pager> 
-                  <dxi-column dataField="company"></dxi-column>
-                  <dxi-column dataField="designation"></dxi-column>
-                  <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
-                  <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
+                  <dxi-column dataField="company" caption="Company">
+                    <dxi-validation-rule type="required" message="Company Name is required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column dataField="designation">
+                    <dxi-validation-rule type="required" message="Designation is required"></dxi-validation-rule>
+                  </dxi-column>
+                  <dxi-column dataField="timeFrom" dataType="date" format="dd/MM/yyyy" caption="From"></dxi-column>
+                  <dxi-column dataField="timeTo" dataType="date" format="dd/MM/yyyy" caption="Till"></dxi-column>
                   <dxi-column dataField="description"></dxi-column>
                 </dx-data-grid>
               </div>

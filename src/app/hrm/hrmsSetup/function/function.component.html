@@ -18,7 +18,7 @@
                 (onRowUpdating)="functionEditing($event)"
                 (onRowUpdated)="Editfunction()"
                 (onRowRemoved)="deletefunc($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
 
                   <dxo-popup title="Function" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
@@ -31,7 +31,9 @@
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
                 <dxi-column dataField="code"></dxi-column>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                  <dxi-validation-rule type="required" message="Function Title is required"></dxi-validation-rule>
+                </dxi-column>
                 <dxi-column dataField="description"></dxi-column>
               </dx-data-grid>
             </div>

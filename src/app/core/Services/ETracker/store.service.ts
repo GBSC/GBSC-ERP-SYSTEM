@@ -75,24 +75,26 @@ export class StoreService {
     }
 
     Reports
-    shopCensusDetailReport(companyId: number, userId: number): Observable<any> {
-        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}`);
+    shopCensusDetailReport(companyId: number, userId: number , fromDate , todate ): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetShopCensusDetail/${companyId}/${userId}/${fromDate}/${todate}`);
     }
 
-    shopCensusSummary(companyId: number, userId: number): Observable<any> {
+    shopCensusSummary(companyId: number, userId: number, fromDate , todate ): Observable<any> {
        // return     this.http.get(this.Ur2l + `Report/GetShopCensusSummary/${companyId}/${userId}`);
-         return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}`);
+         return this.ApiService.get(this.Url + `Report/GetShopCensusSummary/${companyId}/${userId}/${fromDate}/${todate}`);
     }
 
-    shopStatusDetail(companyId: number, userId: number): Observable<any> {
-          return this.ApiService.get(this.Url + `Report/GetShopStatusDetail/${companyId}/${userId}`);
+    shopStatusDetail(companyId: number, userId: number, fromdate ,todate): Observable<any> {
+          return this.ApiService.get(this.Url + `Report/GetShopStatusDetail/${companyId}/${userId}/${fromdate}/${todate}`);
      }
 
 
      orderSummaryDetail(companyId: number, userId: number): Observable<any> {
         return this.ApiService.get(this.Url + `Report/GetOrderSummaryDetail/${companyId}/${userId}`);
-   }
+     }
     
-  
+     visitSummaryDetail(companyId: number, userId: number ,fromdate ,todate): Observable<any> {
+        return this.ApiService.get(this.Url + `Report/GetVisitSummaryDetail/${companyId}/${userId}/${fromdate}/${todate}`);
+     }
 
 }

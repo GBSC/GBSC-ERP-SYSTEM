@@ -1,11 +1,27 @@
 <div class="m-content">
+
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="pull-right">
+            <!-- <a  class="btn btn-accent m-btn m-btn--icon btn-sm m-btn--icon-only" >
+                  <i class="la la-plus" data-toggle="modal" data-target="#m_modal_4"></i>
+                </a>  -->
+            <a class="m-menu__link m-menu__toggle">
+              <i class="m-menu__link-icon flaticon-add" data-toggle="modal" data-target="#m_modal_4"></i>
+              <span class="m-menu__link-text">Add User Attendance
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
   <div class="row">
     <div class="col-xl-12">
       <div class="m-portlet">
         <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
-              <h3 class="m-portlet__head-text">User Roster Attendance </h3>
+              <h3 class="m-portlet__head-text">User Attendance </h3>
             </div>
           </div>
         </div>
@@ -19,7 +35,7 @@
                 (onRowUpdating)="updatingattendance($event)"
                 (onRowUpdated)="updateuserRosterattendance()"
                 (onRowRemoved)="deleteuserRosterattendance($event)">
-                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false" [useIcons]="true">
                   <dxo-popup title="User Roster Attendance" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
@@ -34,7 +50,7 @@
                               <dxo-lookup [dataSource]="employee" displayExpr="fullName" valueExpr="userId">
                               </dxo-lookup>
                               </dxi-column>
-                <dxi-column dataField="attendanceDate" dataType="date" format="shortDate"  [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
+                <dxi-column dataField="attendanceDate" dataType="date" format="dd/MM/yyyy" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
                 <dxi-column dataField="checkInTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="checkOutTime" dataType="datetime" format="shorttime"></dxi-column>
                 <dxi-column dataField="isOnLeave" dataType="boolean" caption="Is On Leave" [allowEditing]="false" [formItem]="{visible: false}"></dxi-column>
@@ -47,3 +63,64 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="padding-top: 100px">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Add User Attendance
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            ×
+          </span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userAttendanceForm">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group m-form__group">
+                <label class="control-label"> Employee <em class="required_label">*</em> </label>
+                <select #em class="form-control m-input" (change)="setAssignRoster(em.value)" formControlName="userId">
+                  <option selected *ngFor="let emp of employee" [value]="emp.userId">{{emp.fullName}}</option>
+                </select>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"> 
+              <div class="form-group m-form__group">
+                <label class="control-label"> CheckIn Time </label>
+                <dx-date-box formControlName="checkInTime" type="datetime" displayFormat="shortTime" width="100%">
+                </dx-date-box>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12"> 
+              <div class="form-group m-form__group">
+                <label for="exampleInputEmail1">Check Out Time </label>
+                <dx-date-box formControlName="checkOutTime" type="datetime" displayFormat="shortTime" width="100%">
+                </dx-date-box>
+              </div>
+            </div> 
+            </div>
+          </form>
+          </div>   
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button> 
+            <button type="button" class="btn btn-primary" (click)="adduserRosterattendance(userAttendanceForm.value)">
+              Save
+            </button>
+          </div>
+      </div> 
+
+    </div>
+  </div> 

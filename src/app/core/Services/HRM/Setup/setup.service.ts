@@ -119,12 +119,12 @@ export class SetupService {
         return await this.ApiService.delete(`${this.hrUrl}/DeleteEmployeeStatus/${id}`).toPromise();
     }
 
-    async getAllReligions() {
-        return await this.ApiService.get(`${this.hrUrl}/GetReligions`).toPromise();
+     getReligions() : Observable <any>{
+        return this.ApiService.get(`${this.hrUrl}/GetReligions`);
     }
 
-    async addReligion(data) {
-        return await this.ApiService.post(`${this.hrUrl}/AddReligion/`, data).toPromise();
+    addReligion(data) : Observable <any> {
+        return this.ApiService.post(`${this.hrUrl}/AddReligion/`, data);
     }
 
     async updateReligion(data) {
@@ -137,14 +137,13 @@ export class SetupService {
 
     /** CRUD METHODS Degree */
 
-    async getAllDegrees() {
-
-        return await this.ApiService.get(`${this.hrUrl}/GetDegrees`).toPromise();
+    getDegrees() : Observable <any>{ 
+        return this.ApiService.get(`${this.hrUrl}/GetDegrees`);
     }
 
     // DEMO ONLY, you can find working methods below
-    async addDegree(data) {
-        return await this.ApiService.post(`${this.hrUrl}/AddDegree`, data).toPromise();
+    addDegree(data): Observable <any>{
+        return this.ApiService.post(`${this.hrUrl}/AddDegree`, data);
     }
 
     async updateDegree(data) {

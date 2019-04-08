@@ -30,6 +30,8 @@ export class ExperienceComponent implements OnInit {
         value.data.userId = this.id;
 
         this.employeeService.addWorkExperience(value.data).subscribe(resp => console.log(resp));
+        console.log(value);
+        
     }
 
     updateWorkExperience(value) {
@@ -39,6 +41,8 @@ export class ExperienceComponent implements OnInit {
         expereince = { ...expereince, ...value.data };
 
         this.employeeService.updateWorkExperience(expereince).subscribe(resp => console.log(resp));
+        console.log(value);
+        
     }
 
 }

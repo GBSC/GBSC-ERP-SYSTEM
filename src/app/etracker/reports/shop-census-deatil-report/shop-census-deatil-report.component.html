@@ -70,7 +70,9 @@
                                     <th></th>
                                     <th></th>
                                     <!-- <th>Active</th> -->
-
+                                    <th>Active</th>
+                                    <th>CLose</th>
+                                    <th>TotalShop</th>
                                     <th>ShopName</th>
                                     <th>ShopKeeperName</th>
                                     <th>Contact</th>
@@ -83,17 +85,19 @@
                                     <th>VisitDay</th>
                                     <th>CreateDate</th>
                                     <th>ShopMode</th>
-                                    <th>Active</th>
-                                    <th>CLose</th>
-                                    <th>TotalShop</th>
+
                                 </tr>
                             </thead>
                             <tbody *ngFor="let data of Data" style="font-size: 11px;
                             
                             color: black;">
                                 <tr>
-                                    <td style="font-weight: bold;">{{data.Group}}</td>
+                                    <td style="font-weight: bold;" class=”active”>{{data.Group}}</td>
                                     <td >{{data.subGroup}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{ data.TotalActive}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalClosed}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalShop}}</td>
+                          
                                     <!-- <td style="font-weight: bold;" colspan="2">{{ data.TotalActive}}</td> -->
                                     <td>{{data.storeName}}</td>
                                     <td>{{data.shopkeeperName}}</td>
@@ -107,10 +111,7 @@
                                     <td>{{data.day}}</td>
                                     <td>{{data.startTime}}</td>
                                     <td>{{data.shopMode}}</td>  
-                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{ data.TotalActive}}</td>
-                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalClosed}}</td>
-                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalShop}}</td>
-                                </tr>
+                                         </tr>
                             </tbody>
                         </table>
                         <table width="100%" border="1" style="font-weight: bold; width: 100% !important; min-width: 100% !important;">

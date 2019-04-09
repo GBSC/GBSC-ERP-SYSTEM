@@ -490,14 +490,8 @@ public toDate   ='';
     console.log(this.formDate);
     console.log(this.toDate);
     console.log(this.gridApi);
-<<<<<<< HEAD
     window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
-=======
-    window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
->>>>>>> 27cd4eb3eb77f4786ee97a5a05c4d978a1dac21c
   }
-
- 
 
   btn(){
     var divToPrint=document.getElementById("printTable");

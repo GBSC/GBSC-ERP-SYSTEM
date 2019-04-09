@@ -100,4 +100,9 @@ tr.group,
 tr.group:hover {
     background-color: #ddd !important;
 }
+
+.table .active {
+    /* background: #f1f1f1; */
+    font-weight: 800;
+}
  

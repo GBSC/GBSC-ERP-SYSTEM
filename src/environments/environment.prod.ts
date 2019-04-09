@@ -1,14 +1,14 @@
 export const environment = {
   production: true,
-  api_url: 'http://gbsc-erp.azurewebsites.net/',
-  repotr_url: 'http://gbsc-erp.azurewebsites.net/report/',
+  api_url: 'http://evasalesforcestage.azurewebsites.net/',
+  repotr_url: 'http://evasalesforcestage.azurewebsites.net/report/',
   firebase: {
-      apiKey: 'AIzaSyD6eADZofvvncbTswItjCrD6rDSQJkJALI',
-      authDomain: 'trackingsystemdemo.firebaseapp.com',
-      databaseURL: 'https://trackingsystemdemo.firebaseio.com',
-      projectId: 'trackingsystemdemo',
-      storageBucket: 'trackingsystemdemo.appspot.com',
-      messagingSenderId: '58044608671'
+      apiKey: 'AIzaSyAWPj3utAJpUi6OpE6VBg-y7ehIIYMCGzc',
+      authDomain: 'trackingsystemdev.firebaseapp.com',
+      databaseURL: 'https://trackingsystemdev.firebaseio.com',
+      projectId: 'trackingsystemdev',
+      storageBucket: 'trackingsystemdev.appspot.com',
+      messagingSenderId: '646811538781'
   }
   //api_url: ''
 };

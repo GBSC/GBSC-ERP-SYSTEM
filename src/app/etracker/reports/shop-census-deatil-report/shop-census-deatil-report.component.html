@@ -63,17 +63,14 @@
                                 font-size: 17;
                                 margin-bottom: 1rem;">Report</p> -->
                         <table class="table table-bordered" border="1" cellpadding="3">
-
                             <thead style="     font-size: 13px;
                             background-color: #868282;
                             color: #000000;">
                                 <tr>
                                     <th></th>
                                     <th></th>
-                                    <th>Active</th>
-                                    <th>Active</th>
-                                    <th>CLose</th>
-                                    <th>TotalShop</th>
+                                    <!-- <th>Active</th> -->
+
                                     <th>ShopName</th>
                                     <th>ShopKeeperName</th>
                                     <th>Contact</th>
@@ -86,18 +83,18 @@
                                     <th>VisitDay</th>
                                     <th>CreateDate</th>
                                     <th>ShopMode</th>
+                                    <th>Active</th>
+                                    <th>CLose</th>
+                                    <th>TotalShop</th>
                                 </tr>
                             </thead>
                             <tbody *ngFor="let data of Data" style="font-size: 11px;
-                            text-align: left;
+                            
                             color: black;">
                                 <tr>
                                     <td style="font-weight: bold;">{{data.Group}}</td>
                                     <td >{{data.subGroup}}</td>
-                                    <td style="font-weight: bold; width: 200px">{{ data.TotalActive}}</td>
-                                    <td style="font-weight: bold; width: 200px">{{ data.TotalActive}}</td>
-                                    <td style="font-weight: bold;">{{data.TotalClosed}}</td>
-                                    <td style="font-weight: bold;">{{data.TotalShop}}</td>
+                                    <!-- <td style="font-weight: bold;" colspan="2">{{ data.TotalActive}}</td> -->
                                     <td>{{data.storeName}}</td>
                                     <td>{{data.shopkeeperName}}</td>
                                     <td>{{data.contactNumber}}</td>
@@ -110,56 +107,22 @@
                                     <td>{{data.day}}</td>
                                     <td>{{data.startTime}}</td>
                                     <td>{{data.shopMode}}</td>  
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{ data.TotalActive}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalClosed}}</td>
+                                    <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalShop}}</td>
                                 </tr>
                             </tbody>
-                            <!-- <tfoot style="     font-size: 13px;
-                            background-color: #95d9b6;
-                            color: #000000;">
-                                <tr>
-
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    <td>TotalShop</td>
-                                    <td>{{TShop}}</td>
-                                    <td></td>
-                                    <td>TotalActive</td>
-                                    <td>{{totalActiveshop}}</td>
-                                    <td></td>
-                                    <td>TotalActive</td>
-                                    <td>{{totalCloseshop}}</td>
-                                    <td></td>
-                                    <td>ActivePersent</td>
-                                    <td>{{ActivePersent}}</td>
-
-                                </tr>
-                            </tfoot> -->
                         </table>
-                        <table width="100%" border="1" cellpadding="1" cellspacing="1">
+                        <table width="100%" border="1" style="font-weight: bold; width: 100% !important; min-width: 100% !important;">
                             <tr class="table">
                                 <td class="mytd">Total Shop</td>
                                 <td>{{TShop}}</td>
-                                <td></td>
-                                <td>Total Active</td>
+                                 <!-- <td>Total Active</td> -->
+                                 <td>Total Active</td>
                                 <td>{{totalActiveshop}}</td>
-                                <td></td>
-                                <td>Total Closed</td>
+                                 <td>Total Closed</td>
                                 <td>{{totalCloseshop}}</td>
-                                <td wi></td>
-                                <td>Active Persent</td>
+                                 <td>Active Percent %</td>
                                 <td>{{ActivePersent}}</td>
                             </tr>
                         </table>

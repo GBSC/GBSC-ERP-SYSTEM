@@ -420,9 +420,9 @@ public toDate   ='';
            }
 
            this.groupSummary = {
-              TotalShop : dd[0]+" "+"TotalShop",
-              TotalActive :dd[1]+" "+"TotalActive",
-              TotalClosed :dd[2]+" "+"TotalClosed"                     
+              TotalShop : dd[0]+" "+"Total Shop",
+              TotalActive :dd[1]+" "+"Total Active",
+              TotalClosed :dd[2]+" "+"Total Closed"                     
            }
 
           this.Data.push(c)
@@ -485,12 +485,12 @@ public toDate   ='';
     // this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
 
     // console.log(this.ActivePersent);
-
+ 
     sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
     console.log(this.formDate);
     console.log(this.toDate);
     console.log(this.gridApi);
-    window.open('http://erp.gbscsolutions.com/#/etracker/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+    window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
   }
 
  

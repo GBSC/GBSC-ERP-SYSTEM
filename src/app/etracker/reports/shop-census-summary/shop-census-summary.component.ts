@@ -339,7 +339,7 @@ export class ShopCensusSummaryComponent implements OnInit {
         console.log(this.formDate);
         console.log(this.toDate);
         console.log(this.gridApi);
-        window.open('http://erp.gbscsolutions.com/#/etracker/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+        window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
       }
   
    

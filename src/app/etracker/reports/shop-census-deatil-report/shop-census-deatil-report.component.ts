@@ -11,7 +11,7 @@ import { EmployeeService } from '../../../../app/core/Services/HRM/Employee/empl
 })
 export class ShopCensusDeatilReportComponent implements OnInit {
   @Input() gridApi: string;
-  public Data = [];
+  public Data : any = [];
 // @Input("dayone") dayone : string;
   public sumTotalShop = [ ];
   public TShop = 0;
@@ -56,8 +56,11 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
 
+// public deleted : any = this.Data[0]
+//      return delete   deleted
 
-     this.Data.forEach(element => {
+ console.log(this.Data)
+      this.Data.forEach(element => {
        if(element.TotalShop){
         this.sumTotalShop.push(parseInt( element.TotalShop , 10))
        }

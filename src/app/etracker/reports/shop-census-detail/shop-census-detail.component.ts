@@ -493,8 +493,6 @@ public toDate   ='';
     window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
   }
 
- 
-
   btn(){
     var divToPrint=document.getElementById("printTable");
     let newWin= window.open("");

@@ -89,7 +89,7 @@ table.dataTable td {
 
 th:first-child + th + th,
 td:first-child + td + td {
-  display:none;
+  /* display:none; */
 } 
 
 tr.group,

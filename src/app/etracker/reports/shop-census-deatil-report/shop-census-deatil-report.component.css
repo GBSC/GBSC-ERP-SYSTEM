@@ -92,8 +92,12 @@ td:first-child + td + td {
   /* display:none; */
 } 
 
+
+
 tr.group,
 tr.group:hover {
     background-color: #ddd !important;
 }
+ 
+
  

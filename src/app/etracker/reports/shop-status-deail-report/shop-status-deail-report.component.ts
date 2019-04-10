@@ -54,6 +54,7 @@ export class ShopStatusDeailReportComponent implements OnInit {
 
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
+    this.Data.shift();
 
 
      this.Data.forEach(element => {
@@ -69,23 +70,27 @@ export class ShopStatusDeailReportComponent implements OnInit {
       
      });
 
-     for (let index = 0; index < this.sumTotalShop.length; index++) {
+    //  for (let index = 0; index < this.sumTotalShop.length; index++) {
 
-      this.TShop += (this.sumTotalShop[index])
-    }
+    //   this.TShop += (this.sumTotalShop[index])
+    // }
 
 
     
-    for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
 
-      this.totalActiveshop += (this.sumTotalActiveshop[index])
-    }
+    //   this.totalActiveshop += (this.sumTotalActiveshop[index])
+    // }
 
-    for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
 
-      this.totalCloseshop += (this.sumTotalCloseshop[index])
-    }
+    //   this.totalCloseshop += (this.sumTotalCloseshop[index])
+    // }
+    this.TShop = this.sumTotalShop.reduce(this.getSum);
 
+    this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
+
+    this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
 
      console.log( this.sumTotalShop)
      console.log(this.TShop);
@@ -95,6 +100,9 @@ export class ShopStatusDeailReportComponent implements OnInit {
 
     
     this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
+  }
+  getSum(total, num) {
+    return total + num;
   }
 
 

@@ -250,9 +250,9 @@ public toDate : any  ='';
           Group : Group                  
          }
          this.groupSummary = {
-            TotalShop : dd[0]+" "+"TotalShop",
-            TotalActive :dd[1]+" "+"TotalActive",
-            TotalClosed :dd[2]+" "+"TotalClosed"                     
+            TotalShop : dd[0]+" "+"Total Shop",
+            TotalActive :dd[1]+" "+"Total Active",
+            TotalClosed :dd[2]+" "+"Total Closed"                     
          }
         this.Data.push(c)
         }

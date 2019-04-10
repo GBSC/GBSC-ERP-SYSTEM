@@ -79,25 +79,30 @@ export class ShopCensusSummaryReportComponent implements OnInit {
       if(element.mainTotalPersent){
         this.sumTotalPersent.push(element.mainTotalPersent)
        }
-     
     });
 
-    for (let index = 0; index < this.sumTotalShop.length; index++) {
+      this.TShop = this.sumTotalShop.reduce(this.getSum);
 
-      this.TShop += (this.sumTotalShop[index])
-    }
+      this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
+
+      this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
+
+    // for (let index = 0; index < this.sumTotalShop.length; index++) {
+
+    //   this.TShop += (this.sumTotalShop[index])
+    // }
 
 
     
-    for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
 
-      this.totalActiveshop += (this.sumTotalActiveshop[index])
-    }
+    //   this.totalActiveshop += (this.sumTotalActiveshop[index])
+    // }
 
-    for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
+    // for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
 
-      this.totalCloseshop += (this.sumTotalCloseshop[index])
-    }
+    //   this.totalCloseshop += (this.sumTotalCloseshop[index])
+    // }
 
     // for (let index = 0; index < this.sumTotalPersent.length; index++) {
 
@@ -117,7 +122,9 @@ export class ShopCensusSummaryReportComponent implements OnInit {
 
 
   }
-
+  getSum(total, num) {
+    return total + num;
+  }
   btn(){
     var divToPrint=document.getElementById("printTable");
     let newWin= window.open("");

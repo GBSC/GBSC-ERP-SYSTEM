@@ -45,10 +45,6 @@
                               <tr>
                                   <th></th>
                                   <th></th>
-                                  <th>Active</th>
-                                  <th>Active</th>
-                                  <th>CLose</th>
-                                  <th>TotalShop</th>
                                   <th>ShopName</th>
                                   <th>ShopKeeperName</th>
                                   <th>Contact</th>
@@ -60,7 +56,9 @@
                                   <th>DSF</th>
                                   <th>VisitDay</th>
                                   <th>ShopStatus</th>
-                                  <th>ImageLink</th>
+                                   <th>Active</th>
+                                  <th>CLose</th>
+                                 <th>TotalShop</th>
                               </tr>
                           </thead>
                           <tbody *ngFor="let data of Data" style="font-size: 11px;
@@ -69,10 +67,6 @@
                               <tr>
                                   <td style="font-weight: bold;">{{data.Group}}</td>
                                   <td >{{data.subGroup}}</td>
-                                  <td style="font-weight: bold; width: 200px">{{ data.TotalActive}}</td>
-                                  <td style="font-weight: bold; width: 200px">{{ data.TotalActive}}</td>
-                                  <td style="font-weight: bold;">{{data.TotalClosed}}</td>
-                                  <td style="font-weight: bold;">{{data.TotalShop}}</td>
                                    <td>{{data.storeName}}</td>
                                   <td>{{data.shopkeeperName}}</td>
                                   <td>{{data.contactNumber}}</td>
@@ -84,11 +78,13 @@
                                   <td>{{data.dsf}}</td>
                                   <td>{{data.day}}</td>
                                   <td>{{data.shopStatus}}</td>
-                                  <td>{{data.imageLink}}</td>    
+                                  <td  style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{ data.TotalActive}}</td>
+                                  <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalClosed}}</td>
+                                  <td style="font-weight: bold; width: 100px !important; min-width: 130px !important;">{{data.TotalShop}}</td>
                               </tr>
                           </tbody>
                       </table>
-                      <table width="100%" border="1" cellpadding="1" cellspacing="1">
+                      <table width="100%" border="1" style="font-weight: bold; width: 100% !important; min-width: 100% !important;" >
                           <tr class="table">
                               <td class="mytd">Total Shop</td>
                               <td>{{TShop}}</td>

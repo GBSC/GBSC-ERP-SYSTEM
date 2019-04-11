@@ -24,6 +24,37 @@
 	border-radius: 10px;
 }
 
+#m_aside_left {
+    min-width: 200px;
+	max-width: 200px;
+	position: relative;
+	min-height: 100%;
+	z-index: auto;
+}
+
+#m_aside_left.active {
+    margin-left: -160px;
+}
+
+#m_ver_menu {
+    background-color: transparent;
+}
+
+#m_ver_menu.active {
+    background-color: transparent;
+    margin-left: 159px;
+    overflow-x: hidden;
+}
+
+#sidebarBtn.active {
+	margin-left: 160px;
+}
+.btnse{
+
+}
+#sidebarBtntext.active{
+display: none;
+}
 
 	</style>
 
@@ -48,5 +79,18 @@ function readURL(input) {
 $("#imageUpload").change(function() {
     readURL(this);
 });
+
+
+$(document).ready(function () {
+
+$('#sidebarCollapse').on('click', function () {
+	$('#m_aside_left').toggleClass('active');
+	$('#m_ver_menu').toggleClass('active');
+	$('#sidebarBtn').toggleClass('active');
+	$('#sidebarBtntext').toggleClass('active');
+});
+
+});
+
 </script>
 </html>

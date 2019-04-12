@@ -1,0 +1,83 @@
+<div class="m-content"> 
+<div class="m-portlet">
+  <div class="m-portlet__head">
+    <div class="m-portlet__head-caption">
+      <div class="m-portlet__head-title">
+        <h3 class="m-portlet__head-text">
+          Leave Policy Detail
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="m-portlet__body"> 
+    <dx-data-grid id="gridContainer" 
+    [dataSource]="LeavePolicies" 
+    [showBorders]="true"
+    [columnAutoWidth]="true" 
+    (onToolbarPreparing)="onToolbarPreparing($event)">
+       <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+      <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+      <dxo-paging [pageSize]="6"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+      </dxo-pager> 
+      <dxi-column dataField="groupId" caption="Group">
+        <dxo-lookup [dataSource]="groups" displayExpr="name" valueExpr="groupId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="leaveTypeId" caption="Leave Policy">
+        <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
+        <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
+        <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
+        </dxo-lookup>
+      </dxi-column>
+      <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
+      <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false">
+      </dxi-column>
+      <dxi-column dataField="maximumAllowedBalance" [visible]="false" [visible]="false">
+      </dxi-column>
+      <dxi-column dataField="maximumAtATime" caption="maximum at a Time" [visible]="false"></dxi-column>
+      <dxi-column dataField="minimumAtATime" caption="minimum at a Time" [visible]="false"></dxi-column>
+      <dxi-column dataField="minimumIntimationPeriod" [visible]="false"></dxi-column>
+      <dxi-column dataField="isEncashable" dataType="boolean" [visible]="false"></dxi-column>
+      <dxi-column dataField="encashmentDays" [visible]="false"></dxi-column>
+      <dxi-column dataField="encashmentApplicationLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMale" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isFemale" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMarried" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isBalanceBroughtForward" [visible]="false"></dxi-column>
+      <dxi-column dataField="balanceBroughtForwardQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="balanceBroughtForwardValidity" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isShortLeaveAllowed" [visible]="false"></dxi-column>
+      <dxi-column dataField="shortLeaveLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isAllowedOnlyOnceInService" caption="Is Allowed Only Once in Service" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="dayContinuationRestriction" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isJobPeriodBased" [visible]="false"></dxi-column>
+      <dxi-column dataField="paidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="halfPaidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataField="unPaidDaysQuantity" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isProrated" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isMonthBased" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="allowOnZeroBalance" caption="Allow on Zero Balance" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="isActive"></dxi-column>
+      <dxi-column dataField="applicationLimit" [visible]="false"></dxi-column>
+      <dxi-column dataType="boolean" dataField="printOnPaySlip" caption="Print on Payslip" [visible]="false"></dxi-column>
+      <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
+      <div *dxTemplate="let d of 'chartCellTemplate'">
+        <div class="chart-cell">
+            <dx-button (click)="getLeavePolicy(d)" icon="edit"></dx-button>
+        </div>
+    </div>
+    </dx-data-grid>
+
+  </div>
+</div>
+</div>
+ 

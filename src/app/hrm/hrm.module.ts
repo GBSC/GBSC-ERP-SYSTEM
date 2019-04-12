@@ -184,6 +184,8 @@ import { DxSchedulerModule } from 'devextreme-angular';
  
 import { DxChartModule } from 'devextreme-angular/ui/chart';
 import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+import { LeavepolicydetailComponent } from './leave/leavesetup/leavepolicydetail/leavepolicydetail.component';
+import { EmployeeLeavepolicyDetailComponent } from './leave/leaveadmin/employee-leavepolicy-detail/employee-leavepolicy-detail.component';
 // import { IgxExcelExporterService } from "igniteui-angular";
 
 @NgModule({
@@ -260,6 +262,7 @@ import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
 
         /* HRM Leave Components */
         LeavepolicyComponent,
+        LeavepolicydetailComponent,
         LeaveapproverComponent,
         LeavetypeComponent,
         LeavedaytypeComponent,
@@ -390,7 +393,8 @@ import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
         LeaveDetailComponent,
         MonthlyleaveComponent,
         MonthlyPayrollProcessComponent,
-        DashboardComponent
+        DashboardComponent,
+        EmployeeLeavepolicyDetailComponent 
     ],
 
     // providers: [IgxExcelExporterService],

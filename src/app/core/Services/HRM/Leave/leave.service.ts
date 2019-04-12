@@ -66,6 +66,10 @@ export class LeaveService {
         return await this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployees`).toPromise();
     }
 
+    getEmpPolicyById(id): Observable<any> {
+        return this.ApiService.get(`${this.baseUrl}/Leave/GetLeavePolicyEmployee/` + id);
+    }
+ 
     async addLeavePolicyEmployee(data) {
 
         return await this.ApiService.post(`${this.baseUrl}/Leave/AddLeavePolicyEmployee`, data).toPromise();

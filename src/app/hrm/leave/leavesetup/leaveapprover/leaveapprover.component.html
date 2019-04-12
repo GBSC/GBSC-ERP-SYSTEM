@@ -28,6 +28,7 @@
                 <dxi-column dataField="userId" caption="Employee">
                   <dxo-lookup [dataSource]="employees" displayExpr="fullName" valueExpr="userId">
                   </dxo-lookup> 
+                  <dxi-validation-rule type="required" message="Approver Name is required"></dxi-validation-rule>
                 </dxi-column>
               </dx-data-grid>
             </div>

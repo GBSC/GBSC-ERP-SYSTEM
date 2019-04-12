@@ -233,7 +233,7 @@ public toDate : any  ='';
     console.log(this.gridApi)
     this.groupSummary = {}
     console.log(this.groupSummary)
-    this.gridApi.forEachNode(res => 
+    this.gridApi.forEachNodeAfterFilter(res => 
    
   {
      console.log(res)
@@ -474,3 +474,9 @@ public toDate : any  ='';
   //     this.showHideFilter = !this.showHideFilter;
   // }
 }
+
+
+// ovaiskhan	
+// kJeANqG3wketrxg4Cg
+
+// http://localhost/wordpress/wp-admin/theme-install.php?browse=featured

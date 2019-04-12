@@ -396,7 +396,7 @@ public toDate   ='';
       console.log(this.gridApi)
       this.groupSummary = {}
       console.log(this.groupSummary)
-      this.gridApi.forEachNode(res => 
+      this.gridApi.forEachNodeAfterFilter(res => 
      
     {
        console.log(res)
@@ -406,17 +406,12 @@ public toDate   ='';
           if(this.groupSummary !== {}) {
             this.Data.push(this.groupSummary)
            }   
-   
-        
+
             let Group = res.key
             let dd = res.aggData;
             console.log(Group)
-            // this.Data.push(groupSummary)
-          let  c = {
-            Group : Group  // ,
-              // TotalShop : dd[0],
-              // TotalActive : dd[1],
-              // TotalClosed : dd[2]                     
+           let  c = {
+            Group : Group               
            }
 
            this.groupSummary = {
@@ -442,10 +437,7 @@ public toDate   ='';
          
          if(res.data){
           this.Data.push( res.data)
-          
-          // this.sumTotalShop.push(res.data.shopNameCount)
-          // this.sumTotalActiveshop.push(res.data.activeStore)
-          // this.sumTotalCloseshop.push(res.data.close)
+ 
          }
             
           
@@ -458,39 +450,17 @@ public toDate   ='';
      }   
 
     console.log( this.Data)
-     
-   
-    //   console.log(this.sumTotalShop)
-
-    // for (let index = 0; index < this.sumTotalShop.length; index++) {
-
-    //   this.TShop += (this.sumTotalShop[index])
-    // }
+ 
 
 
-    
-    // for (let index = 0; index < this.sumTotalActiveshop.length; index++) {
-
-    //   this.totalActiveshop += (this.sumTotalActiveshop[index])
-    // }
-
-    // for (let index = 0; index < this.sumTotalCloseshop.length; index++) {
-
-    //   this.totalCloseshop += (this.sumTotalCloseshop[index])
-    // }
-
-    // console.log(this.TShop);
-
-
-    // this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
-
-    // console.log(this.ActivePersent);
  
     sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
     console.log(this.formDate);
     console.log(this.toDate);
     console.log(this.gridApi);
-    window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+     window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+        // window.open('http://localhost:4200/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+
   }
 
   btn(){

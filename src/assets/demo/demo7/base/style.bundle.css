@@ -34721,3 +34721,40 @@ body.m-content--skin-light2 {
 .btns-text:active {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   transform: translateY(0); }
+
+  #m_aside_left {
+    min-width: 200px;
+	max-width: 200px;
+	position: relative;
+	min-height: 100%;
+	z-index: auto;
+}
+
+#m_aside_left.active {
+    margin-left: -160px;
+}
+
+#m_ver_menu {
+    background-color: transparent;
+}
+
+#m_ver_menu.active {
+    background-color: transparent;
+    margin-left: 159px;
+    overflow-x: hidden;
+}
+
+#sidebarBtn.active {
+	margin-left: 160px;
+}
+
+#sidebarBtntext.active{
+display: none;
+}
+
+div.gm-style > div > div > div > div > div > div > div
+{
+	margin-top: 65px !important;
+    padding: 3px 8px 3px 8px;
+	border-radius: 10px;
+}

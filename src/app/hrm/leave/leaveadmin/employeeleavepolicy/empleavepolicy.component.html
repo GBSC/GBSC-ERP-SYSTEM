@@ -23,42 +23,32 @@
                         <!-- <select #lp class="form-control m-input" (change)="getLeavePolicy(lp.value)" [value]="policy?.fullName || ''">
                         <option *ngFor="let employee of employees; let i = index" [value]="employee?.userId">{{employee.fullName}}</option>
                       </select>  -->
-                      <dx-select-box #lp [items]="employees" (onValueChanged)="getLeavePolicy(lp.value)" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true" formControlName="UserId"> 
-                      </dx-select-box>
+                      <dx-select-box #lp [items]="employees" (onValueChanged)="getLeavePolicy(lp.value)" displayExpr="fullName" valueExpr="userId" [searchEnabled]="true"> </dx-select-box>
                       </div> 
-                  </div>
-                 
-  
-           
+                  </div> 
                   <div class="form-group m-form__group row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                     <label>
                       Leave Type:
                     </label>
                       <!-- <select #q class="form-control m-input" (change)="getQuantitybyType(q.value)" [value]="policy?.title">
                         <option *ngFor="let levetype of leaveTypes; let i = index"  [value]="levetype?.leaveTypeId">{{levetype.title}}</option>
                       </select> -->
-                      <dx-select-box #q [items]="leaveTypes" (onValueChanged)="getQuantitybyType(q.value)" displayExpr="title" valueExpr="leaveTypeId" [searchEnabled]="true" formControlName="LeaveTypeId"> 
-                      </dx-select-box>
+                      <dx-select-box #q [items]="leaveTypes" (onValueChanged)="getQuantitybyType(q.value)" displayExpr="title" valueExpr="leaveTypeId" [searchEnabled]="true"> </dx-select-box>
                     </div>
   
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                     <label>
                         Leave Year:
                       </label> 
-                        <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" [value]="policy?.name" formControlName="LeaveYearId"> 
-                          </dx-select-box>
+                        <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" [value]="policy?.name" formControlName="LeaveYearId"> </dx-select-box>
                       </div> 
+                      <div class="col-lg-4">
+                        <label>Entitled Qty (Days): </label>
+                          <input class="form-control m-input" formControlName="EntitledQuantity" [value]="policy?.entitledQuantity" type="text">
+                        </div> 
                   </div>
-               <div class="m--space-30"></div>
-  
-                  <div class="form-group m-form__group row">
-                    <div class="col-lg-4">
-                    <label>Entitled Qty (Days): </label>
-                      <input class="form-control m-input" formControlName="EntitledQuantity" [value]="policy?.entitledQuantity" type="text">
-                    </div> 
-                  </div> 
-              <div class="m--space-20"></div>
+               <div class="m--space-30"></div> 
              
               <div class="form-group m-form__group row"> 
                 <div class="col-lg-3">

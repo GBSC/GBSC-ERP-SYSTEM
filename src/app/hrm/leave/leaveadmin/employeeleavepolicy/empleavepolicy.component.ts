@@ -104,13 +104,13 @@ export class EmpleavepolicyComponent implements OnInit {
     }
     selectedEmployee : any
     getLeavePolicy(userId) { 
-        // this.sample = {}
+        this.sample = {}
         this.selectedEmployee = this.employees.find(e => e.userId == userId)
         this.sample = this.leavepolicy.find(e => e.groupId ===  this.selectedEmployee.groupId); 
-        // if(this.sample != undefined || this.sample != null){
+        if(this.sample != undefined || this.sample != null){
             this.patchvalues(this.sample);
             console.log(this.sample);
-        // }  
+        }  
     }
 
     getQuantitybyType(leaveTypeId) {  

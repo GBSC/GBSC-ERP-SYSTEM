@@ -4,11 +4,16 @@
 </button>
 <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light">
 	<!-- BEGIN: Brand -->
-	<div class="m-brand  m-brand--skin-light">
-		<a routerLink="/index" class="m-brand__logo">
-			<img alt="" src="./assets/demo/demo7/media/img/logo/logo.png"/>
-		</a>
-	</div>
+	<div id="sidebarBtn" class="btnse">
+		<button type="button" onclick="toggleNav()" id="sidebarCollapse" class="btn btn-block m-btn btn-sm m-btn m-btn--icon" style="height: 40px;padding: 3px;background: radial-gradient(ellipse at center, rgb(32, 85, 127) 0%,rgb(17, 71, 114) 86%,#174b76 73%,#154872 70%,#164b75 100%);color: white;">
+				<span>
+						<i class="la la-align-left" style="font-size: 30px;"></i>
+						<span id="sidebarBtntext" class="rrtrtr">
+								Toggle Navigation
+						</span>
+					</span>
+			  </button>
+</div>
 	<!-- END: Brand --> 	<!-- BEGIN: Aside Menu -->
 	<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light"  		data-menu-vertical="true" 		 data-menu-scrollable="true" data-menu-dropdown-timeout="500"   		>
 		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
@@ -58,10 +63,19 @@
 						</a>
 					</li>
 					<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click">
-						<a  routerLink="/purchasereturn" class="m-menu__link m-menu__toggle">
+						<a  routerLink="/pharmacy/purchasereturn" class="m-menu__link m-menu__toggle">
 							<i class="m-menu__link-icon flaticon-menu"></i>
 							<span class="m-menu__link-text">
 								Purchase Return
+							</span>
+							<i class="m-menu__ver-arrow la la-angle-right"></i>
+						</a>
+					</li>
+					<li class="m-menu__item  m-menu__item--submenu m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="click">
+						<a  routerLink="/pharmacy/purchaseinvoice" class="m-menu__link m-menu__toggle">
+							<i class="m-menu__link-icon flaticon-menu"></i>
+							<span class="m-menu__link-text">
+								Purchase Invoice
 							</span>
 							<i class="m-menu__ver-arrow la la-angle-right"></i>
 						</a>
@@ -82,7 +96,7 @@
 					   <li class="m-menu__item  m-menu__item--parent m-menu__item--submenu-fullheight" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 						aria-haspopup="true">
 					   </li>
-					   <!-- BEGIN: Company Setup -->
+					   <!-- BEGIN: Company: Setup -->
 					   <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open" routerLinkActiveOptions="{ exact: true }"
 						aria-haspopup="true" data-menu-submenu-toggle="click" data-menu-submenu-mode="accordion">
 						   <a href="#" class="m-menu__link m-menu__toggle">

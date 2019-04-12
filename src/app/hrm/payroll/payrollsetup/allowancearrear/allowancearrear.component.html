@@ -14,7 +14,8 @@
               <dx-data-grid #clientGrid id="gridContainer" [dataSource]="allowancearrear"
                keyExpr="arrearAllowanceId" 
                (onRowInserted)="addallowancearrear($event)" 
-               (onRowUpdated)="updateallowancearrear($event)" 
+               (onRowUpdating)="updatingAllowanceArrear($event)" 
+               (onRowUpdated)="updateallowancearrear()" 
                 (onRowRemoved)="deleteallowancearrear($event)">
 
                 <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">

@@ -24,7 +24,10 @@
                       <label class="">
                        Shift Title:
                       </label>
-                      <input type="text" class="form-control m-input" formControlName="ShiftTitle" placeholder="Shift Title">
+                      <input type="text" class="form-control m-input" formControlName="ShiftTitle" placeholder="Shift Title" [ngClass]="{ 'is-invalid': submitted && f.ShiftTitle.errors }">
+                      <div *ngIf="submitted && f.ShiftTitle.errors" class="invalid-feedback">
+                        <div *ngIf="f.ShiftTitle.errors.required">Shift Title is required</div>
+                      </div>
                     </div>
                     <div class="col-lg-6">
                       <label class="">
@@ -39,15 +42,21 @@
                         <label>
                         Start Time:
                         </label>
-                        <input type="time" class="form-control m-input" formControlName="StartTime" [value]="shift?.startTime | date:'HH:mm:ss'" placeholder="00:00">
-                        <!-- <dx-date-box formControlName="StartTime" type="time" width="100%"></dx-date-box> -->
+                        <input type="time" class="form-control m-input" [value]="shift?.startTime | date : 'HH:mm a' || ''" formControlName="StartTime" [ngClass]="{ 'is-invalid': submitted && f.StartTime.errors }">
+                        <!-- <dx-date-box formControlName="StartTime" type="time" displayFormat="hh:mm a" width="100%"></dx-date-box> -->
+                        <div *ngIf="submitted && f.StartTime.errors" class="invalid-feedback">
+                          <div *ngIf="f.StartTime.errors.required">Start Time is required</div>
+                        </div>
                       </div>
                       <div class="col-lg-6">
                         <label class="">
                          End Time:
                         </label>
-                        <input type="time" class="form-control m-input" formControlName="EndTime" placeholder="00:00">
-                        <!-- <dx-date-box formControlName="EndTime" type="time" width="100%"></dx-date-box> -->
+                        <input type="time" class="form-control m-input" formControlName="EndTime" placeholder="00:00" [ngClass]="{ 'is-invalid': submitted && f.EndTime.errors }">
+                        <div *ngIf="submitted && f.EndTime.errors" class="invalid-feedback">
+                          <div *ngIf="f.EndTime.errors.required">End Time is required</div>
+                        </div>
+                        <!-- <dx-date-box formControlName="EndTime" displayFormat="shortTime"  type="datetime" width="100%"></dx-date-box> -->
                       </div>
                     </div>
   
@@ -56,8 +65,8 @@
                           <label>
                           Grace Time:
                           </label>
-                          <input type="time" class="form-control m-input" formControlName="GraceTime" placeholder="00:00">
-                          <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="GraceTime" type="datetime" width="100%"></dx-date-box> -->
+                          <!-- <input type="time" class="form-control m-input" formControlName="GraceTime" placeholder="00:00"> -->
+                          <dx-date-box displayFormat="shortTime"  type="datetime" formControlName="GraceTime" width="100%"></dx-date-box>
                         </div>
                         <div class="col-lg-6">
                           <label class="">
@@ -77,14 +86,14 @@
                             <label>
                             Overtime Start Time:
                             </label>
-                            <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="OverTimeStartTime" type="datetime" width="100%"></dx-date-box> -->
-                            <input type="time" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00">
+                            <dx-date-box formControlName="OverTimeStartTime" displayFormat="shortTime"  type="datetime" width="100%"></dx-date-box>
+                            <!-- <input type="time" class="form-control m-input" formControlName="OverTimeStartTime" placeholder="00:00"> -->
                           </div>
                           <div class="col-lg-6">
                             <label class="">
                             Minimum Over Time:
                             </label>
-                            <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="MinimumOverTime" type="datetime" width="100%"></dx-date-box> -->
+                            <!-- <dx-date-box formControlName="MinimumOverTime" displayFormat="shortTime"  type="datetime" width="100%"></dx-date-box> -->
                             <input type="number" class="form-control m-input" formControlName="MinimumOverTime" placeholder="00">
                           </div>
                         </div>
@@ -94,15 +103,15 @@
                               <label>
                                   In Time Shift Threshold:
                               </label>
-                              <input type="time" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00">
-                              <!-- <dx-date-box [value]="now" displayFormat="HH:mm" formControlName="InTimeShiftThreshold" type="datetime" width="100%"></dx-date-box> -->
+                              <!-- <input type="time" class="form-control m-input" formControlName="InTimeShiftThreshold" placeholder="00:00"> -->
+                              <dx-date-box formControlName="InTimeShiftThreshold" displayFormat="shortTime" type="datetime" width="100%"></dx-date-box>
                             </div>
                             <div class="col-lg-6">
                               <label class="">
                                   Out Time Shift Threshold:
                               </label>
-                              <input type="time" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00">
-                              <!-- <dx-date-box [value]="now" formControlName="OutTimeShiftThreshold" type="datetime" width="100%"></dx-date-box> -->
+                              <!-- <input type="time" class="form-control m-input" formControlName="OutTimeShiftThreshold" placeholder="00:00"> -->
+                              <dx-date-box formControlName="OutTimeShiftThreshold" displayFormat="shortTime" type="datetime" width="100%"></dx-date-box>
                             </div>
                           </div>
                           
@@ -140,7 +149,7 @@
                         [dataSource]="Flag" 
                          (onRowInserted)="addAttendanceFlag($event)"
                          (onRowUpdated)="updateAttendanceFlag($event)">
-                          <dxo-editing mode="cell" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                          <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
                           </dxo-editing>
                           <dxo-filter-row [visible]="true"></dxo-filter-row>
                           <dxo-header-filter [visible]="true"></dxo-header-filter>

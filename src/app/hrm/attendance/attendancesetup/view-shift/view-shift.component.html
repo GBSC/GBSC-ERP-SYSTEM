@@ -1,4 +1,7 @@
- 
+<div class="m-content">
+
+    <div class="row">
+      <div class="col-md-12">
   <div class="m-portlet">
       <div class="m-portlet__head">
           <div class="m-portlet__head-caption">
@@ -32,14 +35,17 @@
               <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
  
               <dxi-column dataField="shiftTitle"></dxi-column>
+              <dxi-column dataField="shiftHours"></dxi-column>
               <dxi-column dataField="startTime" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="endTime" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="graceTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="isMultiple" dataType="boolean"></dxi-column>
               <dxi-column dataField="overTimeStartTime" dataType="datetime" format="shorttime"></dxi-column>
-              <dxi-column dataField="minimumOverTime" dataType="datetime" format="shorttime"></dxi-column>
+              <dxi-column dataField="minimumOverTime"></dxi-column>
               <dxi-column dataField="inTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
               <dxi-column dataField="outTimeShiftThreshold" dataType="datetime" format="shorttime"></dxi-column>
-              <dxi-column dataField="isMultiple" dataType="boolean"></dxi-column>
+              <dxi-column dataField="overTimeRate"></dxi-column>
+              <dxi-column dataField="description"></dxi-column>
               <dxi-column caption="Action" [minWidth]="70" cellTemplate="chartCellTemplate" [fixed]="true" fixedPosition="right"></dxi-column>
               <div *dxTemplate="let d of 'chartCellTemplate'">
                 <div class="chart-cell">
@@ -49,21 +55,24 @@
 
               <div *dxTemplate="let attendanceFlag of 'detail'">
                   <dx-data-grid [dataSource]="attendanceFlag.data.shiftAttendanceFlags" [showBorders]="true">
+                    <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
+                        <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
+                        </dxo-lookup>
+                      </dxi-column>
                     <dxi-column dataField="flagTypeId" caption="Flag Type">
                         <dxo-lookup [dataSource]="flagType" displayExpr="name" valueExpr="flagTypeId">
                         </dxo-lookup>
                       </dxi-column>
                       <dxi-column dataField="fromTime" dataType="datetime" format="shorttime"> </dxi-column>
                       <dxi-column dataField="toTime" dataType="datetime" format="shorttime"> </dxi-column>
-                          <dxi-column dataField="attendanceFlagId" caption="Attendance Flag">
-                            <dxo-lookup [dataSource]="attendanceflag" displayExpr="title" valueExpr="attendanceFlagId">
-                            </dxo-lookup>
-                          </dxi-column>
                       <dxi-column dataField="noOfHours" caption="No of Hours"></dxi-column>
                       </dx-data-grid>
               </div>
           </dx-data-grid>
       </div>
   </div>
- 
+ </div>
+ </div>
+ </div>
+
  

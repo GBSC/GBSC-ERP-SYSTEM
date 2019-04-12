@@ -1,6 +1,6 @@
 <div class="row" style="margin-top:  -10px; margin-bottom:  36px;">
 
-              <h4>Education Detail</h4>
+              <h4>Academic Details</h4>
             
         <div class="m-portlet__body">
           <div class="m-section">
@@ -8,11 +8,12 @@
               <dx-data-grid id="gridContainer"
                [dataSource]="qualifications"
                keyExpr="universityId" 
+               [columnAutoWidth]="true"
                [showBorders]="true"
-               (onRowInserted)="addQualification($event)"
+               (onRowInserted)="addQualification($event)" 
                (onRowUpdated)="updateQualification($event)">
-                <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
-                  <dxo-popup title="Education Detail" [showTitle]="true" [width]="700" [height]="345">
+                <dxo-editing mode="popup" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
+                  <dxo-popup title="Qualification Detail" [showTitle]="true" [width]="700" [height]="345">
                   </dxo-popup>
                 </dxo-editing>
                 <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -22,16 +23,24 @@
                 <dxo-paging [pageSize]="6"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager> 
-                <dxi-column dataField="name" caption="Institute"></dxi-column> 
+                <dxi-column dataField="name" caption="Institute">
+                  <dxi-validation-rule type="required" message="Name of Institution is required">
+                  </dxi-validation-rule>
+                </dxi-column> 
                 <dxi-column dataField="degreeId" caption="Degree">
                     <dxo-lookup [dataSource]="degrees" displayExpr="name" valueExpr="degreeId">
                     </dxo-lookup> 
+                    <dxi-validation-rule type="required" message="Degree is required">
+                    </dxi-validation-rule>
               </dxi-column> 
-              <dxi-column dataField="grade"></dxi-column>
-                <dxi-column dataField="timeFrom" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="timeTo" dataType="date" format="shortDate"></dxi-column>
-                <dxi-column dataField="courses" caption="Faculty"></dxi-column>
-                <dxi-column dataField="description"></dxi-column>
+              <dxi-column dataField="courses" caption="Faculty">
+                <dxi-validation-rule type="required" message="Faculty is required">
+                </dxi-validation-rule>
+              </dxi-column>
+              <dxi-column dataField="grade" caption="Grade/GPA"></dxi-column>
+                <dxi-column dataField="timeFrom" dataType="date" format="shortDate" caption="From"></dxi-column>
+                <dxi-column dataField="timeTo" dataType="date" format="shortDate" caption="Till"></dxi-column>
+                <dxi-column dataField="description" caption="Description"></dxi-column>
               </dx-data-grid>
             </div>
           </div>

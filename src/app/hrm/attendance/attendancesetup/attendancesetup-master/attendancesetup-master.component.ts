@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttendancesetupMasterComponent implements OnInit {
 
-  tabs: string[] = ['Roster', 'Shift', 'Assign Roster', 'Flag Category','Flag Effect Type', 'Flag Type', 'Flag Value',
+  tabs: string[] = ['Roster', 'Flag Category','Flag Effect Type', 'Flag Type', 'Flag Value',
   'Attendance Flag', 'Attendance Request Type', 'Attendance Request Approver'];
  selectedTab = this.tabs[0];
 

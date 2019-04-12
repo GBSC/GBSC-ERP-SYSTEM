@@ -5,12 +5,11 @@
 			<!-- BEGIN: Brand -->
 			<div class="m-stack__item m-brand">
 				<div class="m-stack m-stack--ver m-stack--general">
-					<div class="m-stack__item m-stack__item--middle m-brand__logo">
-						<a routerLink="/index" class="m-brand__logo-wrapper">
-							<!-- for erp Logo:  <img alt="" src="./assets/demo/demo7/media/img/logo/logo.png" /> -->
-						<!-- for Eva Logo: --> 	<img alt="" src="../../../assets/images/logo.png" />
-						</a>
-					</div>
+						<div class="m-brand  m-brand--skin-light">
+								<a routerLink="/index" class="m-brand__logo">
+									<img alt="" src="./assets/images/logo.png" />
+								</a>
+							</div>
 					<div class="m-stack__item m-stack__item--middle m-brand__tools">
 						<!-- BEGIN: Responsive Aside Left Menu Toggler -->
 						<a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
@@ -206,6 +205,13 @@
 														<i class="m-menu__ver-arrow la la-angle-right"></i>
 													</h3>
 													<ul class="m-menu__inner"> 
+															<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																	<a routerLink="/hrm/employee/employeesetups" class="m-menu__link">
+																		<span class="m-menu__link-text">
+																			Employees Setup
+																		</span>
+																	</a>
+																</li>
 														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 															<a routerLink="/hrm/leave/setups" class="m-menu__link">
 																<span class="m-menu__link-text">
@@ -220,20 +226,14 @@
 																</span>
 															</a>
 														</li>
-														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+														<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 															<a routerLink="/hrm/attendance/overtimesetup" class="m-menu__link">
 																<span class="m-menu__link-text">
 																	Overtime Setup
 																</span>
 															</a>
-														</li>
-														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-															<a routerLink="/hrm/payroll/payrollsetup" class="m-menu__link">
-																<span class="m-menu__link-text">
-																	Payroll Setup
-																</span>
-															</a>
-														</li>
+														</li> -->
+													 
 														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 															<a routerLink="/hrm/payroll/taxsetup" class="m-menu__link">
 																<span class="m-menu__link-text">
@@ -301,37 +301,40 @@
 											</h3>
 											<ul class="m-menu__inner">
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/shift" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-stopwatch"></i>
+														<span class="m-menu__link-text">
+															Shift
+														</span>
+													</a>
+												</li>
+
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/assignroster" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-file-1"></i>
+														<span class="m-menu__link-text">
+															Assign Roster
+														</span>
+													</a>
+												</li> 
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/hrm/attendance/user-roster-attendance" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-list-2"></i>
+														<span class="m-menu__link-text">
+															User Attendance
+														</span>
+													</a>
+												</li>
+
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/attendance/attendancerequest" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-map"></i>
+														<i class="m-menu__link-icon flaticon-list-1"></i>
 														<span class="m-menu__link-text">
 															Attendance Request
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/attendance/official-visit-entry" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-user"></i>
-														<span class="m-menu__link-text">
-															Official Visit Entry
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/attendance/overtime-entitlement" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-clipboard"></i>
-														<span class="m-menu__link-text">
-															Overtime Entitlement
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/attendance/employee-overtime-entitlement" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-graphic-1"></i>
-														<span class="m-menu__link-text">
-															Employee Overtime Entitlement
-														</span>
-													</a>
 												</li> 
+
 											</ul>
 										</li>
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
@@ -353,32 +356,22 @@
 													</a>
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/leave/leaveapproval" class="m-menu__link">
+													<a routerLink="/hrm/leave/leavetypebalance" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Leave Approval
+															Leave Balance
 														</span>
 													</a>
 												</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/leave/leaveclosing" class="m-menu__link">
+													<a routerLink="/hrm/leave/leavepolicy" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
 															<span></span>
 														</i>
 														<span class="m-menu__link-text">
-															Leave Closing
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/leave/leaveadmin/leaveopenings" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Leave Opening
+															Leave Policy
 														</span>
 													</a>
 												</li>
@@ -541,6 +534,194 @@
 								</div>
 							</div>
 						</li>
+
+						<li *ngIf="accessableModules.includes('Ultrasound')" class="m-menu__item  m-menu__item--submenu"
+						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+							<a href="#" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here">
+									<i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+								</span>
+								<span class="m-menu__link-text">
+									Ultrasound
+								</span>
+							</a>
+							<div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
+								<div class="m-menu__subnav">
+									<ul class="m-menu__content">
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Ultrasound
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/ultrasoundpelvis" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-map"></i>
+														<span class="m-menu__link-text">
+															U-S Pelvis
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/ultrasoundmaster" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-user"></i>
+														<span class="m-menu__link-text">
+															U-S Master
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/fwbinitial" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-graphic-1"></i>
+														<span class="m-menu__link-text">
+															FWB Initial
+														</span>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+									 
+										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+											<h3 class="m-menu__heading m-menu__toggle">
+												<span class="m-menu__link-text">
+													Setup Configuration
+												</span>
+												<i class="m-menu__ver-arrow la la-angle-right"></i>
+											</h3>
+											<ul class="m-menu__inner">
+												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+													<a routerLink="/ultrasound/setup/sonologist" class="m-menu__link">
+														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+															<span></span>
+														</i>
+														<span class="m-menu__link-text">
+															Sonologist
+														</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li *ngIf="accessableModules.includes('OT')" class="m-menu__item  m-menu__item--submenu"
+						data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
+						   <a href="#" class="m-menu__link m-menu__toggle">
+							   <span class="m-menu__item-here">
+								   <i class="fa fa-hospital-o" style="font-size: 25px; color: black;"></i>
+							   </span>
+							   <span class="m-menu__link-text">
+								Operation Theater
+							   </span>
+						   </a>
+						   <div class="m-menu__submenu  m-menu__submenu--fixed-xl m-menu__submenu--center" style="margin-left: 0px;">
+							   <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+							   <div class="m-menu__subnav">
+								   <ul class="m-menu__content">
+									   <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+										   <h3 class="m-menu__heading m-menu__toggle">
+											   <span class="m-menu__link-text">
+												Operation Theater
+											   </span>
+											   <i class="m-menu__ver-arrow la la-angle-right"></i>
+										   </h3>
+										   <ul class="m-menu__inner">
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/patientcase" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-map"></i>
+													   <span class="m-menu__link-text">
+														Patient Case
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/laproscopysp" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-user"></i>
+													   <span class="m-menu__link-text">
+														Laproscopy(S-P)
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/laproscopyfs" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-clipboard"></i>
+													   <span class="m-menu__link-text">
+														Laproscopy (F-S)
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/hystroscopy" class="m-menu__link">
+													   <i class="m-menu__link-icon flaticon-graphic-1"></i>
+													   <span class="m-menu__link-text">
+														Hystroscopy
+													   </span>
+												   </a>
+											   </li>
+
+										   </ul>
+									   </li>
+									
+									   <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+										   <h3 class="m-menu__heading m-menu__toggle">
+											   <span class="m-menu__link-text">
+												   Setup Configuration
+											   </span>
+											   <i class="m-menu__ver-arrow la la-angle-right"></i>
+										   </h3>
+										   <ul class="m-menu__inner">
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												   <a routerLink="/ot/otsetup/medicinerequest" class="m-menu__link">
+													   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														   <span></span>
+													   </i>
+													   <span class="m-menu__link-text">
+														Medicine Request
+													   </span>
+												   </a>
+											   </li>
+											   <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otequipment" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Equipment
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otprocedure" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Procedure
+													</span>
+												</a>
+											</li>
+											<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<a routerLink="/ot/otsetup/otterminologies" class="m-menu__link">
+													<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+														<span></span>
+													</i>
+													<span class="m-menu__link-text">
+														Terminologies
+													</span>
+												</a>
+											</li>
+										   </ul>
+									   </li>
+								   </ul>
+							   </div>
+						   </div>
+					   </li>
 
 						<li *ngIf="accessableModules.includes('Lab Information System')" class="m-menu__item  m-menu__item--submenu"
 						 data-menu-submenu-toggle="click" data-redirect="true" aria-haspopup="true">
@@ -1064,6 +1245,57 @@
 								<span class="m-menu__arrow m-menu__arrow--adjust"></span>
 								<div class="m-menu__subnav">
 									<ul class="m-menu__content">
+											<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
+													<h3 class="m-menu__heading m-menu__toggle">
+														<span class="m-menu__link-text">
+															Payroll Setup
+														</span>
+														<i class="m-menu__ver-arrow la la-angle-right"></i>
+													</h3>
+													<ul class="m-menu__inner">
+														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+															<a routerLink="/hrm/payroll/allowancededuction" class="m-menu__link">
+																<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																	<span></span>
+																</i>
+																<span class="m-menu__link-text">
+																	Allowance/Deduction
+																</span>
+															</a>
+														</li>
+														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																<a routerLink="/hrm/payroll/payrollyear" class="m-menu__link">
+																	<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																		<span></span>
+																	</i>
+																	<span class="m-menu__link-text">
+																		Payroll Year
+																	</span>
+																</a>
+															</li>
+															<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+																	<a routerLink="/hrm/payroll/payrollsetup/payrolltype" class="m-menu__link">
+																		<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																			<span></span>
+																		</i>
+																		<span class="m-menu__link-text">
+																			Payroll Type
+																		</span>
+																	</a>
+																</li>
+														<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+															<a routerLink="/hrm/payroll/benefit" class="m-menu__link">
+																<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+																	<span></span>
+																</i>
+																<span class="m-menu__link-text">
+																	Benefit
+																</span>
+															</a>
+														</li> 
+													</ul>
+												</li>
+
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">
@@ -1076,36 +1308,36 @@
 											<ul class="m-menu__inner">
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/payroll/payrolladmin/stopsalary" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-map"></i>
+														<i class="m-menu__link-icon flaticon-close"></i>
 														<span class="m-menu__link-text">
 															Stop Salary
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/payroll/gratuity" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-user"></i>
 														<span class="m-menu__link-text">
 															Gratuity
 														</span>
 													</a>
-												</li>
+												</li> -->
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/monthlyusersalary" class="m-menu__link">
-														<i class="m-menu__link-icon flaticon-clipboard"></i>
+													<a routerLink="/hrm/payroll/salaryprocess" class="m-menu__link">
+														<i class="m-menu__link-icon flaticon-coins"></i>
 														<span class="m-menu__link-text">
 															Monthly User Salary
 														</span>
 													</a>
 												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+												<!-- <li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/payroll/payslip" class="m-menu__link">
 														<i class="m-menu__link-icon flaticon-graphic-1"></i>
 														<span class="m-menu__link-text">
 															PaySlip
 														</span>
 													</a>
-												</li>
+												</li> -->
 
 											</ul>
 										</li>
@@ -1117,6 +1349,16 @@
 												<i class="m-menu__ver-arrow la la-angle-right"></i>
 											</h3>
 											<ul class="m-menu__inner">
+													<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
+															<a routerLink="/hrm/payroll/taxsetup/taxyear" class="m-menu__link">
+																<i class="m-menu__link-bullet m-menu__link-bullet--line">
+																	<span></span>
+																</i>
+																<span class="m-menu__link-text">
+																	Tax Year
+																</span>
+															</a>
+														</li>
 												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
 													<a routerLink="/hrm/payroll/taxsetup/incometaxrule" class="m-menu__link">
 														<i class="m-menu__link-bullet m-menu__link-bullet--line">
@@ -1176,89 +1418,10 @@
 															Tax Schedule
 														</span>
 													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/taxsetup/taxyear" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--line">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Tax Year
-														</span>
-													</a>
-												</li>
+												</li> 
 											</ul>
 										</li>
-										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
-											<h3 class="m-menu__heading m-menu__toggle">
-												<span class="m-menu__link-text">
-													Payroll Setup
-												</span>
-												<i class="m-menu__ver-arrow la la-angle-right"></i>
-											</h3>
-											<ul class="m-menu__inner">
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/allowance" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Allowance
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/benefit" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Benefit
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/Currency" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Currency
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/fundsetup" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Fund Setup
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/gratuityslab" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Gratuity Slab
-														</span>
-													</a>
-												</li>
-												<li class="m-menu__item" data-redirect="true" aria-haspopup="true">
-													<a routerLink="/hrm/payroll/payrollsetup/payrolltype" class="m-menu__link">
-														<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-															<span></span>
-														</i>
-														<span class="m-menu__link-text">
-															Payroll Type
-														</span>
-													</a>
-												</li>
-											</ul>
-										</li>
+									
 										<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }">
 											<h3 class="m-menu__heading m-menu__toggle">
 												<span class="m-menu__link-text">

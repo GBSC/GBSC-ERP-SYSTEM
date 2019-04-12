@@ -21,6 +21,7 @@ import { DxTreeViewModule } from 'devextreme-angular/ui/tree-view';
 import { DxSelectBoxModule } from 'devextreme-angular/ui/select-box';
 import { DxPopupModule } from 'devextreme-angular/ui/popup';
 import { CompanySetupComponent } from './company-setup/company-setup.component';
+import { Select2Module } from 'ng2-select2';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { CompanySetupComponent } from './company-setup/company-setup.component';
         CommonModule,
         SecurityRoutingModule,
         FormsModule,
+        Select2Module,
         ReactiveFormsModule,
         DxButtonModule,
         DxDataGridModule,

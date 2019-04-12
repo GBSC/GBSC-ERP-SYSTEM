@@ -50,6 +50,10 @@ export class DailySemenAnalysisComponent implements OnInit {
 
         });
 
+        this.PatientServiceobj.getDailySemenAnalysis().subscribe(res =>{
+            console.log(res);
+        })
+
 
     }
 
@@ -61,17 +65,19 @@ export class DailySemenAnalysisComponent implements OnInit {
             console.log(res);
         });
 
-        this.DailySemenAnalysisForm.reset();
-        this.router.navigate(['/hims/patient/dailysemenanalysisview']);
+        // this.DailySemenAnalysisForm.reset();
+        // this.router.navigate(['/hims/patient/dailysemenanalysisview']);
     }
 
     addProcedure(value) {
         let x = value.key;
         this.Procedurearray.push(x);
+        console.log(this.Procedurearray)
     }
 
     deleteProcedure(value) {
         this.Procedurearray.splice(value.key, 1)
+        
     }
 
 

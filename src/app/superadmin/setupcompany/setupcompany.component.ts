@@ -32,9 +32,17 @@ export class SetupcompanyComponent implements OnInit {
 
     public InventoryInstalled: boolean;
 
+    public FinanceInstalled : boolean;
+
+    public UltrasoundInstalled : boolean;
+
     public eTrackerInstalled: boolean;
 
     public eTrackerMobileInstalled: boolean;
+
+    public OTInstalled: boolean;
+
+    public PharmacyInstalled: boolean;
 
     public features: any;
 
@@ -88,7 +96,7 @@ export class SetupcompanyComponent implements OnInit {
                 this.features = resp;
             });
 
-            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp=>{
+            this.superAdminService.getModulesByCompany(this.companyId).subscribe(resp => {
                 this.modules = resp;
             })
         }
@@ -109,7 +117,7 @@ export class SetupcompanyComponent implements OnInit {
     async onAddCompany(value) {
         // console.log(value);
         this.superAdminService.addCompany(value).subscribe(resp => {
-            console.log("Company Added");
+            console.log(resp);
             this.companyId = resp.companyID;
             this.superAdminService.addModule({ Name: "Security Admin", CompanyId: this.companyId, Code: "000", ModuleId: 0 }).subscribe();
         });
@@ -127,6 +135,7 @@ export class SetupcompanyComponent implements OnInit {
     }
 
     checkModulesInstalled(value) {
+        
         if (value == "Hospital Management System") {
             this.HimsInstalled = true;
         }
@@ -150,6 +159,18 @@ export class SetupcompanyComponent implements OnInit {
         }
         else if (value == "eTrackerMobile") {
             this.eTrackerMobileInstalled = true;
+        }
+        else if (value == "OT") {
+            this.OTInstalled = true;
+        }
+        else if (value == "Ultrasound") {
+            this.UltrasoundInstalled = true;
+        }
+        else if (value == "Pharmacy") {
+            this.PharmacyInstalled = true;
+        }
+        else if (value == "Finance") {
+            this.FinanceInstalled = true;
         }
     }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
 import { ApiService } from '../../api.service';
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { City } from '../../../../core/Models/HRM/city';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment.prod';
 
 
 @Injectable()
@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class HrmsService {
 
     public setupUrl: string = "SystemAdmin/api/Setup";
-    public setupUrl2: string = "http://gbsc-erp.azurewebsites.net/SystemAdmin/api/Setup";
+    public setupUrl2: string = environment.api_url + "SystemAdmin/api/Setup";
     
     constructor(public ApiService: ApiService,public httpService : HttpClient) {
     }
@@ -27,8 +27,7 @@ export class HrmsService {
     }
  
     async addCountry(data) {
-        // return await this.httpService.post('http://localhost:58090/api/setup/AddCountry', data).toPromise();
-        return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
+         return await this.httpService.post(this.setupUrl2 + '/AddCountry', data).toPromise();
 
     }
 

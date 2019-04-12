@@ -1,5 +1,101 @@
+ 
+ 
+
+.ag-root-wrapper{
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    opacity: 0.5;
+    // transition: opacity 1s ease-out 3s;
+}
+
+.ag-watermark {
+    position: absolute;
+    bottom: 10px;
+    right: 25px;
+    opacity: 0.5;
+    // transition: opacity 1s ease-out 3s;
+}
+
+#myGrid{
+    height: 650px;
+}
+
+.margin{
+    margin-top: 25px;
+}
+
+.dispy{
+    display: none;
+}
+
 .btn-outline-metal:hover {
     color: #212529;
     background-color: #4a4a4a !important;
     /* border-color: #c4c5d6; */
 }
+
+ 
+
+.margin{
+    margin-top: 25px;
+}
+
+.dispy{
+    display: none;
+}
+ 
+ @media print {
+
+    .m-body * {
+        visibility: hidden;
+      }
+      
+    .m-subheader-search * {
+      visibility: hidden;
+    }
+    .ag-side-bar {
+        visibility: hidden !important;
+        display: none !important;
+        flex-direction: row-reverse;
+    }
+    .m-header--fixed-mobile .m-header{
+        visibility: hidden;
+    }
+    .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed).m-aside-left--minimize .m-footer {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    display: none;
+    -o-transition: none;
+    transition: none;
+    margin-left: 0px;
+    position: fixed;
+    bottom: 0px;
+    z-index: 0;
+}
+
+    .btnd{
+        visibility: hidden;
+    }
+    .headdd{
+        visibility: hidden;
+    }
+    #myGrid{
+        margin-top: -400px;
+        margin-left: -50px;
+        // width: 1350px;
+    }
+    // #myGrid, #myGrid * {
+    //   visibility: visible;
+    //  }
+
+    // #myGrid {
+    //   position: absolute;
+    //   left: 0;
+    //   top: 0;
+    // }
+ 
+
+    
+  }

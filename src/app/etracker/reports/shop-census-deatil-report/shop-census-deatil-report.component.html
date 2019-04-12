@@ -31,18 +31,20 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="table-responsive" id="printTable">
-                        <div class="row">
-                            <div class="col-sm-6" style="display: inline-grid;">
-                                <img class="img" src="./assets/images/logo.png" />
-                            </div>
-                            <div class="col-sm-6" style="text-align: right; padding: 20px;">
-                                <h2 class="name">Shop Census Detail</h2>
-                                <div><strong>User Name:</strong> {{usr?.fullName}}</div>
-                                <div><strong>From Date:</strong>{{frmDate}}</div>
-                                <div><strong>To Date:</strong>{{toDate}}</div>
-                                <div></div>
-                            </div>
-                        </div>
+
+
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td width="33%"> <img class="img" src="./assets/images/logo.png" /></td>
+                                      <td width="33%"><h2 class="name">Shop Census Detail</h2></td>
+                                      <td width="33%" style="text-align: right; padding-bottom: 30px;"><div><strong>User Name:</strong> {{usr?.fullName}}</div>
+                                        <div><strong>From Date:</strong>{{frmDate}}</div>
+                                        <div><strong>To Date:</strong>{{toDate}}</div></td>
+                                    </tr>
+                                  </table>
+
+
+                        
                         <!-- <p style="margin-top: 0;
                                 text-align: center;
                                 color: #e07026;
@@ -75,7 +77,7 @@
                                     <th>Contact</th>
                                     <th>Address</th>
                                     <th>CNIC</th>
-                                    <th>Distributor(Current)</th>
+                                    <th>Distributor</th>
                                     <th>Section</th>
                                     <th>SubSection</th>
                                     <th>DSF</th>

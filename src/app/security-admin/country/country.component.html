@@ -26,7 +26,9 @@
                 <dxo-paging [pageSize]="8"></dxo-paging>
                 <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                 </dxo-pager>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                  <dxi-validation-rule type="required" message="Country Title is required"></dxi-validation-rule>
+                </dxi-column>
               </dx-data-grid>
             </div>
           </div>

@@ -27,8 +27,11 @@
                 </dxo-pager>
                 <dxi-column dataField="countryId" caption="Country">         
                 <dxo-lookup [dataSource]="country" displayExpr="name" valueExpr="countryId"></dxo-lookup>
+                <dxi-validation-rule type="required" message="Select Country Please"></dxi-validation-rule>
             </dxi-column>
-                <dxi-column dataField="name"></dxi-column>
+                <dxi-column dataField="name">
+                    <dxi-validation-rule type="required" message="City Title is required"></dxi-validation-rule>
+                </dxi-column>
               </dx-data-grid>
             </div>
           </div>

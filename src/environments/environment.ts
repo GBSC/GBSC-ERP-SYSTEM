@@ -1,8 +1,5 @@
 export const environment = {
   production: false,
-  // api_url: 'http://gbsc-erp.azurewebsites.net/',
-  // repotr_url: 'http://gbsc-erp.azurewebsites.net/report/',
-
   api_url: 'http://gbsc-erp.azurewebsites.net/',
   repotr_url: 'http://gbsc-erp.azurewebsites.net/report/',
   firebase: {

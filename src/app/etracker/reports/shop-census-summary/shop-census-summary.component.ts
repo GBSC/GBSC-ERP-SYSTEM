@@ -127,7 +127,7 @@ export class ShopCensusSummaryComponent implements OnInit {
           {  headerName: 'Shop', valueGetter: 'data.shopNameCount' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Active', valueGetter: 'data.activeStore' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
           {  headerName: 'Close', valueGetter: 'data.close' , cellClass: 'total-col',aggFunc: 'sum', editable: false, enableValue: true },
-          {  headerName: 'Total Persent', valueGetter: ' (data.activeStore *100 ) / (data.activeStore + data.close)' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
+          {  headerName: 'Total Persent', valueGetter: '(data.activeStore *100 ) /  (data.activeStore + data.close) ' , cellClass: 'total-col',  aggFunc: 'avg', editable: false, enableValue: true }
 
              ]; 
 
@@ -143,18 +143,20 @@ export class ShopCensusSummaryComponent implements OnInit {
         public x : any = [];
      
 
-        public formDate : any ='';
+        public formDate  ='';
 
-        public toDate : any  ='';
+        public toDate    ='';
         public currentdate: any;
           public abc: any = [];
     onGridReady(fromdate , todate){
 
-      if(fromdate == '' &&  todate == ''){
+      if(fromdate == '' &&  todate != ''){
         fromdate = '1-1-0001';
-        todate = this.currentdate;
+        console.log(todate);
+        todate = todate
         this.formDate = fromdate;
         this.toDate = todate
+        console.log(fromdate);
         this.storeService.shopCensusSummary(this.companyId,this.userId , this.formDate,  this.toDate).subscribe(res => {
           this.rowData = res;
          console.log(this.rowData);
@@ -162,11 +164,29 @@ export class ShopCensusSummaryComponent implements OnInit {
       }
       else if(fromdate != '' &&  todate != ''){
         this.formDate = fromdate 
-        this.toDate = todate
+      this.toDate = todate
+      console.log(this.companyId);
+      console.log(this.userId);
+      let usrId = 350;
+      console.log(usrId)
         this.storeService.shopCensusSummary(this.companyId,this.userId ,  this.formDate, this.toDate).subscribe(res => {
           this.rowData = res;
          console.log(this.rowData);
        });
+      }
+      else if(fromdate == '' &&  todate == ''){
+        this.formDate = '1-1-0001' 
+        this.toDate = this.currentdate
+        console.log(this.companyId);
+        console.log(this.userId);
+        let usrId = 350;
+        console.log(usrId)
+    
+          this.storeService.shopCensusSummary(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+             this.rowData = res;
+            console.log(this.rowData);
+          });  
+   
       }
 
       else{
@@ -319,7 +339,7 @@ export class ShopCensusSummaryComponent implements OnInit {
         console.log(this.formDate);
         console.log(this.toDate);
         console.log(this.gridApi);
-        window.open('http://erp.gbscsolutions.com/#/etracker/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+        window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-summary-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
       }
   
    
@@ -540,8 +560,12 @@ export class ShopCensusSummaryComponent implements OnInit {
     // toggleFilter() {
     //     this.showHideFilter = !this.showHideFilter;
     // }
-    export(){
-      this.gridApi.exportDataAsCsv();
-    }
-   
+
+
+    export(param){
+    this.gridApi =   param.api;
+    console.log( this.gridApi)
+    this.gridApi.exportDataAsCsv();
+  }
+
 }

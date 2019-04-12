@@ -76,6 +76,8 @@ export class LocatorComponent {
 
     ngOnInit() {
 
+        // this.eTrackerUserService.updateDataWithTimeStamp();
+
         this.InventoryService.getRegionsByCompany(this.Auth.getUserCompanyId()).subscribe((res: Region[]) => {
             this.Regions = res;
         });

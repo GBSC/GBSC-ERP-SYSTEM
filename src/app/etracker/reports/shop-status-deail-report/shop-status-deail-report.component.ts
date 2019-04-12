@@ -4,12 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../../app/core/Services/HRM/Employee/employee.service';
 
 @Component({
-  selector: 'app-shop-census-summary-report',
-  templateUrl: './shop-census-summary-report.component.html',
-  styleUrls: ['./shop-census-summary-report.component.css']
+  selector: 'app-shop-status-deail-report',
+  templateUrl: './shop-status-deail-report.component.html',
+  styleUrls: ['./shop-status-deail-report.component.css']
 })
-export class ShopCensusSummaryReportComponent implements OnInit {
+export class ShopStatusDeailReportComponent implements OnInit {
+  @Input() gridApi: string;
   public Data = [];
+// @Input("dayone") dayone : string;
   public sumTotalShop = [ ];
   public TShop = 0;
 
@@ -21,20 +23,14 @@ export class ShopCensusSummaryReportComponent implements OnInit {
   public sumTotalCloseshop = [ ];
   public totalCloseshop = 0;
 
-  public sumTotalPersent = [ ];
   public ActivePersent = 0;
 
   public usrid : any
   public frmDate : any
   public toDate : any
+  constructor( public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
   public usr : any;
-  public myData2 =[];
-  constructor(public route: ActivatedRoute  , public employeeServiceObj : EmployeeService) { }
-
   ngOnInit() {
-   
-
-
 
     this.route.params.subscribe((params)=>{
       this.usrid = +params['id'];
@@ -48,6 +44,9 @@ export class ShopCensusSummaryReportComponent implements OnInit {
     console.log(this.usrid)
     console.log(this.frmDate)
     console.log(this.toDate)
+    console.log(this.gridApi)
+    // this.Data = []
+    
     this.employeeServiceObj.GetEmployee(this.usrid).subscribe(res => {
       this.usr = res;
       console.log(this.usr)
@@ -55,39 +54,23 @@ export class ShopCensusSummaryReportComponent implements OnInit {
 
     this.Data= JSON.parse( sessionStorage.getItem("previewData"));
     console.log(this.Data)
-       
-    console.log( this.Data[0].secGroup) 
-    let mainData =              this.Data[0].secGroup
-    console.log('Main 1')
-    console.log( mainData)
-    
-    this.myData2 =   this.Data.filter(t=>t.secGroup == mainData)
-    console.log('Main 2')
-    console.log( this.myData2)
+    this.Data.shift();
 
-    this.myData2.forEach(element => {
-      console.log(element)
-      if(element.mainTotalShop){
-       this.sumTotalShop.push(element.mainTotalShop)
-      }
-      if(element.mainTotalActive){
-       this.sumTotalActiveshop.push(element.mainTotalActive)
-      }
-      if(element.mainTotalClosed){
-       this.sumTotalCloseshop.push(element.mainTotalClosed)
-      }
-      if(element.mainTotalPersent){
-        this.sumTotalPersent.push(element.mainTotalPersent)
+
+     this.Data.forEach(element => {
+       if(element.TotalShop){
+        this.sumTotalShop.push(parseInt( element.TotalShop , 10))
        }
-    });
+       if(element.TotalActive){
+        this.sumTotalActiveshop.push( parseInt( element.TotalActive,10))
+       }
+       if(element.TotalClosed){
+        this.sumTotalCloseshop.push( parseInt( element.TotalClosed,10))
+       }
+      
+     });
 
-      this.TShop = this.sumTotalShop.reduce(this.getSum);
-
-      this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
-
-      this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
-
-    // for (let index = 0; index < this.sumTotalShop.length; index++) {
+    //  for (let index = 0; index < this.sumTotalShop.length; index++) {
 
     //   this.TShop += (this.sumTotalShop[index])
     // }
@@ -103,12 +86,11 @@ export class ShopCensusSummaryReportComponent implements OnInit {
 
     //   this.totalCloseshop += (this.sumTotalCloseshop[index])
     // }
+    this.TShop = this.sumTotalShop.reduce(this.getSum);
 
-    // for (let index = 0; index < this.sumTotalPersent.length; index++) {
+    this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
 
-    //   this.ActivePersent += (this.sumTotalPersent[index])
-    // }
-
+    this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
 
      console.log( this.sumTotalShop)
      console.log(this.TShop);
@@ -117,20 +99,19 @@ export class ShopCensusSummaryReportComponent implements OnInit {
     // console.log(this.dayone)
 
     
-      this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
-
-
-
+    this.ActivePersent = Math.round(  (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100)
   }
   getSum(total, num) {
     return total + num;
   }
+
+
   btn(){
     var divToPrint=document.getElementById("printTable");
     let newWin= window.open("");
      newWin.document.write(divToPrint.innerHTML);
      newWin.print();
-     newWin.close();  
+     newWin.close();
   }
 
 }

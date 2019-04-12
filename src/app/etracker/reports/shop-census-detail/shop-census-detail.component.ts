@@ -161,20 +161,21 @@ public usr : any;
   formatDate(date: Date) {
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 }
-public formDate : any ='';
+public formDate  ='';
 
-public toDate : any  ='';
+public toDate   ='';
   public abc: any = [];
   onGridReady(fromdate, todate ,params) {
     console.log(fromdate);
     console.log(todate);
-        if(fromdate == '' &&  todate == ''){
+        if(fromdate == '' &&  todate != ''){
           fromdate = '1-1-0001';
-          todate = this.currentdate;
+          console.log(todate);
+          todate = todate
           this.formDate = fromdate;
           this.toDate = todate
           console.log(fromdate);
-          console.log(todate);
+         
           this.storeService.shopCensusDetailReport(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
             this.rowData = res;
            console.log(this.rowData);
@@ -184,6 +185,20 @@ public toDate : any  ='';
     else if(fromdate != '' &&  todate != ''){
       this.formDate = fromdate 
       this.toDate = todate
+      console.log(this.companyId);
+      console.log(this.userId);
+      let usrId = 350;
+      console.log(usrId)
+  
+        this.storeService.shopCensusDetailReport(this.companyId, this.userId,this.formDate, this.toDate).subscribe(res => {
+           this.rowData = res;
+          console.log(this.rowData);
+        });  
+ 
+    }
+    else if(fromdate == '' &&  todate == ''){
+      this.formDate = '1-1-0001' 
+      this.toDate = this.currentdate
       console.log(this.companyId);
       console.log(this.userId);
       let usrId = 350;
@@ -405,9 +420,9 @@ public toDate : any  ='';
            }
 
            this.groupSummary = {
-              TotalShop : dd[0]+" "+"TotalShop",
-              TotalActive :dd[1]+" "+"TotalActive",
-              TotalClosed :dd[2]+" "+"TotalClosed"                     
+              TotalShop : dd[0]+" "+"Total Shop",
+              TotalActive :dd[1]+" "+"Total Active",
+              TotalClosed :dd[2]+" "+"Total Closed"                     
            }
 
           this.Data.push(c)
@@ -470,15 +485,13 @@ public toDate : any  ='';
     // this.ActivePersent = (this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop) )*100
 
     // console.log(this.ActivePersent);
-
+ 
     sessionStorage.setItem( "previewData" , JSON.stringify(this.Data))
     console.log(this.formDate);
     console.log(this.toDate);
     console.log(this.gridApi);
-    window.open('http://erp.gbscsolutions.com/#/etracker/reports/shop-status-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
+    window.open('http://eva.gbscsolutions.com/#/etracker/reports/shop-census-detail-report/'+ this.userId+'/'+this.formDate+'/'+this.toDate)
   }
-
- 
 
   btn(){
     var divToPrint=document.getElementById("printTable");

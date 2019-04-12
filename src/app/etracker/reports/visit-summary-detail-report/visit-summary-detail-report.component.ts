@@ -94,38 +94,25 @@ export class VisitSummaryDetailReportComponent implements OnInit {
         this.productivityPersent.push(parseInt( element.productivityPersent , 10))
       }
     })
+    this.tPjpShop = this.pjpShop.reduce(this.getSum);
+    this.tPjpvited = this.pjpvited.reduce(this.getSum);
+    this.tOutOfPjpVisited = this.outOfPjpVisited.reduce(this.getSum);
+    this.tVisitedShop = this.visitedShop.reduce(this.getSum);
+    this.tProductive = this.productive.reduce(this.getSum);
+    this.tNotProductive = this.notProductive.reduce(this.getSum);
+    this.tNotVisited = this.notVisited.reduce(this.getSum);
+    this.tVisitPerformancePersent = this.visitPerformancePersent.reduce(this.getSum);
+    this.tProductivityPersent = this.productivityPersent.reduce(this.getSum);
 
-    for (let index = 0; index < this.pjpShop.length; index++) {
-      this.tPjpShop += (this.pjpShop[index])
-    }
-    for (let index = 0; index < this.pjpvited.length; index++) {
-      this.tPjpvited += (this.pjpvited[index])
-    }    
-    for (let index = 0; index < this.outOfPjpVisited.length; index++) {
-      this.tOutOfPjpVisited += (this.outOfPjpVisited[index])
-    }    
-    for (let index = 0; index < this.visitedShop.length; index++) {
-      this.tVisitedShop += (this.visitedShop[index])
-    }    
-    for (let index = 0; index < this.productive.length; index++) {
-      this.tProductive += (this.productive[index])
-    }    
-    for (let index = 0; index < this.notProductive.length; index++) {
-      this.tNotProductive += (this.notProductive[index])
-    }    
-    for (let index = 0; index < this.notVisited.length; index++) {
-      this.tNotVisited += (this.notVisited[index])
-    }    
-    for (let index = 0; index < this.visitPerformancePersent.length; index++) {
-      this.tVisitPerformancePersent += (this.visitPerformancePersent[index])
-    }    
-    for (let index = 0; index < this.productivityPersent.length; index++) {
-      this.tProductivityPersent += (this.productivityPersent[index])
-    }    
+      
+     
+    
+    
 
     console.log('PJP SHOP',this.tPjpShop);
-
-    
   }
 
+  getSum(total, num) {
+    return total + num;
+  }
 }

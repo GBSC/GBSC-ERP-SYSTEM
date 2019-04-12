@@ -31,21 +31,20 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="table-responsive" id="printTable">
-                            <div class="row">
-                                    <div class="col-sm-6" style="display: inline-grid;">
-                                            <img  class="img" src="./assets/images/logo.png"/>
-                                    </div>
-                                    <div class="col-sm-6" style="text-align: right; padding: 20px;">
-                                            <h2 class="name">Shop Census Summary</h2>
-                                            <div><strong>User Name:</strong> {{usr?.fullName}}</div>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td width="33%"><img  class="img" src="./assets/images/logo.png"/></td>
+                                      <td width="33%"><h2 class="name">Shop Census Summary</h2></td>
+                                      <td width="33%" style="text-align: right; padding-bottom: 30px;">
+                                        <div><strong>User Name:</strong> {{usr?.fullName}}</div>
                                                 <div><strong>From Date:</strong>{{frmDate}}</div>
                                                 <div><strong>To Date:</strong>{{toDate}}</div>
-                                                <div></div>
-                                    </div>
-                                </div>
+                                    </td>
+                                    </tr>
+                                  </table>
                         <table class="table table-bordered" border="1" cellpadding="3" width="100%" >
 
-                            <thead style="     font-size: 13px;
+                            <thead style="font-size: 13px;
                             background-color: #868282;
                             color: #000000;">
                                 <tr>

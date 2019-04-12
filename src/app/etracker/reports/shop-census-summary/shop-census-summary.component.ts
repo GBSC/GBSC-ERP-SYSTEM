@@ -248,7 +248,7 @@ export class ShopCensusSummaryComponent implements OnInit {
              this.gridApi = param.api;
     console.log(this.gridApi)
   
-      this.gridApi.forEachNode(res => 
+      this.gridApi.forEachNodeAfterFilter(res => 
            {
              console.log(res)
              if(res.leafGroup == false ){

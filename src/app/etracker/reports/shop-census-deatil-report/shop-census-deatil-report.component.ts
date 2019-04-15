@@ -32,7 +32,7 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   public usrid: any
   public frmDate: any
   public toDate: any
-  public deletTopEmptyobj  = []
+  public deletTopEmptyobj = []
 
   constructor(public route: ActivatedRoute, public employeeServiceObj: EmployeeService) { }
   public usr: any;
@@ -53,9 +53,9 @@ export class ShopCensusDeatilReportComponent implements OnInit {
 
     this.Data = JSON.parse(sessionStorage.getItem("previewData"));
 
-      // this.Data.shift();   
+    // this.Data.shift();   
 
-     this.Data.forEach(element => {
+    this.Data.forEach(element => {
 
       // if (element.TotalShop) {
       //   this.sumTotalShop.push(parseInt(element.TotalShop, 10))
@@ -74,7 +74,7 @@ export class ShopCensusDeatilReportComponent implements OnInit {
         this.sumTotalCloseshop.push(element.close)
       }
 
- 
+
     });
 
 
@@ -82,37 +82,40 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     console.log(this.sumTotalCloseshop)
 
 
+    this.totalActiveshop = this.sumTotalActiveshop.reduce((prev, current) => prev + current, 0);
 
-    this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
+    // this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
     console.log(this.totalActiveshop)
-    this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
+
+
+    this.totalCloseshop = this.sumTotalCloseshop.reduce((prev, current) => prev + current, 0);
     console.log(this.totalCloseshop)
     this.TShop = this.totalActiveshop + this.totalCloseshop;
-    console.log( this.TShop )
+    console.log(this.TShop)
     this.ActivePersent = Math.round((this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop)) * 100)
     console.log(this.ActivePersent)
-  
-  this.Data.find(e  =>{
-    console.log(e)
-      if(e.TotalShop){
-          this.deletTopEmptyobj.push(e.TotalShop);   
-       }
+
+    this.Data.find(e => {
+      console.log(e)
+      if (e.TotalShop) {
+        this.deletTopEmptyobj.push(e.TotalShop);
+      }
     })
     console.log(this.Data)
-    if(this.deletTopEmptyobj.length){
+    if (this.deletTopEmptyobj.length) {
       this.Data.shift();
     }
-    else{
-      this.Data.pop();  
-     }
-     console.log(this.Data)
+    else {
+      this.Data.pop();
+    }
+    console.log(this.Data)
 
-   }
+  }
 
 
- 
 
-   getSum(total, num) {
+
+  getSum(total, num) {
     return total + num;
   }
 

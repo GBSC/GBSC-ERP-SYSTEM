@@ -29781,7 +29781,7 @@ body.m-page--boxed {
 
 .m-body .m-content {
   padding: 15px 30px;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
 }
 
 .m-content--skin-light .m-body {

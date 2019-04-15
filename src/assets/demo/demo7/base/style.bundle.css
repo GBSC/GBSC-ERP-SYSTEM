@@ -29780,7 +29780,9 @@ body.m-page--boxed {
     margin-right: auto; } }
 
 .m-body .m-content {
-  padding: 15px 30px; }
+  padding: 15px 30px;
+  /* height: -webkit-fill-available; */
+}
 
 .m-content--skin-light .m-body {
   background-color: #ffffff; }
@@ -34727,7 +34729,8 @@ body.m-content--skin-light2 {
 	max-width: 200px;
 	position: relative;
 	min-height: 100%;
-	z-index: auto;
+  z-index: auto;
+  background: #4f4f4f;
 }
 
 #m_aside_left.active {

@@ -153,6 +153,8 @@ import { IncometaxRuleDetailComponent } from './payroll/taxsetup/incometax-rule-
 import { MonthlySalaryProcessComponent } from './payroll/monthly-salary-process/monthly-salary-process.component';
 import { MonthlyPayrollProcessComponent } from './Reports/Payroll/monthly-payroll-process/monthly-payroll-process.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LeavepolicydetailComponent } from './leave/leavesetup/leavepolicydetail/leavepolicydetail.component';
+import { EmployeeLeavepolicyDetailComponent } from './leave/leaveadmin/employee-leavepolicy-detail/employee-leavepolicy-detail.component';
 
 
 export const routing: ModuleWithProviders = RouterModule.forChild([
@@ -209,6 +211,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'leaveapprover', component: LeaveapproverComponent },
                             { path: 'leaveyear', component: LeaveyearsetupComponent },
                             { path: 'leavepolicy', component: LeavepolicyComponent },
+                            { path: 'update-leavepolicy/:id', component: LeavepolicyComponent },
+                            { path: 'leavepolicydetail', component: LeavepolicydetailComponent },
                             { path: 'leavetype', component: LeavetypeComponent },
                             { path: 'leavedaytype', component: LeavedaytypeComponent },
                             { path: 'leaveeligibility', component: LeaveeligibilityComponent },
@@ -222,6 +226,8 @@ export const routing: ModuleWithProviders = RouterModule.forChild([
                             { path: 'createleaveopening', component: EmployeeleaveopeningComponent },
                             { path: 'update-leaveopening/:id', component: EmployeeleaveopeningComponent },
                             { path: 'employeeleavepolicy', component: EmpleavepolicyComponent },
+                            { path: 'update-employeeleavepolicy/:id', component: EmpleavepolicyComponent },
+                            { path: 'employeeleavepolicydetail', component: EmployeeLeavepolicyDetailComponent },
                         ]
                     },
                     { path: 'leavetypebalance', component: LeavetypebalanceComponent },

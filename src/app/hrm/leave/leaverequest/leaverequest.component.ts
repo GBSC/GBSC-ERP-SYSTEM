@@ -78,9 +78,7 @@ export class LeaverequestComponent implements OnInit {
         this.leaveApprovr = await this.leavesetupservice.getLeaveApprovers();
 
         this.leaveYears = await this.leavesetupservice.getLeaveYears();
-        console.log(this.leaveYears);
         this.leaveYears = this.leaveYears.filter(c => c.isCurrentYear == true);
-        console.log(this.leaveYears);
         
         this.leaveType = await this.leavesetupservice.getLeaveTypes();
 
@@ -289,43 +287,7 @@ export class LeaverequestComponent implements OnInit {
         });
 
     }
-
-    countDays(e) {
-
-        let from = new Date(this.data.leaveDate);
-        // let till = new Date(this.leaveRequestDetailForm.value.dateTill);
-
-        let dayFrom = from.getDate();
-        // let dayTo = till.getDate();
-
-        let monthFrom = from.getMonth();
-        // let monthTo = till.getMonth();
-
-        this.availed = 0;
-        for (let i = 0; i <= (monthFrom); i++) {
-            this.availed += this.getMonthDays(monthFrom + i);
-        }
-        this.availed = (this.availed - dayFrom) - (this.getMonthDays(from.getMonth())) + 1;
-        // if (monthFrom) {
-        //     this.availed = (dayFrom) + 1;
-        // } else if (monthTo > monthFrom) {
-        //     for (let i = 0; i <= (monthTo - monthFrom); i++) {
-        //         this.availed += this.getMonthDays(monthFrom + i);
-        //     }
-        //     this.availed = (this.availed - dayFrom) - (this.getMonthDays(till.getMonth()) - dayTo) + 1;
-        // }
-    }
-
-    getMonthDays(month) {
-        let thirty = [3, 5, 8, 11];
-        if (month === 1) {
-            return 28;
-        } else if (thirty.includes(month)) {
-            return 30;
-        } else {
-            return 31;
-        }
-    }
+ 
 
     formatDate(date: Date) {
         return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();

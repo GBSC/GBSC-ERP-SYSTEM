@@ -16,9 +16,8 @@
             <div class="form-group m-form__group row">
               <div class="col-lg-3">
                 <label>Employee: </label>
-                 <select class="form-control m-input" formControlName="PayrollYearId">
-                  <option value="" disabled selected>-- Select Payroll Year --</option>
-                  <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
+                 <select selected class="form-control m-input" formControlName="PayrollYearId">
+                   <option *ngFor="let py of payrollYears" [value]="py.payrollYearId">{{py.name}}</option>
                 </select> 
               </div>
               <div class="col-lg-3">
@@ -73,9 +72,7 @@
                           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                           </dxo-pager> 
 
-                          <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                            <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
-                          </dxi-column>
+                          <dxi-column dataField="salaryCalculationType" caption="Salary Calculation"></dxi-column>
             
                           <dxi-column dataField="benefitId" caption="Benefit">
                             <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
@@ -123,10 +120,7 @@
                     <dxo-paging [pageSize]="6"></dxo-paging>
                     <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
                     </dxo-pager> 
-
-                    <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                      <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
-                    </dxi-column>
+                    <dxi-column dataField="salaryCalculationType" caption="Salary Calculation"></dxi-column>
       
                     <dxi-column dataField="benefitId" caption="Benefit">
                       <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>

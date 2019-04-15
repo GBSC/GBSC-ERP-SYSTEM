@@ -484,9 +484,9 @@ export class PayrollSetupService {
         return this.ApiService.post(`${this.baseUrl}/AddPayrollYear`, data);
     }
 
-    async updatePayrollYear(data) {
+    updatePayrollYear(data): Observable<any> {
 
-        return await this.ApiService.put(`${this.baseUrl}/UpdatePayrollYear`, data).toPromise();
+        return this.ApiService.put(`${this.baseUrl}/UpdatePayrollYear`, data);
     }
 
     async deletePayrollYear(payrollyearId) {

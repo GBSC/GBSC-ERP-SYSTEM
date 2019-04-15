@@ -72,6 +72,7 @@ export class UserregistrationComponent implements OnInit {
     }
 
     update(value) {
+console.log(value);
 
         let user = this.user;
         user.firstName = value.FirstName;
@@ -83,6 +84,8 @@ export class UserregistrationComponent implements OnInit {
         user.userType = value.UserType;
 
         this.userService.editUser(user).subscribe(resp => {
+            console.log(resp);
+            
             this.displayToast("Account Updated")
             if (this.username && value.Password) {
                 let passChangeModel = { username: this.username, password: value.Password }
@@ -101,6 +104,7 @@ export class UserregistrationComponent implements OnInit {
 
         this.userService.getUser(this.userId).subscribe(resp => {
             this.user = resp
+            console.log(resp); 
             this.patchValues(this.user);
             this.userService.getUsernameByUserId(this.user.userId).subscribe(u => {
                 this.username = u;
@@ -119,7 +123,8 @@ export class UserregistrationComponent implements OnInit {
 
 
     patchValues(user) {
-
+        console.log(user.cityId);
+        
         this.userForm.patchValue({
             'FirstName': user.firstName,
             'LastName': user.lastName,

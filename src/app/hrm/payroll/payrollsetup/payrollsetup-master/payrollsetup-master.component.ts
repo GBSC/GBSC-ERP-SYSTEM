@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PayrollsetupMasterComponent implements OnInit {
 
   tabs: string[] = [ 
-  'Allowance/Deduction',  'Allowance Calculation Type',  'Benefit',  'Payroll Type', 'Payroll Year', 'Salary Calculation Type', 'Salary Structure'];
+  'Allowance/Deduction',  'Benefit',  'Payroll Type', 'Payroll Year', 'Salary Structure'];
  selectedTab = this.tabs[0];
 
   constructor() { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../api.service';
-
+import { Observable } from 'rxjs';
+ 
 @Injectable()
 export class LeaveSetupService {
 
@@ -10,6 +11,10 @@ export class LeaveSetupService {
 
     async getLeavePolicies() {
         return await this.ApiService.get(`${this.baseUrl}/GetLeavePolicies`).toPromise();
+    }
+
+    getLeavePoliciy(id): Observable <any>{
+        return this.ApiService.get(this.baseUrl +'/GetLeavePolicy/' + id);
     }
 
     async getdataToUpdate(leavesId, leavesUrl) {
@@ -75,11 +80,8 @@ export class LeaveSetupService {
         return await this.ApiService.post(`${this.baseUrl}/AddLeaveApprover`, data).toPromise();
     }
 
-    async updateLeaveApprover(data) {
-
-        let leaveapprover = await this.getdataToUpdate(data.key, 'GetLeaveApprover');
-        leaveapprover = { ...leaveapprover, ...data.data }
-        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveApprover`, leaveapprover).toPromise();
+    async updateLeaveApprover(data) { 
+        return await this.ApiService.put(`${this.baseUrl}/UpdateLeaveApprover`, data).toPromise();
     }
 
     async DeleteLeaveApprover(leaveapproverId) {

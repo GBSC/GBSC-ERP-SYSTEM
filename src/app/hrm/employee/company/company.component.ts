@@ -52,13 +52,10 @@ export class EmployeeCompanyComponent implements OnInit {
             ConfirmationDate: [''],
             LeavingDate: [''],
             ResignDate: [''],
-            Approver: ['',Validators.required],
-            CountryId: [''],
-            CityId: [''],
-            DepartmentId: [''],
-            GroupId: [''],
-            BranchId: [''],
-            UserId: [this.id]
+            Approver: ['',Validators.required], 
+            DepartmentId: ['',Validators.required], 
+            BranchId: ['',Validators.required],
+            userId: [this.id]
 
         });
 
@@ -97,8 +94,9 @@ export class EmployeeCompanyComponent implements OnInit {
             this.employeeService.GetEmployeeCompany(this.id).subscribe(resp => {
 
                 this.EmployeeCompany = resp                
-
-                this.patchValues(resp);
+                console.log(resp);
+                
+                this.patchValues(resp); 
             });
 
 
@@ -126,55 +124,120 @@ export class EmployeeCompanyComponent implements OnInit {
             this.toster.error("Fill All Required Fields");  
         } 
 
-        else{ 
-        value.UserId = this.id;
-        value.CompanyId = this.authService.getUserCompanyId();  
-
+        else{  
         if (this.EmployeeCompany.userCompanyId > 0) { 
             value.UserCompanyId = this.EmployeeCompany.userCompanyId; 
-       if(
-            this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate))
-            && this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate))
-            && this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) 
-            && this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate)) 
-            && this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) 
-            && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate)) 
-            && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.ResignDate)) 
-             || value.LeavingDate == null || value.resignDate == null || value.confirmationDueDate == null || value.confirmationDate == null || value.ContractStartDate == null || value.contractEndDate == null
+       if( 
+           this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ConfirmationDueDate == null
               ) 
-              {  
-                this.employeeService.updateUserCompany(value).subscribe(c => { 
-                this.showSuccess("Company Information Updated"); 
-            })
-        }
+              {
+                if(  
+                    this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate)) || value.ConfirmationDueDate == null || value.ConfirmationDate == null               
+                    ) 
+                    {                        
+                        if( 
+                            this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) || value.ContractStartDate == null || value.ConfirmationDate == null
+                            ) 
+                            {
+                                if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
+                                { 
+                                    if( 
+                                        this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))|| value.LeavingDate == null )
+                                        {    
+                                            if( 
+                                                this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
+                                                {     
+                                                            value.userId = this.id;
+                                                            value.CompanyId = this.authService.getUserCompanyId();  
+                                                            this.employeeService.updateUserCompany(value).subscribe(c => { 
+                                                            this.showSuccess("Company Information Updated"); 
+                                                            }) 
+    
+                                                }
+                                                else{
+                                                    this.toster.info("Resign Date not valid");  
+                                                }
+                                        }
+                                        else{
+                                            this.toster.info("Leaving Date not valid");  
+                                        }
+                                }
+                                    else{
+                                        this.toster.info("Contract End Date not valid");  
+                                    }
+                            }
+                            else{
+                                this.toster.info("Contract Start Date not valid");  
+                            }
+                    }
+                    else{
+                        this.toster.info("Confirmation Date not valid");  
+                    }
+              }
+  
             else{
-                this.toster.info("Date Error");  
+                this.toster.info("Confirmation Due Date not valid");  
             }
         }
+        
         else {
-            if(
-                this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate))
-                && this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate))
-                && this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) 
-                && this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate)) 
-                && this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) 
-                && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate)) 
-                && this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.ResignDate)) 
-                 || value.LeavingDate == null || value.resignDate == null || value.confirmationDueDate == null || value.confirmationDate == null || value.ContractStartDate == null || value.contractEndDate == null
-                  ) {
-            value.CompanyId = this.authService.getUserCompanyId(); 
-            this.employeeService.addUserCompany(value).subscribe(c => {this.showSuccess("Company Information Added");  
-        }) }
-        else{
-            this.toster.info("Date Error");  
+         
+            if( 
+                this.formatDate( new Date (value.ConfirmationDueDate)) >= this.formatDate( new Date (value.AppointmentDate)) || value.ConfirmationDueDate == null
+                   ) 
+                   {
+                     if(  
+                         this.formatDate( new Date (value.ConfirmationDate)) >= this.formatDate( new Date (value.ConfirmationDueDate)) || value.ConfirmationDueDate == null || value.ConfirmationDate == null               
+                         ) 
+                         {                        
+                             if( 
+                                 this.formatDate(new Date(value.ContractStartDate)) >= this.formatDate(new Date(value.ConfirmationDate)) || value.ContractStartDate == null || value.ConfirmationDate == null
+                                 ) 
+                                 {
+                                     if(this.formatDate(new Date(value.ContractEndDate)) >= this.formatDate(new Date(value.ContractStartDate))  && value.ContractStartDate != null || value.ContractEndDate == null)
+                                     { 
+                                         if( 
+                                             this.formatDate(new Date(value.LeavingDate)) >= this.formatDate(new Date(value.AppointmentDate))|| value.LeavingDate == null )
+                                             {    
+                                                 if( 
+                                                     this.formatDate(new Date(value.ResignDate)) >= this.formatDate(new Date(value.AppointmentDate)) && value.LeavingDate != null || value.ResignDate == null)
+                                                     {     
+                                                        value.CompanyId = this.authService.getUserCompanyId();  
+                                                        this.employeeService.addUserCompany(value).subscribe(c => {this.showSuccess("Company Information Added");  
+                                                        }) 
+         
+                                                     }
+                                                     else{
+                                                         this.toster.info("Resign Date not valid");  
+                                                     }
+                                             }
+                                             else{
+                                                 this.toster.info("Leaving Date not valid");  
+                                             }
+                                     }
+                                         else{
+                                             this.toster.info("Contract End Date not valid");  
+                                         }
+                                 }
+                                 else{
+                                     this.toster.info("Contract Start Date not valid");  
+                                 }
+                         }
+                         else{
+                             this.toster.info("Confirmation Date not valid");  
+                         }
+                   }
+       
+                 else{
+                     this.toster.info("Confirmation Due Date not valid");  
+                 } 
 
+                     }
+            }
         }
-         }
-           }
-    }
 
     formatDate(date: Date) {
-        return   date.getFullYear() +"-" +( date.getMonth() +1)   + "-" + date.getDate();
+        return  date.getFullYear() +"-" +( date.getMonth() +1)   + "-" + date.getDate();
       }
 
     patchValues(company: any) {

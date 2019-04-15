@@ -112,7 +112,7 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="scheduleDetail" (onRowInserted)="addTaxSchedule($event)" (onRowUpdated)="updateTaxSchedule($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="scheduleDetail" [showBorders]="true" (onRowInserted)="addTaxSchedule($event)" (onRowUpdated)="updateTaxSchedule($event)"
                 (onRowRemoved)="deleteTaxSchedule($event)">
 
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">
@@ -152,7 +152,7 @@
         <div class="m-portlet__body">
           <div class="m-section">
             <div class="m-section__content">
-              <dx-data-grid id="gridContainer" [dataSource]="reliefDetail" (onRowInserted)="addTaxRelief($event)" (onRowUpdating)="updateTaxRelief($event)"
+              <dx-data-grid id="gridContainer" [dataSource]="reliefDetail" [showBorders]="true" (onRowInserted)="addTaxRelief($event)" (onRowUpdating)="updateTaxRelief($event)"
                 (onRowRemoved)="deleteTaxRelief($event)">
 
                 <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="true" [useIcons]="true">

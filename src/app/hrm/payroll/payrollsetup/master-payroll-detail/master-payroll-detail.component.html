@@ -42,9 +42,7 @@
 
                       <div *dxTemplate="let masterPayroll of 'detail'">
                           <dx-data-grid [dataSource]="masterPayroll.data.masterPayrollDetails" [showBorders]="true">
-                            <dxi-column dataField="salaryCalculationTypeId" caption="Salary Calculation">
-                                <dxo-lookup [dataSource]="salaryCalculationtype" displayExpr="name" valueExpr="salaryCalculationTypeId"></dxo-lookup>
-                              </dxi-column>
+                            <dxi-column dataField="salaryCalculationType" caption="Salary Calculation"></dxi-column>
                               <dxi-column dataField="benefitId" caption="Benefit">
                                 <dxo-lookup [dataSource]="benefit" displayExpr="name" valueExpr="benefitId"></dxo-lookup>
                               </dxi-column>
@@ -52,8 +50,7 @@
                                 <dxo-lookup [dataSource]="allowance" displayExpr="title" valueExpr="allowanceDeductionId"></dxo-lookup>
                               </dxi-column>
                               <dxi-column dataField="value" caption="Value/Percentage"></dxi-column>
-                              <!-- <dxi-column dataField="formula" caption="Formula"></dxi-column> -->
-     
+      
                               </dx-data-grid>
                       </div>
                   </dx-data-grid>

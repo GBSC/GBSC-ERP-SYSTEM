@@ -41,11 +41,11 @@
                     <label>
                         Leave Year:
                       </label> 
-                        <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" [value]="policy?.name" formControlName="LeaveYearId"> </dx-select-box>
+                        <dx-select-box [items]="leaveyear" displayExpr="name" valueExpr="leaveYearId" [searchEnabled]="true" formControlName="LeaveYearId"> </dx-select-box>
                       </div> 
                       <div class="col-lg-4">
                         <label>Entitled Qty (Days): </label>
-                          <input class="form-control m-input" formControlName="EntitledQuantity" [value]="policy?.entitledQuantity" type="text">
+                          <input class="form-control m-input" formControlName="EntitledQuantity"  type="text">
                         </div> 
                   </div>
                <div class="m--space-30"></div> 
@@ -53,19 +53,19 @@
               <div class="form-group m-form__group row"> 
                 <div class="col-lg-3">
                   <label>Maximum Allowed</label>
-                  <input class="form-control m-input" formControlName="MaximumAllowedBalance" [value]="policy?.maximumAllowedBalance" type="text">
+                  <input class="form-control m-input" formControlName="MaximumAllowedBalance" type="text">
                 </div>
                 <div class="col-lg-3">
                   <label>Maximum can be Taken</label>
-                  <input class="form-control m-input" formControlName="MaximumAtATime" [value]="policy?.maximumAtATime" type="text">
+                  <input class="form-control m-input" formControlName="MaximumAtATime" type="text">
                 </div>
                 <div class="col-lg-3">
                   <label>Minimum can be Taken</label>
-                  <input class="form-control m-input" formControlName="MinimumAtATime" [value]="policy?.minimumAtATime" type="text">
+                  <input class="form-control m-input" formControlName="MinimumAtATime" type="text">
                 </div>
                 <div class="col-lg-3">
                     <label>Minimum Intemation Period </label>
-                    <input class="form-control m-input" formControlName="MinimumIntimationPeriod" [value]="policy?.minimumIntimationPeriod" type="text">
+                    <input class="form-control m-input" formControlName="MinimumIntimationPeriod" type="text">
                   </div>
               </div>
               <div class="m--space-20"></div>

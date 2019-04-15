@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from '../../../../app/core/Services/HRM/Employee/employee.service';
+import { element } from '@angular/core/src/render3';
 
 
 @Component({
@@ -31,6 +32,8 @@ export class ShopCensusDeatilReportComponent implements OnInit {
   public usrid: any
   public frmDate: any
   public toDate: any
+  public deletTopEmptyobj  = []
+
   constructor(public route: ActivatedRoute, public employeeServiceObj: EmployeeService) { }
   public usr: any;
   ngOnInit() {
@@ -50,31 +53,68 @@ export class ShopCensusDeatilReportComponent implements OnInit {
 
     this.Data = JSON.parse(sessionStorage.getItem("previewData"));
 
-    this.Data.shift();
+      // this.Data.shift();   
 
-    this.Data.forEach(element => {
-      if (element.TotalShop) {
-        this.sumTotalShop.push(parseInt(element.TotalShop, 10))
+     this.Data.forEach(element => {
+
+      // if (element.TotalShop) {
+      //   this.sumTotalShop.push(parseInt(element.TotalShop, 10))
+      // }
+      // if (element.TotalActive) {
+      //   this.sumTotalActiveshop.push(parseInt(element.TotalActive, 10))
+      // }
+      // if (element.TotalClosed) {
+      //   this.sumTotalCloseshop.push(parseInt(element.TotalClosed, 10))
+      // }
+
+      if (element.activeStore) {
+        this.sumTotalActiveshop.push(element.activeStore)
       }
-      if (element.TotalActive) {
-        this.sumTotalActiveshop.push(parseInt(element.TotalActive, 10))
-      }
-      if (element.TotalClosed) {
-        this.sumTotalCloseshop.push(parseInt(element.TotalClosed, 10))
+      if (element.close) {
+        this.sumTotalCloseshop.push(element.close)
       }
 
+ 
     });
 
-    this.TShop = this.sumTotalShop.reduce(this.getSum);
+
+    console.log(this.sumTotalActiveshop)
+    console.log(this.sumTotalCloseshop)
+
+
 
     this.totalActiveshop = this.sumTotalActiveshop.reduce(this.getSum);
-
+    console.log(this.totalActiveshop)
     this.totalCloseshop = this.sumTotalCloseshop.reduce(this.getSum);
-
+    console.log(this.totalCloseshop)
+    this.TShop = this.totalActiveshop + this.totalCloseshop;
+    console.log( this.TShop )
     this.ActivePersent = Math.round((this.totalActiveshop / (this.totalActiveshop + this.totalCloseshop)) * 100)
+    console.log(this.ActivePersent)
+  
+  this.Data.find(e  =>{
+    console.log(e)
+      if(e.TotalShop){
+          this.deletTopEmptyobj.push(e.TotalShop);   
+       }
+    })
+    console.log(this.Data)
+    if(this.deletTopEmptyobj.length){
+      this.Data.shift();
+    }
+    else{
+      this.Data.pop();  
+     }
+     console.log(this.Data)
 
+   }
+
+
+ 
+
+   getSum(total, num) {
+    return total + num;
   }
-
 
 
   btn() {
@@ -85,9 +125,6 @@ export class ShopCensusDeatilReportComponent implements OnInit {
     newWin.close();
   }
 
-  getSum(total, num) {
-    return total + num;
-  }
 
 
   export() {

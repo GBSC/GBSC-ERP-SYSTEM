@@ -29,15 +29,7 @@
       <dxi-column dataField="leaveTypeId" caption="Leave Policy">
         <dxo-lookup [dataSource]="leaveTypes" displayExpr="title" valueExpr="leaveTypeId">
         </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="leaveDayTypeId" caption="Leave Day Type" [visible]="false">
-        <dxo-lookup [dataSource]="leveDayTypes" displayExpr="name" valueExpr="leaveDayTypeId">
-        </dxo-lookup>
-      </dxi-column>
-      <dxi-column dataField="leaveEligibilityId" caption="Leave Eligibility" [visible]="false">
-        <dxo-lookup [dataSource]="leaveEligibility" displayExpr="name" valueExpr="leaveEligibilityId">
-        </dxo-lookup>
-      </dxi-column>
+      </dxi-column> 
       <dxi-column dataType="boolean" dataField="isProcessed" [visible]="false"></dxi-column>
       <dxi-column dataField="entitledQuantity" [visible]="false" [visible]="false">
       </dxi-column>
